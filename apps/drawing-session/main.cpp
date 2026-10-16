@@ -71,11 +71,11 @@ int main(int argc,char **argv) {
         std::unique_ptr<RecordedComposition> composition;
         if(recorded)composition=std::make_unique<RecordedComposition>(renderer,config,[&](const auto& name,auto limit){return load(store,name,limit);});
         else fields(config,{"schema","frames"});
-        if(number(config.value("schema"),1)!=1 || !config.value("frames").isArray())
+        if((recorded?number(config.value("schema"),2):number(config.value("schema"),1))<1 || !config.value("frames").isArray())
             throw std::invalid_argument("Invalid presentation schema");
         const auto frames=config.value("frames").toArray();
         if(frames.isEmpty() || frames.size()>8192) throw std::invalid_argument("Invalid presentation frame budget");
-        if(recorded && (!QGuiApplication::primaryScreen() || !QGuiApplication::primaryScreen()->geometry().contains(QRect(0,0,int(composition->width()),int(composition->height())))))
+        if(recorded)for(unsigned index=1;index<=unsigned(frames.size());++index)if(!QGuiApplication::primaryScreen() || !QGuiApplication::primaryScreen()->geometry().contains(QRect(0,0,int(composition->width(index)),int(composition->height(index)))))
             throw std::invalid_argument("Physical screen cannot contain the complete native frame");
         std::uint64_t total=0;
         // Preflight all file identities before opening a window or output directory.
@@ -100,7 +100,7 @@ int main(int argc,char **argv) {
             viewport.setMinimumSize(1,1); viewport.setScaling(GlViewport::Scaling::Sharp);
             unsigned ordinal=0;
             for(const auto &v:frames) {
-                const auto f=v.toObject(); const auto w=recorded?composition->width():number(f.value("width"),2048), h=recorded?composition->height():number(f.value("height"),2048);
+                const auto f=v.toObject(); const auto w=recorded?composition->width(ordinal+1):number(f.value("width"),2048), h=recorded?composition->height(ordinal+1):number(f.value("height"),2048);
                 mnm::render::SurfaceId surface=0;
                 if(recorded)surface=composition->next(ordinal+1);
                 else{

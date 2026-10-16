@@ -97,6 +97,7 @@ observe 52
 observe 53
 observe 54
 observe 55
+observe 56
 .globl _producer_leave
 _producer_leave:
     leal -4(%esp), %esp

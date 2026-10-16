@@ -25,7 +25,8 @@ struct DrawingBoundary {
 class DrawingScene final {
 public:
     DrawingScene(render::GlBlitter &, const assets::AssetStore &,
-                 std::function<std::vector<std::uint8_t>(const std::string &)> source);
+                 std::function<std::vector<std::uint8_t>(const std::string &)> source,
+                 bool sourceSnapshots = false);
     ~DrawingScene();
     DrawingScene(const DrawingScene &) = delete;
     DrawingScene &operator=(const DrawingScene &) = delete;

@@ -50,11 +50,11 @@ def run(root,catalog_path,*,surface=None,world=None,scene=None,session=None,reco
                 reference_admitted=True
                 result=check(root=root,catalog_path=path,executable=scene,headless=headless) if scene else None
                 admitted_rows[0]['outcome']='matching' if result and result['success'] else 'mismatch' if result else 'unsupported'
-            elif case['adapter']=='recorded_session':
+            elif case['adapter'] in ('recorded_session','recorded_action_session'):
                 from drawing_recorded_session import admit,check
                 _,_,frames,_=admit(root,child,register)
-                admitted_rows.append({'id':case['id'],'scenario':'quick-battle-entry','boundary':'observed_egl_session',
-                    'independent_reference':True,'frames':len(frames),'contiguous':True,'actions_bound':False,
+                admitted_rows.append({'id':case['id'],'scenario':'save-load' if case['adapter']=='recorded_action_session' else 'quick-battle-entry','boundary':child['boundary'],
+                    'independent_reference':True,'frames':len(frames),'contiguous':True,'actions_bound':case['adapter']=='recorded_action_session',
                     'requirements':[],'operations':[],'outcome':'pending'})
                 reference_admitted=True
                 result=check(root=root,catalog_path=path,native=recorded_native,presenter=recorded_presenter,headless=headless) if recorded_native and recorded_presenter else None
@@ -112,7 +112,7 @@ def main():
         fingerprints.update(load_tool('check-drawing-scene').sources())
         if (ROOT/'tests/fixtures/drawing-sequence').exists():
             fingerprints.update(load_tool('check-drawing-sequence').sources())
-        for directory in ('tests/fixtures/drawing-journeys','tests/fixtures/drawing-publication','tests/fixtures/drawing-recorded-session'):
+        for directory in ('tests/fixtures/drawing-journeys','tests/fixtures/drawing-publication','tests/fixtures/drawing-recorded-session','tests/fixtures/drawing-storage-session'):
             for path in (ROOT/directory).rglob('*'):
                 if path.is_file():fingerprints[str(path.relative_to(ROOT))]=sha(path.read_bytes())
         for name in ('tools/check-drawing-journeys.py','tools/drawing_journeys.py','tools/drawing_session.py','tools/retain-drawing-session.py','tests/test-drawing-journeys.py','tests/test-drawing-session.py','tools/drawing_publication_corpus.py','tools/retain-drawing-publication.py','tools/drawing_publication.py','tests/test-drawing-publication.py','tests/test-drawing-publication-corpus.py'):

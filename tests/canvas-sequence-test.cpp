@@ -227,6 +227,26 @@ int main() {
     refuses([&] {
       canvases.glyph(3, glyph, 0, 0, {0, 0, 4, 2}, {0, 0, 0}, coverage);
     });
+    // Recovered direct WORD grayscale uses five-bit channel units; clipped
+    // horizontal geometry takes the original unconverted WORD-copy branch.
+    assets::SpriteFrame greyFrame;greyFrame.width=2;greyFrame.height=1;greyFrame.opaqueMask={1,1};greyFrame.pixels=std::vector<std::uint16_t>{0xf800,0x07e0};
+    render::CanvasSequence grey;grey.create(1,2,1);std::array<std::uint16_t,256> greyPalette{};
+    grey.raster(1,greyFrame,0,0,{0,0,2,1},0,11,greyPalette);
+    expect(grey.read(1).pixels==std::vector<std::uint32_t>({0x528a,0x528a}));
+    auto indexedGrey=greyFrame;indexedGrey.pixels=std::vector<std::uint8_t>{1,2};refuses([&]{grey.raster(1,indexedGrey,0,0,{0,0,2,1},0,11,greyPalette);});
+    grey.fill(1,{0,0,2,1},123);grey.raster(1,greyFrame,-1,0,{0,0,2,1},0,11,greyPalette);
+    expect(grey.read(1).pixels==std::vector<std::uint32_t>({0x07e0,123}));
+    // Hidden initialization copies retain undefined state in snapshot mode.
+    // Opaque and keyed copies cannot turn unknown source values into evidence.
+    render::CanvasSequence deferred(nullptr,true);
+    deferred.create(1,2,1);deferred.create(2,2,1);
+    deferred.fill(2,{0,0,2,1},123);deferred.copy(1,2,{0,0,2,1},0,0);
+    refuses([&]{deferred.read(2);});
+    deferred.fill(2,{0,0,2,1},123);deferred.copy(1,2,{0,0,2,1},0,0,31);
+    refuses([&]{deferred.read(2);});
+    deferred.fill(1,{0,0,2,1},456);deferred.copy(1,2,{0,0,2,1},0,0);
+    expect(deferred.read(2).pixels==std::vector<std::uint32_t>({456,456}));
+    deferred.copy(2,2,{0,0,1,1},1,0);expect(deferred.read(2).pixels[1]==456);
     canvases.release(3);
     refuses([&] { canvases.read(3); });
     refuses(

@@ -439,7 +439,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     dib.palette.assign(c.bytes().begin() + 40, c.bytes().begin() + r[19]);
     dib.pixels.assign(c.bytes().begin() + r[19], c.bytes().end());
     dib.usage = r[14];
-    placeDib(canvases_,c,render::decodeDibRgb(dib),0,0);
+    placeDib(canvases_,c,render::decodeDibRgb(dib),signedWord(r[8]),signedWord(r[9]));
     break;
   }
   case 18: {

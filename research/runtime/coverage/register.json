@@ -8334,18 +8334,26 @@
       "subsystem": "spell_dispatch",
       "kind": "recovered",
       "title": "Spell 73: Magic Sphere",
-      "scope": "Pending. Cast label: Case; effect label: \u2014. Resistance, stacking, duration, cleanup, failure and indirect paths need validation. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "unknown",
-      "original": [],
+      "scope": "Spell73 Magic Sphere: unique cast-admission arm8 creates update type3. CAST.projectile-update and CAST.sphere-motion own bounded helper recovery; NP.sphere-battle is an authored arena adapter. Whole original creator, setup, ricochet, installed profiles, resistance, feedback/attribution, physical presentation and live lifecycle remain pending; no whole-spell equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5748496,
+          "scope": "Selected unique compressed arm8 creation of type3; not whole spell lifecycle."
+        }
+      ],
       "documents": [
         "research/runtime/spell-dispatch-inventory.md",
-        "research/runtime/creature-ai-combat-spells.md"
+        "research/runtime/creature-ai-combat-spells.md",
+        "research/runtime/projectile-delivery.md",
+        "research/runtime/native-sphere-battle.md"
       ],
       "implementation": [],
       "tests": [],
       "evidence": [],
       "status": {
-        "understanding": "unknown",
+        "understanding": "partial",
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
@@ -10208,7 +10216,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Deterministic coverage change gate and review receipts",
-      "scope": "Content-bound local/Git-base accounting, retained historical debt, exact affected contracts, append-only reviews and guarded validation decisions. This is accounting enforcement; semantic adequacy and original behavior completeness remain separate research.",
+      "scope": "Content-bound local/Git-base accounting, retained historical debt, exact affected contracts, append-only reviews and guarded validation decisions. This is accounting enforcement; semantic adequacy and original behavior completeness remain separate research. Evidence-ID collisions may be imported only from independent actual co-parents of a committed/pending Git merge, preserving the entire historical record except its namespaced ID, complete provenance keys and append-only mappings; unrelated branches/ancestors and modified records refuse without validation/status credit.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -10229,11 +10237,13 @@
         "tests/test-coverage-gate.py",
         "tests/test-re-coverage.py",
         "tests/test-tooling.sh",
-        "tests/test-coverage-merge-history.py"
+        "tests/test-coverage-merge-history.py",
+        "tests/test-coverage-evidence-imports.py"
       ],
       "evidence": [
         "TOOL.traceability.scene-root-20261006",
-        "TOOL.traceability.audit-performance-20261008"
+        "TOOL.traceability.audit-performance-20261008",
+        "TOOL.unified-merge-imports-20261016"
       ],
       "status": {
         "understanding": "partial",
@@ -10241,7 +10251,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        ".github/workflows/re-coverage.yml"
+      ]
     },
     {
       "id": "TL.effect-common-placement",
@@ -19134,7 +19147,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Exact execution claims and composable coverage accounting",
-      "scope": "Offline build/address/source accounting, immutable scope and scenario identities, complete declared implementation/dependency fingerprints, historical/current validation separation, exact receipt composition and root build census. Synthetic guard fixtures and read-only UI validation only; scientific adequacy, inferred transitive dependencies, original execution, full-player-session corpus and engine equivalence are outside this toolkit contract.",
+      "scope": "Offline build/address/source accounting, immutable scope and scenario identities, complete declared implementation/dependency fingerprints, historical/current validation separation, exact receipt composition and root build census. Synthetic guard fixtures and read-only UI validation only; scientific adequacy, inferred transitive dependencies, original execution, full-player-session corpus and engine equivalence are outside this toolkit contract. Evidence-ID collisions may be imported only from independent actual co-parents of a committed/pending Git merge, preserving the entire historical record except its namespaced ID, complete provenance keys and append-only mappings; unrelated branches/ancestors and modified records refuse without validation/status credit.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -19154,10 +19167,12 @@
       "tests": [
         "tests/test-re-coverage.py",
         "tests/test-coverage-gate.py",
-        "tests/test-coverage-merge-history.py"
+        "tests/test-coverage-merge-history.py",
+        "tests/test-coverage-evidence-imports.py"
       ],
       "evidence": [
-        "COV01.execution-claims-20261008"
+        "COV01.execution-claims-20261008",
+        "TOOL.unified-merge-imports-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -19165,7 +19180,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        ".github/workflows/re-coverage.yml"
+      ]
     },
     {
       "id": "AS.resource-preparation",
@@ -38110,7 +38128,8 @@
         "runtime/drawing/input_point.h",
         "protocols/include/mnm/drawing_input_point_v1.h",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/action_boundary.h"
       ],
       "evidence": [
         "NR.drawing-session-api.forwarding-native-20261011",
@@ -50101,7 +50120,8 @@
         "NS27.checkpoint-skirmish-normal",
         "NP.skirmish-mission.native-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -50487,6 +50507,7 @@
         "tests/test-route-world.py",
         "tests/test-search-sequence.py",
         "tests/test-skirmish-window.py",
+        "tests/test-sphere-window.py",
         "tools/create-movement-fixture.py",
         "tools/test-battle-effects.py",
         "tools/test-cure-battle.py",
@@ -50495,7 +50516,8 @@
         "tools/test-native-map-campaign.py",
         "tools/test-native-sphere-map.py",
         "tools/test-projectile-motion.py",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tools/test-sphere-window.py"
       ],
       "validation_domain": {
         "inputs": [
@@ -50555,7 +50577,8 @@
         "NP.campaign-session.window-20261016",
         "NP.skirmish-mission.native-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -50940,6 +50963,7 @@
         "tests/test-route-world.py",
         "tests/test-search-sequence.py",
         "tests/test-skirmish.py",
+        "tests/test-sphere-window.py",
         "tools/create-movement-fixture.py",
         "tools/test-battle-effects.py",
         "tools/test-cure-battle.py",
@@ -50948,7 +50972,8 @@
         "tools/test-native-map-campaign.py",
         "tools/test-native-sphere-map.py",
         "tools/test-projectile-motion.py",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tools/test-sphere-window.py"
       ],
       "validation_domain": {
         "inputs": [
@@ -73352,6 +73377,7 @@
         "tests/test-search-sequence.py",
         "tests/test-skirmish-window.py",
         "tests/test-skirmish.py",
+        "tests/test-sphere-window.py",
         "tools/create-movement-fixture.py",
         "tools/test-battle-effects.py",
         "tools/test-cure-battle.py",
@@ -73359,7 +73385,8 @@
         "tools/test-native-map-campaign.py",
         "tools/test-native-sphere-map.py",
         "tools/test-projectile-motion.py",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tools/test-sphere-window.py"
       ],
       "evidence": [
         "NP.campaign-persistence.synthetic-20261016",
@@ -73370,7 +73397,8 @@
         "NP.skirmish-mission.native-20261016",
         "NP.map-campaign.checkpoint-final-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -73783,6 +73811,7 @@
         "tests/test-search-sequence.py",
         "tests/test-skirmish-window.py",
         "tests/test-skirmish.py",
+        "tests/test-sphere-window.py",
         "tools/create-movement-fixture.py",
         "tools/test-battle-effects.py",
         "tools/test-cure-battle.py",
@@ -73790,7 +73819,8 @@
         "tools/test-native-map-campaign.py",
         "tools/test-native-sphere-map.py",
         "tools/test-projectile-motion.py",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tools/test-sphere-window.py"
       ],
       "evidence": [
         "NP.campaign-session.core-20261016",
@@ -73799,7 +73829,8 @@
         "NP.skirmish-mission.native-20261016",
         "NP.map-campaign.checkpoint-final-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -74212,6 +74243,7 @@
         "tests/test-search-sequence.py",
         "tests/test-skirmish-window.py",
         "tests/test-skirmish.py",
+        "tests/test-sphere-window.py",
         "tools/create-movement-fixture.py",
         "tools/test-battle-effects.py",
         "tools/test-cure-battle.py",
@@ -74219,7 +74251,8 @@
         "tools/test-native-map-campaign.py",
         "tools/test-native-sphere-map.py",
         "tools/test-projectile-motion.py",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tools/test-sphere-window.py"
       ],
       "evidence": [
         "NP.campaign-session.arena-20261016",
@@ -74228,7 +74261,8 @@
         "NP.map-campaign.native-20261016",
         "NP.map-campaign.window-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -74641,6 +74675,7 @@
         "tests/test-search-sequence.py",
         "tests/test-skirmish-window.py",
         "tests/test-skirmish.py",
+        "tests/test-sphere-window.py",
         "tools/create-movement-fixture.py",
         "tools/test-battle-effects.py",
         "tools/test-cure-battle.py",
@@ -74648,14 +74683,16 @@
         "tools/test-native-map-campaign.py",
         "tools/test-native-sphere-map.py",
         "tools/test-projectile-motion.py",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tools/test-sphere-window.py"
       ],
       "evidence": [
         "NP.campaign-session.window-20261016",
         "NP.skirmish-mission.native-20261016",
         "NP.map-campaign.window-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -75070,7 +75107,8 @@
         "DRAW02.recorded-session.retention-20261016",
         "DRAW02.recorded-session.portable-03-20261016",
         "DRAW02.recorded-gpu-composition.controls-20261016",
-        "DRAW02.recorded-session.journey-adapter-20261016"
+        "DRAW02.recorded-session.journey-adapter-20261016",
+        "DRAW02.storage.quick-battle-regression-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -75594,6 +75632,7 @@
         "tests/test-search-sequence.py",
         "tests/test-skirmish-window.py",
         "tests/test-skirmish.py",
+        "tests/test-sphere-window.py",
         "tools/create-movement-fixture.py",
         "tools/test-cure-battle.py",
         "tools/test-native-campaign-persistence.py",
@@ -75601,13 +75640,16 @@
         "tools/test-native-map-campaign.py",
         "tools/test-native-sphere-map.py",
         "tools/test-projectile-motion.py",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tools/test-sphere-window.py"
       ],
       "evidence": [
         "BATTLE01.sections-native",
         "BATTLE02.cure-native",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "PROJECTILE04.window-native",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -76024,17 +76066,21 @@
         "tests/test-search-sequence.py",
         "tests/test-skirmish-window.py",
         "tests/test-skirmish.py",
+        "tests/test-sphere-window.py",
         "tools/create-movement-fixture.py",
         "tools/test-battle-effects.py",
         "tools/test-native-campaign-persistence.py",
         "tools/test-native-campaign-session.py",
         "tools/test-projectile-motion.py",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tools/test-sphere-window.py"
       ],
       "evidence": [
         "BATTLE02.cure-native",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "PROJECTILE04.window-native",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -76496,6 +76542,7 @@
         "tests/test-search-sequence.py",
         "tests/test-skirmish-window.py",
         "tests/test-skirmish.py",
+        "tests/test-sphere-window.py",
         "tools/create-movement-fixture.py",
         "tools/test-battle-effects.py",
         "tools/test-cure-battle.py",
@@ -76503,14 +76550,16 @@
         "tools/test-native-map-campaign.py",
         "tools/test-native-sphere-map.py",
         "tools/test-projectile-motion.py",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tools/test-sphere-window.py"
       ],
       "evidence": [
         "NP.skirmish-mission.native-20261016",
         "NP.map-campaign.native-20261016",
         "NP.map-campaign.window-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -76925,19 +76974,22 @@
         "tests/test-search-sequence.py",
         "tests/test-skirmish-window.py",
         "tests/test-skirmish.py",
+        "tests/test-sphere-window.py",
         "tools/create-movement-fixture.py",
         "tools/test-battle-effects.py",
         "tools/test-cure-battle.py",
         "tools/test-native-campaign-persistence.py",
         "tools/test-native-campaign-session.py",
         "tools/test-projectile-motion.py",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tools/test-sphere-window.py"
       ],
       "evidence": [
         "NP.map-campaign.native-20261016",
         "NP.map-campaign.window-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -77352,18 +77404,21 @@
         "tests/test-search-sequence.py",
         "tests/test-skirmish-window.py",
         "tests/test-skirmish.py",
+        "tests/test-sphere-window.py",
         "tools/create-movement-fixture.py",
         "tools/test-battle-effects.py",
         "tools/test-cure-battle.py",
         "tools/test-native-campaign-persistence.py",
         "tools/test-native-campaign-session.py",
         "tools/test-projectile-motion.py",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tools/test-sphere-window.py"
       ],
       "evidence": [
         "NP.map-campaign.window-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -77436,7 +77491,8 @@
       ],
       "documents": [
         "research/runtime/projectile-delivery.md",
-        "research/runtime/sphere-motion.md"
+        "research/runtime/sphere-motion.md",
+        "research/runtime/native-sphere-battle.md"
       ],
       "implementation": [
         "reconstruction/rendering/effect_transition.cpp",
@@ -77479,7 +77535,9 @@
         "PROJECTILE02.motion-original",
         "PROJECTILE02.motion-native",
         "PROJECTILE04.catalog-wrapper-original",
-        "PROJECTILE04.catalog-wrapper-native"
+        "PROJECTILE04.catalog-wrapper-native",
+        "PROJECTILE02.master-motion-original",
+        "PROJECTILE02.master-motion-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -77494,7 +77552,7 @@
       "subsystem": "casting",
       "kind": "native_policy",
       "title": "Native shared-battle Magic Sphere with live collision and checkpoint continuation",
-      "scope": "Authored arena spell73 fixture cost8/damage20/speed20/lifetime100: recovered admission/type3 update and bounded motion/footprint helpers consume live authoritative combat health, wizard mana and fine/grid creature positions. Eight generation-bound projectiles share battle transactions and portable continuation with Cure. Hit exclusion, evasion, lifetime release, removal cancellation, native pool/mana refusals and exact snapshot resume. Open8x8x3 torus, authored forward ANI, logical audio and stop-on-terrain/release/allocator policies. No original full creator/type setup/ricochet/catalog profiles/physical audio/SPR/live campaign replacement. Optional Plains8x8x23 profile binds complete projected MAP flags/TTD occupancy (at most4096 distinct shapes through the native catalog variant; fixed-four original comparison remains separate) and owned SHP2 environment to immutable resources; blocked/occupied terrain retires instead of ricocheting. Real Qt simultaneous Sphere/Cure controls, exact pending/mid-flight restart with one20-point hit and one8-point heal, valid forged environment/profile rejection, win/reopen/advance and legacy profiles. New map UI enables both spells; the finale retains the open8x8x3 arena policy.",
+      "scope": "Authored arena spell73 fixture cost8/damage20/speed20/lifetime100: recovered admission/type3 update and bounded motion/footprint helpers consume live authoritative combat health, wizard mana and fine/grid creature positions. Eight generation-bound projectiles share battle transactions and portable continuation with Cure. Hit exclusion, evasion, lifetime release, removal cancellation, native pool/mana refusals and exact snapshot resume. Open8x8x3 torus, authored forward ANI, logical audio and stop-on-terrain/release/allocator policies. No original full creator/type setup/ricochet/catalog profiles/physical audio/SPR/live campaign replacement. Optional Plains8x8x23 profile binds complete projected MAP flags/TTD occupancy (at most4096 distinct shapes through the native catalog variant; fixed-four original comparison remains separate) and owned SHP2 environment to immutable resources; blocked/occupied terrain retires instead of ricocheting. Real Qt simultaneous Sphere/Cure controls, exact pending/mid-flight restart with one20-point hit and one8-point heal, valid forged environment/profile rejection, win/reopen/advance and legacy profiles. New map UI enables both spells; the finale retains the open8x8x3 arena policy. Unified master integration retains actual arena Sphere/Cure button and fresh-window continuation, explicit Cure-only Sphere refusal, alternate-tick lethal settlement/cancellation exactly once, component/World pool refusal and creator attribution/contributor sentinels at creation; terrain-bound continuation remains independent of fixed-four original comparison.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -77529,7 +77587,9 @@
         "tests/map-sphere-test.cpp",
         "tests/test-map-sphere-window.py",
         "tests/campaign-window-driver.cpp",
-        "tools/test-native-sphere-map.py"
+        "tools/test-native-sphere-map.py",
+        "tests/test-sphere-window.py",
+        "tools/test-sphere-window.py"
       ],
       "validation_dependencies": [
         "apps/combat-sandbox/main.cpp",
@@ -77902,7 +77962,10 @@
         "tools/test-projectile-motion.py"
       ],
       "evidence": [
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "PROJECTILE03.battle-native",
+        "PROJECTILE04.window-native",
+        "NP.unified-campaign.automation-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -77911,6 +77974,240 @@
         "integration": "preview",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.drawing-storage-action-session",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Action-bound original storage presentation acquisition and native comparison",
+      "scope": "Bounded original-active Apprentice Save/Load, display rebuild/MainLoad/resume/normal Quit acquisition. Retain original callback phases, source-only producer records and every observed fenced EGL plane; bind exact menu epochs without assuming semantic causality. Require fresh World queues, unchanged save bytes, completed callbacks, closed source interval and normal original Quit. Keep ambiguous/in-flight epochs, unsupported routes and dropped/unpaired records explicit. Sequential EGL worker handoffs require a fresh completed Preferences OK; concurrent handoffs refuse. This observed-EGL reference does not assert native pixel parity, Qt menu layout parity, all global presentation routes, generic presented_frame acceptance, all fourteen journeys/twenty-one operations, simulation equivalence, hardware scanout or live replacement.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/action-bound-storage-session.md",
+        "research/formats/drawing-action-boundary-v1.md"
+      ],
+      "implementation": [
+        "tools/drawing_storage_capture.py",
+        "tools/drawing_action_session.py",
+        "runtime/drawing/action_boundary.h",
+        "runtime/display/egl_physical.h"
+      ],
+      "tests": [
+        "tests/test-drawing-storage-session.py"
+      ],
+      "validation_dependencies": [
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_egl_physical.py",
+        "runtime/drawing/session.c",
+        "runtime/display/egl_delivery.c",
+        "tools/build-drawing-session.py",
+        "tools/drawing-session-runner.py",
+        "tools/build-drawing-x11-delivery.py",
+        "protocols/include/mnm/menu_v22.h",
+        "protocols/include/mnm/menu_v13.h",
+        "apps/drawing-session/observe.cpp",
+        "tests/drawing-session-input.cpp"
+      ],
+      "evidence": [
+        "DRAW02.storage-action.original-20261016"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Observed EGL remains distinct from all global presented frames. Callback epochs do not prove input causality or source immutability; optional protected-page diagnostic interference remains unresolved. Native Qt menu policy, hardware and live replacement remain separate."
+      ]
+    },
+    {
+      "id": "NR.drawing-storage-session-comparison",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Source-owned native replay of an action-bound storage interval",
+      "scope": "Compare every observed fenced original EGL presentation in a bounded Apprentice Save/Load, both display rebuilds, MainLoad/resume and returned-Main interval. Bind source prefix, worker/submission, resource generation and actual frame extent; native replay uses encoded assets and scrubbed producer inputs, then native-derived snapshots and GPU composition with invalidation on extent changes. Compare full native RGB565 and post-swap X11 RGB, tolerance one output unit, alpha excluded. Missing/ambiguous/unbound frames and mismatches refuse. Preserve original callback epoch ambiguity and semantic Save/Load checks separately. Original-layout replay does not establish native Qt menu policy/layout parity, global route completeness, generic full-journey acceptance, hardware scanout or live replacement. Snapshot-only reconstruction explicitly propagates undefined validity through hidden copies; all source snapshots/CPU reads/publication still require defined pixels. Default producer admission remains strict. Intentional native display policy initializes a newly recreated extent to black only at a completed-action-bound worker handoff; this is not a recovered guarantee of arbitrary original allocation contents. The offline DrawingScene adapter routes existing RGB-add and colour-rectangle source operations into active World GPU batches alongside its independent CPU reconstruction; exact destination, order and queue boundaries remain required.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/action-bound-storage-session.md",
+        "research/formats/recorded-drawing-composition-v1.md"
+      ],
+      "implementation": [
+        "tools/compare-drawing-quick-battle.py",
+        "tools/recorded_drawing_plan.py",
+        "apps/drawing-session/main.cpp",
+        "apps/drawing-session/recorded_composition.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/drawing_session_main.cpp"
+      ],
+      "tests": [
+        "tests/test-drawing-quick-battle.py",
+        "tools/test-recorded-drawing-composition.py",
+        "tests/test-drawing-storage-session.py",
+        "tests/canvas-sequence-test.cpp",
+        "tests/drawing-scene-test.cpp"
+      ],
+      "validation_dependencies": [
+        "compat/legacy/drawing_session_main.cpp",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/canvas_producers.cpp",
+        "tools/inspect-canvas-producers.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/drawing_source_worker_egl.py",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_api_session.py",
+        "protocols/include/mnm/canvas_producers_v5.h",
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_egl_physical.py",
+        "tools/drawing_x11_delivery.py",
+        "tools/drawing_delivery_timing.py",
+        "tests/fixtures/drawing-journeys/interactive-schedule.json",
+        "compat/legacy/drawing_scene.hpp",
+        "tests/drawing-scene-test.cpp",
+        "tools/test-native-drawing-session-runner.py",
+        "apps/drawing-session/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "tools/drawing_action_session.py",
+        "runtime/drawing/action_boundary.h",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "DRAW02.storage-action.native-20261016",
+        "DRAW02.storage-composition.controls-20261016",
+        "DRAW02.storage-session.portable-20261016"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "All238observed frames compare; ten still differ in cursor-shaped regions (1660 total RGB pixels across native GPU output; exact report retained). Matching original cursor bitmap inputs and differing current/background samples leave producer-return order, driver copy/publication ordering and source backing aliases under investigation. Do not assume a coherent immutable prefix from source-point metadata alone. Native Qt menu policy, all global routes, full14/21acceptance, hardware and live replacement remain separate.",
+        "Original native05 comparison retains historical source hashes, including five reconstruction files changed by incoming master. Fresh portable02 rebuild/replay from the combined tree reproduces the same238frames/ten1660pixel failures; no historical hash is refreshed."
+      ]
+    },
+    {
+      "id": "RS.canvas-positioned-dib",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Positioned source DIB wrapper observation",
+      "scope": "No-CD 0x58d370 obtains the wrapper Surface2 DC, calls original 0x486a80 with a source bitmap object and signed x/y, then releases that DC. Static disassembly shows the helper paints source dimensions with StretchDIBits/SRCCOPY, source origin zero and usage zero for indexed1/4/8-bit or one for24-bit. Opt-in source observation retains owned BITMAPINFO/header/palette/encoded rows plus logical canvas and x/y as existing DIB operation19; native source replay and pixel comparison are accounted separately. No original destination pixels are source inputs. Other GDI operations, arbitrary DIB encodings, default-palette provenance, unsupported DC state, return/ABI replacement and global presentation completeness remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821296,
+          "scope": "Source object/x/y, GetDC/helper/ReleaseDC wrapper only"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745856,
+          "scope": "Observed canonical source DIB StretchDIBits placement; independent original GDI return/state equivalence not claimed"
+        }
+      ],
+      "documents": [
+        "research/runtime/action-bound-storage-session.md",
+        "research/formats/positioned-dib-producer.md"
+      ],
+      "implementation": [
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_producers.S"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "tools/build-scene-observer.py",
+        "tools/inspect-canvas-producers.py",
+        "protocols/include/mnm/canvas_producers_v1.h"
+      ],
+      "evidence": [
+        "DRAW02.storage-action.original-20261016"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Original source DIB/x/y are observed in the storage session; native whole-plane comparison fixes confirmation backgrounds. Arbitrary DIB encodings/default palette/DC state, original HRESULT/ABI replacement and global route completeness remain separate."
+      ]
+    },
+    {
+      "id": "NR.storage-session-corpus",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Portable action-bound storage/rebuild EGL session",
+      "scope": "Portable observed_egl_action_session boundary for a complete original-active Apprentice Save/Load, display rebuilds, MainLoad/resume and returned-Main interval with separately verified normal Quit. Retain all full original planes, exact callback epoch sidecars, source-only producer/API/closure traces, encoded assets and original save bytes. Recompute original action/source/worker/resource/extent bindings, then native GPU565 and physical X11 comparisons from native-owned inputs. New suite case keeps original Qt menu policy/global-route/hardware/live-replacement limits and all fourteen-journey/twenty-one-operation acceptance requirements. Missing/reordered/unbound/modified artifacts and mismatches refuse; no original oracle pixels enter native processes.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/action-bound-storage-session.md",
+        "research/formats/recorded-drawing-composition-v1.md"
+      ],
+      "implementation": [
+        "tools/drawing_recorded_session.py",
+        "tools/recorded_drawing_plan.py",
+        "apps/drawing-session/main.cpp",
+        "apps/drawing-session/recorded_composition.hpp"
+      ],
+      "tests": [
+        "tools/check-recorded-drawing-session.py",
+        "tools/retain-recorded-drawing-session.py",
+        "tools/test-recorded-drawing-composition.py",
+        "tests/test-drawing-journeys.py",
+        "tools/check-drawing-journeys.py",
+        "tests/fixtures/drawing-storage-session/session.json",
+        "tests/test-drawing-storage-retention.py",
+        "tests/fixtures/drawing-journeys/storage-suite.json"
+      ],
+      "validation_dependencies": [
+        "tools/compare-drawing-quick-battle.py",
+        "tools/drawing_corpus.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_session.py",
+        "tools/drawing_journeys.py",
+        "tools/rendering_coverage.py",
+        "tools/inspect-canvas-producers.py",
+        "apps/drawing-session/CMakeLists.txt",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "tests/fixtures/drawing-recorded-session/session.json",
+        "tools/drawing_action_session.py"
+      ],
+      "evidence": [
+        "DRAW02.storage-session.retention-20261016",
+        "DRAW02.storage-session.portable-20261016",
+        "DRAW02.storage-session.journey-20261016"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Retained full238frame reference is admitted; current native comparison still differs in ten cursor-region presentations. Preserve failures without changing tolerance or the14journey/21operation gates. Original global routes, exact semantic causality, native Qt menu policy, hardware and live replacement remain separate."
+      ]
     }
   ],
   "evidence": [
@@ -156452,6 +156749,1134 @@
           "equals": 2048
         }
       ]
+    },
+    {
+      "id": "PROJECTILE02.master-motion-original",
+      "kind": "isolated_original",
+      "scope": "Whole unmodified4883f0 type3/spell73 with actual trajectory and footprint helpers: authored 1..20 steps and sixteen repeated calls, creator exclusion, changing cells, wrap, blocked/bitmap/height exits and guarded complete state. Fixed actor world between calls; no ricochet geometry, installed catalog or live replacement",
+      "record": "research/runtime/original-sphere-motion-bound-20261016.json",
+      "sha256": "876c8ba9f56c85e293acf1016e17efc4f4849edb091d3f274b18ec6c90103d23",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 601
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/executable_sha256"
+    },
+    {
+      "id": "PROJECTILE02.master-motion-native",
+      "kind": "native_integration",
+      "scope": "Whole unmodified4883f0 type3/spell73 with actual trajectory and footprint helpers: authored 1..20 steps and sixteen repeated calls, creator exclusion, changing cells, wrap, blocked/bitmap/height exits and guarded complete state. Fixed actor world between calls; no ricochet geometry, installed catalog or live replacement",
+      "record": "research/runtime/original-sphere-motion-bound-20261016.json",
+      "sha256": "876c8ba9f56c85e293acf1016e17efc4f4849edb091d3f274b18ec6c90103d23",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 601
+        }
+      ]
+    },
+    {
+      "id": "PROJECTILE03.battle-native",
+      "kind": "native_integration",
+      "scope": "Native authored arena Magic Sphere73 through recovered admission/type3 updater/trajectory/creature collision and ordinary health. Generation-bound shared effect pool, live moving target, miss, one20-point impact, timeout/cancellation and repeated snapshot continuation alongside Cure. Declared profile and authored ANI; open torus, stop-on-terrain native policy, logical audio only; no full original creation/ricochet/SPR/physical audio/live replacement",
+      "record": "research/runtime/sphere-battle-bound-20261016.json",
+      "sha256": "30cbe258e1822ddad2fc0e2c698a712a1e0c2a8b48b098dcabae0bbe71c22fd3",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal",
+          "equals": {
+            "success": true,
+            "moving_target_impacts": 1,
+            "damage": 20,
+            "health": 4,
+            "generation_reuse": true,
+            "mixed_cure": true,
+            "timeout": true,
+            "alternate_lethal": true
+          }
+        },
+        {
+          "pointer": "/sanitized",
+          "equals": {
+            "success": true,
+            "moving_target_impacts": 1,
+            "damage": 20,
+            "health": 4,
+            "generation_reuse": true,
+            "mixed_cure": true,
+            "timeout": true,
+            "alternate_lethal": true
+          }
+        },
+        {
+          "pointer": "/window",
+          "equals": {
+            "success": true,
+            "scope": "Real Qt campaign Cure button/friendly target/move and save dialogs; fresh-window and headless continuation share exact campaign bytes.",
+            "moving_target": true,
+            "health_before": 9,
+            "health_after": 17,
+            "single_heal": 8,
+            "fresh_process": true,
+            "exact_campaign_bytes": true,
+            "checkpoint_sha256": "6fe82c22b86a3846e8de616fbdb20097138fd831014815e51396f2ec91c268a6",
+            "result_sha256": "c1a3ba58a2b0b32fd3580f0577705c9492d6bb32ec7f37b8c9d308f34c102535",
+            "commands": [
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/cure-battle-test",
+                "seed-legacy-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/legacy.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/mnm-campaign-cli",
+                "inspect",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/legacy.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/cure-battle-test",
+                "seed-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/seed.mnmc"
+              ],
+              [
+                "xvfb-run",
+                "-a",
+                "-s",
+                "-screen 0 1280x1200x24",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/campaign-window-test",
+                "--test-script",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight.json",
+                "--test-output",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight",
+                "--load-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/seed.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/mnm-campaign-cli",
+                "inspect",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/mnm-campaign-cli",
+                "resume",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/reference.mnmc",
+                "16"
+              ],
+              [
+                "xvfb-run",
+                "-a",
+                "-s",
+                "-screen 0 1280x1200x24",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/campaign-window-test",
+                "--test-script",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/fresh-process.json",
+                "--test-output",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/fresh-process",
+                "--load-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/cure-battle-test",
+                "resume-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/completed.mnmc"
+              ]
+            ]
+          }
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_installed",
+          "equals": {
+            "success": true,
+            "installed": true,
+            "health": 17
+          }
+        },
+        {
+          "pointer": "/sanitized_installed",
+          "equals": {
+            "success": true,
+            "installed": true,
+            "health": 17
+          }
+        }
+      ]
+    },
+    {
+      "id": "PROJECTILE04.window-native",
+      "kind": "native_integration",
+      "scope": "Native authored arena Magic Sphere73 through recovered admission/type3 updater/trajectory/creature collision and ordinary health. Generation-bound shared effect pool, live moving target, miss, one20-point impact, timeout/cancellation and repeated snapshot continuation alongside Cure. Declared profile and authored ANI; open torus, stop-on-terrain native policy, logical audio only; actual Sphere/Cure Qt controls and mid-flight/ANI campaign restart equality; no full original creation/ricochet/SPR/physical audio/live replacement",
+      "record": "research/runtime/sphere-window-bound-20261016.json",
+      "sha256": "9d8f9f6f18d583b8286361027260b02f12d16d70800087e99a760580a409dc57",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sphere_window/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_installed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_installed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sphere_window/moving_target",
+          "equals": true
+        },
+        {
+          "pointer": "/sphere_window/fresh_process",
+          "equals": true
+        },
+        {
+          "pointer": "/sphere_window/exact_campaign_bytes",
+          "equals": true
+        },
+        {
+          "pointer": "/sphere_window/impacts",
+          "equals": 1
+        },
+        {
+          "pointer": "/sphere_window/damage",
+          "equals": 20
+        },
+        {
+          "pointer": "/sphere_window/health_before",
+          "equals": 24
+        },
+        {
+          "pointer": "/sphere_window/health_after",
+          "equals": 4
+        },
+        {
+          "pointer": "/sphere_window/cure_only_profile",
+          "equals": true
+        },
+        {
+          "pointer": "/historical_cure/loaded",
+          "equals": true
+        },
+        {
+          "pointer": "/historical_cure/unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.storage-action.original-20261016",
+      "kind": "live_observation",
+      "record": "research/runtime/storage-action-original-20261016.json",
+      "sha256": "756907dd759ba6a2b23243a633ba79052654cabe7af6495197d1f2727fcba84b",
+      "scope": "Bounded action-bound storage execution; independently retained raw result. Native mismatches remain failed; no global presentation or live replacement promotion.",
+      "sources": {
+        "tools/drawing_diagnostic_cadence.py": "94b1474f2390ea26cedea9084be49c9b5d56de8b18d91d5e386e00957fd81c95",
+        "tools/drawing_input_point.py": "4b3ce668d9e871e5c9cbb5755dfc4601bb6ba420bd3b76fd54271cb207ab720f",
+        "tools/capture-drawing-interactive.py": "017335dd88026c0d89862cf58424a8f674aedb865f4f077380fb5cded5b4ae35",
+        "tools/drawing-session-runner.py": "dc37276907f0d6f910a679f7331c96a09d0e5042865d407ba919673d95045d87",
+        "tools/drawing_call_intervals.py": "0f423f7aa07aaafe37d394b48d298957ce7ba10aae51ec3bda4a2585333a67c9",
+        "tools/drawing_api_session.py": "d9b927eebf99cc1144a60e1217c92dbfc17c5b8b33ab0e1b3a913844caf9753f",
+        "tools/build-drawing-session.py": "985c82973203318894491922efc0b57c459e72d8e5c557472f133f1838c2b04a",
+        "tools/build-drawing-session-input.py": "eba65902ca678600c5bac80172f24bfdf0c535f250d4f016fbd5ec1ab55fbcb8",
+        "tools/build-menu-observer.py": "0a1f61c92c82d75de509beaa5f03c52780c3a860d1aa4e8b285d424810d6505a",
+        "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+        "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+        "tools/prepare-scene-observer.py": "e2dc2bb2f2becb37d9c3d813a066a16fae193f88e89bf3eaf30f2083e2577216",
+        "tools/run-game.sh": "073ed34678f0fdd5032f30133d329f48931eb61e40541b65960017cc975b890f",
+        "tools/run-opengl-game.py": "e35f38e00017235a38a78863b7205cddc78eb3bd7e8ad50f82a1ade94e245e4a",
+        "tools/campaign_gameplay.py": "5ad52f29bef23bc1a90a5a8caf653a7f0d63c8a8e3f0a67790cfbe90721bc329",
+        "runtime/drawing/session.c": "f12e65906a11bb9de24c99f62c4c83561499376b44fe4a36a0603c60aed4f4bd",
+        "runtime/drawing/source_points.h": "3a0cff17bf4a8992122d4106e21e2dceedb27991cbfe072eaec0ab7f947f6bc9",
+        "protocols/include/mnm/drawing_source_point_v1.h": "dc3e20d8f7a980b2638cc437167cc840b763b1831b4337261d9bccc47ac66db2",
+        "runtime/drawing/call_intervals.h": "dab47c4fbd1a7e9d7872787e7c6ab7d10bb646dbbd1aa491cad337327d4e4f5c",
+        "runtime/drawing/physical_fence.h": "89f71e1c94090769273b493cf8479d9ec71370da04419c37129b1c5aedbd825c",
+        "tools/drawing_api_physical.py": "98ba41dc42b52b44ef80a536c350e73fa243b27cbe1acfe23b12703bc7310e3b",
+        "apps/drawing-session/observe.cpp": "bfa88126d12957f8a774e81c5cc40d5f862fa3404347ea2b71d881907d9725b8",
+        "apps/drawing-session/CMakeLists.txt": "1134ed05493acb47fe09a1d78f3b8f941ba0a2ff209d5af8f4a4e3045e715992",
+        "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+        "tests/drawing-session-input.cpp": "09ab21ef515e64ebd4149a7d0a20fd310f474f2b3cc85dcda909d0d1a23aa0b7",
+        "apps/qt-shell/window_host.cpp": "3b295714c214551c1e0b81c0213b816c45c1cad8a1ae4b231a164c61d6ccaad0",
+        "apps/qt-shell/window_host.hpp": "7357751429aff4692145f53bc4bc7a7454cb41c4d16006ea5f3b0ebbaadbc46b",
+        "runtime/menu/realm.h": "4ca69385cc0528bc8325b4b493e433feb8c8116ad7df3d8b7f6f21067119db80",
+        "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+        "runtime/menu/campaign_observe.h": "8f7a286ade7262354ab99f4de8a6cd33bec70b0b95f067eb726318ae2c6130ee",
+        "runtime/menu/spell_campaign.h": "7c7a0dbbd7e0c443a80f9a525656a58a66c489cdd68d89b04cc4d99a0ea5b86e",
+        "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+        "runtime/menu/lobby.h": "a133e8fa4ce4084fe268f2bc12ccef852d2b7907cc785ab8f63784d3e53dd1eb",
+        "runtime/menu/drawing_semantic_state.h": "355e2b24175f77e153a1662177ce554100743cadae091cf517e06e41b2a3f2bd",
+        "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+        "runtime/menu/grimoire_observe.h": "f2c617cd0bbce1ca77861714eb7b5860a67bdeca143f0a16ea6b00631218b777",
+        "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+        "runtime/menu/channel.h": "c72d6b858c1156a967133ef6de83145afac8660233a9bff0557694aa945ec8e2",
+        "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+        "runtime/menu/startup_admission.h": "bc24f65effbe43f4e28307297f54bd295a0e7fcf7e7ba5e38359df4f8c4ee3d8",
+        "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+        "runtime/menu/preferences_display.h": "60a7f61c7bd734b017c831c6ee3159cd751bf9b2df4a2c1e17b103628872a2cc",
+        "runtime/menu/spells.h": "b275e89df88841fedc5e2215ffd97bb4c4250c8f4128a0526197d91caeac1718",
+        "runtime/menu/grimoire.h": "2b6ec39d3410d29e5afb553a8b129f54c11da158ebebd158c09be0c7e1e5f4a5",
+        "runtime/menu/multiplayer.h": "d07556a96ee331106b6891e82dbdd327ec965a435a19f82f3b8d0b9ba141a6c8",
+        "runtime/menu/observer.c": "4604add7eee37c8a27844252745a4c30f1791dceb802f2c0562c89d4f68703fd",
+        "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+        "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+        "runtime/menu/character.h": "cc5e78d8ca9ba89f71eb731ac4c35af0ded6d045ee1198825808e6a035ca69a3",
+        "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+        "runtime/menu/mini.h": "8a8a10b06bcb930841433cc5668bf8bc402e4606ce3a9e226a4b911eb0cf8993",
+        "runtime/menu/grimoire_campaign.h": "27a274231e0f6480bba1c9f73e5f86d57556c62d3dc3af44b4fa1fdfec92534a",
+        "runtime/menu/drawing_action.h": "9d75c9ac70f01cb2a90d8b25897e134681c0e0f7c9a34b7563bcd36f9375d5c5",
+        "runtime/menu/drawing_hud_state.h": "3af43df07ea9907df0b081df619949ffb1adbd2b645b57f0e7012f5611340055",
+        "runtime/menu/campaign_gameplay_observe.h": "6969d3d3ccd673045dd8122ed535891b451572f37ef3ba594c4b882965d30a1c",
+        "runtime/menu/campaign_spell_observe.h": "1020a7a459db112a3521ea6859061914a78ceda776d0f2a5aa75d7b5d3a00f7a",
+        "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c",
+        "runtime/menu/channel_selftest.h": "665a67108bd6ae5d404024530396b70e975724a33e9fa2571a8a00fb46e75740",
+        "runtime/menu/region_entry.h": "ec5200152e39142157a995bf8fc655cd2a573ccda9de04523374c77c2f1e0f92",
+        "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+        "runtime/menu/storage.h": "fb8d7e4f870b5bf954faf276fb3a4d1fd1d1d69193d3eb477dae4b2e7c9063cf",
+        "runtime/menu/region_entry_observe.h": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+        "runtime/menu/contract_selftest.c": "35306dd4540f016158eb5c227e8ac1688b681c6d523adf5a34d9dc344f6acb8e",
+        "runtime/menu/campaign_world_observe.h": "16b5d6c8f84c9ab9e804dd6415ecb01c5f719f777fb6610a0fc589726f15a2f2",
+        "runtime/menu/campaign_defeat.h": "819bb10f479e4423f1f26d3d191dbca6ccf286f64511639a5281f3fc2e8cc4f6",
+        "runtime/menu/drawing_region_input.h": "d1e3b2c749e93d13f8a872ba22b859fe70d64da991f1e86829694e9e06602b60",
+        "runtime/menu/sessions.h": "754cae3d6dbd9766c67f2c31e4eee99956941f7422354b6d0547ec9ced4aecfc",
+        "runtime/menu/drawing_actor_latches.h": "0623f0ad98ecac0743a1fb0203e3c59c2711a0bb9dfcf0f5833b628fb07d592f",
+        "protocols/include/mnm/menu_v21.h": "84f77a3ace2e949c067404a9e83f85afdcea0b32ae051d59dbbb0577721242e1",
+        "protocols/include/mnm/menu_v12.h": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+        "protocols/include/mnm/menu_v5.h": "2ed7fd0a7b6774b3f2e5158966ebb438ccad15f806c22ca1c2ab75328ece87b3",
+        "protocols/include/mnm/menu_v2.h": "5f9db9ded1e1653411cdd542ff045070a79f8b9b3c93d05227d94edaf3da3881",
+        "protocols/include/mnm/menu_v22.h": "fa8f4af0965f5391c03dd4f31b3093e7b4c8c0f0ba1a18f1e052202c8351a270",
+        "protocols/include/mnm/menu_v3.h": "f0baf53e4b11455c7bef129aafad06a80984ba13ce37e877d088dd7c7ed74dd6",
+        "protocols/include/mnm/menu_v4.h": "d42e6c6af61928cd1a47efe92aca0f52b31b3ae56a2f844bbbef382354d8fa34",
+        "protocols/include/mnm/menu_v18.h": "c6501ea87e8b7f2871a852b8b47f702a0f5251db359c9101b37b2d641e324368",
+        "protocols/include/mnm/menu_v13.h": "c62b8bc68d223c18341f88339d57738dc8fa13ab99b33bda42778c468ae130a5",
+        "protocols/include/mnm/menu_v10.h": "31d7facdd6a0ec95d34f95721bd507e983a4e9ec2c0c56ee23a479196b898b17",
+        "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+        "protocols/include/mnm/menu_v16.h": "1ab47b771eda03a625dde951d5aae62604fcbe416ba2f3db304cd09fbec0c74a",
+        "protocols/include/mnm/menu_v6.h": "4fb73cf5f6aa4890bce6b7e1e45c5b4ebeee8822241a5745cf563c43cfcd255d",
+        "protocols/include/mnm/menu_v15.h": "b6787e786e5c6cb4b5997f5ce8df77a5f2b0ea7ec38d846369131cf8496f8d19",
+        "protocols/include/mnm/menu_v9.h": "857c603304eedb562197f433765ff1ec7bb8a0f05addd2f8cdbe7c0e684e2d6b",
+        "protocols/include/mnm/menu_v11.h": "cd9a8e80df702ea904dbe15404d392896035b7ab784ceef62dee35559f27c324",
+        "protocols/include/mnm/menu_v14.h": "e1289bafe3015b57527ad68b81bb8f06cd232e0f4cd323ebf567528dd0737c22",
+        "protocols/include/mnm/menu_v20.h": "953535ef1993235ee05b6b2bb6ca180225bb161f72bd22b4bf8dbca17f5904bc",
+        "protocols/include/mnm/menu_v17.h": "be293c6c1edcec7982c0281ce4becf74b806102d0c3ce239f91d25ed67127bb9",
+        "protocols/include/mnm/menu_v7.h": "fc554cfcbc7fd50ebf4ad0b4046877787ccdb410eaa324b36573ed4694659c32",
+        "protocols/include/mnm/menu_v8.h": "86ca7a24180972b75b84c4ec021c62519b7c94997b260bdfe05dd80388c09f47",
+        "protocols/include/mnm/menu_v19.h": "9241978894c0399630d5a555355c0cbab0e1a98fd0da1d267cb6e2d334042c82",
+        "runtime/display/x11_delivery.c": "612ddb9f2e5c64e3f6c77624f8dece50daff76e3799c11f81fe660e31c6fa938",
+        "tools/build-drawing-x11-delivery.py": "c9fea487310ee26c6e5243e5422c712afc1ec21a11f90d16ee5430bc23da0f81",
+        "tools/drawing_x11_delivery.py": "7d39ddcac2b8f2dee57fd69fb57ea395dc48864ec19511ebbaed45f07e102cc8",
+        "tools/drawing_process_snapshot.py": "503ce3580e826b5b7055fc7c3feb5ea7f6704b77213b40984999c35f24530b52",
+        "runtime/display/egl_physical.h": "661b219d5c4b6e35c1299efacd771a3f0f83b4a5837b5c85302e452107cfbdf6",
+        "tools/drawing_egl_physical.py": "e40f0c95e9f8dad74beae2fbaf39678345e132a152ecd9e341051e1678e20778",
+        "reconstruction/rendering/vertical_bar.h": "fac4d2413ffe59942e335fc64910caf1a0e5802fd63c06de8a2c716c8f281008",
+        "tools/build-scene-observer.py": "cd88c2e29b5a422e2781b49b4f71c08e5603ceafd4327494854e6995e296405f",
+        "tools/drawing_producer_points.py": "94e4fab9e6033595fb75f2e97db71affd4c5636468a81785bcc319d82e4ff1c4",
+        "tools/inspect-canvas-producers.py": "58ccca26889da4fbf067eb0e95b4afddcd7ca0919a54263bcf4ebb3b90f2e231",
+        "runtime/scene/drawing_publication.S": "5c38a4aeaa7457e720f3043bd3a3c83dab7c5b5fd8a18061d576d31c6cbf11d4",
+        "runtime/scene/sample_admission.h": "90d539770c0b2bd34f4243f9b78ddf998da9291d73a3cacc737ae3441cc05c27",
+        "runtime/scene/kind8_observer.c": "2446b756aa890f91a87fa4ae2d7a434c9f247c43b0ff7fabad994c75fa1f6563",
+        "runtime/scene/world_producer_bypass.c": "2555021d11eef484d67be0c20fd590db2bf9db78113ad466ad5f98337c1f77bb",
+        "runtime/scene/world_kinds.h": "dad1ab93f175db036c7b53fb3ee8f4f65259d016ae2ba3627a133e2685f87e4b",
+        "runtime/scene/drawing_storage_point.h": "a34da1e400ee16607ed3d26c13c7324846ce9ce7cd97fc24ef658bfcc996035e",
+        "runtime/scene/world_stream.c": "0f55cc0856779977a4b4c9a7795e4b5622fa6c16f00db06cc631fd0e12a48a60",
+        "runtime/scene/drawing_source_point.h": "306ddd5ffc1842837e5ca231103d2180c915815d35f420418dbde0d46057c4ca",
+        "runtime/scene/world_raster_callers.h": "7b1dc71f105a199ceb448b6473d36ff5f62f3286459ec77181cac3c0ced466be",
+        "runtime/scene/source_pending_policy.h": "7d609ec54a558ac0b189813498bb5a472f266ae2009683fa5c877383883185f9",
+        "runtime/scene/world_trace.c": "a2a40f336e007898f3bf44c60a25efda1b18d8466bdd69460bafa727cc752f4d",
+        "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+        "runtime/scene/glyph_entry.S": "9de083ae284419c71a47a99a4b88e1e192f9eef3c92b17fa16c0dcf0779b778e",
+        "runtime/scene/world_entry.S": "48ce2eeaaa4ec8446e7b8804aefb0fa561a8f872a00f41e1e8b32c7500256cf1",
+        "runtime/scene/vertical_bar_trace.h": "29e85f8d5adb3edbe1c13f0e510a2297d19b4481f8eed0347174704e34c90be7",
+        "runtime/scene/drawing_publication.h": "f2311cb7a86fc842beba616cef943285b3d914b172cba98bb106a312db3299e6",
+        "runtime/scene/world_continuous.c": "b21564f83b7cba127318f343384efb127aee217a272350c14599abba10440b76",
+        "runtime/scene/startup_queue.c": "466d66d8343dbaac7e196129cca7ff0d6a2e8cb60a2c9faed1bb75ee7c96d6a5",
+        "runtime/scene/world_continuous_clock.c": "2142602e01434b8dcb60bc4bdc3a77c6593ee270a83c3fe51b247353d5d35fb8",
+        "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+        "runtime/scene/glyph_leave.S": "dd4657c0638ab9426386197617132b65f25dc0aed44a1b9e097afd5138c617e9",
+        "runtime/scene/observer.c": "5093ce5713cd437336b197d55a56045a38be4b8d315e80941aa8679f7e387dd8",
+        "runtime/scene/drawing_storage_caller.h": "916a59c30c3ac9cf1da39e532a643896aae754759bf5f14e84342cb307454d3f",
+        "runtime/scene/canvas_producers.S": "d565108a43b56c46cccb5c0e55c9d001b7514e5bb16391312482b5fb6668fa4c",
+        "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+        "runtime/scene/word_route.c": "d0a3ebcaf73d2df6451162dbf7e1aa224612953b4b40514c66cd4ed01acccf55",
+        "runtime/scene/glyph_route.c": "cdc2b537e1ba7a16412c6d26524ccf0b0db8136ede19b7e5e723a80d0b17c2be",
+        "runtime/scene/whole_update_capture.h": "b838f03811c44278fa4c02a87b69a1c12de178a819d98db5660962d7a4a815ca",
+        "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+        "runtime/scene/glyph_route.h": "84b23b94c20d3761fc5db0566438f8de7e120fa47f85bffeb498dd93e8fc6fb9",
+        "runtime/scene/source_write_trace.h": "8850c67b41c2345ede49685aa2fe0837df0e6312bcaeefc29a9519aa9aec01e2",
+        "runtime/scene/drawing_storage_transitions.h": "ebc16200fd78fec8e34478e10df351abe324ba0b82d2336eaa7734bcc09fd00c",
+        "runtime/scene/world_deferred.h": "86fddb9c4400e4500c6d1e3d0b70f948db2ee49995f1d10b127fc15b7ab2d1e4",
+        "runtime/scene/word_entry.S": "23d72e078069edba6c1beed0dee47b1f3c8c1faf395bf6f36c9c06b92b450beb",
+        "runtime/scene/owned_initial_history.h": "afc8e49b1a3c5c94894fbeb4fe126d2d958ac3f2fda3d0653db59ac6300623a8",
+        "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+        "runtime/scene/world_source_regions.h": "b0c33c178073882529ef3bfe1ff59b7550353db45b38c122d392a620b7c8b68b",
+        "runtime/scene/drawing_source_bytes.h": "5d96c39b70294782b89d87a7f2dbd1fa7ed1bbdcb373872a0f281fdab3fa7c73",
+        "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+        "runtime/scene/readable_extent.h": "656136c3ecacfa9389a9d9fe5dfbff372c93e91792d51446e01633ac35ae53ff",
+        "runtime/scene/drawing_session_producers.h": "97cb726e8282ab52b199e44edd400cbe5a197e89b7e88f5a5ca611680eeb8ff0",
+        "runtime/scene/drawing_source_lease.h": "c1a4182aff64ea380f0b8af9059407ddc787d2ddf1650f79139b8ec5e4d7fa59",
+        "runtime/scene/source_pending_refusal.h": "3a9cac74b7cbe430f2dad20b0148b4eb623279ebdcb550029a871888d83bd091",
+        "runtime/scene/canvas_producers.c": "1f4ee939cc36b83657ffe477b144eb99bc8e42a8e9a79907535b6e4c41f2d349",
+        "runtime/scene/world_stream_selftest.c": "2828bc32ae8e1ff3a3675fd11d863d8d73729d07e12f48dc1b173c8b57d6ef29",
+        "runtime/scene/drawing_physical.h": "a7e963d9983a4aee34058dcc3a7e014dd020527e470f75f6955f963826ef5acd",
+        "runtime/scene/drawing_storage_candidates.h": "92245e644e96fa11759d60d0410300f1a44566d490df4e8227306ab5131aa9a4",
+        "runtime/scene/glyph_live.c": "e4443a5b7f977bdb4ac9d6b1f7cedc1d755aca7ea55a63196045aa64abcb1dfe",
+        "runtime/scene/producer_trace_guard.h": "f76ac0166a006b46e01652ec338f9acb925d83f45496deb8281a1dff0ad057e4",
+        "runtime/scene/glyph_live.h": "1dca659a8b4903e66924f8ba14f4334d022e1a5b1363a3e330a0ccdadfe4b645",
+        "runtime/scene/world_raster_batch.c": "3b30011a6e28bbe4ba241f3e411f9407a404c1fabc99f3a8bc508a0323e58524",
+        "runtime/scene/drawing_update_points.h": "412c1787d735a8d34394c5ed320430c6d1f1117d883d2e012407bf349030329f",
+        "protocols/include/mnm/canvas_producers_v3.h": "253e0e4f99273660312650b7d9bcb57c0e53a97483b75f8af6451a05e7a20632",
+        "protocols/include/mnm/canvas_producers_v1.h": "5a644332be8e73853cda426477835aed3e330d68acdb88f1ad3004e8a00da52c",
+        "protocols/include/mnm/canvas_producers_v2.h": "c94a25cfe470eecaa0781aba576ee7fb0009a627e60ac8690e8ea6f4efc0b48f",
+        "protocols/include/mnm/world_producer_bypass_v1.h": "62f85f8ed92092185692fdb066bfec489d2bd1493ad2fea72af44002b9974424",
+        "protocols/include/mnm/canvas_producers_v5.h": "ba5214494c61ffe2e7bc375d4631259980325d9e7ffaa0ce356fac29c90d5631",
+        "protocols/include/mnm/canvas_producers_v4.h": "49e488425f07d6d9fe5e5936fc6a46c08fe01d9ca468bb89ceb383393d972274",
+        "protocols/include/mnm/world_frame_v1.h": "b9b2f78c8e5b513232f803d2a0ec6643626974a8909db18611e87262a22f83b5",
+        "protocols/include/mnm/world_continuous_v5.h": "1d75c3d4ef51fa94fe83c851781aee353425940bfbaea9c20c87bfb68b03ceaa",
+        "protocols/include/mnm/world_continuous_checksum.h": "4d96065598923f759691b565716e511e2021edb5043af0aeaaae890f8ad43198",
+        "protocols/include/mnm/world_channel_v2.h": "7950078b61ef26403a9661981c5dd4ae9553bc582c232c8782f0f1b7ce1504f4",
+        "protocols/include/mnm/world_continuous_v2.h": "de86bb1af4612812657ff09f6cf730c8274880edef1f9fece277ca1402f8784a",
+        "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+        "protocols/include/mnm/world_continuous_v3.h": "d130c9ec19782acc916e21686f8970f307c0d974f164c3bc9c64cb587972a3fd",
+        "protocols/include/mnm/world_rolling_v1.h": "21c279fde51ea0e31d346fba054df754b7d4e376bec609d005dafb78e0e4f2bf",
+        "protocols/include/mnm/world_raster_batch_v3.h": "f66950a0fc86061a3b489cf03986e43ba18ca9b34087cb371501f3f555815912",
+        "protocols/include/mnm/world_continuous_v1.h": "f27290517c154a8febe041325734f8f9f9a59f66908a9cc0145cfadc5941c40d",
+        "protocols/include/mnm/world_continuous_v6.h": "33893e2d33b29d2d5c37aecb6bfd57e03051794c3e4cac44e38321d343f08c2f",
+        "protocols/include/mnm/world_continuous_v4.h": "35d8b7d03a370adad0a8583908047d11b95f7203d36c42dcff2946f0d8e824cd",
+        "reconstruction/rendering/glyph_backend.c": "4d3464d630bb7cb432f0a004a8515224917afcbf55ebd29f447a42c8894dc5d1",
+        "reconstruction/rendering/glyph_backend_state.h": "6cee68c140ba0a129524ab09711fdb1ad5926b1d9386fcf9ac640dc93fb086bd",
+        "reconstruction/rendering/glyph_backend_state.c": "829e1fa93b39e6a3acf289efc439e7001887395ff28945d1031d0cf918d66592",
+        "reconstruction/rendering/glyph_backend.h": "7428bc7d8eecbc026ff5264e42c9aed38371c9a36758e95fb5e59f77a2134854",
+        "reconstruction/rendering/glyph_backend_x87.S": "21b1a10c2091f7631e1e99b50d9ce743d83392c6e0e40d738d79b1bafef2aeb1",
+        "runtime/engine-cadence/observer.c": "14202cadf495d1b02f2d2d4cfdfe91082a82ada0a4ba081a42fccfd3cbabdea7",
+        "runtime/engine-cadence/entry.S": "46aa2a34c50e5ab1450913cc3033602e36ac490e7ea6ad095ab0d581dd97908f",
+        "tools/build-engine-cadence.py": "8551a3fd055b4d90ccec59813a4af34fa7061ab3947f38584e40d631746f9340",
+        "tools/engine_cadence.py": "23ba50b845ab8ab46249efcb0591c0b26f20a1447c515c53c9d4b0ea5f870e7a",
+        "tools/drawing_engine_windows.py": "11e185c13d2aba7c1244baab5b21ca11f6f896afbf0775e9f4e957eaabca77e1",
+        "tools/drawing_quit_completion.py": "a71d2831ef59383f13492d59ea42ca2488d44662e06972c3ce949b9d9811afae",
+        "tools/drawing_semantic_state.py": "6ecec7ba8472622cb40aaa0dc3385d7c4d6afa44f44acb3ae83ddb9d060bb134",
+        "runtime/drawing/wine_resource_copy.h": "6c13cd77dbdf2b6e06e56762d4381cf9dce34126039fc48446d57e47a088dacf",
+        "tools/drawing_wine_resource_copy.py": "3ea3af11ef4978e8f7de746dacedd72570d6e31cdd2fb87a3800aef85c06e1fd",
+        "tools/drawing_storage_transitions.py": "ce2dfc8e1a2ca542b9a05f9eb92f0cc2c5e3f32642a51f80b8748db913120c86",
+        "protocols/include/mnm/drawing_storage_point_v2.h": "e7c17a78e2c14a840f0d8465333afd7ec0c819b050fa13cab304b5d3468331b8",
+        "runtime/drawing/wine_gpu_completion.h": "4d960d67b8d8ed058fa3be654338879ef8f53a6649654e0eeefac7e35f9ae947",
+        "tools/drawing_gpu_completion.py": "6bd829550554658f06060faa066e494624e246da5f232cdfb95649d66a237e24",
+        "runtime/drawing/source_byte_witness.h": "3ebac347ad47a51d7fe0e53cf3bb9885b4fddebce0c800484ff3f133657b0317",
+        "tools/drawing_source_byte_witness.py": "fb89f43667fc05dd4bb1137b304b78e0a1b6f82f441ab4e0a82dcb50243aa1f0",
+        "runtime/drawing/wine_worker_context.h": "7729c91133c02535c4da8290023143efe7b92da24e977058e2db59d262938009",
+        "runtime/display/egl_worker_context.h": "c12266c1da62e28c44c97725c7e9c1b957a7441c622a21a18a5eef8686ca752e",
+        "protocols/include/mnm/drawing_worker_context_v1.h": "58c3df8a8d16b023f83e8bd41662cb87b3914fd81eae35d5a5fc50005c883172",
+        "tools/drawing_worker_context.py": "7dc64e713cdb7fc55cb387828b6ed0127c5ca55b534ed12bdbfc4c03f640b4da",
+        "runtime/drawing/wine_blit_packet.h": "0ecdec4720d9d0f513a98ebfcf6805c1122496ab26a34da6562e557aa43d72b5",
+        "runtime/drawing/wine_blit_packet.S": "1177b939aa6831588eab3d2bdbbc1fd33fd4904e259948e2ccc4015627b318be",
+        "tools/drawing_wine_blit_packet.py": "b418649ce78e4628396e086e631ed5de0143124daca945cf1bbc87f5d48fb83b",
+        "runtime/drawing/wine_blit_worker.h": "b42bad94cf2f10f569f7179dc4c8371941e1a0d2f0002accf323dd5fa3ec692d",
+        "tools/drawing_wine_blit_worker.py": "6490789f932f11b132597205fe7df1684b0c4cb72d36b3d5648298585549e206",
+        "tools/inspect-drawing-wine-blit-command.py": "90f32bc8122915cf94e7d5868fffbdd90d17cda40bd00d7b5fb3a056ecfae57a",
+        "runtime/drawing/wine_texture_entry.h": "ed1b98166acca88b4243064f6d8ef184ec4023dddac02e83403e578140468290",
+        "runtime/drawing/wine_source_map.h": "e243edc27a142eacd051bead9314bcffbef5f437e9b1848302a23baece826bc4",
+        "tools/drawing_wine_source_map.py": "7249dfa9beaab654c9dd603985b1845505840e3e9319ed8de4e9347e11f21667",
+        "runtime/drawing/wine_source_descriptor.h": "823c7924647bf3db5ebeb500bde5e1c192abc9b327418b4fa34cdb2fb90e346b",
+        "tools/drawing_wine_source_descriptor.py": "3885c9598187eb93a512d012605c60dd0ffa728083954114e0ab21f790c6a0a7",
+        "runtime/drawing/wine_resource_mapping.h": "c45420228d0a4d50268e231e9289674c38a67de3eb3adcf51f53b3a6d6cf0a5f",
+        "tools/drawing_wine_resource_mapping.py": "d24414f4f1d7f496f6bcbbb5f2a659884c046260da92f479599cf1529b58d2e8",
+        "tools/inspect-drawing-wine-resource-imports.py": "fc8fecb66df3753597565917483a6bbcd95cf47e430ddeed9584b019054bd72b",
+        "tools/drawing_source_version.py": "b2dbfa094aebf8573c83ed19de4cc934586b597e6edfc0cb181294408ad7fc7f",
+        "tools/inspect-drawing-wine-client-memory.py": "05531ddb7da24a9ea53d1ecd1412ab04bab83720fe8bcf9838c4ea8987dd701e",
+        "runtime/drawing/wine_source_version.h": "1fbf89b1f3900b039d13cb342b672414de18935df2a71ac947761cc79254c961",
+        "runtime/drawing/wine_submission.h": "f0c8b1791129dcd15b2bf8b3d13cb4a758c0f9ec2517625f588184fea748cd65",
+        "runtime/drawing/wine_lifetime.h": "c81ff4e01121b08c4080e33ef31e50ccb6c7f44e26bc8708da6c66f973d2a76c",
+        "runtime/drawing/wine_buffer.h": "ab484fe62ec24b56ccd5bb36535ea4139777e9d72c1d34cfe7795b8244e47a64",
+        "tools/drawing_wine_buffer.py": "dc68a532c00d1afab16cf417ba776f4804da654aae2786c7760a527fd4c6d367",
+        "tools/inspect-drawing-wine-imports.py": "b4556d29156b993b431a9da73194f8cf64fb36de8171d5666ff3d8439f6660c2",
+        "tools/drawing_wine_submission.py": "7015c6b360ade65d7350cb8ffe9b9d7bda76f4ce374295fdb5ee5749f63010b3",
+        "tools/drawing_wine_lifetime.py": "1795dc4331bf5149c5af02efb8a177161f3cc3c080e748f3c205ca8d4fb0edf9",
+        "runtime/drawing/action_boundary.h": "41e47d0ed158cbbda7c859f0de3234859039cf9b2944e39aa1c1a500a84f25c2",
+        "tools/drawing_storage_capture.py": "0693abf33836460a8c001c9c72eb4a8692f598edeee2f3bcba7faf65b1fc9551",
+        "tools/drawing_action_session.py": "456298ce15ed0e006941ee1a74a09e5058684d040f34c3ea9f6bd2acf974dd74",
+        "tests/test-drawing-storage-session.py": "2a3d25c9a53bfc54d9c80df7bf582fb954471081cce957e017176a865447cfda",
+        "tests/fixtures/drawing-journeys/interactive-schedule.json": "cf2916161242b8578ebbbb36090f7fb8f5ac2c39a0eef30f212ee4dbf5c1baf0",
+        "runtime/display/egl_delivery.c": "4f8bcc961a7781d7cdc67706cbb9d36d0dc50ef2421cca73e1bcd749d2bc35b4",
+        "tools/compare-drawing-quick-battle.py": "8231b070157d787ebb1ab00b36f515f14f172afa8e9db25b76542664cd027489"
+      },
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "DRAW02.storage-action.native-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/storage-action-native-20261016.json",
+      "sha256": "19ef68a82bc7b00db50029d40a077b02785c5e767bde5f7cfca5b3d18a67ca99",
+      "scope": "Bounded action-bound storage execution; independently retained raw result. Native mismatches remain failed; no global presentation or live replacement promotion.",
+      "sources": {
+        "apps/drawing-session/CMakeLists.txt": "1134ed05493acb47fe09a1d78f3b8f941ba0a2ff209d5af8f4a4e3045e715992",
+        "apps/drawing-session/main.cpp": "cdfb062be87463f119b5e239ebe8302afbe2fefc3921b99920d0ac5e12e46734",
+        "apps/drawing-session/recorded_composition.hpp": "0dc69f1c948bc4f8da1e2e81c069baa803e73180258d8b892d80d467f04e3f50",
+        "apps/qt-shell/gl_viewport.cpp": "4be63afded2af5b9270584c14dcd68ba61f011afd8ff711c8eab85bf794c3d5d",
+        "apps/qt-shell/gl_viewport.hpp": "fd4d7cda25fc5e60a932f758947106f3444f9b64506be2a889932090e3c0b26b",
+        "compat/legacy/canvas_producers.cpp": "49e79f1384afdc493dd1e452078f9e7ab21cfc2d6a7be02ba50b7420b098fe05",
+        "compat/legacy/canvas_producers.hpp": "65b951709656b238da54a0bb4f70f1015faac26ffeaf91e3b9312a329c7f98de",
+        "compat/legacy/drawing_scene.cpp": "9fd250767df15cd5ffbc55a25316ae2c23ad28cfad5c7d61e37fb3dbc624b2f7",
+        "compat/legacy/drawing_scene.hpp": "1ef55f789a383b444650ef2118bf5ecba12cc23ed7920154f7ee122747705cf7",
+        "compat/legacy/drawing_session_main.cpp": "fe148a14e8b7a72402c5462d1afae12c5068ebb2f11f181a33239adc59c60bfd",
+        "protocols/include/mnm/canvas_producers_v5.h": "ba5214494c61ffe2e7bc375d4631259980325d9e7ffaa0ce356fac29c90d5631",
+        "renderer/blit.cpp": "c1880cf7ddf03cdf1f33c6ff9f8e1ff0a3501286f820767dbbb0a89e5ce16acd",
+        "renderer/blit.hpp": "3884c15effde68e619c67d9bc065517c138a6639dca28da3178d8c42c76b149c",
+        "renderer/canvas_sequence.cpp": "676b04db52b1b066f1fade648de9e507b59c8c9c0469743b848009d0772125b4",
+        "renderer/canvas_sequence.hpp": "d29ef07ace020366ab172e2f57e44ba4981d62e200d5a5c5b1443ab1ef0aea06",
+        "runtime/drawing/action_boundary.h": "41e47d0ed158cbbda7c859f0de3234859039cf9b2944e39aa1c1a500a84f25c2",
+        "tests/canvas-sequence-test.cpp": "2c6f6552e0703f8175bb1cdd851dd763586464ad87cb7b9ef20aa455abcf0d00",
+        "tests/drawing-scene-test.cpp": "29ae8dbfef876f02aee5c5c2e05acedcf67dbd98116518191ef05c2b65492c24",
+        "tests/fixtures/drawing-journeys/interactive-schedule.json": "cf2916161242b8578ebbbb36090f7fb8f5ac2c39a0eef30f212ee4dbf5c1baf0",
+        "tests/test-drawing-quick-battle.py": "506f289b0b6e807618846a206191a59f52660382d521b149334c5e4ff8f01844",
+        "tests/test-drawing-storage-session.py": "2a3d25c9a53bfc54d9c80df7bf582fb954471081cce957e017176a865447cfda",
+        "tools/compare-drawing-quick-battle.py": "8231b070157d787ebb1ab00b36f515f14f172afa8e9db25b76542664cd027489",
+        "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+        "tools/drawing_action_session.py": "456298ce15ed0e006941ee1a74a09e5058684d040f34c3ea9f6bd2acf974dd74",
+        "tools/drawing_api_session.py": "d9b927eebf99cc1144a60e1217c92dbfc17c5b8b33ab0e1b3a913844caf9753f",
+        "tools/drawing_call_intervals.py": "0f423f7aa07aaafe37d394b48d298957ce7ba10aae51ec3bda4a2585333a67c9",
+        "tools/drawing_delivery_timing.py": "de350babe2c13ef1aee64f4b6b9563e61c5a0dbc8d0255f9c40cfa58dd02c6d6",
+        "tools/drawing_egl_physical.py": "e40f0c95e9f8dad74beae2fbaf39678345e132a152ecd9e341051e1678e20778",
+        "tools/drawing_producer_points.py": "94e4fab9e6033595fb75f2e97db71affd4c5636468a81785bcc319d82e4ff1c4",
+        "tools/drawing_scene_corpus.py": "936ce77424fe3a0e257d3c494a607f0ad1e63183e3907693d0e4459343c1fe88",
+        "tools/drawing_source_worker_egl.py": "ce270aba51059f41fc5948d91cbb6f2ea8e54d348c5e4d093a09cde8836681a7",
+        "tools/drawing_x11_delivery.py": "7d39ddcac2b8f2dee57fd69fb57ea395dc48864ec19511ebbaed45f07e102cc8",
+        "tools/inspect-canvas-producers.py": "58ccca26889da4fbf067eb0e95b4afddcd7ca0919a54263bcf4ebb3b90f2e231",
+        "tools/recorded_drawing_plan.py": "1238fd81552b0a8009bce6c2fc7122634a07045d24cd5bb289fd1c45bb91b480",
+        "tools/test-native-drawing-session-runner.py": "8b44787901bdb6e6e93b4b4def5013d1b34eff16ed63a488ee54054e88c0fc78",
+        "tools/test-recorded-drawing-composition.py": "6ba72965f84e7794839cc02557fb8e4cffd6f4f09f0fb6fa5f818e8cf9a53471",
+        "renderer/surface_backend.hpp": "f7b269b079dfb94b20fce31986a7464c403bec298c98756bb675369956992425",
+        "renderer/gpu_canvas_mirror.hpp": "50f82e55ed6b4f8d93a9373d66e0898dd614423d31d799f88161872b81b11b40",
+        "renderer/gpu_canvas_mirror.cpp": "e51cf412a3eeb1546553553e3f2949846c3353e22f567a808913bcd66416d448",
+        "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+        "renderer/known_pixels.hpp": "554595fc1977ea42a1fef2ef2b08355bd058db22e886fac9568e035d1fd82b2d",
+        "renderer/pixel_rows.hpp": "858459228fd19d19640a3d2fcefc0347952bdb07e6ccbdb0af3f3dce1637df88",
+        "renderer/surface_backend.cpp": "c5cb22ea00315d78d2bcb8b4c6a252f34b32fab087f045187816a954d6113bff",
+        "renderer/surface_access.hpp": "95166e8226849e7302dffa9762b737ed5dd1381ffc8b392283763b1fc77854ad",
+        "renderer/CMakeLists.txt": "f3a321cd572ed1629f2a938ff86267e8dbd56e6d61fc8928b591e626a67e2fe6",
+        "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+        "renderer/gpu_production_queue.cpp": "1aca5f007abe3fc1206326be63a5b6a196e3ff2f2aa7d399878bc964159b8555",
+        "renderer/canvas_mirror.hpp": "e86cd9082f8a6fdbba477246b2bab9cefccef0b2222dd089ab369c94a53b1719",
+        "renderer/command_consumer.cpp": "7553ae21163f80e90e969526f57df161874451f93674346ccc8a624e6275dd2b",
+        "renderer/replay_main.cpp": "c558bb1fcd387274e1727f97fb4f8ad4cb5eb349aab9839d0bb6e368fe7a37a2",
+        "renderer/command_state.hpp": "b6fe10d3c6d1ffa17f05a4c37828a1a6d926d1b275f1e070ba0895678d45e515",
+        "renderer/commands_main.cpp": "91a5119315d2435ae3028da6393f104763f9da55c3862de56b8687bc57a3aacd",
+        "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+        "renderer/pixel_rows.cpp": "ffa72fac123001700e435112c7b09f39fc90ca4cb3308b1e4e4e31ef93027bfd",
+        "renderer/native_frame_recipe.cpp": "f236c57ebb81394cb019f77fb94ea42cc5a795c417a564c1714d0cf01f18cc2e",
+        "renderer/commands.hpp": "b8e7492019bcc02e4c3b64230ed6add84a84f4fb09527228b7b0335eccd65de8",
+        "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+        "renderer/bitmap_dc.hpp": "c8fadb0fc0f4217960e08f067283b504a8dc918ef425de160df262798876fe29",
+        "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+        "renderer/commands.cpp": "f7c6caef1334893dac1b3a4f2997fe742a63713bf36deb2295cf23ee7c756769",
+        "renderer/gpu_production_queue.hpp": "36a930d67c2aa8e7d4bbf32a3ff6193e8a15daf7c650f86dcf74cb906aacd6ec",
+        "renderer/native_frame_recipe.hpp": "d3a6ee09d6ac2ef6e773f2b58384b7234a56318676d35efec6fb9b46f4bc12ee",
+        "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+        "renderer/scenes/CMakeLists.txt": "e4c4f385d0ce952162c671086dab1aa45ab9096c375fdc3fdd2305fccdae9394",
+        "renderer/scenes/scene_renderer.cpp": "9cb5423cd63b2c49694158ad1ceee7f025219a228bdcec5729c7c489767b6337",
+        "renderer/scenes/scene_renderer.hpp": "da899b16e29fa17802c92643f4162abf783330bafd0fc5d1e3bea6536ad35146",
+        "renderer/scenes/scene_history.cpp": "f065d6ff91f8c2a00aac820a31a7b5d3533c259e6f16c8bcb9641b25228f1d15",
+        "renderer/scenes/scene_history.hpp": "c6396e01daa3a614c578fcb6609ec64a1cdac57cbd5c460d488352115b892803",
+        "renderer/sprites/word_clipped.h": "df60421e209e66511eea2d8d19647506649575e5ff1237df9fa91ed9840912b6",
+        "renderer/sprites/word_raster.c": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+        "renderer/sprites/CMakeLists.txt": "925072708b6db2f7e478b3c7f0f74dd9a5c2b624bc4af02534b53f49c130d7ce",
+        "renderer/sprites/word_clipped.c": "7ced88878d827606070b8ac0475360ffaead969d1321a6c848324d3b72a89bba",
+        "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+        "renderer/sprites/sprite.cpp": "7fce79798a163cfdbb50e28c460d13400e6f815cb794abc80dc69194698c275f",
+        "renderer/sprites/preview_main.cpp": "e4948d5e8e997c16fe9a08f04dbad086648b376a96b3302a066aff64228e4a23",
+        "renderer/sprites/sprite.hpp": "1ca2c4cc8e9c456f5ef111035724bdf34c931701fef07b270f5164348e8d55c2",
+        "renderer/minimap/CMakeLists.txt": "a19ca3f37d4aff8e14715cf6208fa5904bf77a3aaae6996c394fcf3e24affe5c",
+        "renderer/minimap/minimap.cpp": "055f1295f3369640025870c22b16fb6fc66dd154cba3d1191e843e2dece1ad77",
+        "renderer/minimap/overlays.cpp": "8ac9f1b8ac7bbc12826a80bffe4e57af700b1b162773bbbd8523366a15ada98c",
+        "renderer/minimap/overlays.hpp": "93e97d2697085e12e68fd8e7a7fe25a6634a3ff9cf80ca31d31c2f834b41acba",
+        "renderer/minimap/minimap.hpp": "ec54df24f6bca1dc2000450890d4908b2db346eec696f662343ec2560cdb9b1c",
+        "renderer/resources/CMakeLists.txt": "2406af37eab58c53d7526ebd38d88b34e449bc71b234a2fe5f15822a6bdd67b2",
+        "renderer/resources/resource_cache.hpp": "3e61d8836fff51ae3c04311958f748c574da4636d9332b6afb929729e8cedff6",
+        "renderer/resources/sprite_atlas.cpp": "1a5d3f933c39d529fb60993863bfb309e03c4249d3ca620de69d45c3033b0c7c",
+        "renderer/resources/resource_cache.cpp": "8ad7edd786c7fe6d3a0a64bc2c2e2d1ce0563f631256235e9b23ff7df4469d1b",
+        "renderer/resources/sprite_atlas.hpp": "9a404ed6d109da25e423016d30ff6d246361ae3387b21db2c0c210c8ddb4f7e8",
+        "renderer/resources/preview_main.cpp": "4355079b26e3672cdd9028c40de62998802c0ccf6bf014f08393b7e1d595ff44",
+        "renderer/minimap/overlays/CMakeLists.txt": "a279dbbbb259d43c1a569f5f937a5f0dbebe47baa2acedb4bdcb27e498e66bc3",
+        "renderer/sprites/word-raster/CMakeLists.txt": "949132dedb0210f6c0781777d0d3ab34165743f7f3061728295ac8fd5f66bbb1",
+        "renderer/sprites/word-clipped/CMakeLists.txt": "bb2d2bfa48a4941b51972040a9f2f2befe1333dc064de6f62cb118ac94dd7d6a",
+        "assets/animation.cpp": "0cdd420e8bbd08751f652696a4eadf9fb0eada1b96ec04c83402feee1acf0bda",
+        "assets/dat.hpp": "7fa2f8cb8df157119a474b0fcb48ba8bfdde3f2c1b45bea1bc610fea685de532",
+        "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+        "assets/persistence_inspect_main.cpp": "e9099f19131f8d472af848c9796b35bae6cb27e09c0bacc1499f288b8bbc58f2",
+        "assets/pcx.hpp": "f823529c1bfd7f3b4359289f8cd6880e485c318acf711d5371cb84d8392348c2",
+        "assets/cursor_inspect_main.cpp": "b8f11cda4d1f089fe730df6cc1dc070c37fac8ba7fc08cd1839f24b42cc49562",
+        "assets/compare_main.cpp": "be67af31dc0440838c5323a4f8a5513c56c3128a4522f1974371bc6e47bc5706",
+        "assets/mps.cpp": "02664575ae1377059faa3f76d1beb395ae48c798932357d00cf111d61a6bd1f1",
+        "assets/map_inspect_main.cpp": "8ed9e4f2e181b3b82a77fd24f0766e7c217719df3035d37946fe732b8fa46b6f",
+        "assets/effect_animation_catalog.hpp": "93756f4e055961447987bb4dac0d30afcddb7263056a569bc02a6a025178a162",
+        "assets/wizard_inspect_main.cpp": "2a1061567cc3b57cba8760b4284611113a8c5413d5bb01195312f57fef30c94d",
+        "assets/text.cpp": "d0ea03cab975714d466682bfc00628dc9c856c96b14c8ba5996dc6b17081670f",
+        "assets/creature_movement.cpp": "0ceaa3cdc3e9a5f45a695ac2f8f0f5f122288e296af04c586185524582d337c6",
+        "assets/cursor.cpp": "72b0754f61658e7e3577be77e8474866f84ec422b7e7a5ae250ea1a8fa9ce440",
+        "assets/CMakeLists.txt": "016a994da779a1fa5d49194e1cbe34c239a41514434da122f1a8629181ede465",
+        "assets/sprite_loader.cpp": "00abda9b22c1f85be51e2f00028bcd448a044efbacc0fff1a24fec676df68e67",
+        "assets/persistence_internal.hpp": "f704e35fdd852b18f370d71a62a9881dc6f41d2e99b8f0cf9aa4c1bc46d76c0f",
+        "assets/nod.hpp": "99002bd4bace7dbde011f91d1e921734134ec00cb2b7cca2747236b9a6e4e95d",
+        "assets/profile.cpp": "a6e917c7e14b5599c97aaca99c6b39dfd7222b22d5be2744c8dc42c9acd0420f",
+        "assets/evt.hpp": "3ce9ca0cd44d84eba406602a4268ad75691568484a4f62a8006ae1117b2702d5",
+        "assets/sft.hpp": "91a41125164f294985873e4812728886a10c763f7082275e04b99f1bd0483c3b",
+        "assets/cursor.hpp": "625e5decc1a0f7f9c31660e1cf291dc59783fbbb45549095b5d610b6dfb401f8",
+        "assets/effect_animation_catalog.cpp": "58a433d4a26441a0a5fde8f78f94138fc1ae807b9ab90ef0eb1384f0c0f47777",
+        "assets/sft.cpp": "e317648525c1bd53d0a25a84db2ff943041b392c39ba34afc8781ac7fee8e985",
+        "assets/jpeg_inspect_main.cpp": "cc8cc173bec58e35b4588cc52cfb01e899681bffda9b7c8aeea0ad83e9649c18",
+        "assets/fp.hpp": "3802e59c4dcfcd26df9bc8aa2d62c2f93024e5c5e3bc230714b4d43ea0370eb6",
+        "assets/profile.hpp": "f1fe154be5c9b06d23d7b847c3e3488de89e2d54669586e3a3f9705bbfaa7279",
+        "assets/mps.hpp": "75e4faf786a5b2ec3166b70ea671e5e707a0e09f14054aa9dabb516bb3e81e81",
+        "assets/wbt.cpp": "15691fbee7dcc7ea4d1209b3a3962f4b2a0df4b857d853ebfb7fea4ba67cd5a8",
+        "assets/persistence.hpp": "3013cefe3f0cfe931b8f7c3961c66765233f2826fc417d2f48da3574501249b1",
+        "assets/creature_movement.hpp": "5f2ac13f91904f8af7a9737fc357b1751745217d73de9f4103ef0ca8f6996953",
+        "assets/fp_inspect_main.cpp": "66f40d2825a8ffedf7d5bc3fbe9c2ee16a10660512e4c8d2e73b9323152923e5",
+        "assets/tag.cpp": "c8ecf2f5b36167d83a98ae022bf37f39473060033df56ce58bce4294ce7a5126",
+        "assets/evt.cpp": "a17f3492108373be55559adf2dc922d81704ccc9b0d8cf006cd41a2097db47c2",
+        "assets/effect_lighting.hpp": "a5f5892c1aff7770ce1a85356e8c9f192cd816504f82d2f4df3e79fd9f62750a",
+        "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+        "assets/tag_inspect_main.cpp": "7fb763a8f10bb8988912e21f61bcc8bed2b7e0c6745b6746af6577d2bc70d8a6",
+        "assets/wizard.hpp": "6e4ea8e6bbe57bb87a61d14e481b9baa7edda58e79dd41ee56cdaefc071231ab",
+        "assets/pcx_inspect_main.cpp": "512a6a962845a5c0f66857c902a3b4e21136b4bc6ea22354f9046786ea4ac018",
+        "assets/dat_inspect_main.cpp": "b40a5042575c0a5d5a276a734f67d0943552b50a9053833638d12a66af2b1411",
+        "assets/nod_inspect_main.cpp": "1b8b03cc701bf265155594237dab592165daacfea9e0dafe7b582e336cd7daed",
+        "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+        "assets/text_inspect_main.cpp": "0ec9c3220e2ac1f388dc091c23e2f81f17f234f7c36c2a13b7f68fa384784e69",
+        "assets/bmp.hpp": "a109cb3177826c54deba46b5952581ebbe9936a5feab49e0e958bee9f2fbc0d5",
+        "assets/dat.cpp": "32527f25ba533121a909a1eb5a6e1b5cdbf1a1ddbec2ef89ba30cfb784723fa8",
+        "assets/mps_inspect_main.cpp": "6f2766bf07cf7fda417eb3ab32103a40e6d0eb4045496686ad13ebb4d97b348e",
+        "assets/region_recipe_inspect_main.cpp": "d72e36d3b30816bbe13fcd163db03f4afffbc5da852bb738d2e1938960bb1c54",
+        "assets/sprite_inspect_main.cpp": "c44155bf38d8c292f708acce7aea1b30ac43450011bc96c8a6d5774e61c40069",
+        "assets/packed_container.cpp": "1a69d4236536be0ae9f9944b00ea816b33a4a249010bc4e011e4a43cb2e17e0d",
+        "assets/palette_lighting.cpp": "de05923d86bd5d76fbca30942d2d5ac9dffa3cc943e27ce0cef22637d9c0b769",
+        "assets/animation_inspect_main.cpp": "4d73a87295c7144abfb6d7894d4d8e6f5d104af0567a888ace22268e6c893f2e",
+        "assets/save_world.cpp": "fc792c919a6bbb3b9af6535da4b976880e4ec13dfe7a15e4be41195f5f6db31c",
+        "assets/effect_lighting.cpp": "1d412b98700a0f07ab392e90258f881866c182ed491422f88b73c7958314f83d",
+        "assets/config_loader.cpp": "706851875120533c7a49492eb34ff158314b4d17c8328749766d1a7ea9c1bb6a",
+        "assets/bmp_inspect_main.cpp": "4746b8ed657cd7fac31a5a7a62aa60b5db6ac89904a93449c73ebd0bfa93118e",
+        "assets/nod.cpp": "0ae47f764bae42793587a31a4ebd9751e3629c7d68ad2689b7d3c88292aec371",
+        "assets/save_world.hpp": "fca5bec61c6ae42971d713f2ea188ea59ff6ec261404a9105dc44761f05b7995",
+        "assets/save_loader.cpp": "8f0d9f2c5314a168e9aba80a52772b8a8cda8c9c32ea4dfcb3a16d57a2046895",
+        "assets/wbt.hpp": "a182d07bcddd3338157bc73d2bc935d72049bd45cb5fa6d81ceca136659d55e3",
+        "assets/text.hpp": "46e5665f828cdf0eff7a8a6f6f2222c143a2f855705122384cea4108a07adbc2",
+        "assets/animation_decode.cpp": "76523a27832349dda6daf9988bc42b348611b657af710a2f3e65b7a2912e947d",
+        "assets/region_recipe.cpp": "97fbc0f22f1fe59f8ade1d3c9d6f5f233061eb7120662d89b34aa9845798692e",
+        "assets/bmp.cpp": "2905db6469699156e4113816a9563a02f2f6071ecf3ce428bd19a535daf21151",
+        "assets/map.hpp": "f08dd9f7092da782b7a3ae9c9e5cc40c32ed8de791aaf568d81403ec893d4e0a",
+        "assets/jpeg_word_cache_main.cpp": "76fc913c10343ff068c76fb64629bea5b2c2902abc37000be63c4cd4478919e2",
+        "assets/fp.cpp": "f096e28026badfa5759db40e7df0996c5de6d44c92c931574c86f3ca0e40a1d6",
+        "assets/palette_lighting.hpp": "75bf4bf2fb0a9bcce1995572acf0a67a8033e985f345a605a33aad5ee0890b75",
+        "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+        "assets/terrain_catalog.cpp": "46f520fbada169bc3044b121e0a8838825214cff91730fa0046e5231d53f3b26",
+        "assets/region_recipe.hpp": "bceb3d7345bee18ef9c353a284b89cd8e91864fb4001d02c04635a9c3fb2037b",
+        "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+        "assets/jpeg.hpp": "e2a16ca4030480c7832c0f1b80be5d9d48134d49d65871c37ab03e79f23fda9a",
+        "assets/jpeg.cpp": "0a3772e79bcace89a84aa060b3f95637f05171e7bd8c85ed77efcc0c9955d28e",
+        "assets/sft_inspect_main.cpp": "381ba95e1a00624a17e944a0df11f6dcd6b3b1f79b383da170bf4e3764c3b535",
+        "assets/sprite_frame_decoder.hpp": "55ff6be0e30d13672c8fc2fab5c2328582fc3eb0ffdf4456d3b2c6ab1a0ec6ab",
+        "assets/terrain_catalog.hpp": "a1b91474346fd9a780fe34282684e63f826707147e628099ae4bb24b6ff50478",
+        "assets/tag.hpp": "21f7602afa005b16877d9716b9eeb71967e04112b25104c5a241331fc924d967",
+        "assets/pcx.cpp": "776eac976327478959336bc1fa20fdfd1ac04c35a431f0e1fb949ef411defa8b",
+        "assets/evt_inspect_main.cpp": "a9719e3001ae1edbf3e6000dbb9894a8065949b00dad9bcd300fde6af75f9293",
+        "assets/wizard.cpp": "0049845c510f89fd2ef51d5b8f476fd83f1dca5454bab6c40414117c5b596a35",
+        "assets/sprite_loader.hpp": "0ab5f80fe75601ad3010afd048c87176bd1b3d37d371525a5c4ea6e3991d263e",
+        "assets/map.cpp": "28d65fe5cb71efc4a3d0a30cba131118588d516f7c5693a85950a580f1234789",
+        "assets/resources/CMakeLists.txt": "b30bada87cdd7804bb490d204d6b35f75b0b9445a1a04ffee4eb02c32bdd3ee9",
+        "assets/resources/resource_manager.cpp": "baaf4812c29cf33b47641a4e5a6b8cf8a9ca408dbfd1071b7051c048324c2e54",
+        "assets/resources/resource_manager.hpp": "09b8bcf8b65064c88c07cd1da3267b81bac963ab9dc165ecbf0fe09c4f58a4bb",
+        "compat/legacy/canvas_producers_main.cpp": "f6cbf786c400804495b25e3950a7eab71514238c0e24d18faa21619f08662515",
+        "compat/legacy/world_raster_batch.hpp": "8acae144a2c2565d85b87fea1ceb450274b80060d7a64c528b56b603a5c09a8a",
+        "compat/legacy/scene_snapshot.hpp": "01c2118e748b3b630337c5b1bff9071acd4fb5e6f16623dbb6dc5d607ff221b2",
+        "compat/legacy/world_frame.cpp": "2f54f6d8625e76e6e3307901055f8171f0a314e106822493c5e5f4c934a40f92",
+        "compat/legacy/font_text.cpp": "eaf712802b4f25c656c2c462f126464ebbf8a8608fad7f4ecfae004e2be72a26",
+        "compat/legacy/world_resources.hpp": "783f275df0ab7837808f04019d46f6f8ca1611d50956db8b821bf968732c8c45",
+        "compat/legacy/world_snapshot_queue.hpp": "0ed93108cda571bfd16ac8e2fe1f27c4cfa1d61c1f337acbac235bc21d628247",
+        "compat/legacy/CMakeLists.txt": "40557194f06889ce1e21d6d2f267e0bf7107262cba3b16a72627373c619acf75",
+        "compat/legacy/snapshot_main.cpp": "433e62660994d0c268f6f64ee328d2e55a723ec3a1e76252ddd890066f42c665",
+        "compat/legacy/world_rolling_packet.cpp": "a24477993dee85aaafea3f6cc4e465d9da9f9dfe3232894ea1d68f91ca9cdd77",
+        "compat/legacy/font_text.hpp": "29a4f4d3405985ec0e75192ba349f7535b1dbe59b960ba0d67e2cefceab06d14",
+        "compat/legacy/world_continuous.cpp": "d96651764ec9697a322c052b8e5adc364c1fb103da9a57f7e3c744ba32762276",
+        "compat/legacy/canvas_world.cpp": "3f0542abe6cb66e370169de10e8eadb7ce450d5743188f64422cadadee510049",
+        "compat/legacy/scene_snapshot.cpp": "b5611c499a9a8500d381e8368c0fb2030a03499e3a3bb997ae0f612c76a770d3",
+        "compat/legacy/drawing_session.cpp": "ee3705d4e32a965a18269bf948e94b5542c56ebe9404bbc41359041ab936c3eb",
+        "compat/legacy/canvas_world.hpp": "635aa4f963168c3173271542adacfd1be3128bca38d65ff7a1c72156e44fad50",
+        "compat/legacy/drawing_session.hpp": "cd886666bab6ad8e5d0ce6b364fe2ca758e3c3a927b01662febce54060d8be3d",
+        "compat/legacy/world_channel.cpp": "e5b23b4bb3626724b9422c386ad6e393fc569644f697f6bc19823477c11d478f",
+        "compat/legacy/world_history_main.cpp": "018f767a3687ac64dac285a7fd73d2806a6566803342418e865548b8759e2e99",
+        "compat/legacy/world_snapshot_queue.cpp": "9f0e41db6835c1ae93df8de706fc2cd1162bbd351157de09fd25f09b4aacdcca",
+        "compat/legacy/world_resources.cpp": "c4a18fcefe9107ee7bd2284d5982891b1f4e634010939701ec31c91213b24b41",
+        "compat/legacy/world_rolling_channel.hpp": "3d2e8fe626eaca9046450c6a9f00925d7bc8fe9fb1dabee07081acd2098e371e",
+        "compat/legacy/drawing_scene_limits.hpp": "b47799976f1b65f3046b0bbef2e0dabf226b3bb0610260c885fd9daa1cc5463b",
+        "compat/legacy/world_continuous.hpp": "a86d45fad05143c2a51282dbb5f9b7ff8c3c9e767b2d064efd3e6687355b0937",
+        "compat/legacy/world_rolling_handoff.hpp": "f3f6ebfad9c166dacc2a270393305fe786d932b410fc51b118cf1b7d8ffe47a4",
+        "compat/legacy/world_rolling_channel.cpp": "73c89b63ab2cb7ef9ae29330054ae3093b0ebff2cee75cf6fc603f118f39ec64",
+        "compat/legacy/world_frame_main.cpp": "d6c09b102a4c195f4ffc492ff8d40407e45ac3adee1fb7a233a73a00e895cd4d",
+        "compat/legacy/world_preparation.cpp": "750368410014ef233219a701e74ba6f3b836a2ddbb4113df3446c3d3322c912e",
+        "compat/legacy/world_rolling_handoff.cpp": "eef77854c606da97032966622c03da07834cf984b14be58cc62adcd8a363972a",
+        "compat/legacy/world_preparation.hpp": "d53287df3b3717b6ba59cf609654515f6a6bf87c282c3c2548c015c106eb17af",
+        "compat/legacy/font_layout.cpp": "d84a50f7f1ec8180f66823fd17f37b68020b982904cd9aa86ff55a63ba3838f2",
+        "compat/legacy/world_rolling_packet.hpp": "94fc8cd54f880c0d98d318434befa1dc10eb777920c3b5429e96d61326c16161",
+        "compat/legacy/world_frame.hpp": "eb75708d5fd37d26fe3b6b504d6bc2e0f83ad16dcbf3fc6b1517d289518b1c9f",
+        "compat/legacy/drawing_scene_main.cpp": "c82015aa5fff09cd842667fca6f5bda968f9eb5b2bef74cd8b927e9331980170",
+        "compat/legacy/world_rolling_session.hpp": "8492c7481e4a2cebba5bc4bc119698b9ae3b7692482532b2316a1644128e7c51",
+        "compat/legacy/world_channel.hpp": "3a36917fc615e356418f604720cad26defd4789bb4ee3c1f01db286ad9304181",
+        "compat/legacy/world_rolling_session.cpp": "ce6def9198a1f121ad833928ca1a875bddbd743b5df6586636b41eb011e42595",
+        "compat/legacy/font_layout.hpp": "dec22179bcb33493620a50a3b5da51210c350f152a15484a3686475d7a897187",
+        "compat/legacy/world_raster_batch.cpp": "d33c0c8b7a8f5bcd2cc9b7c6086e6928adbd3e7653414fdbabc7626ab5ad58e7",
+        "compat/legacy/drawing-scene/CMakeLists.txt": "a6bdbd1d02d3e9933618e84fc935897a673bbad894ce351a67e975573462ff13",
+        "compat/legacy/canvas-producers/CMakeLists.txt": "8e31a46ee3231a184b7ad4bce2b8a5fd7e9c5688d86fa52fb65e0ac62b43bb42",
+        "compat/legacy/world-rolling/CMakeLists.txt": "6d5d47533f46bb91e8db0de366d026f556868d350825534150e7ab4beacb5d64",
+        "protocols/include/mnm/drawing_source_point_v1.h": "dc3e20d8f7a980b2638cc437167cc840b763b1831b4337261d9bccc47ac66db2",
+        "protocols/include/mnm/menu_v21.h": "84f77a3ace2e949c067404a9e83f85afdcea0b32ae051d59dbbb0577721242e1",
+        "protocols/include/mnm/drawing_api_bindings_v1.h": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+        "protocols/include/mnm/drawing_input_point_v1.h": "323c78593b2a8d8c00c027e56fbfb256e4b5625add76b1d7c55027e9538ddc10",
+        "protocols/include/mnm/menu_v12.h": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+        "protocols/include/mnm/drawing_worker_context_v1.h": "58c3df8a8d16b023f83e8bd41662cb87b3914fd81eae35d5a5fc50005c883172",
+        "protocols/include/mnm/world_frame_v1.h": "b9b2f78c8e5b513232f803d2a0ec6643626974a8909db18611e87262a22f83b5",
+        "protocols/include/mnm/menu_v5.h": "2ed7fd0a7b6774b3f2e5158966ebb438ccad15f806c22ca1c2ab75328ece87b3",
+        "protocols/include/mnm/world_continuous_v5.h": "1d75c3d4ef51fa94fe83c851781aee353425940bfbaea9c20c87bfb68b03ceaa",
+        "protocols/include/mnm/menu_v2.h": "5f9db9ded1e1653411cdd542ff045070a79f8b9b3c93d05227d94edaf3da3881",
+        "protocols/include/mnm/world_continuous_checksum.h": "4d96065598923f759691b565716e511e2021edb5043af0aeaaae890f8ad43198",
+        "protocols/include/mnm/world_channel_v2.h": "7950078b61ef26403a9661981c5dd4ae9553bc582c232c8782f0f1b7ce1504f4",
+        "protocols/include/mnm/canvas_producers_v3.h": "253e0e4f99273660312650b7d9bcb57c0e53a97483b75f8af6451a05e7a20632",
+        "protocols/include/mnm/menu_v22.h": "fa8f4af0965f5391c03dd4f31b3093e7b4c8c0f0ba1a18f1e052202c8351a270",
+        "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+        "protocols/include/mnm/canvas_producers_v1.h": "5a644332be8e73853cda426477835aed3e330d68acdb88f1ad3004e8a00da52c",
+        "protocols/include/mnm/input_v1.h": "76aaea5f82da53059e94100d3870184313f8cd5f3554878c83a08991529e89d5",
+        "protocols/include/mnm/music_v1.h": "8b26ebcd3b9a6bf07e07209eeda635359c4eab4e1448b18fe1f4b27bee71d16e",
+        "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+        "protocols/include/mnm/engine_cadence_queue_point_v1.h": "b33b5a0e3eaa315d0e07d05ce8d2b4645071f622ca2d54f92242f32e32c0f4e2",
+        "protocols/include/mnm/canvas_producers_v2.h": "c94a25cfe470eecaa0781aba576ee7fb0009a627e60ac8690e8ea6f4efc0b48f",
+        "protocols/include/mnm/world_continuous_v2.h": "de86bb1af4612812657ff09f6cf730c8274880edef1f9fece277ca1402f8784a",
+        "protocols/include/mnm/world_producer_bypass_v1.h": "62f85f8ed92092185692fdb066bfec489d2bd1493ad2fea72af44002b9974424",
+        "protocols/include/mnm/render_stream_v3.h": "5dcb2dcb44b2ab94c8800babe8cbddeec66fccf18ab2dcc9c7153d57d63bb152",
+        "protocols/include/mnm/menu_v3.h": "f0baf53e4b11455c7bef129aafad06a80984ba13ce37e877d088dd7c7ed74dd6",
+        "protocols/include/mnm/menu_v4.h": "d42e6c6af61928cd1a47efe92aca0f52b31b3ae56a2f844bbbef382354d8fa34",
+        "protocols/include/mnm/menu_v18.h": "c6501ea87e8b7f2871a852b8b47f702a0f5251db359c9101b37b2d641e324368",
+        "protocols/include/mnm/menu_v13.h": "c62b8bc68d223c18341f88339d57738dc8fa13ab99b33bda42778c468ae130a5",
+        "protocols/include/mnm/menu_v10.h": "31d7facdd6a0ec95d34f95721bd507e983a4e9ec2c0c56ee23a479196b898b17",
+        "protocols/include/mnm/render_stream_v2.h": "4f8416f6dcdb5031b2f95f209e21e43dce0c0cad176c11ec8f2293c6c89c4101",
+        "protocols/include/mnm/api_census_v1.h": "4bf4641029178a1d75f993e24cdaf705eb42db6363279248ca03dc851d640bad",
+        "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+        "protocols/include/mnm/world_continuous_v3.h": "d130c9ec19782acc916e21686f8970f307c0d974f164c3bc9c64cb587972a3fd",
+        "protocols/include/mnm/native_cpu_read_v1.h": "2b545ad402fa63e8b1775235e861bffc4b0610dd91e2d02f8e98149f9f805ff5",
+        "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+        "protocols/include/mnm/render_control_v1.h": "1d696c2a560e64fb9337f4ea77f9b73f284de889ba702ad3136612dcde8adbd6",
+        "protocols/include/mnm/drawing_storage_point_v2.h": "e7c17a78e2c14a840f0d8465333afd7ec0c819b050fa13cab304b5d3468331b8",
+        "protocols/include/mnm/drawing_api_journal_v1.h": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+        "protocols/include/mnm/menu_v16.h": "1ab47b771eda03a625dde951d5aae62604fcbe416ba2f3db304cd09fbec0c74a",
+        "protocols/include/mnm/menu_v6.h": "4fb73cf5f6aa4890bce6b7e1e45c5b4ebeee8822241a5745cf563c43cfcd255d",
+        "protocols/include/mnm/render_commands_v3.h": "f340e2160a281e9aebc809e159d801eda43bdf74a6795bf91bf231d71f55f098",
+        "protocols/include/mnm/render_commands_v2.h": "357e127e0601ae55c30b821403df1be2c714d467d9c185c13e14091c2899d7a3",
+        "protocols/include/mnm/render_stream_v4.h": "203d1f98637c5ebbf4b8f6a840850964899a185c66fae73b9dc1c4598e771a03",
+        "protocols/include/mnm/render_command_ring.h": "e1c9f3202893efa74ca3bdba6cefb6210ad104294640a12b4b2890a23cc3d5e4",
+        "protocols/include/mnm/drawing_storage_point_v1.h": "988091a05df8d736381ef69ed1e8a4c37aaf1b16d10b7206b89f3bf2eb62943c",
+        "protocols/include/mnm/menu_v15.h": "b6787e786e5c6cb4b5997f5ce8df77a5f2b0ea7ec38d846369131cf8496f8d19",
+        "protocols/include/mnm/menu_v9.h": "857c603304eedb562197f433765ff1ec7bb8a0f05addd2f8cdbe7c0e684e2d6b",
+        "protocols/include/mnm/world_rolling_v1.h": "21c279fde51ea0e31d346fba054df754b7d4e376bec609d005dafb78e0e4f2bf",
+        "protocols/include/mnm/media_v1.h": "93c098b0e7e0190f9e97f58d03bf05217cc618a2ea96ccf572ff9c53cd82dcdb",
+        "protocols/include/mnm/menu_v11.h": "cd9a8e80df702ea904dbe15404d392896035b7ab784ceef62dee35559f27c324",
+        "protocols/include/mnm/menu_v14.h": "e1289bafe3015b57527ad68b81bb8f06cd232e0f4cd323ebf567528dd0737c22",
+        "protocols/include/mnm/world_raster_batch_v3.h": "f66950a0fc86061a3b489cf03986e43ba18ca9b34087cb371501f3f555815912",
+        "protocols/include/mnm/frame_v1.h": "2cd3f2f5f43e47d009059015107e875e3fd7b8cc119dbcbf6d344d2a42e0ad75",
+        "protocols/include/mnm/menu_v20.h": "953535ef1993235ee05b6b2bb6ca180225bb161f72bd22b4bf8dbca17f5904bc",
+        "protocols/include/mnm/world_continuous_v1.h": "f27290517c154a8febe041325734f8f9f9a59f66908a9cc0145cfadc5941c40d",
+        "protocols/include/mnm/menu_v17.h": "be293c6c1edcec7982c0281ce4becf74b806102d0c3ce239f91d25ed67127bb9",
+        "protocols/include/mnm/menu_v7.h": "fc554cfcbc7fd50ebf4ad0b4046877787ccdb410eaa324b36573ed4694659c32",
+        "protocols/include/mnm/menu_v8.h": "86ca7a24180972b75b84c4ec021c62519b7c94997b260bdfe05dd80388c09f47",
+        "protocols/include/mnm/world_continuous_v6.h": "33893e2d33b29d2d5c37aecb6bfd57e03051794c3e4cac44e38321d343f08c2f",
+        "protocols/include/mnm/render_stream_v5.h": "a57a73768bc644aca275eae1b42ded8795fa9fc940a5ea7e3c4e0b084e2a0716",
+        "protocols/include/mnm/drawing_api_journal_v2.h": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+        "protocols/include/mnm/resident_frame_budget.h": "cb15b9f73dc9414cb190e46811810663e5e300a720ad92c4d2dedc8d75754d0d",
+        "protocols/include/mnm/world_continuous_v4.h": "35d8b7d03a370adad0a8583908047d11b95f7203d36c42dcff2946f0d8e824cd",
+        "protocols/include/mnm/menu_v19.h": "9241978894c0399630d5a555355c0cbab0e1a98fd0da1d267cb6e2d334042c82",
+        "protocols/include/mnm/render_commands_v1.h": "da3687442c203a85bbec98810c084346154a860bce2d3b65bb0f96c13dd66a0f",
+        "protocols/include/mnm/canvas_producers_v4.h": "49e488425f07d6d9fe5e5936fc6a46c08fe01d9ca468bb89ceb383393d972274",
+        "protocols/include/mnm/drawing_census_bindings_v1.h": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+        "reconstruction/rendering/creature_footprint.hpp": "602b5580abda0922559aa06f2c7de8d38cd93e0af24b490aad4d5566554cca11",
+        "reconstruction/rendering/sprite_queue.cpp": "be185bea5f6af36487ef379b90cd31878d864e01d663bf7e72830bd11dd08b28",
+        "reconstruction/rendering/terrain_submission.cpp": "b04bca853f9585e7dd58fcd35ebe0cacac1997bac262be07b39f6d6ca7944b2c",
+        "reconstruction/rendering/effect_trajectory_initializer.hpp": "9b1b43a22e10a227b5e10ddf29de7d610faf329c53b4d016b4e931685aa4fb6f",
+        "reconstruction/rendering/terrain_creature_lighting.hpp": "d7202a69c681ab0a8f2b161b746542e08c75f48e03f5c3e5877e2651817b1d75",
+        "reconstruction/rendering/sprite_queue.hpp": "0bdd6d6006d527b7f3f57c8b5c5035aa82f11cbf89145698e12b26b8e769d5ef",
+        "reconstruction/rendering/effect_trajectory.hpp": "1a668bd363315bda2f957ba8ce5c98c1aa9d75535d9b93005456aa5764a3b839",
+        "reconstruction/rendering/terrain_generation.cpp": "d8b69472523d31e58bff7313a7cd70b56b77f789b3481fc06d9221d6d4d5fbd9",
+        "reconstruction/rendering/creature_occupancy.hpp": "638e64697c82a9a44001de2845b4100937cea34dabd7045414a20785f90c9720",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp": "839b8437d482d37c99cac196aff3e6da6fb3d669bda9d94c8163285f873e3ffb",
+        "reconstruction/rendering/glyph_backend.c": "4d3464d630bb7cb432f0a004a8515224917afcbf55ebd29f447a42c8894dc5d1",
+        "reconstruction/rendering/surface_retry.hpp": "e3683f0aa2aecbe7b7f83df4db02c9240028e28c15e588e780ee04e365e89428",
+        "reconstruction/rendering/raster_pixels.c": "8dfb3d26e277a901a06438ce4ab18a3d57033ae74b19953df2de3a4160ae07c3",
+        "reconstruction/rendering/terrain_constraints.cpp": "7473519b34bf90b9238270ade4726218a89baba74df7268ac0c0c7b962176ff1",
+        "reconstruction/rendering/pixel_kernel.c": "32e33a20855fda7b20011420366f6caefc0abe3c645ca4728c03eebe48e1d5a7",
+        "reconstruction/rendering/effect_motion_initializer.cpp": "e1e8df0b2727eb18e4b9d58a45f97e645482290761ab3bd8dc2700a79f8044de",
+        "reconstruction/rendering/effect_placement.hpp": "60de7c29e51aa4e66144946522f88c3a6613a293e8221fefa4d224f77ae03681",
+        "reconstruction/rendering/jpeg_pixels.c": "85df7b1428522c3c740e0917a1b1647a98b1d35c309243203843111ea83dd0c7",
+        "reconstruction/rendering/glyph_backend_state.h": "6cee68c140ba0a129524ab09711fdb1ad5926b1d9386fcf9ac640dc93fb086bd",
+        "reconstruction/rendering/CMakeLists.txt": "be73837ce4a707cad67abbeaa3877cd8e312b81a6b53e00e719100986a0a7697",
+        "reconstruction/rendering/effect_placement.cpp": "4452c640fe6d3712c30e400d5e6c629b0d72b822f56b342bd7721aae3f746634",
+        "reconstruction/rendering/colour_rect.c": "7203cf50c54d3bc518a0bf5f30263ae490fd74b446ff23a1a0a9747cd5a61177",
+        "reconstruction/rendering/terrain_solver.cpp": "635b8131aa6fb263fbd7933c4752a66604fe483c0bec69f38fb9cb0eb8ff2683",
+        "reconstruction/rendering/effect_creature_collision.cpp": "4e7d28780ed5e7c3b12943bec4a25a701b5e3943b084e3d3cd4e11a7fee1a523",
+        "reconstruction/rendering/glyph_backend_state.c": "829e1fa93b39e6a3acf289efc439e7001887395ff28945d1031d0cf918d66592",
+        "reconstruction/rendering/terrain_lighting.cpp": "71362a12b9c39430f935172eee6b86bdd69e569baeb802f2b5bcef86941128d6",
+        "reconstruction/rendering/sprite_visibility.cpp": "08912357166dc8ab9a9858da6b9481dbf087d1748bbf3b492b18cf3d46d559eb",
+        "reconstruction/rendering/terrain_lighting.hpp": "0d6dbe9a670c7c9fe9d21c5daa23cdb704db9a75ebb2f1f7112c9727c2e88762",
+        "reconstruction/rendering/effect_animation_metadata.hpp": "6cad38ecd64cf027cbc4cc37cdcf15cdf6b1a40d922bf3846919dc7597473f83",
+        "reconstruction/rendering/terrain_submission.hpp": "4f01f35b35d9adc0d0a3985a5616fc0207af8a43932bb48d64736d382d209a11",
+        "reconstruction/rendering/fade_kernel.c": "6bb06acf26a2f11e287310fef9a14a690fcc703b6e07b424759f8b750f26b725",
+        "reconstruction/rendering/terrain_selection.hpp": "3c95e1cd02f1f098efabaf9ee23c9d16f0eb123bb43c2ce7ba0a75595b02bf80",
+        "reconstruction/rendering/owned_surface_retry.hpp": "a5d41336ee9371a7f43a364538b3157bd44ca7f7c3aeea42f55c1a72f69c1f35",
+        "reconstruction/rendering/colour_rect.h": "70fa22fab49b83de5b3ee6b13c831694df6785063a97edd536a2f2b57d07d2b2",
+        "reconstruction/rendering/effect_projection.hpp": "50bfaa5daedfaf33a61731ac8c3dfd27f8e6236fe9ec5cb6b533d058f29671e8",
+        "reconstruction/rendering/terrain_region.cpp": "852c656687d4ea3e4f647f52226ae2a54f6b3c956901f773c69089689fa33737",
+        "reconstruction/rendering/surface_bitmap.hpp": "d115f4908653fdc05b745a1067a24a549e2c7dfc4fe969c15a5f9bc6db0c8334",
+        "reconstruction/rendering/effect_lighting.hpp": "428cd7d9804208747d9317fb6a9a5429e18e0d052778634fcd77e1fe4373e557",
+        "reconstruction/rendering/effect_motion_initializer.hpp": "8055444144b977a2ecf1f656c4b6c9d1dbc4788b0f0a9c5ac42d1541fd353540",
+        "reconstruction/rendering/terrain_generated.cpp": "7b4ccd594ab7da6bb244d16b561c597adb6d1fe4afb8e85af058178176d73761",
+        "reconstruction/rendering/raster_pixels.h": "a3dde02bb2a6292fc18561d280ab24c594e8f8e5a6289e4a362e835dfa29bcbf",
+        "reconstruction/rendering/terrain_specific.cpp": "c3c841f388f469efc9dabffbb9eb85a2468480c8548d7e091efa37ed600bec63",
+        "reconstruction/rendering/effect_animation_binding.cpp": "0e0d046ce98d4ffc1b9c33cc43e121f2f77d3caf66ebaf18f9669dbb414efcbb",
+        "reconstruction/rendering/effect_transition.cpp": "86f2b270a29363f834c4405eb4db4dd5d3de06d00dae1c3ea27196b9ba77449f",
+        "reconstruction/rendering/effect_animation_catalog_binding.cpp": "43bede84e033d4b7fbaff89a46a1ff39f7f7db4e96e288d0014d4f05be6f9bd7",
+        "reconstruction/rendering/glyph_backend.h": "7428bc7d8eecbc026ff5264e42c9aed38371c9a36758e95fb5e59f77a2134854",
+        "reconstruction/rendering/effect_animation_binding.hpp": "1c01d3b074cf46aa3d7c1b9705c1f6a7866639de3eb427b3b0ce33791240f87b",
+        "reconstruction/rendering/effect_animation_selection.hpp": "fe952a38918089e29e339346890e82f8923b5070ab97aeea1edcd359106f41a7",
+        "reconstruction/rendering/pixel_kernel.h": "5c632beea95325e4b1299f30287d0478f21c18a3b8a2b121cf872e3109bdcfd0",
+        "reconstruction/rendering/vertical_bar.h": "fac4d2413ffe59942e335fc64910caf1a0e5802fd63c06de8a2c716c8f281008",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp": "6015389b06d64a4a98e0de84ee3f8d609da0141f1d2bae96b42e6fd1130c0c54",
+        "reconstruction/rendering/sprite_visibility.hpp": "ec3f1db9eefe5d565c2af8a144850c359573ed35de2232998469d08f08e659d7",
+        "reconstruction/rendering/minimap_pixels.c": "1187d59dca6baa9fffdd2bdc3fff274c7c315b68f825d5aee4234d616e7340f5",
+        "reconstruction/rendering/fade_span.hpp": "3f297ef7cf45a2f3bad3b99bf939ecc4ad82fe0362ec206236586b6ad8a25504",
+        "reconstruction/rendering/panel_kernel.c": "1d5509325e9ad49f77490d10fb73e2b4d38baa8116d531fe99d8ff33bc52f3c9",
+        "reconstruction/rendering/effect_animation_catalog_binding.hpp": "4d03ca57d40b62fb8c7cb8635516d91b144389baa922d3392e95db2ae4d556ff",
+        "reconstruction/rendering/word_backend_state.h": "3f76d1b3eb2a4ce5974aa7ebcd9584d2a5a63e7887eaf67d37848c6064828f7f",
+        "reconstruction/rendering/terrain_traversal.cpp": "d9b2e5f5ff1d9bcfe2ababa0900007f3596cac87c74504a8dbe3d71de1f03c78",
+        "reconstruction/rendering/terrain_generated.hpp": "a98b98fb54b55eea84f560f7979d4f642a7667f937b85019e3a6531b53af922a",
+        "reconstruction/rendering/effect_lighting.cpp": "74559ea77928379a8ea13b6a71d757828f4e3511b05ab87a23e543f53f72213f",
+        "reconstruction/rendering/terrain_traversal.hpp": "dc49e73cb705b5d205d2d109bdf629f4891595e901139a2e416e50647feca9c9",
+        "reconstruction/rendering/effect_trajectory.cpp": "9a271f05ef153cf3032da71f8ada0e1c33562a92cf1c7804d050ccb884611024",
+        "reconstruction/rendering/effect_cleanup.hpp": "a09d0ee210e839a3e2b986b781ea21e21327be6079788d5267683c557008c25a",
+        "reconstruction/rendering/terrain_static_lighting.cpp": "6f8b744d24544c844b92211896be4a2404beba3711761f9cdacc95ac7d1ac587",
+        "reconstruction/rendering/terrain_static_lighting.hpp": "f371003796bfe462159ef0ed49433cd2be51b2658b903aa9a211b20b75c7c589",
+        "reconstruction/rendering/palette_shading.cpp": "080dd815379d60096694f0e5d90379244a5b98dbfe292712627ff9562da378ad",
+        "reconstruction/rendering/terrain_generation.hpp": "a7efef8bbbce9c078ab748f4b4d4dc3c624b9b3148c6fbcb5ed6fc41da6013c4",
+        "reconstruction/rendering/terrain_region.hpp": "709fc933c0d4757173c511b68953d5568bf876a8b7bebf23652a4d206a42ce00",
+        "reconstruction/rendering/terrain_selection.cpp": "8d88d6f096a746856b5139b62325908247486c2d230b5967c93219f625e25446",
+        "reconstruction/rendering/effect_creature_collision.hpp": "7e6fd634ac464b6a19fb2d750953e41f8ad7ce4995d3a714e2c6560391715839",
+        "reconstruction/rendering/creature_footprint.cpp": "3dfe400d16ad4b8a405b252d2a513cc21a2eedc96b65ee126cb2da4b7cf5c057",
+        "reconstruction/rendering/terrain_camera.cpp": "42f9a9c59d4c1e574fc4e0ed21f615d9b522242e39b52325643e99c7bc37f817",
+        "reconstruction/rendering/font_layout.cpp": "9d1a3f9fe5f21f4adf0bd20e3f3b533756ca1c3c4569d31739897b396c8e4a16",
+        "reconstruction/rendering/terrain_sections.hpp": "233d047f4fcb1e61af7b6994a07fc8aba8e1d9d5643a6845e1cab8620bcabbf6",
+        "reconstruction/rendering/font_byte.cpp": "dd5aa18463d5f3195ac9bfcbc65679f56bf888b127724e61d9c2be2d316da693",
+        "reconstruction/rendering/terrain_map.hpp": "7ef79e510113b029da17eeb1eac60bcdbf5473550a8d23ae850972f67a479d6c",
+        "reconstruction/rendering/minimap_pixels.h": "f9841d5e01c48b354a138f89bb4d62c120b14eaa4a74e35addd8f22b2cb29f2c",
+        "reconstruction/rendering/effect_cleanup.cpp": "c49f86fb1635b5013e02eafbb0bd9ee1bd441d2441b6f7fffbf53537728329b3",
+        "reconstruction/rendering/effect_transition.hpp": "712a7d70c06c6f61cb55d76875518a0559b2e29d006f7458c5908c0afc083961",
+        "reconstruction/rendering/effect_animation_metadata.cpp": "beb0c5bfb909b7312d84b7a9a308cf6008f2254e35099a1615752d79ab73526c",
+        "reconstruction/rendering/jpeg_pixels.h": "245b3b8a22ffd814157a2a851aa903da8f0ef49ae709f408ca65f641264e59ac",
+        "reconstruction/rendering/terrain_map.cpp": "78c846e620a35aac4be2cc5661a1a1894f81c0b6fc086316ab46fb0f5cdf0a1b",
+        "reconstruction/rendering/effect_projection.cpp": "622f6961285657c71bd1467a8a7221e1b3417fcf030c0cf824e519e4a6931046",
+        "reconstruction/rendering/fade_kernel.h": "1ec396a3a408732329996a82a34cc5f81476dfa4ce33faae03731960ef0e0675",
+        "reconstruction/rendering/terrain_camera.hpp": "f6bacef97809b3d25c66f2e5f6990ba194970f10aa4fd569804a740629b56730",
+        "reconstruction/rendering/terrain_catalog.cpp": "c0c0d9dfdeaca1558af0126dc31789c645d2f6f829b6522647e459bca9bebea6",
+        "reconstruction/rendering/creature_occupancy.cpp": "e6de5c98e7b5fd1a819e4170a8cb79ef3f31e371864a9b86028e56f1afddc1d6",
+        "reconstruction/rendering/word_backend_state.c": "5ec05fbe6ae5c6a48839e3e8c4ee01d4546e730e235af6bd08d9ff654a09f0f2",
+        "reconstruction/rendering/font_layout.hpp": "0b2bfa652f6cf6d3ff1bf9f01a984757b88d90e35ff606c766beaadf8f5c8a35",
+        "reconstruction/rendering/effect_trajectory_initializer.cpp": "cd301e5bacf34c31457ba9e974ce34990cbe8c287fb3646b0bb69922c2017043",
+        "reconstruction/rendering/terrain_creature_lighting.cpp": "230416703569b15643bf13481af726beaf3c3db0308a694fe6ba268b9a09e354",
+        "reconstruction/rendering/terrain_constraints.hpp": "41b656d9a0a060edb2417e501d2b334658dddd80432799b625be8969af68a636",
+        "reconstruction/rendering/terrain_sections.cpp": "b11b46b249314b8b02d731f7eb7947b8587f12117504db383ba83f7df60e0f6b",
+        "reconstruction/rendering/palette_shading.hpp": "bc7e54a5bf7881feb73d6dcfe5364cde7eb31fe5bf4d197b60c98dffde258866",
+        "reconstruction/rendering/terrain_solver.hpp": "eb8e1e6ab22581e93d06d9c3f259e163b2ea9566058363adc44de5ec779a7b05",
+        "reconstruction/rendering/terrain_catalog.hpp": "670c9bfed61ffa477ee1435ed4e3a8b4b6e1f05551b3f17e5a03353e11bf1eda",
+        "reconstruction/rendering/effect_animation_selection.cpp": "12e9729f797bd32f817a9704de20d47b7792f06ac8279871a0105314a5066dc0",
+        "reconstruction/rendering/terrain_specific.hpp": "8f97ca16d0a6ce18bd031ca3a83e7fe0dd2716982e54ae848570702fe9c0f445",
+        "reconstruction/rendering/glyph_backend_x87.S": "21b1a10c2091f7631e1e99b50d9ce743d83392c6e0e40d738d79b1bafef2aeb1",
+        "reconstruction/rendering/font_byte.hpp": "5120d1f2cd7827d899e6bdafbbd2ec4491dae5352664e70f085d9f10daa87690",
+        "reconstruction/rendering/panel_kernel.h": "a716e06e1508a399ac173615d8c1d85e6bcf3462ed3554f9b15cf58c9a2d2646",
+        "reconstruction/rendering/effect-trajectory/CMakeLists.txt": "d292bb922122dbcab01647fcb74e594f9b9d217e57434257f1598a0c598d581e",
+        "reconstruction/rendering/effect-transition/CMakeLists.txt": "3de908cc5496ce83d539a6ff0795a2d7d469d2a47f7986a9bd4a112c21f58e06",
+        "reconstruction/rendering/creature-footprint/CMakeLists.txt": "0b17621d6c0ff7d81c0652e3804ac05ec99ac491e95ba9788a95e6253511763f",
+        "reconstruction/rendering/effect-animation-metadata/CMakeLists.txt": "3ca994cdc0b873fa2b6a786c898d3d445fbf39cd43e3ca773f0ade120e87bc16",
+        "reconstruction/rendering/effect-motion-initializer/CMakeLists.txt": "0cd959b4ab61b4229348079278ad9f2543f3483d7c95b8c0d12643c8a0a1528e",
+        "reconstruction/rendering/effect-trajectory-initializer/CMakeLists.txt": "1fa38846f2da2add74d09be615239c91aa1cb4c230cc02bf19c2ddbea56d6023",
+        "reconstruction/rendering/effect-animation-catalog/CMakeLists.txt": "dedd89a2f9981a45b57b7d39cb0484273b2ee30e89865639f3e62b30f6f25912",
+        "reconstruction/rendering/effect-creature/CMakeLists.txt": "05cfe6668f59a6897e5f6b2f79e7735167d4f5d62fb4bc9df901f106a6d8986f",
+        "reconstruction/rendering/effect-animation-binding/CMakeLists.txt": "76ab696527824abb11084b0d0e2414afaa560ebba95edd26ecd87ded14f6dfaa",
+        "reconstruction/rendering/effect-projection/CMakeLists.txt": "7a07031ab4cf554a5fe521404c61f8f3708ce23596399b8aad6dab45b959c2cb",
+        "reconstruction/rendering/creature-occupancy/CMakeLists.txt": "786b4059d77281d4b7aafce99b1922a08548865717dd3e424147dafd2eb58276",
+        "reconstruction/rendering/effect-animation-selection/CMakeLists.txt": "570279540247405835d559bea4020e7a61fa86c10039373ed72151ad277f5317"
+      },
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/all_observed_presentations_compared",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatched_presentations",
+          "equals": 10
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "DRAW02.storage-session.retention-20261016",
+      "kind": "static",
+      "record": "tests/fixtures/drawing-storage-session/session.json",
+      "sha256": "8fb6fadc81b6c225f325bb6810a22ed81141d128c472971eb1b5615465877ce3",
+      "scope": "Lossless portable retention of an independently acquired action-bound observed-EGL interval, including completed but failing native comparison. No parity or new execution assertion.",
+      "assertions": [
+        {
+          "pointer": "/boundary",
+          "equals": "observed_egl_action_session"
+        }
+      ],
+      "sources_pointer": "/retention_sources"
+    },
+    {
+      "id": "DRAW02.storage-composition.controls-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/storage-composition-controls-04-20261016.json",
+      "sha256": "7e5248dc31c04ef54274f8d0c3644413ac4598faac68990a6681379c3c2666ea",
+      "scope": "Fresh current-master native execution: synthetic GPU/history/resize refusal controls only. No full native rendering, global route, hardware or live replacement promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.storage.quick-battle-regression-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/storage-quick-battle-regression-05-20261016.json",
+      "sha256": "a474e366ef48ebc722e56a824943befe60be1b57cc515dab33db8ec2982b1bab",
+      "scope": "Fresh current-master native execution: 323frame Quick Battle positive regression. No full native rendering, global route, hardware or live replacement promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/frames",
+          "equals": 323
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.storage-session.portable-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/storage-portable-02-20261016.json",
+      "sha256": "c56d4daee7eeff4c99653893d67aaeb25663fa6be47f2e68cdc53c24f3f79e6d",
+      "scope": "Fresh current-master native execution: complete238frame storage replay fails ten cursor-region presentations. No full native rendering, global route, hardware or live replacement promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/frames",
+          "equals": 238
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 3320
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.storage-session.journey-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/storage-journey-03-20261016.json",
+      "sha256": "47a541dacc6b3a9c826abe2b03ad870c3503aa401e20c201635cfcf28fc6ccc4",
+      "scope": "Fresh current-master native execution: storage journey adapter preserves pixel mismatch and unchanged generic acceptance gates. No full native rendering, global route, hardware or live replacement promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NP.unified-campaign.automation-20261016",
+      "kind": "native_integration",
+      "scope": "Native authored Plains8x8x23 Sphere/Cure profile bound to MAP/TTD/SPR and complete owned projectile environment; arena finale remains a distinct8x8x3 open profile. Authored cost8/damage20/speed20/lifetime100 and Cure3/8 unchanged; moving hit/miss, simultaneous effects, terrain retirement, exact restart, real Qt win/reopen/advance and legacy profiles. No original full campaign/ricochet/catalog profile/physical audio/SPR/live replacement claim. Resolved master merge additionally retains the actual arena Sphere window journey, alternate-tick lethal settlement, both capacity refusals and attribution initialization. Rendering regression report is separate and asserts no new original/session pixel equivalence.",
+      "record": "research/runtime/unified-campaign-automation-20261016.json",
+      "sha256": "185feaccc55665de82222cbaa29da673f0715a39a81f67f9e15083bc5398ceb4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TOOL.unified-merge-imports-20261016",
+      "kind": "native_integration",
+      "scope": "Native synthetic coverage guard and actual Git co-parent evidence-ID collision fixtures; reports/receipts and source provenance remain immutable. No engine equivalence.",
+      "record": "research/runtime/unified-coverage-imports-20261016.json",
+      "sha256": "d5f5f558d6ac1a297575c31eac00f3468383f7cd5a3e2d3345573c751c6010e5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -160371,7 +161796,10 @@
         {
           "value": 73,
           "behaviors": [
-            "CAST.admission"
+            "CAST.admission",
+            "CAST.projectile-update",
+            "CAST.sphere-motion",
+            "SP.073"
           ]
         },
         {
@@ -160936,6 +162364,31 @@
             "RS.minimap-camera-dispatch",
             "RS.minimap-pixel-passes"
           ]
+        }
+      ]
+    },
+    {
+      "id": "CAST.secondary-type3",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4824612,
+        "relation": "data",
+        "scope": "Selected type3 routing entry of89-entry update table."
+      },
+      "document": "research/runtime/projectile-delivery.md",
+      "complete": false,
+      "scope": "Type3 routes4973f7; other88 update entries retain their separate scopes/unknowns.",
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "CAST.projectile-update",
+            "CAST.sphere-motion"
+          ]
+        },
+        {
+          "value": "other-types",
+          "behaviors": []
         }
       ]
     }
@@ -164611,7 +166064,8 @@
         "TOOL.coverage-accounting"
       ],
       "evidence": [
-        "COV01.execution-claims-20261008"
+        "COV01.execution-claims-20261008",
+        "TOOL.unified-merge-imports-20261016"
       ],
       "tests": [
         "tests/test-re-coverage.py",
@@ -169645,7 +171099,8 @@
         "NS25.arena-regression",
         "NP.skirmish-mission.native-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -169668,7 +171123,8 @@
         "NP.campaign-session.window-20261016",
         "NP.skirmish-mission.native-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -172994,7 +174450,8 @@
         "NP.skirmish-mission.native-20261016",
         "NP.map-campaign.checkpoint-final-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173015,7 +174472,8 @@
         "NP.skirmish-mission.native-20261016",
         "NP.map-campaign.checkpoint-final-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173037,7 +174495,8 @@
         "NP.map-campaign.native-20261016",
         "NP.map-campaign.window-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173058,7 +174517,8 @@
         "NP.skirmish-mission.native-20261016",
         "NP.map-campaign.window-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173121,7 +174581,8 @@
         "tests/fixtures/drawing-recorded-session/session.json"
       ],
       "evidence": [
-        "DRAW02.recorded-session.portable-03-20261016"
+        "DRAW02.recorded-session.portable-03-20261016",
+        "DRAW02.storage.quick-battle-regression-20261016"
       ]
     },
     {
@@ -173154,7 +174615,9 @@
         "BATTLE01.sections-native",
         "BATTLE02.cure-native",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "PROJECTILE04.window-native",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173173,7 +174636,9 @@
       "evidence": [
         "BATTLE02.cure-native",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "PROJECTILE04.window-native",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173224,7 +174689,8 @@
         "NP.map-campaign.native-20261016",
         "NP.map-campaign.window-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173243,7 +174709,8 @@
         "NP.map-campaign.native-20261016",
         "NP.map-campaign.window-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173263,7 +174730,8 @@
       "evidence": [
         "NP.map-campaign.window-20261016",
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173283,7 +174751,8 @@
       ],
       "evidence": [
         "NP.map-cure.automation-20261016",
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173317,7 +174786,9 @@
         "PROJECTILE02.motion-original",
         "PROJECTILE02.motion-native",
         "PROJECTILE04.catalog-wrapper-original",
-        "PROJECTILE04.catalog-wrapper-native"
+        "PROJECTILE04.catalog-wrapper-native",
+        "PROJECTILE02.master-motion-original",
+        "PROJECTILE02.master-motion-native"
       ]
     },
     {
@@ -173332,7 +174803,10 @@
         "tools/test-sphere-battle.py"
       ],
       "evidence": [
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "PROJECTILE03.battle-native",
+        "PROJECTILE04.window-native",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173349,7 +174823,8 @@
         "tools/test-native-sphere-map.py"
       ],
       "evidence": [
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
       ]
     },
     {
@@ -173367,7 +174842,133 @@
         "tools/test-native-sphere-map.py"
       ],
       "evidence": [
-        "PROJECTILE04.map-automation-20261016"
+        "PROJECTILE04.map-automation-20261016",
+        "NP.unified-campaign.automation-20261016"
+      ]
+    },
+    {
+      "id": "PROJECTILE04.window",
+      "level": "preview",
+      "scope": "Real Qt Magic Sphere button/enemy picker and save dialogs; mid-flight save, pause, fresh-window and headless process continuation with byte-identical campaign bytes, moving target and exactly one20-point impact; legacy Cure-only profile refusal retains its file.",
+      "behaviors": [
+        "NP.sphere-battle"
+      ],
+      "tests": [
+        "tests/test-sphere-window.py",
+        "tools/test-sphere-window.py",
+        "tests/campaign-window-driver.cpp",
+        "tests/sphere-battle-test.cpp"
+      ],
+      "evidence": [
+        "PROJECTILE04.window-native",
+        "NP.unified-campaign.automation-20261016"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-storage-action-session.storage",
+      "level": "live_observation",
+      "scope": "Prospectively declared bounded original-active Apprentice Save/Load/rebuild/Main Load/resume/normal Quit with source-only inputs, observed EGL full planes and exact action records; no global presentation or generic complete journey claim.",
+      "behaviors": [
+        "TOOL.drawing-storage-action-session"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/test-drawing-storage-session.py"
+      ],
+      "evidence": [
+        "DRAW02.storage-action.original-20261016"
+      ]
+    },
+    {
+      "id": "NR.drawing-storage-session-comparison.storage",
+      "level": "headless",
+      "scope": "Every observed original EGL frame in an action-bound storage/rebuild interval, compared against native source/GPU/X11 outputs without original pixels as native inputs.",
+      "behaviors": [
+        "NR.drawing-storage-session-comparison"
+      ],
+      "tests": [
+        "tools/compare-drawing-quick-battle.py"
+      ],
+      "evidence": [
+        "DRAW02.storage-action.native-20261016",
+        "DRAW02.storage-session.portable-20261016"
+      ]
+    },
+    {
+      "id": "RS.canvas-positioned-dib.storage",
+      "level": "live_observation",
+      "scope": "Actual original confirmation background source DIB observation and native placed-source replay in the bounded storage journey.",
+      "behaviors": [
+        "RS.canvas-positioned-dib"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tools/compare-drawing-quick-battle.py"
+      ],
+      "evidence": [
+        "DRAW02.storage-action.original-20261016"
+      ]
+    },
+    {
+      "id": "NR.drawing-storage-session-comparison.controls",
+      "level": "headless",
+      "scope": "Synthetic native GPU exact pixels, keyed/opaque copy, saved history, resize/explicit clear and strict malformed/undefined input refusal controls.",
+      "behaviors": [
+        "NR.drawing-storage-session-comparison"
+      ],
+      "tests": [
+        "tools/test-recorded-drawing-composition.py",
+        "tests/canvas-sequence-test.cpp"
+      ],
+      "evidence": [
+        "DRAW02.storage-composition.controls-20261016"
+      ]
+    },
+    {
+      "id": "NR.storage-session-corpus.headless",
+      "level": "headless",
+      "scope": "Recompare every retained storage/rebuild frame through current native source/GPU/X11 code at actual extents; retain action epoch ambiguity and global-route limits.",
+      "behaviors": [
+        "NR.storage-session-corpus"
+      ],
+      "tests": [
+        "tools/check-recorded-drawing-session.py",
+        "tests/fixtures/drawing-storage-session/session.json"
+      ],
+      "evidence": [
+        "DRAW02.storage-session.portable-20261016"
+      ]
+    },
+    {
+      "id": "NR.storage-session-corpus.journey",
+      "level": "headless",
+      "scope": "Run the first storage recorded-action session adapter while preserving all fourteen journeys/twenty-one operations and generic presented-frame gates.",
+      "behaviors": [
+        "NR.storage-session-corpus"
+      ],
+      "tests": [
+        "tools/check-drawing-journeys.py",
+        "tests/fixtures/drawing-journeys/storage-suite.json"
+      ],
+      "evidence": [
+        "DRAW02.storage-session.journey-20261016"
+      ]
+    },
+    {
+      "id": "tooling.merge-evidence-imports-20261016",
+      "level": "headless",
+      "scope": "Synthetic actual Git co-parent ID collisions: pending/committed admission with both immutable records, and refusals for unmerged branches, changed hashes/assertions, ancestors, duplicates, removed mappings and missing provenance keys. No behavior execution/status credit follows from import.",
+      "behaviors": [
+        "TOOL.coverage-gate",
+        "TOOL.coverage-accounting"
+      ],
+      "tests": [
+        "tests/test-coverage-evidence-imports.py",
+        "tests/test-coverage-merge-history.py",
+        "tests/test-coverage-gate.py"
+      ],
+      "evidence": [
+        "TOOL.unified-merge-imports-20261016"
       ]
     }
   ],
@@ -173985,8 +175586,20 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-sphere-map-20261016.json",
-    "sha256": "f8417eaaff958eadda1817e2f249027e2b8a46eea4e258af531ce9ef942baeab"
+    "path": "research/runtime/coverage/source-index-unified-campaign-20261016.json",
+    "sha256": "c93c5db3b961e7d648530aa25b523944a7081bafb6f10a58f568649cc880a381"
   },
-  "claim_bindings_required": true
+  "claim_bindings_required": true,
+  "evidence_id_imports": [
+    {
+      "commit": "77b3f0a5d38a7c378152a0592a9a7e5c2b710db3",
+      "historical_id": "PROJECTILE02.motion-original",
+      "imported_id": "PROJECTILE02.master-motion-original"
+    },
+    {
+      "commit": "77b3f0a5d38a7c378152a0592a9a7e5c2b710db3",
+      "historical_id": "PROJECTILE02.motion-native",
+      "imported_id": "PROJECTILE02.master-motion-native"
+    }
+  ]
 }

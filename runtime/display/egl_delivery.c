@@ -23,8 +23,15 @@ static unsigned egl_handle(void* handle,unsigned kind){
 }
 static EGLBoolean egl_swap_call(unsigned slot,EGLDisplay display,EGLSurface surface){
  EglSwap real=__atomic_load_n(&egl_originals[slot],__ATOMIC_ACQUIRE);if(!real)fail();
+ uint32_t before_action[12]={0},after_action[12]={0};egl_action_state(before_action);
  uint32_t args[8]={egl_handle(display,1),egl_handle(surface,2),slot+1,0,0,0,0,0};uint32_t id=begin(11,args);egl_worker_context(id,1);
- EGLBoolean result=real(display,surface);int saved=errno;egl_worker_context(id,2);record(2,id,11,args,(int)result,saved);egl_physical(id,args,result,saved);errno=saved;return result;
+ EGLBoolean result=real(display,surface);int saved=errno;egl_worker_context(id,2);record(2,id,11,args,(int)result,saved);egl_action_state(after_action);EGLint width=800,height=600;
+ if(result&&getenv("MNM_DRAW_ACTION_BOUNDARIES")){
+  typedef EGLBoolean(*QuerySurface)(EGLDisplay,EGLSurface,EGLint,EGLint*);
+  void* pointer=symbol_resolver()(RTLD_NEXT,"eglQuerySurface");QuerySurface query;memcpy(&query,&pointer,sizeof(query));
+  if(!query||!query(display,surface,EGL_WIDTH,&width)||!query(display,surface,EGL_HEIGHT,&height)||width<1||height<1||width>2048||height>2048)refuse("EGL action extent query");
+ }
+ egl_physical(id,args,result,saved,before_action,after_action,(uint32_t)width,(uint32_t)height);errno=saved;return result;
 }
 #define EGL_SLOT(n) static EGLBoolean egl_swap_##n(EGLDisplay d,EGLSurface s){return egl_swap_call(n,d,s);}
 EGL_SLOT(0) EGL_SLOT(1) EGL_SLOT(2) EGL_SLOT(3) EGL_SLOT(4) EGL_SLOT(5) EGL_SLOT(6) EGL_SLOT(7)

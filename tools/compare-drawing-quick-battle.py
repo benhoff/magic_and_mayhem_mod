@@ -28,7 +28,7 @@ def frame_bindings(original, points, producer_count, destinations=None, records=
         if r[2]==6 and r[14]!=0xffffffff:keyed.setdefault(r[4],set()).add(r[14])
     results=[];refusals=[];previous=None
     for frame in original['egl_physical_observation']['frames']:
-        ctx=contexts.get((frame['pid'],frame['entry']));reason=None
+        outw,outh=frame['width'],frame['height'];ctx=contexts.get((frame['pid'],frame['entry']));reason=None
         if not ctx or not ctx['stable_active_context']:reason='unbound-worker-context'
         value=ctx['points'][0]['context'] if ctx else {};packet=packets.get(value.get('worker'));sample=sources.get(value.get('submission'));worker=workers.get(value.get('worker'))
         if not reason and (not packet or not sample or packet['command']!=value['command'] or packet['submission']!=sample['submission']):reason='unbound-packet-source'
@@ -41,10 +41,10 @@ def frame_bindings(original, points, producer_count, destinations=None, records=
             # resource without worker blits as unchanged (Map writes exist).
             dest=(destinations or {}).get(sample['api_entry']);end=(returns or {}).get(sample['api_entry']);api=apis.get(sample['api_entry'],{})
             r=records[end[3]][0] if end and end[3]<len(records) else None
-            if dest and dest[2]&23==19 and not dest[5] and dest[7:9]==(800,600) and api.get('method')==5 and api.get('primary')==1 and api.get('flags',0)&0x400 and api.get('hresult')==0 and r and r[2]==5 and r[3]==dest[6] and r[10:14]==(0,0,800,600):fill=r[14]
+            if dest and dest[2]&23==19 and not dest[5] and dest[7:9]==(outw,outh) and api.get('method')==5 and api.get('primary')==1 and api.get('flags',0)&0x400 and api.get('hresult')==0 and r and r[2]==5 and r[3]==dest[6] and r[10:14]==(0,0,outw,outh):fill=r[14]
             else:reason='source-recorder-not-live-or-unlocated'
         if not reason and sample['status']!=0:reason='source-map-refusal'
-        if not reason and located and point[7:10]!=(800,600,800):
+        if not reason and located and point[7:10]!=(outw,outh,outw):
             # The final worker is an internal primary-buffer copy. Locate the
             # actual outer source transfer by packet/API identity and descriptor.
             roots=[w for w in workers.values() if w['call']<worker['call'] and
@@ -63,13 +63,24 @@ def frame_bindings(original, points, producer_count, destinations=None, records=
         result=dict(ordinal=frame['ordinal'],api_entry=sample['api_entry'],worker=packet['worker'],command=packet['command'],submission=packet['submission'],
             sequence=point[3] if located else None,canvas=point[6] if located else None,width=point[7] if located else None,height=point[8] if located else None,
             transfer=transfer,refresh=refresh,fill=fill,primary_resource=(worker['source'],worker['source_generation']) if worker else None,oracle_path=frame['path'],oracle_sha256=frame['sha256'])
+        if original.get('staging',{}).get('campaign_storage'):result.update(output_width=outw,output_height=outh)
         results.append(result)
         previous=dict(worker=worker['call'],resource=(worker['source'],worker['source_generation'])) if worker else None
     return results,refusals
 
 
+def display_initialization(frames,action_binding):
+    # Intentional native display policy. A completed display action justifies
+    # the reset boundary; original oracle pixels never supply its colour.
+    for previous,current in zip(frames,frames[1:]):
+        if (previous['output_width'],previous['output_height'])!=(current['output_width'],current['output_height']):
+            if not any(h['ordinal']==current['ordinal'] for h in action_binding['worker_handoffs']):raise ValueError('Display extent change lacks a completed-action worker handoff')
+            current['display_clear']=0
+
+
 def compose_native(previous, source, frame):
-    if frame.get('fill') is not None:return struct.pack('<H',frame['fill'])*(800*600)
+    outw,outh=frame.get('output_width',800),frame.get('output_height',600)
+    if frame.get('fill') is not None:return struct.pack('<H',frame['fill'])*(outw*outh)
     if frame['refresh']:
         if previous is None:raise ValueError('Refresh lacks native history')
         return previous
@@ -77,12 +88,12 @@ def compose_native(previous, source, frame):
     plane=np.frombuffer(source,dtype='<u2').reshape(height,width)
     transfer=frame['transfer']
     if transfer is None:
-        if (width,height)!=(800,600):raise ValueError('Full native source extent')
+        if (width,height)!=(outw,outh):raise ValueError('Full native source extent')
         return source
     if previous is None:raise ValueError('Partial update lacks native history')
     x,y,right,bottom=transfer['destination_box'];sx,sy,sright,sbottom=transfer['source_box']
-    if not (0<=x<right<=800 and 0<=y<bottom<=600 and 0<=sx<sright<=width and 0<=sy<sbottom<=height and right-x==sright-sx and bottom-y==sbottom-sy):raise ValueError('Unsupported native rectangle')
-    output=np.frombuffer(previous,dtype='<u2').reshape(600,800).copy();src=plane[sy:sbottom,sx:sright];dst=output[y:bottom,x:right]
+    if not (0<=x<right<=outw and 0<=y<bottom<=outh and 0<=sx<sright<=width and 0<=sy<sbottom<=height and right-x==sright-sx and bottom-y==sbottom-sy):raise ValueError('Unsupported native rectangle')
+    output=np.frombuffer(previous,dtype='<u2').reshape(outh,outw).copy();src=plane[sy:sbottom,sx:sright];dst=output[y:bottom,x:right]
     np.copyto(dst,src,where=True if transfer['key'] is None else src!=transfer['key'])
     return output.tobytes()
 
@@ -92,13 +103,14 @@ def background_bindings(original,points,frames):
     packets={p['worker']:p for p in original['wine_blit_packet_observation']['bindings']}
     maps={s['submission']:s for s in original['wine_source_map_observation']['samples']}
     for f in frames:
+        outw,outh=f.get('output_width',800),f.get('output_height',600)
         if not f['transfer'] or f['transfer']['key'] is not None:continue
         root=workers[f['transfer']['source_worker']]
         saves=[w for w in workers.values() if w['call']<root['call'] and
             (w['destination'],w['destination_generation'])==(root['source'],root['source_generation'])]
         if not saves:raise ValueError('Background source has no defining transfer')
         save=max(saves,key=lambda w:w['call']);sample=maps[packets[save['call']]['submission']];point=points[sample['api_entry']]
-        if save['flags']!=0x41000000 or save['effects']!=[0]*6 or save['filter']!=1 or save['destination_box']!=[0,0,f['width'],f['height'],0,1] or point[2]&23!=19 or point[5] or point[7:9]!=(800,600):raise ValueError('Unsupported background definition')
+        if save['flags']!=0x41000000 or save['effects']!=[0]*6 or save['filter']!=1 or save['destination_box']!=[0,0,f['width'],f['height'],0,1] or point[2]&23!=19 or point[5] or point[7:9]!=(outw,outh):raise ValueError('Unsupported background definition')
         source=(save['source'],save['source_generation'])
         if source==tuple(f['primary_resource']):
             prior=[v for v in frames if v['worker']<save['call'] and v['primary_resource']==f['primary_resource']]
@@ -107,25 +119,26 @@ def background_bindings(original,points,frames):
             if any((w['destination'],w['destination_generation'])==source for w in workers.values() if prior['worker']<w['call']<save['call']):raise ValueError('Unreplayed primary write before background save')
             binding=dict(worker=save['call'],from_presentation=prior['ordinal'])
         else:
-            if point[9]!=800 or sample['descriptor'][6:8]!=[800,600]:raise ValueError('Background canvas is not a complete source')
-            binding=dict(worker=save['call'],sequence=point[3],canvas=point[6],width=800,height=600)
+            if point[9]!=outw or sample['descriptor'][6:8]!=[outw,outh]:raise ValueError('Background canvas is not a complete source')
+            binding=dict(worker=save['call'],sequence=point[3],canvas=point[6],width=outw,height=outh)
         binding['source_box']=save['source_box'][:4];f['background']=binding
     return frames
 
 
-def compare_plane(native,original):
+def compare_plane(native,original,width=800,height=600):
     words=np.frombuffer(native,dtype='<u2');rgba=np.frombuffer(original,dtype=np.uint8).reshape(-1,4)
-    if words.size!=800*600 or rgba.shape!=(800*600,4):raise ValueError('Whole plane extent')
+    if words.size!=width*height or rgba.shape!=(width*height,4):raise ValueError('Whole plane extent')
     r=(words>>11)&31;g=(words>>5)&63;b=words&31
     predicted=np.stack(((r<<3)|(r>>2),(g<<2)|(g>>4),(b<<3)|(b>>2)),axis=1).astype(np.int16)
     diff=np.max(np.abs(predicted-rgba[:,:3].astype(np.int16)),axis=1);bad=np.flatnonzero(diff>1)
-    return dict(pixels=words.size,mismatching_pixels=int(bad.size),max_channel_difference=int(diff.max()),channel_tolerance=1,alpha_compared=False,native_sha256=sha(native),original_sha256=sha(original),examples=[dict(x=int(i%800),y=int(i//800),native_rgb=predicted[i].tolist(),original_rgb=rgba[i,:3].tolist()) for i in bad[:8]])
+    return dict(pixels=words.size,mismatching_pixels=int(bad.size),max_channel_difference=int(diff.max()),channel_tolerance=1,alpha_compared=False,native_sha256=sha(native),original_sha256=sha(original),examples=[dict(x=int(i%width),y=int(i//width),native_rgb=predicted[i].tolist(),original_rgb=rgba[i,:3].tolist()) for i in bad[:8]])
 
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     for name in ('original','native','claims','report'):p.add_argument('--'+name,type=Path,required=True)
     p.add_argument('--presenter',type=Path,help='Compose every recorded transfer on the native GPU and compare physical X11 output')
+    p.add_argument('--output-parent',type=Path,help='New outputs under an owned working parent, including a provisioned separate filesystem')
     a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_bytes());sources=dict(claims['sources'])
@@ -148,8 +161,16 @@ def main():
     spec=importlib.util.spec_from_file_location('producer',ROOT/'tools/inspect-canvas-producers.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);_,records=m.decode(producer,complete=not original.get('staging',{}).get('session_producers'))
     frames,refusals=frame_bindings(original,points,len(records),destinations,records,returns)
     background_bindings(original,points,frames)
+    action_binding=None
+    if original.get('staging',{}).get('campaign_storage'):
+        from drawing_action_session import bind
+        action_binding=bind(capture,original['egl_physical_observation'])
+        if action_binding!=original['action_bound_presentations']:raise ValueError('Original action binding changed')
+        display_initialization(frames,action_binding)
     if not frames:raise ValueError('No source-bound native frame inputs')
-    parent=ROOT/'working/tests/draw02-quick-battle';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True);(run/'.retain').write_text('DRAW-02 original to native whole-frame comparison; retain failures and inputs.\n')
+    parent=a.output_parent.absolute() if a.output_parent else ROOT/'working/tests/draw02-quick-battle'
+    if not parent.is_relative_to(ROOT/'working') or '..' in parent.parts:raise ValueError('Comparison output parent must be under working')
+    parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True);(run/'.retain').write_text('DRAW-02 original to native whole-frame comparison; retain failures and inputs.\n')
     owned=run/'owned-inputs';owned.mkdir();binary_sha=sha(a.native.read_bytes());last=max(f['sequence'] for f in frames if f['sequence'] is not None)
     end=64
     for r,payload in records[:last]:end+=struct.unpack_from('<I',producer,end)[0]
@@ -174,7 +195,7 @@ def main():
         cursor=seq;bounds.append(dict(sequence=seq,queues=queues,canvas=canvas,width=f['width'],height=f['height']))
     declaration=dict(schema=1,session='1',assets=assets,segments=[dict(segment=1,stage='scene',producer=dict(path='producers.bin',sha256=sha(native_source)),frames=bounds)])
     (owned/'drawing-session.json').write_text(json.dumps(declaration,indent=2)+'\n')
-    result=dict(schema=1,success=False,sources=sources,claims=claims['claims'],original_report=dict(path=str(a.original.resolve().relative_to(ROOT)),sha256=sha(raw)),artifacts=str(run.relative_to(ROOT)),original_game_executed=False,native_parity_performed=True,original_pixels_used_as_native_inputs=False,native_binary_sha256=binary_sha,observed_presentations=len(original['egl_physical_observation']['frames']),source_bound_presentations=len(frames),refusals=refusals,inputs=input_hashes,scope='Whole observed EGL Quick Battle frames from native source snapshots and recorded rectangle composition over retained native output. Source snapshots do not publish a native session frame or prove native scanout. All missing bindings and mismatches retained; RGB comparison allows one output-channel unit for RGB565 display expansion. No full14-journey/21-operation admission, hardware scanout or original caller-result parity.')
+    result=dict(schema=1,success=False,case='campaign_storage' if original.get('staging',{}).get('campaign_storage') else 'quick_battle',sources=sources,claims=claims['claims'],original_report=dict(path=str(a.original.resolve().relative_to(ROOT)),sha256=sha(raw)),artifacts=str(run.relative_to(ROOT)),original_game_executed=False,native_parity_performed=True,original_pixels_used_as_native_inputs=False,native_binary_sha256=binary_sha,observed_presentations=len(original['egl_physical_observation']['frames']),source_bound_presentations=len(frames),refusals=refusals,inputs=input_hashes,action_binding=action_binding,native_display_rebuild_clear='black' if action_binding else None,scope='Whole observed EGL frames from native source snapshots and recorded rectangle composition over retained native output. Source snapshots do not publish a native session frame or prove native scanout. All missing bindings and mismatches retained; RGB comparison allows one output-channel unit for RGB565 display expansion. No full14-journey/21-operation admission, hardware scanout or original caller-result parity.')
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
         env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1');cmd=['xvfb-run','-a',str(a.native.resolve()),str(owned),str(run/'native'),'--source-snapshots']
@@ -200,18 +221,20 @@ def main():
             byseq={(f['sequence'],f['canvas']):f for f in native['frames']};previous=None;history={}
             composed=run/'composed';composed.mkdir()
             for frame in frames:
+                outw,outh=frame.get('output_width',800),frame.get('output_height',600)
+                if previous is not None and len(previous)!=outw*outh*2:previous=None
                 oracle=(capture/frame['oracle_path']).read_bytes()
                 if sha(oracle)!=frame['oracle_sha256']:raise ValueError('Original frame identity changed')
                 if gpu:
                     item=gpu['frames'][len(comparisons)]
-                    if item['index']!=frame['ordinal'] or (item['width'],item['height'])!=(800,600):raise ValueError('GPU presentation reordered or resized')
+                    if item['index']!=frame['ordinal'] or (item['width'],item['height'])!=(outw,outh):raise ValueError('GPU presentation reordered or resized')
                     ordinal=frame['ordinal']-1;native_plane=run/f'gpu-native/frame-{ordinal:06d}.565';physical_plane=run/f'gpu-native/frame-{ordinal:06d}.rgba'
                     native_bytes=native_plane.read_bytes();physical_bytes=physical_plane.read_bytes()
                     if item['native_path']!=native_plane.name or item['path']!=physical_plane.name or sha(native_bytes)!=item['native_sha256'] or sha(physical_bytes)!=item['sha256']:raise ValueError('GPU output identity changed')
                     if len(physical_bytes)!=len(oracle):raise ValueError('Partial native physical plane')
                     delta=np.max(np.abs(np.frombuffer(physical_bytes,dtype=np.uint8).reshape(-1,4)[:,:3].astype(np.int16)-np.frombuffer(oracle,dtype=np.uint8).reshape(-1,4)[:,:3].astype(np.int16)),axis=1)
-                    physical=dict(pixels=800*600,mismatching_pixels=int(np.count_nonzero(delta>1)),max_channel_difference=int(delta.max()),channel_tolerance=1,alpha_compared=False,native_sha256=sha(physical_bytes),original_sha256=sha(oracle))
-                    comparisons.append(dict(ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],native_gpu_path=str(native_plane.relative_to(run)),physical_comparison=physical,**compare_plane(native_bytes,oracle)))
+                    physical=dict(pixels=outw*outh,mismatching_pixels=int(np.count_nonzero(delta>1)),max_channel_difference=int(delta.max()),channel_tolerance=1,alpha_compared=False,native_sha256=sha(physical_bytes),original_sha256=sha(oracle))
+                    comparisons.append(dict(ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],native_gpu_path=str(native_plane.relative_to(run)),physical_comparison=physical,**compare_plane(native_bytes,oracle,outw,outh)))
                     continue
                 source=None
                 bg=frame.get('background')
@@ -221,15 +244,16 @@ def main():
                         n=byseq[bg['sequence'],bg['canvas']];background=(run/'native'/n['path']).read_bytes()
                         if sha(background)!=n['sha256']:raise ValueError('Background native identity changed')
                     sx,sy,right,bottom=bg['source_box']
-                    if not (0<=sx<right<=800 and 0<=sy<bottom<=600 and right-sx==frame['width'] and bottom-sy==frame['height']):raise ValueError('Background source rectangle changed')
-                    source=np.frombuffer(background,dtype='<u2').reshape(600,800)[sy:bottom,sx:right].copy().tobytes()
+                    if not (0<=sx<right<=outw and 0<=sy<bottom<=outh and right-sx==frame['width'] and bottom-sy==frame['height']):raise ValueError('Background source rectangle changed')
+                    source=np.frombuffer(background,dtype='<u2').reshape(outh,outw)[sy:bottom,sx:right].copy().tobytes()
                 elif frame['fill'] is None:
                     n=byseq[frame['sequence'],frame['canvas']];source=(run/'native'/n['path']).read_bytes()
                     if sha(source)!=n['sha256'] or any(n[k]!=frame[k] for k in ('canvas','width','height')):raise ValueError('Native source identity changed')
+                if frame.get('display_clear') is not None:previous=struct.pack('<H',frame['display_clear'])*(outw*outh)
                 previous=compose_native(previous,source,frame)
                 history[frame['ordinal']]=previous
                 path=composed/f"frame-{frame['ordinal']:06d}.565";path.write_bytes(previous)
-                comparisons.append(dict(ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],transfer=frame['transfer'],background=frame.get('background'),fill=frame['fill'],refresh=frame['refresh'],native_path=str(path.relative_to(run)),**compare_plane(previous,oracle)))
+                comparisons.append(dict(ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],transfer=frame['transfer'],background=frame.get('background'),fill=frame['fill'],refresh=frame['refresh'],native_path=str(path.relative_to(run)),**compare_plane(previous,oracle,outw,outh)))
         result.update(comparisons=comparisons,compared_presentations=len(comparisons),mismatched_presentations=sum(c['mismatching_pixels']>0 for c in comparisons),mismatching_pixels=sum(c['mismatching_pixels'] for c in comparisons),pixels_compared=sum(c['pixels'] for c in comparisons),all_observed_presentations_compared=len(comparisons)==result['observed_presentations'],native_input_bytes=sum(f.stat().st_size for f in owned.rglob('*') if f.is_file()))
         result['physical_mismatching_pixels']=sum(c.get('physical_comparison',{}).get('mismatching_pixels',0) for c in comparisons)
         result['success']=execution.returncode==0 and not refusals and not result['mismatching_pixels'] and not result['physical_mismatching_pixels'] and result['all_observed_presentations_compared']

@@ -167,3 +167,15 @@ the CLI. The combined automated journey is
 `tools/test-native-sphere-map.py ASSET_ROOT --output NEW_DIRECTORY`, run under
 the main storage guard. It includes normal/sanitized contracts and actual Qt
 move/cast/save/restart/win/advance checks. See `research/runtime/native-sphere-battle.md`.
+
+Magic Sphere is available in newly created arenas/campaigns. Select your wizard,
+choose **Magic Sphere · 8 mana**, then click an enemy. It travels along a straight
+fine-unit trajectory and can hit creatures in its path; a hit can retain flight.
+The declared arena profile uses20 damage/speed20/lifetime100 and an authored ANI
+fixture. Installed configuration binding, original ricochet and physical sound/
+sprites remain separate. Arc Bolt retains its existing authored behavior.
+
+The CLI accepts `TICK sphere WIZARD-SLOT TARGET-SLOT`; campaign CLI accepts
+`cast INPUT OUTPUT sphere TARGET-SLOT`. Cure-only and effects-free campaign saves
+retain their exact earlier profiles. See
+[native Sphere scope](../../research/runtime/native-sphere-battle.md).

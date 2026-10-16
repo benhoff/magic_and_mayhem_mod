@@ -115,6 +115,7 @@ def snapshot(root, register=None):
     return {'schema': SCHEMA, 'scope': 'Reviewed accounting baseline; gaps remain unresolved and evidence remains historical.',
             'sources': sources, 'behaviors': behaviors, 'evidence': evidence,
             'evidence_keys': evidence_keys, 'evidence_sources': evidence_sources,
+            'evidence_id_imports': register.get('evidence_id_imports', []),
             'inventories': {b['inventory']: b['inventory_sha256'] for b in register['builds']},
             'research_artifacts': {p.relative_to(root).as_posix(): file_digest(p)
                                    for p in sorted((root/'research').rglob('*.json'))
@@ -163,7 +164,7 @@ def changes(before, after):
     return {'files': files, 'behaviors': contracts, 'new_gaps': gaps}
 
 
-def immutable_errors(before, after):
+def immutable_errors(before, after, merge_history=None):
     errors = []
     if before.get('claim_bindings_required') and not after.get('claim_bindings_required'):
         errors.append('Execution-claim policy cannot be disabled after adoption')
@@ -173,8 +174,20 @@ def immutable_errors(before, after):
     for build, sha in before['builds'].items():
         if after['builds'].get(build) != sha:
             errors.append(f'Original build removed or rebound: {build}')
+    imports=(merge_history or {}).get('evidence_id_imports', [])
+    for item in before.get('evidence_id_imports', []):
+        if item not in after.get('evidence_id_imports', []):
+            errors.append('Historical evidence-ID import removed or rewritten')
     for eid, old in before['evidence'].items():
+        target=eid
         new = after['evidence'].get(eid)
+        # Only actual independent merge parents can attest an ID collision.
+        # The imported row must be identical, including provenance, except ID.
+        if old != new:
+            matches=[x for x in imports if x['historical_id']==eid and x['historical_record']==old]
+            if len(matches)==1:
+                target=matches[0]['imported_id'];candidate=after['evidence'].get(target)
+                if candidate==dict(old,id=target):new=candidate;old=dict(old,id=target)
         if new is None:
             errors.append(f'Historical evidence removed: {eid}')
             continue
@@ -183,7 +196,7 @@ def immutable_errors(before, after):
         fixed = lambda e: {k: v for k, v in e.items() if k not in {'source_bindings', 'scope', 'recorded_inputs'}}
         if fixed(old) != fixed(new):
             errors.append(f'Historical evidence rewritten: {eid}; register a new evidence ID')
-        if not set(before['evidence_keys'][eid]) <= set(after['evidence_keys'][eid]):
+        if not set(before['evidence_keys'][eid]) <= set(after['evidence_keys'].get(target, [])):
             errors.append(f'Historical provenance keys removed: {eid}')
         for key in new.get('recorded_inputs', []):
             target = old.get('source_bindings', {}).get(key, key)
@@ -348,7 +361,8 @@ def receipt_chains(delta, reviews, before, after, audit_report):
 def check(before, after, reviews, audit_report, merge_history=None):
     validate_baseline(before)
     delta = changes(before, after)
-    errors = immutable_errors(before, after)
+    errors = immutable_errors(before, after, merge_history)
+    errors.extend((merge_history or {}).get('errors', []))
     covered_files, covered_behaviors, covered_gaps, validated_behaviors = set(), set(), set(), set()
     if reviews.get('schema') != SCHEMA:
         raise ValueError('Unsupported change-review schema')

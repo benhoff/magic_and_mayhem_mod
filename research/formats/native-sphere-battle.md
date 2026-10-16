@@ -43,3 +43,8 @@ but changed environment is not accepted as resource authority.
 SHP1 layout and default arena bytes remain unchanged. A legacy effects-free or
 Cure-only checkpoint acquires no Sphere state. SHP2 and CBR2 are native owned wire
 policies, not claims about the original game's save format or allocator.
+
+New casts initialize empty contributor fields to UINT32_MAX and copy creator
+attribution/contributor sentinels into their placement record, matching the
+master arena policy. Existing active Sphere saves retain their owned fields;
+loading does not normalize them or change bytes.

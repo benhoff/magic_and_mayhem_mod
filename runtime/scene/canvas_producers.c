@@ -5,13 +5,13 @@
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include "../../protocols/include/mnm/canvas_producers_v5.h"
 #include "../../protocols/include/mnm/world_continuous_v3.h"
-#define HOOKS 56
+#define HOOKS 57
 #define MAX_SURFACES 128
 #define MAX_FRAMES 128
 #define E(n) extern void producer_enter_##n(void)
 E(0);E(1);E(2);E(3);E(4);E(5);E(6);E(7);E(8);E(9);E(10);E(11);E(12);E(13);E(14);E(15);E(16);E(17);E(18);E(19);E(20);E(21);E(22);E(23);E(24);E(25);E(26);E(27);E(28);E(29);E(30);E(31);E(32);E(33);E(34);E(35);E(36);E(37);E(38);E(39);E(40);E(41);E(42);E(43);E(44);E(45);E(46);E(47);E(48);E(49);E(50);E(51);
 extern void producer_enter_52(void);
-E(53);E(54);E(55);
+E(53);E(54);E(55);E(56);
 extern void producer_leave(void);
 u32 producer_trampolines[HOOKS];
 /* pop is the original RET immediate, independent of compiler calling labels. */
@@ -71,7 +71,8 @@ static struct Hook {u32 address,length,pop;u8 bytes[10];void(*entry)(void);i32 r
  {0x547d80,8,8,{0x83,0xec,0x24,0xa1,0x88,0x1f,0x6e,0},producer_enter_52,-1},
  {0x58f890,6,0,{0x83,0xec,8,0x53,0x8b,0xd9},producer_enter_53,-1},
  {0x58f9c0,5,8,{0xa1,0x2c,0x48,0x6c,0},producer_enter_54,-1},
- {0x58f750,5,8,{0x53,0x8b,0x5c,0x24,0x0c},producer_enter_55,-1}
+ {0x58f750,5,8,{0x53,0x8b,0x5c,0x24,0x0c},producer_enter_55,-1},
+ {0x58d370,8,12,{0x51,0x56,0x8b,0xf1,0x8d,0x54,0x24,0x04},producer_enter_56,-1}
 };
 static struct Surface {u32 object,id,pixels,width,height,stride,dirty,sampled;} surfaces[MAX_SURFACES];
 static struct Frame {u32 sp,tag,caller,ecx,edx,args[6],primitive,scratch,owner,bar[6],storage_call,storage_canvas;u8* record;} frames[MAX_FRAMES];
@@ -280,8 +281,8 @@ static u8* request(const struct Frame* f){
  else if(tag==32||tag==33||(tag>=37&&tag<=39)||tag==42||tag==43){
   struct Surface* src=object(f->ecx),*dst=object(f->args[0]);if(!src||!dst||!readable(f->args[1],16)){fail(22,tag);return 0;}r[2]=MNM_PRODUCER_COPY;extent(r,dst);r[4]=src->id;r[8]=f->args[2];r[9]=f->args[3];for(u32 i=0;i<4;++i)r[10+i]=get((void*)(f->args[1]+i*4));r[14]=tag==38||tag==39||tag==42?get((void*)(f->ecx+44))&0xffff:0xffffffff;checkpoint(src,1);
  }
- else if(tag==31){
-  struct Surface* dst=object(f->ecx);u32 obj=f->args[0];if(!dst||!readable(obj,8)){fail(23,tag);return 0;}u32 info=get((void*)obj),pixels=get((void*)(obj+4));if(!readable(info,40)){fail(23,tag);return 0;}u32 w=get((void*)(info+4)),h=get((void*)(info+8)),bits=*(u16*)(info+14);if(get((void*)info)!=40||*(u16*)(info+12)!=1||get((void*)(info+16))||!w||w>2048||!h||h>2048||(bits!=1&&bits!=4&&bits!=8&&bits!=24)){fail(24,tag);return 0;}u32 palette=bits==24?0:(1u<<bits)*4,n=((w*bits+31)/32)*4*h;if(n>2097152||!readable(info,40+palette)||!readable(pixels,n)){fail(25,tag);return 0;}r[2]=MNM_PRODUCER_DIB;extent(r,dst);r[14]=bits==24?1:0;r[19]=40+palette;r[20]=n;r[18]=r[19]+n;r[0]=96+r[18];u8* out=HeapAlloc(producer_heap(),0,r[0]);if(!out){fail(7,tag);return 0;}copy(out,r,96);copy(out+96,(void*)info,r[19]);copy(out+96+r[19],(void*)pixels,n);return out;
+ else if(tag==31||tag==56){
+  struct Surface* dst=object(f->ecx);u32 obj=f->args[0];if(!dst||!readable(obj,8)){fail(23,tag);return 0;}u32 info=get((void*)obj),pixels=get((void*)(obj+4));if(!readable(info,40)){fail(23,tag);return 0;}u32 w=get((void*)(info+4)),h=get((void*)(info+8)),bits=*(u16*)(info+14);if(get((void*)info)!=40||*(u16*)(info+12)!=1||get((void*)(info+16))||!w||w>2048||!h||h>2048||(bits!=1&&bits!=4&&bits!=8&&bits!=24)){fail(24,tag);return 0;}u32 palette=bits==24?0:(1u<<bits)*4,n=((w*bits+31)/32)*4*h;if(n>2097152||!readable(info,40+palette)||!readable(pixels,n)){fail(25,tag);return 0;}r[2]=MNM_PRODUCER_DIB;extent(r,dst);if(tag==56){r[8]=f->args[1];r[9]=f->args[2];}r[14]=bits==24?1:0;r[19]=40+palette;r[20]=n;r[18]=r[19]+n;r[0]=96+r[18];u8* out=HeapAlloc(producer_heap(),0,r[0]);if(!out){fail(7,tag);return 0;}copy(out,r,96);copy(out+96,(void*)info,r[19]);copy(out+96+r[19],(void*)pixels,n);return out;
  }
  else if(tag==30){
   struct Surface* s=object(f->args[0]);if(!s||!readable(f->ecx,20)){fail(20,tag);return 0;}u32 source=get((void*)f->ecx),n=get((void*)(f->ecx+4)),palette=get((void*)(f->ecx+8));if(n<128||n>1048576||!readable(source,n)||!readable(palette,768)){fail(21,tag);return 0;}r[2]=MNM_PRODUCER_PCX;extent(r,s);r[14]=get((void*)(f->ecx+12));r[15]=get((void*)(f->ecx+16));r[17]=get((void*)0x6e1f88);r[19]=n;r[20]=768;r[18]=n+768;r[0]=96+r[18];u8* out=HeapAlloc(producer_heap(),0,r[0]);if(!out){fail(7,tag);return 0;}copy(out,r,96);copy(out+96,(void*)source,n);copy(out+96+n,(void*)palette,768);return out;

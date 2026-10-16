@@ -12990,3 +12990,122 @@ creature rules. Original full campaign/population/rewards, installed spell profi
 provenance, original ricochet and complete creator lifecycle, physical audio/SPR
 pixels, external side-effect transactions and live replacement remain pending.
 See `native-sphere-battle.md` and `../formats/native-sphere-battle.md`.
+
+## Magic Sphere motion and shared-battle integration (2026-10-16)
+
+PROJECTILE02 compares128 authored type3/spell73 worlds and2048 repeated movement
+calls,601 creature-hit results, full guards and exact result/state bytes across
+original32/native64/sanitizers. The selected real4883f0 parent executes trajectory
+and footprint helpers. Native limits permit64 steps/counter8192; this comparison
+owns1..20 steps and16 repeats per fixed actor world. It does not establish moving
+original actors, complete creation/type setup, ricochet or installed catalogs.
+
+PROJECTILE03 composes recovered admission/type3 update/motion/ordinary health into
+the native arena alongside Cure. Authoritative health/mana, live fine/grid creature
+positions, generation-bound effect identities and all trajectory/ANI/bookkeeping
+state survive portable checkpoints. The native moving-target case resumes each
+tick identically and applies one20-point hit; an evading target remains unharmed.
+Tests cover timeout, unadmitted/alternate clocks, lethal alternate settlement once,
+removal/reuse, both effect and World capacity refusal, mana/tag refusal and concurrent
+Cure/Sphere continuation.57 normal CTests and six sanitizer contracts pass, together
+with installed Cure ANI regressions and the existing real Qt Cure restart journey.
+A record reference is reacquired after transactional movement replaces its pool;
+alternate ticks settle/cancel terminal battles before publication.
+
+New profiles expose Magic Sphere through CLI and Qt controls. PROJECTILE04 exercises
+the actual Sphere button/enemy picker/save dialogs, saves in flight and restarts
+the window. Eight resumed phases move the target and apply exactly one20-point
+hit (24 to4 health); GUI, headless CLI and event-counting process campaign bytes
+agree. Cure-only profiles refuse Sphere without changing their input or publishing
+an output. Historical Cure-only playback checkpoints remain loadable. Empty
+contributor-chain sentinels and native attribution are serialized at creation.
+The declared profile8/20/20/100 and owned ANI, open torus, native allocation/spatial
+retirement and stop-on-terrain service are policies. Original48ee40 ricochet,
+installed profiles, complete creator/setup/release/audio/SPR and live original
+campaign replacement remain pending. See [scope](native-sphere-battle.md),
+[format](../formats/native-sphere-battle.md),
+[motion evidence](original-sphere-motion-bound-20261016.json) and
+[battle evidence](sphere-battle-bound-20261016.json). SP.073 remains incomplete.
+Incomingb340b291..63f60a9e has14 file and4 behavior transitions with exact receipts,
+no missing accounting; historical evidence is retained without refreshed hashes.
+
+PROJECTILE04's fresh source-bound result covers390 code/test/build hashes, the
+Sphere/Cure/shared-battle contracts and four scenarios:58 normal CTests, six
+ASan/UBSan/LSan contracts, installed Cure ANI checks and both retained Qt journeys
+pass. Immutable originals and installed inputs match before/after. Sphere native
+integration advances to preview; whole-spell original comparison and live
+replacement remain pending. See [window evidence](sphere-window-bound-20261016.json).
+The external-build skirmish report path fix changes provenance formatting only.
+Incoming63f60a9e..c57e6fa7 has40 file/behavior transitions with exact receipts and no
+unresolved gaps; [history review](coverage/sphere-window-incoming-history-20261016.json)
+retains committed-history accounting separately from this new execution.
+
+The user-approved cleanup removed exactly784 hash-verified derivative compiler
+cache files (669187988 bytes) from five owned development/failed build trees.
+Passing evidence, executables, logs, checkpoints, screenshots, pins and worktrees
+were preserved. Inventory, exact manifest, reference review and deletion receipt
+are retained under `working/retention/sphere-approved-cache-cleanup-20261016/`.
+
+### Action-bound storage interval, 2026-10-16
+
+Fresh original-active Apprentice Save/Load, two display rebuilds, MainLoad/resume
+and normal Quit now have a portable238frame observed-EGL reference with exact
+callback epoch brackets and unchanged save bytes. All238native source/GPU/X11
+comparisons complete, but ten cursor-shaped regions still fail (1660pixels per
+GPU/physical cohort). Matching cursor bitmap inputs do not resolve driver/source
+prefix ordering or saved-background aliases. Keep those as investigated hypotheses.
+
+Fixed reproduced grayscale, positioned-DIB confirmation, World RGB-add routing,
+hidden validity and display-extent replay gaps. Black initialization on a recreated
+extent is declared native policy. The failing storage case is retained in the
+default journey suite and a focused storage suite, with unchanged14journey/21
+operation requirements and no generic presented-frame acceptance credit. See
+[action-bound storage evidence](action-bound-storage-session.md) and the immutable
+original/native JSON reports. Native Qt menu layout policy, optional source-page
+ownership, global display routes, hardware/performance and live replacement remain
+separate. No comparison/replacement status is promoted from this failed result.
+
+## Unified native campaign and master baseline (2026-10-16)
+
+The integration combines campaign brancha2b685cc with master77b3f0a5, preserving
+the master's action-bound storage rendering findings and its explicitly failing
+cursor corpus. The campaign keeps complete Plains terrain bindings, mixed
+Sphere/Cure continuation and exact legacy profiles while adding master alternate
+effect-clock lethal settlement, component/World capacity checks, creator
+attribution/contributor sentinels and the actual arena Sphere window journey.
+There is one terrain-aware Sphere drawing path after resolving an automatic
+merge duplication. Rules and spell balance values are unchanged.
+
+`unified-campaign-automation-20261016.json` renews twelve prospectively declared
+native contracts with full normal CTest, sanitized contracts, installed resources,
+both terrain and arena Sphere windows, existing map/Cure/progression journeys
+and four exact historical checkpoint byte checks including an older active
+terrain Sphere. `unified-drawing-regression-20261016.json` separately records
+bounded synthetic drawing/session/canvas tests. These do not correct or replace
+the master's ten known storage cursor presentation failures or establish new
+original/live/pixel equivalence. The fixed-four Sphere comparison sources remain
+byte-identical to the prior catalog-wrapper execution; its scope stays current.
+
+`coverage/unified-campaign-history-20261016.json` reviews ten committed versions
+from both histories with exact parent/current receipts. All385 compressed
+storage corpus artifacts were checked against their Git SHA256, expanded
+content-address names and catalog raw/compressed hashes; retrospective receipts
+close their prior omission without asserting past gate success or new parity.
+Both parent journals and report bytes remain unchanged. Independently reused
+PROJECTILE02.motion-original/native IDs retain the campaign parent records;
+the incoming master's immutable records are imported as
+PROJECTILE02.master-motion-original/native. The history report maps historical
+commit/ID to each imported ID; old receipts retain their exact contextual content
+and gain no fresh validation credit. New evidence uses a distinct unified ID.
+Original ricochet/catalog profiles, full campaign equivalence, physical audio
+and live replacement retain their existing limitations.
+
+The cross-parent immutability gate correctly refused the independently reused
+evidence IDs. The committed gate now verifies explicit evidence-ID imports
+against independent actual co-parents of a pending/committed merge, requires
+entire historical record equality except the new ID and preserves provenance
+keys and append-only mappings. This grants no validation/status inheritance.
+Four source-bound guard suites, including ten new actual-Git collision/refusal
+cases, pass in `unified-coverage-imports-20261016.json`; CI/local tooling execute
+the new guard fixtures. An unmerged branch, altered report/assertions, ancestor,
+duplicate/removed mapping or removed provenance cannot authorize an import.

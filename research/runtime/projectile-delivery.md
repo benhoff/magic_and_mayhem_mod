@@ -39,3 +39,13 @@ uses private FS and hash-guarded lower redirects in an isolated mapped image;
 no original file or live process is patched. See
 [execution record](original-projectile-bound-20261016.json). Motion, ricochet and
 physical backend ownership remain explicit supplied boundaries in this result.
+
+The additional PROJECTILE02 domain composes the real4883f0 movement parent with
+trajectory and footprint helpers for type3/spell73. It compares128 authored worlds,
+2048 repeated calls and601 creature-hit results across original32/native64 and
+sanitizers. Guarded records, cells, actors, terrain, columns and result bytes agree.
+Native admission now permits up to64 iterations and an8192 counter so declared
+speed20/lifetime100 can continue; this comparison specifically exercises1..20
+iterations and16 repeated calls, not every admitted raw state. Actor catalogs stay
+fixed within these reference fixtures. Live moving actors are a separate native
+integration result, not a composed original scheduling comparison.

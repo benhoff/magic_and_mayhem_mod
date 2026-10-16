@@ -524,6 +524,14 @@ SkirmishReport SkirmishSession::step(TickInput input) {
             auto extra=effects_->step(combat,s,input);
             report.combat.events.insert(report.combat.events.end(),extra.events.begin(),extra.events.end());
         }
+        s.outcome = outcome(combat.combat(), s);
+        if (s.outcome != Outcome::running) {
+            for (auto &wizard : s.wizards) clear(wizard);
+            s.projectiles.clear(); s.pending.clear();
+            combat.holdAll();
+            if (effects_) effects_->cancel(combat, s);
+            report.events.push_back({SkirmishEventKind::finished, s.wizards[0].actor, {}, Spell::none, SkirmishRefusal::none});
+        }
         publish(std::move(combat), std::move(s));
         return report;
     }

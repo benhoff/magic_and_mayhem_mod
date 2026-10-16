@@ -11,7 +11,10 @@ namespace mnm::render {
 // operations define it. Diagnostic destination images are never accepted here.
 class CanvasSequence final {
 public:
-  explicit CanvasSequence(CanvasMirror *mirror = nullptr) : mirror_(mirror) {}
+  // Snapshot reconstruction may carry hidden undefined copies until overwrite.
+  // Every CPU read and publication still requires complete defined pixels.
+  explicit CanvasSequence(CanvasMirror *mirror = nullptr, bool deferCopyValidity = false)
+      : mirror_(mirror), deferCopyValidity_(deferCopyValidity) {}
   void create(std::uint32_t, int width, int height);
   void terrainMap(std::uint32_t id, int x, int y, int width, int height, int centerX, int centerY, const std::vector<std::uint16_t> &colours, const std::vector<unsigned char> &hidden = {}, std::uint32_t previous = 0);
   std::size_t minimap(std::uint32_t, int stride, const std::function<std::size_t(MinimapPlane &)> &, bool tracedServices = false);
@@ -53,6 +56,7 @@ private:
   std::array<std::vector<std::size_t>, 2> minimapCandidates_;
   std::size_t pixels_ = 0;
   CanvasMirror *mirror_ = nullptr;
+  bool deferCopyValidity_ = false;
   Surface &surface(std::uint32_t);
   void requireCpu(std::uint32_t, Surface &, std::size_t);
   void write(Surface &, std::size_t at, std::uint32_t);

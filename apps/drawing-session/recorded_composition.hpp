@@ -18,7 +18,7 @@ public:
     RecordedComposition(mnm::render::GlBlitter& renderer,const QJsonObject& plan,Load load)
         :gl_(renderer),load_(std::move(load)) {
         fields(plan,{"schema","width","height","sources","frames"});
-        require(integer(plan["schema"],1,1)==1,"Composition schema");
+        schema_=integer(plan["schema"],1,2);
         width_=integer(plan["width"],1,2048);height_=integer(plan["height"],1,2048);
         require(plan["sources"].isArray() && plan["frames"].isArray(),"Composition lists");
         frames_=plan["frames"].toArray();const auto sources=plan["sources"].toArray();
@@ -34,22 +34,29 @@ public:
             sources_.emplace(id,std::move(source));
         }
         std::set<unsigned> used;
+        std::map<unsigned,std::pair<unsigned,unsigned>> extents;
         for(qsizetype i=0;i<frames_.size();++i){
             require(frames_[i].isObject(),"Composition frame object");const auto f=frames_[i].toObject();
             const auto index=integer(f["index"],1,8192);require(index==unsigned(i)+1,"Composition presentation sequence");
-            if(f["kind"]=="fill"){
-                fields(f,{"index","kind","colour"});integer(f["colour"],0,65535);continue;
+            const auto fw=schema_==2?integer(f["width"],1,2048):width_,fh=schema_==2?integer(f["height"],1,2048):height_;
+            extents[index]={fw,fh};
+            if(schema_==2 && !f["reset_colour"].isNull()){
+                integer(f["reset_colour"],0,65535);require(index>1 && extents.at(index-1)!=std::make_pair(fw,fh),"Display reset requires an extent transition");
             }
-            fields(f,{"index","kind","source_kind","source","view_rect","source_rect","destination_rect","key"});
+            if(f["kind"]=="fill"){
+                if(schema_==2)fields(f,{"index","kind","colour","width","height","reset_colour"});else fields(f,{"index","kind","colour"});integer(f["colour"],0,65535);continue;
+            }
+            if(schema_==2)fields(f,{"index","kind","source_kind","source","view_rect","source_rect","destination_rect","key","width","height","reset_colour"});
+            else fields(f,{"index","kind","source_kind","source","view_rect","source_rect","destination_rect","key"});
             require(f["kind"]=="copy","Unknown composition operation");
             const auto source=integer(f["source"],1,8192);unsigned sw=width_,sh=height_;
             if(f["source_kind"]=="snapshot"){
                 require(sources_.count(source),"Missing composition source");const auto& s=sources_.at(source);sw=s.width;sh=s.height;
                 sourceLast_[source]=index;used.insert(source);
             }else{
-                require(f["source_kind"]=="history" && source<index,"Missing/future composition history");historyLast_[source]=index;
+                require(f["source_kind"]=="history" && source<index,"Missing/future composition history");historyLast_[source]=index;sw=extents.at(source).first;sh=extents.at(source).second;
             }
-            const auto view=rect(f["view_rect"],sw,sh),src=rect(f["source_rect"],sw,sh),dst=rect(f["destination_rect"],width_,height_);
+            const auto view=rect(f["view_rect"],sw,sh),src=rect(f["source_rect"],sw,sh),dst=rect(f["destination_rect"],fw,fh);
             require(src.left>=view.left && src.top>=view.top && src.right<=view.right && src.bottom<=view.bottom &&
                 src.right-src.left==dst.right-dst.left && src.bottom-src.top==dst.bottom-dst.top,"Composition rectangle contract");
             if(!f["key"].isNull())integer(f["key"],0,65535);
@@ -61,12 +68,17 @@ public:
         for(const auto& s:history_)gl_.destroy(s.second);
         if(primary_)gl_.destroy(primary_);
     }
-    unsigned width() const{return width_;}unsigned height() const{return height_;}
+    unsigned width(unsigned index=0) const{return schema_==2 && index?integer(frames_[int(index)-1].toObject()["width"],1,2048):width_;}
+    unsigned height(unsigned index=0) const{return schema_==2 && index?integer(frames_[int(index)-1].toObject()["height"],1,2048):height_;}
     QJsonArray frames() const{return frames_;}
     mnm::render::SurfaceId next(unsigned index){
         require(index==next_ && index<=unsigned(frames_.size()),"Composition next frame identity");
+        const auto w=width(index),h=height(index);
+        if(primary_ && (w!=width_ || h!=height_)){gl_.destroy(primary_);primary_=0;}
+        width_=w;height_=h;
         if(!primary_){primary_=blank(width_,height_);gl_.invalidateContents(primary_);}
         const auto f=frames_[int(index)-1].toObject();
+        if(schema_==2 && !f["reset_colour"].isNull())gl_.update(primary_,0,0,{int(width_),int(height_),std::vector<std::uint32_t>(std::size_t(width_)*height_,integer(f["reset_colour"],0,65535))});
         if(f["kind"]=="fill")gl_.update(primary_,0,0,{int(width_),int(height_),std::vector<std::uint32_t>(std::size_t(width_)*height_,integer(f["colour"],0,65535))});
         else{
             const auto id=integer(f["source"],1,8192);mnm::render::SurfaceId source=0;
@@ -113,7 +125,7 @@ private:
     }
     void budget(std::size_t pixels) const{require(gl_.stats().pixels+pixels<=16777216 && gl_.stats().surfaces<64,"Composition live resource budget");}
     mnm::render::SurfaceId blank(unsigned w,unsigned h){budget(std::size_t(w)*h);return gl_.create({int(w),int(h),std::vector<std::uint32_t>(std::size_t(w)*h)},format());}
-    mnm::render::GlBlitter& gl_;Load load_;QJsonArray frames_;unsigned width_=0,height_=0,next_=1;
+    mnm::render::GlBlitter& gl_;Load load_;QJsonArray frames_;unsigned schema_=1,width_=0,height_=0,next_=1;
     mnm::render::SurfaceId primary_=0;std::map<unsigned,Source> sources_;std::map<unsigned,unsigned> sourceLast_,historyLast_;
     std::map<unsigned,mnm::render::SurfaceId> cached_,history_;
 };

@@ -66,3 +66,10 @@ In the window journey, the moved friendly creature resumes automatic combat
 and finishes the hostile creature after its20-point Sphere hit. Event attribution
 checks exactly one Sphere hit independently of that later melee damage; the
 stationary-friendly core fixture retains the hostile creature at4 health.
+
+The unified master merge preserves alternate-tick lethal settlement/cancellation
+exactly once and both component/World capacity refusal. New casts initialize
+empty contributor sentinels and creator attribution as in the master arena.
+Terrain-bound and legacy open-arena snapshots retain their owned wire fields.
+The combined runner retains both the terrain campaign journey and the master's
+actual arena Sphere window/event-counting restart journey.

@@ -128,6 +128,28 @@ void tests() {
   }
   need(!misses && health(evading) == 24,
        "Sphere must not home onto an evading target");
+  auto lethal = app::newSession();
+  auto lethalCombat = lethal.combat();
+  lethalCombat.damage({1, 1}, 28, {0, 1});
+  auto lethalMeta = lethal.state();
+  lethalMeta.aiWait = 8;
+  lethalMeta.wizards[1].mana = 0;
+  lethal = edit(lethal, std::move(lethalCombat), lethalMeta);
+  cast(lethal, {1, 1});
+  lethal.step();
+  unsigned settled = 0;
+  for (unsigned n = 0; n < 32 && lethal.state().outcome == Outcome::running;
+       ++n) {
+    auto result = lethal.step({true, true, false});
+    for (auto event : result.events)
+      settled += event.kind == SkirmishEventKind::finished;
+  }
+  need(lethal.state().outcome == Outcome::victory && settled == 1 &&
+           lethal.combat().effects().entities.empty(),
+       "alternate lethal projectile must settle/cancel exactly once");
+  auto terminal = bytes(lethal);
+  lethal.step({true, true, false});
+  need(bytes(lethal) == terminal, "terminal effect clock advanced");
   auto poor = ready();
   auto meta = poor.state();
   meta.wizards[0].mana = 0;
@@ -169,6 +191,26 @@ void tests() {
   removed = edit(removed, std::move(reused), reusedMeta);
   removed.step({true, true, false});
   need(health(removed, newActor) == 24, "old Sphere hit reused identity");
+  auto burst = ready(false);
+  auto burstCombat = burst.combat();
+  auto burstMeta = burst.state();
+  for (unsigned i = 0; i < 8; ++i) {
+    burstMeta.wizards[0].mana = 20;
+    need(burst.effectsRuntime()->castSpell(burstCombat, burstMeta,
+                                           Spell::sphere, {0, 1},
+                                           {2, 1}) == SkirmishRefusal::none,
+         "Sphere pool admission");
+  }
+  burstMeta.wizards[0].mana = 20;
+  auto beforePool = encodeSnapshot(burstCombat.world().state());
+  need(burst.effectsRuntime()->castSpell(burstCombat, burstMeta, Spell::sphere,
+                                         {0, 1},
+                                         {2, 1}) == SkirmishRefusal::capacity &&
+           burstMeta.wizards[0].mana == 20 &&
+           encodeSnapshot(burstCombat.world().state()) == beforePool,
+       "Sphere component pool refused nonatomically");
+  burst = edit(burst, std::move(burstCombat), burstMeta);
+  need(app::sphereViews(burst.combat()).size() == 8, "Sphere pool count");
   auto full = ready();
   auto state = full.world().state();
   state.slots.resize(3);
@@ -245,11 +287,33 @@ int main(int argc, char **argv) try {
     need(c.save(argv[2]).durable, "Cure-only seed publication");
     return 0;
   }
+  if (argc == 4 && std::string(argv[1]) == "resume-campaign") {
+    auto campaign = app::loadCampaign(argv[2]);
+    need(campaign.battle(), "resumed Sphere battle missing");
+    unsigned impacts = 0, damage = 0;
+    for (unsigned n = 0; n < 8; ++n) {
+      auto report = campaign.step();
+      need(report.battle.has_value(), "Sphere campaign ended early");
+      for (const auto &event : report.battle->combat.events)
+        if (event.kind == CombatEventKind::hit && event.actor == Handle{0, 1} &&
+            event.target == Handle{2, 1}) {
+          ++impacts;
+          damage += event.amount;
+        }
+    }
+    auto hp = health(*campaign.battle());
+    need(impacts == 1 && damage == 20 && hp == 4,
+         "resumed Sphere duplicated or lost impact");
+    need(campaign.save(argv[3]).durable, "resumed Sphere publication");
+    std::cout << "{\"success\":true,\"impacts\":" << impacts
+              << ",\"damage\":" << damage << ",\"health\":" << hp << "}\n";
+    return 0;
+  }
   if (argc == 1) {
     tests();
     std::cout << "{\"success\":true,\"moving_target_impacts\":1,\"damage\":20,"
                  "\"health\":4,\"generation_reuse\":true,\"mixed_cure\":true,"
-                 "\"timeout\":true}\n";
+                 "\"timeout\":true,\"alternate_lethal\":true}\n";
     return 0;
   }
   throw std::runtime_error("invalid Sphere test command");

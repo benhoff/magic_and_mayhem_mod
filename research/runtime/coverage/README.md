@@ -423,3 +423,15 @@ orders, following, dynamic occupancy, shared scheduling, environment callbacks,
 pause/cadence and visible native integration. Native checkpoints and queued-order
 semantics have their own policy entries. This is a starter checklist, not an
 exhaustive inventory of every branch in those routines.
+
+### Independent merge-parent evidence ID collisions
+
+When two independent branches minted the same evidence ID for different reports,
+keep the first-parent record at its ID and import the other under a distinct ID.
+Optional `evidence_id_imports` entries name `commit`, `historical_id` and
+`imported_id`. The Git gate requires an actual committed or pending merge, exact
+imported record equality except ID, and an independent actual parent containing
+the other canonical record. Report hashes, assertions, source bindings and old
+receipts remain unchanged; imports do not grant validation or status credit.
+Previously recorded import mappings are append-only. Naming an unrelated branch,
+changing an imported report or using an ancestor as a collision witness fails.

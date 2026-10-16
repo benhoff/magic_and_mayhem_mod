@@ -152,12 +152,14 @@ int main(int argc,char **argv){
             if(snapshots){
                 QJsonArray outputs;unsigned snapshotCount=0;
                 for(const auto &s:segments){
-                    DrawingScene scene(renderer,store,source);std::size_t next=0;
+                    DrawingScene scene(renderer,store,source,true);std::size_t next=0;
                     for(const auto &c:s.stream.operations){
+                        report["source_sequence"]=int(c.fields[1]);report["source_operation"]=int(c.fields[2]);report["source_canvas"]=int(c.fields[3]);report["source_phase"]="apply";
                         scene.apply(c);
                         while(next<s.frames.size()&&s.frames[next].sequence==c.fields[1]){
                             const auto &b=s.frames[next++];
                             if(b.queues!=scene.queues())throw std::invalid_argument("Source snapshot queue changed");
+                            report["source_phase"]="snapshot";report["source_canvas"]=int(b.canvas);
                             const auto image=scene.sourceSnapshot(b.canvas);
                             if(image.width!=int(b.width)||image.height!=int(b.height))throw std::invalid_argument("Source snapshot extent changed");
                             QByteArray bytes;bytes.reserve(qsizetype(image.pixels.size()*2));

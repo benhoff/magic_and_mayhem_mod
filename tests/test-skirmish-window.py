@@ -113,7 +113,7 @@ def main():
     loaded, loaded_result = window('load-dialog', dict(end=100, timer=False, actions=[dict(tick=0, kind='load', path=str(directory / 'casting.mnms'))] + actions[4:]))
     assert (loaded / 'final.mnms').read_bytes() == headless.read_bytes()
     assert claims['sources'] == {p: hashlib.sha256((test.ROOT / p).read_bytes()).hexdigest() for p in claims['sources']}
-    report = dict(all_match=True, timer_victory=True, timer_defeat=True, actual_save_load_dialogs=True, failed_load_rollback=True, pause_frozen=True, window_continuations=continuations, headless_continuations=continuations, final_canvas_matches=images, victory_tick=result['tick'], defeat_tick=defeat_result['tick'], claims=claims['claims'], source_sha256=claims['sources'], binaries={str(p.relative_to(test.ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in [args.window.resolve(), args.cli.resolve()]}, wine_required=False, original_comparison=False)
+    report = dict(all_match=True, timer_victory=True, timer_defeat=True, actual_save_load_dialogs=True, failed_load_rollback=True, pause_frozen=True, window_continuations=continuations, headless_continuations=continuations, final_canvas_matches=images, victory_tick=result['tick'], defeat_tick=defeat_result['tick'], claims=claims['claims'], source_sha256=claims['sources'], binaries={str(p.relative_to(test.ROOT) if p.is_relative_to(test.ROOT) else p): hashlib.sha256(p.read_bytes()).hexdigest() for p in [args.window.resolve(), args.cli.resolve()]}, wine_required=False, original_comparison=False)
     (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report))
 

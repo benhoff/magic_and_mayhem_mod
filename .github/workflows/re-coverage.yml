@@ -22,6 +22,7 @@ jobs:
           python3 -B tests/test-re-coverage.py
           python3 -B tests/test-coverage-gate.py
           python3 -B tests/test-coverage-merge-history.py
+          python3 -B tests/test-coverage-evidence-imports.py
           python3 -B tests/test-drawing-inventory.py
           python3 -B tests/test-drawing-corpus.py
           python3 -B tests/test-drawing-scene.py
