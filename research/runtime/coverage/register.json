@@ -72373,6 +72373,179 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CAST.cure-delivery",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Cure direct effect creation, deferred update and release",
+      "scope": "Direct Cure type11 setup resets animation; update invokes spell41 to select77. Type77 follows live target, updates local visibility, waits for animation completion1 then applies and releases; inactive/dead target releases without spell dispatch/refund. Creation/full setup/update/release implementation and owned session pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4800288,
+          "scope": "Bounded spell41 direct type11/deferred77 creation/setup/update/release recovery; lower services, other effect types, installed assets and native session/lifecycle equivalence pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4803248,
+          "scope": "Bounded spell41 direct type11/deferred77 creation/setup/update/release recovery; lower services, other effect types, installed assets and native session/lifecycle equivalence pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4813024,
+          "scope": "Bounded spell41 direct type11/deferred77 creation/setup/update/release recovery; lower services, other effect types, installed assets and native session/lifecycle equivalence pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4801520,
+          "scope": "Bounded spell41 direct type11/deferred77 creation/setup/update/release recovery; lower services, other effect types, installed assets and native session/lifecycle equivalence pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/cure-delivery.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/export-cure-lifecycle.py"
+      ],
+      "evidence": [
+        "CURE02.delivery-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CAST.cure-status-cleanup",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Cure status and associated audio cleanup",
+      "scope": "Whole516150 status/audio cleanup with unchanged571d20 schedule retirement; owned logical vectors and valid associated circular rings, supplied COM endpoints, exact ordered calls/full guarded state. Invalid original pointers/rings, backend graph mutation, native session and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5333328,
+          "scope": "Whole516150 status114 clear and associated120 audio-reference cleanup recovery; manager gates, backend/scheduler consequence ownership, native composition and original comparison pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5709088,
+          "scope": "Associated matched schedule retirement on a valid circular ring; composed whole original entry."
+        }
+      ],
+      "documents": [
+        "research/runtime/cure-delivery.md"
+      ],
+      "implementation": [
+        "reconstruction/casting/cure_services.cpp",
+        "reconstruction/casting/cure_services.hpp"
+      ],
+      "tests": [
+        "tests/cure-services-test.cpp",
+        "tools/test-cure-services.py"
+      ],
+      "evidence": [
+        "CURE02.services-original",
+        "CURE02.services-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "audio/buffers.hpp",
+        "reconstruction/audio/dsound_setup.hpp",
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp",
+        "reconstruction/audio/voice_lifetime.cpp",
+        "reconstruction/audio/voice_lifetime.hpp",
+        "reconstruction/casting/services/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "32768 resource and8192 status cases; arbitrary DWORD resource arithmetic and UI reentrancy",
+          "Enabled/initialized/buffer gates; absent voice, failed/idle/playing GetStatus, Stop/position success/failure",
+          "One-to-four schedule nodes; head/middle/tail and first duplicate match, external output clearing; no wrapper disposal"
+        ],
+        "excluded": [
+          "Invalid original pointers/absent matching schedule node/malformed ring; explicit native preflight refusals",
+          "Audio/UI backend internals, installed resources, complete Cure delivery/session/live replacement"
+        ]
+      }
+    },
+    {
+      "id": "CAST.resource-change",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Cast resource mutation and chargeable type predicate",
+      "scope": "Whole507f00 resource mutation and411e50 chargeable predicate: DWORD-wrapped signed clamp and shifted cap, dirty write, gated ordered UI callbacks including reentrant resource writes. Owned state; native session and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5275392,
+          "scope": "Whole507f00 resource mutation and411e50 type predicate recovery for owned state; native composition and original comparison pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4267600,
+          "scope": "Whole507f00 resource mutation and411e50 type predicate recovery for owned state; native composition and original comparison pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/cure-delivery.md"
+      ],
+      "implementation": [
+        "reconstruction/casting/cure_services.cpp",
+        "reconstruction/casting/cure_services.hpp"
+      ],
+      "tests": [
+        "tests/cure-services-test.cpp",
+        "tools/test-cure-services.py"
+      ],
+      "evidence": [
+        "CURE02.services-original",
+        "CURE02.services-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "audio/buffers.hpp",
+        "reconstruction/audio/dsound_setup.hpp",
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp",
+        "reconstruction/audio/voice_lifetime.cpp",
+        "reconstruction/audio/voice_lifetime.hpp",
+        "reconstruction/casting/services/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "32768 resource and8192 status cases; arbitrary DWORD resource arithmetic and UI reentrancy",
+          "Enabled/initialized/buffer gates; absent voice, failed/idle/playing GetStatus, Stop/position success/failure",
+          "One-to-four schedule nodes; head/middle/tail and first duplicate match, external output clearing; no wrapper disposal"
+        ],
+        "excluded": [
+          "Invalid original pointers/absent matching schedule node/malformed ring; explicit native preflight refusals",
+          "Audio/UI backend internals, installed resources, complete Cure delivery/session/live replacement"
+        ]
+      }
     }
   ],
   "evidence": [
@@ -149269,6 +149442,190 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "CURE02.services-original",
+      "kind": "isolated_original",
+      "scope": "Whole507f00 resource mutation and411e50 predicate; whole516150 status cleanup including unchanged571d20 ring retirement. Logical owned vectors, valid associated schedule rings, supplied COM/UI endpoints; full guarded actor/config/manager/wrapper/buffer/schedule/output bytes and ordered calls. Excludes invalid original pointers/rings, backend graph mutation, native session and live replacement.",
+      "record": "research/runtime/original-cure-services-bound-20261016.json",
+      "sha256": "a4782449d649b9ee4e8001ac65cec2e94fbf15ec29237f50214f0be5921527b3",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 40960
+        },
+        {
+          "pointer": "/resource_cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/status_cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/service_calls",
+          "equals": [
+            5083,
+            3355,
+            3050,
+            3901,
+            3901
+          ]
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "CURE02.services-native",
+      "kind": "native_integration",
+      "scope": "Whole507f00 resource mutation and411e50 predicate; whole516150 status cleanup including unchanged571d20 ring retirement. Logical owned vectors, valid associated schedule rings, supplied COM/UI endpoints; full guarded actor/config/manager/wrapper/buffer/schedule/output bytes and ordered calls. Excludes invalid original pointers/rings, backend graph mutation, native session and live replacement.",
+      "record": "research/runtime/original-cure-services-bound-20261016.json",
+      "sha256": "a4782449d649b9ee4e8001ac65cec2e94fbf15ec29237f50214f0be5921527b3",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 40960
+        },
+        {
+          "pointer": "/resource_cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/status_cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/service_calls",
+          "equals": [
+            5083,
+            3355,
+            3050,
+            3901,
+            3901
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CURE02.delivery-static",
+      "kind": "static",
+      "scope": "Pinned unchanged function exports and setup/update89 dispatch tables; instruction findings only, no execution proof.",
+      "record": "research/runtime/cure-lifecycle-static-20261016.json",
+      "sha256": "4ec3c4c50d3627948a2b5b8cb7b5ee10c7a5eb1acfe3ddfe40dcf4a6c370bf34",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
     }
   ],
   "classifications": [],
@@ -165753,6 +166110,23 @@
         "NP.campaign-persistence.synthetic-20261016",
         "NP.campaign-persistence.envelope-20261016"
       ]
+    },
+    {
+      "id": "cure-services-isolated-20261016",
+      "level": "headless",
+      "scope": "Resource DWORD arithmetic/UI gates and status/audio cleanup with owned matched scheduler ring; supplied UI/COM endpoints, guarded full objects and unchanged four original entries.",
+      "behaviors": [
+        "CAST.cure-status-cleanup",
+        "CAST.resource-change"
+      ],
+      "tests": [
+        "tests/cure-services-test.cpp",
+        "tools/test-cure-services.py"
+      ],
+      "evidence": [
+        "CURE02.services-original",
+        "CURE02.services-native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -166369,8 +166743,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-campaign-commit-20261016.json",
-    "sha256": "aa4ab3fb9f7a472a4071d691ff14d402d86b51ae04bfb3e103a7cf170bb3ca9f"
+    "path": "research/runtime/coverage/source-index-cure-services-reviewed-20261016.json",
+    "sha256": "6f5edd8177a4c5dafadfdaf9f070bbc47cdc806778c7620714bd8c5e7a49abbf"
   },
   "claim_bindings_required": true
 }

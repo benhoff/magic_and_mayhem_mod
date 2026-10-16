@@ -12439,3 +12439,23 @@ must validate/rebind their own resources before publishing restored state.
 Existing reverse-engineering evidence and gameplay-gap statuses remain historical
 and unchanged. Shared `game/README.md` edits may make earlier linked evidence
 stale; this run does not renew those unrelated validation claims.
+
+## Cure resource and status ownership (2026-10-16)
+
+CURE02 implements the recovered resource/chargeable and status/audio cleanup
+helpers with owned logical state. Four unchanged original entries agree across
+40,960 guarded cases, native64 and sanitizers; standalone CMake/CTest passes.
+The resource helper preserves wrapped arithmetic and UI callback order. Status
+cleanup owns associated scheduler retirement even on Stop failure, without
+freeing the wrapper. Eight invalid native graph inputs refuse before mutation.
+See [Cure delivery](cure-delivery.md) and source-bound
+[execution evidence](original-cure-services-bound-20261016.json).
+
+Static setup/update tables establish direct type11 → deferred77 → apply/release.
+Inactive/dead deferred targets release without dispatch/refund. Full creation,
+asset-driven animation timing, native session/checkpoint integration and live
+replacement remain pending; these helper comparisons do not promote SP.041 to
+whole-spell completion. Incoming commit45af2ed6 was reviewed against its parent;
+all source/behavior transitions have exact receipts, with no missing accounting.
+Incoming campaign-checkpoint commit441bf567 was also reviewed after landing;
+its20 file and19 behavior transitions have exact receipts, with no gaps.
