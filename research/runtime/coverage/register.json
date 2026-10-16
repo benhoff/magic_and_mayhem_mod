@@ -73846,6 +73846,53 @@
         "Focused ordering and one current software original-game journey do not establish arbitrary concurrency, original GUI/movie decoder pixel equality, full presented-session equivalence or sustained hardware performance.",
         "A retained short profiled V2 control failed worst-window paint-rate acceptance; later functional journeys do not erase it."
       ]
+    },
+    {
+      "id": "CAST.projectile-update",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Original type3 projectile update and actor impact",
+      "scope": "Whole4970e0 type3 arm with auxiliary222 absent and actual48ecf0 actor-target dispatch. Supplied motion/bounce/defended-damage/release/ANI/logical audio services, DWORD lifetime wrap and signed timeout, hit-exclusion/attacker/cache/visibility writes and ordered calls. No terrain damage, complete lower ownership, installed profiles or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4813024,
+          "scope": "Type3 arm and ordinary epilogue only; other update types excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4779248,
+          "scope": "Actor-target branch only; terrain and area branches excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/projectile-delivery.md"
+      ],
+      "implementation": [
+        "reconstruction/casting/projectile.cpp",
+        "reconstruction/casting/projectile.hpp"
+      ],
+      "tests": [
+        "tests/projectile-test.cpp",
+        "tools/test-projectile.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/casting/projectile/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-projectile.py"
+      ],
+      "evidence": [
+        "PROJECTILE01.original",
+        "PROJECTILE01.native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -152081,6 +152128,118 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "PROJECTILE01.original",
+      "kind": "isolated_original",
+      "scope": "Whole unchanged4970e0 type3 arm and actual48ecf0 actor-target dispatch: supplied motion, defended damage, bounce, release, ANI and logical audio services; full guarded effect/actor state, FS restoration and ordered calls. No terrain damage, original lower ownership, installed profiles or live replacement",
+      "record": "research/runtime/original-projectile-bound-20261016.json",
+      "sha256": "20ace58026f2d828a56f2e270fe8822dd3e65971440a142576d6963b4ce1c69d",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "PROJECTILE01.native",
+      "kind": "native_integration",
+      "scope": "Whole unchanged4970e0 type3 arm and actual48ecf0 actor-target dispatch: supplied motion, defended damage, bounce, release, ANI and logical audio services; full guarded effect/actor state, FS restoration and ordered calls. No terrain damage, original lower ownership, installed profiles or live replacement",
+      "record": "research/runtime/original-projectile-bound-20261016.json",
+      "sha256": "20ace58026f2d828a56f2e270fe8822dd3e65971440a142576d6963b4ce1c69d",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -168746,22 +168905,6 @@
       ]
     },
     {
-      "id": "BATTLE01.sections",
-      "level": "headless",
-      "scope": "Synthetic runtime with real arena movement/combat, exact checkpoint continuation, rollback after movement, malformed envelope and stale/reused effect identities.",
-      "behaviors": [
-        "NP.battle-effects"
-      ],
-      "tests": [
-        "tests/battle-effects-test.cpp",
-        "tools/test-battle-effects.py"
-      ],
-      "evidence": [
-        "BATTLE01.sections-native",
-        "BATTLE02.cure-native"
-      ]
-    },
-    {
       "id": "BATTLE02.cure-playable",
       "level": "preview",
       "scope": "Native Qt campaign friendly-target Cure while a creature moves, save during playback, restart the window and finish identically to headless continuation; native/sanitized health/cap/death/pool/generation/removal and installed recipe74 playback checks.",
@@ -168775,6 +168918,22 @@
         "tools/test-cure-battle.py"
       ],
       "evidence": [
+        "BATTLE02.cure-native"
+      ]
+    },
+    {
+      "id": "BATTLE01.sections",
+      "level": "headless",
+      "scope": "Synthetic runtime with real arena movement/combat, exact checkpoint continuation, rollback after movement, malformed envelope and stale/reused effect identities.",
+      "behaviors": [
+        "NP.battle-effects"
+      ],
+      "tests": [
+        "tests/battle-effects-test.cpp",
+        "tools/test-battle-effects.py"
+      ],
+      "evidence": [
+        "BATTLE01.sections-native",
         "BATTLE02.cure-native"
       ]
     },
@@ -168808,6 +168967,22 @@
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
         "HOST.native-startup-resources.v3-natural-storage-20261016"
+      ]
+    },
+    {
+      "id": "PROJECTILE01.dispatch",
+      "level": "headless",
+      "scope": "32768 bounded whole-entry type3 cases, actual actor impact, full guarded effect/actor state and ordered supplied lower calls; native/sanitized/32-bit original and standalone CMake.",
+      "behaviors": [
+        "CAST.projectile-update"
+      ],
+      "tests": [
+        "tests/projectile-test.cpp",
+        "tools/test-projectile.py"
+      ],
+      "evidence": [
+        "PROJECTILE01.original",
+        "PROJECTILE01.native"
       ]
     }
   ],
@@ -169425,8 +169600,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-v3-startup-storage-compared-20261016.json",
-    "sha256": "d63a283e0438a22ba130615f2dab0279e405932b470078c50b4593246ee1bed3"
+    "path": "research/runtime/coverage/source-index-projectile-20261016.json",
+    "sha256": "f08e37189d6b4809ee9afde33c4c0946ed8146462894e22b5a0c300c178e16f2"
   },
   "claim_bindings_required": true
 }

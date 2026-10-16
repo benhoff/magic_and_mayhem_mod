@@ -12833,3 +12833,18 @@ broad supersets predate merged Cure code and the harness deadline change.
 Incoming 910046b3..6f3f7037 committed file/behavior transitions were reviewed with
 exact pending retrospective receipts; this does not assert past gate passes or
 new execution of those unrelated engine branches.
+
+## Type3 projectile update and actor impact (2026-10-16)
+
+PROJECTILE01 recovers the Magic Sphere73 update type3 arm of4970e0 and selected
+actor-target48ecf0 dispatch.32,768 bounded original/native64/sanitized cases and
+standalone CMake pass with guarded effect/actor state, ordered supplied service
+calls, immutable text/dispatch and original manifests before/after. Hits retain
+the projectile, update its next creator exclusion and record attacker+1/time100;
+timeout wrapping, height exit, bounce dispatch, ANI restart and logical audio
+start/follow are distinct branches. Lower motion/ricochet/health/ANI/audio/release
+services are supplied; no complete lower lifecycle or live replacement is claimed.
+See [contract](projectile-delivery.md) and
+[execution](original-projectile-bound-20261016.json). The incoming6f3f7037..b340b291
+range has42 file and197 behavior transitions reviewed with exact receipts and no
+missing accounting. Historical evidence remains immutable.
