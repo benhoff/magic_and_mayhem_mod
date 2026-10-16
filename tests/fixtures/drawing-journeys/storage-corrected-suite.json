@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "requirements": {
+    "enabled-movies": [
+      "both-intros",
+      "movie-skip",
+      "return-to-menu"
+    ],
+    "main-setup-menus": [
+      "main-menu",
+      "setup-change",
+      "cancel-return"
+    ],
+    "campaign-entry": [
+      "campaign-selection",
+      "loading",
+      "first-composed-world"
+    ],
+    "quick-battle-entry": [
+      "setup-confirm",
+      "loading",
+      "first-composed-world"
+    ],
+    "active-world": [
+      "sustained-world",
+      "animation",
+      "visibility"
+    ],
+    "camera-motion": [
+      "pan",
+      "four-orientations",
+      "viewport-boundaries"
+    ],
+    "creatures-effects": [
+      "creature-animation",
+      "attachment",
+      "combat",
+      "lighting",
+      "effect-blending"
+    ],
+    "hud-minimap-tooltips": [
+      "hud-update",
+      "minimap-update",
+      "markers",
+      "tooltip-open-close"
+    ],
+    "cursor-interaction": [
+      "cursor-motion",
+      "hotspot",
+      "picking",
+      "selection"
+    ],
+    "pause-preferences": [
+      "pause",
+      "preferences-change",
+      "cancel",
+      "resume"
+    ],
+    "save-load": [
+      "save",
+      "load",
+      "restored-world"
+    ],
+    "map-transitions": [
+      "leave-map",
+      "loading",
+      "next-map"
+    ],
+    "battle-results": [
+      "victory",
+      "defeat",
+      "return-to-menu"
+    ],
+    "shutdown": [
+      "world-exit",
+      "menu-exit",
+      "cleanup"
+    ]
+  },
+  "operation_requirements": [
+    "copy-opaque",
+    "copy-keyed",
+    "copy-clipped",
+    "copy-stretched",
+    "copy-alias-overlap",
+    "fill-full",
+    "fill-clipped",
+    "partial-write",
+    "cpu-write-readback",
+    "text-font-dc-lifetime",
+    "image-cropping",
+    "sprite-indexed",
+    "sprite-direct",
+    "sprite-auxiliary",
+    "palette-remap",
+    "palette-cycling",
+    "destination-dependency",
+    "flags-and-return-values",
+    "surface-loss-restore",
+    "transition-recovery",
+    "failure-cleanup"
+  ],
+  "cases": [
+    {
+      "id": "recorded-storage-corrected-session",
+      "adapter": "recorded_action_session",
+      "catalog": {
+        "path": "tests/fixtures/drawing-storage-corrected-session/session.json",
+        "sha256": "55ea6c4623a2916bdc4a42c3681f75b68aedce85792686ab2b29a234ea6195fc"
+      },
+      "scope": "All222 observed Apprentice Save/Load/rebuild frames of the explicit opt-in stale-upload-crop profile, independent source/default/XCB witnesses and exact action/save cohorts. Driver-policy reference, not unmodified uploads; generic14journey/21operation acceptance remains pending."
+    }
+  ]
+}

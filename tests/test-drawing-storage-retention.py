@@ -17,6 +17,48 @@ class Cases(unittest.TestCase):
         cls.original=json.loads((ROOT/'research/runtime/storage-action-original-20261016.json').read_text())
         cls.journal=artifact(ROOT,cls.catalog['traces']['journal'])
         cls.actions=artifact(ROOT,cls.catalog['action_frames'])
+    def test_legacy_and_explicit_retention_ids_coexist(self):
+        self.assertEqual(session.retention_id(self.catalog),session.STORAGE_RETENTION)
+        self.assertEqual(session.retention_id({'schema':1}),session.RETENTION)
+        self.assertEqual(session.retention_id({'schema':3,'retention_evidence':'new.reference'}),'new.reference')
+        for value in (None,'',3):
+            with self.assertRaises(ValueError):session.retention_id({'schema':3,'retention_evidence':value})
+    def test_corrected_profile_cannot_drop_policy_or_witnesses(self):
+        original={'egl_correct_stale_upload_policy':True,'egl_destination_gpu_witness':True,'egl_xcb_image_witness':True}
+        self.assertEqual(session.presentation_profile(original)['name'],'stale_upload_crop')
+        self.assertEqual(session.presentation_profile({})['name'],'unmodified_upload')
+        for key,value in [('egl_destination_gpu_witness',False),('egl_xcb_image_witness',False),('egl_correct_stale_upload_policy',1),('egl_drawable_rebind_policy',True),('egl_drawable_release_policy',True),('egl_viewport_refresh_policy',True)]:
+            with self.subTest(key=key),self.assertRaises(ValueError):session.presentation_profile(dict(original,**{key:value}))
+    def test_explicit_corrected_profile_and_witness_admission(self):
+        catalog=json.loads((ROOT/'tests/fixtures/drawing-storage-corrected-session/session.json').read_text())
+        original=json.loads((ROOT/'research/runtime/egl-destination-original-corrected-20261016.json').read_text())
+        # Check complete cohorts and original metadata, independently of the immutable catalog guard.
+        files=session.admit_witnesses(ROOT,catalog,original)
+        self.assertEqual(len(files),222)
+        self.assertEqual(catalog['reference_profile'],session.presentation_profile(original))
+        for change in ('missing','order','identity','metadata','extent','policy'):
+            changed=deepcopy(catalog);source=deepcopy(original)
+            if change=='missing':changed['witnesses'].pop()
+            elif change=='order':changed['witnesses'].reverse()
+            elif change=='identity':source['egl_swap_completion_observation']['frames'][0]['call']+=1
+            elif change=='metadata':changed['witnesses'][0]['files'].pop(next(iter(changed['witnesses'][0]['files'])))
+            elif change=='extent':source['egl_swap_completion_observation']['frames'][0]['width']-=1
+            else:changed['reference_profile']['policies']['egl_correct_stale_upload_policy']=False
+            with self.subTest(change=change),self.assertRaises(ValueError):session.admit_witnesses(ROOT,changed,source)
+    def test_corrected_reference_cannot_be_relabelled_legacy(self):
+        catalog=json.loads((ROOT/'tests/fixtures/drawing-storage-corrected-session/session.json').read_text())
+        register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
+        original=json.loads((ROOT/'research/runtime/egl-destination-original-corrected-20261016.json').read_text())
+        bound=json.loads((ROOT/'research/runtime/egl-destination-native-corrected-20261016.json').read_text())
+        for mode in ('legacy','profile','retention-kind'):
+            changed=deepcopy(catalog);reg=deepcopy(register)
+            if mode=='legacy':changed.update(schema=2)
+            elif mode=='profile':changed['reference_profile']['name']='unmodified_upload'
+            else:
+                next(e for e in reg['evidence'] if e['id']==session.retention_id(changed))['kind']='native_integration'
+            # Bypass only the catalog hash to exercise semantic provenance checks.
+            values=[changed,original,bound]
+            with patch('rendering_coverage.evidence_record',side_effect=values),self.subTest(mode=mode),self.assertRaises(ValueError):session.admit(ROOT,changed,reg)
     def test_complete_original_action_and_save_cohort(self):
         session.admit_actions(ROOT,self.catalog,self.original,self.journal)
     def check_action_mutation(self,mutate):

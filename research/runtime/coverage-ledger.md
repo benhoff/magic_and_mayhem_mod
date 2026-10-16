@@ -13075,3 +13075,15 @@ Installed movement/checkpoint and overlapping-spawn rollback development checks
 pass. Combat/spells/campaign/window integration remains pending in this chunk;
 no original full-world/search or live-replacement claim is added. See
 [native terrain battle](native-terrain-battle.md).
+
+## Portable corrected storage regression (2026-10-16)
+
+The passing corrected222frame interval now has its own immutable portable fixture
+and explicit presentation-policy provenance, separate from the unchanged238frame
+unmodified-upload baseline. Retained source/default-framebuffer/XCB witnesses
+remain external comparator inputs. Schema3 rejects legacy relabeling, changed
+policy, incomplete/reordered cohorts and mismatches. The default journey suite
+contains both references; the focused corrected suite preserves the same14journey/
+21operation denominator and observed-EGL boundary. No global-route, resource
+ownership, hardware, original-runtime revalidation or renderer replacement claim.
+See [portable reproduction and outcomes](action-bound-storage-session.md).

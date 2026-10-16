@@ -73266,7 +73266,8 @@
         "DRAW02.recorded-session.journey-adapter-20261016",
         "DRAW02.storage.quick-battle-regression-20261016",
         "DRAW02.cursor.quick-regression-20261016",
-        "EGLDST.quick.regression-20261016"
+        "EGLDST.quick.regression-20261016",
+        "DRAW02.storage-corrected.quick-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -75086,7 +75087,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Portable action-bound storage/rebuild EGL session",
-      "scope": "Portable observed_egl_action_session boundary for a complete original-active Apprentice Save/Load, display rebuilds, MainLoad/resume and returned-Main interval with separately verified normal Quit. Retain all full original planes, exact callback epoch sidecars, source-only producer/API/closure traces, encoded assets and original save bytes. Recompute original action/source/worker/resource/extent bindings, then native GPU565 and physical X11 comparisons from native-owned inputs. New suite case keeps original Qt menu policy/global-route/hardware/live-replacement limits and all fourteen-journey/twenty-one-operation acceptance requirements. Missing/reordered/unbound/modified artifacts and mismatches refuse; no original oracle pixels enter native processes. Normalize only uniquely API-bound, exact-geometry COPY runs into independently observed driver order, preserving all original traces. Other producers are barriers; source reads within a run bind to their exact API/driver command rather than the wrapper return prefix. No original source/destination pixels choose copy ordering.",
+      "scope": "Portable observed_egl_action_session boundary for a complete original-active Apprentice Save/Load, display rebuilds, MainLoad/resume and returned-Main interval with separately verified normal Quit. Retain all full original planes, exact callback epoch sidecars, source-only producer/API/closure traces, encoded assets and original save bytes. Recompute original action/source/worker/resource/extent bindings, then native GPU565 and physical X11 comparisons from native-owned inputs. New suite case keeps original Qt menu policy/global-route/hardware/live-replacement limits and all fourteen-journey/twenty-one-operation acceptance requirements. Missing/reordered/unbound/modified artifacts and mismatches refuse; no original oracle pixels enter native processes. Normalize only uniquely API-bound, exact-geometry COPY runs into independently observed driver order, preserving all original traces. Other producers are barriers; source reads within a run bind to their exact API/driver command rather than the wrapper return prefix. No original source/destination pixels choose copy ordering. Multiple immutable storage catalogs have explicit retention evidence IDs. Schema3 independently binds presentation policy flags to the original acquisition and retains full source/default-framebuffer/XCB witnesses for external diagnostics. Corrected stale-upload references remain distinct from unmodified-upload baselines; missing witnesses, policy relabeling and mismatching intermediate planes refuse.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -75110,7 +75111,10 @@
         "tests/fixtures/drawing-storage-session/session.json",
         "tests/test-drawing-storage-retention.py",
         "tests/fixtures/drawing-journeys/storage-suite.json",
-        "tests/test-drawing-copy-order.py"
+        "tests/test-drawing-copy-order.py",
+        "tests/fixtures/drawing-storage-corrected-session/session.json",
+        "tests/fixtures/drawing-journeys/storage-corrected-suite.json",
+        "tests/fixtures/drawing-journeys/suite.json"
       ],
       "validation_dependencies": [
         "tools/compare-drawing-quick-battle.py",
@@ -75127,14 +75131,20 @@
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
         "tests/fixtures/drawing-recorded-session/session.json",
-        "tools/drawing_action_session.py"
+        "tools/drawing_action_session.py",
+        "tools/drawing_egl_gpu_reference.py",
+        "tools/drawing_egl_destination.py"
       ],
       "evidence": [
         "DRAW02.storage-session.retention-20261016",
         "DRAW02.storage-session.portable-20261016",
         "DRAW02.storage-session.journey-20261016",
         "DRAW02.cursor.storage-portable-20261016",
-        "EGLDST.storage.regression-20261016"
+        "EGLDST.storage.regression-20261016",
+        "DRAW02.storage-corrected.retention-20261016",
+        "DRAW02.storage-corrected.portable-20261016",
+        "DRAW02.storage-corrected.baseline-20261016",
+        "DRAW02.storage-corrected.controls-20261016"
       ],
       "status": {
         "understanding": "partial",
@@ -75144,7 +75154,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Retained full238frame reference now differs only at ordinal170 (126pixels each GPU/physical cohort). Nine loading/background failures fixed by independently bound COPY driver order/read prefixes. Preserve physical failure and unchanged tolerance/14journey/21operation gates. Original global routes, semantic causality, Qt menu policy, source ownership, hardware and live replacement remain separate."
+        "Retained full238frame reference now differs only at ordinal170 (126pixels each GPU/physical cohort). Nine loading/background failures fixed by independently bound COPY driver order/read prefixes. Preserve physical failure and unchanged tolerance/14journey/21operation gates. Original global routes, semantic causality, Qt menu policy, source ownership, hardware and live replacement remain separate.",
+        "Portable corrected222frame driver-policy fixture is separate from historical238frame unmodified uploads. Shared replay changes require new execution evidence; historical validation fingerprints remain unchanged. Retention alone is not new original execution, generic journey acceptance or renderer replacement."
       ]
     },
     {
@@ -156488,6 +156499,144 @@
           "equals": 4
         }
       ]
+    },
+    {
+      "id": "DRAW02.storage-corrected.retention-20261016",
+      "kind": "static",
+      "record": "tests/fixtures/drawing-storage-corrected-session/session.json",
+      "sha256": "55ea6c4623a2916bdc4a42c3681f75b68aedce85792686ab2b29a234ea6195fc",
+      "scope": "Lossless portable retention of an independently acquired observed-EGL interval; no new original execution or global presentation admission.",
+      "assertions": [
+        {
+          "pointer": "/boundary",
+          "equals": "observed_egl_action_session"
+        }
+      ],
+      "sources_pointer": "/retention_sources"
+    },
+    {
+      "id": "DRAW02.storage-corrected.portable-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/storage-corrected-portable-20261016.json",
+      "sha256": "069c49d9e72768273eec69aa115866d2c1b200542306e8b7a7ce9508640589c2",
+      "scope": "Public recorded-action journey adapter on all222corrected-profile frames; exact source/default/upload witnesses and full native GPU/X11 comparisons pass. Retained driver-policy reference only; generic acceptance remains false.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/reference_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/cases/0/result/frames",
+          "equals": 222
+        },
+        {
+          "pointer": "/cases/0/result/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/0/result/witness_frames",
+          "equals": 222
+        },
+        {
+          "pointer": "/cases/0/result/witness_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/0/result/reference_profile/name",
+          "equals": "stale_upload_crop"
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.storage-corrected.baseline-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/storage-corrected-baseline-regression-20261016.json",
+      "sha256": "d95615da074882f4b254e8e74e2538f63875089a0e81ce824256dcb00cd3f257",
+      "scope": "All238unchanged historical unmodified-upload frames retain exactly one126pixel-per-GPU/physical-cohort failure; no expected-failure conversion or tolerance change.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/frames",
+          "equals": 238
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 252
+        },
+        {
+          "pointer": "/witness_frames",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.storage-corrected.quick-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/storage-corrected-quick-regression-20261016.json",
+      "sha256": "faabf471035ca93cd11ab04351757c68fb61c16b8c539125da4b8f7631e71a13",
+      "scope": "All323unchanged Quick Battle native GPU/X11 frames pass after multi-profile reader changes; bounded existing headless integration only.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/frames",
+          "equals": 323
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.storage-corrected.controls-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/storage-corrected-admission-controls-20261016.json",
+      "sha256": "518e7d75046be840b8acef764bafcbaaea140e330ccb8cf7272fcd409d4b6275",
+      "scope": "59focused admission/action/order/source/default/journey tests pass, including multi-ID coexistence and corrected-profile relabeling/witness refusals. Synthetic/offline controls, not original execution or runtime policy revalidation.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -173165,7 +173314,8 @@
         "DRAW02.recorded-session.portable-03-20261016",
         "DRAW02.storage.quick-battle-regression-20261016",
         "DRAW02.cursor.quick-regression-20261016",
-        "EGLDST.quick.regression-20261016"
+        "EGLDST.quick.regression-20261016",
+        "DRAW02.storage-corrected.quick-20261016"
       ]
     },
     {
@@ -173421,7 +173571,8 @@
       "evidence": [
         "DRAW02.storage-session.portable-20261016",
         "DRAW02.cursor.storage-portable-20261016",
-        "EGLDST.storage.regression-20261016"
+        "EGLDST.storage.regression-20261016",
+        "DRAW02.storage-corrected.baseline-20261016"
       ]
     },
     {
@@ -173680,6 +173831,25 @@
       ],
       "evidence": [
         "EGLDST.original.corrected-20261016"
+      ]
+    },
+    {
+      "id": "NR.storage-session-corpus.corrected",
+      "level": "headless",
+      "scope": "Replay every retained222frame of the explicit stale-upload-crop original-active storage profile through native source/GPU/X11 output; independently check source/default destination/upload witnesses and preserve generic14journey/21operation and unmodified-driver limits.",
+      "behaviors": [
+        "NR.storage-session-corpus"
+      ],
+      "tests": [
+        "tools/check-recorded-drawing-session.py",
+        "tools/check-drawing-journeys.py",
+        "tests/test-drawing-storage-retention.py",
+        "tests/fixtures/drawing-storage-corrected-session/session.json",
+        "tests/fixtures/drawing-journeys/storage-corrected-suite.json"
+      ],
+      "evidence": [
+        "DRAW02.storage-corrected.portable-20261016",
+        "DRAW02.storage-corrected.controls-20261016"
       ]
     }
   ],
@@ -174297,8 +174467,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-terrain-binding-staged-20261016.json",
-    "sha256": "0910c50126e2aaa0b02406a108c9dde2d2a26997e21186643bc4ebc265591f7f"
+    "path": "research/runtime/coverage/source-index-storage-portable-corrected-final-20261016.json",
+    "sha256": "1f911b96f38533ca02b13e75258f3bd97811742d097e09a3dd8ed5351c377273"
   },
   "claim_bindings_required": true
 }

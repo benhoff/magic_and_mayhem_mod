@@ -8,7 +8,7 @@ from drawing_corpus import ROOT, local, sha, load_tool
 from drawing_journeys import CATALOG, admit_suite, coverage, inventory
 
 
-def run(root,catalog_path,*,surface=None,world=None,scene=None,session=None,recorded_native=None,recorded_presenter=None,headless=False):
+def run(root,catalog_path,*,surface=None,world=None,scene=None,session=None,recorded_native=None,recorded_presenter=None,headless=False,recorded_output_parent=None):
     catalog_path=local(root,catalog_path);catalog_bytes=catalog_path.read_bytes();catalog=json.loads(catalog_bytes)
     admit_suite(root,catalog)
     register_bytes=(root/'research/runtime/coverage/register.json').read_bytes();register=json.loads(register_bytes)
@@ -55,9 +55,10 @@ def run(root,catalog_path,*,surface=None,world=None,scene=None,session=None,reco
                 _,_,frames,_=admit(root,child,register)
                 admitted_rows.append({'id':case['id'],'scenario':'save-load' if case['adapter']=='recorded_action_session' else 'quick-battle-entry','boundary':child['boundary'],
                     'independent_reference':True,'frames':len(frames),'contiguous':True,'actions_bound':case['adapter']=='recorded_action_session',
+                    'reference_profile':child.get('reference_profile',{'name':'legacy_unmodified_upload'}),
                     'requirements':[],'operations':[],'outcome':'pending'})
                 reference_admitted=True
-                result=check(root=root,catalog_path=path,native=recorded_native,presenter=recorded_presenter,headless=headless) if recorded_native and recorded_presenter else None
+                result=check(root=root,catalog_path=path,native=recorded_native,presenter=recorded_presenter,headless=headless,output_parent=recorded_output_parent) if recorded_native and recorded_presenter else None
                 admitted_rows[0]['outcome']=result['outcome'] if result else 'unsupported'
             else:
                 from drawing_session import admit,check
@@ -99,6 +100,7 @@ def main():
     for name in ('surface','world','scene','session'):p.add_argument('--'+name+'-executable',type=Path)
     p.add_argument('--recorded-native-executable',type=Path)
     p.add_argument('--recorded-presenter-executable',type=Path)
+    p.add_argument('--recorded-output-parent',type=Path,help='Owned output directory under working for recorded-session artifacts')
     p.add_argument('--claims',type=Path)
     p.add_argument('--run-guards',action='store_true')
     p.add_argument('--headless',action='store_true');p.add_argument('--require-reference-complete',action='store_true')
@@ -112,12 +114,12 @@ def main():
         fingerprints.update(load_tool('check-drawing-scene').sources())
         if (ROOT/'tests/fixtures/drawing-sequence').exists():
             fingerprints.update(load_tool('check-drawing-sequence').sources())
-        for directory in ('tests/fixtures/drawing-journeys','tests/fixtures/drawing-publication','tests/fixtures/drawing-recorded-session','tests/fixtures/drawing-storage-session'):
+        for directory in ('tests/fixtures/drawing-journeys','tests/fixtures/drawing-publication','tests/fixtures/drawing-recorded-session','tests/fixtures/drawing-storage-session','tests/fixtures/drawing-storage-corrected-session'):
             for path in (ROOT/directory).rglob('*'):
                 if path.is_file():fingerprints[str(path.relative_to(ROOT))]=sha(path.read_bytes())
         for name in ('tools/check-drawing-journeys.py','tools/drawing_journeys.py','tools/drawing_session.py','tools/retain-drawing-session.py','tests/test-drawing-journeys.py','tests/test-drawing-session.py','tools/drawing_publication_corpus.py','tools/retain-drawing-publication.py','tools/drawing_publication.py','tests/test-drawing-publication.py','tests/test-drawing-publication-corpus.py'):
             if (ROOT/name).is_file():fingerprints[name]=sha((ROOT/name).read_bytes())
-        for name in ('tools/drawing_recorded_session.py','tools/recorded_drawing_plan.py','tools/compare-drawing-quick-battle.py','tools/check-recorded-drawing-session.py','tools/retain-recorded-drawing-session.py','apps/drawing-session/main.cpp','apps/drawing-session/recorded_composition.hpp'):
+        for name in ('tools/drawing_copy_order.py','tools/drawing_egl_gpu_reference.py','tools/drawing_egl_destination.py','tools/drawing_recorded_session.py','tools/recorded_drawing_plan.py','tools/compare-drawing-quick-battle.py','tools/check-recorded-drawing-session.py','tools/retain-recorded-drawing-session.py','apps/drawing-session/main.cpp','apps/drawing-session/recorded_composition.hpp'):
             fingerprints[name]=sha((ROOT/name).read_bytes())
         claims=json.loads(a.claims.read_text()) if a.claims else None
         if claims:
@@ -134,7 +136,7 @@ def main():
                 if execution.returncode:raise ValueError('Journey guard failed: '+execution.stderr.decode(errors='replace'))
                 tests[name]={'success':True,'log_sha256':sha(execution.stdout+execution.stderr)}
         result=inventory(ROOT,a.suite) if a.inventory else run(ROOT,a.suite,surface=a.surface_executable,
-            world=a.world_executable,scene=a.scene_executable,session=a.session_executable,recorded_native=a.recorded_native_executable,recorded_presenter=a.recorded_presenter_executable,headless=a.headless)
+            world=a.world_executable,scene=a.scene_executable,session=a.session_executable,recorded_native=a.recorded_native_executable,recorded_presenter=a.recorded_presenter_executable,headless=a.headless,recorded_output_parent=a.recorded_output_parent)
         if any(sha((ROOT/n).read_bytes())!=h for n,h in fingerprints.items()):
             raise ValueError('Journey sources/fixtures changed during execution')
         result.update(sources=fingerprints,sources_stable=True,execution_performed=not a.inventory,tests=tests)

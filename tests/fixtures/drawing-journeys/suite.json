@@ -154,7 +154,16 @@
         "path": "tests/fixtures/drawing-storage-session/session.json",
         "sha256": "8fb6fadc81b6c225f325bb6810a22ed81141d128c472971eb1b5615465877ce3"
       },
-      "scope": "All238 observed Apprentice Save/Load and display-rebuild EGL frames, exact callback epochs and save bytes. Current native replay retains ten cursor-region failures; generic journey/operation acceptance remains pending."
+      "scope": "All238 observed Apprentice Save/Load and display-rebuild EGL frames, exact callback epochs and save bytes. Historical unmodified-upload baseline retains one126pixel failure per GPU/physical cohort; generic journey/operation acceptance remains pending."
+    },
+    {
+      "id": "recorded-storage-corrected-session",
+      "adapter": "recorded_action_session",
+      "catalog": {
+        "path": "tests/fixtures/drawing-storage-corrected-session/session.json",
+        "sha256": "55ea6c4623a2916bdc4a42c3681f75b68aedce85792686ab2b29a234ea6195fc"
+      },
+      "scope": "All222 observed Apprentice Save/Load/rebuild frames of the explicit opt-in stale-upload-crop profile, independent source/default/XCB witnesses and exact action/save cohorts. Driver-policy reference, not unmodified uploads; generic14journey/21operation acceptance remains pending."
     }
   ]
 }
