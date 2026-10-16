@@ -71712,7 +71712,9 @@
         "HOST.menu-admission.cold-2-20261015",
         "HOST.menu-admission.cold-3-20261015",
         "NR.world-canvas-reviewed-functional-live-20261015",
-        "NR.world-canvas-complete-functional-live-20261015"
+        "NR.world-canvas-complete-functional-live-20261015",
+        "NR.source-prefix-functional-live-20261015",
+        "NR.source-prefix-ordinary-repeat-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71882,7 +71884,9 @@
         "HOST.menu-admission.refusals-20261015",
         "HOST.menu-admission.cold-3-20261015",
         "NR.world-canvas-reviewed-functional-live-20261015",
-        "NR.world-canvas-complete-functional-live-20261015"
+        "NR.world-canvas-complete-functional-live-20261015",
+        "NR.source-prefix-functional-live-20261015",
+        "NR.source-prefix-ordinary-repeat-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71931,7 +71935,11 @@
         "NR.world-canvas-reviewed-controls-20261015",
         "NR.world-canvas-reviewed-functional-live-20261015",
         "NR.world-canvas-complete-controls-20261015",
-        "NR.world-canvas-complete-functional-live-20261015"
+        "NR.world-canvas-complete-functional-live-20261015",
+        "NR.source-prefix-controls-20261015",
+        "NR.source-prefix-reader-controls-20261015",
+        "NR.source-prefix-functional-live-20261015",
+        "NR.source-prefix-ordinary-repeat-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71975,7 +71983,11 @@
         "NR.world-canvas-reviewed-controls-20261015",
         "NR.world-canvas-reviewed-functional-live-20261015",
         "NR.world-canvas-complete-controls-20261015",
-        "NR.world-canvas-complete-functional-live-20261015"
+        "NR.world-canvas-complete-functional-live-20261015",
+        "NR.source-prefix-controls-20261015",
+        "NR.source-prefix-reader-controls-20261015",
+        "NR.source-prefix-functional-live-20261015",
+        "NR.source-prefix-ordinary-repeat-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -72012,15 +72024,78 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "NR.world-canvas-complete-controls-20261015"
+        "NR.world-canvas-complete-controls-20261015",
+        "NR.source-prefix-controls-20261015",
+        "NR.source-prefix-reader-controls-20261015",
+        "NR.source-prefix-functional-live-20261015",
+        "NR.source-prefix-ordinary-repeat-20261015"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.menu-loading-source-chunks",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Bounded source-only history draining between resident Worlds",
+      "scope": "V6 synchronous public resident source-only handoff between closed World queues, ordered native resource/history continuation and acknowledged slot reuse without World credit. Finite diagnostic capture and independent/asynchronous V5 retain prior limits; no original-pixel or unbounded resource equivalence. Menu glyph, fade, RGB-add, blended/displaced/projected-shadow readers materialize only already-defined native GPU history through the existing serialized snapshot route; unknown pixels still refuse.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-source-prefix-draining.md",
+        "research/formats/world-continuous-v6.md"
+      ],
+      "implementation": [
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/world_continuous.c",
+        "protocols/include/mnm/world_continuous_v6.h",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "tools/build-scene-observer.py",
+        "tools/menu-game-runner.py",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp"
+      ],
+      "tests": [
+        "tests/world-continuous-channel-test.cpp",
+        "tests/resident-canvas-transition-test.cpp",
+        "tools/test-native-canvas-transition.py",
+        "tools/test-native-campaign.py",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "tests/source-prefix-test.cpp",
+        "tests/world-gpu-ack-test.cpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "tests/canvas-native-reader-test.cpp"
+      ],
+      "evidence": [
+        "NR.source-prefix-controls-20261015",
+        "NR.source-prefix-first-characterization-20261015",
+        "NR.source-prefix-reader-refusal-20261015",
+        "NR.source-prefix-reader-controls-20261015",
+        "NR.source-prefix-preferences-detour-20261015",
+        "NR.source-prefix-functional-live-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Finite diagnostic capture and independent/asynchronous V5 retain their previous bounds. Single World queues and deferred overlap retain their existing caps. Later maps, unbounded resource churn, hardware, consistent performance and complete original-pixel/simulation equivalence remain separate."
+      ]
     }
   ],
   "evidence": [
@@ -146523,6 +146598,291 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.source-prefix-controls-20261015",
+      "kind": "native_integration",
+      "scope": "Current115-compiler-input controls:32 V6 source-only leases with identity/extent/nonce/reserved/checksum/immutability/stale/cancellation/prior-version refusals,17 native history chunks/278528 records before a real CPU-compared World, zero teardown surfaces, existing21-queue lifecycle/512 resident/prepared/retained and V3/V4 ACK regressions. No original producer execution in this component result.",
+      "record": "research/runtime/source-prefix-controls-20261015.json",
+      "sha256": "3a33d3ad4a158edee008f18cedf8a92c4e820b4ce52d1203d90bc38c26ae0bb7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/source_prefix/source_records",
+          "equals": 278528
+        },
+        {
+          "pointer": "/source_prefix/remaining_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.source-prefix-first-characterization-20261015",
+      "kind": "live_observation",
+      "scope": "Failed source-stability characterization: original journey completes with1048576 drained records/64 chunks in one interval and353 balanced Worlds, but test fixture source changed during execution. Retain failure and historical claims; no successful current-code or performance credit.",
+      "record": "research/runtime/source-prefix-first-characterization-20261015.json",
+      "sha256": "8dfaa3e3c0031295f33465fb5de3efd6a1755a8e2aa531921579a2906b6cc488",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": false
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.source-prefix-reader-refusal-20261015",
+      "kind": "live_observation",
+      "scope": "Source/input-stable native first-source-chunk refusal at World166 before acknowledgement. Generic undefined-pixel message retains unknown failing reader/state; component GPU-current reader defect is investigated separately, with no retrospective passing claim.",
+      "record": "research/runtime/source-prefix-reader-refusal-20261015.json",
+      "sha256": "d32a69d6fcd8bd8a01d9680745a109d7c804c7bf77945be0dfbd6b366e010175",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.source-prefix-reader-controls-20261015",
+      "kind": "native_integration",
+      "scope": "Current116-compiler-input source-only and GPU-current reader controls.32 V6 leases,17 chunks/278528 records before independent CPU-compared World, nine reader families with current GPU background/single explicit snapshot and unknown-history refusal,21 lifecycle/512 resident/prepared/retained and prior channel/ACK regressions. No original hook or driver comparison.",
+      "record": "research/runtime/source-prefix-reader-controls-20261015.json",
+      "sha256": "0acfb8b98aaa193a94011a382981ef11ec217bbebf7fceba6044910410dbadc5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/source_prefix/source_records",
+          "equals": 278528
+        },
+        {
+          "pointer": "/source_prefix/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/controls/canvas-native-reader-test",
+          "equals": "{\"success\":true,\"sparse_writes\":true,\"gpu_keyed_copy\":true,\"unknown_history_refused\":true,\"gpu_reader_families\":9,\"remaining_surfaces\":0}\n"
+        }
+      ]
+    },
+    {
+      "id": "NR.source-prefix-preferences-detour-20261015",
+      "kind": "live_observation",
+      "scope": "Current reader extension drains1949696 records/119 acknowledged chunks with48 balanced Worlds and no native renderer error, but automation takes original Preferences before publishing a native Save request and times out. Failed journey; input/navigation cause unclassified and no successful reload/performance credit.",
+      "record": "research/runtime/source-prefix-preferences-detour-20261015.json",
+      "sha256": "fd6c22b25cc41290abcdc102308803281df675f4137b383761b5042325d0c05d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/error",
+          "equals": ""
+        }
+      ]
+    },
+    {
+      "id": "NR.source-prefix-functional-live-20261015",
+      "kind": "live_observation",
+      "scope": "Fresh native Save/Load and original800\u2192640\u2192800 display rebuild/Main Load/Quit journey with60.151s deliberate Load-menu hold.704512 source records in43 acknowledged chunks within one World interval, maximum16384 records/chunk,332 balanced Worlds, canvas2\u219290, two accepted marked NS_RECT no-op records, zero forwards/history refusal and original normal exit/private Wine stop. Declared1FPS functional floor; no performance/full original-pixel or arbitrary resource claim.",
+      "record": "research/runtime/source-prefix-functional-live-20261015.json",
+      "sha256": "d81a6b4c72971dbaf24b49abaec981726aeba1a33030b2fb3bb4676927f33459",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_prefix_stress_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/world_canvas_transition_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/source_chunk_max_interval_records",
+          "equals": "704512"
+        },
+        {
+          "pointer": "/resident_world/source_chunk_max_records",
+          "equals": "16384"
+        },
+        {
+          "pointer": "/resident_world/source_copy_rect_refusals",
+          "equals": "2"
+        },
+        {
+          "pointer": "/resident_world/completed",
+          "equals": "332"
+        },
+        {
+          "pointer": "/resident_world/imports",
+          "equals": "332"
+        },
+        {
+          "pointer": "/resident_world/verified_returns",
+          "equals": "332"
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.source-prefix-ordinary-repeat-20261015",
+      "kind": "live_observation",
+      "scope": "Fresh ordinary V6 original Save/Load/display rebuild/Main Load/Quit repeat without deliberate dwell.440 balanced Worlds, canvas2\u219290, one16384-record source chunk, two accepted scoped NS_RECT no-op records,18887 optional native calls, zero forwards/history refusal and normal cleanup. Declared5FPS functional floor, measured10.3764FPS; this ordinary repeat does not independently prove beyond131072 records or consistent performance.",
+      "record": "research/runtime/source-prefix-ordinary-repeat-20261015.json",
+      "sha256": "e22f2913e9e17ec727d0c14bbc8ec4bd07c4b599e4d7415ed88591b7d271dab2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/world_canvas_transition_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/completed",
+          "equals": "440"
+        },
+        {
+          "pointer": "/resident_world/imports",
+          "equals": "440"
+        },
+        {
+          "pointer": "/resident_world/verified_returns",
+          "equals": "440"
+        },
+        {
+          "pointer": "/resident_world/source_chunks",
+          "equals": "1"
+        },
+        {
+          "pointer": "/resident_world/source_copy_rect_refusals",
+          "equals": "2"
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -162740,7 +163100,9 @@
         "HOST.menu-admission.cold-2-20261015",
         "HOST.menu-admission.cold-3-20261015",
         "NR.world-canvas-reviewed-functional-live-20261015",
-        "NR.world-canvas-complete-functional-live-20261015"
+        "NR.world-canvas-complete-functional-live-20261015",
+        "NR.source-prefix-functional-live-20261015",
+        "NR.source-prefix-ordinary-repeat-20261015"
       ]
     },
     {
@@ -162806,7 +163168,9 @@
         "NR.world-canvas-main-load-checker-refusal-20261015",
         "NR.world-canvas-reviewed-functional-live-20261015",
         "NR.world-canvas-copy-rectangle-refusal-20261015",
-        "NR.world-canvas-complete-functional-live-20261015"
+        "NR.world-canvas-complete-functional-live-20261015",
+        "NR.source-prefix-functional-live-20261015",
+        "NR.source-prefix-ordinary-repeat-20261015"
       ]
     },
     {
@@ -162827,7 +163191,43 @@
         "NR.world-canvas-transition.controls-20261015",
         "NR.world-canvas-owned-controls-20261015",
         "NR.world-canvas-reviewed-controls-20261015",
-        "NR.world-canvas-complete-controls-20261015"
+        "NR.world-canvas-complete-controls-20261015",
+        "NR.source-prefix-controls-20261015",
+        "NR.source-prefix-reader-controls-20261015"
+      ]
+    },
+    {
+      "id": "NR.menu-loading-source-chunks.reload",
+      "scope": "Prolonged original menu/loading interval with bounded source-only application followed by native Save/Load, original display rebuild/Main Load and normal Quit. Must observe source chunk progress without advancing World credit.",
+      "behaviors": [
+        "NR.menu-loading-source-chunks"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "apps/qt-shell/campaign_storage_test.cpp"
+      ],
+      "evidence": [
+        "NR.source-prefix-first-characterization-20261015",
+        "NR.source-prefix-reader-refusal-20261015",
+        "NR.source-prefix-preferences-detour-20261015",
+        "NR.source-prefix-functional-live-20261015"
+      ],
+      "level": "live_observation"
+    },
+    {
+      "id": "NR.menu-loading-source-chunks.synthetic",
+      "scope": "V6 source-only lease/identity/cancellation and prior-peer refusals;17 ordered chunks/278528 source records before a real World with independent CPU pixel comparison and bounded resource recreation. No original execution.",
+      "level": "headless",
+      "behaviors": [
+        "NR.menu-loading-source-chunks"
+      ],
+      "tests": [
+        "tests/source-prefix-test.cpp",
+        "tools/test-native-canvas-transition.py"
+      ],
+      "evidence": [
+        "NR.source-prefix-controls-20261015",
+        "NR.source-prefix-reader-controls-20261015"
       ]
     }
   ],
@@ -163445,8 +163845,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-canvas-result-reviewed-20261015.json",
-    "sha256": "2431f74d865eb7abbd2dbe1c3b002902d71a5a6b975971d989c4f97b6a31ec2c"
+    "path": "research/runtime/coverage/source-index-source-prefix-readers-20261015.json",
+    "sha256": "c181c90b2dd9b8df7de821bfb56a4dc7e5cac9132e389d65f9e42072ab98093d"
   },
   "claim_bindings_required": true
 }

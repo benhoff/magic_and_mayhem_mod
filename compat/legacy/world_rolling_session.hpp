@@ -24,6 +24,7 @@ public:
   render::Image consumeOwned(std::uint64_t sequence,
                              const CanvasProducerStream &);
   render::GpuFrame consumeResident(std::uint64_t, const CanvasProducerStream &);
+  void consumeSource(const CanvasProducerStream &);
   render::GpuFrame replayPrepared();
   std::uint64_t preparedReplays() const { return world_.preparedReplays(); }
   std::uint64_t retainedImageCaptures() const { return world_.retainedImageCaptures(); }

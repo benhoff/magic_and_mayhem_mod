@@ -173,7 +173,7 @@ void CanvasSequence::fade(std::uint32_t id,unsigned stride,
   for(int y=0;y<s.image.height && std::size_t(y)*stride<count;++y) {
     const auto words=std::min(std::size_t(s.image.width),count-std::size_t(y)*stride);
     const auto row=std::size_t(y)*s.image.width;
-    for(std::size_t x=0;x<words;++x)known(s.defined,row+x);
+    for(std::size_t x=0;x<words;++x)requireCpu(id,s,row+x);
   }
   // Validation above is complete before any mutation. A physical prefix covers
   // one visible prefix per row; track that damage once, without per-WORD div/mod.
@@ -200,7 +200,7 @@ void CanvasSequence::addRgb(std::uint32_t id, Rect r,
         "RGB addition outside recovered unsigned channels");
   for (int y = std::max(0, r.top); y < std::min(s.image.height, r.bottom); ++y)
     for (int x = std::max(0, r.left); x < std::min(s.image.width, r.right); ++x)
-      if(!invalidateOnly)known(s.defined, slot(s.image, x, y));
+      if(!invalidateOnly)requireCpu(id,s,slot(s.image,x,y));
   for (int y = std::max(0, r.top); y < std::min(s.image.height, r.bottom); ++y)
     for (int x = std::max(0, r.left); x < std::min(s.image.width, r.right);
          ++x) {
@@ -361,7 +361,7 @@ void CanvasSequence::glyph(std::uint32_t id, const assets::SpriteFrame &f,
       const auto dx = left + i, dy = top + j;
       if (dx >= 0 && dy >= 0 && dx < s.image.width && dy < s.image.height &&
           dy >= clip.top && dy < clip.bottom && f.opaqueMask[std::size_t(j) * f.width + i])
-        known(s.defined, slot(s.image, int(dx), int(dy)));
+        requireCpu(id,s,slot(s.image,int(dx),int(dy)));
     }
   const unsigned target[3] = {rgb[0] >> 3, rgb[1] >> 2, rgb[2] >> 3};
   for (unsigned j = 0; j < f.height; ++j)
@@ -421,7 +421,7 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
       }
     };
     // Geometry and every required read are checked before CPU or mirror damage.
-    visit([&](std::size_t at) { if (!invalidateOnly) known(s.defined, at); });
+    visit([&](std::size_t at) { if (!invalidateOnly) requireCpu(id,s,at); });
     visit([&](std::size_t at) {
       if (invalidateOnly) s.defined[at] = 0;
       else write(s, at, (s.image.pixels[at] >> 1) & 0x7bef);
@@ -452,13 +452,13 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
         if (dx < 0 || dy < 0 || dx >= s.image.width || dy >= s.image.height ||
             dx < clip.left || dx >= clip.right || dy < clip.top || dy >= clip.bottom ||
             !f.opaqueMask[std::size_t(j) * f.width + i]) continue;
-        known(s.defined, slot(s.image, int(dx), int(dy)));
+        requireCpu(id,s,slot(s.image,int(dx),int(dy)));
         if (mode == 3) {
           const int shift = offsets[unsigned(dy) % period];
           const auto sample=std::uint64_t(dy)*s.image.width+dx+shift;
           if (shift < 0 || shift > 16 || sample>=s.image.pixels.size())
             throw std::invalid_argument("Producer displacement sample outside owned canvas");
-          known(s.defined, sample);
+          requireCpu(id,s,sample);
         }
       }
   }
@@ -502,7 +502,7 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
           if (shift < 0 || shift > 16 || sample>=s.image.pixels.size())
             throw std::invalid_argument(
                 "Producer displacement sample outside owned canvas");
-          known(s.defined, sample);
+          requireCpu(id,s,sample);
           colour = s.image.pixels[sample];
         }
       }

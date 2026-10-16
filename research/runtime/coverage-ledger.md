@@ -12244,3 +12244,47 @@ also verify marked native NS_RECT no-op replay and a valid wire round trip.
 in the final live capture, so accepted live refusal-consumption coverage remains pending.
 This models the facade's preflight no-write result without relaxing ordinary
 source rectangles. See the [initialization/refusal format](../formats/owned-initial-history-v1.md).
+
+
+## Bounded native menu/loading source chunks — 2026-10-15
+
+`NR.menu-loading-source-chunks` introduces explicitly negotiated synchronous
+resident V6 source-only handoffs between closed Worlds. Each chunk retains the
+current World ordinal and a separate contiguous source ordinal; native applies
+owned resource/history operations before acknowledging unchanged bytes. Producer
+payload references and local checkpoint/record counters reset only after ACK.
+Existing fixed capacities, World/deferred guards and cancellation deadlines
+remain. Finite diagnostic capture and independent/asynchronous V5 retain their
+previous envelopes and limits. See [policy, failures and evidence](native-source-prefix-draining.md)
+and [V6 format](../formats/world-continuous-v6.md).
+
+The current116-input controls apply278528 records in17 chunks before independent
+CPU-verified World pixels, verify32 V6 leases and strict malformed/stale/nonce/
+checksum/immutability/cancellation/prior-peer refusals, and pass nine native
+GPU-current CPU-reader families plus existing lifecycle,512 resident, prepared,
+retained and prior channel/ACK regressions. Glyph/fade/RGB-add/blend/displacement/
+projected-shadow reads now use the existing checked native snapshot route; unknown
+history remains unknown. Explicit CPU snapshots stay separately counted from
+ordinary World returns. No original comparison/replacement status is promoted.
+
+Retained failures distinguish a source-changed characterization, a first-source-
+chunk reader refusal with unclassified exact reader/state, and an original
+Preferences detour without a native Save request. The detour drains1949696 records
+in119 chunks without a native history error but fails its bounded storage journey.
+The fresh60-second Load-menu journey passes704512 drained records/43 chunks,
+maximum16384 records/chunk,332 balanced Worlds, canvas2→90 and normal Quit. It
+also consumes two marked NS_RECT no-op records, giving the scoped copy-refusal
+policy accepted live support. The deliberately paused run declares a1FPS
+functional floor; resource churn, other maps, hardware, consistent performance
+and complete original pixels/simulation remain separate. The incoming2022359a..443a6d97 history review retains
+52 file transitions and221 behavior transitions, with two missing exact behavior
+chains accounted by a new retrospective pending receipt rather than claiming a
+past gate or validation pass.
+
+The source/input-stable ordinary repeat additionally passes440 balanced Worlds,
+one16384-record source chunk, two accepted marked NS_RECT no-ops, canvas2→90 and
+normal Quit under its5FPS functional floor (measured10.3764FPS). Both passing
+journeys verify originals and stop private Wine; their772 completed Worlds match
+imports/returns. Accepted source-copy refusal support is now live observation;
+comparison/replacement remain none. The Preferences detour stays an explicit
+navigation gap; ordinary/stress successes do not erase it or prior timing limits.

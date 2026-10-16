@@ -37,7 +37,8 @@ constexpr unsigned requestAt = MNM_CONT_SLOT_HEADER + MNM_CONT_SOURCE_BYTES;
 constexpr unsigned replyAt = requestAt + MNM_CONT_REQUEST_BYTES;
 } // namespace
 void WorldContinuousChannel::create(const QString &path, std::uint64_t nonce,
-                                    std::uint64_t target, bool resident, bool snapshot) {
+                                    std::uint64_t target, bool resident, bool snapshot, bool prefixes) {
+  require(!prefixes || (resident && !snapshot), "Source chunks require synchronous resident delivery");
   require(!snapshot || resident,"Owned snapshot requires resident delivery");
   require(nonce != 0, "Zero continuous session nonce");
   QFile f(path);
@@ -47,9 +48,9 @@ void WorldContinuousChannel::create(const QString &path, std::uint64_t nonce,
   auto *p = f.map(0, MNM_CONT_BYTES);
   require(p, "Cannot map continuous channel");
   std::memset(p, 0, MNM_CONT_HEADER);
-  std::memcpy(p, snapshot ? MNM_CONT_SNAPSHOT_MAGIC : resident ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8);
-  put(p, 2, snapshot ? MNM_CONT_SNAPSHOT_VERSION : resident ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION);
-  put(p, 5, snapshot ? MNM_CONT_SNAPSHOT_MODE : resident ? MNM_CONT_RESIDENT_MODE : 0);
+  std::memcpy(p, prefixes ? MNM_CONT_PREFIX_MAGIC : snapshot ? MNM_CONT_SNAPSHOT_MAGIC : resident ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8);
+  put(p, 2, prefixes ? MNM_CONT_PREFIX_VERSION : snapshot ? MNM_CONT_SNAPSHOT_VERSION : resident ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION);
+  put(p, 5, prefixes ? MNM_CONT_PREFIX_MODE : snapshot ? MNM_CONT_SNAPSHOT_MODE : resident ? MNM_CONT_RESIDENT_MODE : 0);
   put(p, 3, MNM_CONT_HEADER);
   put(p, 4, MNM_CONT_BYTES);
   put(p, 6, unsigned(nonce));
@@ -65,14 +66,15 @@ WorldContinuousChannel::WorldContinuousChannel(const QString &path)
   map_ = file_.map(0, MNM_CONT_BYTES);
   require(map_, "Continuous channel mapping");
   try {
+    prefixes_ = !std::memcmp(map_, MNM_CONT_PREFIX_MAGIC, 8);
     snapshot_ = !std::memcmp(map_, MNM_CONT_SNAPSHOT_MAGIC, 8);
-    resident_ = snapshot_ || !std::memcmp(map_, MNM_CONT_RESIDENT_MAGIC, 8);
+    resident_ = prefixes_ || snapshot_ || !std::memcmp(map_, MNM_CONT_RESIDENT_MAGIC, 8);
     nonce_ = nonce();
     target_ = target();
-    require(!std::memcmp(map_, snapshot_ ? MNM_CONT_SNAPSHOT_MAGIC : resident_ ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8) &&
-                word(map_, 2) == (snapshot_ ? MNM_CONT_SNAPSHOT_VERSION : resident_ ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION) &&
+    require(!std::memcmp(map_, prefixes_ ? MNM_CONT_PREFIX_MAGIC : snapshot_ ? MNM_CONT_SNAPSHOT_MAGIC : resident_ ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8) &&
+                word(map_, 2) == (prefixes_ ? MNM_CONT_PREFIX_VERSION : snapshot_ ? MNM_CONT_SNAPSHOT_VERSION : resident_ ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION) &&
                 word(map_, 3) == MNM_CONT_HEADER &&
-                word(map_, 4) == MNM_CONT_BYTES && word(map_, 5) == (snapshot_ ? MNM_CONT_SNAPSHOT_MODE : resident_ ? MNM_CONT_RESIDENT_MODE : 0) &&
+                word(map_, 4) == MNM_CONT_BYTES && word(map_, 5) == (prefixes_ ? MNM_CONT_PREFIX_MODE : snapshot_ ? MNM_CONT_SNAPSHOT_MODE : resident_ ? MNM_CONT_RESIDENT_MODE : 0) &&
                 nonce() != 0,
             "Continuous channel header");
     for (unsigned i = 14; i < 32; ++i)
@@ -107,7 +109,7 @@ bool WorldContinuousChannel::poll(Block &b) {
   require(!cancelled(), "Continuous session cancelled");
   auto *s = slot(expected_);
   const auto state = load(s, 0);
-  require(state <= MNM_CONT_RETURNED, "Unknown continuous state");
+  require(state <= (prefixes_ ? MNM_CONT_SOURCE_ACK : MNM_CONT_RETURNED), "Unknown continuous state");
   if (state != MNM_CONT_REQUEST)
     return false;
   require(load(map_, 9) == 1, "Missing original producer role");
@@ -179,10 +181,10 @@ void WorldContinuousChannel::release(std::uint64_t g) {
 } // namespace mnm::legacy
 
 void mnm::legacy::WorldContinuousChannel::validate() const {
-  require(!std::memcmp(map_, snapshot_ ? MNM_CONT_SNAPSHOT_MAGIC : resident_ ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8) &&
-              word(map_, 2) == (snapshot_ ? MNM_CONT_SNAPSHOT_VERSION : resident_ ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION) &&
+  require(!std::memcmp(map_, prefixes_ ? MNM_CONT_PREFIX_MAGIC : snapshot_ ? MNM_CONT_SNAPSHOT_MAGIC : resident_ ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8) &&
+              word(map_, 2) == (prefixes_ ? MNM_CONT_PREFIX_VERSION : snapshot_ ? MNM_CONT_SNAPSHOT_VERSION : resident_ ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION) &&
               word(map_, 3) == MNM_CONT_HEADER &&
-              word(map_, 4) == MNM_CONT_BYTES && word(map_, 5) == (snapshot_ ? MNM_CONT_SNAPSHOT_MODE : resident_ ? MNM_CONT_RESIDENT_MODE : 0) &&
+              word(map_, 4) == MNM_CONT_BYTES && word(map_, 5) == (prefixes_ ? MNM_CONT_PREFIX_MODE : snapshot_ ? MNM_CONT_SNAPSHOT_MODE : resident_ ? MNM_CONT_RESIDENT_MODE : 0) &&
               nonce() == nonce_ && target() == target_ && load(map_, 8) == 1 &&
               load(map_, 9) <= 1 && load(map_, 10) <= 1 && load(map_, 11) <= 1,
           "Continuous immutable envelope changed");
@@ -217,4 +219,36 @@ bool mnm::legacy::WorldContinuousChannel::returnRecords(
   std::copy(source + prefix.size(), source + prefix.size() + 192,
             records.begin());
   return true;
+}
+
+// Source chunks retain the current World generation. They never authorize a
+// World import, framebuffer reply, original return or generation advance.
+bool mnm::legacy::WorldContinuousChannel::pollSource(Block &b) {
+  validate();require(!cancelled(), "Source chunk session cancelled");
+  auto *s=slot(expected_);const auto state=load(s,0);
+  require(state <= (prefixes_ ? MNM_CONT_SOURCE_ACK : MNM_CONT_RETURNED), "Unknown source chunk state");
+  if(state!=MNM_CONT_SOURCE_REQUEST)return false;
+  require(prefixes_ && load(map_,9)==1 && wide(s,2)==expected_ &&
+          wide(s,22)==sourceExpected_ && sourceExpected_!=std::numeric_limits<std::uint64_t>::max(),
+          "Source chunk identity/order");
+  for(unsigned i=0;i<32;++i)
+    if(i!=0 && i!=2 && i!=3 && i!=4 && i!=6 && i!=22 && i!=23)
+      require(!word(s,i), "Source chunk reserved/completion field");
+  const auto n=word(s,4);
+  require(n>64 && n<=MNM_CONT_SOURCE_BYTES,"Source chunk extent");
+  unsigned wanted=MNM_CONT_SOURCE_REQUEST;
+  require(__atomic_compare_exchange_n(reinterpret_cast<unsigned*>(s),&wanted,
+          MNM_CONT_SOURCE_PROCESSING,false,__ATOMIC_ACQ_REL,__ATOMIC_ACQUIRE),"Source chunk lease changed");
+  b={expected_,{s+MNM_CONT_SLOT_HEADER,s+MNM_CONT_SLOT_HEADER+n},{}};
+  require(checksum(b.source.data(),b.source.size())==word(s,6),"Source chunk checksum");
+  return true;
+}
+void mnm::legacy::WorldContinuousChannel::acknowledgeSource(const Block &b) {
+  validate();require(prefixes_ && !cancelled(),"Source chunk acknowledgement mode/cancellation");
+  auto *s=slot(b.generation);
+  require(load(s,0)==MNM_CONT_SOURCE_PROCESSING && wide(s,2)==b.generation &&
+          wide(s,22)==sourceExpected_ && b.request.empty() && word(s,4)==b.source.size() &&
+          checksum(b.source.data(),b.source.size())==word(s,6) &&
+          std::equal(b.source.begin(),b.source.end(),s+MNM_CONT_SLOT_HEADER),"Source chunk acknowledgement identity/immutability");
+  ++sourceExpected_;store(s,0,MNM_CONT_SOURCE_ACK);
 }

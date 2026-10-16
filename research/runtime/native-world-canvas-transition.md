@@ -237,3 +237,23 @@ successful live replay. The remaining branch boundary is consumption of a marked
 refusal in an accepted live journey under the corrected decoder. Current
 component/wire tests cover that handling, while the final accepted live run has
 counter0.
+
+## Later source-prefix acceptance
+
+The [source-prefix functional run](source-prefix-functional-live-20261015.json)
+now completes this same original display-rebuild/Main Load journey with332
+balanced Worlds and canvas2→90 after704512 menu source records drained through43
+bounded chunks in a60.151-second hold. It successfully consumes **two** marked
+NS_RECT no-op records. Thus accepted live consumption of the scoped refusal form
+is now observed; earlier counter0 results keep their historical scope and hashes.
+The current116-input controls retain strict marker/status/rectangle guards and
+unchanged pixels for a refusal. Comparison/replacement remain none.
+
+The131072-record between-World menu/loading prefix boundary is resolved for the
+new synchronous public resident V6 mode. Single World queues and deferred overlap
+retain their caps; finite diagnostic capture and independent/asynchronous V5
+retain their previous transport and limits. See [current policy and retained
+failures](native-source-prefix-draining.md). This run declares a1FPS functional
+floor for its deliberate World pause; it does not erase earlier timing failures
+or establish consistent performance. Broader HRESULTs, resource churn, other maps,
+World extents/hardware and full original-pixel/simulation equivalence remain open.

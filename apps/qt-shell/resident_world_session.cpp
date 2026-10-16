@@ -21,7 +21,7 @@ struct WorldGpuJob {
     double nativeMs=0,producerMs=0;
     std::uint64_t readbacks=0,captures=0;
 };
-QString create(const QString& path,bool owned){auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true,owned);return path;}
+QString create(const QString& path,bool owned){auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true,owned,!owned && qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE").isEmpty());return path;}
 CanvasProducer close(const std::array<std::uint8_t,192>& bytes,unsigned offset){
     CanvasProducer result{};for(unsigned i=0;i<24;++i){const auto* p=bytes.data()+offset+i*4;result.fields[i]=p[0]|unsigned(p[1])<<8|unsigned(p[2])<<16|unsigned(p[3])<<24;}
     if(result.fields[0]!=96 || result.fields[18] || result.fields[23])throw std::runtime_error("Resident World closing record");
@@ -116,6 +116,21 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
             if(pending_->returned && pending_->imported){completed_=pending_->block.generation;channel_.release(completed_);pending_.reset();if(completed_%64==0)queueReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));}
         }
         mark("release-and-report");
+        if(!pending_ && channel_.prefixes()){
+            WorldContinuousChannel::Block source;
+            if(channel_.pollSource(source)){
+                auto stream=decodeCanvasProducers(source.source,false);
+                world_->consumeSource(stream);
+                if(world_->completed()!=completed_ || world_->worldReadbacks() || renderer_->stats().rgbaReadbacks)
+                    throw std::runtime_error("Source-only chunk changed World ownership/readback count");
+                channel_.acknowledgeSource(source);
+                if(sourceIntervalGeneration_!=source.generation){sourceIntervalGeneration_=source.generation;sourceIntervalRecords_=0;}
+                sourceIntervalRecords_+=stream.operations.size();maxSourceIntervalRecords_=std::max(maxSourceIntervalRecords_,sourceIntervalRecords_);
+                ++sourceChunks_;sourceRecords_+=stream.operations.size();sourceBytes_+=source.source.size();
+                maxSourceRecords_=std::max(maxSourceRecords_,std::uint64_t(stream.operations.size()));
+                queueReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));
+            }
+        }
         if(!pending_){WorldContinuousChannel::Block block;QElapsedTimer acquire;if(stageProfile_)acquire.start();const bool available=channel_.poll(block);mark("source-acquire");if(available){
             const auto acquireMs=stageProfile_?double(acquire.nsecsElapsed())/1000000.:0.;
             const bool sampled=stageProfile_ && block.generation<=8192;
@@ -305,6 +320,9 @@ QJsonObject ResidentWorldSession::report() const {
     QJsonObject result{{"completed",QString::number(completed_)},{"imports",QString::number(imports_)},{"verified_returns",QString::number(returns_)},{"rasters",QString::number(rasters_)},
         {"first_world_canvas",int(world_?world_->firstWorldCanvas():0)},{"world_canvas",int(world_?world_->worldCanvas():0)},{"world_canvas_changes",QString::number(world_?world_->worldCanvasChanges():0)},
         {"world_context_changes",QString::number(world_?world_->worldContextChanges():0)},
+        {"source_chunks_enabled",channel_.prefixes()},{"source_chunks",QString::number(sourceChunks_)},
+        {"source_chunk_max_interval_records",QString::number(maxSourceIntervalRecords_)},
+        {"source_chunk_records",QString::number(sourceRecords_)},{"source_chunk_bytes",QString::number(sourceBytes_)},{"source_chunk_max_records",QString::number(maxSourceRecords_)},
         {"source_copy_rect_refusals",QString::number(world_?world_->copyRectRefusals():0)},
         {"world_readbacks",double(asynchronous_?producerReadbacks_:world_?world_->worldReadbacks():0)},{"native_readbacks",double(stats.nativeReadbacks-cpuSnapshots)},{"explicit_producer_cpu_readbacks",double(cpuSnapshots)},{"total_native_readbacks",double(stats.nativeReadbacks)},{"rgba_readbacks",double(stats.rgbaReadbacks)},
         {"nonce",QString::number(channel_.nonce())},{"error",error_},{"pending",bool(pending_)||bool(ownedPending_)||(independent_&&owned.outstanding!=0)},{"normal_quit_retired",normalQuitRetired_},{"renderer",asynchronous_?producerDriver_:renderer_?QString::fromStdString(renderer_->driver().renderer):QString()},

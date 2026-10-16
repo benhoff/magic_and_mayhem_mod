@@ -191,9 +191,11 @@ static void emit_unlocked(u32* r,const void* payload,u32 n){
  r[0]=96+n;r[1]=wire[1];r[18]=n;
 }
 static u32 continuous_emit_lock;
+static int continuous_drain_prefix(void);
 static void emit(u32* r,const void* payload,u32 n){
  if(!continuous_map){emit_unlocked(r,payload,n);return;}
  while(__sync_lock_test_and_set(&continuous_emit_lock,1)){}
+ if(!continuous_drain_prefix()){canvas_producers_close();__sync_lock_release(&continuous_emit_lock);return;}
  emit_unlocked(r,payload,n);
  __sync_lock_release(&continuous_emit_lock);
 }

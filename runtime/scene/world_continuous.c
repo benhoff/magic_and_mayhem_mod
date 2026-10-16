@@ -1,10 +1,11 @@
 /* Included after world_raster_batch.c. Pointer-free fixed storage shared with
  * the native owner. The original destination stays NOACCESS while waiting. */
-#include "../../protocols/include/mnm/world_continuous_v5.h"
+#include "../../protocols/include/mnm/world_continuous_v6.h"
 API HANDLE WIN CreateFileMappingA(HANDLE, void *, u32, u32, u32, const char *);
 API void *WIN MapViewOfFile(HANDLE, u32, u32, u32, u32);
 API i32 WIN UnmapViewOfFile(void *);
 static HANDLE continuous_file, continuous_mapping;
+static u32 continuous_prefixes, continuous_source_low=1, continuous_source_high;
 static u32 continuous_snapshot, continuous_resident, continuous_nonce_low, continuous_nonce_high;
 API void* WIN GetProcAddress(HANDLE,const char*);
 API u32 WIN GetCurrentThreadId(void);
@@ -132,12 +133,13 @@ static int continuous_init(void) {
   if (!continuous_map)
     return 0;
   u8 *h = continuous_map;
+  continuous_prefixes = bypass_equal(h, MNM_CONT_PREFIX_MAGIC, 8);
   continuous_snapshot = bypass_equal(h, MNM_CONT_SNAPSHOT_MAGIC, 8);
-  continuous_resident = continuous_snapshot || bypass_equal(h, MNM_CONT_RESIDENT_MAGIC, 8);
-  if (!bypass_equal(h, continuous_snapshot ? MNM_CONT_SNAPSHOT_MAGIC : continuous_resident ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8) ||
-      get(h + 8) != (continuous_snapshot ? MNM_CONT_SNAPSHOT_VERSION : continuous_resident ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION) ||
+  continuous_resident = continuous_prefixes || continuous_snapshot || bypass_equal(h, MNM_CONT_RESIDENT_MAGIC, 8);
+  if (!bypass_equal(h, continuous_prefixes ? MNM_CONT_PREFIX_MAGIC : continuous_snapshot ? MNM_CONT_SNAPSHOT_MAGIC : continuous_resident ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8) ||
+      get(h + 8) != (continuous_prefixes ? MNM_CONT_PREFIX_VERSION : continuous_snapshot ? MNM_CONT_SNAPSHOT_VERSION : continuous_resident ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION) ||
       get(h + 12) != MNM_CONT_HEADER || get(h + 16) != MNM_CONT_BYTES ||
-      get(h + 20) != (continuous_snapshot ? MNM_CONT_SNAPSHOT_MODE : continuous_resident ? MNM_CONT_RESIDENT_MODE : 0) || (!get(h + 24) && !get(h + 28)) ||
+      get(h + 20) != (continuous_prefixes ? MNM_CONT_PREFIX_MODE : continuous_snapshot ? MNM_CONT_SNAPSHOT_MODE : continuous_resident ? MNM_CONT_RESIDENT_MODE : 0) || (!get(h + 24) && !get(h + 28)) ||
       continuous_load(h, 8) != 1 || continuous_load(h, 9) ||
       continuous_load(h, 10) || continuous_load(h, 11))
     return 0;
@@ -153,6 +155,7 @@ static int continuous_init(void) {
     HANDLE module=GetModuleHandleA("MnmRender.dll");
     if(!module || !(continuous_public_bind=(ResidentWorldBind)GetProcAddress(module,"RenderResidentWorldV1")))return 0;
   }
+  if(continuous_prefixes && !continuous_public_bind)return 0;
   return continuous_clock_install() && continuous_next();
 }
 static int continuous_write(const void *p, u32 n) {
@@ -199,9 +202,9 @@ static int continuous_finish(struct Surface *s, const u32 *request) {
     return 0;
   u8 *reply = wire + MNM_CONT_REQUEST_BYTES;
   if (continuous_resident) {
-    if (!bypass_equal(continuous_map, continuous_snapshot ? MNM_CONT_SNAPSHOT_MAGIC : MNM_CONT_RESIDENT_MAGIC, 8) ||
-        get(continuous_map + 8) != (continuous_snapshot ? MNM_CONT_SNAPSHOT_VERSION : MNM_CONT_RESIDENT_VERSION) ||
-        get(continuous_map + 20) != (continuous_snapshot ? MNM_CONT_SNAPSHOT_MODE : MNM_CONT_RESIDENT_MODE) ||
+    if (!bypass_equal(continuous_map, continuous_prefixes ? MNM_CONT_PREFIX_MAGIC : continuous_snapshot ? MNM_CONT_SNAPSHOT_MAGIC : MNM_CONT_RESIDENT_MAGIC, 8) ||
+        get(continuous_map + 8) != (continuous_prefixes ? MNM_CONT_PREFIX_VERSION : continuous_snapshot ? MNM_CONT_SNAPSHOT_VERSION : MNM_CONT_RESIDENT_VERSION) ||
+        get(continuous_map + 20) != (continuous_prefixes ? MNM_CONT_PREFIX_MODE : continuous_snapshot ? MNM_CONT_SNAPSHOT_MODE : MNM_CONT_RESIDENT_MODE) ||
         get(continuous_map + 24) != continuous_nonce_low ||
         get(continuous_map + 28) != continuous_nonce_high ||
         mnm_cont_crc32c(reply, MNM_CONT_ACK_BYTES) != get(slot + 44) ||
@@ -296,5 +299,37 @@ static int continuous_equal(const u8 *a, const u8 *b, u32 n) {
     if (*a++ != *b++)
       return 0;
   }
+  return 1;
+}
+
+/* Called under the emission lock before source cache lookup/definition+use.
+ * Never split a World or reset a borrowed source definition in mid-operation.
+ * The original callback may wait, but native draining never calls into it. */
+static int continuous_drain_prefix(void) {
+  if(!continuous_prefixes || raster_world_open ||
+     (sequence<MNM_CONT_PREFIX_RECORDS && bytes<MNM_CONT_PREFIX_BYTES))return 1;
+  u8* slot=continuous_slot();
+  if(continuous_load(slot,0)!=MNM_CONT_WRITING || !sequence || failures ||
+     continuous_written!=bytes || (continuous_source_low==0xffffffffu && continuous_source_high==0xffffffffu))return 0;
+  const u32 n=bytes,digest=mnm_cont_crc32c(slot+MNM_CONT_SLOT_HEADER,n);
+  // Source-only header excludes leftover World timing, requests and replies.
+  zero(slot+16,112);put(slot+16,n);put(slot+24,digest);
+  put(slot+88,continuous_source_low);put(slot+92,continuous_source_high);
+  continuous_store(slot,0,MNM_CONT_SOURCE_REQUEST);
+  if(!continuous_wait(slot,0,MNM_CONT_SOURCE_ACK) ||
+     !bypass_equal(continuous_map,MNM_CONT_PREFIX_MAGIC,8) ||
+     get(continuous_map+8)!=MNM_CONT_PREFIX_VERSION || get(continuous_map+20)!=MNM_CONT_PREFIX_MODE ||
+     get(continuous_map+24)!=continuous_nonce_low || get(continuous_map+28)!=continuous_nonce_high ||
+     get(slot+8)!=continuous_generation_low || get(slot+12)!=continuous_generation_high ||
+     get(slot+16)!=n || get(slot+24)!=digest ||
+     get(slot+88)!=continuous_source_low || get(slot+92)!=continuous_source_high)return 0;
+  for(u32 i=0;i<32;++i)
+    if(i!=0 && i!=2 && i!=3 && i!=4 && i!=6 && i!=22 && i!=23 && get(slot+i*4))return 0;
+  if(++continuous_source_low==0)++continuous_source_high;
+  // Cache pointers point into the slot. Retire them only after native applied
+  // every owned operation, then reuse storage without changing World identity.
+  zero(source_packets,sizeof(source_packets));zero(continuous_source_heads,sizeof(continuous_source_heads));
+  source_packet_count=source_packet_bytes=sequence=oracle=oracle_bytes=0;bytes=continuous_written=64;
+  zero(slot+16,112);continuous_store(slot,0,MNM_CONT_WRITING);
   return 1;
 }

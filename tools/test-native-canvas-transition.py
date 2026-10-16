@@ -20,12 +20,12 @@ def main():
     register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
     spec=importlib.util.spec_from_file_location('transition_claims',ROOT/'tools/draft-coverage-claims.py')
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-    declaration=module.declaration(ROOT,register,['NR.resident-world-canvas-transition','NP.native-primary-initial-history','NP.native-source-copy-refusal'],['NR.resident-world-canvas-transition.synthetic'])
+    declaration=module.declaration(ROOT,register,['NR.resident-world-canvas-transition','NP.native-primary-initial-history','NP.native-source-copy-refusal','NR.menu-loading-source-chunks'],['NR.resident-world-canvas-transition.synthetic','NR.menu-loading-source-chunks.synthetic'])
     for directory in ['assets','renderer','compat','reconstruction','protocols']:
         for path in (ROOT/directory).rglob('*'):
             if path.is_file() and (path.suffix in ('.cpp','.hpp','.c','.h','.S') or path.name=='CMakeLists.txt'):
                 declaration['sources'][path.relative_to(ROOT).as_posix()]=sha(path)
-    for path in ['tests/resource-fixtures.hpp','tests/native-prepared-world-test.cpp','tests/native-retained-world-test.cpp']:
+    for path in ['tests/resource-fixtures.hpp','tests/native-prepared-world-test.cpp','tests/native-retained-world-test.cpp','tests/source-prefix-test.cpp','tests/world-continuous-channel-test.cpp','tests/world-gpu-ack-test.cpp','tests/canvas-native-reader-test.cpp']:
         declaration['sources'][path]=sha(ROOT/path)
     declaration['sources']['tests/native-world-rolling/CMakeLists.txt']=sha(ROOT/'tests/native-world-rolling/CMakeLists.txt')
     (out/'prospective.json').write_text(json.dumps(declaration,indent=2)+'\n')
@@ -37,7 +37,7 @@ def main():
     try:
         build=out/'build'
         run('configure',['cmake','-S',ROOT/'tests/native-world-rolling','-B',build,'-DCMAKE_BUILD_TYPE=RelWithDebInfo','-DBUILD_TESTING=ON'])
-        targets=['resident-canvas-transition-test','world-gpu-resident-test','native-prepared-world-test','native-retained-world-test']
+        targets=['resident-canvas-transition-test','world-gpu-resident-test','native-prepared-world-test','native-retained-world-test','source-prefix-test','world-continuous-channel-test','world-gpu-ack-test','canvas-native-reader-test']
         run('build',['cmake','--build',build,'--target',*targets,'--parallel','4'])
         for target in targets:run(target,['xvfb-run','-a',build/'world-rolling'/target])
         run('primary-build',['cc','-std=c11','-Wall','-Wextra','-Werror','-MD','-MF',out/'primary.d',ROOT/'tests/native-primary-initial-test.c','-o',out/'primary-test'])
@@ -50,6 +50,7 @@ def main():
                     compiled.add(path.relative_to(ROOT).as_posix())
         if not compiled or compiled-set(report['sources']):raise ValueError('Undeclared compiler sources: '+repr(sorted(compiled-set(report['sources']))))
         report['compiled_sources']={p:sha(ROOT/p) for p in sorted(compiled)}
+        report['source_prefix']=json.loads((out/'source-prefix-test.log').read_text().splitlines()[-1])
         report['transition']=json.loads((out/'resident-canvas-transition-test.log').read_text().splitlines()[-1])
         report['controls']={target:(out/(target+'.log')).read_text() for target in targets[1:]+['primary-controls']}
         report['source_stable']=all(sha(ROOT/p)==h for p,h in report['sources'].items())

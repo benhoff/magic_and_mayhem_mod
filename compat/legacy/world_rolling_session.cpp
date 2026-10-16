@@ -194,3 +194,21 @@ WorldRollingSession::packetCacheStats() const {
           cached_ ? cached_->ownedPayloadBytes : 0};
 }
 } // namespace mnm::legacy
+
+void mnm::legacy::WorldRollingSession::consumeSource(const CanvasProducerStream &stream) {
+  if(failed_)throw std::runtime_error("Terminal source history session");
+  try {
+    if(!resident_ || world_.active() || stream.version!=3 || stream.operations.empty())
+      throw std::invalid_argument("Source chunk requires closed resident World");
+    // Validate the whole shape before touching any resource. A queue or failure
+    // cannot be smuggled into an acknowledged menu/loading chunk.
+    for(const auto& c:stream.operations)
+      if(c.fields[2]==11 || c.fields[2]==12 || c.fields[2]==13 || c.fields[2]==27)
+        throw std::invalid_argument("World/failure record in source-only chunk");
+    renderer_.batch([&]{for(const auto& c:stream.operations){
+      try{producer_.apply(c);}catch(const std::exception& e){
+        throw std::runtime_error("Source chunk record="+std::to_string(c.fields[1])+" kind="+std::to_string(c.fields[2])+" canvas="+std::to_string(c.fields[3])+" caller="+std::to_string(c.fields[22])+": "+e.what());
+      }
+    }producer_.publishWrites();});
+  }catch(...){failed_=true;throw;}
+}
