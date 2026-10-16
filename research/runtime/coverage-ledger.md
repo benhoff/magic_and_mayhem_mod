@@ -12468,3 +12468,34 @@ and rewards, original assets, external award transactions, power loss and
 injected file-system failures remain pending. Shared native build/README
 changes retain other historical evidence hashes/statuses without renewing their
 current validation.
+
+
+## Native arena campaign journey — 2026-10-16
+
+`NP.campaign-arena` adds two authored duels over the existing frozen arena and
+ordinary-health backend, without changing arena balance. The application adapter
+binds canonical campaign/mission content, native linear policy and the exact
+initial arena snapshot; actual skirmish resource validators precede staged
+restoration. `mnm-campaign-cli` supports create/start/semantic cast/resume/inspect,
+exclusive checkpoint outputs and persisted last result versus new settlement
+counts. This is a headless campaign slice, separate from the raw skirmish GUI.
+
+[Current execution](native-campaign-arena-20261016.json) passes all49 native
+arena/skirmish/game CTest checks outside the sandbox, including the unchanged Qt
+window regression. The pinned journey at
+`working/tests/campaign-session/run-htr8ah12/journey/` retains commands,
+stdout/stderr, checkpoints and hashes: pending summon/bolts/projectiles, exact
+split continuation, first victory selecting the next region, second-mission
+defeat/reopen/retry5 and final victory/transition6. Repeated idle continuation
+emits no settlement; independent v1/v2 wire checks and checksummed resource,
+content, participants, result ordering/ownership and publication refusals pass.
+Current source also reruns the core session and version-1 persistence suites.
+
+[The earlier sandboxed run](native-campaign-arena-window-negative-20261016.json)
+passed48of49 checks but the existing Xvfb Qt process aborted at startup. It is
+an unbound negative record, not positive validation or proof of a new engine
+defect; it supplies no current behavior/scenario stage. The separate successful
+run retains its own claims/source fingerprints. No original artifacts were
+consumed. [Scope and content binding](native-campaign-arena.md). Campaign GUI,
+original maps/rules/rewards, arbitrary branching manifests, global award/event
+transactions and injected file-system/power-loss behavior remain pending.

@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import importlib.util
 import json
+import os
 from pathlib import Path
 import subprocess
 import tempfile
@@ -34,16 +35,24 @@ def main():
     ]
     result={'schema':1,'scope':'Native authored campaign session: transactional attempts and resource-bound checkpoint ownership; no original campaign/reward equivalence.',
         'claims':declaration['claims'],'sources':declaration['sources'],'commands':[],'arena':args.arena,'success':False}
+    environment=os.environ.copy()
+    if args.arena:environment['MNM_CAMPAIGN_JOURNEY_OUTPUT']=str(run/'journey')
     try:
         for index,command in enumerate(commands):
             log=run/f'command-{index}.log'
             with log.open('w') as output:
-                completed=subprocess.run(command,cwd=ROOT,stdout=output,stderr=subprocess.STDOUT)
+                completed=subprocess.run(command,cwd=ROOT,env=environment,stdout=output,stderr=subprocess.STDOUT)
             result['commands'].append({'argv':command,'exit_code':completed.returncode,
                 'log':str(log.relative_to(ROOT)),'sha256':digest(log)})
             if completed.returncode:raise RuntimeError('Validation failed: '+str(log))
         if any(digest(ROOT/p)!=h for p,h in declaration['sources'].items()):
             raise RuntimeError('Declared campaign sources changed during execution')
+        if args.arena:
+            journey=run/'journey/report.json';details=json.loads(journey.read_text())
+            if not details['success']:raise RuntimeError('Native campaign journey did not pass')
+            result['journey']={'report':str(journey.relative_to(ROOT)),'sha256':digest(journey),
+                'victories':details['victories'],'defeats':details['defeats'],
+                'retry_attempt':details['retry_attempt'],'final_transition':details['final_transition']}
         result['success']=True
     except Exception as error:result['error']=str(error)
     (run/'report.json').write_text(json.dumps(result,indent=2)+'\n')

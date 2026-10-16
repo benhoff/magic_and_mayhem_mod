@@ -72365,7 +72365,8 @@
       "evidence": [
         "NP.campaign-persistence.synthetic-20261016",
         "NP.campaign-persistence.envelope-20261016",
-        "NP.campaign-session.core-20261016"
+        "NP.campaign-session.core-20261016",
+        "NP.campaign-session.arena-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -72418,7 +72419,128 @@
         "game/persistence/store_posix.cpp"
       ],
       "evidence": [
-        "NP.campaign-session.core-20261016"
+        "NP.campaign-session.core-20261016",
+        "NP.campaign-session.arena-20261016"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.campaign-arena",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Content-bound native arena campaign and independent-process journey",
+      "scope": "Two authored ordered duels reuse the real frozen native arena, ordinary-health backend and unchanged arena rules. App adapter fingerprints initial campaign/mission data, linear policy version and exact initial arena snapshot; real navigation/combat/health validators rebind saved sessions. Headless CLI create/start/semantic cast/resume/inspect retains pending input/projectiles and one result per adopted attempt lineage through victory, defeat, reopen, retry and final completion. Checksummed content/resource/result counterexamples, corrupt input and exclusive publication refuse. No original campaign maps/rules/rewards, GUI, arbitrary manifests, distributed event deduplication or crash/I/O-failure equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-campaign-arena.md",
+        "apps/skirmish/README.md"
+      ],
+      "implementation": [
+        "apps/skirmish/campaign.hpp",
+        "apps/skirmish/campaign.cpp",
+        "apps/skirmish/campaign_cli.cpp"
+      ],
+      "tests": [
+        "tests/campaign-arena-test.cpp",
+        "tests/test-campaign-arena.py",
+        "tools/test-native-campaign-session.py"
+      ],
+      "validation_dependencies": [
+        "apps/skirmish/CMakeLists.txt",
+        "apps/skirmish/arena.cpp",
+        "apps/skirmish/arena.hpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp",
+        "apps/skirmish/trace.cpp",
+        "apps/skirmish/trace.hpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/campaign.cpp",
+        "game/persistence/campaign.hpp",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/campaign_session.cpp",
+        "game/simulation/campaign_session.hpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/replay_trace.cpp",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp"
+      ],
+      "evidence": [
+        "NP.campaign-session.arena-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -149342,6 +149464,59 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NP.campaign-session.arena-20261016",
+      "kind": "native_integration",
+      "scope": "All49 actual arena/skirmish/native game CTest checks pass outside the sandbox, including existing Qt window regression. Retained independent-process campaign journey includes pending summon/projectiles, byte-identical split continuation, victory, defeat/reopen, retry5 and final transition6, independent v1/v2 wire checks and contextual resource/result/publication refusals. No campaign GUI or original campaign equivalence.",
+      "record": "research/runtime/native-campaign-arena-20261016.json",
+      "sha256": "94f1c1df014b44ba5e47532fd9a1f90687c8ca2247cdcd491279064f78f8e17e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/arena",
+          "equals": true
+        },
+        {
+          "pointer": "/journey/victories",
+          "equals": 2
+        },
+        {
+          "pointer": "/journey/defeats",
+          "equals": 1
+        },
+        {
+          "pointer": "/journey/retry_attempt",
+          "equals": 5
+        },
+        {
+          "pointer": "/journey/final_transition",
+          "equals": 6
+        }
+      ]
+    },
+    {
+      "id": "NP.campaign-session.sandbox-window-negative-20261016",
+      "kind": "native_integration",
+      "scope": "Retained failed development run: 48of49 tests passed, existing Qt/Xvfb window process aborted during sandboxed startup. Unbound negative record is not linked to any positive behavior/scenario claim and grants no validation stage. Subsequent separately declared outside-sandbox suite is the positive result. No new engine defect or precise environmental cause is inferred.",
+      "record": "research/runtime/native-campaign-arena-window-negative-20261016.json",
+      "sha256": "3f45e7479917e967e12aa9dd2af1f87a94c51a799e38409127e17fd5706c4d3c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/arena",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -165825,7 +166000,8 @@
       "evidence": [
         "NP.campaign-persistence.synthetic-20261016",
         "NP.campaign-persistence.envelope-20261016",
-        "NP.campaign-session.core-20261016"
+        "NP.campaign-session.core-20261016",
+        "NP.campaign-session.arena-20261016"
       ]
     },
     {
@@ -165840,7 +166016,24 @@
         "tools/test-native-campaign-session.py"
       ],
       "evidence": [
-        "NP.campaign-session.core-20261016"
+        "NP.campaign-session.core-20261016",
+        "NP.campaign-session.arena-20261016"
+      ]
+    },
+    {
+      "id": "NP.campaign-arena.journey",
+      "level": "headless",
+      "scope": "Actual frozen arena and ordinary-health resources in independent processes: pending summon/bolt/projectile saves, exact split continuation, first victory selecting next region, second-mission defeat/reopen/retry and final victory, zero new idle settlements, independent v1/v2 wire walk, repaired-checksum resource/content/participant/result/ownership refusals, overwrite and corrupt/tick bounds. No original campaign or campaign GUI proof.",
+      "behaviors": [
+        "NP.campaign-arena"
+      ],
+      "tests": [
+        "tests/campaign-arena-test.cpp",
+        "tests/test-campaign-arena.py",
+        "tools/test-native-campaign-session.py"
+      ],
+      "evidence": [
+        "NP.campaign-session.arena-20261016"
       ]
     }
   ],
@@ -166458,8 +166651,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-session-core-20261016.json",
-    "sha256": "7c3b5d86753e64ce99de978faf7e01542ce017ce5c4be4383204e69463e5041d"
+    "path": "research/runtime/coverage/source-index-campaign-arena-20261016.json",
+    "sha256": "6faf514b6a78a0ffeb62fcf51fe671595bb779c17315fd12940871fdcaefbf04"
   },
   "claim_bindings_required": true
 }

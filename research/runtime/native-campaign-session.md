@@ -44,13 +44,14 @@ exact saved bytes. A terminal active battle is unreachable at a published
 boundary and refuses. Idle/completed checkpoints contain an empty world and the
 retained result, so completed battle resources need not be reopened.
 
-The initial contract test uses an owned synthetic navigation adapter and actual
+The core contract test uses an owned synthetic navigation adapter and actual
 skirmish stepping. Explicit test-only low-health/projectile fixtures reach
 victory, defeat and draw without adding production tuning. It checks pending
 casts/projectiles, fresh session resource restoration, exact continuation,
 wrong/missing/altering resources, throwing damage, invalid orders/content/results,
-repeated start/settlement/reopen, retry and counter exhaustion. Actual frozen
-arena binding and independent-process journeys are a separate integration step.
+repeated start/settlement/reopen, retry and counter exhaustion. The separate
+[arena integration](native-campaign-arena.md) supplies actual frozen-arena
+binding, a command-line entry point and independent-process mission journeys.
 Original map/asset restoration, campaign GUI, arbitrary branching content,
 original victory/defeat rules, power loss and injected file-system failures
 remain outside this milestone.

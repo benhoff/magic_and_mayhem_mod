@@ -51,3 +51,27 @@ fixture policies. Native healing is available as an engine API with cap/dead
 refusal tests; this increment adds no healing spell or balance change. New
 checkpoints bind the health backend; older saves retain their original fixture
 backend. See [ordinary health research](../../research/runtime/ordinary-health.md).
+
+## Authored native campaign
+
+`mnm-campaign-cli` adds two declared duels over this same arena. It uses the
+campaign coordinator to preserve pending input, active battle resources and a
+single result per attempt. Victory selects the next region; defeat/draw allow
+retry. No new rewards or combat balance changes are added.
+
+```sh
+working/build/skirmish/mnm-campaign-cli create campaign.mnc
+working/build/skirmish/mnm-campaign-cli start campaign.mnc battle.mnc
+working/build/skirmish/mnm-campaign-cli cast battle.mnc pending.mnc summon 2 5
+working/build/skirmish/mnm-campaign-cli resume pending.mnc summoned.mnc 3
+working/build/skirmish/mnm-campaign-cli cast summoned.mnc bolt.mnc bolt
+working/build/skirmish/mnm-campaign-cli resume bolt.mnc resumed.mnc 3
+working/build/skirmish/mnm-campaign-cli inspect resumed.mnc
+```
+
+Outputs must be new paths. Reuse `cast` and `resume` to play through the
+duel; `start` admits the next mission or retry after a result. JSON includes
+`last_result` and a separate `settlements` count: reopening a settled result
+emits no new settlement. The campaign is currently a headless authored slice;
+the existing skirmish window and raw skirmish saves retain their separate flow.
+[Content binding, execution scope and limits](../../research/runtime/native-campaign-arena.md).
