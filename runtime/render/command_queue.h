@@ -2,6 +2,9 @@
  * release, with their own nonblocking guard. Queue storage owns every byte. */
 #include "../../protocols/include/mnm/render_command_ring.h"
 #define COMMAND_QUEUE_CAPACITY (32u*1024u*1024u)
+/* Power-of-two capacity divides 2^32, so physical offsets remain continuous
+ * across unsigned cursor rollover. Occupancy never exceeds this capacity. */
+_Static_assert((COMMAND_QUEUE_CAPACITY&(COMMAND_QUEUE_CAPACITY-1u))==0 && COMMAND_QUEUE_CAPACITY<0x80000000u,"Queue cursor distance");
 static struct mnm_ring_writer command_ring;
 static u8* command_queue;
 static u32 command_queue_written,command_queue_read,command_queue_end,command_queue_failure;
@@ -40,7 +43,7 @@ static int command_queue_append(const void* a,u32 an,const void* b,u32 bn,const 
     }
     u32 read=__atomic_load_n(&command_queue_read,__ATOMIC_ACQUIRE),written=command_queue_written;
     u32 remaining=COMMAND_QUEUE_CAPACITY-(written-read);
-    if(an>remaining || bn>remaining-an || cn>remaining-an-bn || an+bn+cn>0xffffffffu-written){
+    if(an>remaining || bn>remaining-an || cn>remaining-an-bn){
         command_queue_overflow[0]=an;command_queue_overflow[1]=bn;command_queue_overflow[2]=cn;
         command_queue_overflow[3]=written-read;command_queue_overflow[4]=written;command_queue_overflow[5]=read;
         command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_OVERFLOW);return 0;

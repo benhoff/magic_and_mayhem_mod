@@ -1,321 +1,224 @@
-# Native rendering integration work remaining
+# Native rendering: current gaps and verified progress
 
-Reviewed 2026-10-15 against committed tree `76a75c0c`. Native World delivery,
-combat/menu integration, GPU presentation and combined pixel-producer staging
-already exist. Complete drawing replacement still needs the work below.
-Several remaining items are missing acceptance evidence, rather than missing
-rendering implementations.
+Reviewed 2026-10-16; the original `45af2ed6` review is superseded for byte lifetime and recorded GPU session comparison by the source-bound results below. This is the current integration backlog;
+the filename is retained for existing links and stable RENDER-INT identifiers.
+The [new code/control review](native-rendering-gap-review-20261016.json) records
+exact source hashes, line witnesses, native C boundary probes, portable guards
+and inspected retained results. The [October 15 review](native-rendering-integration-review-20261015.json)
+remains immutable historical evidence. Its claims that the campaign runner lacks
+combined-producer selection/counters and that changed-canvas Load is unproved
+have been superseded by the implementations and results below.
 
-The [code review record](native-rendering-integration-review-20261015.json)
-retains 25 exact source excerpts with file hashes and line numbers, executable
-policy checks, guard-test results and the committed-history inspection.
-References below use line numbers at that commit; named functions are the
-stable navigation points. Concurrent uncommitted native surface, palette and
-clipper changes are excluded from implementation conclusions and are identified
-by hash in the record. Those changes need their own integration validation.
-No original game or graphics driver was executed for this review.
+The initial review was static/native-control work. Subsequent work executes native
+GPU and physical X11 comparisons plus isolated PE32 producer controls. Two fresh
+original-game campaign attempts do not complete and remain explicit limitations.
+Concurrent Cure and native campaign-persistence work is outside this renderer scope.
 
-## Corrections to the earlier integration assessment
+## Current status
 
-| Earlier assertion | What the code actually establishes | Remaining boundary |
+| Area | What the current code establishes | Remaining gap |
 | --- | --- | --- |
-| Enable the replacements together | `selection()` already selects seven producer switches; public preparation stages them with the separate glyph adapter. | Execute and verify the combined installed hooks through gameplay. |
-| Keep frame history coherent | Resident World ownership, CPU delta overlays, generation checks and deferred secondary writes already exist. | Establish complete CPU/GPU history dependencies for every admitted reader/writer. |
-| Integrate whole-session transitions | Combat, spells, portrait stress, three menus/resumes and normal Quit have a retained passing journey. | Expand independently compared journeys to save/load, later maps, results and broader inputs with the combined routes. |
-| Implement recovery | Generic command recovery and cleanup already exist. | Resident World explicitly refuses in-place recovery and requires a fresh producer. Validate the chosen restart/termination policy. |
-| Compare complete sessions and fix the intermittent mismatch | Independent component/startup comparisons exist. | Complete the presented-session corpus. The historical intermittent mismatch has not been reproduced by this review; it is not established as a current defect. |
-| Add a complete replacement flag | Existing native, resident and producer flags select partial capabilities. | Add a strict complete-mode contract only after its declared routes and scenarios pass. |
+| Long sessions | V3 wrapping transport, private queue, owned emitter and decoder pass actual traffic beyond 4 GiB with bounded storage. | Finite sequences, capacity/deadlines and a fresh complete V3 original-game journey remain separate. |
+| CPU/GPU history | Explicit ordered CPU_READ, physical identity/generation/nonce restoration, Save/Load synchronization and selected GPU copies exist. | Arbitrary raw readers are outside interception; selected unsupported dependencies still refuse. |
+| Complete-native release | Combined mode requires zero forwards/history refusal and positive execution for requested routes. | No capability-checked complete-renderer launch/release contract; reports explicitly retain complete-replacement false. |
+| Optional routes | Six valid families and 43 installed routes; 19 execute across the reviewed camera/spell/storage reports. | 24 are unexercised in those reports, with caller/reachability and World-batching distinctions retained. |
+| Session composition/parity | Historical Save/Load/changed-canvas journeys pass; all 323 observed original Quick Battle frames now pass native GPU and displayed-output comparison in a portable corpus. | Generic action-bound/global presentation coverage, later maps and broader movies/input remain incomplete. |
+| Failure handling | Terminal resident cleanup and force-stop/fresh-launch exist; resident in-place recovery explicitly refuses. | Actual-game injected failure followed by restart and physical context-loss behavior remain unproved. |
+| Performance | Retained hardware and software results distinguish engine cadence from presentation. | Sustained complete-session hardware/60 FPS acceptance remains unproved. This review does not probe hardware availability. |
 
-The [October 14 integration result](native-render-master-integration-20261014.md)
-is evidence that gameplay integration exists: 5,719 balanced native World
-completions and approximately 59.4 visible native World FPS in its recorded run.
-It does not assert full original-pixel equivalence. Earlier prose limiting all
-continuous World delivery to 16 or 32 startup queues is superseded for this
-resident path; those limits belong to older bounded comparison experiments.
+## Completed work that must not remain on the missing-implementation list
 
-## RENDER INT 01 Validate the combined producer routes in the gameplay harness
+- `tools/test-native-campaign.py` has `--other-pixel-producers` and
+  `--require-pixel-route`, restores the authorized group after environment cleanup,
+  verifies staged compiler/DLL provenance and reads per-route counters.
+  `tools/pixel_route_requirements.py::validate_routes()` rejects any original
+  forward, history refusal, missing native traffic or unexecuted required route.
+- The old alleged BitBlt hook was actually ClientToScreen and is retired.
+  `selection()` now enables six valid optional families; glyph/World adapters
+  have separate contracts. The old seven-family/53-route counts are historical.
+- The native facade has implemented owned formats, palettes, clipping, physical
+  leases and held-flip behavior. Its focused comparisons and limits are in
+  [native resource/state handling](native-resource-state.md) and
+  [completion contracts](native-render-completion.md).
+- [Native Save/Load](native-render-save-load.md) and its selected independent
+  World comparisons exist. [Initiate tutorial input](native-mini-dispatch-admission.md),
+  [changed-canvas reload](native-world-canvas-transition.md) and the
+  [resident pressure repair](resident-command-pressure.md) add later bounded
+  live results. The final delayed Initiate run completes 962 balanced Worlds,
+  both display rebuilds, a changed canvas and normal Quit; three pressure waits
+  resume, private queue peak is 9,035,414 bytes and maximum wait is 273 ms.
+  The former 707-World overflow is retained negative evidence, not a current
+  reproduced failure after this repair.
 
-**Open integration and observability work.**
+## RENDER-INT-01: Remaining route execution and reachability
 
-Positive code witnesses:
+**Combined selection, execution and counter enforcement are implemented. The
+remaining work is branch/caller coverage and independent output proof.**
 
-- [`selection()`](../../tools/borrowed_pixel_backend_launch.py#L31) expands
-  `MNM_OTHER_PIXEL_PRODUCERS=1` into panel, image/effect, JPEG, minimap,
-  colour-rectangle, alternate-raster and DC-copy switches. Explicit individual
-  zeroes win. Glyph selection is separate.
-- [`prepare()`](../../tools/prepare-menu-observer.py#L90) stages those adapters
-  together and adds the resident scene/glyph adapters. This wiring is present.
-- [`test-pixel-staging.py`](../../tools/test-pixel-staging.py#L145) calls public
-  resident preparation and authorization, then records staging success. That
-  branch does not launch the staged process or inspect installed-hook execution.
-- [`clean_environment()`](../../tools/test-native-campaign.py#L312) removes every
-  inherited `MNM_*` variable. The campaign runner has no
-  `MNM_OTHER_PIXEL_PRODUCERS` literal or explicit option restoring that group.
-  Passing it only in the parent environment cannot exercise the group through
-  this runner. The review executed both `selection()` and `clean_environment()`
-  to confirm this behavior.
-- [`validate_native_draw()`](../../tools/test-native-campaign.py#L321) checks
-  native facade staging, module absence, refusal/status and resource bounds.
-  The [resident acceptance block](../../tools/test-native-campaign.py#L741)
-  checks completion/import/return balance and ordinary-readback absence. Neither
-  provides a complete per-producer native/forwarded-call census.
+The review checks the retained camera, spell, Apprentice storage and final
+Initiate results separately. Camera/spell each execute 19 of 43 optional routes;
+these two storage journeys each execute 17. Their union is still 19. All four
+reports succeed with zero optional forwards/history refusal. These are results
+at their recorded source hashes, not newly executed or renewed comparisons.
 
-Work to close this item:
+The 24 unexercised routes are `pixel/rgb_add`, `pixel/pcx_words`,
+`pixel/brighten`, `pixel/row_copy`, `colour_rect/rectangle`, `minimap/camera3`,
+and raster splices 0, 1, 4–8, 11–20 and 22. Their implementations and isolated
+comparisons must not be described as absent merely because an optional counter
+is zero. World batching intercepts some operations before those CPU interiors.
+The reviewed minimap switch selects camera0/2/0/1; it does not select camera3.
+Other camera3 callers are unresolved, not proved dead code.
 
-1. Give the campaign harness an explicit combined-producer mode; restore only
-   its authorized settings after environment cleanup. Declare all participating
-   build/source dependencies before execution.
-2. Verify the manifest, installed hooks and effective mode after process launch.
-   Collect per-route admitted, natively executed, refused and originally executed
-   counts. Existing counters can be reused where available; for example
-   `dc_copy_bridge.c` exports native/original counters, while `raster_bridge.c`
-   currently keeps per-site arrays without a production export.
-3. Run startup/loading, combat/effects, camera and minimap changes, pause/resume,
-   menu return and normal Quit with independent checkpoints. Distinguish
-   unexercised routes from passing routes and every original forward from bypass.
+See [targeted route scenarios](native-pixel-route-scenarios.md). Close each
+claimed route with an actual caller/scenario and independent caller/output
+checks; retain genuinely unassigned indirect reachability. Do not invent gameplay
+or alter dispatch merely to make every optional counter advance.
 
-Acceptance: the combined mode has an actual source-bound execution report and
-independent output/caller checks for each route it claims. A successful stage
-alone cannot close it. Relevant contracts include `NP.pixel-producer-launch`,
-`NP.glyph-production-route`, `NP.panel-loop-launch`,
-`NP.outside-world-raster-admission` and `NP.owned-dc-copy`.
+## RENDER-INT-02: Remaining CPU/GPU dependency boundaries
 
-## RENDER INT 02 Close CPU and GPU frame history dependencies
+**Selected history services exist; general CPU coherence does not.**
 
-**Open ownership boundary, with substantial existing implementation.**
+`NativeDrawCpuHistoryV1` marks resident CPU backing stale and makes selected
+stale reads terminal before original fallback. `NativeDrawCpuTransferV1` restores
+only a matching unborrowed RGB565 backing. Stream V5 CPU_READ validates ticket,
+session, extent, generation and nonce and executes after preceding GPU work.
+`RenderPrepareStorageV1` synchronizes selected storage panels before original
+callbacks. These are current implementations, not TODOs.
 
-The resident GPU World and the PE32 CPU compatibility plane are deliberately
-different representations:
+`NativeDrawGpuCopyV1` handles an admitted disjoint, unclipped, non-stretched
+owned copy and propagates GPU authority without pretending its CPU baseline is
+rendered World output. Clipped/self GPU source copies still refuse. Partial
+writes cannot establish previously unknown/full CPU history. Arbitrary pointer
+reads outside selected adapters are not intercepted.
 
-- [`continuous_finish()`'s resident branch](../../runtime/scene/world_continuous.c#L201)
-  accepts an acknowledgement, restores the original page protection and binds
-  the World identity. It explicitly performs no pixel copy back to the CPU.
-- [`ns_lock()`](../../runtime/native-draw/surfaces.h#L56) returns the CPU
-  `NsState::pixels` allocation. [`NativeDrawPlaneV1()`](../../runtime/native-draw/factory.c#L107)
-  resolves that current owned allocation and rejects active DC leases and
-  unknown/retired allocations. It does not retrieve resident GPU pixels.
-- [`session_resident_unlock()`](../../runtime/render/owned_session.h#L383)
-  compares CPU before/after bytes and emits masked updates over the resident
-  surface. This is an existing solution for changed CPU overlay pixels, not a
-  promise that the CPU plane contains the completed GPU World.
-- [`mnm_raster_route()`](../../runtime/canvas-writers/raster_bridge.c#L17)
-  uses the borrowed CPU plane and current original workspace. Destination-reading
-  operations therefore need an explicit history argument when composed with
-  resident World drawing.
-- [`mnm_world_defer_admitted()`](../../runtime/scene/world_deferred.h#L8)
-  allows selected independent secondary operations, but rejects World source or
-  destination access and global binds. Its 512-record/4-MiB limits remain
-  enforced. [`batch_fault()`](../../runtime/scene/world_raster_batch.c#L14)
-  terminates on access to the protected World allocation during the guarded batch.
+The earlier blanket phrase "asynchronous CPU reads unsupported" needs precision:
+explicit command CPU_READ and the asynchronous native host worker are separate
+from asynchronous **World GPU source production**. The latter's completion guard
+in `ResidentWorldSession::pollAsynchronous()` still requires zero native/RGBA
+readbacks. Synchronous source composition separately accounts for explicit
+CPU-reader snapshots. The review establishes those guards, not that all async
+readback would inherently be impossible.
 
-Work to close this item: enumerate actual readers and writers in the combined
-journey, determine which require completed World pixels, and give each such
-dependency a valid owned representation or an explicit capability refusal.
-Preserve ordering across blend destinations, partial writes, cursor save/restore,
-DC copies and interleaved secondary work. Do not remove the current guards or
-assume that readable CPU memory is a current rendered World.
+Close actual new readers with an ordered owned representation or a documented
+capability refusal. Preserve the distinction between current native pixels and
+readable but stale CPU allocations. See [reader routing](native-history-readers.md).
 
-Acceptance: dependency-sensitive pixel comparisons pass with original raster
-bodies bypassed; accepted reads observe the required version; unknown or
-unsupported dependencies end the declared replacement scope before use.
-Relevant contracts include `NR.public-resident-world`,
-`NR.world-raster-batch-transport`, `NP.owned-plane-lookup` and
-`NP.outside-world-raster-admission`.
+## RENDER-INT-03: Strict complete-native release policy
 
-## RENDER INT 03 Define strict admission and original forwarding policy
+**Still missing as a complete-target contract. Existing combined admission is
+already strict about its declared producer counters.**
 
-**Open complete-mode contract. Partial-mode fallback is implemented.**
+The campaign report sets `complete_drawing_replacement: false`, and counter/
+route results set `complete_replacement=False`. Partial adapters retain original
+continuations outside their admitted domains; an unsupported facade call can
+also terminate. Neither a native-mode switch nor a zero-forward bounded run
+certifies every required game route.
 
-These are executable original-code continuations, not merely TODO comments:
+A complete mode needs a declared capability set, startup admission and a session
+outcome that ends its complete claim before any unsupported original pixel
+production resumes. Preserve intentional native Qt menu semantics and original
+simulation/required preparation side effects. No current unimplemented graphics
+API is assumed to be a required game path without a caller.
 
-- [`pixel_entry.S`](../../runtime/canvas-writers/pixel_entry.S#L20) branches to
-  `mnm_pixel_original` when native admission returns zero.
-- [`dib()`](../../runtime/canvas-writers/pixel_bridge.c#L79) calls the original
-  imported DIB operation when the native route returns its refusal sentinel.
-- [`copy()`](../../runtime/canvas-writers/dc_copy_bridge.c#L9) increments
-  `original_calls` and invokes the original BitBlt import after native refusal.
-- [`mnm_raster_route()`](../../runtime/canvas-writers/raster_bridge.c#L63)
-  records per-site forwards on refused thread/input/storage admission.
-- [`nd_init()`](../../runtime/native-draw/surfaces.h#L197) initializes method
-  tables to refusal handlers and overwrites admitted slots.
-  [`nd_terminal()`](../../runtime/native-draw/refusal.h#L4) records the unknown
-  method and terminates. This is already explicit failure, not silent fallback.
+## RENDER-INT-04: Broader transition and interaction coverage
 
-Work to close this item: define which routes a complete session requires, check
-that capability set before launch, and bind every refused/originally executed
-pixel path to the session outcome. Existing partial modes may keep their forwards;
-a complete-mode result must stop or explicitly end its claim before original
-pixel production resumes. Cover encountered unresolved dispatch and API routes;
-do not equate every unimplemented graphics method with a known required game path.
+**Save/Load and changed-canvas display rebuild/reload are no longer missing.
+Broader journey composition remains incomplete.**
 
-Acceptance: a deliberate unsupported pixel route cannot leave a successful
-complete-replacement result, and the report accounts for every admitted required
-route. Retaining original simulation, source preparation, wrappers and required
-side effects is allowed. Rewriting whole original consumers is not itself a
-completion requirement. `NR.live-drawing-replacement` owns this release policy.
+The retained final Initiate run verifies generation/import/original-return
+balance, a changed canvas, fresh post-storage World sources and normal Quit.
+This corrects the old same-canvas-only boundary. Rebuilding the display and
+reloading a saved map is not proof of leaving one map and progressing to a
+separate later campaign map. The current result also skips movies.
 
-## RENDER INT 04 Extend scene lifetime and transition coverage
+Required expansion still includes later-map resource churn, both result paths,
+enabled movies and return to World, broader tooltip/cursor/hotspot/picking and
+Preferences combinations, with scene/resource identity and independent semantic
+or pixel checks. Existing successful individual observations remain scoped;
+whole declared transition coverage is not inferred from shared code.
 
-**Existing functionality needs broader combined-session evidence.**
+## RENDER-INT-05: Failure and fresh restart acceptance
 
-[`CanvasWorld::beginResident()`](../../compat/legacy/canvas_world.cpp#L138)
-requires contiguous generations, the same resident surface/dimensions and a
-consistent canvas identity. It rejects incompatible reuse. That guard does not
-prove that save/load or map transitions are broken: a transition may preserve the
-identity, or orchestration may create a fresh session. It identifies the concrete
-handoff that must be exercised when identities or resources change.
+**Terminal cleanup and hard restart are implemented. In-place resident recovery
+is intentionally unsupported; it is not a missing requirement by itself.**
 
-The executable [journey requirements](../../tools/drawing_journeys.py#L12)
-include save/load/restored World, leave/load/next map, victory/defeat, camera
-boundaries, attachment/lighting/blending, tooltip lifecycle, hotspots/picking,
-movie completion/skip and cleanup. Native menu storage dispatch already exists
-in [`LiveMenuSession::requestStorage()`](../../apps/qt-shell/live_menu_session.cpp#L154);
-its presence does not validate reconstructed rendering after load.
+`LiveCommandSession::recover()` refuses resident retry into the failed producer.
+`main.cpp::residentFailed()` cancels/retire owners, clears GUI frames, suspends
+input and offers Hard restart. `hardRestart()` calls the owning process/menu
+force-stop and starts a fresh session only after successful stop.
 
-Work to close this item: run those transitions with the combined producer mode,
-record surface/resource generations and retained/retired GPU leases, and compare
-the resulting scenes and relevant input outcomes. Where a canvas changes,
-validate the fresh-session handoff instead of bypassing identity checks. Verify
-enabled movies and return to active World in that same declared session scope.
+The existing `resident-terminal-restart-test.cpp` models malformed commands,
+producer failure, first-frame timeout and GUI abort, then creates fresh synthetic
+workers/channels. Its comment and result explicitly exclude actual-game restart
+and physical GL context loss. Shortcut dispatch has its own synthetic test.
+These implementations and historical controls must not be listed as absent.
 
-Acceptance: the required transition starts and ends with coherent native frame
-ownership, no stale resources, correct picking/hotspots and independent scene or
-semantic checks appropriate to the declared native UI policy. The existing
-combat/menu success remains valid historical progress; this is an expansion.
+Remaining acceptance is an actual-game failure→cleanup→fresh-launch journey,
+plus declared physical context/owner failure outcomes and concurrent lifecycle
+bounds. A safe terminal stop is allowed; transparent continuation or preservation
+of unsaved progress is not promised. See [completion contracts](native-render-completion.md).
 
-## RENDER INT 05 Validate resident failure and restart behavior
+## RENDER-INT-06: Presented-session comparison and performance
 
-**Directly open in code. Generic recovery must not be counted as resident recovery.**
+**Still acceptance gaps, not evidence that all named drawing features lack code.**
 
-[`LiveCommandSession::recover()`](../../apps/qt-shell/live_command_session.cpp#L38)
-starts with `if(residentWorld)return fail(...)` and the message that a fresh
-producer is required. Generic nonresident sessions can allocate a new command
-session and request recovery. [`fail()`](../../apps/qt-shell/live_command_session.cpp#L32)
-aborts and clears presentation. The shell's
-[resident error branch](../../apps/qt-shell/main.cpp#L270) aborts the resident
-session, stops delivery and suspends input rather than showing an original
-World viewport. Automatic recovery into a coherent resident generation is
-therefore not implemented by that generic recovery path.
+`tests/fixtures/drawing-journeys/suite.json` now has a fifth adapter,
+`recorded_session`, alongside components, scene, producer_sequence and publication.
+The portable [recorded interval](recorded-native-session-comparison.md) retains all
+323 independent original EGL frames, including duplicates, with exact source/API/
+closure and asset bindings. Current native GPU composition and post-swap X11 output
+both match: 310,080,000 pixels, zero outside RGB tolerance 1, alpha excluded.
 
-The committed native system-memory facade also has an explicit no-loss policy:
-[`ns_lost()` and `ns_restore()`](../../runtime/native-draw/surfaces.h#L130)
-return not-lost/success, or busy while locked/DC-held. They do not simulate a
-driver loss, recreate resources or reconstruct native World history. This is
-native storage policy, not by itself a defect or evidence of driver equivalence.
+This is `observed_egl_session` evidence. No expected original plane is passed to
+the native renderer. It covers Main/setup/loading/Quick Battle/camera/Results/
+returned Main, without proving every global original presentation route, product
+Qt menu pixel identity, live replacement, or complete action semantics. There are
+still zero generic `session` adapters. The 14 journey and 21 operation/failure
+requirements retain their full denominators. New campaign/SaveLoad/movie intervals
+and independent contiguous action-bound presentations remain acceptance work.
+The historical intermittent mismatch is not reclassified as a current defect.
 
-Work to close this item: choose and test the supported outcome for producer exit,
-render-owner failure, queue timeout, incompatible canvas recreation and GL
-resource/context failure. A clean terminal stop can be an allowed outcome;
-transparent recovery is not mandatory for every failure. If continuing the
-session is claimed, implement and compare a fresh producer/canvas/command handoff
-that retires old leases and preserves simulation-visible state. Returning to
-original drawing needs its own coherent transition and ends the native claim.
+Performance is a separate acceptance axis. The retained TITAN integration run
+records roughly 59.4 visible native World FPS while engine cadence is roughly
+19.4 Hz. The latest Initiate pressure proof uses llvmpipe and a 5 FPS functional
+floor (observed aggregate engine rate 13.7225). These measure different work and
+cannot establish sustained complete-session 60 FPS or current hardware behavior.
+No hardware availability or new throughput measurement is claimed here.
 
-Acceptance: failure tests establish the advertised stop/restart/recovery behavior
-while original drawing is bypassed, including no stale display, borrowed memory
-or pending resource leases. Existing shutdown and generic recovery controls
-remain component evidence, not proof of these broader cases.
+## RENDER-INT-07: Cumulative command-byte lifetime — repaired
 
-## RENDER INT 06 Complete independent comparisons and refresh affected evidence
+Four independent ceilings were confirmed: owned session emission, private queue,
+mapped V2 publication and streaming decoder total. All four are repaired. V3
+uses atomic32 modulo positions and bounded unsigned progress; public continuous
+launches select it. V2 keeps its explicit legacy nonwrapping guard. Emitter and
+decoder count cumulative bytes only for bounded files; archive budgets remain
+separate from live production.
 
-**Positively demonstrated acceptance gap; historical pixel failures need reproduction.**
+[Final lifetime controls](render-command-lifetime-controls-06-20261016.json) pass
+4,297,064,448 actual bytes through the production emitter/queue/ring and
+4,295,064,708 through Qt channel/decoder/consumer. Native/sanitizer guards retain
+capacity, wrong identity/version, ACK regression, cancellation and cleanup checks.
+Actual PE32 producer-to-GPU controls pass 210 complete frame comparisons across
+three valid V3 sessions and two explicit refusals. This is execution beyond the
+boundary, not merely seeded-counter arithmetic or a multi-hour original run.
 
-The shipped [`drawing-journeys/suite.json`](../../tests/fixtures/drawing-journeys/suite.json)
-contains four adapters: `components`, `scene`, `producer_sequence` and
-`publication`. It contains zero `session` adapters. The corresponding
-[`run()` branches](../../tools/check-drawing-journeys.py#L20) assign empty journey
-requirements and no action binding to these cases. Only the session branch
-produces `presented_frame` observations with action-bound requirements.
-[`coverage()`](../../tools/drawing_journeys.py#L97) requires independent,
-contiguous, action-bound presented frames before crediting a complete journey.
-Thus even successful replay of every currently listed case cannot close the
-14-journey acceptance gate. This is an executable corpus limitation; it does not
-negate separate gameplay observations or imply that all 14 features lack code.
+[Protocol and remaining live limitations](native-command-byte-lifetime.md) retain
+finite command/identity domains, 32 MiB callback capacity, pressure deadlines and
+unsupported history. Enabled-intro original execution refuses history before any
+World; a separate no-start attempt has no original bridge traffic. Neither proves
+a fresh complete V3 Save/Load journey or a transport regression. Historical V2
+Save/Load evidence retains its old source hashes. The initial two-ceiling review
+and all unsuccessful development/build attempts remain immutable.
 
-Work to close this item:
+## Reproduce this review
 
-1. Add independent original presented-session references and native adapters for
-   the required journeys, with exact frame/input identities and caller results.
-   Extend the 21 operation/failure requirements as actually exercised. Native Qt
-   menu layout is intentional policy; validate its intended semantics separately
-   from original game-scene pixel equality.
-2. Diagnose/reproduce the [historical intermittent pixel mismatch](native-palette-row-cache.md)
-   on a declared current source/input set. Neither a matching repetition nor
-   static inspection establishes repair. This review does not identify its
-   cause or establish that current code still reproduces it.
-3. Rerun affected comparisons after source changes. The review record compares
-   source hashes in the retained final October 14 gameplay and combined staging
-   reports with the inspected working files; both have changed-source entries.
-   Preserve their original hashes and results. A changed fingerprint establishes
-   a validation freshness limit, not a rendering regression.
-
-Acceptance: the complete declared corpus passes independent comparison and
-caller checks on its exact current sources, with failures/refusals preserved.
-The required 60 FPS performance target is a separate measured goal; the
-approximately 59.4 FPS observation does not prove sustained 60 FPS or scanout.
-
-## Release order
-
-Start with RENDER INT 01: the current campaign harness cannot select the producer
-group whose integration it needs to validate. Use that mode to expose concrete
-history/forwarding failures in INT 02 and INT 03. Extend transitions and failure
-cases in INT 04 and INT 05, then close the independent corpus in INT 06. Add the
-complete launcher mode only after those declared gates pass.
-
-Existing [`--resident-world` and `--independent-world` selection](../../apps/qt-shell/main.cpp#L910)
-checks mode prerequisites; it does not implement the complete capability gate.
-The [campaign report initialization](../../tools/test-native-campaign.py#L465)
-explicitly records `complete_drawing_replacement: False`. The authoritative
-[replacement plan](../../docs/live-drawing-replacement.md) retains the release
-criteria; this review makes the current implementation and validation boundaries
-concrete without promoting any replacement status.
-
-## Review verification
-
-The code review record contains positive source witnesses, not just searches for
-TODO text or register status. It also records:
-
-- Direct execution of group selection, individual-disable preservation and
-  campaign environment cleanup.
-- Admission of the shipped suite and verification that no full-session adapter
-  is present; acceptance logic refuses component-only closure.
-- Passing existing `tests/test-drawing-journeys.py` and
-  `tests/test-drawing-session.py` suites.
-- Compilation and execution of `tests/world-deferred-test.cpp`, checking immutable
-  payloads, World-access refusals, 512 cursor records and exact capacity bounds.
-- Exact committed parent/current file hashes and receipt chains for
-  `b30ff77f..76a75c0c`: 209 transitions with no missing receipts. This includes
-  reinspection of the retained controls history and its subsequent accounting
-  commit; it does not assert a past gate pass or new engine validation.
-
-Raw check logs and audit reports are under
-`working/tests/native-rendering-integration-review-20261015/`. To recheck a source
-witness after edits, compare its recorded SHA-256 and excerpt against
-`git show 76a75c0c:<path>` and the current file separately. Run the existing guard
-commands listed in the JSON under the repository storage guard. A source review
-and synthetic admission tests do not establish current live pixel equivalence.
-
-This read-only check verifies every recorded source identity and exact code
-excerpt against the reviewed commit, independently of later working-tree edits:
-
-```python
-import hashlib, json, subprocess
-from pathlib import Path
-r = json.loads(Path("research/runtime/native-rendering-integration-review-20261015.json").read_text())
-blobs = {p: subprocess.check_output(["git", "show", r["reviewed_head"] + ":" + p])
-         for p in r["sources"]}
-assert all(hashlib.sha256(blobs[p]).hexdigest() == h for p, h in r["sources"].items())
-for w in r["source_witnesses"]:
-    lines = blobs[w["path"]].decode().splitlines()
-    assert "\n".join(lines[w["first_line"] - 1:w["last_line"]]) == w["excerpt"]
-print("Verified", len(r["source_witnesses"]), "code witnesses at", r["reviewed_head"])
+```sh
+python3 tools/working-retention.py run --reserve-gib 1 -- \
+  python3 -B tools/review-native-rendering-gaps.py \
+    --output working/tests/native-render-gap-review-<new-id>.json
 ```
 
-## Subsequent implementation
-
-The four implementation tasks selected after this review are tracked in
-[native-render-completion.md](native-render-completion.md): conservative CPU-history
-admission, explicit combined producer selection/counters, terminal resident cleanup
-and fresh restart, and facade held-lease flips. This preserves the pinned review
-above. A route census, safe refusal or synthetic restart does not close the broader
-complete-session equivalence and strict-replacement acceptance work.
+The output retains exact code witnesses and hashes, raw C/Python commands/logs,
+route unions and acceptance-suite structure. It runs no original artifacts and
+therefore grants no new original comparison, live integration or replacement
+milestone. Historical results and their source hashes remain unchanged.

@@ -38,8 +38,8 @@ def build(selftest=False):
         path=Path(token).resolve()
         if path.is_file() and path.is_relative_to(REPO) and not path.is_relative_to(REPO/'working'):
             closure.add(path.relative_to(REPO).as_posix())
-    protocol_headers=sorted((REPO/'protocols/include/mnm').glob('*_v1.h'))+sorted((REPO/'protocols/include/mnm').glob('*_v2.h'))+[REPO/'protocols/include/mnm/render_stream_v3.h',REPO/'protocols/include/mnm/render_stream_v4.h',REPO/'protocols/include/mnm/render_stream_v5.h',REPO/'protocols/include/mnm/native_cpu_read_v1.h',REPO/'protocols/include/mnm/render_command_ring.h']
-    protocol_sources=protocol_headers+sorted((REPO/'protocols/schemas').glob('*-v1.json'))+sorted((REPO/'protocols/schemas').glob('*-v2.json'))+[REPO/'protocols/generate.py']
+    protocol_headers=sorted((REPO/'protocols/include/mnm').glob('*_v1.h'))+sorted((REPO/'protocols/include/mnm').glob('*_v2.h'))+[REPO/'protocols/include/mnm/render_commands_v3.h',REPO/'protocols/include/mnm/render_stream_v3.h',REPO/'protocols/include/mnm/render_stream_v4.h',REPO/'protocols/include/mnm/render_stream_v5.h',REPO/'protocols/include/mnm/native_cpu_read_v1.h',REPO/'protocols/include/mnm/render_command_ring.h']
+    protocol_sources=protocol_headers+sorted((REPO/'protocols/schemas').glob('*-v1.json'))+sorted((REPO/'protocols/schemas').glob('*-v2.json'))+[REPO/'protocols/schemas/render_commands-v3.json',REPO/'protocols/generate.py']
     (root/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
         'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()},
         'compiled_sources':{name:hashlib.sha256((REPO/name).read_bytes()).hexdigest() for name in sorted(closure)},

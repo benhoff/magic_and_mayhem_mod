@@ -114,6 +114,33 @@ unsigned sustained(GlViewport& viewport,bool movie=false){
     {mnm::render::CommandDecoder decoder(mnm::render::CommandStreamMode::Streaming);bool refused=false;try{decoder.append(QByteArray(65537,0));}catch(...){refused=true;}check(refused,"streaming fragment budget");}
     return shown;
 }
+quint64 byteLifetime(GlViewport& viewport){
+    // Exercise the real V3 mapped reader, streaming decoder and consumer past
+    // 2^32 actual bytes without storing the stream or issuing per-CHECK GL work.
+    QTemporaryDir dir;LiveCommandRenderer live(viewport);const auto path=dir.filePath("lifetime");
+    check(live.create(path,229,3),"v3 lifetime create");Writer mapped(path);mnm_ring_writer writer{};
+    check(mnm_ring_writer_bind(&writer,mapped.map,MNM_RENDER_COMMANDS_V3_SIZE),"v3 lifetime claim");
+    unsigned seq=0,shown=0;quint64 total=0;
+    live.framePresented=[&]{auto image=viewport.grabFramebuffer();for(int y=0;y<64;++y)for(int x=0;x<64;++x)check(image.pixel(x,y)==qRgb(255,0,0),"post-rollover full framebuffer");++shown;};
+    const auto send=[&](const QByteArray& bytes){
+        total+=quint64(bytes.size());qsizetype at=0;
+        while(at<bytes.size()){
+            const auto n=qMin<qsizetype>(65536,bytes.size()-at);int result=mnm_ring_write(&writer,bytes.constData()+at,uint32_t(n));
+            check(result>=0,"v3 lifetime write");if(result)at+=n;check(live.poll(65536),"v3 lifetime poll");
+        }
+        while(!live.result() || live.result()->commands<seq)check(live.poll(65536),"v3 lifetime decoded drain");
+    };
+    QByteArray bytes("MNMCMD01");word(bytes,1);word(bytes,16);
+    QByteArray pixels(128*128*2,0);for(qsizetype i=0;i<pixels.size();i+=2)qToLittleEndian<quint16>(0xf800,pixels.data()+i);
+    record(bytes,++seq,1,{1,128,128,16,0xf800,0x7e0,31},pixels);send(bytes);
+    QByteArray diagnostic;record(diagnostic,0,5,{1},pixels);
+    while(total<(quint64(1)<<32)+65536){qToLittleEndian(++seq,diagnostic.data()+4);send(diagnostic);}
+    const auto checks=seq-1;QByteArray end;record(end,++seq,6,{1});record(end,++seq,7,{1});record(end,++seq,8,{});send(end);
+    check(mnm_ring_end(&writer) && live.finishProducer(),"v3 lifetime complete END");
+    check(shown==1 && live.result()->skippedChecks==checks && !live.result()->liveSurfaces &&
+        !live.result()->stats.nativeReadbacks && !live.result()->stats.rgbaReadbacks && !viewport.imageUploads(),"v3 lifetime bounded ownership/diagnostics");
+    return total;
+}
 unsigned synthetic(GlViewport& viewport){
     unsigned count=0;const auto bytes=fixture();
     // Preserve producer refusal reasons without misclassifying a malformed ring.
@@ -234,7 +261,7 @@ int main(int argc,char** argv){
         GlViewport viewport;viewport.setMinimumSize(1,1);viewport.resize(64,64);viewport.show();app.processEvents();check(viewport.ready(),"viewport ready");
         if(argc==1){
             {GlViewport movie;movie.setMinimumSize(1,1);movie.resize(64,64);movie.show();app.processEvents();check(movie.ready(),"movie viewport ready");sustained(movie,true);}
-            coalesced(viewport);auto frames=synthetic(viewport)+sustained(viewport);std::printf("{\"success\":true,\"movie_command_drain\":true,\"full_frames\":%u,\"checkpoint_budget_cases\":2,\"failures\":14,\"ordinary_readbacks\":0,\"viewport_uploads\":0,\"sustained_bytes\":%llu,\"sustained_commands\":%u,\"sustained_frames\":4,\"full_retries\":%u,\"burst_presents\":%u,\"burst_paints\":%u,\"burst_polls\":%u,\"input_between_polls\":true}\n",frames,static_cast<unsigned long long>(sustainedBytes),sustainedCommands,sustainedRetries,coalescedPresents,coalescedPaints,coalescedPolls);return 0;}
+            coalesced(viewport);auto frames=synthetic(viewport)+sustained(viewport);auto lifetime=byteLifetime(viewport);std::printf("{\"success\":true,\"movie_command_drain\":true,\"v3_lifetime_bytes\":%llu,\"full_frames\":%u,\"checkpoint_budget_cases\":2,\"failures\":14,\"ordinary_readbacks\":0,\"viewport_uploads\":0,\"sustained_bytes\":%llu,\"sustained_commands\":%u,\"sustained_frames\":4,\"full_retries\":%u,\"burst_presents\":%u,\"burst_paints\":%u,\"burst_polls\":%u,\"input_between_polls\":true}\n",static_cast<unsigned long long>(lifetime),frames,static_cast<unsigned long long>(sustainedBytes),sustainedCommands,sustainedRetries,coalescedPresents,coalescedPaints,coalescedPolls);return 0;}
         check(argc==4,"live args: channel active-marker report");viewport.resize(800,600);app.processEvents();LiveCommandRenderer live(viewport);check(live.open(QString::fromLocal8Bit(argv[1])),"open live channel");QJsonArray frames;bool beforeExit=false;QElapsedTimer elapsed;elapsed.start();QTimer timer;
         live.framePresented=[&]{
             QFile marker(QString::fromLocal8Bit(argv[2]));if(marker.open(QIODevice::ReadOnly)){

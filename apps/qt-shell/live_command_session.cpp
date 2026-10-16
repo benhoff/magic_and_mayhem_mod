@@ -16,7 +16,7 @@ bool LiveCommandSession::create(const QString& path,quint32 session,quint32 vers
     mediaActive_=false;mediaStartedAt_=mediaPausedMs_=0;
     path_=path;session_=session;version_=version;deadline_.start();
     if(!fresh(path,session))return false;
-    if(version==2 && !control_.create(path+".control",session))return fail(control_.error());
+    if(version>=2 && !control_.create(path+".control",session))return fail(control_.error());
     return true;
 }
 void LiveCommandSession::setMediaActive(bool active){
@@ -38,7 +38,7 @@ bool LiveCommandSession::attachCheckpoint(){
 }
 bool LiveCommandSession::recover(bool checkpoint){
     if(residentWorld){const auto cause=renderer_?renderer_->error():QString();return fail("Resident World session requires a fresh producer after failure: "+(cause.isEmpty()?QString("first frame deadline exceeded"):cause));}
-    if(version_!=2 || retries_>=MNM_RENDER_CONTROL_V1_MAX_RECOVERIES || session_==std::numeric_limits<quint32>::max()){
+    if(version_<2 || retries_>=MNM_RENDER_CONTROL_V1_MAX_RECOVERIES || session_==std::numeric_limits<quint32>::max()){
         const auto cause=renderer_?renderer_->error():QString();
         return fail("Rendering recovery unavailable or exhausted"+(cause.isEmpty()?QString():": "+cause));
     }
@@ -51,7 +51,7 @@ bool LiveCommandSession::recover(bool checkpoint){
 }
 bool LiveCommandSession::requestStop(){
     if(ended() || state_==State::Stopping)return true;
-    if(version_!=2 || state_==State::Recovering || state_==State::Fallback)return fail("Rendering stop unavailable during recovery/fallback");
+    if(version_<2 || state_==State::Recovering || state_==State::Fallback)return fail("Rendering stop unavailable during recovery/fallback");
     if(!control_.stop())return fail(control_.error());
     change(State::Stopping);return true;
 }
@@ -77,7 +77,7 @@ bool LiveCommandSession::poll(){
     }
     if(renderer_->ended()){control_.cancel();change(State::Ended);return true;}
     if(mediaActive_)return true;
-    if(version_==2 && state_==State::WaitingFrame && waitingElapsed()>=(retries_?MNM_RENDER_CONTROL_V1_FRAME_TIMEOUT_MS:initialFrameTimeoutMs_)){
+    if(version_>=2 && state_==State::WaitingFrame && waitingElapsed()>=(retries_?MNM_RENDER_CONTROL_V1_FRAME_TIMEOUT_MS:initialFrameTimeoutMs_)){
         if(retries_)return fail("Recovered producer did not publish a complete frame");
         return recover();
     }

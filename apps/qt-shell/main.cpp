@@ -402,7 +402,7 @@ private:
                     renderWorker_->framePresented=presented;
                     // Repeated copied status does not re-run widget transitions.
                     renderWorker_->stateChanged=[this,stateChanged](auto state){if(state!=lastRenderState_){lastRenderState_=state;stateChanged(state);}};
-                    if(!renderWorker_->create(commandPath,session,2,120000)){statusBar()->showMessage(renderWorker_->error());return false;}
+                    if(!renderWorker_->create(commandPath,session,3,120000)){statusBar()->showMessage(renderWorker_->error());return false;}
                     frames_.setInterval(1);
                 }else{
                     commands_=std::make_unique<LiveCommandSession>(*gl_);
@@ -414,7 +414,7 @@ private:
                         frames_.setInterval(1);
                     }
                     commands_->stateChanged=stateChanged;commands_->framePresented=presented;
-                    if(!commands_->create(commandPath,session,continuous?2:1,120000)){statusBar()->showMessage(commands_->error());return false;}
+                    if(!commands_->create(commandPath,session,continuous?3:1,120000)){statusBar()->showMessage(commands_->error());return false;}
                 }
                 arguments.append({"--command-channel",commandPath});
                 if(continuous){input_->suspend(true);arguments.append({"--render-control",commandPath+".control"});}

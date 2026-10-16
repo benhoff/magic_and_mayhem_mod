@@ -2,6 +2,7 @@
 // This host never receives the independent original comparison directory.
 #include "../qt-shell/gl_viewport.hpp"
 #include "../../assets/asset_file.hpp"
+#include "recorded_composition.hpp"
 #include <QApplication>
 #include <QCryptographicHash>
 #include <QDir>
@@ -48,8 +49,9 @@ void save(const QString &name,const QByteArray &bytes) {
 int main(int argc,char **argv) {
     QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     QApplication app(argc,argv);
-    if(argc!=3 && !(argc==4 && QByteArray(argv[3])=="--normalized-nearest")) return 2;
-    const bool normalized=argc==4;
+    if(argc!=3 && !(argc==4 && (QByteArray(argv[3])=="--normalized-nearest" || QByteArray(argv[3])=="--recorded-composition"))) return 2;
+    const bool recorded=argc==4 && QByteArray(argv[3])=="--recorded-composition";
+    const bool normalized=argc==4 && !recorded;
     QJsonObject report{{"schema",1},{"success",false},{"original_oracles_read",false},
                        {"physical_presentation",false},{"original_execution",false},
                        {"display_conversion",normalized?"normalized-nearest":"bit-replicated"}};
@@ -63,14 +65,21 @@ int main(int argc,char **argv) {
         const auto declaration=load(store,"presentation.json",4*1024*1024);
         const auto doc=QJsonDocument::fromJson(declaration);
         if(!doc.isObject()) throw std::invalid_argument("Invalid presentation declaration");
-        const auto config=doc.object(); fields(config,{"schema","frames"});
+        const auto config=doc.object();
+        if(!QOpenGLContext::globalShareContext()) throw std::runtime_error("Qt GPU sharing context unavailable");
+        mnm::render::GlBlitter renderer(QOpenGLContext::globalShareContext());
+        std::unique_ptr<RecordedComposition> composition;
+        if(recorded)composition=std::make_unique<RecordedComposition>(renderer,config,[&](const auto& name,auto limit){return load(store,name,limit);});
+        else fields(config,{"schema","frames"});
         if(number(config.value("schema"),1)!=1 || !config.value("frames").isArray())
             throw std::invalid_argument("Invalid presentation schema");
         const auto frames=config.value("frames").toArray();
         if(frames.isEmpty() || frames.size()>8192) throw std::invalid_argument("Invalid presentation frame budget");
+        if(recorded && (!QGuiApplication::primaryScreen() || !QGuiApplication::primaryScreen()->geometry().contains(QRect(0,0,int(composition->width()),int(composition->height())))))
+            throw std::invalid_argument("Physical screen cannot contain the complete native frame");
         std::uint64_t total=0;
         // Preflight all file identities before opening a window or output directory.
-        for(const auto &v:frames) {
+        if(!recorded)for(const auto &v:frames) {
             if(!v.isObject()) throw std::invalid_argument("Invalid presentation frame");
             const auto f=v.toObject(); fields(f,{"path","width","height","sha256"});
             const auto w=number(f.value("width"),2048), h=number(f.value("height"),2048);
@@ -86,14 +95,15 @@ int main(int argc,char **argv) {
         if(output.exists() || !QDir().mkpath(output.absolutePath()))
             throw std::invalid_argument("Presentation output must be new");
         owned=true; QJsonArray outputs;
-        if(!QOpenGLContext::globalShareContext()) throw std::runtime_error("Qt GPU sharing context unavailable");
-        mnm::render::GlBlitter renderer(QOpenGLContext::globalShareContext());
         {
             GlViewport viewport; viewport.setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
             viewport.setMinimumSize(1,1); viewport.setScaling(GlViewport::Scaling::Sharp);
             unsigned ordinal=0;
             for(const auto &v:frames) {
-                const auto f=v.toObject(); const auto w=number(f.value("width"),2048), h=number(f.value("height"),2048);
+                const auto f=v.toObject(); const auto w=recorded?composition->width():number(f.value("width"),2048), h=recorded?composition->height():number(f.value("height"),2048);
+                mnm::render::SurfaceId surface=0;
+                if(recorded)surface=composition->next(ordinal+1);
+                else{
                 const auto bytes=load(store,f.value("path").toString(),w*h*2);
                 if(hash(bytes)!=f.value("sha256").toString().toLatin1())
                     throw std::runtime_error("Native-derived frame changed during presentation");
@@ -107,9 +117,12 @@ int main(int argc,char **argv) {
                     const unsigned blue=((word&31)*255+15)/31;
                     image.pixels.push_back(normalized?(red<<16|green<<8|blue):word);
                 }
-                const auto surface=renderer.create(image,normalized?
+                surface=renderer.create(image,normalized?
                     mnm::render::PixelFormat{32,{0xff0000,0xff00,0xff}}:
                     mnm::render::PixelFormat{16,{0xf800,0x7e0,0x1f}});
+                }
+                QByteArray nativeBytes;
+                if(recorded){const auto image=renderer.read(surface);nativeBytes.reserve(w*h*2);for(auto pixel:image.pixels){nativeBytes.append(char(pixel));nativeBytes.append(char(pixel>>8));}}
                 try {
                     viewport.resize(int(w),int(h)); viewport.move(0,0);
                     viewport.setGpuFrame(renderer.presentGpu(surface));
@@ -135,18 +148,21 @@ int main(int argc,char **argv) {
                     for(unsigned y=0;y<h;++y) rgba.append(reinterpret_cast<const char *>(physical.constScanLine(y)),w*4);
                     const auto name=QString("frame-%1.rgba").arg(ordinal++,6,10,QChar('0'));
                     save(output.filePath(name),rgba);
-                    outputs.append(QJsonObject{{"path",name},{"width",int(w)},{"height",int(h)},
-                        {"sha256",QString::fromLatin1(hash(rgba))},{"native_source_sha256",f.value("sha256")}});
-                    viewport.setGpuFrame({}); renderer.destroy(surface);
-                }catch(...) {viewport.setGpuFrame({});renderer.destroy(surface);throw;}
+                    QJsonObject item{{"path",name},{"width",int(w)},{"height",int(h)},
+                        {"sha256",QString::fromLatin1(hash(rgba))},{"native_source_sha256",f.value("sha256")}};
+                    if(recorded){const auto nativeName=QString("frame-%1.565").arg(ordinal-1,6,10,QChar('0'));save(output.filePath(nativeName),nativeBytes);item["index"]=f["index"];item["native_path"]=nativeName;item["native_sha256"]=QString::fromLatin1(hash(nativeBytes));}
+                    outputs.append(item);
+                    viewport.setGpuFrame({}); if(!recorded)renderer.destroy(surface);
+                }catch(...) {viewport.setGpuFrame({});if(!recorded)renderer.destroy(surface);throw;}
             }
             if(viewport.imageUploads()!=0) throw std::runtime_error("GPU viewport used QImage uploads");
             report["qimage_uploads"]=double(viewport.imageUploads());
         }
+        if(composition){composition->verify();composition.reset();report["gpu_composition"]=true;report["plan_sha256"]=QString::fromLatin1(hash(declaration));}
         if(renderer.stats().surfaces) throw std::runtime_error("Native presentation surfaces leaked");
         if(load(store,"presentation.json",4*1024*1024)!=declaration)
             throw std::runtime_error("Presentation declaration changed during execution");
-        for(const auto &v:frames) {
+        if(!recorded)for(const auto &v:frames) {
             const auto f=v.toObject();
             if(hash(load(store,f.value("path").toString(),2048*2048*2))!=f.value("sha256").toString().toLatin1())
                 throw std::runtime_error("Native-derived input changed after presentation");

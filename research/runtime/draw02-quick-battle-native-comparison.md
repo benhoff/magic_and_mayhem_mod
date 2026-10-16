@@ -127,3 +127,15 @@ refusal. Session producer, cadence, session and GPU decoders also pass.
 The f56822f6..7976a431 committed range has28exact file receipts and zero
 unresolved history gaps. New source census and exact current reviews accompany
 this increment without refreshing historical evidence fingerprints.
+
+
+## Native GPU final composition and portable replay — 2026-10-16
+
+The [new GPU execution](draw02-quick-battle-gpu-session-20261016.json) also performs
+final rectangles, keying, history restoration and fills inside the native renderer.
+All 323 retained original frames pass both full GPU RGB565 and post-swap X11
+comparison. The [portable execution](recorded-native-session-portable-03-20261016.json)
+repeats this without a working installation or original media: 310,080,000 pixels,
+zero outside RGB tolerance 1; alpha excluded. The [retained corpus and reproduction](recorded-native-session-comparison.md)
+preserve acquisition limits. No full generic presented-journey or live replacement
+promotion follows from the observed EGL interval.

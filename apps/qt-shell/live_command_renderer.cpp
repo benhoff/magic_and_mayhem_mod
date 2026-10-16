@@ -10,8 +10,8 @@
 LiveCommandRenderer::LiveCommandRenderer(GlViewport& viewport,bool verify):LiveCommandRenderer(viewportRenderTarget(viewport),verify){}
 LiveCommandRenderer::LiveCommandRenderer(NativeRenderTarget target,bool verify):target_(std::move(target)),verify_(verify){}
 LiveCommandRenderer::~LiveCommandRenderer(){abort();}
-bool LiveCommandRenderer::create(const QString& path,quint32 session,quint32 version){if(!channel_.create(path,session,version)){error_=channel_.error();closed_=true;return false;}cpuReplyPath_=path+".cpu-reply";cpuReplySession_=session;decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
-bool LiveCommandRenderer::open(const QString& path){if(!channel_.open(path)){error_=channel_.error();closed_=true;return false;}decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
+bool LiveCommandRenderer::create(const QString& path,quint32 session,quint32 version){if(!channel_.create(path,session,version)){error_=channel_.error();closed_=true;return false;}cpuReplyPath_=path+".cpu-reply";cpuReplySession_=session;decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()>=2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
+bool LiveCommandRenderer::open(const QString& path){if(!channel_.open(path)){error_=channel_.error();closed_=true;return false;}decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()>=2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
 void LiveCommandRenderer::fail(const QString& reason){error_=reason;abort();target_.present({});}
 void LiveCommandRenderer::abort(){
     if(cpuReadPending)cpuReadPending(0);
@@ -40,7 +40,7 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 // and composes the latest lease after this bounded poll yields.
                 target_.present(std::move(frame));
                 if(framePresented)framePresented();
-            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld,prepareResidentFrames,reuseSealedUi,[this](const auto& command,const auto& image){publishCpuRead(command,image);},cpuReplySession_});
+            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()>=2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld,prepareResidentFrames,reuseSealedUi,[this](const auto& command,const auto& image){publishCpuRead(command,image);},cpuReplySession_});
         }
         // Retain the finite byte budget and the32 ordinary-command budget.
         // A split UPDATE of <=16,384 pixels costs one eighth of an ordinary
@@ -67,7 +67,7 @@ bool LiveCommandRenderer::poll(quint32 budget){
                     const auto generation=std::uint64_t(w[1])|(std::uint64_t(w[2])<<32),nonce=std::uint64_t(w[3])|(std::uint64_t(w[4])<<32);
                     if(!residentReady(generation,nonce)){waitingWorld_=true;break;}
                 }
-                const unsigned cost=channel_.version()==2 && command.operation==2 &&
+                const unsigned cost=channel_.version()>=2 && command.operation==2 &&
                     command.image.pixels.size()<=16384?1:8;
                 if(cost>256-work)break;
                 work+=cost;++cursor_;

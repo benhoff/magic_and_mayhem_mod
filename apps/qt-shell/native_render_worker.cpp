@@ -46,7 +46,7 @@ NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const Q
 }
 NativeRenderWorker::~NativeRenderWorker(){if(frameTrace_.enabled()){viewport_.framePaintTiming={};viewport_.activityTiming={};}join(false);}
 bool NativeRenderWorker::create(const QString& path,quint32 session,quint32 version,int timeout){
-    if(version!=2){status_.error="Render worker requires streaming owned World commands";return false;}
+    if(version!=2 && version!=3){status_.error="Render worker requires streaming owned World commands";return false;}
     if(!commands_->create(path,session,version,timeout)){status_.error=commands_->error();return false;}
     return true;
 }

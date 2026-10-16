@@ -42,48 +42,16 @@ static void game_session_sync(void){
         lock_diagnostic_values("session_epoch_origin",values);game_session_gap(1);
     }
 }
-static int session_emit(u32 op,const void* fields,u32 fl,const void* pixels,u32 length,u32 closing){
-    if(!session_active)return 0;
-    if(fl>0xffffffffu-12 || length>0xffffffffu-12-fl || session_sequence==0xffffffffu ||
-       12+fl+length>0xffffffffu-session_bytes){game_session_gap(2);return 0;}
-    u32 bytes=12+fl+length;
-    /* Archive exhaustion is a diagnostic GAP, never a live transport GAP.
-     * Reserve 32 DELETEs, END and GAP in the unchanged bounded archive. */
-    if(session_file && !closing && (session_archive_sequence>=4096-session_cleanup_records() ||
-       bytes>64*1024*1024-session_cleanup_bytes()-session_archive_bytes)){
-        if(!game_session_continuous){game_session_gap(2);return 0;}
-        session_archive_gap(2);
-    }
-    ++session_sequence;
-    if(session_file && !command_record(session_file,&session_archive_sequence,op,fields,fl,pixels,length)){
-        session_archive_close();lock_diagnostic("session_file_failed",0,0,0,0,0,0,0);
-        if(!game_session_continuous){command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);session_active=0;return 0;}
-    }else if(session_file)session_archive_bytes+=bytes;
-    if(!command_channel_record(session_sequence,op,fields,fl,pixels,length)){
-        command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);session_archive_close();session_active=0;
-        lock_diagnostic("session_channel_failed",0,0,0,0,0,0,0);return 0;
-    }
-    session_bytes+=bytes;return 1;
-}
-static int session_record(u32 op,const void* fields,u32 fl,const void* pixels,u32 length){
-    if(!session_active)return 0;
-    /* Finite live sequence/byte lifetimes still reserve orderly cleanup. */
-    u32 limit=game_session_continuous?0xffffffffu:64*1024*1024;
-    if(session_sequence>=(game_session_continuous?0xffffffffu-session_cleanup_records():4096-session_cleanup_records()) ||
-       fl>limit-session_cleanup_bytes()-12 || length>limit-session_cleanup_bytes()-12-fl || 12+fl+length>limit-session_cleanup_bytes()-session_bytes){
-        game_session_gap(2);return 0;
-    }
-    return session_emit(op,fields,fl,pixels,length,0);
-}
+#include "session_emission.h"
 static int session_start(void){
     if(__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE) || !game_session_enabled || !lock_capture_path_length)return 0;
     if(session_started)return session_active!=0;
     session_started=1;session_epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);
-    /* Continuous publication requires a successfully claimed v2 queue. Never
+    /* Continuous publication requires a successfully claimed v2/v3 queue. Never
      * downgrade to an archive-only or append-only stream. Recovery is separate. */
     if(game_session_continuous && (!command_queue || command_channel_refused)){
         command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);
-        lock_diagnostic("session_continuous_requires_v2",0,0,0,0,0,0,0);return 0;
+        lock_diagnostic("session_continuous_requires_ring",0,0,0,0,0,0,0);return 0;
     }
     u32 header[4];copy(header,game_resident_world?MNM_RENDER_STREAM_V5_MAGIC:game_session_palette_resources?MNM_RENDER_STREAM_V2_MAGIC:"MNMCMD01",8);header[2]=game_resident_world?5:game_session_palette_resources?2:1;header[3]=16;
     if(game_session_archive){

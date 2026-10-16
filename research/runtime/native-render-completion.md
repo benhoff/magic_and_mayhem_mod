@@ -133,6 +133,22 @@ historical reports and their source fingerprints remain unchanged.
 journey and three independently executed original World checkpoints. Storage
 entry explicitly synchronizes native CPU history before original panel Lock;
 the source compositor separately counts panel GPU snapshots. These fix observed
-failures beyond the earlier normal-Quit journey. Initiate post-Save Mini ingress,
-changed-canvas handoff, arbitrary readers, actual-game restart and complete
-presented-session/hardware acceptance remain open.
+failures beyond the earlier normal-Quit journey. Subsequent Initiate tutorial
+input and changed-canvas display-rebuild/Main Load now pass the separate
+[resident pressure journey](resident-command-pressure.md), including normal Quit
+and 962 balanced Worlds. Arbitrary readers, actual-game fault/restart, later-map
+progression and complete presented-session/hardware acceptance remain open.
+The [2026-10-16 code review](native-rendering-integration-gaps-20261015.md)
+separates those boundaries from completed resource/history implementations.
+
+
+## Subsequent wrapping transport and recorded parity
+
+The [byte-lifetime repair](native-command-byte-lifetime.md) removes four cumulative
+4 GiB ceilings, with actual native and Qt traffic beyond that boundary and PE32
+producer integration controls. The [portable recorded session](recorded-native-session-comparison.md)
+passes all 323 observed original frames through GPU and displayed X11 output.
+These new controls do not renew historical original-game Save/Load evidence:
+two fresh V3 campaign attempts do not complete. Generic action-bound sessions,
+enabled-movie history, later maps, fault/restart and hardware performance remain
+explicit acceptance gaps; complete replacement remains false.

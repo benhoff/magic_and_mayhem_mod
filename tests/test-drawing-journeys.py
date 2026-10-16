@@ -38,7 +38,7 @@ class JourneyTest(unittest.TestCase):
             journeys.admit_suite(ROOT,changed)
 
     def test_component_pass_cannot_close_journey(self):
-        for boundary in ('operation','world_canvas','composed_canvas'):
+        for boundary in ('operation','world_canvas','composed_canvas','observed_egl_session'):
             result=journeys.coverage([self.row(boundary=boundary)])
             camera=next(s for s in result['scenarios'] if s['id']=='camera-motion')
             self.assertEqual(camera['reference_covered'],[])

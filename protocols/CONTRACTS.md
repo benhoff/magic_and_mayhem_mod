@@ -196,3 +196,13 @@ preserve caller LastError as native policy. Duplicate/malformed configuration,
 complete unsigned parsing and snapshot lifetime also retain native policy;
 general registry/encoding behavior and live rereading are excluded. See
 [profile integration evidence](../research/runtime/native-audio-profile-reads.md).
+
+
+# Wrapping native drawing command transport
+
+`MNMRDC03` version 3 retains the 64-byte V2 layout and 1 MiB ring, with modulo
+atomic32 publication/ACK positions and bounded forward progress. Both endpoints
+pin version and session identity. Capacity divides 2^32, preserving physical
+continuity at wrap. Continuous public Qt launches create V3; V1 and V2 retain
+legacy admission, and V2 retains its lifetime overflow refusal. Inner drawing
+record versions remain independent. See [V3 ownership and lifecycle contract](../research/formats/render-command-ring-v3.md).

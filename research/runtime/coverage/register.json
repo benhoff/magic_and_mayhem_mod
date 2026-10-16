@@ -13649,27 +13649,34 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Acknowledged bounded reusable command-byte transport",
-      "scope": "Version2 single writer/reader ring with monotonic published/acknowledged cursors, finite32-bit lifetime, owned copies before acknowledgement and nonblocking backpressure. Foundation only; legacy hook integration, queues, shutdown scheduling and sustained rendering not yet claimed. Little-endian x86 and AArch64 hosts are admitted only with always-lock-free 32-bit integer atomics; native ARM cross-process checks do not establish mixed-architecture Wine channel integration or live game equivalence.",
+      "scope": "Version2/3 single producer/reader bounded mapped byte transport with owned-copy ACK, nonblocking backpressure, strict bound session/version identity and terminal/cancellation guards. V3 modular atomic32 cursors cross 2^32 with bounded publication/ACK distances and power-of-two physical offsets; V2 retains its nonwrapping guard. One-reader ownership remains external. No malicious-peer authentication, second-reader/reattach, original-driver pixels or universal lifecycle equivalence.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/formats/render-command-ring-v2.md"
+        "research/formats/render-command-ring-v2.md",
+        "research/formats/render-command-ring-v3.md"
       ],
       "implementation": [
         "protocols/schemas/render_commands-v2.json",
         "protocols/include/mnm/render_commands_v2.h",
         "protocols/python/mnm_protocols/render_commands_v2.py",
-        "protocols/include/mnm/render_command_ring.h"
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/schemas/render_commands-v3.json",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/python/mnm_protocols/render_commands_v3.py"
       ],
       "tests": [
         "tests/render-command-ring-test.c",
         "tests/render-command-ring-gpu-test.cpp",
         "tools/test-render-command-ring.py",
-        "renderer/CMakeLists.txt"
+        "renderer/CMakeLists.txt",
+        "tests/render-command-rollover-test.c",
+        "tools/test-render-command-lifetime.py"
       ],
       "evidence": [
         "NR.command-ring.native",
-        "NR.command-ring.origin-master-x86-20261014"
+        "NR.command-ring.origin-master-x86-20261014",
+        "NR.command-byte-lifetime.native-06-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -13684,7 +13691,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Mapped native ring reader and cooperative owned producer queue",
-      "scope": "Version2 mapped adapter and bounded queue. Qt polls consume the caller byte budget across at-most64KiB fragments and submit at-most32 decoded commands per call; checkpoint first-frame delivery and bounded cleanup are tested. v1 retained; sustained original traffic can overflow, with explicit fallback. Original-driver/pixel equivalence remains pending. Terminal failure diagnostics preserve identity-checked producer reasons; continuous user GAP/early-checkpoint refusal remains negative evidence, while an opt-in ordered isolated campaign route passes bounded native publication and recovery.",
+      "scope": "V2/V3 mapped Qt adapter and 32MiB private queue with unsigned bounded cursor rollover. Continuous public Qt and resident worker sessions create V3; legacy V1/V2 remain admitted. Streaming decoder selection, control/recovery/stop and shutdown ACK checks support both ring versions. Copy ownership, byte/record scheduling, 8/4MiB pressure pacing, timeout, original-once failure and fresh-producer resident policy remain. Removing cumulative byte ceilings does not establish unsupported reader coherence, whole original/native pixel parity, malicious-peer safety or arbitrary concurrent lifecycle equivalence. Owned continuous emission counts bounded archive bytes separately and has no cumulative byte guard; actual producer session_record/session_emit, private queue and mapped ring are validated together beyond2^32 bytes. Finite sequence cleanup, integer-length guards and bounded legacy byte budgets remain.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -13694,7 +13701,9 @@
         "research/runtime/opengl-command-recovery-metadata.md",
         "research/runtime/native-mini-dispatch-admission.md",
         "research/runtime/mini-dispatch-initiate-queue-witness-20261015.json",
-        "research/runtime/resident-command-pressure.md"
+        "research/runtime/resident-command-pressure.md",
+        "research/runtime/native-rendering-integration-gaps-20261015.md",
+        "research/formats/render-command-ring-v3.md"
       ],
       "implementation": [
         "runtime/render/command_channel.h",
@@ -13705,7 +13714,13 @@
         "apps/qt-shell/live_command_renderer.cpp",
         "apps/qt-shell/live_command_renderer.hpp",
         "tools/build-render-bridge.py",
-        "tools/run-opengl-game.py"
+        "tools/run-opengl-game.py",
+        "runtime/render/command_scheduler.h",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/main.cpp",
+        "runtime/render/session_emission.h",
+        "runtime/render/owned_session.h"
       ],
       "tests": [
         "tests/render-command-writer-test.c",
@@ -13716,7 +13731,9 @@
         "tools/test-live-render-game.py",
         "tools/test-live-render-channel.py",
         "tests/live-render-recovery-probe.cpp",
-        "tools/test-live-render-recovery.py"
+        "tools/test-live-render-recovery.py",
+        "tests/render-command-rollover-test.c",
+        "tools/test-render-command-lifetime.py"
       ],
       "evidence": [
         "NR.command-ring-adapter.queue",
@@ -13730,7 +13747,9 @@
         "NR.command-refusal.ordered-route-20261006",
         "NR.command-refusal.user-20261006",
         "NR.command-refusal.user-command-scope-20261007",
-        "HOST.native-command-responsiveness.synthetic-20261007"
+        "HOST.native-command-responsiveness.synthetic-20261007",
+        "NR.command-byte-lifetime.native-06-20261016",
+        "NR.command-v3.pe32-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -13738,7 +13757,11 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [],
+      "validation_dependencies": [
+        "tools/menu-game-runner.py"
+      ]
     },
     {
       "id": "NP.bounded-scene",
@@ -13818,11 +13841,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded-memory sustained native command decoding",
-      "scope": "Explicit version2 streaming mode beyond64MiB/4096 cumulative limits with bounded record/fragment/surface storage, monotonic surface IDs and finite sequence lifetime. Offline/v1 policies retained; original owned sample limits remain independent.",
+      "scope": "Explicit streaming decoding bounds retained bytes, append/record lengths and live resources rather than cumulative byte totals; V3 mapped integration carries actual traffic beyond 2^32 through decoder/consumer. Bounded V1/offline byte/record limits remain. Monotonic command sequence/surface identity domains remain finite and refuse exhaustion. No original-driver equivalence or whole-game replacement claim. Owned continuous emission counts bounded archive bytes separately and has no cumulative byte guard; actual producer session_record/session_emit, private queue and mapped ring are validated together beyond2^32 bytes. Finite sequence cleanup, integer-length guards and bounded legacy byte budgets remain.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-command-streaming-lifecycle.md"
+        "research/runtime/opengl-command-streaming-lifecycle.md",
+        "research/formats/render-command-ring-v3.md"
       ],
       "implementation": [
         "renderer/commands.cpp",
@@ -13831,13 +13855,17 @@
         "renderer/command_consumer.cpp",
         "apps/qt-shell/command_channel.hpp",
         "apps/qt-shell/live_command_renderer.cpp",
-        "apps/qt-shell/live_command_renderer.hpp"
+        "apps/qt-shell/live_command_renderer.hpp",
+        "runtime/render/session_emission.h",
+        "runtime/render/owned_session.h"
       ],
       "tests": [
         "tests/live-render-channel-test.cpp",
         "tools/test-render-command-streaming.py",
         "tools/test-render-session-sequence.py",
-        "tools/test-live-render-game.py"
+        "tools/test-live-render-game.py",
+        "tests/render-command-rollover-test.c",
+        "tools/test-render-command-lifetime.py"
       ],
       "evidence": [
         "NR.command-streaming.native",
@@ -13845,7 +13873,8 @@
         "NR.command-streaming.startup",
         "NR.command-streaming.live",
         "NR.command-streaming.sanitized",
-        "HOST.native-command-responsiveness.synthetic-20261007"
+        "HOST.native-command-responsiveness.synthetic-20261007",
+        "NR.command-byte-lifetime.native-06-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -17965,7 +17994,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Complete live drawing replacement scope and release gates",
-      "scope": "Planned complete No-CD single-player drawing takeover retaining original simulation. Scoped continuous resident World delivery, native graphics, producer staging and combat/menu integration already exist under their separate contracts. This policy owns complete drawing coverage, independent full-session comparison, complete native history, original-pixel bypass, supported session/failure validation and capability-checked launcher release. The 2026-10-15 static review pins positive code witnesses and six concrete remaining integration work packages to commit76a75c0c; concurrent uncommitted native surface work is excluded. Complete-target implementation/comparison/integration/replacement remain pending; no launcher option enables this complete target. This entry records planning/review policy, not recovered rendering equivalence.",
+      "scope": "Planned complete No-CD single-player drawing takeover retaining original simulation. Native resident World, graphics facade, six-family producer counters/zero-forward enforcement, selected CPU history services, combat/menu integration, Save/Load, Initiate tutorial ingress and changed-canvas display-rebuild/reload now have scoped implementations/results. The2026-10-16 follow-up repairs four cumulative command-byte ceilings and adds a portable complete323frame observed-EGL GPU/X11 comparison. Supported history subsets, remaining live route reachability, generic action-bound presented-session/performance acceptance and strict release policy remain separate. Fresh original-game V3 Save/Load execution does not complete; no live acceptance promotion follows. Resident terminal cleanup/hard restart is implemented; actual-game fault/restart and physical context-loss acceptance remain incomplete, while in-place recovery is intentionally unsupported. Complete-target implementation/comparison/integration/replacement stay pending; this planning/review policy claims no original rendering equivalence.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -17973,9 +18002,13 @@
         "research/runtime/native-rendering-integration-gaps-20261015.md"
       ],
       "implementation": [],
-      "tests": [],
+      "tests": [
+        "tools/review-native-rendering-gaps.py"
+      ],
       "evidence": [
-        "REVIEW.NR.integration-gaps-20261015"
+        "REVIEW.NR.integration-gaps-20261015",
+        "REVIEW.NR.current-gaps-20261016",
+        "REVIEW.NR.after-rollover-20261016"
       ],
       "status": {
         "understanding": "partial",
@@ -17985,12 +18018,13 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "RENDER-INT-01: Campaign harness strips inherited producer settings and lacks explicit combined-producer execution/counter acceptance; staging already exists.",
-        "RENDER-INT-02: CPU compatibility planes do not contain completed resident GPU World pixels; dependency-sensitive readers/writers and combined history require admission and independent comparison.",
-        "RENDER-INT-03: Partial pixel routes retain original continuations; complete capability/forwarding accounting and encountered unresolved dispatch need a strict session outcome.",
-        "RENDER-INT-04: Combined save/load, later-map, results, movie/World and broader cursor/HUD/scene transitions need generation/lifetime and output/input acceptance evidence.",
-        "RENDER-INT-05: Resident command recovery explicitly requires a fresh producer; validate advertised terminal/restart or recovery behavior while drawing is bypassed.",
-        "RENDER-INT-06: Shipped journey suite has no full-session adapters; independent presented-session corpus, exact-source comparisons and historical intermittent-pixel-failure diagnosis remain pending. Static review does not establish a current reproduced defect."
+        "RENDER-INT-01: Combined six-family selection/provenance/counter enforcement exists.19of43optional routes execute across the reviewed camera/spell/storage reports;24 remain unexercised there. Resolve actual callers/World batching and independent outputs without inventing a camera3 dispatch branch.",
+        "RENDER-INT-02: Selected ordered CPU_READ, storage synchronization and GPU-copy history services exist. Arbitrary raw readers, clipped/self stale GPU source copies and asynchronous World source readback remain outside supported admission; this is not a claim that every async host CPU_READ is unsupported.",
+        "RENDER-INT-03: Reports retain complete replacement false; a complete capability-checked startup/runtime contract spanning required original-pixel bypass remains unavailable. Existing combined zero-forward admission is already implemented.",
+        "RENDER-INT-04: Initiate Save/Load, display rebuild, changed World canvas and normal Quit pass. Later-map progression, broader results/movie/Preferences/cursor/picking composition and independent output/input acceptance remain incomplete.",
+        "RENDER-INT-05: Resident terminal retirement and force-stop/fresh-launch exist with synthetic controls. Actual-game injected fault/restart and physical GL context-loss acceptance remain unproved; transparent in-place resident recovery is not promised.",
+        "RENDER-INT-06: Shipped suite now has one complete323frame recorded_session adapter; zero generic action-bound session adapters for its14journey/21operation requirements. Complete independent action-bound presented-frame parity and sustained full-session hardware60FPS acceptance remain open; historical mismatch is not established as a current reproduced defect.",
+        "RENDER-INT-07 repaired: Owned emitter/private queue/mapped V3/stream decoder pass actual traffic beyond4GiB. Finite sequence/capacity/deadline policies remain; fresh original-game V3 Save/Load not yet validated. Enabled-intro history refusal and a no-start attempt are retained unclassified live limitations, not proved transport regressions."
       ]
     },
     {
@@ -66784,17 +66818,22 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Complete bounded Quick Battle capture to owned native frame replay",
-      "scope": "Bounded Main/setup/loading/Quick Battle interaction/results/returned Main journey. Retain drawing producers through declared interval and normal Quit, bind every observed EGL physical frame to exact worker/submission/API source generation/prefix, replay source-owned native inputs without oracle pixels and compare whole planes. Missing sources/frames, unsupported native operations and mismatches remain explicit; no all-route, all-journey or live replacement promotion. Source snapshots may include independent cursor canvases during active World work; active World canvas snapshots refuse until completion. Compose recorded bounded primary rectangle updates over prior native output; cursor backgrounds follow exact driver save/copy order from native source snapshots or prior native primary output; a pending primary colour fill requires the following closed source command and successful colour-fill API result. No session-frame publication or native physical scanout claim for this source-snapshot comparator.",
+      "scope": "Bounded Main/setup/loading/Quick Battle interaction/results/returned Main journey. Retain drawing producers through declared interval and normal Quit, bind every observed EGL physical frame to exact worker/submission/API source generation/prefix, replay source-owned native inputs without oracle pixels and compare whole planes. Missing sources/frames, unsupported native operations and mismatches remain explicit; no all-route, all-journey or live replacement promotion. Source snapshots may include independent cursor canvases during active World work; active World canvas snapshots refuse until completion. Compose recorded bounded primary rectangle updates over prior native output; cursor backgrounds follow exact driver save/copy order from native source snapshots or prior native primary output; a pending primary colour fill requires the following closed source command and successful colour-fill API result. An opt-in input-only GPU transfer plan moves final rectangle/fill/background composition into the native GlBlitter and physical X11 presenter; every recorded frame retains independent full GPU565 and post-swap RGBA comparisons. Native source snapshots remain separately generated from owned producer commands/assets, with original raster results scrubbed and oracle pixels held only externally. This covers the complete observed recorded interval, not every global original route, all fourteen journeys, hardware scanout or live replacement.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/draw02-quick-battle-native-comparison.md"
+        "research/runtime/draw02-quick-battle-native-comparison.md",
+        "research/formats/recorded-drawing-composition-v1.md"
       ],
       "implementation": [
-        "tools/compare-drawing-quick-battle.py"
+        "tools/compare-drawing-quick-battle.py",
+        "tools/recorded_drawing_plan.py",
+        "apps/drawing-session/main.cpp",
+        "apps/drawing-session/recorded_composition.hpp"
       ],
       "tests": [
-        "tests/test-drawing-quick-battle.py"
+        "tests/test-drawing-quick-battle.py",
+        "tools/test-recorded-drawing-composition.py"
       ],
       "validation_dependencies": [
         "compat/legacy/drawing_session_main.cpp",
@@ -66813,14 +66852,21 @@
         "tests/fixtures/drawing-journeys/interactive-schedule.json",
         "compat/legacy/drawing_scene.hpp",
         "tests/drawing-scene-test.cpp",
-        "tools/test-native-drawing-session-runner.py"
+        "tools/test-native-drawing-session-runner.py",
+        "apps/drawing-session/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp"
       ],
       "evidence": [
         "DRAW02.quick-battle-comparison-01-20261014",
         "DRAW02.quick-battle-comparison-02-20261014",
         "DRAW02.quick-battle-comparison-03-20261014",
         "DRAW02.quick-battle-comparison-04-20261014",
-        "DRAW02.quick-battle-comparison-05-20261014"
+        "DRAW02.quick-battle-comparison-05-20261014",
+        "DRAW02.quick-battle-gpu-session-20261016",
+        "DRAW02.recorded-gpu-composition.controls-20261016"
       ],
       "status": {
         "understanding": "partial",
@@ -66830,7 +66876,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "All observed frames of one bounded Quick Battle pass. All fourteen journey and twenty-one operation completion gates, source/backing atomicity across all aliases, native scanout and live replacement remain independent and unproved."
+        "Full14-journey/21-operation acceptance, all original presentation routes/action semantics and backing aliases, hardware scanout, new campaign/SaveLoad/movie intervals and live replacement remain independent. The retained complete Quick Battle interval can be re-compared through native GPU composition and X11 presentation."
       ]
     },
     {
@@ -72733,6 +72779,64 @@
           "Installed asset/config loading equivalence, sprite pixels, native World ownership and live replacement"
         ]
       }
+    },
+    {
+      "id": "NR.recorded-session-corpus",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Portable complete recorded EGL session through native GPU and X11 comparison",
+      "scope": "Portable complete observed-EGL Quick Battle interval: independent original live-observation acquisition and normal Quit, lossless source/API/interval/closure traces plus all323original full planes and encoded asset bindings. Recompute every worker/submission/source prefix, replay owned source-only native snapshots, compose final recorded transfers/fills/saved history on native GPU, and compare complete GPU565 and post-swap X11 output. RGB tolerance1, alpha excluded. Missing/reordered/unbound/partial frames, wrong hashes/identities, undefined initial history, malformed geometry and cleanup failures refuse. Separate observed_egl_session boundary cannot close full generic action-bound presented journeys, all original routes,14journey/21operation acceptance, hardware scanout or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/recorded-native-session-comparison.md",
+        "research/formats/recorded-drawing-composition-v1.md"
+      ],
+      "implementation": [
+        "tools/drawing_recorded_session.py",
+        "tools/recorded_drawing_plan.py",
+        "apps/drawing-session/main.cpp",
+        "apps/drawing-session/recorded_composition.hpp"
+      ],
+      "tests": [
+        "tools/check-recorded-drawing-session.py",
+        "tools/retain-recorded-drawing-session.py",
+        "tools/test-recorded-drawing-composition.py",
+        "tests/test-drawing-journeys.py",
+        "tools/check-drawing-journeys.py"
+      ],
+      "validation_dependencies": [
+        "tools/compare-drawing-quick-battle.py",
+        "tools/drawing_corpus.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_session.py",
+        "tools/drawing_journeys.py",
+        "tools/rendering_coverage.py",
+        "tools/inspect-canvas-producers.py",
+        "apps/drawing-session/CMakeLists.txt",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "tests/fixtures/drawing-recorded-session/session.json"
+      ],
+      "evidence": [
+        "DRAW02.recorded-session.retention-20261016",
+        "DRAW02.recorded-session.portable-03-20261016",
+        "DRAW02.recorded-gpu-composition.controls-20261016",
+        "DRAW02.recorded-session.journey-adapter-20261016"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Original global-route/physical-change completeness and broader semantic/action outcomes remain unproved. New campaign/SaveLoad/movie/real-driver intervals, full14journey/21operation acceptance, sustained hardware performance and live replacement remain separate."
+      ]
     }
   ],
   "evidence": [
@@ -150024,6 +150128,256 @@
           "equals": 89
         }
       ]
+    },
+    {
+      "id": "REVIEW.NR.current-gaps-20261016",
+      "kind": "static",
+      "scope": "Current source/control review at 45af2ed6 (renderer unchanged since 7c40c187): 7 gap classifications, 20 exact source witnesses, existing 11 writer/25 queue controls plus 2 actual empty-lifetime OVERFLOW probes, and 50 portable acceptance guards. Retained 19/43 route union and 0 session adapters reviewed; historical records unchanged. No original/driver/game/GL/performance execution or integration/replacement promotion.",
+      "record": "research/runtime/native-rendering-gap-review-20261016.json",
+      "sha256": "511b4b4e429d771fec68f36a316c15e4094b5696af679b4c9f57d1301edbcfe0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/review_only",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/retained_records_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/policy_checks/valid_routes",
+          "equals": 43
+        },
+        {
+          "pointer": "/policy_checks/full_session_cases",
+          "equals": 0
+        },
+        {
+          "pointer": "/lifetime_controls/2/empty_queue_lifetime_refusals",
+          "equals": 1
+        },
+        {
+          "pointer": "/lifetime_controls/2/empty_ring_lifetime_refusals",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.quick-battle-gpu-session-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/draw02-quick-battle-gpu-session-20261016.json",
+      "sha256": "6e0cda9d98b32e2e264d3a604f5b5a8d29039f1f7d432de203011bbf3bbc4b73",
+      "scope": "Current native source replay and GPU composition/X11 comparison against all323 independently retained original EGL frames; both full outputs pass RGB tolerance1, alpha excluded. New native execution, no new original acquisition or full all-route journey admission.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_observed_presentations_compared",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/physical_mismatching_pixels",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.recorded-session.retention-20261016",
+      "kind": "static",
+      "record": "tests/fixtures/drawing-recorded-session/session.json",
+      "sha256": "08ccaecbd8b1c557f0f24c3829ab2cb0b1da26f05bc41d8a43a037718a9bf655",
+      "scope": "Lossless portable retention of an independently acquired observed-EGL interval; no new original execution or global presentation admission.",
+      "assertions": [
+        {
+          "pointer": "/boundary",
+          "equals": "observed_egl_session"
+        }
+      ],
+      "sources_pointer": "/retention_sources"
+    },
+    {
+      "id": "NR.command-byte-lifetime.native-06-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/render-command-lifetime-controls-06-20261016.json",
+      "sha256": "791e0512993e96781728d2e738ded4dd505259bb38af22b62100d403366a170f",
+      "scope": "Production emitter/private queue/mapped V3 ring and Qt streaming decoder independently carry actual traffic beyond2^32; native/sanitized refusal, cross-process/legacy controls and PE32 compilation. No actual-game lifetime/whole-session/hardware claim.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/2/queue_and_ring_actual_bytes",
+          "equals": 4297064448
+        },
+        {
+          "pointer": "/qt/v3_lifetime_bytes",
+          "equals": 4295064708
+        },
+        {
+          "pointer": "/undeclared_compiler_sources",
+          "equals": []
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NR.command-v3.pe32-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/render-command-v3-pe32-controls-20261016.json",
+      "sha256": "834d7d03db174b9095bdafc7c0c988fb509d317b054b99756d1b86e3d45a5504",
+      "scope": "Actual isolated PE32 hooked Lock/Unlock through V3 producer/queue/idle scheduler and native GPU. Three valid archive policies, two explicit refusals,210full display comparisons. No original-game or multi-GiB PE32 traffic claim.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/wire_version",
+          "equals": 3
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 3
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 2
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 210
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.recorded-session.portable-03-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/recorded-native-session-portable-03-20261016.json",
+      "sha256": "409028192cb37c88f428141fd8313e9db3d762db1728bf84cd2caa7c2118cea8",
+      "scope": "Portable all323observed original EGL frames through native GPU composition and physical X11 comparison;310080000pixels and zero outside RGB tolerance1,alpha excluded. Independent historical original acquisition, no original install needed; generic action-bound/global-route/full14journey21operation acceptance stays open.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frames",
+          "equals": 323
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/boundary",
+          "equals": "observed_egl_session"
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.recorded-gpu-composition.controls-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/recorded-gpu-composition-controls-20261016.json",
+      "sha256": "16f2740e03d2380a69acbd3600ae163751e9e859d6431bbab654d8ec5e255494",
+      "scope": "Independently specified full native GPU/X11 planes and9malformed-input refusals for recorded GPU composition. No original comparison or generic journey credit.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "REVIEW.NR.after-rollover-20261016",
+      "kind": "static",
+      "record": "research/runtime/native-rendering-gap-review-after-rollover-20261016.json",
+      "sha256": "3b2d93daabd6644c50c6c229a60e27df5fa71b6eddcc1ed89c3700067dda3312",
+      "scope": "Current source/control review after four byte-limit repairs. V3 wrap acceptance with retained legacy V2 refusal; portable guards and retained route/journey boundaries. No new original equivalence.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.recorded-session.journey-adapter-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/recorded-session-journey-adapter-20261016.json",
+      "sha256": "e1a20af803ac93b1884af53a5d2e880b534cd8dcdfff61b3ade49fe47da98c9b",
+      "scope": "Public journey checker executes recorded-session adapter in frozen reviewed tree, with all323frames in both native outputs matching and four guard suites passing. Targeted suite slice deliberately retains full acceptance denominators and false generic completeness.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 310080000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/reference_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -166556,6 +166910,21 @@
         "CURE04.presentation-original",
         "CURE04.presentation-native"
       ]
+    },
+    {
+      "id": "NR.recorded-session-corpus.headless",
+      "level": "headless",
+      "scope": "Replay all323retained original EGL frames from the complete bounded Quick Battle interval through current native source/GPU/X11 paths; preserve full-journey/global-route limits.",
+      "behaviors": [
+        "NR.recorded-session-corpus"
+      ],
+      "tests": [
+        "tools/check-recorded-drawing-session.py",
+        "tests/fixtures/drawing-recorded-session/session.json"
+      ],
+      "evidence": [
+        "DRAW02.recorded-session.portable-03-20261016"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -167172,8 +167541,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-cure-presentation-20261016.json",
-    "sha256": "41997a0934fbd9dd3d88c17bc3a8f276658f0a039eb4aaba2da0393c6a3941ba"
+    "path": "research/runtime/coverage/source-index-render-lifetime-session-20261016.json",
+    "sha256": "a97cc98c97bec30e405e9de0755165317aac9dcdaf51f5b2201e0659197a54c8"
   },
   "claim_bindings_required": true
 }
