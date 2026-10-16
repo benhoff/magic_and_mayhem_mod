@@ -24,6 +24,8 @@ void enableRegionalNavigation(Profile &, unsigned capacity = 512);
 void enableRegionalDanger(Profile &);
 void enableOwnerKnowledge(Profile &);
 void enableOwnerVisibility(Profile &);
+void placeOwnerPlannerEncounter(Profile &);
+void enableOwnerPlanner(Profile &, const std::filesystem::path &brain, unsigned seed);
 void editTerrain(game::CreatureRuleSession &, const Profile &,
                  const std::vector<cs::NativeTerrainEdit> &);
 cs::NativeConsequenceFactory consequences(const Profile &);

@@ -1,4 +1,5 @@
 #include "native_regional_danger.hpp"
+#include "native_owner_planner.hpp"
 #include <algorithm>
 #include <cstring>
 #include <stdexcept>
@@ -118,6 +119,7 @@ void updateNativeRegionalDanger(Continuation &c,
       const auto &live = c.world.creatures.at(unsigned(actor.slot));
       observations.push_back({actor, live.finePosition, live.ai.visible,
                              p.types.at(actor.type).routeCostFactor});
+      if(c.native.ownerPlanner)observations.back().planning=nativeOwnerPlannerActor(c,p,unsigned(actor.slot));
     }
     model::updateOwnerKnowledge(*c.native.ownerKnowledge, in.tick, in.dimensions,
                                 in.enabled, in.allied, observations);

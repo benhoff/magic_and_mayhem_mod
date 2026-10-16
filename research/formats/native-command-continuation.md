@@ -1,10 +1,10 @@
-# Native command continuation versions 1–11
+# Native command continuation versions 1–12
 
 This is a native application format inside the outer native `State.systems`
 checkpoint. It is unrelated to original Magic & Mayhem save/object layouts.
 
 The byte stream starts with four ASCII bytes `CMD1`, then little-endian32-bit
-version11 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
+version12 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
 integers use two's-complement words with explicit checked reconstruction; narrow
 values reject overflow. Booleans are exactly0 or 1. An optional is a0/1 word and,
 when present, its value. A vector begins with its word length; a fixed array has
@@ -258,3 +258,26 @@ transactional publication boundary. The default frame runs visibility before
 mark/danger/deduction/knowledge and creature maintenance. This cadence and
 portable format are native policies, separate from original World and save
 semantics. See [owner visibility](../runtime/owner-visibility.md).
+
+
+## Version 12: native owner planner
+
+Version12 preserves the previous field order and appends optional ownerPlanner
+state to the native provider. Each owner-memory record also appends an optional
+planning projection (absent in v1..11): six combat values, cell, speed, power,
+bravery, CFG5c5/5a9/5ad factors, regional danger, copied motionB63 and two flags.
+The planner stores owner/actor IDs, next/active serials, the owned key6 model,
+three coefficients and percentage, independent250-word strategic RNG, selector
+fields, evaluator emission flags, candidate key/center/score, owned feature vector
+and optional active key/center. Nested field order is explicitly listed in codec.cpp.
+
+Model scalars, node coefficients, square matrices and selector scores use
+little-endian IEEE754 binary32 bits via checked word copies. Float vectors admit
+up to16384 elements for the bounded128-square inference model; the planner further
+requires dimension72 and three layers. Nonfinite values, malformed model shapes,
+nonpositive scales, bad RNG cursors, serial aliases, feature lengths and missing
+memory projections refuse. Old readers are not forward compatible. New readers
+leave v1..11 planner/projections absent; writing old versions rejects losing them.
+Planning metadata without its planner is rejected. This is a native checkpoint
+policy, not a recovered original owner-save format. Inference range failures are
+checked during a staged frame and retain the preceding published snapshot.

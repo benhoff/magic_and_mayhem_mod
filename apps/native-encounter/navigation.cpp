@@ -3,6 +3,7 @@
 #include "../command-session/native_regional_danger.hpp"
 #include "../command-session/native_regional_graph.hpp"
 #include "../command-session/native_owner_visibility.hpp"
+#include "../command-session/native_regional.hpp"
 #include <charconv>
 #include <sstream>
 #include "encounter.hpp"
@@ -86,6 +87,36 @@ void enableOwnerVisibility(Profile &p) {
     a.aimXY=d.aimXY;a.aimZ=d.aimZ;definitions.push_back(d);
   }
   cs::prepareNativeOwnerVisibility(p.initial,std::move(definitions));
+}
+void placeOwnerPlannerEncounter(Profile &p) {
+  auto staged=p.initial;
+  if(staged.world.creatures.size()!=2||staged.native.regions.empty()||staged.native.tick)
+    throw std::invalid_argument("owner planner encounter setup domain");
+  for(auto &cell:staged.native.cells)cell.occupant=0xffff;
+  cs::NativeCreatureGeometry geometry(staged,p.native);
+  auto &a=staged.world.creatures[0];
+  const auto query=cs::nativeRegionalQuery(geometry,a,{0,0,0,0});
+  auto region=[&](cs::model::Cell point){return cs::model::lookupNavigationRegion(staged.native.regions,point,query,staged.world.dimensions,p.native.boundary,0,0,cs::nativeRegionalServices(staged,p.native,geometry,a));};
+  const auto d=staged.world.dimensions;
+  auto inside=[&](cs::model::Cell q){return q.x>=0&&q.y>=0&&q.z>=0&&q.x<d.x&&q.y<d.y&&q.z<d.z;};
+  bool found=false;
+  for(unsigned id=0;id<staged.native.regions.size()&&!found;++id){
+    if(!staged.native.regions[id].parameter)continue;
+    const auto center=staged.native.regions[id].position;
+    for(int dx=-2;dx<=2&&!found;++dx)for(int dy=-2;dy<=2&&!found;++dy){
+      cs::model::Cell first{center.x+dx,center.y+dy,center.z};
+      if(!inside(first)||!geometry.legal(a,first)||!geometry.ground(a,first)||region(first)!=int(id))continue;
+      for(auto offset:std::array<cs::model::Cell,4>{{{4,0,0},{-4,0,0},{0,4,0},{0,-4,0}}}){
+        cs::model::Cell second{first.x+offset.x,first.y+offset.y,first.z};
+        if(!inside(second)||!geometry.legal(a,second)||!geometry.ground(a,second)||region(second)!=int(id))continue;
+        staged.world.creatures[0].ai.position=first;staged.world.creatures[1].ai.position=second;
+        for(auto &actor:staged.world.creatures){actor.region=int(id);actor.ai.home=actor.ai.position;actor.destination=actor.ai.position;staged.execution[actor.ai.slot].roamHome=actor.ai.position;}
+        found=true;break;
+      }
+    }
+  }
+  if(!found)throw std::invalid_argument("crop has no admitted same-region planner encounter");
+  cs::prepareNativeContinuation(staged,p.native);p.initial=std::move(staged);
 }
 void editTerrain(game::CreatureRuleSession &session, const Profile &p,
                  const std::vector<cs::NativeTerrainEdit> &edits) {

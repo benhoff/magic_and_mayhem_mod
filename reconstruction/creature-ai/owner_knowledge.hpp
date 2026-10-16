@@ -1,16 +1,19 @@
 #pragma once
 #include "regional_danger.hpp"
+#include "owner_planner_features.hpp"
 namespace mnm::reconstruction::combat {
 struct OwnerObservation {
   RegionalDangerActor actor;
   Cell finePosition;
   std::array<unsigned, 8> visible{};
   int speed = 0; // Global type CFG +589, not snapshot configuration.
+  std::optional<OwnerPlannerActor> planning{};
 };
 struct OwnerMemory {
   RegionalDangerMemory memory;
   int markedTick = 0;
   Cell finePosition;
+  std::optional<OwnerPlannerActor> planning{};
 };
 struct OwnerKnowledge {
   std::array<std::vector<OwnerMemory>, 8> records;

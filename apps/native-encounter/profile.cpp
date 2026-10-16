@@ -1,6 +1,8 @@
+#include "../../assets/dat.hpp"
 #include "../../assets/persistence.hpp"
 #include "../../reconstruction/combat/autonomy_tables.hpp"
 #include "../command-session/native_geometry.hpp"
+#include "../command-session/native_owner_planner.hpp"
 #include "encounter.hpp"
 #include <algorithm>
 #include <charconv>
@@ -71,6 +73,45 @@ std::array<int, 28> row(const assets::Config &c, const char *section) {
   return out;
 }
 } // namespace
+void enableOwnerPlanner(Profile &p, const std::filesystem::path &path,
+                        unsigned seed) {
+  auto result = assets::decodeBrainDat(read(path));
+  need(std::holds_alternative<assets::BrainDat>(result),
+       "owner planner DAT input");
+  const auto &models = std::get<assets::BrainDat>(result).models;
+  const auto found = std::find_if(models.begin(), models.end(),
+                                  [](const auto &v) { return v.key == 6; });
+  need(found != models.end(), "owner planner missing model6");
+  cs::model::BrainInferenceModel model;
+  model.key = found->key;
+  model.dimension = found->dimension;
+  auto number = [](unsigned v) {
+    float f;
+    std::memcpy(&f, &v, 4);
+    return f;
+  };
+  for (const auto &layer : found->layers) {
+    cs::model::BrainInferenceLayer out;
+    out.observations = number(layer.scalarBits);
+    out.outside = number(layer.tailBits);
+    for (const auto &node : layer.nodes) {
+      std::array<float, 12> values;
+      for (unsigned i = 0; i < 12; ++i)
+        values[i] = number(node[i]);
+      out.nodes.push_back(values);
+    }
+    for (unsigned v : layer.matrix)
+      out.matrix.push_back(number(v));
+    model.layers.push_back(std::move(out));
+  }
+  auto staged = p;
+  if (!staged.initial.native.ownerVisibility) {
+    placeOwnerPlannerEncounter(staged);
+    enableOwnerVisibility(staged);
+  }
+  cs::prepareNativeOwnerPlanner(staged.initial, std::move(model), 0, 0, seed);
+  p = std::move(staged);
+}
 game::Bytes loadInputs(const std::filesystem::path &root, scene::MapCrop crop,
                        unsigned scenario) {
   game::Bytes b{'M', 'N', 'M', 'E', 'N', 'C', '0', '1'};
@@ -99,7 +140,9 @@ Profile decodeInputs(game::Bytes bytes) {
   std::size_t at = 8;
   const unsigned scenario = bytes[7] == '2' ? take(bytes, at) : 0;
   need(scenario <= 7, "encounter scenario");
-  const unsigned actors = scenario == 1 || scenario == 3 ? 4 : scenario >= 2 ? 8 : 2;
+  const unsigned actors = scenario == 1 || scenario == 3 ? 4
+                          : scenario >= 2                ? 8
+                                                         : 2;
   scene::MapCrop crop;
   crop.x = take(bytes, at);
   crop.y = take(bytes, at);
@@ -155,7 +198,8 @@ Profile decodeInputs(game::Bytes bytes) {
   type.movementKind = movement.swimming;
   type.scalar.type_10 = movement.acceleration;
   // Pinned original initial slope coefficient at5e15f0 (float bits).
-  const unsigned slope=0x3f781062;std::memcpy(&type.scalar.slope_global,&slope,4);
+  const unsigned slope = 0x3f781062;
+  std::memcpy(&type.scalar.slope_global, &slope, 4);
   type.scalar.type_d8 =
       reconstruction::groundMovementSamples(p.native.animation[0]);
   type.scalar.type_3c =
@@ -270,7 +314,8 @@ Profile decodeInputs(game::Bytes bytes) {
     }
   }
   for (auto &actor : c.world.creatures) {
-    if(scenario>=3)actor.destination=actor.ai.position;
+    if (scenario >= 3)
+      actor.destination = actor.ai.position;
     actor.ai.home = actor.ai.position;
     c.execution[actor.ai.slot].roamHome = actor.ai.position;
   }
@@ -284,14 +329,20 @@ Profile decodeInputs(game::Bytes bytes) {
     actor.routePhase = 1;
     c.bindings[0] = cs::model::CommandBehaviorBinding::move;
   }
-  if(scenario>=3){
-    auto &a=c.world.creatures[0];auto &b=c.world.creatures[1];
-    a.routePhase=2;a.ai.marker=0;
-    if(scenario==6)a.destination={5,3,3};
-    auto &route=c.actions.segments[0];route.count=1;route.cursor=0;
+  if (scenario >= 3) {
+    auto &a = c.world.creatures[0];
+    auto &b = c.world.creatures[1];
+    a.routePhase = 2;
+    a.ai.marker = 0;
+    if (scenario == 6)
+      a.destination = {5, 3, 3};
+    auto &route = c.actions.segments[0];
+    route.count = 1;
+    route.cursor = 0;
     // A retained coarse route steps into the neighboring ally's footprint.
-    route.route[0].position={b.ai.position.x-1,b.ai.position.y,b.ai.position.z};
-    route.route[0].remainder={2,0,0,0};
+    route.route[0].position = {b.ai.position.x - 1, b.ai.position.y,
+                               b.ai.position.z};
+    route.route[0].remainder = {2, 0, 0, 0};
   }
   c.backend.assign(8 + actors * 31 * 4 + 6 * 4, 0);
   std::copy_n("MNMECB01", 8, c.backend.begin());

@@ -47,3 +47,15 @@ ordinary type17 actors and empty object/attenuation columns. It does not own
 observation-point fog, local UI reveal or the full World/campaign driver.
 See [owner visibility](../../research/runtime/owner-visibility.md) and
 `tools/test-owner-visibility-integration.py` for reproduction and evidence.
+
+
+`run-planner INSTALL X Y WIDTH HEIGHT SEED TICKS NEW_SNAPSHOT` enables the NS78
+bounded strategic planner. Use crop0,0,32,32. The setup chooses ordinary legal
+stands in one region; sightings produce a singleton task6 candidate, installed
+Brain.dat inference selects it against fallback, and its native task continues
+orders. CMD1v12 embeds the model and independent strategic RNG; `resume` needs
+only its snapshot. Candidate path summaries, weights, cadence and active-task
+retention are explicit lab policies. Multiple-memory grouping, original probe
+production/risk rejection, other task families and full World AI remain pending.
+See [owner strategic planner](../../research/runtime/owner-strategic-planner.md)
+and `tools/test-owner-planner-integration.py` for the comparison boundaries.

@@ -10,6 +10,9 @@
 #include "../../reconstruction/creature-ai/regional_danger.hpp"
 #include "../../reconstruction/creature-ai/owner_knowledge.hpp"
 #include "../../reconstruction/creature-ai/owner_visibility.hpp"
+#include "../../reconstruction/creature-ai/owner_planner.hpp"
+#include "../../reconstruction/creature-ai/owner_hostile_task.hpp"
+#include "../../reconstruction/creature-ai/brain_inference.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -50,6 +53,19 @@ struct NativeOwnerVisibility {
   std::vector<reconstruction::combat::SightDefinition> definitions;
   std::vector<std::array<int,8>> observers;
 };
+struct NativeOwnerPlanner {
+  unsigned owner=0,actor=0,nextSerial=1,activeSerial=0;
+  reconstruction::combat::BrainInferenceModel model;
+  std::array<float,3> weights{{1,0,1}};
+  int percent=100;
+  reconstruction::combat::RandomState random;
+  reconstruction::combat::OwnerTaskSelection selection;
+  bool fallbackEmitted=false,hostileEmitted=false,candidateReady=false;
+  reconstruction::combat::OwnerHostileTask candidate;
+  float candidateScore=0;
+  std::vector<int> features;
+  std::optional<reconstruction::combat::OwnerHostileTask> active;
+};
 struct NativeProviderState {
   bool present=false,randomSeeded=false,alternate=false;
   std::array<std::uint32_t,2> profileStamp{};
@@ -71,5 +87,6 @@ struct NativeProviderState {
   std::optional<NativeRegionalDanger> regionalDanger;
   std::optional<reconstruction::combat::OwnerKnowledge> ownerKnowledge;
   std::optional<NativeOwnerVisibility> ownerVisibility;
+  std::optional<NativeOwnerPlanner> ownerPlanner;
 };
 } // namespace mnm::command_session

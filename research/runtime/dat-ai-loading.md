@@ -48,3 +48,9 @@ Confirmed storage layout and native validation are documented in
 [DAT input](../formats/dat-native-loading.md). No original reader execution,
 training/inference equivalence, key-to-creature assignment, save writer,
 WBT-generation relationship or live replacement is established by this work.
+
+
+NS78 separately implements and compares present-model4766b0 inference over all
+seven installed Brain.dat models. This does not promote the historical reader,
+training or recovery evidence. See owner-strategic-planner.md for numeric scope,
+explicit allocator services and the bounded native model6 continuation policy.

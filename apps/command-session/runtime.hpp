@@ -44,7 +44,7 @@ struct Hooks {
       Continuation &, model::OwnedCreatureCommands &, game::TickInput)> advance;
 };
 using HookFactory = std::function<Hooks(Continuation &)>;
-game::Bytes encode(const Continuation &, unsigned version = 11);
+game::Bytes encode(const Continuation &, unsigned version = 12);
 Continuation decode(const game::Bytes &);
 void validate(const Continuation &);
 class Runtime final : public game::CreatureRuleRuntime {

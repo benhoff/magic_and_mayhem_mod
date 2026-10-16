@@ -4,7 +4,7 @@ add_subdirectory(../command-session command-session)
 # Decode-only entry points have no filesystem/Qt dependency. The unused
 # AssetFile wrappers are discarded; no substitute AssetFile implementation.
 add_library(mnm-encounter-input-decoders STATIC
-  ../../assets/config_loader.cpp ../../assets/packed_container.cpp
+  ../../assets/config_loader.cpp ../../assets/packed_container.cpp ../../assets/dat.cpp
   ../../assets/creature_movement.cpp ../../assets/map.cpp
   ../../assets/terrain_catalog.cpp ../world-scene/map_navigation.cpp
   ../../reconstruction/rendering/terrain_map.cpp)
@@ -167,3 +167,6 @@ endif()
 add_executable(native-owner-visibility-test ../../tests/native-owner-visibility-test.cpp)
 target_link_libraries(native-owner-visibility-test PRIVATE mnm-native-encounter)
 target_compile_options(native-owner-visibility-test PRIVATE -Wall -Wextra -Werror -pedantic)
+add_executable(native-owner-planner-test ../../tests/native-owner-planner-test.cpp)
+target_link_libraries(native-owner-planner-test PRIVATE mnm-native-encounter)
+target_compile_options(native-owner-planner-test PRIVATE -Wall -Wextra -Werror -pedantic)

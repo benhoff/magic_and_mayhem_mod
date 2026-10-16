@@ -17,7 +17,7 @@ int main(int argc,char **argv)try{
       cs::updateNativeRegionalDanger(*v,p.native);
     }
     const auto bytes=cs::encode(c);
-    check(bytes.at(4)==11,"knowledge version");
+    check(bytes.at(4)==12,"knowledge version");
     check(bytes==cs::encode(restored),"restored knowledge differs");
     if(tick%8==0){restored=cs::decode(bytes);++restores;}
     if(tick>1152&&tick<1408){check(c.native.ownerKnowledge->records[0].empty(),"expired threat retained");++expiryFrames;}

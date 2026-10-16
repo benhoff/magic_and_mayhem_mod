@@ -9790,3 +9790,71 @@ immediate reveal effects, installed attenuation-column production, strategic
 notifications/tasks, World/two-brain scheduling, general species/campaign and live
 replacement remain pending. Gameplay balance changes remain outstanding; the
 original-backed full game still requires Wine. See owner-visibility.md.
+
+
+## NS78 — Bounded owner task planning and portable inference (2026-10-16)
+
+The native lab now connects owner sightings to singleton hostile-task features,
+installed model6 inference, a resumable taskless selector and active target or
+last-known-position command delivery. `run-planner` opts into two ordinary type17
+actors on a32x32 crop, choosing legal same-region stands. CMD1v12 embeds the
+model, snapshot feature projections, independent strategic250-word RNG,
+selector/evaluator state, candidate, task serials and active memory key/center.
+Versions1..11 read absent and legacy writes refuse losing planner state.
+Fresh activation and frame execution are staged; inference failure rolls back
+perception, tasks, RNG and commands with the preceding published snapshot intact.
+
+Five independent source-bound original32/native64/sanitizer component comparisons
+pass7,997,070 checks: taskless4284e0 selection7,360,480 across26,456 slices
+(22,360 yields), present-model4766b0 inference2,688 across896 vectors/all seven
+installed models, ordered67-feature40b420 prefix274,432 across4096 cases,
+prepared431ce0/414ff0/40edb0 candidate completion303,104 across4096 cases,
+and singleton432900/407c10 execution56,366 across8192 cases. The latter includes
+2673 target orders,2515 stale/missing-memory moves,523 completions and2481
+suppressed orders. These are corpus counts, not full owner-journey equivalence.
+Explicit allocator/inference/lower-command services remain declared; original
+target text is protected and immutable input manifests verified before/after.
+The first bound reports are retained but not adopted: a report-only assertion
+about object-write guards was unsupported. The v2 runs remove that
+assertion and freshly repeat all five comparisons. A final v3 reruns them after
+trailing-blank-line cleanup in the report driver, retaining v2 reports/source
+without refreshing their hashes. The component records assert protected target
+text and the actual compared state, not whole-object memory-write coverage.
+
+The native64 and ASan/UBSan/LSan integration passes1050 planner checks,
+128 restore checkpoints,18 refusals and an inference-failure rollback witness.
+Both seeds exercise34 active-task frames and496 selection frames combined;
+1024 frames retain enemy memory. Five mid-selection/active/late checkpoints and
+one public CLI split restore in fresh processes (PATH unavailable) match final
+snapshots exactly. Both five-test core suites and native visibility/knowledge/
+danger regressions pass. All native/sanitizer snapshots,254 declared sources,
+254 compiler/build inputs and six installed inputs remain stable. No Wine or Qt
+appears in the runtime linkage. These witnesses establish native policy integration,
+not a coupled original owner journey or live replacement.
+
+The native integration has a separate policy contract. Its two-count-unit cadence,
+explicit1/0/1 coefficients and100 percent, supplied zero path summaries/false
+assigned flag, singleton/same-region admission and retained active-task lifetime
+are intentional lab policies. Multi-record memories yield no candidate; original
+413330 grouping,431ce0 path probes,52a430 risk-stop, previous-task replacement,
+replanning deadlines, full415c40 dual-brain/World cadence and other task families
+remain pending. No original risk/probe success or coefficient initialization is
+inferred from the component tests. General species, resources/spells, campaign
+construction, notification consequences and live replacement remain outstanding.
+The original-backed full game still requires Wine. Commander orders, veterancy
+and mana balance changes remain separate work.
+
+The focused inventory adds16 pinned function bodies to the reviewed6676 baseline
+(6692 total), preserving all prior flows/imports and unknowns. Five metadata
+renames and unrelated55a650 body broadening are not adopted; new-function flow
+attribution remains pending in raw discovery. The sparse54-entry factory mapping
+is explicitly incomplete. Incoming8427fae4..8cb7fbdc has295 file/329 behavior
+accounting transitions and37 committed files with exact receipts and no unresolved
+transition, in coverage/history-review-ns77-to-ns78-20261016.json. This is a
+committed-history review, not a past gate-pass or new execution assertion.
+The reviewed census is coverage/source-index-owner-planner-20261016-v2.json:
+2509 source/build files,2315 explicitly linked. Shared codec/provider/header/build
+changes leave older evidence historical/pending; prior source hashes and statuses
+are preserved. See owner-strategic-planner.md and owner-planner-*-ns78-20261016.json.
+
+The generated scope/freshness snapshot is coverage/summary-owner-planner-20261016-v1.md; the full machine report is retained under working/tests/planner-ns78-accounting/audit-final-v1.json.

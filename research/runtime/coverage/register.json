@@ -5,8 +5,8 @@
     {
       "id": "nocd-40209ca7",
       "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
-      "inventory": "research/runtime/coverage/binary-nocd-regional-graph-20261015.json",
-      "inventory_sha256": "cddb9f3c837be1ee65e8e823b13c935b0e2cf88c91036c42f8a3412e37fcb521"
+      "inventory": "research/runtime/coverage/binary-nocd-owner-planner-20261016.json",
+      "inventory_sha256": "1646a231ba2641917291301a70a360d81ac639ee82ab3305ce2b26e6aa0369e9"
     }
   ],
   "behaviors": [
@@ -70945,6 +70945,677 @@
         "branches": "Phase/observer/sharing/profile persistence,hidden sightings,diplomacy,death,knowledge expiry,legacy compatibility/refusal,failed activation,complete snapshot/trace parity and fresh process continuation.",
         "exclusions": "Native policy is not original World/save or CFG-loader equivalence. Nonempty static attenuation columns,UI/fog,campaign/general species/live replacement pending."
       }
+    },
+    {
+      "id": "AI.owner-strategic-planner",
+      "title": "Original owner strategic task production and selection",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "scope": "Partial owner strategic pipeline discovery: scoped taskless selector, present-model inference and singleton task6 feature/completion/execution projections are separate contracts. Original anonymous-memory grouping, probe production, risk-stop, previous-task replacement, other task families and415c40 dual-brain World scheduling remain pending. Native lab integration is an explicit policy, not complete original AI equivalence.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4283456,
+          "scope": "Owner brain driver; task work and admission under investigation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4293072,
+          "scope": "Nonempty sighting-to-task consequences under investigation."
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-strategic-planner.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_planner.cpp",
+        "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_hostile_task.cpp"
+      ],
+      "tests": [
+        "tools/export-owner-planner.py",
+        "tools/inspect-owner-planner-tables.py",
+        "tools/ghidra/ExportOwnerPlanner.java",
+        "tools/export-owner-planner-inventory.py",
+        "tools/ghidra/ExportOwnerPlannerInventory.java",
+        "tools/review-owner-planner-inventory.py"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.owner-task-selection",
+      "title": "Taskless owner evaluator selection",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "scope": "Whole4284e0 taskless old-plan projection, count-based budgets, finite authored evaluator candidates and ordered supplied prepare/next/save methods. Real original RNG and group iterators; no text redirects. Weighted/maximum selection, exact-one rejection, bias and read-only selection. Evaluator generation, task execution, task replacement gates and World scheduling excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4359392,
+          "scope": "Whole4284e0 taskless old-plan projection, count-based budgets, finite authored evaluator candidates and ordered supplied prepare/next/save methods. Real original RNG and group iterators; no text redirects. Weighted/maximum selection, exact-one rejection, bias and read-only selection. Evaluator generation, task execution, task replacement gates and World scheduling excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-strategic-planner.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_planner.hpp",
+        "reconstruction/creature-ai/owner_planner.cpp"
+      ],
+      "tests": [
+        "tests/owner-planner-selection-test.cpp",
+        "tools/test-owner-planner.py",
+        "tools/owner_planner_comparison.py"
+      ],
+      "evidence": [
+        "NS78.owner-planner-selection-original",
+        "NS78.owner-planner-selection-original-v3"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/owner_planner.cpp",
+        "reconstruction/creature-ai/owner_planner.hpp",
+        "tests/owner-planner-selection-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py",
+        "tools/test-owner-planner.py"
+      ],
+      "validation_domain": {
+        "required_inputs": "Pinned No-CD build and scoped authored fixtures; inference additionally consumes all seven installed Brain.dat models.",
+        "failures": "Native admission rejects unsafe/nonfinite state; original corpus exercises only declared valid domain.",
+        "exclusions": "Full owner World scheduling, broader groups/resources/spells, old-task replacement, production of supplied services, and live execution."
+      }
+    },
+    {
+      "id": "AI.owner-brain-inference",
+      "title": "Present-model owner brain inference",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "scope": "Whole4766b0 with existing supplied DAT models, signed integer feature vectors, real lookup/temporary vector storage and explicit Linux allocators. Native inference admission is separate. Model loading/training, missing/corrupt-model recovery, task feature production and World integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4679344,
+          "scope": "Whole4766b0 with existing supplied DAT models, signed integer feature vectors, real lookup/temporary vector storage and explicit Linux allocators. Native inference admission is separate. Model loading/training, missing/corrupt-model recovery, task feature production and World integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-strategic-planner.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/brain_inference.cpp"
+      ],
+      "tests": [
+        "tests/owner-brain-inference-test.cpp",
+        "tools/test-owner-brain.py",
+        "tools/owner_planner_comparison.py"
+      ],
+      "evidence": [
+        "NS78.owner-planner-brain-original",
+        "NS78.owner-planner-brain-original-v3"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py",
+        "tools/test-owner-brain.py"
+      ],
+      "validation_domain": {
+        "required_inputs": "Pinned No-CD build and scoped authored fixtures; inference additionally consumes all seven installed Brain.dat models.",
+        "failures": "Native admission rejects unsafe/nonfinite state; original corpus exercises only declared valid domain.",
+        "exclusions": "Full owner World scheduling, broader groups/resources/spells, old-task replacement, production of supplied services, and live execution."
+      }
+    },
+    {
+      "id": "AI.owner-hostile-task-features",
+      "title": "Singleton task6 ordered feature prefix",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "scope": "Whole40b420 with its exact kind6 ordered67 feature IDs, one ordinary noncasting actor per source group, empty resources/inventories/observation points and no block7c. Source CFG/value fields, flags and wrapped positions vary. No text redirects. Other features, group aggregates and task path suffix excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4240416,
+          "scope": "Whole40b420 with its exact kind6 ordered67 feature IDs, one ordinary noncasting actor per source group, empty resources/inventories/observation points and no block7c. Source CFG/value fields, flags and wrapped positions vary. No text redirects. Other features, group aggregates and task path suffix excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-strategic-planner.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp"
+      ],
+      "tests": [
+        "tests/owner-task-features-test.cpp",
+        "tools/test-owner-task-features.py",
+        "tools/owner_planner_comparison.py"
+      ],
+      "evidence": [
+        "NS78.owner-planner-features-original",
+        "NS78.owner-planner-features-original-v3"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-task-features-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py",
+        "tools/test-owner-task-features.py"
+      ],
+      "validation_domain": {
+        "required_inputs": "Pinned No-CD build and scoped authored fixtures; inference additionally consumes all seven installed Brain.dat models.",
+        "failures": "Native admission rejects unsafe/nonfinite state; original corpus exercises only declared valid domain.",
+        "exclusions": "Full owner World scheduling, broader groups/resources/spells, old-task replacement, production of supplied services, and live execution."
+      }
+    },
+    {
+      "id": "AI.owner-hostile-task-candidate",
+      "title": "Prepared task6 candidate completion and scoring",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "scope": "Whole431ce0 candidate-completion projection after prepared successful per-actor probes, one ordinary creature per group, exact67+5 feature order, explicit radius/path summaries, three supplied inference outputs and real414ff0/40edb0 scoring. Region parameter1, empty resources/spells, finite coefficient/percentage inputs and strategic RNG. Probe production, grouping/eligibility, model inference (compared separately), full task dispatch/replacement and live execution excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4398304,
+          "scope": "Whole431ce0 candidate-completion projection after prepared successful per-actor probes, one ordinary creature per group, exact67+5 feature order, explicit radius/path summaries, three supplied inference outputs and real414ff0/40edb0 scoring. Region parameter1, empty resources/spells, finite coefficient/percentage inputs and strategic RNG. Probe production, grouping/eligibility, model inference (compared separately), full task dispatch/replacement and live execution excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4280304,
+          "scope": "Whole431ce0 candidate-completion projection after prepared successful per-actor probes, one ordinary creature per group, exact67+5 feature order, explicit radius/path summaries, three supplied inference outputs and real414ff0/40edb0 scoring. Region parameter1, empty resources/spells, finite coefficient/percentage inputs and strategic RNG. Probe production, grouping/eligibility, model inference (compared separately), full task dispatch/replacement and live execution excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4255152,
+          "scope": "Whole431ce0 candidate-completion projection after prepared successful per-actor probes, one ordinary creature per group, exact67+5 feature order, explicit radius/path summaries, three supplied inference outputs and real414ff0/40edb0 scoring. Region parameter1, empty resources/spells, finite coefficient/percentage inputs and strategic RNG. Probe production, grouping/eligibility, model inference (compared separately), full task dispatch/replacement and live execution excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-strategic-planner.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/brain_inference.cpp"
+      ],
+      "tests": [
+        "tests/owner-task-candidate-test.cpp",
+        "tools/test-owner-task-candidate.py",
+        "tools/owner_planner_comparison.py"
+      ],
+      "evidence": [
+        "NS78.owner-planner-candidate-original",
+        "NS78.owner-planner-candidate-original-v3"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-task-candidate-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py",
+        "tools/test-owner-task-candidate.py"
+      ],
+      "validation_domain": {
+        "required_inputs": "Pinned No-CD build and scoped authored fixtures; inference additionally consumes all seven installed Brain.dat models.",
+        "failures": "Native admission rejects unsafe/nonfinite state; original corpus exercises only declared valid domain.",
+        "exclusions": "Full owner World scheduling, broader groups/resources/spells, old-task replacement, production of supplied services, and live execution."
+      }
+    },
+    {
+      "id": "AI.owner-hostile-task-execution",
+      "title": "Singleton task6 target refresh and order handoff",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "scope": "Whole432900 single ordinary melee actor with empty resources, no wizard formations, zero regional danger and empty opposite-brain assignments; actual407c10 resolves memory keys/markers into live pool slots. Target/move/stop command and allocator services are explicit recorders. Complete/stale/missing/dead/allied/engaged/dirty branches; full owner dispatch/task replacement/path scoring and live integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4401408,
+          "scope": "Whole432900 single ordinary melee actor with empty resources, no wizard formations, zero regional danger and empty opposite-brain assignments; actual407c10 resolves memory keys/markers into live pool slots. Target/move/stop command and allocator services are explicit recorders. Complete/stale/missing/dead/allied/engaged/dirty branches; full owner dispatch/task replacement/path scoring and live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4226064,
+          "scope": "Whole432900 single ordinary melee actor with empty resources, no wizard formations, zero regional danger and empty opposite-brain assignments; actual407c10 resolves memory keys/markers into live pool slots. Target/move/stop command and allocator services are explicit recorders. Complete/stale/missing/dead/allied/engaged/dirty branches; full owner dispatch/task replacement/path scoring and live integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-strategic-planner.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_hostile_task.hpp",
+        "reconstruction/creature-ai/owner_hostile_task.cpp"
+      ],
+      "tests": [
+        "tests/owner-hostile-task-test.cpp",
+        "tools/test-owner-hostile-task.py",
+        "tools/owner_planner_comparison.py"
+      ],
+      "evidence": [
+        "NS78.owner-planner-task-original",
+        "NS78.owner-planner-task-original-v3"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_hostile_task.cpp",
+        "reconstruction/creature-ai/owner_hostile_task.hpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-hostile-task-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py",
+        "tools/test-owner-hostile-task.py"
+      ],
+      "validation_domain": {
+        "required_inputs": "Pinned No-CD build and scoped authored fixtures; inference additionally consumes all seven installed Brain.dat models.",
+        "failures": "Native admission rejects unsafe/nonfinite state; original corpus exercises only declared valid domain.",
+        "exclusions": "Full owner World scheduling, broader groups/resources/spells, old-task replacement, production of supplied services, and live execution."
+      }
+    },
+    {
+      "id": "NP.owner-planner-continuation",
+      "title": "Native bounded owner planner and portable continuation",
+      "subsystem": "creature-ai",
+      "kind": "native_policy",
+      "scope": "Opt-in two ordinary type17 actors, fixed owner0/actor0, installed model6dimension72three outputs. Single remembered hostile in same nonzero-parameter region yields supplied zero path summaries/false assigned flag and explicit1/0/1 coefficients/100 percent; multiple records or different regions yield no candidate. Two count units per normal frame after perception/knowledge/danger; independent strategic RNG, retained active task until completion, owned command handoff. Original risk-stop, probe/group production, coefficient initialization, replacement/replanning and World cadence remain pending. CMD1v12 embeds model/selector/features/tasks/snapshot metadata and RNG; legacy reads absent/lossy writes refuse; staged activation and failed-frame rollback. Two seeds x512 native frames, restores and cold resume, malformed model/state refusals, legacy/core/perception regressions. No full original owner journey/campaign/live replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/owner-strategic-planner.md",
+        "research/formats/native-command-continuation.md",
+        "apps/native-encounter/README.md"
+      ],
+      "implementation": [
+        "apps/command-session/native_owner_planner.hpp",
+        "apps/command-session/native_owner_planner.cpp",
+        "apps/command-session/native_state.hpp",
+        "apps/command-session/native_providers.cpp",
+        "apps/command-session/native_regional_danger.cpp",
+        "apps/command-session/codec.cpp",
+        "apps/command-session/runtime.hpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp",
+        "apps/native-encounter/profile.cpp",
+        "apps/native-encounter/navigation.cpp",
+        "apps/native-encounter/main.cpp",
+        "apps/native-encounter/encounter.hpp"
+      ],
+      "tests": [
+        "tests/native-owner-planner-test.cpp",
+        "tools/test-owner-planner-integration.py"
+      ],
+      "evidence": [
+        "NS78.owner-planner-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/combat-sandbox/main.cpp",
+        "apps/command-session/CMakeLists.txt",
+        "apps/command-session/codec.cpp",
+        "apps/command-session/native_geometry.cpp",
+        "apps/command-session/native_geometry.hpp",
+        "apps/command-session/native_owner_planner.cpp",
+        "apps/command-session/native_owner_planner.hpp",
+        "apps/command-session/native_owner_visibility.cpp",
+        "apps/command-session/native_owner_visibility.hpp",
+        "apps/command-session/native_providers.cpp",
+        "apps/command-session/native_providers.hpp",
+        "apps/command-session/native_regional.cpp",
+        "apps/command-session/native_regional.hpp",
+        "apps/command-session/native_regional_danger.cpp",
+        "apps/command-session/native_regional_danger.hpp",
+        "apps/command-session/native_regional_graph.cpp",
+        "apps/command-session/native_regional_graph.hpp",
+        "apps/command-session/native_route.cpp",
+        "apps/command-session/native_route.hpp",
+        "apps/command-session/native_state.hpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/runtime.hpp",
+        "apps/native-encounter/CMakeLists.txt",
+        "apps/native-encounter/combat.cpp",
+        "apps/native-encounter/encounter.hpp",
+        "apps/native-encounter/main.cpp",
+        "apps/native-encounter/navigation.cpp",
+        "apps/native-encounter/profile.cpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/map_navigation.cpp",
+        "apps/world-scene/map_navigation.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/packed_container.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/creature_encounter.cpp",
+        "game/simulation/creature_encounter.hpp",
+        "game/simulation/creature_rules_session.cpp",
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/melee_exchange.cpp",
+        "game/simulation/melee_exchange.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/controller.cpp",
+        "reconstruction/animation/controller.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.cpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/action_callbacks.cpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
+        "reconstruction/creature-ai/actor_route_request.cpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/cached_attack.cpp",
+        "reconstruction/creature-ai/cached_attack.hpp",
+        "reconstruction/creature-ai/coarse_route.cpp",
+        "reconstruction/creature-ai/coarse_route.hpp",
+        "reconstruction/creature-ai/command_action_bodies.cpp",
+        "reconstruction/creature-ai/command_action_bodies.hpp",
+        "reconstruction/creature-ai/command_actions_owned.cpp",
+        "reconstruction/creature-ai/command_actions_owned.hpp",
+        "reconstruction/creature-ai/command_behaviors_owned.cpp",
+        "reconstruction/creature-ai/command_behaviors_owned.hpp",
+        "reconstruction/creature-ai/death_behavior.cpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/environment_pass.cpp",
+        "reconstruction/creature-ai/environment_pass.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
+        "reconstruction/creature-ai/full_motion_action.cpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.cpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/idle_gesture.cpp",
+        "reconstruction/creature-ai/idle_gesture.hpp",
+        "reconstruction/creature-ai/maintenance.cpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/motion_response.cpp",
+        "reconstruction/creature-ai/motion_response.hpp",
+        "reconstruction/creature-ai/movement_behavior.cpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/object_action.cpp",
+        "reconstruction/creature-ai/object_action.hpp",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_hostile_task.cpp",
+        "reconstruction/creature-ai/owner_hostile_task.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_planner.cpp",
+        "reconstruction/creature-ai/owner_planner.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/owner_visibility.cpp",
+        "reconstruction/creature-ai/owner_visibility.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/periodic.cpp",
+        "reconstruction/creature-ai/ranged_execution.cpp",
+        "reconstruction/creature-ai/regional_danger.cpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_graph.cpp",
+        "reconstruction/creature-ai/regional_graph.hpp",
+        "reconstruction/creature-ai/regional_maintenance.cpp",
+        "reconstruction/creature-ai/regional_maintenance.hpp",
+        "reconstruction/creature-ai/regional_navigation.cpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segment_completion.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/special_flight_actions.cpp",
+        "reconstruction/creature-ai/special_flight_actions.hpp",
+        "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.cpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.hpp",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp",
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
+        "reconstruction/pathfinding/route_line.cpp",
+        "reconstruction/pathfinding/route_line.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "reconstruction/rendering/effect_trajectory.cpp",
+        "reconstruction/rendering/effect_trajectory.hpp",
+        "reconstruction/rendering/effect_trajectory_initializer.cpp",
+        "reconstruction/rendering/effect_trajectory_initializer.hpp",
+        "reconstruction/rendering/terrain_map.cpp",
+        "reconstruction/rendering/terrain_map.hpp",
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tests/native-command-action-session-test.cpp",
+        "tests/native-command-behavior-session-test.cpp",
+        "tests/native-command-session-test.cpp",
+        "tests/native-creature-providers-test.cpp",
+        "tests/native-encounter-test.cpp",
+        "tests/native-owner-knowledge-test.cpp",
+        "tests/native-owner-planner-test.cpp",
+        "tests/native-owner-visibility-test.cpp",
+        "tests/native-regional-danger-test.cpp",
+        "tools/test-installed-encounter.py",
+        "tools/test-owner-planner-integration.py"
+      ],
+      "validation_domain": {
+        "required_inputs": "Installed CFG/HTH/ANI/MAP/TTD/Brain.dat with portable model/profile bytes; fixed legal same-region initial stand policy.",
+        "branches": "Mid-selection and active-task checkpoints, native command handoff; missing/stale/dead/allied memory transitions compared independently in task component.",
+        "failures": "Malformed model extents/nonfinite/scales/cursors/serials/missing roots, legacy lossy write, truncated state, repeat activation and inference-failure frame rollback.",
+        "exclusions": "Multi-record grouping, actual task probes/risk rejection/replacement and complete original owner cadence; species/spell/campaign/live."
+      }
     }
   ],
   "evidence": [
@@ -135663,6 +136334,555 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS78.owner-planner-selection-original",
+      "kind": "isolated_original",
+      "scope": "Whole4284e0 taskless old-plan projection, count-based budgets, finite authored evaluator candidates and ordered supplied prepare/next/save methods. Real original RNG and group iterators; no text redirects. Weighted/maximum selection, exact-one rejection, bias and read-only selection. Evaluator generation, task execution, task replacement gates and World scheduling excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-selection-ns78-20261016.json",
+      "sha256": "114f66fefac82f53ac32f3e0f7eeda31572c5dafec24c48a96a265d507a8ada2",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 7360480
+        }
+      ]
+    },
+    {
+      "id": "NS78.owner-planner-brain-original",
+      "kind": "isolated_original",
+      "scope": "Whole4766b0 with existing supplied DAT models, signed integer feature vectors, real lookup/temporary vector storage and explicit Linux allocators. Native inference admission is separate. Model loading/training, missing/corrupt-model recovery, task feature production and World integration excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-brain-ns78-20261016.json",
+      "sha256": "8430f106d7d5e783c735d948a64ac79492aecf7ee76c02585905499991823fb5",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 2688
+        }
+      ]
+    },
+    {
+      "id": "NS78.owner-planner-features-original",
+      "kind": "isolated_original",
+      "scope": "Whole40b420 with its exact kind6 ordered67 feature IDs, one ordinary noncasting actor per source group, empty resources/inventories/observation points and no block7c. Source CFG/value fields, flags and wrapped positions vary. No text redirects. Other features, group aggregates and task path suffix excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-features-ns78-20261016.json",
+      "sha256": "1fa5ae7c3e90bd50712bbcb255177d4986d5ad7461f2a7cfde2ebba82a894aa1",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 274432
+        }
+      ]
+    },
+    {
+      "id": "NS78.owner-planner-candidate-original",
+      "kind": "isolated_original",
+      "scope": "Whole431ce0 candidate-completion projection after prepared successful per-actor probes, one ordinary creature per group, exact67+5 feature order, explicit radius/path summaries, three supplied inference outputs and real414ff0/40edb0 scoring. Region parameter1, empty resources/spells, finite coefficient/percentage inputs and strategic RNG. Probe production, grouping/eligibility, model inference (compared separately), full task dispatch/replacement and live execution excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-candidate-ns78-20261016.json",
+      "sha256": "ce5add9d51b63ef409310a21e9b2d8635ca980f3cadfda032956047f379400d8",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 303104
+        }
+      ]
+    },
+    {
+      "id": "NS78.owner-planner-task-original",
+      "kind": "isolated_original",
+      "scope": "Whole432900 single ordinary melee actor with empty resources, no wizard formations, zero regional danger and empty opposite-brain assignments; actual407c10 resolves memory keys/markers into live pool slots. Target/move/stop command and allocator services are explicit recorders. Complete/stale/missing/dead/allied/engaged/dirty branches; full owner dispatch/task replacement/path scoring and live integration excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-task-ns78-20261016.json",
+      "sha256": "59a6f3896018f6127c4cfdc71fcf3864dbb90f4be53a764fde437acb628cb3f4",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 56366
+        }
+      ]
+    },
+    {
+      "id": "NS78.owner-planner-selection-original-v3",
+      "kind": "isolated_original",
+      "scope": "Whole4284e0 taskless old-plan projection, count-based budgets, finite authored evaluator candidates and ordered supplied prepare/next/save methods. Real original RNG and group iterators; no text redirects. Weighted/maximum selection, exact-one rejection, bias and read-only selection. Evaluator generation, task execution, task replacement gates and World scheduling excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-selection-ns78-20261016-v3.json",
+      "sha256": "715deaf41ce51af727e4e94257315ced5fd579c0b09ec2881a63123ca8384c0c",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 7360480
+        }
+      ]
+    },
+    {
+      "id": "NS78.owner-planner-brain-original-v3",
+      "kind": "isolated_original",
+      "scope": "Whole4766b0 with existing supplied DAT models, signed integer feature vectors, real lookup/temporary vector storage and explicit Linux allocators. Native inference admission is separate. Model loading/training, missing/corrupt-model recovery, task feature production and World integration excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-brain-ns78-20261016-v3.json",
+      "sha256": "6018eb31d83611220fe1172bd6cfe3b15ba975335d7cfcda2aeeb7d8ad3b37fd",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 2688
+        }
+      ]
+    },
+    {
+      "id": "NS78.owner-planner-features-original-v3",
+      "kind": "isolated_original",
+      "scope": "Whole40b420 with its exact kind6 ordered67 feature IDs, one ordinary noncasting actor per source group, empty resources/inventories/observation points and no block7c. Source CFG/value fields, flags and wrapped positions vary. No text redirects. Other features, group aggregates and task path suffix excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-features-ns78-20261016-v3.json",
+      "sha256": "79fa3a55c84ea0f6980d99965d1d03032fc3907c61e7a7f369a254eb98fa7fd8",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 274432
+        }
+      ]
+    },
+    {
+      "id": "NS78.owner-planner-candidate-original-v3",
+      "kind": "isolated_original",
+      "scope": "Whole431ce0 candidate-completion projection after prepared successful per-actor probes, one ordinary creature per group, exact67+5 feature order, explicit radius/path summaries, three supplied inference outputs and real414ff0/40edb0 scoring. Region parameter1, empty resources/spells, finite coefficient/percentage inputs and strategic RNG. Probe production, grouping/eligibility, model inference (compared separately), full task dispatch/replacement and live execution excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-candidate-ns78-20261016-v3.json",
+      "sha256": "0147721611e6caa09a2bdb964ea9142b84e4928a9cea0b0a3039caaea7553a10",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 303104
+        }
+      ]
+    },
+    {
+      "id": "NS78.owner-planner-task-original-v3",
+      "kind": "isolated_original",
+      "scope": "Whole432900 single ordinary melee actor with empty resources, no wizard formations, zero regional danger and empty opposite-brain assignments; actual407c10 resolves memory keys/markers into live pool slots. Target/move/stop command and allocator services are explicit recorders. Complete/stale/missing/dead/allied/engaged/dirty branches; full owner dispatch/task replacement/path scoring and live integration excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-task-ns78-20261016-v3.json",
+      "sha256": "c5d978f8bd66abd3408cb7411a9390a6ba3a299e36f702d2938366963e3da286",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 56366
+        }
+      ]
+    },
+    {
+      "id": "NS78.owner-planner-native",
+      "kind": "native_integration",
+      "scope": "Native lab policy: ordinary two-actor installed32x32x23 encounter; taskless selector plus single-record same-region task6 candidate with supplied zero path summaries, explicit1/0/1 weights and100 percent, independent strategic RNG and active-task retention. No original grouping/probe/risk/replacement/World cadence equivalence. CMD1v12, two seeds x512 frames, restore every8 frames, cold-process continuation and legacy regression suites.",
+      "record": "research/runtime/owner-planner-native-ns78-20261016.json",
+      "sha256": "42946331d89d70a878a6637bb08f77db8859f097459781f4d91bf13df45d3271",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/core_suites_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cli_resume_identical",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cold_process_restores",
+          "equals": 6
+        },
+        {
+          "pointer": "/suites/native-owner-planner-test/checks",
+          "equals": 1050
+        },
+        {
+          "pointer": "/suites/native-owner-planner-test/restores",
+          "equals": 128
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -140272,6 +141492,38 @@
         },
         {
           "value": "other-default-unmapped",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "AI.owner-task-factories",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6128756,
+        "relation": "data",
+        "scope": "54-entry factory pointer table; sparse task0 and task6 mapping only."
+      },
+      "document": "research/runtime/owner-strategic-planner.md",
+      "scope": "Partial task factory/vtable attribution; other families and all-family completeness remain pending.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "AI.owner-task-selection"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "AI.owner-hostile-task-features",
+            "AI.owner-hostile-task-candidate",
+            "AI.owner-hostile-task-execution"
+          ]
+        },
+        {
+          "value": "other-families-pending",
           "behaviors": []
         }
       ]
@@ -149717,6 +150969,21 @@
         "tools/test-owner-visibility-integration.py",
         "tools/export-owner-visibility.py"
       ]
+    },
+    {
+      "id": "owner-planner-ns78-20261016",
+      "level": "headless",
+      "scope": "Two installed ordinary actors with native singleton admission, supplied path/weight policy, model inference, selector/active-task continuation, two seeds x512 frames,128 restores and6 cold-process resumes. Components have separate original comparison contracts; no coupled original owner journey.",
+      "behaviors": [
+        "NP.owner-planner-continuation"
+      ],
+      "evidence": [
+        "NS78.owner-planner-native"
+      ],
+      "tests": [
+        "tests/native-owner-planner-test.cpp",
+        "tools/test-owner-planner-integration.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -150252,8 +151519,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-owner-visibility-20261016-v2.json",
-    "sha256": "5400df77ee45a40c4c2bb677b9272c55e9723b47632bdfbb437b69112f6ad234"
+    "path": "research/runtime/coverage/source-index-owner-planner-20261016-v2.json",
+    "sha256": "6921d6178472d2aa0c91494a87300eeb255e0e0cab4a734c8904494e4758aa85"
   },
   "claim_bindings_required": true
 }

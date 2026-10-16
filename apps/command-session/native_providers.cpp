@@ -1,4 +1,5 @@
 #include "native_owner_visibility.hpp"
+#include "native_owner_planner.hpp"
 #include "native_regional_danger.hpp"
 #include "native_geometry.hpp"
 #include "native_route.hpp"
@@ -295,6 +296,7 @@ public:
     ++c_.native.sequence;if(c_.native.alternate)return {};++c_.native.tick;
     updateNativeOwnerVisibility(c_, *p_);
     updateNativeRegionalDanger(c_, *p_);
+    updateNativeOwnerPlanner(c_, *p_, commands);
     for(auto &a:c_.world.creatures)if(a.ai.active){if(!channel(a,false).bound&&c_.execution.at(a.ai.slot).actionCallback)commands.action(a,a.ai.action);
       auto s=fx_.maintenance;s.random=[this]{return random();};s.action=[&commands](auto &actor){commands.tickAction(actor);};s.poll=[this](auto &actor,model::MaintenanceAnimation which){return poll(c_.native.animation.at(actor.ai.slot).auxiliary.at(unsigned(which)));};
       auto env=p_->maintenance;env.tick=c_.native.tick;model::maintainCreature(a,c_.execution.at(a.ai.slot),c_.maintenance.at(a.ai.slot),c_.world,env,s);

@@ -79,7 +79,8 @@ void updateOwnerKnowledge(OwnerKnowledge &s, int tick, Extent dimensions,
       }
       if (best) {
         it->memory.observedTick = tick; it->memory.actor = best->actor;
-        it->finePosition = best->finePosition; s.matched[unsigned(best->actor.slot)] = true;
+        it->finePosition = best->finePosition; it->planning = best->planning;
+        s.matched[unsigned(best->actor.slot)] = true;
       }
       const bool expired = difference(tick, it->memory.observedTick) > 1024;
       auto next = it + 1;
@@ -92,7 +93,7 @@ void updateOwnerKnowledge(OwnerKnowledge &s, int tick, Extent dimensions,
             allied[owner][unsigned(a.actor.owner)] || s.matched[unsigned(a.actor.slot)]) continue;
         if (records.size() >= 125 || s.nextKey[owner] == std::numeric_limits<int>::max())
           throw std::invalid_argument("owner knowledge admitted memory/key bound");
-        records.push_back({{s.nextKey[owner]++, tick, a.actor}, tick, a.finePosition});
+        records.push_back({{s.nextKey[owner]++, tick, a.actor}, tick, a.finePosition, a.planning});
       }
     }
   }

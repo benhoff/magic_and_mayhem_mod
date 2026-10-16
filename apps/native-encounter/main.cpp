@@ -49,14 +49,16 @@ int main(int argc, char **argv) try {
                      (std::string(argv[1]) == "run-regional" ||
                       std::string(argv[1]) == "run-danger" ||
                       std::string(argv[1]) == "run-knowledge" ||
-                      std::string(argv[1]) == "run-visibility"))) {
+                      std::string(argv[1]) == "run-visibility" ||
+                      std::string(argv[1]) == "run-planner"))) {
     auto p = encounter::decodeInputs(
         encounter::loadInputs(argv[2], {number(argv[3]), number(argv[4]),
                                         number(argv[5]), number(argv[6])}));
     if (std::string(argv[1]) == "run-regional" ||
         std::string(argv[1]) == "run-danger" ||
         std::string(argv[1]) == "run-knowledge" ||
-        std::string(argv[1]) == "run-visibility")
+        std::string(argv[1]) == "run-visibility" ||
+        std::string(argv[1]) == "run-planner")
       encounter::enableRegionalNavigation(p);
     if (std::string(argv[1]) == "run-danger")
       encounter::enableRegionalDanger(p);
@@ -64,6 +66,8 @@ int main(int argc, char **argv) try {
       encounter::enableOwnerKnowledge(p);
     if (std::string(argv[1]) == "run-visibility")
       encounter::enableOwnerVisibility(p);
+    if(std::string(argv[1])=="run-planner")
+      encounter::enableOwnerPlanner(p,std::filesystem::path(argv[2])/"AI/Brain.dat",number(argv[7]));
     auto s = encounter::create(p, number(argv[7]));
     advance(s, number(argv[8]));
     game::writeSnapshot(argv[9], s.world().state());
@@ -101,7 +105,7 @@ int main(int argc, char **argv) try {
     result(s);
     return 0;
   }
-  std::cerr << "Usage: native-encounter run|run-regional|run-danger|run-knowledge|run-visibility INSTALL X "
+  std::cerr << "Usage: native-encounter run|run-regional|run-danger|run-knowledge|run-visibility|run-planner INSTALL X "
                "Y WIDTH "
                "HEIGHT SEED "
                "TICKS NEW_SNAPSHOT\n       native-encounter resume SNAPSHOT "
