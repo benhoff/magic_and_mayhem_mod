@@ -12499,3 +12499,98 @@ run retains its own claims/source fingerprints. No original artifacts were
 consumed. [Scope and content binding](native-campaign-arena.md). Campaign GUI,
 original maps/rules/rewards, arbitrary branching manifests, global award/event
 transactions and injected file-system/power-loss behavior remain pending.
+
+## Cure resource and status ownership (2026-10-16)
+
+CURE02 implements the recovered resource/chargeable and status/audio cleanup
+helpers with owned logical state. Four unchanged original entries agree across
+40,960 guarded cases, native64 and sanitizers; standalone CMake/CTest passes.
+The resource helper preserves wrapped arithmetic and UI callback order. Status
+cleanup owns associated scheduler retirement even on Stop failure, without
+freeing the wrapper. Eight invalid native graph inputs refuse before mutation.
+See [Cure delivery](cure-delivery.md) and source-bound
+[execution evidence](original-cure-services-bound-20261016.json).
+
+Static setup/update tables establish direct type11 → deferred77 → apply/release.
+Inactive/dead deferred targets release without dispatch/refund. Full creation,
+asset-driven animation timing, native session/checkpoint integration and live
+replacement remain pending; these helper comparisons do not promote SP.041 to
+whole-spell completion. Incoming commit45af2ed6 was reviewed against its parent;
+all source/behavior transitions have exact receipts, with no missing accounting.
+Incoming campaign-checkpoint commit441bf567 was also reviewed after landing;
+its20 file and19 behavior transitions have exact receipts, with no gaps.
+
+## Owned native Cure session and continuation (2026-10-16)
+
+CURE03 composes compared admission, Cure effect, ordinary positive health,
+resource and status helpers in an application-owned headless lab. The lab owns
+actors/effects, resource/status/audio consequences, learning/observations and
+version1 portable continuation. Explicit animation result1 completes type77;
+dead/inactive deferred targets release without refund. Native policies own the
+fixed first-free generation pool, logical following, empty contribution chains,
+staged publication and release without spatial/render registration.
+
+Fresh native32/native64/sanitizer and CMake/CTest evidence covers4096 cases,
+exact state/events across admission/deferral/waiting/resume, separate-process
+checkpoint loading, atomic stale/duplicate/missing-input refusals and malformed
+checkpoint payloads with both invalid and valid checksums. The demo restores
+mid-delivery and heals9→17 while caster resource20→17. See
+[the lab](../../apps/cure-lab/README.md), [format](../formats/native-cure-session.md)
+and [source-bound execution](native-cure-session-bound-20261016.json).
+
+This is native headless integration, not complete original lifecycle comparison.
+Whole creator/follow/animation setup/release, installed spell/asset parameters,
+projectile delivery6/7/30, wizard/special targets, negative magnitude, physical
+audio, native World/campaign-envelope embedding and live replacement remain
+pending. CAST.cure-delivery comparison and SP.041 whole-spell scope are unchanged.
+Incoming helper commit0ee4d16d was reviewed against441bf567: all16 file
+and6 behavior transitions have exact receipts, with no missing accounting.
+
+## Cure creation, ANI binding and spatial release (2026-10-16)
+
+CURE04 replaces the supplied creation/setup boundary with a compared direct Cure
+presentation contract. Original creator493f20 resolves owner/contributor chains,
+wraps/clamps destination placement and inserts the cell chain. Real11/77 setup,
+selector74 and forward ANI bind/start/tick drive playback. Ordinary4943f0 release
+executes real488330 unlink, attribution/reservation/animation resets and high-water
+shrink. Only534520 recycler query is supplied; logging, auxiliary5e1478 children
+and associated effect audio are disabled.
+
+192 fixtures compare25920 operations (960 creations/bindings/releases and23040
+ticks), guarded full owned objects/immutable inputs/private executable text and89
+recycler calls. Original32/native64/sanitizer/CMake/CTest checks pass. This does
+not validate original slot allocation, target-follow/full update orchestration,
+installed animation cadence, unrelated setup branches or live replacement.
+See [findings](cure-presentation.md) and
+[source-bound evidence](original-cure-presentation-bound-20261016.json).
+
+## Native campaign window and main integration (2026-10-16)
+
+The authored two-duel campaign now runs in the existing Qt skirmish window.
+New/Load/Save campaign actions use the resource-bound session/checkpoint owner;
+Play/Pause/Step and semantic orders share the existing arena. Victory exposes
+Continue, defeat/draw expose Retry, and final completion disables advancement.
+Loading remains paused and transactional, including idle result checkpoints.
+
+Evidence `NP.campaign-session.window-20261016` records all50 native CTests passing
+with declared sources unchanged. Eight independent window processes exercise
+actual dialogs, pending summon and mid-flight save, process restart with exact
+headless checkpoint equality, five corrupt/content/resource refusals, frozen
+pause, timer advancement, result reopen without mutation, Continue/defeat/Retry
+and final transition6. Existing standalone Qt regression also passes. Raw pinned
+run: `working/tests/campaign-session/run-1wgq_xnt/`, with window checkpoints,
+screenshots, stdout/stderr and hashed artifacts under `window/`. The preliminary
+passes changed sources during layout review and earns no validation credit;
+its negative source-stability report and raw run remain retained separately.
+
+The incoming committed main range 441bf567..b190f271 was reviewed by exact file
+and behavior hashes against append-only receipts; no missing transitions remain.
+The retained history report is `coverage/campaign-window-incoming-main-history-20261016.json`.
+The merge preserves incoming Cure milestones and historical evidence unchanged;
+current campaign evidence does not renew unrelated recovered contracts.
+
+Scope remains intentional native policy. Original campaign maps, rewards/UI,
+arbitrary resources, distributed deduplication and crash/injected I/O failures
+remain unvalidated. Deliberate older-save rewinds retain their existing lineage
+semantics. No combat rules or gameplay balance changed. See
+[native campaign window](native-campaign-window.md).

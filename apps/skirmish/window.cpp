@@ -101,15 +101,16 @@ void ArenaCanvas::paintEvent(QPaintEvent *) {
         font.setBold(false);
         p.setFont(font);
         p.setPen(Qt::white);
-        p.drawText(QRect(80, 290, 400, 40), Qt::AlignCenter,
-                   "Start a new skirmish or load a checkpoint.");
+        p.drawText(QRect(80, 290, 400, 40), Qt::AlignCenter, view_.resultHelp);
     }
 }
 Window::Window(Controller &c) {
     setObjectName("skirmishWindow");
     setWindowTitle("Magic & Mayhem — Native Skirmish");
-    setStyleSheet("QWidget { background: #131c25; color: #e9eeea; font-size: 14px; } QPushButton { "
-                  "background: #2d414a; padding: 9px; border-radius: 5px; } QPushButton:disabled { "
+    setStyleSheet("QWidget { background: #131c25; color: #e9eeea; font-size: 14px; } "
+                  "QPushButton { "
+                  "background: #2d414a; padding: 9px; border-radius: 5px; } "
+                  "QPushButton:disabled { "
                   "color: #74858b; background: #202b33; } QLabel { padding: 4px; }");
     auto *layout = new QHBoxLayout(this);
     auto *canvas = new ArenaCanvas;
@@ -128,24 +129,44 @@ Window::Window(Controller &c) {
     selection->setWordWrap(true);
     selection->setObjectName("selectedStatus");
     side->addWidget(selection);
-    auto button = [&](const char *label, const char *name) {
+    auto button = [&](const char *label, const char *name, QHBoxLayout *row = nullptr) {
         auto *b = new QPushButton(label);
         b->setObjectName(name);
-        side->addWidget(b);
+        if (row)
+            row->addWidget(b);
+        else
+            side->addWidget(b);
         return b;
     };
     auto *summon = button("Summon Sentinel · 8 mana", "summonButton");
     auto *bolt = button("Arc Bolt · 4 mana", "boltButton");
     auto *stop = button("Stop creature", "stopButton");
-    auto *play = button("Play", "playButton");
-    auto *pause = button("Pause", "pauseButton");
-    auto *step = button("Step", "stepButton");
-    auto *save = button("Save skirmish…", "saveButton");
-    auto *load = button("Load skirmish…", "loadButton");
-    auto *restart = button("New skirmish", "restartButton");
-    auto *help = new QLabel("Select your wizard to cast.\nSummon: click nearby empty ground.\nArc "
-                            "Bolt: click an enemy.\n\nSelect a Sentinel, then right-click\nground "
-                            "to move or an enemy to attack.\nSpace toggles Play/Pause.");
+    auto *playbackRow = new QHBoxLayout;
+    side->addLayout(playbackRow);
+    auto *play = button("Play", "playButton", playbackRow);
+    auto *pause = button("Pause", "pauseButton", playbackRow);
+    auto *step = button("Step", "stepButton", playbackRow);
+    auto *filesRow = new QHBoxLayout;
+    side->addLayout(filesRow);
+    auto *save = button("Save skirmish…", "saveButton", filesRow);
+    auto *load = button("Load skirmish…", "loadButton", filesRow);
+    auto *newRow = new QHBoxLayout;
+    side->addLayout(newRow);
+    auto *restart = button("New skirmish", "restartButton", newRow);
+    auto *campaignStatus = new QLabel;
+    campaignStatus->setObjectName("campaignStatus");
+    campaignStatus->setWordWrap(true);
+    side->addWidget(campaignStatus);
+    auto *newCampaign = button("New campaign", "newCampaignButton", newRow);
+    auto *campaignFiles = new QHBoxLayout;
+    side->addLayout(campaignFiles);
+    auto *saveCampaign = button("Save campaign…", "saveCampaignButton", campaignFiles);
+    auto *loadCampaign = button("Load campaign…", "loadCampaignButton", campaignFiles);
+    auto *continueCampaign = button("Continue", "continueCampaignButton");
+    auto *help = new QLabel("Select your wizard to cast.\nSummon: nearby empty cell.\n"
+                            "Arc Bolt: click an enemy.\n"
+                            "Sentinel: right-click to move/attack.\nSpace: Play/Pause.");
+    help->setMinimumHeight(110);
     help->setWordWrap(true);
     side->addWidget(help);
     auto *status = new QLabel;
@@ -154,9 +175,11 @@ Window::Window(Controller &c) {
     side->addWidget(status);
     side->addStretch();
     auto refresh = [&c, canvas, player, enemy, selection, status, summon, bolt, stop, play, pause,
-                    step] {
+                    step, save, campaignStatus, saveCampaign, continueCampaign] {
         auto v = c.view();
         canvas->present(v);
+        player->setVisible(c.hasBattle());
+        enemy->setVisible(c.hasBattle());
         player->setText(
             QString("Your wizard · %1 HP\nMana %2 / 20").arg(v.wizardHealth[0]).arg(v.mana[0]));
         enemy->setText(
@@ -166,7 +189,25 @@ Window::Window(Controller &c) {
         summon->setEnabled(v.canCast && !v.busy && v.mana[0] >= game::SkirmishRules::summonCost);
         bolt->setEnabled(v.canCast && !v.busy && v.mana[0] >= game::SkirmishRules::boltCost);
         stop->setEnabled(v.canOrder);
-        const bool running = v.outcome == game::Outcome::running;
+        const bool running = c.hasBattle() && v.outcome == game::Outcome::running;
+        save->setEnabled(!c.campaign());
+        saveCampaign->setEnabled(c.campaign());
+        continueCampaign->setEnabled(c.campaign() && !c.hasBattle() &&
+                                     !c.campaign()->progress().completed);
+        if (c.campaign()) {
+            const auto &progress = c.campaign()->progress();
+            campaignStatus->setText(QString("CAMPAIGN · %1\n%2")
+                                        .arg(QString::fromStdString(progress.region),
+                                             progress.completed ? "Complete"
+                                             : c.hasBattle()    ? "Duel in progress"
+                                                                : "Between duels"));
+            const bool retry = progress.lastResult &&
+                               progress.lastResult->outcome != game::CampaignOutcome::victory;
+            continueCampaign->setText(retry ? "Retry" : "Continue");
+        } else {
+            campaignStatus->setText("Standalone skirmish");
+            continueCampaign->setText("Continue");
+        }
         play->setEnabled(running && !c.playing());
         pause->setEnabled(c.playing());
         step->setEnabled(running && !c.playing());
@@ -210,6 +251,23 @@ Window::Window(Controller &c) {
                              this, "Load native skirmish", {}, "Native skirmish (*.mnms)");
                          if (!path.isEmpty())
                              c.load(path.toStdString());
+                     }));
+    QObject::connect(newCampaign, &QPushButton::clicked, this, guarded([&c] { c.newCampaign(); }));
+    QObject::connect(continueCampaign, &QPushButton::clicked, this,
+                     guarded([&c] { c.continueCampaign(); }));
+    QObject::connect(saveCampaign, &QPushButton::clicked, this, guarded([&c, this] {
+                         c.pause();
+                         const auto path = QFileDialog::getSaveFileName(
+                             this, "Save native campaign", {}, "Native campaign (*.mnmc)");
+                         if (!path.isEmpty())
+                             c.saveCampaign(path.toStdString(), true);
+                     }));
+    QObject::connect(loadCampaign, &QPushButton::clicked, this, guarded([&c, this] {
+                         c.pause();
+                         const auto path = QFileDialog::getOpenFileName(
+                             this, "Load native campaign", {}, "Native campaign (*.mnmc)");
+                         if (!path.isEmpty())
+                             c.loadCampaign(path.toStdString());
                      }));
     auto *space = new QShortcut(QKeySequence(Qt::Key_Space), this);
     QObject::connect(space, &QShortcut::activated, this, [&c] {

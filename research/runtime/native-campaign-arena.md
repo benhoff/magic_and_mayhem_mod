@@ -24,8 +24,9 @@ summon orders, and bounded tick continuation. Orders use the actual wizard
 handles internally. Save destinations must be new; input files remain intact.
 JSON reports expose the persisted last result separately from the number of
 new settlements emitted by this command. Reopening an idle result yields zero
-new settlements. No campaign GUI, arbitrary manifest importer or installed
-original assets are part of this adapter.
+new settlements. The [campaign window](native-campaign-window.md) is a separate
+consumer of this adapter. Arbitrary manifest import and installed original assets
+remain outside its scope.
 
 The independent-process journey exercises a pending summon, launched bolts,
 restored resource/backend bindings, byte-identical split continuation,

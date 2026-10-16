@@ -60,18 +60,28 @@ single result per attempt. Victory selects the next region; defeat/draw allow
 retry. No new rewards or combat balance changes are added.
 
 ```sh
-working/build/skirmish/mnm-campaign-cli create campaign.mnc
-working/build/skirmish/mnm-campaign-cli start campaign.mnc battle.mnc
-working/build/skirmish/mnm-campaign-cli cast battle.mnc pending.mnc summon 2 5
-working/build/skirmish/mnm-campaign-cli resume pending.mnc summoned.mnc 3
-working/build/skirmish/mnm-campaign-cli cast summoned.mnc bolt.mnc bolt
-working/build/skirmish/mnm-campaign-cli resume bolt.mnc resumed.mnc 3
-working/build/skirmish/mnm-campaign-cli inspect resumed.mnc
+working/build/skirmish/mnm-campaign-cli create campaign.mnmc
+working/build/skirmish/mnm-campaign-cli start campaign.mnmc battle.mnmc
+working/build/skirmish/mnm-campaign-cli cast battle.mnmc pending.mnmc summon 2 5
+working/build/skirmish/mnm-campaign-cli resume pending.mnmc summoned.mnmc 3
+working/build/skirmish/mnm-campaign-cli cast summoned.mnmc bolt.mnmc bolt
+working/build/skirmish/mnm-campaign-cli resume bolt.mnmc resumed.mnmc 3
+working/build/skirmish/mnm-campaign-cli inspect resumed.mnmc
 ```
 
 Outputs must be new paths. Reuse `cast` and `resume` to play through the
 duel; `start` admits the next mission or retry after a result. JSON includes
 `last_result` and a separate `settlements` count: reopening a settled result
-emits no new settlement. The campaign is currently a headless authored slice;
-the existing skirmish window and raw skirmish saves retain their separate flow.
+emits no new settlement. The campaign window below uses these same checkpoints;
+raw standalone skirmish saves retain their separate flow.
 [Content binding, execution scope and limits](../../research/runtime/native-campaign-arena.md).
+
+## Native campaign window
+
+Run `mnm-skirmish --campaign` for the two-duel campaign, or
+`mnm-skirmish --load-campaign CHECKPOINT.mnmc` to restore it paused.
+The window also has New campaign, Save campaign and Load campaign buttons.
+After a duel, Continue advances on victory and Retry starts another attempt after
+defeat/draw. Save between duels or during play; pending commands, casts and
+projectiles resume with the campaign. Final completion disables Continue.
+Standalone skirmish save/load remains available as a separate mode.

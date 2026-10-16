@@ -15,7 +15,7 @@ struct ArenaView {
     std::array<unsigned, 2> mana{}, wizardHealth{};
     std::optional<game::Handle> selected;
     game::Outcome outcome = game::Outcome::running;
-    QString selection, feedback;
+    QString selection, feedback, resultHelp = "Start a new skirmish or load a checkpoint.";
     bool canCast = false, canOrder = false, busy = false;
 };
 } // namespace mnm::skirmish

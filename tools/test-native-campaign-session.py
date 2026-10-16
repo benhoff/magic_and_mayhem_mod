@@ -14,7 +14,9 @@ def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--arena',action='store_true')
+    parser.add_argument('--window',action='store_true')
     args=parser.parse_args()
+    if args.window:args.arena=True
     parent=ROOT/'working/tests/campaign-session'
     parent.mkdir(parents=True,exist_ok=True)
     run=Path(tempfile.mkdtemp(prefix='run-',dir=parent))
@@ -25,6 +27,9 @@ def main():
     scenarios=['NP.campaign-persistence.restart','NP.campaign-session.transaction']
     if args.arena:
         behaviors.append('NP.campaign-arena');scenarios.append('NP.campaign-arena.journey')
+    if args.window:
+        behaviors.extend(['NP.campaign-window','NP.skirmish-window'])
+        scenarios.extend(['NP.campaign-window.journey','window.native-skirmish'])
     declaration=claims.declaration(ROOT,json.loads((ROOT/'research/runtime/coverage/register.json').read_text()),behaviors,scenarios)
     (run/'claims.json').write_text(json.dumps(declaration,indent=2)+'\n')
     build=run/'build';source=ROOT/('apps/skirmish' if args.arena else 'game')
@@ -34,9 +39,10 @@ def main():
         ['ctest','--test-dir',str(build),'--output-on-failure'],
     ]
     result={'schema':1,'scope':'Native authored campaign session: transactional attempts and resource-bound checkpoint ownership; no original campaign/reward equivalence.',
-        'claims':declaration['claims'],'sources':declaration['sources'],'commands':[],'arena':args.arena,'success':False}
+        'claims':declaration['claims'],'sources':declaration['sources'],'commands':[],'arena':args.arena,'window':args.window,'success':False}
     environment=os.environ.copy()
     if args.arena:environment['MNM_CAMPAIGN_JOURNEY_OUTPUT']=str(run/'journey')
+    if args.window:environment['MNM_CAMPAIGN_WINDOW_OUTPUT']=str(run/'window')
     try:
         for index,command in enumerate(commands):
             log=run/f'command-{index}.log'
@@ -53,6 +59,12 @@ def main():
             result['journey']={'report':str(journey.relative_to(ROOT)),'sha256':digest(journey),
                 'victories':details['victories'],'defeats':details['defeats'],
                 'retry_attempt':details['retry_attempt'],'final_transition':details['final_transition']}
+        if args.window:
+            journey=run/'window/report.json';details=json.loads(journey.read_text())
+            if not details['success']:raise RuntimeError('Native campaign window journey did not pass')
+            result['window_journey']={'report':str(journey.relative_to(ROOT)),'sha256':digest(journey),
+                'final_transition':details['final_transition'],'retry_attempt':details['retry_attempt'],
+                'refused_loads':details['refused_loads'],'timer_tick':details['timer_tick']}
         result['success']=True
     except Exception as error:result['error']=str(error)
     (run/'report.json').write_text(json.dumps(result,indent=2)+'\n')

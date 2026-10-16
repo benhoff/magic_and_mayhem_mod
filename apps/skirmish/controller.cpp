@@ -22,7 +22,7 @@ QString refusal(game::SkirmishRefusal r) {
 }
 } // namespace
 Controller::Controller() : session_(newSession()), playback_([this] { advance(); }) {
-    selected_ = session_.state().wizards[0].actor;
+    selected_ = session().state().wizards[0].actor;
     feedback_ = "Summon a Sentinel near your wizard, then attack the rival.";
     playback_.onRefresh = [this] { changed(); };
     playback_.onPlaying = [this](bool) { changed(); };
@@ -37,8 +37,32 @@ void Controller::changed() {
 }
 ArenaView Controller::view() const {
     ArenaView v;
-    const auto s = session_.state();
-    const auto c = session_.combat().combat();
+    if (!hasBattle()) {
+        const auto &progress = campaign_->progress();
+        v.resultHelp =
+            progress.completed ? "Campaign complete. Save your progress."
+            : progress.lastResult && progress.lastResult->outcome == game::CampaignOutcome::victory
+                ? "Continue to the next duel, or save your progress."
+                : "Retry this duel, or save your progress.";
+        v.selection = progress.completed ? "Campaign complete" : "Ready for the next attempt";
+        if (progress.lastResult) {
+            switch (progress.lastResult->outcome) {
+            case game::CampaignOutcome::victory:
+                v.outcome = game::Outcome::victory;
+                break;
+            case game::CampaignOutcome::defeat:
+                v.outcome = game::Outcome::defeat;
+                break;
+            case game::CampaignOutcome::draw:
+                v.outcome = game::Outcome::draw;
+                break;
+            }
+        }
+        v.feedback = feedback_;
+        return v;
+    }
+    const auto s = session().state();
+    const auto c = session().combat().combat();
     v.outcome = s.outcome;
     v.projectiles = s.projectiles;
     v.selected = selected_;
@@ -51,7 +75,7 @@ ArenaView Controller::view() const {
         v.wizardHealth[i] = f->health;
     }
     for (const auto &r : s.units) {
-        const auto &e = *session_.world().find(r.actor);
+        const auto &e = *session().world().find(r.actor);
         const auto &f = *std::find_if(c.fighters.begin(), c.fighters.end(),
                                       [&](const game::Fighter &f) { return f.actor == r.actor; });
         QString action = "Ready";
@@ -89,27 +113,45 @@ ArenaView Controller::view() const {
     return v;
 }
 void Controller::advance() {
-    last_ = session_.step();
+    if (!hasBattle())
+        return;
+    if (campaign_) {
+        auto report = campaign_->step();
+        last_ = report.battle.value_or(game::SkirmishReport{});
+        if (report.result) {
+            selected_.reset();
+            mode_ = CursorMode::select;
+            feedback_ = campaign_->progress().completed ? "Campaign complete. Save your progress."
+                        : report.result->outcome == game::CampaignOutcome::victory
+                            ? "Victory. Continue to the next duel."
+                            : "Attempt ended. Retry this duel.";
+        }
+    } else
+        last_ = session_.step();
     for (const auto &e : last_.events)
-        if (e.actor == session_.state().wizards[0].actor &&
+        if (hasBattle() && e.actor == session().state().wizards[0].actor &&
             e.kind == game::SkirmishEventKind::refused)
             feedback_ = refusal(e.refusal);
-    if (session_.state().outcome != game::Outcome::running)
+    if (!hasBattle() || session().state().outcome != game::Outcome::running)
         playback_.pause();
     if (afterTick)
         afterTick();
 }
 void Controller::play() {
-    if (session_.state().outcome == game::Outcome::running)
+    if (hasBattle() && session().state().outcome == game::Outcome::running)
         playback_.play();
 }
 void Controller::pause() { playback_.pause(); }
-void Controller::step() { playback_.step(); }
+void Controller::step() {
+    if (hasBattle())
+        playback_.step();
+}
 void Controller::restart() {
     pause();
     auto fresh = newSession();
     session_ = std::move(fresh);
-    selected_ = session_.state().wizards[0].actor;
+    campaign_.reset();
+    selected_ = session().state().wizards[0].actor;
     mode_ = CursorMode::select;
     last_ = {};
     feedback_ = "New skirmish. Your wizard is selected.";
@@ -125,6 +167,8 @@ void Controller::setMode(CursorMode m) {
     changed();
 }
 void Controller::cell(game::Point p, bool right) {
+    if (!hasBattle())
+        return;
     if (!game::arenaCell(p))
         throw std::invalid_argument("Choose a cell inside the arena");
     const auto v = view();
@@ -157,7 +201,7 @@ void Controller::cell(game::Point p, bool right) {
     } else
         selected_ = hit == v.units.end() ? std::nullopt : std::optional<game::Handle>(hit->actor);
     if (order) {
-        session_.enqueue(*order);
+        enqueue(*order);
         if (onOrder)
             onOrder(*order);
         mode_ = CursorMode::select;
@@ -169,15 +213,17 @@ void Controller::stop() {
     if (!selected_ || !view().canOrder)
         throw std::invalid_argument("Select a friendly Sentinel");
     game::SkirmishOrder o{game::SkirmishOrderKind::stop, *selected_, {}, {}};
-    session_.enqueue(o);
+    enqueue(o);
     if (onOrder)
         onOrder(o);
     feedback_ = "Stop queued.";
     changed();
 }
 void Controller::save(const std::filesystem::path &p, bool overwrite) {
+    if (campaign_)
+        throw std::invalid_argument("Use Save campaign for campaign progress");
     pause();
-    const auto r = game::writeSnapshot(p, session_.world().state(), overwrite);
+    const auto r = game::writeSnapshot(p, session().world().state(), overwrite);
     if (!r.durable)
         throw std::runtime_error(r.detail);
     feedback_ = "Skirmish saved. Playback is paused.";
@@ -187,10 +233,62 @@ void Controller::load(const std::filesystem::path &p) {
     pause();
     auto candidate = skirmish::load(p);
     session_ = std::move(candidate);
-    selected_ = session_.state().wizards[0].actor;
+    campaign_.reset();
+    selected_ = session().state().wizards[0].actor;
     mode_ = CursorMode::select;
     last_ = {};
     feedback_ = "Skirmish loaded. Playback is paused.";
     changed();
+}
+const game::SkirmishSession &Controller::session() const {
+    if (!campaign_)
+        return session_;
+    if (!campaign_->battle())
+        throw std::logic_error("Campaign has no active battle");
+    return *campaign_->battle();
+}
+void Controller::enqueue(game::SkirmishOrder order) {
+    if (campaign_)
+        campaign_->enqueue(std::move(order));
+    else
+        session_.enqueue(std::move(order));
+}
+void Controller::adopted(const QString &message) {
+    selected_ = hasBattle() ? std::optional<game::Handle>(session().state().wizards[0].actor)
+                            : std::nullopt;
+    mode_ = CursorMode::select;
+    last_ = {};
+    feedback_ = message;
+    changed();
+}
+void Controller::newCampaign() {
+    pause();
+    auto candidate = std::make_unique<game::CampaignSession>(skirmish::newCampaign());
+    candidate->startMission();
+    campaign_ = std::move(candidate);
+    adopted("New campaign. First duel is paused.");
+}
+void Controller::loadCampaign(const std::filesystem::path &path) {
+    pause();
+    auto candidate = std::make_unique<game::CampaignSession>(skirmish::loadCampaign(path));
+    campaign_ = std::move(candidate);
+    adopted("Campaign loaded. Playback is paused.");
+}
+void Controller::saveCampaign(const std::filesystem::path &path, bool overwrite) {
+    if (!campaign_)
+        throw std::invalid_argument("Start or load a campaign first");
+    pause();
+    const auto result = campaign_->save(path, overwrite);
+    if (!result.durable)
+        throw std::runtime_error(result.detail);
+    feedback_ = "Campaign saved. Playback is paused.";
+    changed();
+}
+void Controller::continueCampaign() {
+    if (!campaign_)
+        throw std::invalid_argument("Start or load a campaign first");
+    pause();
+    campaign_->startMission();
+    adopted("Campaign duel started. Playback is paused.");
 }
 } // namespace mnm::skirmish
