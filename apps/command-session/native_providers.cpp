@@ -1,3 +1,4 @@
+#include "native_regional_danger.hpp"
 #include "native_geometry.hpp"
 #include "native_route.hpp"
 #include "native_regional.hpp"
@@ -283,6 +284,7 @@ public:
   std::vector<game::CreatureRuleEvent> frame(model::OwnedCreatureCommands &commands){
     bind(commands);
     ++c_.native.sequence;if(c_.native.alternate)return {};++c_.native.tick;
+    updateNativeRegionalDanger(c_, *p_);
     for(auto &a:c_.world.creatures)if(a.ai.active){if(!channel(a,false).bound&&c_.execution.at(a.ai.slot).actionCallback)commands.action(a,a.ai.action);
       auto s=fx_.maintenance;s.random=[this]{return random();};s.action=[&commands](auto &actor){commands.tickAction(actor);};s.poll=[this](auto &actor,model::MaintenanceAnimation which){return poll(c_.native.animation.at(actor.ai.slot).auxiliary.at(unsigned(which)));};
       auto env=p_->maintenance;env.tick=c_.native.tick;model::maintainCreature(a,c_.execution.at(a.ai.slot),c_.maintenance.at(a.ai.slot),c_.world,env,s);
@@ -292,7 +294,11 @@ public:
     schedule.route=[this,&commands](unsigned slot,auto &scheduler){c_.native.route.active=scheduler.continuation?1u:0u;c_.native.route.budget=scheduler.budget;auto &a=c_.world.creatures.at(slot);model::RouteExecutionServices s;s.request=[this](auto &actor,model::Cell point,unsigned mode,unsigned regions){return request(actor,point,mode,regions);};s.resumeDisplacement=[this,&commands,&s](auto &a){const auto result=displace(a,commands);s.displacementPending=c_.native.route.displacementContinuation!=0;return result;};s.queueFallback=[&commands](auto &actor){return commands.queue(actor);};s.reach=[this](const auto &actor,const auto &target,model::Cell point){return geometry_.reach(actor,target,point);};s.adjust=[this](const auto &actor,const auto &,model::Cell &point){point=normalized(point);return geometry_.legal(actor,point);};s.legal=[this](const auto &actor,model::Cell point){return geometry_.legal(actor,normalized(point));};s.localReach=s.legal;s.beginMotion=[this,&commands](auto &actor){begin(actor,commands);};s.reset=[&commands](auto &actor){commands.reset(actor);};s.action=[&commands](auto &actor,unsigned n){commands.action(actor,n);};const auto yielded=model::continueCreatureRoute(a,c_.execution.at(slot),c_.world,s);scheduler.continuation=c_.native.route.active!=0;return yielded;};
     schedule.preDecision=[this,&commands](unsigned slot){auto &a=c_.world.creatures.at(slot);model::periodicTerrain(a,c_.execution.at(slot),p_->types.at(a.ai.type).periodicResistance,p_->periodic,{[this,slot](model::Cell p){return geometry_.ground(c_.world.creatures.at(slot),normalized(p));},[this]{return random();},[&commands](auto &actor){commands.reset(actor);},[&commands](auto &actor,model::Cell p){commands.move(actor,p);}});if(fx_.preDecision)fx_.preDecision(a);};
     schedule.decision=[this,&commands](unsigned slot){auto &a=c_.world.creatures.at(slot);auto services=autonomy(commands);model::autonomousDecision(a,c_.world,services);};
-    schedule.valuation=[this](unsigned slot){auto &a=c_.world.creatures.at(slot);model::updateCreatureValue(a,c_.execution.at(slot),p_->valuation);};schedule.region=[this](unsigned slot){auto &a=c_.world.creatures.at(slot);if(c_.native.route.useRegions)return model::lookupNavigationRegion(c_.native.regions,a.ai.position,nativeRegionalQuery(geometry_,a,{slot,a.ai.owner,0,0}),c_.world.dimensions,p_->boundary,0,0,nativeRegionalServices(c_,*p_,geometry_,a));need(bool(fx_.region),"native region service unavailable");return fx_.region(a);};schedule.ownerWork=[this](unsigned slot){need(bool(fx_.ownerWork),"native owner service unavailable");fx_.ownerWork(c_.world.creatures.at(slot));};
+    schedule.valuation=[this](unsigned slot){auto &a=c_.world.creatures.at(slot);auto valuation=p_->valuation;
+      // The regional-danger composition reads the same CFG words as route aging.
+      // Keep the older explicit valuation environment for danger-disabled sessions.
+      if(c_.native.regionalDanger){const auto &type=p_->types.at(a.ai.type);valuation.factor589=type.routeCostFactor;valuation.factor5ad=type.routeFlagPenalty;}
+      model::updateCreatureValue(a,c_.execution.at(slot),valuation);};schedule.region=[this](unsigned slot){auto &a=c_.world.creatures.at(slot);if(c_.native.route.useRegions)return model::lookupNavigationRegion(c_.native.regions,a.ai.position,nativeRegionalQuery(geometry_,a,{slot,a.ai.owner,0,0}),c_.world.dimensions,p_->boundary,0,0,nativeRegionalServices(c_,*p_,geometry_,a));need(bool(fx_.region),"native region service unavailable");return fx_.region(a);};schedule.ownerWork=[this](unsigned slot){need(bool(fx_.ownerWork),"native owner service unavailable");fx_.ownerWork(c_.world.creatures.at(slot));};
     model::scheduleCreatures(c_.world,c_.scheduler,c_.environment,schedule);
     c_.native.route.budget=c_.scheduler.budget;
     // Manager+0x22c and shared request active both name original 0x6df184.

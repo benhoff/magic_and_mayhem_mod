@@ -46,12 +46,16 @@ void result(const mnm::game::CreatureRuleSession &s) {
 int main(int argc, char **argv) try {
   using namespace mnm;
   if (argc == 10 && (std::string(argv[1]) == "run" ||
-                     std::string(argv[1]) == "run-regional")) {
+                     (std::string(argv[1]) == "run-regional" ||
+                      std::string(argv[1]) == "run-danger"))) {
     auto p = encounter::decodeInputs(
         encounter::loadInputs(argv[2], {number(argv[3]), number(argv[4]),
                                         number(argv[5]), number(argv[6])}));
-    if (std::string(argv[1]) == "run-regional")
+    if (std::string(argv[1]) == "run-regional" ||
+        std::string(argv[1]) == "run-danger")
       encounter::enableRegionalNavigation(p);
+    if (std::string(argv[1]) == "run-danger")
+      encounter::enableRegionalDanger(p);
     auto s = encounter::create(p, number(argv[7]));
     advance(s, number(argv[8]));
     game::writeSnapshot(argv[9], s.world().state());
@@ -89,7 +93,8 @@ int main(int argc, char **argv) try {
     result(s);
     return 0;
   }
-  std::cerr << "Usage: native-encounter run|run-regional INSTALL X Y WIDTH "
+  std::cerr << "Usage: native-encounter run|run-regional|run-danger INSTALL X "
+               "Y WIDTH "
                "HEIGHT SEED "
                "TICKS NEW_SNAPSHOT\n       native-encounter resume SNAPSHOT "
                "TICKS NEW_SNAPSHOT\n       native-encounter edit-terrain "

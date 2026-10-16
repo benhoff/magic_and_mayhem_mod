@@ -1,10 +1,10 @@
-# Native command continuation versions 1–8
+# Native command continuation versions 1–9
 
 This is a native application format inside the outer native `State.systems`
 checkpoint. It is unrelated to original Magic & Mayhem save/object layouts.
 
 The byte stream starts with four ASCII bytes `CMD1`, then little-endian32-bit
-version8 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
+version9 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
 integers use two's-complement words with explicit checked reconstruction; narrow
 values reject overflow. Booleans are exactly0 or 1. An optional is a0/1 word and,
 when present, its value. A vector begins with its word length; a fixed array has
@@ -185,3 +185,31 @@ Older versions still decode with absent maintenance. Explicit writes of versions
 triples needed by later repairs; an older graph is not silently reconfigured.
 See [regional graph maintenance](../runtime/regional-graph-maintenance.md) for
 recovered semantics, native edit policies and execution boundaries.
+
+
+Version 9 appends an optional regional danger producer after the version8 native
+maintenance state. It owns dimensions/tick, eight enabled owners and commander
+slots, alliance/sharing bytes, ordered per-owner memories (key, observation tick,
+logical actor snapshot), current live actor projections, declared effects,
+observation points, base hazards and fire/animation range parameters. Actor
+snapshots store slot/owner/region/position/type/class/shape/movement, health,
+resource/maximum/inventory/threat/aging/range, status flags and eight resource
+estimates. No original pointer or tree representation is saved.
+
+Producer state stores independent reset flags and owner/memory/actor/region
+cursors, current commander, pending totals, pending seven-byte danger/deduction
+rows, pending base bytes, eight published owner totals and per-actor support.
+Integral and byte fields still use the canonical 32-bit wire words above. The
+published danger/deduction/base rows remain in the version7 regional records.
+
+Enabled production requires a configured nonempty regional graph, matching
+world dimensions and canonical live actor slots. The pool is bounded to 125,
+memories to 125 per owner, graph/pending rows to 4096, and effects/hazards/observation
+points to 128 each. Commander, region, shape, owner, ordered unique memory and
+pending cursor references are checked; pending row and support lengths must
+match their roots. The existing1MiB encoded limit remains independent, so the
+largest individually admitted dimensions need not fit a checkpoint together.
+Versions 1..8 read with absent danger state. Explicit older writes refuse when
+danger production is enabled. Native observation, resource and frame policies
+are documented in regional-danger-production.md; this format establishes no
+original save equivalence or full World integration.

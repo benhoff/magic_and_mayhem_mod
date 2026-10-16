@@ -1,5 +1,6 @@
 #include "../../assets/creature_movement.hpp"
 #include "../../reconstruction/motion/creature_profile.hpp"
+#include "../command-session/native_regional_danger.hpp"
 #include "../command-session/native_regional_graph.hpp"
 #include "encounter.hpp"
 #include <stdexcept>
@@ -35,6 +36,18 @@ void enableRegionalNavigation(Profile &p, unsigned capacity) {
   cs::prepareNativeRegionalGraph(p.initial, p.native, navigationShapes(p),
                                  capacity);
   cs::prepareNativeContinuation(p.initial, p.native);
+}
+void enableRegionalDanger(Profile &p) {
+  cs::model::RegionalDangerInputs inputs;
+  for (const auto &a : p.initial.world.creatures)
+    if (inputs.commander.at(unsigned(a.ai.owner)) < 0) {
+      inputs.commander.at(unsigned(a.ai.owner)) = int(a.ai.slot);
+      inputs.enabled.at(unsigned(a.ai.owner)) =
+          p.initial.world.ownerEligible.at(unsigned(a.ai.owner));
+    }
+  for (unsigned i = 0; i < 8; ++i)
+    inputs.shared[i][i] = 1;
+  cs::prepareNativeRegionalDanger(p.initial, p.native, std::move(inputs));
 }
 void editTerrain(game::CreatureRuleSession &session, const Profile &p,
                  const std::vector<cs::NativeTerrainEdit> &edits) {

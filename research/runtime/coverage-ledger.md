@@ -9630,3 +9630,51 @@ and recovery records remain under the main checkout's working/retention. Full
 World scheduling, authored startup finalization, unused helper category 3, nonzero
 probe adjustment, general species/forms, World danger, campaign and live
 replacement remain outside this milestone. See regional-graph-maintenance.md.
+
+
+## NS75 — Regional danger production (2026-10-15)
+
+The native simulation now owns bounded 41a060 remembered-threat and 41d270
+friendly-deduction production, including four-record/qualified-actor slices,
+32-region effect phases, owner wrap, saturation, scratch/publication rows,
+542810 connectivity/center and 529e40 support totals. Declared area/base inputs
+cover 41f6a0/4202e0/420e20. Existing 523070/53e5e0 navigation consumes the resulting
+rows; a produced hazard changes the preferred branch in original/native search.
+The handler/translation tables remain incomplete with other/default kinds
+explicitly unmapped. No unknown ranges or unresolved flows are removed.
+
+Native visibility memories, one producer context per admitted normal frame,
+first-actor commanders and explicit resource/effect inputs are separate policies.
+Hidden actors retain their last observed position/health/threat/timestamp;
+visible death and friendship refresh/remove the remembered hostility. Danger-
+enabled periodic valuation binds shared CFG+589/+5ad route fields. CMD1/v9 retains
+memory and partial publication state; older reads omit it, and lossy older writes
+refuse. The explicit run-danger CLI and embedded-input resume/edit paths compose
+these services without Wine. The original-backed full game still needs Wine.
+
+The immutable regional-danger-bound-ns75-20261015.json passes
+5,203,818 helper checks, 1,024 producer slice pairs, the generated-hazard
+route-choice witness, and 16,384 paired ticks in eight journeys.
+Native 64-bit and ASan/UBSan/LSan 64-bit full replay traces and final snapshots match
+with 2048 in-process restores; 64 fresh-process boundaries match final snapshots
+(2,112 journey restores total).
+The state suite passes 399 checks, 96 round trips and
+10 refusals. Hidden moving memories, visible death,
+diplomacy, area/base inputs and real combat are exercised; successful goal frames
+represent occupancy, not separate arrivals. CLI run-danger/edit/resume and refused
+edit output pass. Eleven graph fixtures, 258,440 navigation checks, one bounded
+maintenance fixture, five 1024-tick static journeys, both five-test command suites
+and both installed encounter regressions pass. All 265 declared
+sources, 257 compiler/configure inputs, installed inputs
+and 2927 immutable originals remain unchanged. Original text remains guarded.
+Only AI.regional-danger-production, NP.visible-threat-observations and
+NP.regional-danger-continuation receive fresh scoped validation. The census is
+coverage/source-index-regional-danger-20261015-v2.json (2464 files, 2270 linked).
+Research and limitations are in regional-danger-production.md.
+The incoming `45f64f41..79d3fd3f` history has 30 file/38 behavior transitions with
+matching exact receipts and no unresolved gap; this is retrospective accounting,
+not a past gate pass or new execution. Original owner knowledge/task production,
+visibility generation, resource/mana economy, spell/entity lifetime, dual-brain
+World scheduling, arbitrary species/forms, full World/campaign and live
+replacement remain pending. Commander/veterancy/mana gameplay changes remain
+separate from recovered baseline validation.

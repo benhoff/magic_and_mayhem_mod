@@ -7,6 +7,7 @@
 #include "../../reconstruction/pathfinding/route_search.hpp"
 #include "../../reconstruction/creature-ai/regional_navigation.hpp"
 #include "../../reconstruction/creature-ai/regional_maintenance.hpp"
+#include "../../reconstruction/creature-ai/regional_danger.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -37,6 +38,10 @@ struct NativeRegionalMaintenance {
   std::array<reconstruction::combat::RegionalCreatureShape,28> shapes;
   reconstruction::combat::NavigationMaintenance state;
 };
+struct NativeRegionalDanger {
+  reconstruction::combat::RegionalDangerInputs inputs;
+  reconstruction::combat::RegionalDangerState state;
+};
 struct NativeProviderState {
   bool present=false,randomSeeded=false,alternate=false;
   std::array<std::uint32_t,2> profileStamp{};
@@ -55,5 +60,6 @@ struct NativeProviderState {
   reconstruction::combat::RegionalSearchState regionalSearch;
   std::array<unsigned,2> regionalRiskPowers{};
   std::optional<NativeRegionalMaintenance> regionalMaintenance;
+  std::optional<NativeRegionalDanger> regionalDanger;
 };
 } // namespace mnm::command_session

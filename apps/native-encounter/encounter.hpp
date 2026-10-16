@@ -21,6 +21,7 @@ Profile decodeInputs(game::Bytes);
 std::array<cs::model::RegionalCreatureShape, 28>
 navigationShapes(const Profile &);
 void enableRegionalNavigation(Profile &, unsigned capacity = 512);
+void enableRegionalDanger(Profile &);
 void editTerrain(game::CreatureRuleSession &, const Profile &,
                  const std::vector<cs::NativeTerrainEdit> &);
 cs::NativeConsequenceFactory consequences(const Profile &);
