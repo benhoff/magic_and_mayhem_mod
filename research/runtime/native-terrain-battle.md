@@ -24,5 +24,15 @@ outside this encounter.
 
 The binding regression checks installed movement and restoration at each boundary,
 sealed/unsupported cells, overlapping-spawn rollback and malformed bundle refusal.
-Shared combat/spells/campaign/window integration is the next implementation chunk;
-no new integration or original-comparison stage is claimed by this first commit.
+The initial binding commit claimed no shared combat integration. The next native
+combat driver extension owns `CRB2` terrain continuation and uses the same
+installed footprint/neighbor legality for orders, pursuit, melee and restored
+state.100 direct/fresh combat continuations agree in the development check.
+Combat accepts a large navigation footprint only with an explicit driver.
+Skirmish campaign/spell/window integration remains a separate next chunk.
+No original comparison or original movement-speed equivalence is inferred.
+
+Terrain movement CFG/ANI hashes must equal the actual raw inputs embedded in
+the owned melee profile, both at installed construction and snapshot resolution.
+A mixed profile refuses; this also prevents separate installation reads from
+publishing mismatched movement and melee configuration. HTH stays profile-owned.

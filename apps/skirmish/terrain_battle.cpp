@@ -282,7 +282,15 @@ TerrainBattle finish(const Stored &s) {
   need(std::abs(s.wizards[0].x - s.wizards[1].x) >= 3 ||
            std::abs(s.wizards[0].y - s.wizards[1].y) >= 3,
        "terrain wizard footprint overlap");
-  return {encode(s), nav, s.wizards, s.plane};
+  TerrainBattle result{encode(s), nav, s.wizards, s.plane, s.frozen, {}};
+  for (int x = 1; x < d.x - 2; ++x)
+    for (int y = 1; y < d.y - 2; ++y)
+      try {
+        nav->validateSpawnPosition({x, y, int(s.plane)});
+        result.standing.push_back({x, y, int(s.plane)});
+      } catch (const std::invalid_argument &) {
+      }
+  return result;
 }
 } // namespace
 TerrainBattle installedTerrainBattle(const std::filesystem::path &root) {
@@ -374,6 +382,27 @@ TerrainBattle installedTerrainBattle(const std::filesystem::path &root) {
 }
 TerrainBattle decodeTerrainBattle(const game::Bytes &b) {
   return finish(parse(b));
+}
+void validateTerrainCreatureProfile(const TerrainBattle &terrain,
+                                    const game::Bytes &profile) {
+  need(profile.size() >= 20 && profile.size() <= 2 * 1024 * 1024 &&
+           std::equal(profile.begin(), profile.begin() + 8, "MNMMPR01"),
+       "terrain creature profile wire");
+  std::size_t at = 8;
+  std::array<game::Bytes, 3> inputs;
+  for (auto &input : inputs) {
+    const auto n = word(profile, at);
+    at += 4;
+    need(at <= profile.size() && n <= profile.size() - at,
+         "terrain creature input extent");
+    input.assign(profile.begin() + at, profile.begin() + at + n);
+    at += n;
+  }
+  need(at == profile.size(), "terrain creature trailing bytes");
+  const auto stored = parse(terrain.bytes);
+  need(digest(inputs[0]) == stored.cfgHash &&
+           digest(inputs[2]) == stored.aniHash,
+       "terrain movement/melee CFG/ANI mismatch");
 }
 std::vector<bool> terrainBattleSolids(const game::Bytes &b) {
   auto s = parse(b);

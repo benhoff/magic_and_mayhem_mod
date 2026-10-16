@@ -65,3 +65,15 @@ CombatAction mirrors a live target as approaching with no native phase timer.
 Stored damage1/windup2/recovery3 are unused compatibility placeholders: installed
 HTH plus recovered RNG and ANI events determine attacks. Missing-driver refusal
 prevents this checkpoint from silently using authored melee with those values.
+
+## Terrain creature rule continuation
+
+Optional `CRB2` (`0x32425243`) uses the same creature runtime identity. It writes
+profile blob, owned `MNMTER01` terrain blob, RNG blob and actor records in that
+order. Each profile/terrain blob is bounded to2MiB; the combined battle section
+and existing rules payload bounds remain enforced. `CRB1` omits the terrain blob
+entirely and keeps its exact previous bytes. Terrain rule admission checks the
+map/navigation identity, installed profile and wizard origins; arena-only or
+missing drivers refuse. Navigation reserves the actual installed2x2x2 footprint.
+No second health or mana state is added. This continuation supports native grid
+combat; original movement speed, complete world objects and live use are separate.

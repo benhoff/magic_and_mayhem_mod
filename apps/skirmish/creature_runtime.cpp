@@ -18,7 +18,7 @@ struct Actor {
   std::optional<g::Handle> target, recent;
 };
 struct Stored {
-  g::Bytes profile, random;
+  g::Bytes profile, random, terrain;
   std::vector<Actor> actors;
 };
 struct Codec {
@@ -67,10 +67,12 @@ struct Codec {
       bytes.insert(bytes.end(), b.begin(), b.end());
   }
   void content(Stored &s) {
-    unsigned tag = 0x31425243;
+    unsigned tag = s.terrain.empty() ? 0x31425243 : 0x32425243;
     word(tag);
-    need(tag == 0x31425243, "creature battle version");
+    need(tag == 0x31425243 || tag == 0x32425243, "creature battle version");
     blob(s.profile, 2 * 1024 * 1024);
+    if (tag == 0x32425243)
+      blob(s.terrain, 2 * 1024 * 1024);
     blob(s.random, 1008);
     unsigned n = unsigned(s.actors.size());
     word(n);
@@ -176,23 +178,31 @@ void sync(Stored &s, const g::State &w, g::CombatState c) {
 // occupy one cell; effects and corpses do not block. No original routing claim.
 bool free(g::Point p, g::Handle self, const g::State &w, g::CombatState c,
           const g::Navigation &nav) {
-  if (p.z != 1)
+  const bool terrain = w.map == terrainBattleMap;
+  if (!terrain && p.z != 1)
     return false;
+  if (terrain)
+    try {
+      nav.validateSpawnPosition(p);
+    } catch (const std::invalid_argument &) {
+      return false;
+    }
   for (int y = 0; y < 2; ++y)
     for (int x = 0; x < 2; ++x) {
       g::Point q{p.x + x, p.y + y, p.z};
-      try {
-        nav.validateSpawnPosition(q);
-      } catch (const std::exception &) {
-        return false;
-      }
+      if (!terrain)
+        try {
+          nav.validateSpawnPosition(q);
+        } catch (const std::invalid_argument &) {
+          return false;
+        }
       for (const auto &f : c.fighters) {
         if (f.actor == self || !f.health)
           continue;
         const auto *e = entity(w, f.actor);
         if (!e)
           continue;
-        int width = managed(w, f.actor) ? 2 : 1;
+        int width = terrain || managed(w, f.actor) ? 2 : 1;
         if (q.x >= e->x && q.x < e->x + width && q.y >= e->y &&
             q.y < e->y + width && q.z == e->z)
           return false;
@@ -210,13 +220,35 @@ constexpr std::array<g::Point, 8> directions{{{0, -1, 0},
                                               {-1, -1, 0}}};
 bool edge(g::Point a, g::Point b, g::Handle h, const g::State &w,
           g::CombatState c, const g::Navigation &nav) {
+  if (w.map == terrainBattleMap) {
+    g::Entity probe;
+    probe.type = nav.creatureType();
+    probe.x = a.x;
+    probe.y = a.y;
+    probe.z = a.z;
+    probe.motion = g::CreatureMotion{};
+    probe.motion->origin = a;
+    probe.motion->destination = b;
+    auto direction = std::find_if(directions.begin(), directions.end(),
+                                  [&](auto d) {
+                                    return d.x == b.x - a.x && d.y == b.y - a.y;
+                                  }) -
+                     directions.begin();
+    if (direction == 8)
+      return false;
+    bool legal = false;
+    for (int category : {0, 4})
+      legal |= nav.accepts(probe, {b, int(direction), 0, category, 0});
+    if (!legal)
+      return false;
+  }
   return free(b, h, w, c, nav) && (a.x == b.x || a.y == b.y ||
                                    (free({a.x, b.y, a.z}, h, w, c, nav) &&
                                     free({b.x, a.y, a.z}, h, w, c, nav)));
 }
 bool reach(const g::CreatureRules &r, g::Point a, g::Point b,
            const g::Navigation &nav) {
-  return r.reach(a, b, {8, 8, 3}, [&](g::Point x, g::Point y) {
+  return r.reach(a, b, nav.binding().dimensions, [&](g::Point x, g::Point y) {
     try {
       nav.validateSpawnPosition({x.x, y.y, x.z});
       nav.validateSpawnPosition({y.x, x.y, x.z});
@@ -231,9 +263,9 @@ std::optional<g::Point> route(const Actor &a, g::Point target,
                               const g::Navigation &nav,
                               const g::CreatureRules &rules) {
   auto origin = position(*entity(w, a.state.handle));
-  std::array<int, 64> parent;
-  parent.fill(-1);
-  auto index = [](g::Point p) { return p.y * 8 + p.x; };
+  const auto dims = nav.binding().dimensions;
+  std::vector<int> parent(dims.x * dims.y, -1);
+  auto index = [dims](g::Point p) { return p.y * dims.x + p.x; };
   std::deque<g::Point> queue{origin};
   parent.at(index(origin)) = index(origin);
   while (!queue.empty()) {
@@ -243,11 +275,11 @@ std::optional<g::Point> route(const Actor &a, g::Point target,
       int at = index(p);
       while (parent[at] != index(origin))
         at = parent[at];
-      return g::Point{at % 8, at / 8, origin.z};
+      return g::Point{at % dims.x, at / dims.x, origin.z};
     }
     for (auto d : directions) {
       g::Point q{p.x + d.x, p.y + d.y, p.z};
-      if (q.x < 0 || q.x >= 8 || q.y < 0 || q.y >= 8 ||
+      if (q.x < 0 || q.x >= dims.x || q.y < 0 || q.y >= dims.y ||
           parent[index(q)] != -1 || !edge(p, q, a.state.handle, w, c, nav))
         continue;
       parent[index(q)] = index(p);
@@ -261,7 +293,7 @@ std::optional<g::Point> route(const Actor &a, g::Point target,
 g::CreatureEncounter projection(const Stored &s, const g::State &w,
                                 g::CombatState c, g::State &compact) {
   g::CreatureEncounter out;
-  out.dimensions = {8, 8, 3};
+  out.dimensions = w.navigation->dimensions;
   compact.slots.clear();
   for (const auto &a : s.actors) {
     auto v = a.state;
@@ -281,12 +313,20 @@ g::CreatureEncounter projection(const Stored &s, const g::State &w,
 }
 class Driver final : public g::CombatDriver {
   creature_lab::Profile profile_;
+  std::optional<TerrainBattle> terrain_;
 
 public:
-  explicit Driver(creature_lab::Profile p) : profile_(std::move(p)) {}
+  explicit Driver(creature_lab::Profile p, std::optional<TerrainBattle> t = {})
+      : profile_(std::move(p)), terrain_(std::move(t)) {
+    if (terrain_)
+      validateTerrainCreatureProfile(*terrain_, profile_.bytes);
+  }
   std::uint64_t identity() const override { return creatureBattleIdentity; }
   g::Bytes initial() const override {
-    return encode({profile_.bytes, profile_.rules->random(1), {}});
+    return encode({profile_.bytes,
+                   profile_.rules->random(1),
+                   terrain_ ? terrain_->bytes : g::Bytes{},
+                   {}});
   }
   g::CombatStats creatureStats() const override {
     return {profile_.rules->maximumHealth(), 1, 2, 3};
@@ -301,13 +341,29 @@ public:
     c.updateRules(encode(s));
   }
   void validate(const g::CombatSession &c) const override {
-    need(c.world().state().map == "native-skirmish-arena-v1" &&
-             c.navigation()->binding().dimensions == g::Point{8, 8, 3} &&
-             c.healthRules()->identity() == ordinaryHealthIdentity,
-         "creature battle arena/health admission");
+    if (terrain_) {
+      need(c.world().state().map == terrainBattleMap &&
+               c.navigation()->binding() == terrain_->navigation->binding(),
+           "creature terrain binding");
+      if (!c.world().state().campaign.empty()) {
+        auto m = g::decodeSkirmish(c.world().state().campaign);
+        for (unsigned owner = 0; owner < 2; ++owner) {
+          const auto *wizard = c.world().find(m.wizards[owner].actor);
+          need(wizard && position(*wizard) == terrain_->wizards[owner],
+               "creature terrain wizard placement");
+        }
+      }
+    } else
+      need(c.world().state().map == "native-skirmish-arena-v1" &&
+               c.navigation()->binding().dimensions == g::Point{8, 8, 3},
+           "creature arena binding");
+    need(c.healthRules()->identity() == ordinaryHealthIdentity,
+         "creature ordinary health binding");
     need(c.rules().identity == identity(), "creature battle runtime binding");
     auto s = decode(c.rules().data);
-    need(s.profile == profile_.bytes, "creature battle profile mismatch");
+    need(s.profile == profile_.bytes &&
+             s.terrain == (terrain_ ? terrain_->bytes : g::Bytes{}),
+         "creature battle profile/terrain mismatch");
     auto combat = c.combat();
     for (const auto &f : combat.fighters)
       if (managed(c.world().state(), f.actor)) {
@@ -330,7 +386,7 @@ public:
       need(f && e && a.state.handle.generation && a.state.facing < 8 &&
                a.state.age <= 100 &&
                g::contains(a.state.home, c.navigation()->binding()) &&
-               a.state.home.z == 1,
+               a.state.home.z == (terrain_ ? int(terrain_->plane) : 1),
            "creature battle actor");
       need(i == 0 || s.actors[i - 1].state.handle.slot < a.state.handle.slot,
            "creature battle actor order");
@@ -588,8 +644,8 @@ public:
             }
             g::stopCombatMotion(own);
             if (v.phase != g::CreaturePhase::attacking) {
-              v.facing =
-                  rules.facing(position(own), position(target), {8, 8, 3});
+              v.facing = rules.facing(position(own), position(target),
+                                      nav.binding().dimensions);
               v.phase = g::CreaturePhase::attacking;
               v.cursor = rules.start(false, v.facing);
               out.events.push_back(
@@ -609,8 +665,8 @@ public:
                 auto projected = b.state;
                 projected.health = victim->health;
                 auto stun =
-                    rules.stun(s.random, target, projected, own, {8, 8, 3},
-                               [&](g::Point p) {
+                    rules.stun(s.random, target, projected, own,
+                               nav.binding().dimensions, [&](g::Point p) {
                                  return free(p, victim->actor, w, state, nav);
                                });
                 if (victim->health) {
@@ -674,8 +730,25 @@ resolveCreatureRuntime(const game::State &w) {
   if (!r.identity)
     return {};
   need(r.identity == creatureBattleIdentity, "unknown battle creature runtime");
+  auto stored = decode(r.data);
   return std::make_shared<Driver>(
-      creature_lab::decodeProfile(decode(r.data).profile));
+      creature_lab::decodeProfile(stored.profile),
+      stored.terrain.empty()
+          ? std::nullopt
+          : std::optional<TerrainBattle>(decodeTerrainBattle(stored.terrain)));
+}
+std::shared_ptr<const game::CombatDriver>
+installedTerrainCreatureRuntime(const std::filesystem::path &root) {
+  return std::make_shared<Driver>(creature_lab::loadProfile(root),
+                                  installedTerrainBattle(root));
+}
+std::optional<TerrainBattle> creatureTerrain(const game::CombatDriver &driver) {
+  need(driver.identity() == creatureBattleIdentity,
+       "unknown creature terrain driver");
+  auto stored = decode(driver.initial());
+  return stored.terrain.empty() ? std::nullopt
+                                : std::optional<TerrainBattle>(
+                                      decodeTerrainBattle(stored.terrain));
 }
 std::vector<CreatureBattleView>
 creatureBattleViews(const game::CombatSession &c) {

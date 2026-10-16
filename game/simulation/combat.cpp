@@ -380,9 +380,10 @@ CombatSession::CombatSession(World world, std::shared_ptr<const Navigation> nav,
                              std::shared_ptr<const CombatDriver> driver)
     : movement_(std::move(world), nav), navigation_(std::move(nav)),
       healthRules_(rules ? std::move(rules) : nativeFixtureHealthRules()), driver_(std::move(driver)) {
-    require(navigation_->maxMovingCreatures() > 1 && navigation_->creatureFootprint().x == 1 &&
-                navigation_->creatureFootprint().y == 1,
-            "combat requires bounded same-profile multi-creature navigation");
+    const auto footprint=navigation_->creatureFootprint();
+    require(navigation_->maxMovingCreatures()>1 &&
+                ((footprint.x==1 && footprint.y==1) || (driver_ && footprint.x==2 && footprint.y==2)),
+            "combat requires bounded navigation and a driver for large footprints");
     auto state = movement_.world().state();
     if (state.systems.empty()) {
         CombatState initial;

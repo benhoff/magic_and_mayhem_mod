@@ -13075,3 +13075,11 @@ Installed movement/checkpoint and overlapping-spawn rollback development checks
 pass. Combat/spells/campaign/window integration remains pending in this chunk;
 no original full-world/search or live-replacement claim is added. See
 [native terrain battle](native-terrain-battle.md).
+
+The terrain-bound combat increment now uses the installed2x2x2 profile for
+shared-health creature orders, pursuit and ANI melee, with owned `CRB2`
+terrain/RNG/target continuation. `TERRAINB01.native` now records436-source normal/sanitized agreement,100 fresh
+continuations, five melee hits, actual movement and wrong/mixed profile refusal.
+All58 normal regressions, six sanitizer contracts and installed Cure checks pass.
+This establishes the bounded native headless milestone; composite campaign/spell/Qt
+integration remains excluded until the next bounded journey.
