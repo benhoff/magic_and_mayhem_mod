@@ -6,17 +6,22 @@ ROOT=Path(__file__).resolve().parents[1]
 MAIN=Path(subprocess.check_output(['git','-C',str(ROOT),'rev-parse','--path-format=absolute','--git-common-dir'],text=True).strip()).parent
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('asset_root',type=Path);args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('asset_root',type=Path);parser.add_argument('--window',action='store_true');args=parser.parse_args()
     parent=ROOT/'working/tests/map-campaign';parent.mkdir(parents=True,exist_ok=True)
     run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));(run/'.retain').write_text('Installed crop campaign execution evidence.\n')
     spec=importlib.util.spec_from_file_location('claims',ROOT/'tools/draft-coverage-claims.py');claims=importlib.util.module_from_spec(spec);spec.loader.exec_module(claims)
     behaviors=['NP.map-campaign','NP.skirmish-mission','NP.campaign-arena']
     scenarios=['NP.map-campaign.journey','NP.skirmish-mission.continuation','NP.campaign-arena.journey']
+    if args.window:
+        behaviors.extend(['NP.map-campaign-window','NP.campaign-window']);scenarios.extend(['NP.map-campaign-window.journey','NP.campaign-window.journey'])
     declaration=claims.declaration(ROOT,json.loads((ROOT/'research/runtime/coverage/register.json').read_text()),behaviors,scenarios)
     (run/'claims.json').write_text(json.dumps(declaration,indent=2)+'\n');build=ROOT/'working/build/native-map-campaign'
     commands=[['cmake','-S',str(ROOT/'apps/skirmish'),'-B',str(build),'-DCMAKE_BUILD_TYPE=Debug'],['cmake','--build',str(build),'-j4'],['ctest','--test-dir',str(build),'--output-on-failure','-E','native-(campaign|skirmish)-window'],['python3',str(ROOT/'tests/test-map-campaign.py'),str(build/'mnm-map-campaign-cli'),str(build/'map-campaign-test'),str(args.asset_root.resolve())]]
+    if args.window:
+        commands[2]=commands[2][:-2]
+        commands.append(['python3',str(ROOT/'tests/test-map-campaign-window.py'),str(build/'campaign-window-test'),str(build/'mnm-map-campaign-cli'),str(build/'map-campaign-test'),str(args.asset_root.resolve())])
     result={'schema':1,'scope':'Native authored Plains 8x8 sealed crop campaign, owned resource-bound restart/movement/casting and progression to the arena; original campaign and full-map equivalence excluded.','claims':declaration['claims'],'sources':declaration['sources'],'commands':[],'success':False}
-    env=os.environ.copy();env['XDG_CONFIG_HOME']=str(run/'qt-config');env['QT_QPA_PLATFORM']='xcb';env['QT_STYLE_OVERRIDE']='Fusion';env['MNM_MAP_CAMPAIGN_OUTPUT']=str(run/'journey');env['MNM_CAMPAIGN_JOURNEY_OUTPUT']=str(run/'arena');env['MNM_CAMPAIGN_WINDOW_OUTPUT']=str(run/'arena-window')
+    env=os.environ.copy();env['XDG_CONFIG_HOME']=str(run/'qt-config');env['QT_QPA_PLATFORM']='xcb';env['QT_STYLE_OVERRIDE']='Fusion';env['MNM_MAP_CAMPAIGN_OUTPUT']=str(run/'journey');env['MNM_MAP_CAMPAIGN_WINDOW_OUTPUT']=str(run/'window');env['MNM_CAMPAIGN_JOURNEY_OUTPUT']=str(run/'arena');env['MNM_CAMPAIGN_WINDOW_OUTPUT']=str(run/'arena-window')
     def execute(command,name):
         log=run/(name+'.log')
         with log.open('w') as output:r=subprocess.run(command,cwd=ROOT,env=env,stdout=output,stderr=subprocess.STDOUT)
@@ -24,10 +29,15 @@ def main():
         if r.returncode:raise RuntimeError('Validation failed: '+str(log))
     try:
         execute(['sh',str(MAIN/'tools/original-manifest.sh'),'verify'],'manifest-before')
-        for i in [0,1,3,2]:execute(commands[i],'command-'+str(i))
+        for i in ([0,1,3,4,2] if args.window else [0,1,3,2]):
+            execute(commands[i],'command-'+str(i))
+            if args.window and i==1:execute([str(build/'map-presentation-test'),str(args.asset_root.resolve())],'presentation')
         if any(sha(ROOT/p)!=h for p,h in declaration['sources'].items()):raise RuntimeError('Declared sources changed during execution')
         journey=run/'journey/report.json';details=json.loads(journey.read_text());assert details['success']
         result['journey']={'report':str(journey.relative_to(ROOT)),'sha256':sha(journey),'asset_sha256':details['checks']['assets'],'refused_resources':details['refused_resources'],'refused_checkpoints':details['checks']['refused_checkpoints']}
+        if args.window:
+            window=run/'window/report.json';details=json.loads(window.read_text());assert details['success']
+            result['window']={'report':str(window.relative_to(ROOT)),'sha256':sha(window),'processes':details['processes'],'refused_loads':details['refused_loads'],'final_transition':details['final_transition']}
         result['success']=True
     except Exception as e:result['error']=str(e)
     finally:

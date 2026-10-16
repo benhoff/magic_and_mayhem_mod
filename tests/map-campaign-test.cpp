@@ -8,6 +8,12 @@ template<class F> void refuses(F f) {bool failed=false;try{f();}catch(const std:
 Bytes bytes(const CampaignSession &s){return encodeCampaignSnapshot(s.checkpoint(),s.progress().identity);}
 }
 int main(int argc,char **argv) try {
+    if(argc==4) {
+        auto resources=mnm::skirmish::mapCampaignResources(argv[1]);
+        auto campaign=mnm::skirmish::loadMapCampaign(resources,argv[2]);auto c=campaign.checkpoint();
+        auto m=decodeSkirmish(c.world.campaign);std::swap(m.mission->aiSummons[0],m.mission->aiSummons[1]);c.world.campaign=encodeSkirmish(m);
+        const auto result=writeCampaignSnapshot(argv[3],c,c.campaign.identity);need(result.durable,"forged checkpoint publication failed");return 0;
+    }
     if(argc!=2) throw std::invalid_argument("resource root required");
     auto resources=mnm::skirmish::mapCampaignResources(argv[1]);
     auto session=mnm::skirmish::newMapCampaign(resources);session.startMission();

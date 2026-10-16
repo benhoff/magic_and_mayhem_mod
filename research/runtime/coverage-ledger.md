@@ -12751,3 +12751,32 @@ This is authored native campaign integration; original map population, campaign
 rules, rewards, full-map loading, rendered-pixel equivalence and live replacement
 remain pending. See `native-map-campaign.md` and its bound execution record.
 Historical original/recovered evidence retains its recorded source hashes.
+
+## Playable installed-terrain campaign window (2026-10-16)
+
+`NP.map-campaign-window` connects the installed crop's immutable resource context
+to New map campaign, startup/load options, native cell/unit picking, semantic
+orders, playback and campaign dialogs. Terrain uses decoded SPR origins/masks
+and the existing ordinary submission/depth helpers. Supported-cell outlines and
+raised native vector unit markers are deliberate diagnostic overlays; their
+picking policy does not assert original rendered-pixel or occlusion equivalence.
+The first opaque-terrain picking run is retained under
+`working/tests/map-campaign/run-4knxzjvd`: tall grass intercepted intended cells
+and buried the small native glyphs, prompting this explicit native policy.
+
+The five-process journey compares pending move/cast and in-flight window saves
+with independent CLI bytes, exits/reopens and splits continuation, refuses valid
+forged mission/corrupt file dialogs without changing the active checkpoint, wins,
+reopens a settled result unchanged, then starts the exact arena finale. Existing
+arena/standalone windows remain separate regression scenarios. Qt settings are
+isolated per run after an intermittent file-dialog timeout in an earlier run;
+failed execution reports remain immutable. Native rules and rewards are unchanged.
+Original campaign/map population, full-map loading, smooth original creature
+animation, lighting/fog, original UI/pixels and live replacement remain pending.
+
+These map milestones are committed on `codex/native-map-campaign-20261016`,
+based on9fc6b28f. Concurrent main commit3fbfffe2 (shared battle/effect state)
+and the overlapping uncommitted Cure/window work are not integrated into this
+branch. Execution records apply to this isolated source tree; combining those
+contracts requires a separate reviewed merge and fresh execution. The main
+checkout's active source, index and historical evidence are preserved.
