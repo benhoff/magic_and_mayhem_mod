@@ -123,6 +123,12 @@ Handle World::spawn(Entity entity) {
     }
     throw std::runtime_error("entity pool exhausted");
 }
+void World::release(Handle h) {
+    if(stepping_) throw std::logic_error("emit releases through tick callback output");
+    auto next=state_;
+    if(!apply(next,{Operation::release,h,{},{},{}})) throw std::invalid_argument("stale release identity");
+    validate(next,limits_);state_=std::move(next);
+}
 void World::enqueue(Command command) {
     if(stepping_) throw std::logic_error("emit tick commands through callback output");
     auto next=state_;next.pending.push_back(command);validate(next,limits_);state_=std::move(next);

@@ -31,7 +31,7 @@ target_compile_options(mnm-frozen-navigation PRIVATE -Wall -Wextra -Werror -peda
 add_executable(mnm-world-sandbox ../apps/world-sandbox/main.cpp)
 target_link_libraries(mnm-world-sandbox PRIVATE mnm-frozen-navigation)
 target_compile_options(mnm-world-sandbox PRIVATE -Wall -Wextra -Werror -pedantic)
-add_library(mnm-combat STATIC simulation/combat.cpp simulation/health_rules.cpp)
+add_library(mnm-combat STATIC simulation/combat.cpp simulation/health_rules.cpp simulation/battle_systems.cpp)
 target_link_libraries(mnm-combat PUBLIC mnm-world)
 target_compile_options(mnm-combat PRIVATE -Wall -Wextra -Werror -pedantic)
 add_library(mnm-melee-exchange STATIC simulation/melee_exchange.cpp)

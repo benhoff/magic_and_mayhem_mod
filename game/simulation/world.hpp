@@ -125,6 +125,7 @@ public:
     const Limits& limits() const {return limits_;}
     const Entity* find(Handle) const;
     Handle spawn(Entity);
+    void release(Handle); // Owned session retirement without advancing the clock.
     void enqueue(Command);
     std::uint32_t cancelQueuedMoves(Handle);
     // Invalid queued identities are rejected and counted at the tick boundary.

@@ -12719,3 +12719,29 @@ All source fingerprints in the successful campaign-window execution remain
 unchanged after integration, so its all50 native CTest result and bound campaign
 and standalone-window scenarios remain current. New renderer/Cure findings keep
 their independent evidence, scope and status; no campaign rules or balance change.
+
+## Shared native battle ownership (2026-10-16)
+
+BATTLE01 adds a bounded versioned combat/effect envelope and an application runtime
+boundary to SkirmishSession. Fighter health remains authoritative in CombatState;
+wizard mana remains in SkirmishState. Registered effect entities share World
+slots and release semantics with creatures. Movement, melee/projectile work and
+effects publish in one outer transaction. Runtime identity prevents missing or
+wrong consumers from resuming an owned clock. Standalone combat refuses effect
+advancement; mutation APIs preserve opaque effect data. Legacy unextended combat
+bytes and standalone/campaign behavior remain compatible in fresh regression.
+
+The source-bound native/sanitizer synthetic runtime test proves exact continuation,
+rollback after actual movement, stale/reused effect identities, retirement without
+a second tick, malformed counted sections and alternate/unadmitted clocks. All51
+normal CTests (including both real Qt window journeys) and four selected sanitized
+contracts pass. An earlier sandboxed run retained49 passes and two Xvfb startup
+failures; the successful unsandboxed display run is a new result. See
+[battle sections](../formats/native-battle-systems.md) and
+[execution](battle-effects-bound-20261016.json). Cure and installed spell integration
+are subsequent work; this milestone uses a synthetic runtime. Scheduling and
+resource ownership are native policies, not original dispatcher equivalence.
+Shared source edits leave prior source-bound evidence historical where stale;
+this regression does not refresh original comparison or other consumers' scopes.
+Exact incoming6365e657..9fc6b28f file/behavior receipts were reviewed separately;
+all transitions have receipts, with no remaining accounting gaps.

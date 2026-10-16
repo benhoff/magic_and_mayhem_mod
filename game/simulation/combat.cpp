@@ -204,7 +204,9 @@ Bytes encodeCombat(const CombatState &c) {
     }
     return b;
 }
-CombatState decodeCombat(const Bytes &b) {
+CombatState decodeCombat(const Bytes &bytes) {
+    const auto sections = decodeBattleSystems(bytes);
+    const auto &b = sections.combat;
     require(b.size() >= 16, "truncated native combat header");
     const bool bound = std::equal(magic3.begin(), magic3.end(), b.begin());
     const bool extended = bound || std::equal(magic2.begin(), magic2.end(), b.begin());
@@ -343,13 +345,22 @@ void validateCombat(const State &state, const CombatState &c) {
                     "invalid combat target identity/hostility/range");
         }
     }
+    const auto effects = state.systems.empty() ? BattleEffectsState{} : decodeBattleSystems(state.systems).effects;
+    for (auto h : effects.entities) {
+        const auto *e = entity(state, h);
+        require(e && e->family == Family::missileEffect && !e->motion && !e->cleaned,
+                "invalid registered battle effect");
+    }
     for (std::uint32_t i = 0; i < state.slots.size(); ++i)
         if (state.slots[i].entity) {
             const auto it =
                 std::find_if(c.fighters.begin(), c.fighters.end(), [&](const Fighter &f) {
                     return f.actor == Handle{i, state.slots[i].generation};
                 });
-            require(it != c.fighters.end(), "combat world contains an unregistered entity");
+            const auto h = Handle{i, state.slots[i].generation};
+            require(it != c.fighters.end() ||
+                        std::find(effects.entities.begin(), effects.entities.end(), h) != effects.entities.end(),
+                    "combat world contains an unregistered entity");
         }
     for (const auto &o : c.pending) {
         orderValid(o);
@@ -381,7 +392,9 @@ CombatSession::CombatSession(World world, std::shared_ptr<const Navigation> nav,
 }
 void CombatSession::publish(MovementSession candidate, CombatState c) {
     auto state = candidate.world().state();
-    state.systems = encodeCombat(c);
+    auto sections = decodeBattleSystems(world().state().systems);
+    sections.combat = encodeCombat(c);
+    state.systems = encodeBattleSystems(sections);
     validateCombat(state, c);
     World world(0, candidate.world().limits());
     world.restore(std::move(state));
@@ -402,7 +415,51 @@ Handle CombatSession::spawn(Entity e, CombatStats stats, bool fineMotion, Combat
     publish(std::move(candidate), std::move(c));
     return h;
 }
+void CombatSession::bindEffects(std::uint64_t identity, Bytes data) {
+    require(identity && !effects().identity, "battle effects already bound or missing identity");
+    auto sections = decodeBattleSystems(world().state().systems);
+    sections.effects = {identity, std::move(data), {}};
+    auto state = world().state();state.systems = encodeBattleSystems(sections);
+    World candidate(0, world().limits());candidate.restore(std::move(state));
+    movement_ = MovementSession(std::move(candidate), navigation_);
+}
+void CombatSession::updateEffects(Bytes data) {
+    auto sections = decodeBattleSystems(world().state().systems);
+    require(sections.effects.identity != 0, "battle effects are unbound");
+    sections.effects.data = std::move(data);
+    auto state=world().state();state.systems=encodeBattleSystems(sections);
+    World candidate(0,world().limits());candidate.restore(std::move(state));
+    movement_=MovementSession(std::move(candidate),navigation_);
+}
+Handle CombatSession::spawnEffect(Entity e) {
+    auto sections=decodeBattleSystems(world().state().systems);
+    require(sections.effects.identity && e.family==Family::missileEffect && !e.motion && !e.cleaned && sections.effects.entities.size()<32,
+            "invalid battle effect spawn");
+    World candidate(0,world().limits());candidate.restore(world().state());
+    auto h=candidate.spawn(std::move(e));sections.effects.entities.push_back(h);
+    auto state=candidate.state();state.systems=encodeBattleSystems(sections);
+    validateCombat(state,combat());candidate.restore(std::move(state));
+    movement_=MovementSession(std::move(candidate),navigation_);return h;
+}
+void CombatSession::relocateEffect(Handle h, Point p) {
+    auto e=effects();require(std::find(e.entities.begin(),e.entities.end(),h)!=e.entities.end(),"unregistered effect relocation");
+    auto state=world().state();auto &body=*state.slots.at(h.slot).entity;
+    require(state.navigation && contains(p,*state.navigation),"effect outside map");
+    body.x=p.x;body.y=p.y;body.z=p.z;
+    World candidate(0,world().limits());candidate.restore(std::move(state));movement_=MovementSession(std::move(candidate),navigation_);
+}
+void CombatSession::releaseEffect(Handle h) {
+    auto sections=decodeBattleSystems(world().state().systems);auto &entities=sections.effects.entities;
+    auto it=std::find(entities.begin(),entities.end(),h);require(it!=entities.end(),"unregistered effect release");
+    entities.erase(it);World candidate(0,world().limits());candidate.restore(world().state());
+    candidate.release(h);auto state=candidate.state();state.systems=encodeBattleSystems(sections);
+    validateCombat(state,combat());candidate.restore(std::move(state));movement_=MovementSession(std::move(candidate),navigation_);
+}
 CombatReport CombatSession::step(TickInput input) {
+    require(!effects().identity, "Use the composed battle session to advance effects");
+    return stepBattle(input);
+}
+CombatReport CombatSession::stepBattle(TickInput input) {
     CombatReport report;
     if (!input.admitted)
         return report;

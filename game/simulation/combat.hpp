@@ -1,5 +1,6 @@
 #pragma once
 #include "movement.hpp"
+#include "battle_systems.hpp"
 #include "health_rules.hpp"
 
 namespace mnm::game {
@@ -54,6 +55,8 @@ class CombatSession {
     std::shared_ptr<const Navigation> navigation_;
     std::shared_ptr<const HealthRules> healthRules_;
     void publish(MovementSession, CombatState);
+    CombatReport stepBattle(TickInput);
+    friend class SkirmishSession;
 
   public:
     CombatSession(World, std::shared_ptr<const Navigation>,
@@ -62,6 +65,12 @@ class CombatSession {
     const World &world() const { return movement_.world(); }
     const MovementSession &movement() const { return movement_; }
     CombatState combat() const { return decodeCombat(world().state().systems); }
+    BattleEffectsState effects() const { return decodeBattleSystems(world().state().systems).effects; }
+    void bindEffects(std::uint64_t identity, Bytes);
+    void updateEffects(Bytes);
+    Handle spawnEffect(Entity);
+    void relocateEffect(Handle, Point);
+    void releaseEffect(Handle);
     Handle spawn(Entity, CombatStats = {}, bool fineMotion = false,
                  CombatControl = CombatControl::automatic);
     void enqueue(CombatOrder);

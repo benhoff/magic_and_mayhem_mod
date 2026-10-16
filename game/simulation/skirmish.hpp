@@ -12,9 +12,9 @@ struct SkirmishRules {
                               aiInterval = 8, livingCreatures = 6;
 };
 enum class UnitRole : std::uint32_t { wizard, sentinel };
-enum class Spell : std::uint32_t { none, summon, bolt };
+enum class Spell : std::uint32_t { none, summon, bolt, cure };
 enum class Outcome : std::uint32_t { running, victory, defeat, draw };
-enum class SkirmishOrderKind : std::uint32_t { summon, bolt, move, stop, attack };
+enum class SkirmishOrderKind : std::uint32_t { summon, bolt, move, stop, attack, cure };
 struct SkirmishOrder {
     SkirmishOrderKind kind = SkirmishOrderKind::stop;
     Handle subject;
@@ -64,16 +64,32 @@ struct SkirmishReport {
     CombatReport combat;
     std::vector<SkirmishEvent> events;
 };
+// Application runtime owns only its versioned effect continuation. Health remains
+// in CombatState and mana in Wizard; calls act on the transaction candidate.
+class SkirmishEffects {
+  public:
+    virtual ~SkirmishEffects() = default;
+    virtual std::uint64_t identity() const = 0;
+    virtual Bytes initial() const = 0;
+    virtual void validate(const CombatSession &, const SkirmishState &) const = 0;
+    virtual SkirmishRefusal cast(CombatSession &, SkirmishState &, Handle source, Handle target) const = 0;
+    virtual CombatReport step(CombatSession &, SkirmishState &, TickInput) const = 0;
+    virtual void cancel(CombatSession &, SkirmishState &) const = 0;
+};
 class SkirmishSession {
     CombatSession combat_;
     std::shared_ptr<const Navigation> navigation_;
+    std::shared_ptr<const SkirmishEffects> effects_;
     void publish(CombatSession, SkirmishState);
 
   public:
     explicit SkirmishSession(std::shared_ptr<const Navigation>,
-                             std::shared_ptr<const HealthRules> = {});
+                             std::shared_ptr<const HealthRules> = {},
+                             std::shared_ptr<const SkirmishEffects> = {});
     SkirmishSession(World, std::shared_ptr<const Navigation>,
-                    std::shared_ptr<const HealthRules> = {});
+                    std::shared_ptr<const HealthRules> = {},
+                             std::shared_ptr<const SkirmishEffects> = {});
+    const std::shared_ptr<const SkirmishEffects> &effectsRuntime() const { return effects_; }
     const World &world() const { return combat_.world(); }
     const CombatSession &combat() const { return combat_; }
     SkirmishState state() const { return decodeSkirmish(world().state().campaign); }

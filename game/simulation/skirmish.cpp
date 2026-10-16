@@ -51,8 +51,8 @@ void clear(Wizard &w) {
     w.target.reset();
 }
 void orderShape(const SkirmishOrder &o) {
-    require(static_cast<unsigned>(o.kind) <= 4 &&
-                ((o.kind == SkirmishOrderKind::bolt || o.kind == SkirmishOrderKind::attack) ==
+    require(static_cast<unsigned>(o.kind) <= 5 &&
+                ((o.kind == SkirmishOrderKind::bolt || o.kind == SkirmishOrderKind::attack || o.kind == SkirmishOrderKind::cure) ==
                  bool(o.target)) &&
                 ((o.kind == SkirmishOrderKind::summon || o.kind == SkirmishOrderKind::move) ==
                  bool(o.destination)),
@@ -306,13 +306,13 @@ void validateSkirmish(const State &world, const CombatState &combat, const Skirm
             std::find_if(s.units.begin(), s.units.end(),
                          [&](const UnitRoleRecord &r) { return r.actor == o.subject; });
         const bool casting =
-            o.kind == SkirmishOrderKind::summon || o.kind == SkirmishOrderKind::bolt;
+            o.kind == SkirmishOrderKind::summon || o.kind == SkirmishOrderKind::bolt || o.kind == SkirmishOrderKind::cure;
         require(e && e->owner == 0 && role != s.units.end() &&
                     casting == (role->role == UnitRole::wizard),
                 "pending order identity/ownership/role mismatch");
         if (o.target) {
             const auto *t = entity(world, *o.target);
-            require(t && t->owner == 1 && fighter(combat, *o.target),
+            require(t && t->owner == (o.kind == SkirmishOrderKind::cure ? 0U : 1U) && fighter(combat, *o.target),
                     "pending target identity/hostility mismatch");
         }
     }
@@ -331,7 +331,8 @@ void validateSkirmish(const State &world, const CombatState &combat, const Skirm
     }
 }
 SkirmishSession::SkirmishSession(std::shared_ptr<const Navigation> nav,
-                                 std::shared_ptr<const HealthRules> rules)
+                                 std::shared_ptr<const HealthRules> rules,
+                                 std::shared_ptr<const SkirmishEffects> effects)
     : combat_(
           [&] {
               require(bool(nav), "arena navigation required");
@@ -343,7 +344,8 @@ SkirmishSession::SkirmishSession(std::shared_ptr<const Navigation> nav,
               return w;
           }(),
           nav, std::move(rules)),
-      navigation_(std::move(nav)) {
+      navigation_(std::move(nav)), effects_(std::move(effects)) {
+    if (effects_) combat_.bindEffects(effects_->identity(), effects_->initial());
     SkirmishState s;
     for (unsigned owner = 0; owner < 2; ++owner) {
         const auto p = owner ? Point{6, 1, 1} : Point{1, 6, 1};
@@ -362,14 +364,19 @@ SkirmishSession::SkirmishSession(std::shared_ptr<const Navigation> nav,
     publish(combat_, std::move(s));
 }
 SkirmishSession::SkirmishSession(World world, std::shared_ptr<const Navigation> nav,
-                                 std::shared_ptr<const HealthRules> rules)
-    : combat_(std::move(world), nav, std::move(rules)), navigation_(std::move(nav)) {
+                                 std::shared_ptr<const HealthRules> rules,
+                                 std::shared_ptr<const SkirmishEffects> effects)
+    : combat_(std::move(world), nav, std::move(rules)), navigation_(std::move(nav)), effects_(std::move(effects)) {
+    require(combat_.effects().identity == (effects_ ? effects_->identity() : 0), "battle effect runtime binding mismatch");
+    if (effects_) effects_->validate(combat_, state());
     validateSkirmish(this->world().state(), combat_.combat(), state());
 }
 void SkirmishSession::publish(CombatSession combat, SkirmishState s) {
     auto world = combat.world().state();
     world.campaign = encodeSkirmish(s);
     validateSkirmish(world, combat.combat(), s);
+    require(combat.effects().identity == (effects_ ? effects_->identity() : 0), "battle effect runtime binding mismatch");
+    if (effects_) effects_->validate(combat, s);
     World w(0, combat.world().limits());
     w.restore(std::move(world));
     CombatSession complete(std::move(w), navigation_, combat.healthRules());
@@ -386,13 +393,15 @@ void SkirmishSession::enqueue(SkirmishOrder o) {
     const auto role = std::find_if(s.units.begin(), s.units.end(), [&](const UnitRoleRecord &r) {
                           return r.actor == o.subject;
                       })->role;
-    const bool casting = o.kind == SkirmishOrderKind::summon || o.kind == SkirmishOrderKind::bolt;
+    const bool casting = o.kind == SkirmishOrderKind::summon || o.kind == SkirmishOrderKind::bolt || o.kind == SkirmishOrderKind::cure;
     require(casting == (role == UnitRole::wizard),
             casting ? "Select your wizard to cast" : "Select a Sentinel for creature orders");
     if (o.target) {
         const auto *t = world().find(*o.target);
         const auto *tf = fighter(c, *o.target);
-        require(t && tf && tf->health && t->owner == 1, "Select a living enemy target");
+        require(t && tf && tf->health && t->owner == (o.kind == SkirmishOrderKind::cure ? 0U : 1U), "Select a living eligible target");
+        if (o.kind == SkirmishOrderKind::cure)
+            require(effects_ && std::any_of(s.units.begin(),s.units.end(),[&](const auto &r) {return r.actor==*o.target && r.role==UnitRole::sentinel;}), "Cure requires an enabled runtime and a friendly creature");
     }
     require(s.pending.size() < 64, "Order queue is full");
     s.pending.push_back(o);
@@ -405,7 +414,11 @@ SkirmishReport SkirmishSession::step(TickInput input) {
         return report;
     auto combat = combat_;
     if (input.alternateMode) {
-        report.combat = combat.step(input);
+        report.combat = combat.stepBattle(input);
+        if (effects_) {
+            auto extra=effects_->step(combat,s,input);
+            report.combat.events.insert(report.combat.events.end(),extra.events.begin(),extra.events.end());
+        }
         publish(std::move(combat), std::move(s));
         return report;
     }
@@ -476,6 +489,12 @@ SkirmishReport SkirmishSession::step(TickInput input) {
             else
                 emit(SkirmishEventKind::refused, o.subject, o.target, Spell::bolt,
                      SkirmishRefusal::target);
+        } else if (o.kind == SkirmishOrderKind::cure) {
+            auto refusal=SkirmishRefusal::busy;
+            if (s.wizards[0].spell==Spell::none)
+                refusal=effects_ ? effects_->cast(combat,s,o.subject,*o.target) : SkirmishRefusal::target;
+            emit(refusal==SkirmishRefusal::none ? SkirmishEventKind::casting : SkirmishEventKind::refused,
+                 o.subject,o.target,Spell::cure,refusal);
         } else
             combat.enqueue({o.kind == SkirmishOrderKind::move   ? CombatOrderKind::move
                             : o.kind == SkirmishOrderKind::stop ? CombatOrderKind::stop
@@ -505,7 +524,7 @@ SkirmishReport SkirmishSession::step(TickInput input) {
                      s.wizards[0].actor);
         }
     }
-    report.combat = combat.step(input);
+    report.combat = combat.stepBattle(input);
     for (unsigned owner = 0; owner < 2; ++owner) {
         auto &w = s.wizards[owner];
         if (!fighter(combat.combat(), w.actor)->health) {
@@ -561,6 +580,10 @@ SkirmishReport SkirmishSession::step(TickInput input) {
             emit(SkirmishEventKind::missed, p.source, p.target, Spell::bolt);
     }
     s.projectiles = std::move(retained);
+    if (effects_) {
+        auto extra=effects_->step(combat,s,input);
+        report.combat.events.insert(report.combat.events.end(),extra.events.begin(),extra.events.end());
+    }
     s.outcome = outcome(combat.combat(), s);
     if (s.outcome != Outcome::running) {
         for (auto &w : s.wizards)
@@ -568,6 +591,7 @@ SkirmishReport SkirmishSession::step(TickInput input) {
         s.projectiles.clear();
         s.pending.clear();
         combat.holdAll();
+        if (effects_) effects_->cancel(combat,s);
         emit(SkirmishEventKind::finished, s.wizards[0].actor);
     }
     publish(std::move(combat), std::move(s));
@@ -581,7 +605,7 @@ void SkirmishSession::restore(const std::filesystem::path &path,
     require(bool(nav), "arena resources unavailable");
     World w(0, world().limits());
     w.restore(std::move(state));
-    SkirmishSession candidate(std::move(w), std::move(nav), combat_.healthRules());
+    SkirmishSession candidate(std::move(w), std::move(nav), combat_.healthRules(), effects_);
     *this = std::move(candidate);
 }
 } // namespace mnm::game
