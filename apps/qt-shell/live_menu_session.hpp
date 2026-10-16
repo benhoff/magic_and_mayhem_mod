@@ -22,6 +22,7 @@ public:
     std::function<bool(const QString&)> prepareNativeMedia;
     std::function<bool(const QString&)> prepareNativeMusic;
     std::function<bool(const QString&)> prepareNativePresentation;
+    std::function<bool(const QString&)> prepareMenuAssets;
     bool campaignBookEnabled=false; // Experimental V22 static knowledge pages.
     bool campaignSpellboxEnabled=false; // Experimental V21 campaign inventory/caller.
     bool progressedMenusEnabled=false; // Experimental loaded-Realm Region paths.

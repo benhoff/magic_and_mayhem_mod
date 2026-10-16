@@ -33,7 +33,8 @@ static u32 game_session_enabled,game_session_presentations,game_session_continuo
 struct GameSurface;struct GameBlit;struct GamePalette;
 static void game_session_palette_retire(struct GamePalette*);
 static int game_session_palette_registered(struct GamePalette*);
-static void game_session_gap(u32);
+static void game_session_gap_at(u32,const char*,u32);
+#define game_session_gap(reason) game_session_gap_at((reason),__FILE__,__LINE__)
 static void game_session_sync(void);
 static void game_session_invalidate(void*);
 static void game_session_blit_begin(struct GameBlit*);

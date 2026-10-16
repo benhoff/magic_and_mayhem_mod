@@ -72,6 +72,27 @@ def main():
             else:
                 raise AssertionError('Unsafe prefix was admitted')
 
+        # Exercise the fresh-prefix bootstrap boundary without running Wine.
+        # Its optional-component exclusions must not leak into the game policy.
+        fresh = root / 'bootstrap';fresh.mkdir()
+        shutil.copytree(game,fresh/'game')
+        fresh_prefix = root / 'bootstrap-prefix'
+        fresh_metadata = dict(directplay_dx6=profile)
+        provider.admit_prefix(fresh, fresh_metadata, fresh_prefix)
+        environment = dict(WINEPREFIX=str(fresh_prefix),WINEDLLOVERRIDES='ddraw=;dsound=n')
+        original_environment = environment.copy();real_run = provider.subprocess.run
+        def bootstrap(command, **kwargs):
+            assert command==['wineboot','-i'] and kwargs['check'] and kwargs['timeout']==120
+            assert kwargs['env']['WINEPREFIX']==str(fresh_prefix)
+            assert kwargs['env']['WINEDLLOVERRIDES']=='ddraw=;dsound=n;mscoree,mshtml=;winemenubuilder.exe=d'
+            seed(fresh_prefix)
+            return subprocess.CompletedProcess(command,0)
+        provider.subprocess.run = bootstrap
+        try:provider.install_prefix(fresh,fresh_metadata,environment)
+        finally:provider.subprocess.run = real_run
+        assert environment==original_environment and fresh_metadata['directplay_bootstrap']['game_environment_unchanged']
+        provider.check_prefix(fresh_prefix)
+
         seed(prefix)
         provider.install_prefix(root, metadata, dict(WINEPREFIX=str(prefix)))
         provider.check_prefix(prefix)
@@ -114,12 +135,12 @@ def main():
             raise AssertionError('Concurrent refusal launched a process')
         if fingerprints() != before:
             raise AssertionError('Sources/claims changed during guard validation')
-        report = dict(before, success=True, cases=2, guard_rejections=rejected,
+        report = dict(before, success=True, cases=3, guard_rejections=rejected,
                       supplied_archive_sha256=provider.SOURCE_SHA256,
                       scope='Private file/ownership fixtures; no game/DLL code/network execution.',
                       game_executed=False, networking_executed=False, builtin_inputs=provider.BUILTIN)
         (root / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
-        print('DirectPlay prefix guards passed:2 cases/' + str(rejected) + ' unchanged rejections', flush=True)
+        print('DirectPlay prefix guards passed:3 cases/' + str(rejected) + ' unchanged rejections', flush=True)
     finally:
         subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
 

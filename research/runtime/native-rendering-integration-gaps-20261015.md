@@ -18,7 +18,7 @@ Concurrent Cure and native campaign-persistence work is outside this renderer sc
 
 | Area | What the current code establishes | Remaining gap |
 | --- | --- | --- |
-| Long sessions | V3 wrapping transport, private queue, owned emitter and decoder pass actual traffic beyond 4 GiB with bounded storage. | Finite sequences, capacity/deadlines and a fresh complete V3 original-game journey remain separate. |
+| Long sessions | V3 wrapping transport, private queue, owned emitter and decoder pass actual traffic beyond 4 GiB with bounded storage. | Finite sequences, capacity/deadlines and unbounded original-game duration remain separate; matched controls and a natural-intro 480-World V3 storage journey now pass. |
 | CPU/GPU history | Explicit ordered CPU_READ, physical identity/generation/nonce restoration, Save/Load synchronization and selected GPU copies exist. | Arbitrary raw readers are outside interception; selected unsupported dependencies still refuse. |
 | Complete-native release | Combined mode requires zero forwards/history refusal and positive execution for requested routes. | No capability-checked complete-renderer launch/release contract; reports explicitly retain complete-replacement false. |
 | Optional routes | Six valid families and 43 installed routes; 19 execute across the reviewed camera/spell/storage reports. | 24 are unexercised in those reports, with caller/reachability and World-batching distinctions retained. |
@@ -204,10 +204,13 @@ boundary, not merely seeded-counter arithmetic or a multi-hour original run.
 
 [Protocol and remaining live limitations](native-command-byte-lifetime.md) retain
 finite command/identity domains, 32 MiB callback capacity, pressure deadlines and
-unsupported history. Enabled-intro original execution refuses history before any
-World; a separate no-start attempt has no original bridge traffic. Neither proves
-a fresh complete V3 Save/Load journey or a transport regression. Historical V2
-Save/Load evidence retains its old source hashes. The initial two-ceiling review
+unsupported history. Initial enabled-intro execution terminates with unclassified
+GAP4 before World; another no-start attempt has no bridge traffic. Later matched
+V2/V3 storage controls pass with 495/479 balanced Worlds and normal Quit; Intro0
+is dismissed through ordinary input. See the [startup/storage follow-up](native-v3-live-startup-storage.md)
+for the passing natural-intro 480-World journey and separate independent transition
+assertions. Historical V2 Save/Load
+evidence retains its old source hashes. The initial two-ceiling review
 and all unsuccessful development/build attempts remain immutable.
 
 ## Reproduce this review

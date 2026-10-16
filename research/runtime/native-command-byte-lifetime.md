@@ -34,18 +34,18 @@ wrapping byte counters. The [separate portable session](recorded-native-session-
 validates recorded pixels, rather than extending these synthetic results to all
 original-game paths.
 
-## Fresh original-game attempts: no new Save/Load acceptance
+## Historical original-game attempts
 
 The old [successful V2 storage/pressure journey](resident-command-pressure.md)
-keeps its original source hashes and evidence. Fresh V3 attempts did not close a
-new complete live journey:
+keeps its original source hashes and evidence. The initial V3 attempts did not close a
+complete live journey:
 
 - `working/tests/native-campaign/run-hdv9lamh` refuses unsupported source executable
   hash before launch; later attempts use the independently verified supported
   pristine source installation.
 - `working/tests/native-campaign/run-sh6ibpik` / menu observer `run-78w1i5m0`
-  plays enabled intros and refuses unknown initial history (GAP reason 4) before
-  Main/World. Publication and ACK both reach 1,920,088, then explicit terminal
+  plays enabled intros and terminates with GAP reason 4 before
+  Main/World. Reason 4 has multiple callers; its exact site was not recorded. Publication and ACK both reach 1,920,088, then explicit terminal
   cancellation. This is neither a rollover boundary nor queue capacity failure;
   without a matched V2 original control its cause remains unclassified.
 - `working/tests/native-campaign/run-5qqr6c_l` / observer `run-l9sclquj`, with
@@ -56,8 +56,15 @@ new complete live journey:
 
 Private processes are terminated and original manifest checks pass before/after
 these consuming attempts. These failures must not be hidden by synthetic passes
-or by refreshing old live evidence. Complete V3 Save/Load and enabled-intro
-history remain explicit live acceptance work.
+or by refreshing old live evidence. Subsequent matched V2/V3 controls pass the
+full storage flow on identical 1,288-source fingerprints: 495 and 479 balanced
+Worlds respectively, both with normal Quit. Intro0 is dismissed by ordinary Escape
+after two seconds; natural enabled-intro completion remains a separate assertion.
+The [current uninterrupted V3 journey](native-v3-natural-intro-storage-live-20261016.json)
+subsequently completes both intros, 480 balanced Worlds, Save/Load, both rebuilds,
+changed-canvas reload and normal Quit with a complete source capture. This closes
+the selected V3 live boundary; it is not multi-hour original-game rollover proof.
+See [startup/storage follow-up](native-v3-live-startup-storage.md).
 
 ## Reproduce
 

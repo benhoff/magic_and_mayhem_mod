@@ -38,6 +38,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
                     preferencesStore_.begin(preferencesStorePath,snapshot.value("revision").toString().toLatin1());
                 }
             }
+            if(prepareMenuAssets&&!prepareMenuAssets(QDir(root_).filePath("game"))){fallback("Cannot prepare native menu assets.");if(finished)finished();return;}
             if(nativeCommandsEnabled&&(!prepareNativePresentation||!prepareNativePresentation(root_))){fallback("Cannot create native presentation channels.");if(finished)finished();return;}
             if(nativeVoicesEnabled&&(!prepareNativeAudio||!prepareNativeAudio(QDir(root_).filePath("native-voices.bin")))){fallback("Cannot create native voice channel; see the launch log.");if(finished)finished();return;}
             if(nativeMusicEnabled&&(!prepareNativeMusic||!prepareNativeMusic(QDir(root_).filePath("native-music.bin")))){fallback("Cannot create native music channel; see the launch log.");if(finished)finished();return;}
@@ -227,7 +228,11 @@ void LiveMenuSession::poll(){
     if(!mediaActive_&&resultsAction_&&clock_.elapsed()-resultsRequestedAt_>10000){
         fallback("Results action did not become ready within ten seconds; using original controls.");return;
     }
-    bridge_->heartbeat();MenuBridge::State next;
+    bridge_->heartbeat();
+    // A movie owns presentation and input. Keep the lease alive while leaving
+    // the latest engine state unread for delivery after playback completes.
+    if(mediaActive_)return;
+    MenuBridge::State next;
     if(bridge_->read(next)&&next.sequence!=sequence_){
         sequence_=next.sequence;lastState_=clock_.elapsed();
         if(next.status==MNM_MENU_RETIRED){fallback("Menu adapter retired; using original menus.");return;}

@@ -23,11 +23,11 @@ static void session_archive_gap(u32 reason){
     u32 record[4]={9,++session_archive_sequence,4,reason};write_all(session_file,record,16);
     session_archive_close();lock_diagnostic("session_archive_stopped",0,0,reason,0,0,0,0);
 }
-static void game_session_gap(u32 reason){
+static void game_session_gap_at(u32 reason,const char* file,u32 line){
     command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_GAP);
     if(!session_active)return;
     session_archive_gap(reason);session_active=0;
-    lock_diagnostic("session_gap",0,0,reason,0,0,0,0);
+    lock_diagnostic("session_gap",0,0,reason,game_tracker_site(file,line),0,line,0);
 }
 static void game_session_sync(void){
     const u32 epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);

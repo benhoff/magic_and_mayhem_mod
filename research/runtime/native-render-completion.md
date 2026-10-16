@@ -148,7 +148,10 @@ The [byte-lifetime repair](native-command-byte-lifetime.md) removes four cumulat
 4 GiB ceilings, with actual native and Qt traffic beyond that boundary and PE32
 producer integration controls. The [portable recorded session](recorded-native-session-comparison.md)
 passes all 323 observed original frames through GPU and displayed X11 output.
-These new controls do not renew historical original-game Save/Load evidence:
-two fresh V3 campaign attempts do not complete. Generic action-bound sessions,
-enabled-movie history, later maps, fault/restart and hardware performance remain
-explicit acceptance gaps; complete replacement remains false.
+Subsequent matched V2/V3 original-game storage controls both complete; their
+short accepted Intro0 playback is dismissed through ordinary input. A current V3 journey also naturally completes both intros and the entire storage
+flow with 480 balanced Worlds and a complete source capture. Independent transition
+pixels are a separate assertion in the
+[startup/storage follow-up](native-v3-live-startup-storage.md). Generic action-bound
+sessions, later maps, fault/restart and hardware performance remain explicit
+acceptance gaps; complete replacement remains false.

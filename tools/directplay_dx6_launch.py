@@ -63,9 +63,19 @@ def install_prefix(root, metadata, environment):
         if not all(path.is_file() for path in paths.values()):
             # The normal launcher initializes Wine lazily on its first exec.
             # Finish that initialization before verifying or replacing builtins.
+            # The owned game prefix needs Win32 registration, not optional
+            # browser/CLR installation or integration with the host desktop.
+            # Keep these exclusions local to wineboot; game launch retains its
+            # separately authorized DLL policy.
+            inherited = environment.get('WINEDLLOVERRIDES', '')
+            bootstrap = dict(environment, WINEDEBUG='-all',
+                WINEDLLOVERRIDES=(inherited+';' if inherited else '')+
+                    'mscoree,mshtml=;winemenubuilder.exe=d')
             with (root / 'directplay-prefix-bootstrap.log').open('xb') as log:
-                subprocess.run(['wineboot', '-i'], env=dict(environment, WINEDEBUG='-all'),
+                subprocess.run(['wineboot', '-i'], env=bootstrap,
                                check=True, timeout=120, stdout=log, stderr=subprocess.STDOUT)
+            metadata['directplay_bootstrap'] = dict(optional_components_disabled=True,
+                disabled=['mscoree','mshtml','winemenubuilder.exe'], game_environment_unchanged=True)
         # Check every expected Wine11.16 input before writing any binary.
         for name, path in paths.items():
             if path.is_symlink() or hashlib.sha256(path.read_bytes()).hexdigest() != BUILTIN[name]:

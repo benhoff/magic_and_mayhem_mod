@@ -12786,3 +12786,50 @@ source edits retain prior evidence as historical where stale; BATTLE01 gains fre
 current integration through this new result, without refreshing old fingerprints.
 Incoming foundation3fbfffe2 was reviewed against9fc6b28f; all20 file and26 behavior
 transitions have exact receipts with no missing committed-history accounting.
+
+
+## V3 natural-intro startup, storage and four original raster checkpoints (2026-10-16)
+
+The native resource policy HOST.native-startup-resources is now implemented and
+observed in a fresh private original-game journey. Live widget assets come from
+the admitted staged game and finish loading before channels/process launch; failed
+admission launches neither. Movie polling retains heartbeat but defers menu-ready
+consumption and semantic input until completion. Fresh optional Wine bootstrap
+excludes CLR/browser/menu-builder only in its child environment, preserving the
+actual game's DLL policy and all hash/ownership/refusal guards. GAP logs gain a
+basename/line site and a strict diagnostic V2/V3 selector leaves V3 as default.
+
+Matched source-identical V2/V3 storage controls pass 495/479 balanced Worlds with
+ordinary Intro0 Escape. The current-source V3 journey naturally completes both
+intros (1,777+1,004 decoded/presented frames), Save/Load, both display rebuilds,
+changed-canvas Main Load, fresh native resume and normal Quit. Its 480 Worlds have
+balanced imports/verified returns; ordinary World readbacks and producer forwards
+are zero, while two explicit producer CPU readbacks remain counted. Its complete
+793,147,633-byte resident source capture is preserved. The original save remains
+350,336 bytes with unchanged hash. The harness now honors the runner's existing
+bounded deadline; its earlier fixed-240-second intro refusal remains a failure.
+
+Independent unchanged pinned 32-bit original code matches every word at generations
+51/136/276/421: four storage/rebuild checkpoints, 1,920,000 RGB565 words, zero
+mismatches. Both authored original baselines match too, without asserting general
+history independence. Native replay accepts three or four distinct checkpoints and
+requires all plus zero remaining surfaces. Its earlier fixed-three refusal is
+retained. CPU-reader/sequence controls, two resource admission cases, one movie
+readiness case, three prefix cases/six refusals and 3+17 portable regressions pass.
+Original-manifest, source/input stability and private owned cleanup checks pass.
+See [scope and records](native-v3-live-startup-storage.md),
+[live execution](native-v3-natural-intro-storage-live-20261016.json) and
+[independent World comparison](native-v3-storage-world-original-20261016.json).
+
+Only the new host policy gains a scoped live_observation milestone. Original GUI
+or decoder equivalence, generic action-bound full presented sessions, restored
+simulation state, later maps, actual fault/restart, multi-hour original-game
+rollover and sustained hardware performance remain open. Storage automation emits
+no ordinary smoke-flow cadence steps, so its min-fps argument is not a new
+worst-window performance pass; earlier paint-rate failures remain explicit. Old
+GAP4 lacks an exact caller and stays unclassified. Historical reports and source
+hashes remain unchanged; earlier matched controls become historical where their
+broad supersets predate merged Cure code and the harness deadline change.
+Incoming 910046b3..6f3f7037 committed file/behavior transitions were reviewed with
+exact pending retrospective receipts; this does not assert past gate passes or
+new execution of those unrelated engine branches.

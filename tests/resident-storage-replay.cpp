@@ -20,8 +20,9 @@ QByteArray pixels(const render::Image& image){QByteArray out;out.reserve(image.p
 }
 int main(int argc,char** argv)try{
  QGuiApplication app(argc,argv);require(argc==5,"Expected capture,asset root,checkpoint list,output directory");
- std::set<quint64> selected;for(const auto& c:QJsonDocument::fromJson(read(argv[3])).array())selected.insert(c.toObject()["source_generation"].toString().toULongLong());
- require(selected.size()==3&&*selected.begin()>1,"Three distinct World checkpoints required");
+ const auto requested=QJsonDocument::fromJson(read(argv[3])).array();
+ std::set<quint64> selected;for(const auto& c:requested)selected.insert(c.toObject()["source_generation"].toString().toULongLong());
+ require((requested.size()==3||requested.size()==4)&&selected.size()==unsigned(requested.size())&&*selected.begin()>1,"Three or four distinct World checkpoints required");
  auto opened=assets::AssetStore::create(argv[2]);if(auto* e=std::get_if<assets::Error>(&opened))throw std::runtime_error(e->detail);
  const auto store=std::get<assets::AssetStore>(std::move(opened));QDir out(argv[4]);require(out.mkpath("."),"Output directory");
  QFile input(argv[1]);require(input.open(QIODevice::ReadOnly)&&input.read(8)=="MNMPROF2","Compressed resident capture");
@@ -52,6 +53,6 @@ int main(int argc,char** argv)try{
   if(capture){qToLittleEndian<quint32>(count,draws.data()+16);save(out.filePath(base+"-draws.bin"),draws);checkpoints.append(QJsonObject{{"generation",QString::number(g)},{"draws",int(count)},{"rasters",int(raster)},{"canvas",int(world.canvas())},{"base",base}});}
  }
  }
- require(!renderer.stats().surfaces&&checkpoints.size()==3,"Checkpoint/retirement proof");
+ require(!renderer.stats().surfaces&&checkpoints.size()==int(selected.size()),"Checkpoint/retirement proof");
  save(out.filePath("replay.json"),QJsonDocument(QJsonObject{{"success",true},{"worlds",QString::number(generation)},{"checkpoints",checkpoints},{"remaining_surfaces",0},{"original_oracles_read",false},{"scope","Source-only resident World replay and diagnostic entry/final canvases; no presented whole-session equivalence"}}).toJson());return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

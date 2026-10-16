@@ -148,9 +148,15 @@ game failure/restart and sustained hardware performance remain open. See the
 ## V3 transport boundary
 
 The later [byte-lifetime repair](native-command-byte-lifetime.md) passes native/Qt
-traffic beyond 4 GiB and actual PE32 synthetic producer integration. A fresh V3
-original-game Save/Load journey is **not yet validated**: an enabled-intro run
-refuses unsupported history before World and another attempt never starts the
-original bridge. These do not erase the successful historical V2 storage results
-or establish a new Save/Load rendering regression. The portable 323-frame Quick
-Battle corpus is independent recorded-interval parity, not campaign storage proof.
+traffic beyond 4 GiB and actual PE32 synthetic producer integration. Matched V2/V3
+controls subsequently pass the full storage/rebuild/changed-canvas flow with 495
+and 479 balanced Worlds and normal Quit on identical source fingerprints. These
+controls dismiss Intro0 through ordinary input. A separate
+[current V3 journey](native-v3-natural-intro-storage-live-20261016.json) naturally
+completes both intros and the entire storage/rebuild/reload/normal-Quit flow with
+480 balanced Worlds and a complete source capture. The [fresh independent comparison](native-v3-storage-world-original-20261016.json)
+passes all four storage/rebuild checkpoints: 1,920,000 RGB565 words with zero
+mismatches. This is selected World raster evidence, not full session output parity. Earlier pre-World GAP4 and no-start
+failures remain historical and unclassified as transport regressions. See the
+[startup/storage follow-up](native-v3-live-startup-storage.md). The portable
+323-frame Quick Battle corpus remains separate recorded-interval parity.

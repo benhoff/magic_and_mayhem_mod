@@ -281,3 +281,17 @@ changes before treating minimap CPU work or GL submission as the sole bottleneck
 The original pacer needs its own simulation/presentation contract before changing
 cadence. This batch adds measurement, not a production optimization or game-speed
 change.
+
+## Later bounded storage capture (2026-10-16)
+
+A separate current-source V3 [startup/storage journey](native-v3-live-startup-storage.md)
+now completes both intros, Save/Load, both display rebuilds, changed-canvas reload
+and normal Quit, retaining a complete 480-World compressed corpus. All four storage
+World checkpoints match unchanged original raster code exactly. This resolves
+complete-capture admission for that selected functional journey; the failed
+casting/combat and performance captures above retain their original outcomes.
+
+Storage automation emits no ordinary smoke-flow cadence steps, so its requested
+min-fps argument does not execute the smoke validator's worst-window checks. The
+480-World result is not new sustained hardware or per-window paint-rate evidence,
+and does not replace the matched TITAN prefix or its causal-attribution boundary.

@@ -167,6 +167,18 @@ public:
                     else if(liveMenus_&&liveMenus_->running())statusBar()->showMessage("Movie finished; resuming native session.");};
                 return media_->create(path);
             };
+            liveMenus_->prepareMenuAssets=[this](const QString& root){
+                menuAssetsLoaded_=false;QString error;QElapsedTimer assetClock;assetClock.start();
+                    if((liveMenus_->realmMenusEnabled&&!realmMenus_->loadAssets(root,&error))||(liveMenus_->characterMenusEnabled&&!liveCharacter_->loadAssets(root,&error))||!liveHostLobby_->loadAssets(root,&error)||!liveSessions_->loadAssets(root,&error)||!liveCreate_->loadAssets(root,&error)||!liveJoin_->loadAssets(root,&error)||!liveGrimoire_->loadAssets(root,&error)||!liveLoad_->loadAssets(root,&error)||!liveSave_->loadAssets(root,&error)||!defeatMenus_->loadAssets(root,&error)||!liveRegion_->loadAssets(root,&error)||!livePreferences_->loadAssets(root,&error)||!liveResults_->loadAssets(root,&error)||!liveMain_->loadAssets(root,&error)||!liveQuick_->loadAssets(root,&error)||!battleMenus_->loadAssets(root,&error)||!liveSpells_->loadAssets(root,&error)){log_->appendPlainText(error);return false;}
+                    if(liveMini_&&!liveMini_->loadAssets(root,&error)){log_->appendPlainText(error);return false;}
+                    for(int i=0;i<6;++i)if(i!=0&&i!=1&&i!=2&&i!=3&&i!=4)liveMain_->findChild<QPushButton*>(QString("mainMenuAction%1").arg(i))->setEnabled(false);
+                    liveMain_->findChild<QPushButton*>("mainMenuAction1")->setEnabled(liveMenus_->storageMenusEnabled&&liveMenus_->campaignPreferencesEnabled);
+                    for(int i=0;i<2;++i)liveQuick_->findChild<QPushButton*>(QString("quickBattleAction%1").arg(i))->setEnabled(liveMenus_->multiplayerMenusEnabled&&liveMenus_->grimoireMenusEnabled);
+                    menuAssetsLoaded_=true;
+                    const QJsonObject proof{{"root",root},{"milliseconds",assetClock.elapsed()},{"before_producer",true}};
+                    std::fprintf(stderr,"NATIVE_MENU_ASSETS %s\n",QJsonDocument(proof).toJson(QJsonDocument::Compact).constData());
+                    return true;
+            };
             liveMenus_->prepareNativePresentation=[this](const QString& directory){
                 QStringList arguments;
                 return createNativePresentation(directory+"/render-frame.bin",directory+"/render-input.bin",directory+"/render-commands.bin",true,arguments);
@@ -179,14 +191,7 @@ public:
             liveMenus_->finished=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);finished();if(closeAfterGame_)close();};
             liveMenus_->stateChanged=[this](const MenuBridge::State& state){
                 if(residentTerminal_)return;
-                if(!menuAssetsLoaded_){QString error;const auto root=QDir(repo_).filePath("working/game-nocd");
-                    if((liveMenus_->realmMenusEnabled&&!realmMenus_->loadAssets(root,&error))||(liveMenus_->characterMenusEnabled&&!liveCharacter_->loadAssets(root,&error))||!liveHostLobby_->loadAssets(root,&error)||!liveSessions_->loadAssets(root,&error)||!liveCreate_->loadAssets(root,&error)||!liveJoin_->loadAssets(root,&error)||!liveGrimoire_->loadAssets(root,&error)||!liveLoad_->loadAssets(root,&error)||!liveSave_->loadAssets(root,&error)||!defeatMenus_->loadAssets(root,&error)||!liveRegion_->loadAssets(root,&error)||!livePreferences_->loadAssets(root,&error)||!liveResults_->loadAssets(root,&error)||!liveMain_->loadAssets(root,&error)||!liveQuick_->loadAssets(root,&error)||!battleMenus_->loadAssets(root,&error)||!liveSpells_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
-                    if(liveMini_&&!liveMini_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
-                    for(int i=0;i<6;++i)if(i!=0&&i!=1&&i!=2&&i!=3&&i!=4)liveMain_->findChild<QPushButton*>(QString("mainMenuAction%1").arg(i))->setEnabled(false);
-                    liveMain_->findChild<QPushButton*>("mainMenuAction1")->setEnabled(liveMenus_->storageMenusEnabled&&liveMenus_->campaignPreferencesEnabled);
-                    for(int i=0;i<2;++i)liveQuick_->findChild<QPushButton*>(QString("quickBattleAction%1").arg(i))->setEnabled(liveMenus_->multiplayerMenusEnabled&&liveMenus_->grimoireMenusEnabled);
-                    menuAssetsLoaded_=true;
-                }
+                if(!menuAssetsLoaded_){liveMenus_->fallback("Native menu assets were not prepared before launch.");return;}
                 QString error;if(!realmMenus_->present(state,&error)||!characterMenus_->present(state,&error)||!hostLobby_->present(state,&error)||!sessionMenus_->present(state,&error)||!multiplayerMenus_->present(state,&error)||!grimoireMenus_->present(state,&error)||!storageMenus_->present(state,&error)||!defeatMenus_->present(state,&error)||!regionMenus_->present(state,&error)||!preferencesMenus_->present(state,&error)||!resultMenus_->present(state,&error)||!battleMenus_->present(state,&error)||!spellMenus_->present(state,&error)||(miniMenus_&&!miniMenus_->present(state,&error))){liveMenus_->fallback(error);return;}
                 QWidget* screen=state.screen==4?static_cast<QWidget*>(liveRealm_):state.screen==20?static_cast<QWidget*>(liveCharacter_):state.screen==24?static_cast<QWidget*>(liveHostLobby_):state.screen==21?static_cast<QWidget*>(liveSessions_):state.screen==15?static_cast<QWidget*>(liveCreate_):state.screen==16?static_cast<QWidget*>(liveJoin_):state.screen==MNM_MENU_GRIMOIRE_SCREEN?static_cast<QWidget*>(liveGrimoire_):state.screen==MNM_MENU_LOAD_SCREEN?static_cast<QWidget*>(liveLoad_):state.screen==13?static_cast<QWidget*>(liveSave_):state.screen==MNM_MENU_DEFEAT_SCREEN?static_cast<QWidget*>(liveDefeat_):state.screen==18?static_cast<QWidget*>(liveRegion_):state.screen==10?static_cast<QWidget*>(livePreferences_):state.screen==MNM_MENU_RESULT_SCREEN?static_cast<QWidget*>(liveResults_):liveMini_&&state.screen==MNM_MENU_MINI_SCREEN?static_cast<QWidget*>(liveMini_):state.screen==7?static_cast<QWidget*>(liveSpells_):state.screen==14?static_cast<QWidget*>(liveSetup_):state.screen==25?static_cast<QWidget*>(liveMap_):state.screen==3?static_cast<QWidget*>(liveMain_):state.screen==22?static_cast<QWidget*>(liveQuick_):viewport_;
                 if(input_)input_->suspend(residentTerminal_ || screen!=viewport_);
@@ -389,6 +394,11 @@ private:
             input_->setState(inputState_.get());inputTimer_.start();
             arguments={"--stream",path,"--input",inputPath};elapsed_.restart();
             if(nativeCommands_){
+                const auto selectedWire=qEnvironmentVariable("MNM_RENDER_COMMAND_WIRE_VERSION");
+                if(!selectedWire.isEmpty() && selectedWire!="2" && selectedWire!="3"){
+                    statusBar()->showMessage("Invalid diagnostic command wire version.");return false;
+                }
+                const quint32 wireVersion=selectedWire=="2"?2:3;
                 const auto presented=[this]{++nativeCommandFrames_;input_->suspend(residentTerminal_ || (media_ && media_->movieActive()) || (menuStack_&&menuStack_->currentWidget()!=viewport_));placeholder_->hide();gl_->show();statusBar()->showMessage((residentWorld_||renderWorker_)?"Native World presentation active.":"Native command presentation active. Original rendering retained.");};
                 const auto stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
                 const auto session=(QRandomGenerator::global()->generate()&0x7fffffffu)|1u;
@@ -402,7 +412,7 @@ private:
                     renderWorker_->framePresented=presented;
                     // Repeated copied status does not re-run widget transitions.
                     renderWorker_->stateChanged=[this,stateChanged](auto state){if(state!=lastRenderState_){lastRenderState_=state;stateChanged(state);}};
-                    if(!renderWorker_->create(commandPath,session,3,120000)){statusBar()->showMessage(renderWorker_->error());return false;}
+                    if(!renderWorker_->create(commandPath,session,wireVersion,120000)){statusBar()->showMessage(renderWorker_->error());return false;}
                     frames_.setInterval(1);
                 }else{
                     commands_=std::make_unique<LiveCommandSession>(*gl_);
@@ -414,7 +424,7 @@ private:
                         frames_.setInterval(1);
                     }
                     commands_->stateChanged=stateChanged;commands_->framePresented=presented;
-                    if(!commands_->create(commandPath,session,continuous?3:1,120000)){statusBar()->showMessage(commands_->error());return false;}
+                    if(!commands_->create(commandPath,session,continuous?wireVersion:1,120000)){statusBar()->showMessage(commands_->error());return false;}
                 }
                 arguments.append({"--command-channel",commandPath});
                 if(continuous){input_->suspend(true);arguments.append({"--render-control",commandPath+".control"});}

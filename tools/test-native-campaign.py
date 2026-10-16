@@ -39,6 +39,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py', 'tools/campaign_render_oracle.py', 'tools/pixel_route_requirements.py', 'tools/campaign_pixel_routes.py']
 SOURCES += ['tools/campaign_storage.py', 'tools/menu-storage-input.py', 'tools/menu_save_store.py', 'apps/qt-shell/campaign_storage_test.cpp', 'tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
+SOURCES += ['tools/directplay_dx6_launch.py']
 
 
 def linked_compiler_sources(build, root):
@@ -382,6 +383,7 @@ def main():
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
+    parser.add_argument('--command-wire-version',type=int,choices=(2,3),default=3,help='Diagnostic matched transport control; continuous public default is V3')
     parser.add_argument('--independent-world',action='store_true',help='Use explicit owned V5 delivery and independent native World/HUD drawing')
     parser.add_argument('--resident-world',action='store_true',help='Require GPU-resident World delivery and ordered public UI composition with no pixel return')
     parser.add_argument('--profile-resident',action='store_true',help='Opt-in bounded CPU/GPU stage and original pacing diagnostics; cadence is instrumented')
@@ -398,6 +400,7 @@ def main():
     parser.add_argument('--legacy-media',action='store_true',help='Opt out of native movie/file-sound routing')
     parser.add_argument('--no-native-music',action='store_true',help='Opt out of the native CD route')
     parser.add_argument('--skip-movies',action='store_true',help='Suppress intro playback in this bounded campaign run')
+    parser.add_argument('--require-intro-completion',action='store_true',help='Require both enabled intros to complete with decoded/presented frames and no producer media cancellation')
     parser.add_argument('--disable-wine-dsound',action='store_true',help='Force Wine DirectSound disable; marked native factory/media staging disables it by default')
     parser.add_argument('--wine-import-census',action='store_true',help='Count original import calls after native adapters; excludes dynamic/COM/forwarded calls')
     parser.add_argument('--initial-silent-start',action='store_true',help='Require initially absent physical outputs and progressing native discard/decoder playback')
@@ -425,6 +428,9 @@ def main():
     parser.add_argument('--mini-capture-delay-ms',type=int,choices=range(0,1001),default=0,metavar='0..1000',help='Bounded GUI stall after native Mini submission, before diagnostic capture; requires Save/Load')
     parser.add_argument('--require-command-pressure',action='store_true',help='Require actual high/low admission waits and clean joined shutdown in the rebuilt Save/Load journey')
     args = parser.parse_args()
+    if args.require_intro_completion:
+        if args.skip_movies or args.legacy_media:parser.error('Intro completion requires enabled native movies')
+        args.default_media=True
     if args.require_command_pressure and not (args.resident_world and args.save_load and args.recreate_world):parser.error('--require-command-pressure requires --resident-world --save-load --recreate-world')
     if args.mini_capture_delay_ms and not args.save_load:parser.error('--mini-capture-delay-ms requires --save-load')
     if args.loading_menu_seconds and (not args.recreate_world or args.independent_world or args.capture_resident or not 1<=args.loading_menu_seconds<=120):parser.error('Loading menu dwell requires synchronous uncaptured --recreate-world and 1..120 seconds')
@@ -491,6 +497,8 @@ def main():
     out = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
     print('Campaign test evidence: ' + str(out), flush=True)
     report = {'schema': 1, 'success': False, 'status': 'running', 'stage': 'build',
+              'command_wire_version':args.command_wire_version,
+              'intro_completion_required':args.require_intro_completion,
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'native_voices_required':args.native_voices, 'native_audio_default_required':args.default_audio, 'legacy_audio_requested':args.legacy_audio, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
@@ -514,6 +522,7 @@ def main():
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         declaration_command.extend(['--behavior','HOST.menu-startup-admission'])
+        declaration_command.extend(['--behavior','HOST.native-startup-resources','--scenario','HOST.native-startup-resources.live'])
         if args.require_command_pressure:declaration_command.extend(['--behavior','NR.resident-command-pressure','--scenario','NR.resident-command-pressure.initiate-reload'])
         if args.save_load:declaration_command.extend(['--behavior','HOST.native-render-save-load','--scenario','HOST.native-render-save-load.campaign','--behavior','HOST.mini-dispatch-admission','--scenario','HOST.mini-dispatch-admission.storage'])
         if args.recreate_world:declaration_command.extend(['--behavior','NR.resident-world-canvas-transition','--scenario','NR.resident-world-canvas-transition.reload'])
@@ -581,12 +590,13 @@ def main():
         if not args.native_draw:raise ValueError('Resident World requires native drawing')
         # Declare the complete repository compiler-input superset before launch;
         # retain exact current bytes rather than claiming old renderer evidence.
-        for directory in ('apps','assets','audio','compat','reconstruction','renderer','runtime','protocols'):
+        for directory in ('apps','assets','audio','compat','reconstruction','renderer','runtime','protocols','game'):
             for source in (ROOT/directory).rglob('*'):
                 if source.is_file() and (source.suffix in ('.cpp','.hpp','.h','.c','.S','.py') or source.name=='CMakeLists.txt'):
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    env['MNM_RENDER_COMMAND_WIRE_VERSION']=str(args.command_wire_version)
     env['MNM_CAMPAIGN_STORAGE']='1' if args.save_load else '0'
     env['MNM_CAMPAIGN_RECREATE_WORLD']='1' if args.recreate_world else '0'
     env['MNM_CAMPAIGN_LOADING_MENU_SECONDS']=str(args.loading_menu_seconds)
@@ -750,6 +760,16 @@ def main():
                 while time.monotonic() < deadline:
                     lines = (out / 'shell.log').read_text(errors='replace').splitlines()
                     roots = [Path(line[20:]).resolve() for line in lines if line.startswith('Evidence directory: ')]
+                    if len(roots)==1 and roots[0].is_relative_to(ROOT/'working/experiments/menu-observer'):
+                        channel=roots[0]/'render-commands.bin'
+                        if channel.exists():
+                            with channel.open('rb') as wire:header=wire.read(64)
+                            if len(header)==64 and header[:8] in (b'MNMRDC02',b'MNMRDC03'):
+                                words=struct.unpack('<16I',header)
+                                if words[2]!=args.command_wire_version:raise ValueError('Command transport differs from declared V2/V3 control')
+                                if words[6]==3:
+                                    report['command_terminal']={'version':words[2],'session':words[4],'published':words[5],'state':words[6],'reason':words[7],'cancelled':words[8],'acknowledged':words[9]}
+                                    raise RuntimeError('Native command producer terminated before campaign completion: reason '+str(words[7]))
                     if args.other_pixel_producers and len(roots)==1 and 'pixel_producer_builds' not in report and (roots[0]/'game/native-pixel-producers.bin').exists():
                         report['pixel_producer_builds']=validate_builds(roots[0],ROOT,report['sources'])
                     if args.other_pixel_producers and len(roots)==1 and (roots[0]/'game/native-cpu-history-refusal.bin').exists():
@@ -768,6 +788,10 @@ def main():
                     raise RuntimeError('Public campaign flow exceeded its deadline')
             flow = json.loads((out / 'flow.json').read_text())
             report['flow'] = flow
+            preloads=[json.loads(line.split(' ',1)[1]) for line in (out/'shell.log').read_text().splitlines() if line.startswith('NATIVE_MENU_ASSETS ')]
+            if len(preloads)!=1 or not preloads[0].get('before_producer') or preloads[0]['root']!=str(roots[0]/'game'):
+                raise ValueError('Native menu resources were not prepared from the admitted staged game before launch')
+            report['native_menu_resources']=preloads[0]
             if args.resident_world and len(roots)==1 and roots[0].is_relative_to(ROOT/'working/experiments/menu-observer'):
                 resident_path=roots[0]/'resident-world-report.json'
                 if resident_path.exists():
@@ -863,6 +887,13 @@ def main():
                     raise ValueError('Native movie decoding/output/completion history missing or failed')
                 if any(entry.get('status') in (5,6) for entry in media):raise ValueError('Native media rejected or failed a submitted request')
                 report['native_media']=media
+                if args.require_intro_completion:
+                    intros=[row for row in media if row.get('operation')==1 and Path(row.get('asset','')).name.lower() in ('intro0.avi','intro1.avi')]
+                    if {Path(row['asset']).name.lower() for row in intros}!={'intro0.avi','intro1.avi'} or any(row.get('status')!=3 or not row.get('accepted') or min(row.get('video_frames',0),row.get('presented_video_frames',0))<=0 for row in intros):
+                        raise ValueError('Enabled intros did not naturally complete decoded and presented video')
+                    with (roots[0]/'native-media.bin').open('rb') as wire:media_header=wire.read(64)
+                    if len(media_header)!=64 or struct.unpack_from('<I',media_header,48)[0]:raise ValueError('Media producer cancelled after a host/acceptance/playback timeout')
+                    report['intro_completion']={'verified':True,'movies':[{k:row[k] for k in ('request','status','video_frames','presented_video_frames','asset')} for row in intros],'producer_cancelled_request':0,'scope':'Natural completion of both encoded intro clips; no original decoder pixel equivalence claim'}
             if args.native_music:
                 from native_music_launch import validate_activity as validate_music,catalog_inputs
                 report['native_music']=validate_music(json.loads((roots[0]/'native-music-report.json').read_text()),allow_initial_silence=args.initial_silent_start)
