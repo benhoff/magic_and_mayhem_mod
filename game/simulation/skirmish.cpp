@@ -53,8 +53,8 @@ void clear(Wizard &w) {
     w.target.reset();
 }
 void orderShape(const SkirmishOrder &o) {
-    require(static_cast<unsigned>(o.kind) <= 5 &&
-                ((o.kind == SkirmishOrderKind::bolt || o.kind == SkirmishOrderKind::attack || o.kind == SkirmishOrderKind::cure) ==
+    require(static_cast<unsigned>(o.kind) <= 6 &&
+                ((o.kind == SkirmishOrderKind::bolt || o.kind == SkirmishOrderKind::attack || o.kind == SkirmishOrderKind::cure || o.kind == SkirmishOrderKind::sphere) ==
                  bool(o.target)) &&
                 ((o.kind == SkirmishOrderKind::summon || o.kind == SkirmishOrderKind::move) ==
                  bool(o.destination)),
@@ -394,7 +394,7 @@ void validateSkirmish(const State &world, const CombatState &combat, const Skirm
             std::find_if(s.units.begin(), s.units.end(),
                          [&](const UnitRoleRecord &r) { return r.actor == o.subject; });
         const bool casting =
-            o.kind == SkirmishOrderKind::summon || o.kind == SkirmishOrderKind::bolt || o.kind == SkirmishOrderKind::cure;
+            o.kind == SkirmishOrderKind::summon || o.kind == SkirmishOrderKind::bolt || o.kind == SkirmishOrderKind::cure || o.kind == SkirmishOrderKind::sphere;
         require(e && e->owner == 0 && role != s.units.end() &&
                     casting == (role->role == UnitRole::wizard),
                 "pending order identity/ownership/role mismatch");
@@ -402,6 +402,8 @@ void validateSkirmish(const State &world, const CombatState &combat, const Skirm
             const auto *t = entity(world, *o.target);
             require(t && t->owner == (o.kind == SkirmishOrderKind::cure ? 0U : 1U) && fighter(combat, *o.target),
                     "pending target identity/hostility mismatch");
+            if (o.kind==SkirmishOrderKind::sphere)
+                require(decodeBattleSystems(world.systems).effects.identity, "pending Sphere without effect runtime");
             if (o.kind==SkirmishOrderKind::cure)
                 require(decodeBattleSystems(world.systems).effects.identity && std::any_of(s.units.begin(),s.units.end(),[&](const auto &r){return r.actor==*o.target && r.role==UnitRole::sentinel;}), "pending Cure target/runtime mismatch");
         }
@@ -484,13 +486,15 @@ void SkirmishSession::enqueue(SkirmishOrder o) {
     const auto role = std::find_if(s.units.begin(), s.units.end(), [&](const UnitRoleRecord &r) {
                           return r.actor == o.subject;
                       })->role;
-    const bool casting = o.kind == SkirmishOrderKind::summon || o.kind == SkirmishOrderKind::bolt || o.kind == SkirmishOrderKind::cure;
+    const bool casting = o.kind == SkirmishOrderKind::summon || o.kind == SkirmishOrderKind::bolt || o.kind == SkirmishOrderKind::cure || o.kind == SkirmishOrderKind::sphere;
     require(casting == (role == UnitRole::wizard),
             casting ? "Select your wizard to cast" : "Select a Sentinel for creature orders");
     if (o.target) {
         const auto *t = world().find(*o.target);
         const auto *tf = fighter(c, *o.target);
         require(t && tf && tf->health && t->owner == (o.kind == SkirmishOrderKind::cure ? 0U : 1U), "Select a living eligible target");
+        if (o.kind == SkirmishOrderKind::sphere)
+            require(effects_ && effects_->supports(Spell::sphere), "Magic Sphere runtime unavailable");
         if (o.kind == SkirmishOrderKind::cure)
             require(effects_ && std::any_of(s.units.begin(),s.units.end(),[&](const auto &r) {return r.actor==*o.target && r.role==UnitRole::sentinel;}), "Cure requires an enabled runtime and a friendly creature");
     }
@@ -594,12 +598,13 @@ SkirmishReport SkirmishSession::step(TickInput input) {
             else
                 emit(SkirmishEventKind::refused, o.subject, o.target, Spell::bolt,
                      SkirmishRefusal::target);
-        } else if (o.kind == SkirmishOrderKind::cure) {
+        } else if (o.kind == SkirmishOrderKind::cure || o.kind == SkirmishOrderKind::sphere) {
+            const auto selectedSpell=o.kind == SkirmishOrderKind::cure ? Spell::cure : Spell::sphere;
             auto refusal=SkirmishRefusal::busy;
             if (s.wizards[0].spell==Spell::none)
-                refusal=effects_ ? effects_->cast(combat,s,o.subject,*o.target) : SkirmishRefusal::target;
+                refusal=effects_ ? effects_->castSpell(combat,s,selectedSpell,o.subject,*o.target) : SkirmishRefusal::target;
             emit(refusal==SkirmishRefusal::none ? SkirmishEventKind::casting : SkirmishEventKind::refused,
-                 o.subject,o.target,Spell::cure,refusal);
+                 o.subject,o.target,selectedSpell,refusal);
         } else
             combat.enqueue({o.kind == SkirmishOrderKind::move   ? CombatOrderKind::move
                             : o.kind == SkirmishOrderKind::stop ? CombatOrderKind::stop

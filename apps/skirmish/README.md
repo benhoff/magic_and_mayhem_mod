@@ -155,3 +155,15 @@ state against headless continuation, including one heal and win/advance.
 Use `mnm-map-campaign-cli ASSET_ROOT create-cure OUTPUT` for the optional Cure
 profile; ordinary map creation retains existing checkpoint identities. See
 `research/runtime/native-map-cure-automation.md` for bounds and validation scope.
+
+New map campaigns now enable **Magic Sphere** and **Cure**. Select your wizard,
+choose Magic Sphere, then click an enemy. Its straight projectile can miss a
+moving target and stops at blocked/occupied terrain and the sealed perimeter.
+Save/Load campaign retains simultaneous Sphere and Cure continuation. Existing
+map checkpoints keep their previous spell profile and content identity.
+
+`mnm-map-campaign-cli ASSET_ROOT create-sphere OUTPUT` creates that profile from
+the CLI. The combined automated journey is
+`tools/test-native-sphere-map.py ASSET_ROOT --output NEW_DIRECTORY`, run under
+the main storage guard. It includes normal/sanitized contracts and actual Qt
+move/cast/save/restart/win/advance checks. See `research/runtime/native-sphere-battle.md`.

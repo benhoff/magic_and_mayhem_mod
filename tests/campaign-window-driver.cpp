@@ -173,6 +173,9 @@ void campaignWindow(const QString &script, const QString &output, Window &window
                     }
                 } else if (kind == "expect") {
                     const auto &p = c.campaign()->progress();
+                    if (action.contains("spheres")) require(c.view().spheres.size()==unsigned(action["spheres"].toInt()),"Wrong active Sphere count");
+                    if (action.contains("sphere_enabled")) require(c.view().sphereEnabled==action["sphere_enabled"].toBool(),"Wrong Sphere availability");
+                    if (action.contains("cure_enabled")) require(c.view().cureEnabled==action["cure_enabled"].toBool(),"Wrong Cure availability");
                     if (action.contains("cures")) require(c.view().cures.size()==unsigned(action["cures"].toInt()),"Wrong active Cure count");
                     if (action.contains("health")) {
                         const auto view=c.view();auto it=std::find_if(view.units.begin(),view.units.end(),[&](const auto &u){return u.actor.slot==unsigned(action["actor"].toInt());});

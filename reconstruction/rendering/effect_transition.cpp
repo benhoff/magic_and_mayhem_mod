@@ -17,15 +17,16 @@ bool near(std::array<unsigned,3> a,std::array<unsigned,3> b,unsigned w,unsigned 
     const auto dx=delta(a[0],b[0]),dy=delta(a[1],b[1]);
     return std::min(dx,w-dx)<=1 && std::min(dy,h-dy)<=1 && delta(a[2],b[2])<=1;
 }
-void validateCell(const EffectCell& cell){
-    if(cell.terrain>3)
-        throw std::invalid_argument("Effect transition requires terrain entries in catalog 0..3");
+void validateCell(const EffectCell& cell,const EffectTerrainCatalog& occupancy){
+    if(cell.terrain>=occupancy.size())
+        throw std::invalid_argument("Effect transition terrain outside owned catalog");
 }
 }
-unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,EffectTransitionState& state,
+unsigned transitionEffectCatalog(EffectPlacementPool& pool,unsigned slot,EffectTransitionState& state,
                                     unsigned width,unsigned height,unsigned layers,
                                     const std::vector<EffectCleanupColumn>& columns,bool updateMembership,
-                                    const EffectTerrainOccupancy& occupancy){
+                                    const EffectTerrainCatalog& occupancy){
+    if(occupancy.empty() || occupancy.size()>4096)throw std::invalid_argument("Effect terrain catalog bound");
     if(!width || !height || !layers || width>128 || height>128 || layers>32 ||
        pool.cells().size()!=std::size_t(width)*height*layers || slot>=pool.records().size())
         throw std::invalid_argument("Effect transition pool dimensions/slot outside owned bounds");
@@ -38,7 +39,7 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,Effe
     for(auto pos:{check.initialPosition,state.previousPosition})
         if(pos[0]>=width || pos[1]>=height || pos[2]>=layers)
             throw std::invalid_argument("Effect transition cache outside dimensions");
-    validateCell(pool.cells()[check.cell]);
+    validateCell(pool.cells()[check.cell],occupancy);
     if(state.terrain!=pool.cells()[check.cell].terrain)
         throw std::invalid_argument("Effect transition terrain reference mismatch");
     std::vector<bool> seen(pool.records().size(),false);
@@ -67,7 +68,7 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,Effe
         for(unsigned k=0;k<3;++k)r.sentinels[6+k]=position[k];
         if(position!=r.position){
             const auto destination=(position[2]*height+position[1])*width+position[0];
-            validateCell(candidate.cells()[destination]);
+            validateCell(candidate.cells()[destination],occupancy);
             if(updateMembership){
             auto& oldCell=candidate.cells()[r.cell];
             if(oldCell.head==slot)oldCell.head=r.next;
@@ -108,4 +109,12 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,Effe
     }
     pool=std::move(candidate);state=std::move(movement);return 3;
 }
+unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,EffectTransitionState& state,
+                                    unsigned width,unsigned height,unsigned layers,
+                                    const std::vector<EffectCleanupColumn>& columns,bool updateMembership,
+                                    const EffectTerrainOccupancy& occupancy){
+    return transitionEffectCatalog(pool,slot,state,width,height,layers,columns,updateMembership,
+                                   EffectTerrainCatalog(occupancy.begin(),occupancy.end()));
+}
+
 }

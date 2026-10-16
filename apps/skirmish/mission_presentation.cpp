@@ -48,6 +48,7 @@ MissionPresentation::MissionPresentation(const MapCampaignResources &resources) 
     terrain_=std::move(sorted);
 }
 QPoint MissionPresentation::center(game::Point p) const {return project(p.x*32+16,p.y*32+16,p.z*16);}
+QPoint MissionPresentation::fineCenter(game::Point p) const {return project(p.x,p.y,p.z);}
 std::vector<MissionLayer> MissionPresentation::layers(const std::vector<game::Point> &actors) const {
     if(actors.size()>32) throw std::invalid_argument("Campaign actor presentation budget exceeded");
     std::vector<MissionLayer> entries;std::vector<reconstruction::SpriteQueueEntry> queue;

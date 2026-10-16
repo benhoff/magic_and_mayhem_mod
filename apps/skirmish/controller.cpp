@@ -72,6 +72,8 @@ ArenaView Controller::view() const {
     v.projectiles = s.projectiles;
     v.cureEnabled = bool(session().effectsRuntime());
     v.cureMana = cureCost;
+    v.sphereEnabled = session().effectsRuntime() && session().effectsRuntime()->supports(game::Spell::sphere);
+    for (const auto &effect : sphereViews(session().combat())) v.spheres.push_back(effect.fine);
     for (const auto &effect : cureViews(session().combat())) v.cures.push_back(effect.position);
     v.selected = selected_;
     v.feedback = feedback_;
@@ -171,6 +173,7 @@ void Controller::setMode(CursorMode m) {
     mode_ = m;
     feedback_ = m == CursorMode::summon ? "Click an empty cell within two cells of your wizard."
                 : m == CursorMode::cure ? "Click a living friendly Sentinel to cast Cure."
+                : m == CursorMode::sphere ? "Click a living enemy to cast Magic Sphere."
                 : m == CursorMode::bolt ? "Click a living enemy to cast Arc Bolt."
                                         : "Select a unit.";
     changed();
@@ -192,15 +195,15 @@ void Controller::cell(game::Point p, bool right) {
         if (!selected_ || !v.cureEnabled || hit == v.units.end() || hit->owner || hit->role != game::UnitRole::sentinel)
             throw std::invalid_argument("Choose a living friendly Sentinel");
         order = game::SkirmishOrder{game::SkirmishOrderKind::cure, *selected_, hit->actor, {}};
-    } else if (mode_ == CursorMode::bolt) {
+    } else if ((mode_ == CursorMode::bolt || mode_ == CursorMode::sphere)) {
         if (!selected_ || hit == v.units.end() || !hit->owner)
             throw std::invalid_argument("Choose a living enemy");
-        order = game::SkirmishOrder{game::SkirmishOrderKind::bolt, *selected_, hit->actor, {}};
+        order = game::SkirmishOrder{mode_ == CursorMode::sphere ? game::SkirmishOrderKind::sphere : game::SkirmishOrderKind::bolt, *selected_, hit->actor, {}};
     } else if (right) {
         if (!selected_)
             throw std::invalid_argument("Select a friendly unit first");
         if (v.canCast && hit != v.units.end() && hit->owner)
-            order = game::SkirmishOrder{game::SkirmishOrderKind::bolt, *selected_, hit->actor, {}};
+            order = game::SkirmishOrder{mode_ == CursorMode::sphere ? game::SkirmishOrderKind::sphere : game::SkirmishOrderKind::bolt, *selected_, hit->actor, {}};
         else if (v.canOrder)
             order = game::SkirmishOrder{
                 hit != v.units.end() && hit->owner ? game::SkirmishOrderKind::attack
@@ -278,7 +281,7 @@ void Controller::newMapCampaign(std::filesystem::path root) {
     pause();
     if(root.empty()) root=mapRoot_;
     if(root.empty()) throw std::invalid_argument("Select the installed game data directory");
-    auto resources=mapCampaignResources(root);
+    auto resources=mapCampaignResources(root,true,true);
     auto presentation=std::make_shared<const MissionPresentation>(*resources);
     auto candidate=std::make_unique<game::CampaignSession>(skirmish::newMapCampaign(resources));
     candidate->startMission();
@@ -301,7 +304,8 @@ void Controller::loadCampaign(const std::filesystem::path &path) {
     if(progress.identity.id=="native-plains-campaign") {
         if(mapRoot_.empty()) throw std::invalid_argument("Load this campaign with --asset-root GAME_DIRECTORY, or start a map campaign first");
         const bool enabled=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"cure")!=w.spells.end();});
-        auto resources=mapCampaignResources(mapRoot_,enabled);
+        const bool spheres=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"magic-sphere")!=w.spells.end();});
+        auto resources=mapCampaignResources(mapRoot_,enabled,spheres);
         presentation=std::make_shared<const MissionPresentation>(*resources);
         candidate=std::make_unique<game::CampaignSession>(skirmish::loadMapCampaign(resources,path));
     } else candidate=std::make_unique<game::CampaignSession>(skirmish::loadCampaign(path));

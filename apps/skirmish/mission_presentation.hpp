@@ -19,6 +19,7 @@ class MissionPresentation {
     const auto &terrain() const {return terrain_;}
     const auto &standing() const {return standing_;}
     QPoint center(game::Point) const;
+    QPoint fineCenter(game::Point) const;
     QPoint unitCenter(game::Point p) const {return center(p)-QPoint(0,20);}
     std::vector<MissionLayer> layers(const std::vector<game::Point>& actors) const;
     std::optional<game::Point> pick(QPoint,const std::vector<game::Point>& actors) const;

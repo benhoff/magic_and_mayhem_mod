@@ -14,9 +14,9 @@ struct ArenaView {
     std::shared_ptr<const MissionPresentation> mission;
     std::vector<UnitView> units;
     std::vector<game::Projectile> projectiles;
-    std::vector<game::Point> cures;
+    std::vector<game::Point> cures, spheres;
     unsigned cureMana = 0;
-    bool cureEnabled = false;
+    bool cureEnabled = false, sphereEnabled = false;
     std::array<unsigned, 2> mana{}, wizardHealth{};
     std::optional<game::Handle> selected;
     game::Outcome outcome = game::Outcome::running;

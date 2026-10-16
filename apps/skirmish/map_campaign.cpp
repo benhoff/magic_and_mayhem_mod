@@ -26,7 +26,7 @@ void append(game::Bytes &to,const game::Bytes &value) {
 }
 void append(game::Bytes &to,const std::string &value) {append(to,game::Bytes(value.begin(),value.end()));}
 }
-MapCampaignResources::MapCampaignResources(const std::filesystem::path &root,bool enableCure):cure_(enableCure) {
+MapCampaignResources::MapCampaignResources(const std::filesystem::path &root,bool enableCure,bool enableSphere):cure_(enableCure || enableSphere),spheres_(enableSphere) {
     auto store=take(assets::AssetStore::create(root));
     const auto mapBytes=read(store,"Realms/Celtic/Plains/CPsec01.map"),
                ttdBytes=read(store,"Realms/Celtic/Plains/Terrain.ttd"),
@@ -45,10 +45,27 @@ MapCampaignResources::MapCampaignResources(const std::filesystem::path &root,boo
     for(const auto &p:map_.standing) mission_.standing.push_back({p[0],p[1],p[2]});
     std::sort(mission_.standing.begin(),mission_.standing.end(),[](auto a,auto b){return std::tie(a.x,a.y,a.z)<std::tie(b.x,b.y,b.z);});
     game::validateMission(mission_);
+    if(spheres_) {
+        sphereEnvironment_.dimensions=mission_.dimensions;
+        std::vector<std::array<std::uint8_t,32>> palette(1);
+        for(const auto &cell:map_.geometry.cells) {
+            std::array<std::uint8_t,32> bitmap{};
+            const auto &record=catalog_.records.at(cell.definition);
+            std::copy_n(record.begin(),32,bitmap.begin());
+            auto it=std::find(palette.begin(),palette.end(),bitmap);
+            if(it==palette.end()) {
+                if(palette.size()==4096) throw std::invalid_argument("Campaign Sphere terrain palette bound");
+                palette.push_back(bitmap);it=palette.end()-1;
+            }
+            sphereEnvironment_.cells.push_back({unsigned(it-palette.begin()),unsigned(cell.flags8)|(unsigned(cell.flags10)<<16)});
+        }
+        sphereEnvironment_.occupancy=std::move(palette);
+    }
     auto &p=definition_.initial;p.identity={"native-plains-campaign","binding-pending"};
     p.player="player";p.realm="celtic";p.region="plains-crossing";
     game::CampaignWizard player;player.id="player";player.spells={"summon-sentinel","arc-bolt"};
     if(cure_) player.spells.push_back("cure");
+    if(spheres_) player.spells.push_back("magic-sphere");
     game::CampaignWizard rival;rival.id="rival";p.wizards={player,rival};
     p.realms={{"celtic",{{"plains-crossing","rival",false},{"arena-finale","rival",false}}}};
     definition_.missions={{"celtic","plains-crossing",mapName,"rival"},
@@ -62,8 +79,8 @@ MapCampaignResources::MapCampaignResources(const std::filesystem::path &root,boo
     p.identity.contentRevision="plains-v1-"+sha(binding);
 }
 game::SkirmishSession MapCampaignResources::create(const game::CampaignMission &m) const {
-    if(m.map==mapName) return {mission_,navigation_,ordinaryHealthRules(),cure_?cureRuntime(mission_.dimensions):nullptr};
-    if(m.map==game::arenaMission().map) return game::SkirmishSession(arenaNavigation(),ordinaryHealthRules(),cure_?cureRuntime():nullptr);
+    if(m.map==mapName) return {mission_,navigation_,ordinaryHealthRules(),spheres_?battleRuntime(sphereEnvironment_):cure_?cureRuntime(mission_.dimensions):nullptr};
+    if(m.map==game::arenaMission().map) return game::SkirmishSession(arenaNavigation(),ordinaryHealthRules(),spheres_?battleRuntime():cure_?cureRuntime():nullptr);
     throw std::invalid_argument("Unknown installed campaign mission");
 }
 game::SkirmishSession MapCampaignResources::restore(const game::CampaignMission &m,game::State state) const {
@@ -75,8 +92,8 @@ game::SkirmishSession MapCampaignResources::restore(const game::CampaignMission 
         throw std::invalid_argument("Campaign mission policy mismatch");
     return restored;
 }
-std::shared_ptr<const MapCampaignResources> mapCampaignResources(const std::filesystem::path &root,bool enableCure) {
-    return std::make_shared<const MapCampaignResources>(root,enableCure);
+std::shared_ptr<const MapCampaignResources> mapCampaignResources(const std::filesystem::path &root,bool enableCure,bool enableSphere) {
+    return std::make_shared<const MapCampaignResources>(root,enableCure,enableSphere);
 }
 game::CampaignSession newMapCampaign(std::shared_ptr<const MapCampaignResources> resources) {
     if(!resources) throw std::invalid_argument("Select installed campaign resources first");
@@ -88,6 +105,7 @@ game::CampaignSession loadMapCampaign(std::shared_ptr<const MapCampaignResources
 game::CampaignSession loadMapCampaign(const std::filesystem::path &root,const std::filesystem::path &path) {
     const auto progress=game::decodeCampaign(game::readSnapshot(path).campaign);
     const bool enabled=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"cure")!=w.spells.end();});
-    return loadMapCampaign(mapCampaignResources(root,enabled),path);
+    const bool spheres=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"magic-sphere")!=w.spells.end();});
+    return loadMapCampaign(mapCampaignResources(root,enabled,spheres),path);
 }
 } // namespace mnm::skirmish

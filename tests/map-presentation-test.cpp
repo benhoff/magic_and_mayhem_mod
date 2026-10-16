@@ -13,6 +13,7 @@ int main(int argc,char **argv) try {
         if(presentation.pick(presentation.unitCenter(cell),{cell})!=std::optional<game::Point>(cell))
             throw std::runtime_error("native glyph marker does not pick its actor cell");
     }
+    if(presentation.fineCenter({48,208,56})!=QPoint(120,252)) throw std::runtime_error("Sphere fine projection mismatch");
     if(presentation.pick({-1,0},{}) || presentation.pick(presentation.center({0,0,3}),{}))
         throw std::runtime_error("outside/sealed cell was picked");
     std::cout<<"terrain images and native marker picking passed\n";

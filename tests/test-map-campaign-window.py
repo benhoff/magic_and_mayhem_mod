@@ -32,7 +32,7 @@ def window(name,actions,load=None):
     commands.append({'argv':list(map(str,argv)),'exit_code':r.returncode})
     assert not r.returncode,(name,r.stderr,(out/'failure.txt').read_text() if (out/'failure.txt').exists() else '')
     return out/'final.mnmc'
-seed=cli('create');active=cli('start',seed);pending=cli('cast',active,'summon',2,5,3)
+seed=cli('create-sphere');active=cli('start',seed);pending=cli('cast',active,'summon',2,5,3)
 summoned=cli('resume',pending,3);moving=cli('move',summoned,3,5,3);queued=cli('cast',moving,'bolt');flight=cli('resume',queued,3)
 cut=window('move-cast-save',[button('newMapCampaign'),button('summon'),cell(2,5),steps(3),cell(2,5),cell(3,5,right=True),dict(kind='cell',wizard=0),button('bolt'),dict(kind='cell',wizard=1),save('queued.mnmc'),steps(3),save('flight.mnmc'),dict(kind='pause')])
 assert (ROOT/'move-cast-save/queued.mnmc').read_bytes()==queued.read_bytes(),'Terrain clicks changed semantic order bytes'

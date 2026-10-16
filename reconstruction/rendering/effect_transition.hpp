@@ -5,6 +5,8 @@
 namespace mnm::reconstruction {
 // Four owned catalog entries, each an 8x8x4 MSB-first occupancy bitmap.
 using EffectTerrainOccupancy=std::array<std::array<std::uint8_t,32>,4>;
+// Native owned catalog adapter; the compared four-entry API remains below.
+using EffectTerrainCatalog=std::vector<std::array<std::uint8_t,32>>;
 struct EffectTransitionState {
     EffectProjectionState motion;
     std::array<unsigned,3> previousPosition{};
@@ -24,4 +26,10 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool&,unsigned slot,EffectTra
                                     const std::vector<EffectCleanupColumn>& columns={},
                                     bool updateMembership=true,
                                     const EffectTerrainOccupancy& occupancy={});
+// Same bounded algorithm with an explicitly owned1..4096-entry native catalog.
+// Expanded catalog admission is native integration, not original comparison.
+unsigned transitionEffectCatalog(EffectPlacementPool&,unsigned,EffectTransitionState&,
+                                unsigned,unsigned,unsigned,
+                                const std::vector<EffectCleanupColumn>&,bool,
+                                const EffectTerrainCatalog&);
 }

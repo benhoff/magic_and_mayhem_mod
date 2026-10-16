@@ -60,6 +60,15 @@ void trace(std::ostream &out, const game::SkirmishSession &session,
         << effect.position.x << ',' << effect.position.y << ','
         << effect.position.z << "]}";
   }
+  out << "],\"spheres\":[";
+  comma=false;
+  for (const auto &effect : sphereViews(session.combat())) {
+    if(comma) out << ',';
+    comma=true;
+    out << "{\"slot\":" << effect.effect.slot << ",\"generation\":" << effect.effect.generation
+        << ",\"fine\":[" << effect.fine.x << ',' << effect.fine.y << ',' << effect.fine.z
+        << "],\"remaining\":" << effect.remaining << '}';
+  }
   out << "],\"pending\":" << s.pending.size() << ",\"events\":[";
   comma = false;
   for (const auto &e : report.events) {

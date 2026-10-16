@@ -12957,3 +12957,36 @@ See `sphere-motion.md` and `sphere-motion-bound-20261016.json`. Actor worlds sta
 fixed within fixtures; real moving actors, installed map binding and native Sphere
 battle integration are subsequent milestones. Native admission bounds do not
 assert comparison of every newly permitted counter/iteration value.
+
+## Terrain-bound native Sphere/Cure campaign (2026-10-16)
+
+The isolated `codex/sphere-map-campaign-20261016` branch combines the committed
+Plains/Cure campaign with native Sphere casting. SHP2 owns every projected cell,
+full MAP flags and all distinct TTD occupancy bitmaps in the8x8x23 crop; resource
+restoration checks that complete environment before adopting a save. New map UI
+creation enables Sphere/Cure; the finale remains the open8x8x3 arena. Previous
+effects-free and Cure-only profiles preserve their distinct identities/bytes.
+
+`native-sphere-map-automation-20261016.json` records prospectively declared normal
+and sanitized contracts, real Qt Sphere/Cure controls across six fresh processes,
+moving hit/evading miss, per-tick restart equality, one20-point Sphere hit and
+one8-point heal, sealed-terrain retirement, generation cancellation, valid forged
+environment/profile/corrupt-load refusal and win/reopen/advance. Existing arena,
+map and Cure-only window journeys and historical zero-tick checkpoint comparisons
+are included. The moved friendly creature can finish the hostile creature through
+ordinary melee; event attribution separates that damage from the Sphere hit.
+Earlier failed fixture runs remain retained and do not support validation claims.
+
+A native variable-catalog path removes the prototype's four-shape admission limit.
+The preserved fixed-four helper wrapper is independently re-compared in
+`sphere-motion-catalog-wrapper-20261016.json`:2048 original/native/sanitized calls,
+601 hit returns, identical guarded state streams, unit/sanitized unit and two
+CMake cases. Expanded installed catalog admission has native evidence only.
+Historical evidence and hashes remain immutable. New source census and exact
+receipts describe this change against7e752e29; concurrent main work is excluded.
+
+The branch retains authored spell cost/damage/speed/lifetime and canonical
+creature rules. Original full campaign/population/rewards, installed spell profile
+provenance, original ricochet and complete creator lifecycle, physical audio/SPR
+pixels, external side-effect transactions and live replacement remain pending.
+See `native-sphere-battle.md` and `../formats/native-sphere-battle.md`.

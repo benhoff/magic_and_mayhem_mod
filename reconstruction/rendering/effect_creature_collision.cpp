@@ -9,10 +9,10 @@ std::int32_t signedBits(std::uint32_t n) {
  return n<0x80000000u?std::int32_t(n):std::int32_t(std::int64_t(n)-0x100000000ll);
 }
 }
-unsigned transitionEffectCreatureWorld(EffectPlacementPool& pool,unsigned slot,
+unsigned transitionEffectCreatureCatalog(EffectPlacementPool& pool,unsigned slot,
  EffectCreatureTransitionState& state,unsigned width,unsigned height,unsigned layers,
  const EffectCreatureWorld& world,const std::vector<EffectCleanupColumn>& columns,
- bool updateMembership,const EffectTerrainOccupancy& occupancy) {
+ bool updateMembership,const EffectTerrainCatalog& occupancy) {
  if(!width || !height || !layers || width>128 || height>128 || layers>32 ||
     world.cells.size()!=std::size_t(width)*height*layers || slot>=pool.records().size() ||
     world.creatures.size()>65535 || (state.candidate!=NoCreature && state.candidate>=world.creatures.size()))
@@ -25,7 +25,7 @@ unsigned transitionEffectCreatureWorld(EffectPlacementPool& pool,unsigned slot,
  // the public empty-world operation retains its original admission.
  candidatePool.records()[slot].parameters[8]=(kind==34 || kind==73)?0:kind;
  candidatePool.records()[slot].parameters[6]=0xffffffffu;candidatePool.records()[slot].parameters[9]=0;
- transitionEffectEmptyWorld(candidatePool,slot,next.movement,width,height,layers,columns,updateMembership,occupancy);
+ transitionEffectCatalog(candidatePool,slot,next.movement,width,height,layers,columns,updateMembership,occupancy);
  candidatePool.records()[slot].parameters[8]=kind;
  candidatePool.records()[slot].parameters[6]=creator;candidatePool.records()[slot].parameters[9]=iterations;
  std::array<unsigned,27> candidates;candidates.fill(NoCreature);
@@ -45,7 +45,7 @@ unsigned transitionEffectCreatureWorld(EffectPlacementPool& pool,unsigned slot,
   const auto previousCell=candidatePool.records()[slot].position;
   candidatePool.records()[slot].parameters[8]=(kind==34 || kind==73)?0:kind;
   candidatePool.records()[slot].parameters[6]=0xffffffffu;candidatePool.records()[slot].parameters[9]=1;
-  auto code=transitionEffectEmptyWorld(candidatePool,slot,next.movement,width,height,layers,columns,updateMembership,occupancy);
+  auto code=transitionEffectCatalog(candidatePool,slot,next.movement,width,height,layers,columns,updateMembership,occupancy);
   candidatePool.records()[slot].parameters[8]=kind;
   candidatePool.records()[slot].parameters[6]=creator;candidatePool.records()[slot].parameters[9]=iterations;
   if(updateMembership && previousCell!=candidatePool.records()[slot].position && world.cells[previousIndex]!=NoEffect)
@@ -65,4 +65,12 @@ unsigned transitionEffectCreatureWorld(EffectPlacementPool& pool,unsigned slot,
  }
  pool=std::move(candidatePool);state=std::move(next);return result;
 }
+unsigned transitionEffectCreatureWorld(EffectPlacementPool& pool,unsigned slot,
+ EffectCreatureTransitionState& state,unsigned width,unsigned height,unsigned layers,
+ const EffectCreatureWorld& world,const std::vector<EffectCleanupColumn>& columns,
+ bool updateMembership,const EffectTerrainOccupancy& occupancy) {
+ return transitionEffectCreatureCatalog(pool,slot,state,width,height,layers,world,columns,
+                                      updateMembership,EffectTerrainCatalog(occupancy.begin(),occupancy.end()));
+}
+
 }

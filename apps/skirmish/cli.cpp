@@ -45,11 +45,11 @@ std::vector<Input> script(const char *path) {
             o.kind = kind == "summon" ? mnm::game::SkirmishOrderKind::summon
                                       : mnm::game::SkirmishOrderKind::move;
             o.destination = mnm::game::Point{x, y, 1};
-        } else if (kind == "bolt" || kind == "attack" || kind == "cure") {
+        } else if (kind == "bolt" || kind == "attack" || kind == "cure" || kind == "sphere") {
             unsigned target;
             if (!(row >> target))
                 throw std::invalid_argument("Missing target");
-            o.kind = kind == "cure" ? mnm::game::SkirmishOrderKind::cure : kind == "bolt" ? mnm::game::SkirmishOrderKind::bolt
+            o.kind = kind == "sphere" ? mnm::game::SkirmishOrderKind::sphere : kind == "cure" ? mnm::game::SkirmishOrderKind::cure : kind == "bolt" ? mnm::game::SkirmishOrderKind::bolt
                                     : mnm::game::SkirmishOrderKind::attack;
             o.target = mnm::game::Handle{target, 1};
         } else if (kind == "stop")

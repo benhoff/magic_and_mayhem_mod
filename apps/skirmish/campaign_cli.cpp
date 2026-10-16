@@ -55,15 +55,15 @@ int main(int argc,char** argv) try {
 #ifdef MNM_MAP_CAMPAIGN_CLI
     if(argc<3) throw std::invalid_argument("Usage: mnm-map-campaign-cli ASSET_ROOT COMMAND ...");
     --argc;++argv;
-    const auto make=[&](bool enabled){return mnm::skirmish::newMapCampaign(mnm::skirmish::mapCampaignResources(argv[0],enabled));};
+    const auto make=[&](std::string_view mode){return mnm::skirmish::newMapCampaign(mnm::skirmish::mapCampaignResources(argv[0],mode!="create",mode=="create-sphere"));};
     const auto load=[&](const char* path){return mnm::skirmish::loadMapCampaign(std::filesystem::path(argv[0]),path);};
 #else
-    const auto make=[](bool){return mnm::skirmish::newCampaign();};
+    const auto make=[](std::string_view){return mnm::skirmish::newCampaign();};
     const auto load=[](const char* path){return mnm::skirmish::loadCampaign(path);};
 #endif
     const std::string_view command=argc>1?argv[1]:"";
-    if((command=="create" || command=="create-cure") && argc==3) {
-        auto s=make(command=="create-cure");save(argv[2],s);view(s);return 0;
+    if((command=="create" || command=="create-cure" || command=="create-sphere") && argc==3) {
+        auto s=make(command);save(argv[2],s);view(s);return 0;
     }
     if(command=="inspect" && argc==3) {view(load(argv[2]));return 0;}
     if(command=="start" && argc==4) {
@@ -75,14 +75,14 @@ int main(int argc,char** argv) try {
         const auto meta=s.battle()->state();SkirmishOrder order;order.subject=meta.wizards[0].actor;
         if(std::string_view(argv[4])=="bolt" && argc==5) {
             order.kind=SkirmishOrderKind::bolt;order.target=meta.wizards[1].actor;
-        } else if(std::string_view(argv[4])=="cure" && argc==6) {
-            order.kind=SkirmishOrderKind::cure;
+        } else if((std::string_view(argv[4])=="cure" || std::string_view(argv[4])=="sphere") && argc==6) {
+            order.kind=std::string_view(argv[4])=="sphere" ? SkirmishOrderKind::sphere : SkirmishOrderKind::cure;
             const auto slot=number<unsigned>(argv[5]);
             if(slot>=s.battle()->world().state().slots.size() || !s.battle()->world().state().slots[slot].entity) throw std::invalid_argument("Cure target is unavailable");
             order.target=Handle{slot,s.battle()->world().state().slots[slot].generation};
         } else if(std::string_view(argv[4])=="summon" && (argc==7 || argc==8)) {
             order.kind=SkirmishOrderKind::summon;order.destination=Point{number<int>(argv[5]),number<int>(argv[6]),argc==8?number<int>(argv[7]):1};
-        } else throw std::invalid_argument("Use bolt, summon X Y [Z], or cure TARGET-SLOT");
+        } else throw std::invalid_argument("Use bolt, summon X Y [Z], or cure/sphere TARGET-SLOT");
         s.enqueue(order);save(argv[3],s);view(s);return 0;
     }
     if(command=="move" && argc==7) {
@@ -103,5 +103,5 @@ int main(int argc,char** argv) try {
         save(argv[3],s);view(s,settlements);return 0;
     }
     throw std::invalid_argument("Usage: mnm-campaign-cli create OUTPUT | inspect INPUT | start INPUT OUTPUT | "
-                                "cast INPUT OUTPUT bolt | cast INPUT OUTPUT summon X Y | cast INPUT OUTPUT cure TARGET-SLOT | resume INPUT OUTPUT TICKS");
+                                "cast INPUT OUTPUT bolt | cast INPUT OUTPUT summon X Y | cast INPUT OUTPUT cure/sphere TARGET-SLOT | resume INPUT OUTPUT TICKS");
 } catch(const std::exception& error) {std::cerr<<error.what()<<'\n';return 1;}
