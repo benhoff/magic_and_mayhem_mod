@@ -26,7 +26,10 @@ public:
         auto effects=resolveCureRuntime(state);
         if(bool(effects)!=cure_) throw std::invalid_argument("campaign effect runtime binding mismatch");
         game::World world(0);world.restore(std::move(state));
-        return {std::move(world),navigation_,rules_,std::move(effects)};
+        game::SkirmishSession restored(std::move(world),navigation_,rules_,std::move(effects));
+        if(!game::sameMission(restored.mission(),game::arenaMission()))
+            throw std::invalid_argument("campaign arena mission mismatch");
+        return restored;
     }
 };
 void append(game::Bytes& bytes,const game::Bytes& value) {

@@ -12833,3 +12833,99 @@ broad supersets predate merged Cure code and the harness deadline change.
 Incoming 910046b3..6f3f7037 committed file/behavior transitions were reviewed with
 exact pending retrospective receipts; this does not assert past gate passes or
 new execution of those unrelated engine branches.
+
+## Authored mission geometry (2026-10-16)
+
+`NP.skirmish-mission` separates map identity, dimensions, standing cells,
+stationary wizard spawns and ordered AI summon candidates from arena rules.
+Custom policy uses version2 continuation; the existing arena remains exact v1.
+The native session validates policy against navigation, and owning app adapters
+check the expected mission on restore. Costs, health, damage, timing and rewards
+are unchanged. Non-arena elevated continuation and all existing native campaign
+and window regressions are the bounded execution milestone; original mission
+behavior/comparison, arbitrary map entities and live replacement remain pending.
+See `native-skirmish-mission.md` and its registered execution record. A failed
+sandbox run is retained under working; the Xvfb socket admission failure is not
+an application behavior finding. The subsequent run uses the local display
+outside that sandbox boundary.
+
+## Installed crop campaign ownership (2026-10-16)
+
+`NP.map-campaign` connects the existing ordinary Plains MAP/TTD projection to
+native campaign ownership. The sealed (0,0,8,8) crop retains23 layers and uses
+supported layer3 wizard spawns with unchanged native skirmish rules. SHA256
+revision binding includes complete MAP/TTD/SPR bytes, crop policy, mission roster
+and initial snapshots; restoration additionally requires expected mission policy,
+navigation and health identity. The headless journey moves a summoned creature,
+casts, splits/reopens in-flight continuation, wins, reopens a settled result and
+advances to the unchanged arena finale. Missing/altered resources and repaired
+policy/navigation/health counterexamples refuse without partial adoption.
+
+This is authored native campaign integration; original map population, campaign
+rules, rewards, full-map loading, rendered-pixel equivalence and live replacement
+remain pending. See `native-map-campaign.md` and its bound execution record.
+Historical original/recovered evidence retains its recorded source hashes.
+
+## Playable installed-terrain campaign window (2026-10-16)
+
+`NP.map-campaign-window` connects the installed crop's immutable resource context
+to New map campaign, startup/load options, native cell/unit picking, semantic
+orders, playback and campaign dialogs. Terrain uses decoded SPR origins/masks
+and the existing ordinary submission/depth helpers. Supported-cell outlines and
+raised native vector unit markers are deliberate diagnostic overlays; their
+picking policy does not assert original rendered-pixel or occlusion equivalence.
+The first opaque-terrain picking run is retained under
+`working/tests/map-campaign/run-4knxzjvd`: tall grass intercepted intended cells
+and buried the small native glyphs, prompting this explicit native policy.
+
+The five-process journey compares pending move/cast and in-flight window saves
+with independent CLI bytes, exits/reopens and splits continuation, refuses valid
+forged mission/corrupt file dialogs without changing the active checkpoint, wins,
+reopens a settled result unchanged, then starts the exact arena finale. Existing
+arena/standalone windows remain separate regression scenarios. Qt settings are
+isolated per run after an intermittent file-dialog timeout in an earlier run;
+failed execution reports remain immutable. Native rules and rewards are unchanged.
+Original campaign/map population, full-map loading, smooth original creature
+animation, lighting/fog, original UI/pixels and live replacement remain pending.
+
+These map milestones are committed on `codex/native-map-campaign-20261016`,
+based on9fc6b28f. Concurrent main commit3fbfffe2 (shared battle/effect state)
+and the overlapping uncommitted Cure/window work are not integrated into this
+branch. Execution records apply to this isolated source tree; combining those
+contracts requires a separate reviewed merge and fresh execution. The main
+checkout's active source, index and historical evidence are preserved.
+
+## Final campaign range accounting (2026-10-16)
+
+The complete9fc6b28f..cc7d5bd7 implementation range is reviewed in
+`coverage/map-campaign-implementation-history-20261016.json`: exact committed
+parent/current file hashes have receipts; the review journal retains its prefix.
+A full-range gate exposed old persistence/session execution receipts whose
+contracts had not moved despite later shared-source staleness. Three new
+prospectively declared persistence/session tests pass on the final build;
+`native-map-checkpoint-final-20261016.json` binds their current source closure.
+New aggregate receipts account final source/contract pairs and limitations,
+preserving old reports, hashes and local stage evidence. This is accounting
+closure and scoped fresh native execution, not a past gate assertion or a merge
+of concurrent main battle/effect/Cure work. The existing source census remains
+exact: this follow-up changes metadata and execution records only.
+
+## Plains campaign and Cure integration (2026-10-16)
+
+The isolated integration combines the committed Plains mission/presentation
+branch with shared battle effects and campaign Cure. Cure spatial storage now
+binds to mission dimensions, including the 23-layer crop, while legacy map
+creation preserves its earlier identity. An optional saved Cure profile is
+loaded atomically through the campaign resource boundary. Combined automation
+covers real Qt move/cast/save/restart/single-heal and win/reopen/advance alongside
+existing arena/map contracts; execution evidence is registered independently.
+This remains bounded native policy and diagnostic terrain/glyph presentation,
+with original campaign equivalence and live replacement outstanding.
+
+The combined source-bound run is retained in
+`native-map-cure-automation-20261016.json`. It renews only its declared native
+contracts/scenarios. The seven main/incoming commits since the shared base were
+reviewed against exact parent/current Git hashes and receipts in
+`coverage/map-cure-incoming-history-20261016.json`, with no missing versions.
+Original/recovered shared dependencies retain their historical evidence and
+explicit pending limitations rather than acquiring native equivalence credit.

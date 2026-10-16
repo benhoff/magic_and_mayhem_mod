@@ -1,6 +1,6 @@
 #pragma once
 #include "arena.hpp"
-#include "campaign.hpp"
+#include "mission_presentation.hpp"
 #include "playback.hpp"
 #include "view.hpp"
 namespace mnm::skirmish {
@@ -8,6 +8,8 @@ enum class CursorMode { select, summon, bolt, cure };
 class Controller {
     game::SkirmishSession session_;
     std::unique_ptr<game::CampaignSession> campaign_;
+    std::filesystem::path mapRoot_;
+    std::shared_ptr<const MissionPresentation> mapPresentation_;
     scene::Playback playback_;
     std::optional<game::Handle> selected_;
     CursorMode mode_ = CursorMode::select;
@@ -19,7 +21,9 @@ class Controller {
     void adopted(const QString &);
 
   public:
-    Controller();
+    explicit Controller(std::filesystem::path mapRoot = {});
+    bool hasMapRoot() const {return !mapRoot_.empty();}
+    void newMapCampaign(std::filesystem::path root = {});
     const game::SkirmishSession &session() const;
     const game::CampaignSession *campaign() const { return campaign_.get(); }
     bool hasBattle() const { return !campaign_ || campaign_->battle(); }

@@ -86,7 +86,7 @@ void campaignWindow(const QString &script, const QString &output, Window &window
                 if (kind == "button")
                     button(window, action["name"].toString());
                 else if (kind == "cell") {
-                    game::Point point{action["x"].toInt(), action["y"].toInt(), 1};
+                    game::Point point{action["x"].toInt(), action["y"].toInt(), action.contains("z")?action["z"].toInt():1};
                     if (action.contains("wizard")) {
                         const auto actor = c.session()
                                                .state()
@@ -102,9 +102,22 @@ void campaignWindow(const QString &script, const QString &output, Window &window
                         const auto &body=*c.session().world().state().slots[slot].entity;
                         point={body.x,body.y,body.z};
                     }
-                    auto *canvas = window.findChild<QWidget *>("arenaCanvas");
+                    auto *canvas = dynamic_cast<ArenaCanvas *>(window.findChild<QWidget *>("arenaCanvas"));
                     require(canvas, "Missing arena canvas");
-                    mouse(canvas, ArenaCanvas::cellCenter(point), action["right"].toBool() ? Qt::RightButton : Qt::LeftButton);
+                    mouse(canvas, canvas->presentedCenter(point),action["right"].toBool()?Qt::RightButton:Qt::LeftButton);
+                } else if (kind == "finish") {
+                    for(unsigned tick=0;tick<160 && c.hasBattle();++tick) {
+                        if(tick%3==0 && c.view().mana[0]>=game::SkirmishRules::boltCost && !c.view().busy) {
+                            auto *canvas=dynamic_cast<ArenaCanvas *>(window.findChild<QWidget *>("arenaCanvas"));
+                            require(canvas,"Missing canvas");
+                            const auto meta=c.session().state();
+                            auto cell=[&](unsigned owner) {const auto *e=c.session().world().find(meta.wizards[owner].actor);return game::Point{e->x,e->y,e->z};};
+                            mouse(canvas,canvas->presentedCenter(cell(0)));button(window,"boltButton");
+                            mouse(canvas,canvas->presentedCenter(cell(1)));
+                        }
+                        button(window,"stepButton");
+                    }
+                    require(!c.hasBattle(),"Scripted battle did not finish");
                 } else if (kind == "steps") {
                     const auto count = action["count"].toInt();
                     require(count >= 0 && count <= 256 && !c.playing(), "Invalid step count/state");

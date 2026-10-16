@@ -148,10 +148,11 @@ void content(Codec &codec, Stored &s) {
   }
   auto &p = s.presentation;
   codec.fields(p.width, p.height, p.layers, p.scan);
-  require(p.width == 8 && p.height == 8 && p.layers == 3,
+  require(p.width >= 4 && p.width <= 16 && p.height >= 4 && p.height <= 16 &&
+              p.layers >= 2 && p.layers <= 32 && std::uint64_t(p.width)*p.height*p.layers<=4096,
           "Cure battle spatial dimensions");
   codec.vector(
-      p.cells, 192,
+      p.cells, p.width*p.height*p.layers,
       [&](auto &cell) {
         unsigned t = cell.terrain, h = cell.head, a = cell.otherA,
                  b = cell.otherB;
@@ -260,7 +261,7 @@ CureSessionState project(const Stored &s, const g::CombatSession &combat,
   core.tick = s.tick;
   core.cost = cureCost;
   core.magnitude = cureMagnitude;
-  core.dimensions = {8, 8, 3};
+  core.dimensions = {int(s.presentation.width), int(s.presentation.height), int(s.presentation.layers)};
   core.resourceCounter = s.resourceCounter;
   core.learning = s.learning;
   core.observed = s.observed;
@@ -396,9 +397,11 @@ g::CombatReport consequences(Stored &s, const CureSessionState &after,
 }
 class Runtime final : public g::SkirmishEffects {
   CureAnimationDefinition definition_;
+  g::Point dimensions_;
 
 public:
-  explicit Runtime(CureAnimationDefinition d) : definition_(std::move(d)) {
+  explicit Runtime(CureAnimationDefinition d, g::Point dimensions) : definition_(std::move(d)), dimensions_(dimensions) {
+    require(dimensions.x>=4 && dimensions.x<=16 && dimensions.y>=4 && dimensions.y<=16 && dimensions.z>=2 && dimensions.z<=32 && std::uint64_t(dimensions.x)*dimensions.y*dimensions.z<=4096,"Cure runtime dimensions");
     r::NoCdAnimationPlayer player(definition_.sequence);
     player.start();
   }
@@ -406,12 +409,15 @@ public:
   g::Bytes initial() const override {
     Stored s;
     s.definition = definition_;
-    s.presentation = c::makeCurePresentation(8, 8, 3, capacity);
+    s.presentation = c::makeCurePresentation(unsigned(dimensions_.x), unsigned(dimensions_.y), unsigned(dimensions_.z), capacity);
     return encode(s);
   }
   void validate(const g::CombatSession &combat,
                 const g::SkirmishState &meta) const override {
-    ::mnm::skirmish::validate(decode(combat.effects().data), combat, meta);
+    const auto stored=decode(combat.effects().data);
+    require(combat.world().state().navigation && combat.world().state().navigation->dimensions==dimensions_ &&
+                stored.presentation.width==unsigned(dimensions_.x) && stored.presentation.height==unsigned(dimensions_.y) && stored.presentation.layers==unsigned(dimensions_.z),"Cure mission spatial binding mismatch");
+    ::mnm::skirmish::validate(stored, combat, meta);
   }
   g::SkirmishRefusal cast(g::CombatSession &combat, g::SkirmishState &meta,
                           g::Handle source, g::Handle target) const override {
@@ -565,15 +571,20 @@ public:
 } // namespace
 std::shared_ptr<const g::SkirmishEffects>
 cureRuntime(CureAnimationDefinition definition) {
-  return std::make_shared<Runtime>(std::move(definition));
+  return cureRuntime(std::move(definition),g::Point{8,8,3});
 }
-std::shared_ptr<const g::SkirmishEffects> cureRuntime() {
+std::shared_ptr<const g::SkirmishEffects>
+cureRuntime(CureAnimationDefinition definition,g::Point dimensions) {
+  return std::make_shared<Runtime>(std::move(definition),dimensions);
+}
+std::shared_ptr<const g::SkirmishEffects> cureRuntime() {return cureRuntime(g::Point{8,8,3});}
+std::shared_ptr<const g::SkirmishEffects> cureRuntime(g::Point dimensions) {
   // Authored fixture timing/presentation, not copied or guessed installed ANI.
   CureAnimationDefinition d;
   d.entry = {0, 0, 2, 0};
   d.sequence = {{1, 2, {}}, {0, 0, {}}, {0, 1, {}},
                 {0, 2, {}}, {0, 3, {}}, {6, 0, {}}};
-  return cureRuntime(std::move(d));
+  return cureRuntime(std::move(d),dimensions);
 }
 std::shared_ptr<const g::SkirmishEffects>
 resolveCureRuntime(const g::State &state) {
@@ -582,7 +593,8 @@ resolveCureRuntime(const g::State &state) {
     return {};
   require(sections.effects.identity == cureBattleIdentity,
           "unknown battle effect runtime");
-  return cureRuntime(decode(sections.effects.data).definition);
+  require(bool(state.navigation),"Cure navigation binding required");
+  return cureRuntime(decode(sections.effects.data).definition,state.navigation->dimensions);
 }
 std::vector<CureView> cureViews(const g::CombatSession &combat) {
   if (!combat.effects().identity)

@@ -10,8 +10,11 @@ using CureAnimationDefinition =
 // cost/ magnitude. Callers may supply installed selected records; snapshots own
 // them.
 std::shared_ptr<const game::SkirmishEffects> cureRuntime();
+std::shared_ptr<const game::SkirmishEffects> cureRuntime(game::Point dimensions);
 std::shared_ptr<const game::SkirmishEffects>
     cureRuntime(CureAnimationDefinition);
+std::shared_ptr<const game::SkirmishEffects>
+    cureRuntime(CureAnimationDefinition, game::Point dimensions);
 std::shared_ptr<const game::SkirmishEffects>
 resolveCureRuntime(const game::State &);
 struct CureView {

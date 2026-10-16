@@ -103,3 +103,55 @@ older campaign and skirmish checkpoints retain their original behavior.
 CLI script rows accept `TICK cure WIZARD-SLOT TARGET-SLOT`. Campaign commands accept
 `mnm-campaign-cli cast INPUT OUTPUT cure TARGET-SLOT`. Target generation is checked
 against the active battle. See [scope and evidence](../../research/runtime/native-cure-battle.md).
+
+## Installed Plains campaign
+
+The map campaign plays an authored first mission on a sealed8x8 crop of the
+installed Plains terrain, then advances to the existing arena finale. The
+synthetic one-cell movement profile and native combat rules are unchanged.
+MAP, terrain catalog and sprite bytes bind the campaign content revision; select
+the same installed content when reopening a checkpoint.
+
+```sh
+working/build/native-map-campaign/mnm-map-campaign-cli working/game-clean create working/plains-seed.mnmc
+working/build/native-map-campaign/mnm-map-campaign-cli working/game-clean start working/plains-seed.mnmc working/plains-active.mnmc
+working/build/native-map-campaign/mnm-map-campaign-cli working/game-clean cast working/plains-active.mnmc working/plains-summon.mnmc summon 2 5 3
+```
+
+The map CLI takes `ASSET_ROOT` before the existing create/start/cast/resume/inspect
+commands. Summon accepts optional Z (default1 for the arena); `move INPUT OUTPUT
+X Y Z` orders the first friendly Sentinel. All output files must be new.
+`python3 tools/test-native-map-campaign.py ASSET_ROOT` records the installed-process
+journey and core/asset regressions, with original-manifest verification before
+and after. Run it under the main checkout's storage guard. Retained execution
+reports are separate from the reusable `working/build/native-map-campaign`
+build directory. See `research/runtime/native-map-campaign.md` for scope.
+
+For the playable terrain window, use **New map campaign…** and select the
+installed game directory, or start directly:
+
+```sh
+working/build/native-map-campaign/mnm-skirmish --asset-root working/game-clean --map-campaign
+working/build/native-map-campaign/mnm-skirmish --asset-root working/game-clean --load-campaign working/plains-saved.mnmc
+```
+
+Summon on a visible standing-cell diamond. Select a Sentinel and right-click a
+cell to move, or an enemy to attack. Select your wizard and use Arc Bolt on an
+enemy. Save/Load campaign pauses play; victory enables Continue to the finale.
+The terrain uses installed sprites with native cell/unit overlays. This view
+uses logical cell positions and unshaded terrain; original lighting, creature
+sprite animation and full original maps remain separate work.
+
+Add `--window` to the map validation runner for the terrain marker/picking
+contract, five-process map window journey and complete existing window suite.
+Qt configuration is isolated per run. Source declarations and raw failed runs
+remain retained; a new successful report never refreshes old evidence hashes.
+See `research/runtime/native-map-campaign-window.md` for the interaction policy.
+
+The combined map/Cure journey runs without manual playtesting:
+`tools/test-native-map-campaign.py ASSET_ROOT --cure` (under the storage guard).
+It exercises real Qt controls across separate processes and checks exact saved
+state against headless continuation, including one heal and win/advance.
+Use `mnm-map-campaign-cli ASSET_ROOT create-cure OUTPUT` for the optional Cure
+profile; ordinary map creation retains existing checkpoint identities. See
+`research/runtime/native-map-cure-automation.md` for bounds and validation scope.

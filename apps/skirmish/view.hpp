@@ -9,7 +9,9 @@ struct UnitView {
     unsigned owner, health, maximum;
     QString action;
 };
+class MissionPresentation;
 struct ArenaView {
+    std::shared_ptr<const MissionPresentation> mission;
     std::vector<UnitView> units;
     std::vector<game::Projectile> projectiles;
     std::vector<game::Point> cures;

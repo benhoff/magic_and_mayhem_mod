@@ -15,6 +15,8 @@ int main(int argc, char **argv) try {
     QApplication app(argc, argv);
     QCommandLineParser p;
     p.addHelpOption();
+    p.addOption({"asset-root", "Installed game data directory for map campaigns", "directory"});
+    p.addOption({"map-campaign", "Start a native campaign on an installed Plains crop"});
     p.addOption({"campaign", "Start a new native campaign"});
     p.addOption({"load-campaign", "Load a native campaign checkpoint", "file"});
     p.addOption({"load", "Load a native skirmish checkpoint", "file"});
@@ -23,9 +25,11 @@ int main(int argc, char **argv) try {
     p.addOption({"test-output", "New test-only output directory", "directory"});
 #endif
     p.process(app);
-    mnm::skirmish::Controller c;
-    if (int(p.isSet("load")) + int(p.isSet("campaign")) + int(p.isSet("load-campaign")) > 1)
+    mnm::skirmish::Controller c(p.value("asset-root").toStdString());
+    if (int(p.isSet("load")) + int(p.isSet("campaign")) + int(p.isSet("load-campaign")) + int(p.isSet("map-campaign")) > 1)
         throw std::invalid_argument("Choose one startup mode");
+    if (p.isSet("map-campaign"))
+        c.newMapCampaign();
     if (p.isSet("campaign"))
         c.newCampaign();
     if (p.isSet("load-campaign"))

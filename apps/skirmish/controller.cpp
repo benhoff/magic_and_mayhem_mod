@@ -22,7 +22,7 @@ QString refusal(game::SkirmishRefusal r) {
     }
 }
 } // namespace
-Controller::Controller() : session_(newSession()), playback_([this] { advance(); }) {
+Controller::Controller(std::filesystem::path root) : session_(newSession()), mapRoot_(std::move(root)), playback_([this] { advance(); }) {
     selected_ = session().state().wizards[0].actor;
     feedback_ = "Summon a Sentinel near your wizard, then attack the rival.";
     playback_.onRefresh = [this] { changed(); };
@@ -38,6 +38,10 @@ void Controller::changed() {
 }
 ArenaView Controller::view() const {
     ArenaView v;
+    if (mapPresentation_ && campaign_ && campaign_->progress().identity.id=="native-plains-campaign" &&
+        ((hasBattle() && session().mission().map=="native-plains-crop-v1") ||
+         (!hasBattle() && campaign_->progress().lastResult && campaign_->progress().lastResult->region=="plains-crossing")))
+        v.mission=mapPresentation_;
     if (!hasBattle()) {
         const auto &progress = campaign_->progress();
         v.resultHelp =
@@ -174,8 +178,8 @@ void Controller::setMode(CursorMode m) {
 void Controller::cell(game::Point p, bool right) {
     if (!hasBattle())
         return;
-    if (!game::arenaCell(p))
-        throw std::invalid_argument("Choose a cell inside the arena");
+    if (!game::missionCell(session().mission(),p))
+        throw std::invalid_argument("Choose a supported mission cell");
     const auto v = view();
     const auto hit = std::find_if(v.units.begin(), v.units.end(),
                                   [&](const UnitView &u) { return u.health && u.cell == p; });
@@ -270,6 +274,17 @@ void Controller::adopted(const QString &message) {
     feedback_ = message;
     changed();
 }
+void Controller::newMapCampaign(std::filesystem::path root) {
+    pause();
+    if(root.empty()) root=mapRoot_;
+    if(root.empty()) throw std::invalid_argument("Select the installed game data directory");
+    auto resources=mapCampaignResources(root);
+    auto presentation=std::make_shared<const MissionPresentation>(*resources);
+    auto candidate=std::make_unique<game::CampaignSession>(skirmish::newMapCampaign(resources));
+    candidate->startMission();
+    mapRoot_=std::move(root);mapPresentation_=std::move(presentation);campaign_=std::move(candidate);
+    adopted("Plains campaign started. Move and cast on the installed terrain. Playback is paused.");
+}
 void Controller::newCampaign() {
     pause();
     auto candidate = std::make_unique<game::CampaignSession>(skirmish::newCampaign());
@@ -279,8 +294,18 @@ void Controller::newCampaign() {
 }
 void Controller::loadCampaign(const std::filesystem::path &path) {
     pause();
-    auto candidate = std::make_unique<game::CampaignSession>(skirmish::loadCampaign(path));
-    campaign_ = std::move(candidate);
+    const auto outer=game::readSnapshot(path);
+    const auto progress=game::decodeCampaign(outer.campaign);
+    std::unique_ptr<game::CampaignSession> candidate;
+    std::shared_ptr<const MissionPresentation> presentation;
+    if(progress.identity.id=="native-plains-campaign") {
+        if(mapRoot_.empty()) throw std::invalid_argument("Load this campaign with --asset-root GAME_DIRECTORY, or start a map campaign first");
+        const bool enabled=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"cure")!=w.spells.end();});
+        auto resources=mapCampaignResources(mapRoot_,enabled);
+        presentation=std::make_shared<const MissionPresentation>(*resources);
+        candidate=std::make_unique<game::CampaignSession>(skirmish::loadMapCampaign(resources,path));
+    } else candidate=std::make_unique<game::CampaignSession>(skirmish::loadCampaign(path));
+    mapPresentation_=std::move(presentation);campaign_=std::move(candidate);
     adopted("Campaign loaded. Playback is paused.");
 }
 void Controller::saveCampaign(const std::filesystem::path &path, bool overwrite) {

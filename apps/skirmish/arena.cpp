@@ -70,6 +70,9 @@ game::SkirmishSession load(const std::filesystem::path &path) {
     auto effects = resolveCureRuntime(state);
     game::World w(0);
     w.restore(std::move(state));
-    return {std::move(w), arenaNavigation(), rules, std::move(effects)};
+    game::SkirmishSession restored(std::move(w), arenaNavigation(), rules, std::move(effects));
+    if (!game::sameMission(restored.mission(),game::arenaMission()))
+        throw std::invalid_argument("arena mission resources mismatch");
+    return restored;
 }
 } // namespace mnm::skirmish
