@@ -1037999,6 +1037999,159 @@
           "EGLDST.quick.regression-20261016"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "59445d798dd2cf935aa635d3df0e0725e965138110f78b01f6d36a08bb4f0a30",
+          "before_sha256": "8659959eeb635b9304bc5906224e49ca6abb4b89c994a6440e0c286e8b7f60a2",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "072fbaa3d171579973793e072975c2249770eb105fa4bded2c47100b53503e6f",
+          "before_sha256": "a72079009af503d10a1a6aa95af9c5a15b7dd84d9b56c3730353f9ace2a5ecd8",
+          "id": "NP.battle-effects"
+        },
+        {
+          "after_sha256": "7ec1bc8ca332cdbb6de561517b2f54075fd1ab5f5fda050aa4a4f99b885b4f9d",
+          "before_sha256": "84857f0b11b06c48dd8f7e5914078fba8e60758bf82334bd4ef9e56bf89d1e7a",
+          "id": "NP.campaign-arena"
+        },
+        {
+          "after_sha256": "992f5bb9c16d098000eba422f7d5e54ae9c15e774063e50ba32df18ccbb6dc9d",
+          "before_sha256": "c8586fab92926b505b2d0538a17993aaa1ee19700f78b9935931a39b7a10a0b3",
+          "id": "NP.campaign-window"
+        },
+        {
+          "after_sha256": "66acb0824dc66dee26a5391bf7c54477317260a2206287c4f5a6bb9ade3f758d",
+          "before_sha256": "8154fcbd63f52d634306a9bb8cb33397722788080f53220880808d095e3baead",
+          "id": "NP.combat-orders"
+        },
+        {
+          "after_sha256": "aa16247c962f4332c916d51a0730072384fcb35872a529b535eaa7c5a0e1f02b",
+          "before_sha256": "50b5dfa4aeafa727097dc23cf53fe7d6a72e66160a309bc71c789f1fbdbff927",
+          "id": "NP.creature-battle"
+        },
+        {
+          "after_sha256": "aa06ceca97d5f184ca764ab9bc2d05338d87ffe009c0cd2363b5fbf57c97a6ff",
+          "before_sha256": "bc72b5169b8e59236fe2d57e2314bcc409b5f8ed940311e694cac90d04d9af7a",
+          "id": "NP.cure-battle"
+        },
+        {
+          "after_sha256": "ddd80fc8856cddcda09d200230a6ee90c5b726a56eaf27124658452b523760b5",
+          "before_sha256": "be7383bee399fda9f4f5c857164968471d06fd302f725dcc4d5504a636db0516",
+          "id": "NP.ordinary-health-adapter"
+        },
+        {
+          "after_sha256": "cd5e526a997c9a8a8d93f3f26860db3b49d7a4a0de0ea8aa5b5a0106285dfd42",
+          "before_sha256": "45608b1c18f19875204d4d43c3ff69732ee898edeb3847c54dc5a531c6028886",
+          "id": "NP.skirmish-simulation"
+        },
+        {
+          "after_sha256": "d6d60bbc487efcca950eda167f79086481563a192539b40666dfa3e568e26f8e",
+          "before_sha256": "5fb339e196a7c54858d788b9e3da4523076e26cb91a593b10e275c1abf0da06f",
+          "id": "NP.skirmish-window"
+        },
+        {
+          "after_sha256": "16072b1807ac5d5ba46e1ea703d6acedbcd142cc3f10397441261d6ee48cbf86",
+          "before_sha256": "db518ff5fca941fdcef406eed924712632fe8901301c2f6dae410d7bed1eb069",
+          "id": "NP.sphere-battle"
+        },
+        {
+          "after_sha256": "2aea742677199c439317b5d7b38fee052de97c6c756d18ca2dc4a2c0fa2e5b2d",
+          "before_sha256": null,
+          "id": "NP.terrain-battle"
+        },
+        {
+          "after_sha256": "da25a47a2deed38590fc42c382fb8b1cdf5e4cdb2cd51f3133a9c8fb8f3b313c",
+          "before_sha256": "215fe72450f0ccfc400c330290a3a1e94c6bb5e12509f835ab5a57577b85f110",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "d450607d674d6cec9d7ff7456a7f4ad2aa4b7f4830389d19e8fddb16eb539710",
+          "before_sha256": "5c2b8be26cd25069404b8f258d2596cacc6ec7d4d5e4053748fe2737fc2c88be",
+          "id": "NR.qt-quick-battle-app-journey"
+        },
+        {
+          "after_sha256": "ca15610ec916adb6fed7f89719a04aed179eddc3c98223111f2fa184dd2bdd0e",
+          "before_sha256": "ae04b825cf01be3f9891639523c32e966bd633ed4370a15de0a3b0f58b295b92",
+          "id": "NR.qt-results-action-readiness"
+        },
+        {
+          "after_sha256": "046dd2cf0e011fd5cc673512712316e18e9e8bb611260d890c3de81f14396413",
+          "before_sha256": "2a68e7d712805cb873b64a0bcc3076c68c5bb5701c29c02eb939e55e41483d30",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7115175fd8a3bd31da979e377ef83820e35260fe4696a2407fdc3a0c0986e91b",
+          "before_sha256": "d3223e92091466f7569eb2bcd0e7bd2785cecf2a01fb6487c7e3a72a57adff64",
+          "path": "apps/skirmish/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "5d6ade080330a3a783cda8d07a6e6206883d5764e6a2bd634a8d89ec4b8a6e87",
+          "before_sha256": null,
+          "path": "apps/skirmish/terrain_battle.cpp"
+        },
+        {
+          "after_sha256": "11a1c2838318ad9b90f6701d9496622983fb1ae62a42e3f691714a76c0ba3320",
+          "before_sha256": null,
+          "path": "apps/skirmish/terrain_battle.hpp"
+        },
+        {
+          "after_sha256": "ac941eaabd7276d5adad16bea46d3f94c722100b016bc48227c06cbcf1508e2c",
+          "before_sha256": "0ea2b04ad00399c33145317e2620d06a17fa9093b889eaa433d358c00930257c",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "0bc644adb9035a3cfeb82a37fd9c8bc77ab9d3cc23f17c27ddc58a6ab847a685",
+          "before_sha256": "76212633d3da19d2f03442c76985ae46b9be6d465c39f53d8120a72e38413b5a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "0910c50126e2aaa0b02406a108c9dde2d2a26997e21186643bc4ebc265591f7f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-terrain-binding-staged-20261016.json"
+        },
+        {
+          "after_sha256": "eed25128147ca69cd6263ef7bdca5534eb6d556f0ddf8c3d10277a91510d0fc1",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/terrain-battle-incoming-history-20261016.json"
+        },
+        {
+          "after_sha256": "dcd0a176ac4ccc51f430a4a8f4cc8e2880ce49eaf2959867a4564bbbc31b0ece",
+          "before_sha256": null,
+          "path": "research/runtime/native-terrain-battle.md"
+        },
+        {
+          "after_sha256": "be559f6c5add444e66da79786f78fd4f5caed892327e5b4bff3b5855f32d34de",
+          "before_sha256": null,
+          "path": "tests/terrain-battle-test.cpp"
+        }
+      ],
+      "id": "terrain-binding-initial-accounting-20261016",
+      "pending_gaps": [
+        "behaviors_without_comparison:bfdf84320a9e4f7a300d3d36e558f055c9f5bb9981e4d7e2e4c421cf1b80664c",
+        "behaviors_without_scenarios:bfdf84320a9e4f7a300d3d36e558f055c9f5bb9981e4d7e2e4c421cf1b80664c",
+        "stale_evidence:507fa8778f2f05aaf22a20dac50ce5ab84db0f53fd0add0c4645a2e0effa81bf",
+        "stale_evidence:e89d4f6c75ce47920d83c1eaf2d3dc09e25eb20748ac533ecd7cdf4bf09cb509",
+        "stale_evidence:f2f77330be6bbfca4ca09a060d074f7aac1b0ecbe5605b4f390f94ec6b259c35",
+        "validation_gaps:012421cd5b51eb2e0c670dd1223aa453977ce58e71296217c0d8ab4d2a19dea8",
+        "validation_gaps:46e26c7c684ac0a268cab0528d42085fa2ab16dd6b928301e86a124bc9aa4f51",
+        "validation_gaps:62dc83525f4b2d525e0775bd63bcf30e0f1a6879e7264ad6f4440092427186c5",
+        "validation_gaps:670a5ff2fd7e572c78b04236cf749e0aa69870d08a08b43f170bd54d870de55a",
+        "validation_gaps:9522c2fc615f206282d9fd6e64fc8a4c2c1db37dcae4c3e31cc1ee21a7e0a240",
+        "validation_gaps:bcd0b4822c340856828fd7d2803d2b5f18bb0b176eb67de0c6a1e5b9dd7b05dc",
+        "validation_gaps:bf50fd0b90d8e8a2fe6b670b1a8170652d98bd785532d9ab011cb17dc1f4a105",
+        "validation_gaps:d41f6fc5dfd3a986b2efe41144181f0f266b1197bd68e452bfcb1e739a37a9e4",
+        "validation_gaps:ed344ded0430ef7c5e8e6871057b6d27e4a1d50beb287aa72abae7c1433ef8b1"
+      ],
+      "reason": "Reviewed sealed Plains projection, installed normalized Crocodile movement fields, deterministic same-plane legality/routing, full-profile occupancy and canonical owned checkpoint bundle. Source census is generated from staged bytes, excluding concurrent rendering edits. Incoming 3cc1dfee through c16ba1b1 source/behavior receipts are complete.",
+      "validation": {
+        "status": "pending",
+        "reason": "Installed development execution retained at working/tests/terrain-binding-execution-20261016/report.json:25 legal origins,6 movement steps with every-boundary restore, overlapping spawn rollback and malformed bundle refusal; original manifest verified. Prospective source-bound shared battle/spell/window validation remains pending; no status promotion or current equivalence is claimed."
+      }
     }
   ],
   "schema": 1

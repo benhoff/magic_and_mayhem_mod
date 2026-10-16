@@ -75970,6 +75970,34 @@
       "remaining_gaps": [
         "Observed pinned software crop profile matches all222source/native/destination/physical frames. Intentional opt-in origin policy is not universal: oversized storage with an already-updated origin is outside scope. Complete SHM ownership/lifetimes, all routes, error neutrality, hardware and live native renderer replacement remain unproved. Historical238frame physical reference remains failed and unchanged."
       ]
+    },
+    {
+      "id": "NP.terrain-battle",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Installed Plains terrain binding for shared native battle",
+      "scope": "Owned sealed12x12 ordinary Plains projection, selected standing layer, installed type17 movement profile and full-profile occupancy. Deterministic native placement/routing, immutable input fingerprints and checkpoint resource rebinding. Shared battle/spell/window integration pending; no runtime map objects, full original topology/AI/search or live replacement.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-terrain-battle.md"
+      ],
+      "implementation": [
+        "apps/skirmish/terrain_battle.cpp",
+        "apps/skirmish/terrain_battle.hpp",
+        "apps/skirmish/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/terrain-battle-test.cpp"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -174269,8 +174297,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-egl-destination-20261016.json",
-    "sha256": "b8f76bf47d8230991ca44e1765f839f1e67ab0cf5ca2e82cd9cb457452d67623"
+    "path": "research/runtime/coverage/source-index-terrain-binding-staged-20261016.json",
+    "sha256": "0910c50126e2aaa0b02406a108c9dde2d2a26997e21186643bc4ebc265591f7f"
   },
   "claim_bindings_required": true
 }

@@ -13066,3 +13066,12 @@ full14journey/21operation admission is unchanged.
 native and driver-policy outcomes. Exact29688531..faa6ecab committed-history review
 covers38file/58behavior transitions with zero missing receipts; it is independent
 of this new execution and makes no retrospective gate-pass assertion.
+
+## Installed battle terrain binding (2026-10-16)
+
+The first native battle terrain adapter owns a sealed12x12 Plains crop, installed
+Crocodile movement profile, legal standing layer and separated wizard origins.
+Installed movement/checkpoint and overlapping-spawn rollback development checks
+pass. Combat/spells/campaign/window integration remains pending in this chunk;
+no original full-world/search or live-replacement claim is added. See
+[native terrain battle](native-terrain-battle.md).
