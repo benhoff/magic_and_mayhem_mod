@@ -12780,3 +12780,18 @@ and the overlapping uncommitted Cure/window work are not integrated into this
 branch. Execution records apply to this isolated source tree; combining those
 contracts requires a separate reviewed merge and fresh execution. The main
 checkout's active source, index and historical evidence are preserved.
+
+## Final campaign range accounting (2026-10-16)
+
+The complete9fc6b28f..cc7d5bd7 implementation range is reviewed in
+`coverage/map-campaign-implementation-history-20261016.json`: exact committed
+parent/current file hashes have receipts; the review journal retains its prefix.
+A full-range gate exposed old persistence/session execution receipts whose
+contracts had not moved despite later shared-source staleness. Three new
+prospectively declared persistence/session tests pass on the final build;
+`native-map-checkpoint-final-20261016.json` binds their current source closure.
+New aggregate receipts account final source/contract pairs and limitations,
+preserving old reports, hashes and local stage evidence. This is accounting
+closure and scoped fresh native execution, not a past gate assertion or a merge
+of concurrent main battle/effect/Cure work. The existing source census remains
+exact: this follow-up changes metadata and execution records only.

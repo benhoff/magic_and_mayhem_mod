@@ -72425,7 +72425,8 @@
         "NP.campaign-session.core-20261016",
         "NP.campaign-session.arena-20261016",
         "NP.campaign-session.window-20261016",
-        "NP.skirmish-mission.native-20261016"
+        "NP.skirmish-mission.native-20261016",
+        "NP.map-campaign.checkpoint-final-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -72481,7 +72482,8 @@
         "NP.campaign-session.core-20261016",
         "NP.campaign-session.arena-20261016",
         "NP.campaign-session.window-20261016",
-        "NP.skirmish-mission.native-20261016"
+        "NP.skirmish-mission.native-20261016",
+        "NP.map-campaign.checkpoint-final-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -151893,6 +151895,25 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NP.map-campaign.checkpoint-final-20261016",
+      "kind": "native_integration",
+      "scope": "Fresh native typed campaign persistence and transactional campaign-session tests on the final mission/window source closure. Synthetic restart/grid contracts only; no original campaign or unmerged Cure/effect equivalence.",
+      "record": "research/runtime/native-map-checkpoint-final-20261016.json",
+      "sha256": "bcdca2dabae5a9f3385915943e79c06ee605950b17223459ad28038a1becc419",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 3
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -168382,7 +168403,8 @@
         "NP.campaign-session.core-20261016",
         "NP.campaign-session.arena-20261016",
         "NP.campaign-session.window-20261016",
-        "NP.skirmish-mission.native-20261016"
+        "NP.skirmish-mission.native-20261016",
+        "NP.map-campaign.checkpoint-final-20261016"
       ]
     },
     {
@@ -168400,7 +168422,8 @@
         "NP.campaign-session.core-20261016",
         "NP.campaign-session.arena-20261016",
         "NP.campaign-session.window-20261016",
-        "NP.skirmish-mission.native-20261016"
+        "NP.skirmish-mission.native-20261016",
+        "NP.map-campaign.checkpoint-final-20261016"
       ]
     },
     {
