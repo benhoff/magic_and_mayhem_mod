@@ -9733,3 +9733,60 @@ visibility production, nonempty strategic task/notification consequences,
 dual-brain World scheduling, nonzero resource/inventory lifecycle comparisons,
 arbitrary status/form/extreme arithmetic domains, general species, campaign and
 live replacement remain pending. Gameplay balance features remain outstanding.
+
+
+## NS77 — Original creature visibility and portable perception (2026-10-16)
+
+The native headless simulation now owns the declared52b540 creature-perception
+projection: staggered living observers, visibility countdown and observer-reference
+expiry, hidden/type/locked-target admission, and508ca0 relation/share propagation.
+Original5150a0 range,515270 creature sight,5151b0 point sight and4e14a0 terrain-bit
+rays use the recovered trajectory initializer/stepper. The new view profile also
+required5084f0 fine-center direction sectors and a connected51d3a0 threat-orientation
+consequence; the earlier cell rounding/no-op was insufficient. Geometry-driven
+sightings now feed owner memory, danger, navigation and creature decisions.
+
+`run-visibility` opts into this pipeline. Installed encrypted CFG supplies
+ViewRange/LRCOffsets; selected type-initialization instructions establish center
+mapping. Full original CFG-loader behavior remains pending. CMD1/v11 retains
+scan phase, sharing, sight definitions and logical observer slots. Versions1..10
+read absent; lossy legacy writes refuse. Native admission fixes capacity125,
+uses one perception pass per normal frame and admits an empty object pool and
+empty attenuation columns. Direct helpers compare authored nonempty columns;
+production of installed columns is a separate gap. Sprite clipping and explored
+map/fog are separate rendering/World contracts.
+
+The immutable owner-visibility-bound-ns77-20261016.json records7,170,048
+component checks over18,432 scan ticks and24,576 direct ray/point/facing cases
+per operation. Eight installed original32/native32 journeys pass18,432 ticks;
+native64 and ASan/UBSan/LSan traces/final snapshots agree, with
+2304 in-process and80 fresh-process journey restores.
+The native state suite passes4621
+checks,288 round trips and
+10 refusals. Both five-test core
+suites, installed regressions, old native knowledge/danger state suites and CLI
+whole/split portable continuation pass. All283 declared
+sources,258 compiler/configure inputs, five installed
+inputs and2927 originals remain stable within their stages. The preserved v1
+engine stage completed original execution and every replay/checkpoint/regression,
+then its broad CTest selection encountered unbuilt inherited targets. V2 verifies
+unchanged engine/paired sources, matching scope, every retained artifact and eight
+embedded input sets, then freshly completes the intended five-test core suites
+and CLI. Only the driver changes; no repeated original execution is asserted. Travel goal occupancy is1760 frames per seed; hidden
+journeys have1338 hidden/1023 remembered-hidden frames and one death. Counters
+are frame witnesses, not distinct arrivals or events.
+
+AI.owner-visibility-production, AI.fine-coordinate-facing and
+NP.owner-visibility-continuation receive independent scoped/current stages;
+none claims live replacement. The reviewed census is
+coverage/source-index-owner-visibility-20261016-v2.json (2480 files,2286 linked).
+Incoming7011dd87..8427fae4 has282 file/325 behavior accounting transitions and32
+committed files with matching exact receipts, retained in
+coverage/history-review-ns76-to-ns77-20261016.json. No unresolved transition was
+found; this review asserts neither a past gate pass nor fresh engine validation.
+Historical evidence and source hashes are preserved. UI discovery/local commander
+reveal, neutral owners, observation-point fog, script diplomacy setters and their
+immediate reveal effects, installed attenuation-column production, strategic
+notifications/tasks, World/two-brain scheduling, general species/campaign and live
+replacement remain pending. Gameplay balance changes remain outstanding; the
+original-backed full game still requires Wine. See owner-visibility.md.

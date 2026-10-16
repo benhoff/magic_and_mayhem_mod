@@ -2,11 +2,14 @@
 #include "../../reconstruction/motion/creature_profile.hpp"
 #include "../command-session/native_regional_danger.hpp"
 #include "../command-session/native_regional_graph.hpp"
+#include "../command-session/native_owner_visibility.hpp"
+#include <charconv>
+#include <sstream>
 #include "encounter.hpp"
 #include <stdexcept>
 namespace mnm::encounter {
-std::array<cs::model::RegionalCreatureShape, 28>
-navigationShapes(const Profile &p) {
+namespace {
+assets::Config encounterConfig(const Profile &p) {
   const auto &b = p.bytes;
   std::size_t at = b.at(7) == '2' ? 28 : 24;
   if (at + 4 > b.size())
@@ -24,10 +27,17 @@ navigationShapes(const Profile &p) {
       assets::decodeConfig(std::get<assets::PackedContainer>(decoded).decoded);
   if (!std::holds_alternative<assets::Config>(config))
     throw std::invalid_argument("regional CFG");
+  return std::get<assets::Config>(std::move(config));
+}
+int decimal(const std::string &s){int n=0;const auto r=std::from_chars(s.data(),s.data()+s.size(),n);if(r.ec!=std::errc{}||r.ptr!=s.data()+s.size())throw std::invalid_argument("visibility CFG integer");return n;}
+}
+std::array<cs::model::RegionalCreatureShape, 28>
+navigationShapes(const Profile &p) {
+  const auto config=encounterConfig(p);
   std::array<cs::model::RegionalCreatureShape, 28> out;
   for (unsigned i = 0; i < 28; ++i) {
     auto v = reconstruction::normalizeCreatureMovementConfig(
-        assets::creatureMovementConfig(std::get<assets::Config>(config), i));
+        assets::creatureMovementConfig(config, i));
     out[i] = {v.height, v.width, v.swimming};
   }
   return out;
@@ -52,6 +62,30 @@ void enableRegionalDanger(Profile &p) {
 void enableOwnerKnowledge(Profile &p) {
   enableRegionalDanger(p);
   cs::prepareNativeOwnerKnowledge(p.initial);
+}
+void enableOwnerVisibility(Profile &p) {
+  if(!p.initial.native.regionalDanger)enableOwnerKnowledge(p);
+  else if(!p.initial.native.ownerKnowledge)cs::prepareNativeOwnerKnowledge(p.initial);
+  const auto config=encounterConfig(p);
+  std::vector<cs::model::SightDefinition> definitions;
+  for(auto &a:p.initial.world.creatures){
+    const auto section="CREATURE_"+std::to_string(a.ai.type);
+    auto field=[&](const char *key)->const std::string&{const auto *s=config.find(section,key);if(!s)throw std::invalid_argument("visibility CFG field");return *s;};
+    cs::model::SightDefinition d;
+    d.range=decimal(field("ViewRange"));d.aimXY=a.width==1?16:32;d.aimZ=int(a.height)*8;
+    std::istringstream stream(field("LRCOffsets"));std::string v;unsigned count=0;
+    while(std::getline(stream,v,',')){
+      if(count>=24)throw std::invalid_argument("visibility CFG eye count");
+      const auto first=v.find_first_not_of(" \t"),last=v.find_last_not_of(" \t");
+      if(first==std::string::npos)throw std::invalid_argument("visibility CFG eye value");
+      const int n=decimal(v.substr(first,last-first+1));auto &offset=d.offsets[count/3];
+      if(count%3==0)offset.x=n;else if(count%3==1)offset.y=n;else offset.z=n;
+      ++count;
+    }
+    if(count!=24)throw std::invalid_argument("visibility CFG eye count");
+    a.aimXY=d.aimXY;a.aimZ=d.aimZ;definitions.push_back(d);
+  }
+  cs::prepareNativeOwnerVisibility(p.initial,std::move(definitions));
 }
 void editTerrain(game::CreatureRuleSession &session, const Profile &p,
                  const std::vector<cs::NativeTerrainEdit> &edits) {

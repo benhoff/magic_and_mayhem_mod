@@ -9,6 +9,7 @@
 #include "../../reconstruction/creature-ai/regional_maintenance.hpp"
 #include "../../reconstruction/creature-ai/regional_danger.hpp"
 #include "../../reconstruction/creature-ai/owner_knowledge.hpp"
+#include "../../reconstruction/creature-ai/owner_visibility.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -43,6 +44,12 @@ struct NativeRegionalDanger {
   reconstruction::combat::RegionalDangerInputs inputs;
   reconstruction::combat::RegionalDangerState state;
 };
+struct NativeOwnerVisibility {
+  reconstruction::combat::VisibilityState scan;
+  reconstruction::combat::VisionRelations sharing{};
+  std::vector<reconstruction::combat::SightDefinition> definitions;
+  std::vector<std::array<int,8>> observers;
+};
 struct NativeProviderState {
   bool present=false,randomSeeded=false,alternate=false;
   std::array<std::uint32_t,2> profileStamp{};
@@ -63,5 +70,6 @@ struct NativeProviderState {
   std::optional<NativeRegionalMaintenance> regionalMaintenance;
   std::optional<NativeRegionalDanger> regionalDanger;
   std::optional<reconstruction::combat::OwnerKnowledge> ownerKnowledge;
+  std::optional<NativeOwnerVisibility> ownerVisibility;
 };
 } // namespace mnm::command_session

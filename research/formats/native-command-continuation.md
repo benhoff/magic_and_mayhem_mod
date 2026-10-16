@@ -1,10 +1,10 @@
-# Native command continuation versions 1–10
+# Native command continuation versions 1–11
 
 This is a native application format inside the outer native `State.systems`
 checkpoint. It is unrelated to original Magic & Mayhem save/object layouts.
 
 The byte stream starts with four ASCII bytes `CMD1`, then little-endian32-bit
-version10 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
+version11 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
 integers use two's-complement words with explicit checked reconstruction; narrow
 values reject overflow. Booleans are exactly0 or 1. An optional is a0/1 word and,
 when present, its value. A vector begins with its word length; a fixed array has
@@ -233,3 +233,28 @@ and the existing1MiB total continuation bound. These are native limits, not
 claims about original save layout or the original memory allocator. Visibility
 is supplied and task/notification lists are absent; one mark/danger/deduction/
 knowledge-update sequence runs per admitted normal native frame.
+
+
+## Version 11: owner visibility production
+
+After all version10 fields, version11 appends optional `ownerVisibility`:
+`scan.capacity`, `scan.phase`, the8x8 sharing matrix, a vector of sight definitions,
+and a vector of8-owner observer-ID arrays. Each definition stores range, fine
+XY/Z aim center and eight XYZ facing offsets. Narrow matrix values still occupy
+one checked32-bit word on the wire. Observer-1 means absent; other values name
+retained actor slots, never original pointers. Current visibility countdowns
+remain in the existing actor fields. The separate maintenance-age arrays retain
+their earlier meaning.
+
+The native admission policy fixes capacity125 and phase0..11, requires one
+definition and observer array per actor, valid owner/facing/reference domains,
+bounded definitions, present owner knowledge and an empty native object pool.
+No attenuation-column state is claimed: this integration admits empty columns.
+Versions1..10 read with absent visibility production; writing them with the
+feature present refuses state loss. The overall1MiB limit remains in force.
+Fresh activation stages a private continuation and requires unadvanced knowledge
+and danger producers. Normal frame failures retain the outer session's existing
+transactional publication boundary. The default frame runs visibility before
+mark/danger/deduction/knowledge and creature maintenance. This cadence and
+portable format are native policies, separate from original World and save
+semantics. See [owner visibility](../runtime/owner-visibility.md).

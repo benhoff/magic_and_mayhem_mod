@@ -131,3 +131,12 @@ new `--output` directory. Its normal path executes the complete corpus.
 rejects changed engine/paired-test sources or claims; restore archived raw
 inputs before using it. This composition is source-bound evidence, not proof
 of full World scheduling, visibility, strategic AI, campaign or live replacement.
+
+
+## NS77 continuation
+
+[Owner visibility production](owner-visibility.md) now supplies the visibility
+inputs in a separate opt-in encounter mode. NS76's report, input policy and
+historical source hashes remain unchanged. The NS77 contract owns a bounded
+staggered creature-perception projection; observation-point fog, UI reveal,
+strategic consequences and full World scheduling retain their separate gaps.

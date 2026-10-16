@@ -1,3 +1,4 @@
+#include "../command-session/native_owner_visibility.hpp"
 #include "../../reconstruction/combat/autonomy_tables.hpp"
 #include "../../reconstruction/combat/health.hpp"
 #include "../command-session/native_geometry.hpp"
@@ -399,7 +400,10 @@ public:
     f.autonomy.geometry.objectReachable = [](const auto &, auto, auto) {
       return false;
     };
-    f.autonomy.geometry.lineOfSight = [](const auto &, auto) { return true; };
+    f.autonomy.geometry.lineOfSight = [self](const auto &a, auto target) {
+      if(!self->c.native.ownerVisibility)return true;
+      return cs::nativePointSight(self->c,self->p->native,a.ai.slot,target);
+    };
     f.autonomy.geometry.threatReaches = [](const auto &, const auto &) {
       return false;
     };

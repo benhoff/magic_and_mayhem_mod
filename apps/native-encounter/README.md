@@ -35,3 +35,15 @@ checkpoints and a reproducible first divergence. See
 [`paired-native-encounter.md`](../../research/runtime/paired-native-encounter.md)
 for the exact projection and empty World boundaries. The oracle reconstructs its
 checkpoint prefix by replay; native snapshots restore directly.
+
+
+`run-visibility INSTALL X Y WIDTH HEIGHT SEED TICKS NEW_SNAPSHOT` enables
+recovered creature perception on the generated regional graph, feeding owner
+memory, danger and navigation. Use the32x32 crop at0,0 for the NS77 corpus.
+Visibility, shared sightings and observer identities continue through portable
+save/resume. `run-knowledge` retains supplied visibility inputs; `run-danger`
+retains the earlier native observation policy. The new perception mode admits
+ordinary type17 actors and empty object/attenuation columns. It does not own
+observation-point fog, local UI reveal or the full World/campaign driver.
+See [owner visibility](../../research/runtime/owner-visibility.md) and
+`tools/test-owner-visibility-integration.py` for reproduction and evidence.

@@ -77,6 +77,10 @@ m::RegionalDangerActor observedActor(const Original &o, unsigned i,
 }
 void originalPolicy(Original &o, m::RegionalDangerInputs &in,
                     unsigned scenario) {
+#ifdef MNM_OWNER_VISIBILITY
+  if(scenario==1&&o.tick>=64&&o.tick<1408)put(o.actors.data()+0xe4b,0x8c,10000);
+  if(scenario==1&&o.tick==1408)put(o.actors.data()+0xe4b,0x8c,0);
+#endif
   if (reg::visibilityEvent(scenario, o.tick))
     put(o.actors.data() + 0xe4b, 0x24, o.tick != 64);
   if (reg::diplomacyEvent(scenario, o.tick))
@@ -247,6 +251,15 @@ int main(int argc, char **argv) try {
     for(unsigned i=0;i<125;++i)knowledge.matched[i]=get(ctx,0x11ff6+i,1)!=0;
   };
 #endif
+#ifdef MNM_OWNER_VISIBILITY
+  Bytes sightContext(0x270), sightColumns(unsigned(initial.world.dimensions.x*initial.world.dimensions.y)*6);
+  put(sightContext.data(),0,address(o.actors.data()));put(sightContext.data(),4,125);
+  put(sightContext.data(),0x228,initial.world.creatures.size());
+  global(0x6a49c0,address(sightColumns.data()));global(0x6becc6,0);
+  const auto &sightDefinition=initial.native.ownerVisibility->definitions[0];
+  put(o.config.data(),0x38,sightDefinition.range);
+  for(unsigned j=0;j<8;++j){put(o.config.data(),0x520+12*j,sightDefinition.offsets[j].x);put(o.config.data(),0x524+12*j,sightDefinition.offsets[j].y);put(o.config.data(),0x528+12*j,sightDefinition.offsets[j].z);}
+#endif
   const std::filesystem::path out = argv[6];
   if (!std::filesystem::create_directory(out))
     throw std::runtime_error("existing danger output");
@@ -288,6 +301,16 @@ int main(int argc, char **argv) try {
     originalObserve(o, observed);
 #endif
     danger.inputs(observed, false);
+#ifdef MNM_OWNER_VISIBILITY
+    global(0x644520,unsigned(-1));
+    for(unsigned a=0;a<8;++a)for(unsigned b=0;b<8;++b){
+      unsigned value=initial.native.ownerVisibility->sharing[a][b];
+      if(scenario==2&&((a==0&&b==1)||(a==1&&b==0)))value=o.tick>=128&&o.tick<256;
+      put(reinterpret_cast<void*>(0x643a80+a*340),0x20+b,value,1);
+    }
+    call(0x52b540,sightContext.data());
+    global(0x644520,0);
+#endif
 #ifdef MNM_OWNER_KNOWLEDGE
     reinterpret_cast<Value>(0x4181d0)(danger.context.data(),1);
 #else
@@ -309,6 +332,11 @@ int main(int argc, char **argv) try {
     session.step();
     auto c = cs::decode(session.world().state().systems);
     auto projected = reg::projection(c, p);
+#ifdef MNM_OWNER_VISIBILITY
+    projected.push_back({"visibility.phase",c.native.ownerVisibility->scan.phase});
+    for(unsigned i=0;i<c.world.creatures.size();++i)for(unsigned owner=0;owner<8;++owner)
+      projected.push_back({"visibility.observer."+std::to_string(i)+"."+std::to_string(owner),unsigned(c.native.ownerVisibility->observers[i][owner])});
+#endif
 #ifdef MNM_OWNER_KNOWLEDGE
     auto nativeKnowledge=reg::knowledgeProjection(*c.native.ownerKnowledge);
     projected.insert(projected.end(),nativeKnowledge.begin(),nativeKnowledge.end());
@@ -362,6 +390,16 @@ int main(int argc, char **argv) try {
     auto originalKnowledge=reg::knowledgeProjection(knowledge);
     expected.insert(expected.end(),originalKnowledge.begin(),originalKnowledge.end());
 #endif
+#ifdef MNM_OWNER_VISIBILITY
+    expected.push_back({"visibility.phase",get(sightContext.data(),0x260)});
+    for(unsigned i=0;i<c.world.creatures.size();++i)for(unsigned owner=0;owner<8;++owner){
+      const auto pointer=get(o.actors.data()+i*0xe4b,0x48+4*owner);
+      expected.push_back({"visibility.observer."+std::to_string(i)+"."+std::to_string(owner),pointer?(pointer-address(o.actors.data()))/0xe4b:unsigned(-1)});
+    }
+#endif
+#ifdef MNM_OWNER_VISIBILITY
+    std::sort(projected.begin(),projected.end(),[](const auto &a,const auto &b){return a.name<b.name;});std::sort(expected.begin(),expected.end(),[](const auto &a,const auto &b){return a.name<b.name;});
+#endif
     auto difference = encounter::paired::difference(projected, expected);
     if (!difference.empty())
       throw std::runtime_error("danger tick=" + std::to_string(c.native.tick) +
@@ -393,6 +431,9 @@ int main(int argc, char **argv) try {
     if (!c.world.creatures[1].ai.visible[0] && !d.inputs.memories[0].empty())
       rememberedFrames +=
           d.inputs.memories[0][0].observedTick < int(c.native.tick);
+#ifdef MNM_OWNER_VISIBILITY
+    std::sort(projected.begin(),projected.end(),[](const auto &a,const auto &b){return a.name<b.name;});
+#endif
     digest = encounter::paired::digest(digest, projected);
     trace << c.native.tick << ' ' << digest << '\n';
   }

@@ -30,6 +30,9 @@ inline Profile profile(game::Bytes inputs, unsigned scenario) {
 #ifdef MNM_OWNER_KNOWLEDGE
   cs::prepareNativeOwnerKnowledge(c);
 #endif
+#ifdef MNM_OWNER_VISIBILITY
+  enableOwnerVisibility(p);
+#endif
   if (scenario == 2) {
     auto &in = c.native.regionalDanger->inputs;
     in.fireRange = 6;
@@ -45,16 +48,28 @@ inline Profile profile(const std::filesystem::path &install,
   return profile(loadInputs(install, {0, 0, 32, 32}, 0), scenario);
 }
 inline bool visibilityEvent(unsigned scenario, unsigned tick) {
+#ifdef MNM_OWNER_VISIBILITY
+  (void)scenario;(void)tick;return false;
+#else
 #ifdef MNM_OWNER_KNOWLEDGE
   return scenario == 1 && (tick == 64 || tick == 1408);
 #else
   return scenario == 1 && (tick == 64 || tick == 256);
+#endif
 #endif
 }
 inline bool diplomacyEvent(unsigned scenario, unsigned tick) {
   return scenario == 2 && tick == 128;
 }
 inline void policy(cs::Continuation &c, unsigned scenario) {
+#ifdef MNM_OWNER_VISIBILITY
+  if(scenario==1&&c.native.tick>=64&&c.native.tick<1408)c.world.creatures[1].specialVision=10000;
+  if(scenario==1&&c.native.tick==1408)c.world.creatures[1].specialVision=0;
+  if(scenario==2){
+    c.native.ownerVisibility->sharing[0][1]=(c.native.tick>=128&&c.native.tick<256);
+    c.native.ownerVisibility->sharing[1][0]=(c.native.tick>=128&&c.native.tick<256);
+  }
+#endif
   if (visibilityEvent(scenario, c.native.tick))
     c.world.creatures[1].ai.visible[0] = c.native.tick != 64;
   if (diplomacyEvent(scenario, c.native.tick))

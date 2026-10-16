@@ -23,6 +23,7 @@ navigationShapes(const Profile &);
 void enableRegionalNavigation(Profile &, unsigned capacity = 512);
 void enableRegionalDanger(Profile &);
 void enableOwnerKnowledge(Profile &);
+void enableOwnerVisibility(Profile &);
 void editTerrain(game::CreatureRuleSession &, const Profile &,
                  const std::vector<cs::NativeTerrainEdit> &);
 cs::NativeConsequenceFactory consequences(const Profile &);
