@@ -32,7 +32,7 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,Effe
     if(updateMembership)effectCleanupEligible(0,width,height,layers,columns); // Validate owned table before mutation.
     // Reuse the existing initial-record/projection admission without moving it.
     auto check=pool.records()[slot];const auto iterations=check.parameters[9];
-    if(iterations>8)throw std::invalid_argument("Effect transition iteration bound exceeded");
+    if(iterations>64)throw std::invalid_argument("Effect transition iteration bound exceeded");
     check.parameters[9]=0;auto checkMotion=state.motion;
     projectEffectSameCell(check,checkMotion,width,height,layers);
     for(auto pos:{check.initialPosition,state.previousPosition})

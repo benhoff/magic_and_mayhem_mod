@@ -63,7 +63,7 @@ Buffer fixture() {
 std::shared_ptr<const game::Navigation> arenaNavigation() {
     return sandbox::loadFrozenNavigationBytes(fixture(), {}, true, true);
 }
-game::SkirmishSession newSession() { return game::SkirmishSession(arenaNavigation(), ordinaryHealthRules(), cureRuntime()); }
+game::SkirmishSession newSession() { return game::SkirmishSession(arenaNavigation(), ordinaryHealthRules(), battleRuntime()); }
 game::SkirmishSession load(const std::filesystem::path &path) {
     auto state = game::readSnapshot(path);
     const auto rules = resolveHealthRules(game::decodeCombat(state.systems).healthRulesIdentity);

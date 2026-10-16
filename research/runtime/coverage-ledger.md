@@ -12848,3 +12848,36 @@ See [contract](projectile-delivery.md) and
 [execution](original-projectile-bound-20261016.json). The incoming6f3f7037..b340b291
 range has42 file and197 behavior transitions reviewed with exact receipts and no
 missing accounting. Historical evidence remains immutable.
+
+## Magic Sphere motion and shared-battle integration (2026-10-16)
+
+PROJECTILE02 compares128 authored type3/spell73 worlds and2048 repeated movement
+calls,601 creature-hit results, full guards and exact result/state bytes across
+original32/native64/sanitizers. The selected real4883f0 parent executes trajectory
+and footprint helpers. Native limits permit64 steps/counter8192; this comparison
+owns1..20 steps and16 repeats per fixed actor world. It does not establish moving
+original actors, complete creation/type setup, ricochet or installed catalogs.
+
+PROJECTILE03 composes recovered admission/type3 update/motion/ordinary health into
+the native arena alongside Cure. Authoritative health/mana, live fine/grid creature
+positions, generation-bound effect identities and all trajectory/ANI/bookkeeping
+state survive portable checkpoints. The native moving-target case resumes each
+tick identically and applies one20-point hit; an evading target remains unharmed.
+Tests cover timeout, unadmitted/alternate clocks, lethal alternate settlement once,
+removal/reuse, both effect and World capacity refusal, mana/tag refusal and concurrent
+Cure/Sphere continuation.57 normal CTests and six sanitizer contracts pass, together
+with installed Cure ANI regressions and the existing real Qt Cure restart journey.
+A record reference is reacquired after transactional movement replaces its pool;
+alternate ticks settle/cancel terminal battles before publication.
+
+New profiles expose Magic Sphere through CLI and compiled Qt controls. Sphere's
+actual Qt button/mid-flight/fresh-window journey is a separate pending milestone.
+The declared profile8/20/20/100 and owned ANI, open torus, native allocation/spatial
+retirement and stop-on-terrain service are policies. Original48ee40 ricochet,
+installed profiles, complete creator/setup/release/audio/SPR and live original
+campaign replacement remain pending. See [scope](native-sphere-battle.md),
+[format](../formats/native-sphere-battle.md),
+[motion evidence](original-sphere-motion-bound-20261016.json) and
+[battle evidence](sphere-battle-bound-20261016.json). SP.073 remains incomplete.
+Incomingb340b291..63f60a9e has14 file and4 behavior transitions with exact receipts,
+no missing accounting; historical evidence is retained without refreshed hashes.

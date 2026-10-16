@@ -8334,18 +8334,26 @@
       "subsystem": "spell_dispatch",
       "kind": "recovered",
       "title": "Spell 73: Magic Sphere",
-      "scope": "Pending. Cast label: Case; effect label: \u2014. Resistance, stacking, duration, cleanup, failure and indirect paths need validation. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "unknown",
-      "original": [],
+      "scope": "Spell73 Magic Sphere: unique cast-admission arm8 creates update type3. CAST.projectile-update and CAST.sphere-motion own bounded helper recovery; NP.sphere-battle is an authored arena adapter. Whole original creator, setup, ricochet, installed profiles, resistance, feedback/attribution, physical presentation and live lifecycle remain pending; no whole-spell equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5748496,
+          "scope": "Selected unique compressed arm8 creation of type3; not whole spell lifecycle."
+        }
+      ],
       "documents": [
         "research/runtime/spell-dispatch-inventory.md",
-        "research/runtime/creature-ai-combat-spells.md"
+        "research/runtime/creature-ai-combat-spells.md",
+        "research/runtime/projectile-delivery.md",
+        "research/runtime/native-sphere-battle.md"
       ],
       "implementation": [],
       "tests": [],
       "evidence": [],
       "status": {
-        "understanding": "unknown",
+        "understanding": "partial",
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
@@ -73891,6 +73899,490 @@
         "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CAST.sphere-motion",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Original type3 Magic Sphere creature-aware motion continuation",
+      "scope": "Whole4883f0 type3/spell73 with original trajectory and footprint helpers:128 authored bounded fixtures,1..20 iteration count and sixteen repeated calls, initial/changed-cell ordered candidate collection, creator exclusion, type3 hit retention, wrapped coordinates and guarded full records/cells/actors/catalog; fixed actor world within each repeated fixture, bitmap/blocked/height exits as authored. No original ricochet geometry, installed profiles or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Selected type3/spell73 creature-aware motion; authored bounded trajectory and world."
+        }
+      ],
+      "documents": [
+        "research/runtime/projectile-delivery.md",
+        "research/runtime/native-sphere-battle.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/effect_cleanup.cpp",
+        "reconstruction/rendering/effect_cleanup.hpp",
+        "reconstruction/rendering/effect_projection.cpp",
+        "reconstruction/rendering/effect_projection.hpp",
+        "reconstruction/rendering/effect_placement.cpp",
+        "reconstruction/rendering/effect_placement.hpp",
+        "reconstruction/rendering/effect_lighting.cpp",
+        "reconstruction/rendering/effect_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/effect_trajectory.cpp",
+        "reconstruction/rendering/effect_trajectory.hpp",
+        "reconstruction/rendering/creature_occupancy.cpp",
+        "reconstruction/rendering/creature_occupancy.hpp",
+        "reconstruction/rendering/creature_footprint.cpp",
+        "reconstruction/rendering/creature_footprint.hpp",
+        "reconstruction/rendering/effect_creature_collision.cpp",
+        "reconstruction/rendering/effect_creature_collision.hpp"
+      ],
+      "tests": [
+        "tests/projectile-motion-reference.cpp",
+        "tools/test-projectile-motion.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/effect-creature/CMakeLists.txt",
+        "tests/effect-creature-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "PROJECTILE02.motion-original",
+        "PROJECTILE02.motion-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.sphere-battle",
+      "subsystem": "casting",
+      "kind": "native_policy",
+      "title": "Native shared-battle Magic Sphere with live collision and checkpoint continuation",
+      "scope": "Authored arena spell73 fixture cost8/damage20/speed20/lifetime100: recovered admission/type3 update and bounded motion/footprint helpers consume live authoritative combat health, wizard mana and fine/grid creature positions. Eight generation-bound projectiles share battle transactions and portable continuation with Cure. Hit exclusion, evasion, lifetime release, removal cancellation, native pool/mana refusals and exact snapshot resume. Open8x8x3 torus, authored forward ANI, logical audio and stop-on-terrain/release/allocator policies. No original full creator/type setup/ricochet/catalog profiles/physical audio/SPR/live campaign replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-sphere-battle.md",
+        "research/formats/native-sphere-battle.md"
+      ],
+      "implementation": [
+        "apps/skirmish/sphere_runtime.cpp",
+        "apps/skirmish/sphere_runtime.hpp",
+        "apps/skirmish/cure_runtime.cpp",
+        "apps/skirmish/cure_runtime.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "apps/skirmish/arena.cpp",
+        "apps/skirmish/campaign.cpp",
+        "apps/skirmish/campaign.hpp",
+        "apps/skirmish/cli.cpp",
+        "apps/skirmish/campaign_cli.cpp",
+        "apps/skirmish/trace.cpp"
+      ],
+      "tests": [
+        "tests/sphere-battle-test.cpp",
+        "tools/test-sphere-battle.py"
+      ],
+      "validation_dependencies": [
+        "apps/combat-sandbox/main.cpp",
+        "apps/cure-lab/../../reconstruction/casting/../audio/dsound_setup.hpp",
+        "apps/cure-lab/../../reconstruction/casting/../audio/voice_contract.hpp",
+        "apps/cure-lab/../../reconstruction/casting/../combat/ai.hpp",
+        "apps/cure-lab/../../reconstruction/casting/../combat/autonomy.hpp",
+        "apps/cure-lab/../../reconstruction/casting/../combat/control.hpp",
+        "apps/cure-lab/../../reconstruction/casting/admission.hpp",
+        "apps/cure-lab/../../reconstruction/casting/cure_effect.hpp",
+        "apps/cure-lab/../../reconstruction/casting/cure_services.hpp",
+        "apps/cure-lab/../../reconstruction/casting/descriptor.hpp",
+        "apps/cure-lab/../../reconstruction/combat/health.hpp",
+        "apps/cure-lab/session.cpp",
+        "apps/cure-lab/session.hpp",
+        "apps/cure-world/../../assets/asset_file.hpp",
+        "apps/cure-world/../../assets/effect_animation_catalog.hpp",
+        "apps/cure-world/../../assets/path_resolver.hpp",
+        "apps/cure-world/../../assets/persistence.hpp",
+        "apps/cure-world/../../game/persistence/snapshot.hpp",
+        "apps/cure-world/../../reconstruction/casting/../combat/ai.hpp",
+        "apps/cure-world/../../reconstruction/casting/../combat/autonomy.hpp",
+        "apps/cure-world/../../reconstruction/casting/../combat/control.hpp",
+        "apps/cure-world/../../reconstruction/casting/../rendering/effect_animation_binding.hpp",
+        "apps/cure-world/../../reconstruction/casting/../rendering/effect_lighting.hpp",
+        "apps/cure-world/../../reconstruction/casting/../rendering/effect_placement.hpp",
+        "apps/cure-world/../../reconstruction/casting/../rendering/terrain_lighting.hpp",
+        "apps/cure-world/../../reconstruction/casting/../rendering/terrain_static_lighting.hpp",
+        "apps/cure-world/../../reconstruction/casting/admission.hpp",
+        "apps/cure-world/../../reconstruction/casting/cure_presentation.hpp",
+        "apps/cure-world/../../reconstruction/casting/descriptor.hpp",
+        "apps/cure-world/../../reconstruction/rendering/effect_animation_catalog_binding.hpp",
+        "apps/cure-world/../../reconstruction/rendering/effect_animation_selection.hpp",
+        "apps/cure-world/../cure-lab/../../reconstruction/casting/../audio/dsound_setup.hpp",
+        "apps/cure-world/../cure-lab/../../reconstruction/casting/../audio/voice_contract.hpp",
+        "apps/cure-world/../cure-lab/../../reconstruction/casting/cure_effect.hpp",
+        "apps/cure-world/../cure-lab/../../reconstruction/casting/cure_services.hpp",
+        "apps/cure-world/../cure-lab/../../reconstruction/combat/health.hpp",
+        "apps/cure-world/../cure-lab/session.hpp",
+        "apps/cure-world/installed.cpp",
+        "apps/cure-world/installed.hpp",
+        "apps/cure-world/session.hpp",
+        "apps/skirmish/../../assets/animation.hpp",
+        "apps/skirmish/../../assets/asset_file.hpp",
+        "apps/skirmish/../../assets/effect_animation_catalog.hpp",
+        "apps/skirmish/../../assets/path_resolver.hpp",
+        "apps/skirmish/../../assets/persistence.hpp",
+        "apps/skirmish/../../audio/buffers.hpp",
+        "apps/skirmish/../../reconstruction/animation/no_cd.hpp",
+        "apps/skirmish/../../reconstruction/casting/../combat/ai.hpp",
+        "apps/skirmish/../../reconstruction/casting/../combat/autonomy.hpp",
+        "apps/skirmish/../../reconstruction/casting/../combat/control.hpp",
+        "apps/skirmish/../../reconstruction/casting/../rendering/effect_animation_binding.hpp",
+        "apps/skirmish/../../reconstruction/casting/../rendering/effect_lighting.hpp",
+        "apps/skirmish/../../reconstruction/casting/../rendering/effect_placement.hpp",
+        "apps/skirmish/../../reconstruction/casting/../rendering/terrain_lighting.hpp",
+        "apps/skirmish/../../reconstruction/casting/../rendering/terrain_static_lighting.hpp",
+        "apps/skirmish/../../reconstruction/casting/admission.hpp",
+        "apps/skirmish/../../reconstruction/casting/cure_presentation.hpp",
+        "apps/skirmish/../../reconstruction/casting/descriptor.hpp",
+        "apps/skirmish/../../reconstruction/casting/projectile.hpp",
+        "apps/skirmish/../../reconstruction/rendering/creature_footprint.hpp",
+        "apps/skirmish/../../reconstruction/rendering/creature_occupancy.hpp",
+        "apps/skirmish/../../reconstruction/rendering/effect_cleanup.hpp",
+        "apps/skirmish/../../reconstruction/rendering/effect_creature_collision.hpp",
+        "apps/skirmish/../../reconstruction/rendering/effect_lighting.hpp",
+        "apps/skirmish/../../reconstruction/rendering/effect_motion_initializer.hpp",
+        "apps/skirmish/../../reconstruction/rendering/effect_placement.hpp",
+        "apps/skirmish/../../reconstruction/rendering/effect_projection.hpp",
+        "apps/skirmish/../../reconstruction/rendering/effect_trajectory.hpp",
+        "apps/skirmish/../../reconstruction/rendering/effect_transition.hpp",
+        "apps/skirmish/../../reconstruction/rendering/terrain_lighting.hpp",
+        "apps/skirmish/../../reconstruction/rendering/terrain_static_lighting.hpp",
+        "apps/skirmish/../../tests/campaign-window-driver.hpp",
+        "apps/skirmish/../../tests/skirmish-window-driver.hpp",
+        "apps/skirmish/../cure-lab/../../reconstruction/casting/../audio/dsound_setup.hpp",
+        "apps/skirmish/../cure-lab/../../reconstruction/casting/../audio/voice_contract.hpp",
+        "apps/skirmish/../cure-lab/../../reconstruction/casting/cure_effect.hpp",
+        "apps/skirmish/../cure-lab/../../reconstruction/casting/cure_services.hpp",
+        "apps/skirmish/../cure-lab/../../reconstruction/combat/health.hpp",
+        "apps/skirmish/../cure-lab/session.hpp",
+        "apps/skirmish/../world-scene/playback.hpp",
+        "apps/skirmish/CMakeLists.txt",
+        "apps/skirmish/arena.hpp",
+        "apps/skirmish/controller.cpp",
+        "apps/skirmish/controller.hpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp",
+        "apps/skirmish/main.cpp",
+        "apps/skirmish/trace.hpp",
+        "apps/skirmish/view.hpp",
+        "apps/skirmish/window.cpp",
+        "apps/skirmish/window.hpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/playback.cpp",
+        "apps/world-scene/playback.hpp",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/packed_container.cpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "audio/buffers.hpp",
+        "game/../apps/world-sandbox/frozen_navigation.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/campaign.cpp",
+        "game/persistence/campaign.hpp",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/battle_systems.cpp",
+        "game/simulation/battle_systems.hpp",
+        "game/simulation/campaign_session.cpp",
+        "game/simulation/campaign_session.hpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/creature_encounter.cpp",
+        "game/simulation/creature_encounter.hpp",
+        "game/simulation/creature_rules_session.cpp",
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/melee_exchange.cpp",
+        "game/simulation/melee_exchange.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/../../assets/animation.hpp",
+        "reconstruction/animation/../../assets/asset_file.hpp",
+        "reconstruction/animation/../../assets/path_resolver.hpp",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/audio/dsound_setup.hpp",
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp",
+        "reconstruction/audio/voice_lifetime.cpp",
+        "reconstruction/audio/voice_lifetime.hpp",
+        "reconstruction/casting/../audio/dsound_setup.hpp",
+        "reconstruction/casting/../audio/voice_contract.hpp",
+        "reconstruction/casting/../audio/voice_lifetime.hpp",
+        "reconstruction/casting/../combat/ai.hpp",
+        "reconstruction/casting/../combat/autonomy.hpp",
+        "reconstruction/casting/../combat/control.hpp",
+        "reconstruction/casting/../rendering/effect_animation_binding.hpp",
+        "reconstruction/casting/../rendering/effect_animation_selection.hpp",
+        "reconstruction/casting/../rendering/effect_lighting.hpp",
+        "reconstruction/casting/../rendering/effect_placement.hpp",
+        "reconstruction/casting/../rendering/terrain_lighting.hpp",
+        "reconstruction/casting/../rendering/terrain_static_lighting.hpp",
+        "reconstruction/casting/admission.cpp",
+        "reconstruction/casting/admission.hpp",
+        "reconstruction/casting/admission_tables.hpp",
+        "reconstruction/casting/cure_effect.cpp",
+        "reconstruction/casting/cure_effect.hpp",
+        "reconstruction/casting/cure_presentation.cpp",
+        "reconstruction/casting/cure_presentation.hpp",
+        "reconstruction/casting/cure_services.cpp",
+        "reconstruction/casting/cure_services.hpp",
+        "reconstruction/casting/descriptor.hpp",
+        "reconstruction/casting/projectile.cpp",
+        "reconstruction/casting/projectile.hpp",
+        "reconstruction/casting/projectile/CMakeLists.txt",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/motion/../pathfinding/route_neighbors.hpp",
+        "reconstruction/motion/../pathfinding/route_request.hpp",
+        "reconstruction/motion/../pathfinding/route_scalar.hpp",
+        "reconstruction/motion/../pathfinding/route_search.hpp",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "reconstruction/rendering/creature_footprint.cpp",
+        "reconstruction/rendering/creature_footprint.hpp",
+        "reconstruction/rendering/creature_occupancy.cpp",
+        "reconstruction/rendering/creature_occupancy.hpp",
+        "reconstruction/rendering/effect-creature/../creature_footprint.hpp",
+        "reconstruction/rendering/effect-creature/../creature_occupancy.hpp",
+        "reconstruction/rendering/effect-creature/../effect_cleanup.hpp",
+        "reconstruction/rendering/effect-creature/../effect_creature_collision.hpp",
+        "reconstruction/rendering/effect-creature/../effect_lighting.hpp",
+        "reconstruction/rendering/effect-creature/../effect_placement.hpp",
+        "reconstruction/rendering/effect-creature/../effect_projection.hpp",
+        "reconstruction/rendering/effect-creature/../effect_trajectory.hpp",
+        "reconstruction/rendering/effect-creature/../effect_transition.hpp",
+        "reconstruction/rendering/effect-creature/../terrain_lighting.hpp",
+        "reconstruction/rendering/effect-creature/../terrain_static_lighting.hpp",
+        "reconstruction/rendering/effect-creature/CMakeLists.txt",
+        "reconstruction/rendering/effect_animation_binding.cpp",
+        "reconstruction/rendering/effect_animation_binding.hpp",
+        "reconstruction/rendering/effect_animation_catalog_binding.cpp",
+        "reconstruction/rendering/effect_animation_catalog_binding.hpp",
+        "reconstruction/rendering/effect_animation_selection.cpp",
+        "reconstruction/rendering/effect_animation_selection.hpp",
+        "reconstruction/rendering/effect_cleanup.cpp",
+        "reconstruction/rendering/effect_cleanup.hpp",
+        "reconstruction/rendering/effect_creature_collision.cpp",
+        "reconstruction/rendering/effect_creature_collision.hpp",
+        "reconstruction/rendering/effect_lighting.cpp",
+        "reconstruction/rendering/effect_lighting.hpp",
+        "reconstruction/rendering/effect_motion_initializer.cpp",
+        "reconstruction/rendering/effect_motion_initializer.hpp",
+        "reconstruction/rendering/effect_placement.cpp",
+        "reconstruction/rendering/effect_placement.hpp",
+        "reconstruction/rendering/effect_projection.cpp",
+        "reconstruction/rendering/effect_projection.hpp",
+        "reconstruction/rendering/effect_trajectory.cpp",
+        "reconstruction/rendering/effect_trajectory.hpp",
+        "reconstruction/rendering/effect_trajectory_initializer.cpp",
+        "reconstruction/rendering/effect_trajectory_initializer.hpp",
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "tests/../apps/cure-world/../../assets/asset_file.hpp",
+        "tests/../apps/cure-world/../../assets/path_resolver.hpp",
+        "tests/../apps/cure-world/../../game/persistence/snapshot.hpp",
+        "tests/../apps/cure-world/../../reconstruction/casting/../combat/ai.hpp",
+        "tests/../apps/cure-world/../../reconstruction/casting/../combat/autonomy.hpp",
+        "tests/../apps/cure-world/../../reconstruction/casting/../combat/control.hpp",
+        "tests/../apps/cure-world/../../reconstruction/casting/../rendering/effect_animation_binding.hpp",
+        "tests/../apps/cure-world/../../reconstruction/casting/../rendering/effect_lighting.hpp",
+        "tests/../apps/cure-world/../../reconstruction/casting/../rendering/effect_placement.hpp",
+        "tests/../apps/cure-world/../../reconstruction/casting/../rendering/terrain_lighting.hpp",
+        "tests/../apps/cure-world/../../reconstruction/casting/../rendering/terrain_static_lighting.hpp",
+        "tests/../apps/cure-world/../../reconstruction/casting/admission.hpp",
+        "tests/../apps/cure-world/../../reconstruction/casting/cure_presentation.hpp",
+        "tests/../apps/cure-world/../../reconstruction/casting/descriptor.hpp",
+        "tests/../apps/cure-world/../cure-lab/../../reconstruction/casting/../audio/dsound_setup.hpp",
+        "tests/../apps/cure-world/../cure-lab/../../reconstruction/casting/../audio/voice_contract.hpp",
+        "tests/../apps/cure-world/../cure-lab/../../reconstruction/casting/cure_effect.hpp",
+        "tests/../apps/cure-world/../cure-lab/../../reconstruction/casting/cure_services.hpp",
+        "tests/../apps/cure-world/../cure-lab/../../reconstruction/combat/health.hpp",
+        "tests/../apps/cure-world/../cure-lab/session.hpp",
+        "tests/../apps/cure-world/installed.hpp",
+        "tests/../apps/cure-world/session.hpp",
+        "tests/../apps/skirmish/arena.hpp",
+        "tests/../apps/skirmish/campaign.hpp",
+        "tests/../apps/skirmish/controller.hpp",
+        "tests/../apps/skirmish/view.hpp",
+        "tests/../apps/skirmish/window.hpp",
+        "tests/../reconstruction/casting/projectile.hpp",
+        "tests/ani-motion-test.cpp",
+        "tests/animation-attachment-test.cpp",
+        "tests/animation-model-test.cpp",
+        "tests/animation-placement-test.cpp",
+        "tests/battle-effects-test.cpp",
+        "tests/campaign-arena-test.cpp",
+        "tests/campaign-session-test.cpp",
+        "tests/campaign-window-driver.cpp",
+        "tests/campaign-window-driver.hpp",
+        "tests/creature-motion-test.cpp",
+        "tests/cure-battle-test.cpp",
+        "tests/effect-creature-test.cpp",
+        "tests/effect-kind34-test.cpp",
+        "tests/native-ani-restore-test.cpp",
+        "tests/native-campaign-persistence-test.cpp",
+        "tests/native-combat-test.cpp",
+        "tests/native-creature-rules-session-test.cpp",
+        "tests/native-health-rules-test.cpp",
+        "tests/native-idle-display-test.cpp",
+        "tests/native-movement-test.cpp",
+        "tests/native-multi-movement-test.cpp",
+        "tests/native-occupancy-test.cpp",
+        "tests/native-spawn-display-test.cpp",
+        "tests/native-terrain-restore-test.cpp",
+        "tests/native-world-test.cpp",
+        "tests/ordinary-health-test.cpp",
+        "tests/projectile-motion-reference.cpp",
+        "tests/projectile-test.cpp",
+        "tests/route-boundary-test.cpp",
+        "tests/route-cell-support-test.cpp",
+        "tests/route-cell-test.cpp",
+        "tests/route-cell-validity-test.cpp",
+        "tests/route-clearance-test.cpp",
+        "tests/route-creature-acceptance-test.cpp",
+        "tests/route-movement-test.cpp",
+        "tests/route-neighbors-test.cpp",
+        "tests/route-occupancy-test.cpp",
+        "tests/route-record-query-test.cpp",
+        "tests/route-request-test.cpp",
+        "tests/route-scalar-test.cpp",
+        "tests/route-search-test.cpp",
+        "tests/route-validity-test.cpp",
+        "tests/route-world-test.cpp",
+        "tests/segment-setup-test.cpp",
+        "tests/skirmish-test.cpp",
+        "tests/skirmish-window-driver.cpp",
+        "tests/skirmish-window-driver.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/test-campaign-arena.py",
+        "tests/test-campaign-window.py",
+        "tests/test-cure-battle.py",
+        "tests/test-native-ani-motion.py",
+        "tests/test-native-campaign-persistence.py",
+        "tests/test-native-combat.py",
+        "tests/test-native-fine-motion.py",
+        "tests/test-native-idle-display.py",
+        "tests/test-native-movement-session.py",
+        "tests/test-native-multi-movement.py",
+        "tests/test-native-occupancy.py",
+        "tests/test-native-segment-continuity.py",
+        "tests/test-native-spawn-display.py",
+        "tests/test-native-terrain-motion.py",
+        "tests/test-native-world.py",
+        "tests/test-neighbor-shadow.py",
+        "tests/test-route-world.py",
+        "tests/test-search-sequence.py",
+        "tests/test-skirmish-window.py",
+        "tests/test-skirmish.py",
+        "tools/test-battle-effects.py",
+        "tools/test-cure-battle.py",
+        "tools/test-projectile-motion.py"
+      ],
+      "evidence": [
+        "PROJECTILE03.battle-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -152240,6 +152732,239 @@
           "equals": 32768
         }
       ]
+    },
+    {
+      "id": "PROJECTILE02.motion-original",
+      "kind": "isolated_original",
+      "scope": "Whole unmodified4883f0 type3/spell73 with actual trajectory and footprint helpers: authored 1..20 steps and sixteen repeated calls, creator exclusion, changing cells, wrap, blocked/bitmap/height exits and guarded complete state. Fixed actor world between calls; no ricochet geometry, installed catalog or live replacement",
+      "record": "research/runtime/original-sphere-motion-bound-20261016.json",
+      "sha256": "876c8ba9f56c85e293acf1016e17efc4f4849edb091d3f274b18ec6c90103d23",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 601
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/executable_sha256"
+    },
+    {
+      "id": "PROJECTILE02.motion-native",
+      "kind": "native_integration",
+      "scope": "Whole unmodified4883f0 type3/spell73 with actual trajectory and footprint helpers: authored 1..20 steps and sixteen repeated calls, creator exclusion, changing cells, wrap, blocked/bitmap/height exits and guarded complete state. Fixed actor world between calls; no ricochet geometry, installed catalog or live replacement",
+      "record": "research/runtime/original-sphere-motion-bound-20261016.json",
+      "sha256": "876c8ba9f56c85e293acf1016e17efc4f4849edb091d3f274b18ec6c90103d23",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 601
+        }
+      ]
+    },
+    {
+      "id": "PROJECTILE03.battle-native",
+      "kind": "native_integration",
+      "scope": "Native authored arena Magic Sphere73 through recovered admission/type3 updater/trajectory/creature collision and ordinary health. Generation-bound shared effect pool, live moving target, miss, one20-point impact, timeout/cancellation and repeated snapshot continuation alongside Cure. Declared profile and authored ANI; open torus, stop-on-terrain native policy, logical audio only; no full original creation/ricochet/SPR/physical audio/live replacement",
+      "record": "research/runtime/sphere-battle-bound-20261016.json",
+      "sha256": "30cbe258e1822ddad2fc0e2c698a712a1e0c2a8b48b098dcabae0bbe71c22fd3",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal",
+          "equals": {
+            "success": true,
+            "moving_target_impacts": 1,
+            "damage": 20,
+            "health": 4,
+            "generation_reuse": true,
+            "mixed_cure": true,
+            "timeout": true,
+            "alternate_lethal": true
+          }
+        },
+        {
+          "pointer": "/sanitized",
+          "equals": {
+            "success": true,
+            "moving_target_impacts": 1,
+            "damage": 20,
+            "health": 4,
+            "generation_reuse": true,
+            "mixed_cure": true,
+            "timeout": true,
+            "alternate_lethal": true
+          }
+        },
+        {
+          "pointer": "/window",
+          "equals": {
+            "success": true,
+            "scope": "Real Qt campaign Cure button/friendly target/move and save dialogs; fresh-window and headless continuation share exact campaign bytes.",
+            "moving_target": true,
+            "health_before": 9,
+            "health_after": 17,
+            "single_heal": 8,
+            "fresh_process": true,
+            "exact_campaign_bytes": true,
+            "checkpoint_sha256": "6fe82c22b86a3846e8de616fbdb20097138fd831014815e51396f2ec91c268a6",
+            "result_sha256": "c1a3ba58a2b0b32fd3580f0577705c9492d6bb32ec7f37b8c9d308f34c102535",
+            "commands": [
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/cure-battle-test",
+                "seed-legacy-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/legacy.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/mnm-campaign-cli",
+                "inspect",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/legacy.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/cure-battle-test",
+                "seed-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/seed.mnmc"
+              ],
+              [
+                "xvfb-run",
+                "-a",
+                "-s",
+                "-screen 0 1280x1200x24",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/campaign-window-test",
+                "--test-script",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight.json",
+                "--test-output",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight",
+                "--load-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/seed.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/mnm-campaign-cli",
+                "inspect",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/mnm-campaign-cli",
+                "resume",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/reference.mnmc",
+                "16"
+              ],
+              [
+                "xvfb-run",
+                "-a",
+                "-s",
+                "-screen 0 1280x1200x24",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/campaign-window-test",
+                "--test-script",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/fresh-process.json",
+                "--test-output",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/fresh-process",
+                "--load-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/normal/cure-battle-test",
+                "resume-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/sphere-battle-bound-20261016-v3/window-journey/completed.mnmc"
+              ]
+            ]
+          }
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_installed",
+          "equals": {
+            "success": true,
+            "installed": true,
+            "health": 17
+          }
+        },
+        {
+          "pointer": "/sanitized_installed",
+          "equals": {
+            "success": true,
+            "installed": true,
+            "health": 17
+          }
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -156159,7 +156884,10 @@
         {
           "value": 73,
           "behaviors": [
-            "CAST.admission"
+            "CAST.admission",
+            "CAST.projectile-update",
+            "CAST.sphere-motion",
+            "SP.073"
           ]
         },
         {
@@ -156724,6 +157452,31 @@
             "RS.minimap-camera-dispatch",
             "RS.minimap-pixel-passes"
           ]
+        }
+      ]
+    },
+    {
+      "id": "CAST.secondary-type3",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4824612,
+        "relation": "data",
+        "scope": "Selected type3 routing entry of89-entry update table."
+      },
+      "document": "research/runtime/projectile-delivery.md",
+      "complete": false,
+      "scope": "Type3 routes4973f7; other88 update entries retain their separate scopes/unknowns.",
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "CAST.projectile-update",
+            "CAST.sphere-motion"
+          ]
+        },
+        {
+          "value": "other-types",
+          "behaviors": []
         }
       ]
     }
@@ -168984,6 +169737,37 @@
         "PROJECTILE01.original",
         "PROJECTILE01.native"
       ]
+    },
+    {
+      "id": "PROJECTILE02.motion",
+      "level": "headless",
+      "scope": "128 authored Magic Sphere73 type3 worlds,2048 original/native/sanitized movement calls and fixed creature catalogs with full state/guard comparison; existing unit/CMake regression.",
+      "behaviors": [
+        "CAST.sphere-motion"
+      ],
+      "tests": [
+        "tests/projectile-motion-reference.cpp",
+        "tools/test-projectile-motion.py"
+      ],
+      "evidence": [
+        "PROJECTILE02.motion-original",
+        "PROJECTILE02.motion-native"
+      ]
+    },
+    {
+      "id": "PROJECTILE03.battle",
+      "level": "headless",
+      "scope": "Native/sanitized moving-target one20-point hit and evading-target miss, per-tick snapshot/rebind equality, alternate/unadmitted clocks, timeout, target removal/reuse, pool/mana/tag refusals and concurrent Cure/Sphere state; full arena regressions and legacy campaign profiles.",
+      "behaviors": [
+        "NP.sphere-battle"
+      ],
+      "tests": [
+        "tests/sphere-battle-test.cpp",
+        "tools/test-sphere-battle.py"
+      ],
+      "evidence": [
+        "PROJECTILE03.battle-native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -169600,8 +170384,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-projectile-20261016.json",
-    "sha256": "f08e37189d6b4809ee9afde33c4c0946ed8146462894e22b5a0c300c178e16f2"
+    "path": "research/runtime/coverage/source-index-sphere-battle-20261016.json",
+    "sha256": "299132df4129695b9eb3418e65f0900a8ec70b2fd9c501d7270ccffb0a492bae"
   },
   "claim_bindings_required": true
 }

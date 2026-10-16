@@ -284,7 +284,7 @@ int main(int argc, char **argv) try {
     auto campaign = app::newCampaign();
     campaign.startMission();
     auto snapshot = campaign.checkpoint();
-    auto prepared = ready();
+    auto prepared = ready(9, app::battleRuntime());
     snapshot.world = prepared.world().state();
     campaign.restore(snapshot);
     need(campaign.save(argv[2]).durable, "campaign fixture publication");

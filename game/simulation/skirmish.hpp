@@ -12,9 +12,9 @@ struct SkirmishRules {
                               aiInterval = 8, livingCreatures = 6;
 };
 enum class UnitRole : std::uint32_t { wizard, sentinel };
-enum class Spell : std::uint32_t { none, summon, bolt, cure };
+enum class Spell : std::uint32_t { none, summon, bolt, cure, sphere };
 enum class Outcome : std::uint32_t { running, victory, defeat, draw };
-enum class SkirmishOrderKind : std::uint32_t { summon, bolt, move, stop, attack, cure };
+enum class SkirmishOrderKind : std::uint32_t { summon, bolt, move, stop, attack, cure, sphere };
 struct SkirmishOrder {
     SkirmishOrderKind kind = SkirmishOrderKind::stop;
     Handle subject;
@@ -73,6 +73,12 @@ class SkirmishEffects {
     virtual Bytes initial() const = 0;
     virtual void validate(const CombatSession &, const SkirmishState &) const = 0;
     virtual SkirmishRefusal cast(CombatSession &, SkirmishState &, Handle source, Handle target) const = 0;
+    virtual SkirmishRefusal castSpell(CombatSession &combat, SkirmishState &meta,
+                                    Spell spell, Handle source, Handle target) const {
+        return spell == Spell::cure ? cast(combat, meta, source, target)
+                                   : SkirmishRefusal::target;
+    }
+    virtual bool supports(Spell spell) const { return spell == Spell::cure; }
     virtual CombatReport step(CombatSession &, SkirmishState &, TickInput) const = 0;
     virtual void cancel(CombatSession &, SkirmishState &) const = 0;
     virtual void removed(CombatSession &, SkirmishState &, Handle) const {}

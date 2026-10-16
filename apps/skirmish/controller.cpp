@@ -68,6 +68,8 @@ ArenaView Controller::view() const {
     v.projectiles = s.projectiles;
     v.cureEnabled = bool(session().effectsRuntime());
     v.cureMana = cureCost;
+    v.sphereEnabled = session().effectsRuntime() && session().effectsRuntime()->supports(game::Spell::sphere);
+    for (const auto &effect : sphereViews(session().combat())) v.spheres.push_back(effect.fine);
     for (const auto &effect : cureViews(session().combat())) v.cures.push_back(effect.position);
     v.selected = selected_;
     v.feedback = feedback_;
@@ -167,6 +169,7 @@ void Controller::setMode(CursorMode m) {
     mode_ = m;
     feedback_ = m == CursorMode::summon ? "Click an empty cell within two cells of your wizard."
                 : m == CursorMode::cure ? "Click a living friendly Sentinel to cast Cure."
+                : m == CursorMode::sphere ? "Click a living enemy to cast Magic Sphere."
                 : m == CursorMode::bolt ? "Click a living enemy to cast Arc Bolt."
                                         : "Select a unit.";
     changed();
@@ -188,15 +191,15 @@ void Controller::cell(game::Point p, bool right) {
         if (!selected_ || !v.cureEnabled || hit == v.units.end() || hit->owner || hit->role != game::UnitRole::sentinel)
             throw std::invalid_argument("Choose a living friendly Sentinel");
         order = game::SkirmishOrder{game::SkirmishOrderKind::cure, *selected_, hit->actor, {}};
-    } else if (mode_ == CursorMode::bolt) {
+    } else if ((mode_ == CursorMode::bolt || mode_ == CursorMode::sphere)) {
         if (!selected_ || hit == v.units.end() || !hit->owner)
             throw std::invalid_argument("Choose a living enemy");
-        order = game::SkirmishOrder{game::SkirmishOrderKind::bolt, *selected_, hit->actor, {}};
+        order = game::SkirmishOrder{mode_ == CursorMode::sphere ? game::SkirmishOrderKind::sphere : game::SkirmishOrderKind::bolt, *selected_, hit->actor, {}};
     } else if (right) {
         if (!selected_)
             throw std::invalid_argument("Select a friendly unit first");
         if (v.canCast && hit != v.units.end() && hit->owner)
-            order = game::SkirmishOrder{game::SkirmishOrderKind::bolt, *selected_, hit->actor, {}};
+            order = game::SkirmishOrder{mode_ == CursorMode::sphere ? game::SkirmishOrderKind::sphere : game::SkirmishOrderKind::bolt, *selected_, hit->actor, {}};
         else if (v.canOrder)
             order = game::SkirmishOrder{
                 hit != v.units.end() && hit->owner ? game::SkirmishOrderKind::attack

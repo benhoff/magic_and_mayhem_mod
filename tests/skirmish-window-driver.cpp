@@ -196,7 +196,7 @@ class Driver {
         trace_.open(output_ / "trace.jsonl");
         c.onOrder = [this](const game::SkirmishOrder &o) {
             ++ordersCount_;
-            const char *kinds[] = {"summon", "bolt", "move", "stop", "attack", "cure"};
+            const char *kinds[] = {"summon", "bolt", "move", "stop", "attack", "cure", "sphere"};
             orders_ << controller_.session().world().state().tick << ' ' << kinds[unsigned(o.kind)]
                     << ' ' << o.subject.slot;
             if (o.target)

@@ -20,6 +20,8 @@ struct ActorStatus {
   unsigned status = 0, ongoingDamage = 0;
 };
 struct Stored {
+  bool spheres = false;
+  g::Bytes sphereData;
   CureAnimationDefinition definition;
   std::uint64_t tick = 0;
   unsigned resourceCounter = 0;
@@ -99,9 +101,10 @@ void animationState(Codec &c, r::AnimationState &s) {
       displayed ? std::optional<std::size_t>(*displayed) : std::nullopt;
 }
 void content(Codec &codec, Stored &s) {
-  unsigned magic = 0x31524243;
+  unsigned magic = s.spheres ? 0x32524243 : 0x31524243;
   codec.field(magic);
-  require(magic == 0x31524243, "Cure battle version");
+  require(magic == 0x31524243 || magic == 0x32524243, "Cure battle version");
+  s.spheres = magic == 0x32524243;
   unsigned lo = unsigned(s.tick), hi = unsigned(s.tick >> 32);
   codec.fields(lo, hi);
   s.tick = std::uint64_t(hi) << 32 | lo;
@@ -196,6 +199,7 @@ void content(Codec &codec, Stored &s) {
           record.animation.reset();
       },
       true);
+  if (s.spheres) codec.blob(s.sphereData);
 }
 Stored decode(const g::Bytes &bytes) {
   require(bytes.size() <= 4 * 1024 * 1024, "Cure battle byte capacity");
@@ -298,9 +302,11 @@ g::Bytes tag(unsigned slot, unsigned generation) {
 }
 void validate(const Stored &s, const g::CombatSession &combat,
               const g::SkirmishState &meta) {
-  require(combat.effects().identity == cureBattleIdentity &&
+  require(combat.effects().identity == (s.spheres ? sphereBattleIdentity : cureBattleIdentity) &&
               combat.healthRules()->identity() == ordinaryHealthIdentity,
           "Cure battle runtime/health binding");
+  for (const auto &order : meta.pending)
+    require(s.spheres || order.kind != g::SkirmishOrderKind::sphere, "pending Sphere without bound runtime");
   for (unsigned i = 0; i < s.actors.size(); ++i) {
     require(s.actors[i].actor.generation != 0, "Cure battle actor generation");
     for (unsigned j = 0; j < i; ++j)
@@ -354,6 +360,7 @@ void validate(const Stored &s, const g::CombatSession &combat,
       require(!(s.entities[j] == s.entities[i]),
               "Cure battle duplicate effect identity");
   }
+  if (s.spheres) { sphere::validate(s.sphereData, combat, meta); count += unsigned(sphere::views(s.sphereData).size()); }
   require(count == combat.effects().entities.size(),
           "Cure battle effect roster count");
   if (meta.outcome != g::Outcome::running)
@@ -396,15 +403,18 @@ g::CombatReport consequences(Stored &s, const CureSessionState &after,
 }
 class Runtime final : public g::SkirmishEffects {
   CureAnimationDefinition definition_;
+  bool spheres_;
 
 public:
-  explicit Runtime(CureAnimationDefinition d) : definition_(std::move(d)) {
+  explicit Runtime(CureAnimationDefinition d, bool spheres = false) : definition_(std::move(d)), spheres_(spheres) {
     r::NoCdAnimationPlayer player(definition_.sequence);
     player.start();
   }
-  std::uint64_t identity() const override { return cureBattleIdentity; }
+  std::uint64_t identity() const override { return spheres_ ? sphereBattleIdentity : cureBattleIdentity; }
   g::Bytes initial() const override {
     Stored s;
+    s.spheres = spheres_;
+    if (spheres_) s.sphereData = sphere::initial();
     s.definition = definition_;
     s.presentation = c::makeCurePresentation(8, 8, 3, capacity);
     return encode(s);
@@ -412,6 +422,18 @@ public:
   void validate(const g::CombatSession &combat,
                 const g::SkirmishState &meta) const override {
     ::mnm::skirmish::validate(decode(combat.effects().data), combat, meta);
+  }
+  bool supports(g::Spell spell) const override { return spell==g::Spell::cure || (spheres_ && spell==g::Spell::sphere); }
+  g::SkirmishRefusal castSpell(g::CombatSession &combat, g::SkirmishState &meta,
+                              g::Spell spell, g::Handle source, g::Handle target) const override {
+    if (spell==g::Spell::cure) return cast(combat,meta,source,target);
+    if (spell!=g::Spell::sphere || !spheres_) return g::SkirmishRefusal::target;
+    auto stored=decode(combat.effects().data);
+    auto refusal=sphere::cast(stored.sphereData,combat,meta,source,target);
+    if (refusal==g::SkirmishRefusal::none) {
+      combat.updateEffects(encode(stored)); validate(combat,meta);
+    }
+    return refusal;
   }
   g::SkirmishRefusal cast(g::CombatSession &combat, g::SkirmishState &meta,
                           g::Handle source, g::Handle target) const override {
@@ -522,6 +544,10 @@ public:
         const auto &p = stored.effects[i].effect.position;
         combat.relocateEffect(*stored.entities[i], {p.x, p.y, p.z});
       }
+    if (stored.spheres) {
+      auto extra=sphere::step(stored.sphereData,combat);
+      report.events.insert(report.events.end(),extra.events.begin(),extra.events.end());
+    }
     combat.updateEffects(encode(stored));
     validate(combat, meta);
     return report;
@@ -544,6 +570,7 @@ public:
           s.effects[i].effect.contributions.fill(UINT32_MAX);
         }
       }
+    if (s.spheres) sphere::removed(s.sphereData,combat,actor);
     combat.updateEffects(encode(s));
   }
   void cancel(g::CombatSession &combat, g::SkirmishState &) const override {
@@ -559,6 +586,7 @@ public:
         s.effects[i].effect.attribution = 255;
         s.effects[i].effect.contributions.fill(UINT32_MAX);
       }
+    if (s.spheres) sphere::cancel(s.sphereData,combat);
     combat.updateEffects(encode(s));
   }
 };
@@ -575,19 +603,30 @@ std::shared_ptr<const g::SkirmishEffects> cureRuntime() {
                 {0, 2, {}}, {0, 3, {}}, {6, 0, {}}};
   return cureRuntime(std::move(d));
 }
+std::shared_ptr<const g::SkirmishEffects> battleRuntime() {
+  auto old=cureRuntime();
+  auto stored=decode(old->initial());
+  return std::make_shared<Runtime>(stored.definition,true);
+}
+std::vector<sphere::View> sphereViews(const g::CombatSession &combat) {
+  if(combat.effects().identity!=sphereBattleIdentity) return {};
+  return sphere::views(decode(combat.effects().data).sphereData);
+}
 std::shared_ptr<const g::SkirmishEffects>
 resolveCureRuntime(const g::State &state) {
   const auto sections = g::decodeBattleSystems(state.systems);
   if (!sections.effects.identity)
     return {};
-  require(sections.effects.identity == cureBattleIdentity,
+  require(sections.effects.identity == cureBattleIdentity || sections.effects.identity == sphereBattleIdentity,
           "unknown battle effect runtime");
-  return cureRuntime(decode(sections.effects.data).definition);
+  auto stored=decode(sections.effects.data);
+  require(stored.spheres==(sections.effects.identity==sphereBattleIdentity), "battle payload/profile mismatch");
+  return std::make_shared<Runtime>(stored.definition,stored.spheres);
 }
 std::vector<CureView> cureViews(const g::CombatSession &combat) {
   if (!combat.effects().identity)
     return {};
-  require(combat.effects().identity == cureBattleIdentity,
+  require(combat.effects().identity == cureBattleIdentity || combat.effects().identity == sphereBattleIdentity,
           "unknown battle effect view");
   auto s = decode(combat.effects().data);
   std::vector<CureView> result;

@@ -1,8 +1,12 @@
 #pragma once
 namespace mnm::reconstruction::casting { struct CureAnimationDefinition; }
 #include "simulation/skirmish.hpp"
+#include "sphere_runtime.hpp"
 namespace mnm::skirmish {
 constexpr std::uint64_t cureBattleIdentity = 0x4355524542415431ULL;
+constexpr std::uint64_t sphereBattleIdentity = 0x5350484241543031ULL;
+std::shared_ptr<const game::SkirmishEffects> battleRuntime();
+std::vector<sphere::View> sphereViews(const game::CombatSession &);
 constexpr unsigned cureCost = 3, cureMagnitude = 8;
 using CureAnimationDefinition =
     reconstruction::casting::CureAnimationDefinition;

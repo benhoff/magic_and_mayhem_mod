@@ -80,6 +80,13 @@ void ArenaCanvas::paintEvent(QPaintEvent *) {
         p.setBrush(Qt::NoBrush);
         p.drawEllipse(cellCenter(cell), 25, 25);
     }
+    for (const auto &fine : view_.spheres) {
+        auto center=cellCenter({fine.x/32,fine.y/32,fine.z/16});
+        center += QPoint((fine.x%32-16)*64/32,(fine.y%32-16)*64/32);
+        p.setPen(QPen(QColor("#b6acff"),2));
+        p.setBrush(QColor("#7e65e8"));
+        p.drawEllipse(center,9,9);
+    }
     for (const auto &projectile : view_.projectiles) {
         const auto a = cellCenter(projectile.origin), b = cellCenter(projectile.destination);
         const double t = 1.0 - double(projectile.remaining) / game::SkirmishRules::flightTicks;
@@ -145,6 +152,8 @@ Window::Window(Controller &c) {
     };
     auto *summon = button("Summon Sentinel · 8 mana", "summonButton");
     auto *bolt = button("Arc Bolt · 4 mana", "boltButton");
+    auto *sphere = button("Magic Sphere · 8 mana", "sphereButton");
+    sphere->setToolTip("Launch a travelling sphere. It can hit creatures along its path.");
     auto *cure = button("Cure · 3 mana", "cureButton");
     cure->setToolTip("Heal a living friendly Sentinel by 8, up to its maximum health.");
     auto *stop = button("Stop creature", "stopButton");
@@ -181,7 +190,7 @@ Window::Window(Controller &c) {
     status->setObjectName("feedbackStatus");
     side->addWidget(status);
     side->addStretch();
-    auto refresh = [&c, canvas, player, enemy, selection, status, summon, bolt, cure, stop, play, pause,
+    auto refresh = [&c, canvas, player, enemy, selection, status, summon, bolt, sphere, cure, stop, play, pause,
                     step, save, campaignStatus, saveCampaign, continueCampaign] {
         auto v = c.view();
         canvas->present(v);
@@ -195,6 +204,7 @@ Window::Window(Controller &c) {
         status->setText(v.feedback);
         summon->setEnabled(v.canCast && !v.busy && v.mana[0] >= game::SkirmishRules::summonCost);
         bolt->setEnabled(v.canCast && !v.busy && v.mana[0] >= game::SkirmishRules::boltCost);
+        sphere->setEnabled(v.sphereEnabled && v.canCast && !v.busy && v.mana[0] >= 8);
         cure->setEnabled(v.cureEnabled && v.canCast && !v.busy && v.mana[0] >= v.cureMana);
         stop->setEnabled(v.canOrder);
         const bool running = c.hasBattle() && v.outcome == game::Outcome::running;
@@ -241,6 +251,8 @@ Window::Window(Controller &c) {
                      guarded([&c] { c.setMode(CursorMode::summon); }));
     QObject::connect(bolt, &QPushButton::clicked, this,
                      guarded([&c] { c.setMode(CursorMode::bolt); }));
+    QObject::connect(sphere, &QPushButton::clicked, this,
+                     guarded([&c] { c.setMode(CursorMode::sphere); }));
     QObject::connect(cure, &QPushButton::clicked, this,
                      guarded([&c] { c.setMode(CursorMode::cure); }));
     QObject::connect(stop, &QPushButton::clicked, this, guarded([&c] { c.stop(); }));
