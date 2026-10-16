@@ -24,4 +24,9 @@ unsigned transitionEffectCreatureWorld(EffectPlacementPool&,unsigned slot,
     EffectCreatureTransitionState&,unsigned width,unsigned height,unsigned layers,
     const EffectCreatureWorld&,const std::vector<EffectCleanupColumn>& columns={},
     bool updateMembership=true,const EffectTerrainOccupancy& occupancy={});
+// Native catalog variant; fixed-four comparison scope remains separate.
+unsigned transitionEffectCreatureCatalog(EffectPlacementPool&,unsigned,
+    EffectCreatureTransitionState&,unsigned,unsigned,unsigned,
+    const EffectCreatureWorld&,const std::vector<EffectCleanupColumn>&,bool,
+    const EffectTerrainCatalog&);
 }

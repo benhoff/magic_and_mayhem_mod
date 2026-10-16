@@ -12834,6 +12834,102 @@ Incoming 910046b3..6f3f7037 committed file/behavior transitions were reviewed wi
 exact pending retrospective receipts; this does not assert past gate passes or
 new execution of those unrelated engine branches.
 
+## Authored mission geometry (2026-10-16)
+
+`NP.skirmish-mission` separates map identity, dimensions, standing cells,
+stationary wizard spawns and ordered AI summon candidates from arena rules.
+Custom policy uses version2 continuation; the existing arena remains exact v1.
+The native session validates policy against navigation, and owning app adapters
+check the expected mission on restore. Costs, health, damage, timing and rewards
+are unchanged. Non-arena elevated continuation and all existing native campaign
+and window regressions are the bounded execution milestone; original mission
+behavior/comparison, arbitrary map entities and live replacement remain pending.
+See `native-skirmish-mission.md` and its registered execution record. A failed
+sandbox run is retained under working; the Xvfb socket admission failure is not
+an application behavior finding. The subsequent run uses the local display
+outside that sandbox boundary.
+
+## Installed crop campaign ownership (2026-10-16)
+
+`NP.map-campaign` connects the existing ordinary Plains MAP/TTD projection to
+native campaign ownership. The sealed (0,0,8,8) crop retains23 layers and uses
+supported layer3 wizard spawns with unchanged native skirmish rules. SHA256
+revision binding includes complete MAP/TTD/SPR bytes, crop policy, mission roster
+and initial snapshots; restoration additionally requires expected mission policy,
+navigation and health identity. The headless journey moves a summoned creature,
+casts, splits/reopens in-flight continuation, wins, reopens a settled result and
+advances to the unchanged arena finale. Missing/altered resources and repaired
+policy/navigation/health counterexamples refuse without partial adoption.
+
+This is authored native campaign integration; original map population, campaign
+rules, rewards, full-map loading, rendered-pixel equivalence and live replacement
+remain pending. See `native-map-campaign.md` and its bound execution record.
+Historical original/recovered evidence retains its recorded source hashes.
+
+## Playable installed-terrain campaign window (2026-10-16)
+
+`NP.map-campaign-window` connects the installed crop's immutable resource context
+to New map campaign, startup/load options, native cell/unit picking, semantic
+orders, playback and campaign dialogs. Terrain uses decoded SPR origins/masks
+and the existing ordinary submission/depth helpers. Supported-cell outlines and
+raised native vector unit markers are deliberate diagnostic overlays; their
+picking policy does not assert original rendered-pixel or occlusion equivalence.
+The first opaque-terrain picking run is retained under
+`working/tests/map-campaign/run-4knxzjvd`: tall grass intercepted intended cells
+and buried the small native glyphs, prompting this explicit native policy.
+
+The five-process journey compares pending move/cast and in-flight window saves
+with independent CLI bytes, exits/reopens and splits continuation, refuses valid
+forged mission/corrupt file dialogs without changing the active checkpoint, wins,
+reopens a settled result unchanged, then starts the exact arena finale. Existing
+arena/standalone windows remain separate regression scenarios. Qt settings are
+isolated per run after an intermittent file-dialog timeout in an earlier run;
+failed execution reports remain immutable. Native rules and rewards are unchanged.
+Original campaign/map population, full-map loading, smooth original creature
+animation, lighting/fog, original UI/pixels and live replacement remain pending.
+
+These map milestones are committed on `codex/native-map-campaign-20261016`,
+based on9fc6b28f. Concurrent main commit3fbfffe2 (shared battle/effect state)
+and the overlapping uncommitted Cure/window work are not integrated into this
+branch. Execution records apply to this isolated source tree; combining those
+contracts requires a separate reviewed merge and fresh execution. The main
+checkout's active source, index and historical evidence are preserved.
+
+## Final campaign range accounting (2026-10-16)
+
+The complete9fc6b28f..cc7d5bd7 implementation range is reviewed in
+`coverage/map-campaign-implementation-history-20261016.json`: exact committed
+parent/current file hashes have receipts; the review journal retains its prefix.
+A full-range gate exposed old persistence/session execution receipts whose
+contracts had not moved despite later shared-source staleness. Three new
+prospectively declared persistence/session tests pass on the final build;
+`native-map-checkpoint-final-20261016.json` binds their current source closure.
+New aggregate receipts account final source/contract pairs and limitations,
+preserving old reports, hashes and local stage evidence. This is accounting
+closure and scoped fresh native execution, not a past gate assertion or a merge
+of concurrent main battle/effect/Cure work. The existing source census remains
+exact: this follow-up changes metadata and execution records only.
+
+## Plains campaign and Cure integration (2026-10-16)
+
+The isolated integration combines the committed Plains mission/presentation
+branch with shared battle effects and campaign Cure. Cure spatial storage now
+binds to mission dimensions, including the 23-layer crop, while legacy map
+creation preserves its earlier identity. An optional saved Cure profile is
+loaded atomically through the campaign resource boundary. Combined automation
+covers real Qt move/cast/save/restart/single-heal and win/reopen/advance alongside
+existing arena/map contracts; execution evidence is registered independently.
+This remains bounded native policy and diagnostic terrain/glyph presentation,
+with original campaign equivalence and live replacement outstanding.
+
+The combined source-bound run is retained in
+`native-map-cure-automation-20261016.json`. It renews only its declared native
+contracts/scenarios. The seven main/incoming commits since the shared base were
+reviewed against exact parent/current Git hashes and receipts in
+`coverage/map-cure-incoming-history-20261016.json`, with no missing versions.
+Original/recovered shared dependencies retain their historical evidence and
+explicit pending limitations rather than acquiring native equivalence credit.
+
 ## Type3 projectile update and actor impact (2026-10-16)
 
 PROJECTILE01 recovers the Magic Sphere73 update type3 arm of4970e0 and selected
@@ -12848,6 +12944,52 @@ See [contract](projectile-delivery.md) and
 [execution](original-projectile-bound-20261016.json). The incoming6f3f7037..b340b291
 range has42 file and197 behavior transitions reviewed with exact receipts and no
 missing accounting. Historical evidence remains immutable.
+
+## Magic Sphere motion continuation (2026-10-16)
+
+The incoming projectile foundation63f60a9e is combined with the tested Plains/Cure
+branch. Exact committed parent/current versions and receipts are reviewed in
+`coverage/sphere-motion-incoming-history-20261016.json`. The bounded type3/spell73
+motion path now has2048 original/native/sanitized calls across128 authored worlds,
+601 hit returns and identical guarded state/output streams, plus unit/sanitized
+unit and two CMake cases. Original executable and manifests remain unchanged.
+See `sphere-motion.md` and `sphere-motion-bound-20261016.json`. Actor worlds stay
+fixed within fixtures; real moving actors, installed map binding and native Sphere
+battle integration are subsequent milestones. Native admission bounds do not
+assert comparison of every newly permitted counter/iteration value.
+
+## Terrain-bound native Sphere/Cure campaign (2026-10-16)
+
+The isolated `codex/sphere-map-campaign-20261016` branch combines the committed
+Plains/Cure campaign with native Sphere casting. SHP2 owns every projected cell,
+full MAP flags and all distinct TTD occupancy bitmaps in the8x8x23 crop; resource
+restoration checks that complete environment before adopting a save. New map UI
+creation enables Sphere/Cure; the finale remains the open8x8x3 arena. Previous
+effects-free and Cure-only profiles preserve their distinct identities/bytes.
+
+`native-sphere-map-automation-20261016.json` records prospectively declared normal
+and sanitized contracts, real Qt Sphere/Cure controls across six fresh processes,
+moving hit/evading miss, per-tick restart equality, one20-point Sphere hit and
+one8-point heal, sealed-terrain retirement, generation cancellation, valid forged
+environment/profile/corrupt-load refusal and win/reopen/advance. Existing arena,
+map and Cure-only window journeys and historical zero-tick checkpoint comparisons
+are included. The moved friendly creature can finish the hostile creature through
+ordinary melee; event attribution separates that damage from the Sphere hit.
+Earlier failed fixture runs remain retained and do not support validation claims.
+
+A native variable-catalog path removes the prototype's four-shape admission limit.
+The preserved fixed-four helper wrapper is independently re-compared in
+`sphere-motion-catalog-wrapper-20261016.json`:2048 original/native/sanitized calls,
+601 hit returns, identical guarded state streams, unit/sanitized unit and two
+CMake cases. Expanded installed catalog admission has native evidence only.
+Historical evidence and hashes remain immutable. New source census and exact
+receipts describe this change against7e752e29; concurrent main work is excluded.
+
+The branch retains authored spell cost/damage/speed/lifetime and canonical
+creature rules. Original full campaign/population/rewards, installed spell profile
+provenance, original ricochet and complete creator lifecycle, physical audio/SPR
+pixels, external side-effect transactions and live replacement remain pending.
+See `native-sphere-battle.md` and `../formats/native-sphere-battle.md`.
 
 ## Magic Sphere motion and shared-battle integration (2026-10-16)
 
@@ -13066,3 +13208,95 @@ full14journey/21operation admission is unchanged.
 native and driver-policy outcomes. Exact29688531..faa6ecab committed-history review
 covers38file/58behavior transitions with zero missing receipts; it is independent
 of this new execution and makes no retrospective gate-pass assertion.
+
+## Unified native campaign and master baseline (2026-10-16)
+
+The integration combines campaign brancha2b685cc with master77b3f0a5, preserving
+the master's action-bound storage rendering findings and its explicitly failing
+cursor corpus. The campaign keeps complete Plains terrain bindings, mixed
+Sphere/Cure continuation and exact legacy profiles while adding master alternate
+effect-clock lethal settlement, component/World capacity checks, creator
+attribution/contributor sentinels and the actual arena Sphere window journey.
+There is one terrain-aware Sphere drawing path after resolving an automatic
+merge duplication. Rules and spell balance values are unchanged.
+
+`unified-campaign-automation-20261016.json` renews twelve prospectively declared
+native contracts with full normal CTest, sanitized contracts, installed resources,
+both terrain and arena Sphere windows, existing map/Cure/progression journeys
+and four exact historical checkpoint byte checks including an older active
+terrain Sphere. `unified-drawing-regression-20261016.json` separately records
+bounded synthetic drawing/session/canvas tests. These do not correct or replace
+the master's ten known storage cursor presentation failures or establish new
+original/live/pixel equivalence. The fixed-four Sphere comparison sources remain
+byte-identical to the prior catalog-wrapper execution; its scope stays current.
+
+`coverage/unified-campaign-history-20261016.json` reviews ten committed versions
+from both histories with exact parent/current receipts. All385 compressed
+storage corpus artifacts were checked against their Git SHA256, expanded
+content-address names and catalog raw/compressed hashes; retrospective receipts
+close their prior omission without asserting past gate success or new parity.
+Both parent journals and report bytes remain unchanged. Independently reused
+PROJECTILE02.motion-original/native IDs retain the campaign parent records;
+the incoming master's immutable records are imported as
+PROJECTILE02.master-motion-original/native. The history report maps historical
+commit/ID to each imported ID; old receipts retain their exact contextual content
+and gain no fresh validation credit. New evidence uses a distinct unified ID.
+Original ricochet/catalog profiles, full campaign equivalence, physical audio
+and live replacement retain their existing limitations.
+
+The cross-parent immutability gate correctly refused the independently reused
+evidence IDs. The committed gate now verifies explicit evidence-ID imports
+against independent actual co-parents of a pending/committed merge, requires
+entire historical record equality except the new ID and preserves provenance
+keys and append-only mappings. This grants no validation/status inheritance.
+Four source-bound guard suites, including ten new actual-Git collision/refusal
+cases, pass in `unified-coverage-imports-20261016.json`; CI/local tooling execute
+the new guard fixtures. An unmerged branch, altered report/assertions, ancestor,
+duplicate/removed mapping or removed provenance cannot authorize an import.
+
+## Consolidated terrain and installed creature campaigns (2026-10-16)
+
+The master-first integration combines c16ba1b1 with the tested da645406 native
+campaign history. Both the native Plains8x8x23 profile and opt-in installed
+Crocodile arena8x8x3 profile remain available in one application. Shared
+mission-aware session constructors and restores preserve the combat driver,
+health/effect ownership and creature footprint admission. Map resources retain
+their own authored policy; installed creature rules are not applied to Plains.
+Loading a campaign chooses its profile and presentation transactionally; New
+campaign returns to the selected arena driver and New map campaign selects
+terrain. Missing installation/terrain bindings retain the current campaign.
+
+`creature-consolidation-automation-20261016.json` renews thirteen declared native
+contracts with full CTest, ASan/UBSan/LSan contracts and installed inputs. It
+retains terrain Sphere/Cure, arena Sphere, map/progression and creature actual
+Qt journeys, adds three real profile-switch/refusal processes, and verifies four
+historical active checkpoint files byte-for-byte. Creature normal/sanitized
+results match and include moving/held stun, pursuit, shared health, melee ANI/RNG,
+spell event counts, capacity/rollback and campaign next/retry continuation.
+`creature-consolidation-guards-20261016.json` renews the four synthetic coverage
+guard suites; `creature-consolidation-drawing-20261016.json` and
+`creature-consolidation-regression-20261016.json` separately retain bounded
+drawing/canvas and Python rendering-helper regressions. Original manifests are
+verified before/after native artifact experiments and installed input hashes
+remain stable.
+
+`coverage/creature-consolidation-history-20261016.json` reviews twelve incoming
+committed versions against exact parent/current SHA256 receipts and preserves
+both parent journals unchanged. No retrospective gate pass is claimed. The
+independent motion evidence-ID imports and immutable reports remain preserved;
+all fixed-four catalog-wrapper comparison sources are unchanged from their
+recorded execution. New integration evidence has distinct IDs and does not
+expand original comparison scope. The master's COPY ordering/software resize
+fixes and separate EGL resize presentation failure remain intact. Original
+campaign/full creature AI/movement, ricochet/catalog projectile profiles,
+physical audio, original pixels and live replacement retain their boundaries.
+
+The staged gate exposed a pending-merge traversal gap: an earlier resolved
+collision existed only in the actual incoming branch's committed history. The
+guard now includes committed merges reachable from verified pending tips as
+well as HEAD, preserving full immutable-row and independent-parent checks.
+Two new actual-Git tests admit that received history and reject an unrelated
+resolved branch. The four renewed source-bound guard suites pass, including
+twelve collision/refusal cases, in
+`creature-consolidation-incoming-ancestry-20261016.json`. The initial guard
+report/snapshot remain historical; their fingerprints are not refreshed.

@@ -10,9 +10,19 @@ struct View {
   game::Point fine;
   unsigned remaining;
 };
-game::Bytes initial();
+struct TerrainCell { unsigned terrain = 0, flags = 0; };
+// Empty cells retain the legacy open8x8x3 arena. A bound mission owns every
+// catalog bitmap/cell flag; resource restoration checks the complete binding.
+struct Environment {
+  game::Point dimensions{8,8,3};
+  std::vector<TerrainCell> cells;
+  std::vector<std::array<std::uint8_t,32>> occupancy{4};
+};
+bool sameEnvironment(const Environment &, const Environment &);
+Environment environment(const game::Bytes &);
+game::Bytes initial(Environment = {});
 void validate(const game::Bytes &, const game::CombatSession &,
-              const game::SkirmishState &);
+              const game::SkirmishState &, const Environment & = {});
 game::SkirmishRefusal cast(game::Bytes &, game::CombatSession &,
                            game::SkirmishState &, game::Handle, game::Handle);
 game::CombatReport step(game::Bytes &, game::CombatSession &);
