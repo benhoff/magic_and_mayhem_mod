@@ -41,6 +41,9 @@ static __GLXextFuncPtr proc_call(unsigned which,unsigned slot,const GLubyte* nam
  Proc real=__atomic_load_n(&proc_originals[which][slot],__ATOMIC_ACQUIRE);if(!real)fail();
  __GLXextFuncPtr result=real(name);
  if(result&&!strcmp((const char*)name,"glXSwapBuffers")){int saved=errno;Swap fn;memcpy(&fn,&result,sizeof(fn));fn=bind_swap(fn);memcpy(&result,&fn,sizeof(result));errno=saved;}
+#ifdef MNM_EGL_DELIVERY
+ if(result&&(!strcmp((const char*)name,"glBlitFramebuffer")||!strcmp((const char*)name,"glBlitFramebufferEXT"))){void* pointer;memcpy(&pointer,&result,sizeof(pointer));pointer=bind_egl_blit(pointer);memcpy(&result,&pointer,sizeof(result));}
+#endif
  return result;
 }
 #define PROCS(n) static __GLXextFuncPtr proc_0_##n(const GLubyte* s){return proc_call(0,n,s);} static __GLXextFuncPtr proc_1_##n(const GLubyte* s){return proc_call(1,n,s);}
@@ -71,6 +74,10 @@ static void* wrapped_symbol(void* handle,const char* name){
  else if(!strcmp(name,"eglSwapBuffers")){EglSwap fn;memcpy(&fn,&ptr,sizeof(fn));fn=bind_egl_swap(fn);memcpy(&ptr,&fn,sizeof(ptr));}
  else if(!strcmp(name,"eglGetProcAddress")){EglProc fn;memcpy(&fn,&ptr,sizeof(fn));fn=bind_egl_proc(fn);memcpy(&ptr,&fn,sizeof(ptr));}
 #endif
+#ifdef MNM_EGL_DELIVERY
+ else if(egl_window_symbol(name))ptr=bind_egl_window(name,ptr);
+ else if(!strcmp(name,"glBlitFramebuffer")||!strcmp(name,"glBlitFramebufferEXT"))ptr=bind_egl_blit(ptr);
+#endif
  errno=saved;return ptr;
 }
 /* Assembly tail forwarding preserves caller-relative RTLD_NEXT semantics.
@@ -79,7 +86,7 @@ __attribute__((visibility("hidden"))) Symbol mnm_delivery_symbol_target(void* ha
  int saved=errno;Symbol target=symbol_resolver();
  if(handle!=RTLD_NEXT&&(!strcmp(name,"glXSwapBuffers")||!strcmp(name,"glXGetProcAddressARB")||!strcmp(name,"glXGetProcAddress")))target=wrapped_symbol;
 #ifdef MNM_EGL_DELIVERY
- if(handle!=RTLD_NEXT&&(!strcmp(name,"eglSwapBuffers")||!strcmp(name,"eglGetProcAddress")))target=wrapped_symbol;
+ if(handle!=RTLD_NEXT&&(!strcmp(name,"eglSwapBuffers")||!strcmp(name,"eglGetProcAddress")||!strcmp(name,"glBlitFramebuffer")||!strcmp(name,"glBlitFramebufferEXT")||egl_window_symbol(name)))target=wrapped_symbol;
 #endif
  errno=saved;return target;
 }

@@ -6,12 +6,18 @@ typedef EGLBoolean(*EglSwap)(EGLDisplay,EGLSurface);
 typedef __eglMustCastToProperFunctionPointerType(*EglProc)(const char*);
 static EglSwap bind_egl_swap(EglSwap);
 static EglProc bind_egl_proc(EglProc);
+static void* bind_egl_blit(void*);
+static void* bind_egl_window(const char*,void*);
+static int egl_window_symbol(const char*);
 #include "glx_delivery.c"
 static EglSwap egl_originals[16];
 static EglProc egl_proc_originals[16];
 static struct {void* handle;unsigned kind,id;} egl_handles[256];
+#include "egl_window_trace.h"
+#include "egl_blit_trace.h"
 #include "egl_physical.h"
 #include "egl_worker_context.h"
+#include "egl_swap_completion.h"
 /* Equality is local only; reuse/lifetime is not inferred from these handles. */
 static unsigned egl_handle(void* handle,unsigned kind){
  int saved=errno;if(pthread_mutex_lock(&mutex))fail();unsigned id=0;
@@ -24,13 +30,14 @@ static unsigned egl_handle(void* handle,unsigned kind){
 static EGLBoolean egl_swap_call(unsigned slot,EGLDisplay display,EGLSurface surface){
  EglSwap real=__atomic_load_n(&egl_originals[slot],__ATOMIC_ACQUIRE);if(!real)fail();
  uint32_t before_action[12]={0},after_action[12]={0};egl_action_state(before_action);
- uint32_t args[8]={egl_handle(display,1),egl_handle(surface,2),slot+1,0,0,0,0,0};uint32_t id=begin(11,args);egl_worker_context(id,1);
+ uint32_t args[8]={egl_handle(display,1),egl_handle(surface,2),slot+1,0,0,0,0,0};uint32_t id=begin(11,args);egl_worker_context(id,1);egl_surface_before_swap(id,display,surface);egl_window_point(id,display,surface,1);
  EGLBoolean result=real(display,surface);int saved=errno;egl_worker_context(id,2);record(2,id,11,args,(int)result,saved);egl_action_state(after_action);EGLint width=800,height=600;
- if(result&&getenv("MNM_DRAW_ACTION_BOUNDARIES")){
+ if(result&&(getenv("MNM_DRAW_ACTION_BOUNDARIES")||getenv("MNM_DRAW_EGL_SWAP_COMPLETION"))){
   typedef EGLBoolean(*QuerySurface)(EGLDisplay,EGLSurface,EGLint,EGLint*);
   void* pointer=symbol_resolver()(RTLD_NEXT,"eglQuerySurface");QuerySurface query;memcpy(&query,&pointer,sizeof(query));
   if(!query||!query(display,surface,EGL_WIDTH,&width)||!query(display,surface,EGL_HEIGHT,&height)||width<1||height<1||width>2048||height>2048)refuse("EGL action extent query");
  }
+ if(result){egl_swap_completion(id,(uint32_t)width,(uint32_t)height);egl_window_point(id,display,surface,2);}
  egl_physical(id,args,result,saved,before_action,after_action,(uint32_t)width,(uint32_t)height);errno=saved;return result;
 }
 #define EGL_SLOT(n) static EGLBoolean egl_swap_##n(EGLDisplay d,EGLSurface s){return egl_swap_call(n,d,s);}
@@ -46,6 +53,8 @@ static EglSwap bind_egl_swap(EglSwap real){
 static __eglMustCastToProperFunctionPointerType egl_proc_call(unsigned slot,const char* name){
  EglProc real=__atomic_load_n(&egl_proc_originals[slot],__ATOMIC_ACQUIRE);if(!real)fail();__eglMustCastToProperFunctionPointerType result=real(name);
  if(result&&!strcmp(name,"eglSwapBuffers")){int saved=errno;EglSwap fn;memcpy(&fn,&result,sizeof(fn));fn=bind_egl_swap(fn);memcpy(&result,&fn,sizeof(result));errno=saved;}
+ if(result&&(!strcmp(name,"glBlitFramebuffer")||!strcmp(name,"glBlitFramebufferEXT"))){void* pointer;memcpy(&pointer,&result,sizeof(pointer));pointer=bind_egl_blit(pointer);memcpy(&result,&pointer,sizeof(result));}
+ if(result&&egl_window_symbol(name)){void* pointer;memcpy(&pointer,&result,sizeof(pointer));pointer=bind_egl_window(name,pointer);memcpy(&result,&pointer,sizeof(result));}
  return result;
 }
 #define EGL_PROC(n) static __eglMustCastToProperFunctionPointerType egl_proc_##n(const char* s){return egl_proc_call(n,s);}

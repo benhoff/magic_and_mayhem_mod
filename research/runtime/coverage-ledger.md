@@ -13000,3 +13000,34 @@ retained under `working/build/creature-battle-20261016/`.
 The exact77b3f0a5..3cc1dfee committed-history review checks22 file and21 behavior
 transitions with no missing receipts. [History](coverage/creature-window-incoming-history-20261016.json)
 is separate from this execution and does not infer new validation of past code.
+
+
+## Storage COPY ordering and presentation attribution (2026-10-16)
+
+The retained238frame Save/Load/display-rebuild comparison now has one failing
+presentation (ordinal170,126pixels in each GPU and physical cohort), down from ten.
+Independent API completion/next-call bounds, source/destination identities and
+exact driver geometry establish that cross-thread COPY wrapper return order can
+differ from driver command order. Replay-only normalization and command-bound
+source reads remove nine failures without original image inputs. All323Quick
+Battle regression frames still pass. Original traces and old ten-failure reports
+remain unchanged; CPU/unsupported copies and all other producers remain barriers.
+
+Fresh comparator-only original GL source readbacks match native GPU output on
+all228frames; the final230frame policy-disabled acquisition/replay repeats exact
+source agreement and one physical failure. Correct pre/post EGL
+extents, final GL projection, actual X11 drawable position and completed pre-read
+GPU fences isolate the residual to observed legacy presentation after source
+rendering; its exact internal driver cause remains unproved. Temporary viewport
+alignment fails in a separate232frame run with all232source comparisons matching.
+Seven owned EGL resize controls pass and restore viewport/error state in their
+bounded scope. The experimental viewport policy stays opt-in and disabled in the
+normal acquisition profile. The rejected broad readiness rule is absent.
+
+[Ordering](drawing-copy-driver-order.md), [diagnostics](drawing-egl-swap-completion.md)
+and [session status](action-bound-storage-session.md) separate native source
+agreement from physical parity. One physical failure, global route/source
+ownership, Qt layout policy, full14journey/21operation acceptance, hardware and
+live replacement remain explicit. No rendering completion/status promotion is
+claimed. Exact77b3f0a5..29688531 history review covers46file/34behavior transitions
+with zero missing receipts, separately from these new results.

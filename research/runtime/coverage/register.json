@@ -73221,12 +73221,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Portable complete recorded EGL session through native GPU and X11 comparison",
-      "scope": "Portable complete observed-EGL Quick Battle interval: independent original live-observation acquisition and normal Quit, lossless source/API/interval/closure traces plus all323original full planes and encoded asset bindings. Recompute every worker/submission/source prefix, replay owned source-only native snapshots, compose final recorded transfers/fills/saved history on native GPU, and compare complete GPU565 and post-swap X11 output. RGB tolerance1, alpha excluded. Missing/reordered/unbound/partial frames, wrong hashes/identities, undefined initial history, malformed geometry and cleanup failures refuse. Separate observed_egl_session boundary cannot close full generic action-bound presented journeys, all original routes,14journey/21operation acceptance, hardware scanout or live replacement.",
+      "scope": "Portable complete observed-EGL Quick Battle interval: independent original live-observation acquisition and normal Quit, lossless source/API/interval/closure traces plus all323original full planes and encoded asset bindings. Recompute every worker/submission/source prefix, replay owned source-only native snapshots, compose final recorded transfers/fills/saved history on native GPU, and compare complete GPU565 and post-swap X11 output. RGB tolerance1, alpha excluded. Missing/reordered/unbound/partial frames, wrong hashes/identities, undefined initial history, malformed geometry and cleanup failures refuse. Separate observed_egl_session boundary cannot close full generic action-bound presented journeys, all original routes,14journey/21operation acceptance, hardware scanout or live replacement. Driver-backed COPY runs and source reads use exact API/driver order, with other producers as barriers; original return-order journals remain unchanged.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/recorded-native-session-comparison.md",
-        "research/formats/recorded-drawing-composition-v1.md"
+        "research/formats/recorded-drawing-composition-v1.md",
+        "research/runtime/drawing-copy-driver-order.md"
       ],
       "implementation": [
         "tools/drawing_recorded_session.py",
@@ -73255,14 +73256,16 @@
         "apps/drawing-session/CMakeLists.txt",
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
-        "tests/fixtures/drawing-recorded-session/session.json"
+        "tests/fixtures/drawing-recorded-session/session.json",
+        "tools/drawing_copy_order.py"
       ],
       "evidence": [
         "DRAW02.recorded-session.retention-20261016",
         "DRAW02.recorded-session.portable-03-20261016",
         "DRAW02.recorded-gpu-composition.controls-20261016",
         "DRAW02.recorded-session.journey-adapter-20261016",
-        "DRAW02.storage.quick-battle-regression-20261016"
+        "DRAW02.storage.quick-battle-regression-20261016",
+        "DRAW02.cursor.quick-regression-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -74901,10 +74904,16 @@
         "protocols/include/mnm/menu_v22.h",
         "protocols/include/mnm/menu_v13.h",
         "apps/drawing-session/observe.cpp",
-        "tests/drawing-session-input.cpp"
+        "tests/drawing-session-input.cpp",
+        "runtime/display/egl_swap_completion.h",
+        "runtime/display/egl_blit_trace.h",
+        "runtime/display/egl_window_trace.h",
+        "runtime/display/egl_viewport_policy.h"
       ],
       "evidence": [
-        "DRAW02.storage-action.original-20261016"
+        "DRAW02.storage-action.original-20261016",
+        "DRAW02.cursor.original-final-20261016",
+        "DRAW02.cursor.viewport-original-negative-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -74922,12 +74931,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Source-owned native replay of an action-bound storage interval",
-      "scope": "Compare every observed fenced original EGL presentation in a bounded Apprentice Save/Load, both display rebuilds, MainLoad/resume and returned-Main interval. Bind source prefix, worker/submission, resource generation and actual frame extent; native replay uses encoded assets and scrubbed producer inputs, then native-derived snapshots and GPU composition with invalidation on extent changes. Compare full native RGB565 and post-swap X11 RGB, tolerance one output unit, alpha excluded. Missing/ambiguous/unbound frames and mismatches refuse. Preserve original callback epoch ambiguity and semantic Save/Load checks separately. Original-layout replay does not establish native Qt menu policy/layout parity, global route completeness, generic full-journey acceptance, hardware scanout or live replacement. Snapshot-only reconstruction explicitly propagates undefined validity through hidden copies; all source snapshots/CPU reads/publication still require defined pixels. Default producer admission remains strict. Intentional native display policy initializes a newly recreated extent to black only at a completed-action-bound worker handoff; this is not a recovered guarantee of arbitrary original allocation contents. The offline DrawingScene adapter routes existing RGB-add and colour-rectangle source operations into active World GPU batches alongside its independent CPU reconstruction; exact destination, order and queue boundaries remain required.",
+      "scope": "Compare every observed fenced original EGL presentation in a bounded Apprentice Save/Load, both display rebuilds, MainLoad/resume and returned-Main interval. Bind source prefix, worker/submission, resource generation and actual frame extent; native replay uses encoded assets and scrubbed producer inputs, then native-derived snapshots and GPU composition with invalidation on extent changes. Compare full native RGB565 and post-swap X11 RGB, tolerance one output unit, alpha excluded. Missing/ambiguous/unbound frames and mismatches refuse. Preserve original callback epoch ambiguity and semantic Save/Load checks separately. Original-layout replay does not establish native Qt menu policy/layout parity, global route completeness, generic full-journey acceptance, hardware scanout or live replacement. Snapshot-only reconstruction explicitly propagates undefined validity through hidden copies; all source snapshots/CPU reads/publication still require defined pixels. Default producer admission remains strict. Intentional native display policy initializes a newly recreated extent to black only at a completed-action-bound worker handoff; this is not a recovered guarantee of arbitrary original allocation contents. The offline DrawingScene adapter routes existing RGB-add and colour-rectangle source operations into active World GPU batches alongside its independent CPU reconstruction; exact destination, order and queue boundaries remain required. Source COPY runs and read points are normalized to independently bound API/driver command order, while other producers remain barriers; original journals and original image inputs are unchanged. Optional independently retained original GL-source RGB565 oracles are compared externally with native GPU output, with exact source/destination GL projection checks. Source-GPU agreement and physical output agreement are separate results; neither missing witnesses nor physical failures are converted to acceptance.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/action-bound-storage-session.md",
-        "research/formats/recorded-drawing-composition-v1.md"
+        "research/formats/recorded-drawing-composition-v1.md",
+        "research/runtime/drawing-copy-driver-order.md"
       ],
       "implementation": [
         "tools/compare-drawing-quick-battle.py",
@@ -74946,7 +74956,8 @@
         "tools/test-recorded-drawing-composition.py",
         "tests/test-drawing-storage-session.py",
         "tests/canvas-sequence-test.cpp",
-        "tests/drawing-scene-test.cpp"
+        "tests/drawing-scene-test.cpp",
+        "tests/test-drawing-egl-gpu-reference.py"
       ],
       "validation_dependencies": [
         "compat/legacy/drawing_session_main.cpp",
@@ -74973,12 +74984,18 @@
         "apps/qt-shell/gl_viewport.hpp",
         "tools/drawing_action_session.py",
         "runtime/drawing/action_boundary.h",
-        "tools/coverage_claims.py"
+        "tools/coverage_claims.py",
+        "tools/drawing_copy_order.py",
+        "tools/drawing_egl_gpu_reference.py"
       ],
       "evidence": [
         "DRAW02.storage-action.native-20261016",
         "DRAW02.storage-composition.controls-20261016",
-        "DRAW02.storage-session.portable-20261016"
+        "DRAW02.storage-session.portable-20261016",
+        "DRAW02.cursor.storage-portable-20261016",
+        "DRAW02.cursor.source-native-20261016",
+        "DRAW02.cursor.source-native-final-20261016",
+        "DRAW02.cursor.viewport-native-negative-20261016"
       ],
       "status": {
         "understanding": "partial",
@@ -74988,8 +75005,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "All238observed frames compare; ten still differ in cursor-shaped regions (1660 total RGB pixels across native GPU output; exact report retained). Matching original cursor bitmap inputs and differing current/background samples leave producer-return order, driver copy/publication ordering and source backing aliases under investigation. Do not assume a coherent immutable prefix from source-point metadata alone. Native Qt menu policy, all global routes, full14/21acceptance, hardware and live replacement remain separate.",
-        "Original native05 comparison retains historical source hashes, including five reconstruction files changed by incoming master. Fresh portable02 rebuild/replay from the combined tree reproduces the same238frames/ten1660pixel failures; no historical hash is refreshed."
+        "Current retained238frame replay has one126pixel failure per GPU/physical cohort. Fresh original final source texture vs native output agrees across all228initial and230final policy-disabled frames, while one physical frame still differs. EGL dimensions, exact GL projection, native X11 geometry and completed pre-read fences isolate remaining divergence after source rendering; exact Wine/Mesa cause remains unproved. The temporary viewport policy also fails one232frame physical presentation with all232source-GPU comparisons matching. Preserve old reports/hashes. Qt menu policy, source ownership/global routes, full14/21acceptance, hardware and replacement remain separate."
       ]
     },
     {
@@ -75028,7 +75044,9 @@
         "protocols/include/mnm/canvas_producers_v1.h"
       ],
       "evidence": [
-        "DRAW02.storage-action.original-20261016"
+        "DRAW02.storage-action.original-20261016",
+        "DRAW02.cursor.original-final-20261016",
+        "DRAW02.cursor.viewport-original-negative-20261016"
       ],
       "status": {
         "understanding": "partial",
@@ -75046,18 +75064,20 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Portable action-bound storage/rebuild EGL session",
-      "scope": "Portable observed_egl_action_session boundary for a complete original-active Apprentice Save/Load, display rebuilds, MainLoad/resume and returned-Main interval with separately verified normal Quit. Retain all full original planes, exact callback epoch sidecars, source-only producer/API/closure traces, encoded assets and original save bytes. Recompute original action/source/worker/resource/extent bindings, then native GPU565 and physical X11 comparisons from native-owned inputs. New suite case keeps original Qt menu policy/global-route/hardware/live-replacement limits and all fourteen-journey/twenty-one-operation acceptance requirements. Missing/reordered/unbound/modified artifacts and mismatches refuse; no original oracle pixels enter native processes.",
+      "scope": "Portable observed_egl_action_session boundary for a complete original-active Apprentice Save/Load, display rebuilds, MainLoad/resume and returned-Main interval with separately verified normal Quit. Retain all full original planes, exact callback epoch sidecars, source-only producer/API/closure traces, encoded assets and original save bytes. Recompute original action/source/worker/resource/extent bindings, then native GPU565 and physical X11 comparisons from native-owned inputs. New suite case keeps original Qt menu policy/global-route/hardware/live-replacement limits and all fourteen-journey/twenty-one-operation acceptance requirements. Missing/reordered/unbound/modified artifacts and mismatches refuse; no original oracle pixels enter native processes. Normalize only uniquely API-bound, exact-geometry COPY runs into independently observed driver order, preserving all original traces. Other producers are barriers; source reads within a run bind to their exact API/driver command rather than the wrapper return prefix. No original source/destination pixels choose copy ordering.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/action-bound-storage-session.md",
-        "research/formats/recorded-drawing-composition-v1.md"
+        "research/formats/recorded-drawing-composition-v1.md",
+        "research/runtime/drawing-copy-driver-order.md"
       ],
       "implementation": [
         "tools/drawing_recorded_session.py",
         "tools/recorded_drawing_plan.py",
         "apps/drawing-session/main.cpp",
-        "apps/drawing-session/recorded_composition.hpp"
+        "apps/drawing-session/recorded_composition.hpp",
+        "tools/drawing_copy_order.py"
       ],
       "tests": [
         "tools/check-recorded-drawing-session.py",
@@ -75067,7 +75087,8 @@
         "tools/check-drawing-journeys.py",
         "tests/fixtures/drawing-storage-session/session.json",
         "tests/test-drawing-storage-retention.py",
-        "tests/fixtures/drawing-journeys/storage-suite.json"
+        "tests/fixtures/drawing-journeys/storage-suite.json",
+        "tests/test-drawing-copy-order.py"
       ],
       "validation_dependencies": [
         "tools/compare-drawing-quick-battle.py",
@@ -75089,7 +75110,8 @@
       "evidence": [
         "DRAW02.storage-session.retention-20261016",
         "DRAW02.storage-session.portable-20261016",
-        "DRAW02.storage-session.journey-20261016"
+        "DRAW02.storage-session.journey-20261016",
+        "DRAW02.cursor.storage-portable-20261016"
       ],
       "status": {
         "understanding": "partial",
@@ -75099,7 +75121,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Retained full238frame reference is admitted; current native comparison still differs in ten cursor-region presentations. Preserve failures without changing tolerance or the14journey/21operation gates. Original global routes, exact semantic causality, native Qt menu policy, hardware and live replacement remain separate."
+        "Retained full238frame reference now differs only at ordinal170 (126pixels each GPU/physical cohort). Nine loading/background failures fixed by independently bound COPY driver order/read prefixes. Preserve physical failure and unchanged tolerance/14journey/21operation gates. Original global routes, semantic causality, Qt menu policy, source ownership, hardware and live replacement remain separate."
       ]
     },
     {
@@ -75554,6 +75576,136 @@
         ],
         "exclusions": "Native visibility/bravery, animation selection, movement/cadence and wizard policy remain supplied; no complete original AI/world/profile geometry/projectile catalog/physical presentation/live replacement."
       }
+    },
+    {
+      "id": "TOOL.egl-swap-completion",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Opt-in same-context completion before physical EGL acquisition",
+      "scope": "Reference-only post-EGL same-context GL fence, bounded wait/deletion, viewport/scissor and framebuffer metadata before independent physical capture. Bind exact call, thread, extent and monotonic interval; preserve normal worker completion separately. The metadata operation reads no pixels; separately enabled GPU-source pixel witnessing is accounted independently. No GL/EGL error-state neutrality, original source ownership, hardware scanout, native parity or replacement claim. Opt-in wrapped GL framebuffer blit metadata retains exact source/destination rectangles, FBOs and source attachment dimensions before each swap. Unknown/RTLD_NEXT GL routes remain unobserved; no general GL forwarding or allocation lifetime equivalence claim. Retain EGL surface width/height before the actual swap separately from post-return dimensions; this query is diagnostic and does not assert underlying buffer allocation size. Record observed EGL native X11 window creation/destruction with run-local generations and pre/post-swap root geometry. Unknown associations remain explicit; no stable address, complete creation-route or window lifetime claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/drawing-egl-swap-completion.md",
+        "research/runtime/cursor-presentation-attribution-20261016.json"
+      ],
+      "implementation": [
+        "runtime/display/egl_swap_completion.h",
+        "tools/drawing_egl_swap_completion.py",
+        "runtime/display/egl_delivery.c",
+        "runtime/display/egl_blit_trace.h",
+        "runtime/display/egl_window_trace.h"
+      ],
+      "tests": [
+        "tests/test-drawing-egl-swap-completion.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "tools/build-drawing-x11-delivery.py",
+        "runtime/display/egl_physical.h",
+        "runtime/display/egl_worker_context.h",
+        "apps/drawing-session/observe.cpp",
+        "runtime/display/glx_delivery.c",
+        "runtime/display/egl_viewport_policy.h"
+      ],
+      "evidence": [
+        "DRAW02.cursor.egl-forwarding-20261016",
+        "DRAW02.cursor.original-final-20261016",
+        "DRAW02.cursor.viewport-original-negative-20261016"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh final diagnostic acquisition and default-off EGL forwarding controls are recorded separately. Completion does not eliminate the first-downsize physical shift. Query/error-state neutrality, complete lookup/window lifetime routes, source ownership, global presentations and hardware remain unproved."
+      ]
+    },
+    {
+      "id": "TOOL.egl-present-source-gpu-witness",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Reference-only GL source texture pixel witness",
+      "scope": "Explicit opt-in bounded post-blit GL source texture RGB565 readback with immutable per-swap oracle files, default pixel-pack-state checks and512MiB budget. Diagnostic original pixels remain comparator-only and never enter native replay. Source ownership, GL error neutrality, unobserved routes and original driver equivalence remain unproved.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/drawing-egl-swap-completion.md",
+        "research/runtime/cursor-presentation-attribution-20261016.json"
+      ],
+      "implementation": [
+        "runtime/display/egl_blit_trace.h",
+        "tools/drawing_egl_swap_completion.py"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/display/egl_delivery.c",
+        "runtime/display/egl_swap_completion.h",
+        "tools/build-drawing-x11-delivery.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor.original-final-20261016",
+        "DRAW02.cursor.viewport-original-negative-20261016"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Bounded diagnostic source readbacks are comparator-only; native source agreement does not close physical parity. Error-state neutrality, immutable ownership/aliases, all GL routes and general driver behavior remain unproved."
+      ]
+    },
+    {
+      "id": "TOOL.egl-present-viewport-policy",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Opt-in temporary drawable viewport alignment",
+      "scope": "Explicit native driver policy sets viewport to actual current EGL drawable dimensions only around the original final framebuffer blit to drawFBO0, then restores exact original viewport and errno. Original blit source, arguments and pixels remain unchanged. Retain each applied/restored state. This tests a stale-drawable geometry hypothesis; not recovered original behavior, GL/EGL error neutrality or unrestricted driver equivalence.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/drawing-egl-swap-completion.md",
+        "research/runtime/cursor-presentation-attribution-20261016.json"
+      ],
+      "implementation": [
+        "runtime/display/egl_viewport_policy.h"
+      ],
+      "tests": [
+        "tools/test-drawing-egl-viewport-policy.py",
+        "tests/drawing-egl-resize-forwarding-test.c",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/display/egl_blit_trace.h",
+        "runtime/display/egl_swap_completion.h",
+        "runtime/display/egl_window_trace.h",
+        "runtime/display/egl_delivery.c",
+        "runtime/display/glx_delivery.c",
+        "tools/build-drawing-x11-delivery.py",
+        "tools/drawing_egl_swap_completion.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor.viewport-controls-20261016",
+        "DRAW02.cursor.viewport-original-negative-20261016"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Seven owned resize controls preserve exact source/physical output and viewport restoration. Fresh232frame original policy experiment does not fix the first-downsize physical failure, despite232exact source-GPU matches. Retained for explicit reproduction only; normal profile remains disabled. No unrestricted forwarding/error-state or driver equivalence claim."
+      ]
     }
   ],
   "evidence": [
@@ -155270,6 +155422,317 @@
           }
         }
       ]
+    },
+    {
+      "id": "DRAW02.cursor.storage-portable-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/cursor-storage-portable-20261016.json",
+      "sha256": "a87ca6d76d956f02fde0499a5f3e48ad27c7c8a4969caa3ba3da97ef3e62bdee",
+      "scope": "Complete238frame retained storage replay; nine prior cursor failures removed by command-order normalization. One ordinal170/126pixel failure per GPU/physical cohort retained. No parity or integration promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/frames",
+          "equals": 238
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 252
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor.quick-regression-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/cursor-quick-regression-20261016.json",
+      "sha256": "56c3ac1684f9e36f57617bfbd33140b98f39df667ff2ea08872e0d93b77d8e35",
+      "scope": "All323retained Quick Battle GPU/physical frames match after independently bound COPY normalization. Existing portable headless scope only; generic journeys/global routes/hardware/replacement unchanged.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/frames",
+          "equals": 323
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor.source-native-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/cursor-source-native-20261016.json",
+      "sha256": "51497e5b4f93cd16364af0199e1fb5bbcc0c46435a1708eb119746cb33e9d92a",
+      "scope": "All228native GPU sources match original final GL texture exactly, independently from one physical failure. Comparator-only original pixels never enter native processes. No physical parity promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/compared_presentations",
+          "equals": 228
+        },
+        {
+          "pointer": "/mismatched_presentations",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_gpu_source_comparisons",
+          "equals": 228
+        },
+        {
+          "pointer": "/original_gpu_source_mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_gpu_source_success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor.source-native-final-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/cursor-source-native-final-20261016.json",
+      "sha256": "e4265fea049de338611e8962970bf92c14d8d2076bb1128fb75d412680ccdcb2",
+      "scope": "Final unmodified-driver diagnostic profile: all230source-GPU comparisons exact, one physical failure retained. Separate GPU-source/physical results; no global cause or native replacement claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/compared_presentations",
+          "equals": 230
+        },
+        {
+          "pointer": "/mismatched_presentations",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_gpu_source_comparisons",
+          "equals": 230
+        },
+        {
+          "pointer": "/original_gpu_source_mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_gpu_source_success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor.viewport-native-negative-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/cursor-viewport-native-negative-20261016.json",
+      "sha256": "22d9273a33c7e65138b464c0c7933d036da6fc880c3522b7adc94d2c810fc79a",
+      "scope": "Opt-in driver viewport experiment fails one physical frame across232compared presentations despite232exact source-GPU matches. Preserves negative policy result, not original baseline equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/compared_presentations",
+          "equals": 232
+        },
+        {
+          "pointer": "/mismatched_presentations",
+          "equals": 1
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 301992
+        },
+        {
+          "pointer": "/original_gpu_source_comparisons",
+          "equals": 232
+        },
+        {
+          "pointer": "/original_gpu_source_mismatching_pixels",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor.egl-forwarding-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/cursor-egl-forwarding-20261016.json",
+      "sha256": "b7183fe3175f50a3679f7c821d14ddf9bf45d03df4aa7af922f5a8f3e9913aeb",
+      "scope": "Final source-stable default-off actual EGL forwarding: four direct/named/proc/default routes preserve known source pixels, Boolean, errno, EGL error and missing symbol outcome. Not unrestricted GL/driver neutrality.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/swap_routes",
+          "equals": 4
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor.viewport-controls-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/cursor-viewport-controls-20261016.json",
+      "sha256": "0b1533e9fa40e6a7bc8f2dcc29e605cce071b96fe8aa1d60d2688f2ff4ec5623",
+      "scope": "Seven owned full-frame resize controls compare original source and physical output with/without policy, preserve viewport and GL error checks. Does not fix original Wine presentation.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/frames",
+          "equals": 7
+        },
+        {
+          "pointer": "/viewport_restored",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor.original-final-20261016",
+      "kind": "live_observation",
+      "record": "research/runtime/cursor-original-final-20261016.json",
+      "sha256": "6770401ead5a66a9f9ed5e8f8b15fbaa725fa669b120ec2b8b85fc8af11a1ca4",
+      "scope": "Acquisition only, condensed from immutable raw executed report with original prospective claims/sources. No original pixel data is a native input. Policy flag distinguishes intentional negative viewport experiment from final policy-disabled diagnostic profile; observers remain perturbations.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/egl_viewport_refresh_policy",
+          "equals": false
+        },
+        {
+          "pointer": "/selected_egl_frames",
+          "equals": 230
+        },
+        {
+          "pointer": "/source_gpu_oracles",
+          "equals": 230
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_sections_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/quit_observation/normal_exit",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor.viewport-original-negative-20261016",
+      "kind": "live_observation",
+      "record": "research/runtime/cursor-viewport-original-negative-20261016.json",
+      "sha256": "c72af88f7498846774059c387f5b19697fea17f2c421953073b6308d7dbf2cf0",
+      "scope": "Acquisition only, condensed from immutable raw executed report with original prospective claims/sources. No original pixel data is a native input. Policy flag distinguishes intentional negative viewport experiment from final policy-disabled diagnostic profile; observers remain perturbations.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/egl_viewport_refresh_policy",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_egl_frames",
+          "equals": 232
+        },
+        {
+          "pointer": "/source_gpu_oracles",
+          "equals": 232
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_sections_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/quit_observation/normal_exit",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -171945,7 +172408,8 @@
       ],
       "evidence": [
         "DRAW02.recorded-session.portable-03-20261016",
-        "DRAW02.storage.quick-battle-regression-20261016"
+        "DRAW02.storage.quick-battle-regression-20261016",
+        "DRAW02.cursor.quick-regression-20261016"
       ]
     },
     {
@@ -172119,7 +172583,9 @@
         "tests/test-drawing-storage-session.py"
       ],
       "evidence": [
-        "DRAW02.storage-action.original-20261016"
+        "DRAW02.storage-action.original-20261016",
+        "DRAW02.cursor.original-final-20261016",
+        "DRAW02.cursor.viewport-original-negative-20261016"
       ]
     },
     {
@@ -172134,22 +172600,27 @@
       ],
       "evidence": [
         "DRAW02.storage-action.native-20261016",
-        "DRAW02.storage-session.portable-20261016"
+        "DRAW02.storage-session.portable-20261016",
+        "DRAW02.cursor.storage-portable-20261016",
+        "DRAW02.cursor.source-native-20261016",
+        "DRAW02.cursor.source-native-final-20261016",
+        "DRAW02.cursor.viewport-native-negative-20261016"
       ]
     },
     {
       "id": "RS.canvas-positioned-dib.storage",
       "level": "live_observation",
-      "scope": "Actual original confirmation background source DIB observation and native placed-source replay in the bounded storage journey.",
+      "scope": "Original canonical positioned DIB source arguments and encoded bytes observed in the bounded storage journey; native pixel comparison is separate.",
       "behaviors": [
         "RS.canvas-positioned-dib"
       ],
       "tests": [
-        "tools/capture-drawing-interactive.py",
-        "tools/compare-drawing-quick-battle.py"
+        "tools/capture-drawing-interactive.py"
       ],
       "evidence": [
-        "DRAW02.storage-action.original-20261016"
+        "DRAW02.storage-action.original-20261016",
+        "DRAW02.cursor.original-final-20261016",
+        "DRAW02.cursor.viewport-original-negative-20261016"
       ]
     },
     {
@@ -172179,7 +172650,8 @@
         "tests/fixtures/drawing-storage-session/session.json"
       ],
       "evidence": [
-        "DRAW02.storage-session.portable-20261016"
+        "DRAW02.storage-session.portable-20261016",
+        "DRAW02.cursor.storage-portable-20261016"
       ]
     },
     {
@@ -172230,6 +172702,81 @@
       "evidence": [
         "CREATUREB02.window-native-initial",
         "CREATUREB03.window-native"
+      ]
+    },
+    {
+      "id": "TOOL.egl-swap-completion.storage",
+      "level": "live_observation",
+      "scope": "Bounded original storage/rebuild interval with opt-in post-swap fence completion and exact full physical witnesses; preserve source/cursor ordering and scanout boundaries.",
+      "behaviors": [
+        "TOOL.egl-swap-completion"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/test-drawing-egl-swap-completion.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor.original-final-20261016",
+        "DRAW02.cursor.viewport-original-negative-20261016"
+      ]
+    },
+    {
+      "id": "TOOL.egl-present-source-gpu-witness.storage",
+      "level": "live_observation",
+      "scope": "Original storage/rebuild GL source pixels retained as independent diagnostic oracles, before physical capture and after actual GL blit; no source pixels used natively.",
+      "behaviors": [
+        "TOOL.egl-present-source-gpu-witness"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor.original-final-20261016",
+        "DRAW02.cursor.viewport-original-negative-20261016"
+      ]
+    },
+    {
+      "id": "TOOL.egl-swap-completion.forwarding",
+      "level": "headless",
+      "scope": "Unchanged native EGL fixture compares opt-out direct/named/proc/default swap source pixels, Boolean, errno, EGL error and missing-symbol results. Opt-in queries and general GL forwarding equivalence remain separate.",
+      "behaviors": [
+        "TOOL.egl-swap-completion"
+      ],
+      "tests": [
+        "tools/test-drawing-egl-delivery.py",
+        "tests/drawing-egl-delivery-test.c"
+      ],
+      "evidence": [
+        "DRAW02.cursor.egl-forwarding-20261016"
+      ]
+    },
+    {
+      "id": "TOOL.egl-present-viewport-policy.controls",
+      "level": "headless",
+      "scope": "Declared viewport policy controls with original viewport restoration and independent unchanged source/physical outcomes; no generic engine equivalence.",
+      "behaviors": [
+        "TOOL.egl-present-viewport-policy"
+      ],
+      "tests": [
+        "tools/test-drawing-egl-viewport-policy.py",
+        "tests/drawing-egl-resize-forwarding-test.c"
+      ],
+      "evidence": [
+        "DRAW02.cursor.viewport-controls-20261016"
+      ]
+    },
+    {
+      "id": "TOOL.egl-present-viewport-policy.storage",
+      "level": "live_observation",
+      "scope": "Declared viewport policy storage with original viewport restoration and independent unchanged source/physical outcomes; no generic engine equivalence.",
+      "behaviors": [
+        "TOOL.egl-present-viewport-policy"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor.viewport-original-negative-20261016"
       ]
     }
   ],
@@ -172847,8 +173394,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-creature-window-tested-20261016.json",
-    "sha256": "e703768a51e033dd70bb4987d220f88f309c54d9366a1d5a31c20957db952060"
+    "path": "research/runtime/coverage/source-index-cursor-storage-20261016.json",
+    "sha256": "256de29d22d17d4d3de983ebd29df90f3f4f63850cc643a2d83a047fe68feeb0"
   },
   "claim_bindings_required": true
 }

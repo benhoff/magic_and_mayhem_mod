@@ -142,7 +142,7 @@ def main():
     a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_bytes());sources=dict(claims['sources'])
-    for name in ['tools/compare-drawing-quick-battle.py','tools/recorded_drawing_plan.py','apps/drawing-session/main.cpp','apps/drawing-session/recorded_composition.hpp']:
+    for name in ['tools/drawing_egl_gpu_reference.py','tools/drawing_copy_order.py','tools/compare-drawing-quick-battle.py','tools/recorded_drawing_plan.py','apps/drawing-session/main.cpp','apps/drawing-session/recorded_composition.hpp']:
         sources[name]=sha((ROOT/name).read_bytes())
     for directory in ('renderer','assets','compat/legacy','protocols/include','reconstruction/rendering'):
         for f in (ROOT/directory).rglob('*'):
@@ -168,10 +168,14 @@ def main():
         if action_binding!=original['action_bound_presentations']:raise ValueError('Original action binding changed')
         display_initialization(frames,action_binding)
     if not frames:raise ValueError('No source-bound native frame inputs')
+    from drawing_copy_order import normalize
+    reads=[f for f in frames if f['fill'] is None and not f.get('background')]
+    reads += [f['background'] for f in frames if 'sequence' in f.get('background',{})]
+    producer,copy_order=normalize(producer,records,point_raw,original,reads)
     parent=a.output_parent.absolute() if a.output_parent else ROOT/'working/tests/draw02-quick-battle'
     if not parent.is_relative_to(ROOT/'working') or '..' in parent.parts:raise ValueError('Comparison output parent must be under working')
     parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True);(run/'.retain').write_text('DRAW-02 original to native whole-frame comparison; retain failures and inputs.\n')
-    owned=run/'owned-inputs';owned.mkdir();binary_sha=sha(a.native.read_bytes());last=max(f['sequence'] for f in frames if f['sequence'] is not None)
+    owned=run/'owned-inputs';owned.mkdir();binary_sha=sha(a.native.read_bytes());last=max(f['sequence'] for f in reads)
     end=64
     for r,payload in records[:last]:end+=struct.unpack_from('<I',producer,end)[0]
     native_source=raster_inputs(producer[:end]);(owned/'producers.bin').write_bytes(native_source)
@@ -195,7 +199,7 @@ def main():
         cursor=seq;bounds.append(dict(sequence=seq,queues=queues,canvas=canvas,width=f['width'],height=f['height']))
     declaration=dict(schema=1,session='1',assets=assets,segments=[dict(segment=1,stage='scene',producer=dict(path='producers.bin',sha256=sha(native_source)),frames=bounds)])
     (owned/'drawing-session.json').write_text(json.dumps(declaration,indent=2)+'\n')
-    result=dict(schema=1,success=False,case='campaign_storage' if original.get('staging',{}).get('campaign_storage') else 'quick_battle',sources=sources,claims=claims['claims'],original_report=dict(path=str(a.original.resolve().relative_to(ROOT)),sha256=sha(raw)),artifacts=str(run.relative_to(ROOT)),original_game_executed=False,native_parity_performed=True,original_pixels_used_as_native_inputs=False,native_binary_sha256=binary_sha,observed_presentations=len(original['egl_physical_observation']['frames']),source_bound_presentations=len(frames),refusals=refusals,inputs=input_hashes,action_binding=action_binding,native_display_rebuild_clear='black' if action_binding else None,scope='Whole observed EGL frames from native source snapshots and recorded rectangle composition over retained native output. Source snapshots do not publish a native session frame or prove native scanout. All missing bindings and mismatches retained; RGB comparison allows one output-channel unit for RGB565 display expansion. No full14-journey/21-operation admission, hardware scanout or original caller-result parity.')
+    result=dict(schema=1,copy_order=copy_order,success=False,case='campaign_storage' if original.get('staging',{}).get('campaign_storage') else 'quick_battle',sources=sources,claims=claims['claims'],original_report=dict(path=str(a.original.resolve().relative_to(ROOT)),sha256=sha(raw)),artifacts=str(run.relative_to(ROOT)),original_game_executed=False,native_parity_performed=True,original_pixels_used_as_native_inputs=False,native_binary_sha256=binary_sha,observed_presentations=len(original['egl_physical_observation']['frames']),source_bound_presentations=len(frames),refusals=refusals,inputs=input_hashes,action_binding=action_binding,native_display_rebuild_clear='black' if action_binding else None,scope='Whole observed EGL frames from native source snapshots and recorded rectangle composition over retained native output. Source snapshots do not publish a native session frame or prove native scanout. All missing bindings and mismatches retained; RGB comparison allows one output-channel unit for RGB565 display expansion. No full14-journey/21-operation admission, hardware scanout or original caller-result parity.')
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
         env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1');cmd=['xvfb-run','-a',str(a.native.resolve()),str(owned),str(run/'native'),'--source-snapshots']
@@ -234,7 +238,9 @@ def main():
                     if len(physical_bytes)!=len(oracle):raise ValueError('Partial native physical plane')
                     delta=np.max(np.abs(np.frombuffer(physical_bytes,dtype=np.uint8).reshape(-1,4)[:,:3].astype(np.int16)-np.frombuffer(oracle,dtype=np.uint8).reshape(-1,4)[:,:3].astype(np.int16)),axis=1)
                     physical=dict(pixels=outw*outh,mismatching_pixels=int(np.count_nonzero(delta>1)),max_channel_difference=int(delta.max()),channel_tolerance=1,alpha_compared=False,native_sha256=sha(physical_bytes),original_sha256=sha(oracle))
-                    comparisons.append(dict(ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],native_gpu_path=str(native_plane.relative_to(run)),physical_comparison=physical,**compare_plane(native_bytes,oracle,outw,outh)))
+                    from drawing_egl_gpu_reference import compare as compare_gpu_source
+                    source_gpu=compare_gpu_source(original,capture,frame['ordinal'],native_bytes,outw,outh)
+                    comparisons.append(dict(source_gpu_comparison=source_gpu,ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],native_gpu_path=str(native_plane.relative_to(run)),physical_comparison=physical,**compare_plane(native_bytes,oracle,outw,outh)))
                     continue
                 source=None
                 bg=frame.get('background')
@@ -256,6 +262,10 @@ def main():
                 comparisons.append(dict(ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],transfer=frame['transfer'],background=frame.get('background'),fill=frame['fill'],refresh=frame['refresh'],native_path=str(path.relative_to(run)),**compare_plane(previous,oracle,outw,outh)))
         result.update(comparisons=comparisons,compared_presentations=len(comparisons),mismatched_presentations=sum(c['mismatching_pixels']>0 for c in comparisons),mismatching_pixels=sum(c['mismatching_pixels'] for c in comparisons),pixels_compared=sum(c['pixels'] for c in comparisons),all_observed_presentations_compared=len(comparisons)==result['observed_presentations'],native_input_bytes=sum(f.stat().st_size for f in owned.rglob('*') if f.is_file()))
         result['physical_mismatching_pixels']=sum(c.get('physical_comparison',{}).get('mismatching_pixels',0) for c in comparisons)
+        gpu_sources=[c['source_gpu_comparison'] for c in comparisons if c.get('source_gpu_comparison') is not None]
+        result['original_gpu_source_comparisons']=len(gpu_sources)
+        result['original_gpu_source_mismatching_pixels']=sum(c['mismatching_pixels'] for c in gpu_sources)
+        result['original_gpu_source_success']=len(gpu_sources)==result['observed_presentations'] and bool(gpu_sources) and not result['original_gpu_source_mismatching_pixels']
         result['success']=execution.returncode==0 and not refusals and not result['mismatching_pixels'] and not result['physical_mismatching_pixels'] and result['all_observed_presentations_compared']
         if sha(a.native.read_bytes())!=binary_sha or any(sha((ROOT/n).read_bytes())!=h for n,h in input_hashes.items()):raise ValueError('Binary or original asset inputs changed')
         stable();result['sources_stable']=True

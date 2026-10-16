@@ -78,20 +78,26 @@ def admit_actions(root,catalog,original,journal):
   if complete!=required or len(observed['worker_handoffs'])!=2:raise ValueError('Retained storage callback sequence incomplete')
 
 
-def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False):
+def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False,output_parent=None):
  root=Path(root).resolve();path=local(root,catalog_path);catalog_bytes=path.read_bytes();catalog=json.loads(catalog_bytes);reg_path=root/'research/runtime/coverage/register.json';reg_bytes=reg_path.read_bytes();register=json.loads(reg_bytes)
  raw,records,frames,assets=admit(root,catalog,register);comparator=load_tool('compare-drawing-quick-battle')
- parent=root/'working/tests/recorded-drawing-session';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));(run/'.retain').write_text('Portable observed-session source replay/GPU/physical comparisons.\n');owned=run/'owned';owned.mkdir()
- last=max(f['sequence'] for f in frames if f['sequence'] is not None);end=64
- for _ in range(last):end+=struct.unpack_from('<I',raw,end)[0]
- source=raster_inputs(raw[:end]);(owned/'producers.bin').write_bytes(source)
+ parent=Path(os.path.abspath(output_parent if output_parent is not None else root/'working/tests/recorded-drawing-session'))
+ if not parent.is_relative_to(root/'working'):raise ValueError('Recorded output parent must be under working')
+ parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));(run/'.retain').write_text('Portable observed-session source replay/GPU/physical comparisons.\n');owned=run/'owned';owned.mkdir()
  asset_hashes={}
  for name,normalized,data in assets:
   target=owned/normalized.casefold();target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data);asset_hashes[name]=sha(data)
- unique={(f['sequence'],f['canvas']):f for f in frames if f['fill'] is None and not f.get('background')}
+ reads=[f for f in frames if f['fill'] is None and not f.get('background')]
  for f in frames:
   bg=f.get('background',{})
-  if 'sequence' in bg:unique[bg['sequence'],bg['canvas']]=bg
+  if 'sequence' in bg:reads.append(bg)
+ from drawing_copy_order import normalize
+ original_record=next(e['record'] for e in register['evidence'] if e['id']==catalog['evidence'])
+ normalized,copy_order=normalize(raw,records,artifact(root,catalog['traces']['points']),json.loads((root/original_record).read_text()),reads)
+ unique={(f['sequence'],f['canvas']):f for f in reads}
+ end=64
+ for _ in range(max(s for s,c in unique)):end+=struct.unpack_from('<I',normalized,end)[0]
+ source=raster_inputs(normalized[:end]);(owned/'producers.bin').write_bytes(source)
  bounds=[];queues=0;cursor=0
  for (seq,canvas),f in sorted(unique.items()):
   for record,_ in records[cursor:seq]:
@@ -124,4 +130,4 @@ def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False):
      not same_json(register['builds'],current['builds'])):raise ValueError('Recorded catalog/evidence/build/binaries changed')
  admit(root,catalog,register)
  mismatches=sum(c['gpu']['mismatching_pixels']+c['physical']['mismatching_pixels'] for c in comparisons)
- return dict(schema=1,success=not mismatches,outcome='matching' if not mismatches else 'mismatch',boundary=catalog['boundary'],actions_bound=catalog['schema']==2,frames=len(comparisons),pixels_compared=2*sum(c['gpu']['pixels'] for c in comparisons),mismatches=mismatches,comparisons=comparisons,channel_tolerance=1,alpha_compared=False,original_reference_admitted=True,original_pixels_used_as_native_inputs=False,original_oracles_read_by_native=False,new_original_execution=False,complete_presented_journey=False,draw02_complete=False,original_evidence=catalog['evidence'],binaries=binaries,artifacts=str(run.relative_to(root)),scope=catalog['scope'])
+ return dict(schema=1,copy_order=copy_order,success=not mismatches,outcome='matching' if not mismatches else 'mismatch',boundary=catalog['boundary'],actions_bound=catalog['schema']==2,frames=len(comparisons),pixels_compared=2*sum(c['gpu']['pixels'] for c in comparisons),mismatches=mismatches,comparisons=comparisons,channel_tolerance=1,alpha_compared=False,original_reference_admitted=True,original_pixels_used_as_native_inputs=False,original_oracles_read_by_native=False,new_original_execution=False,complete_presented_journey=False,draw02_complete=False,original_evidence=catalog['evidence'],binaries=binaries,artifacts=str(run.relative_to(root)),scope=catalog['scope'])

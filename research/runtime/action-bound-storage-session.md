@@ -25,6 +25,31 @@ layout/semantic policy; replaying the original layout is not Qt menu parity.
 Generic `presented_frame` acceptance and the fourteen-journey/twenty-one-operation
 denominator remain unchanged.
 
+## Current result after driver-order correction
+
+`cursor-storage-portable-20261016.json` compares all238retained frames: only
+ordinal170 still fails, with126 differing pixels per GPU/physical cohort
+(252combined). Nine loading/background failures are fixed. COPY wrappers return
+on two threads in a different order from actual driver commands; the replay now
+uniquely binds supported COPYs and source reads to driver order while preserving
+original journals. See [the confirmed ordering contract](drawing-copy-driver-order.md).
+`cursor-quick-regression-20261016.json` compares all323Quick Battle frames with
+zero differences. No frame, tolerance or generic acceptance denominator changes.
+
+`cursor-source-native-20261016.json` independently compares original final GL
+source texture readbacks externally with native output: all228frames match every
+RGB565 word, while one physical frame remains different. The final source-stable
+230frame acquisition/replay repeats exact source agreement and one physical failure
+(`cursor-source-native-final-20261016.json`), with the experimental policy disabled. Correct source/destination
+blit geometry, pre/post EGL size, same-context GPU completion and actual native
+X11 drawable geometry isolate that discrepancy after source rendering. A temporary
+viewport-alignment policy also fails to remove it across a fresh232frame run;
+all232source-GPU comparisons still match. The exact Wine/Mesa internal cause is
+unproved. See [diagnostic modes, negative controls and wire records](drawing-egl-swap-completion.md).
+This is a remaining legacy presentation mismatch, not current evidence of a
+missing native pixel producer. Physical parity remains failed and broader
+native-rendering/replacement milestones are unchanged.
+
 ## Reproduced acquisition boundaries
 
 * `storage-action-original-10-20261016.json`, raw `run-7wgmxdje`, stopped at a
@@ -53,7 +78,7 @@ denominator remain unchanged.
   at 640×480, with two completed-display-action worker handoffs. This is not a
   fresh passing capture or native pixel comparison. The later fresh run19 supersedes that failed acquisition without rewriting it.
 
-## Current complete interval and remaining failures
+## Historical complete interval and original ten failures
 
 Fresh acquisition `storage-action-original-20261016.json` (working run19,
 second-drive `run-qmfjax5j`) succeeds: 238 fenced EGL presentations, four fresh
@@ -122,8 +147,8 @@ Build `apps/drawing-session` into a fresh owned build directory, then run
  <build>/mnm-drawing-present --headless --report <new-report.json>`.
 Use the main checkout's storage guard for builds/replays and a writable canonical
 `TMPDIR`. A mismatching result returns nonzero while retaining its full report.
-The expected current failure is ten presentations/3320 combined GPU+physical
-pixel differences. The old default323frame catalog remains a passing regression.
+The current retained reference fails only ordinal170/252 combined GPU+physical
+pixel differences after driver-order normalization. The old default323frame catalog remains a passing regression.
 For the journey adapter, run `tools/check-drawing-journeys.py --suite
  tests/fixtures/drawing-journeys/storage-suite.json` with both recorded executable
 arguments, `--headless --run-guards --report <new-report.json>`.
