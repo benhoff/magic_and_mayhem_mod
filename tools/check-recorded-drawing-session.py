@@ -10,7 +10,7 @@ def main():
  if a.report.exists():p.error('Refusing result overwrite')
  claims=json.loads(a.claims.read_text()) if a.claims else {'claims':[],'sources':{}};sources=dict(claims['sources'])
  names=['tools/check-recorded-drawing-session.py','tools/drawing_recorded_session.py','tools/recorded_drawing_plan.py','tools/compare-drawing-quick-battle.py','tools/drawing_corpus.py','tools/drawing_scene_corpus.py','tools/drawing_producer_points.py','tools/drawing_call_intervals.py','tools/drawing_api_session.py','tools/drawing_session.py','tools/drawing_journeys.py','tools/rendering_coverage.py','tools/inspect-canvas-producers.py','apps/drawing-session/main.cpp','apps/drawing-session/recorded_composition.hpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp']
- for directory in ('tests/fixtures/drawing-recorded-session','renderer','assets','compat/legacy','protocols/include','reconstruction/rendering'):
+ for directory in ('tests/fixtures/drawing-recorded-session','tests/fixtures/drawing-storage-session','renderer','assets','compat/legacy','protocols/include','reconstruction/rendering'):
   names.extend(str(f.relative_to(ROOT)) for f in (ROOT/directory).rglob('*') if f.is_file() and (f.suffix in ('.cpp','.hpp','.h','.c','.S','.cmake','.json','.gz') or f.name=='CMakeLists.txt'))
  for name in names:
   digest=sha(local(ROOT,name).read_bytes())

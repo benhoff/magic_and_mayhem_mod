@@ -3,7 +3,7 @@
 import argparse,copy,gzip,json,shutil,subprocess,tempfile
 from pathlib import Path
 from drawing_corpus import ROOT,BUILD,local,sha
-from drawing_recorded_session import admit,RETENTION
+from drawing_recorded_session import admit,RETENTION,STORAGE_RETENTION
 
 def retain(evidence_id,binding_id,destination):
  from rendering_coverage import evidence_record
@@ -11,7 +11,7 @@ def retain(evidence_id,binding_id,destination):
  if destination.exists() or not destination.is_relative_to(ROOT/'tests/fixtures'):raise ValueError('Choose a new contained fixture directory')
  register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text());evidence={e['id']:e for e in register['evidence']};builds={b['id']:b for b in register['builds']}
  ev=evidence[evidence_id];binding=evidence[binding_id];original=evidence_record(ROOT,ev,builds);bound=evidence_record(ROOT,binding,builds)
- if ev['kind'] not in ('isolated_original','live_observation') or binding['kind']!='native_integration' or bound['original_report']['sha256']!=ev['sha256'] or bound['success'] is not True:raise ValueError('Completed original and native binding records required')
+ if ev['kind'] not in ('isolated_original','live_observation') or binding['kind']!='native_integration' or bound['original_report']['sha256']!=ev['sha256'] or (bound['success'] is not True and not (original.get('staging',{}).get('campaign_storage') and bound.get('all_observed_presentations_compared') is True and bound.get('native_exit_code')==0 and bound.get('native_gpu_session',{}).get('report',{}).get('success') is True)):raise ValueError('Completed original and native binding records required')
  capture=Path(original['experiment'])/'capture';run=ROOT/bound['artifacts'];native=json.loads((run/'owned-inputs/drawing-session.json').read_text());game=Path(original['experiment'])/'game';existing={p.relative_to(game).as_posix().casefold():p for p in game.rglob('*') if p.is_file()};prepared={}
  def pack(data,historical):
   packed=gzip.compress(data,mtime=0);path=destination/(sha(data)+'.gz');prepared[path]=packed
@@ -34,7 +34,14 @@ def retain(evidence_id,binding_id,destination):
   entry=pack(original_read(path,digest),historical);entry['name']=name;catalog['assets'].append(entry)
  for frame in original['egl_physical_observation']['frames']:
   path=capture/frame['path'];catalog['frames'].append(dict(ordinal=frame['ordinal'],oracle=pack(original_read(path,frame['sha256']),str(path.relative_to(ROOT)))))
- data=(json.dumps(catalog,indent=2)+'\n').encode();retention=dict(id=RETENTION,kind='static',record=str((destination/'session.json').relative_to(ROOT)),sha256=sha(data),scope='Lossless portable retention of an independently acquired observed-EGL interval; no new original execution or global presentation admission.',assertions=[dict(pointer='/boundary',equals='observed_egl_session')])
+ if original.get('staging',{}).get('campaign_storage'):
+  from drawing_action_session import bind
+  if bind(capture,original['egl_physical_observation'])!=original['action_bound_presentations']:raise ValueError('Original action binding changed')
+  catalog.update(schema=2,boundary='observed_egl_action_session',scope='Complete observed original Apprentice storage/rebuild/resume EGL interval with exact callback epoch brackets and saved-byte checks; native source/GPU/X11 replay at actual extents. Qt menu policy, global routes, generic fourteen-journey/twenty-one-operation acceptance and hardware remain separate.')
+  action_bytes=b''.join(original_read(capture/f'egl-physical-actions-{frame["ordinal"]:06d}.bin',original['action_bound_presentations']['frames'][frame['ordinal']-1]['sha256']) for frame in original['egl_physical_observation']['frames'])
+  catalog['action_frames']=pack(action_bytes,'Original action/frame sidecars concatenated in ordinal order')
+  flow=original['storage_flow'];save=game/'Save'/(flow['saved_name']+'.sav');catalog['save']=pack(original_read(save,flow['saved_sha256']),str(save.relative_to(ROOT)))
+ data=(json.dumps(catalog,indent=2)+'\n').encode();retention=dict(id=STORAGE_RETENTION if catalog['schema']==2 else RETENTION,kind='static',record=str((destination/'session.json').relative_to(ROOT)),sha256=sha(data),scope='Lossless portable retention of an independently acquired observed-EGL interval; no new original execution or global presentation admission.',assertions=[dict(pointer='/boundary',equals=catalog['boundary'])])
  with tempfile.TemporaryDirectory(prefix='recorded-retention-',dir=ROOT/'working/tests') as temporary:
   mirror=Path(temporary)
   for path,packed in prepared.items():target=mirror/path.relative_to(ROOT);target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(packed)

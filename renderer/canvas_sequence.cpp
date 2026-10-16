@@ -298,7 +298,7 @@ void CanvasSequence::copy(std::uint32_t source, std::uint32_t destination,
   // Validate every sampled source before any destination write. Same-ID copies
   // retain the source snapshot, matching ordered owned-storage copy semantics.
   for(int row=0;row<height;++row){const auto at=slot(original.image,sx,sy+row);const auto begin=original.defined.begin()+at;
-    if(!mirror_ && std::any_of(begin,begin+width,[](auto state){return state!=1;}))throw std::runtime_error("Native producer reads undefined canvas pixels");}
+    if(!mirror_ && !deferCopyValidity_ && std::any_of(begin,begin+width,[](auto state){return state!=1;}))throw std::runtime_error("Native producer reads undefined canvas pixels");}
   // Distinct IDs own distinct vectors. Only same-ID copies need a snapshot;
   // preflight above still completes before allocation or any destination write.
   if (mirror_) { publishWrites(); mirror_->copy(source, destination, {sx, sy, sx+width, sy+height}, dx, dy, key); }
@@ -395,6 +395,10 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
     throw std::invalid_argument("Invalid producer raster mode");
   const auto left = std::int64_t(x) - f.originX,
              top = std::int64_t(y) - f.originY;
+  if(backend==11){
+    if(mode!=0 || !std::holds_alternative<std::vector<std::uint16_t>>(f.pixels))throw std::invalid_argument("Grayscale backend mode or source");
+    if(left>=clip.left && left+f.width<=clip.right)mode=6;
+  }
   if ((backend == 0 || backend == 9) &&
       (left < clip.left || left + f.width >= clip.right))
     return;
@@ -445,7 +449,7 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
     }
     return;
   }
-  if (mode) {
+  if (mode && mode!=6) {
     for (unsigned j = 0; j < f.height; ++j)
       for (unsigned i = 0; i < f.width; ++i) {
         const auto dx = left + i, dy = top + j;
@@ -485,7 +489,8 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
         colour = colours.at(indices->at(from));
       else
         colour = std::get<std::vector<std::uint16_t>>(f.pixels).at(from);
-      if (mode) {
+      if(mode==6){const auto grey=((colour>>11)+((colour>>6)&31)+(colour&31))/3;colour=grey+(grey<<11)+(grey<<6);}
+      if (mode && mode!=6) {
         known(s.defined, at);
         const auto d = s.image.pixels[at], m = 0x7befu;
         if (mode == 1)

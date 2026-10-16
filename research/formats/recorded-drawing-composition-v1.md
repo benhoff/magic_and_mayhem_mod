@@ -36,3 +36,20 @@ refuse. Expected original pixels never choose a source or ordering. Diagnostic
 readbacks and source-image uploads are intentional comparison overhead, not a
 normal-frame or 60 FPS claim. Xvfb witnesses do not establish hardware scanout or
 that an original collector saw every global presentation route.
+
+## Version 2: display extents
+
+Schema 2 retains the same root fields and source contract. Every frame additionally
+has exact integer `width` and `height` (1..2048). Copies validate their destination
+against that frame; history sources validate against the saved frame's own
+extent. A size change destroys the old primary and creates undefined storage.
+Every frame additionally declares `reset_colour`, either null or an integer
+RGB565 colour. A non-null reset is permitted only at an actual extent change
+after the first frame; it defines the newly created primary before that frame
+is drawn. Without a reset, a full fill or covering opaque copy must establish
+the new complete image before readback/presentation. A reset without resize,
+on the initial frame, or outside RGB565 refuses. The storage comparison
+explicitly selects black at its action-bound display rebuilds; this is native
+policy, not an original allocator guarantee. Saved histories remain owned until their declared last use.
+Each output records its actual dimensions. Schema 1 retains fixed root dimensions.
+The plan builder selects version 2 only when every binding declares output extents.

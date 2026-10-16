@@ -36,13 +36,16 @@ int main(int argc,char** argv){
    else if(kind=="move"||kind=="click"){int x=action.value("x").toInt(-1),y=action.value("y").toInt(-1),rx,ry;Window child;if(x<0||y<0||x>=800||y>=600||!XTranslateCoordinates(display,target,DefaultRootWindow(display),x,y,&rx,&ry,&child))throw std::runtime_error("Invalid original client coordinates");if(!XTestFakeMotionEvent(display,DefaultScreen(display),rx,ry,CurrentTime))throw std::runtime_error("Motion failed");XSync(display,False);if(kind=="click"){int button=action.value("button").toInt();if(button!=1&&button!=3)throw std::runtime_error("Unsupported button");XTestFakeButtonEvent(display,button,True,CurrentTime);XSync(display,False);pause(80);XTestFakeButtonEvent(display,button,False,CurrentTime);XSync(display,False);}}
    else if(kind!="wait"){throw std::runtime_error("Unsupported schedule action");}
    pause(action.value("after_ms").toInt(200));row["end_ms"]=clock.elapsed();
-   int rx,ry;Window child;if(!XTranslateCoordinates(display,target,DefaultRootWindow(display),0,0,&rx,&ry,&child))throw std::runtime_error("Presentation coordinates unavailable");
+   int rx,ry;Window child;if(!XTranslateCoordinates(display,target,DefaultRootWindow(display),0,0,&rx,&ry,&child)){
+    if(qEnvironmentVariable("MNM_DRAW_STORAGE_INPUT")!="1"||actions.size()!=1)throw std::runtime_error("Presentation coordinates unavailable");
+    row["diagnostic_frame_missing"]=true;row["original_input_window_retired"]=true;row["synchronized_original_frame"]=false;observed.append(row);continue;
+   }
    const auto physical=root.filePath("physical");if(!QDir().mkpath(physical))throw std::runtime_error("Presentation directory unavailable");
    const auto name=QString("%1-client-%2.png").arg(QFileInfo(QString::fromLocal8Bit(argv[3])).completeBaseName()).arg(ordinal,4,10,QChar('0'));QFile journal(root.filePath("session.bin"));row["journal_bytes_before_image"]=journal.size();
    auto image=QGuiApplication::primaryScreen()->grabWindow(0,rx,ry,800,600).toImage();QFile pixels(QDir(physical).filePath(name));if(image.size()!=QSize(800,600)||!pixels.open(QIODevice::WriteOnly|QIODevice::NewOnly)||!image.save(&pixels,"PNG"))throw std::runtime_error("Physical viewport acquisition failed");
    row["journal_bytes_after_image"]=journal.size();row["presentation_file"]="physical/"+name;row["synchronized_original_frame"]=false;observed.append(row);
   }success=true;
  }catch(const std::exception& e){error=QString::fromUtf8(e.what());}
- if(display){for(auto code:held)XTestFakeKeyEvent(display,code,False,CurrentTime);XTestFakeButtonEvent(display,1,False,CurrentTime);XTestFakeButtonEvent(display,3,False,CurrentTime);XSync(display,False);XCloseDisplay(display);}
+ if(display){for(auto code:held)XTestFakeKeyEvent(display,code,False,CurrentTime);if(qEnvironmentVariable("MNM_DRAW_STORAGE_INPUT")!="1"){XTestFakeButtonEvent(display,1,False,CurrentTime);XTestFakeButtonEvent(display,3,False,CurrentTime);}XSync(display,False);XCloseDisplay(display);}
  QFile output(QString::fromLocal8Bit(argv[3]));if(!output.open(QIODevice::WriteOnly|QIODevice::NewOnly))return 3;output.write(QJsonDocument(QJsonObject{{"schema",1},{"success",success},{"error",error},{"actions",observed},{"original_memory_written",false},{"semantic_outcomes_assumed",false}}).toJson());return success?0:1;
 }

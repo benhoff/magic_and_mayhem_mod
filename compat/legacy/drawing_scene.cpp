@@ -6,8 +6,8 @@
 
 namespace mnm::legacy {
 DrawingScene::DrawingScene(render::GlBlitter &renderer,const assets::AssetStore &store,
-    std::function<std::vector<std::uint8_t>(const std::string &)> source)
-    :renderer_(renderer),store_(store),replay_(std::move(source)),world_(std::make_unique<CanvasWorld>(renderer,store)){}
+    std::function<std::vector<std::uint8_t>(const std::string &)> source, bool sourceSnapshots)
+    :renderer_(renderer),store_(store),replay_(std::move(source),nullptr,sourceSnapshots),world_(std::make_unique<CanvasWorld>(renderer,store)){}
 DrawingScene::~DrawingScene(){if(output_)renderer_.destroy(output_);}
 std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
     if(poisoned_||sealed_)throw std::runtime_error("Drawing scene is poisoned or sealed");
@@ -19,9 +19,10 @@ std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
            r[2]<1||r[2]>MNM_PRODUCER_COLOUR_RECT||r[23]||
            c.bytes().size()>128u*1024u*1024u-96||r[0]!=96+c.bytes().size()||r[18]!=c.bytes().size())
             throw std::invalid_argument("Drawing scene source sequence or record is invalid");
+        const bool worldPrimitive=r[3]==world_->canvas()&&(r[2]==MNM_PRODUCER_RASTER||r[2]==MNM_PRODUCER_RGB_ADD||r[2]==MNM_PRODUCER_COLOUR_RECT);
         const bool independentCopy=r[2]==MNM_PRODUCER_COPY&&
             r[3]!=world_->canvas()&&r[4]!=world_->canvas();
-        if(world_->active()&&!independentCopy&&r[2]!=MNM_PRODUCER_RASTER&&r[2]!=MNM_PRODUCER_CLIP&&
+        if(world_->active()&&!independentCopy&&!worldPrimitive&&r[2]!=MNM_PRODUCER_CLIP&&
            r[2]!=MNM_PRODUCER_CHECKPOINT&&r[2]!=MNM_PRODUCER_QUEUE_RETURN&&r[2]!=MNM_PRODUCER_PAYLOAD_SOURCE)
             throw std::invalid_argument("Unadmitted producer inside native World scene");
         if(r[2]==MNM_PRODUCER_QUEUE_RETURN&&(!world_->active()||r[3]!=world_->canvas()||r[14]!=activeQueue_))
@@ -34,7 +35,7 @@ std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
         if(r[2]==MNM_PRODUCER_QUEUE_ENTRY&&
            (completedQueues_==std::numeric_limits<unsigned>::max()||r[14]!=completedQueues_+1))
             throw std::invalid_argument("Drawing scene World sequence gap or exhaustion");
-        if(r[2]==MNM_PRODUCER_RASTER&&world_->active()&&worldDraws_==std::numeric_limits<std::uint64_t>::max())
+        if(worldPrimitive&&world_->active()&&worldDraws_==std::numeric_limits<std::uint64_t>::max())
             throw std::invalid_argument("Drawing scene raster count exhausted");
         replay_.apply(c);
         if(r[2]==MNM_PRODUCER_QUEUE_ENTRY){
@@ -49,10 +50,10 @@ std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
             world_->beginRolling(normalized,replay_.read(r[3]),++worldSequence_);
             activeQueue_=r[14];worldWidth_=r[5];worldHeight_=r[6];
         }else if(world_->active()){
-            if(r[2]==MNM_PRODUCER_RASTER){
+            if(worldPrimitive){
                 world_->append(c);++worldDraws_;
                 // Recorded original EAX (field21) never supplies this result.
-                rasterResult_=DrawingRasterResult{r[1],activeQueue_,r[3],r[15],
+                if(r[2]==MNM_PRODUCER_RASTER)rasterResult_=DrawingRasterResult{r[1],activeQueue_,r[3],r[15],
                     r[15]==8?std::nullopt:std::optional<unsigned>(worldRasterAX(c))};
             }
             else if((r[2]==MNM_PRODUCER_CHECKPOINT&&r[3]==world_->canvas())||r[2]==MNM_PRODUCER_QUEUE_RETURN){

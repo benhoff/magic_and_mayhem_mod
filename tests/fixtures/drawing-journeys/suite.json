@@ -146,6 +146,15 @@
         "sha256": "08ccaecbd8b1c557f0f24c3829ab2cb0b1da26f05bc41d8a43a037718a9bf655"
       },
       "scope": "All323observed original EGL frames of one complete bounded Main/QuickBattle/Results/Main interval through native GPU/X11 comparison; no generic presented-frame/action/global-route completion claim."
+    },
+    {
+      "id": "recorded-storage-action-session",
+      "adapter": "recorded_action_session",
+      "catalog": {
+        "path": "tests/fixtures/drawing-storage-session/session.json",
+        "sha256": "8fb6fadc81b6c225f325bb6810a22ed81141d128c472971eb1b5615465877ce3"
+      },
+      "scope": "All238 observed Apprentice Save/Load and display-rebuild EGL frames, exact callback epochs and save bytes. Current native replay retains ten cursor-region failures; generic journey/operation acceptance remains pending."
     }
   ]
 }

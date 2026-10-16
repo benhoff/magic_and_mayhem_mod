@@ -5,10 +5,13 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 def sha(data):return hashlib.sha256(data).hexdigest()
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--presenter',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--claims',type=Path);p.add_argument('--presenter',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
  if a.report.exists():p.error('Refusing historical report overwrite')
  names=['apps/drawing-session/main.cpp','apps/drawing-session/recorded_composition.hpp','tools/test-recorded-drawing-composition.py','renderer/blit.cpp','renderer/blit.hpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp']
- sources={n:sha((ROOT/n).read_bytes()) for n in names};binary=a.presenter.resolve();binary_sha=sha(binary.read_bytes())
+ claims=json.loads(a.claims.read_text()) if a.claims else {'sources':{},'claims':[]}
+ sources={n:sha((ROOT/n).read_bytes()) for n in names}
+ if any(sha((ROOT/n).read_bytes())!=h for n,h in claims['sources'].items()):raise ValueError('Prospective composition sources changed')
+ sources.update(claims['sources']);binary=a.presenter.resolve();binary_sha=sha(binary.read_bytes())
  parent=ROOT/'working/tests/recorded-drawing-composition';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));(run/'.retain').write_text('Independent recorded GPU composition controls.\n');print(run,flush=True)
  w,h=6,4;base=[0x1234+i for i in range(w*h)];patch=[31,0xf800,0x7e0,31]
  def raw(words):return struct.pack('<'+'H'*len(words),*words)
@@ -19,7 +22,9 @@ def main():
  plan=dict(schema=1,width=w,height=h,sources=source_rows,frames=frames)
  changed=base.copy();changed[1*w+3]=0xf800;changed[2*w+2]=0x7e0;last=[0x7e0]*(w*h);last[:2]=patch[:2];last[w:w+2]=patch[2:]
  expected=[base,changed,base,[0x7e0]*(w*h),last];checks=[];env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='8',QT_SCALE_FACTOR='1')
- def execute(label,config,valid=False):
+ def execute(label,config,valid=False,expected_frames=None,dimensions=None):
+  expected_frames=expected if expected_frames is None else expected_frames
+  dimensions=[(w,h)]*len(expected_frames) if dimensions is None else dimensions
   owned=run/(label+'-inputs');owned.mkdir()
   for i,b in enumerate(source_bytes,1):(owned/f'source-{i}.565').write_bytes(b)
   (owned/'presentation.json').write_text(json.dumps(config)+'\n');out=run/(label+'-outputs')
@@ -29,10 +34,12 @@ def main():
   report=json.loads((out/'presentation-report.json').read_text()) if out.exists() else None
   if valid:
    assert report['success'] and report['gpu_composition'] and report['physical_presentation'] and not report['remaining_surfaces'] and not report['qimage_uploads'] and not report['original_oracles_read']
-   assert report['plan_sha256']==sha((owned/'presentation.json').read_bytes()) and len(report['frames'])==len(expected)
-   for index,words in enumerate(expected):
+   assert report['plan_sha256']==sha((owned/'presentation.json').read_bytes()) and len(report['frames'])==len(expected_frames)
+   for index,words in enumerate(expected_frames):
+    fw,fh=dimensions[index]
+    assert (report["frames"][index]["width"],report["frames"][index]["height"])==(fw,fh)
     assert (out/f'frame-{index:06d}.565').read_bytes()==raw(words),'Independent GPU word mismatch'
-    physical=(out/f'frame-{index:06d}.rgba').read_bytes();assert len(physical)==w*h*4
+    physical=(out/f'frame-{index:06d}.rgba').read_bytes();assert len(physical)==fw*fh*4
     actual=[]
     for word in words:
      r,g,b=word>>11,(word>>5)&63,word&31;actual.extend((r<<3|r>>2,g<<2|g>>4,b<<3|b>>2,255))
@@ -40,6 +47,18 @@ def main():
   elif report:assert report['success'] is False
   checks.append(dict(name=label,success=True,exit_code=result.returncode))
  execute('keyed-copy-history-fill-and-physical',plan,True)
+ variable=copy.deepcopy(plan);variable['schema']=2
+ for frame in variable['frames']:frame.update(width=w,height=h,reset_colour=None)
+ variable['frames'] += [dict(index=6,kind='fill',colour=31,width=3,height=2,reset_colour=None),dict(blit(7,'history',1,[0,0,w,h],[0,0,w,h],[0,0,w,h]),width=w,height=h,reset_colour=None)]
+ execute('resize-and-retained-history',variable,True,expected+[[31]*6,base],[(w,h)]*5+[(3,2),(w,h)])
+ q=copy.deepcopy(variable);q['frames'][5]=dict(blit(6,'snapshot',2,[0,0,2,2],[0,0,2,2],[0,0,2,2]),width=3,height=2,reset_colour=None)
+ execute('undefined-after-resize',q)
+ q['frames'][5]['reset_colour']=0
+ execute('declared-display-reset',q,True,expected+[[31,0xf800,0,0x7e0,31,0],base],[(w,h)]*5+[(3,2),(w,h)])
+ q=copy.deepcopy(variable);q['frames'][1]['reset_colour']=0;execute('reset-without-extent-change',q)
+ q=copy.deepcopy(variable);q['frames'][6]['source_rect']=[0,0,w+1,h]
+ execute('history-source-original-extent',q)
+
  for label,change in [
   ('wrong-hash',lambda q:q['sources'][0].update(sha256='0'*64)),
   ('oracle-field',lambda q:q['frames'][0].update(oracle_sha256='a'*64)),
@@ -53,7 +72,7 @@ def main():
  ]:
   q=copy.deepcopy(plan);change(q);execute(label,q)
  assert all(sha((ROOT/n).read_bytes())==h for n,h in sources.items()) and sha(binary.read_bytes())==binary_sha
- report=dict(schema=1,success=True,sources=sources,sources_stable=True,binary_sha256=binary_sha,controls=checks,complete_frames=5,pixels_compared=5*w*h,original_execution=False,scope='Owned synthetic GPU copy/key/history/fill plus every physical X11 RGB565 pixel. No original-game journey or real hardware assertion.',artifacts=str(run.relative_to(ROOT)))
+ report=dict(schema=1,success=True,claims=claims['claims'],sources=sources,sources_stable=True,binary_sha256=binary_sha,controls=checks,complete_frames=19,pixels_compared=17*w*h+12,original_execution=False,scope='Owned synthetic GPU copy/key/history/fill plus every physical X11 RGB565 pixel. No original-game journey or real hardware assertion.',artifacts=str(run.relative_to(ROOT)))
  a.report.parent.mkdir(parents=True,exist_ok=True)
  with a.report.open('x') as out:json.dump(report,out,indent=2);out.write('\n')
  print(a.report)

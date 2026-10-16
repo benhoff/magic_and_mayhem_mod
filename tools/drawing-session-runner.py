@@ -76,6 +76,8 @@ if metadata.get('wine_source_descriptor'):os.environ['MNM_DRAW_WINE_SOURCE_DESCR
 else:os.environ.pop('MNM_DRAW_WINE_SOURCE_DESCRIPTOR',None)
 if metadata.get('wine_resource_map'):os.environ['MNM_DRAW_WINE_RESOURCE_MAP']='1'
 else:os.environ.pop('MNM_DRAW_WINE_RESOURCE_MAP',None)
+if metadata.get('campaign_storage'):os.environ['MNM_DRAW_ACTION_BOUNDARIES']='1'
+else:os.environ.pop('MNM_DRAW_ACTION_BOUNDARIES',None)
 os.environ['MNM_DRAW_SESSION_MODE']=metadata['observer_mode']
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(root/'events.bin').replace('/','\\')
 os.environ['MNM_MENU_CHANNEL']='Z:'+str(root/'channel.bin').replace('/','\\')

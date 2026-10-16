@@ -14,7 +14,7 @@ class Cases(unittest.TestCase):
         bad=bytearray(original);bad[-4:]=bytes([0,0,0,255]);self.assertEqual(m.compare_plane(native,bad)['mismatching_pixels'],1)
     def test_stopped_and_unlocated_sources_refuse(self):
         context=dict(pid=1,call=2,stable_active_context=True,points=[dict(context=dict(worker=3,command=4,submission=5))])
-        original=dict(egl_worker_context_observation=dict(calls=[context]),wine_blit_packet_observation=dict(bindings=[dict(worker=3,command=4,submission=5)]),wine_source_map_observation=dict(samples=[dict(submission=5,api_entry=6,status=0,descriptor=[0]*6+[800,600])]),egl_physical_observation=dict(frames=[dict(pid=1,entry=2,ordinal=1,path='oracle',sha256='hash')]))
+        original=dict(egl_worker_context_observation=dict(calls=[context]),wine_blit_packet_observation=dict(bindings=[dict(worker=3,command=4,submission=5)]),wine_source_map_observation=dict(samples=[dict(submission=5,api_entry=6,status=0,descriptor=[0]*6+[800,600])]),egl_physical_observation=dict(frames=[dict(pid=1,entry=2,ordinal=1,width=800,height=600,path='oracle',sha256='hash')]))
         point=(64,1,19,10,0,0,7,800,600,800,0,0,1,0,9,0)
         good,refused=m.frame_bindings(original,{6:point},10);self.assertEqual(len(good),1);self.assertFalse(refused)
         for flags in (23,3):

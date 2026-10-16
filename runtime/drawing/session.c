@@ -186,7 +186,8 @@ static short WIN async(i32 code){u32 a[6]={(u32)code};struct Context c=begin(0,1
 static short WIN key(i32 code){u32 a[6]={(u32)code};struct Context c=begin(0,2,a,1,(u32)__builtin_return_address(0),2);short r=((short(WIN*)(i32))original_key)(code);end(&c,0,(u32)(i32)r);return r;}
 static i32 WIN cursor(i32* point){u32 a[6]={(u32)point};struct Context c=begin(0,3,a,1,(u32)__builtin_return_address(0),2);c.r[21]=0;i32 r=((i32(WIN*)(i32*))original_cursor)(point);end(&c,0,r);return r;}
 static u32 WIN map(u32 code,u32 mode){u32 a[6]={code,mode};struct Context c=begin(0,4,a,2,(u32)__builtin_return_address(0),2);u32 r=((u32(WIN*)(u32,u32))original_map)(code,mode);end(&c,0,r);return r;}
-void WIN DrawingActionV1(u32 request,u32 action,u32 screen,u32 generation,u32 argument,u32 phase,u32 status){u32 a[6]={0};struct Context c=begin(0,phase,a,0,0,3);c.r[21]=request;c.r[22]=action;c.r[23]=screen;c.r[24]=generation;c.r[25]=argument;c.r[26]=phase;c.r[27]=status;end(&c,0,status);}
+#include "action_boundary.h"
+void WIN DrawingActionV1(u32 request,u32 action,u32 screen,u32 generation,u32 argument,u32 phase,u32 status){u32 a[6]={0};struct Context c=begin(0,phase,a,0,0,3);c.r[21]=request;c.r[22]=action;c.r[23]=screen;c.r[24]=generation;c.r[25]=argument;c.r[26]=phase;c.r[27]=status;end(&c,0,status);action_state_record(&c);}
 void WIN DrawingAnchor(void){}
 #ifdef MNM_DRAWING_SELFTEST
 u32 WIN DrawingInstallForTest(void* object,u32 k){install(object,k);return enabled;}
@@ -197,7 +198,7 @@ static int initialize(void){
  InitializeCriticalSection(journal_lock);
  char mode[16];u32 mode_length=GetEnvironmentVariableA("MNM_DRAW_SESSION_MODE",mode,sizeof(mode));int inputs_only=mode_length==6&&equal(mode,"inputs",6);(void)inputs_only;physical_enabled=mode_length==8&&equal(mode,"physical",8);readbacks_enabled=!(mode_length==8&&equal(mode,"metadata",8));
  if(!physical_budget()||!input_point_open())return 0;
- u32 n=GetEnvironmentVariableA("MNM_DRAW_SESSION_DIRECTORY",directory,sizeof(directory));if(!n)return 1;if(n>=sizeof(directory))return 0;
+ u32 n=GetEnvironmentVariableA("MNM_DRAW_SESSION_DIRECTORY",directory,sizeof(directory));if(!n)return 1;if(n>=sizeof(directory))return 0;if(!action_state_open())return 0;
  char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=physical_enabled?physical_byte_limit:1024u*1024u*1024u;header[8]=physical_enabled?3:inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64)||(physical_enabled&&!interval_open())||!producer_points_open()||!wine_submission_open()||!source_bytes_open()||!source_lease_open())return 0;enabled=1;
 #ifndef MNM_DRAWING_SELFTEST
  u32 base=(u32)GetModuleHandleA(0);const u8 thunk[]={0xff,0x25,0x14,0x50,0x5c,0};if(base!=0x400000||!readable((void*)0x59755a,6)||!equal((void*)0x59755a,thunk,6))return 0;

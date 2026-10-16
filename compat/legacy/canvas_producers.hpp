@@ -67,8 +67,8 @@ class CanvasProducerReplay {
 public:
   explicit CanvasProducerReplay(
       std::function<std::vector<std::uint8_t>(const std::string &)> source,
-      render::CanvasMirror *mirror = nullptr)
-      : canvases_(mirror), mirrored_(mirror != nullptr), source_(std::move(source)) {}
+      render::CanvasMirror *mirror = nullptr, bool deferCopyValidity = false)
+      : canvases_(mirror, deferCopyValidity), mirrored_(mirror != nullptr), source_(std::move(source)) {}
   void apply(const CanvasProducer &);
   void publishWrites() { canvases_.publishWrites(); }
   void invalidateWorld(const CanvasProducer &);

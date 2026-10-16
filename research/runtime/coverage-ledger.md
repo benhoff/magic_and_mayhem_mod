@@ -12903,3 +12903,22 @@ cache files (669187988 bytes) from five owned development/failed build trees.
 Passing evidence, executables, logs, checkpoints, screenshots, pins and worktrees
 were preserved. Inventory, exact manifest, reference review and deletion receipt
 are retained under `working/retention/sphere-approved-cache-cleanup-20261016/`.
+
+### Action-bound storage interval, 2026-10-16
+
+Fresh original-active Apprentice Save/Load, two display rebuilds, MainLoad/resume
+and normal Quit now have a portable238frame observed-EGL reference with exact
+callback epoch brackets and unchanged save bytes. All238native source/GPU/X11
+comparisons complete, but ten cursor-shaped regions still fail (1660pixels per
+GPU/physical cohort). Matching cursor bitmap inputs do not resolve driver/source
+prefix ordering or saved-background aliases. Keep those as investigated hypotheses.
+
+Fixed reproduced grayscale, positioned-DIB confirmation, World RGB-add routing,
+hidden validity and display-extent replay gaps. Black initialization on a recreated
+extent is declared native policy. The failing storage case is retained in the
+default journey suite and a focused storage suite, with unchanged14journey/21
+operation requirements and no generic presented-frame acceptance credit. See
+[action-bound storage evidence](action-bound-storage-session.md) and the immutable
+original/native JSON reports. Native Qt menu layout policy, optional source-page
+ownership, global display routes, hardware/performance and live replacement remain
+separate. No comparison/replacement status is promoted from this failed result.

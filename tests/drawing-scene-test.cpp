@@ -44,6 +44,16 @@ int main(int argc,char **argv)try{
     }
     require(renderer.stats().surfaces==0,"Sealed scene cleanup leaked storage");
     {
+        legacy::DrawingScene scene(renderer,input,source);submit(scene,create(7));submit(scene,fill(7,0));submit(scene,entry());
+        auto add=create(7);add.fields[2]=14;add.fields[8]=1;add.fields[12]=5;add.fields[13]=3;add.payload.resize(20);
+        word(add.payload,0,2);word(add.payload,4,1);word(add.payload,8,31);submit(scene,add);
+        require(!scene.rasterResult(),"RGB rectangle invented a raster result");
+        auto colour=create(7);colour.fields[2]=26;colour.fields[8]=2;colour.fields[9]=1;colour.fields[12]=5;colour.fields[13]=3;colour.fields[19]=colour.fields[20]=1;colour.payload={0xe0,0x07};submit(scene,colour);
+        auto returned=entry();returned.fields[2]=12;submit(scene,returned);scene.publish({scene.sequence(),1,7,5,3});
+        auto expected=std::vector<std::uint32_t>(15);expected[1]=expected[2]=0xf800;expected[7]=0x07e0;
+        require(scene.read().pixels==expected && scene.worldDraws()==2,"In-World rectangle routing or CPU/GPU order changed");
+    }
+    {
         legacy::DrawingScene scene(renderer,input,source);startup(scene);
         submit(scene,create(8));submit(scene,fill(8,0x2468));submit(scene,create(9));submit(scene,fill(9,0));
         submit(scene,entry());submit(scene,raster());
