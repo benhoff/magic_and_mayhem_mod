@@ -72614,6 +72614,125 @@
           "Physical native audio, Qt presentation, native World/campaign envelope integration and live replacement"
         ]
       }
+    },
+    {
+      "id": "CAST.cure-presentation",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Cure creator, placement, type setup and animation ownership",
+      "scope": "Bounded original493f20 direct type11 Cure creation with creator attribution/contributor terminal IDs, destination wrap/clamp and cell insertion; real11/77 setup, selector74, forward ANI binding/ticks and4943f0 release with488330 unlink. Logging disabled, preallocated valid pools, no associated effect audio/other type branches; original allocator and live replacement excluded. Auxiliary child producer5e1478 is disabled; whole private executable text and all tested object/input guards are checked.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4800288,
+          "scope": "Selected direct11/deferred77 Cure branch, valid owned storage, bounded contributor chains, forward animation and effect-audio absent; remaining branches excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4803248,
+          "scope": "Selected direct11/deferred77 Cure branch, valid owned storage, bounded contributor chains, forward animation and effect-audio absent; remaining branches excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4755968,
+          "scope": "Selected direct11/deferred77 Cure branch, valid owned storage, bounded contributor chains, forward animation and effect-audio absent; remaining branches excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607104,
+          "scope": "Selected direct11/deferred77 Cure branch, valid owned storage, bounded contributor chains, forward animation and effect-audio absent; remaining branches excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607136,
+          "scope": "Selected direct11/deferred77 Cure branch, valid owned storage, bounded contributor chains, forward animation and effect-audio absent; remaining branches excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607152,
+          "scope": "Selected direct11/deferred77 Cure branch, valid owned storage, bounded contributor chains, forward animation and effect-audio absent; remaining branches excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607680,
+          "scope": "Selected direct11/deferred77 Cure branch, valid owned storage, bounded contributor chains, forward animation and effect-audio absent; remaining branches excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4801520,
+          "scope": "Selected direct11/deferred77 Cure branch, valid owned storage, bounded contributor chains, forward animation and effect-audio absent; remaining branches excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752176,
+          "scope": "Selected direct11/deferred77 Cure branch, valid owned storage, bounded contributor chains, forward animation and effect-audio absent; remaining branches excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5383968,
+          "scope": "Selected direct11/deferred77 Cure branch, valid owned storage, bounded contributor chains, forward animation and effect-audio absent; remaining branches excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/cure-presentation.md"
+      ],
+      "implementation": [
+        "reconstruction/casting/cure_presentation.cpp",
+        "reconstruction/casting/cure_presentation.hpp"
+      ],
+      "tests": [
+        "tests/cure-presentation-test.cpp",
+        "tools/test-cure-presentation.py",
+        "tools/export-cure-presentation.py"
+      ],
+      "evidence": [
+        "CURE04.presentation-original",
+        "CURE04.presentation-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/animation.hpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/casting/admission.hpp",
+        "reconstruction/casting/descriptor.hpp",
+        "reconstruction/casting/presentation/CMakeLists.txt",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/rendering/effect_animation_binding.cpp",
+        "reconstruction/rendering/effect_animation_binding.hpp",
+        "reconstruction/rendering/effect_animation_selection.cpp",
+        "reconstruction/rendering/effect_animation_selection.hpp",
+        "reconstruction/rendering/effect_lighting.hpp",
+        "reconstruction/rendering/effect_placement.hpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "192 authored catalog/creator/spatial fixtures,960 creations/bindings/releases and23040 forward ticks",
+          "Whole original creation/type11/type77 setup, selector74, contributor chains, forward bind/start/tick and ordinary no-effect-audio release/unlink; only534520 recycler supplied",
+          "Full guarded effect/cell/actor/contributor/catalog/ANI bytes, private executable text, input immutability and FS restoration",
+          "Missing/null/two-node contributor chains, source sentinel and raw owner/ID words, head/middle/tail/blocked cell unlink, shifted high water and recycler flags",
+          "Explicit native coordinate/source/cycle/refusal policies"
+        ],
+        "excluded": [
+          "Original pool slot allocator/reclamation, logging, auxiliary child particles5e1478 and associated effect audio",
+          "Other spell/type setup branches, full4970e0 update/target-follow4896b0, real wall-clock cadence",
+          "Installed asset/config loading equivalence, sprite pixels, native World ownership and live replacement"
+        ]
+      }
     }
   ],
   "evidence": [
@@ -149753,6 +149872,158 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CURE04.presentation-original",
+      "kind": "isolated_original",
+      "scope": "Direct Cure11 creation with real creator/contributor resolution, destination placement and real11/77 setup, selector74, forward animation bind/start/tick, ordinary release/unlink and guarded full records/cells/creators/catalog/ANI. Only recycler534520 supplied; logging, auxiliary children5e1478 and associated effect audio disabled. No allocator, target-follow, whole update loop, other type branches or live replacement.",
+      "record": "research/runtime/original-cure-presentation-bound-20261016.json",
+      "sha256": "a476ceccc39c4371ac1a8ab46d026cdf3d1abdb0201eac1ef9f82258752e1741",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 25920
+        },
+        {
+          "pointer": "/creations",
+          "equals": 960
+        },
+        {
+          "pointer": "/bindings",
+          "equals": 960
+        },
+        {
+          "pointer": "/ticks",
+          "equals": 23040
+        },
+        {
+          "pointer": "/releases",
+          "equals": 960
+        },
+        {
+          "pointer": "/recycler_calls",
+          "equals": 89
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "CURE04.presentation-native",
+      "kind": "native_integration",
+      "scope": "Direct Cure11 creation with real creator/contributor resolution, destination placement and real11/77 setup, selector74, forward animation bind/start/tick, ordinary release/unlink and guarded full records/cells/creators/catalog/ANI. Only recycler534520 supplied; logging, auxiliary children5e1478 and associated effect audio disabled. No allocator, target-follow, whole update loop, other type branches or live replacement.",
+      "record": "research/runtime/original-cure-presentation-bound-20261016.json",
+      "sha256": "a476ceccc39c4371ac1a8ab46d026cdf3d1abdb0201eac1ef9f82258752e1741",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 25920
+        },
+        {
+          "pointer": "/creations",
+          "equals": 960
+        },
+        {
+          "pointer": "/bindings",
+          "equals": 960
+        },
+        {
+          "pointer": "/ticks",
+          "equals": 23040
+        },
+        {
+          "pointer": "/releases",
+          "equals": 960
+        },
+        {
+          "pointer": "/recycler_calls",
+          "equals": 89
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -166269,6 +166540,22 @@
       "evidence": [
         "CURE03.owned-native"
       ]
+    },
+    {
+      "id": "CURE04.presentation-original",
+      "level": "headless",
+      "scope": "Authored direct Cure creation with real11/77 setup, original recipe74 forward ANI ticks and no-effect-audio release/unlink; guarded full private objects, immutable inputs and text.",
+      "behaviors": [
+        "CAST.cure-presentation"
+      ],
+      "tests": [
+        "tests/cure-presentation-test.cpp",
+        "tools/test-cure-presentation.py"
+      ],
+      "evidence": [
+        "CURE04.presentation-original",
+        "CURE04.presentation-native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -166885,8 +167172,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-cure-owned-session-20261016.json",
-    "sha256": "7e818931ce5978d6647bc3e0304d68e650bbbbaa631c2434849c170c7f4b8a5f"
+    "path": "research/runtime/coverage/source-index-cure-presentation-20261016.json",
+    "sha256": "41997a0934fbd9dd3d88c17bc3a8f276658f0a039eb4aaba2da0393c6a3941ba"
   },
   "claim_bindings_required": true
 }

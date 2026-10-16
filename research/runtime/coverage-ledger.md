@@ -12485,3 +12485,21 @@ audio, native World/campaign-envelope embedding and live replacement remain
 pending. CAST.cure-delivery comparison and SP.041 whole-spell scope are unchanged.
 Incoming helper commit0ee4d16d was reviewed against441bf567: all16 file
 and6 behavior transitions have exact receipts, with no missing accounting.
+
+## Cure creation, ANI binding and spatial release (2026-10-16)
+
+CURE04 replaces the supplied creation/setup boundary with a compared direct Cure
+presentation contract. Original creator493f20 resolves owner/contributor chains,
+wraps/clamps destination placement and inserts the cell chain. Real11/77 setup,
+selector74 and forward ANI bind/start/tick drive playback. Ordinary4943f0 release
+executes real488330 unlink, attribution/reservation/animation resets and high-water
+shrink. Only534520 recycler query is supplied; logging, auxiliary5e1478 children
+and associated effect audio are disabled.
+
+192 fixtures compare25920 operations (960 creations/bindings/releases and23040
+ticks), guarded full owned objects/immutable inputs/private executable text and89
+recycler calls. Original32/native64/sanitizer/CMake/CTest checks pass. This does
+not validate original slot allocation, target-follow/full update orchestration,
+installed animation cadence, unrelated setup branches or live replacement.
+See [findings](cure-presentation.md) and
+[source-bound evidence](original-cure-presentation-bound-20261016.json).
