@@ -62,6 +62,8 @@ public:
     bool requestExit(); // Back from Quick Battle, then original Main Quit.
     void fallback(const QString& reason);
     std::function<void(const MenuBridge::State&)> stateChanged;
+    // Bounded test/diagnostic witness; an accepted intent is not an engine ACK.
+    std::function<void(quint32,bool,const QString&,const MenuBridge::State&)> miniRequestObserved;
     std::function<void(const QString&)> output;
     std::function<void(const QString&)> failed;
     std::function<void()> finished;

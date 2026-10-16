@@ -15,9 +15,35 @@ struct LiveMenuSessionTestAccess {
  static MenuBridge& initialize(LiveMenuSession& s,const QString& path){s.bridge_=std::make_unique<MenuBridge>();require(s.bridge_->create(path,false,false,false,false,false,false,false,false,false,false,false,true));s.active_=true;s.clock_.start();return *s.bridge_;}
  static void poll(LiveMenuSession& s){s.poll();}
  static bool original(const LiveMenuSession& s){return s.inBattle_;}
+ static void expire(LiveMenuSession& s){s.lastState_=-MNM_MENU_V1_LEASE_MS-1;}
 };
+static void miniAdmissionChecks(){
+ for(int variant=0;variant<6;++variant){
+  QTemporaryDir root;LiveMenuSession session("/unused");const auto path=root.filePath("mini.bin");LiveMenuSessionTestAccess::initialize(session,path);
+  QFile peer(path);require(peer.open(QIODevice::ReadWrite));auto* bytes=peer.map(0,MNM_MENU_V13_SIZE);require(bytes);
+  auto put=[&](int word,quint32 value){qToLittleEndian(value,bytes+word*4);};auto get=[&](int word){return qFromLittleEndian<quint32>(bytes+word*4);};
+  auto state=[&](quint32 generation,quint32 screen=17){put(32,get(32)+1);put(33,generation);put(34,screen);put(35,1);put(37,MNM_MENU_OK);put(38,123);
+   const quint32 mini[]={0,0,5,2,31,5,2,0};for(int i=0;i<8;++i)put(MNM_MENU_V4_MINI/4+i,mini[i]);put(32,get(32)+1);};
+  int accepted=0,rejected=0;QString reason;
+  session.miniRequestObserved=[&](quint32 action,bool ok,const QString& why,const MenuBridge::State& s){require(action==MNM_MENU_MINI_SAVE&&s.screen==17);if(ok)++accepted;else ++rejected;reason=why;};
+  state(1);LiveMenuSessionTestAccess::poll(session);
+  if(variant==1)state(2); // Original generation changes before the GUI click.
+  if(variant==2)LiveMenuSessionTestAccess::expire(session); // Expensive GUI work ages the lease.
+  if(variant==3)require(session.requestMini(MNM_MENU_MINI_SAVE));
+  if(variant==4)session.setMediaActive(true);
+  if(variant==5)state(2,3); // Original owner leaves Mini before the click.
+  require(session.requestMini(MNM_MENU_MINI_SAVE)==(variant==0));
+  require(accepted==(variant==0||variant==3?1:0)&&rejected==(variant==0?0:1));
+  require(get(7)==(accepted?1u:0u)); // Refusal must publish no request ID.
+  if(variant==1||variant==5)require(reason=="wire readiness or generation changed");
+  if(variant==2)require(reason=="host lease expired");
+  if(variant==3||variant==4)require(reason=="host ownership");
+  if(variant==1||variant==2){state(3);LiveMenuSessionTestAccess::poll(session);require(session.requestMini(MNM_MENU_MINI_SAVE)&&get(7)==1&&accepted==1);}
+  peer.unmap(bytes);
+ }
+}
 int main(int argc,char** argv){
- QApplication app(argc,argv);QTemporaryDir root;LiveMenuSession session("/unused");const auto path=root.filePath("channel.bin");auto& bridge=LiveMenuSessionTestAccess::initialize(session,path);
+ QApplication app(argc,argv);miniAdmissionChecks();QTemporaryDir root;LiveMenuSession session("/unused");const auto path=root.filePath("channel.bin");auto& bridge=LiveMenuSessionTestAccess::initialize(session,path);
  QFile peer(path);require(peer.open(QIODevice::ReadWrite));auto* bytes=peer.map(0,MNM_MENU_V13_SIZE);require(bytes);
  auto put=[&](int word,quint32 v){qToLittleEndian(v,bytes+4*word);};auto get=[&](int word){return qFromLittleEndian<quint32>(bytes+4*word);};quint32 sequence=0;
  auto state=[&](quint32 generation,quint32 ack,quint32 screen,bool ready,quint32 modal=0){

@@ -8,6 +8,7 @@ import struct
 import tempfile
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('storage', ROOT/'tools/campaign_storage.py')
@@ -16,6 +17,77 @@ spec.loader.exec_module(m)
 
 
 class StorageTests(unittest.TestCase):
+    def test_mini_acceptance_before_capture_is_required(self):
+        states=[]
+        for action,control in [(29,'2'),(28,'1'),(15,'4')]:
+            states.extend([dict(event='mini-request',action=action,accepted=True,reason='',screen=17,generation=2,time_ms=101),
+                           dict(event='click',action='miniMenuButton'+control,time_ms=100,capture_begin_ms=102,capture_end_ms=602,capture_duration_ms=500,injected_capture_delay_ms=500)])
+        flow=dict(states=states)
+        self.assertTrue(m.validate_mini_dispatch(flow,500)['verified'])
+        for key,value in [('accepted',False),('action',14),('screen',10),('generation',0),('time_ms',103)]:
+            changed=copy.deepcopy(flow);changed['states'][0][key]=value
+            with self.assertRaises(ValueError):m.validate_mini_dispatch(changed,500)
+        changed=copy.deepcopy(flow);changed['states'][1]['capture_duration_ms']=499
+        with self.assertRaises(ValueError):m.validate_mini_dispatch(changed,500)
+        with self.assertRaises(ValueError):m.validate_mini_dispatch(dict(states=states[:-2]),500)
+
+    def test_mini_input_rejects_unclassified_mouse_actions(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);path=root/'storage-input-0.json'
+            good=dict(mode='mini',success=True,skip_click=True,escape_sent=True,events=[dict(event='escape',down=True),dict(event='escape',down=False)])
+            path.write_text(json.dumps(good));self.assertTrue(m.validate_mini_inputs(root)['verified'])
+            for change in ('click','extra-button','missing-release'):
+                bad=copy.deepcopy(good)
+                if change=='click':bad['skip_click']=False
+                elif change=='extra-button':bad['events'].append(dict(event='button',button=1,down=True,point=[400,300]))
+                else:bad['events'].pop()
+                path.write_text(json.dumps(bad))
+                with self.assertRaises(ValueError):m.validate_mini_inputs(root)
+
+    def test_escape_only_helper_emits_no_mouse_release(self):
+        spec=importlib.util.spec_from_file_location('storage_escape',ROOT/'tools/menu-storage-input.py')
+        helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper)
+        calls=[]
+        class Function:
+            def __init__(self,name,result=1):self.name,self.result=name,result
+            def __call__(self,*args):calls.append((self.name,args));return self.result
+        library=SimpleNamespace(**{n:Function(n) for n in ['XOpenDisplay','XFlush','XCloseDisplay','XKeysymToKeycode','XTestFakeMotionEvent','XTestFakeButtonEvent','XTestFakeKeyEvent']})
+        with tempfile.TemporaryDirectory() as d:
+            output=Path(d)/'storage-input-0.json'
+            args=['helper','--rect','0','0','800','600','--mode','mini','--skip-click','--output',str(output)]
+            with patch('sys.argv',args),patch.dict(helper.os.environ,DISPLAY=':unused'),patch.object(helper.c,'CDLL',return_value=library),patch.object(helper.time,'sleep'):
+                helper.main()
+            self.assertFalse([c for c in calls if c[0] in ('XTestFakeButtonEvent','XTestFakeMotionEvent')])
+            self.assertEqual([c[1][2] for c in calls if c[0]=='XTestFakeKeyEvent'],[1,0])
+            self.assertTrue(m.validate_mini_inputs(Path(d))['verified'])
+
+    def test_dialogue_dismissal_precedes_fresh_escape_observation(self):
+        from PIL import Image
+        spec=importlib.util.spec_from_file_location('storage_dialogue',ROOT/'tools/menu-storage-input.py')
+        helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper)
+        calls=[]
+        class Function:
+            def __init__(self,name):self.name=name
+            def __call__(self,*args):calls.append((self.name,args));return 1
+        library=SimpleNamespace(**{n:Function(n) for n in ['XOpenDisplay','XFlush','XCloseDisplay','XKeysymToKeycode','XTestFakeMotionEvent','XTestFakeButtonEvent','XTestFakeKeyEvent']})
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            for index,title in enumerate(('Hermes','unknown background')):
+                calls.clear();output=root/f'storage-input-{index}.json'
+                args=['helper','--rect','0','0','800','600','--mode','mini','--skip-click','--dismiss-dialogue','--output',str(output)]
+                with patch('sys.argv',args),patch.dict(helper.os.environ,DISPLAY=':unused'),patch.object(helper.c,'CDLL',return_value=library),patch.object(helper.time,'sleep'),patch('PIL.ImageGrab.grab',return_value=Image.new('RGB',(800,600))),patch.object(helper,'recognize_title',return_value=dict(text=title,ocr_returncode=0,ocr_error='')):
+                    helper.main()
+                self.assertEqual([c[1][2] for c in calls if c[0]=='XTestFakeKeyEvent'],[] if index==0 else [1,0])
+                self.assertEqual([c[1][2] for c in calls if c[0]=='XTestFakeButtonEvent'],[1,0] if index==0 else [])
+            flow=dict(states=[dict(event='mini-input',record=f'storage-input-{i}.json',source_generation=str(i+1)) for i in range(2)])
+            self.assertTrue(m.validate_mini_inputs(root,flow)['verified'])
+            flow['states'][1]['source_generation']='1'
+            with self.assertRaises(ValueError):m.validate_mini_inputs(root,flow)
+            p=root/'storage-input-0.json';record=json.loads(p.read_text());record['escape_sent']=True;record['events'] += [dict(event='escape',down=True),dict(event='escape',down=False)];p.write_text(json.dumps(record))
+            with self.assertRaises(ValueError):m.validate_mini_inputs(root)
+            record['escape_sent']=False;record['events']=record['events'][:-2];p.write_text(json.dumps(record));(root/record['tutorial_observations'][0]['crop']).write_bytes(b'changed')
+            with self.assertRaises(ValueError):m.validate_mini_inputs(root)
+
     def flow(self):
         return dict(success=True, save_load=True, stage=12, normal_quit=True,
                     resident_world_requested=True, native_command_fallback=False,

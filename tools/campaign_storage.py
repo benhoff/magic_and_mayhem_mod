@@ -3,6 +3,68 @@ import hashlib
 import json
 import re
 import struct
+from pathlib import Path
+
+
+def validate_mini_dispatch(flow, capture_delay_ms=0):
+    requests=[s for s in flow.get('states',[]) if s.get('event')=='mini-request']
+    expected=[29,28,15]+([15] if flow.get('recreate_world') else [])
+    if ([r.get('action') for r in requests]!=expected
+            or any(r.get('accepted') is not True or r.get('reason') or r.get('screen')!=17
+                   or r.get('generation',0)<=0 for r in requests)):
+        raise ValueError('Missing ordered accepted native Mini requests')
+    clicks=[s for s in flow.get('states',[]) if s.get('event')=='click' and s.get('action','').startswith('miniMenuButton')]
+    controls=['miniMenuButton2','miniMenuButton1','miniMenuButton4']+(['miniMenuButton4'] if flow.get('recreate_world') else [])
+    if [s['action'] for s in clicks]!=controls:
+        raise ValueError('Missing Mini diagnostic capture ordering')
+    for request,capture in zip(requests,clicks):
+        if (not capture['time_ms']<=request['time_ms']<=capture['capture_begin_ms']<=capture['capture_end_ms']
+                or capture.get('injected_capture_delay_ms')!=capture_delay_ms
+                or capture.get('capture_duration_ms',0)<capture_delay_ms):
+            raise ValueError('Mini request was not submitted before delayed capture')
+    return dict(verified=True,requests=len(requests),capture_delay_ms=capture_delay_ms,
+                scope='Native host acceptance before diagnostic capture; original callback ACKs checked independently')
+
+
+def validate_mini_inputs(directory, flow=None):
+    records=[]
+    prescribed={'select-spell':('select zombie spell',[523,575],1),'summon':('summon zombie',[400,280],3),
+                'select-creature':('select zombie',[400,280],1),'move-creature':('move zombie',[400,280],3),'dismiss':('hermes',[400,300],1)}
+    for path in sorted(directory.glob('storage-input-*.json')):
+        record=json.loads(path.read_text())
+        if record.get('mode')!='mini':continue
+        if record.get('success') is not True or record.get('skip_click') is not True:
+            raise ValueError('Mini ingress contains an unclassified focus click')
+        buttons=[e for e in record.get('events',[]) if e.get('event')=='button']
+        titles={' '.join(o.get('text','').lower().split()) for o in record.get('tutorial_observations',[]) if o.get('ocr_returncode')==0}
+        for observation in record.get('tutorial_observations',[]):
+            for kind in ('image','crop'):
+                name=observation[kind]
+                if Path(name).name!=name or not name.endswith('.png') or hashlib.sha256((directory/name).read_bytes()).hexdigest()!=observation[kind+'_sha256']:
+                    raise ValueError('Mini title image changed after observation')
+        for action in record.get('tutorial_actions',[]):
+            rule=prescribed.get(action.get('action'))
+            if rule is None or rule[0] not in titles or (action['logical_point'],action['button'])!=(rule[1],rule[2]):
+                raise ValueError('Mini mouse action lacks its recognized visible title')
+        expected=[(a['button'],down,a['logical_point']) for a in record.get('tutorial_actions',[]) for down in (True,False)]
+        if [(e['button'],e['down'],e['point']) for e in buttons]!=expected:
+            raise ValueError('Mini ingress mouse events differ from prescribed tutorial actions')
+        escape=[e.get('down') for e in record.get('events',[]) if e.get('event')=='escape']
+        if buttons and escape:raise ValueError('Mini ingress combined a mouse action and Escape')
+        if escape!=([True,False] if record.get('escape_sent') else []):
+            raise ValueError('Missing ordered physical Escape edges')
+        records.append(dict(path=path.name,sha256=hashlib.sha256(path.read_bytes()).hexdigest(),escape=bool(escape),tutorial_actions=len(expected)//2))
+    if not records or not any(r['escape'] for r in records):raise ValueError('Missing physical Mini ingress')
+    if flow is not None:
+        previous=0;observed=[]
+        for event in flow.get('states',[]):
+            if event.get('event')!='mini-input':continue
+            source=int(event['source_generation'])
+            if source<=previous:raise ValueError('Mini input reused a World source generation')
+            previous=source;observed.append(event['record'])
+        if len(observed)!=len(records) or set(observed)!={r['path'] for r in records}:
+            raise ValueError('Missing World-bound Mini input observation')
+    return dict(verified=True,records=records,scope='Only recognized Hermes dismissal or prescribed tutorial mouse actions and Escape; input channel observations do not acknowledge original consumption')
 
 
 def validate_storage_flow(flow):

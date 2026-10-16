@@ -167,9 +167,13 @@ void LiveMenuSession::submitResults(){
     pending_=true;requestedAt_=clock_.elapsed();action_=resultsAction_;
 }
 bool LiveMenuSession::requestMini(quint32 action){
-    if(mediaActive_||!miniMenusEnabled()||!active_||inBattle_||pending_||transition_||state_.screen!=MNM_MENU_MINI_SCREEN||
-       clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->request(action,state_))return false;
+    QString refusal;
+    if(mediaActive_||!miniMenusEnabled()||!active_||inBattle_||pending_||transition_||state_.screen!=MNM_MENU_MINI_SCREEN)refusal="host ownership";
+    else if(clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)refusal="host lease expired";
+    else if(!bridge_->request(action,state_))refusal="wire readiness or generation changed";
+    if(!refusal.isEmpty()){if(miniRequestObserved)miniRequestObserved(action,false,refusal,state_);return false;}
     pending_=true;requestedAt_=clock_.elapsed();action_=action;
+    if(miniRequestObserved)miniRequestObserved(action,true,{},state_);
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 bool LiveMenuSession::requestMultiplayer(quint32 action,quint32 transport,const QString& gameName,const QString& userName){

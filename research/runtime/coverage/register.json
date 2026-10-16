@@ -13676,7 +13676,9 @@
         "research/runtime/opengl-command-ring-adapter.md",
         "research/formats/render-command-ring-v2.md",
         "research/runtime/opengl-command-streaming-lifecycle.md",
-        "research/runtime/opengl-command-recovery-metadata.md"
+        "research/runtime/opengl-command-recovery-metadata.md",
+        "research/runtime/native-mini-dispatch-admission.md",
+        "research/runtime/mini-dispatch-initiate-queue-witness-20261015.json"
       ],
       "implementation": [
         "runtime/render/command_channel.h",
@@ -71714,7 +71716,9 @@
         "NR.world-canvas-reviewed-functional-live-20261015",
         "NR.world-canvas-complete-functional-live-20261015",
         "NR.source-prefix-functional-live-20261015",
-        "NR.source-prefix-ordinary-repeat-20261015"
+        "NR.source-prefix-ordinary-repeat-20261015",
+        "HOST.mini-dispatch.delayed-live-20261015",
+        "HOST.mini-dispatch.ordinary-live-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71886,7 +71890,9 @@
         "NR.world-canvas-reviewed-functional-live-20261015",
         "NR.world-canvas-complete-functional-live-20261015",
         "NR.source-prefix-functional-live-20261015",
-        "NR.source-prefix-ordinary-repeat-20261015"
+        "NR.source-prefix-ordinary-repeat-20261015",
+        "HOST.mini-dispatch.delayed-live-20261015",
+        "HOST.mini-dispatch.ordinary-live-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71939,7 +71945,9 @@
         "NR.source-prefix-controls-20261015",
         "NR.source-prefix-reader-controls-20261015",
         "NR.source-prefix-functional-live-20261015",
-        "NR.source-prefix-ordinary-repeat-20261015"
+        "NR.source-prefix-ordinary-repeat-20261015",
+        "HOST.mini-dispatch.delayed-live-20261015",
+        "HOST.mini-dispatch.ordinary-live-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -72084,7 +72092,8 @@
         "NR.source-prefix-reader-refusal-20261015",
         "NR.source-prefix-reader-controls-20261015",
         "NR.source-prefix-preferences-detour-20261015",
-        "NR.source-prefix-functional-live-20261015"
+        "NR.source-prefix-functional-live-20261015",
+        "HOST.mini-dispatch.delayed-live-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -72095,6 +72104,51 @@
       },
       "remaining_gaps": [
         "Finite diagnostic capture and independent/asynchronous V5 retain their previous bounds. Single World queues and deferred overlap retain their existing caps. Later maps, unbounded resource churn, hardware, consistent performance and complete original-pixel/simulation equivalence remain separate."
+      ]
+    },
+    {
+      "id": "HOST.mini-dispatch-admission",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native Mini action ownership and dispatch admission",
+      "scope": "Native Mini Save/Load/Quit host acceptance or explicit ownership/lease/generation refusal, before diagnostic rendering. Storage input focuses the viewport without an unclassified scene click; only recognized Hermes dialogue or tutorial commands may emit mouse actions. Dialogue/tutorial mouse actions and Escape occupy separate helper invocations after strictly advancing native World sources, with retained image/crop hashes. Precise monotonic Main Load dwell and independently checked original callbacks/fresh World ownership are required. A bounded post-submission GUI capture stall is an explicit test policy. The retained historical Preferences detour is not reproduced or causally attributed; no original input, complete navigation, whole-session pixel or arbitrary GUI-stall equivalence.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-mini-dispatch-admission.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "tools/campaign_storage.py"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/menu-storage-input.py",
+        "tests/test-native-render-storage.py",
+        "tests/menu-storage-bridge-test.cpp",
+        "tests/menu-campaign-preferences-test.cpp"
+      ],
+      "evidence": [
+        "HOST.mini-dispatch.controls-20261015",
+        "HOST.mini-dispatch.delayed-live-20261015",
+        "HOST.mini-dispatch.ordinary-live-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/mini_menu_widget.cpp",
+        "apps/qt-shell/mini_menu_widget.hpp"
       ]
     }
   ],
@@ -146883,6 +146937,347 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "HOST.mini-dispatch.coarse-dwell-refusal-20261015",
+      "kind": "live_observation",
+      "scope": "Diagnostic completes the original storage/rebuild/normal-Quit callback journey and all four native Mini admissions, but the requested60000ms coarse Load timer fires at59749ms. Failed overall test; no Preferences-detour diagnosis or successful dwell credit.",
+      "record": "research/runtime/mini-dispatch-coarse-dwell-refusal-20261015.json",
+      "sha256": "3dde2a329b14c2853445c5f30378dba1b1562555f21898467afa4e0ce7c9e2d0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/success",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/loading_menu_elapsed_ms",
+          "equals": 59749
+        }
+      ]
+    },
+    {
+      "id": "HOST.mini-dispatch.escape-only-refusal-20261015",
+      "kind": "live_observation",
+      "scope": "Escape-only control reaches Save and resumes fresh native Worlds, then eight physical Mini attempts fail at stage6 without renderer error. Native input remains active; no classification of the displayed post-Save state was captured. Failed journey, not proof that a generic click is unnecessary.",
+      "record": "research/runtime/mini-dispatch-escape-only-refusal-20261015.json",
+      "sha256": "e4dc0737662fcfd77c1658050669b4f623d8fd0f4bd1421c1b5f692de1824603",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/stage",
+          "equals": 6
+        },
+        {
+          "pointer": "/flow/native_error",
+          "equals": ""
+        }
+      ]
+    },
+    {
+      "id": "HOST.mini-dispatch.controls-20261015",
+      "kind": "native_integration",
+      "scope": "Final-source six Qt Mini session/wire admission cases, existing storage/Preferences/Results regressions and16+21 portable controls. Verifies explicit no-publication rejection, classified dialogue/unknown-text input separation, advancing source admission and screenshot mutation refusal. Synthetic only; no original game.",
+      "record": "research/runtime/mini-dispatch-controls-final-20261015.json",
+      "sha256": "97978be463a2a8e685aa45625996701b56d587bd650a8b915d1b67ba9e8ea1ef",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/qt_tests",
+          "equals": 3
+        },
+        {
+          "pointer": "/mini_admission_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/portable_storage_tests",
+          "equals": 16
+        },
+        {
+          "pointer": "/portable_campaign_tests",
+          "equals": 21
+        }
+      ]
+    },
+    {
+      "id": "HOST.mini-dispatch.dialogue-pilot-20261015",
+      "kind": "live_observation",
+      "scope": "Dialogue-aware pilot completes552 balanced Worlds, exact60000ms Load hold, full storage/rebuild/Main Load/Quit journey and four accepted native Mini submissions before500ms delayed captures. Hermes is visibly retained after Save. Predates final input-batch separation, fresh-source guard and image hashes; no current-code or historical detour-causality credit.",
+      "record": "research/runtime/mini-dispatch-dialogue-pilot-20261015.json",
+      "sha256": "0655e757fd280c23fc6ee6b80a5fbadf10fa9a45580d9138f7554f585a246a2f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/loading_menu_elapsed_ms",
+          "equals": 60000
+        },
+        {
+          "pointer": "/mini_dispatch/verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.mini-dispatch.delayed-live-20261015",
+      "kind": "live_observation",
+      "scope": "Final-source cold Apprentice native Save/Load, original800-to640-to800 display rebuild/Main Load/normal Quit; four accepted Mini requests before500ms GUI capture stalls, classified mouse/Escape batches with advancing sources and checked image hashes, exact60000ms Load hold,375 balanced Worlds and688128 source-only records in42 chunks. Declared1FPS functional floor; no hardware, full simulation/pixels or historical Preferences-detour causality claim. No marked NS_RECT copy-refusal record is exercised.",
+      "record": "research/runtime/mini-dispatch-delayed-live-20261015.json",
+      "sha256": "3bab9f6e9ac7662d6a1a1c1ebb00ed667cf579d7ea7f5c09c543ff5929f1a3f6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/world_canvas_transition_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/source_prefix_stress_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/mini_dispatch/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/mini_inputs/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/loading_menu_elapsed_ms",
+          "equals": 60000
+        },
+        {
+          "pointer": "/mini_capture_delay_ms",
+          "equals": 500
+        },
+        {
+          "pointer": "/resident_world/completed",
+          "equals": "375"
+        },
+        {
+          "pointer": "/resident_world/imports",
+          "equals": "375"
+        },
+        {
+          "pointer": "/resident_world/verified_returns",
+          "equals": "375"
+        },
+        {
+          "pointer": "/resident_world/source_chunk_max_interval_records",
+          "equals": "688128"
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "HOST.mini-dispatch.initiate-queue-overflow-20261015",
+      "kind": "live_observation",
+      "scope": "Final-source cold Initiate completes opening tutorial and same-session Save/Load/first Quit, then refuses during Main Load after both display rebuilds: v2 producer OVERFLOW reason1, ring backlog1048576/1048576, private queue peak33542596/33554432 and469 FULL observations.707 balanced Worlds precede failure. Exact refused append packet and scheduling cause are not captured; no successful Initiate rebuilt-map restore, renderer repair or performance credit.",
+      "record": "research/runtime/mini-dispatch-initiate-queue-overflow-20261015.json",
+      "sha256": "3053388ea5e3727f0635a781edc21a51c34d8b4a0ceb68042e583886b4cc8327",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/stage",
+          "equals": 8
+        },
+        {
+          "pointer": "/resident_world/completed",
+          "equals": "707"
+        },
+        {
+          "pointer": "/resident_world/imports",
+          "equals": "707"
+        },
+        {
+          "pointer": "/resident_world/verified_returns",
+          "equals": "707"
+        }
+      ]
+    },
+    {
+      "id": "HOST.mini-dispatch.ordinary-live-20261015",
+      "kind": "live_observation",
+      "scope": "Final-source cold ordinary Apprentice Save/Load, original display rebuild/Main Load/normal Quit, four accepted Mini requests before capture, classified separate mouse/Escape batches with advancing World sources and verified image hashes. 484 balanced Worlds, declared5FPS functional floor; no hardware/full simulation/pixel equivalence or successful Initiate rebuilt-map restore. Historical Preferences cause remains unclassified.",
+      "record": "research/runtime/mini-dispatch-ordinary-live-20261015.json",
+      "sha256": "9ecd4aef951e98189408e5e4c8b990deeac5d7fe2320485352c9724cb61c19df",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/world_canvas_transition_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/mini_dispatch/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/mini_inputs/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/mini_capture_delay_ms",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_world/completed",
+          "equals": "484"
+        },
+        {
+          "pointer": "/resident_world/imports",
+          "equals": "484"
+        },
+        {
+          "pointer": "/resident_world/verified_returns",
+          "equals": "484"
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -163102,7 +163497,9 @@
         "NR.world-canvas-reviewed-functional-live-20261015",
         "NR.world-canvas-complete-functional-live-20261015",
         "NR.source-prefix-functional-live-20261015",
-        "NR.source-prefix-ordinary-repeat-20261015"
+        "NR.source-prefix-ordinary-repeat-20261015",
+        "HOST.mini-dispatch.delayed-live-20261015",
+        "HOST.mini-dispatch.ordinary-live-20261015"
       ]
     },
     {
@@ -163170,7 +163567,9 @@
         "NR.world-canvas-copy-rectangle-refusal-20261015",
         "NR.world-canvas-complete-functional-live-20261015",
         "NR.source-prefix-functional-live-20261015",
-        "NR.source-prefix-ordinary-repeat-20261015"
+        "NR.source-prefix-ordinary-repeat-20261015",
+        "HOST.mini-dispatch.delayed-live-20261015",
+        "HOST.mini-dispatch.ordinary-live-20261015"
       ]
     },
     {
@@ -163210,7 +163609,8 @@
         "NR.source-prefix-first-characterization-20261015",
         "NR.source-prefix-reader-refusal-20261015",
         "NR.source-prefix-preferences-detour-20261015",
-        "NR.source-prefix-functional-live-20261015"
+        "NR.source-prefix-functional-live-20261015",
+        "HOST.mini-dispatch.delayed-live-20261015"
       ],
       "level": "live_observation"
     },
@@ -163228,6 +163628,62 @@
       "evidence": [
         "NR.source-prefix-controls-20261015",
         "NR.source-prefix-reader-controls-20261015"
+      ]
+    },
+    {
+      "id": "HOST.mini-dispatch-admission.storage",
+      "title": "Cold campaign Mini Save/Load dispatch with delayed presentation",
+      "behaviors": [
+        "HOST.mini-dispatch-admission",
+        "HOST.native-render-save-load"
+      ],
+      "scope": "Native Mini Save/Load/Quit host acceptance or explicit ownership/lease/generation refusal, before diagnostic rendering. Storage input focuses the viewport without an unclassified scene click; only recognized Hermes dialogue or tutorial commands may emit mouse actions. Dialogue/tutorial mouse actions and Escape occupy separate helper invocations after strictly advancing native World sources, with retained image/crop hashes. Precise monotonic Main Load dwell and independently checked original callbacks/fresh World ownership are required. A bounded post-submission GUI capture stall is an explicit test policy. The retained historical Preferences detour is not reproduced or causally attributed; no original input, complete navigation, whole-session pixel or arbitrary GUI-stall equivalence.",
+      "evidence": [
+        "HOST.mini-dispatch.coarse-dwell-refusal-20261015",
+        "HOST.mini-dispatch.escape-only-refusal-20261015",
+        "HOST.mini-dispatch.dialogue-pilot-20261015",
+        "HOST.mini-dispatch.delayed-live-20261015",
+        "HOST.mini-dispatch.ordinary-live-20261015"
+      ],
+      "level": "live_observation",
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/menu-storage-input.py",
+        "tests/test-native-render-storage.py"
+      ]
+    },
+    {
+      "id": "HOST.mini-dispatch-admission.controls",
+      "level": "headless",
+      "scope": "Six real Qt session/wire admission cases, existing campaign Preferences/controller and storage checks, mocked physical Escape with no mouse event and counterfactual rejection of missing/reordered/late acceptance witnesses. No original game execution.",
+      "behaviors": [
+        "HOST.mini-dispatch-admission"
+      ],
+      "tests": [
+        "tests/menu-storage-bridge-test.cpp",
+        "tests/menu-campaign-preferences-test.cpp",
+        "tests/test-native-render-storage.py",
+        "tests/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.mini-dispatch.controls-20261015"
+      ]
+    },
+    {
+      "id": "NR.command-ring-adapter.initiate-reload-overflow",
+      "level": "live_observation",
+      "scope": "Retained failed cold Initiate storage/display-rebuild/Main Load: native v2 private queue and mapped ring fill, then explicit OVERFLOW. Reproducer is negative evidence only, with no callback-batch/capacity repair or successful rebuilt restore claim.",
+      "behaviors": [
+        "NR.command-ring-adapter",
+        "HOST.native-render-save-load",
+        "HOST.mini-dispatch-admission"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "apps/qt-shell/campaign_storage_test.cpp"
+      ],
+      "evidence": [
+        "HOST.mini-dispatch.initiate-queue-overflow-20261015"
       ]
     }
   ],
@@ -163845,8 +164301,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-source-prefix-readers-20261015.json",
-    "sha256": "c181c90b2dd9b8df7de821bfb56a4dc7e5cac9132e389d65f9e42072ab98093d"
+    "path": "research/runtime/coverage/source-index-mini-dispatch-final-20261015.json",
+    "sha256": "4ef65e311f69592f458638567939115ebea2226a6d78902e726fe40f0cdc6152"
   },
   "claim_bindings_required": true
 }

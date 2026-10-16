@@ -12288,3 +12288,55 @@ journeys verify originals and stop private Wine; their772 completed Worlds match
 imports/returns. Accepted source-copy refusal support is now live observation;
 comparison/replacement remain none. The Preferences detour stays an explicit
 navigation gap; ordinary/stress successes do not erase it or prior timing limits.
+
+## Native Mini dispatch and classified storage ingress — 2026-10-15
+
+`HOST.mini-dispatch-admission` separates physical input, native host admission,
+original menu ownership/callbacks and renderer progress. The retained Preferences
+detour remains an unclassified historical navigation failure: it published no
+native Save request and does not establish a native renderer defect. A new
+completed diagnostic exposes a different, confirmed driver failure: Qt's default
+coarse single-shot fires the requested 60000 ms Main Load hold at 59749 ms. The test
+correctly rejects that duration. The driver now uses a precise timer and checks
+the monotonic minimum, submits native actions before diagnostic capture, records
+explicit Mini acceptance/refusal, and immediately refuses unexpected Preferences.
+
+An Escape-only control completes Save and fresh native World resume, then cannot
+reopen Mini. Its displayed state was not captured; a subsequent retained pilot
+visibly observes Hermes after Save, dismisses recognized dialogue and completes
+Save/Load, both original display rebuilds, Main Load, normal Quit and 552 balanced
+Worlds. That pilot's hold is exactly 60000 ms and all four native Mini submissions
+precede deliberate 500 ms capture stalls. Neither control proves the exact cause
+of the historical Preferences detour.
+
+The final policy removes unclassified center clicks. Recognized Hermes or
+prescribed Initiate tutorial mouse actions occupy a separate helper invocation
+from Escape, with an advancing native World source and a new visible-title
+observation between attempts. Image/crop hashes and original callback/resume
+checks remain independent of the helper's input report. No game state, tutorial
+flag, original byte or gameplay balance is changed. Synthetic controls pass six
+Qt Mini admission cases, three focused Qt regressions and 16+21 portable checks,
+including no mouse event on Escape-only input, no combined dismissal/Escape,
+source-generation reuse and changed image refusals. Current cold-run results and
+remaining boundaries are recorded in [the investigation](native-mini-dispatch-admission.md).
+
+The final-code Initiate extension exposes a separate confirmed renderer failure:
+Main Load after both display rebuilds reaches v 2 OVERFLOW reason 1. Its mapped
+ring is full at 1,048,576 bytes and its private queue peaks at 33,542,596 of
+33,554,432 bytes, with 469 FULL observations.707 Worlds balance before failure.
+The exact refused append and scheduling cause are not captured. This is a
+reproducible bounded command-transport gap, not a repaired route or a successful
+Initiate rebuilt-map restore. Its negative scenario is registered under
+`NR.command-ring-adapter.initiate-reload-overflow`; successful Apprentice runs
+cannot replace it. The command queue implementation is unchanged by this work.
+
+Two final-code cold Apprentice journeys now pass the native Mini/storage and
+original display-rebuild/Main Load/Quit sequence:375 and 484 balanced
+Worlds. The first holds Load for exactly 60000 ms and inserts 500 ms GUI capture
+stalls after all four Mini submissions; it drains 688128 source records in 42 chunks.
+The ordinary repeat meets its 5 FPS functional floor at 11.818 engine FPS.
+Both validate classified separate input batches, strictly advancing source
+witnesses, image/crop hashes, host admission and independent original callbacks,
+with stable inputs/sources and verified original manifests/private-prefix stop.
+The historical Preferences cause and the distinct Initiate queue overflow remain
+explicit; no original comparison or replacement status is promoted.
