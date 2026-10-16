@@ -9678,3 +9678,58 @@ visibility generation, resource/mana economy, spell/entity lifetime, dual-brain
 World scheduling, arbitrary species/forms, full World/campaign and live
 replacement remain pending. Commander/veterancy/mana gameplay changes remain
 separate from recovered baseline validation.
+
+## NS76 — Original owner creature knowledge (2026-10-16)
+
+The native simulation now owns the bounded4181d0 modes1/2 creature-memory
+projection: mode1 marking, eight-work/eight-owner scan bounds, enabled-owner
+wrap and sweep epochs, nearest owner/type/movement-bounded matching, pool-order
+ties, anonymous owner-local keys, new living hostile sightings, retained hidden
+snapshots and signed age>1024 expiry. Existing records can match allied or dead
+active actors, or a different same-type slot; the earlier slot-key policy is
+preserved separately. The recovered model feeds regional danger through explicit
+mark/danger/deduction/knowledge ordering per admitted normal native frame.
+Visibility, owner eligibility and empty strategic task/notification inputs remain
+declared boundaries. This is not original visibility generation or World cadence.
+
+CMD1/v10 preserves records/fine positions/markers, next keys, sweep epochs,
+owner/key cursor, reset and125 matched flags, with checked danger-memory aliases.
+Older versions decode absent knowledge; lossy older writes refuse. Activation
+stages a private continuation. CLI run-knowledge and embedded-input resume/edit
+compose the recovered pipeline without Wine; run-danger retains the NS75 policy.
+The original-backed full game still requires Wine.
+
+The immutable owner-knowledge-bound-ns76-20261015.json records57,369,512
+lifecycle checks across18,432 synthetic ticks and18,432 paired installed
+encounter ticks in eight journeys. Native64/ASan/UBSan/LSan traces and final
+snapshots agree, with2304 in-process and80 fresh-process journey restores.
+The native state suite passes4873 checks,288 round trips and8 refusals. Hidden
+movement/expiry/reacquisition/death, diplomacy and real melee are exercised;
+combat seeds yield36/19 hits and1/0 deaths. Goal counts are occupancy frames.
+The danger regression passes5,203,818 checks; both five-test core suites, both
+installed encounter regressions, legacy policy state tests and CLI edited-save
+continuation/refused output pass. All272 declared sources,264 compiler/configure
+inputs, five installed inputs and2927 originals are stable within each stage;
+original text is guarded.
+
+Evidence is explicitly composed: the preserved v1 engine stage passed every
+helper/journey/replay/checkpoint, then stopped at a standalone legacy version9
+assertion. V2 accepts only the exact9-to-10 assertion correction and its recovery
+driver, verifies unchanged engine/paired-test sources, identical claims and all
+1270 upstream artifacts, then executes the remaining suites and CLI checks.
+It rechecks upstream hashes afterward and claims no repeated original execution.
+The engine-stage report and superseded source texts are durable separate
+artifacts; five negative reuse guards pass. See owner-creature-knowledge.md.
+
+Only AI.owner-creature-knowledge and NP.owner-knowledge-continuation receive
+current scoped validation. The census is
+coverage/source-index-owner-knowledge-20261015-v2.json (2471 files,2277 linked).
+The incoming79d3fd3f..7011dd87 history has273 file/323 behavior transitions with
+matching exact receipts and no unresolved gap, retained in
+coverage/history-review-ns75-to-ns76-20261015.json; this establishes neither a past
+gate pass nor new execution. Existing evidence hashes and independent statuses
+are preserved, including staleness after shared-source changes. Geometric/shared
+visibility production, nonempty strategic task/notification consequences,
+dual-brain World scheduling, nonzero resource/inventory lifecycle comparisons,
+arbitrary status/form/extreme arithmetic domains, general species, campaign and
+live replacement remain pending. Gameplay balance features remain outstanding.

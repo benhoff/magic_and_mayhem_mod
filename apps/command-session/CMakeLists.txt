@@ -8,6 +8,7 @@ add_library(mnm-native-command-session STATIC runtime.cpp codec.cpp
   ../../reconstruction/creature-ai/regional_graph.cpp
   ../../reconstruction/creature-ai/regional_maintenance.cpp
   ../../reconstruction/creature-ai/regional_danger.cpp
+  ../../reconstruction/creature-ai/owner_knowledge.cpp
   native_regional_danger.cpp
   ../../reconstruction/creature-ai/attack_selection.cpp
   ../../reconstruction/creature-ai/idle_gesture.cpp

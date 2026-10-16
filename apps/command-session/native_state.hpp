@@ -8,6 +8,7 @@
 #include "../../reconstruction/creature-ai/regional_navigation.hpp"
 #include "../../reconstruction/creature-ai/regional_maintenance.hpp"
 #include "../../reconstruction/creature-ai/regional_danger.hpp"
+#include "../../reconstruction/creature-ai/owner_knowledge.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -61,5 +62,6 @@ struct NativeProviderState {
   std::array<unsigned,2> regionalRiskPowers{};
   std::optional<NativeRegionalMaintenance> regionalMaintenance;
   std::optional<NativeRegionalDanger> regionalDanger;
+  std::optional<reconstruction::combat::OwnerKnowledge> ownerKnowledge;
 };
 } // namespace mnm::command_session

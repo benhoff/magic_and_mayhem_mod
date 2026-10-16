@@ -54,6 +54,8 @@ void observe(Continuation &c, const NativeCreatureProfile &p) {
   }
   in.actors = std::move(live);
   d.state.actorSupport.resize(in.actors.size());
+  if (c.native.ownerKnowledge)
+    return;
   for (unsigned owner = 0; owner < 8; ++owner) {
     auto &memories = in.memories[owner];
     for (const auto &a : in.actors) {
@@ -106,7 +108,38 @@ void updateNativeRegionalDanger(Continuation &c,
   observe(c, p);
   auto &d = *c.native.regionalDanger;
   auto &in = d.inputs;
+  if (c.native.ownerKnowledge)
+    model::markOwnerKnowledge(*c.native.ownerKnowledge, in.tick);
   model::updateRegionalDanger(c.native.regions, d.state, in);
   model::updateRegionalDeduction(c.native.regions, d.state, in);
+  if (c.native.ownerKnowledge) {
+    std::vector<model::OwnerObservation> observations;
+    for (const auto &actor : in.actors) {
+      const auto &live = c.world.creatures.at(unsigned(actor.slot));
+      observations.push_back({actor, live.finePosition, live.ai.visible,
+                             p.types.at(actor.type).routeCostFactor});
+    }
+    model::updateOwnerKnowledge(*c.native.ownerKnowledge, in.tick, in.dimensions,
+                                in.enabled, in.allied, observations);
+    for (unsigned owner = 0; owner < 8; ++owner) {
+      in.memories[owner].clear();
+      for (const auto &r : c.native.ownerKnowledge->records[owner])
+        in.memories[owner].push_back(r.memory);
+    }
+  }
+}
+void prepareNativeOwnerKnowledge(Continuation &c) {
+  if (!c.native.regionalDanger || c.native.ownerKnowledge)
+    throw std::invalid_argument("owner knowledge requires fresh danger setup");
+  auto staged = c;
+  staged.native.ownerKnowledge.emplace();
+  for (auto &records : staged.native.regionalDanger->inputs.memories)
+    records.clear();
+  // Replacing an already active producer would mix two observation domains.
+  const auto &s = staged.native.regionalDanger->state;
+  if (!s.resetDanger || !s.resetDeduction)
+    throw std::invalid_argument("owner knowledge requires unadvanced danger");
+  validate(staged);
+  c = std::move(staged);
 }
 } // namespace mnm::command_session

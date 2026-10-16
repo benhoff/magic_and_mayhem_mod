@@ -27,6 +27,9 @@ inline Profile profile(game::Bytes inputs, unsigned scenario) {
     c.execution[a.ai.slot].combatValue[5] = 10000 + int(a.ai.slot) * 1000;
   }
   enableRegionalDanger(p);
+#ifdef MNM_OWNER_KNOWLEDGE
+  cs::prepareNativeOwnerKnowledge(c);
+#endif
   if (scenario == 2) {
     auto &in = c.native.regionalDanger->inputs;
     in.fireRange = 6;
@@ -42,14 +45,18 @@ inline Profile profile(const std::filesystem::path &install,
   return profile(loadInputs(install, {0, 0, 32, 32}, 0), scenario);
 }
 inline bool visibilityEvent(unsigned scenario, unsigned tick) {
+#ifdef MNM_OWNER_KNOWLEDGE
+  return scenario == 1 && (tick == 64 || tick == 1408);
+#else
   return scenario == 1 && (tick == 64 || tick == 256);
+#endif
 }
 inline bool diplomacyEvent(unsigned scenario, unsigned tick) {
   return scenario == 2 && tick == 128;
 }
 inline void policy(cs::Continuation &c, unsigned scenario) {
   if (visibilityEvent(scenario, c.native.tick))
-    c.world.creatures[1].ai.visible[0] = c.native.tick == 256;
+    c.world.creatures[1].ai.visible[0] = c.native.tick != 64;
   if (diplomacyEvent(scenario, c.native.tick))
     c.world.relation[0][1] = c.world.relation[1][0] = 1;
 }
@@ -71,7 +78,13 @@ inline std::shared_ptr<const cs::Runtime> runtime(const Profile &p,
                           slot ? c.execution[0].roamHome
                                : c.world.creatures[0].destination);
           }
-          if (scenario == 1 && c.native.tick == 384) {
+          if (scenario == 1 && c.native.tick ==
+#ifdef MNM_OWNER_KNOWLEDGE
+              1792
+#else
+              384
+#endif
+          ) {
             auto fx = lower(c);
             fx.bindCommands(commands);
             fx.maintenance.health(c.world.creatures[1], -10000, -1, false);

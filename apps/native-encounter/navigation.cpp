@@ -49,6 +49,10 @@ void enableRegionalDanger(Profile &p) {
     inputs.shared[i][i] = 1;
   cs::prepareNativeRegionalDanger(p.initial, p.native, std::move(inputs));
 }
+void enableOwnerKnowledge(Profile &p) {
+  enableRegionalDanger(p);
+  cs::prepareNativeOwnerKnowledge(p.initial);
+}
 void editTerrain(game::CreatureRuleSession &session, const Profile &p,
                  const std::vector<cs::NativeTerrainEdit> &edits) {
   auto state = session.world().state();

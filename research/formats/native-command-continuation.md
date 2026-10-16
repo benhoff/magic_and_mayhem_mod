@@ -1,10 +1,10 @@
-# Native command continuation versions 1–9
+# Native command continuation versions 1–10
 
 This is a native application format inside the outer native `State.systems`
 checkpoint. It is unrelated to original Magic & Mayhem save/object layouts.
 
 The byte stream starts with four ASCII bytes `CMD1`, then little-endian32-bit
-version9 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
+version10 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
 integers use two's-complement words with explicit checked reconstruction; narrow
 values reject overflow. Booleans are exactly0 or 1. An optional is a0/1 word and,
 when present, its value. A vector begins with its word length; a fixed array has
@@ -213,3 +213,23 @@ Versions 1..8 read with absent danger state. Explicit older writes refuse when
 danger production is enabled. Native observation, resource and frame policies
 are documented in regional-danger-production.md; this format establishes no
 original save equivalence or full World integration.
+
+## Version 10: owner creature knowledge
+
+After the version9 native provider fields, version10 appends optional
+`ownerKnowledge`: eight record vectors, eight next-key words, previous/current
+sweep epochs, owner, cursor key (-1 denotes tree end), reset and125 matched-slot
+booleans. Each record contains the existing danger memory (anonymous key,
+observation tick, actor projection), mode-1 marker and fine XYZ position.
+Owner-local keys are independent of creature slots. Danger's projected memory
+vectors must exactly alias these records; the decoder validates both copies.
+
+Versions1..9 decode without owner knowledge and retain their existing supplied
+observation policy. Writing older versions with knowledge present refuses.
+Activation requires an unadvanced danger producer; validation and session
+publication remain transactional. Native admission limits records to125 per
+owner, fixed retained actor references, ordered keys below the next-key counter,
+and the existing1MiB total continuation bound. These are native limits, not
+claims about original save layout or the original memory allocator. Visibility
+is supplied and task/notification lists are absent; one mark/danger/deduction/
+knowledge-update sequence runs per admitted normal native frame.

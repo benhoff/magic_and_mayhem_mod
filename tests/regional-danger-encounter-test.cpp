@@ -1,5 +1,8 @@
 #include "../game/persistence/snapshot.hpp"
 #include "regional-danger-encounter-state.hpp"
+#ifdef MNM_OWNER_KNOWLEDGE
+#include "owner-knowledge-encounter-state.hpp"
+#endif
 #ifdef MNM_PAIRED_REFERENCE
 #include "regional-danger-original.hpp"
 #endif
@@ -10,11 +13,12 @@ using namespace mnm;
 namespace reg = encounter::regional_danger;
 namespace cs = command_session;
 #ifdef MNM_PAIRED_REFERENCE
-m::RegionalDangerActor observedActor(const Original &o, unsigned i) {
-  const auto *raw = o.actors.data() + i * 0xe4b;
+m::RegionalDangerActor observedActor(const Original &o, unsigned i,
+                                    const unsigned char *snapshot = nullptr) {
+  const auto *raw = snapshot ? snapshot : o.actors.data() + i * 0xe4b;
   auto *cfg = reinterpret_cast<void *>(get(raw, 0xac));
   m::RegionalDangerActor a;
-  a.slot = int(i);
+  a.slot = int(get(raw, 0));
   a.owner = int(get(raw, 0x174));
   a.region = int(get(raw, 0xde7));
   a.position = {int(get(raw, 8)), int(get(raw, 12)), int(get(raw, 16))};
@@ -45,7 +49,7 @@ m::RegionalDangerActor observedActor(const Original &o, unsigned i) {
     a.estimatedResource[j] = get(raw, 0xe2b + 4 * j);
   return a;
 }
-void originalObserve(const Original &o, m::RegionalDangerInputs &in) {
+[[maybe_unused]] void originalObserve(const Original &o, m::RegionalDangerInputs &in) {
   in.tick = int(o.tick) + 1;
   in.actors.clear();
   for (unsigned i = 0; i < o.profile.initial.world.creatures.size(); ++i)
@@ -74,7 +78,7 @@ void originalObserve(const Original &o, m::RegionalDangerInputs &in) {
 void originalPolicy(Original &o, m::RegionalDangerInputs &in,
                     unsigned scenario) {
   if (reg::visibilityEvent(scenario, o.tick))
-    put(o.actors.data() + 0xe4b, 0x24, o.tick == 256);
+    put(o.actors.data() + 0xe4b, 0x24, o.tick != 64);
   if (reg::diplomacyEvent(scenario, o.tick))
     in.allied[0][1] = in.allied[1][0] = 1;
   if ((scenario != 3 && o.tick == 32) || (scenario == 1 && o.tick == 96)) {
@@ -85,7 +89,13 @@ void originalPolicy(Original &o, m::RegionalDangerInputs &in,
     reinterpret_cast<Move>(0x50fae0)(o.actors.data() + slot * 0xe4b, q.x, q.y,
                                      q.z);
   }
-  if (scenario == 1 && o.tick == 384) {
+  if (scenario == 1 && o.tick ==
+#ifdef MNM_OWNER_KNOWLEDGE
+      1792
+#else
+      384
+#endif
+  ) {
     using Health =
         void(__attribute__((thiscall)) *)(void *, int, int, void *, int);
     reinterpret_cast<Health>(0x5076f0)(o.actors.data() + 0xe4b, -10000, -1,
@@ -209,6 +219,34 @@ int main(int argc, char **argv) try {
   danger.inputs(observed, false);
   danger.memoryInputs(observed);
   danger.effectInputs(observed);
+#ifdef MNM_OWNER_KNOWLEDGE
+  put(danger.context.data(), 0x11fed, 1, 1);
+  m::OwnerKnowledge knowledge;
+  auto readKnowledge = [&] {
+    auto *ctx=danger.context.data();
+    knowledge.reset=get(ctx,0x11fed,1);knowledge.owner=int(get(ctx,0x11fee));
+    knowledge.previousSweep=int(get(ctx,0x11da2));knowledge.currentSweep=int(get(ctx,0x11da6));
+    for(unsigned owner=0;owner<8;++owner){
+      auto &records=knowledge.records[owner]; records.clear(); observed.memories[owner].clear();
+      knowledge.nextKey[owner]=int(get(ctx,0x11d82+4*owner));
+      const unsigned head=get(ctx,0x11c06+48*owner);
+      auto cursor=get(reinterpret_cast<void *>(head));
+      while(cursor!=head){
+        auto *raw=reinterpret_cast<unsigned char *>(cursor);
+        m::OwnerMemory r;
+        r.memory={int(get(raw,12)),int(get(raw,16)),observedActor(o,0,raw+24)};
+        r.markedTick=int(get(raw,20));r.finePosition={int(get(raw,44)),int(get(raw,48)),int(get(raw,52))};
+        records.push_back(r);observed.memories[owner].push_back(r.memory);
+        call(0x42d0a0,&cursor);
+      }
+    }
+    if(!knowledge.reset){
+      auto cursor=get(ctx,0x11ff2),head=get(ctx,0x11c06+48*unsigned(knowledge.owner));
+      knowledge.cursor=cursor==head?-1:int(get(reinterpret_cast<void *>(cursor),12));
+    }
+    for(unsigned i=0;i<125;++i)knowledge.matched[i]=get(ctx,0x11ff6+i,1)!=0;
+  };
+#endif
   const std::filesystem::path out = argv[6];
   if (!std::filesystem::create_directory(out))
     throw std::runtime_error("existing danger output");
@@ -241,12 +279,27 @@ int main(int argc, char **argv) try {
   for (unsigned tick = 0; tick < ticks; ++tick) {
 #ifdef MNM_PAIRED_REFERENCE
     originalPolicy(o, observed, scenario);
+#ifdef MNM_OWNER_KNOWLEDGE
+    observed.tick=int(o.tick)+1;
+    observed.actors.clear();
+    for(unsigned i=0;i<o.profile.initial.world.creatures.size();++i)
+      observed.actors.push_back(observedActor(o,i));
+#else
     originalObserve(o, observed);
+#endif
     danger.inputs(observed, false);
+#ifdef MNM_OWNER_KNOWLEDGE
+    reinterpret_cast<Value>(0x4181d0)(danger.context.data(),1);
+#else
     danger.memoryInputs(observed);
+#endif
     danger.effectInputs(observed);
     call(0x41a060, danger.context.data());
     call(0x41d270, danger.context.data());
+#ifdef MNM_OWNER_KNOWLEDGE
+    reinterpret_cast<Value>(0x4181d0)(danger.context.data(),2);
+    readKnowledge();
+#endif
     // Declared danger input lists are isolated from unrelated World effects.
     for (unsigned at : {0x6898e4u, 0x689908u, 0x6898fcu, 0x6898f0u})
       global(at, address(danger.empty.data()));
@@ -256,6 +309,10 @@ int main(int argc, char **argv) try {
     session.step();
     auto c = cs::decode(session.world().state().systems);
     auto projected = reg::projection(c, p);
+#ifdef MNM_OWNER_KNOWLEDGE
+    auto nativeKnowledge=reg::knowledgeProjection(*c.native.ownerKnowledge);
+    projected.insert(projected.end(),nativeKnowledge.begin(),nativeKnowledge.end());
+#endif
 #ifdef MNM_PAIRED_REFERENCE
     auto expected = projectOriginal(o, false);
     auto add = [&](std::string name, unsigned v) {
@@ -301,6 +358,10 @@ int main(int argc, char **argv) try {
             get(o.actors.data() + i * 0xe4b, 0x90a + 4 * j));
     auto values = originalDanger(o, danger, observed, c.native.regions.size());
     expected.insert(expected.end(), values.begin(), values.end());
+#ifdef MNM_OWNER_KNOWLEDGE
+    auto originalKnowledge=reg::knowledgeProjection(knowledge);
+    expected.insert(expected.end(),originalKnowledge.begin(),originalKnowledge.end());
+#endif
     auto difference = encounter::paired::difference(projected, expected);
     if (!difference.empty())
       throw std::runtime_error("danger tick=" + std::to_string(c.native.tick) +
@@ -348,6 +409,10 @@ int main(int argc, char **argv) try {
                                     get(danger.header.data()),
                                     address(danger.header.data()));
   checkText();
+#ifdef MNM_OWNER_KNOWLEDGE
+  for(unsigned owner=0;owner<8;++owner)
+    call(0x42f2e0,danger.context.data()+0x11c02+48*owner);
+#endif
   call(0x53a840, regionManager);
   destroySearch();
 #endif
