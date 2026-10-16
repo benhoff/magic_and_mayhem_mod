@@ -41,3 +41,8 @@ fresh-process campaign resume. Original full dispatcher/cadence/allocator, speci
 targets/negative healing, physical audio, original SPR pixels and live original
 campaign replacement remain separate milestones. Creature AI remains the authored
 arena policy, not the complete recovered creature-rules laboratory.
+
+The subsequent projectile-enabled profile appends the native Sphere phase after
+Cure and before terminal settlement. The Cure-only profile retains its prior
+identity and encoding. This shared native schedule is not original dispatcher
+cadence equivalence; see [Sphere scope](native-sphere-battle.md).

@@ -1027911,6 +1027911,213 @@
         "status": "pending",
         "reason": "Shared-source/index/history accounting does not rerun unrelated recovered contracts or promote the whole original spell. Historical source hashes and evidence stay immutable."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "740e808d8c11c35f18646a02004c7e123137238552f36c888031c49dbda5a444",
+          "before_sha256": "3d7eaabc3454d0d6798d3309341e8ab6dbc9aaee85f5b9d855d5cf892059b44a",
+          "id": "NP.battle-effects"
+        },
+        {
+          "after_sha256": "2af11858ecc3fbe7b403538e57fc5d9d32d4da6a9b4f0f0d85b56dd98688b354",
+          "before_sha256": "de221d112990d09a54f812e20c689f38424c987f6a6cff5bee7d9340e725f516",
+          "id": "NP.cure-battle"
+        },
+        {
+          "after_sha256": "ed8fe03177098cbfba5a214fd605cf57d75f05d5101012aa3510ea517f5f7f39",
+          "before_sha256": "8091c8799e52bc08b0f056afa1aabea6a39fbae2e11aef6cf8a8c864b5e88362",
+          "id": "NP.sphere-battle"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9bc65088828d3c51b60fa420a0b43f0df81f87ffeb1ebd47c92a13530e9fd92b",
+          "before_sha256": "627a9d8133cfcec635f838d585d1d760cbe195d81196fd2049f7c800059d6255",
+          "path": "apps/skirmish/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "e55a0bc36740332139bb35f35d3192d899caeadc2c992ff9ea7c30d3b770dfdf",
+          "before_sha256": "7b36414e39a10144dbc91620d5f790dd8db64adf31abe535156ae22e8d661f50",
+          "path": "apps/skirmish/sphere_runtime.cpp"
+        },
+        {
+          "after_sha256": "9d8f9f6f18d583b8286361027260b02f12d16d70800087e99a760580a409dc57",
+          "before_sha256": null,
+          "path": "research/runtime/sphere-window-bound-20261016.json"
+        },
+        {
+          "after_sha256": "b4ae5b432b711106a002afedcf59601f5d12967389c0cf1721ca09d6c22b78a4",
+          "before_sha256": "629137ea2ce404215df066700aabdd19b84cec938513c840b20505085b55e5bc",
+          "path": "tests/campaign-window-driver.cpp"
+        },
+        {
+          "after_sha256": "40375f1142a97a68867d6fbe60b1c9fabcf594b6d49d8ad910f810e695583441",
+          "before_sha256": "42e1eb271512608c821f80f462019168599714268b051a4397213ceb61f4661b",
+          "path": "tests/sphere-battle-test.cpp"
+        },
+        {
+          "after_sha256": "91800ab351bab3f2aeabe7ffd28d1905d525e37200095e7e071d249cac135664",
+          "before_sha256": "38544bcf272d91bd1e807c73528e7ef40cb05de6129a97e20a87cf48fbd1727d",
+          "path": "tests/test-skirmish-window.py"
+        },
+        {
+          "after_sha256": "f024826d619b1e4a605c580d74e363bced199d38fe5efaee4c3c6334a17b370f",
+          "before_sha256": null,
+          "path": "tests/test-sphere-window.py"
+        },
+        {
+          "after_sha256": "301b3560cc9a654078f8c4679f65e317f89455f491e0d3cba56db90ab596020e",
+          "before_sha256": null,
+          "path": "tools/test-sphere-window.py"
+        }
+      ],
+      "id": "sphere-window-source-bound-execution-20261016",
+      "pending_gaps": [],
+      "reason": "Reviewed real Sphere button/enemy picker/save dialogs, mid-flight pause and fresh-process continuation against identical headless/event-counted campaign bytes; one20-point moving-target hit,24 to4 health. Reviewed empty contributor-chain/native attribution serialization and external-build binary provenance reporting. All58 normal tests, six ASan/UBSan/LSan contracts, installed Cure ANI and both Qt journeys pass; historical Cure playback bytes remain unchanged.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh PROJECTILE04 binds390 source hashes, three native contracts and four scenarios. Only native Sphere integration advances to preview; Cure/shared-battle levels remain scoped. Original manifests and installed inputs are unchanged before/after.",
+        "evidence": [
+          "PROJECTILE04.window-native"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "b8f161fa20a4d7070184fed47d7fb56a92e09b4b497ce866bf5c68e3f1f23542",
+          "before_sha256": "0258d7a7e82659ed682e01c56376e081cfc4a1a7bf687c777d68d5c1075f9305",
+          "id": "CAST.sphere-motion"
+        },
+        {
+          "after_sha256": "2245b814e45014c32d2cbaea5595163e5a0a5c8f061f3179473016365aceccc1",
+          "before_sha256": "d4fc8be74b925de936ef8264370ad681e7db76eb9b9561eb2e3ccdf24bfc5a93",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "fb7396a05f043b3352b55dec07988b8e711e2b7710459b167f592e99e0051c0f",
+          "before_sha256": "59d1764c20822394a91551952096e3c6ef312695d044e8377cf1fc62966912a7",
+          "id": "NP.campaign-arena"
+        },
+        {
+          "after_sha256": "1cb6fcb751dcb1fab2963840f22bc96e35511619de4d87d292cb1c66ba5873a6",
+          "before_sha256": "60178e315aedde67ba4964b2f88b1778d31a26aabc21bbe0672b300a246651cc",
+          "id": "NP.campaign-window"
+        },
+        {
+          "after_sha256": "4bc2d601cbdbac99d6054bc9b2e3b119045343c15e774600bc9efd9ccf4c7dc6",
+          "before_sha256": "c5bd21bbbe651908e4d2f39cc5647be8ed0166b9ad83b3c92b146ee65286cd72",
+          "id": "NP.combat-orders"
+        },
+        {
+          "after_sha256": "c0f6e0dc1eaea68a3996bc4de263eff0edd0d22eb62c57eaedee3063d9546a44",
+          "before_sha256": "c358f6123920adbad8800f2296cc547f0c2436b9a28d88331627ed3fd8921ebf",
+          "id": "NP.ordinary-health-adapter"
+        },
+        {
+          "after_sha256": "c69fc5405fc16beb8a24cd04b81066784820035b535bbb0302fe9429741c107d",
+          "before_sha256": "a36e0f47365ea01ad55929f692a72705f057767a0d047413965d5edacd558115",
+          "id": "NP.skirmish-simulation"
+        },
+        {
+          "after_sha256": "056dcf8470b915bcc1c642756f9e832242d48a96c8e5707219aae79bbb1f5ac3",
+          "before_sha256": "f2ac2bdb676bd27326a803f47b9392fa6e966d60e6d847d6b3b2309c1ec3aeaf",
+          "id": "NP.skirmish-window"
+        },
+        {
+          "after_sha256": "b4895f655567a57acc6418a50d7a14f8d0ff474ef83def2b8247ecb62c5f3d25",
+          "before_sha256": "77ff546c5b0928eb488e617ec4d9e134ec9877c8082c36f64432820d971a62b7",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "d83115e9115f11ed660ab5f4d663396475592ceb011d5c6879038775bbd5f8b9",
+          "before_sha256": "995aa0881d758724fe6fc25484f759f79fc78bc4c1d6c3579aed22a06103f540",
+          "id": "NR.qt-quick-battle-app-journey"
+        },
+        {
+          "after_sha256": "3c05d20963a24ba00514f196cd0ca2323113c4f9aa1d55db622e63a8744e48b9",
+          "before_sha256": "a65a974fb9d4092dfe329975a62e39049af790f355c3241226d3be926ed513ff",
+          "id": "NR.qt-results-action-readiness"
+        },
+        {
+          "after_sha256": "a6e31377159dd1f5e016641ad44edc8c12c9015badacffd171f04017bcd82000",
+          "before_sha256": "1c9bb49d1c821dc996ec253ed96a494ecb4bf15b6232dafb894ea5027395d961",
+          "id": "SP.073"
+        },
+        {
+          "after_sha256": "807cba82647f1ba73cebbb35f4e875b2d344053e91162113719ad37c7cd3fcb6",
+          "before_sha256": "9bbee3f1a9e2f52a2443ee8eac0dc26fc959b47c2f61b9ae924d3bff232375fc",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "65d53a4128a10caf66cf9b1976b0bb9a82383ba47702a89d6d927810dff5cd7a",
+          "before_sha256": "fc8f1aecfb4c404d6b9402c1feca37860ec4544ef81600d8d60a6b61410b6969",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "efd7588221e11e6086c8815b2b7ee16ede0a03b11be3062d295c48ffbb3bd89f",
+          "before_sha256": "1df932c7d2dab81987a25def4400e40b7eee7b3cf7d5d40c944bb5591817602c",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "65f220093261986c531d1f50e2083f3ab62800b08f4fe8e39a16bcb3d71fc70c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-sphere-window-approved-20261016.json"
+        },
+        {
+          "after_sha256": "395c41001d2c6b981dde20e1ced9ee48e1e2fe5653c36e2d4a33e52a593e4a07",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/sphere-window-incoming-history-20261016.json"
+        },
+        {
+          "after_sha256": "264a9d4ad0c2fd6217fed5b8c7589d71deccc4b6c2ec38b804d48bca46476422",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-sphere-window-20261016.md"
+        },
+        {
+          "after_sha256": "6bc865b61ed215c843dfed36d97eb4e46b868297b9d6de76c9391bcf5764d4e1",
+          "before_sha256": "76c0e9e93570da69609a814437cd56f7989a94ba7835c7797a38b180776d92bc",
+          "path": "research/runtime/native-cure-battle.md"
+        },
+        {
+          "after_sha256": "1b9a1d8b8145fbddb153f092dc596cec017054139af89bcb323c2a552fcc1d10",
+          "before_sha256": "e1f2d22646b4326f8f6bb4db73d092f9145d682cacdbc3676b9893bdb7da7c77",
+          "path": "research/runtime/native-sphere-battle.md"
+        }
+      ],
+      "id": "sphere-window-history-index-shared-accounting-20261016",
+      "pending_gaps": [
+        "stale_evidence:0914795440974bd51b39304eb8692073b15967c712ddedfd7c1f3d9a0cda6ebb",
+        "stale_evidence:1a3feeb47d416b13f2c42c8ddf374a03616c1ad3349a8867730e53bdf7e20e65",
+        "stale_evidence:1b88f2f1e3f229eb547848f0dfb9a2a071db2b6a6a37fbc50c732f0b468e3309",
+        "stale_evidence:1cb314ef2646c7db6de0dea8d3662d92d144bd628e97c042272f1180e328cdb5",
+        "stale_evidence:325d5043d936b407a8bf793c6bd592f38a486b5f5d2e2282d563c507fbb0b23b",
+        "stale_evidence:35c61e50b9330dd6349f4f98b95d574bfa0e695ca9095aa650a8bd10704079c8",
+        "stale_evidence:3cc8613b884badd437ff4c11e2c7c022e7629f1602ea1d70c988df06eebc5b8c",
+        "stale_evidence:4198aecd61775a2c6d47f86322e245b68404c10ab182cfd4c67b7625d4e8ebae",
+        "stale_evidence:4be5642119800c1d8f203f1dc95252fcbd3724befbb785dfb91e21e959b5f748",
+        "stale_evidence:5c2c73436b55df717663af35052b7296c728b38eeff4897b830b1b2e2536cbae",
+        "stale_evidence:756a517b0f6990e19f6ff831858fb14edc7c8341c1072e207a72fe1a682ba2b3",
+        "stale_evidence:7b280026e5ad6d3ab8c932fba3de4ff2d9ed3928f1c196d736532fbe36624775",
+        "stale_evidence:80d30ab85930a47def4a5d0f64c729bacc2300f7d75bc0e6059d7400335615db",
+        "stale_evidence:8146666651a92f5193a7c456229edbff1b726eb3afd71002c6f621195c777546",
+        "stale_evidence:81fcdf23dff5639d68a015032d8030d19aea37854456614287c05736b41e2cef",
+        "stale_evidence:8a6da2f6731a0487c8984b5a844f329712789e9bed191d49283848208c8b7dc1",
+        "stale_evidence:b75e5fc6b5b1524ab71ca7864212542f66d307b761e8af7beafc005f12dd5f75",
+        "stale_evidence:bb1509179d8ac0ae1a7fe9008f2bfb7bd8808f5f00221678d4440b370c7cddfb",
+        "stale_evidence:e27274123d81e48c364f19ab2dac85855c0cd402a2432f32172e070b17fd1b7f",
+        "stale_evidence:e862846f24b7a07767f6596ea6a73da446ddc097ab60062c86c63ab372eb0902",
+        "stale_evidence:f138bf79daf9c0e6c8a4783c7d286c5d9f9b30b9ba09d11ede273e359ab98936",
+        "stale_evidence:fe252fadb4dde4e00c77ab34cc6fce6f0bc0e88f0a61f6b7cdddab7b8a5ed147"
+      ],
+      "reason": "Reviewed exact63f60a9e..c57e6fa7 committed transitions with no missing receipts, refreshed the source census after the external-build report fix, reconciled central scenario/evidence links and generated the summary. Shared test/build/document edits affect13 other behavior contracts and22 historical evidence/source pairs; preserve their immutable evidence and account for those current-source limitations without promoting them. The approved784-file derivative-cache cleanup preserves passing evidence and its exact deletion receipt.",
+      "validation": {
+        "status": "pending",
+        "reason": "This receipt accounts for shared source/research/index/history changes and22 newly stale historical evidence/source pairs. It does not rerun or assert current equivalence for the linked original Sphere motion/whole spell, other campaign/rendering/UI contracts or tooling. Original creation/type setup/ricochet/profile bindings, physical audio/SPR and live original campaign replacement remain pending; the fresh execution receipt covers only the three explicitly bound native contracts."
+      }
     }
   ],
   "schema": 1

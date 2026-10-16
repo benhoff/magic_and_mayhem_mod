@@ -359,9 +359,13 @@ g::SkirmishRefusal cast(g::Bytes &b, g::CombatSession &combat,
   a.effect.target = target.slot;
   a.effect.attacker = p[14];
   a.effect.attribution = from->owner;
+  a.effect.contributions.fill(UINT32_MAX);
   p[6] = UINT32_MAX;
   s.pool.place(slot, 3, p);
   s.pool.records()[slot].parameters[6] = source.slot;
+  s.pool.records()[slot].sentinels[9] = a.effect.attribution;
+  s.pool.records()[slot].sentinels[10] = a.effect.contributions[0];
+  s.pool.records()[slot].sentinels[11] = a.effect.contributions[1];
   r::initializeEffectMotionRecord(s.pool.records()[slot], a.motion.movement,
                                   a.startup, {p[0], p[1], p[2]},
                                   {p[3], p[4], p[5]}, 8, 8, 3, s.pool.cells());

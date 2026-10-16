@@ -73551,7 +73551,8 @@
       ],
       "evidence": [
         "BATTLE01.sections-native",
-        "BATTLE02.cure-native"
+        "BATTLE02.cure-native",
+        "PROJECTILE04.window-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -73796,7 +73797,8 @@
         "tools/test-battle-effects.py"
       ],
       "evidence": [
-        "BATTLE02.cure-native"
+        "BATTLE02.cure-native",
+        "PROJECTILE04.window-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -73997,7 +73999,10 @@
       ],
       "tests": [
         "tests/sphere-battle-test.cpp",
-        "tools/test-sphere-battle.py"
+        "tools/test-sphere-battle.py",
+        "tests/test-sphere-window.py",
+        "tools/test-sphere-window.py",
+        "tests/campaign-window-driver.cpp"
       ],
       "validation_dependencies": [
         "apps/combat-sandbox/main.cpp",
@@ -74310,7 +74315,6 @@
         "tests/battle-effects-test.cpp",
         "tests/campaign-arena-test.cpp",
         "tests/campaign-session-test.cpp",
-        "tests/campaign-window-driver.cpp",
         "tests/campaign-window-driver.hpp",
         "tests/creature-motion-test.cpp",
         "tests/cure-battle-test.cpp",
@@ -74376,13 +74380,14 @@
         "tools/test-projectile-motion.py"
       ],
       "evidence": [
-        "PROJECTILE03.battle-native"
+        "PROJECTILE03.battle-native",
+        "PROJECTILE04.window-native"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -152965,6 +152970,97 @@
           }
         }
       ]
+    },
+    {
+      "id": "PROJECTILE04.window-native",
+      "kind": "native_integration",
+      "scope": "Native authored arena Magic Sphere73 through recovered admission/type3 updater/trajectory/creature collision and ordinary health. Generation-bound shared effect pool, live moving target, miss, one20-point impact, timeout/cancellation and repeated snapshot continuation alongside Cure. Declared profile and authored ANI; open torus, stop-on-terrain native policy, logical audio only; actual Sphere/Cure Qt controls and mid-flight/ANI campaign restart equality; no full original creation/ricochet/SPR/physical audio/live replacement",
+      "record": "research/runtime/sphere-window-bound-20261016.json",
+      "sha256": "9d8f9f6f18d583b8286361027260b02f12d16d70800087e99a760580a409dc57",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sphere_window/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_installed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_installed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sphere_window/moving_target",
+          "equals": true
+        },
+        {
+          "pointer": "/sphere_window/fresh_process",
+          "equals": true
+        },
+        {
+          "pointer": "/sphere_window/exact_campaign_bytes",
+          "equals": true
+        },
+        {
+          "pointer": "/sphere_window/impacts",
+          "equals": 1
+        },
+        {
+          "pointer": "/sphere_window/damage",
+          "equals": 20
+        },
+        {
+          "pointer": "/sphere_window/health_before",
+          "equals": 24
+        },
+        {
+          "pointer": "/sphere_window/health_after",
+          "equals": 4
+        },
+        {
+          "pointer": "/sphere_window/cure_only_profile",
+          "equals": true
+        },
+        {
+          "pointer": "/historical_cure/loaded",
+          "equals": true
+        },
+        {
+          "pointer": "/historical_cure/unchanged",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -169671,7 +169767,8 @@
         "tools/test-cure-battle.py"
       ],
       "evidence": [
-        "BATTLE02.cure-native"
+        "BATTLE02.cure-native",
+        "PROJECTILE04.window-native"
       ]
     },
     {
@@ -169687,7 +169784,8 @@
       ],
       "evidence": [
         "BATTLE01.sections-native",
-        "BATTLE02.cure-native"
+        "BATTLE02.cure-native",
+        "PROJECTILE04.window-native"
       ]
     },
     {
@@ -169766,7 +169864,25 @@
         "tools/test-sphere-battle.py"
       ],
       "evidence": [
-        "PROJECTILE03.battle-native"
+        "PROJECTILE03.battle-native",
+        "PROJECTILE04.window-native"
+      ]
+    },
+    {
+      "id": "PROJECTILE04.window",
+      "level": "preview",
+      "scope": "Real Qt Magic Sphere button/enemy picker and save dialogs; mid-flight save, pause, fresh-window and headless process continuation with byte-identical campaign bytes, moving target and exactly one20-point impact; legacy Cure-only profile refusal retains its file.",
+      "behaviors": [
+        "NP.sphere-battle"
+      ],
+      "tests": [
+        "tests/test-sphere-window.py",
+        "tools/test-sphere-window.py",
+        "tests/campaign-window-driver.cpp",
+        "tests/sphere-battle-test.cpp"
+      ],
+      "evidence": [
+        "PROJECTILE04.window-native"
       ]
     }
   ],
@@ -170384,8 +170500,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-sphere-battle-20261016.json",
-    "sha256": "299132df4129695b9eb3418e65f0900a8ec70b2fd9c501d7270ccffb0a492bae"
+    "path": "research/runtime/coverage/source-index-sphere-window-approved-20261016.json",
+    "sha256": "65f220093261986c531d1f50e2083f3ab62800b08f4fe8e39a16bcb3d71fc70c"
   },
   "claim_bindings_required": true
 }

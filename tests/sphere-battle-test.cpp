@@ -287,6 +287,28 @@ int main(int argc, char **argv) try {
     need(c.save(argv[2]).durable, "Cure-only seed publication");
     return 0;
   }
+  if (argc == 4 && std::string(argv[1]) == "resume-campaign") {
+    auto campaign = app::loadCampaign(argv[2]);
+    need(campaign.battle(), "resumed Sphere battle missing");
+    unsigned impacts = 0, damage = 0;
+    for (unsigned n = 0; n < 8; ++n) {
+      auto report = campaign.step();
+      need(report.battle.has_value(), "Sphere campaign ended early");
+      for (const auto &event : report.battle->combat.events)
+        if (event.kind == CombatEventKind::hit && event.actor == Handle{0, 1} &&
+            event.target == Handle{2, 1}) {
+          ++impacts;
+          damage += event.amount;
+        }
+    }
+    auto hp = health(*campaign.battle());
+    need(impacts == 1 && damage == 20 && hp == 4,
+         "resumed Sphere duplicated or lost impact");
+    need(campaign.save(argv[3]).durable, "resumed Sphere publication");
+    std::cout << "{\"success\":true,\"impacts\":" << impacts
+              << ",\"damage\":" << damage << ",\"health\":" << hp << "}\n";
+    return 0;
+  }
   if (argc == 1) {
     tests();
     std::cout << "{\"success\":true,\"moving_target_impacts\":1,\"damage\":20,"

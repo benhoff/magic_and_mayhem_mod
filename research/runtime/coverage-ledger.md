@@ -12870,8 +12870,13 @@ with installed Cure ANI regressions and the existing real Qt Cure restart journe
 A record reference is reacquired after transactional movement replaces its pool;
 alternate ticks settle/cancel terminal battles before publication.
 
-New profiles expose Magic Sphere through CLI and compiled Qt controls. Sphere's
-actual Qt button/mid-flight/fresh-window journey is a separate pending milestone.
+New profiles expose Magic Sphere through CLI and Qt controls. PROJECTILE04 exercises
+the actual Sphere button/enemy picker/save dialogs, saves in flight and restarts
+the window. Eight resumed phases move the target and apply exactly one20-point
+hit (24 to4 health); GUI, headless CLI and event-counting process campaign bytes
+agree. Cure-only profiles refuse Sphere without changing their input or publishing
+an output. Historical Cure-only playback checkpoints remain loadable. Empty
+contributor-chain sentinels and native attribution are serialized at creation.
 The declared profile8/20/20/100 and owned ANI, open torus, native allocation/spatial
 retirement and stop-on-terrain service are policies. Original48ee40 ricochet,
 installed profiles, complete creator/setup/release/audio/SPR and live original
@@ -12881,3 +12886,20 @@ campaign replacement remain pending. See [scope](native-sphere-battle.md),
 [battle evidence](sphere-battle-bound-20261016.json). SP.073 remains incomplete.
 Incomingb340b291..63f60a9e has14 file and4 behavior transitions with exact receipts,
 no missing accounting; historical evidence is retained without refreshed hashes.
+
+PROJECTILE04's fresh source-bound result covers390 code/test/build hashes, the
+Sphere/Cure/shared-battle contracts and four scenarios:58 normal CTests, six
+ASan/UBSan/LSan contracts, installed Cure ANI checks and both retained Qt journeys
+pass. Immutable originals and installed inputs match before/after. Sphere native
+integration advances to preview; whole-spell original comparison and live
+replacement remain pending. See [window evidence](sphere-window-bound-20261016.json).
+The external-build skirmish report path fix changes provenance formatting only.
+Incoming63f60a9e..c57e6fa7 has40 file/behavior transitions with exact receipts and no
+unresolved gaps; [history review](coverage/sphere-window-incoming-history-20261016.json)
+retains committed-history accounting separately from this new execution.
+
+The user-approved cleanup removed exactly784 hash-verified derivative compiler
+cache files (669187988 bytes) from five owned development/failed build trees.
+Passing evidence, executables, logs, checkpoints, screenshots, pins and worktrees
+were preserved. Inventory, exact manifest, reference review and deletion receipt
+are retained under `working/retention/sphere-approved-cache-cleanup-20261016/`.
