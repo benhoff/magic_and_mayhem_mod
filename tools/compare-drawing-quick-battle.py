@@ -125,9 +125,12 @@ def compare_plane(native,original):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     for name in ('original','native','claims','report'):p.add_argument('--'+name,type=Path,required=True)
+    p.add_argument('--presenter',type=Path,help='Compose every recorded transfer on the native GPU and compare physical X11 output')
     a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_bytes());sources=dict(claims['sources'])
+    for name in ['tools/compare-drawing-quick-battle.py','tools/recorded_drawing_plan.py','apps/drawing-session/main.cpp','apps/drawing-session/recorded_composition.hpp']:
+        sources[name]=sha((ROOT/name).read_bytes())
     for directory in ('renderer','assets','compat/legacy','protocols/include','reconstruction/rendering'):
         for f in (ROOT/directory).rglob('*'):
             if f.is_file() and (f.suffix in ('.cpp','.hpp','.h','.c','.S','.cmake') or f.name=='CMakeLists.txt'):sources[str(f.relative_to(ROOT))]=sha(f.read_bytes())
@@ -179,6 +182,17 @@ def main():
         native_report=run/'native/session-report.json'
         result['native']=json.loads(native_report.read_bytes()) if native_report.exists() else None
         result['native_exit_code']=execution.returncode
+        gpu=None
+        if execution.returncode==0 and a.presenter:
+            from recorded_drawing_plan import prepare
+            if refusals or len(frames)!=result['observed_presentations']:raise ValueError('GPU session requires every observed presentation to be source-bound')
+            gpu_inputs=run/'gpu-owned';plan=prepare(gpu_inputs,run/'native',result['native']['frames'],frames)
+            presenter_sha=sha(a.presenter.read_bytes());gpu_command=['xvfb-run','-a','-s','-screen 0 1280x1024x24',str(a.presenter.resolve()),str(gpu_inputs),str(run/'gpu-native'),'--recorded-composition']
+            with (run/'gpu.log').open('x') as log:gpu_execution=subprocess.run(gpu_command,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=600)
+            if gpu_execution.returncode:raise ValueError('Native GPU recorded composition refused; inspect '+str(run/'gpu.log'))
+            gpu=json.loads((run/'gpu-native/presentation-report.json').read_bytes())
+            if (not gpu['success'] or gpu['remaining_surfaces'] or gpu['qimage_uploads'] or not gpu['gpu_composition'] or not gpu['physical_presentation'] or gpu['original_oracles_read'] or gpu['plan_sha256']!=sha((gpu_inputs/'presentation.json').read_bytes()) or len(gpu['frames'])!=len(frames) or sha(a.presenter.read_bytes())!=presenter_sha):raise ValueError('GPU session completion/provenance mismatch')
+            result['native_gpu_session']=dict(report=gpu,presenter_sha256=presenter_sha,plan_sha256=gpu['plan_sha256'],original_pixels_used_as_native_inputs=False,original_oracles_read_by_native=False)
         comparisons=[]
         if execution.returncode==0:
             native=result['native']
@@ -188,6 +202,17 @@ def main():
             for frame in frames:
                 oracle=(capture/frame['oracle_path']).read_bytes()
                 if sha(oracle)!=frame['oracle_sha256']:raise ValueError('Original frame identity changed')
+                if gpu:
+                    item=gpu['frames'][len(comparisons)]
+                    if item['index']!=frame['ordinal'] or (item['width'],item['height'])!=(800,600):raise ValueError('GPU presentation reordered or resized')
+                    ordinal=frame['ordinal']-1;native_plane=run/f'gpu-native/frame-{ordinal:06d}.565';physical_plane=run/f'gpu-native/frame-{ordinal:06d}.rgba'
+                    native_bytes=native_plane.read_bytes();physical_bytes=physical_plane.read_bytes()
+                    if item['native_path']!=native_plane.name or item['path']!=physical_plane.name or sha(native_bytes)!=item['native_sha256'] or sha(physical_bytes)!=item['sha256']:raise ValueError('GPU output identity changed')
+                    if len(physical_bytes)!=len(oracle):raise ValueError('Partial native physical plane')
+                    delta=np.max(np.abs(np.frombuffer(physical_bytes,dtype=np.uint8).reshape(-1,4)[:,:3].astype(np.int16)-np.frombuffer(oracle,dtype=np.uint8).reshape(-1,4)[:,:3].astype(np.int16)),axis=1)
+                    physical=dict(pixels=800*600,mismatching_pixels=int(np.count_nonzero(delta>1)),max_channel_difference=int(delta.max()),channel_tolerance=1,alpha_compared=False,native_sha256=sha(physical_bytes),original_sha256=sha(oracle))
+                    comparisons.append(dict(ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],native_gpu_path=str(native_plane.relative_to(run)),physical_comparison=physical,**compare_plane(native_bytes,oracle)))
+                    continue
                 source=None
                 bg=frame.get('background')
                 if bg:
@@ -206,7 +231,8 @@ def main():
                 path=composed/f"frame-{frame['ordinal']:06d}.565";path.write_bytes(previous)
                 comparisons.append(dict(ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],transfer=frame['transfer'],background=frame.get('background'),fill=frame['fill'],refresh=frame['refresh'],native_path=str(path.relative_to(run)),**compare_plane(previous,oracle)))
         result.update(comparisons=comparisons,compared_presentations=len(comparisons),mismatched_presentations=sum(c['mismatching_pixels']>0 for c in comparisons),mismatching_pixels=sum(c['mismatching_pixels'] for c in comparisons),pixels_compared=sum(c['pixels'] for c in comparisons),all_observed_presentations_compared=len(comparisons)==result['observed_presentations'],native_input_bytes=sum(f.stat().st_size for f in owned.rglob('*') if f.is_file()))
-        result['success']=execution.returncode==0 and not refusals and not result['mismatching_pixels'] and result['all_observed_presentations_compared']
+        result['physical_mismatching_pixels']=sum(c.get('physical_comparison',{}).get('mismatching_pixels',0) for c in comparisons)
+        result['success']=execution.returncode==0 and not refusals and not result['mismatching_pixels'] and not result['physical_mismatching_pixels'] and result['all_observed_presentations_compared']
         if sha(a.native.read_bytes())!=binary_sha or any(sha((ROOT/n).read_bytes())!=h for n,h in input_hashes.items()):raise ValueError('Binary or original asset inputs changed')
         stable();result['sources_stable']=True
     finally:

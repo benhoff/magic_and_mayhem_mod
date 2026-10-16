@@ -13,6 +13,15 @@ from mnm_protocols import frame_v1 as frame, input_v1 as inputs, media_v1 as med
 
 
 class Contracts(unittest.TestCase):
+    def test_render_ring_v3_identity(self):
+        from mnm_protocols import render_commands_v2 as old, render_commands_v3 as new
+        expected=b'MNMRDC03'+struct.pack('<II',3,1048640)+bytes(48)
+        self.assertEqual(new.initial_header(),expected)
+        self.assertTrue(new.valid_header(expected,1048640))
+        self.assertFalse(old.valid_header(expected,1048640))
+        self.assertFalse(new.valid_header(old.initial_header(),1048640))
+        self.assertEqual((new.PUBLISHED_OFFSET,new.ACKNOWLEDGED_OFFSET,new.CAPACITY),(20,36,1048576))
+
     def test_render_control(self):
         expected=b'MNMRCV01'+struct.pack('<II',1,576)+bytes(48)
         self.assertEqual(control.initial_header(),expected)

@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+"""Retain an entire independently recorded EGL interval, preserving its limits."""
+import argparse,copy,gzip,json,shutil,subprocess,tempfile
+from pathlib import Path
+from drawing_corpus import ROOT,BUILD,local,sha
+from drawing_recorded_session import admit,RETENTION
+
+def retain(evidence_id,binding_id,destination):
+ from rendering_coverage import evidence_record
+ destination=destination.resolve()
+ if destination.exists() or not destination.is_relative_to(ROOT/'tests/fixtures'):raise ValueError('Choose a new contained fixture directory')
+ register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text());evidence={e['id']:e for e in register['evidence']};builds={b['id']:b for b in register['builds']}
+ ev=evidence[evidence_id];binding=evidence[binding_id];original=evidence_record(ROOT,ev,builds);bound=evidence_record(ROOT,binding,builds)
+ if ev['kind'] not in ('isolated_original','live_observation') or binding['kind']!='native_integration' or bound['original_report']['sha256']!=ev['sha256'] or bound['success'] is not True:raise ValueError('Completed original and native binding records required')
+ capture=Path(original['experiment'])/'capture';run=ROOT/bound['artifacts'];native=json.loads((run/'owned-inputs/drawing-session.json').read_text());game=Path(original['experiment'])/'game';existing={p.relative_to(game).as_posix().casefold():p for p in game.rglob('*') if p.is_file()};prepared={}
+ def pack(data,historical):
+  packed=gzip.compress(data,mtime=0);path=destination/(sha(data)+'.gz');prepared[path]=packed
+  return dict(path=path.relative_to(ROOT).as_posix(),encoding='gzip',raw_sha256=sha(data),sha256=sha(packed),historical_path=historical)
+ def original_read(path,digest):
+  data=path.read_bytes()
+  if sha(data)!=digest:raise ValueError('Historical artifact changed: '+str(path))
+  return data
+ raw=original_read(capture/'canvas-producers.bin',original['producer_observation']['producer_journal_sha256']);chunk=32*1024*1024
+ catalog=dict(schema=1,boundary='observed_egl_session',source_sha256=BUILD,evidence=evidence_id,original_report_sha256=ev['sha256'],asset_binding_evidence=binding_id,binding_report_sha256=binding['sha256'],
+  scope='Complete recorded Main/setup/loading/Quick Battle/Results/returned-Main EGL interval. All323observed full800x600frames, duplicates included. Native GPU rectangle/fill/history composition and post-swap X11 output; RGB tolerance1, alpha excluded. Original global presentation-route completeness, full action semantics, fourteen journeys/twenty-one operations and hardware scanout remain unproved.',
+  input_chunks=[pack(raw[i:i+chunk],str((capture/'canvas-producers.bin').relative_to(ROOT))) for i in range(0,len(raw),chunk)],traces={},assets=[],frames=[],
+  retention_sources={n:sha((ROOT/n).read_bytes()) for n in ['tools/retain-recorded-drawing-session.py','tools/drawing_recorded_session.py','tools/drawing_corpus.py']})
+ trace_names={'points':('api-producer-points.bin',original['producer_observation']['point_journal_sha256']),'journal':('session.bin',original['observation']['journal_sha256']),'intervals':('api-call-intervals.bin',original['call_intervals']['interval_sha256']),'closure':('canvas-session-0000.done',original['producer_observation']['session_producer_marker_sha256'])}
+ for key,(name,digest) in trace_names.items():catalog['traces'][key]=pack(original_read(capture/name,digest),str((capture/name).relative_to(ROOT)))
+ from drawing_scene_corpus import asset_name
+ for name,digest in sorted(native['assets'].items()):
+  path=existing[asset_name(name).casefold()];historical=str(path.relative_to(ROOT))
+  if bound['inputs'].get(historical)!=digest:raise ValueError('Native asset pin differs')
+  entry=pack(original_read(path,digest),historical);entry['name']=name;catalog['assets'].append(entry)
+ for frame in original['egl_physical_observation']['frames']:
+  path=capture/frame['path'];catalog['frames'].append(dict(ordinal=frame['ordinal'],oracle=pack(original_read(path,frame['sha256']),str(path.relative_to(ROOT)))))
+ data=(json.dumps(catalog,indent=2)+'\n').encode();retention=dict(id=RETENTION,kind='static',record=str((destination/'session.json').relative_to(ROOT)),sha256=sha(data),scope='Lossless portable retention of an independently acquired observed-EGL interval; no new original execution or global presentation admission.',assertions=[dict(pointer='/boundary',equals='observed_egl_session')])
+ with tempfile.TemporaryDirectory(prefix='recorded-retention-',dir=ROOT/'working/tests') as temporary:
+  mirror=Path(temporary)
+  for path,packed in prepared.items():target=mirror/path.relative_to(ROOT);target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(packed)
+  fake=copy.deepcopy(register);fake['evidence'].append(retention)
+  for key in [evidence_id,binding_id]:
+   e=evidence[key];target=mirror/e['record'];target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/e['record'],target)
+  target=mirror/retention['record'];target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data);admit(mirror,catalog,fake)
+ destination.mkdir()
+ for path,packed in prepared.items():
+  with path.open('xb') as out:out.write(packed)
+ with (destination/'session.json').open('xb') as out:out.write(data)
+ return catalog,retention
+
+def main():
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--evidence',required=True);p.add_argument('--bindings',required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+ subprocess.run(['./tools/original-manifest.sh','verify'],cwd=ROOT,check=True)
+ try:catalog,entry=retain(a.evidence,a.bindings,a.output)
+ finally:subprocess.run(['./tools/original-manifest.sh','verify'],cwd=ROOT,check=True)
+ print(json.dumps(dict(frames=len(catalog['frames']),assets=len(catalog['assets']),chunks=len(catalog['input_chunks']),retention=entry)))
+if __name__=='__main__':main()

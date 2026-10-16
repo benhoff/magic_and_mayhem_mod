@@ -1,14 +1,15 @@
 #define main legacy_writer_main
 #include "render-command-writer-test.c"
 #undef main
-static void ring_reset(void){
+static void ring_reset_version(u32 version){
     check(!command_queue);reset();command_channel_refused=0;env=1;mapped_size=MNM_RENDER_COMMANDS_V2_SIZE;
-    memcpy(storage,MNM_RENDER_COMMANDS_V2_MAGIC,8);storage[2]=2;storage[3]=mapped_size;
+    memcpy(storage,version==3?MNM_RENDER_COMMANDS_V3_MAGIC:MNM_RENDER_COMMANDS_V2_MAGIC,8);storage[2]=version;storage[3]=mapped_size;
     command_queue_written=command_queue_read=command_queue_end=command_queue_failure=0;command_queue_draining=0;
     command_queue_timeout=command_queue_armed=command_queue_since=command_queue_ack=command_queue_timed_out=0;
     command_queue_peak=command_queue_full=command_queue_blocked=clock_ms=0;
     command_channel_init();check(command_channel==storage && command_queue && storage[6]==1);
 }
+static void ring_reset(void){ring_reset_version(2);}
 #ifndef QUEUE_TEST_MAIN
 #define QUEUE_TEST_MAIN main
 #endif

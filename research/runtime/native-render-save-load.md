@@ -1,6 +1,6 @@
 # Resident native Save/Load journey
 
-Reviewed 2026-10-15. The [live Apprentice Celtic1 journey](native-storage-save-load-passed-20261015.json)
+Initial result 2026-10-15; current boundaries reviewed 2026-10-16. The [live Apprentice Celtic1 journey](native-storage-save-load-passed-20261015.json)
 passes same-session Save/resume/Load/resume/normal Quit with original serialization
 and simulation, native menus, resident World and all six valid optional producer
 families. The separate [original raster comparison](native-storage-world-reviewed-original-20261015.json)
@@ -122,3 +122,35 @@ capture and comparison inputs are retained under `.retain` pins. The incoming
 transitions: [initial inspection](coverage/native-storage-incoming-history-20261015.json)
 and [one retrospective pending receipt](coverage/native-storage-incoming-history-final-20261015.json).
 This accounting makes no past gate or new movie-validation claim.
+
+## Subsequent changed-canvas and Initiate results — 2026-10-16
+
+The retained result above preserves canvas 2 and its original source hashes.
+Later [canvas-transition work](native-world-canvas-transition.md) and
+[resident command pressure repair](resident-command-pressure.md) establish a
+separate display-rebuild/Main Load route with a changed World canvas. The final
+Initiate run completes all opening tutorial commands, Save/Load, both display
+rebuilds, changed-canvas reload, fresh native resume and normal Quit with 962
+balanced World completions/imports/original returns and zero producer forwards
+or history refusal. It includes 500 ms post-submission capture stalls and verifies
+actual pressure relief. The historical 707-World overflow is retained, not renewed
+as a current failure.
+
+Thus Initiate Mini ingress and changed-canvas handoff are no longer missing
+implementations or wholly unexecuted paths. The new functional journey is not a
+new independent original/native raster comparison: the three selected World
+comparisons above retain their own earlier code/input scope. Later-map campaign
+progression, broader presented-session parity, unsupported CPU readers, actual
+game failure/restart and sustained hardware performance remain open. See the
+[current code-checked backlog](native-rendering-integration-gaps-20261015.md).
+
+
+## V3 transport boundary
+
+The later [byte-lifetime repair](native-command-byte-lifetime.md) passes native/Qt
+traffic beyond 4 GiB and actual PE32 synthetic producer integration. A fresh V3
+original-game Save/Load journey is **not yet validated**: an enabled-intro run
+refuses unsupported history before World and another attempt never starts the
+original bridge. These do not erase the successful historical V2 storage results
+or establish a new Save/Load rendering regression. The portable 323-frame Quick
+Battle corpus is independent recorded-interval parity, not campaign storage proof.

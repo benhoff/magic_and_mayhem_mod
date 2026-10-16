@@ -110,7 +110,8 @@ static int command_scheduler_shutdown_locked(u32 milliseconds){
                 if(state!=MNM_RENDER_COMMANDS_V2_STATE_ENDED || !__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE))break;
                 u32 ack=mnm_ring_load(command_ring.map+9);
                 if(ack==command_ring.published)break;
-                if(ack>command_ring.published || ack<command_ring.acknowledged){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);break;}
+                if(!mnm_ring_ack_valid(&command_ring,ack)){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);break;}
+                command_ring.acknowledged=ack;
             }
             if(GetTickCount()-start>=milliseconds){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INTERRUPTED);command_channel_pump();break;}
             Sleep(1);

@@ -154,3 +154,14 @@ session input coverage. The existing suite command includes this case through
 `--scene-executable` and needs no installed game or Wine for portable replay.
 The61synthetic suite/session/publication/corpus guards include an explicit refusal
 to close full journeys from the newly observed partial publication boundary.
+
+
+## Portable recorded-session adapter — 2026-10-16
+
+The shipped suite now contains `recorded_session` in addition to its four earlier
+adapter types. [All 323 independently captured Quick Battle EGL frames](recorded-native-session-comparison.md)
+pass native GPU composition and displayed X11 comparison without an installation.
+Use `--recorded-native-executable` and `--recorded-presenter-executable` with the
+journey checker. Its `observed_egl_session` boundary cannot close the generic
+`presented_frame`/action-bound contract; the 14 journey and 21 operation/failure
+requirements are unchanged, and generic `session` adapters remain absent.

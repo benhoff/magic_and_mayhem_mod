@@ -82,13 +82,15 @@ std::vector<SurfaceCommand> CommandDecoder::append(const QByteArray& bytes){
     auto& p=*impl_;
     require(!p.failed && !p.finished,"Closed command decoder");
     try {
-        if(p.mode==CommandStreamMode::Bounded)require(bytes.size()<=maxCommandBytes-p.total,"Oversized command stream");
+        if(p.mode==CommandStreamMode::Bounded){
+            require(bytes.size()<=maxCommandBytes-p.total,"Oversized command stream");
+            p.total+=bytes.size();
+        }
         else {
             require(bytes.size()<=maxStreamingAppendBytes,"Oversized streaming fragment");
-            require(bytes.size()<=UINT32_MAX-p.total,"Streaming byte lifetime exhausted");
             require(p.pending.size()+bytes.size()<=maxStreamingRecordBytes+maxStreamingAppendBytes+16,"Streaming retained-byte budget exceeded");
         }
-        p.total+=bytes.size();p.pending.append(bytes);
+        p.pending.append(bytes);
         std::vector<SurfaceCommand> out;
         if(!p.header){
             if(p.pending.size()<16)return out;

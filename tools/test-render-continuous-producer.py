@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('continuous_live', ROOT/'tools/test-live-render-channel.py')
 live = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(live)
-from mnm_protocols import render_commands_v2 as ring
+from mnm_protocols import render_commands_v2 as legacy_ring, render_commands_v3 as wrapping_ring
 
 
 def archive_records(data):
@@ -34,7 +34,11 @@ def main():
     parser.add_argument('build', type=Path)
     parser.add_argument('--case', action='append', choices=['no-archive', 'record-archive', 'byte-archive',
                         'failed-archive', 'short-archive', 'delta', 'tiled', 'v1', 'missing-present', 'limit'])
+    parser.add_argument('--wire-version',type=int,choices=[2,3],default=2)
+    parser.add_argument('--claims',type=Path)
     args = parser.parse_args()
+    ring=wrapping_ring if args.wire_version==3 else legacy_ring
+    declaration=json.loads(args.claims.read_text()) if args.claims else {'claims':[],'sources':{}}
     if not os.environ.get('DISPLAY'):
         parser.error('Run under xvfb-run -a')
     sources = sorted((ROOT/'runtime/render').glob('*.[ch]'))+[ROOT/p for p in [
@@ -49,8 +53,11 @@ def main():
         'apps/qt-shell/gl_viewport.cpp', 'apps/qt-shell/gl_viewport.hpp',
         'protocols/include/mnm/render_commands_v1.h', 'protocols/include/mnm/render_commands_v2.h',
         'protocols/include/mnm/render_command_ring.h',
-        'protocols/python/mnm_protocols/render_commands_v1.py', 'protocols/python/mnm_protocols/render_commands_v2.py']]
+        'protocols/python/mnm_protocols/render_commands_v1.py', 'protocols/python/mnm_protocols/render_commands_v2.py','protocols/include/mnm/render_commands_v3.h','protocols/python/mnm_protocols/render_commands_v3.py']]
     fingerprints = {str(p.relative_to(ROOT)):live.sha(p) for p in sources}
+    for name,digest in declaration['sources'].items():
+        if live.sha(ROOT/name)!=digest:raise ValueError('Prospective PE32 source changed')
+        fingerprints[name]=digest
     parent = ROOT/'working/tests/render-continuous';parent.mkdir(parents=True, exist_ok=True)
     run = Path(tempfile.mkdtemp(prefix='run-', dir=parent));print(run, flush=True)
     dll = live.load('continuous_build', 'tools/build-render-bridge.py').build(True)
@@ -60,8 +67,8 @@ def main():
                WINEPREFIX=str(ROOT/'working/tests/render-wine'))
     cases = args.case or ['no-archive', 'record-archive', 'byte-archive', 'failed-archive',
                          'short-archive', 'delta', 'tiled', 'v1', 'missing-present', 'limit']
-    report = dict(schema=1, sources=fingerprints, cases=[], scope='Synthetic actual PE32 hooked Lock/Unlock '
-                  'through owned producer, v2 queue/idle scheduler, native streaming decoder and GPU. '
+    report = dict(schema=1, wire_version=args.wire_version,claims=declaration['claims'],sources=fingerprints, cases=[], scope='Synthetic actual PE32 hooked Lock/Unlock '
+                  'through owned producer, V2/V3 queue/idle scheduler, native streaming decoder and GPU. '
                   'Independent complete RGB32 display frames and poisoned padded borrowed storage. '
                   'Optional bounded archive refusal does not complete live production. '
                   'No original game, driver equivalence, resource retirement or recovery claim.')
@@ -76,7 +83,7 @@ def main():
                                  '--stream', str(guard_frame), *extra],
                                 env=dict(env, MNM_RENDER_CONTINUOUS='1'), capture_output=True, text=True, timeout=15)
         (guard/(name+'.log')).write_text(result.stdout+result.stderr)
-        assert result.returncode != 0 and 'requires a' in result.stderr and 'v2 command channel' in result.stderr
+        assert result.returncode != 0 and 'requires a' in result.stderr and 'ring command channel' in result.stderr
         assert 'Render experiment:' not in result.stdout
     report['launcher_refusals_passed'] = True
     for mode in cases:

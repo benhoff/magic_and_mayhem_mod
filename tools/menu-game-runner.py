@@ -114,11 +114,11 @@ if os.environ.get('MNM_MENU_NATIVE_RENDER')=='1':
         if entry['path'] not in ('CFG/chaos.cfg','CFG/Encrypted/chaos.cfg') or hashlib.sha256((game/entry['path']).read_bytes()).hexdigest()!=entry['after_sha256']:raise ValueError('Native draw-cadence config changed before launch')
     import struct
     sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'protocols/python'))
-    from mnm_protocols import frame_v1,input_v1,render_commands_v2,render_control_v1
-    for name,wire in [('render-frame.bin',frame_v1),('render-input.bin',input_v1),('render-commands.bin',render_commands_v2),('render-commands.bin.control',render_control_v1)]:
+    from mnm_protocols import frame_v1,input_v1,render_commands_v2,render_commands_v3,render_control_v1
+    for name,wire in [('render-frame.bin',frame_v1),('render-input.bin',input_v1),('render-commands.bin',render_commands_v3),('render-commands.bin.control',render_control_v1)]:
         path=root/name
         with path.open('rb') as file:header=file.read(wire.HEADER_SIZE)
-        if not wire.valid_header(header,path.stat().st_size):raise ValueError('Invalid native channel: '+name)
+        if not (wire.valid_header(header,path.stat().st_size) or (name=='render-commands.bin' and render_commands_v2.valid_header(header,path.stat().st_size))):raise ValueError('Invalid native channel: '+name)
     commands=(root/'render-commands.bin').read_bytes()[:64]
     control=(root/'render-commands.bin.control').read_bytes()[:512]
     if not struct.unpack_from('<I',commands,16)[0] or any(commands[20:]) or control[16:20]!=commands[16:20]:raise ValueError('Native command channels are stale or mismatched')

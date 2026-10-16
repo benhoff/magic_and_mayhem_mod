@@ -12594,3 +12594,128 @@ arbitrary resources, distributed deduplication and crash/injected I/O failures
 remain unvalidated. Deliberate older-save rewinds retain their existing lineage
 semantics. No combat rules or gameplay balance changed. See
 [native campaign window](native-campaign-window.md).
+
+## 2026-10-16: Current native renderer gap review
+
+[The source/control review](native-rendering-gap-review-20261016.json) checks
+seven remaining-gap statements against `45af2ed6` (renderer unchanged since
+`7c40c187`) without original media, a game
+launch or a new GL benchmark. Actual C guards with Win32 fakes reproduce two
+independent OVERFLOW refusals at empty queue/ring cursors `0xfffffff8` plus 8 bytes;
+the existing 11 writer/25 queue controls also pass. 50 portable journey/session,
+route-admission and storage guards pass. This establishes the finite cumulative
+32-bit byte limit separately from the repaired private backlog pressure.
+
+The living [integration backlog](native-rendering-integration-gaps-20261015.md)
+and [complete-native plan](../../docs/live-drawing-replacement.md) now remove
+obsolete missing-implementation claims: combined six-family execution/counters,
+selected CPU materialization/GPU-copy services, terminal cleanup/hard restart,
+Initiate tutorial ingress and changed-canvas display-rebuild/Load have code and
+bounded evidence. Save/Load/completion research links those later results without
+rewriting its older same-canvas observations or source hashes.
+
+The reviewed four retained route reports exercise a union of 19 of 43 optional routes;
+24 remain unexercised there, with original camera3 reachability and World-batched
+CPU-interior distinctions preserved. The shipped acceptance suite still has 0
+session adapters for 14 journeys/21 operations. General CPU-pointer dependencies,
+strict complete-native admission, later-map/broader session composition, actual
+fault/restart and sustained whole-session hardware 60 FPS acceptance remain open.
+Asynchronous World source production's zero-readback contract is distinguished
+from explicit command CPU_READ and asynchronous host-worker execution. A safe
+terminal stop remains a supported policy; in-place resident recovery is not a
+mandatory missing feature. Historical pixel mismatch is not asserted as a current
+reproduced defect. No implementation/comparison/integration/replacement status
+is promoted, and old evidence fingerprints remain immutable.
+
+Incoming committed `22d038df..7c40c187` accounts for 35 file/130 behavior transitions;
+one missing intermediate movie fingerprint has a retrospective pending receipt
+in [the history review](coverage/native-rendering-gap-review-history-20261016.json).
+The subsequent `7c40c187..45af2ed6` Cure commit has 14 file/6 behavior
+transitions, all with exact receipt chains in
+[its separate history review](coverage/native-rendering-gap-review-cure-history-20261016.json).
+Neither review is a retrospective gate pass or new engine validation. Cure and
+campaign-persistence changes remain outside the renderer documentation scope.
+
+## 2026-10-16: Wrapping command bytes and portable recorded-session pixels
+
+[The four-layer lifetime repair](native-command-byte-lifetime.md) adds V3 modulo
+atomic32 ring positions and removes cumulative emitter/queue/stream-decoder byte
+ceilings while preserving bounded storage, peer identity/version, ACK ownership,
+pressure/failure and finite sequence policies. Final source-bound controls pass
+4,297,064,448 actual production-emitter/queue/ring bytes and 4,295,064,708 Qt decoder/
+consumer bytes, native/sanitized guards, legacy/cross-process controls and PE32
+compiler closure. Actual PE32 producer integration passes 210 full output planes
+across three V3 archive policies and two explicit refusals. This does not establish
+a multi-hour original-game lifetime or renew old Save/Load evidence. Two fresh
+campaign attempts fail before World (enabled-intro history refusal; separate
+bridge-no-start); their raw reports, source changes and original manifest checks
+are retained. Fresh complete V3 live storage remains pending.
+
+[The portable complete observed-EGL interval](recorded-native-session-comparison.md)
+retains 323 original full frames plus owned source/trace/encoded-asset inputs.
+Current native GPU rectangle/key/fill/history composition and post-swap X11 output
+both match: 310,080,000 compared pixels, zero outside RGB tolerance 1, alpha excluded.
+No original plane enters native rendering. Portable replay requires no installation
+or original media. Five adapter types now include `recorded_session`; its
+`observed_egl_session` boundary cannot close generic action-bound `presented_frame`
+acceptance, the unchanged 14 journey/21 operation requirements, all global original
+routes, native Qt menu pixel semantics, hardware scanout or complete replacement.
+Only the new explicitly scoped corpus behavior gains headless native integration;
+other historical milestones retain independent status and freshness limitations.
+
+The initial gap review and every lifetime development/build result remain immutable.
+A [new review](native-rendering-gap-review-after-rollover-20261016.json) reflects
+wrap acceptance; the old empty-counter OVERFLOW evidence stays historical.
+[Incoming committed-history accounting](coverage/native-render-rollover-incoming-history-20261016.json)
+reviews 45af2ed6 through the recorded current head separately from uncommitted work;
+it makes no retrospective gate-pass or behavior-validation assertion.
+
+## ANI-driven Cure on native World (2026-10-16)
+
+CURE05 connects Cure presentation and the owned lab rules to native World entity
+identities, effects phases, queued cleanup/release and native snapshots. Real
+recipe74 forward ANI state drives completion; no caller completion signal or
+wall-clock timer is supplied. Cast and tick stage World/Cure/resource/status/ANI
+state together. Generation reuse does not retarget old spells. Self-contained
+World systems data embeds selected ANI records/cursors and spatial/identity maps.
+
+Fresh native32/native64/sanitizer and CMake/CTest execution covers512 authored
+cases/4814 ANI-driving World ticks, exact per-step checkpoint continuation,
+stale/retired/reused identities, queued cleanup/release during11/77, target death,
+World pool exhaustion, alternate/unadmitted phase clocks and malformed component
+bindings/extents, including exact actor/effect/presentation count checks before
+allocation or ANI player construction. Installed CFG plus13 ANI inputs load recipe74 (asset3,sequence14,
+printer2,Data1=0). The demo completes after31 ANI ticks (World tick32), heals9→17,
+debits20→17 and retires the native effect. Separate-process resume reads embedded
+records with no asset argument and produces the identical result. All source/
+installed input fingerprints and immutable manifests remain unchanged.
+
+See [the adapter](../../apps/cure-world/README.md),
+[component format](../formats/native-cure-world.md) and
+[source-bound execution](native-cure-world-bounded-20261016.json).
+This consumer exclusively owns systems and direct grid positions: actor motion,
+concurrent AI/campaign systems and new actor enrollment remain future integration.
+Original allocator/auxiliary child/effect audio/follow/full update/real-time cadence,
+installed spell/actor parameters, projectiles, physical audio, SPR drawing and live
+campaign replacement remain pending. The GCC16 optional-copy diagnostic stays
+nonfatal only on unchanged movement.cpp; movement behavior is not validated here.
+Incoming b190f271 was reviewed against e89f2282; all15 file and4 behavior transitions
+have exact receipts, with no missing accounting. Existing comparison stages and
+historical evidence remain independent from this native integration milestone.
+
+Incoming rendering commit910046b3 was reviewed against b190f271 before this
+coverage update. Exact hash/receipt findings are retained in the Cure World
+render incoming-history report; this accounting makes no new rendering claim.
+
+## Campaign integration after concurrent main work (2026-10-16)
+
+The campaign-window commit8d49cc1f is integrated with committed main through
+6365e657. Exact incoming file/behavior receipt accounting for
+b190f271..6365e657 is retained in
+`coverage/campaign-window-cure-world-incoming-history-20261016.json`; any missing
+intermediate fixture receipts are appended as retrospective pending accounting.
+This does not renew original comparison or claim a historical gate pass.
+All source fingerprints in the successful campaign-window execution remain
+unchanged after integration, so its all50 native CTest result and bound campaign
+and standalone-window scenarios remain current. New renderer/Cure findings keep
+their independent evidence, scope and status; no campaign rules or balance change.
