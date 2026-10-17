@@ -15648,3 +15648,19 @@ RS.optional-pixel-routes.matrix-empty-fix-20261017,
 NP.pixel-routes.nonresident-fixed-20261017 and
 DRAW.raster-cpu-selection.original-20261017. Generic journey/presentation,
 GPU-copy caller, arbitrary-reader, physical-loss and hardware gates stay separate.
+
+
+## DRAW-02 primitive source and return lifetimes (2026-10-17)
+
+[Original acquisition, independent joins and current limits](drawing-primitive-lifetimes.md):
+460000guarded calls/1840162rows identify all39pending cursor wrappers.20of21cross-prefix
+API calls returned before their completion-associated update; one keyed call
+actually overlaps it. The first120denominator remains fixed:119queues, queue-free113,
+4336calls/2100inputs and329matching primary/source-worker-EGL witnesses.42updates
+retain pending boundaries. Full432EGL regions match; zero pixel mismatches.
+The unchanged complete interval gate rejects all four source/global-route/backing
+ownership gaps. Parameter lifetime observations do not own COPY source pixels.
+Original child Quit/exit0 and2927-file bookends pass; launcher exit0 is not
+independently observed.28Python/six PE32/thirteen boundary cases pass. Restored
+missing capture-manifest publication; setup failures and immutable raw provenance
+are retained. Historical evidence and all47/21closures remain unchanged.

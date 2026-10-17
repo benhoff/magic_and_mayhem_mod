@@ -12,7 +12,8 @@ static int source_windows_open(void){
 static int source_windows_record(u32 record,u32 accepted,u32 counter,u32 mode){
  if(!source_windows_file)return 1;u32 r[16]={0};r[0]=++source_windows_records;r[1]=1;r[2]=record;r[3]=accepted;r[4]=counter;r[5]=mode;r[6]=GetCurrentThreadId();r[7]=sequence;r[8]=queue;r[9]=failures;
  for(u32 i=0;i<MAX_FRAMES;++i)if(frames[i].sp)++r[10];
- return source_windows_records<512&&write(source_windows_file,r,64);
+ int okay=source_windows_records<512&&write(source_windows_file,r,64);
+ if(okay)primitive_lifetimes_boundary(record,accepted,r[10]);return okay;
 }
 static int source_windows_close(void){
  if(!source_windows_file)return 1;u32 r[16]={0};r[0]=++source_windows_records;r[1]=4;r[6]=GetCurrentThreadId();r[7]=sequence;r[8]=queue;r[9]=failures;

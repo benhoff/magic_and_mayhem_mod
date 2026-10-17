@@ -20,6 +20,7 @@ static void checkpoint(struct Surface* s,u32 reason){(void)s;if(reason!=5)ExitPr
 static void emit(u32* r,const void* payload,u32 n){(void)payload;if(n||r[2]!=27||r[14]!=1||r[15]!=30||r[16]!=20||r[17]!=31||r[19]!=11||r[22]!=3)ExitProcess(192);++emitted;++sequence;bytes+=96;}
 static int journal_flush(void){return mode!='f';}
 static void canvas_producers_close(void){++closed;stopped=1;}
+static void primitive_lifetimes_boundary(u32 record,u32 accepted,u32 pending){(void)record;(void)accepted;(void)pending;}
 #include "../runtime/scene/whole_update_capture.h"
 #include "../runtime/engine-cadence/update_boundary.h"
 API HANDLE WIN CreateThread(void*,u32,void*,void*,u32,u32*);

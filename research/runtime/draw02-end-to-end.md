@@ -3798,3 +3798,25 @@ encountered alternate presentation and backing-writer boundaries. Additional
 counter-only/queue-only captures cannot close those gates. Historical96still lacks
 its exact branch flags. Step2, all47/21closures and steps3–7 stay open, with no
 replacement/integration/comparison or broader status promotion.
+
+
+## Step2 primitive identities and source/return lifetime acquisition (2026-10-17)
+
+The latest incoming `d69d082c` covers optional pixel routes, not call-level source
+ownership. The new [primitive lifetime findings](drawing-primitive-lifetimes.md)
+retain a fresh original-active120queue run:460000calls/1840162rows,122callbacks,
+39pending cursor COPY wrappers (25tag32,14tag39), normal original child exit0 and
+2927-file original bookends. Full432EGL regions match with zero mismatches under the established one-channel
+comparison tolerance.
+The first120ledger preserves119queues including queue-free113,4336calls/2100inputs,
+and329matching primary/source-worker-EGL witnesses.42updates touch pending
+boundaries and21source point sets cross prefixes.20of those API calls returned
+before their completion-associated update began; one keyed call overlaps.
+
+All pending calls are identified, while COPY headers still do not own source
+pixel bytes. The unchanged complete interval gate refuses the same four ownership
+boundaries. No historical34/19fingerprints,47/21closures or native parity statuses
+are promoted. Exact raw provenance, setup negatives,28Python/six PE32/thirteen
+whole-boundary controls and the repaired missing launch-manifest write are linked
+in the focused findings. Next establish actual cursor source/backing consumers,
+encountered aliases/writers and alternate presentation boundaries.

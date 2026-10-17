@@ -67358,7 +67358,8 @@
         "DRAW02.integrated-original120-02-20261014",
         "DRAW02.integrated-original120-egl-01-20261014",
         "DRAW02.update-accounting-original120-03-20261014",
-        "DRAW02.update-accounting-egl-01-20261014"
+        "DRAW02.update-accounting-egl-01-20261014",
+        "DRAW02.primitive-lifetimes.egl-01-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -86064,7 +86065,9 @@
         "DRAW02.update-accounting-analysis-01-20261014",
         "DRAW02.update-accounting-fixture-01-20261014",
         "DRAW02.update-interval-gate-01-20261014",
-        "DRAW02.update-interval-gate-fixture-01-20261014"
+        "DRAW02.update-interval-gate-fixture-01-20261014",
+        "DRAW02.primitive-lifetimes.accounting-01-20261017",
+        "DRAW02.primitive-lifetimes.interval-gate-01-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -86079,7 +86082,8 @@
         "Per-update join revalidates raw original cadence/source/QPC/API observations and retains all120windows including queue-free updates; unknown or cross-update source points and pending frames remain unresolved ownership, not omitted witnesses. Full global route/backing ownership and native/semantic parity remain open.",
         "First120accepted updates are1..120with118source queues and transition-skipped117/118; all4304admitted call intervals and2086inputs retained. All289primary witnesses bind to actualsource/worker/EGLand matching pixels.19known/live source point sets cross callback prefixes; pending-frame boundaries and globalroutes/aliases forbid complete presented admission. Actual complete interval gate is next; accounting success is not interval acceptance.",
         "Full interval admission rechecks the unchanged raw observations and independently rejoins the first120records, then requires every ownership gate; unsupported global-route/backing promotions, pending-frame/source-point gaps and removed queue-free updates cannot pass. Current actual first120cohort is expected to refuse, without promoting any47/21closure or statuses.",
-        "Actual full first120interval admission01 refuses pending source-boundary frames (34affected updates),19known/live source sets crossing associated callback prefixes, globalpresentationrouteclosure and alloriginalbackingaliaswriters. All289primary witnesses still bind tosource/worker/EGLand matchpixels. Refusal does not invalidate bounded reference association or close complete owned/presented acquisition; Step2/47/21remain open."
+        "Actual full first120interval admission01 refuses pending source-boundary frames (34affected updates),19known/live source sets crossing associated callback prefixes, globalpresentationrouteclosure and alloriginalbackingaliaswriters. All289primary witnesses still bind tosource/worker/EGLand matchpixels. Refusal does not invalidate bounded reference association or close complete owned/presented acquisition; Step2/47/21remain open.",
+        "Current primitive-lifetimes original120-03 preserves first120updates with119queues and queue-free113;4336call intervals/2100inputs/329matching source-worker-EGL witnesses. All39pending cursor-copy calls identified;42affected updates/21prefix gaps remain,20APIcalls returned before their completion-associated update. Identified calls and late ACK classification do not waive quiescence, immutable ownership or global routes/writers. Historical34/19and all47/21closures stay unchanged."
       ]
     },
     {
@@ -87044,6 +87048,76 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.drawing-primitive-lifetimes",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Original-active primitive snapshot and return lifetime observations",
+      "scope": "Opt-in No-CD producer-recorder journal: unique local call/parent/thread identities, conservative Windows QPC snapshot-acquisition and original-execution envelopes, exact owned request headers and emitted producer packets, known wrapper canvas metadata, and every active primitive identity at accepted source callbacks. Recorder scopes exclude original bodies; observations never assert immutable source memory, complete backing-writer closure, alternate presentation closure, semantic outcomes or native parity.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Observed wrapper copy entry/return, among the guarded producer hooks"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5231956,
+          "scope": "Selected original World queue; tag100 lifetime is an enclosing observation, not immutable source ownership"
+        }
+      ],
+      "documents": [
+        "research/formats/drawing-primitive-lifetimes-v1.md",
+        "research/runtime/drawing-primitive-lifetimes.md"
+      ],
+      "implementation": [
+        "runtime/scene/drawing_primitive_lifetimes.h",
+        "tools/drawing_primitive_lifetimes.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_primitive_ownership.py",
+        "tools/analyze-drawing-primitive-ownership.py"
+      ],
+      "tests": [
+        "tests/drawing-primitive-lifetimes-test.c",
+        "tools/test-drawing-primitive-lifetimes.py",
+        "tests/test-drawing-primitive-lifetimes.py",
+        "tests/test-drawing-primitive-ownership.py"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/whole_update_capture.h",
+        "runtime/scene/producer_trace_guard.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-scene-observer.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/drawing_source_callback_windows.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_producer_updates.py",
+        "tools/engine_cadence.py",
+        "tools/drawing_update_accounting.py",
+        "tools/analyze-drawing-update-accounting.py",
+        "tools/check-drawing-update-interval.py"
+      ],
+      "evidence": [
+        "DRAW02.primitive-lifetimes.fixture-05-20261017",
+        "DRAW02.primitive-lifetimes.python-controls-05-20261017",
+        "DRAW02.primitive-lifetimes.original120-03-20261017",
+        "DRAW02.primitive-lifetimes.ownership-01-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Immutable COPY source bytes and all backing aliases/writers remain unproved. The executed opt-in trace identifies outstanding call and parameter-snapshot envelopes only; global presentation, semantic outcomes and full120ownership admission remain independent open gates.",
+        "Actual original120-03 identifies all39pending copies and20late API acknowledgements among21cross-prefix witnesses, with one overlapping keyed API call;42first120updates retain pending boundaries. COPY request envelopes own only parameter headers, not source pixel bytes. Every immutable-source/global-route/backing-writer admission gate remains open; hardware/scanout, semantics and native parity are separate."
+      ]
     }
   ],
   "evidence": [
@@ -173927,6 +174001,147 @@
       ],
       "sources_pointer": "/sources",
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.primitive-lifetimes.fixture-05-20261017",
+      "kind": "native_integration",
+      "scope": "Actual PE32 two-thread recorder control, six cases: nested and foreign pending identities, exact QPC phase/closure validation, LastError and malformed/prerequisite/budget/write refusal. Owned original-body stand-ins only.",
+      "record": "research/runtime/draw02-primitive-lifetimes-fixture-05-20261017.json",
+      "sha256": "f0a2616f981019209c557872d25939ee3c04ea626007142e0a3deb65d99dadb7",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.primitive-lifetimes.python-controls-05-20261017",
+      "kind": "native_integration",
+      "scope": "28 authored Python decoder, temporal ownership, source callback and unchanged first120accounting/admission control methods; no original ownership or engine equivalence.",
+      "record": "research/runtime/draw02-primitive-lifetimes-python-controls-05-20261017.json",
+      "sha256": "471a0f447ae9b52080ddc912a266a7066869a2b61b81cd23662c7fa0b5e4be3f",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.primitive-lifetimes.original120-03-20261017",
+      "kind": "live_observation",
+      "scope": "Actual original-active120queues/122callbacks;460000guarded calls/1840162lifetime rows,39pending cursor copy wrappers, normal original child Quit/exit0, stable source fingerprints and2927-file bookends. Launcher exit remains unwitnessed; no immutable backing/all routes/native parity.",
+      "record": "research/runtime/draw02-primitive-lifetimes-original120-03-20261017.json",
+      "sha256": "af03346ed826514b445b11d8363983477388637f64ee6f2ead7a3642c94069f7",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.primitive-lifetimes.egl-01-20261017",
+      "kind": "live_observation",
+      "scope": "Independent rejoin of actual2431source maps and432original physical EGL copy witnesses:432matching regions, zero mismatches; selected source/packet/worker/EGL association, no all-route or allocation ownership.",
+      "record": "research/runtime/draw02-primitive-lifetimes-egl-01-20261017.json",
+      "sha256": "816f57917f0e2bfe043425421e6a0d3ffb5e124f332943418ec0a41a2f510d02",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.primitive-lifetimes.accounting-01-20261017",
+      "kind": "live_observation",
+      "scope": "Independent first120cohort:119World queues, queue-free113retained,4336calls/2100inputs,329matching primary/source-worker-EGL witnesses.42updates affected by pending boundaries;21source-prefix gaps and global/backing gates remain open.",
+      "record": "research/runtime/draw02-primitive-lifetimes-accounting-01-20261017.json",
+      "sha256": "024265f9da0635633e7b48dbbb883f4a948cfe27dbbb3249ce0c21c076050787",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.primitive-lifetimes.interval-gate-01-20261017",
+      "kind": "live_observation",
+      "scope": "Executed unrelaxed full120admission rejects all four ownership gates. Raw observations and source fingerprints revalidated; valid rejection retained with exit2.",
+      "record": "research/runtime/draw02-primitive-lifetimes-interval-gate-01-20261017.json",
+      "sha256": "f1f1a3897c2779327cc2d279e7c8521c6975d615b0320e17bb4a79af692e0cb6",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.primitive-lifetimes.ownership-01-20261017",
+      "kind": "live_observation",
+      "scope": "Independent raw lifetime/callback/producer join identifies39pending calls:25opaque tag32/14keyed tag39;20of21cross-prefix API calls returned before their completion-associated update began; one keyed API call overlaps. No unclassified source gaps, all admission gates retained. Temporal association is not immutable source-byte ownership.",
+      "record": "research/runtime/draw02-primitive-lifetimes-ownership-01-20261017.json",
+      "sha256": "f20fd23ef5c451aabf93a65ed856e589bbf596b32d6d50d4787477d09c371a31",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -192319,8 +192534,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-uncovered-pixel-routes-commit-cadence-20261017.json",
-    "sha256": "2247eadc695e9417ddee66b608ce82552bdb271edae813f02fcac479655829e1"
+    "path": "research/runtime/coverage/source-index-primitive-lifetimes-20261017.json",
+    "sha256": "2c63415c9b608522828906d762159b5d4e03816211e274853bfde8af6c6afc16"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
