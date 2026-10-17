@@ -18035,7 +18035,7 @@
       },
       "remaining_gaps": [
         "RENDER-INT-01: Combined six-family selection/provenance/counter enforcement exists.19of43optional routes execute across the reviewed camera/spell/storage reports;24 remain unexercised there. Resolve actual callers/World batching and independent outputs without inventing a camera3 dispatch branch.",
-        "RENDER-INT-02: Selected ordered CPU_READ, storage synchronization and GPU-copy history services exist. Arbitrary raw readers, clipped/self stale GPU source copies and asynchronous World source readback remain outside supported admission; this is not a claim that every async host CPU_READ is unsupported.",
+        "RENDER-INT-02: Selected ordered CPU_READ, storage synchronization and GPU-copy history services exist. Owned clipped/self RGB565 GPU copies now have scoped headless facade/bridge controls (NP.native-gpu-copy-plan); installed-game caller validation remains open. Arbitrary raw readers and asynchronous World source readback remain outside supported admission; this is not a claim that every async host CPU_READ is unsupported.",
         "RENDER-INT-03: Reports retain complete replacement false; a complete capability-checked startup/runtime contract spanning required original-pixel bypass remains unavailable. Existing combined zero-forward admission is already implemented.",
         "RENDER-INT-04: Initiate Save/Load, display rebuild, changed World canvas and normal Quit pass. Later-map progression, broader results/movie/Preferences/cursor/picking composition and independent output/input acceptance remain incomplete.",
         "RENDER-INT-05: Resident terminal retirement and force-stop/fresh-launch exist with synthetic controls. Actual-game injected fault/restart and physical GL context-loss acceptance remain unproved; transparent in-place resident recovery is not promised.",
@@ -75209,7 +75209,8 @@
         "DRAW02.storage.quick-battle-regression-20261016",
         "DRAW02.cursor.quick-regression-20261016",
         "EGLDST.quick.regression-20261016",
-        "DRAW02.storage-corrected.quick-20261016"
+        "DRAW02.storage-corrected.quick-20261016",
+        "GPUCOPYPLAN.quick-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -77112,7 +77113,8 @@
         "DRAW02.storage-corrected.retention-20261016",
         "DRAW02.storage-corrected.portable-20261016",
         "DRAW02.storage-corrected.baseline-20261016",
-        "DRAW02.storage-corrected.controls-20261016"
+        "DRAW02.storage-corrected.controls-20261016",
+        "GPUCOPYPLAN.storage-20261016"
       ],
       "status": {
         "understanding": "partial",
@@ -79971,6 +79973,178 @@
         "integration": "preview",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.native-gpu-copy-plan",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned clipped GPU copies with immutable aliased sources",
+      "scope": "Process-local versioned scalar RGB565 GPU-source Blt plan with up to256 current canonical clip pieces, whole-source immutable GPU snapshot for aliases/self/keyed overlap, original partial-error prefix, monotonic transient IDs and exact FIFO cleanup. No stale CPU source bytes become native input; CPU backing stays stale after any piece and empty/no-write outcomes preserve authority. Strict identities/generations/leases, scalar plan prevalidation, bounded scratch allocation, missing capability/publication refusal and full opaque-only bootstrap. This is owned facade freeze policy, separate from general Surface2 ordered driver semantics, original game execution and complete replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-gpu-copy-plan.md",
+        "research/formats/native-gpu-copy-plan-v1.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/render/gpu_copy_commands.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/bridge.c",
+        "protocols/include/mnm/native_gpu_copy_plan_v1.h",
+        "tools/build-native-draw.py"
+      ],
+      "tests": [
+        "tests/native-draw-resource-probe.c",
+        "tests/native-gpu-copy-commands-test.c",
+        "tests/native-gpu-copy-plan-probe.c",
+        "tests/native-gpu-copy-probe.c",
+        "tests/render-command-consumer-test.cpp",
+        "tests/render-resident-world-test.cpp",
+        "tools/test-native-gpu-copy-plan.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "protocols/generate.py",
+        "protocols/include/mnm/api_census_v1.h",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "protocols/include/mnm/drawing_census_bindings_v1.h",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "protocols/include/mnm/drawing_input_point_v1.h",
+        "protocols/include/mnm/drawing_source_point_v1.h",
+        "protocols/include/mnm/drawing_storage_point_v1.h",
+        "protocols/include/mnm/drawing_storage_point_v2.h",
+        "protocols/include/mnm/drawing_worker_context_v1.h",
+        "protocols/include/mnm/engine_cadence_queue_point_v1.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/music_v1.h",
+        "protocols/include/mnm/native_cpu_read_v1.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/render_stream_v5.h",
+        "protocols/include/mnm/resident_frame_budget.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_continuous_v1.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "protocols/schemas/api-census-v1.json",
+        "protocols/schemas/frame-v1.json",
+        "protocols/schemas/input-v1.json",
+        "protocols/schemas/media-v1.json",
+        "protocols/schemas/music-v1.json",
+        "protocols/schemas/render_commands-v1.json",
+        "protocols/schemas/render_commands-v2.json",
+        "protocols/schemas/render_commands-v3.json",
+        "protocols/schemas/render_control-v1.json",
+        "protocols/schemas/render_stream-v2.json",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/initial_history.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_pressure.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/copy_timing.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostic_worker.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/precise_clock.h",
+        "runtime/render/session_emission.h",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-render-bridge.py",
+        "tools/build-shadow-bridge.py"
+      ],
+      "evidence": [
+        "GPUCOPYPLAN.controls-20261016"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual facade/bridge/GL controls pass; no installed original-game caller/output, arbitrary raw CPU readers, range-key/stretch GPU copy, async World source readback, hardware/context-loss or complete renderer replacement claim. Scratch capacity remains a terminal admission limit. Portable222/323frame regressions are independent."
+      ]
     }
   ],
   "evidence": [
@@ -161266,6 +161440,227 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "GPUCOPYPLAN.controls-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/native-gpu-copy-plan-controls-20261016.json",
+      "sha256": "6ef7108a379da097930150eadb799be7c7f962ed5c96130b92e12f23cb5e41ee",
+      "scope": "Actual owned facade and production bridge headless GPU controls:23 cases, untouched stale CPU backing, immutable self source,256 clips, source-error prefix, legacy baseline/CPU restore and command/resident compatibility. Authored images; no original game or global replacement claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/command_guards/prepublication_refusals",
+          "equals": 25
+        },
+        {
+          "pointer": "/command_guards/publication_failures",
+          "equals": 3
+        },
+        {
+          "pointer": "/command_guards/source_frozen_once",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_gpu_copy/success",
+          "equals": true
+        },
+        {
+          "pointer": "/compatibility/render-command-consumer-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/compatibility/render-resident-world-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/1/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/2/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/3/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/4/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/5/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/6/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/7/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/8/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/9/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/10/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/11/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/12/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/13/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/14/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/15/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/16/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/17/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/18/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/19/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/20/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/21/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/22/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "GPUCOPYPLAN.storage-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/native-gpu-copy-plan-storage-20261016.json",
+      "sha256": "64f7516bb9b23c43b341eeb35cabf3367bb5114a6e0ca4277700adc73de173ea",
+      "scope": "Independent complete portable pixel regression after owned GPU-copy plan changes. Public recorded-action journey adapter on all222corrected-profile frames; exact source/default/upload witnesses and full native GPU/X11 comparisons pass. Retained driver-policy reference only; generic acceptance remains false. The offline compositor is separate from the new live bridge route; this is not new installed-game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/reference_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/cases/0/result/frames",
+          "equals": 222
+        },
+        {
+          "pointer": "/cases/0/result/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/0/result/witness_frames",
+          "equals": 222
+        },
+        {
+          "pointer": "/cases/0/result/witness_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/0/result/reference_profile/name",
+          "equals": "stale_upload_crop"
+        }
+      ]
+    },
+    {
+      "id": "GPUCOPYPLAN.quick-20261016",
+      "kind": "native_integration",
+      "record": "research/runtime/native-gpu-copy-plan-quick-20261016.json",
+      "sha256": "8a3879ebeac5f281ce3b6b8f0305b224800cadaf410949b6e1868b5fbc730e22",
+      "scope": "Independent complete portable pixel regression after owned GPU-copy plan changes. All323unchanged Quick Battle native GPU/X11 frames pass after multi-profile reader changes; bounded existing headless integration only. The offline compositor is separate from the new live bridge route; this is not new installed-game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/frames",
+          "equals": 323
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -177986,7 +178381,8 @@
         "DRAW02.storage.quick-battle-regression-20261016",
         "DRAW02.cursor.quick-regression-20261016",
         "EGLDST.quick.regression-20261016",
-        "DRAW02.storage-corrected.quick-20261016"
+        "DRAW02.storage-corrected.quick-20261016",
+        "GPUCOPYPLAN.quick-20261016"
       ]
     },
     {
@@ -178545,7 +178941,8 @@
       ],
       "evidence": [
         "DRAW02.storage-corrected.portable-20261016",
-        "DRAW02.storage-corrected.controls-20261016"
+        "DRAW02.storage-corrected.controls-20261016",
+        "GPUCOPYPLAN.storage-20261016"
       ]
     },
     {
@@ -178796,6 +179193,22 @@
       ],
       "evidence": [
         "TERRAINB02.window-native"
+      ]
+    },
+    {
+      "id": "NP.native-gpu-copy-plan.headless",
+      "level": "headless",
+      "scope": "Actual facade and production bridge function controls with authored GPU images, poisoned CPU baselines, separate CPU-facade expected pixels, real native GL FIFO execution, full canonical256piece capacity and malformed-plan/publication failures. No original EXE or live replacement.",
+      "behaviors": [
+        "NP.native-gpu-copy-plan"
+      ],
+      "tests": [
+        "tools/test-native-gpu-copy-plan.py",
+        "tests/native-gpu-copy-plan-probe.c",
+        "tests/native-gpu-copy-commands-test.c"
+      ],
+      "evidence": [
+        "GPUCOPYPLAN.controls-20261016"
       ]
     }
   ],
@@ -179413,8 +179826,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-terrain-campaign-bound-20261016.json",
-    "sha256": "520924b76f48b5a57d8f5306b62eb01740792ed16325d6fb1640a99001b7da46"
+    "path": "research/runtime/coverage/source-index-terrain-renderer-20261016.json",
+    "sha256": "5a94b322d8e534c7f07dcb299213abd8f04ea5329ce9c3809b67dc610bd355f4"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

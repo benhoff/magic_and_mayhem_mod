@@ -255,24 +255,25 @@ static void game_blit_before(void* target,void* destination,void* source,void* r
     sr.right=(i32)a->width;sr.bottom=(i32)a->height;dr.right=(i32)b->width;dr.bottom=(i32)b->height;shape=1;
     reason="blit_reject_source_rect";
     if(rectangle){if(!readable(rectangle,16))goto done;copy(&sr,rectangle,16);}
-    if(!inside(&sr,a->width,a->height))goto done;
+    if((!src->gpu_history || fast) && !inside(&sr,a->width,a->height))goto done;
     reason="blit_reject_target_rect";
     if(fast){if(x>b->width || y>b->height)goto done;dr.left=(i32)x;dr.top=(i32)y;dr.right=dr.left+sr.right-sr.left;dr.bottom=dr.top+sr.bottom-sr.top;}
     else if(destination){if(!readable(destination,16))goto done;copy(&dr,destination,16);}
-    if(!inside(&dr,b->width,b->height))goto done;
-    reason="blit_reject_self";if(src==dst)goto done;
+    if((!src->gpu_history || fast) && !inside(&dr,b->width,b->height))goto done;
+    reason="blit_reject_self";if(src==dst && !src->gpu_history)goto done;
     reason="blit_reject_effects";if(effects)goto done;
     reason="blit_reject_flags";if(fast?(flags&~0x11u):(flags&~0x01008000u))goto done;
-    reason="blit_reject_clipper";if(!fast && (!dst->clip_known || dst->clip))goto done;
+    reason="blit_reject_clipper";if((!fast && (!dst->clip_known || (dst->clip && !src->gpu_history))) || (fast && dst->clip))goto done;
     reason="blit_reject_format";if(a->bits!=b->bits || a->r!=b->r || a->g!=b->g || a->b!=b->b || a->width>2048 || a->height>2048)goto done;
-    reason="blit_reject_stretch";if(dr.right-dr.left!=sr.right-sr.left || dr.bottom-dr.top!=sr.bottom-sr.top)goto done;
+    reason="blit_reject_stretch";if((long long)dr.right-dr.left<=0 || (long long)dr.bottom-dr.top<=0 ||
+       (long long)dr.right-dr.left!=(long long)sr.right-sr.left || (long long)dr.bottom-dr.top!=(long long)sr.bottom-sr.top)goto done;
     shape=0;
     u32 keyed=fast?(flags&1)!=0:(flags&0x8000)!=0;
     if(keyed && (!src->key_known || (a->bits==8 && src->key>255))){reason="blit_source_key_unobserved";goto done;}
     if(!b->data){
         /* Synthetic blank storage is permitted only when every pixel will be
          * overwritten. It is not evidence of the original destination pixels. */
-        if(keyed || dr.left || dr.top || (u32)dr.right!=b->width || (u32)dr.bottom!=b->height){reason="blit_incomplete_initialization";goto done;}
+        if(keyed || dst->clip || dr.left || dr.top || (u32)dr.right!=b->width || (u32)dr.bottom!=b->height){reason="blit_incomplete_initialization";goto done;}
         p->bootstrap=1;
     }
     p->gpu=src->gpu_history;

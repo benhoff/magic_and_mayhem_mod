@@ -36,6 +36,15 @@ transfers generation/nonce authority to the destination. A caller must commit
 the corresponding native COPY before returning to application code. Missing
 admission, session/resource identity or queue publication is terminal.
 
+The bridge now uses `NativeDrawGpuCopyPlanV1` for its GPU-source copies. It
+admits current canonical clipping (up to 256 pieces), aliased/self sources and
+single source keys. A self-copy freezes the entire GPU source once before all
+pieces, matching owned facade CPU policy. Successful pieces survive a later
+source-bounds error; their destination CPU backing remains stale. Empty clips
+preserve authority. The legacy service above remains the strict full-overwrite
+bootstrap baseline service. See [GPU copy plans](native-gpu-copy-plan.md) for
+the scalar ABI, bounded scratch lifetime and independent controls.
+
 The bridge uses existing command-stream COPY records, rather than introducing a
 wire opcode or returning World pixels. GPU-owned resources cannot be evicted and
 re-created from their stale CPU checkpoints. Flips transfer GPU ownership with
@@ -94,8 +103,10 @@ All route installations and native/forwarded counts remain separate from coverag
 of unexercised branches. Neither a passing native COPY nor this source-only raster
 comparison establishes whole-session original pixel equivalence, arbitrary CPU
 reads, physical driver-loss recovery or hardware performance. Clipped/self GPU
-source copies and other stale destination-dependent readers remain guarded until
-an explicit matching-history implementation is validated.
+source copies now pass 23 actual facade/bridge/GL controls, including poisoned CPU
+backings and complete scratch retirement. This is headless owned-policy evidence;
+installed-game callers and other stale destination-dependent readers still need
+their own matching-history validation.
 
 ## Explicit CPU readers
 

@@ -162,6 +162,7 @@ __declspec(dllexport) i32 WIN NativeDrawGpuCopyV1(void* dst,const i32* dr,void* 
   baseline[y*d->state->width+x]=d->state->pixels[y*(d->state->pitch/2)+x];
  return result;
 }
+#include "gpu_copy_plan.h"
 static i32 WIN ns_blt(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx){
  return ns_draw(dst,dr,src,sr,flags,fx);
 }
