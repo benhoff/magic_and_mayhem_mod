@@ -243,9 +243,9 @@ done:
     SetLastError(saved_error);__sync_lock_release(&capture_busy);
 }
 static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,void* effects){
-    COMMAND_CALLBACK(((Blt)lookup(object)->original[5])(object,dest,source,rect,flags,effects));
+    COPY_COMMAND_CALLBACK(((Blt)lookup(object)->original[5])(object,dest,source,rect,flags,effects));
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
-    if(!copy_lease.observe){i32 result=((Blt)lookup(object)->original[5])(object,dest,source,rect,flags,effects);game_copy_unobserved(object);return result;}
+    if(!copy_lease.observe){game_copy_routes_missed(2);i32 result=((Blt)lookup(object)->original[5])(object,dest,source,rect,flags,effects);game_copy_unobserved(object);return result;}
     u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
     struct Table* t=lookup(object);
     int token=history_enter();struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
@@ -253,14 +253,15 @@ static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,voi
     struct GameBlit propagated;game_blit_before(object,dest,source,rect,flags,effects,0,0,0,&propagated);propagated.caller=caller;
     SetLastError(error);i32 status=propagated.gpu?game_gpu_blit(&propagated):((Blt)t->original[5])(object,dest,source,rect,flags,effects);error=GetLastError();
     game_blit_after(&propagated,status);
+    game_copy_routes_finish(&propagated,status,game_gpu_census?game_gpu_census->header[6]:0);
     render_failure("application_blt",status,object,t->kind,flags);
     end_draw(c,object,status);draw_event(1,caller,object,source,flags,status,dest,rect);
     if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 flags){
-    COMMAND_CALLBACK(((i32 (WIN *)(void*,u32,u32,void*,void*,u32))lookup(object)->original[7])(object,x,y,source,rect,flags));
+    COPY_COMMAND_CALLBACK(((i32 (WIN *)(void*,u32,u32,void*,void*,u32))lookup(object)->original[7])(object,x,y,source,rect,flags));
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
-    if(!copy_lease.observe){i32 result=((BltFast)lookup(object)->original[7])(object,x,y,source,rect,flags);game_copy_unobserved(object);return result;}
+    if(!copy_lease.observe){game_copy_routes_missed(2);i32 result=((BltFast)lookup(object)->original[7])(object,x,y,source,rect,flags);game_copy_unobserved(object);return result;}
     game_copy_stage(1);
     u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
     struct Table* t=lookup(object);
@@ -272,6 +273,7 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
     SetLastError(error);i32 status=propagated.gpu?game_gpu_blit(&propagated):((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
     game_copy_stage(4);
     game_blit_after(&propagated,status);
+    game_copy_routes_finish(&propagated,status,game_gpu_census?game_gpu_census->header[6]:0);
     game_copy_stage(5);
     render_failure("application_bltfast",status,object,t->kind,flags);
     end_draw(c,object,status);
@@ -657,7 +659,7 @@ __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
-    if(reason==0){__atomic_store_n(&lock_diagnostic_stop,1,__ATOMIC_RELEASE);game_gpu_census_close();command_control_detach();command_scheduler_detach();return 1;}
+    if(reason==0){__atomic_store_n(&lock_diagnostic_stop,1,__ATOMIC_RELEASE);game_copy_routes_close();game_gpu_census_close();command_control_detach();command_scheduler_detach();return 1;}
     if(reason!=1)return 1;
     char path[512];u32 size=GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path));
     if(!size || size>=sizeof(path))return 1;
@@ -686,6 +688,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();
     game_gpu_census_init();
+    game_copy_routes_init();
     if(game_resident_world && game_copy_order_enabled)game_copy_pressure_admit=&command_pressure_admit;
     if(lock_capture_path_length)readback_disabled=1;
     init_failure_diagnostics();init_draw_capture();command_control_init();

@@ -198,7 +198,8 @@ static void game_surface_store(void* object,struct Snapshot* pixels,u32 primary,
     s->back_count_known=(descriptor[1]&0x20)!=0;s->back_count=s->back_count_known?descriptor[5]:0;
     s->generation_origin=7;s->primary=primary;s->layout_known=1;copy(&s->pixels,pixels,sizeof(*pixels));pixels->data=0;game_surface_bytes+=s->pixels.length;
 }
-struct GameBlit {struct Snapshot src,dst;void *source,*target;u32 source_generation,target_generation,epoch,caller,fields[10],valid,bootstrap,fill,fill_value,direct,gpu;};
+struct GameBlit {struct Snapshot src,dst;void *source,*target;u32 source_generation,target_generation,epoch,caller,fields[10],valid,bootstrap,fill,fill_value,direct,gpu;u32 routes[40];};
+#include "copy_route_census.h"
 static void game_blit_free(struct GameBlit* p){
     if(p->src.data)__atomic_sub_fetch(&lock_capture_reserved,p->src.length,__ATOMIC_RELAXED);
     if(p->dst.data)__atomic_sub_fetch(&lock_capture_reserved,p->dst.length,__ATOMIC_RELAXED);
@@ -284,6 +285,7 @@ static void game_blit_before(void* target,void* destination,void* source,void* r
     p->fields[6]=(u32)dr.left;p->fields[7]=(u32)dr.top;p->fields[8]=keyed;p->fields[9]=keyed?src->key:0;
     p->source_generation=src->generation;p->target_generation=dst->generation;p->epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);p->valid=1;reason=p->bootstrap?"blit_bootstrap_ready":"blit_ready";
  done:
+    game_copy_routes_prepare(p,src,dst,fast,flags,effects,destination,rectangle,&sr,&dr,reason);
     if(dst && dst->primary && !p->valid)lock_diagnostic("primary_blit_rejected",target,0,(u32)source,flags,0,(src && src->pixels.data?1u:0u)|(dst->pixels.data?2u:0u)|(dst->layout_known?4u:0u)|(dst->clip_known?8u:0u)|(dst->clip?16u:0u),0);
     if(shape){
         u32 values[19]={(u32)target,GetCurrentThreadId(),flags,(u32)effects,(u32)sr.left,(u32)sr.top,(u32)sr.right,(u32)sr.bottom,

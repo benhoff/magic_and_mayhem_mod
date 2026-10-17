@@ -219,3 +219,11 @@ camera0,2,0,1. Current six-family camera and spell journeys retain24unexercised
 valid routes;23are other caller/scenario gaps, while camera3 is absent from this
 reviewed dispatcher. Historical reports, fingerprints and their bounded outcomes
 remain unchanged; no retired label receives validation credit.
+
+The [active copy-route follow-up](native-copy-route-reachability.md) now resolves
+part of the zero-keyed-GPU ambiguity: 1,828 actual keyed calls use CPU-backed
+sources, while 1,666 opaque GPU-source calls have independent destinations. No
+active clipped/self call occurs; these branches are not proved dead. The output
+observer excludes the CPU-keyed commands, and seven post-retirement callbacks
+remain explicit exclusions. No general CPU-coherence or complete replacement
+claim is added.

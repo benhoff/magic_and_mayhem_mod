@@ -130,3 +130,12 @@ Scoped evidence keeps rendering/host/runtime/compiler/launcher sources and the
 original fingerprints. The complete raw inventory additionally included unrelated
 native skirmish/game sources; their exclusion from the scoped record grants no
 validation credit to those independent policies. No old evidence hash is refreshed.
+
+## Subsequent active route classification
+
+The [current all-copy follow-up](native-copy-route-reachability.md) observes
+4,075 active calls: 1,828 keyed copies all use CPU-backed sources, while 1,666
+GPU-source calls remain opaque/disjoint. No active clipped/self call occurs.
+The GPU ancestry observer independently checks 1,788 destinations, including no
+keyed command; CPU-keyed output equivalence is not added. Seven terminal bypasses
+are counted exclusions. The 867-call acquisition above remains unchanged.

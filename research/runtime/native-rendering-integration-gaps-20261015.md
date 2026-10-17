@@ -94,7 +94,7 @@ untouched stale CPU storage and temporary resource cleanup. The legacy
 [copy-plan evidence and boundaries](native-gpu-copy-plan.md). The
 [current live journey](native-gpu-copy-live-validation.md) validates 867 opaque
 disjoint GPU calls at three engine PCs and independently checks their complete
-destinations; clipped/self/keyed GPU callers remain unexercised live. Partial writes cannot establish previously
+destinations; clipped/self/keyed GPU callers remain unexercised live. The [active route census](native-copy-route-reachability.md) now observes 1,828 keyed CPU-backed calls and 1,666 opaque GPU-source calls; zero active clipped/self calls are not an all-game reachability proof. Seven retired callbacks are explicit exclusions, and independent CPU-keyed output remains outside the ancestry observer. Partial writes cannot establish previously
 unknown/full CPU history. Arbitrary pointer reads outside selected adapters are
 not intercepted.
 

@@ -13557,3 +13557,58 @@ update when concurrent actor-profile commitc3d6055f landed. Reviewed62581068..c3
 runtime/launcher sources are unchanged; the original acquisition records and
 execution claims are preserved. Rebased source/census/review accounting adds no
 new execution or native actor-profile validation credit.
+
+
+## 2026-10-17: Active copy caller/reachability classification
+
+`NP.native-copy-route-census` adds an opt-in, bounded metadata-only census before
+terminal RenderStop, separate from GPU admission and destination diagnostics.
+The current Apprentice camera/HUD/Mini/normal-Quit journey passes all three
+required camera bodies. All4,075active rows have known source/target identity and
+clipper state,0errors/missed active observations:2,380CPU/1,666GPU/29fill.
+All1,828keyed calls are CPU-backed at58c279/58c9af/58cbb2; clipped/self and keyed
+GPU-source plans are0live. These are source-routing facts, not dead-code proof or
+new CPU-keyed output equivalence. Seven post-RenderStop calls are counted
+exclusions after the existing terminal command-lease bypass, with unknown branch
+metadata/output. Active misses/unknown metadata/overflow/unclosed evidence refuse.
+
+The independent GPU observer checks1,788World-ancestry destinations/
+447,772,800words with0mismatches and exact links to1,666GPU calls.16retained
+Python cohorts check3,374,400words. No keyed command belongs to that observer's
+selection.213World completions/imports/verified returns balance; normal retirement,
+normal original exit and private Wine stop pass. Ordinary World/native/RGBA and
+producer CPU reads are0;5,364diagnostic reads/5,786,611,200bytes are test overhead.
+All6optional families have0forwards/history refusal. Complete replacement and
+14journey/21operation acceptance remain false; this is software functional proof.
+
+Final-source controls pass65,536row/exhaustion/active-miss-versus-retired boundaries,
+10route decoder negatives, previous GPU census/actual GL incorrect-output controls
+and8external pixel/caller negatives. Fresh production facade/bridge controls pass
+23cases/25prepublication refusals/3publication failures plus legacy and consumer
+compatibility, with diagnostics disabled. No pixel admission or renderer algorithm
+was relaxed. No new original World or portable545frame result is asserted.
+
+`DRAW.surface-clipper-attachment` records only the static58b0f1..58b118branch in
+existing58ad90:6f68d8zero reaches SetClipper+70at58b106with6f98d0; nonzero skips.
+The fresh original export preserves156direct copy call candidates/55unassigned
+owners. Pinned prior cursor contexts pass distinct wrapper addresses, without
+asserting all physical/interface non-aliasing or higher-level caller reachability.
+Original-driver/windowed clipping and live self/keyed GPU-source callers remain
+unexecuted. Source inventory boundaries/unknown indirect flows are preserved.
+
+Earlier attempts remain explicit:30second resumed camera-route assertion failure
+(cause unresolved), initial short-run census rejection without a retired-tail
+distinction, and fresh-prefix Wine bootstrap timeout. The final shorter phases
+and stopped-prefix clone do not relabel these results. Six exact initial source
+versions, raw acquisition fingerprints and all80final artifacts remain pinned in
+the registered second-drive checkout. Original manifests verify2,927files before/
+after. Review c3d6055f..1d53022e finds1commit/1parent/0missing exact receipts;
+historical accounting is separate from current rendering validation.
+
+See [route findings and remaining boundaries](native-copy-route-reachability.md),
+[format](../formats/native-copy-routes-v1.md), COPYROUTES.controls-20261017,
+COPYROUTES.campaign-20261017, COPYROUTES.plan-20261017, COPYROUTES.static-20261017,
+COPYROUTES.provenance-20261017 and the separate
+[exact incoming-history review](coverage/copy-route-incoming-history-20261017.json). Next acceptance
+work is actual-game failure/terminal cleanup/fresh launch; no in-place recovery,
+full presentation, original driver policy, physical loss or hardware claim.

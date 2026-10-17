@@ -36,6 +36,10 @@ def main():
     try:
         run('census-build',['clang','-std=c11','-Wall','-Wextra','-Werror','-pedantic',ROOT/'tests/native-gpu-copy-census-test.c','-o',out/'census-test'])
         report['checks']['census']=json.loads(run('census',[out/'census-test']).splitlines()[-1])
+        run('routes-build',['clang','-std=c11','-Wall','-Wextra','-Werror','-pedantic',ROOT/'tests/native-copy-routes-test.c','-o',out/'routes-test'])
+        report['checks']['routes_census']=json.loads(run('routes',[out/'routes-test']).splitlines()[-1])
+        run('routes-refusals',[sys.executable,'-B',ROOT/'tests/test-native-copy-routes.py','-v'])
+        report['checks']['routes_refusals']=dict(success=True,tests=10,log_sha256=sha(out/'routes-refusals.log'))
         binary=a.build/'render-copy-diagnostics-test';binary_hash=sha(binary)
         report['checks']['native_gl']=json.loads(run('native-gl',['xvfb-run','-a',binary]).splitlines()[-1])
         report['binary_sha256']=binary_hash

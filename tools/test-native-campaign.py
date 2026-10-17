@@ -536,6 +536,7 @@ def main():
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign','--behavior','NP.native-history-reader-routing','--scenario','NP.native-history-reader-routing.campaign','--behavior','NP.explicit-native-cpu-materialization','--scenario','NP.explicit-native-cpu-materialization.campaign'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.pixel-route-scenarios','--scenario','NP.pixel-route-scenarios.campaign'])
         if args.gpu_copy_diagnostics:declaration_command.extend(['--behavior','NP.native-gpu-copy-live-validation','--scenario','NP.native-gpu-copy-live-validation.campaign'])
+        if args.gpu_copy_diagnostics:declaration_command.extend(['--behavior','NP.native-copy-route-census','--scenario','NP.native-copy-route-census.campaign'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
         if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
         if args.display_while_pending:declaration_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.public'])
@@ -603,6 +604,7 @@ def main():
     if args.gpu_copy_diagnostics:
         env['MNM_NATIVE_COPY_DIAGNOSTICS']=str(out/'copy-diagnostics')
         report['sources']['tools/native_gpu_copy_diagnostics.py']=sha(ROOT/'tools/native_gpu_copy_diagnostics.py')
+        report['sources']['tools/native_copy_routes.py']=sha(ROOT/'tools/native_copy_routes.py')
     env['MNM_RENDER_COMMAND_WIRE_VERSION']=str(args.command_wire_version)
     env['MNM_CAMPAIGN_STORAGE']='1' if args.save_load else '0'
     env['MNM_CAMPAIGN_RECREATE_WORLD']='1' if args.recreate_world else '0'
@@ -814,6 +816,8 @@ def main():
             if args.gpu_copy_diagnostics:
                 from native_gpu_copy_diagnostics import validate as validate_gpu_copies
                 report['gpu_copy_validation']=validate_gpu_copies(roots[0],out/'copy-diagnostics')
+                from native_copy_routes import validate as validate_copy_routes
+                report['copy_routes']=validate_copy_routes(roots[0])
             if not (args.save_load or args.healing_case or args.crowded_case):validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
             if args.stress_seconds and not (args.healing_case or args.crowded_case):
                 for cycle in range(args.menu_cycles+1):

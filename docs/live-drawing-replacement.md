@@ -131,3 +131,8 @@ output: 310,080,000 pixels, none outside RGB tolerance 1. It needs no installati
 or original media. This closes the recorded interval comparison gap; original
 observer completeness, generic action-bound journeys and complete live replacement
 remain distinct acceptance boundaries.
+
+The [active copy-route census](../research/runtime/native-copy-route-reachability.md)
+distinguishes 1,828 CPU-backed keyed calls from 1,666 opaque GPU-source calls.
+Clipped/self/keyed GPU-source branches retain headless evidence; seven terminal
+callbacks and independent CPU-keyed output remain outside the active proof.

@@ -67,3 +67,8 @@ observes zero clipped/self/keyed GPU calls; those branches retain headless evide
 only. The [final-source 23-case rerun](native-gpu-copy-plan-controls-20261017.json)
 passes after adding the opt-in observer. This does not promote complete original
 or physical presented-session equivalence.
+
+The [active route follow-up](native-copy-route-reachability.md) distinguishes
+1,828 keyed CPU-backed calls from 1,666 opaque GPU-source calls. Clipped/self/keyed
+GPU-source plans remain unexercised live; all 23 final-observer-source headless
+cases pass. Seven post-retirement callbacks are explicit exclusions.
