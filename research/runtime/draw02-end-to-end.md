@@ -1461,6 +1461,1501 @@ precise acquisition/release boundaries before testing any added diagnostic lock.
 All 47 journey/21 operation requirements and steps 3–7 remain open; step 2
 continues with source lifetime/routes and semantic completeness boundaries.
 
+
+## Approved DRAW-02 archive completion (2026-10-12 UTC)
+
+The user explicitly approved the reviewed task-scoped archive proposal with
+“do it”. All 65,783 selected payload files from 13 older completed DRAW-02 runs
+were copied to the verified cold archive and removed locally only after raw
+decompression/hash verification and both durable receipts. Final reconciliation
+checks every selected path against local and remote catalogs, confirms local
+absence, and rehashes all 17,226 unique compressed objects. The two retained
+receipt snapshots match exactly. Released space is 60.594715 GiB.
+
+`draw02-storage-archive-20261012.json` retains exact proposal, review, execution,
+verification and executor hashes. Sources, reports, original files, pins and
+active/recent runs are preserved; storage policy and automatic-archive setting
+remain unchanged. All 2,927 original files verify afterward. Restore archived
+inputs before future analysis. Archive provenance does not refresh historical
+engine/source fingerprints or claim new comparison/native parity.
+
+Joint source/mutex work is committed as `1e046f2d`; its staged gate and hook
+pass. Reviewed `4b66daac..1e046f2d` range has 12 exact file receipts and zero
+missing versions. Step 2 continues with the documented source lifetime/routes
+and semantic boundaries; all 47 journey/21 operation and steps 3–7 remain open.
+
+
+## Step 2 same-run cursor/source refusal reproduction (2026-10-12 UTC)
+
+Verified archive provenance is committed as `28c385eb`; its staged gate and
+hook pass. Reviewed `1e046f2d..28c385eb` range has four exact receipts and zero
+missing versions. All approved archive payloads and both catalogs are verified;
+60.59 GiB released, original manifest unchanged, and historical source hashes
+remain intact. No archive state grants new engine coverage.
+
+The next 120-update diagnostic retains the intermittent failure at queue 28,
+lease 124: source canvas 61 copy on thread 392 coincides with foreign tag32
+copy caller `4a4b01` on timer thread 432, canvas 5 with recorded source/destination
+words 1/5. Strict admission remains rejected. The declared twelve-GiB reservation
+passes the unchanged guard; failed run output measures 3.53 GiB.
+
+Its flushed mutex envelope contains 3,193 paired calls and two still-live IDs.
+The latest timer inner Wait on ID2 returns zero at the refusal tick, with timeout
+`ffffffff`, exact cursor record3610/entry3611 `(440,310)` and one pending API
+entry. No later matching release is retained. These are same-run observed
+identities, not proof of physical source overlap, kernel ownership or safe
+additional locking. A final API terminal row exists, but `session.done` is
+missing after diagnostic termination; no normal-Quit or complete reference claim.
+The initial analyzer incorrectly equated missing marker with absent terminal
+row and refused; preserve that result and use corrected analysis02.
+
+Next test a precise bounded synchronization policy in isolation, including
+original recursive ownership, timeout/failure and competing-thread ordering,
+before any live capture change. Preserve original raster and all refusal paths.
+Step2 continues; all47journey/21operation and steps3–7 remain open.
+
+## DRAW-02 isolated cursor-source gate checkpoint (2026-10-12 UTC)
+
+Negative refusal evidence is committed as28022dba. The new native diagnostic
+policy `NR.drawing-cursor-source-gate` remains isolated: both waits use timeout0,
+abandoned acquisitions refuse after releasing newly granted recursion levels,
+reverse releases retain outstanding bits on failure and forbid reacquisition.
+`draw02-cursor-source-gate-fixture-01.json` passes64scripted raw wait/release cells
+and real Wine PE32 uncontended, recursive, competing outer/inner, abandoned
+outer/inner and invalid-input scenarios. Competitors independently probe both
+mutexes; release faults remain explicit. No original artifacts/game execution
+were used, and no live capture code installs this header.
+
+Reassessment: step2 remains open. Pinning actual handle identities and their
+lifetime, excluding concurrent close/use, preserving caller state and proving
+placement before journal/producer locks must precede live use. The failed120run
+cannot become a complete reference from this synthetic policy test. All47
+requirements/21operation contracts and steps3–7 retain their existing scope.
+The reviewed committed range28c385eb..28022dba has11exact receipts, zero gaps
+and no retrospective execution or gate claim.
+
+## DRAW-02 duplicate mutex fixture checkpoint (2026-10-12 UTC)
+
+Isolated gate committed230295f8 passed staged accounting and its required hook.
+`draw02-cursor-source-gate-fixture-02.json` passes64scripted cells and9real Wine
+scenario groups including same-object recursive ownership through private
+duplicates, invalid source duplication refusal and usable duplicates after
+synchronized source closure while another thread owns the inner duplicate.
+The completed isolated prefix was reused; no new installation copy or original
+game/artifact use occurred. Actual extra test output remains bounded.
+
+Reassessment: step2 still needs constructor/global identity tracking, retirement
+versus active diagnostic leases, exact error/full512FX preservation and callback/
+worker lock-order controls before any live capture gate. Duplicates extend object
+lifetime by intentional native policy. Previous fixture01 stays immutable and
+historical after the extended test/runner/scope; fixture02 binds current source.
+No complete source/frame/reference/parity or all47/21closure claim. The reviewed
+28022dba..230295f8range has12exact receipts and zero missing intermediate versions.
+
+## DRAW-02 diagnostic retirement model checkpoint (2026-10-12 UTC)
+
+Duplicate fixture/lifetime evidence committed735b6ff9 with both coverage gates
+passed. The new native policy `NR.drawing-cursor-mutex-lifetime` is isolated:
+caller-serialized publication/reserve/retire/return/close-claim state, retired
+leases cannot admit new reserves, active leases defer closing, failed close
+retains its duplicate and identity for explicit retry. No OS calls or game hooks.
+`draw02-cursor-mutex-lifetime-fixture-01.json` passes0..32lease drainage, wrong/
+stale identities, duplicate close claims, failed close/retry, identity reuse,
+overflow, independent outer/inner state and8host threads×1000attempts across
+retirement under an explicit caller mutex. A guaranteed held lease establishes
+close deferral. The fixture does not claim internally synchronized model safety.
+
+Reassessment: step2 remains open. Actual constructor/global pins, per-thread
+opaque tokens, private handle operations, exact full512FX/error forwarding and
+worker callback/lock-order controls must be integrated and independently tested
+before bounded original acquisition. All47/21and steps3–7 retain their scope.
+Reviewed230295f8..735b6ff9contains10exact receipts and zero missing versions.
+
+## DRAW-02 isolated caller-preservation checkpoint (2026-10-12 UTC)
+
+Retirement model committed2cc37ae2with staged check and required hook passed.
+New native policy `NR.drawing-cursor-gate-forwarding` is an isolated callback
+adapter, preserving original input/poststate around extra diagnostic waits and
+releases. `draw02-cursor-gate-forward-fixture-01.json` passes64PE32owned raw
+wait/release cells with diagnostics deliberately clobbering LastError/FP: exactly
+one original call, distinct original raw result/error and all512FXbytes restored.
+Failed-release ownership remains explicit. Completed private prefix reused; no
+original game/artifacts, source pages or live hook integrated.
+
+Reassessment: step2 remains open. Actual constructor/global identity tracking,
+thread-owned opaque token integration, close retirement versus active duplicate
+leases, bounded source/worker callback order and original cadence/semantic
+controls must precede live synchronization. Passing synthetic caller state does
+not prove real callback cycles or complete source/frame/native parity. All47/21
+and steps3–7retain scope. Reviewed735b6ff9..2cc37ae2has11exact receipts, zero gaps.
+
+## DRAW-02 bounded token/lease checkpoint (2026-10-12 UTC)
+
+Caller-state forwarding committedf5eb9576after the unchanged storage guard
+stopped two earlier hooks below100GiB; the retry passed when free space
+recovered. Interrupted logs remain inworking, staged tree unchanged, no hook
+bypass/policy reduction/additional pruning.
+
+New native policy `NR.drawing-cursor-gate-leases` combines a64cell monotonic
+owner/identity token pool with paired retirement-model reservations. The
+current-source `draw02-cursor-gate-leases-fixture-01.json` passes two owned
+fixtures: capacity/wrap/foreign owner/stale token/swapped identity refusal,
+partial reserve unwind, active-retirement deferral, outstanding mutex-level
+return refusal, stale identity after reuse and complete64lease drainage. No OS
+handles/game calls, worker callbacks or exported API integration. The future
+owning adapter must store gate levels itself rather than trust a requester.
+
+Reassessment: step2 remains open. Implement verified constructor/global handle
+tracking and versioned scalar token exports, exact kernel duplicate/retire/close
+fault handling, real PE32 concurrent-close/active-lease fixtures and bounded
+original cadence/source controls before enabling live capture synchronization.
+All47/21and steps3–7remain open. Reviewed2cc37ae2..f5eb9576has11exact receipts
+with zero missing versions; retrospective accounting does not assert execution.
+
+## DRAW-02 owning real-kernel lease checkpoint (2026-10-12 UTC)
+
+Bounded token/lease accounting committed626631b9with staged retry and required
+hook passed. New native policy `NR.drawing-cursor-kernel-lease-state` stores
+actual gate levels in the owning token cell: caller cannot request false zero.
+State phases are caller-serialized; kernel calls occur between phases outside
+locks. Invariant mismatch freezes admission and retains uncertain references.
+`draw02-cursor-kernel-fixture-01.json` passes actual Wine PE32 duplicate/acquire/
+original-close/release/drain: wrong owner and outstanding levels refuse return,
+retirement blocks new admission/private close, original handles close during
+owned active lease, private gate releases drain tokens/refcounts. Scripted
+private-close failure retains identity before real successful private close.
+No game imports/source pages/worker callbacks or actual concurrent-close tested.
+
+Reassessment: step2 remains open. Original constructor/global byte/identity
+pins, serialized retirement before original Close, versioned scalar exports,
+full caller-preservation integration, real concurrent-close/worker controls and
+bounded original capture remain prerequisites. All47/21and steps3–7remain open.
+Reviewedf5eb9576..626631b9has13exact receipts and zero missing versions.
+
+## DRAW-02 foreign-thread retirement checkpoint (2026-10-12 UTC)
+
+Owning kernel lease state committed7d6ae833with both coverage checks passed.
+`draw02-cursor-kernel-fixture-02.json` freshly passes actual Wine PE32 event-
+synchronized foreign-thread retirement/close while main owns both private gate
+levels and token. Retired identities block admission/close until release and
+return drain stored levels/refcounts. Private duplicates survive original close;
+scripted private-close failure remains separate from real successful closing.
+Fixture01 stays historical after extended test/runner/scope; no hashes refreshed.
+
+Reassessment: step2 remains open. The exact original constructor/global/import
+identity installer, versioned scalar token exports, full caller-state integration,
+worker callback/lock-order and bounded original cadence/source controls remain
+necessary before live capture synchronization. Owned foreign-thread close does
+not establish full original lifetime or source aliases/parity. All47/21and
+steps3–7retain scope. Reviewed626631b9..7d6ae833has12exact receipts, zero gaps.
+
+## DRAW-02 pinned separate module checkpoint (2026-10-12 UTC)
+
+Foreign-thread boundary committedc7c92d6awith both coverage gates passed.
+New native policy `NR.drawing-cursor-source-gate-module` is a separate opt-in
+PE32 implementation with exact constructor/close/import/base pins, original
+Create/Close forwarding, reserved private duplicate publication, retirement and
+versioned128byte scalar begin/end token outputs. Added kernel calls occur outside
+lifetime locks; output guards preserve caller error/full512FX. No original
+capture integration or replacement. Observation-only module remains unchanged.
+
+Owned relocated fixture01negativeexit205preserved: initial-owner parameter
+shadowed fixture page-base macros. Corrected parameter and fresh claims precede
+fixture02pass: altered-pin refusal, actual Create/duplicate/Close, active-token
+retirement/drain, wrong owner/stale token/invalid output, raw waits/releases and
+full512FX/error. Production addresses unchanged; no original game/artifact use.
+
+Reassessment: step2 remains open. Durable module lifecycle/gate journal, complete
+fault/orphan/shutdown disposition, installer failure matrix and exact original
+forwarding fixture, capture import/frontend integration and bounded real original
+worker/cadence/source controls remain necessary before live synchronization.
+All47/21and steps3–7remain open. Reviewed7d6ae833..c7c92d6ahas10exact receipts,0gaps.
+
+## DRAW-02 bounded durable gate snapshot checkpoint (2026-10-12 UTC)
+
+Separate pinned module committed392de8d8with both coverage gates passed. The
+module now writes a distinct bounded MNMDGT01scalar lifecycle/gate journal and
+explicit diagnostic snapshotreason3. Original creation/publication, close
+retirement/return, private close, gate begin/end/invalid requests and shutdown
+snapshot/terminal rows retain raw results and numeric identities, never handles.
+Pending wrapper/publication/active/fault/orphan counts remain negative boundaries.
+
+Build03negative unresolvedmemset remains preserved; corrected freestanding byte
+implementation precedes fixture04pass. Decoder initially did not expose stored
+role/call/identity/pending/flags; fresh fixture05passes19rows with current source/
+contract after correction. Snapshot0drops/0active/0fault/0orphans, reason3,
+completejournal=false. No originalgame, complete shutdown/reference or parity.
+
+Reassessment: step2 stays open. Strict lifecycle/token pairing, exact original
+forward/installer matrix, writer freeze/import restoration/quiescent normal
+shutdown, fault/orphan disposition, build/frontend/scripted capture integration
+and bounded real original source/worker/cadence controls remain necessary.
+All47/21and steps3–7remain open. Reviewedc7c92d6a..392de8d8has15exact receipts,0gaps.
+
+## DRAW-02 explicit gate drainage accounting checkpoint (2026-10-12 UTC)
+
+Bounded snapshots committed10f0759bafter storage-guard-stopped hooks were
+retained and unchanged retry passed. New phase10records successful stored
+gate-level/token/ref drainage before private cleanup. Decoder pairs numeric
+creation/publication/retirement/close, begin/drain/end and final terminal.
+Fixture07freshly passes20rows/0scopedpairinggaps/0liveidentities; complete=false.
+Five malformed-data guards pass extent/reserved/token-binding/loss visibility.
+Build06negative duplicate memset copied from draft preserved before correction
+and new claims. Earlier19row snapshots remain historical with exact hashes.
+
+Reassessment: step2 remains open. Quiescent normal shutdown/import restoration,
+late-writer boundary, full forwarding/installer/fault/orphan case matrix and
+actual build/frontend/source/worker/cadence capture controls still necessary.
+All47/21and steps3–7remain open. Reviewed392de8d8..10f0759bhas15exactreceipts,0gaps.
+
+## DRAW-02 production gate build and forwarding matrix checkpoint (2026-10-12 UTC)
+
+Drain accounting committed632741f0with guarded staged retry and required hook
+passed. Fixture08freshly passes all four altered original byte anchor refusals,
+Create import mismatch and four synthetic original Create/Close forward cells,
+exact args/raw result/LastError/full512FX and exactly one original call each.
+The production MnmCursorGate.dll builds with pinned default addresses and named
+scalar anchor/begin/end/shutdown exports; build01metadata/source hashes retained.
+No production DLL runtime/game execution or source capture integrated.
+
+Reassessment: step2 remains open. Add optional scripted import/frontend and
+source gate placement before recorder locks, bounded token/API/source binding,
+explicit partial snapshot provenance and refusal paths; then owned capture-path
+fixtures and bounded32original-active source/worker/cadence controls. Diagnostic
+full fault/orphan/budget/privatefailure matrix and normal quiescence still open;
+no complete reference or parity from successful build/owned fixture. All47/21and
+steps3–7retain scope. Reviewed10f0759b..632741f0has13exact receipts, zero gaps.
+
+## DRAW-02 drawing API/token/source adapter checkpoint (2026-10-12 UTC)
+
+Forward/installer/production gate build committed99cd92dawith both gates passed.
+New native policy `NR.drawing-source-cursor-gate-binding` acquires gate before
+journal locks for selected source BltFast, joins token to exact API/source lease
+in separate MNMDGA01scalar journal, skips source-byte/readonly capture explicitly
+on refused token and releases after worker/page restoration/poststate snapshots
+before physical ACK. Early disabled paths restore protection before releasing.
+
+Owned fixture03passes5binding records: API42/token7/lease9 accepted and released,
+API43refusedreason3/noEnd, irrelevantcall not gated and terminal. Buildnegative01
+missing GetProcAddress fixture declaration retained; fixture02historical after
+console label/builder dependency update. Production drawing DLL compile passes,
+with complete new header/protocol build dependencies; no production session run.
+
+Reassessment: step2open. Full production forwarding/worker/early-return fixtures,
+optional capture frontend/scripted import integration, partial module snapshot
+provenance, current original controls and bounded32original-active acquisition
+remain necessary. Refusal excludes ownership proof and cannot silently omit
+frame/reference denominator. All47/21and steps3–7retain scope. Reviewed
+632741f0..99cd92dahas12exact receipts,0gaps.
+
+## DRAW-02 full session gate-disabled regression checkpoint (2026-10-12 UTC)
+
+API/token/source adapter committed2fcd7878with staged and hook checks passed.
+Current-source `draw02-source-gate-legacy-regression-01.json` passes the production
+PE32 session gate-disabled32COMcallbacks/eightprimaryplanes/18menuphases/eight
+reentrantthreads with exact raw result/LastError/x87 and original forwarding.
+Runner now permits only a completed isolated fixture prefix reuse; no copied
+installation or original game execution. Declaration includes full current
+production builder dependency manifest, keeping prior owned evidence historical
+without refreshing hashes after scope/dependency changes.
+
+Reassessment: step2stillopen. Gate-enabled full session source/worker/early-return
+fixture, capture frontend/scripted import/token binding/partial snapshot and
+bounded original32acquisition with controls remain necessary. Gate-disabled
+regression cannot prove enabled synchronization or source ownership. All47/21
+and steps3–7retain scope. Reviewed99cd92da..2fcd7878has18exactreceipts,0gaps.
+
+## DRAW-02 enabled production begin/end checkpoint (2026-10-12 UTC)
+
+Disabled session regression committed46be1034with both coverage gates passed.
+Fresh fixture02includes actual production session.cbegin/end and controlled gate
+callbacks: accepted API1/token7releasedonce, refusedAPI2reason3/noEnd, exact raw
+originalfailure/error and5bindingrows/terminal. Source/worker callbacks disabled
+for this bounded path, no pageprotection/asyncworker/physicalACK/originalgame.
+Buildnegative01unresolvedmemcpyfrom enlarged Context aggregate return preserved
+before fixture freestanding implementation and fresh source declaration.
+
+Reassessment: step2remainsopen. Controlled protected-source/worker/early-return
+fixture and frontend/scripted imports/partial module snapshot, then bounded
+original32source/cadence controls needed. Full lifetime/normalshutdown/reference/
+native parity independent. All47/21and steps3–7retain scope. Reviewed
+2fcd7878..46be1034has9exactreceipts,0gaps.
+
+## DRAW-02 controlled source/worker ordering checkpoint (2026-10-12 UTC)
+
+Enabled begin/end committed620b61bfwith staged/hook checks passed. Fresh
+controlled fixture01executes production source/worker lease and held-snapshot
+code with mocked source protection/getter and command100/worker200schedule.
+Twoequal960000byte snapshots retained; gate End asserts mock restoration and
+worker lease drainage complete, refused point does not callEnd. Five exact
+API/token/sourcebinding rows/terminal pass. Actual OS page protection, real
+Wine workers/physical ACK and originalgame remain unexecuted by this fixture.
+
+Reassessment: step2stillopen. Add frontend/scripted imports, partial module
+snapshot and strict token/API/source joins, early-return/refusal/concurrency
+controls, then bounded original32source/worker/cadence trial with manifests.
+No source alias/unobtrusive/fullreference/nativeparity proof from controlled
+ordering. All47/21and steps3–7retain scope. Reviewed46be1034..620b61bfhas11receipts,0gaps.
+
+## DRAW-02 opt-in frontend and snapshot checkpoint (2026-10-12 UTC)
+
+Controlled source/worker ordering committed7b98d584with both coverage checks
+passed. Frontend now stages the separate gate DLL/import with original sections
+checked unchanged, requires protected held snapshot, excludes control/cadence
+control/conflicting cursor mutex observer, sets private journal paths and decodes
+separate module/APIjournals with completeadmissionfalse. MainQuit action takes
+partialreason3snapshot outside journal lock preserving caller state.
+
+Current fixture03passes controlled production ordering plus actual MainQuit
+snapshot trigger with mocked callback clobbering error/controlword;4binding/
+frontendguards+4cadencecontrolguards pass. Fixture01/02retain historical source
+hashes after callback/report changes. No originalgame or current live gate trial.
+
+Original32trial8GiBstoragepreflight refused at103.120GiBfree: reservation would
+leave below100GiBreserve. No original artifacts consumed or experiment launched,
+no additional pruning/policy change. Reassessment: step2remainsopen pending
+storageadmission and bounded actual original source/worker/cadence controls;
+normalquiescence/fullfault/earlyreturn/concurrency/reference/nativeparity open.
+All47/21and steps3–7retain scope. Reviewed620b61bf..7b98d584has10receipts,0gaps.
+
+## DRAW-02 source provenance reassessment (2026-10-12 UTC)
+
+The frontend/snapshot increment committed as `cb3dd4a5` after two guarded hooks
+stopped below 100 GiB and the unchanged third retry passed. The reviewed range
+`7b98d584..cb3dd4a5` contains 18 exact receipts and zero missing intermediate
+versions. No hook was bypassed.
+
+The gate builder previously fingerprinted only module.c, win32_min.h and the
+builder. The corrected shared SOURCES includes every compiler-reported header;
+capture also fingerprints this list and both decoders without optional claims.
+Static review 01 and the guarded production DLL compile pass. Four frontend
+binding guards and four cadence controls pass. No runtime behavior changed and
+this does not establish fresh original validation.
+
+Reassessment: step 2 remains open. Free space fluctuates near 100–103 GiB,
+insufficient for the 8 GiB original 32-update reservation. The exact additional
+8.0 GiB archive proposal 02 covers five completed quiet DRAW-02 runs and awaits
+explicit approval. No additional archive/prune or gate-enabled original trial
+has launched. A separately reserved 2 GiB counter-only control is attempted with
+source capture disabled. All 47/21 requirements and steps 3–7 retain their scope.
+
+The separately reserved 2 GiB counter-only control also refused before launch
+at 99.46 GiB free. `draw02-source-gate-cadence-control-preflight-01.json` retains
+the exact guard output/hash. No original artifacts or game were consumed by
+this refused attempt and no fresh cadence evidence is claimed.
+
+## DRAW-02 refused reservation checkpoint (2026-10-12 UTC)
+
+The dependency provenance fix committed as `b3faa8f8` with the required staged
+check and normal hook passed. Its verification copies ran in shared memory;
+builds and engine experiments keep the unchanged storage guard. The reviewed
+`cb3dd4a5..b3faa8f8` range has 11 exact receipts and zero missing versions.
+
+A production failed Begin returns zero after reservation drainage but can retain
+the attempted ID in point word5. Earlier controlled callbacks used zero in both
+places, so the decoder rejected a legitimate contended refusal. The corrected
+decoder separates admitted and attempted tokens, pairs owner/attempt/mutex
+identities and point phase/reason, rejects retained acquired levels, and refuses
+reused completed API identities. Seven guards pass. No runtime gate algorithm
+or original wait/forwarding body was changed.
+
+Fresh real-kernel module fixture01 passes an event-synchronized foreign outer
+owner: raw timeout258, attempted ID1/scalar0, no owned levels/reservation leases,
+all512FX/error preserved,25rows and zero scoped lifecycle gaps. The first storage
+preflight refused before launch; its log remains. Controlled production session
+fixture01 passes accepted7/lease9 and refused attempted8/scalar0/noEnd, two equal
+held snapshots and restored/drained state before End. Protection/getter and
+worker callbacks remain mocked; actual original integration is independent.
+
+Fresh counter-only original control01 completes399advancing/357queued updates,
+normal original Quit0 and both original manifests. Drawing/source/Wine/display/
+gate diagnostics are disabled. Timing with the enabled gate, identical gameplay
+work, source aliases and semantic completion remain unproved.
+
+Reassessment: step2 remains open; all47/21 requirements and steps3–7 retain their
+scope. The approved five-run archive is in progress. Recheck actual storage
+before the planned32update dual-physical diagnostic. If its8GiBreservation cannot
+fit, first use a bounded16update API-physical gate integration pilot with EGL
+metadata and a5GiBestimate, retaining the absence of post-EGL physical planes and
+all refusals explicitly. This smaller prerequisite cannot close the32/120window,
+complete source/frame/reference/parity or unobtrusive capture boundaries.
+
+Approved archive02 completed: 13,598 payloads across the exact five runs,
+7.9823 GiB freed, both durable catalogs agree and all 3,198 unique compressed
+objects rehashed. Original manifests before/after verify all 2,927 files. The
+tracked `draw02-storage-archive-20261012-02.json` pins proposal/executor/verifier/
+result/receipt provenance. No broader cleanup, policy change, refreshed historical
+engine hashes or new engine validation. Restore archived inputs before use.
+
+After verified archive02 completed and the checkpoint committed as `b5f6be6f`,
+the first16update API-physical/EGL-metadata gate pilot5GiBpreflight refused at
+98.91GiBfree before launch. No original artifacts/game consumed or new gate
+validation. Current storage outside this run has consumed recovered headroom.
+`draw02-source-gate-original16-preflight-01.json` retains the exact refusal and
+pins next proposal03:66.8872GiB/24older completed runs/85,860payloads, reviewed
+but not authorized/executed. Sources/reports/pins/current templates/recent
+captures retained; raw evidence requires verified durable copies before pruning.
+Step2/all47/21remain open; steps3–7pending, no policy/status/hash reset.
+
+## Step 2 live gate pilot and storage reassessment (2026-10-13 UTC)
+
+The user approved proposal03's exact24runs/85,860payloads/66.8872GiB.
+The first attempt retained a lock-contention failure with zero files changed;
+its unchanged-scope retry is running after the independent archive job finished.
+`draw02-storage-reconciliation-20261012-01.json` records1166.49GiBworking
+and317.53GiBfree from the new inventory, below1280/above100GiBpolicy limits.
+Concurrent cleanup reports64.02GiBarchival and29.06GiBexternal build removal;
+the larger overall free-space increase is not wholly attributed. The cold
+archive is on the separate NVMe; open deleted files are negligible.
+
+`draw02-source-gate-original16-01.json` retains the first actual gate-enabled
+original pilot, both original manifests and stable source fingerprints. It
+**fails** with an empty module journal. Same-run read-only negative review01
+decodes718accepted/158refused API gate pairs and API/session stopreason2.
+The capture stops API observation before sending Quit; no requested Quit action
+is in the retained session and launcherexit0 alone does not prove original
+Quit dispatch or the child's exit status. The partial snapshot remains unproved.
+Reassessment: make snapshot/dispatch ordering reviewable before the observation
+stop, reject already-exited launcher waits, then rerun the bounded pilot.
+No source alias/full reference/native parity or status promotion; step2/all47/21
+remain open and steps3–7pending. Reviewedb5f6be6f..20fe9b37 exact committed
+receipts separately; historical reports/hashes are unchanged.
+
+## Step 2 explicit game exit, snapshot lifecycle and dual-physical checkpoint (2026-10-13 UTC)
+
+The negative pilot/storage checkpoint committed as`1e0d530f`; its7committed
+file receipts match exact parent/current hashes with0missing versions. First
+original16pilot01remainsfailed/immutable. Retry02reached exact Quit request/ack
+and module snapshot, but failed on seven later Begin pairs with untouched
+points and two private closes without diagnostic retirement. Begin now returns
+a valid phase1/reason17non-owning refusal after snapshot, with freeze checked
+under the owning lock. New journalphase11records diagnostic retirement apart
+from original Close. These are native diagnostic policies, not baseline changes.
+
+The independent PE32 observer opens the process owning the menu thread while
+alive and waits on its process handle. It neither injects nor reads target
+memory. Actual owned-child fixture01observes0/37/259exitcodes; signaled wait
+distinguishes actual exit259from STILL_ACTIVE259. The mutex fixture01passes
+33rows/two live snapshot retirements,0scoped lifecycle gaps and a structured
+post-snapshot refusal, retaining the prior contention/512FX/error/forwarding
+guards. Old launcher-only exit fields cannot prove past original child status.
+
+Original16pilot03passes508APIphysical witnesses/16bound source queues/117stable
+held pairs,781accepted/223refused API gate pairs and actual childexit0plus exact
+MainQuit. The first32dual-physical trial failed to close EGL after game exit;
+its negative result remains retained. Corrected retry02closes the declared EGL
+interval before Quit, with API observation/peer still active for the snapshot.
+It passes375API/365post-EGLwitnesses,32bound advancing queues through update34,
+54complete advancing windows,129stable held source pairs,713accepted/102refused
+gate pairs, actual original childexit0 and both2927file manifests.
+
+Only the three bounded gate/binding/exit behaviors gain integration=live_observation
+from fresh exact scenario-bound execution. Module snapshot and reference admission
+remainpartial/false; comparison/replacement retainnone. Source aliases/storage
+ownership, hardware completion/all routes, caller/fault/concurrency/normal
+timer-import quiescence and all47journey/21operation closures remainopen. Step2
+continues; steps3–7remainordered/pending. A fresh matched interactive control and
+source-owned native protected/worker/EGL comparison are running. Comparator now
+requires direct child exit and verifies the actual action fields against the
+selected declared schedule; listed source presence alone is insufficient.
+
+The unchanged approved24run archive continues with durable per-file verification
+and both receipts before local pruning. Its initial zero-file lock failure and
+retry are retained separately. No additional cleanup or storage policy change.
+
+Current native/control checkpoint: `draw02-source-gate-original32-held-egl-01.json`
+reexecutes native rendering from parameters and pinned encoded assets only. All
+114eligible source/worker/EGLcontexts/54,720,000pixels match, with zero source
+and display differences;261contexts stayexcluded. The current replay binary
+hash is retained and no original plane supplies native input. This bounded
+cohort is separate from full native parity, storage ownership and all routes.
+
+Fresh counter/menu/input-only original control02passes372complete advancing
+updates and actual original childexit0with MainQuit dispatch. Current static
+cadence comparison01checks actual action fields against the selected interactive
+schedule as well as settings/counter/input binaries and retained process/cadence
+records. Diagnostic16/32median ratios are2.4165/5.5837. Control observation,
+randomized workloads and concurrent archive/system I/O remain; no identical
+workload, unobtrusive capture or60FPSclaim. Next extend the bounded original
+source/gate/dual-physical diagnostic to120updates with explicit2GiBAPIphysical
+budget and12GiBstorage reservation, then rerun eligible native cohorts.
+
+## Step 2 whole120 and authoritative target-exit reassessment (2026-10-13 UTC)
+
+The bounded live gate/actual-exit/native/control checkpoint committed as
+`c626fbc0`, after the staged accounting check and normal commit hook passed.
+Accounting separates the five fresh execution scopes from172affected behavior
+contracts/100new historical/source validation gaps; no unrelated validation
+is inferred and historical hashes remain unchanged.
+
+Whole120attempts01/02timed out during90second private Wine initialization
+before game launch, with original staging/manifests retained. During high
+host I/O pressure, the approved archive writer was reversibly suspended for
+a bounded retry using completed original32prefix as template, then resumed
+automatically. Original120attempt03 reaches its source terminal:120queues,
+609,607records,2,228oracles,207,847,156producer bytes and0source failures.
+The independent target process observer retains actual gameexit0; gate module
+retains3,696rows/reason3snapshot/no drops, active leases, faults or orphans.
+The old wait nevertheless times out because the Wine desktop launcher lingers.
+The negative report/raw journals stayretained; complete frontend admission is
+not asserted from offline observations. Storage scheduling provenance is
+`working/retention/draw02-approved-archive-io-scheduling-20261013-03.jsonl`
+in the main checkout; the archive's authorized scope is unchanged.
+
+Current helper now polls the bound target exit independently of the launcher,
+checks known command rejection first, refuses failed/incomplete target results
+and records nullable launcher status separately. Private launcher cleanup
+follows targetexit; it doesnot supply game exit evidence. Seven decision
+guards pass. Fresh current-code120retry04is running under12GiBguard/2GiBAPI
+physical limit; no source/caller/alias/full route/reference/native parity or
+all47/21closure follows from the negative attempt. Step2continues, steps3–7pending.
+
+Current-code original120retry04passes804API/795post-EGLphysical witnesses,
+120bound source queues across132complete consecutive advancing windows,
+635,993producer records/2,227oracles/334,176,616bytes,147stable held pairs,
+1,073accepted/215explicit refused API gate pairs and0scoped lifecycle gaps.
+Exact MainQuit and bound game process exit0pass; lingering Wine desktop
+launcher is separatelyunobserved/null before private cleanup. Both original
+manifests verify2,927files. The archive resumes automatically; timeline retained.
+
+Fresh native protected/worker/EGLcohort01matches130eligible source/display
+contexts with0pixel differences, retaining674excluded contexts. No original
+plane supplies native input. Full aliases/storage/writers/routes/caller/semantic/
+hardware/import-timer quiescence and all47/21reference/native parity remainopen.
+Step2continues with source ownership and independently observed semantic actions;
+steps3–7remainordered/pending. Shared source-only changes preserve historical
+controls/unrelated validation boundaries without refreshing old fingerprints.
+
+## Step 2 current Region click/latch and bootstrap checkpoint (2026-10-13 UTC)
+
+The whole120/authoritative target increment committed as`61307428`; required
+staged check and normal hook passed. Current lighter metadata attempts01/02
+time out during Wine initialization, including an archive-scheduled retry.
+The isolated software-rendering-only initialization probe passes16.65seconds
+without launching the game; it isnot semantic or engine validation. Explicit
+LIBGL_ALWAYS_SOFTWARE=1execution03thenpasses original Region/HUD capture
+with exact environment/command/result hashes retained, actual gameexit0and
+no forced game termination. Requested software policy isnot hardware evidence.
+
+Current RegionV2retains11paired original callbacks. Unique left click400300
+invokes mask1callback2on validatedpool1slot0/type0/owner0/active1/health400.
+Its original callback changes raw+68/count/mode0→1; mask2callback3preserves it.
+Callback8retains the same observed-slot latch9488mslater, with health345and
+changed camera. Current strict static analysis/4guards reject ambiguity,
+identity changes, failed release/later latch, loss and unknown versions.
+Independent images1/3/8were inspected: green wizard bracket absent before
+click, appears after and remains after camera movement with cursor away.
+These are bounded scalar/visual observations, not allocation/generation proof,
+exact frame/source ownership, allselection/tooltip or fullreference/native parity.
+
+Lighter HUDanalysis binds458samples,389timely/143timely validated hits; exact
+HUD/semantic pairing457with1unpaired,16Worldcamera states. This improves
+observation versus heavy120's0timely validated hits, but doesnot relax the
+diagnostic100mstiming policy or infer unobtrusive baseline. Next observe a
+requested actor slot's latch independently of currenthit during pointer motion
+and deselection, retain action/callback/frame and lifetime gaps. Step2/all47/21
+remainopen; steps3–7remainordered/pending. Exact approved24run archival
+continues and its temporarily scheduled pauses are recorded/resumed.
+
+## Step 2 independent actor-slot observation (2026-10-13 UTC)
+
+The optional V3 Region observer reads a requested bounded actor slot independently
+of the current hit, preserving V2 when disabled. The owned V3 fixture and current
+V2 regression each retain 32 pairs/35 forwards, exact result/error/full FX state
+and unchanged source memory. Invalid actor slot words refuse samples.
+
+`draw02-region-v3-original-01.json` records 11 original callback pairs and actual
+game process exit zero with a software rendering request in the launch manifest.
+Immutable analysis records seven same observed pool/slot/type/owner latch samples
+without a current actor hit, 6214–24501ms after the click. Five analysis guards
+and seven Region protocol guards pass. Numeric identity does not prove actor
+allocation/generation, and this does not close deselection, tooltip, exact
+action/frame/source ownership or native parity. Step 2 continues; steps 3–7 and
+all 47 journey/21 operation closures remain open.
+
+Reviewed committed range 61307428..c7cb39e0: 13 exact file receipts, zero gaps,
+retained under working/draw02-history-review-region-v3-20261013-01.json. Shared
+capture/runner/decoder changes retain older results and their hashes as historical;
+current execution support is limited to the declared V3 and disabled V2 scopes.
+
+## Step 2 documented selection and pause probes (2026-10-13 UTC)
+
+Independent actor-slot observation committed as cf621e95 with staged and normal
+hook checks. Reviewed c7cb39e0..cf621e95: 20 exact file receipts, zero gaps.
+Ordinary original ground clicks at 500300 and 550350 produce no actor hit while
+retaining the selected actor latch; repeated creature click also retains it.
+
+The publisher manual scan and supplied Readme define prospective Shift selection
+toggle and Space/Insert/Delete pause inputs. The private XTest runner adds only
+those controls, rejects malformed modifiers before injection and checks button
+returns. The owned six-case X11 fixture confirms actual modifier/button/key
+states, four refusals and cancellation cleanup without original execution.
+
+Original documented probe01 is retained: immediate move/click leaves no hit at
+both Shift button-down points and does not toggle the actor. Probe02 adds
+600ms pointer settling. Its actual callbacks2/6/10 change raw actor+68/count/mode
+0→1→0→1 on the same validated observed pool/slot/type/owner. Releases and later
+independent pointer-away samples retain each state. Inspected original images
+at actions3/6/9 show creature and portrait brackets present/absent/present.
+
+Immutable analysis also binds four original mapped-key groups to World mode
+0→1→0→1→0 within500ms. Two pause intervals keep the selected World counter
+fixed while accepted rendering updates continue; active/resumed controls advance
+the counter. Six analysis guards pass. No actor allocation generation, complete
+selection/all-animation/simulation pause, exact action/frame/source ownership
+or full reference/native parity is asserted. Both original runs exit through
+observed actual game process code0 and verify original manifests before/after.
+
+Step2 remains open. Reassessment of its120source run:926lease refusals are not
+one homogeneous failure.92are800x600stride800canvas2:75have one pending
+producer frame,17are after source recording stopped. Small/driver-backed sources
+retain their separate refused domains. Next inspect those75pending-frame contexts
+before changing admission. Steps3–7 and all47/21closures remain ordered/pending.
+
+## Approved archive03 completion and storage reconciliation (2026-10-13 UTC)
+
+The user's exact approval authorizes proposal03 SHA-256
+0e948f45e9834fb05db5adf9d3319037652bbd4469ef45269d7a0f2ebf629bee.
+The initial lock collision changed zero files. Attempt02 completes the unchanged
+24-run scope:85,860payloads and71,819,632,640allocated bytes (66.887245GiB).
+Every raw source was checked against its durable compressed/decompressed copy
+and both verified receipts before local unlink. Final reconciliation finds both
+catalog snapshots identical for all verified/pruned paths and rehashes all
+19,145unique compressed objects. All selected local payload paths are absent.
+Original manifests before/after still verify2,927files. Exact result, script,
+receipt snapshot, scheduling timeline and inventory hashes are pinned in
+`draw02-approved-archive-03-provenance-20261013.json`.
+
+The final inventory records1188.554569GiBunderworking and298.625549GiB
+filesystemfree, with no pressure. Independent cleanup and ongoing writers affect
+free-space deltas; this archive's own reclaimed allocation is66.887245GiB.
+The1280GiBworking maximum/100GiBfree reserve and disabled automatic archiving
+remain unchanged. Sources, reports, originals, pins, excluded/current templates
+and active/latest runs were preserved. Future analysis restores an archived
+input with `python3 tools/working-retention.py restore <archived-working-path>`
+before reading it. Archive provenance supplies no new engine validation and
+does not refresh historical source/evidence hashes.
+
+The documented input increment committed as e4ad313e with staged/normal hook
+checks. Reviewed cf621e95..e4ad313e:19exact file receipts, zero gaps, retained
+underworking/draw02-history-review-approved-archive03-20261013-01.json.
+Step2continues with pending producer-frame identity/source/caller lifetimes;
+steps3–7 and all47/21reference/native acceptance closures remain pending.
+
+## Step 2 original copy-client and EGL domain reassessment (2026-10-13 UTC)
+
+Approved archive03provenance committed as ec1c6d26; staged and normal hook pass.
+Reviewed e4ad313e..ec1c6d26:3exact receipts, zero gaps. Current binary/journal
+inspection verifies original manifests before/after and all75live800x600source
+refusals at caller58c5be inside inventory58c4a0..58c69f. They copy40x40rectangles
+to0,0and have no observed EGLcontext; exact pending-frame/alias ownership is
+still unproved. Static retry/restore branches remain separate from these
+successful original calls. No lease guard was changed.
+
+New immutable domain accounting joins all795physical-interval contexts:130
+accepted source leases,97cursor-gate refusals,256source-domain refusals,279
+method/flag domains outside lease observation, and33after producer stop. Nine
+contexts follow explicit physical close1079and remain outside the795interval.
+Four guard methods pass; historical native130/674counts/hashes are preserved.
+
+Reassessment narrows the next work to gate refusals, partial cursor/background
+composition and producer/physical interval alignment. More generic pending-frame
+logging or relaxed admission for the75offscreen rectangle copies would not
+close those presented-source gaps. Step2and all47/21remain open; steps3–7stay
+ordered/pending. Archive completion adds no new engine validation.
+
+## Step 2 source-completion physical interval checkpoint (2026-10-13 UTC)
+
+Source domain accounting committed as81128d74; staged/normal hook checks pass.
+Reviewed ec1c6d26..81128d74:11exact receipts and0gaps. New opt-in
+`--close-physical-on-source-complete` requires whole source and EGL physical
+observation. It polls during the input schedule and requests physical close only
+after the exact expected whole-source marker. Partial markers wait; failure,
+wrong count, corruption or an existing close request refuse. Defaults retain
+the original Quit-bound interval. Four meaningful close guards, three existing
+source-completion and eight cursor frontend guards pass.
+
+Fresh original32mode passes32queues/179599records/1346oracles/33001100bytes,
+238closed physical contexts and249later contexts. The closed interval contains
+114accepted leases,16gate refusals,53source refusals,54method/flag domains and
+one producer-stopped context. One in-flight/detection boundary remains; this is
+not an atomic producer/EGL boundary. Actual original gameexit0 and MainQuit
+dispatch pass, with794accepted/165refused gate pairs and0journal lifecycle gaps.
+Original manifests verify2927files before/after; section bytes remain unchanged.
+
+First native replay aborts under restricted Xvfb before any comparison; its
+114candidate/373excluded/nativeexit1report is preserved as negative evidence.
+The unchanged frozen input retry under host Xvfb passes114source/display
+comparisons with0pixel differences and preserves373excluded contexts. Native
+inputs contain only parameters and pinned encoded assets; original planes stay
+external. Neither candidate counts nor0compared in the failed attempt establish
+a match. Original120interval alignment and all gate/source/cursor/lifetime/routes/
+shutdown/47journey/21operation closure remain open; steps3–7stayordered/pending.
+
+## Step 2 original120 source-close and ordering failure (2026-10-13 UTC)
+
+The32queue source-close increment committed as73ce54c3with staged/normal hook
+checks. Reviewed81128d74..73ce54c3:12exact receipts, zero gaps. Fresh120mode
+passes120bound advancing queues across132windows,921758producer records,
+2182oracles/262280756bytes. Record headroom is126818under1048576; no budget
+was reset. Actual gameexit0/MainQuit and1064accepted/213refused gate pairs
+with0scoped journal gaps pass; original manifests verify2927files before/after.
+Physical interval723contains141accepted leases,76gate refusals,252source
+refusals,253method/flag domains and1producer-stopped context;69later contexts
+remain outside. This confirms the observed-boundary policy at120, not atomic
+source/physical lifetime ownership or full shutdown.
+
+Completed native141comparison has140matches and1failed40x40region at
+440310..480350(API3768/EGL430/prefix208533), with1600source and display
+pixel differences.651exclusions remain. The failed report is preserved;
+nativeexit0does not establish parity. Original CPU checkpoints1334/1335remain
+equal while native1335changes after background-copy replay. Exact local
+matching proves driver full-copy commands1037/1038finish before background
+save1039enters, yet producer return records208516/208517list save before full.
+
+Reassessment: add explicit copy request/entry/return/API/worker associations
+before a general ordering or storage-view repair. The local reversal is confirmed;
+its complete causal scope remains provisional. No record swapping by hypothesis,
+original-pixel input, failed-context exclusion or old-hash refresh is accepted.
+Step2and all47/21remain open; steps3–7stayordered/pending.
+
+
+## Step 2 explicit copy request checkpoint (2026-10-13 UTC)
+
+The previous failure/ordering increment committed asb5b72730; staged and normal
+hook checks pass. Reviewed73ce54c3..b5b72730:11exact receipts, zero gaps. The
+new opt-in pointer-free MNMDCQ01 sidecar assigns request IDs at producer entry,
+pairs emitted return sequences and preserves owner/tag/geometry/key/caller,
+active counts and bounded terminal. Existing producer stream and native
+rendering/admission policies remain separate.
+
+Four strict decoder guards, eight source-cursor frontend guards and the full
+scene build pass. Retained owned PE32 five-case fixture passes actual two-thread
+entry1/2 and return2/1, LastError and request preservation, disabled/invalid
+configuration, incomplete-terminal refusal and row-budget exit99. Initial
+fixture compilation failure and prelaunch metadata-mode refusal remain retained
+under working; neither executed the original game.
+
+Fresh original32 physical capture retains913paired requests,564physical planes
+and1547consumed inputs; actual gameexit0 and original manifests before/after
+pass. Static exact cross-check links all913producer COPYrecords with0unmatched;
+45adjacent entry pairs return in reversed order. This makes entry/return order
+explicit without claiming that entry order equals driver execution order.
+
+Reassessment: connect these local request IDs to exact API entries and worker
+commands before changing replay ordering. Preserve ambiguous/unbound requests
+and source/physical lifetime boundaries. The earlier120native40x40failure stays
+failed; no source-only replay correction or validation promotion is asserted.
+Step2and all47/21remain open; steps3–7stayordered/pending.
+
+
+## Step 2 request/API/worker association checkpoint (2026-10-13 UTC)
+
+Request tracing committed as19d1807dwith staged and normal hook checks. Reviewed
+b5b72730..19d1807d:19exact file receipts and0gaps. Static analysis of the exact
+retained original32capture uniquely joins all913requests to913successful
+same-thread BltFast APIcalls and1130completed worker commands. All three API
+phases must remain inside each explicit producer entry/return interval and
+preserve logical surface IDs, geometry, destination extent and opaque/keyed
+flag policy. Multiple matches, missing phases/submissions/commands, shared
+worker IDs and changed command owners refuse. Six meaningful guards pass.
+
+All1075other BltFast APIentries remain listed:1044have stopped known destination
+and source,23have stopped known destination/unknown source,8have stopped unknown
+both. They cannot extend the live source journal. No diagnostic observer or
+original game was rerun for this static association.
+
+Of45adjacent entry pairs with reversed returns,42execute in entry order at the
+worker and3execute in return order. This concrete counterexample forbids fixing
+replay by globally sorting either producer entries or returns. Worker command
+order, CPU drawing and checkpoint visibility need a consistent source replay
+contract; copying the physical result or dropping mismatches cannot supply it.
+
+Reassessment: the API/worker identity boundary is now explicit for this cohort.
+Next assess source-only replay checkpoints against the independently retained
+original planes, then repair only the demonstrated ordering/storage boundary.
+The earlier120native failure remains failed. Step2and all47/21remain open;
+steps3–7stayordered/pending.
+
+
+## Step 2 complete checkpoint comparison (2026-10-13 UTC)
+
+Strict request/API/worker associations committed as13c03f33with staged/normal
+hook checks. Reviewed19d1807d..13c03f33:9exact receipts,0gaps. The new
+source-only comparator executes every drawing operation and retains every
+checkpoint through the complete bounded source interval. Native inputs contain
+only parameters with original raster returns removed and195independently pinned
+encoded assets. Original planes remain outside native input paths/arguments.
+
+Initial32replay produced checkpoint files but refused the last V4 update-end
+bookkeeping record: nativeexit1and0compared remain explicit negative evidence.
+The corrected comparator strictly decodes the full original interval, retains
+that exact payload-free terminal separately and removes only that metadata from
+native drawing inputs. All1337checkpoint comparisons then pass with0differences,
+nativeexit0 and2927original-manifest files verified before/after.
+
+The same unchanged native renderer against the earlier original120interval
+compares all2182checkpoints:2180match and2fail. Checkpoint1335(sequence208520,
+canvas2)differs1600pixels; checkpoint1336(sequence208522,canvas22)differs950.
+All original/native checkpoint identities, extents and hashes are retained;
+no failed comparison is omitted. These repeat the earlier bounded source2
+failure and identify its immediate auxiliary-canvas failure. The32pass does not
+close120or physical parity, and entry/return order remains insufficient as a
+general replay policy. No rendering code or source COPYordering was changed.
+
+A combined copy/storage/resource-map/resource-copy acquisition failed. Its
+first launch lacked a private display and produced no engine records; corrected
+private-display launch produced startup headers but no completed source records.
+Both result/log paths under working/draw02-copy-storage-original32-01/02remain
+retained; the capture frontend replaced the primary error with the incomplete
+copy-sidecar error. Original manifests verify before/after both attempts.
+No new map/storage behavior is validated; startup cause and error preservation
+need separate bounded work.
+
+Reassessment: keep the successful32source cohort, failed120checkpoints and
+failed storage attempts independent. Narrow the next acquisition to copy and
+canvas-storage observations before adding resource observers, and retain the
+primary failure cause. General driver/noncopy/CPU ordering, source views/aliases/
+lifetimes and complete physical acquisition remain pending. Step2and all47/21
+remain open; steps3–7stayordered/pending.
+
+
+## Step 2 failure provenance and storage retry (2026-10-13 UTC)
+
+Complete checkpoint comparison committed asb670a41a; staged/normal hook checks
+pass. Reviewed13c03f33..b670a41a:9exact receipts,0gaps. The host frontend now
+preserves the primary acquisition exception/error and records optional-copy
+journal refusal separately ascopy_order_error. Missing/incomplete journals
+still refuse successful acquisition; valid journals never promote an already
+failed acquisition. Four executed failure guards, four decoder guards and
+eight source-cursor frontend guards pass.
+
+The smaller storage retry also failed before source recording, leaving headers
+and an incomplete APIprefix. Its original DirectDraw SetDisplayMode800x600x16
+call returns0x80004001(E_NOTIMPL); there is no normal source/exit result. All
+three earlier negative reports and raw runs remain retained. They do not
+validate a storage/resource observer defect; primary-error masking is itself a
+separate host failure.
+
+Fresh retry withxvfb-run -a -s '-screen 0 800x600x24 -nolisten tcp' passes:
+32bound source queues/151219records/1321oracles/27808690bytes;906paired
+copy requests;972storage calls/returns,0open calls,897observed lock-return
+epochs and118local address IDs.600physical planes/1746consumed inputs and
+actual gameexit0 complete. Original manifests verify2927files before/after.
+The same narrow failed/successful profiles have identical observer/executable
+binaries and source inputs; the fresh original SetDisplayMode call returns0.
+This records a reproducibility constraint for private display geometry, not a
+proof of all startup causes or complete display-route behavior.
+
+Static associations link all906requests to exact API/worker identities, with
+0unbound source requests/1251excluded APIentries/44adjacent return reversals.
+Producer cross-check independently matches all906COPYrecords. The storage
+epochs/addresses are process-local observations, not allocation lifetimes,
+source ownership or cross-launch stable identities. Earlier current-source
+claims involving the changed host frontend remain historical until refreshed
+within their exact scopes; no old evidence hash is rewritten.
+
+Reassessment: reintroduce resource-map/map-point/resource-copy observers on this
+explicit-size private display to investigate CPU/driver view boundaries. Keep
+complete32source checks, failed120checkpoints, host error guards, startup failures
+and successful storage acquisition independent. Step2and all47/21remain open;
+steps3–7stayordered/pending.
+
+
+## Step 2 resource recorder retirement checkpoint (2026-10-13 UTC)
+
+Failure provenance/storage retry committed asb7feb37cwith staged/normal hook
+checks. Reviewedb670a41a..b7feb37c:14exact receipts,0gaps. Combined original32
+resource capture reached its source interval but exited99after observer journal
+retirement. The primary acquisition error is retained, while its complete
+900request sidecar does not promote the failed acquisition.
+
+The owned PE32 postclose regression reproducesexit99on the first getter after
+seven recorded callbacks and resource journal close. Code inspection confirms
+the resource-enabled flag formerly remained set after close, permitting later
+callbacks to write the closed handle. The fix atomically disables recording
+before retirement and rechecks under the private journal lock at both phases.
+All original callbacks continue forwarding once. Track resource callbacks
+through outside-lock map queries so ordinary session stop waits for them; a
+forced midcall teardown remains incomplete. Map-point emission also rechecks
+its flag under lock after an outside-lock export. No lock spans original calls,
+source bytes or query exports; no broad IAT/module/timer quiescence is asserted.
+
+Owned resource fixture passes normal/midcall/pending-stop cases:seven recorded
+callbacks,three postclose forwards,result/LastError/512byteFP preserved,active
+callback defers stop,midcall trace refused. Owned map-point fixture passes its
+12forward cases and a forced query-close race:closed point journal stays160bytes,
+original results/error/FP preserved and missing query trace remains incomplete.
+Three resource and six map-point portable guards pass. Baselineexit99negative
+and earlier source hashes remain immutable.
+
+Fresh combined original32after the fix passes32queues/170160records/1338oracles/
+27139826bytes,913paired requests,985closed storage calls,910lock-return epochs
+and119local address IDs.6973public resource calls contain1727maps and matching
+unmaps,0open/unknown intervals. All1727map points remain unknown:15live unknown,
+895live transition-pending unknown(flags131),817stopped. Public copy-boundary
+observer records0calls; absence supplies no transfer proof.584physical planes/
+1643consumed inputs and actual gameexit0 pass;2927original files verify before/
+after. Static joins account all913COPY/APIrequests,1177excluded APIentries and
+43adjacent return reversals without changing replay ordering.
+
+Reassessment: retirement is scoped callback observation safety, not complete
+hook teardown or source ownership. Most live map queries occur before the
+wrapper Lock publishes its returned cache address. The current query journal
+does not retain an input address ID for those pending unknown points; add a
+versioned pointer-free identity before comparing exact query/Lock-return
+intervals. Do not infer current backing aliases from later pointer equality.
+Earlier120checkpoint/physical failures remain failed. Step2and all47/21remain
+open; steps3–7stayordered/pending.
+
+
+## Step 2 V5 query/Lock-return identities (2026-10-13 UTC)
+
+Resource retirement committed as c83284b6 with staged/normal hook checks.
+Reviewed b7feb37c..c83284b6: 20 exact receipts, zero gaps. V5 retains the
+64-byte header/96-byte rows and adds a local input address ID in query word 7.
+Known query input/cache IDs and candidate IDs must agree; null remains zero.
+Versions 1–4 keep reserved-zero behavior. Pending/unknown points remain pending/
+unknown; no buffer bytes, pointers or inferred allocation identities are sent.
+
+Owned PE32 V5 fixture passes eight calls/five epochs/seven queries, repeated
+addresses, recreation, null input and a pending query's exact later Lock return.
+Eighteen strict decoder and six interval/identity guards pass. Fresh native
+guard execution covers the standalone association model; the earlier collector
+fixture's association claim predates its new CLI link and remains scoped, not
+retrofitted. Static V4 reanalysis preserves all 910 queries as unbound legacy
+inputs, with original manifests verified before/after.
+
+Fresh original V5 passes 32 queues/175147 records/1338 oracles/31963166 bytes,
+915 paired copy requests,985 closed storage calls/910 return epochs/119 local
+address IDs.1715 public map intervals close; original cache points remain
+unknown while pending or stopped. Actual game exit 0 and 2927 original-manifest
+files before/after pass. Independent static analysis joins all 910 live queries
+to unique same-thread Lock intervals and unchanged known canvases, with exact
+input/returned/cache numerical IDs and zero unbound live queries.805 external
+map points remain inactive.845 bindings identify canvas2; the others cover the
+separately observed canvases. All915 copy/API/worker associations match, with
+1146 excluded APIcalls and38 adjacent return reversals preserved.
+
+Reassessment: exact query-to-return identities explain why an in-progress cache
+query must remain conservative until the Lock completes. They do not establish
+exclusive byte/backing/allocation ownership or driver upload order. The earlier
+120 source/physical failures remain failed. Next observe producer prefix bounds
+at actual driver worker execution, keeping ambiguous overlaps separate before
+changing native ordering. Step2 and all47/21 remain open; steps3–7 stay ordered
+and pending.
+
+
+## Step 2 worker execution producer bounds (2026-10-13 UTC)
+
+V5 query identity increment committed as2098ea97with staged/normal hook checks.
+Reviewedc83284b6..2098ea97:21exact receipts,0gaps. Optional
+--wine-worker-producer-points requires original-active producer and Wine worker
+observation, and is refused in controls. It uses the existing null-COM read-only
+SceneDrawingSourcePointV1export before/after original opcode42worker bodies.
+The separate MNMWPP01 journal retains worker/thread/legacy-entry identities,
+unavailable/refused metadata and complete counts; legacy wire stays separate.
+Getter and original callback run outside journal_lock, with pending workers
+preventing ordinary close; forced midclose remains incomplete. No pointers or
+pixels are transported, and no original drawing body is suppressed.
+
+Initial owned111/123guards fail noncanonical FP comparison because stack
+snapshot destinations contained unwritten upper-region bytes. Raw before/actual
+snapshots and original source hashes remain retained. Initialized comparison
+buffers fix the guard without changing the runtime recorder. Seven owned PE32
+configurations pass:enabled/disabled/unavailable/refused/midclose/budget/invalid,
+argument/error/canonical512byteFP preservation, getter/original cross-thread
+journal reentry and postclose forwarding. Budgetexit99and missing midclose
+return remain explicit refused evidence. Four decoder/eight frontend/four
+diagnostic-cadence guards pass.
+
+Fresh original32passes32queues/173540records/1335oracles/30139986bytes,
+910copy requests,2591worker pairs,0unavailable source points.1127pairs are live
+and1464stopped;110pairs have changed producer prefixes.583physical planes/
+1622consumed inputs and actual originalexit0 pass;2927original-manifest files
+verify before/after. Static all910copy/APIjoins account1127commands,1098
+additional APIcalls and44return reversals. Among those1127commands,1017have
+stable prefixes,109bracket records only on other logical canvases,1brackets
+an observed copy return touching its destination. Request714/worker852
+(source2/destination1)bounds49777..49778include cursor copy6→1return49778.
+Maximum observed producer interval spans518records. All1464outside workers
+remain listed; no interval or failed context is discarded.
+
+Reassessment: these are execution bounds, not an atomic byte or complete
+replay-order contract. The110intervals contain other producer work; logical
+canvas separation does not disprove backing aliases. Resolve the one touching
+copy interval and noncopy/checkpoint ordering before a source-only ordering
+repair. Earlier120source/physical failures remain failed. Step2and all47/21
+remain open; steps3–7stayordered/pending.
+
+
+## Step 2 delayed producer return attribution (2026-10-13 UTC)
+
+Worker-prefix work committed as `364116d5`; staged gate and commit hook passed.
+Reviewed `2098ea97..364116d5`: 23 exact file-version receipts, zero gaps.
+New static `draw02-worker-prefix-delayed-return-01.json` preserves all 1127
+copy-bound commands and 1464 outside-scope workers. Its one touching producer
+record, sequence 49778, binds exactly to cursor request 711/API 3115 and
+commands 847/848. Their worker records 2540..2544 finish before full-frame
+request 714's commands begin at 2552 (worker 851) and 2555 (worker 852).
+The cursor producer return was recorded during worker 852's producer-prefix
+bounds 49777..49778, after its associated driver commands had finished.
+This is delayed producer journaling in this retained trace, not proof of a
+driver mutation during worker 852. Four new guards distinguish prior, later,
+overlapping and same-request execution and refuse changed request descriptors,
+owners, sequences and incomplete worker intervals; six association and four
+worker-prefix decoder guards also pass. No original execution was repeated.
+
+Reassessment: original producer return order cannot stand in for driver order.
+The one touching interval is attributed, but stable prefixes and other logical
+canvas IDs still cannot exclude backing aliases. Noncopy/checkpoint execution,
+source-byte ownership and the earlier 120-window failures remain unresolved.
+Keep native ordering unchanged until a bounded execution policy accounts for
+all relevant operation and checkpoint boundaries. Step 2 remains open; steps
+3–7 remain ordered and pending, with all 47/21 requirements unchanged.
+Latest retained storage inventory reports 1268.343 GiB working and 220.933 GiB
+free, leaving about 11.657 GiB under the working target. This increment uses
+retained journals and no new game installation or large capture.
+
+
+## Step 2 worker-bound checkpoint comparison (2026-10-13 UTC)
+
+Delayed return attribution committed as `0b21befb`; staged gate and normal hook
+passed. Reviewed `364116d5..0b21befb`: nine exact file-version receipts, zero
+gaps. Fresh `draw02-worker-prefix-checkpoints-01.json` runs unchanged native
+return-order replay against the retained worker-bound 32-update trace. All
+1335 independently retained CPU checkpoints match, native exit 0, with source
+hashes checked before/after and original manifests verified. Only parameters
+and pinned encoded assets enter native input; original planes remain external.
+The 1 GiB guarded reservation passed; raw comparison output is retained.
+
+Reassessment: this trace's 44 adjacent copy return reversals and delayed cursor
+return do not produce a checkpoint mismatch. Their presence alone is not a
+repair trigger. The earlier 120 trace retains both checkpoint failures and its
+physical mismatch. A new guarded 120-update capture adds actual worker-prefix
+and V5 storage-query identities to investigate larger intervals; its result
+must be assessed independently. Step 2 remains open, steps 3–7 pending and all
+47/21 requirements unchanged.
+
+
+## Step 2 repeatable grayscale repair (2026-10-13 UTC)
+
+The worker-bound32checkpoint increment committed as `db79f699`; staged gate
+and normal hook passed. Reviewed `0b21befb..db79f699`: five exact receipts,
+zero gaps. Fresh original120 completes562789records/2278oracles/177867348bytes,
+2136copy requests,1439closed wrapper calls/1361Lock epochs/123local addresses
+and actual gameexit0. All2136COPY/APIjoins account2811commands,141otherAPIcalls
+and241return reversals.2341command prefixes are stable,464bracket other
+logical-canvas records,6bracket touchingCOPYreturns. Each of those6associated
+driver command envelopes finished before its bracket worker entered;205outside
+workers remain explicit. All1361livequery inputs bind unique same-thread Lock
+returns. These are numerical/event associations, not byte/backing ownership.
+
+Unchanged replay compares2278checkpoints:2277match, canvas22checkpoint1541
+fails950pixels. Its original/native hashes repeat the old120canvas22failure.
+Source record228745 is backend11, the clipped direct-word routine0x589c90.
+Static original disassembly recovers its RGB565 gray conversion: average the
+five-bit red, green reduced by shift6, and blue channels, divide by3, then pack
+at11/6/0. All950mismatched pixels agree with that formula. Native CPU replay
+had copied these words in color. The additive World rectangle backend remains
+a separate contract from this sprite route.
+
+Native backend11 now implements that selected direct-word/mode0conversion,
+retaining clipping/transparency and refusing indexed/mode variants before
+writes. Owned CPU tests pass all65536RGB565values and both green low bits,
+clipping/transparency and unsupported-input retention. Fresh source-only
+replay after repair matches every2278checkpoint in the new120trace. The old
+held120trace compares2182:2181match; its gray checkpoint1336is repaired while
+canvas2checkpoint1335stillfails1600pixels. All initial failures, raw outputs
+and original source hashes remain unchanged; original planes never enter
+native input. Build/capture/replays use guarded1/6GiB reservations and verify
+original manifests before/after original-consuming comparisons.
+
+Reassessment: this is a recovered drawing conversion repair, not a global
+copy sort. The old canvas2failure still requires source/driver view and
+noncopy/checkpoint execution accounting. New120CPU parity does not establish
+every physical route or complete semantic journeys. Step2remains open;
+steps3–7stayordered/pending with all47/21requirements unchanged.
+
+
+## Step 2 isolated gray/color clipping contract (2026-10-13 UTC)
+
+Grayscale repair committed as `4673e283` with staged and normal hook checks.
+Reviewed `db79f699..4673e283`:18exact file-version receipts, zero gaps.
+New isolated original fixture maps hash-pinned unmodified No-CD589c90 into
+private32-bit memory with authored RGB565 globals/RLE rows. Initial sandbox
+process endsSIGSYS; its historical original_body_executed flag denoted launch,
+not verified entry, and remains explicitly unsupported. The runner now emits
+verified-bodytrue only after successful checks, unknown on failed execution.
+Escalated comparison passes exhaustive/full-width and HUD cases, then fails
+combined horizontal clipping. Debug retains376different colored words and
+rawplanes;0x589f54..0x589fcadisassembly confirms the horizontal clip loops copy
+words directly. Their conversion differs from full-width/vertical-only gray.
+
+The corrected independent scalar original comparison passes8cases/530432
+destination-and-padding words with0differences, including all65536source
+RGB565colors, transparent runs, negative/shifted origins, pureleft/right/
+combined/vertical clipping, no overlap and guard retention. Nativebackend11
+now preserves colored words whenever horizontal clipping is required. CPU
+tests pass; fresh unchanged-input source-only replay matches all2278current120
+checkpoints. The earlierheld120trace compares2182with2181match and the same
+1600pixelcanvas2failure. All failed fixture/replay reports remain immutable.
+This scoped original scalar comparison does not execute native presentation
+or original callers; status axes remain partial/none independently.
+
+Reassessment: gray/color branch closure is stronger; full original frame
+acquisition, byte/backing identity and copy/noncopy execution remain open.
+The next held120capture with exact worker IDs did not launch: the storage
+guard measured1275.36GiB and refused its7GiB reservation against1280GiB.
+A subsequent retained inventory measures1277.858GiBworking/202.990GiBfree.
+Small0.125/0.25/0.5GiB guarded checks fit; larger capture needs storage review
+or explicit budget change perAGENTS.md. No cleanup, archive or policy change
+was applied. A concrete main1280→1344GiBproposal retains100GiBfree and
+automatic archivingoff at working/retention/draw02-storage-budget-proposal-
+20261013-01.json. Step2and all47/21remain open; steps3–7remainordered/pending.
+
+
+## Approved DRAW-02 storage budget (2026-10-13 UTC)
+
+The user approved the prepared1280→1344GiBworking-budget change after the
+7GiBheld120reservation was refused. Main and DRAW02worktreeAGENTS.md and
+working-retention.json now agree on1344GiB(1.3125TiB), with100GiBfree reserve
+and automaticarchivefalse retained. Existing12retention guards pass; no files
+were cleaned or archived. Exact approval/configuration provenance is retained
+in draw02-approved-storage-budget-20261013.json. Reviewed4673e283..edd2d9d4:
+17exact parent/current file receipts, zero gaps. Main unrelated changes remain
+unmodified. A new prospective declaration precedes the guarded held120retry
+with copy-request IDs, V5storage-query IDs and worker producer-prefix bounds.
+Its execution, physical comparison and Step2closure require separate results;
+no earlier failure or evidence hash is rewritten by this budget change.
+
+
+## Approved held120 cohort and copy-value reassessment (2026-10-13)
+
+The approved 1344 GiB working budget allowed the previously refused bounded
+capture to run. `draw02-worker-prefix-held120-approved-01.json` retains 120
+queues, 645189 producer records, 2200 CPU checkpoints and 812 primary physical
+planes. Original raster remains active; original sections and 2927 immutable
+inputs verify unchanged before/after. Actual original quit exits successfully.
+This is a diagnostic capture; selection, tooltip and pause outcomes remain false.
+
+`draw02-held120-approved-checkpoints-01.json` compares every CPU checkpoint:
+all 2200 match unchanged return-order native replay. Parameters and independently
+pinned encoded assets are the native inputs. `draw02-held120-approved-egl-01.json`
+compares all 126 admitted protected-source/API/worker/physical contexts: zero
+differences, with all 686 excluded contexts retained. These results do not repair
+the historical held120 checkpoint1335/1600pixel failure or close full routes.
+
+Static exact request binding accounts for 2193 copies and 2920 commands, with
+187 extra API calls and 255 adjacent return reversals preserved. Worker prefixes
+classify 2311 stable, 523 other-record and 86 touched commands. All 89 touched
+COPY returns associate with 67 prior worker completions or 22 same-request
+workers; this is return attribution, not byte immutability. Storage analysis
+binds 1295 of 4833 numerical queries and preserves 3538 unbound queries
+(2610 non-map, 928 without a same-thread Lock). Backing/view/allocation ownership
+and complete original/native presentation remain unresolved.
+
+Reassessment: step2 remains active. A matching new trace cannot replace a failed
+old trace. Native-only buffer probes distinguish the failed branch from harmless
+return inversions without reordering operations or importing original pixels.
+Recover the distinct caller/control flow and acquire fresh exact request evidence
+for the failing branch before proposing an ordering policy. Whole-route lifetime,
+diagnostic controls, semantic outcomes and all47/21closures remain open; steps3–7
+have not been completed.
+
+
+## Step2 shared-menu redraw investigation (2026-10-13)
+
+Committed held120/value diagnostics (`1b0bedb8`) passed exact staged accounting
+and the required hook. Its committed history review found17exactreceipts/0gaps.
+Pinned static inspection now distinguishes the older failed full-copy caller
+`0x5597fd` as a shared menu redraw followed by cursor restore, rather than the
+earlier pop-request branch. Existing inventory-bounded restore/copy functions
+are inspected; the shared tick body remains a discovery candidate outside its
+historical eight-byte entry guard. No full-function or live-branch claim follows.
+An earlier cursor inspection reversed source/destination wrapper labels; future
+metadata is corrected while old evidence and hashes remain unchanged.
+
+Reassessment: acquire actual request-bound menu redraw/restoration evidence and
+source state, retaining the old1600pixel failure. Static caller recovery does not
+justify COPY reordering or close ownership, diagnostic controls or presentation.
+Step2 remains active; all47/21closures and steps3–7 remain open.
+
+
+## Step2 repeated Results redraw checkpoint (2026-10-13)
+
+Fresh original120repeat retains31inputactions,566697records,2533oracles and900
+primary physical planes; actual original Quit exits0 and manifests verify.
+Source-only unchanged-return replay matches all2533CPU checkpoints and all134
+admitted physical contexts, with766contexts excluded.2364copy requests bind3185
+commands;1684query associations are admitted and3802unbound retained. All new
+records retain prospective current-source claims where execution applies.
+
+Twelve menu redraw copies occur after World entry. Four exact worker/return
+inversions have immediate saved-buffer→CPUsource restoration, but their native
+prior-primary/current-source ROIs are identical. The older failed menu case has
+1600ROI differences. The native value probe32pairs preserves every operation and
+checkpoint;18ordinary-frame regions differ without new CPU checkpoint failure.
+This distinguishes the unobserved failing conjunction and does not repair it.
+
+Reassessment: step2 remains active; test optional worker-prefix observation
+perturbation with the same stimulus and explicit request IDs. Keep ownership,
+all-writer/view/lifetime/route and cadence/semantic controls independent. All47/21
+closures and steps3–7 remain open. No gameplay or native scheduling changes.
+
+
+## Step2 fresh request-bound failure reproduction (2026-10-13)
+
+Repeated Results evidence is committed as `caa9acc1`;15committed-file receipts
+review with0gaps. A fresh optional-worker-prefix-disabled control preserves the
+same31action input/profile otherwise:120queues,545423records,2400oracles,
+835primary planes and actualquit0. Requested sidecar isfalse/absent; all source
+hashes and original manifests verify. Changed timing/random state prevent causal
+observer-noninterference claims.
+
+Unchanged-order native CPU replay completes but fails two canvas2checkpoints,
+1352and1437,each1600pixels. Original full-plane hash equals the prior failed
+Results image. Exact full/save request pairs969/970 and1050/1051reproduce driver
+full-before-save, producer save-before-full, divergent1600pixel native ROIs and
+immediate5→2restoration. The third menu inversion has0ROI differences and matches.
+Read-only native publication preserves all2400checkpoint hashes. All140admitted
+physical comparisons match with695excluded; those cannot discharge CPU failures.
+
+Reassessment: the previously unbound local failure is reproduced with fresh
+explicit request/API/worker evidence. Keep these comparisons failed and establish
+original auxiliary/GPU/CPU view contents before a native scheduling repair.
+Storage associations and admitted physical matches do not prove that ownership.
+Step2 remains active; all47/21closures and steps3–7 remain open.
+
+
+## Step2 opt-in auxiliary mapped-view witness (2026-10-13)
+
+Committed failure reproduction `d5677a44` has13exact receipts/0history gaps.
+New opt-in diagnostic reads selected live canvas1→5/40×40saves in source queues
+30..50with256attempt cap. Extra GetDesc/read-only nonblocking Lock/Unlock calls
+are explicitly separate from primary physical metadata; defaultoff adds none.
+Synthetic256attempt/247image/9refusal,ABI,error/x87,reentrant-driver/budget and
+forced-close tests pass; default physical32cases/eightplanes passes0extraLock/
+Unlock. Python8new and24existing API/physical/interval guard methods pass.
+
+Fresh original120extra-readback trace retains586057records/2403CPU oracles,
+verifiedquit0 and75auxiliary images/225extra driver calls/0refusals. Manifests and
+source hashes verify. Native CPU2403/2403matches;137admitted physical matches
+retain720exclusions. Auxiliary saved-buffer comparison67has5failures and8World
+publication exclusions. Original outputs remain external; operation order and
+all2403checkpoint hashes stay unchanged. CPU matches do not clear Aux failures.
+
+Three adjacent full/save inversions have actual Aux mapped-view hashes matching
+native current-source ROIs, while native saves hold earlier primary regions.
+Two later failures follow reuse ofbad saved regions. This supports a scoped
+transfer-phase model mismatch. Extra readback may affectcache/timing; original
+GPU/CPU/all-writer ownership and a safe general schedule remain unproved. Source
+and scope changes retain historical hashes/stages; no promotion. Step2 and all
+47/21closures remain open; steps3–7 not complete. No new scheduling or gameplay
+policy is applied by this diagnostic increment.
+
+
+## Approved DRAW-02 storage extension (2026-10-13)
+
+The user approved the prepared1344→1360GiB(1.328125TiB)working budget.
+The main checkout and DRAW-02 worktree policies agree;100GiB free reserve and
+automatic archivingoff remain enforced. No cleanup or archiving was performed.
+See [applied provenance](draw02-approved-storage-budget-20261013-02.json).
+The previous7GiB reservation refusal is retained as a historical capacity result,
+not an engine run or automatic-approval rejection. The committed auxiliary
+readback increment d40cd9ef has27exact history receipts with0gaps; this accounting
+adds no retrospective execution claim.
+
+Step2 remains active: the fresh auxiliary witness has5saved-buffer mismatches
+despite2403matching CPU checkpoints. Next validate the current defaultoff
+observer with a bounded original/control capture, preserving failed denominators
+and exact request bindings before any transfer-phase policy. All47journey and
+21operation closures and steps3–7 remain open.
+
+
+## Step2 bounded offline COPY phase correction (2026-10-13)
+
+The approved1360GiBpolicy is committed as29628ab7;eight exact parent/current
+receipts review with0history gaps. A fresh current-code auxiliary-defaultoff
+original120 retains549191records/2406oracles/859primary planes, actualquit0 and
+verified source/manifests. Auxiliary and worker-prefix flags arefalse and no
+auxiliary sidecar is present. Default native replay completes but fails one
+1600pixel canvas2checkpoint1459/seq194077;139admitted physical comparisons match
+with720exclusions.2301COPYrequests bind,155extra API entries/247return reversals
+and1567bound/3704unbound storage queries remain explicit.
+
+The separately authored [offline phase policy](draw02-copy-phase-policy.md)
+requires exact restore/full/save worker order, adjacent inverted full/save
+producer returns, bounded supported geometry/callers/keys and no other observed
+draw/lifetime during the full interval, outsideWorld. Restore/save cursor regions
+may differ because the intervening full worker overwrites the whole primary.
+Selection uses metadata only; original pixel outcomes never select a repair.
+Only the two payload-free COPYbodies transpose while sequential IDs remain in
+place. Every checkpoint/oracle stays required. Default replay remains unchanged.
+
+Seven policy guards and compact hash-denominator guards pass. The auxiliary
+cohort admits29triples/8refusals:all2403CPU checkpoints andall67admitted Aux
+buffers now match, retaining8World exclusions. The independent current defaultoff
+cohort admits25triples/6refusals and all2406full-plane hashes match, including its
+failed default checkpoint. Hash-only replay retains every ordinal/sequence/canvas/
+extent and freshly computed full-plane SHA; mismatch pixel counts would remain
+unknown failures. Earlier fiveAux, two priorCPU and onelegacyCPU failure reports
+and hashes are unchanged. No original bytes become native inputs.
+
+The older failed control metadata admits35triples/5refusals, but its0.5GiBnative
+reservation is refused at1360.3197GiBworking/122.9978GiBfree. No replay launched;
+those two old CPU failures are not claimed repaired. Shared storage includes other
+writers and the guard is not a quota. No cleanup/archive was performed. Relative
+CLI/internal binding path mistakes were refused before native execution; corrected
+absolute-path runs above are separately retained. First synthetic packing typo
+and overly strict first-plan region equality remain historical artifacts.
+
+Reassessment: the measured saved-transfer phase mismatch has a validated bounded
+offline correction in two cohorts. Step2 still requires all-writer/view/lifetime
+and source-to-frame/output-route accounting plus independent diagnostic cadence
+and semantic controls. Source changes leave old default-comparison evidence stale;
+new source/contract-bound results do not refresh its hashes or promote stages.
+All47journey/21operation closures and steps3–7 remain open. Additional experiments
+remain storage-preflight blocked pending a budget change or explicitly authorized
+cleanup; coverage accounting and the incremental commit can finish independently.
+
+
+## Approved worktree storage extension (2026-10-13)
+
+The user approved the prepared worktree-only1360→1376GiBpatch. The worktree
+policy now retains100GiBfree and automatic archivingoff, explicitly passed to
+the main guard using `--policy <this-checkout>/tools/working-retention.json`.
+Concurrent main policy removal of its fixed cap is preserved; no main files,
+cleanup or archives were changed. Applied hashes/provenance are retained in
+[budget04](draw02-approved-storage-budget-20261013-04.json). Older main-and-worktree
+proposal03was never applied because its main-file preconditions became stale.
+
+The committed correction e1d668e2 has27exact parent/current receipts and0history
+gaps. Its two validated cohorts retain all2403CPU/67Aux and2406independent
+checkpoint identities. Source/frame ownership and all47/21closures remain open;
+step2 stays active. Resume the older failed cohort's compact replay under this
+explicit1376GiBpolicy, preserving its historical two1600pixel failures until
+fresh execution establishes this policy's result.
+
+
+## Step2 third-cohort correction and repeated-input cadence control (2026-10-13)
+
+Approved worktree1376GiBpolicy is committed asd73e41d8;its eight exact receipts
+review with0gaps. Explicit main-guard `--policy` preflight admits the previously
+refused older cohort's0.5GiBcompact replay. Fresh policy02matches all2400
+checkpoint hashes, including CP1352and1437's two historical1600pixel failures.
+It admits35metadata triples/5refusals, preserves every original plane/identity,
+rechecks original manifests and does not use expected pixels as native input.
+The three policy cohorts now match7209CPU checkpoints and67admitted Auxbuffers.
+Historical default failures and the request-ID-free legacy failure stay immutable.
+
+A fresh original counter/menu/input-only control runs the same31action Results
+schedule, with drawing/source/Wine/display observers disabled. It retains619
+complete advancing windows, originalquit0 and verified source/manifests. Four
+cadence guard methods pass. Gameplay2157records/109snapshot ticks include1689
+movement/287health-reduction/36melee-return records and14finalactive actors; those
+are passive samples, not semantic selection/tooltip/pause or exact-work proof.
+The four-diagnostic timing comparison is refused before execution at
+1376.5434GiBworking/106.6323GiBfree/reserve0.01GiB. No timing result is inferred
+from the completed control alone. Shared writers and finite policy remain explicit.
+
+Reassessment: the bounded metadata transfer correction validates a third cohort;
+step2still needs all-writer/view/lifetime/source-frame/route closure and
+independent diagnostic timing and semantic controls. All47/21closures and
+steps3–7remain open. No status promotion, gameplay change or old-hash refresh.
+Read-only cleanup review identifies a2.714GiB orphaned temporary Git-base
+checkout:6914files all match immutable d40cd9efblobs, no tracked files/pins/
+research references. Unprivileged host lsof finds no matching handles but warns
+about inaccessible Docker mounts; privileged inspection requires a password.
+The exact hash-bound candidate/script is prepared, not permission to delete.
+No cleanup occurred. Required temporary Git accounting now uses conventional
+/var/tmp on the second NVMe; the cold archive and main100GiBreserve are preserved.
+
+
+## Step2 approved temporary-checkout cleanup and storage reassessment (2026-10-13)
+
+The user explicitly approved the prepared orphaned accounting-checkout cleanup.
+Immediate verification rechecks all6914file hashes/sizes, immutable Git blobs,
+exact membership, pins, tracked-file absence and visible host activity. Only the
+2.714GiBtemporary source snapshot is removed; no original media, engine evidence,
+registered worktree or cold archive is deleted. Docker mount visibility remains
+limited and no complete privileged process-visibility claim is made. Applied
+provenance is retained in `draw02-approved-orphan-cleanup-20261013-01.json`.
+
+The third-cohort commit58016304has eight exact parent/current receipts and0history
+gaps. Four-run cadence comparison02is still refused before launch: shared working
+usage1379.5737GiB/free103.8481GiB/reserve0.01GiB exceeds the explicit1376GiBcap.
+No timing comparison is inferred. The100GiBphysical reserve remains required.
+Further cleanup or a budget change is not included in this approval.
+
+Reassessment: step2stays active; bounded COPY correction remains7209CPU/67Aux
+matches across three cohorts, while complete all-writer/view/lifetime/source-frame/
+route accounting and independent timing/semantic controls remain open. Step1is
+complete; all47/21closures and steps3–7remain open. This storage-provenance update
+does not promote engine status, change gameplay or refresh historical hashes.
+
+
+## Step 2 repeated-input timing comparison and next lifetime review (2026-10-14)
+
+The user instructed continued execution after the prepared worktree-only cap
+change. The exact patch raises 1376 to 1392 GiB, preserves the 100 GiB free-space
+reserve and disabled automatic archiving, and leaves concurrent main files
+unchanged. Applied provenance is retained in
+`draw02-approved-storage-budget-20261014-05.json`. The preceding cleanup commit
+5d495793 has seven exact parent/current receipts and zero history gaps.
+
+Preflight 03 refuses at 99.2326 GiB free before launch. After shared storage
+pressure falls, retry 04 admits 1377.6518 GiB working / 106.5616 GiB free with
+a 0.01 GiB reservation. It revalidates raw cadence and process-exit journals,
+all 31 executed schedule actions, preferences and counter/input binary hashes.
+Each of four diagnostic comparisons retains 120 queued update intervals. The
+control median is 56.24155 ms; diagnostic medians are 454.9322, 426.1348,
+459.51535 and 432.4888 ms, with ratios 8.0889, 7.5769, 8.1704 and 7.6898.
+These descriptive run measurements show expensive diagnostics; randomized
+workload and capture duration differ, so identical work, exclusive instrumentation
+cost, unobtrusive gameplay and 60 FPS remain unproved. No original game is rerun.
+
+Reassessment: the pending bounded timing comparison now has a retained result.
+Step 2 still needs complete writer/view/lifetime/source-frame/route and semantic
+accounting. Next inspect temporal QueryInterface aliases and CPU/DC lease exposure
+in the retained 120-update original capture using the existing guarded analyzer.
+All 47 journey requirements, 21 operations and steps 3–7 remain open. No engine
+status promotion, gameplay change, further cleanup or historical hash refresh.
+
+
+## Step 2 temporal mutator relationships (2026-10-14)
+
+Commit 0107fe2c applies the authorized worktree1392 GiB cap and retains the four-run
+120-interval cadence comparison. Its twelve exact parent/current receipts review
+with zero history gaps. Physical free-space protection remains independent.
+
+Offline lifetime analysis of the pinned current auxiliary-disabled120-update
+original capture retains74 successful query links,1804 matched CPU/DC leases,
+zero lease gaps/remaining leases and139 observed zero-reference retirements.
+Of859 physical witnesses,468 overlap another observed open lease and none overlap
+a lease on a query-linked source/destination.570 overlap a conservative mutator.
+These are observed interface lifetimes, not complete backing-storage ownership.
+
+The refined analyzer classifies local generations/query aliases only while each
+listed competitor's original body overlaps the witness interval. Queries after
+that body returns cannot repair its classification; failed queries, attachment
+acquisition and unrelated generations remain unresolved. The256-entry listing
+limit retains its full unlisted denominator. Common read sources cannot prove
+writes, disjoint storage or exclusive frame ownership. Six added alias guards,
+ten existing lifetime guards and eight interval guards pass.
+
+Fresh analysis02 preserves every pre-change lifetime result field.139 witnesses
+have217 known-shared BltFast competitors;515 have2052 unresolved competitors,
+including84 witnesses with both categories. No competitors are unlisted here.
+Pre-change analysis01 preserves its older source hashes rather than refreshing
+them. Both results are static pinned-journal analyses; original code is not rerun.
+
+Reassessment: temporal alias classification makes570 observed overlapping
+witnesses more explicit but cannot close unknown aliases/raw writers, whole
+source lifetimes, source-frame ownership, all output routes or semantic actions.
+Step2 remains active and all47/21closures plus steps3–7 remain open. No native
+pixel parity, driver completion, new PE32 forwarding or live replacement claim.
+
 ## Step 2 diagnostic source concurrency and storage checkpoint (2026-10-12 UTC)
 
 The isolated actor-latch branch integrates the three committed cursor mutex
@@ -1937,3 +3432,369 @@ full 47-journey/21-operation acceptance and steps 3–7 are not promoted.
 The b030d7fc..9a5f14b6 committed range was reviewed against 38 exact file
 receipts with zero gaps. Source census, preserved evidence fingerprints and
 exact current review accounting accompany this increment.
+
+
+## Step 2 committed diagnostics integration (2026-10-14)
+
+The temporal mutator classifier is committed as2b4bb1f with eleven exact receipts
+and zero gaps. The committed selection branch7976a431 contributes twelve increments
+and409 exact first-parent file receipts, including its merge, with zero gaps. Its
+uncommitted register and main concurrent work are excluded. Fourteen imported
+native policies remain partial; old source hashes and original evidence stay
+historical. This combines actor latches, owned-source mapping/binding, observed
+write epochs, protected writer tracing and current-stream GPU completion.
+
+Conflict resolution retains producer snapshots plus fences before worker-return
+publication, atomic resource stop/pending accounting plus write epochs, both sets
+of capture controls, direct original process-exit verification and strict actual
+action/timing checks. Counter-only runs exclude all drawing diagnostics. Two
+resolution-helper errors were caught before staging/testing and reconstructed
+from exact Git merge inputs. The first GPU harness build and peer-service inventory
+invocation failures are preserved; their corrected reruns have independent IDs.
+
+Fresh combined-tree results:156 Python guard methods across23 modules pass;
+owned PE32 writer12cases, source-version13cases and GPU11cases pass. Resource
+mapping validates post-close forwarding, pending stop and midcall-incomplete
+refusal. Physical and legacy API fixtures each pass32callback cases/eight planes
+and eight reentrant driver threads; physical mode adds zero observer Lock/Unlock.
+GPU tests exercise the actual producer-point recorder with a clobbering getter
+before/after the original callback and before the fake fence. They preserve
+stack/x87/LastError and stop six fence failures before worker-return publication.
+
+The6GiB fixture guard admits1352.4241GiBworking/129.6808GiBfree; private prefixes
+remain isolated and the1392/100policy is preserved. No further cleanup or archive.
+
+Reassessment: combined native guards pass; current-original acquisition and
+source/backing ownership, all writers/contexts/routes and semantic outcomes
+remain open. A second mapping and unhooked direct writes explicitly escape the
+respective guards. Imported original GL evidence is software-only and reaches115
+updates rather than the required120. Step2 remains active; all47/21closures and
+steps3–7 remain open. No historical-hash refresh or engine status promotion.
+
+
+## Step 2 GPU recorder teardown regression (2026-10-14)
+
+The merged original-active pilot first selected the X11-only delivery library,
+so the EGL interval could not close. Correcting that selection produced closed
+API/EGL/producer, source-version, worker-packet and GPU journals, followed by
+original exit99. Both failed acquisitions remain retained; closed journals
+do not override the actual process exit. The second pilot recorded2,065 signaled
+current-stream fences and142 restored source leases, without a recorded source
+fault. These counts are diagnostic observations from a failed acquisition.
+
+The owned postclose regression failed with exit216 because the GPU recorder
+remained enabled after its file closed. The fix disables recording before
+terminal emission/close and rechecks admission under the journal lock. GL calls
+remain outside that lock. A callback finishing after a forced close cannot write
+the closed file or fabricate a completed result; its started count makes strict
+terminal decoding reject the incomplete cohort. Subsequent workers forward to
+the original callback without additional GL calls, preserving x87 and LastError.
+This fixes recorder retirement, not global worker or context quiescence.
+
+[Fresh owned regression02](draw02-gpu-postclose-fixed-02.json) passes12 PE32 cases
+and6 decoder methods. Six existing fence failures still stop before worker-return
+publication. The postclose and forced-midwait cases use injected GL responses,
+not hardware. [Acquisition/development negatives01](draw02-gpu-teardown-acquisition-negative-01.json)
+preserve raw logs, failed reports and pre-fix source hashes. Causal attribution
+of original exit99 remains pending a fresh original-active rerun.
+
+[Offline cadence recheck05](draw02-integrated-repeat-cadence-05.json) passes the
+merged comparator's exact action ordinal/timing, settings and direct-exit checks
+on all four retained original diagnostic cohorts. The prior median ratios remain
+8.0889/7.5769/8.1704/7.6898; no new original timing capture, equal workload or
+exclusive diagnostic cost is asserted.
+
+The integrated committed history through6453a4c9 has715 exact first-parent file
+versions with zero missing receipts, including traversed merge ancestry.
+Retrospective accounting does not assert past gate passes or fresh validation.
+Step1 remains complete, step2 active, all47journey/21operation closures open and
+steps3–7 pending. Native statuses and historical evidence hashes are preserved.
+
+
+The fresh [combined original32 pilot03](draw02-integrated-original32-03.json)
+passes after the GPU teardown fix. The observed original child exits0 after
+MainQuit dispatch; both2,927-file manifest checks and unchanged original sections
+pass. The cohort has356 primary planes,2,302 consumed input calls,133 contiguous
+advancing updates,2,108 signaled current-context fences and matching observed
+source-version checks, and144 stable protected source pairs across272 completed
+commands. The bounded source map retains964,557,152bytes and makes8,432 additional
+public calls; diagnostic interference remains explicit. This fresh rerun supports
+the teardown correction, without rewriting or excluding the earlier exit99.
+
+Pilot32 does not request whole-update capture or producer/update binding. Its133
+advancing counter windows therefore do not establish the required120 complete
+source/frame/route cohort. Current-stream completion is software GL; alternate
+mappings, direct unhooked writes, all contexts and source backing ownership remain
+open. Semantic selection/tooltip/pause and native parity are unverified.
+No status promotion or47/21closure. The8GiB reservation admitted1374.5187GiBworking
+and108.3209GiBfree; the100GiB guard remained active. Further large capture sizing
+requires a new storage preflight.
+
+
+## Step 2 current combined source/delivery and lifetime reassessment (2026-10-14)
+
+GPU recorder teardown is committed as3f4614f8 after the actual staged gate and
+normal hook passed. The6453a4c9..3f4614f8 first-parent range has15 exact file
+receipts and zero gaps; no retrospective execution claim.
+
+[Current source/worker/EGL analysis01](draw02-integrated-source-egl-01.json)
+revalidates raw original32pilot03 API/results, submission, source-map, packet,
+worker/context and physical-peer records. All2,108 observed source submissions
+bind to workers. All355 eligible post-EGL copy regions and355 whole source images
+match, with170,400,000 whole-image RGB pixels and114,905,600 copied-region pixels.
+There are zero source/witness/boundary refusals, pixel mismatches or API mismatches
+before a matching EGL witness. Only355 eligible EGL images are compared; the
+capture's356 API planes are not relabeled as one global presented-frame catalog.
+Whole-image agreement outside a copied rectangle is corroboration, not attribution
+of every pixel to that command. No all-context/hardware/scanout or native proof.
+
+[Current backing analysis01](draw02-integrated-backing-01.json) replays unchanged
+protected writer/lifecycle records and passes4classifier tests. The2,179 unlocated
+cache entries cover49canvas identities:2,169 lack any observed Lock return during
+the window, and10precede later Lock returns. The analyzer's report scope now names
+the supplied completed capture rather than hardcoding the older original02. This
+label correction changes no classifier semantics or historical evidence. Absence
+of a Lock observation leaves backing unknown; it is not a GPU-only classification.
+
+[Current lifetime analysis01](draw02-integrated-lifetimes-01.json) passes16lifetime
+and8interval tests. It observes70successful query links,68alias groups,1,504CPU/DC
+leases,117retirements and zero lease gaps/remaining leases. Of356 physical witness
+intervals,100expose globally open leases, none expose known source/destination
+leases, and122contain competing mutators.28intervals have known shared competitors
+and113have unresolved listed competitors;19have both. None has unlisted competitors.
+Query knowledge is temporal; shared sources alone do not prove actual writes, and
+zero known lease exposure does not establish exclusive backing ownership.
+
+Reassessment: current bounded reference association is stronger; source allocation
+and alternate views, unhooked writers, all presentation routes,120whole-update
+source/action/frame identity and independently verified semantics remain open.
+Step2 remains active, all47journey/21operation closures and steps3–7 remain open.
+No native-policy status promotion and no historical fingerprint refresh.
+
+The main checkout's non-destructive storage inventory is retained at
+`working/retention/draw02-original32-storage-review-20261014-01.json`:1378.0236GiB
+working and107.6993GiBfree at its measured timestamp, with0.8595GiBreview candidates.
+Those are candidates, not deletion permission. Registered worktrees, pins, referenced
+evidence and current work remain preserved; no cleanup or archive executed. The
+worktree1392GiBcap/100GiBfree reserve and disabled automatic archive remain in force.
+
+
+## Step 2 combined whole120 acquisition and counter-gap reassessment (2026-10-14)
+
+Source/delivery/lifetime analysis is committed as7398fd20. Its13first-parent
+file versions have exact receipts with zero gaps; the normal staged gate/hook
+passed. Retrospective history does not grant new execution validation.
+
+[Combined whole120 attempt01](draw02-integrated-original120-01.json) times out
+without a completion marker or normal Quit. The retained partial decoder finds
+72closed World queue pairs/212,779records. The4,096source-definition cache limit
+follows the existing inline-input fallback:3,579later primitives retain inline
+inputs. It is not a silent truncation or demonstrated budget-caused failure.
+The passive input timing hypothesis is assessed by a fresh separate retry;
+original manifests verify before/after both runs. The failed raw/report remains
+immutable and is not admitted as120whole-source acquisition.
+
+[Retry02](draw02-integrated-original120-02.json) inserts30seconds of passive
+World dwell after camera/click actions and before the first Escape. It leaves
+game rules/balance unchanged and requests physical close only after exact source
+completion. The12GiB guard admits1370.4064GiBworking/112.3936GiBfree.
+The original child exits0 after MainQuit dispatch. The whole-source marker closes
+120queues,476,150records,2,176checkpoints and123,912,664bytes with zero producer
+failures, at the exact next accepted boundary122.589API physical planes and519
+post-EGL witnesses are retained.2,649current-context fences/version checks and
+231stable protected source pairs/447commands complete. Unknown cache layouts
+remain6,091; no allocation/alternate-view/all-writer proof.
+
+[Fresh source/worker/EGL replay01](draw02-integrated-original120-egl-01.json)
+binds all2,649source submissions to observed workers and matches519eligible copy
+regions and519whole source images, comprising249,120,000whole-image RGBpixels.
+Every refusal/mismatch remains accounted for; the result has none. RGB agreement
+outside the copied rectangle remains corroboration rather than attribution.
+No expected pixels become native application inputs; this is reference analysis.
+
+[Fresh counter/span replay01](draw02-original120-window-span-01.json) distinguishes
+source queues from accepted-update windows. The120queues span121advancing windows
+(sequence1..121). Sequence96advances counter95→96 with maintenance/animation/
+scheduler/pacer events and zero observed calls to the two selected World queue
+sites. The longest consecutive queue-bound accepted-sequence run is95; the
+separate engine counter run is130. Missing selected calls do not prove no rendering
+or complete alternate-route coverage. Their branch condition and all intervening
+presentation/source/action/lifetime ownership remain open; no denominator or
+required120window acceptance is waived.
+
+Reassessment: the bounded whole120source milestone now executes on the combined
+code, while the complete presented acquisition milestone stays open. Step2 remains
+active; all47journey/21operation closures and steps3–7 remain open. Historical
+source hashes/status axes are preserved; there is no engine/native parity,
+hardware/all-context, scanout or semantic status promotion.
+
+The user separately approved proposal729b818e to cold-relocate exactly9,475
+RGB565/RGBA payloads (7.1873GiB) from failed runsxzz9u077/uu724zzl. Validation
+passes without mutation. Attempts01/02refuse the existing archive lock with zero
+files moved; bounded waiting attempt03 remains pending. Preserve journals/logs/
+configuration/installations/source and latest successful captures. The proposal's
+generic pin label was inaccurate; its explicit inventories correctly show neither
+failed run has a root pin. The approved file list is unchanged. Archival is storage
+provenance, not new engine validation; restore exact paths before future analysis.
+
+
+## Approved failed-pixel cold relocation completed (2026-10-14)
+
+[Completed storage provenance02](draw02-approved-pixel-archive-provenance-02.json)
+records the exact user-approved9,475RGB565/RGBA payloads from failed
+run-xzz9u077/run-uu724zzl:7,717,289,984bytes (7.1873GiB) released. All source
+bytes/hashes survive in verified content-addressed cold objects and matching
+durable catalogs. Global lock attempts01/02/03move zero files; scoped attempt04
+moves3,262files then refuses a detected reader. Resume05first verifies those
+receipts/decompressed objects, then safely moves the remaining6,213files.
+Independent final verification checks all9,475approved paths/hash/size/pruned
+receipts and every unique object; both original manifests verify.
+
+The namespace is `/var/local/magic-and-mayhem-archive/scoped/
+draw02-failed-pixels-729b818e`. Its restore policy and preserved reports/scripts
+are under main `working/retention/draw02-failed-pixel-cold-archive-20261014-01/`.
+The existing global archive job and catalogs are not modified by this scoped
+relocation. Exact restore command from the main checkout:
+
+```sh
+python3 tools/working-retention.py --policy working/retention/draw02-failed-pixel-cold-archive-20261014-01/restore-policy.json restore <catalog-working-path>
+```
+
+Use the full catalog path beginning `working/worktrees/draw02-end-to-end/working/
+experiments/drawing-api-session/<failed-run>/capture/`; restore before reading
+archived inputs. This operation moves only the approved pixel files. Journals,
+logs, reports, configuration, installations, source and latest successful captures
+are preserved by this action. The original proposal's generic pin label was
+inaccurate; explicit inventories correctly show no root pins on these failed runs.
+The approved manifest itself is retained unchanged. The1392/100GiBguard remains
+in force and automatic archive stays disabled. Final verification preflight
+observes1357.2990GiBworking/125.3596GiBfree; this is a timestamped storage measure.
+
+Whole120acquisition is committed as2181f6b2; all15first-parent file versions have
+exact receipts with zero gaps. The normal staged gate/hook passes. No archival
+record refreshes historical engine hashes or grants new validation; step2,
+all47journey/21operation closures and steps3–7 remain open.
+
+
+## Step 2 original draw-transition branches and per-update acquisition (2026-10-14)
+
+The reviewed2181f6b2..07d11f52 range has4exact receipts and zero gaps, retained
+in coverage/draw02-update-accounting-start-history-20261014.json. No retrospective
+execution claim. The old source-read containment decoder/tests remain unchanged;
+a separate callback-prefix decoder handles the new journal.
+
+The opt-in [update interval recorder](draw02-update-interval-accounting.md) adds
+five byte-guarded original branch sites, cadenceV2, QPC surface/input/action call
+boundaries and source prefixes at every accepted callback. Comparison thunks
+replay original flags/branches, and scene/Results calls tail-forward once.
+Thirteen final owned PE32 paths pass14original forwards/state preservation and
+104single-byte guards; thirteen source boundary/refusal cases pass, including
+opening the journal only after directory configuration. Six route, five timing,
+four callback-prefix and six existing engine-window methods pass. The API fixture
+retains all42admitted surface/action intervals with32callback/eight-plane and
+competing-thread forwarding/state controls; its pixels/ACKs remain synthetic.
+The earlier timing declaration is historical after later callback additions.
+
+[Fresh original03](draw02-update-accounting-original120-03.json) executes on an
+isolated virtual X11 display with explicit softwareGL. Original MainQuit dispatch
+and child exit0 complete; both2927-file manifests and unchanged original sections
+verify. It retains120queues/494412source records/2202checkpoints,123accepted source
+callback prefixes,7782timed admitted calls,468API/401post-EGL witnesses and2340
+signaled current-context fences. Whole-source closure is ataccepted123 afterlast
+queue-bound122. The separate advancing-counter run is130, not complete source or
+presentation ownership. There are32callbacks with pending primitive frames.
+
+Accepted117/118advance simulation but do not select a World queue. Original
+suppression comparison passes; transition byte+100b2 is1 and its actual comparison
+is unequal, taking the original branch pastscene0046bbd3.117then tail-forwards the
+late Results push;119restores transition0, enters the scene, gets a nonzero target
+and selects its queue. High confidence within these observed instructions/windows.
+The earlier queue-free96samples World/Results/World and is consistent with this
+route; its absent comparison flags cannot be supplied retrospectively. No claim
+that queue-free updates produce no drawing or that all alternate routes are known.
+
+[Preserved startup negatives](draw02-update-accounting-startup-negative-01.json):
+01stops before Wine for absent graphical display;02never reaches Main after the
+new source journal opens before its recorder directory is initialized. The open
+is deferred to configured-directory installation and owned regression checks
+precede successful03. The104guard-count label is corrected after original03;
+its original source/claim fingerprints remain immutable and compiled observers
+are unchanged by that label correction.
+
+Reassessment: branch observation resolves the freshly encountered queue-free
+World path and retains every source prefix/input/API interval. Exact120-window
+physical/source accounting still needs its independent join and admission result;
+32pending-frame boundaries must stay explicit. Step2 remains active, all47/21
+closures and steps3–7 remain open. All backing aliases/direct writers, global
+presentation routes, hardware/scanout, semantic outcomes and native parity remain
+separate pending limits. No historical fingerprint refresh or status promotion.
+
+
+## Step 2 independent first120 accepted-window ledger (2026-10-14)
+
+Acquisition is committed ascdae27f0after the staged gate and normal hook.
+07d11f52..cdae27f0has37exact first-parent receipts and zero gaps, retained in
+coverage/draw02-update-routes-committed-history-20261014.json; no retrospective
+execution claim. This increment adds the independent interval join and seven
+controlled Python tests, preserving every source/read/physical ambiguity.
+
+[Raw interval analysis01](draw02-update-accounting-analysis-01.json) revalidates
+unchanged original API/physical/cadence/route/timing/producer/callback journals
+and current compiled observer hashes, and binds the independent pixel analysis.
+The fixed first120advancing windows are1..120, with118World queues and the two
+original transition skips117/118. All4304admitted original intervals and2086
+consumed input calls remain accounted for; a crossing call is listed in every
+overlapping window.289primary physical witnesses have actual source/worker/EGL
+links and matching copy regions/whole source images. No witness or queue-free
+update disappears from the denominator. Expected pixels remain reference-only.
+
+Every window retains source prefix boundaries, primitive opcode counts, queue
+IDs, input/menu observations, original call identities/results/time, primary
+frame paths/hashes, source point sets and exact worker/EGL witness provenance.
+19known/live source point sets cross the callback prefixes associated with their
+completed witness, so single-update ownership is not inferred. All their points
+remain in the result. Pending primitive frames at source boundaries remain
+explicit; input polls do not prove semantic action outcomes.
+
+Reassessment: the first120observed intervals are independently accounted for,
+while immutable per-update source/frame ownership, global routes/backing writers
+and semantic/native parity are unproved. The complete interval gate must refuse
+these gaps. Step2, all47journey/21operation closures and steps3–7 remain open;
+no historical result hashes or status axes change.
+
+
+## Step 2 complete120 interval admission and reassessment (2026-10-14)
+
+The interval ledger is committed as6f1fd306after the staged gate and normal hook.
+cdae27f0..6f1fd306has10exact first-parent receipts and zero gaps, retained in
+coverage/draw02-update-accounting-committed-history-20261014.json. No retrospective
+execution claim. This increment adds a strict admission command and six controlled
+methods; no boolean option can manufacture absent original ownership evidence.
+
+[Actual interval admission01](draw02-update-interval-gate-01.json) independently
+rejoins the unchanged raw first120accepted update observations and verifies the
+accounting result, current source fingerprints and immutable original/pixel report
+hashes. Both2927-file manifests pass. The command returns2for a valid rejected
+interval, retaining the result and every failure; it does not mark a failed
+admission as complete. Six controls cover denominator/queue-free preservation,
+pending/source/EGL/pixel contradictions, source/counter/time/frame/call mutations,
+unsupported global proof/complete promotion and unknown/missing/nonboolean gates.
+
+Four admission gates remain open: source callback boundaries are not quiescent,
+19known/live source point sets cross their associated update prefixes, global
+presentation routes are not closed, and all original backing aliases/writers are
+not established. There are34affected first120updates from pending boundary frames;
+this differs from32pending callbacks across the full123callback source capture.
+The successful289primary/source-worker/EGLpixel associations remain intact.
+A metadata snapshot crossing a callback prefix is not a missing or dead canvas,
+and a queue-free transition update is not an excluded interval.
+
+Reassessment: the three requested work items now have concrete branch findings,
+a complete accounting of the observed120-window records and an executed full
+admission result. **A complete owned/presented120-update interval is not achieved.**
+Before that milestone, identify and retain the primitive calls spanning accepted
+boundaries and their source acquisition times/lifetimes, then establish the
+encountered alternate presentation and backing-writer boundaries. Additional
+counter-only/queue-only captures cannot close those gates. Historical96still lacks
+its exact branch flags. Step2, all47/21closures and steps3–7 stay open, with no
+replacement/integration/comparison or broader status promotion.

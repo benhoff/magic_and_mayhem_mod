@@ -21,6 +21,9 @@ if metadata.get('wine_texture_entry'):os.environ['MNM_DRAW_WINE_TEXTURE_ENTRY']=
 else:os.environ.pop('MNM_DRAW_WINE_TEXTURE_ENTRY',None)
 if metadata.get('wine_blit_worker'):os.environ['MNM_DRAW_WINE_BLIT_WORKER']='1'
 else:os.environ.pop('MNM_DRAW_WINE_BLIT_WORKER',None)
+if metadata.get('aux_save_readback'):os.environ['MNM_DRAW_AUX_SAVE_READBACK']='1'
+if metadata.get('wine_worker_producer_points'):os.environ['MNM_DRAW_WINE_WORKER_PRODUCER']='1'
+else:os.environ.pop('MNM_DRAW_WINE_WORKER_PRODUCER',None)
 if metadata.get('wine_blit_packet'):os.environ['MNM_DRAW_WINE_BLIT_PACKET']='1'
 else:os.environ.pop('MNM_DRAW_WINE_BLIT_PACKET',None)
 if metadata.get('wine_worker_context'):os.environ['MNM_DRAW_WINE_WORKER_CONTEXT']='1'
@@ -41,11 +44,19 @@ if metadata.get('source_held_snapshot'):os.environ['MNM_DRAW_SOURCE_HELD_SNAPSHO
 else:os.environ.pop('MNM_DRAW_SOURCE_HELD_SNAPSHOT',None)
 if metadata.get('hud_input_point'):os.environ.update(MNM_DRAW_INPUT_POINT='1',MNM_DRAW_HUD_INPUT_POINT='1')
 if metadata.get('hud_state'):os.environ['MNM_DRAW_HUD_STATE_FILE']='Z:'+str(root/'capture/hud-state.bin').replace('/','\\')
+if metadata.get('copy_order'):os.environ['MNM_DRAW_COPY_ORDER']='1'
+else:os.environ.pop('MNM_DRAW_COPY_ORDER',None)
 if metadata.get('actor_latches'):os.environ['MNM_DRAW_ACTOR_LATCH_FILE']='Z:'+str(root/'capture/actor-latches.bin').replace('/','\\')
 if metadata.get('region_input'):os.environ['MNM_DRAW_REGION_INPUT_FILE']='Z:'+str(root/'capture/region-input.bin').replace('/','\\')
+if metadata.get('region_track_slot') is not None:os.environ['MNM_DRAW_REGION_TRACK_SLOT']=str(metadata['region_track_slot'])
+else:os.environ.pop('MNM_DRAW_REGION_TRACK_SLOT',None)
+if metadata.get('cursor_source_gate'):os.environ.update(MNM_DRAW_CURSOR_SOURCE_GATE='1',MNM_DRAW_CURSOR_SOURCE_GATE_FILE='Z:'+str(root/'capture/cursor-gate.bin').replace('/','\\'))
+else:os.environ.pop('MNM_DRAW_CURSOR_SOURCE_GATE',None);os.environ.pop('MNM_DRAW_CURSOR_SOURCE_GATE_FILE',None)
 if metadata.get('cursor_mutex'):os.environ['MNM_DRAW_CURSOR_MUTEX_FILE']='Z:'+str(root/'capture/cursor-mutex.bin').replace('/','\\')
 if metadata.get('semantic_state'):os.environ['MNM_DRAW_SEMANTIC_STATE_FILE']='Z:'+str(root/'capture/semantic-state.bin').replace('/','\\')
 else:os.environ.pop('MNM_DRAW_SEMANTIC_STATE_FILE',None)
+if metadata.get('update_routes'):os.environ['MNM_DRAW_UPDATE_ROUTES']='1'
+else:os.environ.pop('MNM_DRAW_UPDATE_ROUTES',None)
 if metadata.get('engine_cadence'):os.environ['MNM_ENGINE_CADENCE_FILE']='Z:'+str(root/'capture/engine-cadence.bin').replace('/','\\')
 else:os.environ.pop('MNM_ENGINE_CADENCE_FILE',None)
 if metadata.get('canvas_storage_transitions'):os.environ['MNM_DRAW_STORAGE_TRANSITIONS']='1'

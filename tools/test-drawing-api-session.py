@@ -5,16 +5,29 @@ from pathlib import Path
 from drawing_api_session import inspect,sha
 ROOT=Path(__file__).resolve().parents[1]
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--physical',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--update-routes',action='store_true');p.add_argument('--shared-fixture-prefix',type=Path);p.add_argument('--prefix-template',type=Path);p.add_argument('--existing-fixture-prefix',type=Path);p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--physical',action='store_true');a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
+    if sum(bool(x) for x in (a.prefix_template,a.existing_fixture_prefix,a.shared_fixture_prefix))!=1:p.error('Choose template, completed fixture prefix or serial owned suite prefix')
     names=['tests/test-drawing-call-intervals.py','runtime/drawing/call_intervals.h','runtime/drawing/physical_fence.h','runtime/drawing/session.c','runtime/drawing/selftest.c','runtime/shadow/win32_min.h','tools/build-drawing-session.py','tools/build-shadow-bridge.py','tools/test-drawing-api-session.py','tools/drawing_call_intervals.py','tools/drawing_api_session.py','tools/drawing_api_physical.py','tests/drawing-api-physical-peer.py','tools/drawing_presented_session.py']
+    if a.update_routes:names += ['runtime/drawing/update_timing.h','tools/drawing_update_timing.py','tests/test-drawing-update-timing.py','tools/drawing_fixture_prefix.py']
     claims=json.loads(a.claims.read_text()) if a.claims else None
     sources={n:sha((ROOT/n).read_bytes()) for n in names};sources.update(claims['sources'] if claims else {})
     if any(sha((ROOT/n).read_bytes())!=h for n,h in sources.items()):raise ValueError('Prospective sources changed')
     parent=ROOT/'working/tests/drawing-api-session';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));capture=run/'capture';capture.mkdir()
     s=importlib.util.spec_from_file_location('build',ROOT/'tools/build-drawing-session.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);dll=m.build(True);binary=dll.parent/'selftest.exe'
-    subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(run/'wineprefix')],check=True)
-    env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(run/'wineprefix'),WINEDEBUG='-all',MNM_DRAW_SESSION_DIRECTORY='Z:'+str(capture).replace('/','\\'))
+    lock=None
+    if a.shared_fixture_prefix:
+        from drawing_fixture_prefix import prepare
+        prefix,lock=prepare(ROOT,run,None,a.shared_fixture_prefix)
+    elif a.existing_fixture_prefix:
+        prefix=a.existing_fixture_prefix.resolve()
+        parent_fixture=(ROOT/'working/tests/drawing-cursor-source-gate').resolve()
+        if not prefix.is_relative_to(parent_fixture) or not (prefix.parent/'execution-status.json').is_file():raise ValueError('Require completed isolated fixture prefix')
+    else:
+        prefix=run/'wineprefix'
+        subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(prefix)],check=True)
+    env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all',MNM_DRAW_SESSION_DIRECTORY='Z:'+str(capture).replace('/','\\'))
+    if a.update_routes:env['MNM_DRAW_UPDATE_ROUTES']='1'
     peer=None
     if a.physical:
         env['MNM_DRAW_SESSION_MODE']='physical'
@@ -49,9 +62,14 @@ def main():
             if report['call_intervals']['frames_with_other_thread_mutations']!=8:raise ValueError('Competing writes escaped interval accounting')
             report['competing_thread_calls']=8
             report['scope']='Synthetic32PE32 original callback cases plus eight separate failed mutators on competing driver callback threads/eight successful primary API fences, exact result/LastError/x87 and single original callback with zero observer Lock/Unlock calls. Synthetic ACK/pixels only; no original game, real X11 capture, source ownership or full journey.'
+        if a.update_routes:
+            from drawing_update_timing import decode
+            report['update_timing']=decode((capture/'update-call-timing.bin').read_bytes(),(capture/'session.bin').read_bytes())
+            subprocess.run(['python3',str(ROOT/'tests/test-drawing-update-timing.py')],check=True)
         if claims:report['claims']=claims['claims']
         a.report.parent.mkdir(parents=True,exist_ok=True);a.report.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'success':True,'scripted_com_cases':32,'primary_planes':8}))
     finally:
         if peer and peer.poll() is None:peer.terminate();peer.wait(timeout=5)
         subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
+        if lock is not None:lock.close()
 if __name__=='__main__':main()

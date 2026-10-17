@@ -3,7 +3,7 @@ from statistics import median
 
 DISABLED = ('session_producers','producer_samples','source_byte_witness','source_readonly_lease','source_worker_lease',
             'wine_gpu_completion','source_write_trace','wine_source_version','wine_source_map_bounded','wine_source_map','wine_source_descriptor','source_pending_copy','source_held_snapshot','cursor_mutex','actor_latches','region_input','hud_state','hud_input_point','campaign_guidance','semantic_state','campaign_pause','canvas_storage_transitions','whole_updates','producer_update_binding','wine_submission',
-            'wine_texture_entry','wine_blit_worker','wine_blit_packet','wine_worker_context',
+            'wine_texture_entry','wine_blit_worker','wine_blit_packet','wine_worker_context', 'copy_order','aux_save_readback','close_physical_on_source_complete','cursor_source_gate','wine_worker_producer_points',
             'wine_resource_copy','wine_resource_map','wine_map_storage_point','wine_client_memory','wine_retained_map_source',
             'egl_physical','x11_delivery_library','physical_peer')
 

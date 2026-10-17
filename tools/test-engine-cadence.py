@@ -15,12 +15,17 @@ ROOT=Path(__file__).resolve().parents[1]
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--claims',type=Path,required=True);args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--shared-fixture-prefix',type=Path);parser.add_argument('--claims',type=Path,required=True);args=parser.parse_args()
     declaration=json.loads(args.claims.read_text())
     if any(sha(ROOT/p)!=h for p,h in declaration['sources'].items()):raise ValueError('Changed fixture source claims')
     parent=ROOT/'working/tests/engine-cadence-controls';parent.mkdir(parents=True,exist_ok=True)
     out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
-    env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(out/'wineprefix'),WINEDEBUG='-all')
+    lock=None
+    prefix=out/'wineprefix'
+    if args.shared_fixture_prefix:
+        from drawing_fixture_prefix import prepare
+        prefix,lock=prepare(ROOT,out,None,args.shared_fixture_prefix)
+    env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all')
     report=dict(success=False,claims=declaration['claims'],sources=declaration['sources'])
     try:
         spec=importlib.util.spec_from_file_location('cadence_build',ROOT/'tools/build-engine-cadence.py')
@@ -53,12 +58,13 @@ def main():
             except ValueError:rejected+=1
             else:raise ValueError('Malformed engine trace length admitted')
         report.update(decoder_refusals=rejected,sources_unchanged=all(sha(ROOT/p)==h for p,h in report['sources'].items()),
-            checks='Seven PE32 paths: all returned registers except physical ESP, flags,512B x87/SSE and LastError; ten independent original forwards; marker stores; volatile-ECX ANI snapshot;76 mutated guard bytes; bounded recorder overflow; strict decoder controls.')
+            checks='Thirteen PE32 paths: all returned registers except physical ESP, flags,512B x87/SSE and LastError; fourteen independent original forwards; marker stores; volatile-ECX ANI snapshot;104 mutated guard bytes; optional suppression/transition comparisons, scene/results tail-forwards and both target branches; bounded recorder overflow; strict decoder controls.')
         if not report['sources_unchanged']:raise ValueError('Fixture sources changed')
         report['success']=True
     except (OSError,ValueError,subprocess.SubprocessError) as error:report['error']=str(error)
     finally:
-        if (out/'wineprefix').exists():subprocess.run(['wineserver','-k'],env=env,timeout=10,check=True)
+        if prefix.exists():subprocess.run(['wineserver','-k'],env=env,timeout=10,check=True)
+        if lock is not None:lock.close()
         (out/'report.json').write_text(json.dumps(report,indent=2)+'\n')
     print('Report: '+str(out/'report.json'),flush=True);return 0 if report['success'] else 1
 

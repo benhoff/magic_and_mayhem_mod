@@ -3,6 +3,7 @@
 #include "../runtime/engine-cadence/observer.c"
 extern void fixture_invoke(void*,void*),fixture_original(void);
 extern void fixture_sequence(void),fixture_tick(void);
+extern void fixture_suppression(void),fixture_transition(void),fixture_target(void),fixture_target_zero(void),fixture_observed_target_zero(void);
 static u8 baseline[576] __attribute__((aligned(16)));
 static u8 observed[576] __attribute__((aligned(16)));
 static u32 original_calls;
@@ -44,6 +45,26 @@ void start(void){
   struct Patch* p=patches+i;for(u32 k=0;k<p->length;++k)*(u8*)(p->site+k)=p->bytes[k];
   require(same(p->site,p->bytes,p->length),14);
   for(u32 k=0;k<p->length;++k){*(u8*)(p->site+k)^=1;require(!same(p->site,p->bytes,p->length),15);*(u8*)(p->site+k)^=1;}
+ }
+ /* Optional route thunks replay the exact comparisons/branches and preserve
+  * the original call-site return PC on both tail-forwards. */
+ *(u8*)0x46bba3=0xc3;*(u8*)0x46bbab=0xc3;
+ const u8 available[]={0xbf,1,0,0,0,0xc3},missing[]={0xbf,2,0,0,0,0xc3};
+ for(u32 i=0;i<6;++i){*(u8*)(0x4fd53c+i)=available[i];*(u8*)(0x4fd5ad+i)=missing[i];}
+ branch(0x4fd280,(u32)&fixture_original);branch(0x557040,(u32)&fixture_original);
+ void (*route_originals[])(void)={fixture_suppression,fixture_transition,(void*)0x4fd280,(void*)0x557040,fixture_target,fixture_target_zero};
+ void (*route_entries[])(void)={cadence_draw_suppression,cadence_draw_transition,cadence_scene,cadence_results,cadence_target,fixture_observed_target_zero};
+ u32 prior=count;
+ for(u32 i=0;i<6;++i){
+  SetLastError(0x77);fixture_invoke(route_originals[i],baseline);u32 expected_error=GetLastError();
+  SetLastError(0x77);fixture_invoke(route_entries[i],observed);
+  require(GetLastError()==expected_error&&same((u32)baseline,observed,36)&&same((u32)baseline+48,observed+48,512),50+i);
+ }
+ require(original_calls==14&&count==prior+6&&rows[count-2][19]==1&&rows[count-1][19]==0,56);
+ for(u32 i=0;i<sizeof(route_patches)/sizeof(*route_patches);++i){
+  struct Patch* p=route_patches+i;for(u32 k=0;k<p->length;++k)*(u8*)(p->site+k)=p->bytes[k];
+  require(same(p->site,p->bytes,p->length),57);
+  for(u32 k=0;k<p->length;++k){*(u8*)(p->site+k)^=1;require(!same(p->site,p->bytes,p->length),58);*(u8*)(p->site+k)^=1;}
  }
  count=LIMIT;cadence_record(registers,5);require(count==LIMIT&&dropped==1,16);
  ExitProcess(0);

@@ -75,7 +75,7 @@ static struct Hook {u32 address,length,pop;u8 bytes[10];void(*entry)(void);i32 r
  {0x58d370,8,12,{0x51,0x56,0x8b,0xf1,0x8d,0x54,0x24,0x04},producer_enter_56,-1}
 };
 static struct Surface {u32 object,id,pixels,width,height,stride,dirty,sampled;} surfaces[MAX_SURFACES];
-static struct Frame {u32 sp,tag,caller,ecx,edx,args[6],primitive,scratch,owner,bar[6],storage_call,storage_canvas;u8* record;} frames[MAX_FRAMES];
+static struct Frame {u32 sp,tag,caller,ecx,edx,args[6],primitive,scratch,owner,bar[6],storage_call,storage_canvas,copy_order_id;u8* record;} frames[MAX_FRAMES];
 static HANDLE file;
 static u8* continuous_map;
 
@@ -152,7 +152,8 @@ static void publication_close(void);
 static void drawing_update_points_close(void);
 static void storage_transitions_close(void);
 static void producer_initial_history_close(void);
-void canvas_producers_close(void){PRODUCER_TRACE_SCOPE;producer_initial_history_close();storage_transitions_close();drawing_update_points_close();continuous_failure(1,(u32)__builtin_return_address(0));publication_close();continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
+static void copy_order_close(void);
+void canvas_producers_close(void){PRODUCER_TRACE_SCOPE;producer_initial_history_close();copy_order_close();storage_transitions_close();drawing_update_points_close();continuous_failure(1,(u32)__builtin_return_address(0));publication_close();continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
 static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_map)||stopped)return;if(continuous_map){int deferred=continuous_defer(r,payload,n);if(deferred){if(deferred<0)canvas_producers_close();return;}}if(continuous_map && r[2]==MNM_PRODUCER_CHECKPOINT)r[14]=++oracle;if(sequence>=producer_record_budget()||bytes>producer_byte_budget()-96||n>producer_byte_budget()-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){continuous_failure(2,r[2]);canvas_producers_close();return;}bytes+=96+n;}
 /* V3 source snapshots live on the private producer heap. No original pointers
  * or destination pixels enter this cache; equality includes every state byte. */
@@ -383,6 +384,7 @@ static void raster_state(u8* record,u32 tag){u32* r=(u32*)record;if(r[2]!=MNM_PR
      else{u32 amplitude=r[16]?r[16]:get((void*)0x5e15f8);if(!amplitude||amplitude>8||get((void*)0x5f14d0)==0x7d00){fail(17,tag);amplitude=1;}period=amplitude*2;for(u32 j=0;j<16;++j)put(data+j*4,get((void*)(0x5f14d0+(amplitude*16+(j+phase)%period)*4)));}r[16]=period;
     
 }
+#include "drawing_copy_order.h"
 static void frame_enter(u32* registers,u32 tag){
  u32* args=registers+9;struct Frame f={0};f.tag=tag;f.caller=args[0];f.ecx=registers[6];f.edx=registers[5];f.sp=(u32)args+4+(tag==100?0:hooks[tag].pop);for(u32 i=0;i<6;++i)f.args[i]=args[i+1];
  f.owner=producer_trace_mode?GetCurrentThreadId():0;u32* nesting=producer_trace_depth(f.owner);
@@ -390,6 +392,7 @@ static void frame_enter(u32* registers,u32 tag){
  if(producer_trace_mode&&(tag==53||tag==55))bar_source_enter(&f);
  if(tag<=2)storage_transition_record(&f,1,0);
  if(tag!=100){f.primitive=tag==10||hooks[tag].raster>=0;if(!f.primitive||!*nesting)f.record=tag==54?bar_draw_request(&f):request(&f);if(f.primitive)++*nesting;}
+ copy_order_record(&f,1);
  for(u32 i=0;i<MAX_FRAMES;++i)if(__sync_bool_compare_and_swap(&frames[i].sp,0,0xffffffffu)){u32 sp=f.sp;f.sp=0xffffffffu;frames[i]=f;__atomic_store_n(&frames[i].sp,sp,__ATOMIC_RELEASE);args[0]=(u32)producer_leave;return;}
  if(f.record)HeapFree(producer_heap(),0,f.record);fail(16,tag);canvas_producers_close();
 }
@@ -491,7 +494,7 @@ void producer_leave_observe(u32* registers){
     if(minimap_owned&&f.tag==48){r[19]=get((void*)(f.ecx+0x6199));r[20]=get((void*)(f.ecx+0x619d));}
     if(r[2]==MNM_PRODUCER_FONT){u8* data=f.record+96+r[19];put(data,get((void*)0x6e1f88));for(u32 j=0;j<3;++j)put(data+4+j*4,*(u16*)(0x6e1f7c+j*2));copy(data+16,(void*)0x6f5dac,256);}
     else if(r[2]==MNM_PRODUCER_RASTER)raster_state(f.record,f.tag);
-    emit(r,f.record+96,r[18]);for(u32 j=0;j<MAX_SURFACES;++j)if(surfaces[j].id==r[3]){struct Surface* s=surfaces+j;if(!(r[2]==MNM_PRODUCER_COPY&&r[23]==MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED)&&((r[2]>=MNM_PRODUCER_FILL&&r[2]<=MNM_PRODUCER_RASTER)||r[2]>=MNM_PRODUCER_RGB_ADD)){++s->dirty;if(r[2]==MNM_PRODUCER_FILL||r[2]==MNM_PRODUCER_JPEG||r[2]==MNM_PRODUCER_COPY||r[2]==MNM_PRODUCER_FADE||r[2]==MNM_PRODUCER_MINIMAP)checkpoint(s,5);}break;}
+    emit(r,f.record+96,r[18]);copy_order_record(&f,2);for(u32 j=0;j<MAX_SURFACES;++j)if(surfaces[j].id==r[3]){struct Surface* s=surfaces+j;if(!(r[2]==MNM_PRODUCER_COPY&&r[23]==MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED)&&((r[2]>=MNM_PRODUCER_FILL&&r[2]<=MNM_PRODUCER_RASTER)||r[2]>=MNM_PRODUCER_RGB_ADD)){++s->dirty;if(r[2]==MNM_PRODUCER_FILL||r[2]==MNM_PRODUCER_JPEG||r[2]==MNM_PRODUCER_COPY||r[2]==MNM_PRODUCER_FADE||r[2]==MNM_PRODUCER_MINIMAP)checkpoint(s,5);}break;}
    }
   }
   if(publication_terminal&&!stopped){
@@ -555,7 +558,7 @@ int canvas_producers_install(void){
   if(producer_trace_mode){if((!session_producers&&!whole_update_capture&&limit!=MNM_PRODUCER_V3_QUEUES)||!minimap_owned)return 0;}
   else if(!batch_enabled||(minimap_owned&&!continuous_public_bind)||raster_first!=1||raster_last!=limit)return 0;
  }
- n=GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory)||!drawing_update_points_open()||!storage_transitions_open())return 0;
+ n=GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory)||(whole_update_capture&&!source_windows_open())||!drawing_update_points_open()||!storage_transitions_open()||!copy_order_open())return 0;
  for(u32 i=0;i<HOOKS;++i){if(i>=53&&!producer_trace_mode)continue;struct Hook* h=hooks+i;if(!readable(h->address,h->length))return 0;for(u32 j=0;j<h->length;++j)if(*(u8*)(h->address+j)!=h->bytes[j])return 0;u8* t=VirtualAlloc(0,h->length+5,0x3000,0x40);if(!t)return 0;copy(t,(void*)h->address,h->length);if(i==9)put(t+5,0x58b660-(u32)t-9);t[h->length]=0xe9;put(t+h->length+1,h->address+h->length-(u32)t-h->length-5);producer_trampolines[i]=(u32)t;}
  char name[260];u32 i=0;while(directory[i]){name[i]=directory[i];++i;}const char* suffix="\\canvas-producers.bin";while(*suffix)name[i++]=*suffix++;name[i]=0;if(!continuous_map){file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(file==(HANDLE)-1){file=0;return 0;}}
  u32 header[16]={0};copy(header,session_producers?MNM_PRODUCER_V5_MAGIC:whole_update_capture?MNM_PRODUCER_V4_MAGIC:limit>16?MNM_PRODUCER_V3_MAGIC:minimap_owned?"MNMPRO02":MNM_PRODUCER_MAGIC,8);header[2]=session_producers?5:whole_update_capture?4:limit>16?3:minimap_owned?2:1;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=producer_record_budget();header[6]=limit;if(session_producers||whole_update_capture){header[7]=session_producers?MNM_PRODUCER_V5_SESSION:MNM_PRODUCER_V4_WHOLE_UPDATE;header[8]=MNM_PRODUCER_V4_MAX_BYTES;}if(!continuous_map&&!write(file,header,64))return 0;bytes=64;

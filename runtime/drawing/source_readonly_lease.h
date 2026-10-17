@@ -11,6 +11,7 @@ static int source_lease_open(void){
 }
 static void source_lease_capture(struct Context* c,u32 phase){
  if(!source_lease_enabled||!c->observed||c->r[1]!=1||c->r[2]!=7||c->args[4]!=16)return;
+ if(c->cursor_gate_requested&&!c->cursor_gate_token)return;
  if(!source_lease_getter){void* scene=GetModuleHandleA("MnmScene.dll");source_lease_getter=scene?(SourceLease)GetProcAddress(scene,"SceneDrawingSourceLeaseV1"):0;if(!source_lease_getter)ExitProcess(99);}
  if(phase==2)source_worker_lease_wait(c);
  u32 r[32]={0};r[1]=phase;r[2]=c->r[29];r[3]=c->r[6];r[4]=GetTickCount();r[5]=c->r[4];

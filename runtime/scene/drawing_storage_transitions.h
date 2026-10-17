@@ -1,5 +1,6 @@
 /* Diagnostic identities are observations within one process, never ownership. */
 #include "drawing_storage_caller.h"
+#include "../../protocols/include/mnm/drawing_storage_transitions_v5.h"
 static HANDLE storage_transition_file;
 static u32 storage_transition_records,storage_transition_calls,storage_transition_returns;
 static u32 storage_transition_addresses[512],storage_transition_address_count;
@@ -18,7 +19,7 @@ static int storage_transitions_open(void){
  char name[260];path(name,"canvas-storage-transitions-",0,".bin");
  storage_transition_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);
  if(storage_transition_file==(HANDLE)-1){storage_transition_file=0;return 0;}
- u32 h[16]={0};copy(h,"MNMCST02",8);h[2]=4;h[3]=96;h[4]=0x40209ca7;h[5]=131072;h[6]=512;
+ u32 h[16]={0};copy(h,MNM_STORAGE_TRANSITIONS_MAGIC,8);h[2]=MNM_STORAGE_TRANSITIONS_VERSION;h[3]=MNM_STORAGE_TRANSITIONS_ROW_BYTES;h[4]=0x40209ca7;h[5]=MNM_STORAGE_TRANSITIONS_MAX_ROWS;h[6]=MNM_STORAGE_TRANSITIONS_MAX_ADDRESSES;
  return write(storage_transition_file,h,64);
 }
 static void storage_transition_record(struct Frame* f,u32 phase,u32 result){
@@ -48,6 +49,9 @@ static void storage_transition_record(struct Frame* f,u32 phase,u32 result){
 static u32 storage_transition_query(u32* point,u32 route,struct Surface* s,void* storage,u32 row_pitch){
  if(!storage_transition_file)return 0;if(storage_transition_records>=131071)ExitProcess(99);
  u32 r[24]={0};r[0]=++storage_transition_records;r[1]=3;r[2]=++storage_transition_queries;r[3]=route;
+ /* Retain the numerical input even while a matching wrapper's Lock has not
+  * returned. Comparing its ID later must not promote the pending cache point. */
+ r[7]=storage_address_id((u32)storage);
  point[15]=r[2];
  if(point[2]&16){r[6]=2;
   if(s){r[5]=storage_address_id(s->pixels);for(u32 i=0;i<128;++i)if(storage_transition_epochs[i].canvas==point[6]){

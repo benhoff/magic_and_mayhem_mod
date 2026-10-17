@@ -32,6 +32,33 @@ def candidate_fixture():
 
 
 class StorageTransitions(unittest.TestCase):
+    def test_v5_known_input_matches_cache_and_legacy_reserved_remains_strict(self):
+        raw=bytearray(query_fixture());struct.pack_into('<I',raw,8,5);struct.pack_into('<I',raw,256+7*4,1)
+        self.assertEqual(decode(raw)['queries'][0]['input_address'],1)
+        struct.pack_into('<I',raw,8,4)
+        with self.assertRaises(ValueError):decode(raw)
+        struct.pack_into('<I',raw,8,5);struct.pack_into('<I',raw,256+7*4,2)
+        with self.assertRaises(ValueError):decode(raw)
+
+    def test_v5_pending_unknown_input_stays_separate_from_epoch_and_canvas(self):
+        raw=bytearray(query_fixture());struct.pack_into('<I',raw,8,5)
+        for word,value in [(4,0),(5,0),(6,0),(7,4),(10,131)]:struct.pack_into('<I',raw,256+word*4,value)
+        for word in range(14,20):struct.pack_into('<I',raw,256+word*4,0)
+        struct.pack_into('<I',raw,352+8*4,4)
+        result=decode(raw);self.assertEqual(result['queries'][0]['input_address'],4)
+        self.assertEqual(result['queries'][0]['epoch'],0);self.assertEqual(result['queries'][0]['metadata'][6],0)
+        for value in (513,5):
+            bad=bytearray(raw);struct.pack_into('<I',bad,256+7*4,value)
+            with self.assertRaises(ValueError):decode(bad)
+        struct.pack_into('<I',raw,256+7*4,0);struct.pack_into('<I',raw,352+8*4,3)
+        self.assertEqual(decode(raw)['queries'][0]['input_address'],0)
+
+    def test_v5_candidate_input_must_equal_its_query(self):
+        raw=bytearray(candidate_fixture());struct.pack_into('<I',raw,8,5);struct.pack_into('<I',raw,256+7*4,4)
+        result=decode(raw);self.assertEqual(result['candidates'][0]['input_address'],result['queries'][0]['input_address'])
+        struct.pack_into('<I',raw,352+18*4,3)
+        with self.assertRaises(ValueError):decode(raw)
+
     def test_candidate_offset_and_public_region_are_observation_only(self):
         r=decode(candidate_fixture());self.assertEqual(r['candidates'][0]['delta'],16)
         self.assertFalse(r['candidates'][0]['physical_alias_proved'])

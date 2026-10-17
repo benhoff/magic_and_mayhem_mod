@@ -6,11 +6,15 @@ from pathlib import Path
 from drawing_api_session import BUILD,sha
 from drawing_engine_windows import analyze
 from drawing_diagnostic_cadence import compare,results_action
+from drawing_process_exit import decode as decode_process_exit
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def executed_schedule(report,root=ROOT):
-    """Bind the successful input runner's actual actions to one declared file."""
+def executed_schedule(report, raw=None, name=None):
+    """Verify a selected declaration, or discover its unique executed schedule."""
+    root=ROOT
+    if isinstance(raw,Path) and name is None:
+        root=raw;raw=None
     observed=report.get('input_schedule',{})
     if observed.get('success') is not True or observed.get('error') or not observed.get('actions'):
         raise ValueError('Successful executed input schedule required')
@@ -23,41 +27,52 @@ def executed_schedule(report,root=ROOT):
             raise ValueError('Executed input action order/timing')
         actions.append({k:v for k,v in row.items() if k not in metadata});previous=end
     encode=lambda value:json.dumps(value,sort_keys=True,separators=(',',':'))
+    if name is not None:
+        if not isinstance(raw,bytes) or report['sources'].get(name)!=sha(raw):
+            raise ValueError('Declared input schedule fingerprint missing/different')
+        if encode(json.loads(raw).get('actions'))!=encode(actions):
+            raise ValueError('Executed input actions differ from declared schedule')
+        return sha(raw)
+    if raw is not None:raise ValueError('Explicit schedule bytes require a declared name')
     matches=[]
-    for name,digest in report['sources'].items():
-        path=Path(name)
-        if not name.startswith('tests/fixtures/drawing-journeys/') or not path.name.endswith('-schedule.json'):
+    for declared,digest in report['sources'].items():
+        path=Path(declared)
+        if not declared.startswith('tests/fixtures/drawing-journeys/') or not path.name.endswith('-schedule.json'):
             continue
         if path.is_absolute() or '..' in path.parts:raise ValueError('Unsafe declared input schedule')
-        raw=(root/path).read_bytes()
-        if sha(raw)!=digest:raise ValueError('Declared input schedule changed')
-        if encode(json.loads(raw).get('actions'))==encode(actions):matches.append(dict(path=name,sha256=digest))
+        data=(root/path).read_bytes()
+        if sha(data)!=digest:raise ValueError('Declared input schedule changed')
+        if encode(json.loads(data).get('actions'))==encode(actions):matches.append(dict(path=declared,sha256=digest))
     if len(matches)!=1:raise ValueError('Executed input schedule missing/ambiguous in declared sources')
     return matches[0]
 
-
-def read(path):
+def read(path,schedule,scheduled_bytes):
     raw=path.read_bytes();r=json.loads(raw)
     if not r.get('success') or r.get('source_sha256')!=BUILD or not r.get('original_drawing_active') or not r.get('original_manifest_verified_before_after') or not r.get('normal_original_quit_verified'):
         raise ValueError('Complete original-active counter reference required')
     trace=Path(r['experiment'])/'capture/engine-cadence.bin';observed=analyze(trace)
     if observed!=r['engine_update_observation']:
         raise ValueError('Recorded counter trace changed')
-    schedule=executed_schedule(r)
-    return r,dict(path=str(path),sha256=sha(raw),trace_sha256=sha(trace.read_bytes()),schedule_sha256=schedule['sha256'],schedule_path=schedule['path'])
+    quit=r.get('quit_observation',{})
+    if not quit.get('original_child_exit_code_verified') or not quit.get('dispatch_observed'):raise ValueError('Direct original process exit and Quit dispatch required')
+    exit_raw=(Path(r['experiment'])/'process-exit.bin').read_bytes();child=decode_process_exit(exit_raw)
+    if child!=quit.get('original_child_exit') or child['exit_code'] or sha(exit_raw)!=quit.get('process_exit_journal_sha256'):raise ValueError('Original child exit evidence changed')
+    schedule_sha=executed_schedule(r,scheduled_bytes,schedule)
+    return r,dict(path=str(path),sha256=sha(raw),trace_sha256=sha(trace.read_bytes()),schedule=schedule,schedule_sha256=schedule_sha,process_exit_sha256=sha(exit_raw))
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--control',type=Path,required=True);p.add_argument('--diagnostic',type=Path,action='append',required=True);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--control',type=Path,required=True);p.add_argument('--diagnostic',type=Path,action='append',required=True);p.add_argument('--schedule',type=Path,default=ROOT/'tests/fixtures/drawing-journeys/wine-submission-schedule.json');p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_text());sources=dict(claims['sources'])
     if any(sha((ROOT/n).read_bytes())!=h for n,h in sources.items()):raise ValueError('Prospective sources changed')
-    control,control_id=read(a.control);s=control['staging']
+    schedule=a.schedule.resolve().relative_to(ROOT).as_posix();scheduled_bytes=a.schedule.read_bytes();sources[schedule]=sha(scheduled_bytes)
+    control,control_id=read(a.control,schedule,scheduled_bytes);s=control['staging']
     if not control.get('cadence_control') or s['api_observer_enabled'] or s['producer_samples'] or s['wine_submission'] or s['x11_delivery_library'] or control['observer_mode']!='metadata':
         raise ValueError('Explicit counter-only control required')
     comparisons=[]
     for path in a.diagnostic:
-        r,identity=read(path)
+        r,identity=read(path,schedule,scheduled_bytes)
         if r.get('cadence_control') or not r['staging']['api_observer_enabled']:raise ValueError('Diagnostic drawing capture required')
         if results_action(r['staging'].get('results_key_hold_ms',60))!=results_action(s.get('results_key_hold_ms',60)):raise ValueError('Control Results key policy mismatch')
         if identity['schedule_sha256']!=control_id['schedule_sha256'] or r['staging']['preferences']!=s['preferences'] or r['input_binary_sha256']!=control['input_binary_sha256'] or r['staging']['binaries']['MnmEngineCadence.dll']!=s['binaries']['MnmEngineCadence.dll']:

@@ -130,3 +130,110 @@ semantic input-to-source outcomes, remaining movie/display routes and unobtrusiv
 acquisition remain unproved. Existing timing control measures median2.27×/
 p953.20×costfor120common queued updates; this is diagnostic acquisition.
 Steps3–7and full47journey/21operation admission remain outstanding.
+
+
+## Step 2 current combined source/delivery and lifetime reassessment (2026-10-14)
+
+GPU recorder teardown is committed as3f4614f8 after the actual staged gate and
+normal hook passed. The6453a4c9..3f4614f8 first-parent range has15 exact file
+receipts and zero gaps; no retrospective execution claim.
+
+[Current source/worker/EGL analysis01](draw02-integrated-source-egl-01.json)
+revalidates raw original32pilot03 API/results, submission, source-map, packet,
+worker/context and physical-peer records. All2,108 observed source submissions
+bind to workers. All355 eligible post-EGL copy regions and355 whole source images
+match, with170,400,000 whole-image RGB pixels and114,905,600 copied-region pixels.
+There are zero source/witness/boundary refusals, pixel mismatches or API mismatches
+before a matching EGL witness. Only355 eligible EGL images are compared; the
+capture's356 API planes are not relabeled as one global presented-frame catalog.
+Whole-image agreement outside a copied rectangle is corroboration, not attribution
+of every pixel to that command. No all-context/hardware/scanout or native proof.
+
+[Current backing analysis01](draw02-integrated-backing-01.json) replays unchanged
+protected writer/lifecycle records and passes4classifier tests. The2,179 unlocated
+cache entries cover49canvas identities:2,169 lack any observed Lock return during
+the window, and10precede later Lock returns. The analyzer's report scope now names
+the supplied completed capture rather than hardcoding the older original02. This
+label correction changes no classifier semantics or historical evidence. Absence
+of a Lock observation leaves backing unknown; it is not a GPU-only classification.
+
+[Current lifetime analysis01](draw02-integrated-lifetimes-01.json) passes16lifetime
+and8interval tests. It observes70successful query links,68alias groups,1,504CPU/DC
+leases,117retirements and zero lease gaps/remaining leases. Of356 physical witness
+intervals,100expose globally open leases, none expose known source/destination
+leases, and122contain competing mutators.28intervals have known shared competitors
+and113have unresolved listed competitors;19have both. None has unlisted competitors.
+Query knowledge is temporal; shared sources alone do not prove actual writes, and
+zero known lease exposure does not establish exclusive backing ownership.
+
+Reassessment: current bounded reference association is stronger; source allocation
+and alternate views, unhooked writers, all presentation routes,120whole-update
+source/action/frame identity and independently verified semantics remain open.
+Step2 remains active, all47journey/21operation closures and steps3–7 remain open.
+No native-policy status promotion and no historical fingerprint refresh.
+
+The main checkout's non-destructive storage inventory is retained at
+`working/retention/draw02-original32-storage-review-20261014-01.json`:1378.0236GiB
+working and107.6993GiBfree at its measured timestamp, with0.8595GiBreview candidates.
+Those are candidates, not deletion permission. Registered worktrees, pins, referenced
+evidence and current work remain preserved; no cleanup or archive executed. The
+worktree1392GiBcap/100GiBfree reserve and disabled automatic archive remain in force.
+
+
+## Step 2 combined whole120 acquisition and counter-gap reassessment (2026-10-14)
+
+Source/delivery/lifetime analysis is committed as7398fd20. Its13first-parent
+file versions have exact receipts with zero gaps; the normal staged gate/hook
+passed. Retrospective history does not grant new execution validation.
+
+[Combined whole120 attempt01](draw02-integrated-original120-01.json) times out
+without a completion marker or normal Quit. The retained partial decoder finds
+72closed World queue pairs/212,779records. The4,096source-definition cache limit
+follows the existing inline-input fallback:3,579later primitives retain inline
+inputs. It is not a silent truncation or demonstrated budget-caused failure.
+The passive input timing hypothesis is assessed by a fresh separate retry;
+original manifests verify before/after both runs. The failed raw/report remains
+immutable and is not admitted as120whole-source acquisition.
+
+[Retry02](draw02-integrated-original120-02.json) inserts30seconds of passive
+World dwell after camera/click actions and before the first Escape. It leaves
+game rules/balance unchanged and requests physical close only after exact source
+completion. The12GiB guard admits1370.4064GiBworking/112.3936GiBfree.
+The original child exits0 after MainQuit dispatch. The whole-source marker closes
+120queues,476,150records,2,176checkpoints and123,912,664bytes with zero producer
+failures, at the exact next accepted boundary122.589API physical planes and519
+post-EGL witnesses are retained.2,649current-context fences/version checks and
+231stable protected source pairs/447commands complete. Unknown cache layouts
+remain6,091; no allocation/alternate-view/all-writer proof.
+
+[Fresh source/worker/EGL replay01](draw02-integrated-original120-egl-01.json)
+binds all2,649source submissions to observed workers and matches519eligible copy
+regions and519whole source images, comprising249,120,000whole-image RGBpixels.
+Every refusal/mismatch remains accounted for; the result has none. RGB agreement
+outside the copied rectangle remains corroboration rather than attribution.
+No expected pixels become native application inputs; this is reference analysis.
+
+[Fresh counter/span replay01](draw02-original120-window-span-01.json) distinguishes
+source queues from accepted-update windows. The120queues span121advancing windows
+(sequence1..121). Sequence96advances counter95→96 with maintenance/animation/
+scheduler/pacer events and zero observed calls to the two selected World queue
+sites. The longest consecutive queue-bound accepted-sequence run is95; the
+separate engine counter run is130. Missing selected calls do not prove no rendering
+or complete alternate-route coverage. Their branch condition and all intervening
+presentation/source/action/lifetime ownership remain open; no denominator or
+required120window acceptance is waived.
+
+Reassessment: the bounded whole120source milestone now executes on the combined
+code, while the complete presented acquisition milestone stays open. Step2 remains
+active; all47journey/21operation closures and steps3–7 remain open. Historical
+source hashes/status axes are preserved; there is no engine/native parity,
+hardware/all-context, scanout or semantic status promotion.
+
+The user separately approved proposal729b818e to cold-relocate exactly9,475
+RGB565/RGBA payloads (7.1873GiB) from failed runsxzz9u077/uu724zzl. Validation
+passes without mutation. Attempts01/02refuse the existing archive lock with zero
+files moved; bounded waiting attempt03 remains pending. Preserve journals/logs/
+configuration/installations/source and latest successful captures. The proposal's
+generic pin label was inaccurate; its explicit inventories correctly show neither
+failed run has a root pin. The approved file list is unchanged. Archival is storage
+provenance, not new engine validation; restore exact paths before future analysis.

@@ -26,3 +26,19 @@ open at observer close. The combined run also closes 118 protected pairs and
 observations; no completed upload, immutable source lifetime or complete journey
 claim follows from a point association. Historical native parity was not rerun
 for this change, and the earlier refusal remains unresolved.
+
+
+## Query and recorder retirement
+
+The owned two-case observer fixture preserves12original forwards/error/FP and
+checks a forced close during the outside-lock export. Recheck the atomic flag
+under journal_lock before emission:the closed point journal remains160bytes
+and its missing query trace is refused. This provides no full module/IAT/timer
+quiescence or backing-storage ownership.
+
+Fresh combined original32after resource retirement fix retains1727closed public
+map intervals and actual gameexit0. All points are unknown:15live unknown,895
+transition-pending live unknown(flags131),817stopped.910observed wrapper Lock
+return epochs are separate. The current query record does not retain an input
+address ID for pending unknown points, so later-cache/return association requires
+a new versioned pointer-free identity and exact interval/owner checks.

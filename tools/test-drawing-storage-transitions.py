@@ -14,7 +14,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_text());sources=dict(claims['sources'])
-    for name in ('tools/test-drawing-storage-transitions.py','tests/drawing-storage-transitions-test.c','runtime/scene/producer_trace_guard.h','runtime/scene/drawing_storage_transitions.h','runtime/scene/drawing_storage_caller.h','runtime/scene/drawing_storage_candidates.h','tools/drawing_storage_transitions.py','tools/drawing_storage_point.py','tests/test-drawing-storage-transitions.py','runtime/shadow/win32_min.h'):sources[name]=sha((ROOT/name).read_bytes())
+    for name in ('tools/test-drawing-storage-transitions.py','tests/drawing-storage-transitions-test.c','runtime/scene/producer_trace_guard.h','runtime/scene/drawing_storage_transitions.h','runtime/scene/drawing_storage_caller.h','runtime/scene/drawing_storage_candidates.h','tools/drawing_storage_transitions.py','tools/drawing_storage_point.py','tests/test-drawing-storage-transitions.py','runtime/shadow/win32_min.h','protocols/include/mnm/drawing_storage_transitions_v5.h','tools/drawing_storage_query_returns.py','tests/test-drawing-storage-query-returns.py'):sources[name]=sha((ROOT/name).read_bytes())
     if any(sha((ROOT/name).read_bytes())!=digest for name,digest in sources.items()):raise ValueError('Prospective sources changed')
     parent=ROOT/'working/tests/drawing-storage-transitions';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
     imports=dict(ExitProcess=4,GetEnvironmentVariableA=12,GetLastError=0,SetLastError=4,InitializeCriticalSection=4,EnterCriticalSection=4,LeaveCriticalSection=4,GetCurrentThreadId=0,CreateThread=24,WaitForSingleObject=8,Sleep=4,CloseHandle=4,VirtualQuery=12,VirtualAlloc=16,VirtualProtect=16,CreateFileA=28,WriteFile=20)
@@ -33,11 +33,15 @@ def main():
         if process.returncode:raise ValueError('Sourcebyteexportfixture exit:'+str(process.returncode))
         from drawing_storage_transitions import decode
         observation=decode((capture/'canvas-storage-transitions-0000.bin').read_bytes())
-        if not observation['closed'] or observation['calls']!=7 or observation['observed_lock_return_epochs']!=4 or [q['status'] for q in observation['queries']]!=[2,1,3,0,0]:raise ValueError('Fixture transition journal differs')
+        if not observation['closed'] or observation['calls']!=8 or observation['observed_lock_return_epochs']!=5 or [q['status'] for q in observation['queries']]!=[2,1,3,0,0,0,0]:raise ValueError('Fixture transition journal differs')
+        from drawing_storage_query_returns import bind
+        query_returns=bind(observation)
+        if len(query_returns['bindings'])!=1 or query_returns['bindings'][0]['query']!=6 or query_returns['bindings'][0]['canvas']!=8 or query_returns['bindings'][0]['lock_return_epoch']!=5 or observation['queries'][-1]['input_address']:raise ValueError('Fixture query input/Lock return differs')
         subprocess.run(['python3',str(ROOT/'tests/test-drawing-storage-transitions.py')],check=True)
+        subprocess.run(['python3',str(ROOT/'tests/test-drawing-storage-query-returns.py')],check=True)
         results=[dict(case='observed-transition-state-and-reuse',actual_exit=0,observation=observation)]
         if any(sha((ROOT/name).read_bytes())!=digest for name,digest in sources.items()):raise ValueError('Fixture sources changed during execution')
-        report=dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),cases=results,pointer_free_observation=True,original_hook_abi_executed=False,original_game_executed=False,source_storage_owned=False,scope='Actual PE32 transition journal recording with owned mock wrappers, same pointer across repeated Lock returns, null return and wrapper recreation with reused storage address. No original engine, real COM/allocation lifetime or hook ABI execution.')
+        report=dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),cases=results,query_returns=query_returns,pointer_free_observation=True,original_hook_abi_executed=False,original_game_executed=False,source_storage_owned=False,scope='Actual PE32 V5 transition journal recording with owned mock wrappers, same pointer across repeated Lock returns, null return, wrapper recreation with reused storage address, pending numerical input ID joined to its later exact Lock return, and null query input. No original engine, real COM/allocation lifetime, source ownership or hook ABI execution.')
         a.report.parent.mkdir(parents=True,exist_ok=True);a.report.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(dict(success=True,calls=observation['calls'],epochs=observation['observed_lock_return_epochs'])))
     finally:subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
 

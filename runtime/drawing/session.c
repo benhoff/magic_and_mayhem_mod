@@ -9,7 +9,7 @@ API void WIN LeaveCriticalSection(void*);
 API i32 WIN VirtualFree(void*,u32,u32);
 struct Table {void** vt;void* original[36];u32 kind;};
 struct Identity {void* object;u32 id;};
-struct Context {u32 r[32],args[6],observed,interval_related,source_lease;};
+struct Context {u32 r[32],args[6],observed,interval_related,source_lease,cursor_gate_requested,cursor_gate_token,cursor_gate_reason,cursor_gate_point[32];};
 static struct Table tables[64];static u32 table_count;
 static struct Identity identities[1024];static u32 next_identity;
 static HANDLE journal;static char directory[512];
@@ -26,15 +26,19 @@ static int write(HANDLE f,const void* data,u32 n){u32 count;return WriteFile(f,d
 static u32 physical_enabled,physical_byte_limit=1024u*1024u*1024u;
 #include "call_intervals.h"
 #include "source_points.h"
+#include "update_timing.h"
 static struct Table* table(void* object){void** vt=*(void***)object;for(u32 i=0;i<table_count;++i)if(tables[i].vt==vt)return tables+i;return 0;}
 static u32 identity(void* object){if(!object)return 0;for(u32 i=0;i<1024;++i)if(identities[i].object==object)return identities[i].id;for(u32 i=0;i<1024;++i)if(!identities[i].object){identities[i].object=object;return identities[i].id=++next_identity;}++gaps;return 0;}
 static void emit(u32* r){if(!journal)return;r[0]=++records;if(records>262144||!write(journal,r,128)){++drops;enabled=0;}}
 static void wine_submission_close(u32);
 static void source_bytes_close(u32);
 static void source_lease_close(u32);
+static void drawing_cursor_gate_close(u32);
+static void aux_save_close(u32);
 static u32 wine_blit_worker_pending;
+static u32 wine_resource_pending;
 static void source_worker_lease_packet(u32,u32,u32,u32);
-static void finish(u32 reason){if(!journal)return;u32 r[32]={0};r[1]=4;r[2]=reason;r[6]=GetCurrentThreadId();r[11]=GetTickCount();r[21]=records;r[22]=planes;r[23]=drops;r[24]=gaps;r[25]=bytes;emit(r);interval_close(reason);producer_points_close(reason);source_lease_close(reason);source_bytes_close(reason);wine_submission_close(reason);CloseHandle(journal);journal=0;enabled=0;char name[600];path(name,"session.done");HANDLE f=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(f!=(HANDLE)-1){write(f,r,128);CloseHandle(f);}}
+static void finish(u32 reason){if(!journal)return;u32 r[32]={0};r[1]=4;r[2]=reason;r[6]=GetCurrentThreadId();r[11]=GetTickCount();r[21]=records;r[22]=planes;r[23]=drops;r[24]=gaps;r[25]=bytes;emit(r);interval_close(reason);aux_save_close(reason);producer_points_close(reason);update_timing_close(reason);source_lease_close(reason);drawing_cursor_gate_close(reason);source_bytes_close(reason);wine_submission_close(reason);CloseHandle(journal);journal=0;enabled=0;char name[600];path(name,"session.done");HANDLE f=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(f!=(HANDLE)-1){write(f,r,128);CloseHandle(f);}}
 static void install(void*,u32);
 /* Observer APIs preserve the application's result LastError and x87/SSE state. */
 static void snapshot_fp(void* p){__asm__ volatile("fxsave (%0)"::"r"(p):"memory");}
@@ -43,10 +47,12 @@ static void restore_fp(void* p){__asm__ volatile("fxrstor (%0)"::"r"(p):"memory"
 #include "wine_submission.h"
 #include "source_byte_witness.h"
 #include "source_readonly_lease.h"
+#include "source_cursor_gate.h"
 static struct Context begin(void* object,u32 method,u32* args,u32 count,u32 caller,u32 type){
  struct Context c={0};c.r[7]=GetLastError();if(!enabled||(type==1&&(caller<0x400000||caller>=0x5c0000)))return c;
  u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);
- EnterCriticalSection(journal_lock);if(!enabled){LeaveCriticalSection(journal_lock);restore_fp(fp);SetLastError(c.r[7]);return c;}++pending;
+ drawing_cursor_gate_acquire(&c,method,args,type);
+ EnterCriticalSection(journal_lock);if(!enabled){LeaveCriticalSection(journal_lock);drawing_cursor_gate_release(&c);restore_fp(fp);SetLastError(c.r[7]);return c;}++pending;
  c.observed=1;c.r[1]=type;c.r[2]=method;c.r[3]=identity(object);c.r[5]=caller;c.r[6]=GetCurrentThreadId();c.r[10]=GetTickCount();c.r[29]=++entries;
  for(u32 i=0;i<count;++i)c.args[i]=args[i];
  /* Owned scalar call inputs. Process pointers are never a portable input. */
@@ -62,12 +68,13 @@ static struct Context begin(void* object,u32 method,u32* args,u32 count,u32 call
   else if(method==13||method==18||method==34||method==35)c.r[21]=args[0];
  }else if(type==2){c.r[21]=args[0];if(count>1)c.r[22]=args[1];}
  else if(type==5)for(u32 i=0;i<count&&i<6;++i)c.r[21+i]=args[i];
- c.interval_related=c.r[4];interval_event(&c,1);LeaveCriticalSection(journal_lock);wine_submission_parent(&c,1);producer_points_capture(&c,object,1);source_bytes_capture(&c,1);source_lease_capture(&c,1);restore_fp(fp);SetLastError(c.r[7]);return c;
+ c.interval_related=c.r[4];interval_event(&c,1);LeaveCriticalSection(journal_lock);if(c.cursor_gate_requested)drawing_cursor_gate_emit(&c,1);wine_submission_parent(&c,1);producer_points_capture(&c,object,1);source_bytes_capture(&c,1);source_lease_capture(&c,1);update_timing_capture(&c,1);restore_fp(fp);SetLastError(c.r[7]);return c;
 }
 struct Pixels {void* data;u32 size;};
 /* Never hold the journal mutex across a driver call: Lock/GetDesc can
  * synchronously invoke original input/window handlers on another thread. */
 #include "physical_fence.h"
+#include "aux_save_readback.h"
 static struct Pixels primary(struct Context* c,void* object,struct Table* t){
  struct Pixels out={0};if(!readbacks_enabled&&!physical_enabled){c->r[13]=2;return out;}u32 desc[31]={0};desc[0]=t->kind>=14?124:108;
  typedef i32(WIN *Desc)(void*,void*);typedef i32(WIN *Lock)(void*,void*,void*,u32,HANDLE);typedef i32(WIN *Unlock)(void*,void*);
@@ -104,7 +111,7 @@ static void acquired(void* alias,u32 k,const void* guid){
  ++gaps;
 }
 static u32 end(struct Context* c,void* object,u32 result){
- u32 error=GetLastError();if(!c->observed||!enabled){SetLastError(error);return result;}u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);source_lease_capture(c,2);wine_submission_parent(c,2);
+ u32 error=GetLastError();if(!c->observed||!enabled){if(c->cursor_gate_token){u8 gate_fp[512]__attribute__((aligned(16)));snapshot_fp(gate_fp);if(c->source_lease)source_lease_capture(c,2);drawing_cursor_gate_release(c);restore_fp(gate_fp);}SetLastError(error);return result;}u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);c->r[8]=result;c->r[9]=error;update_timing_capture(c,2);source_lease_capture(c,2);wine_submission_parent(c,2);
  struct Pixels pixels={0};struct Table* capture_table=0;EnterCriticalSection(journal_lock);
  c->r[8]=result;c->r[9]=error;c->r[11]=GetTickCount();
  interval_event(c,2);
@@ -114,15 +121,15 @@ static u32 end(struct Context* c,void* object,u32 result){
   if((i32)result>=0&&(m==5||m==6||m==7||m==11||m==26||m==27||m==31||m==32))capture_table=t;
   if(m==2&&!result)for(u32 i=0;i<1024;++i)if(identities[i].object==object)identities[i].object=0;
  }else if(c->r[1]==2&&c->r[2]==3&&(i32)result>0&&readable((void*)c->args[0],8)){copy(c->r+27,(void*)c->args[0],8);c->r[31]=1;}
- LeaveCriticalSection(journal_lock);producer_points_capture(c,object,2);source_bytes_capture(c,2);if(capture_table)pixels=primary(c,object,capture_table);
+ LeaveCriticalSection(journal_lock);producer_points_capture(c,object,2);source_bytes_capture(c,2);if(capture_table)aux_save_capture(c,object,capture_table);drawing_cursor_gate_release(c);if(capture_table)pixels=primary(c,object,capture_table);
  EnterCriticalSection(journal_lock);if(!enabled){LeaveCriticalSection(journal_lock);if(pixels.data)VirtualFree(pixels.data,0,0x8000);restore_fp(fp);SetLastError(error);return result;}publish(c,pixels);
  if(physical_enabled&&c->r[1]==1&&c->r[13]==1&&!(c->r[8]&0x80000000u)){
   u32 size=c->r[14]*c->r[15]*4;
   if(planes>=1024||bytes>physical_byte_limit||size>physical_byte_limit-bytes){++drops;}else{c->r[12]=++planes;bytes+=size;}
  }
  c->r[30]=planes;emit(c->r);input_point_record(c);
- LeaveCriticalSection(journal_lock);physical_fence(c);producer_points_capture(c,object,3);EnterCriticalSection(journal_lock);interval_event(c,3);--pending;
- char name[600];path(name,"stop.flag");HANDLE stop=CreateFileA(name,0x80000000,3,0,3,0x80,0);if(stop!=(HANDLE)-1){CloseHandle(stop);if(!pending&&!wine_blit_worker_pending)finish(2);}
+ LeaveCriticalSection(journal_lock);physical_fence(c);update_timing_capture(c,3);producer_points_capture(c,object,3);EnterCriticalSection(journal_lock);interval_event(c,3);--pending;
+ char name[600];path(name,"stop.flag");HANDLE stop=CreateFileA(name,0x80000000,3,0,3,0x80,0);if(stop!=(HANDLE)-1){CloseHandle(stop);if(!pending&&!wine_blit_worker_pending&&!wine_resource_pending)finish(2);}
  LeaveCriticalSection(journal_lock);if(pixels.data)VirtualFree(pixels.data,0,0x8000);restore_fp(fp);SetLastError(error);return result;
 }
 static u32 WIN surface_0(void* o,u32 a0,u32 a1){u32 a[6]={a0,a1};struct Context c=begin(o,0,a,2,(u32)__builtin_return_address(0),1);u32 r=((u32(WIN*)(void*,u32,u32))table(o)->original[0])(o,a0,a1);return end(&c,o,r);}
@@ -186,8 +193,17 @@ static short WIN async(i32 code){u32 a[6]={(u32)code};struct Context c=begin(0,1
 static short WIN key(i32 code){u32 a[6]={(u32)code};struct Context c=begin(0,2,a,1,(u32)__builtin_return_address(0),2);short r=((short(WIN*)(i32))original_key)(code);end(&c,0,(u32)(i32)r);return r;}
 static i32 WIN cursor(i32* point){u32 a[6]={(u32)point};struct Context c=begin(0,3,a,1,(u32)__builtin_return_address(0),2);c.r[21]=0;i32 r=((i32(WIN*)(i32*))original_cursor)(point);end(&c,0,r);return r;}
 static u32 WIN map(u32 code,u32 mode){u32 a[6]={code,mode};struct Context c=begin(0,4,a,2,(u32)__builtin_return_address(0),2);u32 r=((u32(WIN*)(u32,u32))original_map)(code,mode);end(&c,0,r);return r;}
+typedef u32(WIN* DrawingCursorGateSnapshot)(u32,void*,u32);
+static DrawingCursorGateSnapshot drawing_cursor_gate_snapshot_callback;
+static void drawing_cursor_gate_snapshot(void){
+ if(!drawing_cursor_gate_enabled)return;u32 error=GetLastError();u8 fx[512]__attribute__((aligned(16)));snapshot_fp(fx);void* module=GetModuleHandleA("MnmCursorGate.dll");
+ DrawingCursorGateSnapshot shutdown=drawing_cursor_gate_snapshot_callback?drawing_cursor_gate_snapshot_callback:module?(DrawingCursorGateSnapshot)GetProcAddress(module,"CursorSourceGateShutdownV1"):0;
+ u32 point[32]={0};if(!shutdown||!shutdown(GetCurrentThreadId(),point,128))ExitProcess(99);
+ restore_fp(fx);SetLastError(error);
+ /* This is reason3partial diagnostic snapshot, not quiescent normal shutdown. */
+}
 #include "action_boundary.h"
-void WIN DrawingActionV1(u32 request,u32 action,u32 screen,u32 generation,u32 argument,u32 phase,u32 status){u32 a[6]={0};struct Context c=begin(0,phase,a,0,0,3);c.r[21]=request;c.r[22]=action;c.r[23]=screen;c.r[24]=generation;c.r[25]=argument;c.r[26]=phase;c.r[27]=status;end(&c,0,status);action_state_record(&c);}
+void WIN DrawingActionV1(u32 request,u32 action,u32 screen,u32 generation,u32 argument,u32 phase,u32 status){u32 a[6]={0};struct Context c=begin(0,phase,a,0,0,3);c.r[21]=request;c.r[22]=action;c.r[23]=screen;c.r[24]=generation;c.r[25]=argument;c.r[26]=phase;c.r[27]=status;end(&c,0,status);action_state_record(&c);if(action==3&&screen==3&&phase==1)drawing_cursor_gate_snapshot();}
 void WIN DrawingAnchor(void){}
 #ifdef MNM_DRAWING_SELFTEST
 u32 WIN DrawingInstallForTest(void* object,u32 k){install(object,k);return enabled;}
@@ -199,7 +215,7 @@ static int initialize(void){
  char mode[16];u32 mode_length=GetEnvironmentVariableA("MNM_DRAW_SESSION_MODE",mode,sizeof(mode));int inputs_only=mode_length==6&&equal(mode,"inputs",6);(void)inputs_only;physical_enabled=mode_length==8&&equal(mode,"physical",8);readbacks_enabled=!(mode_length==8&&equal(mode,"metadata",8));
  if(!physical_budget()||!input_point_open())return 0;
  u32 n=GetEnvironmentVariableA("MNM_DRAW_SESSION_DIRECTORY",directory,sizeof(directory));if(!n)return 1;if(n>=sizeof(directory))return 0;if(!action_state_open())return 0;
- char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=physical_enabled?physical_byte_limit:1024u*1024u*1024u;header[8]=physical_enabled?3:inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64)||(physical_enabled&&!interval_open())||!producer_points_open()||!wine_submission_open()||!source_bytes_open()||!source_lease_open())return 0;enabled=1;
+ char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=physical_enabled?physical_byte_limit:1024u*1024u*1024u;header[8]=physical_enabled?3:inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64)||(physical_enabled&&!interval_open())||!update_timing_open()||!producer_points_open()||!aux_save_open()||!wine_submission_open()||!source_bytes_open()||!source_lease_open()||!drawing_cursor_gate_open())return 0;enabled=1;
 #ifndef MNM_DRAWING_SELFTEST
  u32 base=(u32)GetModuleHandleA(0);const u8 thunk[]={0xff,0x25,0x14,0x50,0x5c,0};if(base!=0x400000||!readable((void*)0x59755a,6)||!equal((void*)0x59755a,thunk,6))return 0;
  void* user=GetModuleHandleA("user32.dll");original_async=GetProcAddress(user,"GetAsyncKeyState");original_key=GetProcAddress(user,"GetKeyState");original_cursor=GetProcAddress(user,"GetCursorPos");original_map=GetProcAddress(user,"MapVirtualKeyA");

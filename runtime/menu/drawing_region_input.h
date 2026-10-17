@@ -23,6 +23,7 @@ static void region_input_fp_restore(void* in){__asm__ volatile("fxrstor (%0)"::"
 #define MNM_REGION_INPUT_RING 0x641fbc
 #define MNM_REGION_INPUT_LATCH_COUNT 0x6e984c
 #endif
+#include "drawing_region_tracked_actor.h"
 static void region_input_snapshot(u32* row,void* object,u32 mask,RegionMouseRecord mouse,u32 result,u32 error){
  row[3]=++region_input_phase;row[4]=GetTickCount();row[5]=GetCurrentThreadId();row[6]=mask;row[18]=result;row[19]=error;
  copy(row+8,mouse.words,40);
@@ -52,6 +53,7 @@ static void region_input_snapshot(u32* row,void* object,u32 mask,RegionMouseReco
  if(readable((void*)MNM_REGION_INPUT_CURSOR,4)){row[7]|=32;row[40]=get((void*)MNM_REGION_INPUT_CURSOR);}
  if(readable((void*)MNM_REGION_INPUT_RING,4)){row[7]|=64;row[41]=get((void*)MNM_REGION_INPUT_RING);}
  if(readable((void*)MNM_REGION_INPUT_LATCH_COUNT,4)){row[7]|=128;row[44]=get((void*)MNM_REGION_INPUT_LATCH_COUNT);}
+ region_input_track_snapshot(row);
 }
 static u32 THIS region_input_callback(void* object,u32 mask,RegionMouseRecord mouse){
  u8 fp[512] __attribute__((aligned(16)));u32 error=GetLastError();region_input_fp_save(fp);
@@ -84,6 +86,7 @@ static int region_input_open(void){
  char name[1024];u32 n=GetEnvironmentVariableA("MNM_DRAW_REGION_INPUT_FILE",name,sizeof(name));
  if(!n)return GetLastError()==203;
  if(n>=sizeof(name)||region_input_file)return 0;
+ if(!region_input_track_configure())return 0;
  const u8 bytes[]={0x81,0xec,0x30,0x01,0,0,0x53,0x55,0x56,0x8b,0xe9};
  if(!readable((void*)MNM_REGION_INPUT_VTABLE,4)||get((void*)MNM_REGION_INPUT_VTABLE)!=MNM_REGION_INPUT_CALLBACK||!readable((void*)MNM_REGION_INPUT_CALLBACK,sizeof(bytes))||!equal((void*)MNM_REGION_INPUT_CALLBACK,bytes,sizeof(bytes)))return 0;
  HANDLE file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(file==(HANDLE)-1)return 0;
@@ -93,7 +96,7 @@ static int region_input_open(void){
 }
 static void region_input_close(void){
  if(!region_input_file)return;
- u32 h[16]={0};copy(h,"MNMDRE01",8);h[2]=2;h[3]=256;h[4]=0x40209ca7;h[5]=8192;
+ u32 h[16]={0};copy(h,"MNMDRE01",8);h[2]=region_input_track_enabled?3:2;h[3]=256;h[4]=0x40209ca7;h[5]=8192;
  h[6]=region_input_count;h[7]=region_input_dropped;h[8]=region_input_thread;h[9]=region_input_foreign;h[10]=region_input_pending;h[11]=region_input_calls;h[12]=region_input_phase;
  u32 wrote=0;if(!WriteFile(region_input_file,h,64,&wrote,0)||wrote!=64)ExitProcess(99);
  u32 size=region_input_count*256,at=0;while(at<size){wrote=0;if(!WriteFile(region_input_file,(u8*)region_input_rows+at,size-at,&wrote,0)||!wrote||wrote>size-at)ExitProcess(99);at+=wrote;}

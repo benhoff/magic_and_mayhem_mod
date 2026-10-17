@@ -48,7 +48,39 @@ _cadence_tick:
     movl %eax, 0x6c4830
     observe 3
     jmp *_resume_tick
+.globl _cadence_draw_suppression
+_cadence_draw_suppression:
+    cmpl %ebx,0x6e1f00
+    observe 9
+    jmp *_resume_suppression
+.globl _cadence_draw_transition
+_cadence_draw_transition:
+    cmpb %bl,0x100b2(%esi)
+    observe 10
+    jmp *_resume_transition
+.globl _cadence_scene
+_cadence_scene:
+    observe 18
+    jmp *_target_scene
+.globl _cadence_results
+_cadence_results:
+    observe 20
+    jmp *_target_results
+.globl _cadence_target
+_cadence_target:
+    movl %eax,%ebx
+    testl %ebx,%ebx
+    observe 21
+    jz 1f
+    jmp *_resume_target_available
+1:  jmp *_resume_target_missing
 .data
 _target_queue: .long 0x5002a0
 _resume_sequence: .long 0x46b465
 _resume_tick: .long 0x46b49b
+_resume_suppression: .long 0x46bba3
+_resume_transition: .long 0x46bbab
+_target_scene: .long 0x4fd280
+_target_results: .long 0x557040
+_resume_target_available: .long 0x4fd53c
+_resume_target_missing: .long 0x4fd5ad

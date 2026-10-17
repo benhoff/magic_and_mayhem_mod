@@ -241,3 +241,29 @@ This extends bounded evidence without fixing the intermittent foreign-frame
 race or proving whole allocation/alias/unobserved upload/hardware/scanout,
 allroutes/semantic actions/47requirements21operations. Continue remaining
 acquisition boundaries in step2; steps3–7 remain ordered and open.
+
+
+## V5 query inputs and completed Lock returns
+
+The resource32 retirement-fix cohort records 895 live transition-pending map
+queries, each inside one active same-thread observed wrapper Lock. The original
+cache getter deliberately withholds a completed association while that matching
+wrapper transition is pending. V4 query records do not retain the input address
+ID for this branch; later return IDs alone cannot reconstruct it. Static V4
+analysis therefore retains all 910 query records as unbound legacy inputs.
+
+The V5 collector adds only a local numerical input ID in query word 7 and
+keeps known/pending/unknown cache policy unchanged. Known IDs and candidate IDs
+are checked against the query; null remains zero and historical versions keep
+reserved zero. The independent query/return adapter requires a unique active
+same-thread Lock, unchanged known logical canvas and exact returned/cache/input
+numerical equality. All absent, null, outside, ambiguous, failed, stopped, changed
+and unequal observations remain explicit. This is pointer equality and event
+order, with no byte/allocation/view/upload ownership or replay-order claim.
+
+The owned PE32 V5 fixture passes eight calls/five return epochs, seven queries,
+a pending numerical input joined to its later return and a null input, without
+reading mock address bytes or executing the original engine/hook ABI. Eighteen
+strict decoder and six interval/identity guards pass. Fresh original V5 passes 32 queues and actual game exit 0. All 910 live
+queries have exact same-thread interval/input/return/cache associations; 805
+external points remain inactive. No allocation or source ownership is inferred.

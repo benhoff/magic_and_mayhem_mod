@@ -26,9 +26,9 @@ API HANDLE WIN CreateThread(void*,u32,void*,void*,u32,u32*);
 static u32 WIN retire_frame(void* unused){(void)unused;Sleep(30);EnterCriticalSection(producer_trace_mutex);frames[0].sp=0;LeaveCriticalSection(producer_trace_mutex);return 0;}
 void start(void){
  InitializeCriticalSection(producer_trace_mutex);
- if(!GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory))||!whole_update_configure())ExitProcess(190);char flag[2];GetEnvironmentVariableA("MNM_FIXTURE_MODE",flag,2);mode=flag[0];update_point_first[2]=10;update_point_first[3]=20;update_point_first[4]=30;update_point_first[6]=GetCurrentThreadId();
+ if(!whole_update_configure()||source_windows_file||!GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory))||!source_windows_open())ExitProcess(190);char flag[2];GetEnvironmentVariableA("MNM_FIXTURE_MODE",flag,2);mode=flag[0];update_point_first[2]=10;update_point_first[3]=20;update_point_first[4]=30;update_point_first[6]=GetCurrentThreadId();
  update_boundary_enabled=1;update_boundary_source=&SceneDrawingUpdateBoundaryV1;u32 event[24]={0};event[0]=11;event[1]=2;event[5]=20;event[6]=31;
- queue=0;update_boundary_observe(event);if(closed||emitted)ExitProcess(193);queue=1;
+ queue=0;event[0]=9;event[5]=19;event[6]=30;update_boundary_observe(event);if(closed||emitted)ExitProcess(193);queue=1;event[0]=11;event[5]=20;event[6]=31;
  if(mode=='s')event[6]=32;if(mode=='t')event[5]=21;if(mode=='r')event[0]=10;if(mode=='o')++update_point_first[6];if(mode=='p'){frames[0].sp=1;frames[0].owner=GetCurrentThreadId();}if(mode=='a')update_point_active=1;if(mode=='n')update_point_completed=0;if(mode=='e')failures=1;
  if(mode=='w'||mode=='z'){frames[0].sp=1;frames[0].owner=GetCurrentThreadId()+1;if(mode=='w'){u32 id;if(!CreateThread(0,0,(void*)&retire_frame,0,0,&id))ExitProcess(196);}}
  SetLastError(0xbeef);update_boundary_observe(event);if(GetLastError()!=0xbeef||closed!=1||emitted!=1||checkpoints!=2)ExitProcess(194);update_boundary_observe(event);if(closed!=1||emitted!=1)ExitProcess(195);ExitProcess(0);
