@@ -100,7 +100,10 @@ static decompilation/disassembly are retained under working/tests/owner-planner-
 Discovery exports use export-owner-planner.py, inspect-owner-planner-tables.py,
 ExportOwnerPlanner.java and export-owner-planner-inventory.py. The factory table
 at5d8474 has54 entries. Task6 vtable5c596c links prepare431be0, next431ce0,
-save4261b0, execute432900 and lifetime432fb0. Fallback prepare415640,
+save4261b0, execute432900 and lifetime4328d0. NS83 corrects the earlier
+slot label:432fb0 is the no-op expiry callback at virtual offset+18, not the
+lifetime accessor at+10. Its one-byte recovered range and actual expiry dispatch
+are recorded in [ordinary task scheduling](owner-task-scheduler.md). Fallback prepare415640,
 next415670 and execute419900 are also identified. Other virtual families are
 preserved as incomplete dispatch coverage. A focused reviewed inventory adds16
 entry bodies (6676 to6692 functions); all previous flows/imports remain, new-flow

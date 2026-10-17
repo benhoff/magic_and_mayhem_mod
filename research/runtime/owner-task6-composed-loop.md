@@ -93,3 +93,13 @@ undamaged control. Two512-frame installed-model seeds, both core suites, existin
 perception/danger regressions, sanitizer equality, six cold resumes and CLI
 whole/split equality pass. These native results have independent scenario/source
 bindings and do not turn supplied original services into World equivalence.
+
+
+## NS83 caller continuation
+
+[NS83](owner-task-scheduler.md) adds actual415c40 scheduling and428b40 retirement
+around this bounded chain. It confirms separate result+14 and replacement+15
+flags. The direct body calls above still have their original supplied-caller
+scope. Advancing-clock scheduling also requires the kind6 preparation deadline;
+the reusable logical fixture now includes it. Source/perception/snapshot services,
+specialized queues, multiple displaced tasks and World allocation remain excluded.

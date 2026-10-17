@@ -10080,3 +10080,22 @@ provenance only; no cold archive/cleanup or engine validation is inferred.
   dual-brain/World scheduling, wizard/campaign/configuration producers, broader
   species and live replacement remain pending. Commander orders, veterancy and
   mana balance remain separate unimplemented gameplay work.
+
+
+### NS83 ordinary task6 caller and native scheduler
+
+The new bounded milestone models415c40 count-mode planning-before-execution,
+independent half budgets and phase continuation, actual task-map execution and
+428b40 expiry/progress/result cleanup. Execution-result+14 is separate from
+replacement-invalidated+15; the latter retains the historical logical API name.
+Fresh native sessions carry optional CMD1v16 scheduler state, while absent
+scheduler state preserves v13-v15 native cadence and stored lifetimes.
+
+Source/perception/snapshot production, source queue insertion, specialized queues,
+simultaneous displaced tasks, split/merge, dual brains, rdtsc/World allocation,
+training and live replacement remain pending. Original and native execution
+results are recorded independently in the central register after fresh binding;
+static discovery, development failures, history review and source indexing are
+not new execution-equivalence evidence. See [scheduler scope](owner-task-scheduler.md).
+
+NS83 execution: original32/native64/sanitizer agreement over64 episodes,4,865,080 checks/14,080 caller slices, including separate result flags, expiry and progress retirement; fresh276-source native/sanitizer integration, scheduled and legacy actual-event journeys, two512-frame seeds, core suites and six cold resumes pass. New original and native contracts have independent bound evidence; supplied source/World boundaries and historical staleness remain explicit.

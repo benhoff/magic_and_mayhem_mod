@@ -19,6 +19,8 @@ int main(int argc, char **argv) try {
   // Controlled external sightings/world movement isolate the composed native
   // planner from creature motion. Every slice also runs from a CMD1 restore.
   auto journey = p.initial;
+  // Retain the historical v13/v14 native-cadence regression domain.
+  journey.native.ownerPlanner->grouped->scheduler.reset();
   journey.native.ownerPlanner->grouped->replanning.reset();
   journey.native.regions.assign(16, {});
   for (unsigned i = 0; i < 16; ++i) {

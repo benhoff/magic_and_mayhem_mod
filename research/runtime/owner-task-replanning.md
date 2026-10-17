@@ -178,3 +178,15 @@ their original source fingerprints and narrower comparison boundaries. Object
 clone/teardown, training registration, supplied observations/model/world and
 accounted damage score remain explicit services. Full health/perception-to-World
 composition, source split/merge and dual-brain scheduling are still pending.
+
+
+## NS83 caller distinction
+
+[NS83](owner-task-scheduler.md) distinguishes task+14 (415c40 execution-result
+flag and428b40 cleanup) from task+15 (423590/4284e0 replacement invalidation).
+The historical `OwnerPreviousTask::completed` API and the supplied NS80/NS82
+replacement tests refer to+15. The original caller writes+14 after a false body
+result, and retires expired tasks during cleanup; it does not retain every
+expired task for the native v14/v15 fallback gate. Fresh v16 sessions use the
+bounded recovered caller; old absent-scheduler checkpoints preserve their
+historical native policy. Full World/source/dual-brain scheduling remains pending.

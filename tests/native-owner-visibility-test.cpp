@@ -32,7 +32,7 @@ int main(int argc, char **argv) try {
       cs::updateNativeRegionalDanger(*v, p.native);
     }
     const auto bytes = cs::encode(c);
-    check(bytes.at(4) == 15, "visibility wire version");
+    check(bytes.at(4) == 16, "visibility wire version");
     check(bytes == cs::encode(restored), "visibility continuation differs");
     if (tick % 8 == 0) {
       restored = cs::decode(bytes);

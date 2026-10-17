@@ -16,6 +16,7 @@
 #include "../../reconstruction/creature-ai/owner_group_task.hpp"
 #include "../../reconstruction/creature-ai/owner_task_probe.hpp"
 #include "../../reconstruction/creature-ai/owner_task_lifecycle.hpp"
+#include "../../reconstruction/creature-ai/owner_task_scheduler.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -74,6 +75,8 @@ struct NativeOwnerGroupPlanner {
   reconstruction::combat::OwnerTaskProbe probe;
   std::optional<reconstruction::combat::OwnerGroupTask> candidate,best,active;
   std::optional<NativeOwnerReplanning> replanning;
+  //v16: absent in legacy checkpoints, which retain their native cadence.
+  std::optional<reconstruction::combat::OwnerTaskScheduler> scheduler;
 };
 struct NativeOwnerPlanner {
   unsigned owner=0,actor=0,nextSerial=1,activeSerial=0;

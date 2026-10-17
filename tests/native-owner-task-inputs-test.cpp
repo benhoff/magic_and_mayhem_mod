@@ -6,15 +6,21 @@
 namespace cs = mnm::command_session;
 namespace en = mnm::encounter;
 int main(int argc, char **argv) try {
-  if (argc != 2) throw std::runtime_error("INSTALL");
+  if (argc != 2 && argc != 3) throw std::runtime_error("INSTALL [--scheduler]");
+  const bool scheduled = argc == 3 && std::string(argv[2]) == "--scheduler";
+  if (argc == 3 && !scheduled) throw std::runtime_error("unknown mode");
   unsigned checks=0,restores=0;
   auto check=[&](bool v,const char *why){if(!v)throw std::runtime_error(why);++checks;};
   auto p=en::decodeInputs(en::loadInputs(argv[1],{0,0,32,32},0));
   en::enableRegionalNavigation(p);
   en::enableOwnerPlanner(p,std::filesystem::path(argv[1])/"AI/Brain.dat",17);
+  // Default retains the v15 event/expired-retention regression. The second
+  // invocation exercises fresh v16 scheduling with the same real producers.
+  if (!scheduled) p.initial.native.ownerPlanner->grouped->scheduler.reset();
   auto initial=p.initial;
   check(initial.native.ownerPlanner->grouped->replanning->eventInputs,"fresh task events disabled");
   auto legacy=initial;
+  legacy.native.ownerPlanner->grouped->scheduler.reset();
   legacy.native.ownerPlanner->grouped->replanning->eventInputs=false;
   const auto v14=cs::encode(legacy,14);
   check(!cs::decode(v14).native.ownerPlanner->grouped->replanning->eventInputs&&
@@ -116,9 +122,23 @@ int main(int argc, char **argv) try {
     expired+=int(c.native.tick)>=task.expires;
   }
   check(expired&&planner.activeSerial!=serial,(std::string("damage never triggered expired task replacement; start=")+std::to_string(task.started)+" expiry="+std::to_string(task.expires)+" now="+std::to_string(c.native.tick)+" travel="+std::to_string(planner.features.at(68))+" cost="+std::to_string(losses)+" value="+std::to_string(task.value)).c_str());
-  check(undamaged.native.ownerPlanner->activeSerial==serial,"zero-progress control replaced identical proposal");
-  check(!undamaged.native.ownerPlanner->grouped->replanning->previous->completed,"expiry incorrectly completed task");
+  if (scheduled) {
+    check(undamaged.native.ownerPlanner->activeSerial != serial,
+          "scheduled expiry retained control task");
+    for(unsigned i=0;i<80&&(!planner.active||!undamaged.native.ownerPlanner->active);++i){
+      exercise(c,slice);slice(undamaged);
+    }
+    check(planner.active&&undamaged.native.ownerPlanner->active,
+          "scheduler did not regenerate after retirement");
+    check(!planner.grouped->replanning->previous->completed &&
+          !planner.grouped->scheduler->executionComplete,
+          "new scheduled task inherited completion flags");
+  } else {
+    check(undamaged.native.ownerPlanner->activeSerial==serial,"zero-progress control replaced identical proposal");
+  }
+  check(!undamaged.native.ownerPlanner->grouped->replanning->previous->completed,"expiry incorrectly set replacement flag15");
   auto retainedV14=undamaged;
+  retainedV14.native.ownerPlanner->grouped->scheduler.reset();
   retainedV14.native.ownerPlanner->grouped->replanning->eventInputs=false;
   const auto oldActive=cs::encode(retainedV14,14);
   check(cs::encode(cs::decode(oldActive),14)==oldActive,"v14 expired active resume differs");
@@ -196,5 +216,6 @@ int main(int argc, char **argv) try {
   check(published,"regional ratio never published nonzero input");
   std::cout<<"{\"success\":true,\"checks\":"<<checks<<",\"restores\":"<<restores
            <<",\"damage_cost\":"<<losses<<",\"expired_slices\":"<<expired
-           <<",\"replaced\":1,\"control_retained\":1,\"published_ratio\":true}\n";
+           <<",\"replaced\":1,\"control_retained\":"<<unsigned(!scheduled)
+           <<",\"scheduler\":"<<unsigned(scheduled)<<",\"published_ratio\":true}\n";
 }catch(const std::exception&e){std::cerr<<e.what()<<'\n';return 1;}

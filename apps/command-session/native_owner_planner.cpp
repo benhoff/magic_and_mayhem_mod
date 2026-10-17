@@ -107,6 +107,7 @@ void prepareNativeOwnerPlanner(Continuation &c,
   auto &s = *staged.native.ownerPlanner;
   s.grouped.emplace();
   s.grouped->replanning.emplace();
+  s.grouped->scheduler.emplace();
   s.grouped->replanning->policy.ownerAvailable = true;
   s.grouped->replanning->eventInputs = true;
   s.owner = owner;

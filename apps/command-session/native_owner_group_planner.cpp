@@ -38,11 +38,13 @@ void validateNativeOwnerGroupPlanner(const Continuation &c) {
     const auto &r = *g.replanning;
     if (r.eventInputs) {
       const auto &roots = c.actions.segments.at(s.actor).contributionRoots;
-      need(!roots[0] && !roots[1], "event planner has duplicate contribution roots");
+      need(!roots[0] && !roots[1],
+           "event planner has duplicate contribution roots");
       const auto &in = c.native.regionalDanger->inputs;
       const int commander = in.commander.at(s.owner);
       need(commander < 0 ||
-               c.world.creatures.at(unsigned(commander)).ai.owner == int(s.owner),
+               c.world.creatures.at(unsigned(commander)).ai.owner ==
+                   int(s.owner),
            "event planner commander owner differs");
       for (auto point : in.observationPoints)
         need(point.x >= 0 && point.x < c.world.dimensions.x && point.y >= 0 &&
@@ -62,6 +64,10 @@ void validateNativeOwnerGroupPlanner(const Continuation &c) {
       need(unsigned(r.previous->started) <= c.native.tick,
            "group planner task from future");
     }
+  }
+  if (g.scheduler) {
+    need(g.replanning.has_value(), "scheduled planner requires replanning");
+    model::validateOwnerTaskScheduler(*g.scheduler, s.activeSerial);
   }
   model::validateOwnerMemoryGroups(g.groups, c.world.dimensions);
   need(g.cursor <= (g.groups.nodes.empty()
@@ -148,271 +154,321 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
   NativeCreatureGeometry geometry(c, p);
   auto *replanning = g.replanning ? &*g.replanning : nullptr;
   updateNativeOwnerTaskInputs(c);
-  if (g.active && (!replanning || (!replanning->previous->completed &&
-                                   tick < replanning->previous->expires))) {
-    int raw = 0, net = 0;
-    if (actor.region >= 0) {
-      const auto &r = c.native.regions.at(unsigned(actor.region));
-      raw = model::regionDanger(actor, r, c.native.regionalRiskPowers);
-      net = model::regionDanger(actor, r, c.native.regionalRiskPowers, true);
-    }
-    int budget = 8;
-    const auto out = model::executeOwnerGroupTask(
-        *g.active, *c.native.ownerKnowledge, tick, s.owner, s.actor, c.world,
-        raw, net, g.excessPercent,
-        {{c.execution[0].combatValue[5], c.execution[1].combatValue[5]}},
-        budget);
-    if (out.stop && actor.ai.action != 8) {
-      auto stop = actor.ai.position;
-      if (actor.ai.motion) {
-        const auto &route = c.actions.segments.at(s.actor);
-        need(route.cursor < route.count, "group task stop endpoint");
-        stop = route.route.at(route.cursor).position;
+  auto execute = [&](int &budget) {
+    if (g.active && (g.scheduler || !replanning ||
+                     (!replanning->previous->completed &&
+                      tick < replanning->previous->expires))) {
+      int raw = 0, net = 0;
+      if (actor.region >= 0) {
+        const auto &r = c.native.regions.at(unsigned(actor.region));
+        raw = model::regionDanger(actor, r, c.native.regionalRiskPowers);
+        net = model::regionDanger(actor, r, c.native.regionalRiskPowers, true);
       }
-      if (actor.ai.behavior != 2 || !(actor.destination == stop)) {
-        c.execution[s.actor].commandMode = 0;
-        commands.move(actor, stop);
+      const auto out = model::executeOwnerGroupTask(
+          *g.active, *c.native.ownerKnowledge, tick, s.owner, s.actor, c.world,
+          raw, net, g.excessPercent,
+          {{c.execution[0].combatValue[5], c.execution[1].combatValue[5]}},
+          budget);
+      if (out.stop && actor.ai.action != 8) {
+        auto stop = actor.ai.position;
+        if (actor.ai.motion) {
+          const auto &route = c.actions.segments.at(s.actor);
+          need(route.cursor < route.count, "group task stop endpoint");
+          stop = route.route.at(route.cursor).position;
+        }
+        if (actor.ai.behavior != 2 || !(actor.destination == stop)) {
+          c.execution[s.actor].commandMode = 0;
+          commands.move(actor, stop);
+        }
+      }
+      if (!out.continuing) {
+        if (replanning && !g.scheduler)
+          replanning->previous->completed = true;
+        else if (!g.scheduler) {
+          g.active.reset();
+          s.active.reset();
+          s.activeSerial = 0;
+        }
+      } else {
+        s.active->position = g.active->groups.nodes[g.active->root].position;
+        if (actor.ai.action != 8) {
+          if (out.kind == model::OwnerHostileOrderKind::target)
+            commands.target(actor, out.target);
+          else if (out.kind == model::OwnerHostileOrderKind::move &&
+                   (actor.ai.behavior != 2 ||
+                    !(actor.destination == out.position))) {
+            c.execution[s.actor].commandMode = 0;
+            commands.move(actor, out.position);
+          }
+        }
+        if (!replanning)
+          return true;
+      }
+      return out.continuing;
+    }
+    return false;
+  };
+  auto plan = [&](int &budget) {
+    if (!actor.ai.active || !actor.ai.health)
+      return;
+    if (s.selection.reset) {
+      s.selection.value = -2;
+      s.selection.ties = 0;
+      s.selection.selected = -1;
+      g.best.reset();
+    }
+    auto prepare = [&](unsigned evaluator) {
+      if (!evaluator) {
+        s.fallbackEmitted = false;
+        return;
+      }
+      s.hostileEmitted = false;
+      s.candidateReady = false;
+      s.candidate = {};
+      s.features.clear();
+      g.groups = {};
+      g.observations = c.native.ownerKnowledge->records[s.owner];
+      g.cursor = 0;
+      g.probe = {};
+      g.from = g.to = -1;
+      g.candidate.reset();
+      if (replanning) {
+        replanning->prepared = true;
+        replanning->eligible = model::admitOwnerTask6(replanning->admission);
+        if (!replanning->eligible)
+          return;
+      }
+      model::OwnerMemoryGroupServices lower;
+      const reconstruction::CreatureMovementParameters shape{4, 1, 1, 3,
+                                                             0, 0, 0};
+      lower.regional = [&](int a, int b, int &middle) {
+        return model::regionalDangerCenter(c.native.regions, a, b, shape,
+                                           c.world.dimensions, middle);
+      };
+      lower.line = [&](auto a, auto b) { return line(geometry, a, b, shape); };
+      model::buildOwnerMemoryGroups(g.groups, *c.native.ownerKnowledge, s.owner,
+                                    tick, true, c.world.dimensions,
+                                    c.world.relation, lower);
+      // 40eff0 kind6 deadline. World/cache epoch production remains a native
+      //  policy even with the recovered ordinary count-mode caller enabled.
+      need(tick <= std::numeric_limits<int>::max() - 22,
+           "group planner deadline overflow");
+      if (!replanning)
+        (void)model::nextRandom(s.random);
+      g.deadline = tick + 22;
+    };
+    auto next = [&](unsigned evaluator, int &budget) -> std::optional<float> {
+      if (!evaluator) {
+        if (s.fallbackEmitted || budget < 1)
+          return {};
+        s.fallbackEmitted = true;
+        --budget;
+        return -1.f;
+      }
+      if (replanning && !replanning->eligible)
+        return {};
+      auto &roots = g.groups.nodes[0].children;
+      while (g.cursor < roots.size() && tick <= g.deadline) {
+        const auto root = roots[g.cursor];
+        const auto &node = g.groups.nodes[root];
+        if (actor.region < 0 || node.region < 0) {
+          ++g.cursor;
+          g.probe = {};
+          g.from = g.to = -1;
+          continue;
+        }
+        // Native admission: restart a probe when its friendly origin changes.
+        // The original task assumes its search inputs remain stable.
+        if (g.from != actor.region || g.to != node.region) {
+          g.probe = {};
+          g.from = actor.region;
+          g.to = node.region;
+        }
+        auto services = nativeRegionalServices(c, p, geometry, actor);
+        model::RegionalQuery query{reconstruction::creature_movement_parameters(
+                                       geometry.actor(s.actor)),
+                                   true, false, false};
+        const auto result = model::advanceOwnerTaskProbe(
+            g.probe, c.native.regions, g.from, g.to, query, c.world.dimensions,
+            budget, services);
+        if (result == model::OwnerTaskProbeResult::pending)
+          return {};
+        ++g.cursor;
+        if (result == model::OwnerTaskProbeResult::failed) {
+          g.probe = {};
+          g.from = g.to = -1;
+          continue;
+        }
+        std::vector<model::OwnerPlannerActor> enemy;
+        for (int key : model::ownerGroupKeys(g.groups, root)) {
+          const auto &rows = g.observations;
+          auto r = std::find_if(rows.begin(), rows.end(), [&](const auto &v) {
+            return v.memory.key == key;
+          });
+          if (r == rows.end() || !r->planning) {
+            enemy.clear();
+            break;
+          }
+          auto snapshot = *r->planning;
+          if (r->memory.actor.region >= 0) {
+            model::AutonomousCreature remembered;
+            remembered.ai.owner = r->memory.actor.owner;
+            remembered.ai.physical = snapshot.physical;
+            remembered.ai.bravery = snapshot.bravery;
+            remembered.flag104 = snapshot.flag104;
+            snapshot.danger = model::regionDanger(
+                remembered,
+                c.native.regions.at(unsigned(r->memory.actor.region)),
+                c.native.regionalRiskPowers);
+          } else
+            snapshot.danger = 0;
+          enemy.push_back(snapshot);
+        }
+        if (enemy.empty()) {
+          g.probe = {};
+          g.from = g.to = -1;
+          continue;
+        }
+        const auto friendly = nativeOwnerPlannerActor(c, p, s.actor);
+        const auto prefix = model::hostileTaskGroupFeatures({friendly}, enemy,
+                                                            c.world.dimensions);
+        s.features.assign(prefix.begin(), prefix.end());
+        const auto at = std::find_if(
+            g.probe.search.records.begin(), g.probe.search.records.end(),
+            [&](const auto &v) { return v.node == g.to; });
+        need(at != g.probe.search.records.end(), "group probe result missing");
+        const auto payload = reconstruction::neighbor_movement(at->movement);
+        const int travel = model::ownerTaskTravelTime(payload.accumulated_cost,
+                                                      friendly.speed);
+        if (replanning)
+          replanning->candidateDuration =
+              model::ownerTask6Duration(s.random, travel);
+        const auto &dest = c.native.regions.at(unsigned(g.to));
+        const bool covered =
+            !dest.parameter &&
+            !line(geometry,
+                  {dest.position.x, dest.position.y, c.world.dimensions.z - 1},
+                  dest.position, {1, 1, 1, 0, 0, 0, 0});
+        s.features.insert(
+            s.features.end(),
+            {int(std::sqrt(static_cast<long double>(node.uncertaintySquared))),
+             travel, payload.unknown_18, services.danger(g.to), int(covered)});
+        const auto inference = model::inferOwnerTask(s.model, s.features);
+        s.candidateScore = model::ownerTaskValue(
+            {{inference[0], inference[1], inference[2]}}, s.weights, s.percent);
+        int risk = 0;
+        for (auto id : g.probe.path)
+          risk = std::max(risk, services.danger(id));
+        g.candidate = model::OwnerGroupTask{g.groups, root, risk};
+        s.candidate = {model::ownerGroupKeys(g.groups, root).front(),
+                       node.position};
+        s.candidateReady = true;
+        g.probe = {};
+        g.from = g.to = -1;
+        return s.candidateScore;
+      }
+      s.hostileEmitted = true;
+      return {};
+    };
+    model::OwnerTaskSelectionServices services{
+        2,
+        true,
+        prepare,
+        next,
+        [&](unsigned i) {
+          if (i) {
+            g.best = g.candidate;
+            if (replanning)
+              replanning->bestDuration = replanning->candidateDuration;
+          } else
+            g.best.reset();
+        },
+        []() {}};
+    model::advanceOwnerTaskSelection(s.selection, budget, s.random, services);
+    if (replanning && s.selection.reset && s.selection.selected == 0 &&
+        model::replaceOwnerTask(s.selection.value,
+                                replanning->previous ? &*replanning->previous
+                                                     : nullptr,
+                                tick, replanning->policy)) {
+      g.active.reset();
+      s.active.reset();
+      s.activeSerial = 0;
+      replanning->previous.reset();
+      if (g.scheduler) {
+        g.scheduler->pendingExecution = 0;
+        g.scheduler->executionComplete = false;
       }
     }
-    if (!out.continuing) {
-      if (replanning)
-        replanning->previous->completed = true;
-      else {
+    if (s.selection.reset && s.selection.selected == 1 &&
+        (!replanning ||
+         model::replaceOwnerTask(s.selection.value,
+                                 replanning->previous ? &*replanning->previous
+                                                      : nullptr,
+                                 tick, replanning->policy))) {
+      need(g.best.has_value() &&
+               s.nextSerial < std::numeric_limits<unsigned>::max(),
+           "group planner selected task");
+      if (replanning) {
+        need(replanning->bestDuration <= std::numeric_limits<int>::max() - tick,
+             "group planner task expiration overflow");
+        model::OwnerPreviousTask previous;
+        previous.started = tick;
+        previous.expires = tick + replanning->bestDuration;
+        previous.value = s.selection.value;
+        previous.weighted = s.selection.weighted;
+        const auto &policy = replanning->policy;
+        previous.baseline =
+            policy.ownerAvailable
+                ? float(static_cast<long double>(policy.ownerNumerator) /
+                        (policy.ownerDenominator + 1))
+                : 0;
+        replanning->previous = previous;
+      }
+      g.active = g.best;
+      s.active = model::OwnerHostileTask{
+          model::ownerGroupKeys(g.active->groups, g.active->root).front(),
+          g.active->groups.nodes[g.active->root].position};
+      s.activeSerial = s.nextSerial++;
+      if (g.scheduler) {
+        g.scheduler->pendingExecution = 0;
+        g.scheduler->executionComplete = false;
+      }
+    }
+  };
+  if (g.scheduler) {
+    auto cleanup = [&] {
+      if (replanning->previous &&
+          model::retireOwnerTask(*replanning->previous,
+                                 g.scheduler->executionComplete, tick,
+                                 replanning->policy)) {
         g.active.reset();
         s.active.reset();
         s.activeSerial = 0;
+        replanning->previous.reset();
+        g.scheduler->pendingExecution = 0;
+        g.scheduler->executionComplete = false;
       }
-    } else {
-      s.active->position = g.active->groups.nodes[g.active->root].position;
-      if (actor.ai.action != 8) {
-        if (out.kind == model::OwnerHostileOrderKind::target)
-          commands.target(actor, out.target);
-        else if (out.kind == model::OwnerHostileOrderKind::move &&
-                 (actor.ai.behavior != 2 ||
-                  !(actor.destination == out.position))) {
-          c.execution[s.actor].commandMode = 0;
-          commands.move(actor, out.position);
-        }
-      }
-      if (!replanning)
-        return;
-    }
-  }
-  if (!actor.ai.active || !actor.ai.health)
-    return;
-  if (s.selection.reset) {
-    s.selection.value = -2;
-    s.selection.ties = 0;
-    s.selection.selected = -1;
-    g.best.reset();
-  }
-  auto prepare = [&](unsigned evaluator) {
-    if (!evaluator) {
-      s.fallbackEmitted = false;
-      return;
-    }
-    s.hostileEmitted = false;
-    s.candidateReady = false;
-    s.candidate = {};
-    s.features.clear();
-    g.groups = {};
-    g.observations = c.native.ownerKnowledge->records[s.owner];
-    g.cursor = 0;
-    g.probe = {};
-    g.from = g.to = -1;
-    g.candidate.reset();
-    if (replanning) {
-      replanning->prepared = true;
-      replanning->eligible = model::admitOwnerTask6(replanning->admission);
-      if (!replanning->eligible)
-        return;
-    }
-    model::OwnerMemoryGroupServices lower;
-    const reconstruction::CreatureMovementParameters shape{4, 1, 1, 3, 0, 0, 0};
-    lower.regional = [&](int a, int b, int &middle) {
-      return model::regionalDangerCenter(c.native.regions, a, b, shape,
-                                         c.world.dimensions, middle);
     };
-    lower.line = [&](auto a, auto b) { return line(geometry, a, b, shape); };
-    model::buildOwnerMemoryGroups(g.groups, *c.native.ownerKnowledge, s.owner,
-                                  tick, true, c.world.dimensions,
-                                  c.world.relation, lower);
-    // 40eff0's kind6 deadline; native lab invokes this at a fresh selection
-    // sweep rather than claiming original World scheduling or cache epochs.
-    need(tick <= std::numeric_limits<int>::max() - 22,
-         "group planner deadline overflow");
-    if (!replanning)
-      (void)model::nextRandom(s.random);
-    g.deadline = tick + 22;
-  };
-  auto next = [&](unsigned evaluator, int &budget) -> std::optional<float> {
-    if (!evaluator) {
-      if (s.fallbackEmitted || budget < 1)
-        return {};
-      s.fallbackEmitted = true;
-      --budget;
-      return -1.f;
-    }
-    if (replanning && !replanning->eligible)
-      return {};
-    auto &roots = g.groups.nodes[0].children;
-    while (g.cursor < roots.size() && tick <= g.deadline) {
-      const auto root = roots[g.cursor];
-      const auto &node = g.groups.nodes[root];
-      if (actor.region < 0 || node.region < 0) {
-        ++g.cursor;
-        g.probe = {};
-        g.from = g.to = -1;
-        continue;
-      }
-      // Native admission: restart a probe when its friendly origin changes.
-      // The original task assumes its search inputs remain stable.
-      if (g.from != actor.region || g.to != node.region) {
-        g.probe = {};
-        g.from = actor.region;
-        g.to = node.region;
-      }
-      auto services = nativeRegionalServices(c, p, geometry, actor);
-      model::RegionalQuery query{
-          reconstruction::creature_movement_parameters(geometry.actor(s.actor)),
-          true, false, false};
-      const auto result = model::advanceOwnerTaskProbe(
-          g.probe, c.native.regions, g.from, g.to, query, c.world.dimensions,
-          budget, services);
-      if (result == model::OwnerTaskProbeResult::pending)
-        return {};
-      ++g.cursor;
-      if (result == model::OwnerTaskProbeResult::failed) {
-        g.probe = {};
-        g.from = g.to = -1;
-        continue;
-      }
-      std::vector<model::OwnerPlannerActor> enemy;
-      for (int key : model::ownerGroupKeys(g.groups, root)) {
-        const auto &rows = g.observations;
-        auto r = std::find_if(rows.begin(), rows.end(), [&](const auto &v) {
-          return v.memory.key == key;
-        });
-        if (r == rows.end() || !r->planning) {
-          enemy.clear();
-          break;
-        }
-        auto snapshot = *r->planning;
-        if (r->memory.actor.region >= 0) {
-          model::AutonomousCreature remembered;
-          remembered.ai.owner = r->memory.actor.owner;
-          remembered.ai.physical = snapshot.physical;
-          remembered.ai.bravery = snapshot.bravery;
-          remembered.flag104 = snapshot.flag104;
-          snapshot.danger = model::regionDanger(
-              remembered, c.native.regions.at(unsigned(r->memory.actor.region)),
-              c.native.regionalRiskPowers);
-        } else
-          snapshot.danger = 0;
-        enemy.push_back(snapshot);
-      }
-      if (enemy.empty()) {
-        g.probe = {};
-        g.from = g.to = -1;
-        continue;
-      }
-      const auto friendly = nativeOwnerPlannerActor(c, p, s.actor);
-      const auto prefix = model::hostileTaskGroupFeatures({friendly}, enemy,
-                                                          c.world.dimensions);
-      s.features.assign(prefix.begin(), prefix.end());
-      const auto at = std::find_if(
-          g.probe.search.records.begin(), g.probe.search.records.end(),
-          [&](const auto &v) { return v.node == g.to; });
-      need(at != g.probe.search.records.end(), "group probe result missing");
-      const auto payload = reconstruction::neighbor_movement(at->movement);
-      const int travel =
-          model::ownerTaskTravelTime(payload.accumulated_cost, friendly.speed);
-      if (replanning)
-        replanning->candidateDuration =
-            model::ownerTask6Duration(s.random, travel);
-      const auto &dest = c.native.regions.at(unsigned(g.to));
-      const bool covered =
-          !dest.parameter &&
-          !line(geometry,
-                {dest.position.x, dest.position.y, c.world.dimensions.z - 1},
-                dest.position, {1, 1, 1, 0, 0, 0, 0});
-      s.features.insert(
-          s.features.end(),
-          {int(std::sqrt(static_cast<long double>(node.uncertaintySquared))),
-           travel, payload.unknown_18, services.danger(g.to), int(covered)});
-      const auto inference = model::inferOwnerTask(s.model, s.features);
-      s.candidateScore = model::ownerTaskValue(
-          {{inference[0], inference[1], inference[2]}}, s.weights, s.percent);
-      int risk = 0;
-      for (auto id : g.probe.path)
-        risk = std::max(risk, services.danger(id));
-      g.candidate = model::OwnerGroupTask{g.groups, root, risk};
-      s.candidate = {model::ownerGroupKeys(g.groups, root).front(),
-                     node.position};
-      s.candidateReady = true;
-      g.probe = {};
-      g.from = g.to = -1;
-      return s.candidateScore;
-    }
-    s.hostileEmitted = true;
-    return {};
-  };
-  model::OwnerTaskSelectionServices services{
-      2,
-      true,
-      prepare,
-      next,
-      [&](unsigned i) {
-        if (i) {
-          g.best = g.candidate;
-          if (replanning)
-            replanning->bestDuration = replanning->candidateDuration;
-        } else
-          g.best.reset();
-      },
-      []() {}};
-  int budget = 2;
-  model::advanceOwnerTaskSelection(s.selection, budget, s.random, services);
-  if (replanning && s.selection.reset && s.selection.selected == 0 &&
-      model::replaceOwnerTask(s.selection.value,
-                              replanning->previous ? &*replanning->previous
-                                                   : nullptr,
-                              tick, replanning->policy)) {
-    g.active.reset();
-    s.active.reset();
-    s.activeSerial = 0;
-    replanning->previous.reset();
-  }
-  if (s.selection.reset && s.selection.selected == 1 &&
-      (!replanning ||
-       model::replaceOwnerTask(s.selection.value,
-                               replanning->previous ? &*replanning->previous
-                                                    : nullptr,
-                               tick, replanning->policy))) {
-    need(g.best.has_value() &&
-             s.nextSerial < std::numeric_limits<unsigned>::max(),
-         "group planner selected task");
-    if (replanning) {
-      need(replanning->bestDuration <= std::numeric_limits<int>::max() - tick,
-           "group planner task expiration overflow");
-      model::OwnerPreviousTask previous;
-      previous.started = tick;
-      previous.expires = tick + replanning->bestDuration;
-      previous.value = s.selection.value;
-      previous.weighted = s.selection.weighted;
-      const auto &policy = replanning->policy;
-      previous.baseline =
-          policy.ownerAvailable
-              ? float(static_cast<long double>(policy.ownerNumerator) /
-                      (policy.ownerDenominator + 1))
-              : 0;
-      replanning->previous = previous;
-    }
-    g.active = g.best;
-    s.active = model::OwnerHostileTask{
-        model::ownerGroupKeys(g.active->groups, g.active->root).front(),
-        g.active->groups.nodes[g.active->root].position};
-    s.activeSerial = s.nextSerial++;
+    // Authored native host allocation4, not a recovered World budget producer.
+    // Only ordinary direct-root scheduling is admitted here. Pending queues for
+    // specialized source controllers and multiple simultaneous tasks excluded.
+    model::advanceOwnerTaskScheduler(
+        *g.scheduler, tick, 4,
+        {cleanup, plan,
+         [&] {
+           return model::OwnerScheduledTask{
+               s.activeSerial,
+               replanning->previous ? replanning->previous->expires : 0,
+               actor.ai.active && actor.ai.health != 0};
+         },
+         execute});
+  } else {
+    int executionBudget = 8;
+    const bool continuing = execute(executionBudget);
+    if (continuing && !replanning)
+      return;
+    int planningBudget = 2;
+    plan(planningBudget);
   }
 }
 } // namespace mnm::command_session

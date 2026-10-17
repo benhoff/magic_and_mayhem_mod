@@ -1,9 +1,12 @@
 // Full ordinary task6 generation is called by the original423590 driver.
 // Supplied world/memory/model construction and object clone/teardown are
 // explicit.
+#pragma push_macro("main")
+#undef main
 #define main unused_loop_journey_main
 #include "owner-task-probe-test.cpp"
 #undef main
+#pragma pop_macro("main")
 #include "../reconstruction/creature-ai/owner_group_features.hpp"
 #include "../reconstruction/creature-ai/owner_group_task.hpp"
 #include "../reconstruction/creature-ai/owner_task_inputs.hpp"
@@ -41,7 +44,7 @@ struct NativeLoop {
   std::optional<m::OwnerGroupTask> candidate, best, active;
   std::vector<int> features, bestFeatures, activeFeatures;
   unsigned cursor = 0, serial = 0;
-  int duration = 0, bestDuration = 0;
+  int duration = 0, bestDuration = 0, deadline = 0;
   bool eligible = false;
   NativeLoop(unsigned seed) : random(m::seedRandom(seed)) {}
   bool advance(m::OwnerKnowledge &knowledge,
@@ -59,6 +62,7 @@ struct NativeLoop {
     services.count = 1;
     services.root = true;
     services.prepare = [&](unsigned) {
+      deadline = tick + 22;
       eligible = m::admitOwnerTask6(
           {enabled, 0, false, true, true, false, true, false});
       groups = {};
@@ -80,7 +84,7 @@ struct NativeLoop {
       if (!eligible)
         return {};
       auto &roots = groups.nodes[0].children;
-      while (cursor < roots.size()) {
+      while (cursor < roots.size() && tick <= deadline) {
         auto root = roots[cursor];
         auto &node = groups.nodes[root];
         m::RegionalQuery q;
@@ -677,6 +681,7 @@ int main(int argc, char **argv) try {
             << ",\"execution_slices\":" << orders << ",\"risk_stops\":" << stops
             << ",\"refusals\":" << refusals << ",\"digest\":\"" << digest
             << "\"}\n";
+  return 0;
 } catch (const std::exception &e) {
   std::cerr << e.what() << '\n';
   return 1;

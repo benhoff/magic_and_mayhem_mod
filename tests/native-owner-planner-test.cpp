@@ -35,15 +35,22 @@ int main(int argc, char **argv) try {
     ++refusals;
   };
   const auto initial = cs::encode(p.initial);
-  check(initial.at(4) == 15, "CMD1v15");
-  for (unsigned version : {10u, 11u, 12u, 13u, 14u})
+  check(initial.at(4) == 16, "CMD1v16");
+  for (unsigned version : {10u, 11u, 12u, 13u, 14u, 15u})
     rejects([&] { (void)cs::encode(p.initial, version); });
   auto oldGrouped = p.initial;
+  oldGrouped.native.ownerPlanner->grouped->scheduler.reset();
   oldGrouped.native.ownerPlanner->grouped->replanning.reset();
   auto v13 = cs::encode(oldGrouped, 13);
   check(cs::encode(cs::decode(v13), 13) == v13 &&
             !cs::decode(v13).native.ownerPlanner->grouped->replanning,
         "v13 planner compatibility");
+  auto oldCadence = p.initial;
+  oldCadence.native.ownerPlanner->grouped->scheduler.reset();
+  auto v15 = cs::encode(oldCadence, 15);
+  check(cs::encode(cs::decode(v15), 15) == v15 &&
+            !cs::decode(v15).native.ownerPlanner->grouped->scheduler,
+        "v15 cadence compatibility");
   auto oldPlanner = p.initial;
   oldPlanner.native.ownerPlanner->grouped.reset();
   auto v12 = cs::encode(oldPlanner, 12);
@@ -103,9 +110,25 @@ int main(int argc, char **argv) try {
     c.native.ownerPlanner->selection.reset = false;
     c.native.ownerPlanner->selection.evaluator = 1;
   });
-  bad([](auto &c) {c.native.ownerPlanner->grouped->replanning->policy.expiry = -1;});
-  bad([](auto &c) {c.native.ownerPlanner->grouped->replanning->previous.emplace();});
-  bad([](auto &c) {c.native.ownerPlanner->grouped->replanning->bestDuration = -1;});
+  bad([](auto &c) {
+    c.native.ownerPlanner->grouped->replanning->policy.expiry = -1;
+  });
+  bad([](auto &c) {
+    c.native.ownerPlanner->grouped->replanning->previous.emplace();
+  });
+  bad([](auto &c) {
+    c.native.ownerPlanner->grouped->replanning->bestDuration = -1;
+  });
+  bad([](auto &c) {
+    c.native.ownerPlanner->grouped->scheduler->pendingExecution = 7;
+  });
+  bad([](auto &c) {
+    c.native.ownerPlanner->grouped->scheduler->executionComplete = true;
+  });
+  bad([](auto &c) { c.native.ownerPlanner->grouped->replanning.reset(); });
+  auto malformedScheduler = initial;
+  malformedScheduler[malformedScheduler.size() - 12] = 2;
+  rejects([&] { (void)cs::decode(malformedScheduler); });
   auto truncated = initial;
   truncated.pop_back();
   rejects([&] { (void)cs::decode(truncated); });

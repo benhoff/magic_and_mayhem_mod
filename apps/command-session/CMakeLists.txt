@@ -18,6 +18,7 @@ add_library(mnm-native-command-session STATIC runtime.cpp codec.cpp
   ../../reconstruction/creature-ai/owner_task_probe.cpp
   ../../reconstruction/creature-ai/owner_group_task.cpp
   ../../reconstruction/creature-ai/owner_task_lifecycle.cpp
+  ../../reconstruction/creature-ai/owner_task_scheduler.cpp
   ../../reconstruction/creature-ai/owner_planner.cpp
   ../../reconstruction/creature-ai/owner_planner_features.cpp
   ../../reconstruction/creature-ai/owner_hostile_task.cpp

@@ -1,10 +1,10 @@
-# Native command continuation versions 1–15
+# Native command continuation versions 1–16
 
 This is a native application format inside the outer native `State.systems`
 checkpoint. It is unrelated to original Magic & Mayhem save/object layouts.
 
 The byte stream starts with four ASCII bytes `CMD1`, then little-endian32-bit
-version15 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
+version16 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
 integers use two's-complement words with explicit checked reconstruction; narrow
 values reject overflow. Booleans are exactly0 or 1. An optional is a0/1 word and,
 when present, its value. A vector begins with its word length; a fixed array has
@@ -336,3 +336,25 @@ continuation storage for those events. No host task pointer or inferred owner
 attribution becomes a task identity. See
 [owner task event inputs](../runtime/owner-task-inputs.md) for the supported
 single-root mapping, validation and remaining producer boundaries.
+
+
+## CMD1v16: ordinary owner task scheduling (NS83)
+
+Version16 appends an optional scheduler after the v15 grouped planner fields.
+Its ordered fields are bool `planningPending`, unsigned32 `pendingExecution`
+(task serial,0 means empty), and bool `executionComplete`. Pending execution
+must be0 or the current active serial; a completed execution requires an active
+task. A scheduler requires the replanning projection. These fields express
+415c40's bounded ordinary direct-root count-mode caller; host allocation4,
+world/cache/source production and single active-task replacement remain native
+policies. The owner/world clock and strategic RNG remain in their existing fields.
+
+`executionComplete` represents original task+14. The historical previous-task
+`completed` field remains replacement invalidation+15; decoding older versions
+does not reinterpret that stored field. Fresh activation enables the scheduler.
+Versions1..15 decode with it absent, retaining their prior native scheduling
+policy and stored lifetimes. Writes below16 refuse a present scheduler.
+Checkpoint restore preserves pending planning and execution, independent budgets
+are recreated per call, and failed frames publish no partial state. See
+[owner task scheduler](../runtime/owner-task-scheduler.md) for comparison and
+remaining source/World boundaries.

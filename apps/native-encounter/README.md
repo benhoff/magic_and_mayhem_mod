@@ -93,3 +93,12 @@ task installation and pursuit/completion. Its supplied world/observations/model,
 clone/teardown and training/scoring services remain distinct from the native
 installed encounter and full World scheduling. See
 [the NS82 evidence scope](../../research/runtime/owner-task6-composed-loop.md).
+
+
+Fresh planner sessions now use CMD1v16 with the [ordinary owner scheduler](../../research/runtime/owner-task-scheduler.md).
+Planning precedes execution, each receives an authored two-unit budget, and
+expiry, execution completion or insufficient progress retires the active task
+during cleanup. Pending planning/execution and the separate execution-result
+flag survive checkpoints. Pre-v16 checkpoints retain their stored native cadence;
+downconversion of scheduler state refuses. Source split/merge, simultaneous
+displaced task maps, dual brains and full original World scheduling remain pending.

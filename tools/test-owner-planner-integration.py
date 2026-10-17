@@ -31,12 +31,12 @@ def main():
     a = parser.parse_args()
     out = a.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
-    (out/'.retain').write_text('NS81 native task event-input raw continuation evidence.\n')
+    (out/'.retain').write_text('NS83 scheduler and legacy event-input raw continuation evidence.\n')
     declaration = json.loads(a.claims.read_text()) if a.claims else dict(sources={}, claims=[])
     if any(sha(ROOT/k) != v for k, v in declaration['sources'].items()):
         raise ValueError('Declared sources changed before execution')
     r = dict(success=False, claims=declaration['claims'], source_sha256=declaration['sources'],
-             scope='Native lab policy: ordinary two-actor installed32x32x23 encounter; direct-root previous-task admission/replacement with native regional/occupancy/percent inputs, published owner danger/support ratios and actual health/melee/flagged-motion task accounting, ordered anonymous-memory groups, ordinary regional probes, 72 produced features and original DAT inference; explicit1/0/1 weights and100 percent, danger excess0, independent strategic RNG, fresh-sweep caches and origin-change probe restart, active and pending candidate continuation, per-candidate exponential lifetime. Original World cadence, source split/merge and wizard policy excluded. CMD1v15, two installed-model seeds x512 frames, every8-frame restore, controlled authored-model observation-to-inference retention/replacement with untouched active scores/lifetimes, expired-task damage-driven replacement against an undamaged retained-task control, melee/healing/flagged-motion credit, cold-process continuation and legacy regressions',
+             scope='Native lab policy: ordinary two-actor installed32x32x23 encounter; direct-root previous-task admission/replacement with native regional/occupancy/percent inputs, published owner danger/support ratios and actual health/melee/flagged-motion task accounting, ordered anonymous-memory groups, ordinary regional probes, 72 produced features and original DAT inference; explicit1/0/1 weights and100 percent, danger excess0, independent strategic RNG, fresh-sweep caches and origin-change probe restart, active and pending candidate continuation, travel+600 per-candidate lifetime. Ordinary direct-root count-mode planning-before-execution scheduler, distinct result/invalidation flags, cleanup, pending-root continuation and CMD1v16 are enabled for fresh sessions. Legacy v13-v15 cadence regressions remain explicit. Original World cadence, source split/merge and wizard policy excluded. CMD1v16, two installed-model seeds x512 frames, every8-frame restore, controlled authored-model observation-to-inference retention/replacement with untouched active scores/lifetimes, expired-task damage-driven replacement against an undamaged retained-task control, melee/healing/flagged-motion credit, cold-process continuation and legacy regressions',
              wine_required=False, live_replacement=False, commands=[])
 
     def run(name, command, env=None):
@@ -79,6 +79,7 @@ def main():
                 if suite == 'native-owner-planner-test':
                     args.append(out/(tag+'-journey'))
                 results[tag][suite] = json.loads(run(tag+'-'+suite, args, env))
+            results[tag]['scheduled-task-events'] = json.loads(run(tag+'-scheduled-task-events', [build/'native-owner-task-inputs-test', a.install, '--scheduler'], env))
             run(tag+'-core', ['ctest', '--test-dir', build/'command-session', '-R',
                              '^(native-command-((behavior|action|action-bodies)-)?session|native-creature-providers)$', '--output-on-failure'], env)
         if results['native64'] != results['sanitized']:
