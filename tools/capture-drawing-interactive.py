@@ -88,7 +88,7 @@ def main():
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('*producer*.h')]
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('world_*.h')]
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'reconstruction/rendering').glob('glyph_backend*') if x.suffix in ('.c','.h','.S')]
-    if a.primitive_lifetimes:names += ['tools/drawing_primitive_lifetimes.py']
+    if a.primitive_lifetimes:names += ['tools/drawing_primitive_lifetimes.py', 'tools/drawing_primitive_api.py', 'protocols/include/mnm/drawing_primitive_point_v1.h', 'runtime/drawing/primitive_api_identity.h']
     if a.copy_order:names += ['protocols/include/mnm/drawing_copy_order_v1.h','tools/drawing_copy_order.py']
     if a.close_physical_on_source_complete:names += ['tools/drawing_source_interval.py','tests/test-drawing-source-interval.py']
     if a.whole_updates:names += ['runtime/engine-cadence/update_boundary.h','runtime/scene/whole_update_capture.h','protocols/include/mnm/canvas_producers_v4.h','runtime/scene/sample_admission.h','tools/drawing_source_completion.py']
@@ -612,6 +612,8 @@ def main():
                     if a.primitive_lifetimes:
                         from drawing_primitive_lifetimes import analyze as analyze_lifetimes
                         report['primitive_lifetime_observation']=analyze_lifetimes(capture)
+                        from drawing_primitive_api import analyze as analyze_primitive_api
+                        report['primitive_api_identity_observation']=analyze_primitive_api(capture)
         except (ValueError,OSError,KeyError) as error:report.update(success=False,error='Engine update decoding failed: '+str(error))
     if a.source_byte_witness and report.get('success'):
         try:

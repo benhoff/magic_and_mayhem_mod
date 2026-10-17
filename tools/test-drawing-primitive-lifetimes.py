@@ -21,7 +21,7 @@ def main():
     if not stable():raise ValueError('Prospective sources changed')
     parent=ROOT/'working/tests/drawing-primitive-lifetimes';parent.mkdir(parents=True,exist_ok=True)
     run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
-    imports=dict(GetProcessHeap=0,HeapAlloc=12,HeapFree=12,CreateFileA=28,WriteFile=20,CloseHandle=4,GetLastError=0,SetLastError=4,GetEnvironmentVariableA=12,ExitProcess=4,GetCurrentThreadId=0,QueryPerformanceCounter=4,QueryPerformanceFrequency=4,InitializeCriticalSection=4,EnterCriticalSection=4,LeaveCriticalSection=4,CreateThread=24,WaitForSingleObject=8,Sleep=4)
+    imports=dict(GetProcAddress=8,GetModuleHandleA=4,GetProcessHeap=0,HeapAlloc=12,HeapFree=12,CreateFileA=28,WriteFile=20,CloseHandle=4,GetLastError=0,SetLastError=4,GetEnvironmentVariableA=12,ExitProcess=4,GetCurrentThreadId=0,QueryPerformanceCounter=4,QueryPerformanceFrequency=4,InitializeCriticalSection=4,EnterCriticalSection=4,LeaveCriticalSection=4,CreateThread=24,WaitForSingleObject=8,Sleep=4)
     (run/'kernel32.def').write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{s}\n' for n,s in imports.items()))
     subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(run/'kernel32.def'),'-l',str(run/'kernel32.lib')],check=True)
     subprocess.run(['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-c',str(ROOT/'tests/drawing-primitive-lifetimes-test.c'),'-o',str(run/'fixture.obj')],check=True)
@@ -39,8 +39,11 @@ def main():
             cases.append(dict(case=label,expected=expected,actual=result.returncode))
         journal=(run/'normal/primitive-lifetimes-0000.bin').read_bytes();observed=decode(journal)
         if observed['calls']!=3 or [b['calls'] for b in observed['boundaries']]!=[[1,2],[3]] or len({c['thread'] for c in observed['pending_boundary_calls']})!=2:raise ValueError('Pending nested/foreign call identities lost')
+        from drawing_primitive_api import decode as api_decode
+        point_observation=api_decode((run/'normal/api-primitive-identities.bin').read_bytes())
+        if point_observation['active_primitive_calls']!=1:raise ValueError('Exact active API primitive missing')
         if not stable():raise ValueError('Fixture source changed')
-        report=dict(schema=1,success=True,claims=claims['claims'],sources=sources,sources_stable=True,experiment=str(run),binary_sha256=sha(binary.read_bytes()),cases=cases,observation=observed,original_game_executed=False,scope='Actual PE32 recorder with owned two-thread original-body stand-ins; exact nested/foreign pending call identities, acquisition/return envelopes, LastError and bounded malformed/prerequisite/budget/write refusal. No original source-byte ownership or game equivalence.')
+        report=dict(schema=1,success=True,claims=claims['claims'],sources=sources,sources_stable=True,experiment=str(run),binary_sha256=sha(binary.read_bytes()),cases=cases,observation=observed,primitive_api_observation=point_observation,original_game_executed=False,scope='Actual PE32 recorder with owned two-thread original-body stand-ins; exact nested/foreign pending call identities, acquisition/return envelopes, LastError and bounded malformed/prerequisite/budget/write refusal. No original source-byte ownership or game equivalence.')
         with a.report.open('x') as out:json.dump(report,out,indent=2);out.write('\n')
         print(json.dumps(dict(success=True,cases=len(cases),calls=observed['calls'])))
     finally:

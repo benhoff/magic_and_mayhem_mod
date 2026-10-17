@@ -3820,3 +3820,17 @@ are promoted. Exact raw provenance, setup negatives,28Python/six PE32/thirteen
 whole-boundary controls and the repaired missing launch-manifest write are linked
 in the focused findings. Next establish actual cursor source/backing consumers,
 encountered aliases/writers and alternate presentation boundaries.
+
+
+## Source identity, strict fallback and hardware parity (2026-10-17)
+
+The [latest completion evidence](native-render-completion-20261017.md) binds exact
+primitive/API/worker consumers, enforces no original fallback for all43installed
+optional pixel routes, and passes a natural-intro NVIDIA storage/rebuild/MainLoad/
+normal-Quit journey.17routes execute with zero forwards; all others remain explicit.
+Both full seven-profile software and NVIDIA comparisons execute1.27billion pixels
+per backend, preserving the historical252pixel storage geometry negative and the
+separately passing corrected profile. All four original interval ownership gates
+remain rejected;47/21journey/operation closure and60FPS remain open. Exact IDs
+and functional resource handling do not establish immutable COPY backing or all
+aliases/readers/writers/presentation routes. Complete-native launch stays gated.

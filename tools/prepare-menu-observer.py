@@ -24,6 +24,8 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         raise ValueError('Controls enhancements cannot be combined with passive original-gameplay evidence')
     from borrowed_pixel_backend_launch import FEATURES,selection,enabled as borrowed_enabled,stage as stage_borrowed
     pixel_environment=selection(os.environ)
+    from pixel_forwarding_guard import selection as forwarding_guard_selection
+    no_pixel_forwarding=forwarding_guard_selection(pixel_environment,native_draw=native_draw,native_render=native_render,actions=actions)
     borrowed={name:borrowed_enabled(pixel_environment,name) for name in FEATURES}
     if any(borrowed.values()) and not (native_draw and native_render and actions):
         raise ValueError('Native pixel producers require native menu/drawing staging')
@@ -158,7 +160,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     metadata={'origin':'menu_action_bridge' if actions else 'menu_observation_only','source_game':str(source),'source_sha256':HASH,'staged_sha256':hashlib.sha256(patched).hexdigest(),
               'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'game_copy':str(game),'events':str(root/'events.bin'),
               'original_gameplay':original_gameplay,'grimoire_observe':grimoire_observe,'campaign_observe':campaign_observe,'experimental_mini':experimental_mini,'preference_store':stored,'preferences':edits,'scope':('UNVALIDATED Mini Menu bridge; dedicated validation staging; original confirmation/drawing retained' if experimental_mini else 'Bounded Main/Quick/Single Player/Map/Spell/Quick results/Main Preferences engine-thread action bridge; original menu logic/drawing retained') if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
-              'native_draw':native_draw,'native_draw_sha256':hashlib.sha256(draw_dll.read_bytes()).hexdigest() if draw_dll else None,'native_draw_status':str(root/'native-draw-status.bin') if native_draw else None,
+              'native_pixel_no_forward':no_pixel_forwarding,'native_draw':native_draw,'native_draw_sha256':hashlib.sha256(draw_dll.read_bytes()).hexdigest() if draw_dll else None,'native_draw_status':str(root/'native-draw-status.bin') if native_draw else None,
               'native_render':native_render,'render_dll_sha256':hashlib.sha256(render_dll.read_bytes()).hexdigest() if render_dll else None,
               'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}

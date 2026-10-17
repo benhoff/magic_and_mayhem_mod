@@ -43,6 +43,8 @@ if all(os.environ.get(flag)=='1' for flag in ('MNM_PANEL_TAKEOVER','MNM_PIXEL_TA
     counters=game/'native-pixel-producers.bin'
     if counters.exists() or counters.is_symlink():raise ValueError('Stale or redirected pixel producer counters')
     os.environ['MNM_NATIVE_PIXEL_COUNTERS']='1'
+from pixel_forwarding_guard import authorize as authorize_forwarding_guard
+authorize_forwarding_guard(root,metadata,os.environ)
 if os.environ.get('MNM_MENU_CHANNEL'):
     expected='Z:'+str(root/'channel.bin').replace('/','\\')
     if metadata['origin']!='menu_action_bridge' or os.environ['MNM_MENU_CHANNEL']!=expected:raise ValueError('Refusing unapproved command channel')

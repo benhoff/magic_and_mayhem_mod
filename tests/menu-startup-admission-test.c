@@ -11,6 +11,20 @@ static int menu_host(u32* out){out[0]=live;out[2]=request;return stable;}
 #include "../runtime/menu/startup_admission.h"
 int main(void){
  u32 host[145];
+ struct MenuAdmissionClock clock={0};
+ stable=0;
+ assert(menu_admission_check(host,menu_admission_elapsed(&clock,50,0))==MENU_ADMISSION_BUSY);
+ /* A full 175-second intro after one crossed loader snapshot cannot consume
+  * a retry budget before the first menu pump has run. */
+ stable=1;
+ assert(menu_admission_check(host,menu_admission_elapsed(&clock,175050,1))==MENU_ADMISSION_OK);
+ stable=0;
+ assert(menu_admission_check(host,menu_admission_elapsed(&clock,295049,1))==MENU_ADMISSION_BUSY);
+ assert(menu_admission_check(host,menu_admission_elapsed(&clock,295050,1))==MENU_ADMISSION_TIMEOUT);
+ struct MenuAdmissionClock wrap={0};
+ assert(menu_admission_elapsed(&wrap,UINT32_MAX-20,1)==0);
+ assert(menu_admission_elapsed(&wrap,10,1)==31);
+ stable=1;
  assert(menu_admission_check(host,0)==MENU_ADMISSION_OK);
  stable=0;assert(menu_admission_check(host,1)==MENU_ADMISSION_BUSY);
  stable=1;assert(menu_admission_check(host,2)==MENU_ADMISSION_OK);

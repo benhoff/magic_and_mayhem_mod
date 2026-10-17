@@ -2,12 +2,32 @@
  * QPC bounds bracket observer snapshots and original execution conservatively. */
 API u32 WIN QueryPerformanceCounter(void*);
 API u32 WIN QueryPerformanceFrequency(void*);
+#include "../../protocols/include/mnm/drawing_primitive_point_v1.h"
 #define MNM_PRIMITIVE_LIFETIME_MAX_ROWS 2097152u
 static HANDLE source_windows_file;
 static HANDLE primitive_lifetimes_file;
 static u32 primitive_lifetime_rows,primitive_lifetime_next,primitive_lifetime_active;
 static u8* primitive_lifetime_buffer;
 static u32 primitive_lifetime_used;
+u32 WIN SceneDrawingPrimitivePointV1(u32* out,u32 size){
+ u32 error=GetLastError();if(!out||size!=MNM_PRIMITIVE_POINT_BYTES){SetLastError(error);return 0;}
+ PRODUCER_TRACE_SCOPE;
+ for(u32 i=0;i<48;++i)((volatile u32*)out)[i]=0;
+ u32 owner=GetCurrentThreadId();out[0]=MNM_PRIMITIVE_POINT_VERSION;out[1]=owner;
+ out[2]=primitive_lifetimes_file?0:primitive_lifetime_next?2:3;
+ out[9]=sequence;out[10]=queue;
+ struct Frame* top=0;
+ if(primitive_lifetimes_file)for(u32 i=0;i<MAX_FRAMES;++i)if(frames[i].sp&&frames[i].owner==owner){
+  ++out[11];if(!top||frames[i].lifetime_id>top->lifetime_id)top=frames+i;
+ }
+ if(top){
+  out[2]=1;out[3]=top->lifetime_id;out[4]=top->lifetime_parent;out[5]=top->tag;out[6]=top->caller;out[7]=top->primitive;out[8]=*producer_trace_depth(owner);
+  if(top->record){out[12]=1;copy(out+16,top->record,96);}
+  struct Surface* s=object(top->ecx);
+  if(s){out[40]=s->id;out[41]=s->width;out[42]=s->height;out[43]=s->stride;out[44]=s->dirty;out[45]=s->sampled;out[46]=s->pixels!=0;}
+ }
+ u32 okay=QueryPerformanceCounter(out+14);SetLastError(error);return okay;
+}
 static void primitive_lifetimes_flush(void){
  if(primitive_lifetime_used){if(!write(primitive_lifetimes_file,primitive_lifetime_buffer,primitive_lifetime_used))ExitProcess(99);primitive_lifetime_used=0;}
 }

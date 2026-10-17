@@ -8,7 +8,7 @@ from drawing_api_session import sha
 MAX_ROWS = 2097152
 
 
-def decode(raw, producer_records=None, callbacks=None):
+def decode(raw, producer_records=None, callbacks=None, include_call_ids=None):
     if len(raw) < 320 or (len(raw)-64) % 256 or len(raw) > 64+MAX_ROWS*256:
         raise ValueError('Primitive lifetime envelope')
     h = struct.unpack_from('<16I', raw)
@@ -88,10 +88,15 @@ def decode(raw, producer_records=None, callbacks=None):
         c['snapshot_acquisition_envelope_qpc']=[c['phases'][i]['qpc'] for i in (0,1)]
         c['original_execution_envelope_qpc']=[c['phases'][i]['qpc'] for i in (1,2)]
         c['completion_envelope_qpc']=[c['phases'][i]['qpc'] for i in (2,3)]
-    return dict(schema=1,success=True,journal_sha256=sha(raw),frequency=frequency,clock_domain='Windows_QueryPerformanceCounter',
+    result = dict(schema=1,success=True,journal_sha256=sha(raw),frequency=frequency,clock_domain='Windows_QueryPerformanceCounter',
                 records=count,calls=len(calls),tag_counts=dict(Counter(str(c['tag']) for c in calls.values())),boundaries=boundaries,
                 pending_boundary_calls=spanning,all_pending_calls_identified=True,producer_packets_crosschecked=producer_records is not None,
                 source_callbacks_crosschecked=callbacks is not None,source_bytes_immutable=False,complete_presented_interval=False,native_parity_performed=False)
+    if include_call_ids is not None:
+        if not set(include_call_ids) <= calls.keys():
+            raise ValueError('Requested primitive identity absent from lifetime journal')
+        result['selected_calls'] = [calls[i] for i in sorted(set(include_call_ids))]
+    return result
 
 
 def analyze(directory):

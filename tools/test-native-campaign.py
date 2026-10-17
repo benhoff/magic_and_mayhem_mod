@@ -40,7 +40,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py', 'tools/campaign_render_oracle.py', 'tools/pixel_route_requirements.py', 'tools/campaign_pixel_routes.py']
 SOURCES += ['tools/campaign_storage.py', 'tools/menu-storage-input.py', 'tools/menu_save_store.py', 'apps/qt-shell/campaign_storage_test.cpp', 'tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
-SOURCES += ['tools/directplay_dx6_launch.py']
+SOURCES += ['tools/directplay_dx6_launch.py','tools/native_prefix_template.py','tools/native_render_driver.py']
 SOURCES += ['tools/campaign_camera_dialogue.py', 'tools/campaign-camera-menu-input.py', 'tools/campaign_cadence.py']
 
 
@@ -408,9 +408,11 @@ def main():
     parser.add_argument('--wine-import-census',action='store_true',help='Count original import calls after native adapters; excludes dynamic/COM/forwarded calls')
     parser.add_argument('--initial-silent-start',action='store_true',help='Require initially absent physical outputs and progressing native discard/decoder playback')
     parser.add_argument('--legacy-audio',action='store_true',help='Select original DirectSound voices for this diagnostic run')
+    parser.add_argument('--prefix-template',type=Path,help='Clone a stopped native-session prefix with checked DirectPlay ownership into this test-owned run')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
     parser.add_argument('--other-pixel-producers',action='store_true',help='Select all six optional pixel families and require zero forwards/history refusals')
+    parser.add_argument('--no-pixel-forwarding',action='store_true',help='Terminate in the six-family callback before any original fallback; requires --other-pixel-producers')
     parser.add_argument('--require-pixel-route',action='append',choices=ALL_ROUTES,default=[],help='Require this native production route to execute (repeatable)')
     parser.add_argument('--pixel-camera-scenarios',action='store_true',help='Wait for settled rotations and require the three camera bodies selected by the original four-case switch')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
@@ -467,6 +469,7 @@ def main():
     if args.native_draw and args.legacy_directdraw:parser.error('Owned graphics and legacy DirectDraw are separate routes')
     explicit_native_draw=args.native_draw
     args.native_draw=not args.legacy_directdraw
+    if args.no_pixel_forwarding and not args.other_pixel_producers:parser.error('No-forward guard requires --other-pixel-producers')
     if args.other_pixel_producers and not args.native_draw:parser.error('Combined pixel producers require owned native drawing')
     if (args.require_pixel_route or args.pixel_camera_scenarios) and not args.other_pixel_producers:parser.error('Pixel route requirements need --other-pixel-producers')
     if args.pixel_camera_scenarios:
@@ -507,7 +510,7 @@ def main():
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'native_voices_required':args.native_voices, 'native_audio_default_required':args.default_audio, 'legacy_audio_requested':args.legacy_audio, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
-              'other_pixel_producers_required':args.other_pixel_producers,'save_load_required':args.save_load,
+              'no_pixel_forwarding_required':args.no_pixel_forwarding,'other_pixel_producers_required':args.other_pixel_producers,'save_load_required':args.save_load,
               'command_pressure_required':args.require_command_pressure,'recreate_world_required':args.recreate_world,'loading_menu_seconds':args.loading_menu_seconds,'mini_capture_delay_ms':args.mini_capture_delay_ms,
               'required_pixel_routes':args.require_pixel_route,'pixel_camera_scenarios_required':args.pixel_camera_scenarios,
               'native_wave_loading_required':args.native_loading,
@@ -529,6 +532,7 @@ def main():
         declaration_command.extend(['--behavior','HOST.menu-startup-admission'])
         declaration_command.extend(['--behavior','HOST.native-startup-resources','--scenario','HOST.native-startup-resources.live'])
         if args.require_command_pressure:declaration_command.extend(['--behavior','NR.resident-command-pressure','--scenario','NR.resident-command-pressure.initiate-reload'])
+        if args.save_load:declaration_command.extend(['--behavior','HOST.storage-dialogue-title-readiness','--scenario','HOST.storage-dialogue-title-readiness.storage'])
         if args.save_load:declaration_command.extend(['--behavior','HOST.native-render-save-load','--scenario','HOST.native-render-save-load.campaign','--behavior','HOST.mini-dispatch-admission','--scenario','HOST.mini-dispatch-admission.storage'])
         if args.recreate_world:declaration_command.extend(['--behavior','NR.resident-world-canvas-transition','--scenario','NR.resident-world-canvas-transition.reload'])
         if args.recreate_world:declaration_command.extend(['--behavior','NP.native-primary-initial-history'])
@@ -537,6 +541,9 @@ def main():
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign','--behavior','NP.native-history-reader-routing','--scenario','NP.native-history-reader-routing.campaign','--behavior','NP.explicit-native-cpu-materialization','--scenario','NP.explicit-native-cpu-materialization.campaign'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.pixel-route-scenarios','--scenario','NP.pixel-route-scenarios.campaign'])
+        if args.hardware and args.save_load:declaration_command.extend(['--behavior','HOST.native-renderer-observations','--scenario','HOST.native-renderer-observations.storage'])
+        if args.prefix_template:declaration_command.extend(['--behavior','HOST.native-campaign-prefix-template'])
+        if args.no_pixel_forwarding:declaration_command.extend(['--behavior','NP.pixel-forwarding-guard','--scenario','NP.pixel-forwarding-guard.campaign'])
         if args.pixel_camera_scenarios:declaration_command.extend(['--behavior','HOST.camera-dialogue-readiness','--scenario','HOST.camera-dialogue-readiness.campaign'])
         if args.resident_world and args.pixel_camera_scenarios and not args.require_casting_combat:declaration_command.extend(['--behavior','HOST.campaign-cadence-attribution','--scenario','HOST.campaign-cadence-attribution.campaign'])
         if args.gpu_copy_diagnostics:declaration_command.extend(['--behavior','NP.native-gpu-copy-live-validation','--scenario','NP.native-gpu-copy-live-validation.campaign'])
@@ -617,6 +624,10 @@ def main():
     if args.recreate_world:env['MNM_MENU_DISPLAY_OBSERVE']='1'
     if args.save_load:env['MNM_CAMPAIGN_STORAGE_NAME']='native-render-'+secrets.token_hex(6)
     env['MNM_PIXEL_CAMERA_SCENARIOS']='1' if args.pixel_camera_scenarios else '0'
+    env.pop('MNM_NATIVE_PIXEL_NO_FORWARD',None)
+    if args.no_pixel_forwarding:
+        env['MNM_NATIVE_PIXEL_NO_FORWARD']='1'
+        report['sources'].update({n:sha(ROOT/n) for n in ('tools/pixel_forwarding_guard.py','protocols/include/mnm/native_pixel_guard_v1.h')})
     if args.other_pixel_producers:
         env['MNM_OTHER_PIXEL_PRODUCERS']='1'
         producer_sources=['tools/native_pixel_counters.py','tools/borrowed_pixel_backend_launch.py']
@@ -734,6 +745,9 @@ def main():
                         time.sleep(.1)
                     else:
                         raise RuntimeError('Private X display did not start')
+            if args.prefix_template:
+                from native_prefix_template import clone as clone_native_prefix
+                report['prefix_template']=clone_native_prefix(args.prefix_template,out/'wineprefix',env)
             report['stage'] = 'original-manifest-before'
             with (out / 'original-before.log').open('w') as log:
                 subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], cwd=ROOT,
@@ -815,7 +829,11 @@ def main():
             if not args.save_load and flow.get('route_screenshots',True)!= (not args.no_route_screenshots):raise ValueError('Route screenshot mode differs from requested comparison')
             if args.no_route_screenshots and any(not step.get('route_capture_skipped') or any(step.get(k) for k in ('screenshot_saved','native_image_saved','original_image_saved')) for step in flow['steps'] if step['step']!='campaign-handoff'):raise ValueError('Route screenshot omission not explicitly recorded')
             if flow.get('success') is not True:raise ValueError(flow.get('error') or 'Campaign flow failed')
-            if args.hardware and ('NVIDIA' not in flow.get('renderer','') or any(x in flow['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Actual Qt renderer did not retain NVIDIA hardware identity')
+            if args.hardware:
+                from native_render_driver import require_nvidia
+                drivers=flow.get('renderer_observations',[flow.get('renderer','')])
+                if args.save_load:drivers=drivers+[c.get('renderer','') for c in flow.get('checkpoints',[])]
+                report['hardware_renderers']=require_nvidia(drivers)
             if args.save_load:validate_storage_flow(flow)
             if args.gpu_copy_diagnostics:
                 from native_gpu_copy_diagnostics import validate as validate_gpu_copies
@@ -946,6 +964,10 @@ def main():
                 if args.other_pixel_producers:
                     report['pixel_producer_builds']=validate_builds(roots[0],ROOT,report['sources'])
                     report['pixel_producers']=read_counters(roots[0]/'game')
+                    if args.no_pixel_forwarding:
+                        metadata=json.loads((roots[0]/'manifest.json').read_bytes())
+                        if metadata.get('native_pixel_no_forward') is not True or (roots[0]/'game/native-pixel-forward-refusal.bin').exists():raise ValueError('No-forward guard was absent or refused')
+                        report['pixel_no_forward_guard']=dict(enabled=True,refused=False,complete_replacement=False)
                     report['pixel_route_admission']=validate_routes(report['pixel_producers'],args.require_pixel_route)
                 native_build=json.loads((roots[0]/'native-draw-build.json').read_text())
                 if native_build.get('directdraw_imports') is not False:raise ValueError('Native graphics DLL imports DirectDraw')

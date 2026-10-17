@@ -15664,3 +15664,39 @@ Original child Quit/exit0 and2927-file bookends pass; launcher exit0 is not
 independently observed.28Python/six PE32/thirteen boundary cases pass. Restored
 missing capture-manifest publication; setup failures and immutable raw provenance
 are retained. Historical evidence and all47/21closures remain unchanged.
+
+
+## Native renderer source identity and strict fallback boundary (2026-10-17)
+
+[Current implementation, evidence and limits](native-render-completion-20261017.md):
+exact primitive/API/submission/worker identities extend the original first120
+trace; fresh acquisition follows the startup-clock fix, with all four ownership
+admission gates still rejected. COPY identities do not lease source pixels.
+A synchronous six-family/43-route guard refuses original pixel fallback. Eleven
+actual PE32 guard cases and six recorder cases pass, alongside75Python methods,
+C long-intro/deadline/wrap controls and actual PE32 busy-host recovery.
+
+Both complete seven-profile software and NVIDIA suites compare1270115312pixels
+per backend. Six profiles match; the unmodified historical storage reference
+preserves126GPU+126physical differences at ordinal170. The corrected profile
+passes. All three recorded NVIDIA cohorts use actual source and presentation
+hardware contexts. Owned no-monitor Qt geometry is corrected through X11 fallback;
+full-frame containment, reference cohorts and RGB tolerance remain unchanged.
+These valid negative results retain generic full-suite rejection.
+
+The native NVIDIA resident storage journey completes both intros, Save/Load,
+two original display rebuilds, Main Load/resume and normal Quit. It retains
+1102native frames/1009paints, four fresh World generations with actual driver
+identities, one moving Hermes-title dismissal and8937native optional calls/zero
+forwards;17of43routes execute. A busy loader snapshot followed by175seconds of
+movies exposed a retry-clock bug; the budget now starts at first menu pumping.
+Moving-title OCR and erased driver identity after normal retirement are fixed.
+Failed attempts/raw evidence/bookends remain pinned; old reports are immutable.
+
+Complete original source ownership, all aliases/readers/writers/global routes,
+14journeys/47requirements/21operation failures, restart and60FPS/scanout evidence
+remain open. No complete-native release mode or broad native equivalence is
+claimed. Isolated-source validation does not validate the main checkout's
+unrelated pre-existing CPU-guard or campaign work.
+
+Generated accounting snapshot: [native completion summary](coverage/summary-native-completion-20261017.md).

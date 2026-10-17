@@ -118,3 +118,22 @@ unrelated evidence historical; these new journeys do not renew every menu,
 reader, scene, raster comparison or replacement claim. The incoming history
 review covers [6f069135..a5cd6514](coverage/menu-admission-incoming-history-20261015.json)
 with28 exact file transitions and140 behavior fingerprints, no missing receipts.
+
+
+## Intro playback and the first menu pump (2026-10-17)
+
+A fresh hardware run with natural completion of both intros reproduces a second
+startup race. The loader's first host snapshot is busy (reason2). No menu pump
+runs during native playback of the 112- and 63-second intros. At the first pump,
+the old loader-based 120-second deadline has expired: the trace records reason7,
+the shared menu state stays unpublished, and the host eventually refuses. This
+is a confirmed cause for this new run, not an attribution to older undiagnosed
+failures. Its failed report and original-file bookends remain immutable.
+
+The retry clock now starts at the first actual menu pump when loader admission
+was busy. Initialization still attempts immediate nonblocking admission. All
+header/dead-host/prior-request/engine-ownership refusals remain, as does the
+120-second deadline after pumping begins. Authored C controls cover a 175-second
+loader-to-first-pump interval, continuously busy expiry and uint32 clock wrap.
+The actual PE32 callback fixture also retains busy-to-stable recovery after 300
+original tick stand-ins. No blocking retry is introduced under the loader lock.

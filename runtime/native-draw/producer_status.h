@@ -4,12 +4,15 @@
 #define NP_STATUS_WORDS (4+6*32*3)
 static HANDLE np_status_file,np_status_mapping;
 static volatile u32* np_status_view;
+#include "producer_guard.h"
 __declspec(dllexport) void WIN NativeDrawProducerCountV1(u32 family,u32 route,u32 event){
  if(family>=6 || route>=32 || event>=3)ExitProcess(126);
  if(np_status_view)__atomic_add_fetch(np_status_view+4+(family*32+route)*3+event,1,__ATOMIC_RELAXED);
+ np_guard_count(family,route,event);
 }
 static void np_status_start(void){
- char flag[4];if(GetEnvironmentVariableA("MNM_NATIVE_PIXEL_COUNTERS",flag,4)!=1 || flag[0]!='1')return;
+ np_guard_start();
+ char flag[4];if(GetEnvironmentVariableA("MNM_NATIVE_PIXEL_COUNTERS",flag,4)!=1 || flag[0]!='1'){if(np_no_forward)np_guard_fail(2,0,0,0);return;}
  np_status_file=CreateFileA("native-pixel-producers.bin",0xc0000000,3,0,2,0x80,0);
  if(np_status_file==(HANDLE)-1)ExitProcess(126);
  np_status_mapping=CreateFileMappingA(np_status_file,0,4,0,NP_STATUS_WORDS*4,0);

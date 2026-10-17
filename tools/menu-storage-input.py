@@ -9,6 +9,9 @@ import time
 import struct
 import subprocess
 import hashlib
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from campaign_storage import HERMES_CARD_RECT,hermes_title_line
 
 
 def tutorial_action(text):
@@ -22,11 +25,11 @@ def tutorial_action(text):
     return None
 
 
-def recognize_title(crop):
+def recognize_title(crop,mode=7):
     # Arbitrary terrain is not a text line; some Tesseract builds crash on it.
     # Retain the failure as an unrecognized observation, never an input action.
     try:
-        result=subprocess.run(['tesseract',str(crop),'stdout','--psm','7'],capture_output=True,text=True,timeout=5)
+        result=subprocess.run(['tesseract',str(crop),'stdout','--psm',str(mode)],capture_output=True,text=True,timeout=5)
         return dict(text=result.stdout if result.returncode==0 else '',ocr_returncode=result.returncode,ocr_error=result.stderr if result.returncode else '')
     except subprocess.TimeoutExpired:
         return dict(text='',ocr_returncode=None,ocr_error='Title recognition deadline expired')
@@ -61,11 +64,18 @@ def main():
         from PIL import ImageGrab
         screenshot=a.output.with_name(a.output.stem+'-'+label+'.png')
         image=ImageGrab.grab(xdisplay=os.environ['DISPLAY']).crop((x0,y0,x0+w,y0+h)).resize((800,600));image.save(screenshot)
-        for name,rect in [('select-spell',(360,257,590,292)),('summon',(340,82,560,123)),('hermes',(340,220,530,260))]:
-            crop=screenshot.with_name(screenshot.stem+'-'+name+'.png');title=image.crop(rect);title.resize((title.width*4,title.height*4)).save(crop)
-            result=recognize_title(crop)
-            observations.append(dict(image=screenshot.name,image_sha256=hashlib.sha256(screenshot.read_bytes()).hexdigest(),crop=crop.name,crop_sha256=hashlib.sha256(crop.read_bytes()).hexdigest(),rect=rect,**result))
-            action=tutorial_action(result['text'])
+        for name,rect in [('select-spell',(360,257,590,292)),('summon',(340,82,560,123)),('hermes',(340,220,530,260)),('hermes-card',HERMES_CARD_RECT)]:
+            crop=screenshot.with_name(screenshot.stem+'-'+name+'.png');title=image.crop(rect);scale=2 if name=='hermes-card' else 4;title.resize((title.width*scale,title.height*scale)).save(crop)
+            mode=6 if name=='hermes-card' else 7
+            result=recognize_title(crop,mode)
+            observation=dict(image=screenshot.name,image_sha256=hashlib.sha256(screenshot.read_bytes()).hexdigest(),crop=crop.name,crop_sha256=hashlib.sha256(crop.read_bytes()).hexdigest(),rect=rect,**result)
+            if name=='hermes-card':observation.update(title_rule='hermes-title-line-v1',ocr_mode=mode)
+            observations.append(observation)
+            action=None
+            if result['ocr_returncode']==0:
+                if name=='hermes-card':
+                    if hermes_title_line(result['text']):action=('dismiss',(400,300),1)
+                else:action=tutorial_action(result['text'])
             if action:return action
         return None
     try:

@@ -25,7 +25,7 @@ static u32 menu_generation,menu_screen,menu_ready,menu_owner,menu_thread;
 static u32 menu_request,menu_status,menu_heartbeat,menu_seen;
 static int menu_retired;
 static u32 menu_handoff;
-static u32 menu_admission,menu_admission_started,menu_admission_reason,menu_admission_records;
+static u32 menu_admission,menu_admission_reason,menu_admission_records;
 static HANDLE menu_admission_trace;
 static u32 menu_load(u32* p){return __atomic_load_n(p,__ATOMIC_ACQUIRE);}
 static void menu_store(u32* p,u32 v){__atomic_store_n(p,v,__ATOMIC_RELEASE);}
@@ -43,6 +43,7 @@ static int menu_host(u32* out){
     __atomic_thread_fence(__ATOMIC_ACQUIRE);return seq==menu_load(p);
 }
 #include "startup_admission.h"
+static struct MenuAdmissionClock menu_admission_clock;
 static void menu_admission_record(u32 reason){
     u32 error=GetLastError(),wrote;
     if(menu_admission_trace&&reason!=menu_admission_reason&&menu_admission_records<64){
@@ -56,10 +57,10 @@ static void menu_admission_record(u32 reason){
     }
     menu_admission_reason=reason;SetLastError(error);
 }
-static int menu_admit(void){
+static int menu_admit(int pumping){
     if(menu_admission)return menu_admission==1;
     u32 host[145],now=GetTickCount();
-    u32 reason=menu_admission_check(host,now-menu_admission_started);
+    u32 reason=menu_admission_check(host,menu_admission_elapsed(&menu_admission_clock,now,pumping));
     menu_admission_record(reason);
     if(reason==MENU_ADMISSION_BUSY)return 0;
     if(reason!=MENU_ADMISSION_OK){menu_admission=2;menu_retired=1;return 0;}
@@ -103,7 +104,7 @@ static void menu_init(void){
     grimoire_campaign_enabled=menu_version>=22;spell_campaign_enabled=menu_version>=21;region_campaign_enabled=menu_version>=20;character_campaign_enabled=menu_version>=20;campaign_reports_enabled=menu_version>=20;campaign_preferences_enabled=menu_version>=12;region_grimoire_enabled=menu_version>=14;
     HANDLE mapping=CreateFileMappingA(file,0,4,0,0,0);CloseHandle(file);if(!mapping){menu_admission_record(10);return;}
     menu_words=MapViewOfFile(mapping,2,0,0,menu_size);CloseHandle(mapping);if(!menu_words){menu_admission_record(11);return;}
-    menu_admission_started=GetTickCount();menu_admit();
+    menu_admit(0);
     if(menu_version==4&&!MNM_MENU_MINI_EXPERIMENTAL)menu_retired=1;
 }
 static void menu_state(void* object){
@@ -217,7 +218,7 @@ static void menu_poll(void* object,int execute){
     u32 error=GetLastError(),thread=GetCurrentThreadId();
     if(!menu_thread)menu_thread=thread;
     if(thread!=menu_thread){SetLastError(error);return;}
-    if(!menu_admit()){SetLastError(error);return;}
+    if(!menu_admit(1)){SetLastError(error);return;}
     if(!menu_header()){menu_retired=1;SetLastError(error);return;}
     menu_state(object);
     if(menu_version>=2&&menu_handoff&&menu_ready&&(menu_screen==3||menu_screen==22||(menu_version>=20&&(menu_screen==4||menu_screen==18))))menu_handoff=0;

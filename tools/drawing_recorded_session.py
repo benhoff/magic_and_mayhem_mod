@@ -128,7 +128,19 @@ def admit_actions(root,catalog,original,journal):
   if complete!=required or len(observed['worker_handoffs'])!=2:raise ValueError('Retained storage callback sequence incomplete')
 
 
-def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False,output_parent=None):
+def backend_environment(*,hardware=False,headless=False,inherited=None):
+ if type(hardware) is not bool or type(headless) is not bool:raise ValueError('Explicit boolean recorded backend selection required')
+ if hardware and headless:raise ValueError('Hardware replay requires an existing owned X11 display; Xvfb provisioning is software-only')
+ env=dict(os.environ if inherited is None else inherited,QT_QPA_PLATFORM='xcb',LP_NUM_THREADS='8',QT_SCALE_FACTOR='1')
+ if hardware:
+  if not env.get('DISPLAY'):raise ValueError('Hardware replay requires an existing owned X11 display')
+  env.pop('LIBGL_ALWAYS_SOFTWARE',None)
+ else:env['LIBGL_ALWAYS_SOFTWARE']='1'
+ return env
+
+
+def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False,output_parent=None,hardware=False):
+ env=backend_environment(hardware=hardware,headless=headless)
  root=Path(root).resolve();path=local(root,catalog_path);catalog_bytes=path.read_bytes();catalog=json.loads(catalog_bytes);reg_path=root/'research/runtime/coverage/register.json';reg_bytes=reg_path.read_bytes();register=json.loads(reg_bytes)
  raw,records,frames,assets=admit(root,catalog,register);comparator=load_tool('compare-drawing-quick-battle')
  parent=Path(os.path.abspath(output_parent if output_parent is not None else root/'working/tests/recorded-drawing-session'))
@@ -154,18 +166,23 @@ def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False,outpu
    if record[2]==12:queues=record[14]
   cursor=seq;bounds.append(dict(sequence=seq,queues=queues,canvas=canvas,width=f['width'],height=f['height']))
  (owned/'drawing-session.json').write_text(json.dumps(dict(schema=1,session='1',assets=asset_hashes,segments=[dict(segment=1,stage='scene',producer=dict(path='producers.bin',sha256=sha(source)),frames=bounds)]))+'\n')
- binaries={str(Path(p).resolve()):sha(Path(p).read_bytes()) for p in (native,presenter)};env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='8',QT_SCALE_FACTOR='1')
+ binaries={str(Path(p).resolve()):sha(Path(p).read_bytes()) for p in (native,presenter)}
  def execute(label,command):
   if headless:command=['xvfb-run','-a','-s','-screen 0 1280x1024x24',*command]
   result=subprocess.run(command,env=env,capture_output=True,timeout=600);(run/(label+'.log')).write_bytes(result.stdout+result.stderr)
   if result.returncode:raise ValueError('Recorded native '+label+' failed; inspect '+str(run/(label+'.log')))
  execute('sources',[str(Path(native).resolve()),str(owned),str(run/'native'),'--source-snapshots']);snapshots=json.loads((run/'native/session-report.json').read_text())
  if not snapshots['success'] or snapshots['remaining_surfaces'] or snapshots['original_oracles_read'] or snapshots['original_pixels_used_as_native_inputs'] or len(snapshots['frames'])!=len(bounds):raise ValueError('Recorded native source cohort/refusal')
+ if hardware:
+  from native_render_driver import require_nvidia
+  require_nvidia([snapshots.get('driver')])
  for expected,observed in zip(bounds,snapshots['frames']):
   if any(expected[k]!=observed[k] for k in ('sequence','canvas','width','height')):raise ValueError('Recorded native source order changed')
  prepare(run/'gpu-owned',run/'native',snapshots['frames'],frames)
  execute('gpu',[str(Path(presenter).resolve()),str(run/'gpu-owned'),str(run/'gpu'),'--recorded-composition']);gpu=json.loads((run/'gpu/presentation-report.json').read_text())
  if not gpu['success'] or gpu['remaining_surfaces'] or gpu['qimage_uploads'] or not gpu['gpu_composition'] or not gpu['physical_presentation'] or gpu['original_oracles_read'] or len(gpu['frames'])!=len(frames) or gpu['plan_sha256']!=sha((run/'gpu-owned/presentation.json').read_bytes()):raise ValueError('Recorded GPU frame cohort/provenance')
+ drivers=[snapshots.get('driver'),gpu.get('driver')]
+ hardware_admission=require_nvidia(drivers) if hardware else dict(verified=False,software_requested=True)
  acquisition=json.loads((root/original_record).read_text())
  if catalog['schema']==3:
   witness_dir=run/'reference-witnesses';witness_dir.mkdir()
@@ -191,4 +208,4 @@ def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False,outpu
  admit(root,catalog,register)
  mismatches=sum(c['gpu']['mismatching_pixels']+c['physical']['mismatching_pixels'] for c in comparisons)
  witness_mismatches=sum(c['source']['mismatching_pixels']+c['destination']['native_destination_mismatching_words']+c['destination']['source_destination_mismatching_words']+c['destination']['destination_physical_mismatching_pixels'] for c in comparisons if 'source' in c)
- return dict(schema=1,copy_order=copy_order,success=not (mismatches or witness_mismatches),outcome='matching' if not (mismatches or witness_mismatches) else 'mismatch',boundary=catalog['boundary'],reference_profile=catalog.get('reference_profile',{'name':'legacy_unmodified_upload'}),actions_bound=catalog['schema']>=2,frames=len(comparisons),pixels_compared=2*sum(c['gpu']['pixels'] for c in comparisons),mismatches=mismatches,witness_mismatches=witness_mismatches,witness_frames=sum('source' in c for c in comparisons),comparisons=comparisons,channel_tolerance=1,alpha_compared=False,original_reference_admitted=True,original_pixels_used_as_native_inputs=False,original_oracles_read_by_native=False,new_original_execution=False,complete_presented_journey=False,draw02_complete=False,original_evidence=catalog['evidence'],binaries=binaries,artifacts=str(run.relative_to(root)),scope=catalog['scope'])
+ return dict(schema=1,copy_order=copy_order,success=not (mismatches or witness_mismatches),outcome='matching' if not (mismatches or witness_mismatches) else 'mismatch',boundary=catalog['boundary'],reference_profile=catalog.get('reference_profile',{'name':'legacy_unmodified_upload'}),actions_bound=catalog['schema']>=2,frames=len(comparisons),pixels_compared=2*sum(c['gpu']['pixels'] for c in comparisons),mismatches=mismatches,witness_mismatches=witness_mismatches,witness_frames=sum('source' in c for c in comparisons),comparisons=comparisons,channel_tolerance=1,alpha_compared=False,original_reference_admitted=True,original_pixels_used_as_native_inputs=False,original_oracles_read_by_native=False,new_original_execution=False,complete_presented_journey=False,draw02_complete=False,original_evidence=catalog['evidence'],binaries=binaries,artifacts=str(run.relative_to(root)),scope=catalog['scope'],hardware_requested=hardware,hardware_admission=hardware_admission,renderer_identities=drivers)

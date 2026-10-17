@@ -17,6 +17,37 @@ spec.loader.exec_module(m)
 
 
 class StorageTests(unittest.TestCase):
+    def test_dynamic_hermes_requires_exact_title_line(self):
+        self.assertTrue(m.hermes_title_line('Hermes\nHere lies a magical Place of Power.'))
+        self.assertTrue(m.hermes_title_line('  HERMES  \nFollow the path.'))
+        for text in ('Speak to Hermes','Hermes says hello','unrecognized background','xHermes',''):
+            self.assertFalse(m.hermes_title_line(text))
+
+    def test_dynamic_card_dismissal_preserves_full_ocr_and_separate_escape(self):
+        from PIL import Image
+        spec=importlib.util.spec_from_file_location('storage_dynamic_dialogue',ROOT/'tools/menu-storage-input.py')
+        helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper)
+        calls=[]
+        class Function:
+            def __init__(self,name):self.name=name
+            def __call__(self,*args):calls.append((self.name,args));return 1
+        library=SimpleNamespace(**{n:Function(n) for n in ['XOpenDisplay','XFlush','XCloseDisplay','XKeysymToKeycode','XTestFakeMotionEvent','XTestFakeButtonEvent','XTestFakeKeyEvent']})
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            for index,text in enumerate(('Hermes\nHere lies a magical Place of Power.','Speak to Hermes','unknown')):
+                calls.clear();output=root/f'storage-input-{index}.json'
+                def recognize(crop,mode=7):return dict(text=text if mode==6 else '',ocr_returncode=0,ocr_error='')
+                args=['helper','--rect','0','0','800','600','--mode','mini','--skip-click','--dismiss-dialogue','--output',str(output)]
+                with patch('sys.argv',args),patch.dict(helper.os.environ,DISPLAY=':unused'),patch.object(helper.c,'CDLL',return_value=library),patch.object(helper.time,'sleep'),patch('PIL.ImageGrab.grab',return_value=Image.new('RGB',(800,600))),patch.object(helper,'recognize_title',side_effect=recognize):helper.main()
+                self.assertEqual([c[1][2] for c in calls if c[0]=='XTestFakeKeyEvent'],[] if index==0 else [1,0])
+                self.assertEqual([c[1][2] for c in calls if c[0]=='XTestFakeButtonEvent'],[1,0] if index==0 else [])
+            self.assertTrue(m.validate_mini_inputs(root)['verified'])
+            path=root/'storage-input-0.json';record=json.loads(path.read_text())
+            self.assertIn('Place of Power',record['tutorial_observations'][-1]['text'])
+            for key,value in (('text','Speak to Hermes'),('rect',[0,0,800,600]),('ocr_mode',7),('ocr_returncode',1),('title_rule','unreviewed')):
+                bad=copy.deepcopy(record);bad['tutorial_observations'][-1][key]=value;path.write_text(json.dumps(bad))
+                with self.subTest(key=key),self.assertRaises(ValueError):m.validate_mini_inputs(root)
+
     def test_pressure_requires_real_wait_resume_and_complete_shutdown(self):
         high,low=8*1024*1024,4*1024*1024
         def row(name,values):return name+' '+' '.join(f'{v:08x}' for v in values+[0]*(19-len(values)))+'\n'

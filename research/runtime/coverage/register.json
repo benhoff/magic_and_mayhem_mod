@@ -32239,7 +32239,9 @@
         "TOOL.drawing-journeys.draw03-complete-native-20261010",
         "TOOL.drawing-journeys.draw03-sandbox-failure-20261010",
         "TOOL.drawing-publication-corpus.native-20261011",
-        "TOOL.drawing-publication-corpus.reviewed-native-20261011"
+        "TOOL.drawing-publication-corpus.reviewed-native-20261011",
+        "NATIVE.completion.software-suite-20261017",
+        "NATIVE.completion.hardware-suite-20261017"
       ],
       "status": {
         "understanding": "scoped",
@@ -67359,7 +67361,8 @@
         "DRAW02.integrated-original120-egl-01-20261014",
         "DRAW02.update-accounting-original120-03-20261014",
         "DRAW02.update-accounting-egl-01-20261014",
-        "DRAW02.primitive-lifetimes.egl-01-20261017"
+        "DRAW02.primitive-lifetimes.egl-01-20261017",
+        "NATIVE.completion.egl-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -72639,7 +72642,8 @@
         "renderer/gpu_canvas_mirror.cpp",
         "renderer/gpu_canvas_mirror.hpp",
         "tools/build-menu-observer.py",
-        "runtime/shadow/win32_min.h"
+        "runtime/shadow/win32_min.h",
+        "tools/native_render_driver.py"
       ],
       "evidence": [
         "HOST.native-storage.panel-refusal-20261015",
@@ -72661,7 +72665,8 @@
         "NR.resident-command-pressure.final-initiate-live-20261016",
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
-        "HOST.native-startup-resources.v3-natural-storage-20261016"
+        "HOST.native-startup-resources.v3-natural-storage-20261016",
+        "NATIVE.completion.native-storage-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -72669,7 +72674,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Current NVIDIA native-storage06 completes both intros, Save/Load/resume, two original display rebuilds, Main Load/resume and normal Quit; one moving Hermes title and retained checkpoint driver identities are exercised. Same-session functional success is not full restored simulation equivalence, fresh-process restart, all lifecycle/failure paths,47/21journey/operation closure or sustained60FPS. Earlier failed attempts remain immutable."
+      ]
     },
     {
       "id": "NP.native-producer-cpu-reader",
@@ -72844,7 +72852,10 @@
         "HOST.mini-dispatch.ordinary-live-20261015",
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
-        "HOST.native-startup-resources.v3-natural-storage-20261016"
+        "HOST.native-startup-resources.v3-natural-storage-20261016",
+        "NATIVE.completion.controls-20261017",
+        "NATIVE.completion.menu-fixture-20261017",
+        "NATIVE.completion.native-storage-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -72852,7 +72863,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New native-storage05 reproduces initial busy snapshot followed by175seconds of intro playback and loader-based deadline expiry. Retry clock now starts at first menu pump; C delay/deadline/wrap and actual PE32 busy recovery pass. Native-storage06 completes both movies and storage/rebuild/Quit but admits its first snapshot directly, so live forced-busy long-intro recovery remains a separate unexecuted combination."
+      ]
     },
     {
       "id": "NR.resident-world-canvas-transition",
@@ -86067,7 +86081,9 @@
         "DRAW02.update-interval-gate-01-20261014",
         "DRAW02.update-interval-gate-fixture-01-20261014",
         "DRAW02.primitive-lifetimes.accounting-01-20261017",
-        "DRAW02.primitive-lifetimes.interval-gate-01-20261017"
+        "DRAW02.primitive-lifetimes.interval-gate-01-20261017",
+        "NATIVE.completion.accounting-20261017",
+        "NATIVE.completion.interval-gate-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -87105,7 +87121,9 @@
         "DRAW02.primitive-lifetimes.fixture-05-20261017",
         "DRAW02.primitive-lifetimes.python-controls-05-20261017",
         "DRAW02.primitive-lifetimes.original120-03-20261017",
-        "DRAW02.primitive-lifetimes.ownership-01-20261017"
+        "DRAW02.primitive-lifetimes.ownership-01-20261017",
+        "NATIVE.completion.identity-original120-20261017",
+        "NATIVE.completion.ownership-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -87117,6 +87135,312 @@
       "remaining_gaps": [
         "Immutable COPY source bytes and all backing aliases/writers remain unproved. The executed opt-in trace identifies outstanding call and parameter-snapshot envelopes only; global presentation, semantic outcomes and full120ownership admission remain independent open gates.",
         "Actual original120-03 identifies all39pending copies and20late API acknowledgements among21cross-prefix witnesses, with one overlapping keyed API call;42first120updates retain pending boundaries. COPY request envelopes own only parameter headers, not source pixel bytes. Every immutable-source/global-route/backing-writer admission gate remains open; hardware/scanout, semantics and native parity are separate."
+      ]
+    },
+    {
+      "id": "NR.drawing-primitive-api-binding",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Exact active primitive through surface API and observed Wine worker",
+      "scope": "Opt-in original-active No-CD diagnostic: pointer-free SceneDrawingPrimitivePointV1 snapshots under the recorder mutex, exact same-thread active call/parent/request identities at surface API entry, original return and completion, independently crosschecked lifetime and completed API journals, then existing explicit Wine submission and emitted-command/worker identities. No temporal candidate used as a parent; inactive/unavailable/stopped calls and unbound consumers stay explicit. Identity snapshots do not own pixel storage, serialize original bodies, close unknown writers/aliases or presentation routes, or assert native parity.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817184,
+          "scope": "Observed outer opaque copy wrapper identity; keyed and other guarded producer calls retain their own tags."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819024,
+          "scope": "Observed outer keyed copy wrapper identity."
+        }
+      ],
+      "documents": [
+        "research/runtime/drawing-primitive-api-binding.md",
+        "research/formats/drawing-primitive-api-v1.md",
+        "research/runtime/native-render-completion-20261017.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/drawing_primitive_point_v1.h",
+        "runtime/drawing/primitive_api_identity.h",
+        "tools/drawing_primitive_api.py"
+      ],
+      "tests": [
+        "tests/test-drawing-primitive-api.py",
+        "tests/drawing-primitive-lifetimes-test.c",
+        "tools/test-drawing-primitive-lifetimes.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "runtime/scene/drawing_primitive_lifetimes.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/producer_trace_guard.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-scene-observer.py",
+        "tools/build-drawing-session.py",
+        "tools/drawing_primitive_lifetimes.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_wine_submission.py",
+        "tools/drawing_wine_blit_packet.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/drawing_source_callback_windows.py",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_blit_packet.h"
+      ],
+      "evidence": [
+        "NATIVE.completion.identity-fixture-20261017",
+        "NATIVE.completion.identity-original120-20261017",
+        "NATIVE.completion.ownership-20261017",
+        "NATIVE.completion.controls-20261017",
+        "NATIVE.completion.identity-scenario-fixture-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Exact primitive/API/worker identities do not own COPY backing bytes. All four full120interval ownership gates, alias/writer/global route closure and47/21journey/operation requirements remain open. Diagnostic trace overhead is not production cadence."
+      ]
+    },
+    {
+      "id": "NP.pixel-forwarding-guard",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Six-family native pixel no-forward guard",
+      "scope": "Explicit opt-in no-forward admission for all 43 installed routes in six optional pixel families. Validate selector and fresh counters, require exact route installation once, refuse unknown/missing/duplicate routes, and terminate synchronously in the common facade callback before it can return to any original pixel fallback. Keep default partial forwarding unchanged. Hash-bound staging authorizes the guard only with owned native menu/command/facade and every optional family. This covers these callbacks only; it is not complete-native startup admission, unknown writer coverage, original equivalence or whole-session acceptance.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-pixel-forwarding-guard.md",
+        "research/formats/native-pixel-guard-v1.md",
+        "research/runtime/native-render-completion-20261017.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/producer_guard.h",
+        "protocols/include/mnm/native_pixel_guard_v1.h",
+        "tools/pixel_forwarding_guard.py"
+      ],
+      "tests": [
+        "tests/native-pixel-forward-guard-probe.c",
+        "tools/test-native-pixel-forward-guard.py",
+        "tests/test-pixel-forwarding-guard.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/initial_history.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/shadow/win32_min.h",
+        "tools/borrowed_pixel_backend_launch.py",
+        "tools/build-native-draw.py",
+        "tools/menu-game-runner.py",
+        "tools/native_pixel_counters.py",
+        "tools/prepare-menu-observer.py",
+        "protocols/include/mnm/native_gpu_copy_plan_v1.h",
+        "tools/native_prefix_template.py"
+      ],
+      "evidence": [
+        "NATIVE.completion.forward-fixture-20261017",
+        "NATIVE.completion.controls-20261017",
+        "NATIVE.completion.native-storage-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "The successful native storage run exercises17of43installed optional routes with zero forwards. PE32 controls cover refusal logic, not original equivalence of every caller. Unknown writers, all aliases/readers, full source-only presented parity, lifecycle failures and60FPS remain separate; complete-native launch is unavailable."
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-prefix-template",
+      "subsystem": "application_hosting",
+      "kind": "native_policy",
+      "title": "Stopped native-session Wine prefix clone with exact owner rebinding",
+      "scope": "Optional actual-game test setup clones only a stopped prefix carrying exact current-path DirectPlay ownership and verified supplied binary hashes. Refuse foreign/redirected/wrong-owner or active templates, existing/outside targets and changed source snapshots; rebind only the copied marker to the new private working path, preserving source and DLL bytes. Normal fresh-prefix launches keep their existing initialization contract. This is setup provenance, not renderer equivalence or native replacement.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-pixel-forwarding-guard.md",
+        "research/runtime/native-render-completion-20261017.md"
+      ],
+      "implementation": [
+        "tools/native_prefix_template.py"
+      ],
+      "tests": [
+        "tests/test-native-prefix-template.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "tools/directplay_dx6_launch.py"
+      ],
+      "evidence": [
+        "NATIVE.completion.controls-20261017",
+        "NATIVE.completion.native-storage-20261017",
+        "NATIVE.completion.prefix-clone-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Only stopped path-owned supplied-DirectPlay prefixes are admitted; clone policy is test provisioning, not fresh-install coverage, restart acceptance or native renderer equivalence."
+      ]
+    },
+    {
+      "id": "HOST.storage-dialogue-title-readiness",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Observed moving Hermes title before physical Mini input",
+      "scope": "Bounded native storage test helper retains its three calibrated tutorial/title strips and adds one scene-only broad OCR fallback. Only an exact standalone Hermes title line with successful OCR in the declared rectangle admits one ordinary dismissal click; body mentions/substrings, failed OCR and unsupported geometry do not. Preserve full OCR transcript and hashed screenshot/crop provenance; independently recompute the title rule in input validation. Dismissal and Escape remain separate actions and fresh World/menu state remains mandatory. No original memory edit, retry-budget increase, input-consumption ACK or generic dialogue lifecycle claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-render-save-load.md",
+        "research/runtime/native-render-completion-20261017.md"
+      ],
+      "implementation": [
+        "tools/menu-storage-input.py",
+        "tools/campaign_storage.py"
+      ],
+      "tests": [
+        "tests/test-native-render-storage.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "tools/native_prefix_template.py"
+      ],
+      "evidence": [
+        "NATIVE.completion.controls-20261017",
+        "NATIVE.completion.native-storage-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "One actual moving Hermes card is detected and dismissed; generic dialogue recovery, semantic input consumption and all47journey requirements remain unproved. Exact title/ROI/mode/hash checks and bounded ingress budget remain required."
+      ]
+    },
+    {
+      "id": "HOST.native-renderer-observations",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Retain observed native renderer identities after clean storage retirement",
+      "scope": "Native storage test retains nonempty observed renderer names across owner retirement and records each fresh World checkpoint identity. Explicit hardware admission checks every retained name and all checkpoint names for the declared NVIDIA profile, refusing missing identities and any known software context. Do not derive hardware solely from requested environment or glxinfo. Diagnostic retention does not keep a renderer alive, prove every transient context, hardware scanout or sustained 60 FPS.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-render-save-load.md",
+        "research/runtime/native-render-completion-20261017.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "tools/native_render_driver.py"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/test-native-render-driver.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/campaign_smoke_test.hpp"
+      ],
+      "evidence": [
+        "NATIVE.completion.controls-20261017",
+        "NATIVE.completion.native-storage-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Retained actual driver observations and four World checkpoint identities prove the declared contexts for this functional run; they do not establish uninterrupted hardware use between observations, scanout or sustained60FPS."
+      ]
+    },
+    {
+      "id": "NR.recorded-hardware-session-parity",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Explicit NVIDIA native replay and displayed recorded-session comparison",
+      "scope": "Explicit opt-in hardware backend for portable source-only recorded sessions on an existing owned X11 hardware display. Preserve default software request; refuse hardware plus Xvfb headless provisioning, remove the software-forcing environment only for explicit hardware execution, and independently require NVIDIA/non-software driver identity in both native source and GPU/presentation reports. Compare the unchanged complete recorded frame cohorts and source/default witnesses externally, preserving all 47/21 requirements, tolerance and the unmodified storage negative. This is native hardware replay against retained independent original references, not new original hardware execution, live replacement, global ownership, physical scanout or performance.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/recorded-native-session-comparison.md",
+        "research/runtime/native-render-completion-20261017.md"
+      ],
+      "implementation": [
+        "tools/drawing_recorded_session.py"
+      ],
+      "tests": [
+        "tests/test-drawing-recorded-hardware.py",
+        "tools/check-recorded-drawing-session.py",
+        "tools/check-drawing-journeys.py"
+      ],
+      "validation_dependencies": [
+        "apps/drawing-session/CMakeLists.txt",
+        "apps/drawing-session/main.cpp",
+        "apps/drawing-session/recorded_composition.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "tests/fixtures/drawing-recorded-session/session.json",
+        "tools/check-drawing-journeys.py",
+        "tools/check-recorded-drawing-session.py",
+        "tools/compare-drawing-quick-battle.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_copy_order.py",
+        "tools/drawing_corpus.py",
+        "tools/drawing_journeys.py",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/drawing_session.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/native_render_driver.py",
+        "tools/recorded_drawing_plan.py",
+        "tools/rendering_coverage.py"
+      ],
+      "evidence": [
+        "NATIVE.completion.controls-20261017",
+        "NATIVE.completion.hardware-suite-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "All three recorded NVIDIA cohorts execute but the unmodified historical software-upload reference retains252mismatching GPU/physical pixels. Corrected profile passes; neither profile closes original ownership,14journeys/47requirements/21operation failures, live World bypass or60FPS."
       ]
     }
   ],
@@ -174142,6 +174466,296 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NATIVE.completion.identity-fixture-20261017",
+      "kind": "native_integration",
+      "scope": "Actual PE32 recorder, six cases including nested same-thread query, foreign/no-active/stopped query, exact request/lifetime identity and LastError. Owned original-body stand-ins; no game execution.",
+      "record": "research/runtime/native-completion-identity-fixture-20261017.json",
+      "sha256": "d96049177ccadf282c1d7b3d2df83abf115e4dd4b0310f9cc6caa49e252cac23",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.identity-original120-20261017",
+      "kind": "live_observation",
+      "scope": "Fresh original-active first120 source capture after startup-clock correction; explicit primitive/API/submission/packet/worker identities and normal original child Quit/exit0. Launcher exit not independently witnessed; COPY backing bytes, aliases/writers and all presentation routes remain unproved.",
+      "record": "research/runtime/native-completion-identity-original120-20261017.json",
+      "sha256": "abcde1bd0cfc13d37aa8cafa8908d1770b4f7e77d8d0bf00b0066167e661e71e",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.egl-20261017",
+      "kind": "live_observation",
+      "scope": "Independent original source/worker/physical-EGL join, exact explicit consumer identities, every selected region matching at declared RGB tolerance1. No native parity, immutable source or all-writer/scanout proof.",
+      "record": "research/runtime/native-completion-egl-20261017.json",
+      "sha256": "bf1a3426385d5babbce244a41fe554b53ffc36f592c89953782c46c2aecfc94c",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.accounting-20261017",
+      "kind": "live_observation",
+      "scope": "Fixed first120 update/queue/input/API/witness denominator; independently preserves all ownership gates and source-prefix boundary failures. No semantic/native replacement claim.",
+      "record": "research/runtime/native-completion-accounting-20261017.json",
+      "sha256": "eb67784a9fadd92876b01fb3726b617d1098c3a58211097851340c979a4b9f9d",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.interval-gate-20261017",
+      "kind": "live_observation",
+      "scope": "Executed unchanged full interval admission returns2 for valid rejection; all four ownership gates remain false.",
+      "record": "research/runtime/native-completion-interval-gate-20261017.json",
+      "sha256": "d45ad2ff9a323d027d0793d360938c619ff6208f1450adb2f2732330415224d3",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.ownership-20261017",
+      "kind": "live_observation",
+      "scope": "Independent raw pending-primitive/API/callback ownership accounting; temporal association and exact identities are not immutable COPY backing.",
+      "record": "research/runtime/native-completion-ownership-20261017.json",
+      "sha256": "4540717c91b1732e237ff38eda5d8a765b353f4cf3bb50e6cb132ba0d2eb4a47",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.forward-fixture-20261017",
+      "kind": "native_integration",
+      "scope": "Eleven actual PE32 six-family callback cases; default partial paths reach the original stand-in marker, strict success preserves LastError, invalid selectors/counters/routes/installations/forwarding terminate before fallback.",
+      "record": "research/runtime/native-completion-forward-fixture-20261017.json",
+      "sha256": "4e2668fda6ba64e7c8f5e23d3efdae7f3e1f37d3fbcbda7c5050d2cb972a56fc",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.controls-20261017",
+      "kind": "native_integration",
+      "scope": "75 authored Python methods and compiled C startup-clock controls, including 175s loader-to-first-pump delay, busy deadline and uint32 wrap. Source stability checked; no original equivalence.",
+      "record": "research/runtime/native-completion-controls-20261017.json",
+      "sha256": "dc6ab0f27d13c0e8aac7bc2b5520ecfce4a7dce82fde83d1fa23be6bd94b65d5",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.menu-fixture-20261017",
+      "kind": "native_integration",
+      "scope": "Actual PE32 pinned original callback ABI/observer with odd initial host seqlock and 300 tick stand-ins before stable admission; original game not launched.",
+      "record": "research/runtime/native-completion-menu-fixture-20261017.json",
+      "sha256": "b7c2db3da38add61f1b49974904f953945b76745aa4b0822ac22b8b21217c4d6",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.software-suite-20261017",
+      "kind": "native_integration",
+      "scope": "Executed unchanged full seven-profile default software suite:1270115312pixels, six matching profiles and retained unmodified storage ordinal170negative (126GPU+126physical). Corrected profile passes; generic47/21and complete interval remain rejected.",
+      "record": "research/runtime/native-completion-software-suite-20261017.json",
+      "sha256": "5dbc8f68410083232f1463f2f0f5a508bed36c16691312014b55f99dc7fc01af",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 252
+        },
+        {
+          "pointer": "/errors",
+          "equals": []
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.hardware-suite-20261017",
+      "kind": "native_integration",
+      "scope": "Executed full seven-profile suite with three complete recorded cohorts using actual NVIDIA GL source and presentation contexts, source-only inputs and owned no-monitor X11 display (QT_XCB_NO_XRANDR=1 exposes its full1280x1024 framebuffer).1270115312pixels, six matching profiles and unchanged252pixel baseline negative. No47/21closure, live bypass, sustained60FPS or scanout claim.",
+      "record": "research/runtime/native-completion-hardware-suite-20261017.json",
+      "sha256": "5a713d85fdae85d2138d649fb8d0a122cff1d196a991a9cd280df99f85f09557",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 252
+        },
+        {
+          "pointer": "/errors",
+          "equals": []
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.native-storage-20261017",
+      "kind": "live_observation",
+      "scope": "Actual native resident NVIDIA campaign: natural completion of both intros, Save/Load/resume, two original display rebuilds, Main Load/resume and normal Quit;1102native frames/1009paints, four fresh World checkpoints with retained actual NVIDIA identities, one dynamically located Hermes-title dismissal,8937native optional-producer calls/zero forwards,17of43routes exercised. Private prefix wait,2927-file bookends and stable source checks pass. Same-session357613-byte save remains hash-stable. Functional5FPS floor, not60FPS/scanout/whole-session equivalence or all-route coverage.",
+      "record": "research/runtime/native-completion-native-storage-20261017.json",
+      "sha256": "b6385b2f1afc7a88633a9f0b68aedaee85daca11c362e24b10e5e099d238d411",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/hardware_renderers/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/mini_inputs/dynamic_hermes_dismissals",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.identity-scenario-fixture-20261017",
+      "kind": "native_integration",
+      "scope": "Fresh actual PE32 six-case primitive/API identity fixture with prospectively selected headless scenario; nested/foreign/inactive/stopped identities and LastError. Original-body stand-ins, no live/native equivalence.",
+      "record": "research/runtime/native-completion-identity-scenario-fixture-20261017.json",
+      "sha256": "d93e3e5a4b2e0fe304b949577063eb1b0ad12a18eba175fddc0955771c08560e",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.completion.prefix-clone-20261017",
+      "kind": "native_integration",
+      "scope": "Actual stopped path-owned native Wine prefix clone with supplied DirectPlay DLL hash checks, new private marker and unchanged source fingerprints, plus three refusal/control methods. Prospectively selected headless scenario; original game not launched.",
+      "record": "research/runtime/native-completion-prefix-clone-20261017.json",
+      "sha256": "fb34ab5a9213687618cfcfeb8ed3bc42fa295bead9c308e6f57b57b44ed0c5d9",
+      "claims_pointer": "/claims",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -191918,6 +192532,91 @@
       "evidence": [
         "CAMPAIGNCADENCE.actual-20261017"
       ]
+    },
+    {
+      "id": "NP.pixel-forwarding-guard.campaign",
+      "level": "live_observation",
+      "scope": "Actual native resident campaign with all six optional families, synchronous refusal before original pixel fallback, fresh counters and hashes, normal Quit and owned cleanup. Does not require all 43 natural-live callers or prove complete rendering replacement.",
+      "behaviors": [
+        "NP.pixel-forwarding-guard"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NATIVE.completion.native-storage-20261017"
+      ]
+    },
+    {
+      "id": "HOST.storage-dialogue-title-readiness.storage",
+      "level": "live_observation",
+      "scope": "Hardware native storage journey after naturally completed movies, Save/Load/resume, both display rebuilds, Main Load and normal Quit; require exact observed title/click provenance and unchanged ingress budgets. Broader 47/21 presented-session closure is separate.",
+      "behaviors": [
+        "HOST.storage-dialogue-title-readiness"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NATIVE.completion.native-storage-20261017"
+      ]
+    },
+    {
+      "id": "HOST.native-renderer-observations.storage",
+      "level": "live_observation",
+      "scope": "Naturally completed intros and complete native Save/Load/rebuild/MainLoad/Quit on the declared NVIDIA profile; retain driver observations and all four current World checkpoint identities through retirement.",
+      "behaviors": [
+        "HOST.native-renderer-observations"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NATIVE.completion.native-storage-20261017"
+      ]
+    },
+    {
+      "id": "NR.recorded-hardware-session-parity.corpus",
+      "level": "headless",
+      "scope": "All recorded Quick Battle, unmodified storage and corrected-upload storage frames through native NVIDIA source generation/composition/X11; preserve the known baseline negative and unchanged generic acceptance gates.",
+      "behaviors": [
+        "NR.recorded-hardware-session-parity"
+      ],
+      "tests": [
+        "tools/check-drawing-journeys.py"
+      ],
+      "evidence": [
+        "NATIVE.completion.hardware-suite-20261017"
+      ]
+    },
+    {
+      "id": "NR.drawing-primitive-api-binding.fixture",
+      "level": "headless",
+      "scope": "Actual PE32 same-thread primitive identity export and observer fixture: six stand-in cases with nested/foreign/no-active/stopped identity, exact lifecycle/request and LastError. No live renderer equivalence or immutable COPY bytes.",
+      "behaviors": [
+        "NR.drawing-primitive-api-binding"
+      ],
+      "tests": [
+        "tools/test-drawing-primitive-lifetimes.py"
+      ],
+      "evidence": [
+        "NATIVE.completion.identity-scenario-fixture-20261017"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-prefix-template.clone",
+      "level": "headless",
+      "scope": "Clone an actual stopped path-owned native DirectPlay Wine prefix to a fresh working target, validate supplied DLL hashes and rebound private marker, retain source fingerprints; run parser/refusal controls. No original game launched and no lifecycle/native pixel equivalence claim.",
+      "behaviors": [
+        "HOST.native-campaign-prefix-template"
+      ],
+      "tests": [
+        "tools/native_prefix_template.py",
+        "tests/test-native-prefix-template.py"
+      ],
+      "evidence": [
+        "NATIVE.completion.prefix-clone-20261017"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -192534,8 +193233,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-primitive-lifetimes-20261017.json",
-    "sha256": "2c63415c9b608522828906d762159b5d4e03816211e274853bfde8af6c6afc16"
+    "path": "research/runtime/coverage/source-index-native-completion-20261017.json",
+    "sha256": "8fefb49cc5de3a575f55e2f0b58d0e05b506b27b7c211ad01eddf13521a94a92"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

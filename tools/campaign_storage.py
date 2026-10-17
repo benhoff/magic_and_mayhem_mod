@@ -5,6 +5,13 @@ import re
 import struct
 from pathlib import Path
 
+HERMES_CARD_RECT = (190,40,610,450)
+
+
+def hermes_title_line(text):
+    """A complete OCR title line; body mentions/substrings admit no click."""
+    return any(line.strip().casefold()=='hermes' for line in text.splitlines())
+
 
 def validate_command_pressure(root):
     rows=[]
@@ -66,11 +73,18 @@ def validate_mini_inputs(directory, flow=None):
             raise ValueError('Mini ingress contains an unclassified focus click')
         buttons=[e for e in record.get('events',[]) if e.get('event')=='button']
         titles={' '.join(o.get('text','').lower().split()) for o in record.get('tutorial_observations',[]) if o.get('ocr_returncode')==0}
+        dynamic_title=False
         for observation in record.get('tutorial_observations',[]):
             for kind in ('image','crop'):
                 name=observation[kind]
                 if Path(name).name!=name or not name.endswith('.png') or hashlib.sha256((directory/name).read_bytes()).hexdigest()!=observation[kind+'_sha256']:
                     raise ValueError('Mini title image changed after observation')
+            if observation.get('title_rule') is not None:
+                if (observation['title_rule']!='hermes-title-line-v1' or
+                        observation.get('rect')!=list(HERMES_CARD_RECT) or observation.get('ocr_mode')!=6):
+                    raise ValueError('Unsupported dynamic Hermes title observation')
+                if observation.get('ocr_returncode')==0 and hermes_title_line(observation.get('text','')):
+                    titles.add('hermes');dynamic_title=True
         for action in record.get('tutorial_actions',[]):
             rule=prescribed.get(action.get('action'))
             if rule is None or rule[0] not in titles or (action['logical_point'],action['button'])!=(rule[1],rule[2]):
@@ -82,7 +96,8 @@ def validate_mini_inputs(directory, flow=None):
         if buttons and escape:raise ValueError('Mini ingress combined a mouse action and Escape')
         if escape!=([True,False] if record.get('escape_sent') else []):
             raise ValueError('Missing ordered physical Escape edges')
-        records.append(dict(path=path.name,sha256=hashlib.sha256(path.read_bytes()).hexdigest(),escape=bool(escape),tutorial_actions=len(expected)//2))
+        records.append(dict(path=path.name,sha256=hashlib.sha256(path.read_bytes()).hexdigest(),escape=bool(escape),tutorial_actions=len(expected)//2,
+                            dynamic_hermes_dismissal=dynamic_title and any(a.get('action')=='dismiss' for a in record.get('tutorial_actions',[]))))
     if not records or not any(r['escape'] for r in records):raise ValueError('Missing physical Mini ingress')
     if flow is not None:
         previous=0;observed=[]
@@ -93,7 +108,7 @@ def validate_mini_inputs(directory, flow=None):
             previous=source;observed.append(event['record'])
         if len(observed)!=len(records) or set(observed)!={r['path'] for r in records}:
             raise ValueError('Missing World-bound Mini input observation')
-    return dict(verified=True,records=records,scope='Only recognized Hermes dismissal or prescribed tutorial mouse actions and Escape; input channel observations do not acknowledge original consumption')
+    return dict(verified=True,records=records,dynamic_hermes_dismissals=sum(r['dynamic_hermes_dismissal'] for r in records),scope='Only recognized Hermes dismissal or prescribed tutorial mouse actions and Escape; input channel observations do not acknowledge original consumption')
 
 
 def validate_storage_flow(flow):

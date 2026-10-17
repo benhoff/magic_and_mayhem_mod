@@ -38,6 +38,11 @@ def read_counters(game):
                   forwarded=sum(r['forwarded'] for rows in families.values() for r in rows),
                   unexercised=[name+'/'+r['route'] for name, rows in families.items() for r in rows if not r['exercised']],
                   history_refused=refusal.exists(), complete_replacement=False)
+    guard=game/'native-pixel-forward-refusal.bin'
+    if guard.exists():
+        from pixel_forwarding_guard import decode_refusal
+        result['forward_guard_refusal']=decode_refusal(guard.read_bytes())
+        result['forward_guard_refusal_sha256']=hashlib.sha256(guard.read_bytes()).hexdigest()
     if refusal.exists():
         result['history_refusal_sha256'] = hashlib.sha256(refusal.read_bytes()).hexdigest()
     return result
