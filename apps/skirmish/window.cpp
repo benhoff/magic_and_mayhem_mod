@@ -164,7 +164,16 @@ Window::Window(Controller &c) {
                   "color: #74858b; background: #202b33; } QLabel { padding: 4px; }");
     auto *layout = new QHBoxLayout(this);
     auto *canvas = new ArenaCanvas;
-    layout->addWidget(canvas);
+    auto *sceneColumn=new QVBoxLayout;
+    layout->addLayout(sceneColumn);
+    auto *missionStatus=new QLabel;
+    missionStatus->setObjectName("missionStatus");
+    missionStatus->setWordWrap(true);
+    missionStatus->setFixedWidth(560);
+    missionStatus->hide();
+    sceneColumn->addWidget(missionStatus);
+    sceneColumn->addWidget(canvas,0,Qt::AlignTop);
+    sceneColumn->addStretch();
     auto *side = new QVBoxLayout;
     layout->addLayout(side);
     auto *title = new QLabel("NATIVE SKIRMISH");
@@ -213,6 +222,7 @@ Window::Window(Controller &c) {
     side->addWidget(campaignStatus);
     auto *newCampaign = button("New campaign", "newCampaignButton", newRow);
     auto *mapCampaign = button("New map campaign…", "newMapCampaignButton");
+    auto *missionCampaign = button("New Plains mission…", "newMissionCampaignButton");
     auto *campaignFiles = new QHBoxLayout;
     side->addLayout(campaignFiles);
     auto *saveCampaign = button("Save campaign…", "saveCampaignButton", campaignFiles);
@@ -221,7 +231,7 @@ Window::Window(Controller &c) {
     auto *help = new QLabel("Select your wizard to cast.\nSummon: nearby empty cell.\n"
                             "Arc Bolt: click an enemy.\n"
                             "Sentinel: right-click to move/attack.\nSpace: Play/Pause.");
-    help->setMinimumHeight(110);
+    help->setMinimumHeight(130);
     help->setWordWrap(true);
     side->addWidget(help);
     auto *status = new QLabel;
@@ -230,9 +240,13 @@ Window::Window(Controller &c) {
     side->addWidget(status);
     side->addStretch();
     auto refresh = [&c, canvas, player, enemy, selection, status, summon, bolt, sphere, cure, stop, play, pause,
-                    step, save, campaignStatus, saveCampaign, continueCampaign, help] {
+                    step, save, campaignStatus, saveCampaign, continueCampaign, help, missionStatus] {
         auto v = c.view();
         canvas->present(v);
+        const auto missionText=(v.objective+"\n\n"+v.briefing+"\n\n"+v.reward).trimmed();
+        missionStatus->setText(missionText);
+        missionStatus->setVisible(!missionText.isEmpty());
+        missionStatus->setMinimumHeight(missionText.isEmpty()?0:missionStatus->heightForWidth(560));
         help->setText(QString("Select your wizard to cast.\nSummon: nearby empty cell.\nArc Bolt: click an enemy.\n%1: right-click to move/attack.\nSpace: Play/Pause.").arg(v.creatureName));
         player->setVisible(c.hasBattle());
         enemy->setVisible(c.hasBattle());
@@ -323,6 +337,10 @@ Window::Window(Controller &c) {
             const auto root=QFileDialog::getExistingDirectory(this,"Choose installed Magic & Mayhem game data");
             if(!root.isEmpty()) c.newMapCampaign(root.toStdString());
         }
+    }));
+    QObject::connect(missionCampaign, &QPushButton::clicked, this, guarded([&c,this] {
+        if(c.hasMapRoot()) c.newMapCampaign({},true);
+        else {c.pause();const auto root=QFileDialog::getExistingDirectory(this,"Choose installed Magic & Mayhem game data");if(!root.isEmpty()) c.newMapCampaign(root.toStdString(),true);}
     }));
     QObject::connect(newCampaign, &QPushButton::clicked, this, guarded([&c] { c.newCampaign(); }));
     QObject::connect(continueCampaign, &QPushButton::clicked, this,

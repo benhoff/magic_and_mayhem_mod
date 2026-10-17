@@ -195,6 +195,13 @@ void campaignWindow(const QString &script, const QString &output, Window &window
                         if(action.contains("actor_height")) require(c.session().combat().navigation()->actorFootprint(e).z==action["actor_height"].toInt(),"Wrong actor height");
                         if(action.contains("actor_type")) require(e.type==unsigned(action["actor_type"].toInt()),"Wrong actor type");
                     }
+                    if(action.contains("mission_stage")) require(p.mission && p.mission->stage==unsigned(action["mission_stage"].toInt()),"Wrong mission objective stage");
+                    if(action.contains("reinforcement")) require(p.mission && p.mission->reinforcement==action["reinforcement"].toBool(),"Wrong reinforcement state");
+                    if(action.contains("mission_text")) {
+                        QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+                        auto* label=window.findChild<QLabel*>("missionStatus");require(label && label->isVisible() && label->text().contains(action["mission_text"].toString()),"Missing mission briefing/objective/reward text");
+                        require(label->height()>=label->heightForWidth(label->width()),"Mission text is clipped");
+                    }
                     if(action.contains("selected_actor")) require(c.view().selected && c.view().selected->slot==unsigned(action["selected_actor"].toInt()),"Wrong selected actor");
                     if(action.contains("actor_action") || action.contains("maximum")) {
                         const auto view=c.view();auto it=std::find_if(view.units.begin(),view.units.end(),[&](const auto &u){return u.actor.slot==unsigned(action["actor"].toInt());});

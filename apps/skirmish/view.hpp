@@ -22,6 +22,7 @@ struct ArenaView {
     std::optional<game::Handle> selected;
     game::Outcome outcome = game::Outcome::running;
     QString creatureName = "Sentinel";
+    QString briefing, objective, reward;
     QString selection, feedback, resultHelp = "Start a new skirmish or load a checkpoint.";
     bool canCast = false, canOrder = false, busy = false;
 };

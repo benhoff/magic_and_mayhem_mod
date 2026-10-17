@@ -13612,3 +13612,30 @@ COPYROUTES.provenance-20261017 and the separate
 [exact incoming-history review](coverage/copy-route-incoming-history-20261017.json). Next acceptance
 work is actual-game failure/terminal cleanup/fresh launch; no in-place recovery,
 full presentation, original driver policy, physical loss or hardware claim.
+
+## Staged native Plains mission and Cure reward — 2026-10-17
+
+`NP.staged-mission` seeds an opt-in authored mission with versioned JSON content,
+three persisted objective stages, one atomic/deferred reinforcement wave,
+mission-controlled victory/AI, native Crocodile-to-wizard targeting and campaign
+spell-loadout enforcement. Victory grants Cure for the existing arena finale;
+defeat/retry resets objectives. Existing campaign identities retain their rules.
+The new MNMCAMP version3, MNMARM03 and CRB4 contracts keep earlier formats intact.
+Original missions/rewards, wizard melee/stun/AI equivalence, arbitrary scripting,
+additional species, full original world/search/scheduling, sprite/audio integration
+and live replacement remain outside scope.
+MISSION01.native-window prospectively binds613 unchanged source keys,
+passes117 normal CTests, and matches normal/ASan/UBSan/LSan installed mission
+contracts: full-health completion in595 native ticks,
+91 per-phase campaign continuations, two fixture wizard melee hits,
+blocked/partial wave refusal, early wizard death, defeat/retry, locked/forged
+rewards and queued spells, stale handles, codec refusals and actual earned Cure
+healing in the finale. Five actual Qt journeys compare full campaign bytes with
+fresh CLI processes for new controls/pending summon, attack, wave/victory and
+reward/next mission. Three retained pre-change save profiles round-trip unchanged.
+All installed input hashes and the2927-file original manifest bookends pass.
+Compiler-emitted repository dependencies are entirely declared.
+Earlier failed/interrupted development and acceptance attempts remain under
+working/ and supply no positive validation. This advances only NP.staged-mission
+to native preview; affected original/native shared-source evidence retains its
+historical hashes and current freshness limitations.

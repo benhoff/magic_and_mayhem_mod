@@ -40,7 +40,7 @@ target_compile_options(mnm-melee-exchange PRIVATE -Wall -Wextra -Werror -pedanti
 add_library(mnm-skirmish-core STATIC simulation/skirmish.cpp)
 target_link_libraries(mnm-skirmish-core PUBLIC mnm-combat)
 target_compile_options(mnm-skirmish-core PRIVATE -Wall -Wextra -Werror -pedantic)
-add_library(mnm-campaign-session STATIC simulation/campaign_session.cpp)
+add_library(mnm-campaign-session STATIC simulation/campaign_session.cpp simulation/mission.cpp)
 target_link_libraries(mnm-campaign-session PUBLIC mnm-campaign mnm-skirmish-core)
 target_compile_options(mnm-campaign-session PRIVATE -Wall -Wextra -Werror -pedantic)
 add_executable(mnm-combat-sandbox ../apps/combat-sandbox/main.cpp)

@@ -52,6 +52,7 @@ void validateMission(const SkirmishMission &);
 bool missionCell(const SkirmishMission &, Point);
 bool sameMission(const SkirmishMission &, const SkirmishMission &);
 struct SkirmishState {
+    bool missionControlled=false, victoryEnabled=true;
     std::optional<SkirmishMission> mission; // absent means the byte-compatible v1 arena
     Outcome outcome = Outcome::running;
     std::uint32_t aiWait = 0, nextProjectile = 1;
@@ -123,7 +124,9 @@ class SkirmishSession {
     SkirmishState state() const { return decodeSkirmish(world().state().campaign); }
     void enqueue(SkirmishOrder);
     void removeCreature(Handle);
-    SkirmishReport step(TickInput = {});
+    void beginMission();
+    std::optional<std::vector<Handle>> spawnMissionGroup(const std::vector<Point>&);
+    SkirmishReport step(TickInput = {}, std::optional<bool> victory = {});
     void restore(const std::filesystem::path &, const NavigationResolver &);
 };
 } // namespace mnm::game

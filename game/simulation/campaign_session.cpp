@@ -13,6 +13,14 @@ struct Mutation {
     explicit Mutation(bool& flag):active(flag) {require(!active,"recursive campaign mutation");active=true;}
     ~Mutation() {active=false;}
 };
+Spell orderSpell(SkirmishOrderKind kind) {
+    return kind==SkirmishOrderKind::summon?Spell::summon:kind==SkirmishOrderKind::bolt?Spell::bolt:kind==SkirmishOrderKind::cure?Spell::cure:kind==SkirmishOrderKind::sphere?Spell::sphere:Spell::none;
+}
+bool ownsSpell(const CampaignState& p,Spell spell) {
+    const char* name=spell==Spell::summon ? "summon-crocodile" : spell==Spell::bolt ? "arc-bolt" : spell==Spell::cure ? "cure" : spell==Spell::sphere ? "magic-sphere" : "";
+    for(const auto& w:p.wizards) if(w.id==p.player) return std::find(w.spells.begin(),w.spells.end(),name)!=w.spells.end();
+    return false;
+}
 bool same(const CampaignMission& m,const std::string& realm,const std::string& region) {
     return m.realm==realm && m.region==region;
 }
@@ -32,6 +40,8 @@ CampaignSession::CampaignSession(CampaignDefinition definition,std::shared_ptr<c
     std::size_t count=0;
     for(const auto& r:initial.realms) count+=r.regions.size();
     require(count && definition_.missions.size()==count,"campaign requires exactly one mission per region");
+    require(definition_.plans.empty() || definition_.plans.size()==count,"mission plan roster mismatch");
+    require(!definition_.spellLoadout || definition_.plans.size()==count,"loadout policy requires mission plans");
     std::size_t index=0;
     for(const auto& realm:initial.realms) for(const auto& r:realm.regions) {
         const auto& m=definition_.missions[index++];
@@ -88,6 +98,19 @@ void CampaignSession::validateProgress(const CampaignState& p) const {
         require(!p.completed && selected==0 && p.transition==(p.battle ? 1U : 0U),
                 "campaign progress lacks its preceding result");
     }
+    if(definition_.spellLoadout) {
+        auto expected=initial.wizards;
+        for(std::size_t i=0;i<definition_.missions.size();++i) if(p.completed || i<selected) {
+            if(definition_.plans[i]) for(auto& wizard:expected) if(wizard.id==p.player) {
+                const auto& spell=definition_.plans[i]->rewardSpell;
+                if(std::find(wizard.spells.begin(),wizard.spells.end(),spell)==wizard.spells.end()) wizard.spells.push_back(spell);
+            }
+        }
+        for(std::size_t i=0;i<expected.size();++i)
+            require(p.wizards[i].spells==expected[i].spells && p.wizards[i].experience==expected[i].experience &&
+                    p.wizards[i].attributes==expected[i].attributes && p.wizards[i].inventory==expected[i].inventory,"campaign loadout/reward differs from completed missions");
+    }
+    require(bool(p.mission)==(bool(p.battle) && !definition_.plans.empty() && bool(definition_.plans[selected])),"campaign mission continuation mismatch");
     if(p.battle) {
         const auto& b=*p.battle;const auto& m=definition_.missions[selected];
         require(b.attempt==p.transition && b.attempt%2==1 &&
@@ -102,8 +125,21 @@ void CampaignSession::validate(const Owned& s) const {
     if(s.battle) {
         require(s.battle->state().outcome==Outcome::running,"campaign retains a settled battle");
         require(s.battle->world().state().map==s.progress.battle->map,"campaign battle map mismatch");
+        if(s.progress.mission) validateMissionProgress(*definition_.plans[missionIndex(s.progress)],*s.progress.mission,*s.battle);
+        else require(!s.battle->state().missionControlled,"unexpected scripted battle");
+        if(definition_.spellLoadout) for(const auto& order:s.battle->state().pending) {
+            const auto spell=orderSpell(order.kind);
+            require(spell==Spell::none || ownsSpell(s.progress,spell),"checkpoint queues a locked spell");
+        }
     }
     encodeCampaignSnapshot({s.battle ? s.battle->world().state() : State{},s.progress},definition_.initial.identity);
+}
+const MissionPlan* CampaignSession::missionPlan() const {
+    return definition_.plans.empty() ? nullptr : (definition_.plans[missionIndex(progress())] ? &*definition_.plans[missionIndex(progress())] : nullptr);
+}
+bool CampaignSession::spellAvailable(Spell spell) const {
+    if(!definition_.spellLoadout) return true;
+    return ownsSpell(progress(),spell);
 }
 void CampaignSession::startMission() {
     Mutation mutation(changing_);
@@ -113,6 +149,12 @@ void CampaignSession::startMission() {
     candidate.battle=resources_->create(m);
     require(candidate.battle->world().state().tick==0 && candidate.battle->world().state().sequence==0,
             "campaign factory did not create a fresh battle");
+    if(const auto* plan=missionPlan()) {
+        validateMissionPlan(*plan,candidate.battle->mission());candidate.battle->beginMission();
+        auto group=candidate.battle->spawnMissionGroup(plan->initial);
+        require(bool(group),"initial mission group blocked");
+        candidate.progress.mission=MissionProgress{0,false,*group,{}};
+    }
     const auto attempt=++candidate.progress.transition;
     candidate.progress.battle=CampaignBattle{m.realm,m.region,m.map,{progress().player,m.opponent},attempt};
     validate(candidate);owned_=std::move(candidate);
@@ -120,6 +162,8 @@ void CampaignSession::startMission() {
 void CampaignSession::enqueue(SkirmishOrder order) {
     Mutation mutation(changing_);
     require(bool(owned_.battle),"campaign has no active battle");
+    const auto spell=orderSpell(order.kind);
+    require(spell==Spell::none || spellAvailable(spell),"Spell is locked until its mission reward is earned");
     auto candidate=owned_;candidate.battle->enqueue(std::move(order));
     validate(candidate);owned_=std::move(candidate);
 }
@@ -127,7 +171,20 @@ CampaignStepReport CampaignSession::step(TickInput input) {
     Mutation mutation(changing_);
     CampaignStepReport report;
     if(!owned_.battle || !input.admitted) return report;
-    auto candidate=owned_;report.battle=candidate.battle->step(input);
+    auto candidate=owned_;
+    if(candidate.progress.mission && !input.alternateMode) {
+        auto& mission=*candidate.progress.mission;
+        if(mission.stage==1 && !mission.reinforcement) {
+            auto wave=candidate.battle->spawnMissionGroup(missionPlan()->reinforcement);
+            if(wave) {mission.wave=*wave;mission.reinforcement=true;}
+        }
+    }
+    report.battle=candidate.battle->step(input,candidate.progress.mission ? std::optional<bool>(candidate.progress.mission->stage==2) : std::nullopt);
+    if(candidate.progress.mission) {
+        auto& mission=*candidate.progress.mission;
+        if(mission.stage==0 && missionGroupDead(*candidate.battle,mission.initial)) mission.stage=1;
+        else if(mission.stage==1 && mission.reinforcement && missionGroupDead(*candidate.battle,mission.wave)) mission.stage=2;
+    }
     const auto outcome=candidate.battle->state().outcome;
     if(outcome!=Outcome::running) {
         auto& p=candidate.progress;const auto b=*p.battle;
@@ -136,11 +193,15 @@ CampaignStepReport CampaignSession::step(TickInput input) {
         p.lastResult=CampaignResult{b.attempt,b.realm,b.region,result};
         const auto selected=missionIndex(p);
         if(result==CampaignOutcome::victory) {
+            if(!definition_.plans.empty() && definition_.plans[selected]) for(auto& w:p.wizards) if(w.id==p.player) {
+                const auto& spell=definition_.plans[selected]->rewardSpell;
+                if(std::find(w.spells.begin(),w.spells.end(),spell)==w.spells.end()) w.spells.push_back(spell);
+            }
             auto& r=region(p,definition_.missions[selected]);r.completed=true;r.owner=p.player;
             if(selected+1==definition_.missions.size()) p.completed=true;
             else {const auto& next=definition_.missions[selected+1];p.realm=next.realm;p.region=next.region;}
         }
-        ++p.transition;p.battle.reset();candidate.battle.reset();report.result=p.lastResult;
+        ++p.transition;p.mission.reset();p.battle.reset();candidate.battle.reset();report.result=p.lastResult;
     }
     validate(candidate);owned_=std::move(candidate);return report;
 }

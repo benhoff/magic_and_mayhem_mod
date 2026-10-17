@@ -39,7 +39,20 @@ void Controller::changed() {
 }
 ArenaView Controller::view() const {
     ArenaView v;
-    if (mapPresentation_ && campaign_ && (campaign_->progress().identity.id=="native-plains-campaign" || campaign_->progress().identity.id=="native-plains-creature-campaign" || campaign_->progress().identity.id=="native-plains-species-campaign") &&
+    if(campaign_) {
+        if(const auto* plan=campaign_->missionPlan()) {
+            v.briefing=QString::fromStdString(plan->briefing);
+            if(campaign_->progress().mission) {
+                const auto& m=*campaign_->progress().mission;
+                v.objective=QString("Objective %1 / 3: %2").arg(m.stage+1).arg(QString::fromStdString(plan->objectives[m.stage]));
+                if(m.stage==1 && !m.reinforcement) v.objective+=" Reinforcements awaiting a clear arrival area.";
+            }
+        }
+        const auto& p=campaign_->progress();
+        if(p.identity.id=="native-plains-objectives-campaign" && p.lastResult && p.lastResult->region=="plains-crossing" && p.lastResult->outcome==game::CampaignOutcome::victory)
+            v.reward="Reward earned: Cure unlocked for the arena finale.";
+    }
+    if (mapPresentation_ && campaign_ && (campaign_->progress().identity.id=="native-plains-campaign" || campaign_->progress().identity.id=="native-plains-creature-campaign" || campaign_->progress().identity.id=="native-plains-species-campaign" || campaign_->progress().identity.id=="native-plains-objectives-campaign") &&
         ((hasBattle() && (session().mission().map=="native-plains-crop-v1" || session().mission().map==terrainBattleMap)) ||
          (!hasBattle() && campaign_->progress().lastResult && campaign_->progress().lastResult->region=="plains-crossing")))
         v.mission=mapPresentation_;
@@ -73,9 +86,9 @@ ArenaView Controller::view() const {
     const auto creatureViews=creatureBattleViews(session().combat());
     v.outcome = s.outcome;
     v.projectiles = s.projectiles;
-    v.cureEnabled = bool(session().effectsRuntime());
+    v.cureEnabled = bool(session().effectsRuntime()) && (!campaign_ || campaign_->spellAvailable(game::Spell::cure));
     v.cureMana = cureCost;
-    v.sphereEnabled = session().effectsRuntime() && session().effectsRuntime()->supports(game::Spell::sphere);
+    v.sphereEnabled = session().effectsRuntime() && session().effectsRuntime()->supports(game::Spell::sphere) && (!campaign_ || campaign_->spellAvailable(game::Spell::sphere));
     for (const auto &effect : sphereViews(session().combat())) v.spheres.push_back(effect.fine);
     for (const auto &effect : cureViews(session().combat())) v.cures.push_back(effect.position);
     v.selected = selected_;
@@ -146,7 +159,13 @@ void Controller::advance() {
     if (!hasBattle())
         return;
     if (campaign_) {
+        const auto before=campaign_->progress().mission;
         auto report = campaign_->step();
+        if(before && campaign_->progress().mission) {
+            const auto& after=*campaign_->progress().mission;
+            if(after.stage!=before->stage) feedback_=QString::fromStdString(campaign_->missionPlan()->objectives[after.stage]);
+            else if(after.reinforcement && !before->reinforcement) feedback_="Enemy reinforcements have arrived.";
+        }
         last_ = report.battle.value_or(game::SkirmishReport{});
         if (report.result) {
             selected_.reset();
@@ -297,11 +316,11 @@ void Controller::adopted(const QString &message) {
     feedback_ = message;
     changed();
 }
-void Controller::newMapCampaign(std::filesystem::path root) {
+void Controller::newMapCampaign(std::filesystem::path root, bool stagedMission) {
     pause();
     if(root.empty()) root=mapRoot_;
     if(root.empty()) throw std::invalid_argument("Select the installed game data directory");
-    auto resources=mapCampaignResources(root,true,true,bool(driver_),bool(driver_));
+    auto resources=mapCampaignResources(root,true,true,bool(driver_) || stagedMission,bool(driver_) || stagedMission,stagedMission);
     auto presentation=std::make_shared<const MissionPresentation>(*resources);
     auto candidate=std::make_unique<game::CampaignSession>(skirmish::newMapCampaign(resources));
     candidate->startMission();
@@ -322,11 +341,12 @@ void Controller::loadCampaign(const std::filesystem::path &path) {
     const auto progress=game::decodeCampaign(outer.campaign);
     std::unique_ptr<game::CampaignSession> candidate;
     std::shared_ptr<const MissionPresentation> presentation;
-    if(progress.identity.id=="native-plains-campaign" || progress.identity.id=="native-plains-creature-campaign" || progress.identity.id=="native-plains-species-campaign") {
+    if(progress.identity.id=="native-plains-campaign" || progress.identity.id=="native-plains-creature-campaign" || progress.identity.id=="native-plains-species-campaign" || progress.identity.id=="native-plains-objectives-campaign") {
         if(mapRoot_.empty()) throw std::invalid_argument("Load this campaign with --asset-root GAME_DIRECTORY, or start a map campaign first");
+        const bool staged=progress.identity.id=="native-plains-objectives-campaign";
         const bool enabled=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"cure")!=w.spells.end();});
         const bool spheres=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"magic-sphere")!=w.spells.end();});
-        auto resources=mapCampaignResources(mapRoot_,enabled,spheres,progress.identity.id=="native-plains-creature-campaign" || progress.identity.id=="native-plains-species-campaign",progress.identity.id=="native-plains-species-campaign");
+        auto resources=mapCampaignResources(mapRoot_,enabled || staged,spheres || staged,staged || progress.identity.id=="native-plains-creature-campaign" || progress.identity.id=="native-plains-species-campaign",staged || progress.identity.id=="native-plains-species-campaign",staged);
         presentation=std::make_shared<const MissionPresentation>(*resources);
         candidate=std::make_unique<game::CampaignSession>(skirmish::loadMapCampaign(resources,path));
     } else candidate=std::make_unique<game::CampaignSession>(skirmish::loadCampaign(path,driver_));

@@ -42,6 +42,9 @@ void view(const mnm::game::CampaignSession& s,unsigned settlements=0) {
     } else std::cout<<"null";
     std::cout<<",\"attempt\":";
     if(p.battle) std::cout<<p.battle->attempt;else std::cout<<"null";
+    std::cout<<",\"mission\":";
+    if(p.mission) std::cout<<"{\"stage\":"<<p.mission->stage<<",\"reinforcement\":"<<(p.mission->reinforcement?"true":"false")<<'}';else std::cout<<"null";
+    std::cout<<",\"cure_available\":"<<(s.spellAvailable(mnm::game::Spell::cure)?"true":"false");
     std::cout<<",\"battle\":";
     if(s.battle()) mnm::skirmish::trace(std::cout,*s.battle());else std::cout<<"null";
     std::cout<<"}\n";
@@ -56,7 +59,7 @@ int main(int argc,char** argv) try {
 #ifdef MNM_MAP_CAMPAIGN_CLI
     if(argc<3) throw std::invalid_argument("Usage: mnm-map-campaign-cli ASSET_ROOT COMMAND ...");
     --argc;++argv;
-    const auto make=[&](std::string_view mode){return mnm::skirmish::newMapCampaign(mnm::skirmish::mapCampaignResources(argv[0],mode!="create",mode=="create-sphere" || mode=="create-creatures" || mode=="create-species",mode=="create-creatures" || mode=="create-species",mode=="create-species"));};
+    const auto make=[&](std::string_view mode){return mnm::skirmish::newMapCampaign(mnm::skirmish::mapCampaignResources(argv[0],mode!="create",mode=="create-sphere" || mode=="create-creatures" || (mode=="create-species" || mode=="create-mission"),mode=="create-creatures" || (mode=="create-species" || mode=="create-mission"),(mode=="create-species" || mode=="create-mission"),mode=="create-mission"));};
     const auto load=[&](const char* path){return mnm::skirmish::loadMapCampaign(std::filesystem::path(argv[0]),path);};
 #else
     std::shared_ptr<const CombatDriver> driver;
@@ -66,7 +69,7 @@ int main(int argc,char** argv) try {
 #endif
     const std::string_view command=argc>1?argv[1]:"";
 #ifdef MNM_MAP_CAMPAIGN_CLI
-    const bool creatureCampaign = command=="create-creatures" || command=="create-species";
+    const bool creatureCampaign = command=="create-creatures" || command=="create-species" || command=="create-mission";
 #else
     const bool creatureCampaign = false;
 #endif
@@ -93,6 +96,11 @@ int main(int argc,char** argv) try {
         } else throw std::invalid_argument("Use bolt, summon X Y [Z], or cure/sphere TARGET-SLOT");
         s.enqueue(order);save(argv[3],s);view(s);return 0;
     }
+    if(command=="attack" && argc==6) {
+        auto s=load(argv[2]);if(!s.battle()) throw std::invalid_argument("Start a mission before ordering an attack");
+        const auto handle=[&](const char* text) {const auto slot=number<unsigned>(text);const auto& slots=s.battle()->world().state().slots;if(slot>=slots.size() || !slots[slot].entity) throw std::invalid_argument("Attack actor unavailable");return Handle{slot,slots[slot].generation};};
+        s.enqueue({SkirmishOrderKind::attack,handle(argv[4]),handle(argv[5]),{}});save(argv[3],s);view(s);return 0;
+    }
     if(command=="move" && argc==7) {
         auto s=load(argv[2]);
         if(!s.battle()) throw std::invalid_argument("Start a campaign mission before moving");
@@ -111,5 +119,5 @@ int main(int argc,char** argv) try {
         save(argv[3],s);view(s,settlements);return 0;
     }
     throw std::invalid_argument("Usage: mnm-campaign-cli [--installation ROOT] create OUTPUT | inspect INPUT | start INPUT OUTPUT | "
-                                "cast INPUT OUTPUT bolt | cast INPUT OUTPUT summon X Y | cast INPUT OUTPUT cure/sphere TARGET-SLOT | resume INPUT OUTPUT TICKS");
+                                "cast INPUT OUTPUT bolt | cast INPUT OUTPUT summon X Y | cast INPUT OUTPUT cure/sphere TARGET-SLOT | attack INPUT OUTPUT SUBJECT-SLOT TARGET-SLOT | resume INPUT OUTPUT TICKS");
 } catch(const std::exception& error) {std::cerr<<error.what()<<'\n';return 1;}

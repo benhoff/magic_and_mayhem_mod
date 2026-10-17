@@ -20,6 +20,7 @@ struct Actor {
 struct Stored {
   g::Bytes profile, random, terrain;
   std::vector<Actor> actors;
+  bool wizardTargets=false;
 };
 struct Codec {
   g::Bytes bytes;
@@ -67,15 +68,16 @@ struct Codec {
       bytes.insert(bytes.end(), b.begin(), b.end());
   }
   void content(Stored &s) {
-    unsigned tag = s.terrain.empty() ? 0x31425243 : s.terrain.at(7)=='2' ? 0x33425243 : 0x32425243;
+    unsigned tag = s.wizardTargets ? 0x34425243 : s.terrain.empty() ? 0x31425243 : s.terrain.at(7)=='2' ? 0x33425243 : 0x32425243;
     word(tag);
-    need(tag == 0x31425243 || tag == 0x32425243 || tag == 0x33425243, "creature battle version");
+    need(tag == 0x31425243 || tag == 0x32425243 || tag == 0x33425243 || tag == 0x34425243, "creature battle version");
     blob(s.profile, 2 * 1024 * 1024);
-    if (tag == 0x32425243 || tag == 0x33425243) {
+    if (tag == 0x32425243 || tag == 0x33425243 || tag == 0x34425243) {
       blob(s.terrain, 2 * 1024 * 1024);
       need(!s.terrain.empty(), "creature terrain profile missing");
     }
-    need(s.terrain.empty() || (s.terrain.size()>8 && ((tag==0x33425243)==(s.terrain[7]=='2'))),"creature actor profile version mismatch");
+    need(s.terrain.empty() || (s.terrain.size()>8 && (((tag==0x33425243 || tag==0x34425243))==(s.terrain[7]=='2'))),"creature actor profile version mismatch");
+    s.wizardTargets=tag==0x34425243;
     blob(s.random, 1008);
     unsigned n = unsigned(s.actors.size());
     word(n);
@@ -263,10 +265,21 @@ bool reach(const g::CreatureRules &r, g::Point a, g::Point b,
     }
   });
 }
-std::optional<g::Point> route(const Actor &a, g::Point target,
+bool targetReach(const g::CreatureRules& rules, g::Point from, g::Handle self, g::Handle target,
+                 const g::State& w, const g::Navigation& nav, bool wizardTargets) {
+  const auto* a=entity(w,self);const auto* b=entity(w,target);
+  if(!a || !b) return false;
+  if(wizardTargets && !managed(w,target)) {
+    const auto ab=nav.actorFootprint(*a),bb=nav.actorFootprint(*b);
+    return from.z==b->z && b->x<=from.x+ab.x && from.x<=b->x+bb.x &&
+           b->y<=from.y+ab.y && from.y<=b->y+bb.y;
+  }
+  return reach(rules,from,position(*b),nav);
+}
+std::optional<g::Point> route(const Actor &a,
                               const g::State &w, g::CombatState c,
                               const g::Navigation &nav,
-                              const g::CreatureRules &rules) {
+                              const g::CreatureRules &rules, g::Handle victim, bool wizardTargets) {
   auto origin = position(*entity(w, a.state.handle));
   const auto dims = nav.binding().dimensions;
   std::vector<int> parent(dims.x * dims.y, -1);
@@ -276,7 +289,7 @@ std::optional<g::Point> route(const Actor &a, g::Point target,
   while (!queue.empty()) {
     auto p = queue.front();
     queue.pop_front();
-    if (p != origin && reach(rules, p, target, nav)) {
+    if (p != origin && targetReach(rules,p,a.state.handle,victim,w,nav,wizardTargets)) {
       int at = index(p);
       while (parent[at] != index(origin))
         at = parent[at];
@@ -319,10 +332,11 @@ g::CreatureEncounter projection(const Stored &s, const g::State &w,
 class Driver final : public g::CombatDriver {
   creature_lab::Profile profile_;
   std::optional<TerrainBattle> terrain_;
+  bool wizardTargets_=false;
 
 public:
-  explicit Driver(creature_lab::Profile p, std::optional<TerrainBattle> t = {})
-      : profile_(std::move(p)), terrain_(std::move(t)) {
+  explicit Driver(creature_lab::Profile p, std::optional<TerrainBattle> t = {}, bool wizardTargets=false)
+      : profile_(std::move(p)), terrain_(std::move(t)), wizardTargets_(wizardTargets) {
     if (terrain_)
       validateTerrainCreatureProfile(*terrain_, profile_.bytes);
   }
@@ -331,7 +345,7 @@ public:
     return encode({profile_.bytes,
                    profile_.rules->random(1),
                    terrain_ ? terrain_->bytes : g::Bytes{},
-                   {}});
+                   {}, wizardTargets_});
   }
   g::CombatStats creatureStats() const override {
     return {profile_.rules->maximumHealth(), 1, 2, 3};
@@ -366,6 +380,7 @@ public:
          "creature ordinary health binding");
     need(c.rules().identity == identity(), "creature battle runtime binding");
     auto s = decode(c.rules().data);
+    need(s.wizardTargets==wizardTargets_,"creature target policy mismatch");
     need(s.profile == profile_.bytes &&
              s.terrain == (terrain_ ? terrain_->bytes : g::Bytes{}),
          "creature battle profile/terrain mismatch");
@@ -407,6 +422,7 @@ public:
            "creature battle installed health/grid profile");
       need((a.state.phase == g::CreaturePhase::dead) == (!f->health),
            "creature battle death mismatch");
+      need(managed(c.world().state(),a.state.handle),"wizard cannot own creature controller");
       need(f->target == a.target &&
                (a.state.phase != g::CreaturePhase::attacking || a.target),
            "creature battle control target mismatch");
@@ -434,10 +450,10 @@ public:
         auto *t = fighter(combat, *a.target);
         need(t && t->health &&
                  entity(c.world().state(), *a.target)->owner != e->owner &&
-                 std::any_of(s.actors.begin(), s.actors.end(),
+                 ((s.wizardTargets && !managed(c.world().state(),*a.target)) || std::any_of(s.actors.begin(), s.actors.end(),
                              [&](const auto &b) {
                                return b.state.handle == *a.target;
-                             }),
+                             })),
              "creature battle target generation");
       }
       auto value = a.state;
@@ -500,7 +516,7 @@ public:
                   a->state.phase == g::CreaturePhase::knockback) &&
                  o.kind != g::CombatOrderKind::stop) ||
                 (o.kind == g::CombatOrderKind::attack &&
-                 (!target || !fighter(state, *o.target)->health ||
+                 ((!target && !(s.wizardTargets && !managed(movement.world().state(),*o.target))) || !fighter(state, *o.target) || !fighter(state, *o.target)->health ||
                   movement.world().find(*o.target)->owner ==
                       movement.world().find(o.subject)->owner)) ||
                 (o.destination &&
@@ -562,6 +578,12 @@ public:
                 v.phase == g::CreaturePhase::knockback ||
                 v.phase == g::CreaturePhase::ready)
               continue;
+            if(s.wizardTargets && f->control==g::CombatControl::automatic && a.target && !managed(movement.world().state(),*a.target)) {
+              for(const auto& enemy:s.actors) {
+                const auto* e=movement.world().find(enemy.state.handle);
+                if(e && e->owner!=own->owner && fighter(state,enemy.state.handle)->health) {a.target.reset();cancel(a,g::CreaturePhase::idle);break;}
+              }
+            }
             if (!a.target) {
               g::State compact;
               auto view =
@@ -575,13 +597,34 @@ public:
                     {g::CombatEventKind::acquired, v.handle, *a.target, 0});
               }
             }
+            if(!a.target && s.wizardTargets) {
+              // Native mission acquisition may pursue a creature beyond the
+              // recovered selector's bounded admission before considering a wizard.
+              int best=INT32_MAX;
+              for(const auto& candidate:s.actors) {
+                const auto* e=movement.world().find(candidate.state.handle);
+                if(!e || e->owner==own->owner || !fighter(state,candidate.state.handle)->health) continue;
+                const int distance=std::max(std::abs(e->x-own->x),std::abs(e->y-own->y));
+                if(distance<best) {best=distance;a.target=candidate.state.handle;}
+              }
+              if(a.target) out.events.push_back({g::CombatEventKind::acquired,v.handle,*a.target,0});
+            }
+            if(!a.target && s.wizardTargets) {
+              const auto meta=g::decodeSkirmish(movement.world().state().campaign);
+              for(const auto& wizard:meta.wizards) {
+                const auto* e=movement.world().find(wizard.actor);auto* candidate=fighter(state,wizard.actor);
+                if(e && candidate && candidate->health && e->owner!=own->owner) {
+                  a.target=wizard.actor;
+                  out.events.push_back({g::CombatEventKind::acquired,v.handle,wizard.actor,0});break;
+                }
+              }
+            }
             if (!a.target)
               continue;
             f->target = a.target;
             f->action = g::CombatAction::approaching;
             f->remaining = 0;
-            auto destination = position(*movement.world().find(*a.target));
-            if (reach(rules, position(*own), destination, nav)) {
+            if (targetReach(rules,position(*own),v.handle,*a.target,movement.world().state(),nav,s.wizardTargets)) {
               if (g::active(own->motion->action))
                 movement.stop(v.handle);
             } else {
@@ -591,8 +634,8 @@ public:
                 v.phase = g::CreaturePhase::pursuing;
               if (!input.suppressSearch && !g::active(own->motion->action) &&
                   movement.world().state().tick % 4 == 0) {
-                auto p = route(a, destination, movement.world().state(), state,
-                               nav, rules);
+                auto p = route(a, movement.world().state(), state,
+                               nav, rules,*a.target,s.wizardTargets);
                 if (p) {
                   movement.move(v.handle, *p);
                   out.events.push_back(
@@ -650,7 +693,7 @@ public:
             auto *victim = fighter(state, *a.target);
             auto &target = *w.slots[a.target->slot].entity;
             if (!victim || !victim->health ||
-                !reach(rules, position(own), position(target), nav)) {
+                !targetReach(rules,position(own),v.handle,*a.target,w,nav,s.wizardTargets)) {
               cancel(a, g::CreaturePhase::pursuing);
               continue;
             }
@@ -668,9 +711,10 @@ public:
               auto roll = rules.damage(s.random);
               g::damageCombat(w, state, *a.target, roll.amount, v.handle,
                               out.events, health);
-              auto &b = *std::find_if(
-                  s.actors.begin(), s.actors.end(),
-                  [&](const auto &x) { return x.state.handle == *a.target; });
+              auto managedVictim=std::find_if(s.actors.begin(),s.actors.end(),[&](const auto& x){return x.state.handle==*a.target;});
+              // Wizards share health/death, but have no recovered creature stun controller.
+              if(managedVictim==s.actors.end()) continue;
+              auto &b=*managedVictim;
               b.recent = v.handle;
               b.state.age = 100;
               if (roll.stun) {
@@ -747,12 +791,12 @@ resolveCreatureRuntime(const game::State &w) {
       creature_lab::decodeProfile(stored.profile),
       stored.terrain.empty()
           ? std::nullopt
-          : std::optional<TerrainBattle>(decodeTerrainBattle(stored.terrain)));
+          : std::optional<TerrainBattle>(decodeTerrainBattle(stored.terrain)),stored.wizardTargets);
 }
 std::shared_ptr<const game::CombatDriver>
-installedTerrainCreatureRuntime(const std::filesystem::path &root,bool mixedActors) {
+installedTerrainCreatureRuntime(const std::filesystem::path &root,bool mixedActors,bool wizardTargets) {
   return std::make_shared<Driver>(creature_lab::loadProfile(root),
-                                  installedTerrainBattle(root,mixedActors));
+                                  installedTerrainBattle(root,mixedActors),wizardTargets);
 }
 std::optional<TerrainBattle> creatureTerrain(const game::CombatDriver &driver) {
   need(driver.identity() == creatureBattleIdentity,

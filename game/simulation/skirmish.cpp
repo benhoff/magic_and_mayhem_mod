@@ -9,6 +9,7 @@
 
 namespace mnm::game {
 namespace {
+constexpr std::array<std::uint8_t, 8> missionMagic{{'M','N','M','A','R','M','0','3'}};
 constexpr std::array<std::uint8_t, 8> customMagic{{'M', 'N', 'M', 'A', 'R', 'M', '0', '2'}};
 constexpr std::array<std::uint8_t, 8> magic{{'M', 'N', 'M', 'A', 'R', 'M', '0', '1'}};
 void require(bool v, const char *message) {
@@ -82,7 +83,7 @@ bool placement(const CombatSession &combat, const Navigation &nav, const Skirmis
 Outcome outcome(const CombatState &c, const SkirmishState &s) {
     const bool player = fighter(c, s.wizards[0].actor)->health != 0,
                enemy = fighter(c, s.wizards[1].actor)->health != 0;
-    return player ? (enemy ? Outcome::running : Outcome::victory)
+    return player ? (enemy || (s.missionControlled && !s.victoryEnabled) ? Outcome::running : Outcome::victory)
                   : (enemy ? Outcome::defeat : Outcome::draw);
 }
 } // namespace
@@ -153,7 +154,7 @@ Bytes encodeSkirmish(const SkirmishState &s) {
     const auto &mission=effective(s);
     validateMission(mission);
     const bool custom=!sameMission(mission,arenaMission());
-    const auto &header=custom ? customMagic : magic;
+    const auto &header=s.missionControlled ? missionMagic : custom ? customMagic : magic;
     Bytes b(header.begin(), header.end());
     auto word = [&](std::uint32_t n) {
         for (unsigned i = 0; i < 4; ++i)
@@ -175,6 +176,8 @@ Bytes encodeSkirmish(const SkirmishState &s) {
     const auto hash = rulesHash();
     word(std::uint32_t(hash));
     word(std::uint32_t(hash >> 32));
+    if(s.missionControlled) {word(custom);word(s.victoryEnabled);}
+    else require(s.victoryEnabled,"uncontrolled mission victory gate");
     if (custom) {
         word(unsigned(mission.map.size()));
         b.insert(b.end(),mission.map.begin(),mission.map.end());
@@ -221,9 +224,10 @@ Bytes encodeSkirmish(const SkirmishState &s) {
     return b;
 }
 SkirmishState decodeSkirmish(const Bytes &b) {
-    const bool custom=b.size()>=8 && std::equal(customMagic.begin(),customMagic.end(),b.begin());
-    require(b.size() >= 28 && b.size() <= (custom ? 65536U : 8192U) &&
-                (custom || std::equal(magic.begin(), magic.end(), b.begin())),
+    const bool controlled=b.size()>=8 && std::equal(missionMagic.begin(),missionMagic.end(),b.begin());
+    bool custom=b.size()>=8 && std::equal(customMagic.begin(),customMagic.end(),b.begin());
+    require(b.size() >= 28 && b.size() <= (custom || controlled ? 65536U : 8192U) &&
+                (controlled || custom || std::equal(magic.begin(), magic.end(), b.begin())),
             "unknown or oversized skirmish subsystem");
     std::size_t p = 8;
     auto word = [&]() {
@@ -254,6 +258,7 @@ SkirmishState decodeSkirmish(const Bytes &b) {
     require((std::uint64_t(high) << 32 | low) == rulesHash(),
             "skirmish rules fingerprint mismatch");
     SkirmishState s;
+    if(controlled) {s.missionControlled=true;const auto c=word(),v=word();require(c<=1 && v<=1,"invalid mission controls");custom=c;s.victoryEnabled=v;}
     if (custom) {
         SkirmishMission m;
         const auto length=word();
@@ -508,18 +513,43 @@ void SkirmishSession::enqueue(SkirmishOrder o) {
 void SkirmishSession::removeCreature(Handle h) {
     auto s=state();auto role=std::find_if(s.units.begin(),s.units.end(),[&](const auto &r){return r.actor==h;});
     require(role!=s.units.end() && role->role==UnitRole::sentinel,"Only enrolled creatures may be removed");
-    auto combat=combat_;combat.remove(h);s.units.erase(role);
+    auto combat=combat_;s.units.erase(role);
     s.pending.erase(std::remove_if(s.pending.begin(),s.pending.end(),[&](const auto &o){return o.subject==h || o.target==std::optional<Handle>(h);}),s.pending.end());
     for(auto &w:s.wizards)if(w.target==std::optional<Handle>(h))clear(w);
     s.projectiles.erase(std::remove_if(s.projectiles.begin(),s.projectiles.end(),[&](const auto &p){return p.target==h;}),s.projectiles.end());
     if(effects_)effects_->removed(combat,s,h);
-    publish(std::move(combat),std::move(s));
+    // Stage enrollment before releasing the actor so profile validation never
+    // observes an old role pointing at a newly empty/reused slot.
+    auto staged=combat.world().state();staged.campaign=encodeSkirmish(s);
+    World world(0,combat.world().limits());world.restore(std::move(staged));
+    CombatSession removing(std::move(world),navigation_,combat.healthRules(),combat.driver());
+    removing.remove(h);
+    publish(std::move(removing),std::move(s));
 }
-SkirmishReport SkirmishSession::step(TickInput input) {
+void SkirmishSession::beginMission() {
+    auto s=state();require(!world().state().tick && !s.missionControlled,"mission already started");
+    s.missionControlled=true;s.victoryEnabled=false;publish(combat_,std::move(s));
+}
+std::optional<std::vector<Handle>> SkirmishSession::spawnMissionGroup(const std::vector<Point>& locations) {
+    auto s=state();require(s.missionControlled && s.outcome==Outcome::running,"mission group outside running mission");
+    require(!locations.empty() && locations.size()<=8,"mission group bound");
+    auto combat=combat_;std::vector<Handle> handles;
+    for(auto p:locations) {
+        if(s.units.size()>=32 || !missionCell(mission_,p) ||
+           !placement(combat,*navigation_,mission_,p) || (combat.driver() && !combat.driver()->canSpawn(combat,p))) return {};
+        Entity e;e.type=navigation_->creatureType();e.owner=1;e.x=p.x;e.y=p.y;e.z=p.z;
+        auto h=combat.spawn(e,combat.driver() ? combat.driver()->creatureStats() : CombatStats{SkirmishRules::creatureHealth,SkirmishRules::creatureDamage,2,3});
+        handles.push_back(h);s.units.push_back({h,UnitRole::sentinel});
+    }
+    std::sort(s.units.begin(),s.units.end(),[](const auto&a,const auto&b){return a.actor.slot<b.actor.slot;});
+    publish(std::move(combat),std::move(s));return handles;
+}
+SkirmishReport SkirmishSession::step(TickInput input, std::optional<bool> victory) {
     SkirmishReport report;
     auto s = state();
     if (!input.admitted || s.outcome != Outcome::running)
         return report;
+    if(victory) {require(s.missionControlled,"victory gate requires mission control");s.victoryEnabled=*victory;}
     auto combat = combat_;
     if (input.alternateMode) {
         report.combat = combat.stepBattle(input);
@@ -623,7 +653,8 @@ SkirmishReport SkirmishSession::step(TickInput input) {
                             o.subject, o.target, o.destination});
     }
     s.pending.clear();
-    if (s.aiWait)
+    if(s.missionControlled) {}
+    else if (s.aiWait)
         --s.aiWait;
     else {
         s.aiWait = SkirmishRules::aiInterval;

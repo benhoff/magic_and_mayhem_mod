@@ -18,6 +18,11 @@ struct CampaignRegion {
     bool completed=false;
 };
 struct CampaignRealm { std::string id; std::vector<CampaignRegion> regions; };
+struct MissionProgress {
+    std::uint32_t stage=0;
+    bool reinforcement=false;
+    std::vector<Handle> initial, wave;
+};
 struct CampaignBattle {
     std::string realm, region, map;
     std::vector<std::string> participants;
@@ -39,6 +44,7 @@ struct CampaignState {
     std::vector<CampaignRealm> realms;
     std::optional<CampaignBattle> battle;
     std::optional<CampaignResult> lastResult;
+    std::optional<MissionProgress> mission; // Active authored objective continuation only.
 };
 struct CampaignLimits {
     std::uint32_t bytes=4*1024*1024, wizards=80, realms=32, regions=4096;

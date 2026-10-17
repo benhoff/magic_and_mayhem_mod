@@ -242,3 +242,19 @@ point-profile map campaign remains the default CLI `create`.
 This is a native authored encounter using recovered contracts and installed
 assets. Full original missions, scheduling, map objects and live simulation
 replacement remain outstanding. See [terrain battle research](../../research/runtime/native-terrain-battle.md).
+
+## Staged Plains mission
+
+Use **New Plains mission** or run `mnm-skirmish --installation GAME_DIRECTORY
+--mission-campaign`. The initially paused mission shows its briefing and current
+objective: defeat the guard, defeat a once-only reinforcement wave, then defeat
+the rival wizard. Summon Crocodiles to protect your wizard; they can now attack
+the rival in this mission. A blocked reinforcement waits until its arrival area
+is clear. Victory unlocks Cure for the arena finale. Save during any objective or
+between missions; defeat/retry restarts the objective sequence.
+
+CLI creation: `mnm-map-campaign-cli GAME_DIRECTORY create-mission OUTPUT.mnmc`.
+The authored definition is `plains_mission.json`; rebuild after editing it.
+Existing campaign saves keep their original rules. See
+[mission scope](../../research/runtime/native-staged-mission.md) and
+[wire extensions](../../research/formats/native-staged-mission.md).

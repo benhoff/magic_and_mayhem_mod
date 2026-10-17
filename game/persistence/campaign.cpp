@@ -53,6 +53,14 @@ void validate(const CampaignState& c,const CampaignLimits& l) {
             if(realm.id==r.realm && region.id==r.region) found=true;
         if(!found) fail("campaign result region is missing");
     }
+    if(c.mission) {
+        const auto& m=*c.mission;
+        if(!c.battle || !c.battle->attempt || m.stage>2 || m.initial.empty() || m.initial.size()>8 || m.wave.size()>8 ||
+           (m.stage==0 && m.reinforcement) || (m.reinforcement!=!m.wave.empty()) || (m.stage==2 && !m.reinforcement)) fail("invalid campaign mission progress");
+        std::set<std::pair<unsigned,unsigned>> handles;
+        for(const auto* group:{&m.initial,&m.wave}) for(auto h:*group)
+            if(!h.generation || !handles.emplace(h.slot,h.generation).second) fail("invalid mission group identity");
+    }
     if(c.battle) {
         const auto& b=*c.battle;text(b.realm,l);text(b.region,l);text(b.map,l);
         if(c.completed || b.realm!=c.realm || b.region!=c.region) fail("campaign battle conflicts with selection/completion");
@@ -105,7 +113,7 @@ void binding(const State& state,const CampaignState& c,const CampaignIdentity& e
 Bytes encodeCampaign(const CampaignState& c,const CampaignLimits& l) {
     validate(c,l);Writer out{{},l};
     for(auto v:magic) out.word(v,1);
-    const unsigned version=c.lastResult || (c.battle && c.battle->attempt) ? 2 : 1;
+    const unsigned version=c.mission ? 3 : c.lastResult || (c.battle && c.battle->attempt) ? 2 : 1;
     out.word(version);out.string(c.identity.id);out.string(c.identity.contentRevision);
     out.word(c.difficulty);out.word(c.transition,8);out.string(c.player);out.string(c.realm);out.string(c.region);out.word(c.completed,1);
     out.word(c.wizards.size());
@@ -131,12 +139,16 @@ Bytes encodeCampaign(const CampaignState& c,const CampaignLimits& l) {
             out.word(static_cast<std::uint32_t>(r.outcome));
         }
     }
+    if(version==3) {
+        const auto& m=*c.mission;out.word(m.stage);out.word(m.reinforcement,1);
+        for(const auto* group:{&m.initial,&m.wave}) {out.word(group->size());for(auto h:*group) {out.word(h.slot);out.word(h.generation);}}
+    }
     return out.bytes;
 }
 CampaignState decodeCampaign(const Bytes& bytes,const CampaignLimits& l) {
     bounded(bytes.size(),l.bytes);Reader in{bytes,l};
     for(auto v:magic) if(in.word(1)!=v) fail("invalid campaign signature");
-    const auto version=in.word();if(version!=1 && version!=2) fail("unsupported campaign version");
+    const auto version=in.word();if(version!=1 && version!=2 && version!=3) fail("unsupported campaign version");
     CampaignState c;c.identity={in.string(),in.string()};c.difficulty=in.word();c.transition=in.word(8);
     c.player=in.string();c.realm=in.string();c.region=in.string();c.completed=in.flag();
     auto n=in.count(l.wizards,45);
@@ -162,6 +174,11 @@ CampaignState decodeCampaign(const Bytes& bytes,const CampaignLimits& l) {
             r.outcome=static_cast<CampaignOutcome>(in.word());c.lastResult=std::move(r);
         }
         if(!c.lastResult && (!c.battle || !c.battle->attempt)) fail("version-2 campaign requires continuation data");
+    }
+    if(version==3) {
+        MissionProgress m;m.stage=in.word();m.reinforcement=in.flag();
+        for(auto* group:{&m.initial,&m.wave}) {const auto count=in.count(8,8);for(unsigned i=0;i<count;++i) group->push_back({unsigned(in.word()),unsigned(in.word())});}
+        c.mission=std::move(m);
     }
     if(in.pos!=bytes.size()) fail("unexpected trailing campaign bytes");
     validate(c,l);return c;

@@ -24,7 +24,7 @@ class Controller {
   public:
     explicit Controller(std::filesystem::path mapRoot = {}, std::shared_ptr<const game::CombatDriver> = {});
     bool hasMapRoot() const {return !mapRoot_.empty();}
-    void newMapCampaign(std::filesystem::path root = {});
+    void newMapCampaign(std::filesystem::path root = {}, bool stagedMission = false);
     const game::SkirmishSession &session() const;
     const game::CampaignSession *campaign() const { return campaign_.get(); }
     bool hasBattle() const { return !campaign_ || campaign_->battle(); }

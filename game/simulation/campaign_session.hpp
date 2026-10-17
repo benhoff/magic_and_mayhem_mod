@@ -1,5 +1,5 @@
 #pragma once
-#include "skirmish.hpp"
+#include "mission.hpp"
 #include "persistence/campaign.hpp"
 
 namespace mnm::game {
@@ -10,6 +10,8 @@ struct CampaignMission {
 struct CampaignDefinition {
     CampaignState initial;
     std::vector<CampaignMission> missions;
+    std::vector<std::optional<MissionPlan>> plans;
+    bool spellLoadout=false;
 };
 // App adapters own content/navigation/health loading. Returned sessions must
 // validate their resources normally; restore must retain the exact saved world.
@@ -44,6 +46,8 @@ public:
     const CampaignState& progress() const {return owned_.progress;}
     const SkirmishSession* battle() const {return owned_.battle ? &*owned_.battle : nullptr;}
     const CampaignMission& currentMission() const {return definition_.missions.at(missionIndex(progress()));}
+    const MissionPlan* missionPlan() const;
+    bool spellAvailable(Spell) const;
     void startMission();
     void enqueue(SkirmishOrder);
     CampaignStepReport step(TickInput={});
