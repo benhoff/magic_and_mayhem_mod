@@ -70326,14 +70326,18 @@
         "runtime/native-draw/history.h",
         "runtime/native-draw/producer_status.h",
         "runtime/canvas-writers/producer_status.h",
-        "runtime/canvas-writers/history.h"
+        "runtime/canvas-writers/history.h",
+        "tests/pixel-route-coverage.hpp"
       ],
       "evidence": [
         "RS.image-effect-pixel-state.original-20261014",
         "NP.image-effect-controls.native-20261014",
         "RS.image-effect-pixel-state.range-original-20261014",
         "RS.image-effect-pixel-state.original-final-20261014",
-        "RS.pixel-route-targets.reviewed-static-20261015"
+        "RS.pixel-route-targets.reviewed-static-20261015",
+        "RS.optional-pixel-routes.matrix-20261017",
+        "RS.optional-pixel-routes.matrix-final-20261017",
+        "RS.optional-pixel-routes.matrix-empty-fix-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -70395,7 +70399,8 @@
         "runtime/native-draw/history.h",
         "runtime/native-draw/producer_status.h",
         "runtime/canvas-writers/producer_status.h",
-        "runtime/canvas-writers/history.h"
+        "runtime/canvas-writers/history.h",
+        "tests/pixel-route-coverage.hpp"
       ],
       "evidence": [
         "RS.image-effect-pixel-state.original-20261014",
@@ -70466,7 +70471,8 @@
         "runtime/native-draw/history.h",
         "runtime/native-draw/producer_status.h",
         "runtime/canvas-writers/producer_status.h",
-        "runtime/canvas-writers/history.h"
+        "runtime/canvas-writers/history.h",
+        "tests/pixel-route-coverage.hpp"
       ],
       "evidence": [
         "RS.image-effect-pixel-state.original-20261014",
@@ -70914,7 +70920,8 @@
         "runtime/native-draw/history.h",
         "runtime/native-draw/producer_status.h",
         "runtime/canvas-writers/producer_status.h",
-        "runtime/canvas-writers/history.h"
+        "runtime/canvas-writers/history.h",
+        "tests/pixel-route-coverage.hpp"
       ],
       "evidence": [
         "NP.pixel-producer-launch.staging-20261014",
@@ -71240,12 +71247,16 @@
         "tools/build-shadow-bridge.py",
         "tools/original-manifest.sh",
         "runtime/canvas-writers/producer_status.h",
-        "runtime/canvas-writers/history.h"
+        "runtime/canvas-writers/history.h",
+        "tests/pixel-route-coverage.hpp"
       ],
       "evidence": [
         "RS.minimap-pixel-passes.original-20261014",
         "RS.minimap-pixel-passes.original-final-20261014",
-        "RS.pixel-route-targets.reviewed-static-20261015"
+        "RS.pixel-route-targets.reviewed-static-20261015",
+        "RS.optional-pixel-routes.matrix-20261017",
+        "RS.optional-pixel-routes.matrix-final-20261017",
+        "RS.optional-pixel-routes.matrix-empty-fix-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -71293,7 +71304,8 @@
         "tools/build-shadow-bridge.py",
         "tools/original-manifest.sh",
         "runtime/canvas-writers/producer_status.h",
-        "runtime/canvas-writers/history.h"
+        "runtime/canvas-writers/history.h",
+        "tests/pixel-route-coverage.hpp"
       ],
       "evidence": [
         "RS.minimap-pixel-passes.original-20261014",
@@ -71330,7 +71342,8 @@
       ],
       "documents": [
         "research/runtime/colour-rectangle-takeover.md",
-        "research/runtime/native-pixel-route-scenarios.md"
+        "research/runtime/native-pixel-route-scenarios.md",
+        "research/formats/native-colour-refusals-v1.md"
       ],
       "implementation": [
         "reconstruction/rendering/colour_rect.c",
@@ -71340,7 +71353,8 @@
       ],
       "tests": [
         "tests/colour-rect-splice-reference.cpp",
-        "tools/test-colour-rect-splice.py"
+        "tools/test-colour-rect-splice.py",
+        "tools/diagnose-colour-rect-live.py"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/pixel_kernel.c",
@@ -71355,11 +71369,15 @@
         "tools/build-shadow-bridge.py",
         "tools/original-manifest.sh",
         "runtime/canvas-writers/producer_status.h",
-        "runtime/canvas-writers/history.h"
+        "runtime/canvas-writers/history.h",
+        "tests/pixel-route-coverage.hpp"
       ],
       "evidence": [
         "RS.colour-rectangle-pixels.original-20261014",
-        "RS.pixel-route-targets.reviewed-static-20261015"
+        "RS.pixel-route-targets.reviewed-static-20261015",
+        "RS.optional-pixel-routes.matrix-20261017",
+        "RS.optional-pixel-routes.matrix-final-20261017",
+        "RS.optional-pixel-routes.matrix-empty-fix-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -71378,7 +71396,8 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/colour-rectangle-takeover.md"
+        "research/runtime/colour-rectangle-takeover.md",
+        "research/formats/native-colour-refusals-v1.md"
       ],
       "implementation": [
         "reconstruction/rendering/colour_rect.c",
@@ -71388,7 +71407,8 @@
       ],
       "tests": [
         "tests/colour-rect-splice-reference.cpp",
-        "tools/test-colour-rect-splice.py"
+        "tools/test-colour-rect-splice.py",
+        "tools/diagnose-colour-rect-live.py"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/pixel_kernel.c",
@@ -71403,7 +71423,8 @@
         "tools/build-shadow-bridge.py",
         "tools/original-manifest.sh",
         "runtime/canvas-writers/producer_status.h",
-        "runtime/canvas-writers/history.h"
+        "runtime/canvas-writers/history.h",
+        "tests/pixel-route-coverage.hpp"
       ],
       "evidence": [
         "RS.colour-rectangle-pixels.original-20261014",
@@ -71544,12 +71565,16 @@
         "tools/build-shadow-bridge.py",
         "tools/original-manifest.sh",
         "runtime/canvas-writers/producer_status.h",
-        "runtime/canvas-writers/history.h"
+        "runtime/canvas-writers/history.h",
+        "tests/pixel-route-coverage.hpp"
       ],
       "evidence": [
         "RS.outside-world-raster-pixels.original-20261014",
         "RS.native-history-readers.raster-20261015",
-        "RS.pixel-route-targets.reviewed-static-20261015"
+        "RS.pixel-route-targets.reviewed-static-20261015",
+        "RS.optional-pixel-routes.matrix-20261017",
+        "RS.optional-pixel-routes.matrix-final-20261017",
+        "RS.optional-pixel-routes.matrix-empty-fix-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -71598,7 +71623,8 @@
         "tools/build-shadow-bridge.py",
         "tools/original-manifest.sh",
         "runtime/canvas-writers/producer_status.h",
-        "runtime/canvas-writers/history.h"
+        "runtime/canvas-writers/history.h",
+        "tests/pixel-route-coverage.hpp"
       ],
       "evidence": [
         "RS.outside-world-raster-pixels.original-20261014",
@@ -71867,7 +71893,8 @@
         "NP.pixel-routes.spells-passed-20261015",
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
-        "HOST.native-startup-resources.v3-natural-storage-20261016"
+        "HOST.native-startup-resources.v3-natural-storage-20261016",
+        "NP.pixel-routes.nonresident-fixed-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -72371,7 +72398,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "tests/pixel-route-coverage.hpp"
+      ]
     },
     {
       "id": "NP.explicit-native-cpu-materialization",
@@ -72473,7 +72503,8 @@
         "HOST.native-startup-resources.v3-storage-control-20261016",
         "HOST.native-startup-resources.v3-natural-storage-20261016",
         "CAMERARESUME.actual-20261017",
-        "CAMPAIGNCADENCE.actual-20261017"
+        "CAMPAIGNCADENCE.actual-20261017",
+        "NP.pixel-routes.nonresident-fixed-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -86809,6 +86840,210 @@
       "remaining_gaps": [
         "Current-source matched software acceptance passes the unchanged5FPS floor with complete independent copy checks. Sustained hardware/60FPS, broader scenes and exact physical scanout remain unproved. An initial repaired run exhausts the existing8turn camera budget after multiple separate introductory Hermes interruptions; this failure remains retained and does not relax readiness or route requirements."
       ]
+    },
+    {
+      "id": "DRAW.raster-cpu-selection",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Original CPU base-family raster target selection",
+      "scope": "Original484470 initializer and4845f0 helper executed with authored CPUID leaf0/1 at their two unchanged instruction sites: raw base families0..15, MMX bit0/1, global6e1f38 values0/1/2/UINT_MAX. Observe four selected raster globals and object family/MMX preparation; original code and object guard bytes unchanged. Base family6 selects59521a/59603e/596490/596cb8, others5947b2/595b47/5968a4/597086; global override1 replaces only6c4e3c with57de00. No complete CPU detection, extended-family model, alternate live CPU game, other pointer writers, pixel algorithm or whole-function equivalence claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4736112,
+          "scope": "Two original CPUID instructions and ensuing four raster target assignments under authored platform contexts; unrelated initializer effects excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4736496,
+          "scope": "Original helper raw base-family/MMX fields used by the selector, not general CPU identification."
+        }
+      ],
+      "documents": [
+        "research/runtime/uncovered-native-pixel-routes.md",
+        "research/runtime/native-pixel-routes-provenance-20261017.json",
+        "research/runtime/coverage/uncovered-pixel-routes-incoming-history-20261017.json"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/raster-cpu-selection-reference.cpp",
+        "tools/test-raster-cpu-selection.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "DRAW.raster-cpu-selection.original-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.uncovered-pixel-route-matrix",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Independent original comparison for every pending optional pixel route",
+      "scope": "Require route-specific positive native admission and independently matched physical pixel changes in RGB565 and RGB555 for all 24 optional pixel routes absent from retained live journeys, including separate clipped/unclipped raster interiors and four colour rectangle modes. Actual production splices under supplied Win32/owned-plane adapters and original retained preparation; no new actual-game callers, original driver behavior, World integration, global dead-code or complete replacement claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/uncovered-native-pixel-routes.md",
+        "research/runtime/native-pixel-routes-provenance-20261017.json",
+        "research/runtime/coverage/uncovered-pixel-routes-incoming-history-20261017.json"
+      ],
+      "implementation": [
+        "tools/pixel_route_matrix.py",
+        "tools/test-uncovered-pixel-routes.py"
+      ],
+      "tests": [
+        "tests/test-pixel-route-matrix.py",
+        "tests/pixel-route-coverage.hpp"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/colour_rect.c",
+        "reconstruction/rendering/colour_rect.h",
+        "reconstruction/rendering/fade_kernel.c",
+        "reconstruction/rendering/fade_kernel.h",
+        "reconstruction/rendering/minimap_pixels.c",
+        "reconstruction/rendering/minimap_pixels.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "reconstruction/rendering/raster_pixels.c",
+        "reconstruction/rendering/raster_pixels.h",
+        "research/runtime/native-pixel-targets-reviewed-20261015.json",
+        "runtime/canvas-writers/colour_rect_bridge.c",
+        "runtime/canvas-writers/colour_rect_entry.S",
+        "runtime/canvas-writers/fade_entry.S",
+        "runtime/canvas-writers/fade_route.c",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/history.h",
+        "runtime/canvas-writers/minimap_bridge.c",
+        "runtime/canvas-writers/minimap_entry.S",
+        "runtime/canvas-writers/minimap_route.c",
+        "runtime/canvas-writers/minimap_route.h",
+        "runtime/canvas-writers/pixel_bridge.c",
+        "runtime/canvas-writers/pixel_entry.S",
+        "runtime/canvas-writers/pixel_route.c",
+        "runtime/canvas-writers/pixel_route.h",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/raster_bridge.c",
+        "runtime/canvas-writers/raster_entry.S",
+        "runtime/canvas-writers/raster_sites.h",
+        "runtime/canvas-writers/raster_workspace.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/shadow/win32_min.h",
+        "tests/colour-rect-splice-reference.cpp",
+        "tests/minimap-fixture.hpp",
+        "tests/minimap-overlays-fixture.hpp",
+        "tests/minimap-splice-reference.cpp",
+        "tests/pixel-kernel-test.c",
+        "tests/pixel-route-coverage.hpp",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tests/raster-kernel-test.c",
+        "tests/raster-splice-reference.cpp",
+        "tests/raster-splice-state-probe.S",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-colour-rect.py",
+        "tools/build-minimap-writers.py",
+        "tools/build-native-draw.py",
+        "tools/build-pixel-writers.py",
+        "tools/build-raster-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/launch_build_cache.py",
+        "tools/native_pixel_counters.py",
+        "tools/original-manifest.sh",
+        "tools/pixel_backend_launch.py",
+        "tools/test-colour-rect-splice.py",
+        "tools/test-minimap-splice.py",
+        "tools/test-pixel-splice.py",
+        "tools/test-raster-splice.py"
+      ],
+      "evidence": [
+        "RS.optional-pixel-routes.matrix-20261017",
+        "RS.optional-pixel-routes.matrix-final-20261017",
+        "RS.optional-pixel-routes.matrix-empty-fix-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.colour-rectangle-empty",
+      "kind": "recovered",
+      "subsystem": "rendering",
+      "title": "Original edge-touching colour rectangle no-pixel calls",
+      "scope": "Bounded positive1..2048 shapes whose prepared clipped width or height equals zero, within owned RGB565/555 plane edge metadata, modes0..3 and constant/triple sources. Retain original volatile EAX/ECX/EDX row/source bookkeeping, full caller state and DF without reading or writing pixels or requiring current destination history for the admitted no-pixel branch. Authored exact-edge fixtures and selected actual-game calls; negative extents, arbitrary pointers, other threads, invalid plane/source/shape identities and unrelated full raster semantics excluded.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5537152,
+          "scope": "Selected original colour rectangle zero-width/height control flow and volatile row/source bookkeeping under retained prologue/footer; no general clipping/invalid-input claim."
+        }
+      ],
+      "documents": [
+        "research/runtime/uncovered-native-pixel-routes.md",
+        "research/runtime/native-pixel-routes-provenance-20261017.json",
+        "research/runtime/coverage/uncovered-pixel-routes-incoming-history-20261017.json"
+      ],
+      "implementation": [
+        "runtime/canvas-writers/colour_rect_bridge.c"
+      ],
+      "tests": [
+        "tests/colour-rect-splice-reference.cpp",
+        "tools/test-colour-rect-splice.py",
+        "tools/diagnose-colour-rect-live.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/colour_rect.c",
+        "reconstruction/rendering/colour_rect.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/history.h",
+        "runtime/canvas-writers/pixel_route.h",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/shadow/win32_min.h",
+        "tests/pixel-route-coverage.hpp",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-colour-rect.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.optional-pixel-routes.matrix-empty-fix-20261017",
+        "NP.pixel-routes.nonresident-fixed-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -173531,6 +173766,167 @@
       ],
       "sources_pointer": "/sources",
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "RS.optional-pixel-routes.matrix-20261017",
+      "kind": "native_integration",
+      "record": "research/runtime/native-pixel-route-matrix-20261017.json",
+      "sha256": "475c1cecefd9aecb9d11d79dbffa4c6b70629514f624f683130651147620e091",
+      "scope": "Initial source-bound native production-splice controls: 38 individually observed pixel routes in RGB565 and RGB555, including all24 pending optional routes. Child comparisons retain original manifests and hashes; this aggregate lacks a top-level original-build field and grants no new original-comparison or live replacement claim. Superseded by the explicitly build-bound aggregate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/matrix/compared_routes",
+          "equals": 38
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/matrix/live_routes_added",
+          "equals": []
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RS.optional-pixel-routes.matrix-final-20261017",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/native-pixel-route-matrix-final-20261017.json",
+      "sha256": "2f861334812a28cd58cec08c21ed91d7b8a768eccc7d82b8645801370ce4bb32",
+      "scope": "All24 optional routes absent from retained live journeys, plus14 related routes, independently matched through actual production splices versus pinned original wrappers in bounded authored fixtures. Each route has positive native drawing and matched physical changes in RGB565/555. Distinguishes23 raster interiors, four rectangle modes, and retained caller state. Supplied Win32/owned-plane adapters; no actual-game caller, driver, session or complete replacement promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/matrix/compared_routes",
+          "equals": 38
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/matrix/live_routes_added",
+          "equals": []
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW.raster-cpu-selection.original-20261017",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/native-raster-cpu-selection-20261017.json",
+      "sha256": "ca076a164f5d0727a804a1bd2be27c478bca5a7173e5b6d6418e2a23cdea183e",
+      "scope": "128 isolated original-initializer executions with authored CPUID contexts; CPU base-family raster pointer selection and one global override only. Linux per-thread instruction trapping, original code unchanged. No live game, native pixel comparison, extended-family or complete CPU detection claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selection/case_count",
+          "equals": 128
+        },
+        {
+          "pointer": "/selection/original_code_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.optional-pixel-routes.matrix-empty-fix-20261017",
+      "kind": "isolated_original",
+      "record": "research/runtime/native-pixel-route-matrix-empty-fix-20261017.json",
+      "sha256": "21ae25aa59e196794965afc7a79fc2c1db06f95ca4611ae8c8ca488cc99b7e4a",
+      "scope": "All38 production pixel routes including24 previously absent optional routes; 264188432 physical WORD checks and256 exact-edge no-pixel rectangles after the repair. Stated caller/physical/source state under supplied owned-plane/Win32 adapters. No game, driver, global route or replacement promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/matrix/compared_routes",
+          "equals": 38
+        },
+        {
+          "pointer": "/comparisons/colour_rect/comparison/empty_native_cases",
+          "equals": 256
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NP.pixel-routes.nonresident-fixed-20261017",
+      "kind": "live_observation",
+      "record": "research/runtime/native-pixel-nonresident-live-fixed-20261017.json",
+      "sha256": "a233ac041ce6b8656445c5be5b30b4250a4b9a903b46a420f142b5387072ab0d",
+      "scope": "Frozen9f6f5f80 nonresident native campaign with the declared empty-rectangle repair. Twelve explicitly required new CPU interior routes execute;31of43 routes,875135native calls,zero forwards/history refusals,normal Quit and private Wine stop. Original World preparation retained; no resident World bypass, full output parity, performance or concurrent main automation renewal.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -189704,7 +190100,8 @@
         "NP.pixel-routes.spells-passed-20261015",
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
-        "HOST.native-startup-resources.v3-natural-storage-20261016"
+        "HOST.native-startup-resources.v3-natural-storage-20261016",
+        "NP.pixel-routes.nonresident-fixed-20261017"
       ]
     },
     {
@@ -189784,7 +190181,8 @@
         "HOST.native-startup-resources.v3-storage-control-20261016",
         "HOST.native-startup-resources.v3-natural-storage-20261016",
         "CAMERARESUME.actual-20261017",
-        "CAMPAIGNCADENCE.actual-20261017"
+        "CAMPAIGNCADENCE.actual-20261017",
+        "NP.pixel-routes.nonresident-fixed-20261017"
       ]
     },
     {
@@ -191921,8 +192319,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-cadence-20261017.json",
-    "sha256": "50e0005ea48f09bc917a73584f22bbbe756243fcf357ea842d3b40f9b1b8ccb2"
+    "path": "research/runtime/coverage/source-index-uncovered-pixel-routes-commit-cadence-20261017.json",
+    "sha256": "2247eadc695e9417ddee66b608ce82552bdb271edae813f02fcac479655829e1"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

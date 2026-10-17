@@ -2,6 +2,7 @@ static void* rasterProc(void*,const char*);
 #define MNM_PIXEL_TEST_UTILITIES
 #define MNM_PIXEL_TEST_GETPROC rasterProc
 #include "pixel-splice-reference.cpp"
+#include "pixel-route-coverage.hpp"
 extern "C" {int WIN RasterWritersInstallForTest();u32 raster_cdecl;extern u32 mnm_raster_native[],mnm_raster_forwarded[];}
 extern "C" {
 #include "../runtime/canvas-writers/raster_sites.h"
@@ -36,6 +37,8 @@ int main(int argc,char** argv)try{
  asm volatile("fninit; fxsave %0":"=m"(pixel_seed_fx));pixel_seed_stack=1;
  const unsigned functions[]={0x5947b2,0x59521a,0x595b47,0x59603e,0x595677,0x596cb8,0x597086,0x596490,0x5968a4,0x57e1b0,0x57ec90,0x57f0f0,0x57f5f0,0x5806f0,0x57e540,0x589c90,0x57de00};
  unsigned admitted=0,forwarded=0,workspaceCases=0,capturedAdmitted=0;std::uint64_t words=0;std::array<unsigned,17> byKind{};
+ PixelRouteCoverage<MNM_RASTER_SITES> coverage;std::array<std::string,MNM_RASTER_SITES> routeNames;
+ for(unsigned i=0;i<MNM_RASTER_SITES;++i)routeNames[i]="raster/splice"+std::to_string(i);
  for(unsigned kind=0;kind<17;++kind)for(unsigned cell=0;cell<640;++cell){
   const bool captured=argc==4&&(kind==5||kind==15)&&cell<32;
   const unsigned format=cell%2,w=captured?40:cell<512?1+cell/2%39:cell%2?129:255,h=captured?40:1+cell/78%7,
@@ -67,7 +70,8 @@ int main(int argc,char** argv)try{
   for(unsigned i=0;i<MNM_RASTER_SITES;++i)std::memcpy(reinterpret_cast<void*>(sites[i].at),original[i],sites[i].length);
   std::memcpy(reinterpret_cast<void*>(0x5f1e50),workspace,64);threadId=1;const auto before=call();const auto expected=pixels;unsigned expectedWorkspace[16];std::memcpy(expectedWorkspace,reinterpret_cast<void*>(0x5f1e50),64);
   pixels=seed;std::memcpy(reinterpret_cast<void*>(0x5f1e50),workspace,64);threadId=cell&&cell%19==0?2:1;
-  unsigned count=0;for(unsigned i=0;i<MNM_RASTER_SITES;++i)count+=mnm_raster_native[i];
+  std::array<unsigned,MNM_RASTER_SITES> counts{};
+  unsigned count=0;for(unsigned i=0;i<MNM_RASTER_SITES;++i){counts[i]=mnm_raster_native[i];count+=counts[i];}
   for(unsigned i=0;i<MNM_RASTER_SITES;++i)std::memcpy(reinterpret_cast<void*>(sites[i].at),patched[i],sites[i].length);
   const auto after=call();unsigned next=0;for(unsigned i=0;i<MNM_RASTER_SITES;++i)next+=mnm_raster_native[i];
   if(pixels!=expected){for(unsigned i=0;i<pixels.size();++i)if(pixels[i]!=expected[i]){std::cerr<<"pixel "<<i<<" "<<std::hex<<expected[i]<<" != "<<pixels[i]<<"\n";break;}throw std::runtime_error("Pixel mismatch kind="+std::to_string(kind)+" cell="+std::to_string(cell));}
@@ -80,11 +84,19 @@ int main(int argc,char** argv)try{
   if(kind<=8&&std::memcmp(expectedWorkspace,reinterpret_cast<void*>(0x5f1e50),64)){
    for(unsigned i=0;i<16;++i)if(expectedWorkspace[i]!=*reinterpret_cast<unsigned*>(0x5f1e50+i*4))std::cerr<<"workspace "<<i<<" "<<std::hex<<expectedWorkspace[i]<<" != "<<*reinterpret_cast<unsigned*>(0x5f1e50+i*4)<<"\n";
    throw std::runtime_error("Workspace mismatch kind="+std::to_string(kind)+" cell="+std::to_string(cell));}
-  if(next!=count){if(captured)++capturedAdmitted;++admitted;++byKind[kind];if(kind<=8)++workspaceCases;}else ++forwarded;words+=pixels.size();
+  if(next!=count){
+   if(next!=count+1 || threadId!=1)throw std::runtime_error("Invalid raster route admission delta");
+   for(unsigned i=0;i<MNM_RASTER_SITES;++i)if(mnm_raster_native[i]!=counts[i]){
+    if(mnm_raster_native[i]!=counts[i]+1)throw std::runtime_error("Raster route counter did not advance once");
+    coverage.matched(i,format,pixels!=seed);
+   }
+   if(captured)++capturedAdmitted;++admitted;++byKind[kind];if(kind<=8)++workspaceCases;
+  }else ++forwarded;words+=pixels.size();
  }
  if(argc==4&&!capturedAdmitted)throw std::runtime_error("Captured frame never admitted");
  for(unsigned i=0;i<17;++i)if(!byKind[i])throw std::runtime_error("No native execution for entry="+std::to_string(i));
+ coverage.require(routeNames);
  std::ofstream out(argv[2]);out<<"{\"success\":true,\"native_cases\":"<<admitted<<",\"captured_native_cases\":"<<capturedAdmitted<<",\"forward_or_hidden_cases\":"<<forwarded<<",\"workspace_cases\":"<<workspaceCases<<",\"physical_words\":"<<words<<",\"formats\":2,\"original_entries\":17,\"pixel_splices\":"<<MNM_RASTER_SITES<<",\"by_entry\":[";
- for(unsigned i=0;i<17;++i){if(i)out<<',';out<<byKind[i];}out<<"]}\n";return 0;
+ for(unsigned i=0;i<17;++i){if(i)out<<',';out<<byKind[i];}out<<"],";coverage.write(out,routeNames);out<<"}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
 unsigned raster_x;

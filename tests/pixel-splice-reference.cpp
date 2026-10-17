@@ -5,6 +5,7 @@
 #undef main
 #include "../runtime/canvas-writers/pixel_route.h"
 #include "../runtime/canvas-writers/fade_route.h"
+#include "pixel-route-coverage.hpp"
 extern "C" {
 #include "../runtime/shadow/win32_min.h"
 }
@@ -67,6 +68,8 @@ int main(int argc,char** argv) try {
  reinterpret_cast<unsigned char*>(0x59bee0)[2]=0x31;reinterpret_cast<unsigned char*>(0x59bee0)[3]=0xc0;reinterpret_cast<unsigned char*>(0x59bee0)[4]=0xc3;
  asm volatile("fninit; fxsave %0":"=m"(pixel_seed_fx));
  unsigned cases=0,words=0,forwards=0;
+ PixelRouteCoverage<7> coverage;
+ const std::array<std::string,7> routeNames={"pixel/pcx_surface","pixel/rgb_add","pixel/pcx_indices","pixel/pcx_words","pixel/brighten","pixel/row_copy","pixel/fade"};
  for(unsigned kind=0;kind<7;++kind)for(unsigned format=0;format<2;++format)for(unsigned cell=0;cell<384;++cell){
   const unsigned w=1+cell%63,h=1+(cell/9)%11,stride=w+1+cell%7,physical=stride*(h+2)*2+512;
   std::vector<std::uint16_t> seed(physical);for(unsigned i=0;i<physical;++i)seed[i]=static_cast<std::uint16_t>(i*317+cell*7919);
@@ -103,9 +106,14 @@ int main(int argc,char** argv) try {
   if(other && forwardAfter!=forwardBefore+1 && !(kind==1 && expected==seed && forwardAfter==forwardBefore))
    throw std::runtime_error("Other-thread call did not forward exactly once kind="+std::to_string(kind)+" cell="+std::to_string(cell));
   if(countAfter==countBefore && !other && kind!=1)throw std::runtime_error("Native route unexpectedly refused");
-  if(countAfter!=countBefore)++cases;else ++forwards;words+=physical;
+  if(countAfter!=countBefore){
+   if(countAfter!=countBefore+1 || other)throw std::runtime_error("Invalid pixel route admission delta");
+   coverage.matched(kind,format,pixels!=seed);++cases;
+  }else ++forwards;words+=physical;
  }
- std::ofstream out(argv[2]);out<<"{\"success\":true,\"native_cases\":"<<cases<<",\"forward_cases\":"<<forwards<<",\"physical_words\":"<<words<<",\"producer_routes\":7,\"live_replacement\":false}\n";
+ coverage.require(routeNames);
+ std::ofstream out(argv[2]);out<<"{\"success\":true,\"native_cases\":"<<cases<<",\"forward_cases\":"<<forwards<<",\"physical_words\":"<<words<<",\"producer_routes\":7,\"live_replacement\":false,";
+ coverage.write(out,routeNames);out<<"}\n";
  return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
 #endif

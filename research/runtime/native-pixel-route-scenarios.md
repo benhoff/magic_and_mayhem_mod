@@ -160,3 +160,19 @@ FPS. [Targeted functional reanalysis](native-camera-resume-bound-20261017.json)
 passes the retained camera, original callbacks/Quit, balanced retirement, zero
 forwarding and independent GPU destination checks for GUI and worker owners.
 All full campaign results remain failed; no performance threshold was relaxed.
+
+## CPU-interior route follow-up (2026-10-17)
+
+A separate nonresident native campaign reaches31/43 routes and explicitly
+requires twelve formerly absent CPU interiors. Its final result passes875135
+native calls,zero forwards/history refusal and normal Quit/private Wine stop.
+The longer journey first exposed six genuine colour-rectangle forwards; exact
+empty-clip bookkeeping is now native and passes256 additional original controls.
+The final matrix independently compares every one of the earlier24 absent routes
+in both formats, with264188432physical WORD checks across38 related routes.
+
+Seven remaining live raster variants are original CPU-family alternatives;
+five other entry windows still lack confirmed game callers. No route is removed
+or forced. This source-bound isolated nonresident result does not renew the
+concurrent resident camera journey or supply full presentation/World bypass.
+See [results, reproduction and exact boundaries](uncovered-native-pixel-routes.md).

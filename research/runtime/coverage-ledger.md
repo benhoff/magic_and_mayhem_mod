@@ -15611,3 +15611,40 @@ and live observation only. Forty-nine Python test methods and native GL witness
 controls pass. [Provenance](native-campaign-cadence-provenance-20261017.json) retains
 all attempted runs and source versions. Current code is based on 6cada041;
 incoming intermediate receipt gaps are separately accounted retrospectively.
+
+## Uncovered optional routes and zero-area rectangle repair — 2026-10-17
+
+`NP.uncovered-pixel-route-matrix` adds route-specific original comparisons for
+all24 previously absent optional routes, alongside14 related routes. Actual
+production splices must draw independently matched pixels in both RGB565/555;
+entry totals, forwarding and no-op calls cannot satisfy a missing drawing branch.
+The final source-bound run passes264188432physical WORD checks and256 extra
+exact-edge rectangles, including all four modes/source layouts/DF settings,
+full caller state and preserved history guards. `RS.colour-rectangle-empty`
+records the recovered no-pixel bookkeeping independently.
+
+A longer nonresident campaign exposes a genuine six-forward gap: colour shapes
+clipped exactly to zero enter the original wrapper but draw no pixels. Bounded
+opt-in diagnostics retain the actual inputs. Native admission now preserves the
+original volatile row/source bookkeeping without a pixel access or destination
+history request; genuine blends and unsupported fallback retain their guards.
+All256 original comparison edge cases pass. Earlier comparison/build/setup and
+live failures remain retained, with no weakened zero-forward acceptance.
+
+The final isolated9f6f5f80 live journey explicitly requires twelve newly reached
+CPU-interior routes and passes31of43 optional routes/875135native calls,zero
+forwards/history refusal,normal Quit/private Wine stop and2927-file original
+bookends. It keeps original World preparation, so it is not a resident World
+bypass or full output comparison. Concurrent main camera automation is not
+renewed; unused changed test provenance remains an explicit freshness boundary.
+
+`DRAW.raster-cpu-selection` separately executes the unchanged original
+484470/4845f0 initializer/helper across128 authored CPUID/override contexts.
+Seven remaining live raster variants select on base-family other than6; five
+other entries have no resolved live caller. All twelve have independent splice
+comparisons, but no route is waived or forced, and global indirect flows remain
+unknown. See [route results and boundaries](uncovered-native-pixel-routes.md),
+RS.optional-pixel-routes.matrix-empty-fix-20261017,
+NP.pixel-routes.nonresident-fixed-20261017 and
+DRAW.raster-cpu-selection.original-20261017. Generic journey/presentation,
+GPU-copy caller, arbitrary-reader, physical-loss and hardware gates stay separate.

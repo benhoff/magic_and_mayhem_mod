@@ -35,6 +35,8 @@ int main(int argc,char** argv)try{
  auto* l=reinterpret_cast<unsigned char*>(0x58b660);l[0]=0xe9;*reinterpret_cast<unsigned*>(l+1)=reinterpret_cast<unsigned>(lock)-0x58b665;
  asm volatile("fninit; fxsave %0":"=m"(pixel_seed_fx));
  unsigned terrainCases=0,overlayCases=0,borderCases=0,forwardCases=0;std::uint64_t words=0;
+ PixelRouteCoverage<7> coverage;
+ const std::array<std::string,7> routeNames={"minimap/terrain","minimap/cell","minimap/creature","minimap/camera0","minimap/camera1","minimap/camera2","minimap/camera3"};
  for(unsigned cell=0;cell<512;++cell){
   minimap_fixture::Case c{2+int(cell%16)*2,1+int(cell/7%19),0,0,cell%4,cell/4%4,cell};c.h=std::min(c.h,c.w);c.cx=cell%c.w;c.cy=cell%c.h;
   auto seed=minimap_fixture::background(c,false),pixels=seed,history=minimap_fixture::background(c,true);const auto oldHistory=history;
@@ -56,7 +58,7 @@ int main(int argc,char** argv)try{
   std::memcpy(reinterpret_cast<void*>(sites[0]),patched[0],lengths[0]);const auto after=call();equal(before,after,"terrain "+std::to_string(cell));
   if(pixels!=expected || object!=expectedObject || history!=oldHistory || cells!=oldCells || states!=oldStates)throw std::runtime_error("Terrain pixel/source/state mismatch");
   if(threadId==1 && mnm_map_native[0]!=count+1)throw std::runtime_error("Valid terrain refused cell="+std::to_string(cell));
-  if(mnm_map_native[0]!=count)++terrainCases;else ++forwardCases;words+=pixels.size();
+  if(mnm_map_native[0]!=count){coverage.matched(0,cell&1,pixels!=seed);++terrainCases;}else ++forwardCases;words+=pixels.size();
  }
  /* Camera cases isolate their pixel passes while retaining their original
   * origin preparation, colour helper and subsequent marker-list control. */
@@ -89,8 +91,10 @@ int main(int argc,char** argv)try{
   if(pixels!=expected || object!=expectedObject || states!=oldStates || rows!=oldRows || raw!=oldRaw)throw std::runtime_error("Overlay pixel/source/state mismatch kind="+std::to_string(kind)+" cell="+std::to_string(cell));
   const bool encountered=kind!=2 || std::any_of(markers.begin(),markers.end(),[&](const auto& m){return !c.fog || !m.hidden;});
   if(threadId==1 && encountered && mnm_map_native[kind]==count)throw std::runtime_error("Valid overlay refused kind="+std::to_string(kind)+" cell="+std::to_string(cell));
-  if(mnm_map_native[kind]!=count){++overlayCases;if(kind>=3 && !(cell/23%2))++borderCases;}else ++forwardCases;words+=pixels.size();
+  if(mnm_map_native[kind]!=count){coverage.matched(kind,c.rgb555,pixels!=seed);++overlayCases;if(kind>=3 && !(cell/23%2))++borderCases;}else ++forwardCases;words+=pixels.size();
  }
- std::ofstream out(argv[2]);out<<"{\"success\":true,\"terrain_native_cases\":"<<terrainCases<<",\"overlay_native_cases\":"<<overlayCases<<",\"outer_border_native_cases\":"<<borderCases<<",\"forward_or_no_marker_cases\":"<<forwardCases<<",\"physical_words\":"<<words<<",\"pixel_pass_sites\":7,\"caller_state_equal\":true}\n";
+ coverage.require(routeNames);
+ std::ofstream out(argv[2]);out<<"{\"success\":true,\"terrain_native_cases\":"<<terrainCases<<",\"overlay_native_cases\":"<<overlayCases<<",\"outer_border_native_cases\":"<<borderCases<<",\"forward_or_no_marker_cases\":"<<forwardCases<<",\"physical_words\":"<<words<<",\"pixel_pass_sites\":7,\"caller_state_equal\":true,";
+ coverage.write(out,routeNames);out<<"}\n";
  return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
