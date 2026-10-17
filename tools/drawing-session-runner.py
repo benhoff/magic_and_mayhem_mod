@@ -81,6 +81,8 @@ if metadata.get('wine_gpu_completion'):
     if hashlib.sha256(Path('/usr/lib/wine/i386-windows/opengl32.dll').read_bytes()).hexdigest()!=metadata['opengl32_sha256']:raise ValueError('Installed OpenGL module changed')
     os.environ['MNM_DRAW_WINE_GPU_COMPLETION']='1'
 else:os.environ.pop('MNM_DRAW_WINE_GPU_COMPLETION',None)
+if metadata.get('wine_source_reservations'):os.environ['MNM_DRAW_WINE_SOURCE_RESERVATIONS']='1'
+else:os.environ.pop('MNM_DRAW_WINE_SOURCE_RESERVATIONS',None)
 if metadata.get('wine_source_version'):os.environ['MNM_DRAW_WINE_SOURCE_VERSION']='1'
 else:os.environ.pop('MNM_DRAW_WINE_SOURCE_VERSION',None)
 if metadata.get('wine_source_map'):os.environ['MNM_DRAW_WINE_SOURCE_MAP']='2' if metadata.get('wine_source_map_bounded') else '1'

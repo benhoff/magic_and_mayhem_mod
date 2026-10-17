@@ -15700,3 +15700,40 @@ claimed. Isolated-source validation does not validate the main checkout's
 unrelated pre-existing CPU-guard or campaign work.
 
 Generated accounting snapshot: [native completion summary](coverage/summary-native-completion-20261017.md).
+
+
+### COPY reservations and native physical frame identity (2026-10-17)
+
+The opt-in COPY guard now excludes the four observed resource mutations before
+forwarding, reserves from READ-map acquisition through exact packet/worker and
+signaled current-context fence, and bars new acquisitions during imported
+texture retirement through original return.19PE32 reservation controls, the
+existing13source-version/14GPU controls and35focused Python methods pass. The
+final original first120 capture closes2,734reservations with normal child
+Quit/exit0, stable sources and2927-file bookends.270cursor wrappers produce
+450consumer chains; all34pending wrappers have exact reserved consumers.
+394independent original source/worker/EGL regions match at RGB tolerance1;120
+queues/1,968inputs/300primary witnesses retain four failed ownership/route
+gates.18source-point crossings include17after original return. Physical
+backing allocation/alias ownership remains unknown, and a direct unhooked
+write still changes consumed bytes while this observed-path guard accepts.
+
+Fresh NVIDIA suites exposed stale physical captures (7,953,826and992,633pixel
+negatives); paint-before-swap alone still retains1,292mismatches. Eleven
+selected failures match preceding owned native frames. The comparator now
+requires a native ordinal strip outside the game rectangle in the SAME X11
+image, set after the requested GPU frame paints; raw strip/game hashes bind
+the receipt. Both final full suites compare1,270,115,312game pixels and retain
+only the unchanged252baseline negative; the other six profiles match. All
+783recorded frames per suite have valid generation receipts. Original
+references, ordinals, full game regions and tolerance are unchanged.
+
+A separate strict no-forward native storage run reaches Save then times out
+at stage4 (6,612frames/6,581paints/40,089optional native calls/zero forwards).
+Its sources remain stable, immutable manifests pass and the prefix stops.
+Current reliable Save readiness is unresolved; the prior positive storage run
+and this negative both remain retained. No alias/writer/global-route closure,
+47journey/21operation acceptance, scanout,60FPS or complete native replacement
+is promoted. See [read reservations](drawing-source-read-reservations.md),
+[physical frame admission](drawing-physical-frame-admission.md) and
+`source-reservations-provenance-20261017.json`.

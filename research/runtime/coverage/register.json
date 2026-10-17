@@ -32215,6 +32215,7 @@
       "validation_dependencies": [
         "research/formats/drawing-journey-suite.md",
         "research/runtime/draw02-full-session.md",
+        "tests/fixtures/drawing-publication/publication.json",
         "tests/fixtures/drawing-scene/scene.json",
         "tests/fixtures/drawing-sequence/sequence.json",
         "tests/fixtures/drawing/corpus.json",
@@ -32224,12 +32225,12 @@
         "tools/coverage_audit.py",
         "tools/coverage_claims.py",
         "tools/drawing_corpus.py",
+        "tools/drawing_physical_generation.py",
+        "tools/drawing_publication.py",
         "tools/drawing_scene_corpus.py",
         "tools/drawing_sequence.py",
         "tools/rendering_coverage.py",
-        "tests/fixtures/drawing-publication/publication.json",
-        "tools/retain-drawing-publication.py",
-        "tools/drawing_publication.py"
+        "tools/retain-drawing-publication.py"
       ],
       "evidence": [
         "TOOL.drawing-journeys.native-20261010",
@@ -32241,7 +32242,14 @@
         "TOOL.drawing-publication-corpus.native-20261011",
         "TOOL.drawing-publication-corpus.reviewed-native-20261011",
         "NATIVE.completion.software-suite-20261017",
-        "NATIVE.completion.hardware-suite-20261017"
+        "NATIVE.completion.hardware-suite-20261017",
+        "NATIVE.source-reservations.software-suite-20261017",
+        "NATIVE.source-reservations.hardware-concurrent-negative-20261017",
+        "NATIVE.source-reservations.hardware-serial-negative-20261017",
+        "NATIVE.source-reservations.software-paint-only-20261017",
+        "NATIVE.source-reservations.hardware-paint-only-20261017",
+        "NATIVE.source-reservations.software-painted-20261017",
+        "NATIVE.source-reservations.hardware-painted-20261017"
       ],
       "status": {
         "understanding": "scoped",
@@ -67362,7 +67370,8 @@
         "DRAW02.update-accounting-original120-03-20261014",
         "DRAW02.update-accounting-egl-01-20261014",
         "DRAW02.primitive-lifetimes.egl-01-20261017",
-        "NATIVE.completion.egl-20261017"
+        "NATIVE.completion.egl-20261017",
+        "NATIVE.source-reservations.egl-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -67443,7 +67452,8 @@
         "DRAW02.step2-integration-python-02-20261014",
         "DRAW02.integrated-original32-03-20261014",
         "DRAW02.integrated-original120-02-20261014",
-        "DRAW02.update-accounting-original120-03-20261014"
+        "DRAW02.update-accounting-original120-03-20261014",
+        "NATIVE.source-reservations.version-regression-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -67570,7 +67580,8 @@
         "DRAW02.integrated-original32-03-20261014",
         "DRAW02.integrated-original120-02-20261014",
         "DRAW02.update-accounting-original120-03-20261014",
-        "DRAW02.master-integration.gpu-20261017"
+        "DRAW02.master-integration.gpu-20261017",
+        "NATIVE.source-reservations.gpu-regression-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -72676,7 +72687,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Current NVIDIA native-storage06 completes both intros, Save/Load/resume, two original display rebuilds, Main Load/resume and normal Quit; one moving Hermes title and retained checkpoint driver identities are exercised. Same-session functional success is not full restored simulation equivalence, fresh-process restart, all lifecycle/failure paths,47/21journey/operation closure or sustained60FPS. Earlier failed attempts remain immutable."
+        "Current NVIDIA native-storage06 completes both intros, Save/Load/resume, two original display rebuilds, Main Load/resume and normal Quit; one moving Hermes title and retained checkpoint driver identities are exercised. Same-session functional success is not full restored simulation equivalence, fresh-process restart, all lifecycle/failure paths,47/21journey/operation closure or sustained60FPS. Earlier failed attempts remain immutable.",
+        "Fresh strict no-forward native storage run-p71wc_l6 reaches original Save(screen13) then remains unready and times out at stage4. Sources stay stable;6612nativeframes/6581paints/40089optional calls/zero forwards/no recovery. Child is stopped and2927-file after-manifest passes. Earlier successful storage06 is retained; current deterministic Save-readiness/reliable complete storage acceptance is unresolved. Root cause not assigned to resource reservations, which this native launch does not enable."
       ]
     },
     {
@@ -86083,7 +86095,9 @@
         "DRAW02.primitive-lifetimes.accounting-01-20261017",
         "DRAW02.primitive-lifetimes.interval-gate-01-20261017",
         "NATIVE.completion.accounting-20261017",
-        "NATIVE.completion.interval-gate-20261017"
+        "NATIVE.completion.interval-gate-20261017",
+        "NATIVE.source-reservations.accounting-20261017",
+        "NATIVE.source-reservations.interval-gate-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -87194,7 +87208,9 @@
         "NATIVE.completion.identity-original120-20261017",
         "NATIVE.completion.ownership-20261017",
         "NATIVE.completion.controls-20261017",
-        "NATIVE.completion.identity-scenario-fixture-20261017"
+        "NATIVE.completion.identity-scenario-fixture-20261017",
+        "NATIVE.source-reservations.original120-20261017",
+        "NATIVE.source-reservations.ownership-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -87257,7 +87273,8 @@
       "evidence": [
         "NATIVE.completion.forward-fixture-20261017",
         "NATIVE.completion.controls-20261017",
-        "NATIVE.completion.native-storage-20261017"
+        "NATIVE.completion.native-storage-20261017",
+        "NATIVE.source-reservations.native-storage-negative-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -87372,7 +87389,8 @@
       ],
       "evidence": [
         "NATIVE.completion.controls-20261017",
-        "NATIVE.completion.native-storage-20261017"
+        "NATIVE.completion.native-storage-20261017",
+        "NATIVE.source-reservations.native-storage-negative-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -87420,6 +87438,7 @@
         "tools/drawing_copy_order.py",
         "tools/drawing_corpus.py",
         "tools/drawing_journeys.py",
+        "tools/drawing_physical_generation.py",
         "tools/drawing_producer_points.py",
         "tools/drawing_scene_corpus.py",
         "tools/drawing_session.py",
@@ -87430,7 +87449,11 @@
       ],
       "evidence": [
         "NATIVE.completion.controls-20261017",
-        "NATIVE.completion.hardware-suite-20261017"
+        "NATIVE.completion.hardware-suite-20261017",
+        "NATIVE.source-reservations.hardware-concurrent-negative-20261017",
+        "NATIVE.source-reservations.hardware-serial-negative-20261017",
+        "NATIVE.source-reservations.hardware-paint-only-20261017",
+        "NATIVE.source-reservations.hardware-painted-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -87440,7 +87463,172 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "All three recorded NVIDIA cohorts execute but the unmodified historical software-upload reference retains252mismatching GPU/physical pixels. Corrected profile passes; neither profile closes original ownership,14journeys/47requirements/21operation failures, live World bypass or60FPS."
+        "All three recorded NVIDIA cohorts execute but the unmodified historical software-upload reference retains252mismatching GPU/physical pixels. Corrected profile passes; neither profile closes original ownership,14journeys/47requirements/21operation failures, live World bypass or60FPS.",
+        "New pre-paint NVIDIA suites retain7953826and992633mismatching pixels; GPUreadbacks retain only126baseline pixels, remaining differences are physical captures. Eleven selected failures match preceding native GPU images at tolerance1. Paint-only remains1292mismatches; final presenter requires successful requested-frame paint, swap and native ordinal strip in the same physical X11 image. Both final whole suites retain only252baseline mismatches; all six other profiles match. No physical candidate reassignments. No ordinal reassignment, tolerance/reference change, scanout or47/21promotion."
+      ]
+    },
+    {
+      "id": "NR.drawing-source-read-reservations",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Observed-path COPY resource read reservations",
+      "scope": "Opt-in diagnostic reservations by public resource identity and texture generation, acquired before extra READ map and retained through exact command worker and signaled current-context fence; reject observed writes and imported texture decref before forwarding. Separate resource backing aliases and unhooked writers remain unsupported and unproved.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/drawing-source-read-reservations.md",
+        "research/formats/drawing-source-reservations-v1.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_source_reservations.h",
+        "tools/drawing_source_reservations.py"
+      ],
+      "tests": [
+        "tests/drawing-source-reservations-test.c",
+        "tools/test-drawing-source-reservations.py",
+        "tests/test-drawing-source-reservations.py"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/drawing_aux_save_readback_v1.h",
+        "protocols/include/mnm/drawing_cursor_gate_v1.h",
+        "protocols/include/mnm/drawing_input_point_v1.h",
+        "protocols/include/mnm/drawing_primitive_point_v1.h",
+        "protocols/include/mnm/drawing_worker_context_v1.h",
+        "protocols/include/mnm/drawing_worker_producer_points_v1.h",
+        "runtime/drawing/action_boundary.h",
+        "runtime/drawing/aux_save_readback.h",
+        "runtime/drawing/call_intervals.h",
+        "runtime/drawing/input_point.h",
+        "runtime/drawing/physical_fence.h",
+        "runtime/drawing/primitive_api_identity.h",
+        "runtime/drawing/session.c",
+        "runtime/drawing/source_byte_witness.h",
+        "runtime/drawing/source_cursor_gate.h",
+        "runtime/drawing/source_held_snapshot.h",
+        "runtime/drawing/source_points.h",
+        "runtime/drawing/source_readonly_lease.h",
+        "runtime/drawing/source_worker_lease.h",
+        "runtime/drawing/storage_point_exports.h",
+        "runtime/drawing/update_timing.h",
+        "runtime/drawing/wine_blit_packet.S",
+        "runtime/drawing/wine_blit_packet.h",
+        "runtime/drawing/wine_blit_worker.h",
+        "runtime/drawing/wine_buffer.h",
+        "runtime/drawing/wine_client_memory.h",
+        "runtime/drawing/wine_gpu_completion.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/drawing/wine_map_storage_point.h",
+        "runtime/drawing/wine_resource_copy.h",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_retained_map_source.h",
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_source_reservations.h",
+        "runtime/drawing/wine_source_version.h",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_texture_entry.h",
+        "runtime/drawing/wine_worker_context.h",
+        "runtime/drawing/worker_producer_points.h",
+        "runtime/shadow/win32_min.h",
+        "tests/drawing-source-version-test.c",
+        "tools/build-drawing-session.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/drawing_gpu_completion.py",
+        "tools/drawing_source_version.py"
+      ],
+      "evidence": [
+        "NATIVE.source-reservations.fixture-20261017",
+        "NATIVE.source-reservations.original120-20261017",
+        "NATIVE.source-reservations.cursor-provenance-review-20261017",
+        "NATIVE.source-reservations.pre-retirement-fixture-20261017",
+        "NATIVE.source-reservations.pre-retirement-original120-20261017",
+        "NATIVE.source-reservations.pre-retirement-cursor-provenance-review-20261017",
+        "NATIVE.source-reservations.pre-retirement-version-regression-20261017",
+        "NATIVE.source-reservations.pre-retirement-gpu-regression-20261017",
+        "NATIVE.source-reservations.pre-retirement-egl-20261017",
+        "NATIVE.source-reservations.pre-retirement-accounting-20261017",
+        "NATIVE.source-reservations.pre-retirement-interval-gate-20261017",
+        "NATIVE.source-reservations.pre-retirement-ownership-20261017",
+        "NATIVE.source-reservations.controls-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Observed-path source reservations and19PE32/six decoder controls pass. Original120closes2734reservations through exact workers/current-context fences. Every pending cursor wrapper in this capture has explicit reserved consumers; public object IDs do not establish physical backing generations.",
+        "A deliberately unhooked CPU write changes consumed bytes while the guard accepts. Distinct-resource backing aliases, unobserved CPU/GPU writers/opcodes, all-context completion, broader hook quiescence, full source-boundary/route ownership and native replacement remain open."
+      ]
+    },
+    {
+      "id": "NR.recorded-physical-frame-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Requested native viewport paint before physical capture swap",
+      "scope": "Native presentation comparator requires successful painting of the requested GPU frame, a subsequent widget swap and an ordinal marker outside the full compared game rectangle in the same physical X11 image. Marker is set only after that frame paints; retain game-plus-marker capture identity and refuse incomplete receipts. Fixed ordinals, full game frames, tolerance1 and negative references remain unchanged; no all-context or scanout guarantee.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/drawing-physical-frame-admission.md",
+        "research/formats/drawing-physical-generation-v1.md"
+      ],
+      "implementation": [
+        "apps/drawing-session/main.cpp",
+        "tools/drawing_recorded_session.py",
+        "tools/drawing_physical_generation.py"
+      ],
+      "tests": [
+        "tools/check-drawing-journeys.py",
+        "tests/test-drawing-recorded-hardware.py",
+        "tests/test-drawing-physical-generation.py"
+      ],
+      "validation_dependencies": [
+        "apps/drawing-session/CMakeLists.txt",
+        "apps/drawing-session/main.cpp",
+        "apps/drawing-session/recorded_composition.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "tests/fixtures/drawing-recorded-session/session.json",
+        "tools/check-drawing-journeys.py",
+        "tools/check-recorded-drawing-session.py",
+        "tools/compare-drawing-quick-battle.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_copy_order.py",
+        "tools/drawing_corpus.py",
+        "tools/drawing_journeys.py",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_recorded_session.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/drawing_session.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/native_render_driver.py",
+        "tools/recorded_drawing_plan.py",
+        "tools/rendering_coverage.py"
+      ],
+      "evidence": [
+        "NATIVE.source-reservations.software-paint-only-20261017",
+        "NATIVE.source-reservations.hardware-paint-only-20261017",
+        "NATIVE.source-reservations.controls-20261017",
+        "NATIVE.source-reservations.physical-neighbors-review-20261017",
+        "NATIVE.source-reservations.software-painted-20261017",
+        "NATIVE.source-reservations.hardware-painted-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Successful current requested-frame painting is required before a widget swap and same-image native ordinal marker are required; older presenters without complete receipts refuse. Paint-only1292pixel failure is retained. Current full software/hardware suite results are retained with unchanged reference ordinals/tolerance/baseline negative. Widget paint/swap does not establish all-context completion, scanout, arbitrary occlusion or complete native replacement."
       ]
     }
   ],
@@ -174756,6 +174944,531 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NATIVE.source-reservations.fixture-20261017",
+      "kind": "native_integration",
+      "scope": "19 controlled actual PE32 read-reservation cases, six strict decoder methods. Real map/rebind/worker wrappers and direct public-copy/decref guard entry controls; fake GL responses. Direct unhooked write still escapes, explicitly preserving the physical ownership boundary.",
+      "record": "research/runtime/source-reservations-fixture-final-20261017.json",
+      "sha256": "ad5bb1d5d2d54357a03a4921b122a4cef79f04972e93552bc7c5d9e5be576183",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.original120-20261017",
+      "kind": "live_observation",
+      "scope": "Fresh original-active first120 capture:2734reservations close through exact emitted workers and signaled current-context fences, normal original child Quit/exit0, stable source hashes and2927-file bookends. Software diagnostic readbacks, not production cadence; physical backing and aliases remain unknown.",
+      "record": "research/runtime/source-reservations-original120-final-20261017.json",
+      "sha256": "326b3ef7c5050cec77f81e1a8e55b34ef15df7366c17354ef267352b9422c0e1",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_source_reservation_observation/reservations",
+          "equals": 2734
+        },
+        {
+          "pointer": "/wine_source_reservation_observation/physical_backing_owned",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.version-regression-20261017",
+      "kind": "native_integration",
+      "scope": "Current-source13case PE32 source-version guard regression and eight decoder methods. New reservations disabled; direct writer escape retained.",
+      "record": "research/runtime/source-reservations-version-regression-final-20261017.json",
+      "sha256": "a14618803e3003268a1273a9de2ee41d6d037f26b9f9cb86503d8279053bd384",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.gpu-regression-20261017",
+      "kind": "native_integration",
+      "scope": "Current-source14case PE32 current-context fence/worker ABI and teardown regression. Standalone fixture verifies reservation hand-off arguments; separate19case suite enforces the real reservation policy.",
+      "record": "research/runtime/source-reservations-gpu-regression-final-20261017.json",
+      "sha256": "27716b47baaab53518a4a31d524fd6ff6c3eff255c8242efa6d45d87bc82876b",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.egl-20261017",
+      "kind": "live_observation",
+      "scope": "Independent raw-bound source/worker/EGL joins:Selected regions and whole images match at declared RGB tolerance1; no native parity or backing atomicity.",
+      "record": "research/runtime/source-reservations-egl-final-20261017.json",
+      "sha256": "443acceac0b3926b45b535456e8b6801328ee8377dde52c32aa1489a0ed5722f",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.accounting-20261017",
+      "kind": "live_observation",
+      "scope": "Independent first120 accounting retains120World queues and independently counted input/primary witnesses and the same four failed ownership/route gates.",
+      "record": "research/runtime/source-reservations-accounting-final-20261017.json",
+      "sha256": "48cae0faa006e5a4b090519ff5096d981543044ba24de2c0330b118818c49bfb",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.interval-gate-20261017",
+      "kind": "live_observation",
+      "scope": "Unrelaxed complete-interval admission executes and validly returns2 with four failed gates.",
+      "record": "research/runtime/source-reservations-interval-gate-final-20261017.json",
+      "sha256": "da398d8c21abae854acb034d63ebc0d726cd99d698ffa7fc80d0b07d8adc0a10",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.ownership-20261017",
+      "kind": "live_observation",
+      "scope": "Raw-bound pending primitive/callback accounting:Exact pending wrappers and crossings after original API return; no immutable backing or native parity.",
+      "record": "research/runtime/source-reservations-ownership-final-20261017.json",
+      "sha256": "8cf661b2a0ba48c6a7fc33236c8961967cd558ef1b19f9c47fad5d2a7d36ad80",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.pre-retirement-fixture-20261017",
+      "kind": "static",
+      "scope": "Retained execution before retirement lease hardening; original source hashes/results remain historical and are not refreshed to validate final code.",
+      "record": "research/runtime/source-reservations-fixture-20261017.json",
+      "sha256": "ec4d6e838c5d82bf9766523ce12eb7fbbcba24f0ac119a8bf2719b9079333a87",
+      "assertions": [
+        {
+          "pointer": "/schema",
+          "equals": 1
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NATIVE.source-reservations.pre-retirement-original120-20261017",
+      "kind": "static",
+      "scope": "Retained execution before retirement lease hardening; original source hashes/results remain historical and are not refreshed to validate final code.",
+      "record": "research/runtime/source-reservations-original120-20261017.json",
+      "sha256": "e50627d0640d3ce9e344c7799967db4e5b2b995cc960688e49aee75852f81ef3",
+      "assertions": [
+        {
+          "pointer": "/schema",
+          "equals": 1
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NATIVE.source-reservations.pre-retirement-version-regression-20261017",
+      "kind": "static",
+      "scope": "Retained execution before retirement lease hardening; original source hashes/results remain historical and are not refreshed to validate final code.",
+      "record": "research/runtime/source-reservations-version-regression-20261017.json",
+      "sha256": "5356ab5c1cf3ef594d48529a5e01995a3a44192837910b6265884c2a6bbfaef9",
+      "assertions": [
+        {
+          "pointer": "/schema",
+          "equals": 1
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NATIVE.source-reservations.pre-retirement-gpu-regression-20261017",
+      "kind": "static",
+      "scope": "Retained execution before retirement lease hardening; original source hashes/results remain historical and are not refreshed to validate final code.",
+      "record": "research/runtime/source-reservations-gpu-regression-20261017.json",
+      "sha256": "96d514a670850deb46260c3af72fadf04e4916af314ae5d13f874dba10e4e65a",
+      "assertions": [
+        {
+          "pointer": "/schema",
+          "equals": 1
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NATIVE.source-reservations.pre-retirement-egl-20261017",
+      "kind": "static",
+      "scope": "Retained execution before retirement lease hardening; original source hashes/results remain historical and are not refreshed to validate final code.",
+      "record": "research/runtime/source-reservations-egl-20261017.json",
+      "sha256": "55ff3723b77d98d03a44bb5921ad034a9292ecd26c84e869be7cc7dd43329372",
+      "assertions": [
+        {
+          "pointer": "/schema",
+          "equals": 1
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NATIVE.source-reservations.pre-retirement-accounting-20261017",
+      "kind": "static",
+      "scope": "Retained execution before retirement lease hardening; original source hashes/results remain historical and are not refreshed to validate final code.",
+      "record": "research/runtime/source-reservations-accounting-20261017.json",
+      "sha256": "280eec587286cf5a02d082c0d455b3072633acf6b606530ee5cc1f5a51cad064",
+      "assertions": [
+        {
+          "pointer": "/schema",
+          "equals": 1
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NATIVE.source-reservations.pre-retirement-interval-gate-20261017",
+      "kind": "static",
+      "scope": "Retained execution before retirement lease hardening; original source hashes/results remain historical and are not refreshed to validate final code.",
+      "record": "research/runtime/source-reservations-interval-gate-20261017.json",
+      "sha256": "d77a326e0182a950fa22996da3620637306e170fae1585e25a7c29fc87fab89d",
+      "assertions": [
+        {
+          "pointer": "/schema",
+          "equals": 1
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NATIVE.source-reservations.pre-retirement-ownership-20261017",
+      "kind": "static",
+      "scope": "Retained execution before retirement lease hardening; original source hashes/results remain historical and are not refreshed to validate final code.",
+      "record": "research/runtime/source-reservations-ownership-20261017.json",
+      "sha256": "c5601ef98492a4cb689be370be2a6c10f463daf6184a35080cb5a4b3b4e60194",
+      "assertions": [
+        {
+          "pointer": "/schema",
+          "equals": 1
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NATIVE.source-reservations.software-suite-20261017",
+      "kind": "native_integration",
+      "scope": "Pre-paint-admission full seven-profile source-only pixel suite. Retained exact negative/current-at-execution source hashes; software252baseline mismatch, hardware physical stale-frame failures. Not refreshed after presentation source edits.",
+      "record": "research/runtime/source-reservations-software-suite-20261017.json",
+      "sha256": "289ce18d950216c4833f2521dae55b5b46b0c830e60f4cae5a462204f676791c",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/errors",
+          "equals": []
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.hardware-concurrent-negative-20261017",
+      "kind": "native_integration",
+      "scope": "Pre-paint-admission full seven-profile source-only pixel suite. Retained exact negative/current-at-execution source hashes; software252baseline mismatch, hardware physical stale-frame failures. Not refreshed after presentation source edits.",
+      "record": "research/runtime/source-reservations-hardware-concurrent-negative-20261017.json",
+      "sha256": "0ff0a6a72c882d0b9c4355fbf5797def0769befd3b2c516061622d91691104fd",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/errors",
+          "equals": []
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.hardware-serial-negative-20261017",
+      "kind": "native_integration",
+      "scope": "Pre-paint-admission full seven-profile source-only pixel suite. Retained exact negative/current-at-execution source hashes; software252baseline mismatch, hardware physical stale-frame failures. Not refreshed after presentation source edits.",
+      "record": "research/runtime/source-reservations-hardware-serial-negative-20261017.json",
+      "sha256": "db3fa871da12bfbd19d7153e5c8d95bd0c9d42b7f9980f571ac36ba4f6debcdd",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/errors",
+          "equals": []
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.software-paint-only-20261017",
+      "kind": "native_integration",
+      "scope": "Pre-paint-admission full seven-profile source-only pixel suite. Retained exact negative/current-at-execution source hashes; software252baseline mismatch, hardware physical stale-frame failures. Not refreshed after presentation source edits.",
+      "record": "research/runtime/source-reservations-software-paint-only-20261017.json",
+      "sha256": "a2b6c1656b272eb1040681244485b899a45b9d8ad8876e51bdda4f560daeb4e5",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/errors",
+          "equals": []
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.hardware-paint-only-20261017",
+      "kind": "native_integration",
+      "scope": "Pre-paint-admission full seven-profile source-only pixel suite. Retained exact negative/current-at-execution source hashes; software252baseline mismatch, hardware physical stale-frame failures. Not refreshed after presentation source edits.",
+      "record": "research/runtime/source-reservations-hardware-paint-only-20261017.json",
+      "sha256": "78997179de861783c820c55a9c6caaa23f4e1e1e75393dcfe18e43059ee4c37a",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/errors",
+          "equals": []
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.controls-20261017",
+      "kind": "native_integration",
+      "scope": "35focused Python methods: source reservation/version/GPU/primitive identity, hardware admission and physical-generation receipt negatives. No new original/native pixel execution inferred.",
+      "record": "research/runtime/source-reservations-controls-20261017.json",
+      "sha256": "bc4a4153fd32d4245c4a0cdeb0ce205fde51be2e1b5b41f47d655caf304d1a56",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.native-storage-negative-20261017",
+      "kind": "live_observation",
+      "scope": "Strict no-forward NVIDIA native campaign reaches Save then times out waiting for readiness at stage4.6612nativeframes/6581paints,40089optional native calls/zero forwards, no native fallback/recovery. Sources stable, prefix stopped and immutable inputs verified. No completed Save/Load/rebuild/Quit acceptance.",
+      "record": "research/runtime/source-reservations-native-storage-negative-20261017.json",
+      "sha256": "c04976c8923f68625561fe981004fa9ec281a4ff8f654bf4d00cc71f28084dea",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.software-painted-20261017",
+      "kind": "native_integration",
+      "scope": "Final marker-admission full seven-profile fixed-ordinal/tolerance1/source-only pixel suite, including the unchanged unmodified reference negative. Require successful-paint-before-swap and same-image physical ordinal marker receipt from every executed recorded presenter. All results retained; no scanout/all-context or47/21closure.",
+      "record": "research/runtime/source-reservations-software-painted-20261017.json",
+      "sha256": "6f29844892b2a730765e3a1c1a34498d4f5224d1ddf58f1f17666ef693192b4d",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/errors",
+          "equals": []
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 1270115312
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 252
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.hardware-painted-20261017",
+      "kind": "native_integration",
+      "scope": "Final marker-admission full seven-profile fixed-ordinal/tolerance1/source-only pixel suite, including the unchanged unmodified reference negative. Require successful-paint-before-swap and same-image physical ordinal marker receipt from every executed recorded presenter. All results retained; no scanout/all-context or47/21closure.",
+      "record": "research/runtime/source-reservations-hardware-painted-20261017.json",
+      "sha256": "0ca651d52459d4cf0b0616c134b3313fd9b11044127080685ebdbaac1880e52e",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/errors",
+          "equals": []
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 1270115312
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 252
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.source-reservations.cursor-provenance-review-20261017",
+      "kind": "static",
+      "scope": "Exact derived join of cursor wrappers/consumer chains and all pending wrappers, resource generation/epoch and observed writer histories. Retained hash-bound analysis script; public object identity is not physical allocation ownership. Static wrapper pins the recorded report input; no new execution.",
+      "record": "research/runtime/source-reservations-cursor-provenance-final-review-20261017.json",
+      "sha256": "2fc3e4b6ea20ae925a2ac7e04c8a28709805b4e4d1fcf9891aa511421753e661",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/review_only",
+          "equals": true
+        },
+        {
+          "pointer": "/result/schema",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.source-reservations.pre-retirement-cursor-provenance-review-20261017",
+      "kind": "static",
+      "scope": "Retained execution before retirement lease hardening; original source hashes/results remain historical and are not refreshed to validate final code. Static wrapper pins the recorded report input; no new execution.",
+      "record": "research/runtime/source-reservations-cursor-provenance-review-20261017.json",
+      "sha256": "0a9951d65dc528430d7476c56e72953ee69baf06c41b1df6fae3365d6be3744c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/review_only",
+          "equals": true
+        },
+        {
+          "pointer": "/result/schema",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.source-reservations.physical-neighbors-review-20261017",
+      "kind": "static",
+      "scope": "Eleven selected bad native physical captures match preceding owned native GPU frames at fixed tolerance1; diagnostic candidates never reassign admitted frame ordinals. Static wrapper pins the recorded report input; no new execution.",
+      "record": "research/runtime/source-reservations-physical-neighbors-review-20261017.json",
+      "sha256": "bbd37575431d8e88aca4515903a1b9d056c40d04a63f7d8eaf4bb277bd86589f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/review_only",
+          "equals": true
+        },
+        {
+          "pointer": "/result/schema",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -192586,7 +193299,8 @@
         "tools/check-drawing-journeys.py"
       ],
       "evidence": [
-        "NATIVE.completion.hardware-suite-20261017"
+        "NATIVE.completion.hardware-suite-20261017",
+        "NATIVE.source-reservations.hardware-painted-20261017"
       ]
     },
     {
@@ -192616,6 +193330,39 @@
       ],
       "evidence": [
         "NATIVE.completion.prefix-clone-20261017"
+      ]
+    },
+    {
+      "id": "NR.drawing-source-read-reservations.controlled",
+      "scope": "Owned actual PE32 two-thread COPY resource reservations through observed writer wrappers, packet and worker IDs, fake current-context GL fences, conservative retirement and early-close refusals; direct unhooked-write limitation retained.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-source-read-reservations"
+      ],
+      "tests": [
+        "tests/drawing-source-reservations-test.c",
+        "tools/test-drawing-source-reservations.py",
+        "tests/test-drawing-source-reservations.py"
+      ],
+      "evidence": [
+        "NATIVE.source-reservations.fixture-20261017"
+      ]
+    },
+    {
+      "id": "NR.recorded-physical-frame-admission.corpus",
+      "scope": "All seven native pixel profiles on owned X11, including complete recorded source-only cohorts and unchanged252pixel unmodified storage negative; require requested-frame paint, swap and same-image physical ordinal marker for every recorded frame.",
+      "level": "headless",
+      "behaviors": [
+        "NR.recorded-physical-frame-admission"
+      ],
+      "tests": [
+        "tools/check-drawing-journeys.py",
+        "tests/test-drawing-recorded-hardware.py",
+        "tests/test-drawing-physical-generation.py"
+      ],
+      "evidence": [
+        "NATIVE.source-reservations.software-painted-20261017",
+        "NATIVE.source-reservations.hardware-painted-20261017"
       ]
     }
   ],
@@ -193233,8 +193980,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-completion-20261017.json",
-    "sha256": "8fefb49cc5de3a575f55e2f0b58d0e05b506b27b7c211ad01eddf13521a94a92"
+    "path": "research/runtime/coverage/source-index-source-reservations-complete-20261017.json",
+    "sha256": "4dcb39c1147f69932909f2d21993f2c5c5ac112fc7048b73d88a8cf805f40302"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

@@ -32,6 +32,9 @@ static u32 WIN producer_point(void* object,u32* out,u32 size){
  return 1;
 }
 #include "../runtime/drawing/wine_blit_worker.h"
+/* This fixture isolates GPU completion; reservation enforcement has its own
+ * real-wrapper PE32 suite. Verify the hand-off arguments here. */
+static void wine_reserve_step(u32 submission,u32 phase,u32 status){require(submission==8&&phase==5&&status>=1,219);}
 #include "../runtime/drawing/wine_gpu_completion.h"
 static struct {u32 depth,entry[32];} wine_submission_parents[32];
 static u32 wine_submission_slot(void){return 0;}

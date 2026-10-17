@@ -50,6 +50,7 @@ static void wine_source_map(const u32* submission,void* texture){
       r[31]=wine_source_map_bounded?++wine_source_map_total_attempts:++wine_source_map_attempts[r[35]-1];size=r[25]*r[26]*2;owned=VirtualAlloc(0,size,0x3000,4);
       if(!owned)r[10]=8;
       else{
+       wine_reserve_begin(r,texture,resource);
        u32 mapped[3]={0};r[37]=0x80000000u;
        r[12]=((u32(__attribute__((cdecl))*)(void*,u32,u32*,const u32*,u32))wine_resource_original[1])(resource,r[8],mapped,0,r[37]);r[13]=GetLastError();++r[34];
        r[10]=5;
@@ -82,7 +83,7 @@ static void wine_source_map(const u32* submission,void* texture){
  }
  if(owned&&!VirtualFree(owned,0,0x8000))ExitProcess(99);
  if(r[10]==0)wine_source_version_snapshot(r,texture,resource,version_epoch);
- wine_source_map_record(r,texture);
+ wine_source_map_record(r,texture);wine_reserve_unsupported(r[10]);
  if(r[10]>=8)ExitProcess(99);
  __sync_lock_release(&wine_source_map_busy);
 }

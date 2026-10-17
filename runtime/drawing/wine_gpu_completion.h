@@ -26,7 +26,7 @@ static void wine_gpu_complete(const void* packet,u32 worker){
   r[15]=wine_gpu_current()==context;if(!r[15])r[8]=7;
  }
  r[7]=GetTickCount();r[11]=r[7]-r[6];EnterCriticalSection(journal_lock);u32 recorded=0;
- if(wine_gpu_recording()){recorded=1;if(r[8]==2)++wine_gpu_signaled;else if(r[8]==1)++wine_gpu_unwitnessed;else ++wine_gpu_failed;wine_gpu_emit(r);}LeaveCriticalSection(journal_lock);
+ if(wine_gpu_recording()){recorded=1;if(r[8]==2)++wine_gpu_signaled;else if(r[8]==1)++wine_gpu_unwitnessed;else ++wine_gpu_failed;wine_gpu_emit(r);wine_reserve_step(r[4],5,r[8]);}LeaveCriticalSection(journal_lock);
  if(recorded&&r[8]>2)ExitProcess(99);
 }
 static int wine_gpu_open(void){

@@ -38,9 +38,9 @@ static u32 __attribute__((cdecl)) wine_lifetime_swapchain_create(void* device,co
  error=GetLastError();snapshot_fp(fp);if(wine_submission_enabled)wine_lifetime_return(r,result,error,output);restore_fp(fp);SetLastError(error);return result;
 }
 static u32 wine_lifetime_decref(void* object,u32 index,u32 method){
- u32 error=GetLastError(),r[24]={0};u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);if(wine_submission_enabled)wine_lifetime_entry(r,method,object);restore_fp(fp);SetLastError(error);
+ u32 error=GetLastError(),r[24]={0},retirement=0;u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);if(wine_submission_enabled){if(method==2)retirement=wine_reserve_retire(object);wine_lifetime_entry(r,method,object);}restore_fp(fp);SetLastError(error);
  u32 result=((u32(__attribute__((cdecl))*)(void*))wine_lifetime_original[index])(object);
- error=GetLastError();snapshot_fp(fp);if(wine_submission_enabled)wine_lifetime_return(r,result,error,0);restore_fp(fp);SetLastError(error);return result;
+ error=GetLastError();snapshot_fp(fp);if(wine_submission_enabled)wine_lifetime_return(r,result,error,0);wine_reserve_retired(retirement);restore_fp(fp);SetLastError(error);return result;
 }
 static u32 __attribute__((cdecl)) wine_lifetime_texture_decref(void* object){return wine_lifetime_decref(object,1,2);}
 static u32 __attribute__((cdecl)) wine_lifetime_swapchain_decref(void* object){return wine_lifetime_decref(object,3,4);}

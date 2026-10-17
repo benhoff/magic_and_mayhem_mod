@@ -12,12 +12,39 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QOpenGLContext>
+#include <QPainter>
 #include <QScreen>
 #include <QThread>
 #include <cmath>
 #include <iostream>
 
 namespace {
+// Owned diagnostic pixels outside the compared game rectangle. Set the ordinal
+// only after that GPU frame paints; a same-image marker witnesses X11 delivery
+// without looking at the independent original comparison pixels.
+constexpr int markerRows=32;
+class CaptureWindow final:public QWidget {
+public:
+    void setOrdinal(unsigned ordinal){const unsigned word=0x4d4e0000u|ordinal;if(word_!=word){word_=word;update();}}
+protected:
+    void paintEvent(QPaintEvent*) override {
+        QPainter p(this);p.fillRect(rect(),Qt::black);
+        for(int bit=0;bit<markerRows;++bit)
+            p.fillRect(0,height()-markerRows+bit,width(),1,(word_>>bit)&1?Qt::white:Qt::black);
+    }
+private:
+    unsigned word_=0x4d4e0000u;
+};
+bool markerMatches(const QImage& image,unsigned width,unsigned height,unsigned ordinal){
+    if(image.size()!=QSize(int(width),int(height)+markerRows))return false;
+    const unsigned word=0x4d4e0000u|ordinal;
+    for(int bit=0;bit<markerRows;++bit)for(unsigned x=0;x<width;++x){
+        const auto* pixel=image.constScanLine(int(height)+bit)+4*x;
+        const unsigned expected=((word>>bit)&1)?255:0;
+        if(pixel[0]!=expected||pixel[1]!=expected||pixel[2]!=expected)return false;
+    }
+    return true;
+}
 void fields(const QJsonObject &o, std::initializer_list<const char *> names) {
     if (o.size()!=int(names.size())) throw std::invalid_argument("Missing or extra presentation field");
     for(auto i=o.begin(); i!=o.end(); ++i) {
@@ -75,7 +102,7 @@ int main(int argc,char **argv) {
             throw std::invalid_argument("Invalid presentation schema");
         const auto frames=config.value("frames").toArray();
         if(frames.isEmpty() || frames.size()>8192) throw std::invalid_argument("Invalid presentation frame budget");
-        if(recorded)for(unsigned index=1;index<=unsigned(frames.size());++index)if(!QGuiApplication::primaryScreen() || !QGuiApplication::primaryScreen()->geometry().contains(QRect(0,0,int(composition->width(index)),int(composition->height(index)))))
+        if(recorded)for(unsigned index=1;index<=unsigned(frames.size());++index)if(!QGuiApplication::primaryScreen() || !QGuiApplication::primaryScreen()->geometry().contains(QRect(0,0,int(composition->width(index)),int(composition->height(index))+markerRows)))
             throw std::invalid_argument("Physical screen cannot contain the complete native frame");
         std::uint64_t total=0;
         // Preflight all file identities before opening a window or output directory.
@@ -84,7 +111,7 @@ int main(int argc,char **argv) {
             const auto f=v.toObject(); fields(f,{"path","width","height","sha256"});
             const auto w=number(f.value("width"),2048), h=number(f.value("height"),2048);
             if(!QGuiApplication::primaryScreen() ||
-               !QGuiApplication::primaryScreen()->geometry().contains(QRect(0,0,int(w),int(h))))
+               !QGuiApplication::primaryScreen()->geometry().contains(QRect(0,0,int(w),int(h)+markerRows)))
                 throw std::invalid_argument("Physical screen cannot contain the complete native frame");
             const auto b=load(store,f.value("path").toString(),w*h*2);
             total+=b.size();
@@ -94,9 +121,10 @@ int main(int argc,char **argv) {
         }
         if(output.exists() || !QDir().mkpath(output.absolutePath()))
             throw std::invalid_argument("Presentation output must be new");
-        owned=true; QJsonArray outputs;
+        owned=true; QJsonArray outputs; unsigned paintedFrames=0,ignoredPrePaintSwaps=0;
         {
-            GlViewport viewport; viewport.setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
+            CaptureWindow window; window.setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
+            GlViewport viewport(&window);
             viewport.setMinimumSize(1,1); viewport.setScaling(GlViewport::Scaling::Sharp);
             unsigned ordinal=0;
             for(const auto &v:frames) {
@@ -124,15 +152,20 @@ int main(int argc,char **argv) {
                 QByteArray nativeBytes;
                 if(recorded){const auto image=renderer.read(surface);nativeBytes.reserve(w*h*2);for(auto pixel:image.pixels){nativeBytes.append(char(pixel));nativeBytes.append(char(pixel>>8));}}
                 try {
+                    bool framePainted=false;
+                    viewport.framePaintTiming=[&](bool complete){if(complete){framePainted=true;window.setOrdinal(ordinal+1);}};
+                    window.resize(int(w),int(h)+markerRows); window.move(0,0);
                     viewport.resize(int(w),int(h)); viewport.move(0,0);
                     viewport.setGpuFrame(renderer.presentGpu(surface));
                     unsigned swaps=0;
-                    auto connection=QObject::connect(&viewport,&QOpenGLWidget::frameSwapped,[&]{++swaps;});
-                    viewport.show(); viewport.raise(); viewport.update();
+                    auto connection=QObject::connect(&viewport,&QOpenGLWidget::frameSwapped,[&]{
+                        if(framePainted)++swaps;else ++ignoredPrePaintSwaps;
+                    });
+                    viewport.show(); window.show(); window.raise(); viewport.update();
                     QElapsedTimer timer; timer.start();
                     while(!swaps && timer.elapsed()<5000) {app.processEvents(); QThread::msleep(1);}
-                    QObject::disconnect(connection);
-                    if(!swaps || !viewport.ready() || !viewport.error().isEmpty() ||
+                    QObject::disconnect(connection); viewport.framePaintTiming={};
+                    if(!framePainted || !swaps || !viewport.ready() || !viewport.error().isEmpty() ||
                        viewport.devicePixelRatioF()!=1 || viewport.imageRect()!=QRectF(0,0,w,h))
                         throw std::runtime_error(QString("Native viewport admission failed: swaps=%1 ready=%2 error=%3 size=%4x%5 ratio=%6")
                             .arg(swaps).arg(viewport.ready()).arg(viewport.error()).arg(viewport.width())
@@ -140,18 +173,34 @@ int main(int argc,char **argv) {
                     const auto position=viewport.mapToGlobal(QPoint(0,0));
                     if(!viewport.screen()->geometry().contains(QRect(position,QSize(int(w),int(h)))))
                         throw std::runtime_error("Native viewport lies outside the physical screen");
-                    // Read the X11 screen after the widget's buffer swap, not its FBO.
-                    const auto physical=viewport.screen()->grabWindow(0,position.x(),position.y(),int(w),int(h))
-                        .toImage().convertToFormat(QImage::Format_RGBA8888);
-                    if(physical.size()!=QSize(int(w),int(h))) throw std::runtime_error("Physical viewport extent mismatch");
+                    // A swap signal is not physical frame identity. Read the game
+                    // and the native ordinal marker in ONE X11 capture, retrying
+                    // only on that marker, never on original comparison pixels.
+                    QImage capture;
+                    do {
+                        app.processEvents();
+                        capture=viewport.screen()->grabWindow(0,position.x(),position.y(),int(w),int(h)+markerRows)
+                            .toImage().convertToFormat(QImage::Format_RGBA8888);
+                        if(markerMatches(capture,w,h,ordinal+1))break;
+                        QThread::msleep(1);
+                    }while(timer.elapsed()<5000);
+                    if(!markerMatches(capture,w,h,ordinal+1))throw std::runtime_error("Physical ordinal marker deadline or extent mismatch");
+                    const auto physical=capture.copy(0,0,int(w),int(h));
+                    QByteArray marker;
+                    for(int y=int(h);y<int(h)+markerRows;++y)marker.append(reinterpret_cast<const char*>(capture.constScanLine(y)),w*4);
                     QByteArray rgba; rgba.reserve(w*h*4);
                     for(unsigned y=0;y<h;++y) rgba.append(reinterpret_cast<const char *>(physical.constScanLine(y)),w*4);
                     const auto name=QString("frame-%1.rgba").arg(ordinal++,6,10,QChar('0'));
                     save(output.filePath(name),rgba);
                     QJsonObject item{{"path",name},{"width",int(w)},{"height",int(h)},
                         {"sha256",QString::fromLatin1(hash(rgba))},{"native_source_sha256",f.value("sha256")}};
+                    const auto markerName=QString("frame-%1-marker.rgba").arg(ordinal-1,6,10,QChar('0'));
+                    save(output.filePath(markerName),marker);
+                    item["marker_path"]=markerName;item["marker_sha256"]=QString::fromLatin1(hash(marker));
+                    item["physical_ordinal"]=int(ordinal);item["capture_height"]=int(h)+markerRows;
+                    item["capture_sha256"]=QString::fromLatin1(hash(rgba+marker));
                     if(recorded){const auto nativeName=QString("frame-%1.565").arg(ordinal-1,6,10,QChar('0'));save(output.filePath(nativeName),nativeBytes);item["index"]=f["index"];item["native_path"]=nativeName;item["native_sha256"]=QString::fromLatin1(hash(nativeBytes));}
-                    outputs.append(item);
+                    ++paintedFrames; outputs.append(item);
                     viewport.setGpuFrame({}); if(!recorded)renderer.destroy(surface);
                 }catch(...) {viewport.setGpuFrame({});if(!recorded)renderer.destroy(surface);throw;}
             }
@@ -169,6 +218,8 @@ int main(int argc,char **argv) {
         }
         report["remaining_surfaces"]=0; report["frames"]=outputs;
         report["driver"]=QString::fromStdString(renderer.driver().renderer);
+        report["physical_generation_frames"]=int(paintedFrames);report["diagnostic_marker_rows"]=markerRows;
+        report["painted_before_swap_frames"]=int(paintedFrames);report["ignored_prepaint_swaps"]=int(ignoredPrePaintSwaps);
         report["physical_presentation"]=true;report["success"]=true;
     }catch(const std::exception &e) {report["error"]=QString::fromUtf8(e.what());}
     if(owned) save(output.filePath("presentation-report.json"),QJsonDocument(report).toJson());

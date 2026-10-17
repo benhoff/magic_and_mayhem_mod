@@ -73,7 +73,7 @@ static int wine_submission_open(void){
  if(n!=1||flag[0]!='1'||!physical_enabled)return 0;
  char name[600];path(name,"wine-submission.bin");wine_submission_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_submission_file==(HANDLE)-1)return 0;
  u32 h[16]={0};copy(h,"MNMWIN02",8);h[2]=2;h[3]=192;h[4]=0x40209ca7;h[5]=131072;h[6]=32;h[7]=2048;
- if(!write(wine_submission_file,h,64)||!wine_lifetime_open()||!wine_client_open()||!wine_buffer_open()||!wine_resource_open()||!wine_source_descriptor_open()||!wine_source_map_open()||!wine_copy_open()||!wine_blit_worker_open()||!wine_blit_packet_open()||!wine_worker_context_open()||!wine_source_version_open()||!wine_gpu_open())return 0;wine_submission_enabled=1;return 1;
+ if(!write(wine_submission_file,h,64)||!wine_lifetime_open()||!wine_client_open()||!wine_buffer_open()||!wine_resource_open()||!wine_source_descriptor_open()||!wine_source_map_open()||!wine_copy_open()||!wine_blit_worker_open()||!wine_blit_packet_open()||!wine_worker_context_open()||!wine_source_version_open()||!wine_gpu_open()||!wine_reserve_open(wine_source_version_enabled&&wine_gpu_enabled))return 0;wine_submission_enabled=1;return 1;
 }
 static int wine_submission_install(void* ddraw){
  if(!wine_submission_enabled||wine_submission_original[0])return 1;
@@ -86,7 +86,7 @@ static int wine_submission_install(void* ddraw){
  return 1;
 }
 static void wine_submission_close(u32 reason){
- if(!wine_submission_file)return;wine_source_version_close(reason);wine_blit_packet_close(reason);wine_blit_worker_close(reason);wine_gpu_close(reason);wine_buffer_close(reason);wine_copy_close(reason);wine_source_map_close(reason);wine_source_descriptor_close(reason);wine_resource_close(reason);wine_client_close(reason);wine_lifetime_close(reason);u32 r[48]={0};r[1]=4;r[2]=reason;r[3]=wine_submission_calls;r[4]=GetCurrentThreadId();r[7]=GetTickCount();r[10]=wine_submission_ids;wine_submission_emit(r);if(!CloseHandle(wine_submission_file))ExitProcess(99);wine_submission_file=0;wine_submission_enabled=0;
+ if(!wine_submission_file)return;wine_reserve_close(reason);wine_source_version_close(reason);wine_blit_packet_close(reason);wine_blit_worker_close(reason);wine_gpu_close(reason);wine_buffer_close(reason);wine_copy_close(reason);wine_source_map_close(reason);wine_source_descriptor_close(reason);wine_resource_close(reason);wine_client_close(reason);wine_lifetime_close(reason);u32 r[48]={0};r[1]=4;r[2]=reason;r[3]=wine_submission_calls;r[4]=GetCurrentThreadId();r[7]=GetTickCount();r[10]=wine_submission_ids;wine_submission_emit(r);if(!CloseHandle(wine_submission_file))ExitProcess(99);wine_submission_file=0;wine_submission_enabled=0;
 }
 
 static int wine_source_version_open(void){

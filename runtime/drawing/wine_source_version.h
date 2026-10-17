@@ -21,10 +21,12 @@ static void wine_source_version_emit(u32* r){
  r[0]=++wine_source_version_records;r[2]=GetCurrentThreadId();r[3]=GetTickCount();
  if(wine_source_version_records>131072||!write(wine_source_version_file,r,128))ExitProcess(99);
 }
+static void wine_reserve_write(void*,u32);
+static void wine_reserve_step(u32,u32,u32);
 /* Caller holds journal_lock. Entry and exit both invalidate an older read. */
 static void wine_source_version_write(void* resource,u32 sub,u32 kind,u32 phase){
  if(!wine_source_version_enabled)return;u32 i=wine_source_version_index(resource),r[32]={0};
- if(phase!=1&&phase!=2)ExitProcess(99);if(phase==2&&!wine_source_versions[i].writers)ExitProcess(99);
+ if(phase!=1&&phase!=2)ExitProcess(99);if(phase==1)wine_reserve_write(resource,kind);if(phase==2&&!wine_source_versions[i].writers)ExitProcess(99);
  if(wine_source_versions[i].epoch==0xffffffffu)ExitProcess(99);
  ++wine_source_versions[i].epoch;
  if(phase==1)++wine_source_versions[i].writers;else --wine_source_versions[i].writers;
@@ -53,7 +55,7 @@ static void wine_source_version_snapshot(const u32* sample,void* texture,void* r
  if(!value.generation||wine_lifetime_find(texture,1)!=value.generation)wine_source_version_refuse(&value,3);
  u32 free=2048;
  for(u32 n=0;n<2048;++n){if(wine_source_version_pending[n].submission==value.submission)wine_source_version_refuse(&value,4);if(!wine_source_version_pending[n].submission&&free==2048)free=n;}
- if(free==2048)wine_source_version_refuse(&value,5);wine_source_version_pending[free]=value;++wine_source_version_samples;
+ if(free==2048)wine_source_version_refuse(&value,5);wine_source_version_pending[free]=value;++wine_source_version_samples;wine_reserve_step(value.submission,2,value.payload);
  u32 r[32]={0};wine_source_version_row(r,&value,3);wine_source_version_emit(r);LeaveCriticalSection(journal_lock);
 }
 static struct WineSourceVersion* wine_source_version_find(u32 submission){
@@ -64,7 +66,7 @@ static struct WineSourceVersion* wine_source_version_find(u32 submission){
 static void wine_source_version_packet(u32 submission,u32 command){
  if(!wine_source_version_enabled)return;struct WineSourceVersion* s=wine_source_version_find(submission);
  if(!s){struct WineSourceVersion missing={0};missing.resource=(void*)1;missing.submission=submission;missing.command=command;wine_source_version_refuse(&missing,6);}
- if(!command||s->command)wine_source_version_refuse(s,7);s->command=command;u32 r[32]={0};wine_source_version_row(r,s,4);wine_source_version_emit(r);
+ if(!command||s->command)wine_source_version_refuse(s,7);s->command=command;wine_reserve_step(submission,3,command);u32 r[32]={0};wine_source_version_row(r,s,4);wine_source_version_emit(r);
 }
 /* Called under journal_lock before the original selected worker and on return. */
 static void wine_source_version_worker(const u32* packet,u32 submission,u32 command,u32 worker,u32 phase){
@@ -74,7 +76,7 @@ static void wine_source_version_worker(const u32* packet,u32 submission,u32 comm
  u32 i=wine_source_version_index(s->resource);
  if(wine_lifetime_find(s->texture,1)!=s->generation)wine_source_version_refuse(s,3);
  if(phase==2){
-  if(s->worker)wine_source_version_refuse(s,7);s->worker=worker;
+  if(s->worker)wine_source_version_refuse(s,7);s->worker=worker;wine_reserve_step(submission,4,worker);
   if(s->epoch!=wine_source_versions[i].epoch||wine_source_versions[i].writers)wine_source_version_refuse(s,8);
   s->destination=(void*)packet[1];s->alias=s->destination==s->resource;
   u32 r[32]={0};wine_source_version_row(r,s,5);wine_source_version_emit(r);
@@ -84,7 +86,7 @@ static void wine_source_version_worker(const u32* packet,u32 submission,u32 comm
   u32 okay=wine_source_versions[i].epoch==s->epoch+s->alias&&wine_source_versions[i].writers==s->alias;
   wine_source_version_write(s->destination,packet[2],3,2);
   if(!okay)wine_source_version_refuse(s,9);
-  u32 r[32]={0};wine_source_version_row(r,s,6);wine_source_version_emit(r);memset(s,0,sizeof(*s));
+  u32 r[32]={0};wine_source_version_row(r,s,6);wine_source_version_emit(r);wine_reserve_step(submission,6,worker);memset(s,0,sizeof(*s));
  }else wine_source_version_refuse(s,7);
 }
 static u32 __attribute__((cdecl)) wine_source_version_rebind(void* texture,u32 sub,void* memory,u32 pitch){
@@ -110,3 +112,5 @@ static void wine_source_version_close(u32 reason){
  u32 r[32]={0};r[1]=7;r[4]=reason;r[13]=wine_source_version_samples;r[14]=leases;r[15]=resources;wine_source_version_emit(r);
  if(!CloseHandle(wine_source_version_file))ExitProcess(99);wine_source_version_file=0;wine_source_version_enabled=0;
 }
+
+#include "wine_source_reservations.h"
