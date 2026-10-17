@@ -56,7 +56,7 @@ int main(int argc,char** argv) try {
 #ifdef MNM_MAP_CAMPAIGN_CLI
     if(argc<3) throw std::invalid_argument("Usage: mnm-map-campaign-cli ASSET_ROOT COMMAND ...");
     --argc;++argv;
-    const auto make=[&](std::string_view mode){return mnm::skirmish::newMapCampaign(mnm::skirmish::mapCampaignResources(argv[0],mode!="create",mode=="create-sphere" || mode=="create-creatures",mode=="create-creatures"));};
+    const auto make=[&](std::string_view mode){return mnm::skirmish::newMapCampaign(mnm::skirmish::mapCampaignResources(argv[0],mode!="create",mode=="create-sphere" || mode=="create-creatures" || mode=="create-species",mode=="create-creatures" || mode=="create-species",mode=="create-species"));};
     const auto load=[&](const char* path){return mnm::skirmish::loadMapCampaign(std::filesystem::path(argv[0]),path);};
 #else
     std::shared_ptr<const CombatDriver> driver;
@@ -66,7 +66,7 @@ int main(int argc,char** argv) try {
 #endif
     const std::string_view command=argc>1?argv[1]:"";
 #ifdef MNM_MAP_CAMPAIGN_CLI
-    const bool creatureCampaign = command=="create-creatures";
+    const bool creatureCampaign = command=="create-creatures" || command=="create-species";
 #else
     const bool creatureCampaign = false;
 #endif

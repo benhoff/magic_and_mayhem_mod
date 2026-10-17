@@ -12,6 +12,7 @@ p.add_argument('window', type=Path)
 p.add_argument('map_cli', type=Path)
 p.add_argument('arena_cli', type=Path)
 p.add_argument('fixture', type=Path)
+p.add_argument('--actor-profiles', action='store_true')
 p.add_argument('--assets', type=Path, required=True)
 p.add_argument('--output', type=Path, required=True)
 a = p.parse_args()
@@ -45,12 +46,14 @@ def window(name, actions, load):
 
 
 seed = a.output/'seed.mnmc'
+
 run('seed', [a.fixture.resolve(), 'seed', a.assets, seed])
-cut = window('attack-cut', [dict(kind='expect', terrain=True, cure_enabled=True, sphere_enabled=True, creature_name='Crocodile', actor=2, maximum=360, health=320),
+cut = window('attack-cut', ([dict(kind='expect', actor=0, actor_width=1, actor_height=4, actor_type=0),
+                             dict(kind='expect', actor=2, actor_width=2, actor_height=2, actor_type=17)] if a.actor_profiles else []) + [dict(kind='expect', terrain=True, cure_enabled=True, sphere_enabled=True, creature_name='Crocodile', actor=2, maximum=360, health=320),
                           dict(kind='cell', actor=2),
                           # This covered wizard cell cannot itself be a2x2
                           # standing origin. It exercises actual footprint picking.
-                          dict(kind='cell', x=6, y=2, z=7), dict(kind='button', name='cureButton'),
+                          dict(kind='cell', wizard=0) if a.actor_profiles else dict(kind='cell', x=6, y=2, z=7), dict(kind='button', name='cureButton'),
                           dict(kind='cell', x=9, y=3, z=7), dict(kind='button', name='sphereButton'),
                           dict(kind='cell', x=9, y=5, z=7), dict(kind='save', name='pending.mnmc'),
                           dict(kind='steps', count=2),
@@ -91,7 +94,7 @@ assert not refused.exists() and cut.read_bytes() == before
 run('reject-arena-create-creatures', [a.arena_cli.resolve(), 'create-creatures', refused], ok=False)
 assert not refused.exists()
 idle = a.output/'idle.mnmc'
-run('create-idle', [a.map_cli.resolve(), a.assets, 'create-creatures', idle])
+run('create-idle', [a.map_cli.resolve(), a.assets, 'create-species' if a.actor_profiles else 'create-creatures', idle])
 run('inspect-idle', [a.map_cli.resolve(), a.assets, 'inspect', idle])
 started = a.output/'started.mnmc'
 run('start-idle', [a.map_cli.resolve(), a.assets, 'start', idle, started])
@@ -109,10 +112,10 @@ run('summon-headless', [a.map_cli.resolve(), a.assets, 'resume', a.output/'fresh
 assert summoned.read_bytes() == summon_reference.read_bytes()
 
 
-report = dict(success=True, scope='Actual Qt installed Crocodile2x2x2 Plains encounter, non-standing secondary wizard-cell selection and secondary creature picks, real Cure/Sphere buttons/save dialogs; attack/flight and actual retreat/enemy pursuit resume through fresh window, CLI and event-counting processes with identical full campaign bytes. Idle installed campaign binding and missing arena-context refusal. Native authored scheduling/placements, no original full AI/map/campaign/live replacement claim.',
+report = dict(success=True, scope='Actual Qt installed Plains encounter with declared legacy or per-actor geometry and secondary creature picks, real Cure/Sphere buttons/save dialogs; attack/flight and actual retreat/enemy pursuit resume through fresh window, CLI and event-counting processes with identical full campaign bytes. Idle installed campaign binding and missing arena-context refusal. Native authored scheduling/placements, no original full AI/map/campaign/live replacement claim.',
               exact_campaign_bytes=True, fresh_process=True, installed_maximum=360,
               attack_events=events, pursuit_events=motion, idle_campaign=True, fresh_player_and_ai_summons=True,
-              mismatched_profile_refused=True, nonstanding_secondary_pick=True,
+              mismatched_profile_refused=True, nonstanding_secondary_pick=not a.actor_profiles, per_actor_profiles=a.actor_profiles,
               checkpoint_sha256=hashlib.sha256(cut.read_bytes()).hexdigest(),
               result_sha256=hashlib.sha256(resumed.read_bytes()).hexdigest(), commands=commands)
 (a.output/'report.json').write_text(json.dumps(report, indent=2)+'\n')

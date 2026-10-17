@@ -27,6 +27,10 @@ public:
     virtual bool supportsStationaryOccupants() const {return false;}
     virtual std::uint32_t maxMovingCreatures() const {return 1;}
     virtual Point creatureFootprint() const {return {1,1,1};}
+    // Immutable per-type resources; Entity::type is already checkpoint-owned.
+    // Legacy navigation retains strict single-profile admission.
+    virtual Point actorFootprint(const Entity&) const;
+    virtual std::uint32_t wizardType() const {return creatureType();}
     virtual void validateOccupants(const State&) const {}
     virtual RoutePlan planInWorld(const State&,Handle,Point,std::uint32_t budget) const;
     virtual bool acceptsInWorld(const State&,Handle,const RoutePoint&) const;

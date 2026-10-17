@@ -67,12 +67,15 @@ struct Codec {
       bytes.insert(bytes.end(), b.begin(), b.end());
   }
   void content(Stored &s) {
-    unsigned tag = s.terrain.empty() ? 0x31425243 : 0x32425243;
+    unsigned tag = s.terrain.empty() ? 0x31425243 : s.terrain.at(7)=='2' ? 0x33425243 : 0x32425243;
     word(tag);
-    need(tag == 0x31425243 || tag == 0x32425243, "creature battle version");
+    need(tag == 0x31425243 || tag == 0x32425243 || tag == 0x33425243, "creature battle version");
     blob(s.profile, 2 * 1024 * 1024);
-    if (tag == 0x32425243)
+    if (tag == 0x32425243 || tag == 0x33425243) {
       blob(s.terrain, 2 * 1024 * 1024);
+      need(!s.terrain.empty(), "creature terrain profile missing");
+    }
+    need(s.terrain.empty() || (s.terrain.size()>8 && ((tag==0x33425243)==(s.terrain[7]=='2'))),"creature actor profile version mismatch");
     blob(s.random, 1008);
     unsigned n = unsigned(s.actors.size());
     word(n);
@@ -179,6 +182,7 @@ void sync(Stored &s, const g::State &w, g::CombatState c) {
 bool free(g::Point p, g::Handle self, const g::State &w, g::CombatState c,
           const g::Navigation &nav) {
   const bool terrain = w.map == terrainBattleMap;
+  const bool mixed = nav.wizardType()!=nav.creatureType();
   if (!terrain && p.z != 1)
     return false;
   if (terrain)
@@ -203,6 +207,7 @@ bool free(g::Point p, g::Handle self, const g::State &w, g::CombatState c,
         if (!e)
           continue;
         int width = terrain || managed(w, f.actor) ? 2 : 1;
+        if(mixed) width=nav.actorFootprint(*e).x;
         if (q.x >= e->x && q.x < e->x + width && q.y >= e->y &&
             q.y < e->y + width && q.z == e->z)
           return false;
@@ -365,6 +370,13 @@ public:
              s.terrain == (terrain_ ? terrain_->bytes : g::Bytes{}),
          "creature battle profile/terrain mismatch");
     auto combat = c.combat();
+    if(terrain_ && terrain_->mixedActors && !c.world().state().campaign.empty()) {
+      const auto meta=g::decodeSkirmish(c.world().state().campaign);
+      for(const auto &u:meta.units) {
+        const auto *e=c.world().find(u.actor);
+        need(e && e->type==(u.role==g::UnitRole::wizard?0U:17U),"battle actor role/species mismatch");
+      }
+    }
     for (const auto &f : combat.fighters)
       if (managed(c.world().state(), f.actor)) {
         const auto expected = creatureStats();
@@ -738,9 +750,9 @@ resolveCreatureRuntime(const game::State &w) {
           : std::optional<TerrainBattle>(decodeTerrainBattle(stored.terrain)));
 }
 std::shared_ptr<const game::CombatDriver>
-installedTerrainCreatureRuntime(const std::filesystem::path &root) {
+installedTerrainCreatureRuntime(const std::filesystem::path &root,bool mixedActors) {
   return std::make_shared<Driver>(creature_lab::loadProfile(root),
-                                  installedTerrainBattle(root));
+                                  installedTerrainBattle(root,mixedActors));
 }
 std::optional<TerrainBattle> creatureTerrain(const game::CombatDriver &driver) {
   need(driver.identity() == creatureBattleIdentity,

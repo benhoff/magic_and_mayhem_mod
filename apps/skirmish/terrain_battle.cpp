@@ -3,6 +3,7 @@
 #include "creature_profile.hpp"
 #include "frozen_navigation.hpp"
 #include "route_world.hpp"
+#include "simulation/occupancy.hpp"
 #include <QCryptographicHash>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -63,21 +64,32 @@ g::Bytes read(assets::AssetStore &s, const std::string &path) {
 // explicit native policies. Full-world topology/search equivalence is excluded.
 class Navigation final : public g::Navigation {
   std::shared_ptr<const g::Navigation> base_;
+  std::shared_ptr<const g::Navigation> wizard_;
   g::NavigationBinding binding_;
   int plane_;
-  bool inside(g::Point p) const {
+  const g::Navigation &profile(const g::Entity &e) const {
+    if (e.type == base_->creatureType())
+      return *base_;
+    if (wizard_ && e.type == wizard_->creatureType())
+      return *wizard_;
+    throw std::invalid_argument("terrain actor species unavailable");
+  }
+  bool inside(g::Point p, g::Point footprint) const {
     auto d = binding_.dimensions;
-    return p.z == plane_ && p.x > 0 && p.y > 0 && p.x + 2 < d.x &&
-           p.y + 2 < d.y;
+    return p.z == plane_ && p.x > 0 && p.y > 0 && p.x < d.x - footprint.x &&
+           p.y < d.y - footprint.y && p.z <= d.z - footprint.z;
+  }
+  bool inside(g::Point p) const {
+    return inside(p, base_->creatureFootprint());
   }
   std::optional<g::RoutePoint> edge(const g::Entity &e, g::Point p) const {
-    if (!inside(p) || e.z != plane_)
+    if (!inside(p, actorFootprint(e)) || e.z != plane_)
       return {};
     auto dx = p.x - e.x, dy = p.y - e.y;
     if (dx < -1 || dx > 1 || dy < -1 || dy > 1 || (!dx && !dy))
       return {};
     try {
-      base_->validateSpawnPosition(p);
+      profile(e).validateSpawnPosition(p);
     } catch (const std::invalid_argument &) {
       return {};
     }
@@ -87,7 +99,7 @@ class Navigation final : public g::Navigation {
         directions.begin();
     for (int category : {0, 4}) {
       g::RoutePoint q{p, int(direction), 0, category, 0};
-      if (base_->accepts(e, q))
+      if (profile(e).accepts(e, q))
         return q;
     }
     return {};
@@ -95,7 +107,7 @@ class Navigation final : public g::Navigation {
   g::RoutePlan search(const g::Entity &e, g::Point goal, unsigned budget,
                       const g::State *world, g::Handle self) const {
     g::RoutePlan out;
-    if (!inside(goal))
+    if (!inside(goal, actorFootprint(e)))
       return out;
     const auto d = binding_.dimensions;
     auto index = [&](g::Point p) { return p.y * d.x + p.x; };
@@ -129,7 +141,7 @@ class Navigation final : public g::Navigation {
       probe.z = p.z;
       for (auto delta : directions) {
         g::Point q{p.x + delta.x, p.y + delta.y, p.z};
-        if (!inside(q) || parents[index(q)] != -1)
+        if (!inside(q, actorFootprint(e)) || parents[index(q)] != -1)
           continue;
         auto step = edge(probe, q);
         if (!step)
@@ -144,7 +156,14 @@ class Navigation final : public g::Navigation {
           body.z = p.z;
           // The frozen overlay excludes self by slot; do not validate
           // this hypothetical whole-world placement as publication.
-          if (!base_->acceptsInWorld(projected, self, *step))
+          if (wizard_) {
+            g::MovementReservations reservations(
+                projected, binding_.dimensions, [this](const g::Entity &actor) {
+                  return actorFootprint(actor);
+                });
+            if (!reservations.tryReserve(self, p, q))
+              continue;
+          } else if (!base_->acceptsInWorld(projected, self, *step))
             continue;
         }
         parents[index(q)] = index(p);
@@ -156,7 +175,7 @@ class Navigation final : public g::Navigation {
   }
 
 public:
-  Navigation(g::Bytes b, int plane)
+  Navigation(g::Bytes b, int plane, const g::Bytes &wizard = {})
       : base_(sandbox::loadFrozenNavigationBytes(native(b), {}, true, true)),
         binding_(base_->binding()), plane_(plane) {
     need(plane > 0 && plane < binding_.dimensions.z,
@@ -167,6 +186,18 @@ public:
     }
     binding_.fingerprint ^= unsigned(plane);
     binding_.fingerprint *= 1099511628211ULL;
+    if (!wizard.empty()) {
+      wizard_ =
+          sandbox::loadFrozenNavigationBytes(native(wizard), {}, true, true);
+      need(wizard_->binding().dimensions == binding_.dimensions &&
+               wizard_->creatureType() == 0 &&
+               wizard_->creatureFootprint() == g::Point{1, 1, 4},
+           "terrain wizard profile");
+      for (auto c : wizard) {
+        binding_.fingerprint ^= c;
+        binding_.fingerprint *= 1099511628211ULL;
+      }
+    }
   }
   g::NavigationBinding binding() const override { return binding_; }
   unsigned creatureType() const override { return base_->creatureType(); }
@@ -174,9 +205,30 @@ public:
   g::Point creatureFootprint() const override {
     return base_->creatureFootprint();
   }
+  g::Point actorFootprint(const g::Entity &e) const override {
+    return profile(e).creatureFootprint();
+  }
+  unsigned wizardType() const override {
+    return wizard_ ? wizard_->creatureType() : creatureType();
+  }
   bool supportsStationaryOccupants() const override { return true; }
   void validateOccupants(const g::State &s) const override {
-    base_->validateOccupants(s);
+    if (!wizard_) {
+      base_->validateOccupants(s);
+      return;
+    }
+    (void)g::MovementReservations(
+        s, binding_.dimensions,
+        [this](const g::Entity &e) { return actorFootprint(e); });
+    for (const auto &slot : s.slots)
+      if (slot.entity && slot.entity->family == g::Family::creature &&
+          !slot.entity->cleaned) {
+        const auto &e = *slot.entity;
+        g::Point p{e.x, e.y, e.z};
+        need(inside(p, actorFootprint(e)),
+             "actor outside terrain plane/extent");
+        profile(e).validateSpawnPosition(p);
+      }
   }
   void validateSpawnPosition(g::Point p) const override {
     need(inside(p), "outside battle standing layer");
@@ -196,8 +248,18 @@ public:
   }
   bool acceptsInWorld(const g::State &s, g::Handle h,
                       const g::RoutePoint &p) const override {
-    return accepts(*s.slots.at(h.slot).entity, p) &&
-           base_->acceptsInWorld(s, h, p);
+    const auto &slot = s.slots.at(h.slot);
+    need(slot.generation == h.generation && slot.entity.has_value(),
+         "terrain stale route actor");
+    if (!accepts(*slot.entity, p))
+      return false;
+    if (!wizard_)
+      return base_->acceptsInWorld(s, h, p);
+    g::MovementReservations reservations(
+        s, binding_.dimensions,
+        [this](const g::Entity &e) { return actorFootprint(e); });
+    return reservations.tryReserve(
+        h, {slot.entity->x, slot.entity->y, slot.entity->z}, p.position);
   }
 };
 struct Stored {
@@ -205,6 +267,7 @@ struct Stored {
   QString mapHash, ttdHash, cfgHash, aniHash;
   unsigned plane = 0;
   std::array<g::Point, 2> wizards;
+  g::Bytes wizard;
 };
 g::Bytes encode(const Stored &s) {
   QJsonArray w;
@@ -225,14 +288,24 @@ g::Bytes encode(const Stored &s) {
                      QByteArray(reinterpret_cast<const char *>(s.frozen.data()),
                                 s.frozen.size())
                          .toBase64())}};
+  if (!s.wizard.empty()) {
+    o["version"] = 2;
+    o["wizard_frozen"] = QString::fromLatin1(
+        QByteArray(reinterpret_cast<const char *>(s.wizard.data()),
+                   s.wizard.size())
+            .toBase64());
+  }
   auto data = QJsonDocument(o).toJson(QJsonDocument::Compact);
   g::Bytes out{'M', 'N', 'M', 'T', 'E', 'R', '0', '1'};
+  if (!s.wizard.empty())
+    out[7] = '2';
   out.insert(out.end(), data.begin(), data.end());
   return out;
 }
 Stored parse(const g::Bytes &b) {
   need(b.size() > 8 && b.size() <= 2 * 1024 * 1024 &&
-           std::equal(b.begin(), b.begin() + 8, "MNMTER01"),
+           (std::equal(b.begin(), b.begin() + 8, "MNMTER01") ||
+            std::equal(b.begin(), b.begin() + 8, "MNMTER02")),
        "terrain battle bundle version/extent");
   QJsonParseError e;
   auto doc = QJsonDocument::fromJson(
@@ -266,11 +339,31 @@ Stored parse(const g::Bytes &b) {
   }
   auto raw = QByteArray::fromBase64(o["frozen"].toString().toLatin1());
   s.frozen.assign(raw.begin(), raw.end());
+  if (b[7] == '2') {
+    auto wizard =
+        QByteArray::fromBase64(o["wizard_frozen"].toString().toLatin1());
+    s.wizard.assign(wizard.begin(), wizard.end());
+    need(!s.wizard.empty(), "missing terrain wizard profile");
+  }
   need(encode(s) == b, "noncanonical terrain battle bundle");
   return s;
 }
 TerrainBattle finish(const Stored &s) {
-  auto nav = std::make_shared<Navigation>(s.frozen, int(s.plane));
+  if (!s.wizard.empty()) {
+    // One physical world, two admitted profiles. Do not let a standalone
+    // navigation rebound use different terrain for the wizard.
+    auto expected = s.frozen;
+    need(s.wizard.size() == expected.size(), "wizard terrain extent mismatch");
+    unsigned cursor = 92;
+    for (unsigned i = 0; i < 4; ++i)
+      cursor += word(expected, 64 + i * 4);
+    const auto type = cursor + 0xd07;
+    put(expected, cursor + 0xa8, 0);
+    for (unsigned offset : {8U, 12U, 16U, 0x44U})
+      put(expected, type + offset, word(s.wizard, type + offset));
+    need(expected == s.wizard, "wizard terrain differs from creature world");
+  }
+  auto nav = std::make_shared<Navigation>(s.frozen, int(s.plane), s.wizard);
   auto d = nav->binding().dimensions;
   need(d.x == 12 && d.y == 12 && d.z >= 2 && d.z <= 28 &&
            nav->creatureType() == 17 && nav->creatureFootprint().x == 2,
@@ -282,7 +375,21 @@ TerrainBattle finish(const Stored &s) {
   need(std::abs(s.wizards[0].x - s.wizards[1].x) >= 3 ||
            std::abs(s.wizards[0].y - s.wizards[1].y) >= 3,
        "terrain wizard footprint overlap");
-  TerrainBattle result{encode(s), nav, s.wizards, s.plane, s.frozen, {}};
+  if (!s.wizard.empty()) {
+    g::State probe;
+    probe.slots.resize(2);
+    for (unsigned i = 0; i < 2; ++i) {
+      g::Entity e;
+      e.type = 0;
+      e.x = s.wizards[i].x;
+      e.y = s.wizards[i].y;
+      e.z = s.wizards[i].z;
+      probe.slots[i] = {1, e};
+    }
+    nav->validateOccupants(probe);
+  }
+  TerrainBattle result{encode(s), nav, s.wizards,        s.plane,
+                       s.frozen,  {},  !s.wizard.empty()};
   for (int x = 1; x < d.x - 2; ++x)
     for (int y = 1; y < d.y - 2; ++y)
       try {
@@ -293,7 +400,8 @@ TerrainBattle finish(const Stored &s) {
   return result;
 }
 } // namespace
-TerrainBattle installedTerrainBattle(const std::filesystem::path &root) {
+TerrainBattle installedTerrainBattle(const std::filesystem::path &root,
+                                     bool mixedActors) {
   auto store = assets::AssetStore::create(root);
   need(std::holds_alternative<assets::AssetStore>(store),
        "terrain installation unavailable");
@@ -337,7 +445,19 @@ TerrainBattle installedTerrainBattle(const std::filesystem::path &root) {
   for (unsigned i = 0; i < 48; ++i)
     put(b, type + 0xd8 + i * 4, samples[i]);
   put(b, generator + 0x589, reconstruction::groundMovementMaximum(samples));
-  Stored out{b, digest(map), digest(ttd), digest(cfg), digest(ani), 0, {}};
+  Stored out{b, digest(map), digest(ttd), digest(cfg), digest(ani), 0, {}, {}};
+  if (mixedActors) {
+    const auto wizard = reconstruction::normalizeCreatureMovementConfig(
+        assets::creatureMovementConfig(std::get<assets::Config>(config), 0));
+    need(wizard.width == 1 && wizard.height == 4 && !wizard.canFly,
+         "ordinary installed wizard profile");
+    out.wizard = b;
+    put(out.wizard, object + 0xa8, wizard.type);
+    put(out.wizard, type + 8, wizard.width);
+    put(out.wizard, type + 12, wizard.height);
+    put(out.wizard, type + 16, wizard.acceleration);
+    put(out.wizard, type + 0x44, wizard.swimming);
+  }
   // Deterministically choose the layer with the most supported 2x2 origins.
   std::vector<g::Point> standing;
   for (unsigned z = 1; z < projected.geometry.layers; ++z) {
@@ -424,6 +544,27 @@ void validateTerrainCreatureProfile(const TerrainBattle &terrain,
   need(digest(inputs[0]) == stored.cfgHash &&
            digest(inputs[2]) == stored.aniHash,
        "terrain movement/melee CFG/ANI mismatch");
+  if (!stored.wizard.empty()) {
+    auto packed = assets::decodePackedContainer(inputs[0]);
+    need(std::holds_alternative<assets::PackedContainer>(packed),
+         "wizard profile CFG container");
+    auto cfg =
+        assets::decodeConfig(std::get<assets::PackedContainer>(packed).decoded);
+    need(std::holds_alternative<assets::Config>(cfg), "wizard profile CFG");
+    const auto wizard = reconstruction::normalizeCreatureMovementConfig(
+        assets::creatureMovementConfig(std::get<assets::Config>(cfg), 0));
+    auto expected = stored.frozen;
+    unsigned cursor = 92;
+    for (unsigned i = 0; i < 4; ++i)
+      cursor += word(expected, 64 + i * 4);
+    auto type = cursor + 0xd07;
+    put(expected, cursor + 0xa8, wizard.type);
+    put(expected, type + 8, wizard.width);
+    put(expected, type + 12, wizard.height);
+    put(expected, type + 16, wizard.acceleration);
+    put(expected, type + 0x44, wizard.swimming);
+    need(expected == stored.wizard, "wizard CFG/terrain profile mismatch");
+  }
 }
 std::vector<bool> terrainBattleSolids(const game::Bytes &b) {
   auto s = parse(b);

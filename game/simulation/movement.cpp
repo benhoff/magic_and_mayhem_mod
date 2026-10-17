@@ -13,6 +13,10 @@ Point Navigation::finePosition(const Entity& e) const {
     if(e.motion && e.motion->terrainMotion) throw std::invalid_argument("terrain height driver unavailable");
     return {e.x*32,e.y*32,e.z*16};
 }
+Point Navigation::actorFootprint(const Entity& e) const {
+    if(e.type!=creatureType()) throw std::invalid_argument("creature profile mismatch");
+    return creatureFootprint();
+}
 void Navigation::validateSpawnPosition(Point) const {throw std::invalid_argument("creature placement driver unavailable");}
 void Navigation::validateDisplayPose(const DisplayPose&) const {throw std::invalid_argument("display pose driver unavailable");}
 void Navigation::validateSegmentHistory(const Entity&,const SegmentHistory&) const {throw std::invalid_argument("segment setup driver unavailable");}
@@ -127,7 +131,8 @@ void MovementSession::validateBinding(const State& state,const Navigation& navig
     unsigned creatures=0;
     for(const auto& slot:state.slots) if(slot.entity && slot.entity->motion) {
         const auto& e=*slot.entity;
-        if(++creatures>navigation.maxMovingCreatures() || e.type!=navigation.creatureType()) throw std::invalid_argument("movement slice exceeds the bound captured profile/count");
+        (void)navigation.actorFootprint(e);
+        if(++creatures>navigation.maxMovingCreatures()) throw std::invalid_argument("movement slice exceeds the bound captured profile/count");
         validateMotion(e,*state.navigation);
         if(e.motion->terrainMotion) (void)navigation.finePosition(e);
         if(e.motion->pose) navigation.validateDisplayPose(*e.motion->pose);
@@ -155,7 +160,7 @@ MovementSession::MovementSession(World world,std::shared_ptr<const Navigation> n
 Handle MovementSession::spawn(Entity entity,bool sampleMotion,bool continuousMotion,bool terrainMotion,bool initialDisplay) {
     if(entity.family==Family::creature) {
         entity.motion=CreatureMotion{};entity.motion->sampleMotion=sampleMotion;entity.motion->continuousMotion=continuousMotion;entity.motion->terrainMotion=terrainMotion;entity.motion->origin=entity.motion->destination={entity.x,entity.y,entity.z};
-        if(entity.type!=navigation_->creatureType()) throw std::invalid_argument("creature profile mismatch");
+        (void)navigation_->actorFootprint(entity);
         unsigned creatures=0;for(const auto& slot:world_.state().slots) if(slot.entity && slot.entity->motion) ++creatures;
         if(creatures>=navigation_->maxMovingCreatures()) throw std::invalid_argument("moving creature limit reached");
     } else if(entity.motion) throw std::invalid_argument("motion requires creature family");
@@ -181,8 +186,9 @@ Handle MovementSession::spawnCreature(Point p) {
     return spawn(std::move(e),true,true,true,true);
 }
 Handle MovementSession::spawnBlocker(Entity entity) {
-    if(!navigation_->supportsStationaryOccupants() || entity.family!=Family::creature || entity.motion || entity.cleaned || entity.type!=navigation_->creatureType())
+    if(!navigation_->supportsStationaryOccupants() || entity.family!=Family::creature || entity.motion || entity.cleaned)
         throw std::invalid_argument("stationary occupant profile unavailable");
+    (void)navigation_->actorFootprint(entity);
     auto candidate=world_;auto h=candidate.spawn(std::move(entity));navigation_->validateOccupants(candidate.state());world_=std::move(candidate);return h;
 }
 void MovementSession::enqueue(Command command) {
@@ -202,7 +208,7 @@ TickReport MovementSession::step(TickInput input) {
         navigation_->validateOccupants(state);
         const bool multi=navigation_->maxMovingCreatures()>1;
         std::optional<MovementReservations> reservations;
-        if(multi && phase==Phase::maintenance) reservations.emplace(state,navigation_->binding().dimensions,navigation_->creatureType(),navigation_->creatureFootprint());
+        if(multi && phase==Phase::maintenance) reservations.emplace(state,navigation_->binding().dimensions,[this](const Entity& e){return navigation_->actorFootprint(e);});
         auto scheduled=state;std::vector<std::uint32_t> actors;
         for(std::uint32_t i=0;i<state.slots.size();++i) if(state.slots[i].entity && state.slots[i].entity->motion && !state.slots[i].entity->cleaned) actors.push_back(i);
         if(multi && phase==Phase::decisions && !actors.empty())

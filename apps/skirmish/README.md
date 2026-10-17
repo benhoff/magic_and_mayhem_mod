@@ -229,11 +229,16 @@ on a nearby legal cell, and right-click to order movement or attack. Cure,
 Magic Sphere, melee and pursuit share the terrain world. Save campaign and Load
 campaign retain pending orders, active spells and creature state. Continue after
 a victory enters the installed-creature arena finale; Retry retains the map
-profile. Wizard bodies use authored stationary2x2x2 placeholders.
+profile. New map campaigns bind installed type0 wizard bodies (1x1x4) alongside
+Crocodile bodies (2x2x2). Wizard health and casting remain authored; their body
+size now drives occupancy, Sphere aim/collision and picking. The three-layer
+arena finale retains its existing native geometry.
 
-The CLI uses `mnm-map-campaign-cli INSTALLATION create-creatures OUTPUT.mnmc`,
+The CLI uses `mnm-map-campaign-cli INSTALLATION create-species OUTPUT.mnmc`,
 then the existing `start`, `cast`, `move`, `resume` and `inspect` commands.
-The original8x8 point-profile map campaign remains the default CLI `create`.
+`create-creatures` retains the previous terrain profile with wide wizard
+placeholders, and existing saves keep that profile when loaded. The original8x8
+point-profile map campaign remains the default CLI `create`.
 This is a native authored encounter using recovered contracts and installed
 assets. Full original missions, scheduling, map objects and live simulation
 replacement remain outstanding. See [terrain battle research](../../research/runtime/native-terrain-battle.md).

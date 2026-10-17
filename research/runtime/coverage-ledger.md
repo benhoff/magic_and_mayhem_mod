@@ -13457,3 +13457,40 @@ not another engine run or an expanded original comparison/replacement claim.
 The merged census includes the renderer's independently registered copy-plan
 sources. Committed-tip history is reviewed separately from uncommitted merge
 accounting; broader stale historical claims and discovery gaps remain explicit.
+
+
+### Per-actor wizard and Crocodile terrain profiles
+
+The new optional native terrain campaign binds installed type0 wizard1x1x4 and
+type17 Crocodile2x2x2 geometry per checkpoint-owned actor type. Movement admission,
+logical occupancy and conservative full-generation reservations share those
+profiles; Sphere uses each body's aim offsets/height/mask and Qt presents/picks
+its horizontal footprint. Unknown types, forged role/type combinations, legacy
+content rebinding and global Sphere geometry refuse without publishing changes.
+MNMTER02/CRB3/SHP4 retain the old format loaders and select a new campaign identity.
+New installed map campaigns in Qt use native-plains-species-campaign; the CLI
+selects it with create-species. Wizard health/AI/casting remain authored. Its
+three-layer arena finale intentionally retains the previous native arena geometry;
+retry restores the mixed terrain profile. No balance values or original artifacts
+are changed.
+
+ACTOR01.native-window pins607 unchanged sources, passes117 normal CTests and
+six sanitizer contracts, matching installed native contracts,100 legacy combat,20
+legacy terrain campaign and24 new mixed-profile campaign continuations. Five
+actual Qt journey suites cover old/new terrain, installed arena, authored map and
+profile switching; fresh Qt/CLI/event processes preserve exact full campaign
+bytes during melee/spells and actual player movement/enemy pursuit. Player/AI
+summons, malformed physical-world/CFG/empty-profile refusals, atomic conflicting
+sweeps, stale generation refusal and victory/defeat/next/retry pass. Twenty
+installed input hashes stay unchanged; original manifest bookends verify2927
+files. Compiler-emitted repository dependencies are fully declared.
+ACTOR01.retained-native separately proves retained old CRB2/SHP3 terrain, CRB1/SHP1
+installed arena and SHP2 point-map checkpoints round-trip and continue to their
+preserved expected bytes under the new CLI. These current compatibility probes preserve
+all historical reports/hashes and do not relabel original comparison evidence.
+Other species' melee, wizard ANI/movement, full map objects, original whole
+AI/search/speed/scheduling, pixels/audio and live replacement remain pending.
+Shared source changes leave affected earlier evidence historical/stale unless a
+new scoped result explicitly renews it. The incoming bebe9aaa..62581068 history
+review closes two missing c7eb4d7e intermediate metadata receipts separately from
+this uncommitted implementation; it asserts no historical gate pass.

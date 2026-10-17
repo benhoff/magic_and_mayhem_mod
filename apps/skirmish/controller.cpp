@@ -39,7 +39,7 @@ void Controller::changed() {
 }
 ArenaView Controller::view() const {
     ArenaView v;
-    if (mapPresentation_ && campaign_ && (campaign_->progress().identity.id=="native-plains-campaign" || campaign_->progress().identity.id=="native-plains-creature-campaign") &&
+    if (mapPresentation_ && campaign_ && (campaign_->progress().identity.id=="native-plains-campaign" || campaign_->progress().identity.id=="native-plains-creature-campaign" || campaign_->progress().identity.id=="native-plains-species-campaign") &&
         ((hasBattle() && (session().mission().map=="native-plains-crop-v1" || session().mission().map==terrainBattleMap)) ||
          (!hasBattle() && campaign_->progress().lastResult && campaign_->progress().lastResult->region=="plains-crossing")))
         v.mission=mapPresentation_;
@@ -122,7 +122,9 @@ ArenaView Controller::view() const {
         }
         v.units.push_back(
             {r.actor, {e.x, e.y, e.z}, r.role, e.owner, f.health, f.stats.maximumHealth, action,
-             (session().mission().map==terrainBattleMap || (r.role==game::UnitRole::sentinel && session().combat().driver()))?2U:1U});
+             session().combat().navigation()->wizardType()!=session().combat().navigation()->creatureType()
+                 ? unsigned(session().combat().navigation()->actorFootprint(e).x)
+                 : (session().mission().map==terrainBattleMap || (r.role==game::UnitRole::sentinel && session().combat().driver()))?2U:1U});
         if (selected_ == std::optional<game::Handle>(r.actor)) {
             v.selection = QString("%1 %2 · %3/%4 HP · %5")
                               .arg(e.owner ? "Rival" : "Your",
@@ -299,7 +301,7 @@ void Controller::newMapCampaign(std::filesystem::path root) {
     pause();
     if(root.empty()) root=mapRoot_;
     if(root.empty()) throw std::invalid_argument("Select the installed game data directory");
-    auto resources=mapCampaignResources(root,true,true,bool(driver_));
+    auto resources=mapCampaignResources(root,true,true,bool(driver_),bool(driver_));
     auto presentation=std::make_shared<const MissionPresentation>(*resources);
     auto candidate=std::make_unique<game::CampaignSession>(skirmish::newMapCampaign(resources));
     candidate->startMission();
@@ -320,11 +322,11 @@ void Controller::loadCampaign(const std::filesystem::path &path) {
     const auto progress=game::decodeCampaign(outer.campaign);
     std::unique_ptr<game::CampaignSession> candidate;
     std::shared_ptr<const MissionPresentation> presentation;
-    if(progress.identity.id=="native-plains-campaign" || progress.identity.id=="native-plains-creature-campaign") {
+    if(progress.identity.id=="native-plains-campaign" || progress.identity.id=="native-plains-creature-campaign" || progress.identity.id=="native-plains-species-campaign") {
         if(mapRoot_.empty()) throw std::invalid_argument("Load this campaign with --asset-root GAME_DIRECTORY, or start a map campaign first");
         const bool enabled=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"cure")!=w.spells.end();});
         const bool spheres=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"magic-sphere")!=w.spells.end();});
-        auto resources=mapCampaignResources(mapRoot_,enabled,spheres,progress.identity.id=="native-plains-creature-campaign");
+        auto resources=mapCampaignResources(mapRoot_,enabled,spheres,progress.identity.id=="native-plains-creature-campaign" || progress.identity.id=="native-plains-species-campaign",progress.identity.id=="native-plains-species-campaign");
         presentation=std::make_shared<const MissionPresentation>(*resources);
         candidate=std::make_unique<game::CampaignSession>(skirmish::loadMapCampaign(resources,path));
     } else candidate=std::make_unique<game::CampaignSession>(skirmish::loadCampaign(path,driver_));

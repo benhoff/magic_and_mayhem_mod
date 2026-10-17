@@ -185,6 +185,17 @@ void campaignWindow(const QString &script, const QString &output, Window &window
                     }
                     if(action.contains("terrain")) require(bool(c.view().mission)==action["terrain"].toBool(),"Wrong terrain presentation profile");
                     if(action.contains("creature_name")) require(c.view().creatureName==action["creature_name"].toString(),"Wrong creature profile label");
+                    if(action.contains("actor_width") || action.contains("actor_height") || action.contains("actor_type")) {
+                        const auto slot=unsigned(action["actor"].toInt());
+                        const auto view=c.view();
+                        auto unit=std::find_if(view.units.begin(),view.units.end(),[&](const auto &u){return u.actor.slot==slot;});
+                        require(unit!=view.units.end(),"Missing actor profile view");
+                        const auto &e=*c.session().world().find(unit->actor);
+                        if(action.contains("actor_width")) require(unit->width==unsigned(action["actor_width"].toInt()),"Wrong actor picking width");
+                        if(action.contains("actor_height")) require(c.session().combat().navigation()->actorFootprint(e).z==action["actor_height"].toInt(),"Wrong actor height");
+                        if(action.contains("actor_type")) require(e.type==unsigned(action["actor_type"].toInt()),"Wrong actor type");
+                    }
+                    if(action.contains("selected_actor")) require(c.view().selected && c.view().selected->slot==unsigned(action["selected_actor"].toInt()),"Wrong selected actor");
                     if(action.contains("actor_action") || action.contains("maximum")) {
                         const auto view=c.view();auto it=std::find_if(view.units.begin(),view.units.end(),[&](const auto &u){return u.actor.slot==unsigned(action["actor"].toInt());});
                         require(it!=view.units.end(),"Missing displayed creature");

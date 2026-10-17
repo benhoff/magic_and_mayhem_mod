@@ -9,7 +9,7 @@ installedCreatureRuntime(const std::filesystem::path &);
 std::shared_ptr<const game::CombatDriver>
 resolveCreatureRuntime(const game::State &);
 std::shared_ptr<const game::CombatDriver>
-installedTerrainCreatureRuntime(const std::filesystem::path &);
+installedTerrainCreatureRuntime(const std::filesystem::path &, bool mixedActors = false);
 std::optional<TerrainBattle> creatureTerrain(const game::CombatDriver &);
 struct CreatureBattleView {
   game::Handle actor;

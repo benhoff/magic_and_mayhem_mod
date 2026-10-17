@@ -448,7 +448,7 @@ SkirmishSession::SkirmishSession(SkirmishMission mission, std::shared_ptr<const 
     for (unsigned owner = 0; owner < 2; ++owner) {
         const auto p = mission_.wizards[owner];
         Entity e;
-        e.type = navigation_->creatureType();
+        e.type = navigation_->wizardType();
         e.owner = owner;
         e.x = p.x;e.y = p.y;e.z = p.z;
         auto h = combat_.spawn(e, {SkirmishRules::wizardHealth, 1, 2, 3}, false, CombatControl::hold);

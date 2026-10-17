@@ -16,8 +16,10 @@ def seed(cli,prefix,name):
 map_save=seed(a.map_cli,[a.assets],'map');arena_save=seed(a.arena_cli,[],'arena')
 terrain_idle=a.output/'terrain-idle.mnmc';terrain_save=a.output/'terrain.mnmc'
 run('terrain-create',[a.map_cli,a.assets,'create-creatures',terrain_idle]);run('terrain-start',[a.map_cli,a.assets,'start',terrain_idle,terrain_save])
+species_idle=a.output/'species-idle.mnmc';species_save=a.output/'species.mnmc'
+run('species-create',[a.map_cli,a.assets,'create-species',species_idle]);run('species-start',[a.map_cli,a.assets,'start',species_idle,species_save])
 creature_save=a.output/'creature.mnmc';run('creature-seed',[a.creature_fixture,'seed-campaign',a.assets,creature_save])
-inputs={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in [map_save,arena_save,creature_save,terrain_save]}
+inputs={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in [map_save,arena_save,creature_save,terrain_save,species_save]}
 def expect(terrain,name):return dict(kind='expect',terrain=terrain,creature_name=name,battle=True)
 def load(path,reject=False):return dict(kind='load',path=str(path),reject=reject)
 def button(name):return dict(kind='button',name=name+'Button')
@@ -27,7 +29,7 @@ def window(name,initial,flags,actions):
     assert json.loads((out/'report.json').read_text())['success'];return out
 both=['--asset-root',a.assets,'--installation',a.assets]
 out=window('switch',map_save,both,[expect(True,'Sentinel'),dict(kind='save',name='map.mnmc'),load(creature_save),expect(False,'Crocodile'),dict(kind='save',name='creature.mnmc'),button('newMapCampaign'),expect(True,'Crocodile'),dict(kind='save',name='terrain.mnmc'),load(arena_save),expect(False,'Sentinel'),dict(kind='save',name='arena.mnmc'),button('newCampaign'),expect(False,'Crocodile'),dict(kind='save',name='new-creature.mnmc'),load(map_save),expect(True,'Sentinel')])
-for name,source in [('map',map_save),('creature',creature_save),('arena',arena_save),('terrain',terrain_save)]:assert (out/(name+'.mnmc')).read_bytes()==source.read_bytes(),name
+for name,source in [('map',map_save),('creature',creature_save),('arena',arena_save),('terrain',species_save)]:assert (out/(name+'.mnmc')).read_bytes()==source.read_bytes(),name
 assert (out/'final.mnmc').read_bytes()==map_save.read_bytes()
 expected=seed(a.arena_cli,['--installation',a.assets],'installed')
 assert (out/'new-creature.mnmc').read_bytes()==expected.read_bytes()
@@ -39,8 +41,8 @@ for name,initial,flags,target,terrain,label in [('no-installation',map_save,['--
 # map preserves its content; New map opts into the selected creature profile.
 out=window('installation-root',creature_save,['--installation',a.assets],[load(map_save),expect(True,'Sentinel'),dict(kind='save',name='old-map.mnmc'),button('newMapCampaign'),expect(True,'Crocodile'),dict(kind='save',name='new-terrain.mnmc'),load(terrain_save),expect(True,'Crocodile')])
 assert (out/'old-map.mnmc').read_bytes()==map_save.read_bytes()
-assert (out/'new-terrain.mnmc').read_bytes()==terrain_save.read_bytes()
+assert (out/'new-terrain.mnmc').read_bytes()==species_save.read_bytes()
 assert (out/'final.mnmc').read_bytes()==terrain_save.read_bytes()
 assert all(hashlib.sha256(Path(f).read_bytes()).hexdigest()==h for f,h in inputs.items())
-report=dict(success=True,scope='Four real Qt processes switch installed Crocodile arena/terrain, authored arena and legacy Plains campaign saves via dialogs and New controls, verify terrain/profile selection and byte-exact saves, and retain the previous campaign on missing resource bindings. No original campaign equivalence.',inputs=inputs,commands=commands)
+report=dict(success=True,scope='Four real Qt processes switch installed Crocodile arena/legacy terrain/new mixed actor terrain, authored arena and legacy Plains campaign saves via dialogs and New controls, verify terrain/profile selection and byte-exact saves, and retain the previous campaign on missing resource bindings. No original campaign equivalence.',inputs=inputs,commands=commands)
 (a.output/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(dict(success=True,processes=4)))

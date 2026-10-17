@@ -103,8 +103,8 @@ void applyDamage(State &s, CombatState &c, Fighter &victim, std::uint32_t amount
 std::optional<Point> approach(const State &s, const Navigation &nav, Handle h,
                               const Entity &target) {
     const auto &own = *entity(s, h);
-    MovementReservations occupied(s, nav.binding().dimensions, nav.creatureType(),
-                                  nav.creatureFootprint());
+    MovementReservations occupied(s, nav.binding().dimensions,
+                                  [&nav](const Entity& e){return nav.actorFootprint(e);});
     std::vector<Point> candidates;
     for (int y = -1; y <= 1; ++y)
         for (int x = -1; x <= 1; ++x) {
@@ -115,7 +115,7 @@ std::optional<Point> approach(const State &s, const Navigation &nav, Handle h,
                 continue;
             // Reservations include unfinished fine edges, not only logical positions.
             bool free = true;
-            const auto footprint = nav.creatureFootprint();
+            const auto footprint = nav.actorFootprint(own);
             for (int z = 0; z < footprint.z; ++z) {
                 Point cell{p.x, p.y, p.z + z};
                 if (!contains(cell, nav.binding())) {

@@ -12,8 +12,9 @@ struct TerrainBattle {
   unsigned plane = 0;
   game::Bytes frozen;
   std::vector<game::Point> standing;
+  bool mixedActors = false;
 };
-TerrainBattle installedTerrainBattle(const std::filesystem::path &);
+TerrainBattle installedTerrainBattle(const std::filesystem::path &, bool mixedActors = false);
 TerrainBattle decodeTerrainBattle(const game::Bytes &);
 // Bind movement CFG/ANI to the exact raw inputs owned by the melee profile.
 void validateTerrainCreatureProfile(const TerrainBattle &, const game::Bytes &);

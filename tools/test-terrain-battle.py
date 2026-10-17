@@ -22,6 +22,7 @@ def main():
     p.add_argument('--build-root', type=Path, required=True)
     p.add_argument('--claims', type=Path, required=True)
     p.add_argument('--assets', type=Path, required=True)
+    p.add_argument('--actor-profiles', action='store_true', help='Validate per-actor wizard/Crocodile bodies and mixed-profile Qt continuation')
     p.add_argument('--window', action='store_true', help='Validate the actual Qt encounter and legacy map/arena windows')
     a = p.parse_args()
     a.output = a.output.resolve()
@@ -34,6 +35,7 @@ def main():
     report = dict(success=False, claims=declaration['claims'], source_sha256=sources,
                   scope='Native sealed12x12 Plains Crocodile2x2x2 encounter: shared terrain/occupancy/health, melee, Cure and TTD-aware Sphere, owned campaign/profile/RNG/ANI continuation, authored placement and cadence. Optional real Qt controls and fresh-window/CLI identical campaign bytes, actual retreat/pursuit and fresh player/AI summons. Full map entities, original AI/search/speed, wizard species, physical audio and live replacement excluded.',
                   compiler=subprocess.check_output(['g++', '--version'], text=True).splitlines()[0],
+                  actor_profiles=a.actor_profiles,
                   qt_version=subprocess.check_output(['pkg-config', '--modversion', 'Qt6Core'], text=True).strip(), commands=[])
 
     def run(name, argv, env=None):
@@ -55,7 +57,7 @@ def main():
         for name, flags in [('normal', []), ('sanitized', ['-DCMAKE_CXX_FLAGS=-fsanitize=address,undefined -fno-omit-frame-pointer -fno-pie', '-DCMAKE_EXE_LINKER_FLAGS=-fsanitize=address,undefined -no-pie'])]:
             build = a.build_root/name
             run(name+'-configure', ['cmake', '-S', 'apps/skirmish', '-B', build, '-DCMAKE_BUILD_TYPE=Debug', *flags])
-            targets = [] if name == 'normal' else ['--target', 'terrain-battle-test', 'terrain-creature-test', 'terrain-campaign-test', 'map-sphere-test', 'map-cure-test', 'creature-battle-test', 'sphere-battle-test', 'cure-battle-test', 'battle-effects-test', 'skirmish-test', 'native-health-rules-test', 'campaign-arena-test']
+            targets = [] if name == 'normal' else ['--target', 'terrain-battle-test', 'terrain-creature-test', 'terrain-campaign-test', 'map-sphere-test', 'map-cure-test', 'creature-battle-test', 'sphere-battle-test', 'cure-battle-test', 'battle-effects-test', 'skirmish-test', 'native-health-rules-test', 'campaign-arena-test', *(['actor-profile-test'] if a.actor_profiles else [])]
             run(name+'-build', ['cmake', '--build', build, '-j4', *targets])
             if name == 'normal':
                 dependencies = set()
@@ -70,7 +72,7 @@ def main():
                 assert not report['undeclared_compiler_dependencies'], report['undeclared_compiler_dependencies']
             env = dict(os.environ, ASAN_OPTIONS='detect_leaks=1:halt_on_error=1', UBSAN_OPTIONS='halt_on_error=1:print_stacktrace=1')
             report[name] = {}
-            for target in ['terrain-battle-test', 'terrain-creature-test', 'terrain-campaign-test', 'map-sphere-test', 'map-cure-test', 'creature-battle-test']:
+            for target in ['terrain-battle-test', 'terrain-creature-test', 'terrain-campaign-test', 'map-sphere-test', 'map-cure-test', 'creature-battle-test', *(['actor-profile-test'] if a.actor_profiles else [])]:
                 result = json.loads(run(name+'-'+target, [build/target, a.assets], env))
                 assert result['success']
                 report[name][target] = result
@@ -96,6 +98,8 @@ def main():
             jobs = [('terrain', 'tests/test-terrain-battle-window.py', [normal/'campaign-window-test', normal/'mnm-map-campaign-cli', normal/'mnm-campaign-cli', normal/'terrain-campaign-test', '--assets', a.assets]),
                     ('legacy-creature', 'tests/test-creature-battle-window.py', [normal/'campaign-window-test', normal/'mnm-campaign-cli', normal/'creature-battle-test', '--assets', a.assets]),
                     ('legacy-map', 'tests/test-map-sphere-window.py', [normal/'campaign-window-test', normal/'mnm-map-campaign-cli', normal/'map-sphere-test', a.assets])]
+            if a.actor_profiles:
+                jobs.append(('actor-profiles', 'tests/test-terrain-battle-window.py', [normal/'campaign-window-test', normal/'mnm-map-campaign-cli', normal/'mnm-campaign-cli', normal/'actor-profile-test', '--assets', a.assets, '--actor-profiles']))
             for name, script, args in jobs:
                 out = a.output/(name+'-window')
                 run(name+'-window', ['python3', ROOT/script, *args, '--output', out])
@@ -107,6 +111,8 @@ def main():
             details = json.loads((out/'report.json').read_text())
             assert details['success']
             report['windows']['profile-switch'] = details
+        if a.actor_profiles:
+            report['scope']='Native sealed Plains encounter with owned installed wizard type0 1x1x4 and Crocodile type17 2x2x2 bodies, per-actor occupancy/reservations, role/profile rollback, Sphere aim/collision and Qt picking, 24 per-phase continuations and fresh Qt/CLI exact bytes. Legacy geometry and mission-specific native arena finale retained. Wizard motion/ANI/melee/AI, full original map/search/cadence, audio/pixels and live replacement excluded.'
         # Compiler-emitted dependency files verify that declaration covers all
         # repository source/header bytes actually consumed by this build.
         dependencies = set()

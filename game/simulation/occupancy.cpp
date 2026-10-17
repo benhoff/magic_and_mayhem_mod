@@ -8,17 +8,31 @@ std::size_t Occupancy::index(Point p) const {
         throw std::invalid_argument("occupancy coordinate outside map");
     return (std::size_t(p.z)*dimensions_.y+p.y)*dimensions_.x+p.x;
 }
-Occupancy::Occupancy(const State& state,Point d,std::uint32_t type,Point footprint):dimensions_(d) {
+namespace {
+FootprintResolver singleProfile(std::uint32_t type,Point footprint) {
+    return [=](const Entity& e) {
+        if(e.type!=type) throw std::invalid_argument("occupant profile mismatch");
+        return footprint;
+    };
+}
+void validateFootprint(Point footprint) {
+    if(footprint.x<1 || footprint.x>2 || footprint.y!=footprint.x || footprint.z<1 || footprint.z>32)
+        throw std::invalid_argument("occupancy profile outside bounded policy");
+}
+}
+Occupancy::Occupancy(const State& state,Point d,std::uint32_t type,Point footprint)
+    :Occupancy(state,d,singleProfile(type,footprint)) {validateFootprint(footprint);}
+Occupancy::Occupancy(const State& state,Point d,const FootprintResolver& resolve):dimensions_(d) {
     if(d.x<1 || d.x>1024 || d.y<1 || d.y>1024 || d.z<1 || d.z>32 ||
-       std::uint64_t(d.x)*d.y*d.z>4096 || footprint.x<1 || footprint.x>2 ||
-       footprint.y!=footprint.x || footprint.z<1 || footprint.z>32)
+       std::uint64_t(d.x)*d.y*d.z>4096 || !resolve)
         throw std::invalid_argument("occupancy dimensions/profile outside bounded policy");
     cells_.resize(std::size_t(d.x)*d.y*d.z);
     for(std::uint32_t i=0;i<state.slots.size();++i) {
         const auto& slot=state.slots[i];
         if(!slot.entity || slot.entity->family!=Family::creature || slot.entity->cleaned) continue;
         const auto& e=*slot.entity;
-        if(e.type!=type || i>=65535 || slot.generation==0 || e.x<0 || e.y<0 || e.z<0 ||
+        const auto footprint=resolve(e);validateFootprint(footprint);
+        if(i>=65535 || slot.generation==0 || e.x<0 || e.y<0 || e.z<0 ||
            e.x>d.x-footprint.x || e.y>d.y-footprint.y || e.z>d.z-footprint.z)
             throw std::invalid_argument("occupant profile/identity/extent outside bounded policy");
         for(int z=0;z<footprint.z;++z) for(int y=0;y<footprint.y;++y) for(int x=0;x<footprint.x;++x) {
@@ -38,11 +52,15 @@ std::size_t MovementReservations::index(Point p) const {
     return (std::size_t(p.z)*dimensions_.y+p.y)*dimensions_.x+p.x;
 }
 MovementReservations::MovementReservations(const State& state,Point d,std::uint32_t type,Point footprint)
-    :logical_(state,d,type,footprint),dimensions_(d),footprint_(footprint),claims_(std::size_t(d.x)*d.y*d.z) {
+    :MovementReservations(state,d,singleProfile(type,footprint)) {validateFootprint(footprint);}
+MovementReservations::MovementReservations(const State& state,Point d,const FootprintResolver& resolve)
+    :logical_(state,d,resolve),dimensions_(d),claims_(std::size_t(d.x)*d.y*d.z) {
     for(std::uint32_t i=0;i<state.slots.size();++i) {
         const auto& slot=state.slots[i];
-        if(slot.entity && !slot.entity->cleaned && slot.entity->family==Family::creature)
+        if(slot.entity && !slot.entity->cleaned && slot.entity->family==Family::creature) {
             origins_.emplace(i,std::make_pair(Handle{i,slot.generation},Point{slot.entity->x,slot.entity->y,slot.entity->z}));
+            footprints_.emplace(i,resolve(*slot.entity));
+        }
     }
     for(std::uint32_t i=0;i<state.slots.size();++i) {
         const auto& slot=state.slots[i];
@@ -63,7 +81,8 @@ bool MovementReservations::tryReserve(Handle self,Point from,Point to) {
     const auto near=[](int a,int b){const auto d=std::int64_t(a)-b;return d>=-1 && d<=1;};
     if(from==to || !near(from.x,to.x) || !near(from.y,to.y) || !near(from.z,to.z)) return false;
     const Point low{std::min(from.x,to.x),std::min(from.y,to.y),std::min(from.z,to.z)};
-    const Point high{std::max(from.x,to.x)+footprint_.x,std::max(from.y,to.y)+footprint_.y,std::max(from.z,to.z)+footprint_.z};
+    const auto footprint=footprints_.at(self.slot);
+    const Point high{std::max(from.x,to.x)+footprint.x,std::max(from.y,to.y)+footprint.y,std::max(from.z,to.z)+footprint.z};
     if(low.x<0 || low.y<0 || low.z<0 || high.x>dimensions_.x || high.y>dimensions_.y || high.z>dimensions_.z) return false;
     for(int z=low.z;z<high.z;++z) for(int y=low.y;y<high.y;++y) for(int x=low.x;x<high.x;++x) {
         const auto h=owner({x,y,z});if(h && !(*h==self)) return false;

@@ -17,7 +17,7 @@ class MapCampaignResources final : public game::CampaignResources {
     game::CampaignDefinition definition_;
     std::array<std::string,3> hashes_;
   public:
-    explicit MapCampaignResources(const std::filesystem::path &root, bool enableCure = false, bool enableSphere = false, bool installedCreatures = false);
+    explicit MapCampaignResources(const std::filesystem::path &root, bool enableCure = false, bool enableSphere = false, bool installedCreatures = false, bool mixedActors = false);
     const auto &mission() const {return mission_;}
     const auto &map() const {return map_;}
     const auto &catalog() const {return catalog_;}
@@ -27,7 +27,7 @@ class MapCampaignResources final : public game::CampaignResources {
     game::SkirmishSession create(const game::CampaignMission &) const override;
     game::SkirmishSession restore(const game::CampaignMission &,game::State) const override;
 };
-std::shared_ptr<const MapCampaignResources> mapCampaignResources(const std::filesystem::path &, bool enableCure = false, bool enableSphere = false, bool installedCreatures = false);
+std::shared_ptr<const MapCampaignResources> mapCampaignResources(const std::filesystem::path &, bool enableCure = false, bool enableSphere = false, bool installedCreatures = false, bool mixedActors = false);
 game::CampaignSession newMapCampaign(std::shared_ptr<const MapCampaignResources>);
 game::CampaignSession loadMapCampaign(std::shared_ptr<const MapCampaignResources>,const std::filesystem::path &);
 game::CampaignSession loadMapCampaign(const std::filesystem::path &root,const std::filesystem::path &save);

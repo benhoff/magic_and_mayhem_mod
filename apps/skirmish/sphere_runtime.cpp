@@ -47,6 +47,7 @@ struct Tracking {
 };
 void validateEnvironment(const Environment &e) {
   const auto d=e.dimensions;
+  require(!e.actorProfiles || (!e.cells.empty() && e.creatureWidth==2 && e.creatureHeight==2),"Sphere mixed actor profile binding");
   require((e.creatureWidth==1 && e.creatureHeight==1) || (!e.cells.empty() && e.creatureWidth==2 && e.creatureHeight==2),"Sphere bound creature footprint");
   require(d.x>=4 && d.x<=16 && d.y>=4 && d.y<=16 && d.z>=2 && d.z<=32 &&
               std::uint64_t(d.x)*d.y*d.z<=4096,"Sphere environment dimensions");
@@ -119,12 +120,13 @@ struct Codec {
   }
 };
 void content(Codec &z, State &s) {
-  unsigned version = s.env.cells.empty() ? 0x31504853 : s.env.creatureWidth==1 ? 0x32504853 : 0x33504853;
+  unsigned version = s.env.actorProfiles ? 0x34504853 : s.env.cells.empty() ? 0x31504853 : s.env.creatureWidth==1 ? 0x32504853 : 0x33504853;
   z.field(version);
-  require(version==0x31504853 || version==0x32504853 || version==0x33504853,"Sphere checkpoint version");
-  if(version==0x32504853 || version==0x33504853) {
+  require(version==0x31504853 || version==0x32504853 || version==0x33504853 || version==0x34504853,"Sphere checkpoint version");
+  if(version==0x32504853 || version==0x33504853 || version==0x34504853) {
     auto env=s.env;
-    if(version==0x33504853)z.fields(env.creatureWidth,env.creatureHeight);
+    env.actorProfiles=version==0x34504853;
+    if(version==0x33504853 || version==0x34504853)z.fields(env.creatureWidth,env.creatureHeight);
     unsigned w=unsigned(env.dimensions.x),h=unsigned(env.dimensions.y),l=unsigned(env.dimensions.z),count=unsigned(env.cells.size());
     z.fields(w,h,l,count);
     require(w>=4 && w<=16 && h>=4 && h<=16 && l>=2 && l<=32 &&
@@ -244,6 +246,7 @@ void validateState(const State &s, const g::CombatSession &combat,
                    const g::SkirmishState &meta, const Environment &bound) {
   require(sameEnvironment(s.env,bound),"Sphere mission environment mismatch");
   require(combat.world().state().navigation && combat.world().state().navigation->dimensions==s.env.dimensions,"Sphere navigation dimensions mismatch");
+  require(s.env.actorProfiles==(combat.navigation()->wizardType()!=combat.navigation()->creatureType()),"Sphere actor profile policy mismatch");
   require(combat.navigation()->creatureFootprint()==g::Point{int(s.env.creatureWidth),int(s.env.creatureWidth),int(s.env.creatureHeight)},"Sphere navigation footprint mismatch");
   const auto width=unsigned(s.env.dimensions.x),height=unsigned(s.env.dimensions.y),layers=unsigned(s.env.dimensions.z);
   std::array<bool, capacity> seen{};
@@ -324,7 +327,7 @@ void validateState(const State &s, const g::CombatSession &combat,
 }
 } // namespace
 bool sameEnvironment(const Environment &a,const Environment &b) {
-  if(a.creatureWidth!=b.creatureWidth || a.creatureHeight!=b.creatureHeight || !(a.dimensions==b.dimensions) || a.occupancy!=b.occupancy || a.cells.size()!=b.cells.size()) return false;
+  if(a.actorProfiles!=b.actorProfiles || a.creatureWidth!=b.creatureWidth || a.creatureHeight!=b.creatureHeight || !(a.dimensions==b.dimensions) || a.occupancy!=b.occupancy || a.cells.size()!=b.cells.size()) return false;
   for(unsigned i=0;i<a.cells.size();++i) if(a.cells[i].terrain!=b.cells[i].terrain || a.cells[i].flags!=b.cells[i].flags) return false;
   return true;
 }
@@ -374,14 +377,15 @@ g::SkirmishRefusal cast(g::Bytes &b, g::CombatSession &combat,
     auto &a = world.creatures[f.actor.slot];
     auto p = fine(entity);
     a.ai.slot = f.actor.slot;
-    a.ai.type = 17;
+    a.ai.type = s.env.actorProfiles ? entity.type : 17;
     a.ai.kind = f.actor == source ? 0 : 1;
     a.ai.health = f.health;
     a.ai.owner = int(entity.owner);
     a.ai.visible.fill(0);
     a.finePosition = {int(p[0]), int(p[1]), int(p[2])};
-    a.aimXY = s.env.creatureWidth*16;
-    a.aimZ = s.env.creatureHeight*8;
+    const auto body=s.env.actorProfiles?combat.navigation()->actorFootprint(entity):g::Point{int(s.env.creatureWidth),int(s.env.creatureWidth),int(s.env.creatureHeight)};
+    a.aimXY = body.x*16;
+    a.aimZ = body.z*8;
   }
   admission.resource[source.slot] = meta.wizards[0].mana * 256;
   c::CastAdmissionServices services;
@@ -465,7 +469,8 @@ g::CombatReport step(g::Bytes &b, g::CombatSession &combat) {
       v.id = f.actor.slot;
       v.status = f.health ? 0 : 27;
       v.units = fine(entity);
-      v.footprint = r::initializeCreatureFootprint(s.env.creatureHeight,s.env.creatureWidth==2?1:0);
+      const auto body=s.env.actorProfiles?combat.navigation()->actorFootprint(entity):g::Point{int(s.env.creatureWidth),int(s.env.creatureWidth),int(s.env.creatureHeight)};
+      v.footprint = r::initializeCreatureFootprint(body.z,body.x==2?1:0);
       auto &tracking = s.tracking[f.actor.slot];
       if (tracking.generation != f.actor.generation)
         tracking = {f.actor.generation, 0, 0};
@@ -479,8 +484,8 @@ g::CombatReport step(g::Bytes &b, g::CombatSession &combat) {
                                            v.units[2] >> 4};
         require(pos[0] < width && pos[1] < height && pos[2] < layers,
                 "Sphere actor position");
-        require(pos[0]+s.env.creatureWidth<=width && pos[1]+s.env.creatureWidth<=height && pos[2]+s.env.creatureHeight<=layers,"Sphere actor footprint extent");
-        for(unsigned z=0;z<s.env.creatureHeight;++z)for(unsigned y=0;y<s.env.creatureWidth;++y)for(unsigned x=0;x<s.env.creatureWidth;++x){
+        require(pos[0]+unsigned(body.x)<=width && pos[1]+unsigned(body.y)<=height && pos[2]+unsigned(body.z)<=layers,"Sphere actor footprint extent");
+        for(unsigned z=0;z<unsigned(body.z);++z)for(unsigned y=0;y<unsigned(body.y);++y)for(unsigned x=0;x<unsigned(body.x);++x){
           auto &cell=world.cells[((pos[2]+z)*height+pos[1]+y)*width+pos[0]+x];
           require(cell==r::NoEffect,"Sphere overlapping occupants");cell=std::uint16_t(f.actor.slot);
         }

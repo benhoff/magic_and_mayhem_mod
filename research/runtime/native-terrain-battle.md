@@ -54,3 +54,11 @@ Terrain movement CFG/ANI hashes must equal the actual raw inputs embedded in
 the owned melee profile, both at installed construction and snapshot resolution.
 A mixed profile refuses; this also prevents separate installation reads from
 publishing mismatched movement and melee configuration. HTH stays profile-owned.
+
+The later `native-plains-species-campaign` profile binds wizard type0 1x1x4 and
+Crocodile type17 2x2x2 bodies independently. New installed map campaigns in Qt
+select it; the CLI exposes `create-species`. MNMTER02, CRB3 and SHP4 own the new
+resource policy. MTER01/CRB2/SHP3 saves retain the earlier wide wizard bodies.
+The arena finale keeps its existing native geometry. See
+[per-actor profile scope](native-actor-profiles.md) and
+[wire extensions](../formats/native-actor-profiles.md) for evidence and limits.

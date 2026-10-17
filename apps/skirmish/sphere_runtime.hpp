@@ -18,6 +18,7 @@ struct Environment {
   std::vector<TerrainCell> cells;
   std::vector<std::array<std::uint8_t,32>> occupancy{4};
   unsigned creatureWidth=1, creatureHeight=1;
+  bool actorProfiles=false; // SHP4: resolve body/aim dimensions per bound actor.
 };
 bool sameEnvironment(const Environment &, const Environment &);
 Environment environment(const game::Bytes &);
