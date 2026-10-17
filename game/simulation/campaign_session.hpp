@@ -1,5 +1,6 @@
 #pragma once
 #include "mission.hpp"
+#include "campaign_graph.hpp"
 #include "persistence/campaign.hpp"
 
 namespace mnm::game {
@@ -12,6 +13,7 @@ struct CampaignDefinition {
     std::vector<CampaignMission> missions;
     std::vector<std::optional<MissionPlan>> plans;
     bool spellLoadout=false;
+    std::optional<CampaignGraph> graph = {};
 };
 // App adapters own content/navigation/health loading. Returned sessions must
 // validate their resources normally; restore must retain the exact saved world.
@@ -35,6 +37,8 @@ class CampaignSession {
     Owned owned_;
     bool changing_=false;
     std::size_t missionIndex(const CampaignState&) const;
+    std::size_t missionIndex(const std::string&,const std::string&) const;
+    void validateGraphProgress(const CampaignState&) const;
     void validateProgress(const CampaignState&) const;
     void validate(const Owned&) const;
 public:
@@ -48,6 +52,8 @@ public:
     const CampaignMission& currentMission() const {return definition_.missions.at(missionIndex(progress()));}
     const MissionPlan* missionPlan() const;
     bool spellAvailable(Spell) const;
+    std::vector<CampaignMission> availableMissions() const;
+    void selectMission(const std::string& realm,const std::string& region);
     void startMission();
     void enqueue(SkirmishOrder);
     CampaignStepReport step(TickInput={});

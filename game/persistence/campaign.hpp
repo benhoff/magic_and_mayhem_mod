@@ -38,6 +38,9 @@ struct CampaignResult {
     std::string realm, region;
     CampaignOutcome outcome=CampaignOutcome::victory;
 };
+struct CampaignGraphProgress {
+    std::vector<std::uint32_t> completed, choices;
+};
 struct CampaignState {
     CampaignIdentity identity;
     std::uint32_t difficulty=0; // Native persisted selection, range 0..3.
@@ -49,6 +52,7 @@ struct CampaignState {
     std::optional<CampaignBattle> battle;
     std::optional<CampaignResult> lastResult;
     std::optional<MissionProgress> mission; // Active authored objective continuation only.
+    std::optional<CampaignGraphProgress> graph = {};
 };
 struct CampaignLimits {
     std::uint32_t bytes=4*1024*1024, wizards=80, realms=32, regions=4096;

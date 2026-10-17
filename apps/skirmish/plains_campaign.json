@@ -1,0 +1,266 @@
+{
+  "version": 1,
+  "id": "native-plains-crossroads-campaign",
+  "realm": "celtic",
+  "entry": "opening",
+  "finale": "arena-finale",
+  "initial_spells": [
+    "summon-crocodile",
+    "arc-bolt"
+  ],
+  "missions": [
+    {
+      "id": "opening",
+      "map": "plains",
+      "requires_all": [],
+      "requires_any": [],
+      "choice": "",
+      "rewards": [],
+      "plan": {
+        "version": 2,
+        "id": "crossroads-opening-v1",
+        "briefing": "Break the Plains guard and defeat the rival to open two routes through the Celtic realm.",
+        "reward_spell": "",
+        "groups": [
+          {
+            "id": "guard",
+            "locations": [
+              [
+                8,
+                4,
+                7
+              ]
+            ],
+            "after": []
+          }
+        ],
+        "objectives": [
+          {
+            "id": "guard-clear",
+            "text": "Defeat the Plains guard.",
+            "kind": "eliminate",
+            "target": {
+              "group": "guard"
+            },
+            "after": []
+          },
+          {
+            "id": "rival-defeat",
+            "text": "Defeat the rival wizard.",
+            "kind": "eliminate",
+            "target": {
+              "wizard": "rival"
+            },
+            "after": [
+              "guard-clear"
+            ]
+          },
+          {
+            "id": "wizard-safe",
+            "text": "Keep your wizard alive.",
+            "kind": "protect",
+            "target": {
+              "wizard": "player"
+            },
+            "after": [
+              "rival-defeat"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "last-stand",
+      "map": "plains",
+      "requires_all": [
+        "opening"
+      ],
+      "requires_any": [],
+      "choice": "celtic-road",
+      "rewards": [
+        "cure"
+      ],
+      "plan": {
+        "version": 2,
+        "id": "plains-last-stand-v1",
+        "briefing": "Survive the two reinforcement waves and defeat the rival. Victory unlocks Cure for the finale.",
+        "reward_spell": "",
+        "groups": [
+          {
+            "id": "first-wave",
+            "locations": [
+              [
+                8,
+                4,
+                7
+              ]
+            ],
+            "after": [
+              "first-watch"
+            ]
+          },
+          {
+            "id": "second-wave",
+            "locations": [
+              [
+                8,
+                6,
+                7
+              ]
+            ],
+            "after": [
+              "second-watch"
+            ]
+          }
+        ],
+        "objectives": [
+          {
+            "id": "first-watch",
+            "text": "Survive the first 24 battle ticks.",
+            "kind": "survive",
+            "ticks": 24,
+            "after": []
+          },
+          {
+            "id": "first-clear",
+            "text": "Defeat the first reinforcement wave.",
+            "kind": "eliminate",
+            "target": {
+              "group": "first-wave"
+            },
+            "after": [
+              "first-watch"
+            ]
+          },
+          {
+            "id": "second-watch",
+            "text": "Hold out for another 24 battle ticks.",
+            "kind": "survive",
+            "ticks": 24,
+            "after": [
+              "first-clear"
+            ]
+          },
+          {
+            "id": "second-clear",
+            "text": "Defeat the second reinforcement wave.",
+            "kind": "eliminate",
+            "target": {
+              "group": "second-wave"
+            },
+            "after": [
+              "second-watch"
+            ]
+          },
+          {
+            "id": "rival-defeat",
+            "text": "Defeat the rival wizard.",
+            "kind": "eliminate",
+            "target": {
+              "wizard": "rival"
+            },
+            "after": [
+              "second-clear"
+            ]
+          },
+          {
+            "id": "wizard-safe",
+            "text": "Keep your wizard alive throughout the mission.",
+            "kind": "protect",
+            "target": {
+              "wizard": "player"
+            },
+            "after": [
+              "rival-defeat"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "watchpost",
+      "map": "plains",
+      "requires_all": [
+        "opening"
+      ],
+      "requires_any": [],
+      "choice": "celtic-road",
+      "rewards": [
+        "magic-sphere"
+      ],
+      "plan": {
+        "version": 2,
+        "id": "crossroads-watchpost-v1",
+        "briefing": "Hold the watchpost for 48 battle ticks, defeat its guard, then defeat the rival. Victory unlocks Magic Sphere for the finale.",
+        "reward_spell": "",
+        "groups": [
+          {
+            "id": "guard",
+            "locations": [
+              [
+                8,
+                4,
+                7
+              ]
+            ],
+            "after": []
+          }
+        ],
+        "objectives": [
+          {
+            "id": "watch",
+            "text": "Survive 48 battle ticks.",
+            "kind": "survive",
+            "ticks": 48,
+            "after": []
+          },
+          {
+            "id": "guard-clear",
+            "text": "Defeat the Plains guard.",
+            "kind": "eliminate",
+            "target": {
+              "group": "guard"
+            },
+            "after": [
+              "watch"
+            ]
+          },
+          {
+            "id": "rival-defeat",
+            "text": "Defeat the rival wizard.",
+            "kind": "eliminate",
+            "target": {
+              "wizard": "rival"
+            },
+            "after": [
+              "guard-clear"
+            ]
+          },
+          {
+            "id": "wizard-safe",
+            "text": "Keep your wizard alive.",
+            "kind": "protect",
+            "target": {
+              "wizard": "player"
+            },
+            "after": [
+              "rival-defeat"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "arena-finale",
+      "map": "arena",
+      "requires_all": [],
+      "requires_any": [
+        "last-stand",
+        "watchpost"
+      ],
+      "choice": "",
+      "rewards": [],
+      "plan": null
+    }
+  ]
+}

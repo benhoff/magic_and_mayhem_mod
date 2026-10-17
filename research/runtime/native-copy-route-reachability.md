@@ -116,8 +116,11 @@ These execute with observer mode disabled and retain their headless scope.
 
 [Preserved attempts](native-copy-route-attempts-20261017.json) include the first
 30-second camera journey: initial rotations pass, but resumed rotations after
-Mini Cancel fail the required camera-route assertion. Its cause remains unresolved;
-the shorter final ten-second phases do not close that longer scenario. The second
+Mini Cancel fail the required camera-route assertion. The shorter final ten-second phases did not close that longer scenario.
+The [current-master follow-up](native-camera-resume.md) reproduces it with
+active delivered input and identifies a blocking original Hermes modal. Its
+bounded ordinary-input repair also handles the final-readiness/Escape race;
+the historical failed acquisition remains unchanged. The second
 short journey completes the GPU checks, then its initial census rejects a missed
 callback without distinguishing terminal bypasses. The final census records
 that boundary explicitly; it makes no retrospective claim about the old missed
@@ -149,10 +152,9 @@ censuses, staged executable/DLLs and 64 raw pixel planes. All 2,927 original
 files verify before/after. The c3d6055f..1d53022e history review retains one commit,
 one parent transition and zero missing exact receipts; it establishes accounting.
 
-The next major acceptance boundary is an actual-game injected failure, terminal
-cleanup and fresh launch. Clipped/self/keyed GPU-source callers, independent
-CPU-keyed pixels, windowed/other-map reachability, the longer resumed camera
-scenario, complete action-bound presentation, physical loss and performance
+The [actual-game injected-failure and public Hard restart boundary](native-live-restart.md)
+now passes both World owners after a confirmed terminal null-access repair. Clipped/self/keyed GPU-source callers, independent
+CPU-keyed pixels, windowed/other-map reachability, complete action-bound presentation, physical loss and performance
 remain separate. Complete replacement and its 14-journey/21-operation denominators
 remain false.
 

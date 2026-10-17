@@ -15508,3 +15508,83 @@ private prefixes and compiled artifacts are retained in the registered second-
 drive checkout `/var/tmp/mnm-integrate-qt-draw02-20261017/working/integration/`
 and its `working/tests/` and `working/build/` directories. Source-only changes
 and historical evidence staleness do not assert renewed original validation.
+
+
+## Concurrent master reconciliation (2026-10-17)
+
+Master advanced from 9f6f5f80 to 96d3cb46 while DRAW-02 validation ran.
+The committed Crossroads graph and camera/Hermes transition changes and exact parent evidence are retained
+alongside the tested DRAW-02 merge. These additions do not absorb or rewrite
+the main checkout's separate uncommitted campaign and pixel-route work. Historical parent
+results retain their original hashes and independent milestones. Current
+synthetic DRAW-02 source fingerprints are checked separately; no renewed
+original-game or live replacement claim follows from this reconciliation.
+
+The incoming master ledger addition follows.
+
+
+## Native campaign graph and Crossroads chapter — 2026-10-17
+
+`NP.campaign-graph` adds a bounded compiled progression graph with all/any
+prerequisites, exclusive route commitment on mission start, persistent ordered
+victories, explicit idle mission selection and derived spell rewards. Crossroads
+has an opening, alternative Last Stand/Watchpost roads and a shared arena finale.
+Cure and Magic Sphere are earned on the respective roads; combat values/resources
+are unchanged. The graph continuation uses native campaign version 5 while earlier
+native identities and formats remain separate.
+
+CAMPAIGN03.crossroads-headless prospectively binds 630 unchanged
+source keys and the Crossroads headless scenario. Normal and ASan/UBSan/LSan
+contracts agree: both full-health routes complete using production native orders,
+with a 308-tick opening, 477-tick Last Stand, 308-tick Watchpost and
+19-tick ordinary finales. Separate earned-spell fixtures verify Cure healing and
+Magic Sphere damage. Asset-free contracts cover malformed/forged saves and graphs,
+failed-start rollback, defeat/retry, exclusive choices, reward derivation and
+terminal completion. All 114 headless CTests pass.
+
+19 retained transition/effect checkpoints round-trip exactly and match direct
+versus split fresh-process continuation. Production player resumes from both route
+checkpoints reach the exact reference win bytes; CLI create/select/start matches
+the installed contract. Seven old native save profiles covering versions 1–4
+round-trip unchanged. Installed input hashes, compiler dependency closure and the
+original 2,927-file manifest bookends pass. This result supplies headless native
+integration only; historical shared-source fingerprints and their freshness
+limitations remain unchanged. No window or original/live milestone is promoted.
+ No window,
+original-campaign comparison or live-replacement milestone is claimed. See
+[semantics, acceptance and gaps](native-campaign-graph.md) and
+[the format](../formats/native-campaign-graph.md).
+
+
+## 2026-10-17 — Longer camera journey: Hermes readiness repair
+
+Current master reproduces the post-Mini30second camera assertion failure despite
+all8rotation inputs reaching active input. Native screenshots identify an
+original Hermes modal while World rendering continues. Bounded physical input
+now guards stress and the final-readiness/Escape race, requires2quiet captures,
+four fresh settled turns/all3selected camera bodies after interruption, and
+matches original Mini callback sequence/Cancel-Quit arguments. Diagnostics do
+not shorten active stress. No renderer, forwarding, engine-state or balance fix.
+
+[Functional report](native-camera-resume-bound-20261017.json) independently
+rechecks GUI/worker actual-game witnesses: both phases exceed30active seconds,
+all3camera bodies execute over4turns, witnessed Hermes is dismissed, original
+Quit No/resume/Yes/Continue/Main Quit completes, and World balances511/511/511
+and466/466/466. Independent GPU checks compare5669/5354destinations and
+1,382,078,400/1,303,116,800words, plus16retained Python cases each. Closed active
+copy counts11252/10499 exclude7/10retired callbacks; no active misses, failures,
+pixel forwards/history refusal or destination mismatches. Nineteen of43optional
+routes execute; clipped/self/keyed GPU-source and CPU-keyed pixel gaps remain.
+All2927original files verify before/after, sources stay unchanged, private Wine
+stop/wait succeeds, and36synthetic camera/transition/route/campaign controls pass.
+
+**Full campaign acceptance remains failed.** Three repaired acquisitions fail
+the unchanged5FPS software floor at4.9904,4.7642and4.7611FPS. Functional reanalysis
+does not override these results or grant hardware/performance, original World
+pixels, whole-session parity, unknown-dialogue or complete replacement proof.
+[Findings and reproduction](native-camera-resume.md) and
+[provenance](native-camera-resume-provenance-20261017.json) retain every attempt,
+raw fingerprints, native screenshots, input traces and pilot sources. Scoped
+camera/copy claims exclude unrelated native-game/raster inventory; raw reports
+are unchanged. Exact committed-history reviews a904544f..9f6f5f80 and9f6f5f80..9a24c154 have0unresolved
+receipts and does not assert a historical gate pass.
