@@ -6,6 +6,7 @@
 #include <functional>
 
 namespace mnm::render {
+class CommandCopyDiagnostics;
 constexpr qint64 maxCommandBytes=64*1024*1024;
 enum class CommandStreamMode {Bounded,Streaming};
 constexpr qint64 maxStreamingRecordBytes=12+28+2048*2048*4;
@@ -73,6 +74,7 @@ struct CommandConsumerOptions {
     bool reuseSealedUi=false;
     std::function<void(const SurfaceCommand&,const Image&)> cpuRead={};
     std::uint32_t cpuReadSession=0;
+    std::shared_ptr<CommandCopyDiagnostics> copyDiagnostics={};
 };
 // GUI-thread session. Renderer must outlive consumer; GPU leases may outlive both.
 // Batches commit command by command, never transactionally. An execution or

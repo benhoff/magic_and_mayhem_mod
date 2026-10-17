@@ -657,7 +657,7 @@ __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
-    if(reason==0){__atomic_store_n(&lock_diagnostic_stop,1,__ATOMIC_RELEASE);command_control_detach();command_scheduler_detach();return 1;}
+    if(reason==0){__atomic_store_n(&lock_diagnostic_stop,1,__ATOMIC_RELEASE);game_gpu_census_close();command_control_detach();command_scheduler_detach();return 1;}
     if(reason!=1)return 1;
     char path[512];u32 size=GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path));
     if(!size || size>=sizeof(path))return 1;
@@ -685,6 +685,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     input_init();media_init();command_channel_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();
+    game_gpu_census_init();
     if(game_resident_world && game_copy_order_enabled)game_copy_pressure_admit=&command_pressure_admit;
     if(lock_capture_path_length)readback_disabled=1;
     init_failure_diagnostics();init_draw_capture();command_control_init();

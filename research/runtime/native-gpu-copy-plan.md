@@ -59,3 +59,11 @@ command-consumer rejection. The final run uses a separately owned, locked prefix
 and a freshly built current consumer. The first storage suite run was discarded
 when coverage metadata changed during execution; its stable-metadata rerun passes.
 None of those attempts contributes passing evidence.
+
+The [2026-10-17 live follow-up](native-gpu-copy-live-validation.md) now validates
+867 opaque disjoint GPU-route calls at three actual engine return sites through
+Save/Load, display rebuild and Quit, with independent copy destinations. It
+observes zero clipped/self/keyed GPU calls; those branches retain headless evidence
+only. The [final-source 23-case rerun](native-gpu-copy-plan-controls-20261017.json)
+passes after adding the opt-in observer. This does not promote complete original
+or physical presented-session equivalence.

@@ -375,6 +375,7 @@ static struct SessionSurface* game_gpu_scratch(const struct Snapshot* shape){
     __atomic_sub_fetch(&lock_capture_reserved,blank.length,__ATOMIC_RELAXED);free_snapshot(&blank);
     return ok?s:0;
 }
+#include "gpu_copy_census.h"
 static i32 game_gpu_blit(struct GameBlit* p){
     u32 error=GetLastError();
     if(!p->valid || !p->gpu || !game_resident_world || !game_copy_order_enabled ||
@@ -389,7 +390,7 @@ static i32 game_gpu_blit(struct GameBlit* p){
     i32 dr[4]={(i32)p->fields[6],(i32)p->fields[7],(i32)(p->fields[6]+p->fields[4]-p->fields[2]),(i32)(p->fields[7]+p->fields[5]-p->fields[3])};
     struct MnmGpuCopyPlan* plan=HeapAlloc(GetProcessHeap(),8,sizeof(*plan));if(!plan)game_gpu_refuse(6,p);SetLastError(error);
     i32 admission=game_native_gpu_plan(p->target,dr,p->source,sr,p->fields[8]?0x8000:0,plan,sizeof(*plan));
-    error=GetLastError();i32 result=admission;
+    error=GetLastError();i32 result=admission;u32 first_copy=0,last_copy=0,scratch_id=0;
     if(admission>=0){
         if(plan->source_width!=src->pixels.width || plan->source_height!=src->pixels.height ||
            plan->target_width!=dst->pixels.width || plan->target_height!=dst->pixels.height ||
@@ -407,7 +408,9 @@ static i32 game_gpu_blit(struct GameBlit* p){
         }
         b=session_surface(p->target,p->bootstrap?&p->src:&dst->pixels,p->source);if(!b)game_gpu_refuse(4,p);
         if(plan->self && plan->count){scratch=game_gpu_scratch(&src->pixels);if(!scratch)game_gpu_refuse(6,p);}
-        if(!mnm_gpu_copy_commands(plan,a->id,b->id,scratch?scratch->id:0,game_gpu_emit_copy,0))game_gpu_refuse(5,p);
+        scratch_id=scratch?scratch->id:0;if(plan->count)first_copy=session_sequence+1;
+        if(!mnm_gpu_copy_commands(plan,a->id,b->id,scratch_id,game_gpu_emit_copy,0))game_gpu_refuse(5,p);
+        if(plan->count)last_copy=session_sequence;
         if(scratch){
             if(!session_record(7,&scratch->id,4,0,0))game_gpu_refuse(5,p);
             session_pixels-=scratch->width*scratch->height;zero(scratch,sizeof(*scratch));
@@ -423,6 +426,7 @@ static i32 game_gpu_blit(struct GameBlit* p){
         }
         session_done();lock_diagnostic("resident_gpu_copy",p->target,0,(u32)p->source,plan->count,(u32)result,plan->self,0);
     }
+    game_gpu_census_record(p,src,dst,plan,admission,result,a->id,b?b->id:0,scratch_id,first_copy,last_copy);
     HeapFree(GetProcessHeap(),0,plan);game_blit_free(p);p->gpu=2;game_tracker_release();SetLastError(error);return result;
 }
 /* Explicit CPU reader only. FIFO execution fixes the image boundary; physical

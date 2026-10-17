@@ -18035,7 +18035,7 @@
       },
       "remaining_gaps": [
         "RENDER-INT-01: Combined six-family selection/provenance/counter enforcement exists.19of43optional routes execute across the reviewed camera/spell/storage reports;24 remain unexercised there. Resolve actual callers/World batching and independent outputs without inventing a camera3 dispatch branch.",
-        "RENDER-INT-02: Selected ordered CPU_READ, storage synchronization and GPU-copy history services exist. Owned clipped/self RGB565 GPU copies now have scoped headless facade/bridge controls (NP.native-gpu-copy-plan); installed-game caller validation remains open. Arbitrary raw readers and asynchronous World source readback remain outside supported admission; this is not a claim that every async host CPU_READ is unsupported.",
+        "RENDER-INT-02: Selected ordered CPU_READ and storage synchronization exist. Current native V3 game validates867opaque disjoint GPU copies at3caller PCs with independent destinations; clipped/self/keyed GPU source copies retain headless evidence only. Arbitrary raw readers and async World source readback remain outside admission; complete CPU coherence is not claimed.",
         "RENDER-INT-03: Reports retain complete replacement false; a complete capability-checked startup/runtime contract spanning required original-pixel bypass remains unavailable. Existing combined zero-forward admission is already implemented.",
         "RENDER-INT-04: Initiate Save/Load, display rebuild, changed World canvas and normal Quit pass. Later-map progression, broader results/movie/Preferences/cursor/picking composition and independent output/input acceptance remain incomplete.",
         "RENDER-INT-05: Resident terminal retirement and force-stop/fresh-launch exist with synthetic controls. Actual-game injected fault/restart and physical GL context-loss acceptance remain unproved; transparent in-place resident recovery is not promised.",
@@ -72447,7 +72447,8 @@
         "NR.native-storage.world-original-20261015",
         "NR.native-storage.world-reviewed-original-20261015",
         "NR.native-storage.world-replay-20261015",
-        "NP.native-storage.v3-cpu-reader-controls-20261016"
+        "NP.native-storage.v3-cpu-reader-controls-20261016",
+        "COPYLIVE.cpu-readers-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -72492,7 +72493,9 @@
         "NP.native-storage.cpu-reader-controls-20261015",
         "NP.native-storage.cpu-reader-reviewed-controls-20261015",
         "NR.native-storage.v3-world-original-20261016",
-        "NP.native-storage.v3-cpu-reader-controls-20261016"
+        "NP.native-storage.v3-cpu-reader-controls-20261016",
+        "COPYLIVE.world-original-20261017",
+        "COPYLIVE.cpu-readers-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -75210,7 +75213,8 @@
         "DRAW02.cursor.quick-regression-20261016",
         "EGLDST.quick.regression-20261016",
         "DRAW02.storage-corrected.quick-20261016",
-        "GPUCOPYPLAN.quick-20261016"
+        "GPUCOPYPLAN.quick-20261016",
+        "COPYLIVE.portable-quick-20261017"
       ],
       "status": {
         "understanding": "scoped",
@@ -77114,7 +77118,8 @@
         "DRAW02.storage-corrected.portable-20261016",
         "DRAW02.storage-corrected.baseline-20261016",
         "DRAW02.storage-corrected.controls-20261016",
-        "GPUCOPYPLAN.storage-20261016"
+        "GPUCOPYPLAN.storage-20261016",
+        "COPYLIVE.portable-storage-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -80031,6 +80036,7 @@
         "protocols/include/mnm/menu_v2.h",
         "protocols/include/mnm/music_v1.h",
         "protocols/include/mnm/native_cpu_read_v1.h",
+        "protocols/include/mnm/native_gpu_copy_census_v1.h",
         "protocols/include/mnm/render_command_ring.h",
         "protocols/include/mnm/render_commands_v1.h",
         "protocols/include/mnm/render_commands_v2.h",
@@ -80068,6 +80074,8 @@
         "renderer/capture.cpp",
         "renderer/capture.hpp",
         "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
         "renderer/command_state.hpp",
         "renderer/commands.cpp",
         "renderer/commands.hpp",
@@ -80112,6 +80120,7 @@
         "runtime/render/failure_diagnostics.h",
         "runtime/render/flip_history.h",
         "runtime/render/frame_pixels.h",
+        "runtime/render/gpu_copy_census.h",
         "runtime/render/input_polling.h",
         "runtime/render/lock_aliases.h",
         "runtime/render/lock_dc.h",
@@ -80133,7 +80142,8 @@
         "tools/build-shadow-bridge.py"
       ],
       "evidence": [
-        "GPUCOPYPLAN.controls-20261016"
+        "GPUCOPYPLAN.controls-20261016",
+        "COPYLIVE.plan-20261017"
       ],
       "status": {
         "understanding": "scoped",
@@ -80143,7 +80153,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Actual facade/bridge/GL controls pass; no installed original-game caller/output, arbitrary raw CPU readers, range-key/stretch GPU copy, async World source readback, hardware/context-loss or complete renderer replacement claim. Scratch capacity remains a terminal admission limit. Portable222/323frame regressions are independent."
+        "All23final-source headless cases pass; a separate current-game caller/copy-destination journey validates867opaque disjoint GPU calls. Clipped/self/keyed GPU sources remain unexercised live. No arbitrary raw CPU reader, range-key/stretch GPU copy, async World source readback, hardware/context-loss or complete replacement claim. Scratch capacity remains a terminal admission limit."
       ]
     },
     {
@@ -80787,6 +80797,512 @@
         "Wizard ANI/movement/melee and original wizard AI/casting remain authored or unimplemented; this scope binds geometry only.",
         "The three-layer arena finale retains its previous native fixture; additional creature species and mixed-species creature melee remain pending.",
         "Full original map entities/topology, AI/search/speed/scheduling, physical pixels/audio and live replacement remain outside this native policy."
+      ]
+    },
+    {
+      "id": "NP.native-gpu-copy-live-validation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Caller-bound live GPU-copy observations and independent destinations",
+      "scope": "Versioned bounded scalar8192row PE32 census of actual owned GPU-copy callers/branches/generations/FIFO ranges and separately opt-in native-host COPY diagnostics for conservative resident World ancestry. Read source/before/completed destination without game CPU materialization; compute CPU expectations only after GPU completion and compare every destination word. Match emitted command identities to actual census calls; independently recompute retained source/before/actual witnesses in Python. Bound8192checks/32GiB diagnostic transfer and16retained pixel cases, refuse incomplete/overflowed/unclosed evidence. Real-game Save/Load/rebuild/Quit integration is distinct from original World, driver-policy, physical display, full presented-session parity and performance; unexercised clipped/self branches retain gaps.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-gpu-copy-live-validation.md",
+        "research/formats/native-gpu-copy-census-v1.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/live_command_renderer.cpp",
+        "renderer/CMakeLists.txt",
+        "renderer/commands.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "protocols/include/mnm/native_gpu_copy_census_v1.h",
+        "runtime/render/gpu_copy_census.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/bridge.c",
+        "tools/native_gpu_copy_diagnostics.py"
+      ],
+      "tests": [
+        "tests/native-gpu-copy-census-test.c",
+        "tests/render-copy-diagnostics-test.cpp",
+        "tools/test-native-campaign.py",
+        "tests/test-native-gpu-copy-diagnostics.py",
+        "tools/test-native-gpu-copy-live-controls.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/audio_cli.cpp",
+        "apps/qt-shell/audio_cli.hpp",
+        "apps/qt-shell/audio_session.cpp",
+        "apps/qt-shell/audio_session.hpp",
+        "apps/qt-shell/battle_result_widget.cpp",
+        "apps/qt-shell/battle_result_widget.hpp",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/campaign_storage_boundary_test.cpp",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "apps/qt-shell/character_screen_widget.cpp",
+        "apps/qt-shell/character_screen_widget.hpp",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/command_replay.cpp",
+        "apps/qt-shell/command_replay.hpp",
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "apps/qt-shell/engine_preferences_store.hpp",
+        "apps/qt-shell/frame_stream.cpp",
+        "apps/qt-shell/frame_stream.hpp",
+        "apps/qt-shell/game_process.hpp",
+        "apps/qt-shell/game_restart_action.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/grimoire_assets.cpp",
+        "apps/qt-shell/grimoire_assets.hpp",
+        "apps/qt-shell/grimoire_widget.cpp",
+        "apps/qt-shell/grimoire_widget.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/input_forwarder.hpp",
+        "apps/qt-shell/input_state.cpp",
+        "apps/qt-shell/input_state.hpp",
+        "apps/qt-shell/live_battle_menu_controller.cpp",
+        "apps/qt-shell/live_battle_menu_controller.hpp",
+        "apps/qt-shell/live_battle_menu_test.cpp",
+        "apps/qt-shell/live_campaign_defeat_controller.cpp",
+        "apps/qt-shell/live_campaign_defeat_controller.hpp",
+        "apps/qt-shell/live_campaign_defeat_test.cpp",
+        "apps/qt-shell/live_campaign_grimoire_test.cpp",
+        "apps/qt-shell/live_campaign_mini_test.cpp",
+        "apps/qt-shell/live_campaign_preferences_test.cpp",
+        "apps/qt-shell/live_campaign_quit_test.cpp",
+        "apps/qt-shell/live_character_controller.cpp",
+        "apps/qt-shell/live_character_controller.hpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_grimoire_controller.cpp",
+        "apps/qt-shell/live_grimoire_controller.hpp",
+        "apps/qt-shell/live_grimoire_test.cpp",
+        "apps/qt-shell/live_host_lobby_controller.cpp",
+        "apps/qt-shell/live_host_lobby_controller.hpp",
+        "apps/qt-shell/live_host_lobby_test.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/live_mini_menu_controller.hpp",
+        "apps/qt-shell/live_multiplayer_controller.cpp",
+        "apps/qt-shell/live_multiplayer_controller.hpp",
+        "apps/qt-shell/live_multiplayer_sessions_test.cpp",
+        "apps/qt-shell/live_multiplayer_test.cpp",
+        "apps/qt-shell/live_preferences_display_test.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.hpp",
+        "apps/qt-shell/live_preferences_menu_test.cpp",
+        "apps/qt-shell/live_preferences_restore_test.cpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "apps/qt-shell/live_realm_controller.cpp",
+        "apps/qt-shell/live_realm_controller.hpp",
+        "apps/qt-shell/live_region_enter_test.cpp",
+        "apps/qt-shell/live_region_entry_controller.cpp",
+        "apps/qt-shell/live_region_entry_controller.hpp",
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_result_menu_controller.cpp",
+        "apps/qt-shell/live_result_menu_controller.hpp",
+        "apps/qt-shell/live_session_selection_controller.cpp",
+        "apps/qt-shell/live_session_selection_controller.hpp",
+        "apps/qt-shell/live_spell_menu_controller.cpp",
+        "apps/qt-shell/live_spell_menu_controller.hpp",
+        "apps/qt-shell/live_storage_menu_controller.cpp",
+        "apps/qt-shell/live_storage_menu_controller.hpp",
+        "apps/qt-shell/live_storage_menu_test.cpp",
+        "apps/qt-shell/load_game_widget.cpp",
+        "apps/qt-shell/load_game_widget.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/main_menu_widget.cpp",
+        "apps/qt-shell/main_menu_widget.hpp",
+        "apps/qt-shell/map_selection_widget.cpp",
+        "apps/qt-shell/map_selection_widget.hpp",
+        "apps/qt-shell/media_broker.cpp",
+        "apps/qt-shell/media_broker.hpp",
+        "apps/qt-shell/media_cli.cpp",
+        "apps/qt-shell/media_cli.hpp",
+        "apps/qt-shell/menu_assets.cpp",
+        "apps/qt-shell/menu_assets.hpp",
+        "apps/qt-shell/menu_audio_controller.cpp",
+        "apps/qt-shell/menu_audio_controller.hpp",
+        "apps/qt-shell/menu_audio_preferences.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/menu_fonts.cpp",
+        "apps/qt-shell/menu_fonts.hpp",
+        "apps/qt-shell/menu_music_controller.cpp",
+        "apps/qt-shell/menu_music_controller.hpp",
+        "apps/qt-shell/menu_music_devices.hpp",
+        "apps/qt-shell/menu_music_output.cpp",
+        "apps/qt-shell/menu_preview.cpp",
+        "apps/qt-shell/menu_preview.hpp",
+        "apps/qt-shell/menu_sprites.cpp",
+        "apps/qt-shell/menu_sprites.hpp",
+        "apps/qt-shell/mini_menu_widget.cpp",
+        "apps/qt-shell/mini_menu_widget.hpp",
+        "apps/qt-shell/multiplayer_game_selection_widget.cpp",
+        "apps/qt-shell/multiplayer_game_selection_widget.hpp",
+        "apps/qt-shell/multiplayer_lobby_widget.cpp",
+        "apps/qt-shell/multiplayer_lobby_widget.hpp",
+        "apps/qt-shell/multiplayer_setup_widget.cpp",
+        "apps/qt-shell/multiplayer_setup_widget.hpp",
+        "apps/qt-shell/native_capture_request.hpp",
+        "apps/qt-shell/native_frame_trace.hpp",
+        "apps/qt-shell/native_image_encoder.hpp",
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/native_playback.hpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/native_worker_status_gate.hpp",
+        "apps/qt-shell/playback_audio_devices.cpp",
+        "apps/qt-shell/playback_audio_devices.hpp",
+        "apps/qt-shell/preferences_widget.cpp",
+        "apps/qt-shell/preferences_widget.hpp",
+        "apps/qt-shell/quick_battle_menu_widget.cpp",
+        "apps/qt-shell/quick_battle_menu_widget.hpp",
+        "apps/qt-shell/quick_battle_result_widget.cpp",
+        "apps/qt-shell/quick_battle_result_widget.hpp",
+        "apps/qt-shell/realm_viewer_assets.cpp",
+        "apps/qt-shell/realm_viewer_assets.hpp",
+        "apps/qt-shell/realm_viewer_visuals.cpp",
+        "apps/qt-shell/realm_viewer_visuals.hpp",
+        "apps/qt-shell/realm_viewer_widget.cpp",
+        "apps/qt-shell/realm_viewer_widget.hpp",
+        "apps/qt-shell/region_entry_widget.cpp",
+        "apps/qt-shell/region_entry_widget.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/render_deadline_probe.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/save_game_widget.cpp",
+        "apps/qt-shell/save_game_widget.hpp",
+        "apps/qt-shell/single_player_battle_widget.cpp",
+        "apps/qt-shell/single_player_battle_widget.hpp",
+        "apps/qt-shell/spell_research_widget.cpp",
+        "apps/qt-shell/spell_research_widget.hpp",
+        "apps/qt-shell/spellbox_widget.cpp",
+        "apps/qt-shell/spellbox_widget.hpp",
+        "apps/qt-shell/viewport_presentation.cpp",
+        "apps/qt-shell/viewport_presentation.hpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/fp.cpp",
+        "assets/fp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/profile.cpp",
+        "assets/profile.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "audio/buffers.cpp",
+        "audio/buffers.hpp",
+        "audio/mixer.cpp",
+        "audio/music_bridge.cpp",
+        "audio/music_bridge.hpp",
+        "audio/music_catalog.cpp",
+        "audio/music_catalog.hpp",
+        "audio/music_output.cpp",
+        "audio/music_service.cpp",
+        "audio/music_service.hpp",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp",
+        "audio/profile_source.cpp",
+        "audio/profile_source.hpp",
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp",
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp",
+        "audio/voices.cpp",
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp",
+        "audio/wave_source.cpp",
+        "audio/wave_source.hpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "protocols/generate.py",
+        "protocols/include/mnm/api_census_v1.h",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/canvas_producers_v4.h",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "protocols/include/mnm/drawing_census_bindings_v1.h",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "protocols/include/mnm/drawing_input_point_v1.h",
+        "protocols/include/mnm/drawing_source_point_v1.h",
+        "protocols/include/mnm/drawing_storage_point_v1.h",
+        "protocols/include/mnm/drawing_storage_point_v2.h",
+        "protocols/include/mnm/drawing_worker_context_v1.h",
+        "protocols/include/mnm/engine_cadence_queue_point_v1.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v19.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v20.h",
+        "protocols/include/mnm/menu_v21.h",
+        "protocols/include/mnm/menu_v22.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/music_v1.h",
+        "protocols/include/mnm/native_cpu_read_v1.h",
+        "protocols/include/mnm/native_gpu_copy_plan_v1.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/render_stream_v5.h",
+        "protocols/include/mnm/resident_frame_budget.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v1.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "protocols/include/mnm/world_continuous_v6.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "protocols/schemas/api-census-v1.json",
+        "protocols/schemas/frame-v1.json",
+        "protocols/schemas/input-v1.json",
+        "protocols/schemas/media-v1.json",
+        "protocols/schemas/music-v1.json",
+        "protocols/schemas/render_commands-v1.json",
+        "protocols/schemas/render_commands-v2.json",
+        "protocols/schemas/render_commands-v3.json",
+        "protocols/schemas/render_control-v1.json",
+        "protocols/schemas/render_stream-v2.json",
+        "reconstruction/audio/attenuation_map.cpp",
+        "reconstruction/audio/attenuation_map.hpp",
+        "reconstruction/audio/camera_projection.cpp",
+        "reconstruction/audio/camera_projection.hpp",
+        "reconstruction/audio/catalog_preflight.cpp",
+        "reconstruction/audio/catalog_preflight.hpp",
+        "reconstruction/audio/cd_stop_controls.cpp",
+        "reconstruction/audio/cd_stop_controls.hpp",
+        "reconstruction/audio/cd_track_controls.cpp",
+        "reconstruction/audio/cd_track_controls.hpp",
+        "reconstruction/audio/dsound_setup.cpp",
+        "reconstruction/audio/dsound_setup.hpp",
+        "reconstruction/audio/manager_configuration.cpp",
+        "reconstruction/audio/manager_configuration.hpp",
+        "reconstruction/audio/manager_contract.cpp",
+        "reconstruction/audio/manager_contract.hpp",
+        "reconstruction/audio/manager_lifecycle.cpp",
+        "reconstruction/audio/manager_lifecycle.hpp",
+        "reconstruction/audio/native_manager_backend.cpp",
+        "reconstruction/audio/native_manager_backend.hpp",
+        "reconstruction/audio/positional_audio.cpp",
+        "reconstruction/audio/positional_audio.hpp",
+        "reconstruction/audio/source_cache.cpp",
+        "reconstruction/audio/source_cache.hpp",
+        "reconstruction/audio/voice_admission.cpp",
+        "reconstruction/audio/voice_admission.hpp",
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp",
+        "reconstruction/audio/voice_lifetime.cpp",
+        "reconstruction/audio/voice_lifetime.hpp",
+        "reconstruction/audio/voice_scheduler.cpp",
+        "reconstruction/audio/voice_scheduler.hpp",
+        "reconstruction/rendering/fade_span.hpp",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/audio/protocol.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/initial_history.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_pressure.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/copy_timing.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/gpu_copy_commands.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostic_worker.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/precise_clock.h",
+        "runtime/render/session_emission.h",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/shadow/win32_min.h",
+        "tests/render-command-consumer-test.cpp",
+        "tests/render-resident-world-test.cpp",
+        "tools/build-native-draw.py",
+        "tools/build-render-bridge.py",
+        "tools/build-shadow-bridge.py",
+        "tools/campaign_storage.py",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/menu-game-runner.py",
+        "tools/native_pixel_counters.py",
+        "tools/prepare-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "tools/run-qt-shell.sh"
+      ],
+      "evidence": [
+        "COPYLIVE.controls-20261017",
+        "COPYLIVE.campaign-20261017",
+        "COPYLIVE.provenance-20261017"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "The live journey exercises867opaque disjoint GPU calls at3post-call PCs and0clipped/self/keyed GPU calls. The latter branches remain headless-only evidence. Source/before GPU diagnostics validate copy transforms; four selected original World checkpoints do not establish complete original/presented-session, restored simulation, sustained performance or physical loss equivalence. Raw CPU readers, range keys/stretch and resource-capacity refusals remain separate."
       ]
     }
   ],
@@ -162414,6 +162930,441 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "COPYLIVE.controls-20261017",
+      "kind": "native_integration",
+      "record": "research/runtime/native-gpu-copy-live-controls-20261017.json",
+      "sha256": "1eb9eb19cc19f87408f10939f95ca570fc9d501cd1b3fb63a04c823f1d516546",
+      "scope": "Actual bounded census/counter exhaustion, native GL independent copy/incorrect output/overwrite refusal, and8external witness/caller/incomplete-record controls. Authored inputs only.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/checks/native_gl/success",
+          "equals": true
+        },
+        {
+          "pointer": "/checks/native_gl/diagnostic_readbacks",
+          "equals": 6
+        },
+        {
+          "pointer": "/checks/witness_refusals/tests",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "COPYLIVE.campaign-20261017",
+      "kind": "live_observation",
+      "record": "research/runtime/native-gpu-copy-live-campaign-20261017.json",
+      "sha256": "9e01c604ffdf5c6aefb8ec893273343bd0eb76233c3cde53bb6214837f23bfe2",
+      "scope": "Current isolated original-engine native V3 Save/Load/rebuild/Quit:867opaque disjoint GPU calls at3engine PCs matched to1072exact CPU-checked native COPY destinations/283014400words;16retained Python cases. Clipped/self/keyed GPU calls0, not live validated.419balanced Worlds,0ordinary World readbacks,2explicit CPU reads;3216host diagnostic reads separate. No original World/display/performance equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/world_canvas_transition_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gpu_copy_validation/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gpu_copy_validation/calls",
+          "equals": 867
+        },
+        {
+          "pointer": "/gpu_copy_validation/matched_calls",
+          "equals": 867
+        },
+        {
+          "pointer": "/gpu_copy_validation/clipped_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/gpu_copy_validation/self_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/gpu_copy_validation/keyed_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/gpu_copy_validation/failed_results",
+          "equals": 0
+        },
+        {
+          "pointer": "/gpu_copy_validation/retained_python_checks",
+          "equals": 16
+        },
+        {
+          "pointer": "/gpu_copy_validation/diagnostics/copies_checked",
+          "equals": 1072
+        },
+        {
+          "pointer": "/gpu_copy_validation/diagnostics/pixels_compared",
+          "equals": 283014400
+        },
+        {
+          "pointer": "/gpu_copy_validation/diagnostics/ended",
+          "equals": true
+        },
+        {
+          "pointer": "/gpu_copy_validation/diagnostics/truncated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "COPYLIVE.plan-20261017",
+      "kind": "native_integration",
+      "record": "research/runtime/native-gpu-copy-plan-controls-20261017.json",
+      "sha256": "e002f3961aa415d2fa2e7587769a8d7a65cf1f5d20b71eadb4382393cd16c602",
+      "scope": "Fresh final-source rerun of all23actual facade/production bridge GL cases,25prepublication refusals,3publication failures and legacy/consumer compatibility after observational census integration. Headless owned policy; no clipped/self game caller claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/command_guards/prepublication_refusals",
+          "equals": 25
+        },
+        {
+          "pointer": "/command_guards/publication_failures",
+          "equals": 3
+        },
+        {
+          "pointer": "/command_guards/source_frozen_once",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_gpu_copy/success",
+          "equals": true
+        },
+        {
+          "pointer": "/compatibility/render-command-consumer-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/compatibility/render-resident-world-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/1/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/2/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/3/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/4/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/5/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/6/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/7/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/8/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/9/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/10/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/11/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/12/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/13/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/14/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/15/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/16/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/17/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/18/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/19/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/20/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/21/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/22/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "COPYLIVE.world-original-20261017",
+      "kind": "isolated_original",
+      "scope": "Fresh current-game captured generations38/100/227/350,1920000WORD comparisons with0mismatches and two authored original baselines; complete prefix replay, CPU reader/sequence controls and0remaining surfaces. Independent unchanged pinned 32-bit original raster/primitive execution at 4 captured V3 storage/rebuild World checkpoints; 1920000 WORD comparisons, zero mismatches, plus two authored original baseline variants. Oracle pixels never enter native rendering. Selected World raster only; no full presented-session, general baseline independence or restored simulation equivalence.",
+      "record": "research/runtime/native-gpu-copy-live-storage-original-20261017.json",
+      "sha256": "882764d4986c94d68ef127af7ad76c286bab689f0c79aef61d9da9a5b09c5523",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_reader_controls/success",
+          "equals": true
+        },
+        {
+          "pointer": "/replay/remaining_surfaces",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_binary_sha256"
+    },
+    {
+      "id": "COPYLIVE.cpu-readers-20261017",
+      "kind": "native_integration",
+      "scope": "Fresh current-game captured generations38/100/227/350,1920000WORD comparisons with0mismatches and two authored original baselines; complete prefix replay, CPU reader/sequence controls and0remaining surfaces. Current captured V3 World replay plus actual owned CPU/GPU reader and sequence controls, zero remaining surfaces. Native integration portion of the same source-bound record; original comparison has its own evidence ID.",
+      "record": "research/runtime/native-gpu-copy-live-storage-original-20261017.json",
+      "sha256": "882764d4986c94d68ef127af7ad76c286bab689f0c79aef61d9da9a5b09c5523",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_reader_controls/success",
+          "equals": true
+        },
+        {
+          "pointer": "/replay/remaining_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "COPYLIVE.portable-storage-20261017",
+      "kind": "native_integration",
+      "record": "research/runtime/native-gpu-copy-live-portable-storage-20261017.json",
+      "sha256": "69b124f660363d12a5fb5ae0b09807be6ae1d7b8b5765c8f4af4cd96a5d9dc29",
+      "scope": "Fresh rebuilt default-mode renderer/presenter regression with diagnostics disabled. Independent complete portable pixel regression after owned GPU-copy plan changes. Public recorded-action journey adapter on all222corrected-profile frames; exact source/default/upload witnesses and full native GPU/X11 comparisons pass. Retained driver-policy reference only; generic acceptance remains false. The offline compositor is separate from the new live bridge route; this is not new installed-game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/reference_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/cases/0/result/frames",
+          "equals": 222
+        },
+        {
+          "pointer": "/cases/0/result/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/0/result/witness_frames",
+          "equals": 222
+        },
+        {
+          "pointer": "/cases/0/result/witness_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/0/result/reference_profile/name",
+          "equals": "stale_upload_crop"
+        }
+      ]
+    },
+    {
+      "id": "COPYLIVE.portable-quick-20261017",
+      "kind": "native_integration",
+      "record": "research/runtime/native-gpu-copy-live-portable-quick-20261017.json",
+      "sha256": "f064452c41f85c1460cda67e356eb43008ff3c24f087cecdd8e095b5ae8391e3",
+      "scope": "Fresh rebuilt default-mode renderer/presenter regression with diagnostics disabled. Independent complete portable pixel regression after owned GPU-copy plan changes. All323unchanged Quick Battle native GPU/X11 frames pass after multi-profile reader changes; bounded existing headless integration only. The offline compositor is separate from the new live bridge route; this is not new installed-game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/frames",
+          "equals": 323
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "COPYLIVE.provenance-20261017",
+      "kind": "static",
+      "record": "research/runtime/native-gpu-copy-live-provenance-20261017.json",
+      "sha256": "e87a25d92f53a783c19447e3918713f4408963126c5fbb0a8bc5283ee00d3097",
+      "scope": "Static identity/retention accounting for the already completed live experiment. No new engine execution or original equivalence claim.",
+      "sources_pointer": "/sources",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/artifact_files_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 867
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -178737,7 +179688,8 @@
         "NR.native-storage.world-original-20261015",
         "NR.native-storage.world-reviewed-original-20261015",
         "NR.native-storage.world-replay-20261015",
-        "NP.native-storage.v3-cpu-reader-controls-20261016"
+        "NP.native-storage.v3-cpu-reader-controls-20261016",
+        "COPYLIVE.cpu-readers-20261017"
       ]
     },
     {
@@ -178759,7 +179711,9 @@
         "NP.native-storage.cpu-reader-controls-20261015",
         "NP.native-storage.cpu-reader-reviewed-controls-20261015",
         "NR.native-storage.v3-world-original-20261016",
-        "NP.native-storage.v3-cpu-reader-controls-20261016"
+        "NP.native-storage.v3-cpu-reader-controls-20261016",
+        "COPYLIVE.world-original-20261017",
+        "COPYLIVE.cpu-readers-20261017"
       ]
     },
     {
@@ -179135,7 +180089,8 @@
         "DRAW02.cursor.quick-regression-20261016",
         "EGLDST.quick.regression-20261016",
         "DRAW02.storage-corrected.quick-20261016",
-        "GPUCOPYPLAN.quick-20261016"
+        "GPUCOPYPLAN.quick-20261016",
+        "COPYLIVE.portable-quick-20261017"
       ]
     },
     {
@@ -179695,7 +180650,8 @@
       "evidence": [
         "DRAW02.storage-corrected.portable-20261016",
         "DRAW02.storage-corrected.controls-20261016",
-        "GPUCOPYPLAN.storage-20261016"
+        "GPUCOPYPLAN.storage-20261016",
+        "COPYLIVE.portable-storage-20261017"
       ]
     },
     {
@@ -179961,7 +180917,8 @@
         "tests/native-gpu-copy-commands-test.c"
       ],
       "evidence": [
-        "GPUCOPYPLAN.controls-20261016"
+        "GPUCOPYPLAN.controls-20261016",
+        "COPYLIVE.plan-20261017"
       ]
     },
     {
@@ -179979,6 +180936,38 @@
       ],
       "evidence": [
         "ACTOR01.native-window"
+      ]
+    },
+    {
+      "id": "NP.native-gpu-copy-live-validation.controls",
+      "scope": "Actual scalar census overflow/counter controls and native GL World-ancestry copy diagnostics, default no-readback path, keyed complete destinations and immutable report admission. No original game execution.",
+      "level": "headless",
+      "behaviors": [
+        "NP.native-gpu-copy-live-validation"
+      ],
+      "tests": [
+        "tests/native-gpu-copy-census-test.c",
+        "tests/render-copy-diagnostics-test.cpp",
+        "tests/test-native-gpu-copy-diagnostics.py",
+        "tools/test-native-gpu-copy-live-controls.py"
+      ],
+      "evidence": [
+        "COPYLIVE.controls-20261017"
+      ]
+    },
+    {
+      "id": "NP.native-gpu-copy-live-validation.campaign",
+      "scope": "Current installed NoCD native resident World with all selected pixel producers, diagnostic native copy source/before/after capture, actual caller/sequence linking, separate retained Python exact destination replay, Save/Load/display rebuild/Quit and resource/no-forward checks. Unexercised clipped/self branches, original World, physical presentation and performance remain separate.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.native-gpu-copy-live-validation"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/native_gpu_copy_diagnostics.py"
+      ],
+      "evidence": [
+        "COPYLIVE.campaign-20261017"
       ]
     }
   ],
@@ -180596,8 +181585,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-actor-profiles-final-20261016.json",
-    "sha256": "3f630db87cd4475b60779b025e5725c1caca62f775b5179016ca1f4a276c1594"
+    "path": "research/runtime/coverage/source-index-gpu-copy-live-final-20261017.json",
+    "sha256": "b682165dc5430b6ff80f2dfb810dd9361aa6cf03f00f2b99c20e11bb0c79f885"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

@@ -13494,3 +13494,66 @@ Shared source changes leave affected earlier evidence historical/stale unless a
 new scoped result explicitly renews it. The incoming bebe9aaa..62581068 history
 review closes two missing c7eb4d7e intermediate metadata receipts separately from
 this uncommitted implementation; it asserts no historical gate pass.
+
+### Current-game GPU-copy caller and destination validation — 2026-10-17 UTC
+
+`NP.native-gpu-copy-live-validation` adds an opt-in bounded scalar PE32 census and
+native-host copy observer. Ordinary launches enable neither. The observer captures
+GPU source/before/completed destination, computes an independent CPU expectation
+only after execution, and compares every destination word. No diagnostic pixels
+feed rendering, CPU reply publication or facade history. The census records actual
+caller/module identity, branch flags, generations, resource IDs and FIFO ranges;
+incomplete, dropped, overflowed or unclosed evidence refuses validation.
+
+A current NoCD native V3 journey completes Save/Load, both display rebuilds,
+changed-canvas Main Load and original normal Quit. All867admitted GPU-copy calls
+match native COPY ranges with zero errors/mismatches:443at return PC0x58c05d
+(including4bootstraps),9at0x58c488 and415at0x58c5be. These belong to the already
+registered whole opaque/rectangle wrappers0x58bf40/0x58c360/0x58c4a0. No new
+original semantic scope or unknown-function boundary is inferred. Clipped,
+self/alias and keyed GPU calls are0; their live caller gap remains open. No new
+unsupported reader or graphics failure was reproduced and no admission was relaxed.
+
+The host validates1072conservative World-ancestry COPY destinations,283014400words,
+with0differences. All16retained source/before/actual/expected cases also pass a
+separate Python recomputation over5288000destination words.3216explicit diagnostic
+host readbacks transfer4209452800bytes; ordinary World/native/RGBA returns remain0,
+and2producer CPU materializations remain separate. All419World completion/import/
+verified-return counts balance, pending work is0, normal retirement is acknowledged,
+native END requires command surfaces/palettes retired, and private Wine stops.
+These instrumented software checks do not establish sustained frame-rate acceptance.
+
+Fresh unchanged-original32-bit raster comparison passes all4captured checkpoints
+(generations38/100/227/350),1920000RGB565words and both authored original baseline
+variants, with0mismatches. Complete captured source-prefix replay, CPU reader and
+sequence controls pass with0remaining surfaces. This is selected World evidence,
+not general baseline independence, restored simulation or complete presented output.
+Original manifests verify2927files before/after. Fresh rebuilt default-mode portable
+comparisons also pass all222corrected storage frames/exact witnesses and323Quick
+Battle frames; final RGB tolerance1/alpha exclusion and complete-acceptance false
+remain unchanged. The old238frame baseline was not rerun or relabeled.
+
+Focused census/counter-exhaustion controls, actual GL keyed/full-destination and
+wrong-output/overwrite controls,8external witness/caller refusals, and all23current
+facade/bridge copy cases plus25plan refusals/3publication failures and compatibility
+checks pass. The first launch failed before game entry for a missing private
+launcher manifest; its verified replacement and earlier build-path/compiler setup
+attempts remain retained without passing credit. Full raw acquisition fingerprints
+are preserved; scoped source selections exclude unrelated native skirmish/game
+policy inventories while retaining all rendering/host/runtime/launcher provenance.
+
+Reviewed all4commits and6parent transitions frombebe9aaa through62581068, including
+both merge parents. Seven missing c7eb4d7e ledger/register/context receipts receive
+explicit pending retrospective accounting; unchanged historical statuses are not
+new validation. Source census, exact staged reviews and generated summary accompany
+this change. Generic14journey/21operation, arbitrary raw readers, range-key/stretch,
+async World source readback, physical loss/restart, hardware performance and complete
+native replacement remain separate. See
+[live copy evidence and boundaries](native-gpu-copy-live-validation.md).
+
+The normal commit hook passed against62581068, then Git refused its stale HEAD
+update when concurrent actor-profile commitc3d6055f landed. Reviewed62581068..c3d6055f
+(1commit/1parent) with all exact receipts present. All1240declared rendering/host/
+runtime/launcher sources are unchanged; the original acquisition records and
+execution claims are preserved. Rebased source/census/review accounting adds no
+new execution or native actor-profile validation credit.

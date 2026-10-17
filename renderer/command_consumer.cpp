@@ -1,6 +1,7 @@
 #include "commands.hpp"
 #include "command_state.hpp"
 #include "native_frame_recipe.hpp"
+#include "command_copy_diagnostics.hpp"
 #include <chrono>
 #include "capture.hpp"
 #include "../protocols/include/mnm/render_stream_v5.h"
@@ -179,8 +180,12 @@ struct CommandConsumer::Impl {
         switch(c.operation){
         case 1:handles.emplace(w[0],renderer.create(c.image,c.format));bits.emplace(w[0],c.format.bits);if(recipe)measure(0,[&]{recipe->record(c,handles);});break;
         case 2:renderer.update(handles.at(w[0]),int(w[1]),int(w[2]),c.image);break;
-        case 3:renderer.copy(handles.at(w[0]),handles.at(w[1]),{int(w[2]),int(w[3]),int(w[4]),int(w[5])},int(w[6]),int(w[7]),
-                             w[8]?std::optional<std::uint32_t>(w[9]):std::nullopt);break;
+        case 3:{
+            const bool check=options.copyDiagnostics && options.copyDiagnostics->before(c,renderer,handles.at(w[0]),handles.at(w[1]));
+            renderer.copy(handles.at(w[0]),handles.at(w[1]),{int(w[2]),int(w[3]),int(w[4]),int(w[5])},int(w[6]),int(w[7]),
+                          w[8]?std::optional<std::uint32_t>(w[9]):std::nullopt);
+            if(check)options.copyDiagnostics->after(c,renderer,handles.at(w[1]));
+            break;}
         case 4:renderer.setPalette(handles.at(w[0]),w[1],c.colors);break;
         case 5:
             if(options.diagnostics==CommandDiagnostics::Verify){require(encodeNative(renderer.read(handles.at(w[0])),bits.at(w[0]))==c.expected,"Original native pixels disagree with command replay");++output.checks;}
@@ -243,6 +248,7 @@ struct CommandConsumer::Impl {
             ++output.residentWorldImports;break;
         default:throw std::runtime_error("Unsupported replay command");
         }
+        if(options.copyDiagnostics)options.copyDiagnostics->committed(c);
         ++output.commands;refresh();
     }
 };

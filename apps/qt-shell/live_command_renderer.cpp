@@ -1,5 +1,6 @@
 #include "live_command_renderer.hpp"
 #include "gl_viewport.hpp"
+#include "../../renderer/command_copy_diagnostics.hpp"
 #include "../../protocols/include/mnm/render_stream_v5.h"
 #include <stdexcept>
 #include <QSaveFile>
@@ -34,13 +35,16 @@ bool LiveCommandRenderer::poll(quint32 budget){
         if(!budget || budget>MNM_RENDER_COMMANDS_V1_POLL_BYTES)throw std::runtime_error("Invalid command poll budget");
         if(!consumer_){
             renderer_=std::make_unique<mnm::render::GlBlitter>(target_.context(),target_.offscreen);
+            std::shared_ptr<mnm::render::CommandCopyDiagnostics> copyDiagnostics;
+            const auto diagnosticPath=qEnvironmentVariable("MNM_NATIVE_COPY_DIAGNOSTICS");
+            if(!diagnosticPath.isEmpty())copyDiagnostics=std::make_shared<mnm::render::CommandCopyDiagnostics>(diagnosticPath);
             consumer_=std::make_unique<mnm::render::CommandConsumer>(*renderer_,[this](auto frame){
                 if(presentationSuspended_){deferredPresentation_=std::move(frame);return;}
                 // setGpuFrame queues an update. Qt coalesces historical frames
                 // and composes the latest lease after this bounded poll yields.
                 target_.present(std::move(frame));
                 if(framePresented)framePresented();
-            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()>=2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld,prepareResidentFrames,reuseSealedUi,[this](const auto& command,const auto& image){publishCpuRead(command,image);},cpuReplySession_});
+            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()>=2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld,prepareResidentFrames,reuseSealedUi,[this](const auto& command,const auto& image){publishCpuRead(command,image);},cpuReplySession_,copyDiagnostics});
         }
         // Retain the finite byte budget and the32 ordinary-command budget.
         // A split UPDATE of <=16,384 pixels costs one eighth of an ordinary

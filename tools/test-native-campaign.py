@@ -388,6 +388,7 @@ def main():
     parser.add_argument('--resident-world',action='store_true',help='Require GPU-resident World delivery and ordered public UI composition with no pixel return')
     parser.add_argument('--profile-resident',action='store_true',help='Opt-in bounded CPU/GPU stage and original pacing diagnostics; cadence is instrumented')
     parser.add_argument('--capture-resident',action='store_true',help='Retain at most8192 ordered source-only World blocks/16GiB for offline resident replay')
+    parser.add_argument('--gpu-copy-diagnostics',action='store_true',help='Bounded native-host copy input/output readbacks and independent CPU destination checks; resident World only')
     parser.add_argument('--native-draw',action='store_true',help='Require owned graphics services with real DirectDraw disabled')
     parser.add_argument('--native-voices',action='store_true',help='Require native voice selection, successful upload/play and output retirement')
     parser.add_argument('--default-audio',action='store_true',help='Verify default native audio without an explicit shell audio flag; requires normal Quit')
@@ -488,6 +489,7 @@ def main():
         parser.error('Silent-start proof requires all native audio/media/music paths and normal Quit')
     if not 30 <= args.timeout <= 600:
         parser.error('--timeout must be between 30 and 600')
+    if args.gpu_copy_diagnostics and not args.resident_world:parser.error('Copy diagnostics require resident World')
     if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
     if args.stress_seconds and not args.crowded_case and not 10 <= args.stress_seconds <= 120:parser.error('--stress-seconds must be 0 or 10..120')
     if not 1 <= args.min_fps <= 120:parser.error('--min-fps must be 1..120')
@@ -498,6 +500,7 @@ def main():
     print('Campaign test evidence: ' + str(out), flush=True)
     report = {'schema': 1, 'success': False, 'status': 'running', 'stage': 'build',
               'command_wire_version':args.command_wire_version,
+              'gpu_copy_diagnostics_required':args.gpu_copy_diagnostics,
               'intro_completion_required':args.require_intro_completion,
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
@@ -532,6 +535,7 @@ def main():
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign','--behavior','NP.native-history-reader-routing','--scenario','NP.native-history-reader-routing.campaign','--behavior','NP.explicit-native-cpu-materialization','--scenario','NP.explicit-native-cpu-materialization.campaign'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.pixel-route-scenarios','--scenario','NP.pixel-route-scenarios.campaign'])
+        if args.gpu_copy_diagnostics:declaration_command.extend(['--behavior','NP.native-gpu-copy-live-validation','--scenario','NP.native-gpu-copy-live-validation.campaign'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
         if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
         if args.display_while_pending:declaration_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.public'])
@@ -596,6 +600,9 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    if args.gpu_copy_diagnostics:
+        env['MNM_NATIVE_COPY_DIAGNOSTICS']=str(out/'copy-diagnostics')
+        report['sources']['tools/native_gpu_copy_diagnostics.py']=sha(ROOT/'tools/native_gpu_copy_diagnostics.py')
     env['MNM_RENDER_COMMAND_WIRE_VERSION']=str(args.command_wire_version)
     env['MNM_CAMPAIGN_STORAGE']='1' if args.save_load else '0'
     env['MNM_CAMPAIGN_RECREATE_WORLD']='1' if args.recreate_world else '0'
@@ -804,6 +811,9 @@ def main():
             if flow.get('success') is not True:raise ValueError(flow.get('error') or 'Campaign flow failed')
             if args.hardware and ('NVIDIA' not in flow.get('renderer','') or any(x in flow['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Actual Qt renderer did not retain NVIDIA hardware identity')
             if args.save_load:validate_storage_flow(flow)
+            if args.gpu_copy_diagnostics:
+                from native_gpu_copy_diagnostics import validate as validate_gpu_copies
+                report['gpu_copy_validation']=validate_gpu_copies(roots[0],out/'copy-diagnostics')
             if not (args.save_load or args.healing_case or args.crowded_case):validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
             if args.stress_seconds and not (args.healing_case or args.crowded_case):
                 for cycle in range(args.menu_cycles+1):

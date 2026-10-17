@@ -91,8 +91,10 @@ sources, including single-key overlap. It retains successful pieces before a
 later source-bounds error. All 23 actual facade/bridge/GL controls pass, with
 untouched stale CPU storage and temporary resource cleanup. The legacy
 `NativeDrawGpuCopyV1` retains its strict full opaque bootstrap role. See
-[copy-plan evidence and boundaries](native-gpu-copy-plan.md). Installed-game
-caller/output validation remains open. Partial writes cannot establish previously
+[copy-plan evidence and boundaries](native-gpu-copy-plan.md). The
+[current live journey](native-gpu-copy-live-validation.md) validates 867 opaque
+disjoint GPU calls at three engine PCs and independently checks their complete
+destinations; clipped/self/keyed GPU callers remain unexercised live. Partial writes cannot establish previously
 unknown/full CPU history. Arbitrary pointer reads outside selected adapters are
 not intercepted.
 

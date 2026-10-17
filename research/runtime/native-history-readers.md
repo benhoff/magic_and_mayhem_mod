@@ -105,8 +105,10 @@ comparison establishes whole-session original pixel equivalence, arbitrary CPU
 reads, physical driver-loss recovery or hardware performance. Clipped/self GPU
 source copies now pass 23 actual facade/bridge/GL controls, including poisoned CPU
 backings and complete scratch retirement. This is headless owned-policy evidence;
-installed-game callers and other stale destination-dependent readers still need
-their own matching-history validation.
+the [current live follow-up](native-gpu-copy-live-validation.md) validates 867
+opaque disjoint GPU calls and their native destinations at three engine PCs.
+Clipped/self/keyed GPU calls remain unexercised live, and other stale
+destination-dependent readers still need their own matching-history validation.
 
 ## Explicit CPU readers
 
