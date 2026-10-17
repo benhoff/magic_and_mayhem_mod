@@ -13731,3 +13731,37 @@ limitations remain unchanged. No window or original/live milestone is promoted.
 original-campaign comparison or live-replacement milestone is claimed. See
 [semantics, acceptance and gaps](native-campaign-graph.md) and
 [the format](../formats/native-campaign-graph.md).
+
+
+## 2026-10-17 — Longer camera journey: Hermes readiness repair
+
+Current master reproduces the post-Mini30second camera assertion failure despite
+all8rotation inputs reaching active input. Native screenshots identify an
+original Hermes modal while World rendering continues. Bounded physical input
+now guards stress and the final-readiness/Escape race, requires2quiet captures,
+four fresh settled turns/all3selected camera bodies after interruption, and
+matches original Mini callback sequence/Cancel-Quit arguments. Diagnostics do
+not shorten active stress. No renderer, forwarding, engine-state or balance fix.
+
+[Functional report](native-camera-resume-bound-20261017.json) independently
+rechecks GUI/worker actual-game witnesses: both phases exceed30active seconds,
+all3camera bodies execute over4turns, witnessed Hermes is dismissed, original
+Quit No/resume/Yes/Continue/Main Quit completes, and World balances511/511/511
+and466/466/466. Independent GPU checks compare5669/5354destinations and
+1,382,078,400/1,303,116,800words, plus16retained Python cases each. Closed active
+copy counts11252/10499 exclude7/10retired callbacks; no active misses, failures,
+pixel forwards/history refusal or destination mismatches. Nineteen of43optional
+routes execute; clipped/self/keyed GPU-source and CPU-keyed pixel gaps remain.
+All2927original files verify before/after, sources stay unchanged, private Wine
+stop/wait succeeds, and36synthetic camera/transition/route/campaign controls pass.
+
+**Full campaign acceptance remains failed.** Three repaired acquisitions fail
+the unchanged5FPS software floor at4.9904,4.7642and4.7611FPS. Functional reanalysis
+does not override these results or grant hardware/performance, original World
+pixels, whole-session parity, unknown-dialogue or complete replacement proof.
+[Findings and reproduction](native-camera-resume.md) and
+[provenance](native-camera-resume-provenance-20261017.json) retain every attempt,
+raw fingerprints, native screenshots, input traces and pilot sources. Scoped
+camera/copy claims exclude unrelated native-game/raster inventory; raw reports
+are unchanged. Exact committed-history reviews a904544f..9f6f5f80 and9f6f5f80..9a24c154 have0unresolved
+receipts and does not assert a historical gate pass.

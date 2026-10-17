@@ -26,6 +26,7 @@ from native_audio_launch import validate_activity as validate_audio_activity, va
 from native_pixel_counters import read_counters, validate_builds
 from campaign_render_oracle import oracle, validate_summon_capture
 from pixel_route_requirements import ALL_ROUTES, validate_routes
+from campaign_camera_dialogue import validate_camera_dialogue, validate_camera_mini
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = ['main', 'region', 'campaign-handoff', 'gameplay', 'campaign-menu', 'gameplay-resumed']
@@ -40,6 +41,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py', 'tools/campaign_render_oracle.py', 'tools/pixel_route_requirements.py', 'tools/campaign_pixel_routes.py']
 SOURCES += ['tools/campaign_storage.py', 'tools/menu-storage-input.py', 'tools/menu_save_store.py', 'apps/qt-shell/campaign_storage_test.cpp', 'tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 SOURCES += ['tools/directplay_dx6_launch.py']
+SOURCES += ['tools/campaign_camera_dialogue.py', 'tools/campaign-camera-menu-input.py']
 
 
 def linked_compiler_sources(build, root):
@@ -535,6 +537,7 @@ def main():
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign','--behavior','NP.native-history-reader-routing','--scenario','NP.native-history-reader-routing.campaign','--behavior','NP.explicit-native-cpu-materialization','--scenario','NP.explicit-native-cpu-materialization.campaign'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.pixel-route-scenarios','--scenario','NP.pixel-route-scenarios.campaign'])
+        if args.pixel_camera_scenarios:declaration_command.extend(['--behavior','HOST.camera-dialogue-readiness','--scenario','HOST.camera-dialogue-readiness.campaign'])
         if args.gpu_copy_diagnostics:declaration_command.extend(['--behavior','NP.native-gpu-copy-live-validation','--scenario','NP.native-gpu-copy-live-validation.campaign'])
         if args.gpu_copy_diagnostics:declaration_command.extend(['--behavior','NP.native-copy-route-census','--scenario','NP.native-copy-route-census.campaign'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
@@ -701,7 +704,7 @@ def main():
             exit_code = 0
         else:
             report['stage'] = 'runtime-prerequisites'
-            for tool in ['wine', 'wineserver'] + (['tesseract'] if args.require_casting_combat else []) + ([] if args.display or args.hardware else ['Xvfb']) + (['nvidia-smi','glxinfo'] if args.hardware else []):
+            for tool in ['wine', 'wineserver'] + (['tesseract'] if args.require_casting_combat or args.pixel_camera_scenarios else []) + ([] if args.display or args.hardware else ['Xvfb']) + (['nvidia-smi','glxinfo'] if args.hardware else []):
                 if not shutil.which(tool):
                     report['status'] = 'blocked'
                     raise RuntimeError('Missing runtime prerequisite: ' + tool)
@@ -823,7 +826,22 @@ def main():
                 for cycle in range(args.menu_cycles+1):
                     inputs=json.loads((out/f'input-{cycle}.json').read_text())
                     if inputs.get('success') is not True or inputs['seconds']<args.stress_seconds or len(inputs['actions'])<20:raise RuntimeError('Incomplete gameplay input sequence')
+                    if args.pixel_camera_scenarios and not (args.require_casting_combat and cycle==0):
+                        from campaign_pixel_routes import validate_camera_progress
+                        readiness=validate_camera_dialogue(inputs,out,args.resident_world)
+                        overhead=inputs['camera_dialogue']['overhead_seconds']
+                        if not isinstance(overhead,(int,float)) or overhead<0 or inputs['seconds']-overhead<args.stress_seconds:
+                            raise ValueError('Camera diagnostics shortened the required active stress')
+                        report.setdefault('camera_readiness',[]).append(dict(cycle=cycle,dialogue=readiness,
+                            camera=validate_camera_progress(inputs),active_seconds=inputs['seconds']-overhead))
                 report['gameplay_input_exercised']=True
+            if args.pixel_camera_scenarios and not (args.save_load or args.healing_case or args.crowded_case):
+                report['camera_mini_readiness']=[]
+                for index in range(args.menu_cycles+(2 if args.normal_quit else 0)):
+                    inputs=json.loads((out/f'mini-input-{index}.json').read_text())
+                    report['camera_mini_readiness'].append(validate_camera_mini(inputs,out,args.resident_world,
+                        roots[0]/'events.bin',4 if index<args.menu_cycles else 3))
+
             for step in flow['steps']:
                 if not args.no_route_screenshots and step['step'] not in ('campaign-handoff','healing-loadout','crowded-setup'):
                     if step['step'] in ('gameplay','gameplay-resumed') and (step.get('native_image_saved') is not True or step.get('original_image_saved') is not True):raise RuntimeError('Missing independent native/original gameplay image')

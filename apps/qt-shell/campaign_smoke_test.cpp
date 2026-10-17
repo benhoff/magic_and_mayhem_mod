@@ -39,7 +39,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     const bool castingCombat=qEnvironmentVariableIntValue("MNM_CAMPAIGN_CASTING_COMBAT")==1;
     const bool synchronousRouteCapture=qEnvironmentVariableIntValue("MNM_SYNC_ROUTE_CAPTURE")==1;
     const bool noRouteScreenshots=qEnvironmentVariableIntValue("MNM_NO_ROUTE_SCREENSHOTS")==1;
-    struct Run {NativeImageEncoder encoder;QString renderer;std::future<void> captureJob,diagnosticJob;std::future<QJsonObject> routeJob;std::future<QString> requestJob;QString captureName;QString routeName;int routeCycle=0;QElapsedTimer routeWait;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;qint64 sampleHostUs=0;quint64 resumeSourceBase=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
+    struct Run {NativeImageEncoder encoder;QString renderer;std::future<void> captureJob,diagnosticJob;std::future<QJsonObject> routeJob;std::future<QString> requestJob;QString captureName;QString routeName;int routeCycle=0;QElapsedTimer routeWait;int escapeCounter=0;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;qint64 sampleHostUs=0;quint64 resumeSourceBase=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
     auto run=std::make_shared<Run>();
     auto finish=[run,path,probe,&app,normalQuit,noRouteScreenshots,synchronousRouteCapture](bool success,const QString& reason){
         if(run->done)return;
@@ -107,6 +107,25 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(!button||!button->isVisible()||!button->isEnabled()){finish(false,"Public control unavailable: "+name);return;}
         button->click();
     };
+    auto sendEscape=[run,&window,&session,path,finish]{
+        window.activateWindow();window.raise();
+        QStringList arguments{QDir::current().filePath("tools/test-live-campaign-mini.py"),"--send-escape"};
+        if(qEnvironmentVariableIntValue("MNM_PIXEL_CAMERA_SCENARIOS")==1){
+            auto* viewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
+            if(!viewport||!viewport->isVisible()){finish(false,"Native camera Mini viewport unavailable");return;}
+            const auto rect=viewport->imageRect();const auto origin=viewport->mapToGlobal(rect.topLeft().toPoint());
+            arguments={QDir::current().filePath("tools/campaign-camera-menu-input.py"),"--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--experiment",session.evidenceDirectory(),"--output",QFileInfo(path).dir().filePath(QString("mini-input-%1.json").arg(run->escapeCounter++))};
+        }
+        auto* input=new QProcess(&window);
+        QObject::connect(input,&QProcess::errorOccurred,&window,[finish](QProcess::ProcessError error){
+            if(error==QProcess::FailedToStart)finish(false,"Could not start Escape input helper");
+        });
+        QObject::connect(input,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),&window,[input,finish](int code,QProcess::ExitStatus status){
+            if(code||status!=QProcess::NormalExit)finish(false,"Escape input failed: "+QString::fromLocal8Bit(input->readAllStandardError()));
+            input->deleteLater();
+        });
+        input->start("python3",arguments);
+    };
     auto output=session.output;session.output=[output](const QString& text){if(output)output(text);std::fprintf(stderr,"%s",qPrintable(text));};
     auto failed=session.failed;session.failed=[failed,finish](const QString& text){if(failed)failed(text);finish(false,"Native menu fallback: "+text);};
     auto state=session.stateChanged;
@@ -171,7 +190,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     };
     const auto captureRequestPath=QFileInfo(path).dir().filePath("capture-request.json");
     auto* poll=new QTimer(&window);poll->setInterval(100);
-    QObject::connect(poll,&QTimer::timeout,&window,[run,probe,finish,snapshot,path,stressSeconds,cycles,castingCombat,normalQuit,captureRequestPath,&session,&window]{
+    QObject::connect(poll,&QTimer::timeout,&window,[run,probe,finish,snapshot,path,stressSeconds,cycles,castingCombat,normalQuit,captureRequestPath,sendEscape,&session,&window]{
         if(run->done)return;
         auto* phaseViewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
         GlViewport::ActivityScope campaignActivity(phaseViewport,GlViewport::Activity::CampaignPoll);
@@ -239,10 +258,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(normalQuit&&run->stage==9&&run->quitPass==0&&run->quitAnswered&&campaignResumeConfirmed(p,run->frameBase,run->resumeSourceBase,qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1")){
             if(!snapshot("quit-no-resumed"))return;
             run->quitPass=1;run->stage=7;
-            window.activateWindow();window.raise();
-            auto* input=new QProcess(&window);
-            QObject::connect(input,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),&window,[input,finish](int code,QProcess::ExitStatus status){if(code||status!=QProcess::NormalExit)finish(false,"Quit repeat Escape failed");input->deleteLater();});
-            input->start("python3",{QDir::current().filePath("tools/test-live-campaign-mini.py"),"--send-escape"});
+            sendEscape();
             return;
         }
         if(run->stage!=3&&run->stage!=6)return;
@@ -294,17 +310,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         run->stage=normalQuit&&run->cycle>=cycles?7:4;
         // XTest input traverses the public viewport forwarding path. The runner
         // provides a private X display by default; explicit --display opts out.
-        window.activateWindow();window.raise();
-        auto* input=new QProcess(&window);
-        QObject::connect(input,&QProcess::errorOccurred,&window,[finish](QProcess::ProcessError error){
-            if(error==QProcess::FailedToStart)finish(false,"Could not start Escape input helper");
-        });
-        QObject::connect(input,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),&window,
-            [input,finish](int code,QProcess::ExitStatus status){
-                if(code||status!=QProcess::NormalExit)finish(false,"Escape input failed: "+QString::fromLocal8Bit(input->readAllStandardError()));
-                input->deleteLater();
-            });
-        input->start("python3",{QDir::current().filePath("tools/test-live-campaign-mini.py"),"--send-escape"});
+        sendEscape();
     });poll->start();
     auto finished=session.finished;session.finished=[finished,finish,run,normalQuit]{if(finished)finished();finish(normalQuit&&run->stage==11,normalQuit&&run->stage==11?QString():QString("Game exited before campaign smoke completed"));};
     session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");

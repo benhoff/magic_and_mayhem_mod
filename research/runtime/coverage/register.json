@@ -72220,7 +72220,7 @@
       "kind": "native_policy",
       "subsystem": "rendering",
       "title": "Required native pixel routes and settled camera scenarios",
-      "scope": "Six valid optional producer families, 43 production routes. Stream-v2 exact counter extent, installed/native/forwarded identity and totals; require positive native execution for each requested route and zero forwards/history refusal across every family. Settled physical rotations require progress in the three selected minimap camera counters over at least four and at most eight ordinary period-key turns; original switch cases 0,1,2,3 select camera0,2,0,1 and do not select camera3. Counters establish bounded execution only; World batching may bypass legacy CPU leaves. Full pixel equivalence, other maps and complete renderer replacement excluded.",
+      "scope": "Six valid optional producer families, 43 production routes. Stream-v2 exact counter extent, installed/native/forwarded identity and totals; require positive native execution for each requested route and zero forwards/history refusal across every family. Settled physical rotations require progress in the three selected minimap camera counters over at least four and at most eight ordinary period-key turns; original switch cases 0,1,2,3 select camera0,2,0,1 and do not select camera3. Counters establish bounded execution only; World batching may bypass legacy CPU leaves. Full pixel equivalence, other maps and complete renderer replacement excluded. Known Hermes readiness may interrupt the bounded physical scenario; progress before dismissal cannot replace four fresh settled turns afterwards. Diagnostic time is excluded from the requested active stress duration, not from renderer throughput samples.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -72232,13 +72232,15 @@
         "tools/campaign_pixel_routes.py",
         "tools/native_pixel_counters.py",
         "runtime/native-draw/producer_status.h",
-        "tools/borrowed_pixel_backend_launch.py"
+        "tools/borrowed_pixel_backend_launch.py",
+        "tools/campaign_camera_dialogue.py"
       ],
       "tests": [
         "tools/test-native-campaign.py",
         "tools/campaign-gameplay-input.py",
         "apps/qt-shell/campaign_smoke_test.cpp",
-        "tests/test-pixel-route-requirements.py"
+        "tests/test-pixel-route-requirements.py",
+        "tests/test-camera-dialogue.py"
       ],
       "evidence": [
         "NP.pixel-routes.camera-four-body-negative-20261015",
@@ -72246,7 +72248,8 @@
         "NP.pixel-routes.spells-passed-20261015",
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
-        "HOST.native-startup-resources.v3-natural-storage-20261016"
+        "HOST.native-startup-resources.v3-natural-storage-20261016",
+        "CAMERARESUME.actual-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -81300,7 +81303,8 @@
         "COPYLIVE.provenance-20261017",
         "COPYROUTES.controls-20261017",
         "COPYROUTES.campaign-20261017",
-        "COPYROUTES.provenance-20261017"
+        "COPYROUTES.provenance-20261017",
+        "CAMERARESUME.actual-20261017"
       ],
       "status": {
         "understanding": "scoped",
@@ -81809,7 +81813,8 @@
       "evidence": [
         "COPYROUTES.controls-20261017",
         "COPYROUTES.campaign-20261017",
-        "COPYROUTES.provenance-20261017"
+        "COPYROUTES.provenance-20261017",
+        "CAMERARESUME.actual-20261017"
       ],
       "status": {
         "understanding": "scoped",
@@ -81819,7 +81824,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Current active camera/HUD/Mini/Quit interval records4075calls and1828keyed calls, allCPU-backed. Clipped/self and keyed GPU-source branches remain unexercised live, not proved dead. Seven post-RenderStop calls are counted exclusions with unknown branch metadata. All-game/indirect/windowed reachability, original/CPU-keyed pixels, full-session presentation, driver intent, failure/restart, hardware and performance acceptance remain separate. Earlier30second resumed camera scenario failed its route assertion; shorter final10second phases pass without closing that longer scenario."
+        "Current active camera/HUD/Mini/Quit interval records4075calls and1828keyed calls, allCPU-backed. Clipped/self and keyed GPU-source branches remain unexercised live, not proved dead. Seven post-RenderStop calls are counted exclusions with unknown branch metadata. All-game/indirect/windowed reachability, original/CPU-keyed pixels, full-session presentation, driver intent, failure/restart, hardware and performance acceptance remain separate. The earlier30second resumed camera assertion failure is now reproduced as a Hermes-modal harness readiness race; fresh bounded30second functional camera/copy assertions pass on both owners. Full campaign acceptance still fails the unchanged software5FPS floor; original pixels and complete session remain separate."
       ]
     },
     {
@@ -83901,6 +83906,60 @@
         "tools/test-sphere-battle.py",
         "tools/test-sphere-window.py",
         "tools/test-terrain-battle.py"
+      ]
+    },
+    {
+      "id": "HOST.camera-dialogue-readiness",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Bounded Hermes readiness in native camera journeys",
+      "scope": "Physical campaign camera stress handles only a witnessed Hermes heading using fresh native/original image captures and ordinary viewport clicks, with native-only classification for resident World because CPU World pixels are stale. At most32 captures and12 dismissals per phase, two quiet captures before readiness, at most8 period-key turns with all three selected camera bodies and four fresh settled turns after any dialogue interruption. Diagnostic/dismissal time cannot shorten the declared active stress; end-of-phase readiness precedes Mini/Quit input. Targeted thirty-second pre/post Mini Cancel journey only; unknown modals, other speakers/maps, full dialogue semantics, original pixels and renderer/gameplay replacement excluded. The physical Escape transition also waits for the original Mini callback, retries at most four times only after a witnessed Hermes dismissal, and independently binds its report to the final original callback journal.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-camera-resume.md"
+      ],
+      "implementation": [
+        "tools/campaign_camera_dialogue.py",
+        "tools/campaign_pixel_routes.py",
+        "tools/campaign-gameplay-input.py",
+        "tools/test-native-campaign.py",
+        "tools/campaign-camera-menu-input.py",
+        "apps/qt-shell/campaign_smoke_test.cpp"
+      ],
+      "tests": [
+        "tests/test-camera-dialogue.py",
+        "tests/test-pixel-route-requirements.py",
+        "tests/test-native-campaign.py"
+      ],
+      "evidence": [
+        "CAMERARESUME.actual-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "required": [
+          "two thirty-second active stress phases surrounding Mini Cancel",
+          "actual Hermes witness and ordinary dismissal",
+          "fresh post-dialogue camera-body coverage",
+          "normal Quit and balanced resident World retirement",
+          "strict stale-CPU/oracle/modified-image/budget/refusal controls"
+        ],
+        "excluded": [
+          "unknown modal detection",
+          "other speakers/maps",
+          "original pixel equivalence",
+          "physical loss",
+          "gameplay or renderer changes"
+        ]
+      },
+      "remaining_gaps": [
+        "Full campaign acceptance still fails the unchanged 5 FPS software floor on both World owners. These functional camera/copy assertions do not grant performance, original pixels, complete session or unknown-modal acceptance."
       ]
     }
   ],
@@ -166415,6 +166474,37 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "CAMERARESUME.actual-20261017",
+      "kind": "live_observation",
+      "record": "research/runtime/native-camera-resume-bound-20261017.json",
+      "sha256": "9b8cf0078375f87645947508c376450dad800f2fba06daa53eae3a2a214f2bdb",
+      "scope": "Physical campaign camera stress handles only a witnessed Hermes heading using fresh native/original image captures and ordinary viewport clicks, with native-only classification for resident World because CPU World pixels are stale. At most32 captures and12 dismissals per phase, two quiet captures before readiness, at most8 period-key turns with all three selected camera bodies and four fresh settled turns after any dialogue interruption. Diagnostic/dismissal time cannot shorten the declared active stress; end-of-phase readiness precedes Mini/Quit input. Targeted thirty-second pre/post Mini Cancel journey only; unknown modals, other speakers/maps, full dialogue semantics, original pixels and renderer/gameplay replacement excluded. The physical Escape transition also waits for the original Mini callback, retries at most four times only after a witnessed Hermes dismissal, and independently binds its report to the final original callback journal.",
+      "assertions": [
+        {
+          "pointer": "/targeted_functional_acceptance",
+          "equals": true
+        },
+        {
+          "pointer": "/full_campaign_acceptance",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -182666,7 +182756,8 @@
         "NP.pixel-routes.spells-passed-20261015",
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
-        "HOST.native-startup-resources.v3-natural-storage-20261016"
+        "HOST.native-startup-resources.v3-natural-storage-20261016",
+        "CAMERARESUME.actual-20261017"
       ]
     },
     {
@@ -184020,7 +184111,8 @@
       ],
       "evidence": [
         "COPYLIVE.campaign-20261017",
-        "COPYROUTES.campaign-20261017"
+        "COPYROUTES.campaign-20261017",
+        "CAMERARESUME.actual-20261017"
       ]
     },
     {
@@ -184051,7 +184143,8 @@
         "tools/native_copy_routes.py"
       ],
       "evidence": [
-        "COPYROUTES.campaign-20261017"
+        "COPYROUTES.campaign-20261017",
+        "CAMERARESUME.actual-20261017"
       ]
     },
     {
@@ -184118,6 +184211,26 @@
       ],
       "evidence": [
         "CAMPAIGN03.crossroads-headless"
+      ]
+    },
+    {
+      "id": "HOST.camera-dialogue-readiness.campaign",
+      "level": "live_observation",
+      "scope": "Physical campaign camera stress handles only a witnessed Hermes heading using fresh native/original image captures and ordinary viewport clicks, with native-only classification for resident World because CPU World pixels are stale. At most32 captures and12 dismissals per phase, two quiet captures before readiness, at most8 period-key turns with all three selected camera bodies and four fresh settled turns after any dialogue interruption. Diagnostic/dismissal time cannot shorten the declared active stress; end-of-phase readiness precedes Mini/Quit input. Targeted thirty-second pre/post Mini Cancel journey only; unknown modals, other speakers/maps, full dialogue semantics, original pixels and renderer/gameplay replacement excluded.",
+      "behaviors": [
+        "HOST.camera-dialogue-readiness"
+      ],
+      "tests": [
+        "tools/campaign_camera_dialogue.py",
+        "tools/campaign_pixel_routes.py",
+        "tools/campaign-gameplay-input.py",
+        "tools/test-native-campaign.py",
+        "tests/test-camera-dialogue.py",
+        "tests/test-pixel-route-requirements.py",
+        "tests/test-native-campaign.py"
+      ],
+      "evidence": [
+        "CAMERARESUME.actual-20261017"
       ]
     }
   ],
@@ -184735,8 +184848,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-graph-20261017.json",
-    "sha256": "2eebf67217bb269171899079be4b614e34618519c7de6df46aed6d44e035fac4"
+    "path": "research/runtime/coverage/source-index-camera-resume-20261017.json",
+    "sha256": "8b00e511ecd8460650e4c22e81c8b97d1fee77f55f4d64bd4f1e751b6b912601"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

@@ -23,7 +23,7 @@ Concurrent Cure and native campaign-persistence work is outside this renderer sc
 | Complete-native release | Combined mode requires zero forwards/history refusal and positive execution for requested routes. | No capability-checked complete-renderer launch/release contract; reports explicitly retain complete-replacement false. |
 | Optional routes | Six valid families and 43 installed routes; 19 execute across the reviewed camera/spell/storage reports. | 24 are unexercised in those reports, with caller/reachability and World-batching distinctions retained. |
 | Session composition/parity | Historical Save/Load/changed-canvas journeys pass; all 323 observed original Quick Battle frames now pass native GPU and displayed-output comparison in a portable corpus. | Generic action-bound/global presentation coverage, later maps and broader movies/input remain incomplete. |
-| Failure handling | Terminal resident cleanup and force-stop/fresh-launch exist; resident in-place recovery explicitly refuses. | Actual-game injected failure followed by restart and physical context-loss behavior remain unproved. |
+| Failure handling | Terminal resident cleanup and force-stop/fresh-launch exist; resident in-place recovery explicitly refuses. | Actual-game injected failure and Hard restart pass both World owners; physical context loss and other failure modes remain unproved. |
 | Performance | Retained hardware and software results distinguish engine cadence from presentation. | Sustained complete-session hardware/60 FPS acceptance remains unproved. This review does not probe hardware availability. |
 
 ## Completed work that must not remain on the missing-implementation list
@@ -240,3 +240,23 @@ The output retains exact code witnesses and hashes, raw C/Python commands/logs,
 route unions and acceptance-suite structure. It runs no original artifacts and
 therefore grants no new original comparison, live integration or replacement
 milestone. Historical results and their source hashes remain unchanged.
+
+
+## Longer camera journey follow-up (2026-10-17)
+
+The previously unresolved 30-second resumed-camera route assertion reproduces
+with all eight physical rotation inputs delivered. Fresh native screenshots show
+an original Hermes modal blocking the camera while World rendering continues.
+The [bounded readiness repair](native-camera-resume.md) handles ordinary stress
+and the race between final readiness and Escape, preserving fresh camera-turn
+requirements and independent original Mini callback checks. This investigation
+has not reproduced a renderer or input-forwarding defect. The repaired GUI runs
+still fail the unchanged software 5 FPS floor (4.9904 and 4.7642 FPS); performance
+acceptance remains open. This work does not change the 24 unexercised route count
+in the reviewed reports above or establish whole-session original pixel parity.
+
+The dedicated-worker acquisition also fails that same software floor at 4.7611
+FPS. [Targeted functional reanalysis](native-camera-resume-bound-20261017.json)
+passes the retained camera, original callbacks/Quit, balanced retirement, zero
+forwarding and independent GPU destination checks for GUI and worker owners.
+All full campaign results remain failed; no performance threshold was relaxed.

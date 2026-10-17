@@ -140,3 +140,23 @@ integration freshness therefore stays pending until a new prospective run binds
 it. Current live route proof is recorded under the already prospectively bound
 `NP.pixel-route-scenarios.campaign`; the family-independent native CPU-reader
 scenario retains its own evidence. No historical claim is regenerated.
+
+
+## Longer camera readiness follow-up (2026-10-17)
+
+The [current-master investigation](native-camera-resume.md) reproduces the longer
+30-second post-Mini route failure as an original Hermes modal consuming camera
+input. It adds bounded native-image readiness and ordinary dismissal to camera
+stress and the Escape transition. Four fresh settled turns and all three selected
+camera bodies remain required after interruption; diagnostic time cannot shorten
+active stress. Original Mini callbacks independently identify Cancel and Quit.
+This repair grants no camera3, original orientation-memory, CPU-keyed or complete
+pixel/session proof. Two repaired GUI-resident acquisitions complete the camera,
+Mini/Quit and independent GPU checks but fail their unchanged software 5 FPS floor
+(4.9904 and 4.7642 FPS); those failed results remain preserved.
+
+The dedicated-worker acquisition also fails that same software floor at 4.7611
+FPS. [Targeted functional reanalysis](native-camera-resume-bound-20261017.json)
+passes the retained camera, original callbacks/Quit, balanced retirement, zero
+forwarding and independent GPU destination checks for GUI and worker owners.
+All full campaign results remain failed; no performance threshold was relaxed.

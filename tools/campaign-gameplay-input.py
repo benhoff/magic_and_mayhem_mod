@@ -48,7 +48,7 @@ def main():
         held.add(code); x.XFlush(display); time.sleep(seconds)
         xt.XTestFakeKeyEvent(display, code, 0, 0); held.remove(code); x.XFlush(display)
         record('key', keysym=sym, held_seconds=seconds); time.sleep(.1)
-    movement_count = 0
+    movement_count = 0;dialogue_guard = None
     def move_wizard():
         nonlocal movement_count
         from campaign_gameplay import read_rows, creatures
@@ -73,9 +73,12 @@ def main():
         if not args.camera_only:motion(.5, .45); button(1)
         if os.environ.get('MNM_PIXEL_CAMERA_SCENARIOS')=='1':
             from campaign_pixel_routes import camera_scenarios
+            from campaign_camera_dialogue import CameraDialogueGuard
             if not args.experiment:raise RuntimeError('Pixel camera scenarios need the production experiment')
-            camera_scenarios(args.experiment/'game',key,record)
-        while time.monotonic()-start < args.seconds:
+            def dialogue_click(px,py):motion(px/800,py/600);button(1)
+            dialogue_guard = CameraDialogueGuard(args.output,dialogue_click,record,os.environ.get('MNM_PUBLIC_RESIDENT_WORLD')=='1')
+            camera_scenarios(args.experiment/'game',key,record,dialogue_guard.ensure_ready)
+        while time.monotonic()-start-(dialogue_guard.overhead_seconds if dialogue_guard else 0) < args.seconds:
             if args.keep_moving:move_wizard()
             for sym in [0xff53, 0xff54, 0xff51, 0xff52]:key(sym, .45)
             for sym in [ord('.'), ord('.'), ord('.'), ord('.'), ord(','), ord(',')]:key(sym, .12)
@@ -98,6 +101,7 @@ def main():
             motion(.93,.87);button(1)
             motion(.5,.45);button(4);button(5)
             time.sleep(.5)
+        if dialogue_guard:dialogue_guard.ensure_ready()
         completed = True
     finally:
         for code in held:xt.XTestFakeKeyEvent(display,code,0,0)
@@ -105,6 +109,7 @@ def main():
         x.XFlush(display);x.XCloseDisplay(display)
         args.output.write_text(json.dumps(dict(success=completed, seconds=time.monotonic()-start, actions=log,
             camera_only=args.camera_only,keep_moving=args.keep_moving,observed_survival_moves=movement_count,
+            camera_dialogue=dialogue_guard.report() if dialogue_guard else None,
             scope='Physical camera/rotation/HUD/wheel stress; optional ordinary ground orders require observed living wizard movement. Casting/combat outcomes require separate observation.'),indent=2)+'\n')
 
 
