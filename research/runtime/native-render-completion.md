@@ -58,8 +58,9 @@ historical renderer-backend evidence.
 The same controls exercise malformed commands, producer failure, first-frame
 timeout and GUI cancellation after presentation, each followed by a fresh actual
 GL worker/session and frame. All GUI leases return. GUI cancellation models the
-GL-error caller; physical context loss and actual-game freeze/restart acceptance
-remain pending. The host latches terminal input suspension across menu/media
+GL-error caller. The later [actual-game producer failure/restart](native-live-restart.md)
+passes both World owners after fixing a post-cleanup null access; physical
+context loss and arbitrary game freezes remain pending. The host latches terminal input suspension across menu/media
 callbacks, releases rendering owners, clears presentation and exposes Hard restart
 while the producer runs, or Launch after it exits. New launches clear the latch.
 
@@ -136,7 +137,7 @@ the source compositor separately counts panel GPU snapshots. These fix observed
 failures beyond the earlier normal-Quit journey. Subsequent Initiate tutorial
 input and changed-canvas display-rebuild/Main Load now pass the separate
 [resident pressure journey](resident-command-pressure.md), including normal Quit
-and 962 balanced Worlds. Arbitrary readers, actual-game fault/restart, later-map
+and 962 balanced Worlds. Arbitrary readers, broader fault/restart outcomes, later-map
 progression and complete presented-session/hardware acceptance remain open.
 The [2026-10-16 code review](native-rendering-integration-gaps-20261015.md)
 separates those boundaries from completed resource/history implementations.
@@ -153,5 +154,5 @@ short accepted Intro0 playback is dismissed through ordinary input. A current V3
 flow with 480 balanced Worlds and a complete source capture. Independent transition
 pixels are a separate assertion in the
 [startup/storage follow-up](native-v3-live-startup-storage.md). Generic action-bound
-sessions, later maps, fault/restart and hardware performance remain explicit
+sessions, later maps, broader fault/restart outcomes and hardware performance remain explicit
 acceptance gaps; complete replacement remains false.

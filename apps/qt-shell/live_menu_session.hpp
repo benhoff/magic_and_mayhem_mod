@@ -48,6 +48,7 @@ public:
     void forceStop(std::function<void(bool,const QString&)> completed);
     void setMediaActive(bool active);
     bool running() const;
+    qint64 launcherProcessId() const {return process_.processId();}
     bool normalQuitAccepted();
     void renderingProgress(std::uint64_t cpuRead=0); // GUI-thread bounded native-reader progress; never resubmits.
     QString evidenceDirectory() const {return root_;}

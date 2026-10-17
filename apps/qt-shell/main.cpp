@@ -80,6 +80,7 @@
 #include "campaign_smoke_test.hpp"
 #include "resident_world_session.hpp"
 #include "native_render_worker.hpp"
+#include "resident_restart_test.hpp"
 
 class Shell final:public QMainWindow {
     quint64 nativeCommandFrames_=0,nativePaintedFrames_=0;
@@ -87,6 +88,16 @@ class Shell final:public QMainWindow {
     QElapsedTimer nativePollTick_;
     unsigned nativePollTimingRows_=0;
 public:
+    QJsonObject residentFailureState() const {
+        return {{"terminal",residentTerminal_},{"owners_retired",!renderWorker_&&!commands_&&!residentWorld_},
+            {"timers_stopped",!frames_.isActive()&&!commandDrain_.isActive()&&!poll_.isActive()&&!inputTimer_.isActive()},
+            {"frame_cleared",gl_&&gl_->frameSize().isEmpty()&&!gl_->isVisible()},
+            {"input_detached",input_&&input_->target()==0},
+            {"input_suspended",input_&&input_->suspended()},
+            {"restart_available",restart_&&restart_->isEnabled()},
+            {"retry_disabled",retry_&&!retry_->isEnabled()},
+            {"fallback_disabled",fallback_&&!fallback_->isEnabled()}};
+    }
     bool nativeActive() const{return renderWorker_?renderWorker_->state()==LiveCommandSession::State::Active:commands_&&commands_->state()==LiveCommandSession::State::Active;}
     CampaignPresentationProbe campaignPresentation() const{
         const auto* result=renderWorker_?renderWorker_->result():commands_?commands_->result():nullptr;
@@ -265,6 +276,7 @@ public:
                     residentWorldError_=!gl_->error().isEmpty()?gl_->error():renderWorker_->error();
                     log_->appendPlainText("Native render owner refused: "+residentWorldError_);
                     residentFailed(residentWorldError_);
+                    return; // Terminal cleanup destroys renderWorker_.
                 }
                 if(liveMenus_)liveMenus_->renderingProgress(renderWorker_->pendingCpuRead());
                 return;
@@ -953,7 +965,11 @@ int main(int argc,char** argv){
     Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,nativeMedia,nativeVoices,parser.isSet("live-menus"),nativeCommands,presentation,nativeMusic);shell.showPresentation();
     if(parser.isSet("music-assets")&&shell.liveMenuSession())shell.liveMenuSession()->musicAssetsRoot=QDir(parser.value("music-assets")).absolutePath();
     if(parser.isSet("live-menu-test")){
-        if(qEnvironmentVariableIsSet("MNM_LIVE_MENU_TEST_QT_JOURNEY"))installQuickBattleAppTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
+        if(qEnvironmentVariable("MNM_RESIDENT_RESTART_TEST")=="1"){
+            if(!parser.isSet("resident-world"))parser.showHelp(2);
+            installResidentRestartTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();},[&shell]{return shell.residentFailureState();});
+        }
+        else if(qEnvironmentVariableIsSet("MNM_LIVE_MENU_TEST_QT_JOURNEY"))installQuickBattleAppTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
         else if(qEnvironmentVariableIsSet("MNM_CAMPAIGN_SMOKE_TEST"))installCampaignSmokeTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
         else installLiveMenuTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"));
     }

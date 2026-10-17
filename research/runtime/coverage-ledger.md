@@ -13639,3 +13639,31 @@ Earlier failed/interrupted development and acceptance attempts remain under
 working/ and supply no positive validation. This advances only NP.staged-mission
 to native preview; affected original/native shared-source evidence retains its
 historical hashes and current freshness limitations.
+
+## Actual-game resident failure and Hard restart — 2026-10-17
+
+`HOST.resident-live-restart` completes two source-bound Apprentice journeys, one
+per GUI-resident/dedicated-worker World owner. A controlled command producer
+failure follows live World presentation; all render owners, polling/input timers
+and displayed frames retire, input is suspended/detached, retry/fallback remain
+disabled and public Hard restart remains available for 541/519 ms. Both journeys
+stop the old launcher/prefix, use fresh launcher/channel/World nonce identities,
+enter fresh World and finish ordinary Quit Yes/report Continue/Main Quit. Fresh
+normal retirement balances 5/5/5 and 7/7/7 completed/imported/verified Worlds.
+
+The dedicated route exposed a real SIGSEGV: the polling callback called
+`pendingCpuRead(this=0x0)` after `residentFailed()` destroyed its worker. A retained
+GDB backtrace and exact pre-fix source establish the failure. Returning immediately
+after cleanup repairs it; both final actual-game journeys and supporting process,
+shortcut, synthetic GL worker and report-refusal controls pass. Failed-generation
+counts are cancellation evidence, not normal balanced retirement. The earlier
+setup refusals, pre-fix GUI success and worker crashes remain historical. Both
+final runs retain 1,554 stable source hashes and 2,927-file original bookends.
+
+This is intentional native policy with live observation; comparison/replacement
+remain none. Physical context loss, arbitrary freezes, audio/media restart and
+concurrent restart/close races remain open. No pixel/performance or transparent
+in-place recovery claim. See [failure, repair and reproduction](native-live-restart.md),
+HOST.resident-live-restart.actual-20261017 and the separate exact incoming-history
+review of fdd97099..a9511ff4. One missing generated-template receipt is appended
+retrospectively, without asserting a past gate pass or new mission validation.

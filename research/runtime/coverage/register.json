@@ -18040,7 +18040,7 @@
         "RENDER-INT-02: Selected ordered CPU_READ and storage synchronization exist. Current native V3 game validates867opaque disjoint GPU copies at3caller PCs with independent destinations; clipped/self/keyed GPU source copies retain headless evidence only. Arbitrary raw readers and async World source readback remain outside admission; complete CPU coherence is not claimed.",
         "RENDER-INT-03: Reports retain complete replacement false; a complete capability-checked startup/runtime contract spanning required original-pixel bypass remains unavailable. Existing combined zero-forward admission is already implemented.",
         "RENDER-INT-04: Initiate Save/Load, display rebuild, changed World canvas and normal Quit pass. Later-map progression, broader results/movie/Preferences/cursor/picking composition and independent output/input acceptance remain incomplete.",
-        "RENDER-INT-05: Resident terminal retirement and force-stop/fresh-launch exist with synthetic controls. Actual-game injected fault/restart and physical GL context-loss acceptance remain unproved; transparent in-place resident recovery is not promised.",
+        "RENDER-INT-05: Actual-game controlled command-producer failure, terminal cleanup and public Hard restart now pass both GUI-resident and dedicated-worker owners after a confirmed post-cleanup null-access repair. Physical context/owner loss, arbitrary freezes, audio/media restart and concurrent lifecycle outcomes remain unproved; transparent in-place recovery is not promised.",
         "RENDER-INT-06: Shipped suite now has one complete323frame recorded_session adapter; zero generic action-bound session adapters for its14journey/21operation requirements. Complete independent action-bound presented-frame parity and sustained full-session hardware60FPS acceptance remain open; historical mismatch is not established as a current reproduced defect.",
         "RENDER-INT-07 repaired: Owned emitter/private queue/mapped V3/stream decoder pass actual traffic beyond4GiB. Finite sequence/capacity/deadline policies remain; fresh original-game V3 Save/Load not yet validated. Enabled-intro history refusal and a no-start attempt are retained unclassified live limitations, not proved transport regressions."
       ]
@@ -82523,6 +82523,65 @@
         "tools/test-sphere-window.py",
         "tools/test-terrain-battle.py"
       ]
+    },
+    {
+      "id": "HOST.resident-live-restart",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Actual-game resident failure and fresh Hard restart acceptance",
+      "scope": "Bounded original Apprentice campaign with both GUI-resident and dedicated-worker World owners: terminal command producer failure injected after three resident World imports and visible paints; GUI owners/timers/frame/input retired and stable for at least 500ms; public Hard restart stops the old launcher and prefix, creates a distinct launcher/channel/session, enters fresh World, and completes ordinary original Quit. Original simulation retained. No freeze, physical context loss, transparent recovery, saved progress, pixel equivalence, media/audio restart or concurrent lifecycle claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-live-restart.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/game_process.hpp",
+        "apps/qt-shell/game_restart_action.hpp",
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/input_forwarder.hpp",
+        "apps/qt-shell/gl_viewport.cpp"
+      ],
+      "tests": [
+        "apps/qt-shell/resident_restart_test.cpp",
+        "apps/qt-shell/resident_restart_test.hpp",
+        "tools/test-native-live-restart.py",
+        "tools/test_native_restart_support.py",
+        "tests/test-native-live-restart.py"
+      ],
+      "evidence": [
+        "HOST.resident-live-restart.crash-20261017",
+        "HOST.resident-live-restart.actual-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "required": [
+          "actual original campaign before and after injected command producer failure",
+          "new channel and launcher identity",
+          "terminal cleanup stable for 500ms",
+          "normal Quit after fresh World",
+          "independent fresh executions for GUI-resident and dedicated-worker owners"
+        ],
+        "excluded": [
+          "physical GPU/context loss",
+          "engine freeze",
+          "in-place recovery",
+          "media/audio restart",
+          "pixel equivalence",
+          "concurrent lifecycle races"
+        ]
+      }
     }
   ],
   "evidence": [
@@ -164908,6 +164967,68 @@
           "equals": 5
         }
       ]
+    },
+    {
+      "id": "HOST.resident-live-restart.crash-20261017",
+      "kind": "live_observation",
+      "record": "research/runtime/native-live-restart-crash-20261017.json",
+      "sha256": "8f0a5d51002b12c2dbb784d51bd3a93560d5615fa5db0fe522cc7942566ffee5",
+      "scope": "Historical actual original-game dedicated-worker producer failure reproduces shell SIGSEGV after owner destruction; GDB identifies pendingCpuRead(this=0x0). Old source/scope hashes remain unchanged and do not grant final-code credit.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/shell_returncode",
+          "equals": 255
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.resident-live-restart.actual-20261017",
+      "kind": "live_observation",
+      "record": "research/runtime/native-live-restart-bound-20261017.json",
+      "sha256": "f5797a28ed2ec550d2bad38476155ae24a6aa5c8505f1ee510048568abbbc786",
+      "scope": "Bounded original Apprentice campaign with both GUI-resident and dedicated-worker World owners: terminal command producer failure injected after three resident World imports and visible paints; GUI owners/timers/frame/input retired and stable for at least 500ms; public Hard restart stops the old launcher and prefix, creates a distinct launcher/channel/session, enters fresh World, and completes ordinary original Quit. Original simulation retained. No freeze, physical context loss, transparent recovery, saved progress, pixel equivalence, media/audio restart or concurrent lifecycle claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_game_journeys",
+          "equals": 2
+        },
+        {
+          "pointer": "/live_sessions",
+          "equals": 4
+        },
+        {
+          "pointer": "/null_worker_access_fixed",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -182562,6 +182683,24 @@
       "evidence": [
         "MISSION01.native-window"
       ]
+    },
+    {
+      "id": "HOST.resident-live-restart.campaign",
+      "level": "live_observation",
+      "scope": "Bounded original Apprentice campaign with both GUI-resident and dedicated-worker World owners: terminal command producer failure injected after three resident World imports and visible paints; GUI owners/timers/frame/input retired and stable for at least 500ms; public Hard restart stops the old launcher and prefix, creates a distinct launcher/channel/session, enters fresh World, and completes ordinary original Quit. Original simulation retained. No freeze, physical context loss, transparent recovery, saved progress, pixel equivalence, media/audio restart or concurrent lifecycle claim.",
+      "behaviors": [
+        "HOST.resident-live-restart"
+      ],
+      "tests": [
+        "apps/qt-shell/resident_restart_test.cpp",
+        "apps/qt-shell/resident_restart_test.hpp",
+        "tools/test-native-live-restart.py",
+        "tools/test_native_restart_support.py",
+        "tests/test-native-live-restart.py"
+      ],
+      "evidence": [
+        "HOST.resident-live-restart.actual-20261017"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -183178,8 +183317,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-staged-mission-final-20261017.json",
-    "sha256": "c591ed2448827aa8980e3624daa126503dd35066a56acd881bc4397477120ea2"
+    "path": "research/runtime/coverage/source-index-live-restart-20261017.json",
+    "sha256": "851c367aeb2ff03833efa72e084b3fb46127097d3610399b909670c6a4ad60f8"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

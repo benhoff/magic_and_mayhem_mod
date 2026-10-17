@@ -14,6 +14,7 @@ public:
     ~InputForwarder() override;
     void setTarget(xcb_window_t target);
     xcb_window_t target() const{return target_;}
+    bool suspended() const{return suspended_;}
     void release();
     void setState(InputState* state){release();state_=state;}
     void heartbeat();

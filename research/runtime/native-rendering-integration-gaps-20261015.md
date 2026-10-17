@@ -160,10 +160,18 @@ workers/channels. Its comment and result explicitly exclude actual-game restart
 and physical GL context loss. Shortcut dispatch has its own synthetic test.
 These implementations and historical controls must not be listed as absent.
 
-Remaining acceptance is an actual-game failure→cleanup→fresh-launch journey,
-plus declared physical context/owner failure outcomes and concurrent lifecycle
-bounds. A safe terminal stop is allowed; transparent continuation or preservation
-of unsaved progress is not promised. See [completion contracts](native-render-completion.md).
+The [2026-10-17 actual-game journey](native-live-restart.md) now passes for both
+GUI-resident and dedicated-worker World owners. It exposed and fixed a real
+null access: the worker polling callback continued after terminal cleanup had
+destroyed its worker. Both final executions inject producer failure after live
+World presentation, observe stable terminal cleanup, use public Hard restart,
+verify a fresh launcher/channel/World nonce and complete normal Quit.
+
+Remaining acceptance covers physical context/owner failure outcomes, arbitrary
+game freezes, audio/media restart and concurrent lifecycle bounds. The accepted
+fault is one controlled command-producer terminal failure; other failures are
+not inferred from it. Transparent continuation or preservation of unsaved
+progress is not promised. See [completion contracts](native-render-completion.md).
 
 ## RENDER-INT-06: Presented-session comparison and performance
 
