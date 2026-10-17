@@ -38,8 +38,13 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     const bool normalQuit=qEnvironmentVariableIntValue("MNM_CAMPAIGN_NORMAL_QUIT")==1;
     const bool castingCombat=qEnvironmentVariableIntValue("MNM_CAMPAIGN_CASTING_COMBAT")==1;
     const bool synchronousRouteCapture=qEnvironmentVariableIntValue("MNM_SYNC_ROUTE_CAPTURE")==1;
+#ifdef Q_OS_LINUX
+    const QString samplingClock="linux-clock-monotonic";
+#else
+    const QString samplingClock="unsupported";
+#endif
     const bool noRouteScreenshots=qEnvironmentVariableIntValue("MNM_NO_ROUTE_SCREENSHOTS")==1;
-    struct Run {NativeImageEncoder encoder;QString renderer;std::future<void> captureJob,diagnosticJob;std::future<QJsonObject> routeJob;std::future<QString> requestJob;QString captureName;QString routeName;int routeCycle=0;QElapsedTimer routeWait;int escapeCounter=0;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;qint64 sampleHostUs=0;quint64 resumeSourceBase=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
+    struct Run {NativeImageEncoder encoder;QString renderer;std::future<void> captureJob,diagnosticJob;std::future<QJsonObject> routeJob;std::future<QString> requestJob;QString captureName;QString routeName;int routeCycle=0;QElapsedTimer routeWait;int escapeCounter=0;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0,sampleWorlds=0;qint64 sampleHostUs=0;quint64 resumeSourceBase=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
     auto run=std::make_shared<Run>();
     auto finish=[run,path,probe,&app,normalQuit,noRouteScreenshots,synchronousRouteCapture](bool success,const QString& reason){
         if(run->done)return;
@@ -190,7 +195,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     };
     const auto captureRequestPath=QFileInfo(path).dir().filePath("capture-request.json");
     auto* poll=new QTimer(&window);poll->setInterval(100);
-    QObject::connect(poll,&QTimer::timeout,&window,[run,probe,finish,snapshot,path,stressSeconds,cycles,castingCombat,normalQuit,captureRequestPath,sendEscape,&session,&window]{
+    QObject::connect(poll,&QTimer::timeout,&window,[run,probe,finish,snapshot,path,stressSeconds,cycles,castingCombat,normalQuit,captureRequestPath,sendEscape,samplingClock,&session,&window]{
         if(run->done)return;
         auto* phaseViewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
         GlViewport::ActivityScope campaignActivity(phaseViewport,GlViewport::Activity::CampaignPoll);
@@ -271,13 +276,14 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
             const auto elapsed=run->sampleClock.elapsed();
             if(elapsed>=1000){
                 const auto hostUs=NativeFrameTrace::now();
-                run->rates.append(QJsonObject{{"host_begin_us",QString::number(run->sampleHostUs)},{"host_end_us",QString::number(hostUs)},{"cycle",run->cycle},{"monotonic_start_seconds",double(run->sampleClock.msecsSinceReference())/1000},{"monotonic_end_seconds",double(run->sampleClock.msecsSinceReference()+elapsed)/1000},{"seconds",double(elapsed)/1000},{"native_frames",qint64(p.frames-run->sampleFrames)},{"painted_frames",qint64(p.paints-run->samplePaints)},{"native_fps",1000.0*(p.frames-run->sampleFrames)/elapsed},{"paint_fps",1000.0*(p.paints-run->samplePaints)/elapsed}});
-                run->sampleClock.restart();run->sampleHostUs=hostUs;run->sampleFrames=p.frames;run->samplePaints=p.paints;
+                if(p.sourceGeneration<run->sampleWorlds){finish(false,"World import counter regressed during stress");return;}
+                run->rates.append(QJsonObject{{"host_clock",samplingClock},{"world_imports_begin",QString::number(run->sampleWorlds)},{"world_imports_end",QString::number(p.sourceGeneration)},{"world_imports",qint64(p.sourceGeneration-run->sampleWorlds)},{"host_begin_us",QString::number(run->sampleHostUs)},{"host_end_us",QString::number(hostUs)},{"cycle",run->cycle},{"monotonic_start_seconds",double(run->sampleClock.msecsSinceReference())/1000},{"monotonic_end_seconds",double(run->sampleClock.msecsSinceReference()+elapsed)/1000},{"seconds",double(elapsed)/1000},{"native_frames",qint64(p.frames-run->sampleFrames)},{"painted_frames",qint64(p.paints-run->samplePaints)},{"native_fps",1000.0*(p.frames-run->sampleFrames)/elapsed},{"paint_fps",1000.0*(p.paints-run->samplePaints)/elapsed}});
+                run->sampleClock.restart();run->sampleHostUs=hostUs;run->sampleFrames=p.frames;run->samplePaints=p.paints;run->sampleWorlds=p.sourceGeneration;
             }
         }
         if(stressSeconds&&!run->stressDone){
             if(!run->stressRunning){
-                run->stressRunning=true;run->sampleClock.start();run->sampleHostUs=NativeFrameTrace::now();run->sampleFrames=p.frames;run->samplePaints=p.paints;
+                run->stressRunning=true;run->sampleClock.start();run->sampleHostUs=NativeFrameTrace::now();run->sampleFrames=p.frames;run->samplePaints=p.paints;run->sampleWorlds=p.sourceGeneration;
                 window.activateWindow();window.raise();
                 auto* viewport=window.findChild<QOpenGLWidget*>("nativeGameViewport");
                 if(!viewport||!viewport->isVisible()){finish(false,"Native stress viewport unavailable");return;}

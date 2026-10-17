@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import time
+import sys
 
 
 def main():
@@ -108,6 +109,7 @@ def main():
         for b in [1,2,3]:xt.XTestFakeButtonEvent(display,b,0,0)
         x.XFlush(display);x.XCloseDisplay(display)
         args.output.write_text(json.dumps(dict(success=completed, seconds=time.monotonic()-start, actions=log,
+            monotonic_start_seconds=start,host_clock="linux-clock-monotonic" if sys.platform=="linux" else "unsupported",
             camera_only=args.camera_only,keep_moving=args.keep_moving,observed_survival_moves=movement_count,
             camera_dialogue=dialogue_guard.report() if dialogue_guard else None,
             scope='Physical camera/rotation/HUD/wheel stress; optional ordinary ground orders require observed living wizard movement. Casting/combat outcomes require separate observation.'),indent=2)+'\n')

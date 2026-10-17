@@ -16,6 +16,7 @@ class CameraDialogueGuard:
             raise ValueError('Unsafe camera dialogue phase')
         self.click, self.record, self.resident_world = click, record, resident_world
         self.checks, self.dismissals, self.overhead_seconds = [], 0, 0.0
+        self.intervals = []
 
     def capture(self):
         from PIL import Image
@@ -64,11 +65,14 @@ class CameraDialogueGuard:
                 self.record('camera-hermes-dismiss',capture=item['name'])
                 time.sleep(.6)
             raise ValueError('Camera Hermes dialogue did not clear after bounded ordinary input')
-        finally:self.overhead_seconds += time.monotonic()-start
+        finally:
+            end = time.monotonic()
+            self.overhead_seconds += end-start
+            self.intervals.append(dict(begin=start,end=end))
 
     def report(self):
         return dict(oracle=oracle(self.resident_world),checks=self.checks,dismissals=self.dismissals,
-                    overhead_seconds=self.overhead_seconds,
+                    overhead_seconds=self.overhead_seconds,intervals=self.intervals,
                     scope='Known Hermes heading only. Resident original CPU images are diagnostics. No unknown-modal or full dialogue semantics claim.')
 
 

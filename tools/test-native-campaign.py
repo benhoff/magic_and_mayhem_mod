@@ -41,7 +41,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py', 'tools/campaign_render_oracle.py', 'tools/pixel_route_requirements.py', 'tools/campaign_pixel_routes.py']
 SOURCES += ['tools/campaign_storage.py', 'tools/menu-storage-input.py', 'tools/menu_save_store.py', 'apps/qt-shell/campaign_storage_test.cpp', 'tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 SOURCES += ['tools/directplay_dx6_launch.py']
-SOURCES += ['tools/campaign_camera_dialogue.py', 'tools/campaign-camera-menu-input.py']
+SOURCES += ['tools/campaign_camera_dialogue.py', 'tools/campaign-camera-menu-input.py', 'tools/campaign_cadence.py']
 
 
 def linked_compiler_sources(build, root):
@@ -538,6 +538,7 @@ def main():
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign','--behavior','NP.native-history-reader-routing','--scenario','NP.native-history-reader-routing.campaign','--behavior','NP.explicit-native-cpu-materialization','--scenario','NP.explicit-native-cpu-materialization.campaign'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.pixel-route-scenarios','--scenario','NP.pixel-route-scenarios.campaign'])
         if args.pixel_camera_scenarios:declaration_command.extend(['--behavior','HOST.camera-dialogue-readiness','--scenario','HOST.camera-dialogue-readiness.campaign'])
+        if args.resident_world and args.pixel_camera_scenarios and not args.require_casting_combat:declaration_command.extend(['--behavior','HOST.campaign-cadence-attribution','--scenario','HOST.campaign-cadence-attribution.campaign'])
         if args.gpu_copy_diagnostics:declaration_command.extend(['--behavior','NP.native-gpu-copy-live-validation','--scenario','NP.native-gpu-copy-live-validation.campaign'])
         if args.gpu_copy_diagnostics:declaration_command.extend(['--behavior','NP.native-copy-route-census','--scenario','NP.native-copy-route-census.campaign'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
@@ -881,6 +882,9 @@ def main():
                         raise ValueError('Native GPU production normal Quit did not balance')
                     if int(resident.get('retained_world_image_captures',-1))!=int(resident['completed']) or resident.get('source_high_water',3)>2:
                         raise ValueError('Native GPU production image/source credit proof failed')
+                if args.pixel_camera_scenarios and not args.require_casting_combat:
+                    from campaign_cadence import analyze_cadence
+                    report['campaign_cadence']=analyze_cadence(flow,[json.loads((out/f'input-{i}.json').read_text()) for i in range(args.menu_cycles+1)],args.stress_seconds,args.min_fps)
                 if resident['engine_fps']<args.min_fps:raise ValueError('Resident World engine FPS below target: '+str(resident['engine_fps']))
                 if args.hardware and ('NVIDIA' not in resident['renderer'] or any(x in resident['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Resident World did not use NVIDIA hardware')
                 report['resident_world']=resident

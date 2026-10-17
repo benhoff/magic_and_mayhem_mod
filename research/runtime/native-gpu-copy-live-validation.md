@@ -139,3 +139,20 @@ GPU-source calls remain opaque/disjoint. No active clipped/self call occurs.
 The GPU ancestry observer independently checks 1,788 destinations, including no
 keyed command; CPU-keyed output equivalence is not added. Seven terminal bypasses
 are counted exclusions. The 867-call acquisition above remains unchanged.
+
+
+## 2026-10-17 — Cadence and diagnostic cost follow-up
+
+[Current-source matched cadence acceptance](native-campaign-cadence.md) supersedes
+the earlier software5FPS failure boundary for its recorded runs. Whole-journey
+GUI rates are 15.0681 FPS with diagnostics off and 6.9920
+with them; the dedicated worker passes at 6.3246. The metric and
+5FPS floor remain unchanged, and independent copy checks, camera coverage,
+original Quit, balanced retirement and original/source/cleanup checks pass.
+Earlier failed acquisitions remain failures. Active World imports are now
+measured separately from cached presentation and explicit readiness/menu time.
+The observer shares encoding/digests only after full word equality, preserving
+all output checks. This is bounded software functional evidence, not sustained
+hardware/60FPS or complete original-session parity. Multiple introductory Hermes
+interruptions can still exhaust the eight-turn camera budget and refuse the
+scenario; the cadence provenance retains that failed attempt.

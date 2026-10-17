@@ -15588,3 +15588,26 @@ raw fingerprints, native screenshots, input traces and pilot sources. Scoped
 camera/copy claims exclude unrelated native-game/raster inventory; raw reports
 are unchanged. Exact committed-history reviews a904544f..9f6f5f80 and9f6f5f80..9a24c154 have0unresolved
 receipts and does not assert a historical gate pass.
+
+
+## 2026-10-17 — Matched cadence diagnosis and copy observer repair
+
+[Current-source matched cadence acceptance](native-campaign-cadence.md) supersedes
+the earlier software5FPS failure boundary for its recorded runs. Whole-journey
+GUI rates are 15.0681 FPS with diagnostics off and 6.9920
+with them; the dedicated worker passes at 6.3246. The metric and
+5FPS floor remain unchanged, and independent copy checks, camera coverage,
+original Quit, balanced retirement and original/source/cleanup checks pass.
+Earlier failed acquisitions remain failures. Active World imports are now
+measured separately from cached presentation and explicit readiness/menu time.
+The observer shares encoding/digests only after full word equality, preserving
+all output checks. This is bounded software functional evidence, not sustained
+hardware/60FPS or complete original-session parity. Multiple introductory Hermes
+interruptions can still exhaust the eight-turn camera budget and refuse the
+scenario; the cadence provenance retains that failed attempt.
+
+The new HOST.campaign-cadence-attribution policy has fresh scoped implementation
+and live observation only. Forty-nine Python test methods and native GL witness
+controls pass. [Provenance](native-campaign-cadence-provenance-20261017.json) retains
+all attempted runs and source versions. Current code is based on 6cada041;
+incoming intermediate receipt gaps are separately accounted retrospectively.

@@ -72472,7 +72472,8 @@
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
         "HOST.native-startup-resources.v3-natural-storage-20261016",
-        "CAMERARESUME.actual-20261017"
+        "CAMERARESUME.actual-20261017",
+        "CAMPAIGNCADENCE.actual-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -81527,7 +81528,8 @@
         "COPYROUTES.controls-20261017",
         "COPYROUTES.campaign-20261017",
         "COPYROUTES.provenance-20261017",
-        "CAMERARESUME.actual-20261017"
+        "CAMERARESUME.actual-20261017",
+        "CAMPAIGNCADENCE.actual-20261017"
       ],
       "status": {
         "understanding": "scoped",
@@ -82037,7 +82039,8 @@
         "COPYROUTES.controls-20261017",
         "COPYROUTES.campaign-20261017",
         "COPYROUTES.provenance-20261017",
-        "CAMERARESUME.actual-20261017"
+        "CAMERARESUME.actual-20261017",
+        "CAMPAIGNCADENCE.actual-20261017"
       ],
       "status": {
         "understanding": "scoped",
@@ -82047,7 +82050,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Current active camera/HUD/Mini/Quit interval records4075calls and1828keyed calls, allCPU-backed. Clipped/self and keyed GPU-source branches remain unexercised live, not proved dead. Seven post-RenderStop calls are counted exclusions with unknown branch metadata. All-game/indirect/windowed reachability, original/CPU-keyed pixels, full-session presentation, driver intent, failure/restart, hardware and performance acceptance remain separate. The earlier30second resumed camera assertion failure is now reproduced as a Hermes-modal harness readiness race; fresh bounded30second functional camera/copy assertions pass on both owners. Full campaign acceptance still fails the unchanged software5FPS floor; original pixels and complete session remain separate."
+        "Current active camera/HUD/Mini/Quit interval records4075calls and1828keyed calls, allCPU-backed. Clipped/self and keyed GPU-source branches remain unexercised live, not proved dead. Seven post-RenderStop calls are counted exclusions with unknown branch metadata. All-game/indirect/windowed reachability, original/CPU-keyed pixels, full-session presentation, driver intent, failure/restart, hardware and performance acceptance remain separate. The earlier30second resumed camera assertion failure is now reproduced as a Hermes-modal harness readiness race; fresh bounded30second functional camera/copy assertions pass on both owners. Current-source matched cadence follow-up passes the unchanged software5FPS floor with diagnostic encoding/hash work reduced after complete comparison. Historical floor failures remain; original pixels, sustained hardware and complete session remain separate."
       ]
     },
     {
@@ -86737,7 +86740,8 @@
         "tests/test-native-campaign.py"
       ],
       "evidence": [
-        "CAMERARESUME.actual-20261017"
+        "CAMERARESUME.actual-20261017",
+        "CAMPAIGNCADENCE.actual-20261017"
       ],
       "status": {
         "understanding": "partial",
@@ -86763,7 +86767,47 @@
         ]
       },
       "remaining_gaps": [
-        "Full campaign acceptance still fails the unchanged 5 FPS software floor on both World owners. These functional camera/copy assertions do not grant performance, original pixels, complete session or unknown-modal acceptance."
+        "Historical5FPS software failures are retained; current-source matched GUI diagnostic off/on and dedicated-worker acceptance are separate fresh results when recorded. Multiple introductory Hermes interruptions can exhaust the unchanged8turn budget, as retained by the cadence investigation. Unknown dialogues, hardware performance, original pixels and complete session remain outside this contract."
+      ]
+    },
+    {
+      "id": "HOST.campaign-cadence-attribution",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Active stress cadence and copy diagnostic cost attribution",
+      "scope": "Bounded Linux CLOCK_MONOTONIC attribution for ordinary camera stress phases: record resident World import counters alongside native frame/paint samples, retain physical helper start and explicit readiness intervals, select complete one-second windows within active stress excluding only those readiness intervals, and retain menu/Quit time in the unchanged whole-journey engine FPS metric. Compare matched copy-diagnostic off/on journeys with source/build/mode identity and unchanged5FPS floor. Explicit diagnostic CPU readback/reference/encoding-hash/write timings do not assert GPU busy time, complete modal semantics, production hardware performance, original pixels or whole-session parity. Full per-copy independent CPU destination comparison, four canonical digest fields and retained Python witnesses remain required; encoding/digest sharing is allowed only after full word equality.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-campaign-cadence.md"
+      ],
+      "implementation": [
+        "tools/campaign_cadence.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign_camera_dialogue.py",
+        "tools/test-native-campaign.py",
+        "renderer/command_copy_diagnostics.cpp"
+      ],
+      "tests": [
+        "tests/test-campaign-cadence.py",
+        "tests/render-copy-diagnostics-test.cpp",
+        "tests/test-native-gpu-copy-diagnostics.py",
+        "tests/test-camera-dialogue.py",
+        "tests/test-native-campaign.py"
+      ],
+      "evidence": [
+        "CAMPAIGNCADENCE.actual-20261017"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current-source matched software acceptance passes the unchanged5FPS floor with complete independent copy checks. Sustained hardware/60FPS, broader scenes and exact physical scanout remain unproved. An initial repaired run exhausts the existing8turn camera budget after multiple separate introductory Hermes interruptions; this failure remains retained and does not relax readiness or route requirements."
       ]
     }
   ],
@@ -173448,6 +173492,45 @@
       ],
       "sources_pointer": "/sources",
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "CAMPAIGNCADENCE.actual-20261017",
+      "kind": "live_observation",
+      "record": "research/runtime/native-campaign-cadence-bound-20261017.json",
+      "sha256": "5d55dd1412e364bd43bee46f6f9f77c94ef45f5424041586938b16ba180b0604",
+      "scope": "Matched 30-second stress/Mini Cancel/resume/normal-Quit source-bound software acceptance with explicit active World-import rates and diagnostic cost attribution. Independent copy checks unchanged. No sustained hardware, full dialogue/intro readiness, physical scanout or complete original-session parity claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_campaign_acceptance",
+          "equals": true
+        },
+        {
+          "pointer": "/minimum_fps",
+          "equals": 5
+        },
+        {
+          "pointer": "/metric_and_floor_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -189700,7 +189783,8 @@
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
         "HOST.native-startup-resources.v3-natural-storage-20261016",
-        "CAMERARESUME.actual-20261017"
+        "CAMERARESUME.actual-20261017",
+        "CAMPAIGNCADENCE.actual-20261017"
       ]
     },
     {
@@ -191055,7 +191139,8 @@
       "evidence": [
         "COPYLIVE.campaign-20261017",
         "COPYROUTES.campaign-20261017",
-        "CAMERARESUME.actual-20261017"
+        "CAMERARESUME.actual-20261017",
+        "CAMPAIGNCADENCE.actual-20261017"
       ]
     },
     {
@@ -191087,7 +191172,8 @@
       ],
       "evidence": [
         "COPYROUTES.campaign-20261017",
-        "CAMERARESUME.actual-20261017"
+        "CAMERARESUME.actual-20261017",
+        "CAMPAIGNCADENCE.actual-20261017"
       ]
     },
     {
@@ -191192,7 +191278,32 @@
         "tests/test-native-campaign.py"
       ],
       "evidence": [
-        "CAMERARESUME.actual-20261017"
+        "CAMERARESUME.actual-20261017",
+        "CAMPAIGNCADENCE.actual-20261017"
+      ]
+    },
+    {
+      "id": "HOST.campaign-cadence-attribution.campaign",
+      "level": "live_observation",
+      "scope": "Bounded Linux CLOCK_MONOTONIC attribution for ordinary camera stress phases: record resident World import counters alongside native frame/paint samples, retain physical helper start and explicit readiness intervals, select complete one-second windows within active stress excluding only those readiness intervals, and retain menu/Quit time in the unchanged whole-journey engine FPS metric. Compare matched copy-diagnostic off/on journeys with source/build/mode identity and unchanged5FPS floor. Explicit diagnostic CPU readback/reference/encoding-hash/write timings do not assert GPU busy time, complete modal semantics, production hardware performance, original pixels or whole-session parity. Full per-copy independent CPU destination comparison, four canonical digest fields and retained Python witnesses remain required; encoding/digest sharing is allowed only after full word equality.",
+      "behaviors": [
+        "HOST.campaign-cadence-attribution"
+      ],
+      "tests": [
+        "tools/campaign_cadence.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign_camera_dialogue.py",
+        "tools/test-native-campaign.py",
+        "renderer/command_copy_diagnostics.cpp",
+        "tests/test-campaign-cadence.py",
+        "tests/render-copy-diagnostics-test.cpp",
+        "tests/test-native-gpu-copy-diagnostics.py",
+        "tests/test-camera-dialogue.py",
+        "tests/test-native-campaign.py"
+      ],
+      "evidence": [
+        "CAMPAIGNCADENCE.actual-20261017"
       ]
     }
   ],
@@ -191810,8 +191921,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-qt-draw02-master-final-20261017.json",
-    "sha256": "0b7cb564bda91769d19a390b21fc3eef303b8f3aa41e57667da9091b1ab2c48f"
+    "path": "research/runtime/coverage/source-index-campaign-cadence-20261017.json",
+    "sha256": "50e0005ea48f09bc917a73584f22bbbe756243fcf357ea842d3b40f9b1b8ccb2"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
