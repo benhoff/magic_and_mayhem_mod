@@ -307,3 +307,20 @@ the legacy logical active/serial fields. The existing 32-bit word/vector/optiona
 encoding applies. v1..v12 reads remain supported; writes below13 reject present
 grouped work. v12 planners decode without upgrading their native scheduling
 policy. The format is native policy, not an original save-game layout.
+
+## CMD1 version14: owner task reconsideration
+
+Version14 appends an optional replanning projection after the version13 grouped
+planner fields. It stores logical task6 admission inputs; original replacement
+thresholds and supplied current owner ratio inputs; candidate/best lifetime;
+preparation/eligibility flags; and optional active start, expiry, completion,
+weighted flag, selected value, baseline and separate progress counters. The active
+and previous-task optionals must agree, and preparation/time/finite-value bounds
+are checked before publishing a continuation. Pending selection, active pursuit
+and lifetime RNG survive restoration independently.
+
+Versions12/13 decode with their existing singleton/grouped policy and no replanning
+projection. Writes below14 refuse to drop an enabled projection. Fresh sessions
+use14. These fields express owned state, never original addresses or host layouts.
+Original gate recovery, explicit native input/cadence policy and excluded event
+producers are documented in [task replanning](../runtime/owner-task-replanning.md).

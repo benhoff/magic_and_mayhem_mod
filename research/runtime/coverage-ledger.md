@@ -9920,3 +9920,70 @@ original paths as symlinks, recorded under working/retention/; it is storage
 provenance, not fresh engine evidence.
 
 The generated scope/freshness snapshot is coverage/summary-owner-group-planner-20261016-v1.md; the full machine report is retained under working/tests/planner-ns79-accounting/audit-final-v1.json.
+
+## NS80: ordinary task admission and active-task replanning (2026-10-16)
+
+The bounded owner lab now evaluates fresh grouped hostile proposals while keeping
+its active pursuit, then uses the original ordinary direct-root replacement gate
+to retain or replace it. Whole431be0 preparation predicates, previous-task4284e0
+admission and whole423590 direct-root decisions are separately registered as
+AI.owner-task6-admission, AI.owner-task-replacement and
+AI.owner-direct-root-replanning. Native policy/continuation is independently
+NP.owner-task-replanning-continuation. Recovery and exclusions are documented in
+[task replanning](owner-task-replanning.md).
+
+Three fresh prospective original32/native64/ASan/UBSan/LSan comparisons pass12,288
+cases and16,812,666 checks:2048 admission cases,8192 previous-task/lifetime/RNG
+fixtures over52,913 slices, and2048 ordinary direct-root replacement episodes over
+6139 slices. The latter includes1045 replacements,1003 retentions,591 strict-score
+improvements,266 completed-task replacements and an explicit expired low-progress
+replacement; remaining accepted cases have no previous task. Special-cell,
+distress/cache production, evaluator generation and task construction/destruction
+are explicit service boundaries, not original implementation substitutions claimed
+as equivalence. Manifest, original protected text and source fingerprints remain
+unchanged. Original reports are owner-task-{admission,replanning,replacement-
+journey}-ns80-20261016.json. Static constants are separately typed.
+
+The strict improvement threshold is pinned binary32~0.9. The alternative is
+pow(progress, elapsedFraction)<binary32~0.001 with a positive proposal, not the
+reverse exponent order. Native active state owns original start/expiry,
+completed/weighted/value, baseline and separate progress counters. Successful
+candidate completion now owns the actual mean100 exponential lifetime draw,
+replacing NS79's discarded preparation word; rejected/losing candidates still
+consume it. Zero masked RNG words refuse instead of reproducing invalid
+logarithm/ftol; zero finite lifetime retains the original execution-expiry gate.
+
+CMD1v14 persists admission/policy/preparation, distinct candidate/best durations,
+and previous-task state alongside pending probes and active groups. Versions12/13
+preserve earlier policies and lossy writes refuse. Task6 enabling, assignments,
+special-cell/distress and owner progress inputs are explicit lab values; producers
+are not recovered by testing supplied predicates. The existing two-unit frame
+cadence, cache epochs, origin restart, coefficients and danger policy remain
+native choices. Original multi-source split/merge, task6 generation coupled
+through423590, training/feedback, notifications, full415c40/World scheduling,
+other task families/campaigns and live replacement remain pending. No gameplay
+balance feature or full-game Wine removal is claimed.
+
+The committed-history review covers454d7d08..be0a865b:54 committed files and all297
+file/341 behavior transitions have exact receipt chains, without unresolved gaps.
+This checks historical accounting only. The new durable source census has2541
+files/2347 explicit links,10 new sources and no removals;194 preexisting unlinked
+sources remain. All prior execution evidence and hashes are preserved. Shared
+source edits leave historical broader contracts stale rather than asserting new
+validation for them; fresh NS80 proofs cover their declared scopes only.
+
+Fresh declared native/sanitizer validation passes two512-frame installed-model
+seeds,128 restore checkpoints,1067 planner checks/33 refusals, and the32-check
+controlled authored-model journey with21 slice restores. In that journey a changed
+enemy valuation passes through actual grouped features/inference to replace the
+task; selected scores and active lifetimes are not assigned by the fixture.
+Retention, improved replacement, moving target, failed-route retention and risk
+completion/fallback all have explicit witnesses. Six cold process resumes and
+whole/split CLI continuation agree with Wine/Qt absent from linkage and PATH
+unavailable during cold resumes. Both five-test core suites plus native visibility,
+knowledge and danger regressions pass; v13 grouped policy is restored through
+its actual older wire format. The immutable result is
+owner-task-native-ns80-20261016.json. Sixty coverage-audit and51 gate-tool tests
+also pass. Interrupted development/final-v1 runs remain retained without new
+validation claims. The audit preserves historical broader staleness; none of
+these results claims full World or live equivalence.

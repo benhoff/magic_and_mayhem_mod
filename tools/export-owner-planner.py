@@ -18,7 +18,7 @@ module.RANGES = {
 }
 # Task construction, ordering and dispatch; preserve unknown indirect families.
 import json
-_inventory = json.loads((Path(__file__).resolve().parents[1] / 'research/runtime/coverage/binary-nocd.json').read_text())
+_inventory = json.loads((Path(__file__).resolve().parents[1] / 'research/runtime/coverage/binary-nocd-owner-planner-20261016.json').read_text())
 for _f in _inventory['functions']:
     _a = _f['entry']
     if 0x416ea0 <= _a < 0x4181d0 or 0x407920 <= _a <= 0x407b10 or _a in (0x4284e0,0x421f70, 0x423590, 0x428b40, 0x428e40, 0x428f80):

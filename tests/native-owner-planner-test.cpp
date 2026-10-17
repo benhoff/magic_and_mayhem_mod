@@ -35,9 +35,15 @@ int main(int argc, char **argv) try {
     ++refusals;
   };
   const auto initial = cs::encode(p.initial);
-  check(initial.at(4) == 13, "CMD1v13");
-  for (unsigned version : {10u, 11u, 12u})
+  check(initial.at(4) == 14, "CMD1v14");
+  for (unsigned version : {10u, 11u, 12u, 13u})
     rejects([&] { (void)cs::encode(p.initial, version); });
+  auto oldGrouped = p.initial;
+  oldGrouped.native.ownerPlanner->grouped->replanning.reset();
+  auto v13 = cs::encode(oldGrouped, 13);
+  check(cs::encode(cs::decode(v13), 13) == v13 &&
+            !cs::decode(v13).native.ownerPlanner->grouped->replanning,
+        "v13 planner compatibility");
   auto oldPlanner = p.initial;
   oldPlanner.native.ownerPlanner->grouped.reset();
   auto v12 = cs::encode(oldPlanner, 12);
@@ -97,6 +103,9 @@ int main(int argc, char **argv) try {
     c.native.ownerPlanner->selection.reset = false;
     c.native.ownerPlanner->selection.evaluator = 1;
   });
+  bad([](auto &c) {c.native.ownerPlanner->grouped->replanning->policy.expiry = -1;});
+  bad([](auto &c) {c.native.ownerPlanner->grouped->replanning->previous.emplace();});
+  bad([](auto &c) {c.native.ownerPlanner->grouped->replanning->bestDuration = -1;});
   auto truncated = initial;
   truncated.pop_back();
   rejects([&] { (void)cs::decode(truncated); });

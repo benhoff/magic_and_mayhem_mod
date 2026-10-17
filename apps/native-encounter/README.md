@@ -67,3 +67,11 @@ group/probe/best/active task work; old v12 checkpoints retain their singleton
 policy. See [scope and evidence](../../research/runtime/owner-grouped-planner.md).
 The full original owner scheduler, task replacement and other strategic families
 remain outstanding.
+
+NS80 fresh `run-planner` sessions use CMD1v14 task reconsideration. Active grouped
+pursuit continues while new proposals are probed; the original ordinary direct-
+root replacement gate decides retention or replacement, and successful candidates
+own their strategic exponential lifetime draw. Admission/progress signals and
+frame cadence remain explicit two-actor lab inputs. Versions12/13 retain their
+previous policy on resume. See [task replanning](../../research/runtime/owner-task-replanning.md)
+for original comparison boundaries and pending World/configuration producers.

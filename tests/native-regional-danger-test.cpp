@@ -55,7 +55,7 @@ int main(int argc, char **argv) try {
               remembered.actor.position,
           "hidden threat position leaked");
     auto bytes = cs::encode(c);
-    check(bytes.at(4) == 13, "danger wire version");
+    check(bytes.at(4) == 14, "danger wire version");
     c = cs::decode(bytes);
     check(cs::encode(c) == bytes, "danger checkpoint changed");
     ++restores;

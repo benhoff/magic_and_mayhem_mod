@@ -15,6 +15,7 @@
 #include "../../reconstruction/creature-ai/brain_inference.hpp"
 #include "../../reconstruction/creature-ai/owner_group_task.hpp"
 #include "../../reconstruction/creature-ai/owner_task_probe.hpp"
+#include "../../reconstruction/creature-ai/owner_task_lifecycle.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -55,6 +56,13 @@ struct NativeOwnerVisibility {
   std::vector<reconstruction::combat::SightDefinition> definitions;
   std::vector<std::array<int,8>> observers;
 };
+struct NativeOwnerReplanning {
+  reconstruction::combat::OwnerTask6Admission admission;
+  reconstruction::combat::OwnerReplacementPolicy policy;
+  std::optional<reconstruction::combat::OwnerPreviousTask> previous;
+  int candidateDuration=0,bestDuration=0;
+  bool eligible=false,prepared=false;
+};
 struct NativeOwnerGroupPlanner {
   reconstruction::combat::OwnerMemoryGroups groups;
   std::vector<reconstruction::combat::OwnerMemory> observations;
@@ -62,6 +70,7 @@ struct NativeOwnerGroupPlanner {
   int deadline=0,from=-1,to=-1,excessPercent=0;
   reconstruction::combat::OwnerTaskProbe probe;
   std::optional<reconstruction::combat::OwnerGroupTask> candidate,best,active;
+  std::optional<NativeOwnerReplanning> replanning;
 };
 struct NativeOwnerPlanner {
   unsigned owner=0,actor=0,nextSerial=1,activeSerial=0;

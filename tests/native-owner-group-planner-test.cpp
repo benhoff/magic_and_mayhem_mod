@@ -19,6 +19,7 @@ int main(int argc, char **argv) try {
   // Controlled external sightings/world movement isolate the composed native
   // planner from creature motion. Every slice also runs from a CMD1 restore.
   auto journey = p.initial;
+  journey.native.ownerPlanner->grouped->replanning.reset();
   journey.native.regions.assign(16, {});
   for (unsigned i = 0; i < 16; ++i) {
     auto &r = journey.native.regions[i];
@@ -82,10 +83,10 @@ int main(int argc, char **argv) try {
     auto &planner = *journey.native.ownerPlanner;
     for (auto &r : journey.native.ownerKnowledge->records[0])
       r.markedTick = int(tick);
-    auto resume = cs::decode(cs::encode(journey));
+    auto resume = cs::decode(cs::encode(journey, 13));
     plannerSlice(journey);
     plannerSlice(resume);
-    check(cs::encode(journey) == cs::encode(resume),
+    check(cs::encode(journey, 13) == cs::encode(resume, 13),
           "group probe restore differs");
     probeFrames += !planner.grouped->probe.search.records.empty();
     groupCandidates += planner.grouped->cursor;
@@ -107,10 +108,10 @@ int main(int argc, char **argv) try {
                 journey.world.creatures[0].ai.dirty932 = 0;
     if (phase == 3)
       journey.native.regions[0].dangerBase = 250;
-    auto resume = cs::decode(cs::encode(journey));
+    auto resume = cs::decode(cs::encode(journey, 13));
     plannerSlice(journey);
     plannerSlice(resume);
-    check(cs::encode(journey) == cs::encode(resume),
+    check(cs::encode(journey, 13) == cs::encode(resume, 13),
           "lost/reacquired task restore differs");
     if (phase == 1) {
       lost += journey.world.creatures[0].ai.behavior == 2;

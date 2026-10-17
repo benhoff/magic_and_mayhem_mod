@@ -1,0 +1,5 @@
+#!/usr/bin/env python3
+"""Compare whole task6 preparation with explicit special-cell/distress/cache services."""
+from owner_planner_comparison import SUITES, main
+SUITES['admission']=dict(ranges=[(0x431be0,0x431cdb),(0x40eed0,0x40efed),(0x40aa40,0x40aa85),(0x40aa90,0x40aad6),(0x40aae0,0x40ab5f)],endpoints=[0x413330,0x522690,0x52a3a0],scope='Whole431be0 with actual owner-task enable lookup, source brain/root/assignment predicates, special-cell and singleton-wizard alternatives, owner presence/distress gates, empty/nonempty cached hostile groups, prepared iterator/deadline/wizard writes. Special-cell, distress and memory-cache construction are explicit recorder/service boundaries; original helpers iterate one supplied friendly. No World scheduling or multi-source allocation.',suite='owner-task6-admission',sources=['tests/owner-task-admission-test.cpp','reconstruction/creature-ai/owner_task_lifecycle.cpp','reconstruction/creature-ai/owner_planner.cpp','reconstruction/combat/melee.cpp','reconstruction/creature-ai/brain_inference.cpp','assets/dat.cpp'],wrapper='tools/test-owner-admission.py')
+if __name__=='__main__':main('admission')

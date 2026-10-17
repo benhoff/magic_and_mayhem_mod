@@ -174,3 +174,7 @@ target_compile_options(native-owner-planner-test PRIVATE -Wall -Wextra -Werror -
 add_executable(native-owner-group-planner-test ../../tests/native-owner-group-planner-test.cpp)
 target_link_libraries(native-owner-group-planner-test PRIVATE mnm-native-encounter)
 target_compile_options(native-owner-group-planner-test PRIVATE -Wall -Wextra -Werror -pedantic)
+
+add_executable(native-owner-replanning-test ../../tests/native-owner-replanning-test.cpp)
+target_link_libraries(native-owner-replanning-test PRIVATE mnm-native-encounter)
+target_compile_options(native-owner-replanning-test PRIVATE -Wall -Wextra -Werror -pedantic)

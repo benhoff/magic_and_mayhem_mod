@@ -106,6 +106,8 @@ void prepareNativeOwnerPlanner(Continuation &c,
   staged.native.ownerPlanner.emplace();
   auto &s = *staged.native.ownerPlanner;
   s.grouped.emplace();
+  s.grouped->replanning.emplace();
+  s.grouped->replanning->policy.ownerAvailable = true;
   s.owner = owner;
   s.actor = actor;
   s.model = std::move(model);

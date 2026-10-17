@@ -30,8 +30,24 @@ void validateNativeOwnerGroupPlanner(const Continuation &c) {
     return;
   const auto &g = *s.grouped;
   need(s.selection.reset || s.selection.evaluator != 1 ||
-           !g.groups.nodes.empty(),
+           !g.groups.nodes.empty() ||
+           (g.replanning && g.replanning->prepared && !g.replanning->eligible),
        "group planner unprepared hostile evaluator");
+  if (g.replanning) {
+    const auto &r = *g.replanning;
+    model::validateOwnerReplacementPolicy(r.policy);
+    need(r.admission.brain <= 1 && r.candidateDuration >= 0 &&
+             r.bestDuration >= 0,
+         "group planner replanning domain");
+    need(!r.eligible || r.prepared, "group planner admission phase");
+    need(r.previous.has_value() == g.active.has_value(),
+         "group planner previous task identity");
+    if (r.previous) {
+      model::validateOwnerPreviousTask(*r.previous);
+      need(unsigned(r.previous->started) <= c.native.tick,
+           "group planner task from future");
+    }
+  }
   model::validateOwnerMemoryGroups(g.groups, c.world.dimensions);
   need(g.cursor <= (g.groups.nodes.empty()
                         ? 0
@@ -115,7 +131,9 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
   auto &actor = c.world.creatures.at(s.actor);
   const int tick = int(c.native.tick);
   NativeCreatureGeometry geometry(c, p);
-  if (g.active) {
+  auto *replanning = g.replanning ? &*g.replanning : nullptr;
+  if (g.active && (!replanning || (!replanning->previous->completed &&
+                                   tick < replanning->previous->expires))) {
     int raw = 0, net = 0;
     if (actor.region >= 0) {
       const auto &r = c.native.regions.at(unsigned(actor.region));
@@ -141,9 +159,13 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
       }
     }
     if (!out.continuing) {
-      g.active.reset();
-      s.active.reset();
-      s.activeSerial = 0;
+      if (replanning)
+        replanning->previous->completed = true;
+      else {
+        g.active.reset();
+        s.active.reset();
+        s.activeSerial = 0;
+      }
     } else {
       s.active->position = g.active->groups.nodes[g.active->root].position;
       if (actor.ai.action != 8) {
@@ -156,7 +178,8 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
           commands.move(actor, out.position);
         }
       }
-      return;
+      if (!replanning)
+        return;
     }
   }
   if (!actor.ai.active || !actor.ai.health)
@@ -182,6 +205,12 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
     g.probe = {};
     g.from = g.to = -1;
     g.candidate.reset();
+    if (replanning) {
+      replanning->prepared = true;
+      replanning->eligible = model::admitOwnerTask6(replanning->admission);
+      if (!replanning->eligible)
+        return;
+    }
     model::OwnerMemoryGroupServices lower;
     const reconstruction::CreatureMovementParameters shape{4, 1, 1, 3, 0, 0, 0};
     lower.regional = [&](int a, int b, int &middle) {
@@ -196,7 +225,8 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
     // sweep rather than claiming original World scheduling or cache epochs.
     need(tick <= std::numeric_limits<int>::max() - 22,
          "group planner deadline overflow");
-    (void)model::nextRandom(s.random);
+    if (!replanning)
+      (void)model::nextRandom(s.random);
     g.deadline = tick + 22;
   };
   auto next = [&](unsigned evaluator, int &budget) -> std::optional<float> {
@@ -207,6 +237,8 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
       --budget;
       return -1.f;
     }
+    if (replanning && !replanning->eligible)
+      return {};
     auto &roots = g.groups.nodes[0].children;
     while (g.cursor < roots.size() && tick <= g.deadline) {
       const auto root = roots[g.cursor];
@@ -268,6 +300,8 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
         g.from = g.to = -1;
         continue;
       }
+      if (replanning)
+        replanning->candidateDuration = model::ownerTaskDuration(s.random);
       const auto friendly = nativeOwnerPlannerActor(c, p, s.actor);
       const auto prefix = model::hostileTaskGroupFeatures({friendly}, enemy,
                                                           c.world.dimensions);
@@ -305,23 +339,57 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
     s.hostileEmitted = true;
     return {};
   };
-  model::OwnerTaskSelectionServices services{2,
-                                             true,
-                                             prepare,
-                                             next,
-                                             [&](unsigned i) {
-                                               if (i)
-                                                 g.best = g.candidate;
-                                               else
-                                                 g.best.reset();
-                                             },
-                                             []() {}};
+  model::OwnerTaskSelectionServices services{
+      2,
+      true,
+      prepare,
+      next,
+      [&](unsigned i) {
+        if (i) {
+          g.best = g.candidate;
+          if (replanning)
+            replanning->bestDuration = replanning->candidateDuration;
+        } else
+          g.best.reset();
+      },
+      []() {}};
   int budget = 2;
   model::advanceOwnerTaskSelection(s.selection, budget, s.random, services);
-  if (s.selection.reset && s.selection.selected == 1) {
+  if (replanning && s.selection.reset && s.selection.selected == 0 &&
+      model::replaceOwnerTask(s.selection.value,
+                              replanning->previous ? &*replanning->previous
+                                                   : nullptr,
+                              tick, replanning->policy)) {
+    g.active.reset();
+    s.active.reset();
+    s.activeSerial = 0;
+    replanning->previous.reset();
+  }
+  if (s.selection.reset && s.selection.selected == 1 &&
+      (!replanning ||
+       model::replaceOwnerTask(s.selection.value,
+                               replanning->previous ? &*replanning->previous
+                                                    : nullptr,
+                               tick, replanning->policy))) {
     need(g.best.has_value() &&
              s.nextSerial < std::numeric_limits<unsigned>::max(),
          "group planner selected task");
+    if (replanning) {
+      need(replanning->bestDuration <= std::numeric_limits<int>::max() - tick,
+           "group planner task expiration overflow");
+      model::OwnerPreviousTask previous;
+      previous.started = tick;
+      previous.expires = tick + replanning->bestDuration;
+      previous.value = s.selection.value;
+      previous.weighted = s.selection.weighted;
+      const auto &policy = replanning->policy;
+      previous.baseline =
+          policy.ownerAvailable
+              ? float(static_cast<long double>(policy.ownerNumerator) /
+                      (policy.ownerDenominator + 1))
+              : 0;
+      replanning->previous = previous;
+    }
     g.active = g.best;
     s.active = model::OwnerHostileTask{
         model::ownerGroupKeys(g.active->groups, g.active->root).front(),
