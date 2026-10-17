@@ -70951,7 +70951,7 @@
       "title": "Original owner strategic task production and selection",
       "subsystem": "creature-ai",
       "kind": "recovered",
-      "scope": "Partial original owner strategic pipeline: bounded taskless and previous-task selector gates, ordinary task6 admission, direct-root replacement, model inference, grouped observations/features/probes and pursuit/risk rejection have separate original comparisons. Native lifecycle continuation uses explicit eligibility/progress inputs and lab cadence. Full task6-to-owner-driver composition, split/merge source planning, other task families, notification consequences and415c40 dual-brain World scheduling remain pending. NS81 links ordinary native region/occupancy and published danger/support inputs, and bounded damage/healing/movement task accounting. Original event comparisons retain supplied scoring/source lookup/max-health boundaries; notification/resource/FC-flag producers and full World coupling remain pending.",
+      "scope": "Partial original owner strategic pipeline: bounded taskless and previous-task selector gates, ordinary task6 admission, direct-root replacement, model inference, grouped observations/features/probes and pursuit/risk rejection have separate original comparisons. Native lifecycle continuation uses explicit eligibility/progress inputs and lab cadence. Full task6-to-owner-driver composition, split/merge source planning, other task families, notification consequences and415c40 dual-brain World scheduling remain pending. NS81 links ordinary native region/occupancy and published danger/support inputs, and bounded damage/healing/movement task accounting. Original event comparisons retain supplied scoring/source lookup/max-health boundaries; notification/resource/FC-flag producers and full World coupling remain pending. NS82 composes bounded ordinary task6 generation/inference/save/installation/credit/pursuit through original423590 and fixes native generated lifetime to exponential+travel+600. Authored world/observations/model, clone/teardown and training/scoring remain services; original perception/health-to-World and broad source/wizard families remain pending.",
       "confidence": "provisional",
       "original": [
         {
@@ -71001,10 +71001,12 @@
       "documents": [
         "research/runtime/owner-strategic-planner.md",
         "research/runtime/owner-task-replanning.md",
-        "research/runtime/owner-task-inputs.md"
+        "research/runtime/owner-task-inputs.md",
+        "research/runtime/owner-task6-composed-loop.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
         "reconstruction/creature-ai/owner_group_features.cpp",
         "reconstruction/creature-ai/owner_group_features.hpp",
         "reconstruction/creature-ai/owner_group_task.cpp",
@@ -71013,7 +71015,9 @@
         "reconstruction/creature-ai/owner_memory_groups.cpp",
         "reconstruction/creature-ai/owner_memory_groups.hpp",
         "reconstruction/creature-ai/owner_planner.cpp",
+        "reconstruction/creature-ai/owner_planner.hpp",
         "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
         "reconstruction/creature-ai/owner_task_inputs.cpp",
         "reconstruction/creature-ai/owner_task_inputs.hpp",
         "reconstruction/creature-ai/owner_task_lifecycle.cpp",
@@ -71022,6 +71026,7 @@
         "reconstruction/creature-ai/owner_task_probe.hpp"
       ],
       "tests": [
+        "tests/owner-task6-loop-test.cpp",
         "tools/export-owner-planner-inventory.py",
         "tools/export-owner-planner.py",
         "tools/export-owner-risk.py",
@@ -71031,14 +71036,17 @@
         "tools/inspect-owner-planner-tables.py",
         "tools/inspect-owner-replanning.py",
         "tools/inspect-owner-task-inputs.py",
-        "tools/review-owner-planner-inventory.py"
+        "tools/inspect-owner-task6-lifetime.py",
+        "tools/review-owner-planner-inventory.py",
+        "tools/test-owner-task6-loop.py"
       ],
       "evidence": [
         "NS79.owner-planner-risk-static",
         "NS79.owner-planner-constants-static",
         "NS80.owner-task-constants-static",
         "NS81.owner-task-inputs-static",
-        "NS81.owner-task-profile-static"
+        "NS81.owner-task-profile-static",
+        "NS82.owner-task6-lifetime-static"
       ],
       "status": {
         "understanding": "partial",
@@ -72508,7 +72516,8 @@
         "tools/test-owner-replanning.py"
       ],
       "evidence": [
-        "NS80.owner-task-replanning-original"
+        "NS80.owner-task-replanning-original",
+        "NS82.owner-task6-replanning-original"
       ],
       "status": {
         "understanding": "scoped",
@@ -73019,7 +73028,7 @@
       "title": "Native task admission and credit driven by simulation events",
       "kind": "native_policy",
       "subsystem": "creature-ai",
-      "scope": "Fresh ordinary two-type17 native planner derives enabled from task percent, regional membership, special-cell occupant tokens and owner danger-service availability/distress; replacement consumes published danger/support totals, preserving publication lag. Native lab commander is the existing designated ordinary actor, not a recovered wizard factory. Combat uses installed physical type17 LRC/HTH/Health profile accounting; retained attacker slot credits its task, victim roots cost its task, healing rewards its own task; flagged segment completion adds accounted cost. Current lab single brain/root maps to its one retained task until replacement, including completed/expired tasks. CMD1v15 appends eventInputs, olderv14 reads retain supplied inputs and lossy writes refuse. Task resources, sighting notification rewards, split/merge ancestry, general species, full World cadence and live replacement remain pending.",
+      "scope": "Fresh ordinary two-type17 native planner derives enabled from task percent, regional membership, special-cell occupant tokens and owner danger-service availability/distress; replacement consumes published danger/support totals, preserving publication lag. Native lab commander is the existing designated ordinary actor, not a recovered wizard factory. Combat uses installed physical type17 LRC/HTH/Health profile accounting; retained attacker slot credits its task, victim roots cost its task, healing rewards its own task; flagged segment completion adds accounted cost. Current lab single brain/root maps to its one retained task until replacement, including completed/expired tasks. CMD1v15 appends eventInputs, olderv14 reads retain supplied inputs and lossy writes refuse. Task resources, sighting notification rewards, split/merge ancestry, general species, full World cadence and live replacement remain pending. NS82 corrects newly generated task6 lifetime to truncate(exponential(mean100)+produced travel+600); old saved active lifetimes remain stored values. Native integration is independent of the bounded original driver comparison.",
       "confidence": "high_within_scope",
       "documents": [
         "research/runtime/owner-task-inputs.md"
@@ -73069,7 +73078,8 @@
       ],
       "evidence": [
         "NS81.owner-task-profile-static",
-        "NS81.owner-task-inputs-native"
+        "NS81.owner-task-inputs-native",
+        "NS82.owner-task6-loop-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -73356,9 +73366,174 @@
       ],
       "validation_domain": {
         "required_inputs": "Read-only installed two-type17 CFG/HTH/ANI/MAP/TTD/Brain assets, bounded authored 16-region/model input journey, retained actor/task identity.",
-        "branches": "Admission from percent/region/special occupancy/owner availability, actual health feedback costs and own healing rewards with notify gate, attacker-slot melee rewards, one-shot FC movement completion cost, expired task replaced after damage versus undamaged retention, actual regional support publication, per-slice portable resume and six cold installed-model resumes, v14 active compatibility.",
+        "branches": "Admission from percent/region/special occupancy/owner availability, actual health feedback costs and own healing rewards with notify gate, attacker-slot melee rewards, one-shot FC movement completion cost, expired task replaced after damage versus undamaged retention, actual regional support publication, per-slice portable resume and six cold installed-model resumes, v14 active compatibility. Corrected travel-plus600 generated lifetime, natural expiry-relative cost replacement and retained undamaged control.",
         "failures": "Malformed optional bool, lossyv14 write, missing/cyclic/duplicate roots and unsupported state remain refused; prior malformed/rollback suites rerun.",
         "exclusions": "Sighting notifications and resource task credit, wizard/campaign factory, multiple tasks/brain ancestry, training, native production of FC score ratios or authored observation-point lists, full World cadence and live replacement."
+      }
+    },
+    {
+      "id": "AI.owner-task6-composed-loop",
+      "subsystem": "creature_ai",
+      "kind": "recovered",
+      "title": "Ordinary task6 generation through the original owner driver",
+      "scope": "Bounded whole423590 one ordinary direct-root source and brain0, authored creature/world/memory/72-dimensional model; actual431be0 admission/413330 grouping/431ce0 probes/features/lifetime/4766b0 inference/4284e0 selection/4261b0 save/4289e0 task installation and original514990 credit with supplied accounted quantity34; budgeted continuation/full strategic RNG/retention and expired-cost replacement. Fresh-evaluator clone, teardown, training registration and scoring services remain explicit; original World cadence, source split/merge, wizard/campaign construction, perception production and whole health-to-planner equivalence excluded. Weighted/maximum choice, separate/merged anonymous targets, disabled admission, installed432900 sight/loss/reacquisition/risk-stop and completed-task replacement are compared. Task6 lifetime includes produced travel+600 before truncation; standalone40b3f0 is only the random term.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4339088,
+          "scope": "Ordinary direct-root branch and bounded empty other-source/task collections."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4398048,
+          "scope": "Whole ordinary task6 preparation with actual owner/assignment/special/distress predicates and413330 grouping."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4398304,
+          "scope": "Whole ordinary regional-probe, produced feature, actual inference and lifetime candidate path."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4359392,
+          "scope": "Actual generated candidate selection and budget continuation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4350384,
+          "scope": "Actual selected target/risk/duration/features save."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4360672,
+          "scope": "Actual selected task installation with clone and training-registration boundary."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4679344,
+          "scope": "Actual inference with authored nonuniform model."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5327248,
+          "scope": "Nonlethal damage cost into the installed direct-root task with supplied scoring34."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4401408,
+          "scope": "Actual generated and installed nested task pursuit, lost/reacquired observation and risk-stop body; caller cadence remains supplied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6052472,
+          "relation": "data",
+          "scope": "Pinned binary32 lifetime offset600, added after candidate travel and exponential draw before truncation."
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-task6-composed-loop.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_group_task.cpp",
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_group_features.cpp",
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_task_probe.cpp",
+        "reconstruction/creature-ai/owner_task_probe.hpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.cpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.hpp",
+        "reconstruction/creature-ai/owner_task_inputs.cpp",
+        "reconstruction/creature-ai/owner_task_inputs.hpp",
+        "reconstruction/creature-ai/owner_planner.cpp",
+        "reconstruction/creature-ai/owner_planner.hpp",
+        "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp"
+      ],
+      "tests": [
+        "tests/owner-task6-loop-test.cpp",
+        "tools/test-owner-task6-loop.py",
+        "tools/inspect-owner-task6-lifetime.py"
+      ],
+      "evidence": [
+        "NS82.owner-task6-loop-original",
+        "NS82.owner-task6-lifetime-static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_group_features.cpp",
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_group_task.cpp",
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_hostile_task.hpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner.cpp",
+        "reconstruction/creature-ai/owner_planner.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_inputs.cpp",
+        "reconstruction/creature-ai/owner_task_inputs.hpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.cpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.hpp",
+        "reconstruction/creature-ai/owner_task_probe.cpp",
+        "reconstruction/creature-ai/owner_task_probe.hpp",
+        "reconstruction/creature-ai/regional_danger.cpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.cpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-task-probe-test.cpp",
+        "tests/owner-task6-loop-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/inspect-owner-task6-lifetime.py",
+        "tools/owner_planner_comparison.py",
+        "tools/test-owner-task6-loop.py"
+      ],
+      "validation_domain": {
+        "required_inputs": "Pinned NoCD private image; authored8-region graph, two ordinary raw pool slots, one direct-root source, two supplied aliased observations and nonuniform72-dimensional/three-layer model; ordinary associated owner actor; empty other-source/task collections.",
+        "branches": "128 seeded episodes: disabled admission, weighted/maximum selection, separate/merged anonymous groups, real candidate probe/features/inference, travel+600 lifetime, save/install, all250 strategic RNG words and cursors per slice, identical-proposal retention, actual514990 accounted cost34, age-relative expired replacement with weighted retention, installed target/loss/reacquire/risk-stop and completed replacement.",
+        "failures": "Native lifetime refuses negative travel, INT_MAX travel overflow and zero masked exponential draw; original malformed-domain equivalence excluded.",
+        "exclusions": "Observation production and full health/scoring producer equivalence, source split/merge, wizard/campaign factories, model loading/training, object construction/clone/destruction equivalence, full World/dual-brain cadence, broad species and live replacement."
       }
     }
   ],
@@ -139513,6 +139688,189 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS82.owner-task6-loop-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Composed whole423590 ordinary direct-root driver through actual431be0/413330 grouping,431ce0 regional probes/features/lifetime,4766b0 authored nonuniform model inference,4284e0 selection,4261b0 save and4289e0 install. Supplied memory/world/model construction, Linux allocation, virtual fresh-evaluator clone, destruction and training-registration boundaries; no source split/merge, wizard, World cadence or live replacement. Weighted/maximum selection, merged/separate groups, disabled admission, original514990 damage credit with supplied accounted quantity34, installed432900 target/lost/reacquired/risk-stop and completed-task replacement; native real health production/save-resume validated separately.",
+      "record": "research/runtime/owner-task6-loop-original-ns82-20261017.json",
+      "sha256": "82aed06f5d3a6994ff9f89c51c4040b1c478b84e03abef3d54f4aa961dc16d9c",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 128
+        },
+        {
+          "pointer": "/checks",
+          "equals": 431713
+        }
+      ]
+    },
+    {
+      "id": "NS82.owner-task6-replanning-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole4284e0 with authored evaluator services and absent/present previous task, completion/weighted/value gates, relative improvement and age/progress rejection, count budgets, bias/reject-one/ties and RNG. Whole40a3b0 progress and40b3f0 mean100 lifetime draw. No text redirects. Full423590 driver, task creation and World cadence excluded from this component.",
+      "record": "research/runtime/owner-task6-replanning-original-ns82-20261017.json",
+      "sha256": "29d9b0df1763470fbf66d5452ae8edd8e902f8c66f9908af2577c282a2f7c475",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/checks",
+          "equals": 16761501
+        }
+      ]
+    },
+    {
+      "id": "NS82.owner-task6-lifetime-static",
+      "kind": "static",
+      "scope": "Static pinned task6 travel/exponential/offset lifetime assembly only; no execution comparison.",
+      "record": "research/runtime/owner-task6-lifetime-static-ns82-20261017.json",
+      "sha256": "6df13f29a9425171df35419927818c5906353c931340b69f5955ec4bbd8ee4ec",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/constants/0x5c5a78/bytes",
+          "equals": "00001644"
+        }
+      ]
+    },
+    {
+      "id": "NS82.owner-task6-loop-native",
+      "kind": "native_integration",
+      "scope": "Fresh NS82 corrected travel+600 task6 lifetime and installed native event/planner/continuation suite, with independent ordinary original-driver comparison. Native lab policy: ordinary two-actor installed32x32x23 encounter; direct-root previous-task admission/replacement with native regional/occupancy/percent inputs, published owner danger/support ratios and actual health/melee/flagged-motion task accounting, ordered anonymous-memory groups, ordinary regional probes, 72 produced features and original DAT inference; explicit1/0/1 weights and100 percent, danger excess0, independent strategic RNG, fresh-sweep caches and origin-change probe restart, active and pending candidate continuation, per-candidate exponential lifetime. Original World cadence, source split/merge and wizard policy excluded. CMD1v15, two installed-model seeds x512 frames, every8-frame restore, controlled authored-model observation-to-inference retention/replacement with untouched active scores/lifetimes, expired-task damage-driven replacement against an undamaged retained-task control, melee/healing/flagged-motion credit, cold-process continuation and legacy regressions",
+      "record": "research/runtime/owner-task6-loop-native-ns82-20261017.json",
+      "sha256": "02d210f56377bec15d8a05807bfff711d31e169653c310c3e8021c0a4954d7bf",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/core_suites_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cli_resume_identical",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cold_process_restores",
+          "equals": 6
+        },
+        {
+          "pointer": "/suites/native-owner-task-inputs-test/checks",
+          "equals": 3807
+        },
+        {
+          "pointer": "/suites/native-owner-task-inputs-test/restores",
+          "equals": 3650
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -153701,6 +154059,24 @@
       "evidence": [
         "NS81.owner-task-inputs-native"
       ]
+    },
+    {
+      "id": "owner-task6-loop-native-ns82-20261017",
+      "level": "headless",
+      "scope": "Installed native CMD1v15 planner with corrected travel-plus600 lifetime: two512-frame seeds, actual health/cost expired-task replacement versus undamaged retained control, admission/credit regressions, checkpoint and six cold resumes. Original driver/world equivalence remains separately bounded.",
+      "behaviors": [
+        "NP.owner-task-event-continuation"
+      ],
+      "tests": [
+        "tests/native-owner-group-planner-test.cpp",
+        "tests/native-owner-planner-test.cpp",
+        "tests/native-owner-replanning-test.cpp",
+        "tests/native-owner-task-inputs-test.cpp",
+        "tools/test-owner-planner-integration.py"
+      ],
+      "evidence": [
+        "NS82.owner-task6-loop-native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -154236,8 +154612,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-owner-task-inputs-20261016-v1.json",
-    "sha256": "aaf7a9a84f6d50239149d913d270a547be8298dd53f1fbe3805ed41b432a8289"
+    "path": "research/runtime/coverage/source-index-owner-task6-loop-20261017-v1.json",
+    "sha256": "3fbbedf1b9d28ecef12df50da082fb1be564d98436b2677eca015e954f718827"
   },
   "claim_bindings_required": true
 }

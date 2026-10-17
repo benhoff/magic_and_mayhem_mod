@@ -166,3 +166,15 @@ reward/cost. The old successes/attempts names refer to score totals, not route
 counts. NS80 evidence and scope stay historical; v14 reads preserve its supplied
 policy and v15 explicitly opts into the new event composition. Notification,
 resource, FC-flag/global-ratio and broader World producers remain pending.
+
+## NS82 composed lifetime correction
+
+[NS82](owner-task6-composed-loop.md) closes the bounded ordinary task6-generation
+through423590 comparison and corrects the native duration described above:
+431ce0 uses `truncate(exponential(mean100) + produced travel + 600)`, not the
+exponential term alone. Whole4289e0 installation and installed432900 task-body
+orders now participate in the bounded journey. Prior NS80/NS81 reports retain
+their original source fingerprints and narrower comparison boundaries. Object
+clone/teardown, training registration, supplied observations/model/world and
+accounted damage score remain explicit services. Full health/perception-to-World
+composition, source split/merge and dual-brain scheduling are still pending.

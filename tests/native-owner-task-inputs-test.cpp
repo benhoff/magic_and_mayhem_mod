@@ -52,7 +52,7 @@ int main(int argc, char **argv) try {
   cs::updateNativeOwnerTaskInputs(initial);
   check(!initial.native.ownerPlanner->grouped->replanning->admission.ownerAvailable,"disabled owner available");
   // A bounded authored model produces the same positive proposal every sweep.
-  // Original grouped features/inference and exponential duration draws run.
+  // Original grouped features/inference and travel-plus600/exponential duration draws run.
   auto c=p.initial;
   for(unsigned outcome=0;outcome<3;++outcome){
     auto &layer=c.native.ownerPlanner->model.layers[outcome];
@@ -65,19 +65,19 @@ int main(int argc, char **argv) try {
   c.native.regions.assign(16,{});
   for(unsigned i=0;i<16;++i){
     auto &r=c.native.regions[i];r.position={int(i*2),2,2};r.parameter=1;
-    if(i+1<16){auto &e=r.connections[0];e.destination=int(i+1);e.cost=40;e.clearance.fill(8);}
+    if(i+1<16){auto &e=r.connections[0];e.destination=int(i+1);e.cost=4;e.clearance.fill(8);}
   }
   auto &d=*c.native.regionalDanger;
   d.state={};d.state.pendingDanger.resize(16);d.state.pendingDeduction.resize(16);
   d.state.pendingBase.resize(16);d.state.actorSupport.resize(d.inputs.actors.size());
   for(auto &actor:d.inputs.actors)actor.region=0;
-  c.world.creatures[0].region=0;c.world.creatures[1].region=15;
+  c.world.creatures[0].region=0;c.world.creatures[1].region=1;
   c.world.creatures[0].ai.engaged=c.world.creatures[0].ai.incoming=c.world.creatures[0].ai.readiness=0;
   c.world.creatures[0].ai.dirty932=1;
   cs::model::OwnerMemory memory;
   memory.memory.key=0;memory.memory.actor=d.inputs.actors[1];
-  memory.memory.actor.region=15;memory.memory.actor.health=p.maximum;
-  memory.memory.actor.position=c.native.regions[15].position;
+  memory.memory.actor.region=1;memory.memory.actor.health=p.maximum;
+  memory.memory.actor.position=c.native.regions[1].position;
   memory.memory.observedTick=1;memory.markedTick=1;
   memory.planning=cs::nativeOwnerPlannerActor(c,p.native,1);
   memory.planning->position=memory.memory.actor.position;
@@ -98,7 +98,7 @@ int main(int argc, char **argv) try {
   auto &planner=*c.native.ownerPlanner;
   check(planner.active&&planner.grouped->replanning->previous->value>.99f,"positive task not installed");
   const auto task=*planner.grouped->replanning->previous;
-  check(task.expires>task.started,"fixture lifetime is zero");
+  check(planner.features.at(68)>0&&task.expires-task.started>=600+planner.features.at(68),"installed lifetime omitted produced travel or600");
   const auto serial=planner.activeSerial;
   auto undamaged=c;
   // Actual ordinary health feedback calculates416d80 credit from installed
@@ -115,7 +115,7 @@ int main(int argc, char **argv) try {
     exercise(c,slice);slice(undamaged);
     expired+=int(c.native.tick)>=task.expires;
   }
-  check(expired&&planner.activeSerial!=serial,"damage never triggered expired task replacement");
+  check(expired&&planner.activeSerial!=serial,(std::string("damage never triggered expired task replacement; start=")+std::to_string(task.started)+" expiry="+std::to_string(task.expires)+" now="+std::to_string(c.native.tick)+" travel="+std::to_string(planner.features.at(68))+" cost="+std::to_string(losses)+" value="+std::to_string(task.value)).c_str());
   check(undamaged.native.ownerPlanner->activeSerial==serial,"zero-progress control replaced identical proposal");
   check(!undamaged.native.ownerPlanner->grouped->replanning->previous->completed,"expiry incorrectly completed task");
   auto retainedV14=undamaged;

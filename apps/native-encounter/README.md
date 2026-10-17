@@ -84,3 +84,12 @@ model. CMD1v15 preserves those events; v14 resumes retain their supplied-input
 policy. See [event inputs](../../research/runtime/owner-task-inputs.md) for the
 bounded expired-task replacement journey and remaining notification/resource,
 wizard/campaign and World scheduling boundaries.
+
+NS82 corrects generated task6 lifetime to the original exponential(mean100) plus
+produced travel time plus600, truncated once. Saved CMD1v14/v15 lifetimes remain
+stored values; later candidates use the corrected formula. The bounded original
+comparison now composes real task6 generation/inference through owner selection,
+task installation and pursuit/completion. Its supplied world/observations/model,
+clone/teardown and training/scoring services remain distinct from the native
+installed encounter and full World scheduling. See
+[the NS82 evidence scope](../../research/runtime/owner-task6-composed-loop.md).

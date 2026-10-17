@@ -131,3 +131,14 @@ ratio, observation-point list/campaign construction, general wizard maximum and
 configuration writers, source split/merge and dual brains, training/feedback,
 whole generation-to-original-driver composition, World cadence and live
 replacement. Static links and storage relocation establish none of these.
+
+## NS82 continuation after composed-driver comparison
+
+The bounded [NS82 original driver journey](owner-task6-composed-loop.md) sends
+nonlethal514990 credit with supplied scoring34 into an actually generated and
+installed task, then compares retention/expiry-relative replacement. It also
+found and corrected task6 lifetime to include produced travel+600. NS81's
+original predicate/credit results and its native event results remain historical;
+NS82 reruns native real health/credit/resume with corrected generated lifetimes.
+Notification/resource producers and full original health-to-World scheduling
+remain outside these comparisons.

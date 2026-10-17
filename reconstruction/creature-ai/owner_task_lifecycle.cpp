@@ -65,7 +65,8 @@ bool replaceOwnerTask(float candidate, const OwnerPreviousTask *a, int tick,
   return std::pow(double(ownerTaskProgress(*a, p)), age) < p.expiry &&
          candidate > 0;
 }
-int ownerTaskDuration(RandomState &r) {
+namespace {
+long double taskDurationDraw(RandomState &r) {
   const unsigned word = nextRandom(r) & 0x7fffffffu;
   if (!word)
     throw std::invalid_argument("owner task zero exponential draw");
@@ -79,10 +80,23 @@ int ownerTaskDuration(RandomState &r) {
 #else
   logarithm = std::log(u);
 #endif
-  const auto duration = -100.L * logarithm;
+  return -100.L * logarithm;
+}
+int truncateDuration(long double duration) {
   if (!std::isfinite(duration) || duration >= INT_MAX)
     throw std::invalid_argument("owner task duration overflow");
   return int(duration);
+}
+} // namespace
+int ownerTaskDuration(RandomState &r) {
+  return truncateDuration(taskDurationDraw(r));
+}
+int ownerTask6Duration(RandomState &r, int travelTime) {
+  if (travelTime < 0)
+    throw std::invalid_argument("owner task6 negative travel time");
+  // 432535..432552: draw, FIADD candidate+19c, FADD pinned float600,
+  // then59bee0 truncates once. Travel is produced by the completed probes.
+  return truncateDuration(taskDurationDraw(r) + travelTime + 600.L);
 }
 bool advanceOwnerTaskReplanning(OwnerTaskSelection &s, int &budget,
                                 RandomState &random,

@@ -10034,3 +10034,49 @@ The authorized older visibility build cache was relocated to the second NVMe,
 symlink. Originals, tracked sources and raw experiment evidence were retained.
 `working/retention/ns81-visibility-cache-relocation-20261016.json` records storage
 provenance only; no cold archive/cleanup or engine validation is inferred.
+
+### NS82 — composed ordinary task6 driver and lifetime correction (2026-10-17)
+
+- Added `AI.owner-task6-composed-loop` and
+  [the bounded journey research](owner-task6-composed-loop.md). Actual original
+  423590 now calls431be0/413330 grouping,431ce0 regional probes/features/lifetime,
+  4766b0 inference,4284e0 selection,4261b0 save and4289e0 installation in one
+  comparison. Installed432900 task execution and514990 credit join the journey.
+- The composed comparison exposed a real native lifetime omission. At
+  432535..432552 the original adds produced travel and pinned binary32 constant
+  **600** to its mean100 exponential draw before truncating. The first failing
+  development case had native expiry104 versus original1280 (travel576+600).
+  `ownerTask6Duration` and the native grouped planner now implement the complete
+  expression. Standalone40b3f0 remains an independent random-term primitive.
+- Fresh prospectively declared original32/native64/ASan/UBSan/LSan evidence:
+  **128 episodes,431,713 checks,1,313 planning slices,896 installed execution
+  slices**;128 initial installations,320 retained sweeps,192 replacements and128
+  risk stops. Disabled admission, maximum/weighted selection, merged/separate
+  targets, actual nonuniform72-dimensional model inference, all250 RNG words and
+  cursors each slice, saved features and task fields, identical-proposal
+  retention, supplied-accounted34 damage through original514990, expired
+  replacement/weighted retention and completed-task replacement agree. Native
+  negative-travel/overflow/zero-draw refusals are separate bounded policy.
+- Fresh unchanged original4284e0/40a3b0/40b3f0 component regression:
+  **8,192 cases,16,761,501 checks,52,913 slices**, native and sanitizers agree.
+  The static600-byte/assembly report is independent from execution evidence.
+- Fresh native64 and sanitizer CMD1v15 integration over274 declared sources:
+  **3,807 event-journey checks,3,650 per-slice restores**, damage cost34,1,753
+  expired slices before replacement and retained undamaged control; native
+  melee/healing/flagged-completion and published-owner inputs pass. Two512-frame
+  installed-model seeds add1,068 checks/128 restores/34 refusals; both core suites,
+  visibility/knowledge/danger regressions, **six cold-process restores** and CLI
+  whole/split identity pass. Runtime linkage needs neither Wine nor Qt. Native
+  supplied cadence/cache/order and full original World claims stay independent.
+- NS80/NS81 evidence hashes remain unchanged. Shared lifecycle/provider/test
+  changes leave affected older reports historical/stale; only fresh scope-bound
+  results support current validation. Existing serialized lifetimes remain
+  stored values; newly completed candidates use corrected arithmetic. No wire
+  version change, gameplay balance change or full-game Wine removal is claimed.
+- Supplied creature/world/observation/model construction, fresh-evaluator clone,
+  teardown, training registration and score34 remain explicit comparison
+  boundaries. Full original perception/health-to-owner/World composition,
+  notification/resource/cast/interaction credit, source split/merge and
+  dual-brain/World scheduling, wizard/campaign/configuration producers, broader
+  species and live replacement remain pending. Commander orders, veterancy and
+  mana balance remain separate unimplemented gameplay work.

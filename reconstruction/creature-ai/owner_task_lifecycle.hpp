@@ -29,9 +29,11 @@ long double ownerTaskProgress(const OwnerPreviousTask &,
                               const OwnerReplacementPolicy &);
 bool replaceOwnerTask(float candidate, const OwnerPreviousTask *, int tick,
                       const OwnerReplacementPolicy &);
-// 40b3f0(mean100), then original truncation: drawn once per completed
-// candidate.
+// Standalone40b3f0(mean100) draw with truncation; not the full task6 lifetime.
 int ownerTaskDuration(RandomState &);
+// Whole431ce0 lifetime: truncate(exponential(mean100) + produced travel + 600).
+// One RNG draw per successfully completed candidate, including losing ones.
+int ownerTask6Duration(RandomState &, int travelTime);
 // 4284e0 old-task filter before bias/ties/weighting. The ordinary direct-root
 // 423590 path selects without this filter, then applies replaceOwnerTask.
 bool advanceOwnerTaskReplanning(OwnerTaskSelection &, int &, RandomState &,

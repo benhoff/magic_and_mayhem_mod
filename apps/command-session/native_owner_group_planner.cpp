@@ -316,8 +316,6 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
         g.from = g.to = -1;
         continue;
       }
-      if (replanning)
-        replanning->candidateDuration = model::ownerTaskDuration(s.random);
       const auto friendly = nativeOwnerPlannerActor(c, p, s.actor);
       const auto prefix = model::hostileTaskGroupFeatures({friendly}, enemy,
                                                           c.world.dimensions);
@@ -327,6 +325,11 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
           [&](const auto &v) { return v.node == g.to; });
       need(at != g.probe.search.records.end(), "group probe result missing");
       const auto payload = reconstruction::neighbor_movement(at->movement);
+      const int travel =
+          model::ownerTaskTravelTime(payload.accumulated_cost, friendly.speed);
+      if (replanning)
+        replanning->candidateDuration =
+            model::ownerTask6Duration(s.random, travel);
       const auto &dest = c.native.regions.at(unsigned(g.to));
       const bool covered =
           !dest.parameter &&
@@ -336,8 +339,7 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
       s.features.insert(
           s.features.end(),
           {int(std::sqrt(static_cast<long double>(node.uncertaintySquared))),
-           model::ownerTaskTravelTime(payload.accumulated_cost, friendly.speed),
-           payload.unknown_18, services.danger(g.to), int(covered)});
+           travel, payload.unknown_18, services.danger(g.to), int(covered)});
       const auto inference = model::inferOwnerTask(s.model, s.features);
       s.candidateScore = model::ownerTaskValue(
           {{inference[0], inference[1], inference[2]}}, s.weights, s.percent);
