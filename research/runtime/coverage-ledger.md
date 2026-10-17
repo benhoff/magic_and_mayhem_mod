@@ -13667,3 +13667,35 @@ in-place recovery claim. See [failure, repair and reproduction](native-live-rest
 HOST.resident-live-restart.actual-20261017 and the separate exact incoming-history
 review of fdd97099..a9511ff4. One missing generated-template receipt is appended
 retrospectively, without asserting a past gate pass or new mission validation.
+
+## Typed native mission objectives and Last Stand — 2026-10-17
+
+`NP.mission-objectives` adds a bounded version-2 objective graph and a second
+authored Plains mission, separate from the retained three-stage campaign.
+Elimination, admitted-tick survival and continuous named-wizard protection drive
+one-shot atomic groups and campaign settlement. Active graph continuation uses
+native campaign version 4; original mission scripts and legacy native saves are
+not migrated. The new campaign is available through `create-objectives` in the
+map campaign CLI.
+
+MISSION02.objectives-headless prospectively binds620 unchanged
+source keys and the headless objective scenario. Normal and ASan/UBSan/LSan
+contracts agree: full-health Last Stand completion in477 ticks,
+11 event/timer boundaries,74 timer continuations,
+blocked/partial wave refusal and reuse-generation retry, forged/malformed/stale
+continuation refusal, protection before prerequisites and after completion,
+simultaneous draw, no-reward policy, defeat/retry and Cure/finale transition.
+12 saved boundary/finale states round-trip exactly and match direct versus
+split fresh CLI continuation. A complete production-order journey also matches
+across a process split. All113 headless CTests and the retained staged native
+contract pass; five old save profiles round-trip unchanged. Installed hashes,
+compiler dependency closure and original2927-file manifest bookends pass.
+Earlier failed development strategies remain under working/ and supply no
+positive validation. Only the new native policy gains headless integration;
+older shared-source evidence retains historical hashes and freshness limitations.
+
+
+This is native policy with a headless acceptance boundary. No new presentation,
+original-comparison, gameplay balance or live-replacement milestone is claimed.
+See [semantics and remaining gaps](native-mission-objectives.md) and
+[wire contract](../formats/native-mission-objectives.md).

@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "id": "plains-last-stand-v1",
+  "briefing": "Keep your wizard alive through two timed reinforcement waves. Clear both waves, then defeat the rival wizard. Victory unlocks Cure for the arena finale.",
+  "reward_spell": "cure",
+  "groups": [
+    {"id": "first-wave", "locations": [[8,4,7]], "after": ["first-watch"]},
+    {"id": "second-wave", "locations": [[8,6,7]], "after": ["second-watch"]}
+  ],
+  "objectives": [
+    {"id": "first-watch", "text": "Survive the first 24 battle ticks.", "kind": "survive", "ticks": 24, "after": []},
+    {"id": "first-clear", "text": "Defeat the first reinforcement wave.", "kind": "eliminate", "target": {"group": "first-wave"}, "after": ["first-watch"]},
+    {"id": "second-watch", "text": "Hold out for another 24 battle ticks.", "kind": "survive", "ticks": 24, "after": ["first-clear"]},
+    {"id": "second-clear", "text": "Defeat the second reinforcement wave.", "kind": "eliminate", "target": {"group": "second-wave"}, "after": ["second-watch"]},
+    {"id": "rival-defeat", "text": "Defeat the rival wizard.", "kind": "eliminate", "target": {"wizard": "rival"}, "after": ["second-clear"]},
+    {"id": "wizard-safe", "text": "Keep your wizard alive throughout the mission.", "kind": "protect", "target": {"wizard": "player"}, "after": ["rival-defeat"]}
+  ]
+}

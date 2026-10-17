@@ -43,7 +43,18 @@ void view(const mnm::game::CampaignSession& s,unsigned settlements=0) {
     std::cout<<",\"attempt\":";
     if(p.battle) std::cout<<p.battle->attempt;else std::cout<<"null";
     std::cout<<",\"mission\":";
-    if(p.mission) std::cout<<"{\"stage\":"<<p.mission->stage<<",\"reinforcement\":"<<(p.mission->reinforcement?"true":"false")<<'}';else std::cout<<"null";
+    if(p.mission) {
+        const auto &m=*p.mission;
+        std::cout<<"{\"version\":"<<m.version<<",\"stage\":"<<m.stage<<",\"reinforcement\":"<<(m.reinforcement?"true":"false")<<",\"objectives\":[";
+        for(std::size_t i=0;i<m.objectives.size();++i) {
+            if(i) std::cout<<',';
+            std::cout<<"{\"id\":";quoted(std::cout,s.missionPlan()->nodes[i].id);
+            std::cout<<",\"complete\":"<<(m.objectives[i].complete?"true":"false")<<",\"elapsed\":"<<m.objectives[i].elapsed<<'}';
+        }
+        std::cout<<"],\"groups\":[";
+        for(std::size_t i=0;i<m.groups.size();++i) {if(i) std::cout<<',';std::cout<<m.groups[i].size();}
+        std::cout<<"]}";
+    } else std::cout<<"null";
     std::cout<<",\"cure_available\":"<<(s.spellAvailable(mnm::game::Spell::cure)?"true":"false");
     std::cout<<",\"battle\":";
     if(s.battle()) mnm::skirmish::trace(std::cout,*s.battle());else std::cout<<"null";
@@ -59,7 +70,13 @@ int main(int argc,char** argv) try {
 #ifdef MNM_MAP_CAMPAIGN_CLI
     if(argc<3) throw std::invalid_argument("Usage: mnm-map-campaign-cli ASSET_ROOT COMMAND ...");
     --argc;++argv;
-    const auto make=[&](std::string_view mode){return mnm::skirmish::newMapCampaign(mnm::skirmish::mapCampaignResources(argv[0],mode!="create",mode=="create-sphere" || mode=="create-creatures" || (mode=="create-species" || mode=="create-mission"),mode=="create-creatures" || (mode=="create-species" || mode=="create-mission"),(mode=="create-species" || mode=="create-mission"),mode=="create-mission"));};
+    const auto make=[&](std::string_view mode){
+        const bool objectives=mode=="create-objectives";
+        const bool staged=objectives || mode=="create-mission";
+        const bool mixed=staged || mode=="create-species";
+        const bool creatures=mixed || mode=="create-creatures";
+        return mnm::skirmish::newMapCampaign(mnm::skirmish::mapCampaignResources(argv[0],mode!="create",creatures || mode=="create-sphere",creatures,mixed,staged,objectives));
+    };
     const auto load=[&](const char* path){return mnm::skirmish::loadMapCampaign(std::filesystem::path(argv[0]),path);};
 #else
     std::shared_ptr<const CombatDriver> driver;
@@ -69,7 +86,7 @@ int main(int argc,char** argv) try {
 #endif
     const std::string_view command=argc>1?argv[1]:"";
 #ifdef MNM_MAP_CAMPAIGN_CLI
-    const bool creatureCampaign = command=="create-creatures" || command=="create-species" || command=="create-mission";
+    const bool creatureCampaign = command=="create-creatures" || command=="create-species" || command=="create-mission" || command=="create-objectives";
 #else
     const bool creatureCampaign = false;
 #endif

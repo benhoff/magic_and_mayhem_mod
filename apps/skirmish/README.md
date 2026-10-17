@@ -258,3 +258,11 @@ The authored definition is `plains_mission.json`; rebuild after editing it.
 Existing campaign saves keep their original rules. See
 [mission scope](../../research/runtime/native-staged-mission.md) and
 [wire extensions](../../research/formats/native-staged-mission.md).
+
+The headless Last Stand objective campaign uses `mnm-map-campaign-cli ROOT
+create-objectives OUTPUT.mnmc`, then the existing `start`, `resume`, `cast`,
+`attack` and `inspect` commands. It has typed survival/elimination/protection
+objectives and two timed waves; victory unlocks Cure for the arena finale.
+See [objective semantics](../../research/runtime/native-mission-objectives.md)
+and [definition/save format](../../research/formats/native-mission-objectives.md).
+The new profile has CLI acceptance; it has no new window entry point.

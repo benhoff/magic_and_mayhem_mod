@@ -2,6 +2,8 @@
 #include "creature_runtime.hpp"
 #include "arena.hpp"
 #include "plains_mission_data.hpp"
+#include "plains_survival_data.hpp"
+#include "objective_definition.hpp"
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -51,7 +53,7 @@ void append(game::Bytes &to,const game::Bytes &value) {
 }
 void append(game::Bytes &to,const std::string &value) {append(to,game::Bytes(value.begin(),value.end()));}
 }
-MapCampaignResources::MapCampaignResources(const std::filesystem::path &root,bool enableCure,bool enableSphere,bool installedCreatures,bool mixedActors,bool stagedMission):cure_(enableCure || enableSphere),spheres_(enableSphere),creatures_(installedCreatures),staged_(stagedMission) {
+MapCampaignResources::MapCampaignResources(const std::filesystem::path &root,bool enableCure,bool enableSphere,bool installedCreatures,bool mixedActors,bool stagedMission,bool objectiveMission):cure_(enableCure || enableSphere),spheres_(enableSphere),creatures_(installedCreatures),staged_(stagedMission || objectiveMission),objectives_(objectiveMission) {
     if(staged_ && (!mixedActors || !spheres_)) throw std::invalid_argument("Staged mission requires mixed installed actors and Sphere resources");
     if(mixedActors && !creatures_) throw std::invalid_argument("Mixed actor profiles require installed creatures");
     auto store=take(assets::AssetStore::create(root));
@@ -104,7 +106,7 @@ MapCampaignResources::MapCampaignResources(const std::filesystem::path &root,boo
         }
         sphereEnvironment_.occupancy=std::move(palette);
     }
-    auto &p=definition_.initial;p.identity={staged_?"native-plains-objectives-campaign":mixedActors?"native-plains-species-campaign":creatures_?"native-plains-creature-campaign":"native-plains-campaign","binding-pending"};
+    auto &p=definition_.initial;p.identity={objectives_?"native-plains-survival-campaign":staged_?"native-plains-objectives-campaign":mixedActors?"native-plains-species-campaign":creatures_?"native-plains-creature-campaign":"native-plains-campaign","binding-pending"};
     p.player="player";p.realm="celtic";p.region="plains-crossing";
     game::CampaignWizard player;player.id="player";player.spells={creatures_?"summon-crocodile":"summon-sentinel","arc-bolt"};
     if(cure_ && !staged_) player.spells.push_back("cure");
@@ -113,9 +115,9 @@ MapCampaignResources::MapCampaignResources(const std::filesystem::path &root,boo
     p.realms={{"celtic",{{"plains-crossing","rival",false},{"arena-finale","rival",false}}}};
     definition_.missions={{"celtic","plains-crossing",mission_.map,"rival"},
                           {"celtic","arena-finale",game::arenaMission().map,"rival"}};
-    if(staged_) {auto plan=plainsPlan();game::validateMissionPlan(plan,mission_);definition_.plans={plan,std::nullopt};definition_.spellLoadout=true;}
+    if(staged_) {auto plan=objectives_?decodeObjectiveDefinition(plainsSurvivalJson):plainsPlan();game::validateMissionPlan(plan,mission_);definition_.plans={plan,std::nullopt};definition_.spellLoadout=true;}
     auto binding=game::encodeCampaign(p);
-    if(staged_) append(binding,std::string(plainsMissionJson));
+    if(staged_) append(binding,std::string(objectives_?plainsSurvivalJson:plainsMissionJson));
     append(binding,std::string(creatures_?"linear-plains-creature-v1;4,4,12,12":"linear-plains-crop-v1;0,0,8,8"));
     for(const auto &hash:hashes_) append(binding,hash);
     for(const auto &m:definition_.missions) {
@@ -138,8 +140,8 @@ game::SkirmishSession MapCampaignResources::restore(const game::CampaignMission 
         throw std::invalid_argument("Campaign mission policy mismatch");
     return restored;
 }
-std::shared_ptr<const MapCampaignResources> mapCampaignResources(const std::filesystem::path &root,bool enableCure,bool enableSphere,bool installedCreatures,bool mixedActors,bool stagedMission) {
-    return std::make_shared<const MapCampaignResources>(root,enableCure,enableSphere,installedCreatures,mixedActors,stagedMission);
+std::shared_ptr<const MapCampaignResources> mapCampaignResources(const std::filesystem::path &root,bool enableCure,bool enableSphere,bool installedCreatures,bool mixedActors,bool stagedMission,bool objectiveMission) {
+    return std::make_shared<const MapCampaignResources>(root,enableCure,enableSphere,installedCreatures,mixedActors,stagedMission,objectiveMission);
 }
 game::CampaignSession newMapCampaign(std::shared_ptr<const MapCampaignResources> resources) {
     if(!resources) throw std::invalid_argument("Select installed campaign resources first");
@@ -152,9 +154,10 @@ game::CampaignSession loadMapCampaign(const std::filesystem::path &root,const st
     const auto progress=game::decodeCampaign(game::readSnapshot(path).campaign);
     const bool enabled=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"cure")!=w.spells.end();});
     const bool spheres=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"magic-sphere")!=w.spells.end();});
-    const bool staged=progress.identity.id=="native-plains-objectives-campaign";
+    const bool objectives=progress.identity.id=="native-plains-survival-campaign";
+    const bool staged=objectives || progress.identity.id=="native-plains-objectives-campaign";
     const bool mixed=staged || progress.identity.id=="native-plains-species-campaign";
     const bool creatures=mixed || progress.identity.id=="native-plains-creature-campaign";
-    return loadMapCampaign(mapCampaignResources(root,enabled || staged,spheres || staged,creatures,mixed,staged),path);
+    return loadMapCampaign(mapCampaignResources(root,enabled || staged,spheres || staged,creatures,mixed,staged,objectives),path);
 }
 } // namespace mnm::skirmish

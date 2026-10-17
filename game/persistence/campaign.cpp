@@ -55,11 +55,23 @@ void validate(const CampaignState& c,const CampaignLimits& l) {
     }
     if(c.mission) {
         const auto& m=*c.mission;
-        if(!c.battle || !c.battle->attempt || m.stage>2 || m.initial.empty() || m.initial.size()>8 || m.wave.size()>8 ||
-           (m.stage==0 && m.reinforcement) || (m.reinforcement!=!m.wave.empty()) || (m.stage==2 && !m.reinforcement)) fail("invalid campaign mission progress");
+        if(!c.battle || !c.battle->attempt || (m.version!=1 && m.version!=2)) fail("invalid mission continuation version/attempt");
         std::set<std::pair<unsigned,unsigned>> handles;
-        for(const auto* group:{&m.initial,&m.wave}) for(auto h:*group)
-            if(!h.generation || !handles.emplace(h.slot,h.generation).second) fail("invalid mission group identity");
+        const auto group=[&](const auto& values) {
+            if(values.size()>8) fail("mission group limit");
+            for(auto h:values) if(!h.generation || !handles.emplace(h.slot,h.generation).second) fail("invalid mission group identity");
+        };
+        if(m.version==1) {
+            if(m.stage>2 || m.initial.empty() || (m.stage==0 && m.reinforcement) ||
+               (m.reinforcement!=!m.wave.empty()) || (m.stage==2 && !m.reinforcement) ||
+               !m.groups.empty() || !m.objectives.empty()) fail("invalid campaign mission progress");
+            group(m.initial);group(m.wave);
+        } else {
+            if(m.stage || m.reinforcement || !m.initial.empty() || !m.wave.empty() || m.groups.size()>8 ||
+               m.objectives.empty() || m.objectives.size()>16) fail("invalid objective progress shape");
+            for(const auto& values:m.groups) group(values);
+            for(const auto& o:m.objectives) if(o.elapsed>4096) fail("objective timer limit");
+        }
     }
     if(c.battle) {
         const auto& b=*c.battle;text(b.realm,l);text(b.region,l);text(b.map,l);
@@ -113,7 +125,7 @@ void binding(const State& state,const CampaignState& c,const CampaignIdentity& e
 Bytes encodeCampaign(const CampaignState& c,const CampaignLimits& l) {
     validate(c,l);Writer out{{},l};
     for(auto v:magic) out.word(v,1);
-    const unsigned version=c.mission ? 3 : c.lastResult || (c.battle && c.battle->attempt) ? 2 : 1;
+    const unsigned version=c.mission ? (c.mission->version==2 ? 4 : 3) : c.lastResult || (c.battle && c.battle->attempt) ? 2 : 1;
     out.word(version);out.string(c.identity.id);out.string(c.identity.contentRevision);
     out.word(c.difficulty);out.word(c.transition,8);out.string(c.player);out.string(c.realm);out.string(c.region);out.word(c.completed,1);
     out.word(c.wizards.size());
@@ -143,12 +155,18 @@ Bytes encodeCampaign(const CampaignState& c,const CampaignLimits& l) {
         const auto& m=*c.mission;out.word(m.stage);out.word(m.reinforcement,1);
         for(const auto* group:{&m.initial,&m.wave}) {out.word(group->size());for(auto h:*group) {out.word(h.slot);out.word(h.generation);}}
     }
+    if(version==4) {
+        const auto& m=*c.mission;out.word(m.groups.size());
+        for(const auto& group:m.groups) {out.word(group.size());for(auto h:group) {out.word(h.slot);out.word(h.generation);}}
+        out.word(m.objectives.size());
+        for(const auto& o:m.objectives) {out.word(o.complete,1);out.word(o.elapsed);}
+    }
     return out.bytes;
 }
 CampaignState decodeCampaign(const Bytes& bytes,const CampaignLimits& l) {
     bounded(bytes.size(),l.bytes);Reader in{bytes,l};
     for(auto v:magic) if(in.word(1)!=v) fail("invalid campaign signature");
-    const auto version=in.word();if(version!=1 && version!=2 && version!=3) fail("unsupported campaign version");
+    const auto version=in.word();if(version!=1 && version!=2 && version!=3 && version!=4) fail("unsupported campaign version");
     CampaignState c;c.identity={in.string(),in.string()};c.difficulty=in.word();c.transition=in.word(8);
     c.player=in.string();c.realm=in.string();c.region=in.string();c.completed=in.flag();
     auto n=in.count(l.wizards,45);
@@ -178,6 +196,18 @@ CampaignState decodeCampaign(const Bytes& bytes,const CampaignLimits& l) {
     if(version==3) {
         MissionProgress m;m.stage=in.word();m.reinforcement=in.flag();
         for(auto* group:{&m.initial,&m.wave}) {const auto count=in.count(8,8);for(unsigned i=0;i<count;++i) group->push_back({unsigned(in.word()),unsigned(in.word())});}
+        c.mission=std::move(m);
+    }
+    if(version==4) {
+        MissionProgress m;m.version=2;
+        const auto groups=in.count(8,4);
+        for(unsigned i=0;i<groups;++i) {
+            std::vector<Handle> group;const auto count=in.count(8,8);
+            for(unsigned j=0;j<count;++j) group.push_back({unsigned(in.word()),unsigned(in.word())});
+            m.groups.push_back(std::move(group));
+        }
+        const auto objectives=in.count(16,5);
+        for(unsigned i=0;i<objectives;++i) {MissionProgress::Objective o;o.complete=in.flag();o.elapsed=in.word();m.objectives.push_back(o);}
         c.mission=std::move(m);
     }
     if(in.pos!=bytes.size()) fail("unexpected trailing campaign bytes");

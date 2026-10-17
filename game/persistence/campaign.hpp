@@ -22,6 +22,10 @@ struct MissionProgress {
     std::uint32_t stage=0;
     bool reinforcement=false;
     std::vector<Handle> initial, wave;
+    std::uint32_t version=1;
+    struct Objective { bool complete=false; std::uint32_t elapsed=0; };
+    std::vector<std::vector<Handle>> groups;
+    std::vector<Objective> objectives;
 };
 struct CampaignBattle {
     std::string realm, region, map;

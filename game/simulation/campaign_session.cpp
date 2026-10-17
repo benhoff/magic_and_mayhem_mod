@@ -103,7 +103,7 @@ void CampaignSession::validateProgress(const CampaignState& p) const {
         for(std::size_t i=0;i<definition_.missions.size();++i) if(p.completed || i<selected) {
             if(definition_.plans[i]) for(auto& wizard:expected) if(wizard.id==p.player) {
                 const auto& spell=definition_.plans[i]->rewardSpell;
-                if(std::find(wizard.spells.begin(),wizard.spells.end(),spell)==wizard.spells.end()) wizard.spells.push_back(spell);
+                if(!spell.empty() && std::find(wizard.spells.begin(),wizard.spells.end(),spell)==wizard.spells.end()) wizard.spells.push_back(spell);
             }
         }
         for(std::size_t i=0;i<expected.size();++i)
@@ -151,9 +151,13 @@ void CampaignSession::startMission() {
             "campaign factory did not create a fresh battle");
     if(const auto* plan=missionPlan()) {
         validateMissionPlan(*plan,candidate.battle->mission());candidate.battle->beginMission();
-        auto group=candidate.battle->spawnMissionGroup(plan->initial);
-        require(bool(group),"initial mission group blocked");
-        candidate.progress.mission=MissionProgress{0,false,*group,{}};
+        if(plan->version==2) candidate.progress.mission=startObjectives(*plan,*candidate.battle);
+        else {
+            auto group=candidate.battle->spawnMissionGroup(plan->initial);
+            require(bool(group),"initial mission group blocked");
+            MissionProgress progress;progress.initial=*group;
+            candidate.progress.mission=std::move(progress);
+        }
     }
     const auto attempt=++candidate.progress.transition;
     candidate.progress.battle=CampaignBattle{m.realm,m.region,m.map,{progress().player,m.opponent},attempt};
@@ -174,7 +178,8 @@ CampaignStepReport CampaignSession::step(TickInput input) {
     auto candidate=owned_;
     if(candidate.progress.mission && !input.alternateMode) {
         auto& mission=*candidate.progress.mission;
-        if(mission.stage==1 && !mission.reinforcement) {
+        if(mission.version==2) admitMissionGroups(*missionPlan(),mission,*candidate.battle);
+        else if(mission.stage==1 && !mission.reinforcement) {
             auto wave=candidate.battle->spawnMissionGroup(missionPlan()->reinforcement);
             if(wave) {mission.wave=*wave;mission.reinforcement=true;}
         }
@@ -182,10 +187,20 @@ CampaignStepReport CampaignSession::step(TickInput input) {
     report.battle=candidate.battle->step(input,candidate.progress.mission ? std::optional<bool>(candidate.progress.mission->stage==2) : std::nullopt);
     if(candidate.progress.mission) {
         auto& mission=*candidate.progress.mission;
-        if(mission.stage==0 && missionGroupDead(*candidate.battle,mission.initial)) mission.stage=1;
+        if(mission.version==2) {
+            if(!input.alternateMode) advanceObjectives(*missionPlan(),mission,*candidate.battle);
+        } else if(mission.stage==0 && missionGroupDead(*candidate.battle,mission.initial)) mission.stage=1;
         else if(mission.stage==1 && mission.reinforcement && missionGroupDead(*candidate.battle,mission.wave)) mission.stage=2;
     }
-    const auto outcome=candidate.battle->state().outcome;
+    auto outcome=candidate.battle->state().outcome;
+    if(candidate.progress.mission && candidate.progress.mission->version==2) {
+        // Combat deaths take precedence; a protection failure beats objective success.
+        if(outcome==Outcome::running) {
+            if(protectionFailed(*missionPlan(),*candidate.battle)) outcome=Outcome::defeat;
+            else if(objectivesComplete(*candidate.progress.mission)) outcome=Outcome::victory;
+            if(outcome!=Outcome::running) report.battle->events.push_back({SkirmishEventKind::finished,candidate.battle->state().wizards[0].actor,{}});
+        }
+    }
     if(outcome!=Outcome::running) {
         auto& p=candidate.progress;const auto b=*p.battle;
         const auto result=outcome==Outcome::victory ? CampaignOutcome::victory :
@@ -195,7 +210,7 @@ CampaignStepReport CampaignSession::step(TickInput input) {
         if(result==CampaignOutcome::victory) {
             if(!definition_.plans.empty() && definition_.plans[selected]) for(auto& w:p.wizards) if(w.id==p.player) {
                 const auto& spell=definition_.plans[selected]->rewardSpell;
-                if(std::find(w.spells.begin(),w.spells.end(),spell)==w.spells.end()) w.spells.push_back(spell);
+                if(!spell.empty() && std::find(w.spells.begin(),w.spells.end(),spell)==w.spells.end()) w.spells.push_back(spell);
             }
             auto& r=region(p,definition_.missions[selected]);r.completed=true;r.owner=p.player;
             if(selected+1==definition_.missions.size()) p.completed=true;

@@ -3,6 +3,8 @@
 #include <set>
 #include <stdexcept>
 namespace mnm::game {
+void validateObjectivePlan(const MissionPlan &, const SkirmishMission &);
+void validateObjectiveProgress(const MissionPlan &, const MissionProgress &, const SkirmishSession &);
 namespace {
 void need(bool ok, const char *why) {
   if (!ok)
@@ -14,6 +16,8 @@ void text(const std::string &s) {
 }
 } // namespace
 void validateMissionPlan(const MissionPlan &p, const SkirmishMission &m) {
+  if (p.version == 2) { validateObjectivePlan(p,m); return; }
+  need(p.groups.empty() && p.nodes.empty(), "mixed mission definition versions");
   need(p.version == 1, "unsupported mission definition version");
   text(p.id);
   text(p.briefing);
@@ -46,6 +50,8 @@ bool missionGroupDead(const SkirmishSession &battle,
 }
 void validateMissionProgress(const MissionPlan &plan, const MissionProgress &m,
                              const SkirmishSession &b) {
+  if (plan.version == 2) { validateObjectiveProgress(plan,m,b); return; }
+  need(m.version == 1 && m.groups.empty() && m.objectives.empty(), "mission continuation version mismatch");
   validateMissionPlan(plan, b.mission());
   need(m.stage <= 2 && m.initial.size() == plan.initial.size() &&
            m.wave.size() == (m.reinforcement ? plan.reinforcement.size() : 0),
