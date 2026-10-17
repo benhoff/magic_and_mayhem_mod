@@ -3,6 +3,7 @@
 namespace mnm::command_session {
 std::vector<unsigned> nativeOwnerSourceActors(const NativeOwnerPlanner &);
 void prepareNativeOwnerSources(Continuation &);
+void enableAutomaticOwnerSources(Continuation &);
 void validateNativeOwnerSources(const Continuation &);
 void updateNativeOwnerSources(Continuation &, const NativeCreatureProfile &,
                               model::OwnedCreatureCommands &);

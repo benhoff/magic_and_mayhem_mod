@@ -10131,3 +10131,35 @@ friendly traversal orders and shared target accounting. Independent clean
 scheduled event and core regressions, eight cold resumes and public CLI identity.
 Only the new bounded source contracts are promoted; automatic strategic topology
 search and the explicit native/World boundaries above remain pending.
+
+## NS85 — automatic two-member source decisions
+
+Own bounded423590 normal task/merge versus split-first search, per-member431ce0
+probe generation and native automatic topology/task continuation. The decision
+and probe original comparisons are independent, with evaluator or preparation
+services explicitly supplied; the installed-model native scenario composes their
+owned projections. CMD1v18 preserves pending decisions and member probes, while
+v1-v17 retain their existing layouts/hosts. Native queue folding, active-health
+availability, one-root execution cadence, planning allocation and epoch restarts
+remain policies. See `owner-source-decisions.md` for exact scopes and pending
+boundaries. Full original World/campaign integration and live replacement remain
+pending. NS84's pending automatic search and representative probe gaps are
+addressed only within these new bounded contracts; historical NS84 evidence is
+unchanged. Execution acceptance is recorded after fresh bound runs.
+
+NS85 original execution: the independently bound automatic-search and prepared
+per-member task6 comparisons pass768 cases and624,467 checks under original32,
+native64 and ASan/UBSan/LSan. Search budgets/phases/winners/saved member order and
+full strategic RNG agree; prepared task6 probes additionally agree on72 features,
+path totals/risk and generated lifetime. Explicit evaluator/preparation/storage
+services and the original World/composition exclusions remain recorded.
+
+NS85 native acceptance: clean288-source native/sanitizer builds pass the768-frame
+maximum-selection automatic journeys,2,608 checks/72 restores/7 refusals,
+146 partial second-member states and281 decisions (15 splits/14 merges).
+All27 cold process restores and public CLI continuations match uninterrupted
+snapshots. Legacy source/planner/event/core regressions pass in both builds.
+The existing taskless native fallback remains a host policy; original kind0
+lifetime/execution, full two-member original task6/423590 composition, larger
+groups and original World scheduling remain separate pending work. Accepted
+records preserve original/installed inputs and all historical fingerprints.

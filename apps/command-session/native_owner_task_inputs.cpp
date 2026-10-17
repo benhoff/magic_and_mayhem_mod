@@ -35,7 +35,7 @@ void updateNativeOwnerTaskInputs(Continuation &c) {
       std::all_of(members.begin(), members.end(), [&](unsigned slot) {
         return c.world.creatures.at(slot).region != -1;
       });
-  if (members.size() > 1) {
+  if (members.size() > 1 && !s.grouped->perMember) {
     const auto region = c.world.creatures.at(members.front()).region;
     a.allAssigned &=
         std::all_of(members.begin(), members.end(), [&](unsigned slot) {

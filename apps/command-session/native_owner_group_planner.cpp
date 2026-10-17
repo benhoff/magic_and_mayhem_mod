@@ -80,6 +80,15 @@ void validateNativeOwnerGroupPlanner(const Continuation &c,
            unsigned(g.probe.result) <=
                unsigned(model::OwnerTaskProbeResult::reached),
        "group planner continuation");
+  need(g.memberCursor < nativeOwnerSourceActors(s).size() &&
+           g.paths.travel >= 0 && g.paths.auxiliary >= 0 &&
+           g.paths.auxiliary <= 8000000 && g.paths.danger >= 0 &&
+           g.paths.danger <= 8000000 && g.paths.risk >= 0 &&
+           g.paths.risk <= 1000000 &&
+           (g.perMember ||
+            (!g.memberCursor && !g.paths.travel && !g.paths.auxiliary &&
+             !g.paths.danger && !g.paths.risk)),
+       "group member path continuation");
   need(g.observations.size() <= 125, "group planner snapshot bound");
   std::set<int> snapshots;
   for (const auto &r : g.observations) {
@@ -149,7 +158,9 @@ void validateNativeOwnerGroupPlanner(const Continuation &c,
 }
 void updateNativeOwnerGroupPlanner(Continuation &c,
                                    const NativeCreatureProfile &p,
-                                   model::OwnedCreatureCommands &commands) {
+                                   model::OwnedCreatureCommands &commands,
+                                   NativeOwnerProposalEvaluation *proposal,
+                                   bool executeOnly) {
   auto &s = *c.native.ownerPlanner;
   auto &g = *s.grouped;
   auto &actor = c.world.creatures.at(s.actor);
@@ -230,7 +241,9 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
   auto plan = [&](int &budget) {
     if (!actor.ai.active || !actor.ai.health)
       return;
-    if (s.selection.reset) {
+    if (executeOnly)
+      return;
+    if (s.selection.reset && !proposal) {
       s.selection.value = -2;
       s.selection.ties = 0;
       s.selection.selected = -1;
@@ -249,6 +262,8 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
       g.observations = c.native.ownerKnowledge->records[s.owner];
       g.cursor = 0;
       g.probe = {};
+      g.memberCursor = 0;
+      g.paths.travel = g.paths.auxiliary = g.paths.danger = g.paths.risk = 0;
       g.from = g.to = -1;
       g.candidate.reset();
       if (replanning) {
@@ -291,34 +306,62 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
       while (g.cursor < roots.size() && tick <= g.deadline) {
         const auto root = roots[g.cursor];
         const auto &node = g.groups.nodes[root];
-        if (actor.region < 0 || node.region < 0) {
+        const auto members = g.perMember ? nativeOwnerSourceActors(s)
+                                         : std::vector<unsigned>{s.actor};
+        need(g.memberCursor < members.size(), "member probe cursor");
+        const auto memberSlot = members[g.memberCursor];
+        const auto &member = c.world.creatures.at(memberSlot);
+        if (member.region < 0 || node.region < 0) {
           ++g.cursor;
+          g.memberCursor = 0;
+          g.paths.travel = g.paths.auxiliary = g.paths.danger = g.paths.risk =
+              0;
           g.probe = {};
           g.from = g.to = -1;
           continue;
         }
         // Native admission: restart a probe when its friendly origin changes.
         // The original task assumes its search inputs remain stable.
-        if (g.from != actor.region || g.to != node.region) {
+        if (g.from != member.region || g.to != node.region) {
           g.probe = {};
-          g.from = actor.region;
+          g.from = member.region;
           g.to = node.region;
         }
-        auto services = nativeRegionalServices(c, p, geometry, actor);
+        auto services = nativeRegionalServices(c, p, geometry, member);
         model::RegionalQuery query{reconstruction::creature_movement_parameters(
-                                       geometry.actor(s.actor)),
+                                       geometry.actor(memberSlot)),
                                    true, false, false};
         const auto result = model::advanceOwnerTaskProbe(
             g.probe, c.native.regions, g.from, g.to, query, c.world.dimensions,
             budget, services);
         if (result == model::OwnerTaskProbeResult::pending)
           return {};
-        ++g.cursor;
         if (result == model::OwnerTaskProbeResult::failed) {
+          ++g.cursor;
+          g.memberCursor = 0;
+          g.paths.travel = g.paths.auxiliary = g.paths.danger = g.paths.risk =
+              0;
           g.probe = {};
           g.from = g.to = -1;
           continue;
         }
+        const auto at = std::find_if(
+            g.probe.search.records.begin(), g.probe.search.records.end(),
+            [&](const auto &v) { return v.node == g.to; });
+        need(at != g.probe.search.records.end(), "group probe result missing");
+        const auto payload = reconstruction::neighbor_movement(at->movement);
+        int risk = 0;
+        for (auto id : g.probe.path)
+          risk = std::max(risk, services.danger(id));
+        model::addOwnerTaskPath(g.paths, payload.accumulated_cost,
+                                nativeOwnerPlannerActor(c, p, memberSlot).speed,
+                                payload.unknown_18, services.danger(g.to),
+                                risk);
+        g.probe = {};
+        g.from = g.to = -1;
+        if (++g.memberCursor < members.size())
+          continue;
+        ++g.cursor;
         std::vector<model::OwnerPlannerActor> enemy;
         for (int key : model::ownerGroupKeys(g.groups, root)) {
           const auto &rows = g.observations;
@@ -345,28 +388,24 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
           enemy.push_back(snapshot);
         }
         if (enemy.empty()) {
+          g.memberCursor = 0;
+          g.paths.travel = g.paths.auxiliary = g.paths.danger = g.paths.risk =
+              0;
           g.probe = {};
           g.from = g.to = -1;
           continue;
         }
-        const auto friendly = nativeOwnerPlannerActor(c, p, s.actor);
         std::vector<model::OwnerPlannerActor> source;
         for (auto slot : nativeOwnerSourceActors(s))
           source.push_back(nativeOwnerPlannerActor(c, p, slot));
         const auto prefix =
             model::hostileTaskGroupFeatures(source, enemy, c.world.dimensions);
         s.features.assign(prefix.begin(), prefix.end());
-        const auto at = std::find_if(
-            g.probe.search.records.begin(), g.probe.search.records.end(),
-            [&](const auto &v) { return v.node == g.to; });
-        need(at != g.probe.search.records.end(), "group probe result missing");
-        const auto payload = reconstruction::neighbor_movement(at->movement);
-        const int travel = model::ownerTaskTravelTime(payload.accumulated_cost,
-                                                      friendly.speed);
         if (replanning)
           replanning->candidateDuration =
-              model::ownerTask6Duration(s.random, travel);
-        const auto &dest = c.native.regions.at(unsigned(g.to));
+              model::ownerTask6Duration(s.random, g.paths.travel);
+        const int destination = node.region;
+        const auto &dest = c.native.regions.at(unsigned(destination));
         const bool covered =
             !dest.parameter &&
             !line(geometry,
@@ -375,19 +414,19 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
         s.features.insert(
             s.features.end(),
             {int(std::sqrt(static_cast<long double>(node.uncertaintySquared))),
-             travel, payload.unknown_18, services.danger(g.to), int(covered)});
+             g.paths.travel, g.paths.auxiliary / int(members.size()),
+             g.paths.danger / int(members.size()), int(covered)});
         const auto inference = model::inferOwnerTask(s.model, s.features);
         s.candidateScore = model::ownerTaskValue(
             {{inference[0], inference[1], inference[2]}}, s.weights, s.percent);
-        int risk = 0;
-        for (auto id : g.probe.path)
-          risk = std::max(risk, services.danger(id));
-        g.candidate = model::OwnerGroupTask{g.groups, root, risk};
+        g.candidate = model::OwnerGroupTask{g.groups, root, g.paths.risk};
         s.candidate = {model::ownerGroupKeys(g.groups, root).front(),
                        node.position};
         s.candidateReady = true;
         g.probe = {};
         g.from = g.to = -1;
+        g.memberCursor = 0;
+        g.paths.travel = g.paths.auxiliary = g.paths.danger = g.paths.risk = 0;
         return s.candidateScore;
       }
       s.hostileEmitted = true;
@@ -407,6 +446,13 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
             g.best.reset();
         },
         []() {}};
+    if (proposal) {
+      services.root = proposal->root;
+      proposal->changed = model::advanceOwnerTaskReplanning(
+          s.selection, budget, s.random, services, proposal->old, tick,
+          replanning->policy, proposal->bias, true, proposal->rejectOne);
+      return;
+    }
     model::advanceOwnerTaskSelection(s.selection, budget, s.random, services);
     if (replanning && s.selection.reset && s.selection.selected == 0 &&
         model::replaceOwnerTask(s.selection.value,
@@ -458,6 +504,11 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
       }
     }
   };
+  if (proposal) {
+    need(proposal->budget, "proposal budget missing");
+    plan(*proposal->budget);
+    return;
+  }
   if (g.scheduler) {
     auto cleanup = [&] {
       if (replanning->previous &&

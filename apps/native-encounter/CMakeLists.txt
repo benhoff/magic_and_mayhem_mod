@@ -185,3 +185,7 @@ target_compile_options(native-owner-task-inputs-test PRIVATE -Wall -Wextra -Werr
 add_executable(native-owner-sources-test ../../tests/native-owner-sources-test.cpp)
 target_link_libraries(native-owner-sources-test PRIVATE mnm-native-encounter)
 target_compile_options(native-owner-sources-test PRIVATE -Wall -Wextra -Werror -pedantic)
+
+add_executable(native-owner-source-decisions-test ../../tests/native-owner-source-decisions-test.cpp)
+target_link_libraries(native-owner-source-decisions-test PRIVATE mnm-native-encounter)
+target_compile_options(native-owner-source-decisions-test PRIVATE -Wall -Wextra -Werror -pedantic)

@@ -18,6 +18,7 @@
 #include "../../reconstruction/creature-ai/owner_task_lifecycle.hpp"
 #include "../../reconstruction/creature-ai/owner_task_scheduler.hpp"
 #include "../../reconstruction/creature-ai/source_lifecycle.hpp"
+#include "../../reconstruction/creature-ai/source_decision.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -78,6 +79,10 @@ struct NativeOwnerGroupPlanner {
   std::optional<NativeOwnerReplanning> replanning;
   //v16: absent in legacy checkpoints, which retain their native cadence.
   std::optional<reconstruction::combat::OwnerTaskScheduler> scheduler;
+  //v18: ordered per-member probes and candidate path aggregates.
+  bool perMember=false;
+  unsigned memberCursor=0;
+  reconstruction::combat::OwnerTaskPathTotals paths;
 };
 struct NativeOwnerPlanner {
   unsigned owner=0,actor=0,nextSerial=1,activeSerial=0;
@@ -99,10 +104,22 @@ struct NativeSourcePlanner {
   unsigned source=0;
   std::optional<NativeOwnerPlanner> planner;
 };
+struct NativeOwnerSourceSearch {
+  unsigned source=0,other=0,currentSerial=0,otherSerial=0;
+  bool hasOther=false;
+  reconstruction::combat::OwnerSourceDecision decision;
+  reconstruction::combat::OwnerSourceDecisionInputs inputs;
+  NativeOwnerPlanner scratch;
+};
 struct NativeOwnerSources {
   reconstruction::combat::OwnerSourceStorage storage;
   std::vector<NativeSourcePlanner> planners;
   unsigned nextSerial=1;
+  //v18 opt-in preserves legacy v17 host behavior.
+  bool automatic=false;
+  unsigned planningAllocation=4;
+  std::optional<NativeOwnerSourceSearch> search;
+  unsigned decisions=0,splits=0,merges=0;
 };
 struct NativeProviderState {
   bool present=false,randomSeeded=false,alternate=false;

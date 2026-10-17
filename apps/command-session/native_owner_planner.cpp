@@ -102,6 +102,8 @@ void validateNativeOwnerPlanner(const Continuation &c) {
     for (const auto &row : c.native.ownerSources->planners)
       if (row.planner)
         state(*row.planner);
+    if(c.native.ownerSources->search)
+      state(c.native.ownerSources->search->scratch);
   }
   for (const auto &rows : c.native.ownerKnowledge->records)
     for (const auto &r : rows) {

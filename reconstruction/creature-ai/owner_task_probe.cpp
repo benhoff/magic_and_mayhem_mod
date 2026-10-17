@@ -48,6 +48,19 @@ advanceOwnerTaskProbe(OwnerTaskProbe &s, std::vector<NavigationRegion> &g,
                                          : OwnerTaskProbeResult::failed;
   return s.result;
 }
+void addOwnerTaskPath(OwnerTaskPathTotals &s, int cost, int speed,
+                      int auxiliary, int danger, int risk) {
+  const int travel = ownerTaskTravelTime(cost, speed);
+  if (cost < 0 || travel == INT_MAX || auxiliary < 0 || danger < 0 ||
+      risk < 0 || auxiliary > 1000000 || danger > 1000000 || risk > 1000000 ||
+      s.travel < 0 || s.auxiliary < 0 || s.danger < 0 || s.risk < 0 ||
+      s.auxiliary > 8000000 - auxiliary || s.danger > 8000000 - danger)
+    throw std::invalid_argument("owner member path accumulation domain");
+  s.travel = std::max(s.travel, travel);
+  s.auxiliary += auxiliary;
+  s.danger += danger;
+  s.risk = std::max(s.risk, risk);
+}
 int ownerTaskTravelTime(int cost, int speed) {
   const auto v = unsigned(cost);
   return speed > 0 ? int((((v >> 2) * 9u & 0xffffffu) << 7) / unsigned(speed))
