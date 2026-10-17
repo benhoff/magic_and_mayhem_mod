@@ -1,7 +1,9 @@
 #include "native_owner_planner.hpp"
+#include "native_owner_sources.hpp"
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <set>
 #include <stdexcept>
 namespace mnm::command_session {
 namespace {
@@ -49,41 +51,58 @@ model::OwnerPlannerActor nativeOwnerPlannerActor(const Continuation &c,
 void validateNativeOwnerPlanner(const Continuation &c) {
   if (!c.native.ownerPlanner)
     return;
-  const auto &s = *c.native.ownerPlanner;
-  need(c.native.ownerVisibility && c.native.ownerKnowledge &&
-           c.native.regionalDanger && c.world.creatures.size() == 2,
-       "owner planner roots");
-  need(s.owner < 8 && s.actor < 2 &&
-           c.world.creatures[s.actor].ai.owner == int(s.owner) &&
-           !c.world.human[s.owner],
-       "owner planner actor identity");
-  for (const auto &a : c.world.creatures)
-    actorDomain(a);
-  need(s.model.key == 6 && s.model.dimension == 72 &&
-           s.model.layers.size() == 3,
-       "owner planner model identity");
-  model::validateBrainInference(s.model);
-  model::validateOwnerTaskSelection(s.selection, 2);
-  need(s.random.left < 250 && s.random.right < 250 &&
-           (s.random.right + 250 - s.random.left) % 250 == 103,
-       "owner planner RNG");
-  need(s.nextSerial && s.percent >= 0 && s.percent <= 10000 &&
-           s.activeSerial < s.nextSerial,
-       "owner planner task identity");
-  need(s.active.has_value() == (s.activeSerial != 0),
-       "owner planner active task identity");
-  need(std::isfinite(s.candidateScore) && s.candidateScore >= -1 &&
-           s.candidateScore <= 1,
-       "owner planner candidate score");
-  for (float v : s.weights)
-    need(std::isfinite(v) && v >= 0 && v <= 1, "owner planner task weights");
-  need(s.features.empty() || s.features.size() == 72,
-       "owner planner feature continuation");
-  need(s.candidateReady == (s.candidate.memoryKey >= 0),
-       "owner planner candidate identity");
-  if (s.active)
-    need(s.active->memoryKey >= 0, "owner planner active memory key");
-  validateNativeOwnerGroupPlanner(c);
+  auto state = [&](const NativeOwnerPlanner &s) {
+    need(c.native.ownerVisibility && c.native.ownerKnowledge &&
+             c.native.regionalDanger && c.world.creatures.size() >= 2 &&
+             c.world.creatures.size() <= 8,
+         "owner planner roots");
+    need(s.owner < 8 && s.actor < c.world.creatures.size() &&
+             c.world.creatures[s.actor].ai.owner == int(s.owner) &&
+             !c.world.human[s.owner],
+         "owner planner actor identity");
+    for (const auto &a : c.world.creatures)
+      actorDomain(a);
+    need(s.model.key == 6 && s.model.dimension == 72 &&
+             s.model.layers.size() == 3,
+         "owner planner model identity");
+    model::validateBrainInference(s.model);
+    model::validateOwnerTaskSelection(s.selection, 2);
+    need(s.random.left < 250 && s.random.right < 250 &&
+             (s.random.right + 250 - s.random.left) % 250 == 103,
+         "owner planner RNG");
+    need(s.nextSerial && s.percent >= 0 && s.percent <= 10000 &&
+             s.activeSerial < s.nextSerial,
+         "owner planner task identity");
+    need(s.active.has_value() == (s.activeSerial != 0),
+         "owner planner active task identity");
+    need(std::isfinite(s.candidateScore) && s.candidateScore >= -1 &&
+             s.candidateScore <= 1,
+         "owner planner candidate score");
+    for (float v : s.weights)
+      need(std::isfinite(v) && v >= 0 && v <= 1, "owner planner task weights");
+    need(s.features.empty() || s.features.size() == 72,
+         "owner planner feature continuation");
+    need(s.candidateReady == (s.candidate.memoryKey >= 0),
+         "owner planner candidate identity");
+    if (s.active)
+      need(s.active->memoryKey >= 0, "owner planner active memory key");
+    std::set<unsigned> members;
+    for (auto actor : s.members)
+      need(actor < c.world.creatures.size() &&
+               c.world.creatures[actor].ai.owner == int(s.owner) &&
+               members.insert(actor).second,
+           "owner source member identity");
+    need(s.members.empty() || (s.grouped && s.actor == s.members.front()),
+         "owner source leader identity");
+    validateNativeOwnerGroupPlanner(c, &s);
+  };
+  state(*c.native.ownerPlanner);
+  if (c.native.ownerSources) {
+    validateNativeOwnerSources(c);
+    for (const auto &row : c.native.ownerSources->planners)
+      if (row.planner)
+        state(*row.planner);
+  }
   for (const auto &rows : c.native.ownerKnowledge->records)
     for (const auto &r : rows) {
       need(r.planning.has_value(),
@@ -124,6 +143,10 @@ void updateNativeOwnerPlanner(Continuation &c, const NativeCreatureProfile &p,
   if (!c.native.ownerPlanner)
     return;
   validateNativeOwnerPlanner(c);
+  if (c.native.ownerSources) {
+    updateNativeOwnerSources(c, p, commands);
+    return;
+  }
   if (c.native.ownerPlanner->grouped) {
     updateNativeOwnerGroupPlanner(c, p, commands);
     return;

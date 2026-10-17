@@ -1,6 +1,7 @@
 #include "../../reconstruction/creature-ai/owner_group_features.hpp"
 #include "../../reconstruction/pathfinding/route_neighbors.hpp"
 #include "native_owner_planner.hpp"
+#include "native_owner_sources.hpp"
 #include "native_owner_task_inputs.hpp"
 #include "native_regional.hpp"
 #include <algorithm>
@@ -25,8 +26,9 @@ bool line(NativeCreatureGeometry &g, model::Cell from, model::Cell to,
        }});
 }
 } // namespace
-void validateNativeOwnerGroupPlanner(const Continuation &c) {
-  const auto &s = *c.native.ownerPlanner;
+void validateNativeOwnerGroupPlanner(const Continuation &c,
+                                     const NativeOwnerPlanner *value) {
+  const auto &s = value ? *value : *c.native.ownerPlanner;
   if (!s.grouped)
     return;
   const auto &g = *s.grouped;
@@ -87,7 +89,8 @@ void validateNativeOwnerGroupPlanner(const Continuation &c) {
              position.z >= 0 && position.z < c.world.dimensions.z,
          "group planner observation position");
     need(r.memory.actor.owner >= 0 && r.memory.actor.owner < 8 &&
-             r.memory.actor.slot >= 0 && r.memory.actor.slot < 2 &&
+             r.memory.actor.slot >= 0 &&
+             unsigned(r.memory.actor.slot) < c.world.creatures.size() &&
              r.memory.actor.region >= -1 &&
              (r.memory.actor.region < 0 ||
               unsigned(r.memory.actor.region) < c.native.regions.size()),
@@ -158,27 +161,53 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
     if (g.active && (g.scheduler || !replanning ||
                      (!replanning->previous->completed &&
                       tick < replanning->previous->expires))) {
-      int raw = 0, net = 0;
-      if (actor.region >= 0) {
-        const auto &r = c.native.regions.at(unsigned(actor.region));
-        raw = model::regionDanger(actor, r, c.native.regionalRiskPowers);
-        net = model::regionDanger(actor, r, c.native.regionalRiskPowers, true);
-      }
-      const auto out = model::executeOwnerGroupTask(
-          *g.active, *c.native.ownerKnowledge, tick, s.owner, s.actor, c.world,
-          raw, net, g.excessPercent,
-          {{c.execution[0].combatValue[5], c.execution[1].combatValue[5]}},
-          budget);
-      if (out.stop && actor.ai.action != 8) {
-        auto stop = actor.ai.position;
-        if (actor.ai.motion) {
-          const auto &route = c.actions.segments.at(s.actor);
-          need(route.cursor < route.count, "group task stop endpoint");
-          stop = route.route.at(route.cursor).position;
+      const auto members = nativeOwnerSourceActors(s);
+      for (auto slot : members)
+        if (!c.world.creatures.at(slot).ai.active ||
+            !c.world.creatures.at(slot).ai.health)
+          return false;
+      std::vector<int> raw, net, threat;
+      for (auto slot : members) {
+        const auto &member = c.world.creatures.at(slot);
+        int r = 0, n = 0;
+        if (member.region >= 0) {
+          const auto &region = c.native.regions.at(unsigned(member.region));
+          r = model::regionDanger(member, region, c.native.regionalRiskPowers);
+          n = model::regionDanger(member, region, c.native.regionalRiskPowers,
+                                  true);
         }
-        if (actor.ai.behavior != 2 || !(actor.destination == stop)) {
-          c.execution[s.actor].commandMode = 0;
-          commands.move(actor, stop);
+        raw.push_back(r);
+        net.push_back(n);
+      }
+      for (const auto &e : c.execution)
+        threat.push_back(e.combatValue[5]);
+      const auto out = model::executeOwnerSourceGroupTask(
+          *g.active, *c.native.ownerKnowledge, tick, s.owner, members, c.world,
+          raw, net, g.excessPercent, threat, budget);
+      for (unsigned i = 0; i < members.size(); ++i) {
+        const auto slot = members[i];
+        auto &member = c.world.creatures.at(slot);
+        const auto &order = out.orders[i];
+        if (member.ai.action == 8)
+          continue;
+        if (order.stop) {
+          auto stop = member.ai.position;
+          if (member.ai.motion) {
+            const auto &route = c.actions.segments.at(slot);
+            need(route.cursor < route.count, "group task stop endpoint");
+            stop = route.route.at(route.cursor).position;
+          }
+          if (member.ai.behavior != 2 || !(member.destination == stop)) {
+            c.execution[slot].commandMode = 0;
+            commands.move(member, stop);
+          }
+        } else if (order.kind == model::OwnerHostileOrderKind::target)
+          commands.target(member, order.target);
+        else if (order.kind == model::OwnerHostileOrderKind::move &&
+                 (member.ai.behavior != 2 ||
+                  !(member.destination == order.position))) {
+          c.execution[slot].commandMode = 0;
+          commands.move(member, order.position);
         }
       }
       if (!out.continuing) {
@@ -191,16 +220,6 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
         }
       } else {
         s.active->position = g.active->groups.nodes[g.active->root].position;
-        if (actor.ai.action != 8) {
-          if (out.kind == model::OwnerHostileOrderKind::target)
-            commands.target(actor, out.target);
-          else if (out.kind == model::OwnerHostileOrderKind::move &&
-                   (actor.ai.behavior != 2 ||
-                    !(actor.destination == out.position))) {
-            c.execution[s.actor].commandMode = 0;
-            commands.move(actor, out.position);
-          }
-        }
         if (!replanning)
           return true;
       }
@@ -251,11 +270,12 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
                                     c.world.relation, lower);
       // 40eff0 kind6 deadline. World/cache epoch production remains a native
       //  policy even with the recovered ordinary count-mode caller enabled.
-      need(tick <= std::numeric_limits<int>::max() - 22,
+      const int duration = 20 + 2 * int(nativeOwnerSourceActors(s).size());
+      need(tick <= std::numeric_limits<int>::max() - duration,
            "group planner deadline overflow");
       if (!replanning)
         (void)model::nextRandom(s.random);
-      g.deadline = tick + 22;
+      g.deadline = tick + duration;
     };
     auto next = [&](unsigned evaluator, int &budget) -> std::optional<float> {
       if (!evaluator) {
@@ -330,8 +350,11 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
           continue;
         }
         const auto friendly = nativeOwnerPlannerActor(c, p, s.actor);
-        const auto prefix = model::hostileTaskGroupFeatures({friendly}, enemy,
-                                                            c.world.dimensions);
+        std::vector<model::OwnerPlannerActor> source;
+        for (auto slot : nativeOwnerSourceActors(s))
+          source.push_back(nativeOwnerPlannerActor(c, p, slot));
+        const auto prefix =
+            model::hostileTaskGroupFeatures(source, enemy, c.world.dimensions);
         s.features.assign(prefix.begin(), prefix.end());
         const auto at = std::find_if(
             g.probe.search.records.begin(), g.probe.search.records.end(),

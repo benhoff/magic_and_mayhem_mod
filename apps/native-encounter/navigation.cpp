@@ -90,7 +90,7 @@ void enableOwnerVisibility(Profile &p) {
 }
 void placeOwnerPlannerEncounter(Profile &p) {
   auto staged=p.initial;
-  if(staged.world.creatures.size()!=2||staged.native.regions.empty()||staged.native.tick)
+  if((staged.world.creatures.size()!=2&&staged.world.creatures.size()!=3)||staged.native.regions.empty()||staged.native.tick)
     throw std::invalid_argument("owner planner encounter setup domain");
   for(auto &cell:staged.native.cells)cell.occupant=0xffff;
   cs::NativeCreatureGeometry geometry(staged,p.native);
@@ -109,6 +109,16 @@ void placeOwnerPlannerEncounter(Profile &p) {
       for(auto offset:std::array<cs::model::Cell,4>{{{4,0,0},{-4,0,0},{0,4,0},{0,-4,0}}}){
         cs::model::Cell second{first.x+offset.x,first.y+offset.y,first.z};
         if(!inside(second)||!geometry.legal(a,second)||!geometry.ground(a,second)||region(second)!=int(id))continue;
+        if(staged.world.creatures.size()==3) {
+          bool thirdFound=false;
+          for(auto offset3:std::array<cs::model::Cell,8>{{{0,4,0},{0,-4,0},{4,4,0},{-4,4,0},{4,-4,0},{-4,-4,0},{8,0,0},{0,8,0}}}) {
+            cs::model::Cell third{first.x+offset3.x,first.y+offset3.y,first.z};
+            if((std::abs(third.x-second.x)<2 && std::abs(third.y-second.y)<2) ||
+               !inside(third)||!geometry.legal(a,third)||!geometry.ground(a,third)||region(third)!=int(id))continue;
+            staged.world.creatures[2].ai.position=third;thirdFound=true;break;
+          }
+          if(!thirdFound)continue;
+        }
         staged.world.creatures[0].ai.position=first;staged.world.creatures[1].ai.position=second;
         for(auto &actor:staged.world.creatures){actor.region=int(id);actor.ai.home=actor.ai.position;actor.destination=actor.ai.position;staged.execution[actor.ai.slot].roamHome=actor.ai.position;}
         found=true;break;

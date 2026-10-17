@@ -3,6 +3,7 @@
 #include "../../reconstruction/combat/autonomy_tables.hpp"
 #include "../command-session/native_geometry.hpp"
 #include "../command-session/native_owner_planner.hpp"
+#include "../command-session/native_owner_sources.hpp"
 #include "encounter.hpp"
 #include <algorithm>
 #include <charconv>
@@ -110,12 +111,13 @@ void enableOwnerPlanner(Profile &p, const std::filesystem::path &path,
     enableOwnerVisibility(staged);
   }
   cs::prepareNativeOwnerPlanner(staged.initial, std::move(model), 0, 0, seed);
+  if(staged.scenario==8)cs::prepareNativeOwnerSources(staged.initial);
   p = std::move(staged);
 }
 game::Bytes loadInputs(const std::filesystem::path &root, scene::MapCrop crop,
                        unsigned scenario) {
   game::Bytes b{'M', 'N', 'M', 'E', 'N', 'C', '0', '1'};
-  need(scenario <= 7, "encounter scenario");
+  need(scenario <= 8, "encounter scenario");
   if (scenario) {
     b[7] = '2';
     word(b, scenario);
@@ -139,8 +141,8 @@ Profile decodeInputs(game::Bytes bytes) {
        "encounter input version");
   std::size_t at = 8;
   const unsigned scenario = bytes[7] == '2' ? take(bytes, at) : 0;
-  need(scenario <= 7, "encounter scenario");
-  const unsigned actors = scenario == 1 || scenario == 3 ? 4
+  need(scenario <= 8, "encounter scenario");
+  const unsigned actors = scenario == 8 ? 3 : scenario == 1 || scenario == 3 ? 4
                           : scenario >= 2                ? 8
                                                          : 2;
   scene::MapCrop crop;
@@ -240,7 +242,7 @@ Profile decodeInputs(game::Bytes bytes) {
   for (unsigned i = 0; i < actors; ++i) {
     auto &actor = c.world.creatures[i];
     actor.ai.slot = i;
-    actor.ai.owner = int(scenario >= 5 ? 0 : scenario >= 3 ? i / 2 : i);
+    actor.ai.owner = int(scenario==8 ? unsigned(i==2) : scenario >= 5 ? 0 : scenario >= 3 ? i / 2 : i);
     actor.width = movement.width;
     actor.height = movement.height;
     actor.movementKind = movement.swimming;
@@ -255,7 +257,7 @@ Profile decodeInputs(game::Bytes bytes) {
     c.execution[i].roamInterval =
         integer(field(cfg, "CREATURE_17", "WanderDelay"));
   }
-  if (scenario) {
+  if (scenario && scenario<8) {
     need(c.world.dimensions.x == 12 && c.world.dimensions.y == 12,
          "crowded crop domain");
     for (int z = 0; z < c.world.dimensions.z; ++z)
@@ -331,7 +333,7 @@ Profile decodeInputs(game::Bytes bytes) {
     c.execution[actor.ai.slot].roamHome = actor.ai.position;
   }
   cs::prepareNativeContinuation(c, p.native);
-  if (scenario) {
+  if (scenario && scenario<8) {
     // A common initial move request makes the scheduler encounter the sealed
     // column and another actor's occupied footprint before autonomous combat.
     auto &actor = c.world.creatures[0];
@@ -340,7 +342,7 @@ Profile decodeInputs(game::Bytes bytes) {
     actor.routePhase = 1;
     c.bindings[0] = cs::model::CommandBehaviorBinding::move;
   }
-  if (scenario >= 3) {
+  if (scenario >= 3 && scenario<8) {
     auto &a = c.world.creatures[0];
     auto &b = c.world.creatures[1];
     a.routePhase = 2;

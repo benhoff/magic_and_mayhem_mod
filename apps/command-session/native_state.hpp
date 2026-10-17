@@ -17,6 +17,7 @@
 #include "../../reconstruction/creature-ai/owner_task_probe.hpp"
 #include "../../reconstruction/creature-ai/owner_task_lifecycle.hpp"
 #include "../../reconstruction/creature-ai/owner_task_scheduler.hpp"
+#include "../../reconstruction/creature-ai/source_lifecycle.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -91,6 +92,17 @@ struct NativeOwnerPlanner {
   std::vector<int> features;
   std::optional<reconstruction::combat::OwnerHostileTask> active;
   std::optional<NativeOwnerGroupPlanner> grouped;
+  //v17: ordered friendly source traversal. Empty preserves legacy singleton.
+  std::vector<unsigned> members;
+};
+struct NativeSourcePlanner {
+  unsigned source=0;
+  std::optional<NativeOwnerPlanner> planner;
+};
+struct NativeOwnerSources {
+  reconstruction::combat::OwnerSourceStorage storage;
+  std::vector<NativeSourcePlanner> planners;
+  unsigned nextSerial=1;
 };
 struct NativeProviderState {
   bool present=false,randomSeeded=false,alternate=false;
@@ -114,5 +126,6 @@ struct NativeProviderState {
   std::optional<reconstruction::combat::OwnerKnowledge> ownerKnowledge;
   std::optional<NativeOwnerVisibility> ownerVisibility;
   std::optional<NativeOwnerPlanner> ownerPlanner;
+  std::optional<NativeOwnerSources> ownerSources;
 };
 } // namespace mnm::command_session

@@ -10099,3 +10099,35 @@ static discovery, development failures, history review and source indexing are
 not new execution-equivalence evidence. See [scheduler scope](owner-task-scheduler.md).
 
 NS83 execution: original32/native64/sanitizer agreement over64 episodes,4,865,080 checks/14,080 caller slices, including separate result flags, expiry and progress retirement; fresh276-source native/sanitizer integration, scheduled and legacy actual-event journeys, two512-frame seeds, core suites and six cold resumes pass. New original and native contracts have independent bound evidence; supplied source/World boundaries and historical staleness remain explicit.
+
+
+## NS84 — owned friendly source and task lifecycle
+
+New scoped reconstruction covers407780/407820 detachment/cursors, whole417580
+protected source pruning with actual destruction and queue/vector erase, and
+selected423590 split/merge commit topology with explicitly supplied task/storage
+services. Existing NS52 creation/join/recipient registration primitives are reused.
+New whole432900 comparison extends ordinary task6 execution to two friendly
+members and one enemy, preserving the shared charge, group rejection/spread and
+assigned-threat accounting. Original comparison and native integration have
+separate prospective evidence under `AI.source-task-ownership`,
+`AI.owner-source-group-execution` and `NP.owned-friendly-source-continuation`.
+
+Native scenario8 and `run-sources` carry formed/split/merged source groups,
+concurrent tasks, shared strategic RNG/serials and pending queues through CMD1v17.
+The one-root/frame allocation, active-health availability, member-epoch restart,
+empty-source retirement and representative same-region probe are native policies.
+Automatic423590 partition/merge proposal search and winner selection, full
+per-member probe production, specialized421f70 queues, original World cadence,
+dual brains, training, campaign and live replacement remain pending. Selected
+commit execution is not proof of automatic strategic decision recovery.
+
+NS84 execution: two original32/native64/sanitizer comparisons pass13,824 cases and
+1,064,522 checks. The source-maintenance/selected-commit result includes256
+splits/256 merges/384 displaced tasks; ordinary task6 execution includes both
+friendly traversal orders and shared target accounting. Independent clean
+285-source native/sanitizer execution passes the512-frame source journeys,
+626 checks/66 restores/26 refusals,27 concurrent-task frames, legacy planner,
+scheduled event and core regressions, eight cold resumes and public CLI identity.
+Only the new bounded source contracts are promoted; automatic strategic topology
+search and the explicit native/World boundaries above remain pending.
