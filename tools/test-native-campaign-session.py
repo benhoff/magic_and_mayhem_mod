@@ -13,6 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--mission',action='store_true')
     parser.add_argument('--arena',action='store_true')
     parser.add_argument('--window',action='store_true')
     args=parser.parse_args()
@@ -30,6 +31,9 @@ def main():
     if args.window:
         behaviors.extend(['NP.campaign-window','NP.skirmish-window'])
         scenarios.extend(['NP.campaign-window.journey','window.native-skirmish'])
+    if args.mission:
+        behaviors.extend(['NP.skirmish-mission','NP.skirmish-simulation'])
+        scenarios.extend(['NP.skirmish-mission.continuation','world.native-skirmish'])
     declaration=claims.declaration(ROOT,json.loads((ROOT/'research/runtime/coverage/register.json').read_text()),behaviors,scenarios)
     (run/'claims.json').write_text(json.dumps(declaration,indent=2)+'\n')
     build=run/'build';source=ROOT/('apps/skirmish' if args.arena else 'game')

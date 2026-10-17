@@ -28,6 +28,31 @@ record. Full native generations prevent an old trajectory from mutating a reused
 slot. Removing caster, aim or a referenced collision actor cancels it without a
 refund or an extra tick. Terminal battles cancel every remaining effect.
 
-Changing the fixed profile values, sequence or semantic interpretation requires a
-new runtime identity and explicit compatibility policy; CBR1/CBR2 identities must
-not silently acquire changed rules.
+SHP2 (`0x32504853`) binds a mission environment. After its magic it stores width,
+height, layers and cell count (DWORDs); count must equal the product, at most4096,
+with dimensions4..16 XY and2..32 Z. Next come count terrain-index/flags DWORD
+pairs, a DWORD palette count1..4096 and that many32-byte occupancy bitmaps
+(each byte encoded as a DWORD0..255). Terrain indices must be below that count. The SHP1 resource counter, scan, actor tracking and item
+fields follow, using the declared number of spatial cells instead of192. The
+entire Sphere section remains below1MiB. Static cell terrain and all flag bits
+except dynamic0x80 must agree with the environment. Active body positions and
+trajectory bounds use the declared mission dimensions. The resource adapter
+checks complete environment equality during restoration; a structurally valid
+but changed environment is not accepted as resource authority.
+
+SHP1 layout and default arena bytes remain unchanged. A legacy effects-free or
+Cure-only checkpoint acquires no Sphere state. SHP2 and CBR2 are native owned wire
+policies, not claims about the original game's save format or allocator.
+
+New casts initialize empty contributor fields to UINT32_MAX and copy creator
+attribution/contributor sentinels into their placement record, matching the
+master arena policy. Existing active Sphere saves retain their owned fields;
+loading does not normalize them or change bytes.
+
+SHP3 (`0x33504853`) prepends two DWORDs, creature width and height, to the SHP2
+mission environment fields. The supported bound profile is2x2x2: width controls
+both horizontal axes, height controls vertical occupancy. Its actor grid fills
+all covered cells and collision uses the recovered large footprint initializer;
+projectile aim uses the corresponding body center. Restore requires exact
+profile/environment equality and navigation footprint agreement. SHP1/SHP2
+encoding is unchanged. This is an owned native profile extension.

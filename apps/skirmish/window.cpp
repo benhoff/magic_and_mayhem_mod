@@ -13,11 +13,23 @@ ArenaCanvas::ArenaCanvas(QWidget *parent) : QWidget(parent) {
     setObjectName("arenaCanvas");
     setFixedSize(560, 560);
 }
+QPoint ArenaCanvas::presentedCenter(game::Point p) const {
+    if(!view_.mission) return cellCenter(p);
+    for(const auto &u:view_.units) if(u.cell==p) return view_.mission->unitCenter(p);
+    return view_.mission->center(p);
+}
 QPoint ArenaCanvas::cellCenter(game::Point p) { return {24 + p.x * 64 + 32, 24 + p.y * 64 + 32}; }
 void ArenaCanvas::mousePressEvent(QMouseEvent *e) {
     if (e->button() != Qt::LeftButton && e->button() != Qt::RightButton)
         return;
     const auto point = e->position().toPoint();
+    if(view_.mission) {
+        std::vector<game::Point> actors;std::vector<unsigned> widths;
+        for(const auto &u:view_.units){actors.push_back(u.cell);widths.push_back(u.health?u.width:1);}
+        const auto cell=view_.mission->pick(point,actors,widths);
+        if(cell && onCell) onCell(*cell,e->button()==Qt::RightButton);
+        return;
+    }
     if (point.x() < 24 || point.y() < 24 || point.x() >= 536 || point.y() >= 536)
         return;
     if (onCell)
@@ -27,7 +39,7 @@ void ArenaCanvas::paintEvent(QPaintEvent *) {
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing);
     p.fillRect(rect(), QColor("#131c25"));
-    for (int y = 0; y < 8; ++y)
+    if(!view_.mission) for (int y = 0; y < 8; ++y)
         for (int x = 0; x < 8; ++x) {
             const bool inside = game::arenaCell({x, y, 1});
             const QRect tile(24 + x * 64, 24 + y * 64, 64, 64);
@@ -36,19 +48,27 @@ void ArenaCanvas::paintEvent(QPaintEvent *) {
             p.setPen(QColor("#273e37"));
             p.drawRect(tile.adjusted(1, 1, -1, -1));
         }
-    for (const auto &u : view_.units) {
-        const QPoint center = cellCenter(u.cell);
-        if(u.health && u.width>1) {
+    const auto drawUnit=[&](const UnitView &u) {
+        p.save();
+        if(!view_.mission && u.health && u.width>1) {
             p.setPen(QPen(QColor(u.owner?"#f09078":"#7bd9dd"),1,Qt::DashLine));
             p.setBrush(Qt::NoBrush);
             p.drawRect(QRect(24+u.cell.x*64+4,24+u.cell.y*64+4,int(u.width)*64-8,int(u.width)*64-8));
         }
+        if(view_.mission && u.health && u.width>1) {
+            p.setPen(QPen(QColor(u.owner?"#f09078":"#7bd9dd"),1,Qt::DashLine));p.setBrush(Qt::NoBrush);
+            const auto x=u.cell.x*32,y=u.cell.y*32,z=u.cell.z*16,w=int(u.width)*32;
+            QPolygon box;box<<view_.mission->fineCenter({x,y,z})<<view_.mission->fineCenter({x+w,y,z})<<view_.mission->fineCenter({x+w,y+w,z})<<view_.mission->fineCenter({x,y+w,z});p.drawPolygon(box);
+        }
+        p.translate(presentedCenter(u.cell));
+        if(view_.mission) p.scale(0.9,0.9);
+        const QPoint center{0,0};
         const QColor color = u.owner ? QColor("#f09078") : QColor("#7bd9dd");
         if (!u.health) {
             p.setPen(QPen(QColor("#818a83"), 2));
             p.drawLine(center + QPoint(-7, -7), center + QPoint(7, 7));
             p.drawLine(center + QPoint(7, -7), center + QPoint(-7, 7));
-            continue;
+            p.restore();return;
         }
         if (view_.selected == std::optional<game::Handle>(u.actor)) {
             p.setPen(QPen(QColor("#f6dd85"), 2));
@@ -79,21 +99,34 @@ void ArenaCanvas::paintEvent(QPaintEvent *) {
         p.fillRect(QRect(center.x() - 22, center.y() - 31, 44, 5), QColor("#20282f"));
         p.fillRect(QRect(center.x() - 22, center.y() - 31, int(44 * u.health / u.maximum), 5),
                    color);
-    }
+        p.restore();
+    };
+    if(view_.mission) {
+        std::vector<game::Point> actors;for(const auto &u:view_.units) actors.push_back(u.cell);
+        for(const auto &stamp:view_.mission->terrain()) p.drawImage(stamp.topLeft,stamp.image);
+        p.setPen(QPen(QColor(153,210,188,115),1));p.setBrush(QColor(17,40,33,22));
+        for(const auto cell:view_.mission->standing()) {
+            const auto at=view_.mission->center(cell);QPolygon diamond;
+            diamond<<at+QPoint(0,-16)<<at+QPoint(32,0)<<at+QPoint(0,16)<<at+QPoint(-32,0);
+            p.drawPolygon(diamond);
+        }
+        for(const auto &layer:view_.mission->layers(actors)) if(layer.actor) drawUnit(view_.units.at(layer.index));
+        p.setPen(QColor("#a4bbb0"));p.drawText(QRect(12,510,536,40),Qt::AlignCenter,"PLAINS CROSSING · Installed terrain · Native rules");
+    } else for(const auto &u:view_.units) drawUnit(u);
     for (const auto &cell : view_.cures) {
         p.setPen(QPen(QColor("#75e8aa"), 3));
         p.setBrush(Qt::NoBrush);
-        p.drawEllipse(cellCenter(cell), 25, 25);
+        p.drawEllipse(presentedCenter(cell), 25, 25);
     }
     for (const auto &fine : view_.spheres) {
-        auto center=cellCenter({fine.x/32,fine.y/32,fine.z/16});
-        center += QPoint((fine.x%32-16)*64/32,(fine.y%32-16)*64/32);
+        auto center=view_.mission?view_.mission->fineCenter(fine):cellCenter({fine.x/32,fine.y/32,fine.z/16});
+        if(!view_.mission) center += QPoint((fine.x%32-16)*64/32,(fine.y%32-16)*64/32);
         p.setPen(QPen(QColor("#b6acff"),2));
         p.setBrush(QColor("#7e65e8"));
         p.drawEllipse(center,9,9);
     }
     for (const auto &projectile : view_.projectiles) {
-        const auto a = cellCenter(projectile.origin), b = cellCenter(projectile.destination);
+        const auto a = presentedCenter(projectile.origin), b = presentedCenter(projectile.destination);
         const double t = 1.0 - double(projectile.remaining) / game::SkirmishRules::flightTicks;
         const QPointF position =
             a + (b - a) * t + QPointF(0, -18 * std::sin(t * 3.141592653589793));
@@ -179,6 +212,7 @@ Window::Window(Controller &c) {
     campaignStatus->setWordWrap(true);
     side->addWidget(campaignStatus);
     auto *newCampaign = button("New campaign", "newCampaignButton", newRow);
+    auto *mapCampaign = button("New map campaign…", "newMapCampaignButton");
     auto *campaignFiles = new QHBoxLayout;
     side->addLayout(campaignFiles);
     auto *saveCampaign = button("Save campaign…", "saveCampaignButton", campaignFiles);
@@ -282,6 +316,14 @@ Window::Window(Controller &c) {
                          if (!path.isEmpty())
                              c.load(path.toStdString());
                      }));
+    QObject::connect(mapCampaign, &QPushButton::clicked, this, guarded([&c,this] {
+        if(c.hasMapRoot()) c.newMapCampaign();
+        else {
+            c.pause();
+            const auto root=QFileDialog::getExistingDirectory(this,"Choose installed Magic & Mayhem game data");
+            if(!root.isEmpty()) c.newMapCampaign(root.toStdString());
+        }
+    }));
     QObject::connect(newCampaign, &QPushButton::clicked, this, guarded([&c] { c.newCampaign(); }));
     QObject::connect(continueCampaign, &QPushButton::clicked, this,
                      guarded([&c] { c.continueCampaign(); }));

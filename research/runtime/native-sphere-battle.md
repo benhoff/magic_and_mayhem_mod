@@ -28,24 +28,48 @@ all prior Cure state and appends the Sphere continuation. New campaigns bind thi
 profile. Existing Cure-only and effects-free campaign profiles remain exact load
 fallbacks. A checkpoint contains no borrowed pointers or asset dependencies.
 
-The Qt journey uses the real Magic Sphere button, enemy picker and save dialogs.
-It saves the pending order and first flight phase, pauses, restarts the window,
-then advances eight phases. The target moves from its starting cell and receives
-exactly one20-point hit (24 to4 health). Fresh-window, headless CLI and an event-
-counting process produce byte-identical campaign snapshots. A prior Cure-only
-checkpoint still loads and refuses Sphere without modifying the input or creating
-an output. The historical Cure playback checkpoint is also inspected unchanged.
-The adapter saves its empty contributor-chain sentinels and native attribution
-alongside the travelling effect; ordinary health remains the sole damage owner.
+## Terrain-bound Plains profile
 
-The source-bound runner is `tools/test-sphere-window.py`; its `--build-root` can
-use separate storage from retained results. The older skirmish window report now
-accepts an external build path while preserving relative binary keys for builds
-inside the checkout. This affects reporting only.
+The optional map Sphere profile owns an 8×8×23 environment projected from the
+admitted ordinary MAP/TTD bytes. Each cell retains its catalog occupancy shape
+and complete flags DWORD (MAP flags8 plus flags10 shifted16). The existing
+native catalog variant of the bounded motion helper receives every distinct
+8×8×4 occupancy bitmap (at most4096). The compared four-entry helper remains
+a separate wrapper; expanded catalog admission has native validation only. This is a native resource adapter, not
+a new original catalog-construction comparison. Blocked-cell flags include the
+sealed crop perimeter. A blocked exit leaves the recovered effect detached;
+native retirement accepts that exact case and releases its generation-bound
+entity. Terrain hits stop the native projectile; original ricochet is excluded.
 
-[PROJECTILE04 execution](sphere-window-bound-20261016.json) binds390 source hashes,
-three native behavior contracts and four scenarios. All58 normal CTests, six
-ASan/UBSan/LSan contracts, installed Cure ANI checks and both retained Qt journeys
-pass. Original manifests and installed inputs match before/after execution.
-The native Sphere integration milestone is preview; original comparison and live
-replacement remain independent and pending for this whole application adapter.
+The immutable environment and dimensions are carried by the new SHP2 section.
+On restore, internally consistent but changed geometry is rejected against the
+admitted resource context before adoption. Arena continuation still uses SHP1
+and its original open torus. Cure presentation dimensions match each mission.
+Existing effects-free and Cure-only map identities remain distinct load profiles;
+new map creation in the window selects both spells. CLI `create` and `create-cure`
+retain their prior profiles; `create-sphere` selects the new one. The player spell
+roster and both exact initial snapshots participate in the content revision.
+
+`tools/test-native-sphere-map.py ASSET_ROOT --output NEW_DIRECTORY` declares its
+source/contract scope before running normal/sanitized contracts, actual Qt
+controls and dialogs, moving-target hits/misses, simultaneous Cure, mid-flight
+save/restart, valid forged-environment/profile refusals, win/reopen/advance and
+legacy-profile loading. Run under the main storage guard and use checkout-local
+TMPDIR; retained reports are separate execution evidence. Optional historical
+`--legacy-map`/`--legacy-arena` inputs check exact load/zero-tick byte preservation.
+
+The combined fixture uses canonical creature stats and automatic target
+acquisition/path movement with live fine positions. Production creature stats,
+spell magnitudes/costs and AI policy remain unchanged.
+
+In the window journey, the moved friendly creature resumes automatic combat
+and finishes the hostile creature after its20-point Sphere hit. Event attribution
+checks exactly one Sphere hit independently of that later melee damage; the
+stationary-friendly core fixture retains the hostile creature at4 health.
+
+The unified master merge preserves alternate-tick lethal settlement/cancellation
+exactly once and both component/World capacity refusal. New casts initialize
+empty contributor sentinels and creator attribution as in the master arena.
+Terrain-bound and legacy open-arena snapshots retain their owned wire fields.
+The combined runner retains both the terrain campaign journey and the master's
+actual arena Sphere window/event-counting restart journey.

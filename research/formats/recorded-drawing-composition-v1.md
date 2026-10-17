@@ -53,3 +53,31 @@ explicitly selects black at its action-bound display rebuilds; this is native
 policy, not an original allocator guarantee. Saved histories remain owned until their declared last use.
 Each output records its actual dimensions. Schema 1 retains fixed root dimensions.
 The plan builder selects version 2 only when every binding declares output extents.
+
+
+## Portable reference catalogs, schema 3
+
+This is the external comparator catalog, separate from the native composition
+plan versions above. Schema3 retains the schema2 action-bound storage boundary
+and introduces `retention_evidence`, `reference_profile` and `witnesses`. The
+retention ID selects a registered immutable static record; the whole catalog
+must equal that record. Existing schema1/2 catalogs retain their original IDs.
+A new retention cannot overwrite an existing evidence ID or fixture directory.
+
+`reference_profile` contains a name (`unmodified_upload` or `stale_upload_crop`)
+and six Boolean acquisition flags for crop, viewport, same-current rebind,
+release/restore, destination witness and XCB witness. Recompute this value from
+the independently registered original report. Rebind/viewport variants are not
+admitted here. Crop requires both destination and XCB witnesses. A corrected
+original cannot be admitted through a legacy schema that omits this provenance.
+
+Each `witnesses` entry has its contiguous ordinal and a `files` map from original
+basename to the existing gzip artifact contract. Retain original source RGB565,
+default framebuffer metadata/pixels and each XCB packet. Names, hashes, extents,
+frame/call identities, destination state, packet geometry and policy enabled
+flags are checked against the immutable original acquisition. The external
+comparator restores these files outside native inputs, repeats source/native,
+source/destination, native/destination and destination/physical comparisons,
+and fails on any difference. Final GPU/physical comparisons retain RGB tolerance1
+and exclude alpha; RGB565 source/default witnesses compare exact words. No
+frame omission, per-profile tolerance or generic journey acceptance exception.

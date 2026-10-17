@@ -40,6 +40,41 @@ reference is not rewritten. Full14journey/21operation acceptance, global routes,
 source/SHM ownership, Qt policy, hardware and native replacement remain separate.
 See [diagnosis, scoped policy and negative controls](drawing-egl-swap-completion.md).
 
+The corrected interval is now retained separately in
+`tests/fixtures/drawing-storage-corrected-session/session.json`. Schema3 binds a
+new immutable retention evidence ID and explicit acquisition policy flags. It
+retains every original full plane, source/default-framebuffer witness and XCB
+packet alongside the existing action/save/source-only inputs. The original
+238frame fixture remains byte-for-byte unchanged. The default journey suite
+includes both profiles; `storage-corrected-suite.json` runs the passing profile
+with the same14journey/21operation denominator. Neither profile closes generic
+`presented_frame` acceptance.
+
+Reproduce the corrected portable comparison with existing native binaries:
+
+```sh
+python3 tools/working-retention.py run --reserve-gib 1.5 -- \
+  python3 tools/check-recorded-drawing-session.py \
+  --catalog tests/fixtures/drawing-storage-corrected-session/session.json \
+  --native <mnm-drawing-session-replay> --presenter <mnm-drawing-present> \
+  --headless --report working/tests/storage-corrected-<new-id>.json
+```
+
+The [public corrected-profile adapter result](storage-corrected-portable-20261016.json)
+passes all222frames with zero final GPU/physical or source/default-witness
+differences. [The unmodified baseline](storage-corrected-baseline-regression-20261016.json)
+still fails only ordinal170 (126pixels per GPU/physical cohort);
+[Quick Battle](storage-corrected-quick-regression-20261016.json) passes all323frames.
+All59 [focused admission controls](storage-corrected-admission-controls-20261016.json)
+pass. Both generic acceptance-complete flags remain false.
+
+The report keeps final GPU/physical mismatch counts separate from exact original
+source/default-framebuffer diagnostics. Either category fails the regression;
+original witness files are written only into an external comparison directory,
+never into either native input tree. Retention/replay does not execute the
+original again or establish current execution of the runtime crop policy.
+
+
 ## Historical result after driver-order correction
 
 `cursor-storage-portable-20261016.json` compares all238retained frames: only

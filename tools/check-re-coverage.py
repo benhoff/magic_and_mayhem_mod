@@ -105,6 +105,18 @@ def run(args, stack):
             raise ValueError('--staged uses only staged baseline/reviews and cannot freeze a baseline')
         current_root = stack.enter_context(staged_tree(ROOT)) if args.staged else ROOT
         current, audit_report = snapshot(current_root)
+        # Freeze all index-owned metadata before releasing its materialization.
+        # Only one full tree is needed at a time, even for a Git-base check.
+        reviews = None
+        if not args.freeze_baseline:
+            reviews = json.loads((args.reviews or current_root/REVIEWS).read_text())
+            if args.bootstrap:
+                staged_baseline = load_json(current_root, BASELINE)
+            elif not args.base:
+                path = args.baseline or current_root/BASELINE
+                before = json.loads(path.read_text())
+                base_label = str(path)
+        stack.close()
         if args.freeze_baseline:
             if args.draft_review or args.json:
                 raise ValueError('--freeze-baseline cannot be combined with report/draft output')
@@ -117,15 +129,10 @@ def run(args, stack):
                 exists = subprocess.run(['git', '-C', str(ROOT), 'cat-file', '-e', commit + ':' + BASELINE], capture_output=True).returncode == 0
                 if exists:
                     raise ValueError('--bootstrap is forbidden once the base has a gate baseline')
-                before = load_json(current_root, BASELINE)
+                before = staged_baseline
                 base_label = commit + ' (initial adoption)'
             else:
                 before, base_label = git_snapshot(ROOT, args.base)
-        else:
-            path = args.baseline or current_root/BASELINE
-            before = json.loads(path.read_text())
-            base_label = str(path)
-        reviews = json.loads((args.reviews or current_root/REVIEWS).read_text())
         history = inherited_history(ROOT, base_label, current, reviews, args.staged) if args.base and not args.bootstrap else None
         report = check(before, current, reviews, audit_report, history)
         report['base'] = base_label

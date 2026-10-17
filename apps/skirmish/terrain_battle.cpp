@@ -377,7 +377,28 @@ TerrainBattle installedTerrainBattle(const std::filesystem::path &root) {
         out.wizards = {p, q};
       }
     }
-  need(best >= 5, "terrain crop lacks separated connected wizard placements");
+  need(best >= 5, "terrain crop lacks separated connected creature corridor");
+  // Native encounter authoring: reserve a rear wizard origin within summon
+  // range of the connected corridor end, leaving that end for its creature.
+  const auto front = out.wizards[1], player = out.wizards[0];
+  auto rear = front;
+  unsigned rearDistance = best;
+  int rearTravel = 1000;
+  for (auto p : standing) {
+    const auto dx = std::abs(p.x - front.x), dy = std::abs(p.y - front.y);
+    const auto distance =
+        unsigned(std::max(std::abs(p.x - player.x), std::abs(p.y - player.y)));
+    if (std::max(dx, dy) > 2 || (dx < 2 && dy < 2) || distance <= best)
+      continue;
+    if (distance > rearDistance ||
+        (distance == rearDistance && dx + dy < rearTravel)) {
+      rear = p;
+      rearDistance = distance;
+      rearTravel = dx + dy;
+    }
+  }
+  need(rear != front, "terrain crop lacks a rear wizard summon origin");
+  out.wizards[1] = rear;
   return finish(out);
 }
 TerrainBattle decodeTerrainBattle(const game::Bytes &b) {

@@ -12,7 +12,7 @@ namespace g = game;
 namespace r = reconstruction;
 namespace c = r::casting;
 namespace {
-constexpr unsigned capacity = 8, width = 8, height = 8, layers = 3;
+constexpr unsigned capacity = 8;
 void require(bool yes, const char *why) {
   if (!yes)
     throw std::invalid_argument(why);
@@ -45,8 +45,30 @@ struct Item {
 struct Tracking {
   unsigned generation = 0, attacker = 0, time = 0;
 };
+void validateEnvironment(const Environment &e) {
+  const auto d=e.dimensions;
+  require((e.creatureWidth==1 && e.creatureHeight==1) || (!e.cells.empty() && e.creatureWidth==2 && e.creatureHeight==2),"Sphere bound creature footprint");
+  require(d.x>=4 && d.x<=16 && d.y>=4 && d.y<=16 && d.z>=2 && d.z<=32 &&
+              std::uint64_t(d.x)*d.y*d.z<=4096,"Sphere environment dimensions");
+  if(e.cells.empty()) {
+    require(d==g::Point{8,8,3} && e.occupancy==Environment{}.occupancy,"Sphere legacy environment");
+  } else {
+    require(e.cells.size()==std::size_t(d.x)*d.y*d.z,"Sphere environment cell count");
+    require(!e.occupancy.empty() && e.occupancy.size()<=4096,"Sphere terrain palette count");
+    for(const auto &cell:e.cells) require(cell.terrain<e.occupancy.size(),"Sphere terrain palette bound");
+  }
+}
 struct State {
-  r::EffectPlacementPool pool{width, height, layers, capacity};
+  Environment env;
+  r::EffectPlacementPool pool;
+  explicit State(Environment e={}) : env(std::move(e)),
+    pool(unsigned(env.dimensions.x),unsigned(env.dimensions.y),unsigned(env.dimensions.z),capacity) {
+    validateEnvironment(env);
+    for(unsigned i=0;i<env.cells.size();++i) {
+      pool.cells()[i].terrain=std::uint16_t(env.cells[i].terrain);
+      pool.cells()[i].flags=env.cells[i].flags;
+    }
+  }
   std::array<Item, capacity> items{};
   std::array<Tracking, 32> tracking{};
   unsigned resourceCounter = 0;
@@ -97,21 +119,41 @@ struct Codec {
   }
 };
 void content(Codec &z, State &s) {
-  unsigned version = 0x31504853;
+  unsigned version = s.env.cells.empty() ? 0x31504853 : s.env.creatureWidth==1 ? 0x32504853 : 0x33504853;
   z.field(version);
-  require(version == 0x31504853, "Sphere checkpoint version");
+  require(version==0x31504853 || version==0x32504853 || version==0x33504853,"Sphere checkpoint version");
+  if(version==0x32504853 || version==0x33504853) {
+    auto env=s.env;
+    if(version==0x33504853)z.fields(env.creatureWidth,env.creatureHeight);
+    unsigned w=unsigned(env.dimensions.x),h=unsigned(env.dimensions.y),l=unsigned(env.dimensions.z),count=unsigned(env.cells.size());
+    z.fields(w,h,l,count);
+    require(w>=4 && w<=16 && h>=4 && h<=16 && l>=2 && l<=32 &&
+                std::uint64_t(w)*h*l<=4096 && count==w*h*l,"Sphere bound environment extent");
+    env.dimensions={int(w),int(h),int(l)};
+    if(z.reading) env.cells.resize(count);
+    for(auto &cell:env.cells) z.fields(cell.terrain,cell.flags);
+    unsigned shapes=unsigned(env.occupancy.size());z.field(shapes);
+    require(shapes>=1 && shapes<=4096,"Sphere terrain palette count");
+    if(z.reading) env.occupancy.resize(shapes);
+    for(auto &bitmap:env.occupancy) for(auto &byte:bitmap) {
+      unsigned value=byte;z.field(value);require(value<=255,"Sphere terrain bitmap byte");byte=std::uint8_t(value);
+    }
+    validateEnvironment(env);
+    if(z.reading) s=State(std::move(env));
+  }
   z.field(s.resourceCounter);
   unsigned scan = s.pool.scan();
   z.field(scan);
   s.pool.setScan(scan);
   for (auto &t : s.tracking)
     z.fields(t.generation, t.attacker, t.time);
-  for (auto &cell : s.pool.cells()) {
+  for (unsigned index=0;index<s.pool.cells().size();++index) {
+    auto &cell=s.pool.cells()[index];
     unsigned head = cell.head, terrain = cell.terrain;
     z.fields(head, terrain, cell.flags);
     require(head == r::NoEffect || head < capacity, "Sphere cell head");
-    require(terrain == 0 && (cell.flags & ~0x80u) == 0,
-            "Sphere arena terrain policy");
+    const auto expected=s.env.cells.empty()?TerrainCell{}:s.env.cells[index];
+    require(terrain==expected.terrain && (cell.flags&~0x80u)==(expected.flags&~0x80u),"Sphere terrain binding");
     cell.head = std::uint16_t(head);
     cell.terrain = std::uint16_t(terrain);
   }
@@ -155,7 +197,7 @@ void content(Codec &z, State &s) {
   }
 }
 State decode(const g::Bytes &b) {
-  require(b.size() < 65536, "Sphere byte bound");
+  require(b.size() < 1024*1024, "Sphere byte bound");
   Codec z;
   z.reading = true;
   z.bytes = b;
@@ -184,8 +226,11 @@ void release(State &s, unsigned i, g::CombatSession &combat) {
     while (prev != r::NoEffect && s.pool.records().at(prev).next != i &&
            ++n <= capacity)
       prev = s.pool.records().at(prev).next;
-    require(prev != r::NoEffect && n <= capacity, "Sphere unlink");
-    s.pool.records()[prev].next = p.next;
+    require(n<=capacity,"Sphere unlink cycle");
+    if(prev==r::NoEffect) {
+      // The recovered blocked-cell exit deliberately leaves the effect detached.
+      require((cell.flags&0x40000000u) && p.next==r::NoEffect,"Sphere unlink");
+    } else s.pool.records()[prev].next=p.next;
   }
   combat.releaseEffect(*a.entity);
   a = Item{};
@@ -196,7 +241,11 @@ void release(State &s, unsigned i, g::CombatSession &combat) {
   s.pool.setScan(scan);
 }
 void validateState(const State &s, const g::CombatSession &combat,
-                   const g::SkirmishState &meta) {
+                   const g::SkirmishState &meta, const Environment &bound) {
+  require(sameEnvironment(s.env,bound),"Sphere mission environment mismatch");
+  require(combat.world().state().navigation && combat.world().state().navigation->dimensions==s.env.dimensions,"Sphere navigation dimensions mismatch");
+  require(combat.navigation()->creatureFootprint()==g::Point{int(s.env.creatureWidth),int(s.env.creatureWidth),int(s.env.creatureHeight)},"Sphere navigation footprint mismatch");
+  const auto width=unsigned(s.env.dimensions.x),height=unsigned(s.env.dimensions.y),layers=unsigned(s.env.dimensions.z);
   std::array<bool, capacity> seen{};
   unsigned count = 0;
   for (unsigned cell = 0; cell < s.pool.cells().size(); ++cell) {
@@ -244,8 +293,8 @@ void validateState(const State &s, const g::CombatSession &combat,
     require(
         p.type == 3 && p.initialized && p.parameters[6] == a.effect.source &&
             p.parameters[7] == a.effect.target && p.parameters[8] == spell &&
-            p.parameters[9] == speed && p.units[0] < 256 && p.units[1] < 256 &&
-            p.units[2] < 48 &&
+            p.parameters[9] == speed && p.units[0] < width*32 && p.units[1] < height*32 &&
+            p.units[2] < layers*16 &&
             p.position == std::array<unsigned, 3>{p.units[0] >> 5,
                                                   p.units[1] >> 5,
                                                   p.units[2] >> 4} &&
@@ -256,7 +305,7 @@ void validateState(const State &s, const g::CombatSession &combat,
     require(body->x == int(p.position[0]) && body->y == int(p.position[1]) &&
                 body->z == int(p.position[2]),
             "Sphere body position mismatch");
-    require(a.motion.movement.terrain == 0, "Sphere terrain mismatch");
+    require(a.motion.movement.terrain == s.pool.cells()[p.cell].terrain, "Sphere terrain mismatch");
     require(a.motion.movement.motion.changes <= 8192, "Sphere counter bound");
     r::NoCdAnimationPlayer player(sequence());
     player.restore(a.animation);
@@ -274,10 +323,16 @@ void validateState(const State &s, const g::CombatSession &combat,
     require(!count, "terminal Sphere");
 }
 } // namespace
-g::Bytes initial() { return encode(State{}); }
+bool sameEnvironment(const Environment &a,const Environment &b) {
+  if(a.creatureWidth!=b.creatureWidth || a.creatureHeight!=b.creatureHeight || !(a.dimensions==b.dimensions) || a.occupancy!=b.occupancy || a.cells.size()!=b.cells.size()) return false;
+  for(unsigned i=0;i<a.cells.size();++i) if(a.cells[i].terrain!=b.cells[i].terrain || a.cells[i].flags!=b.cells[i].flags) return false;
+  return true;
+}
+Environment environment(const g::Bytes &b) {return decode(b).env;}
+g::Bytes initial(Environment e) {validateEnvironment(e);return encode(State(std::move(e)));}
 void validate(const g::Bytes &b, const g::CombatSession &c,
-              const g::SkirmishState &s) {
-  validateState(decode(b), c, s);
+              const g::SkirmishState &s, const Environment &bound) {
+  validateState(decode(b), c, s, bound);
 }
 g::SkirmishRefusal cast(g::Bytes &b, g::CombatSession &combat,
                         g::SkirmishState &meta, g::Handle source,
@@ -305,7 +360,7 @@ g::SkirmishRefusal cast(g::Bytes &b, g::CombatSession &combat,
                    [](const auto &v) { return !v.entity && v.generation; }))
     return g::SkirmishRefusal::capacity;
   c::AutonomousWorld world;
-  world.dimensions = {8, 8, 3};
+  world.dimensions = {s.env.dimensions.x,s.env.dimensions.y,s.env.dimensions.z};
   world.creatures.resize(combat.world().state().slots.size());
   c::CastAdmissionState admission;
   admission.spells.resize(74);
@@ -325,8 +380,8 @@ g::SkirmishRefusal cast(g::Bytes &b, g::CombatSession &combat,
     a.ai.owner = int(entity.owner);
     a.ai.visible.fill(0);
     a.finePosition = {int(p[0]), int(p[1]), int(p[2])};
-    a.aimXY = 16;
-    a.aimZ = 8;
+    a.aimXY = s.env.creatureWidth*16;
+    a.aimZ = s.env.creatureHeight*8;
   }
   admission.resource[source.slot] = meta.wizards[0].mana * 256;
   c::CastAdmissionServices services;
@@ -368,7 +423,7 @@ g::SkirmishRefusal cast(g::Bytes &b, g::CombatSession &combat,
   s.pool.records()[slot].sentinels[11] = a.effect.contributions[1];
   r::initializeEffectMotionRecord(s.pool.records()[slot], a.motion.movement,
                                   a.startup, {p[0], p[1], p[2]},
-                                  {p[3], p[4], p[5]}, 8, 8, 3, s.pool.cells());
+                                  {p[3], p[4], p[5]}, unsigned(s.env.dimensions.x), unsigned(s.env.dimensions.y), unsigned(s.env.dimensions.z), s.pool.cells());
   a.motion.movement.previousPosition = s.pool.records()[slot].position;
   r::NoCdAnimationPlayer player(sequence());
   player.start();
@@ -392,12 +447,13 @@ g::SkirmishRefusal cast(g::Bytes &b, g::CombatSession &combat,
 g::CombatReport step(g::Bytes &b, g::CombatSession &combat) {
   auto s = decode(b);
   g::CombatReport report;
+  const auto width=unsigned(s.env.dimensions.x),height=unsigned(s.env.dimensions.y),layers=unsigned(s.env.dimensions.z);
   for (unsigned i = 0; i < capacity; ++i) {
     auto &a = s.items[i];
     if (!a.entity)
       continue;
     r::EffectCreatureWorld world;
-    world.cells.assign(8 * 8 * 3, r::NoEffect);
+    world.cells.assign(width*height*layers, r::NoEffect);
     world.creatures.resize(32);
     std::vector<c::ProjectileActor> actors(32);
     for (auto &v : world.creatures)
@@ -409,7 +465,7 @@ g::CombatReport step(g::Bytes &b, g::CombatSession &combat) {
       v.id = f.actor.slot;
       v.status = f.health ? 0 : 27;
       v.units = fine(entity);
-      v.footprint = r::initializeCreatureFootprint(1, 0);
+      v.footprint = r::initializeCreatureFootprint(s.env.creatureHeight,s.env.creatureWidth==2?1:0);
       auto &tracking = s.tracking[f.actor.slot];
       if (tracking.generation != f.actor.generation)
         tracking = {f.actor.generation, 0, 0};
@@ -421,18 +477,20 @@ g::CombatReport step(g::Bytes &b, g::CombatSession &combat) {
       if (f.health) {
         auto pos = std::array<unsigned, 3>{v.units[0] >> 5, v.units[1] >> 5,
                                            v.units[2] >> 4};
-        require(pos[0] < 8 && pos[1] < 8 && pos[2] < 3,
+        require(pos[0] < width && pos[1] < height && pos[2] < layers,
                 "Sphere actor position");
-        auto &cell = world.cells[(pos[2] * 8 + pos[1]) * 8 + pos[0]];
-        require(cell == r::NoEffect, "Sphere overlapping occupants");
-        cell = std::uint16_t(f.actor.slot);
+        require(pos[0]+s.env.creatureWidth<=width && pos[1]+s.env.creatureWidth<=height && pos[2]+s.env.creatureHeight<=layers,"Sphere actor footprint extent");
+        for(unsigned z=0;z<s.env.creatureHeight;++z)for(unsigned y=0;y<s.env.creatureWidth;++y)for(unsigned x=0;x<s.env.creatureWidth;++x){
+          auto &cell=world.cells[((pos[2]+z)*height+pos[1]+y)*width+pos[0]+x];
+          require(cell==r::NoEffect,"Sphere overlapping occupants");cell=std::uint16_t(f.actor.slot);
+        }
       }
     }
     bool retired = false;
     c::ProjectileServices services;
     services.motion = [&](auto &effect) {
       const auto code =
-          r::transitionEffectCreatureWorld(s.pool, i, a.motion, 8, 8, 3, world);
+          r::transitionEffectCreatureCatalog(s.pool, i, a.motion, width, height, layers, world, {}, true, s.env.occupancy);
       effect.target = s.pool.records()[i].parameters[7];
       effect.cachedActor = a.motion.candidate == r::NoCreature
                                ? std::nullopt

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Synthetic change accounting, immutable history, rename and real Git-base checks."""
 import copy
-from contextlib import redirect_stdout
+from contextlib import contextmanager, redirect_stdout
 import io
 import hashlib
 import importlib.util
@@ -533,6 +533,48 @@ class GateTests(unittest.TestCase):
         with redirect_stdout(io.StringIO()) as out, patch.object(cli, 'ROOT', self.root), patch.object(sys, 'argv', ['gate', '--staged', '--base', 'HEAD']):
             self.assertEqual(cli.main(), 1)
         self.assertIn('Reconcile source', out.getvalue())
+
+    def test_staged_copy_released_before_git_base_and_reviews_remain_frozen(self):
+        self.json(REVIEWS, {'schema': 1, 'reviews': []})
+        revision = self.init_git()
+        self.write('assets/model.cpp', 'reviewed staged change\n')
+        self.json(REVIEWS, self.receipt())
+        cli.git(self.root, 'add', '.')
+        self.json(REVIEWS, {'schema': 1, 'reviews': []})
+        materialized = []
+        original_tree, original_base = cli.staged_tree, cli.git_snapshot
+
+        @contextmanager
+        def staged(root):
+            with original_tree(root) as tree:
+                materialized.append(tree)
+                yield tree
+
+        def base(root, rev):
+            self.assertTrue(materialized)
+            self.assertFalse(materialized[-1].exists())
+            return original_base(root, rev)
+
+        with redirect_stdout(io.StringIO()) as out, patch.object(cli, 'ROOT', self.root), patch.object(cli, 'staged_tree', staged), patch.object(cli, 'git_snapshot', base), patch.object(sys, 'argv', ['gate', '--staged', '--base', revision]):
+            self.assertEqual(cli.main(), 0, out.getvalue())
+        self.assertTrue(all(not p.exists() for p in materialized))
+
+    def test_staged_local_baseline_is_captured_before_tree_release(self):
+        self.json(REVIEWS, {'schema': 1, 'reviews': []})
+        self.init_git()
+        self.write('assets/model.cpp', 'reviewed staged change\n')
+        self.json(REVIEWS, self.receipt())
+        cli.git(self.root, 'add', '.')
+        self.json(BASELINE, {'invalid': 'unstaged baseline'})
+        self.json(REVIEWS, {'schema': 1, 'reviews': []})
+        with redirect_stdout(io.StringIO()) as out, patch.object(cli, 'ROOT', self.root), patch.object(sys, 'argv', ['gate', '--staged']):
+            self.assertEqual(cli.main(), 0, out.getvalue())
+
+    def test_freeze_baseline_does_not_require_reviews(self):
+        target = self.root/'frozen.json'
+        with redirect_stdout(io.StringIO()) as out, patch.object(cli, 'ROOT', self.root), patch.object(sys, 'argv', ['gate', '--freeze-baseline', str(target)]):
+            self.assertEqual(cli.main(), 0, out.getvalue())
+        self.assertEqual(json.loads(target.read_text())['sources'], self.before['sources'])
 
     def prepare_hook(self):
         for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_claims.py', 'coverage_merge_history.py', 'index-coverage-sources.py'):

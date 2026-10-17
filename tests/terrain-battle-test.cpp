@@ -1,5 +1,7 @@
 #include "persistence/snapshot.hpp"
 #include "terrain_battle.hpp"
+#include <algorithm>
+#include <cstdlib>
 #include <iostream>
 #include <stdexcept>
 namespace g = mnm::game;
@@ -41,7 +43,20 @@ int main(int argc, char **argv) try {
   e.z = t.wizards[0].z;
   auto h = movement.spawn(e);
   // Real installed-profile routing and restart after each movement boundary.
-  movement.move(h, t.wizards[1]);
+  g::Point goal = t.wizards[0];
+  unsigned farthest = 0;
+  for (auto p : legal) {
+    auto distance =
+        unsigned(std::max(std::abs(p.x - e.x), std::abs(p.y - e.y)));
+    if (distance > farthest &&
+        t.navigation->plan(*movement.world().find(h), p, 300).status ==
+            g::PlanStatus::reachable) {
+      goal = p;
+      farthest = distance;
+    }
+  }
+  check(farthest >= 5, "terrain connected creature corridor");
+  movement.move(h, goal);
   unsigned moved = 0;
   for (unsigned i = 0; i < 80; ++i) {
     auto before = *movement.world().find(h);
@@ -62,7 +77,7 @@ int main(int argc, char **argv) try {
       break;
   }
   auto final = *movement.world().find(h);
-  check(g::Point{final.x, final.y, final.z} == t.wizards[1] && moved >= 5,
+  check(g::Point{final.x, final.y, final.z} == goal && moved >= 5,
         "installed terrain route arrival");
   // Occupancy cannot admit an overlapping second full profile.
   auto unchanged = g::encodeSnapshot(movement.world().state());
@@ -83,6 +98,17 @@ int main(int argc, char **argv) try {
     refused = true;
   }
   check(refused, "terrain malformed binding refusal");
+  // Older owned v1 layouts retain their saved wizard origins on decode.
+  std::string prior(t.bytes.begin(), t.bytes.end());
+  const std::string current = "\"wizards\":[[5,1,7],[8,8,7]]";
+  auto at = prior.find(current);
+  check(at != std::string::npos, "current rear-wizard binding differs");
+  prior.replace(at, current.size(), "\"wizards\":[[5,1,7],[8,6,7]]");
+  g::Bytes historical(prior.begin(), prior.end());
+  auto old = mnm::skirmish::decodeTerrainBattle(historical);
+  check(old.bytes == historical && old.wizards[1] == g::Point{8, 6, 7} &&
+            old.navigation->binding() == t.navigation->binding(),
+        "saved terrain wizard origins were regenerated");
   auto solids = mnm::skirmish::terrainBattleSolids(t.bytes);
   check(solids.size() == std::size_t(d.x * d.y * d.z), "terrain solid volume");
   std::cout << "{\"success\":true,\"plane\":" << t.plane
