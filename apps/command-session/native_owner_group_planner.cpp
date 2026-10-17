@@ -1,3 +1,4 @@
+#include "../../reconstruction/creature-ai/owner_fallback_task.hpp"
 #include "../../reconstruction/creature-ai/owner_group_features.hpp"
 #include "../../reconstruction/pathfinding/route_neighbors.hpp"
 #include "native_owner_planner.hpp"
@@ -59,7 +60,7 @@ void validateNativeOwnerGroupPlanner(const Continuation &c,
              r.bestDuration >= 0,
          "group planner replanning domain");
     need(!r.eligible || r.prepared, "group planner admission phase");
-    need(r.previous.has_value() == g.active.has_value(),
+    need(r.previous.has_value() == (g.active.has_value() || g.fallbackActive),
          "group planner previous task identity");
     if (r.previous) {
       model::validateOwnerPreviousTask(*r.previous);
@@ -67,6 +68,10 @@ void validateNativeOwnerGroupPlanner(const Continuation &c,
            "group planner task from future");
     }
   }
+  need(!g.fallbackActive ||
+           (c.native.ownerSources && c.native.ownerSources->driver &&
+            !g.active && s.activeSerial),
+       "fallback task driver identity");
   if (g.scheduler) {
     need(g.replanning.has_value(), "scheduled planner requires replanning");
     model::validateOwnerTaskScheduler(*g.scheduler, s.activeSerial);
@@ -160,7 +165,8 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
                                    const NativeCreatureProfile &p,
                                    model::OwnedCreatureCommands &commands,
                                    NativeOwnerProposalEvaluation *proposal,
-                                   bool executeOnly) {
+                                   bool executeOnly,
+                                   NativeOwnerTaskVisit *visit) {
   auto &s = *c.native.ownerPlanner;
   auto &g = *s.grouped;
   auto &actor = c.world.creatures.at(s.actor);
@@ -168,7 +174,11 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
   NativeCreatureGeometry geometry(c, p);
   auto *replanning = g.replanning ? &*g.replanning : nullptr;
   updateNativeOwnerTaskInputs(c);
+  const bool originalFallback =
+      c.native.ownerSources && c.native.ownerSources->driver.has_value();
   auto execute = [&](int &budget) {
+    if (g.fallbackActive)
+      return model::executeOwnerFallback();
     if (g.active && (g.scheduler || !replanning ||
                      (!replanning->previous->completed &&
                       tick < replanning->previous->expires))) {
@@ -192,9 +202,18 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
       }
       for (const auto &e : c.execution)
         threat.push_back(e.combatValue[5]);
+      const bool verify = visit && visit->verifier && bool(*visit->verifier);
+      const auto before = verify
+                              ? std::optional<model::OwnerGroupTask>(*g.active)
+                              : std::nullopt;
+      const int initialBudget = budget;
       const auto out = model::executeOwnerSourceGroupTask(
           *g.active, *c.native.ownerKnowledge, tick, s.owner, members, c.world,
           raw, net, g.excessPercent, threat, budget);
+      if (verify)
+        (*visit->verifier)({*before, *g.active, *c.native.ownerKnowledge,
+                            c.world, members, raw, net, threat, tick, s.owner,
+                            g.excessPercent, initialBudget, budget, out});
       for (unsigned i = 0; i < members.size(); ++i) {
         const auto slot = members[i];
         auto &member = c.world.creatures.at(slot);
@@ -294,6 +313,12 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
     };
     auto next = [&](unsigned evaluator, int &budget) -> std::optional<float> {
       if (!evaluator) {
+        if (originalFallback) {
+          model::OwnerFallbackCandidate candidate{true, s.fallbackEmitted};
+          const auto value = model::nextOwnerFallback(candidate);
+          s.fallbackEmitted = candidate.emitted;
+          return value;
+        }
         if (s.fallbackEmitted || budget < 1)
           return {};
         s.fallbackEmitted = true;
@@ -442,8 +467,11 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
             g.best = g.candidate;
             if (replanning)
               replanning->bestDuration = replanning->candidateDuration;
-          } else
+          } else {
             g.best.reset();
+            if (originalFallback && replanning)
+              replanning->bestDuration = model::ownerFallbackDuration();
+          }
         },
         []() {}};
     if (proposal) {
@@ -509,20 +537,30 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
     plan(*proposal->budget);
     return;
   }
+  auto cleanup = [&] {
+    if (replanning->previous &&
+        model::retireOwnerTask(*replanning->previous,
+                               g.scheduler->executionComplete, tick,
+                               replanning->policy)) {
+      g.active.reset();
+      g.fallbackActive = false;
+      s.active.reset();
+      s.activeSerial = 0;
+      replanning->previous.reset();
+      g.scheduler->pendingExecution = 0;
+      g.scheduler->executionComplete = false;
+    }
+  };
+  if (visit) {
+    if (visit->cleanup)
+      cleanup();
+    if (visit->execute) {
+      need(visit->budget, "owner task visit budget");
+      visit->continuing = execute(*visit->budget);
+    }
+    return;
+  }
   if (g.scheduler) {
-    auto cleanup = [&] {
-      if (replanning->previous &&
-          model::retireOwnerTask(*replanning->previous,
-                                 g.scheduler->executionComplete, tick,
-                                 replanning->policy)) {
-        g.active.reset();
-        s.active.reset();
-        s.activeSerial = 0;
-        replanning->previous.reset();
-        g.scheduler->pendingExecution = 0;
-        g.scheduler->executionComplete = false;
-      }
-    };
     // Authored native host allocation4, not a recovered World budget producer.
     // Only ordinary direct-root scheduling is admitted here. Pending queues for
     // specialized source controllers and multiple simultaneous tasks excluded.

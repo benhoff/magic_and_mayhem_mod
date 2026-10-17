@@ -102,3 +102,18 @@ during cleanup. Pending planning/execution and the separate execution-result
 flag survive checkpoints. Pre-v16 checkpoints retain their stored native cadence;
 downconversion of scheduler state refuses. Source split/merge, simultaneous
 displaced task maps, dual brains and full original World scheduling remain pending.
+
+`run-skirmish INSTALL 0 0 32 32 SEED TICKS NEW_SNAPSHOT` enables the NS86
+ordinary three-versus-three native battle. Both factions use automatic source
+planning, per-member paths, installed-model inference and task 0/task 6 execution,
+with the recovered count-driver queue ordering and an explicit native allocation.
+CMD1 v19 preserves pending work, task ownership, death cleanup and a shared model;
+older modes retain their existing checkpoint layouts and hosts. Resume remains
+installation-free and requires neither Wine nor Qt.
+
+`tools/test-owner-skirmish-integration.py` runs clean native/sanitizer complete
+battles, rollback, legacy regressions and cold restores. Portable task-call traces
+feed `tools/test-owner-skirmish-task-trace.py` for separately bound original body
+replay. See [scope and evidence](../../research/runtime/owner-native-skirmish.md).
+Wizard/campaign AI, other task families and full original World equivalence remain
+outside this ordinary skirmish milestone.

@@ -189,3 +189,7 @@ target_compile_options(native-owner-sources-test PRIVATE -Wall -Wextra -Werror -
 add_executable(native-owner-source-decisions-test ../../tests/native-owner-source-decisions-test.cpp)
 target_link_libraries(native-owner-source-decisions-test PRIVATE mnm-native-encounter)
 target_compile_options(native-owner-source-decisions-test PRIVATE -Wall -Wextra -Werror -pedantic)
+
+add_executable(native-owner-skirmish-test ../../tests/native-owner-skirmish-test.cpp)
+target_link_libraries(native-owner-skirmish-test PRIVATE mnm-native-encounter)
+target_compile_options(native-owner-skirmish-test PRIVATE -Wall -Wextra -Werror -pedantic)

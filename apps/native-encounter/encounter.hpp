@@ -31,8 +31,8 @@ void enableOwnerPlanner(Profile &, const std::filesystem::path &brain, unsigned 
 void editTerrain(game::CreatureRuleSession &, const Profile &,
                  const std::vector<cs::NativeTerrainEdit> &);
 cs::NativeConsequenceFactory consequences(const Profile &);
-std::shared_ptr<const cs::Runtime> runtime(const Profile &);
-game::CreatureRuleSession create(const Profile &, unsigned seed);
+std::shared_ptr<const cs::Runtime> runtime(const Profile &,cs::NativeOwnerTaskVerifier = {});
+game::CreatureRuleSession create(const Profile &, unsigned seed,cs::NativeOwnerTaskVerifier = {});
 struct Statistics {
   unsigned hits = 0, damage = 0, stuns = 0, knockbacks = 0, deaths = 0,
            cues = 0;

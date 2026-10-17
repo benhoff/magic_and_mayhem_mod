@@ -89,6 +89,8 @@ def main(suite):
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--claims', type=Path)
     p.add_argument('--brain', type=Path)
+    p.add_argument('--trace', type=Path)
+    p.add_argument('--trace-origin', type=Path)
     args = p.parse_args()
     args.output = args.output.resolve()
     if args.output.exists():
@@ -183,12 +185,34 @@ def main(suite):
             raise ValueError('Unbound compiler inputs: ' + str(sorted(dependencies - claims['sources'].keys())))
         if suite == 'brain': report['brain_sha256'] = sha(args.brain)
         inputs = [args.brain] if suite == 'brain' else []
+        if args.trace:
+            report['trace_sha256'] = sha(args.trace)
+            report['trace_path'] = str(args.trace.resolve())
+            if args.trace_origin:
+                origin=json.loads(args.trace_origin.read_text())
+                if not all(origin.get(k) for k in ['success','sources_unchanged','build_inputs_unchanged','native_passed','sanitizer_passed']):
+                    raise ValueError('Task trace requires a successful stable native producer')
+                if not origin.get('claims') or not origin.get('source_sha256'):
+                    raise ValueError('Task trace producer lacks prospective bindings')
+                if any(sha(ROOT/k)!=v for k,v in origin['source_sha256'].items()):
+                    raise ValueError('Task trace producer sources changed')
+                matches=[v for v in origin.get('task_traces',{}).values() if v['sha256']==report['trace_sha256'] and (args.trace_origin.parent/v['path']).resolve()==args.trace.resolve()]
+                if not matches:raise ValueError('Task trace missing from producer artifacts')
+                report['trace_origin_sha256']=sha(args.trace_origin)
+                report['trace_origin_path']=str(args.trace_origin.resolve())
+                report['trace_origin_bound']=True
+                report['producer_sources_current']=True
+            inputs.append(args.trace)
         native = json.loads(run('native', [args.output / 'native', *inputs]))
         original = json.loads(run('original', [args.output / 'reference', executable, *inputs]))
         sanitized = json.loads(run('sanitized', [args.output / 'sanitized', *inputs], env={**os.environ, 'ASAN_OPTIONS': 'detect_leaks=1:halt_on_error=1', 'UBSAN_OPTIONS': 'halt_on_error=1:print_stacktrace=1'}))
         assert native == original == sanitized
         assert executable.read_bytes() == raw
         if suite == 'brain': assert sha(args.brain) == report['brain_sha256']
+        if args.trace: assert sha(args.trace) == report['trace_sha256']
+        if args.trace_origin:
+            assert sha(args.trace_origin)==report['trace_origin_sha256']
+            assert all(sha(ROOT/k)==v for k,v in origin['source_sha256'].items())
         report.update(**original,
                       original_target_text_unchanged=True,
                       native_passed=True, sanitizer_passed=True, input_unchanged=True,

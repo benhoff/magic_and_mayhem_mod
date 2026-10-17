@@ -19,6 +19,7 @@
 #include "../../reconstruction/creature-ai/owner_task_scheduler.hpp"
 #include "../../reconstruction/creature-ai/source_lifecycle.hpp"
 #include "../../reconstruction/creature-ai/source_decision.hpp"
+#include "../../reconstruction/creature-ai/owner_brain_driver.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -83,6 +84,8 @@ struct NativeOwnerGroupPlanner {
   bool perMember=false;
   unsigned memberCursor=0;
   reconstruction::combat::OwnerTaskPathTotals paths;
+  //v19 original kind0 is an installed task with its own lifetime.
+  bool fallbackActive=false;
 };
 struct NativeOwnerPlanner {
   unsigned owner=0,actor=0,nextSerial=1,activeSerial=0;
@@ -120,6 +123,10 @@ struct NativeOwnerSources {
   unsigned planningAllocation=4;
   std::optional<NativeOwnerSourceSearch> search;
   unsigned decisions=0,splits=0,merges=0;
+  //v19: ordinary multi-owner count driver. Allocation is an explicit host input.
+  std::optional<reconstruction::combat::OwnerBrainDriver> driver;
+  unsigned worldAllocation=64,retirements=0,executions=0,fallbacks=0;
+  std::vector<unsigned> lastDecisions,lastExecutions;
 };
 struct NativeProviderState {
   bool present=false,randomSeeded=false,alternate=false;

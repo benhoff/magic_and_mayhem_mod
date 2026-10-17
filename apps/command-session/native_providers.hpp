@@ -5,6 +5,8 @@
 #include "../../reconstruction/creature-ai/death_behavior.hpp"
 #include "../../reconstruction/motion/creature_profile.hpp"
 namespace mnm::command_session {
+struct NativeOwnerTaskExecution;
+using NativeOwnerTaskVerifier=std::function<void(const NativeOwnerTaskExecution &)>;
 struct NativeCreatureType {
   unsigned bodyAsset=0,regularOverlayAsset=0,meleeOverlayAsset=0;
   int width=1,height=1,movementKind=0;
@@ -33,6 +35,8 @@ struct NativeCreatureProfile {
 // geometry, route motion, action dispatch and creature pass ordering are
 // supplied by nativeProviders, never by a synthetic frame callback.
 struct NativeConsequences {
+  // A verifier may inspect/validate staged task calls; it must not publish game effects.
+  NativeOwnerTaskVerifier verifyOwnerTask;
   // Operation-local context. No address enters the continuation.
   std::function<void(model::OwnedCreatureCommands &)> bindCommands;
   model::ActionCallbackServices callbacks;

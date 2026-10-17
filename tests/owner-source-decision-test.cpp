@@ -292,7 +292,7 @@ namespace {
 unsigned caseNumber = 0;
 [[maybe_unused]] unsigned mask = 0, emitted = 0;
 std::vector<unsigned> savedMembers;
-float score(unsigned members) {
+[[maybe_unused]] float score(unsigned members) {
   const std::array<float, 7> values{{-1, -.75f, -.25f, 0, .25f, .75f, 1}};
   return values[(caseNumber / 4 + members * 3) % values.size()];
 }
@@ -333,6 +333,7 @@ int __attribute__((thiscall)) decisionDistance(void *, void *, void *) {
 }
 #endif
 } // namespace
+#ifndef MNM_SOURCE_DECISION_FIXTURE
 int main(int argc, char **argv) try {
 #ifdef MNM_BRAIN_REFERENCE
   need(argc == 2, "PE");
@@ -530,3 +531,5 @@ int main(int argc, char **argv) try {
   std::cerr << "case " << caseNumber << ": " << e.what() << '\n';
   return 1;
 }
+
+#endif

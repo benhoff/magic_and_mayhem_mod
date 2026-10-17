@@ -462,11 +462,13 @@ cs::NativeConsequenceFactory consequences(const Profile &p) {
     return fx->services(fx);
   };
 }
-std::shared_ptr<const cs::Runtime> runtime(const Profile &p) {
+std::shared_ptr<const cs::Runtime> runtime(const Profile &p,cs::NativeOwnerTaskVerifier verifier) {
+  auto lower=consequences(p);
+  cs::NativeConsequenceFactory checked=[lower,verifier](auto &c){auto fx=lower(c);fx.verifyOwnerTask=verifier;return fx;};
   return std::make_shared<const cs::Runtime>(
-      p.initial, p.bytes, cs::nativeProviders(p.native, consequences(p)));
+      p.initial, p.bytes, cs::nativeProviders(p.native, std::move(checked)));
 }
-game::CreatureRuleSession create(const Profile &p, unsigned seed) {
-  return {runtime(p), p.bytes, seed, unsigned(p.initial.world.creatures.size())};
+game::CreatureRuleSession create(const Profile &p, unsigned seed,cs::NativeOwnerTaskVerifier verifier) {
+  return {runtime(p,std::move(verifier)), p.bytes, seed, unsigned(p.initial.world.creatures.size())};
 }
 } // namespace mnm::encounter

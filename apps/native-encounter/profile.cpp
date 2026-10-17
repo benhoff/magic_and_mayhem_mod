@@ -111,13 +111,13 @@ void enableOwnerPlanner(Profile &p, const std::filesystem::path &path,
     enableOwnerVisibility(staged);
   }
   cs::prepareNativeOwnerPlanner(staged.initial, std::move(model), 0, 0, seed);
-  if(staged.scenario==8)cs::prepareNativeOwnerSources(staged.initial);
+  if(staged.scenario==8 || staged.scenario==9)cs::prepareNativeOwnerSources(staged.initial,staged.scenario==9);
   p = std::move(staged);
 }
 game::Bytes loadInputs(const std::filesystem::path &root, scene::MapCrop crop,
                        unsigned scenario) {
   game::Bytes b{'M', 'N', 'M', 'E', 'N', 'C', '0', '1'};
-  need(scenario <= 8, "encounter scenario");
+  need(scenario <= 9, "encounter scenario");
   if (scenario) {
     b[7] = '2';
     word(b, scenario);
@@ -141,8 +141,8 @@ Profile decodeInputs(game::Bytes bytes) {
        "encounter input version");
   std::size_t at = 8;
   const unsigned scenario = bytes[7] == '2' ? take(bytes, at) : 0;
-  need(scenario <= 8, "encounter scenario");
-  const unsigned actors = scenario == 8 ? 3 : scenario == 1 || scenario == 3 ? 4
+  need(scenario <= 9, "encounter scenario");
+  const unsigned actors = scenario == 9 ? 6 : scenario == 8 ? 3 : scenario == 1 || scenario == 3 ? 4
                           : scenario >= 2                ? 8
                                                          : 2;
   scene::MapCrop crop;
@@ -242,7 +242,7 @@ Profile decodeInputs(game::Bytes bytes) {
   for (unsigned i = 0; i < actors; ++i) {
     auto &actor = c.world.creatures[i];
     actor.ai.slot = i;
-    actor.ai.owner = int(scenario==8 ? unsigned(i==2) : scenario >= 5 ? 0 : scenario >= 3 ? i / 2 : i);
+    actor.ai.owner = int(scenario==9 ? i/3 : scenario==8 ? unsigned(i==2) : scenario >= 5 ? 0 : scenario >= 3 ? i / 2 : i);
     actor.width = movement.width;
     actor.height = movement.height;
     actor.movementKind = movement.swimming;

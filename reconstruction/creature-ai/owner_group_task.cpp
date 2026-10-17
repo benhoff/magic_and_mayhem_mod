@@ -95,13 +95,9 @@ OwnerSourceGroupResult executeOwnerSourceGroupTask(
     targets.push_back(unsigned(r->memory.actor.slot));
     ++count;
     root.position = {
-        norm(root.position.x +
-                 delta(b.ai.position.x, root.position.x, world.dimensions.x) /
-                     count,
+        norm(root.position.x + (b.ai.position.x - root.position.x) / count,
              world.dimensions.x),
-        norm(root.position.y +
-                 delta(b.ai.position.y, root.position.y, world.dimensions.y) /
-                     count,
+        norm(root.position.y + (b.ai.position.y - root.position.y) / count,
              world.dimensions.y),
         root.position.z + (b.ai.position.z - root.position.z) / count};
   }

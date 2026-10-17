@@ -1,4 +1,6 @@
 #include "native_owner_sources.hpp"
+#include "../../reconstruction/creature-ai/owner_fallback_task.hpp"
+#include "native_owner_task_inputs.hpp"
 #include <algorithm>
 #include <limits>
 #include <set>
@@ -13,10 +15,13 @@ void retire(NativeOwnerSources &s, unsigned task) {
   auto &row = s.planners.at(task);
   if (row.planner) {
     auto &p = *row.planner;
+    if (s.driver && p.activeSerial)
+      ++s.retirements;
     p.active.reset();
     p.activeSerial = 0;
     auto &g = *p.grouped;
     g.active.reset();
+    g.fallbackActive = false;
     g.replanning->previous.reset();
     *g.scheduler = {};
   }
@@ -50,6 +55,10 @@ void synchronize(Continuation &c) {
       at = s.planners.end() - 1;
       at->planner->members = members;
       at->planner->actor = members.front();
+      at->planner->owner =
+          unsigned(c.world.creatures.at(members.front()).ai.owner);
+      if (s.driver)
+        at->planner->grouped->perMember = true;
     } else if (at->planner->members != members) {
       // Native origin/member-epoch restart. Keep installed task accounting;
       // discard only an incomplete candidate made from a different source.
@@ -74,8 +83,10 @@ void synchronize(Continuation &c) {
   }
 }
 void automatic(Continuation &c, const NativeCreatureProfile &profile,
-               model::OwnedCreatureCommands &commands, unsigned root) {
+               model::OwnedCreatureCommands &commands, unsigned root,
+               int *externalBudget = nullptr) {
   auto &s = *c.native.ownerSources;
+  auto &storage = s.storage;
   auto context = [&](unsigned source) -> NativeOwnerPlanner * {
     for (auto &row : s.planners)
       if (row.planner && row.source == source)
@@ -103,15 +114,17 @@ void automatic(Continuation &c, const NativeCreatureProfile &profile,
     for (auto actor : current->members)
       v.inputs.speeds.push_back(
           nativeOwnerPlannerActor(c, profile, actor).speed);
-    for (auto &row : s.planners)
-      if (row.planner && row.source != root) {
-        need(!v.hasOther, "automatic search supports two friendly members");
-        v.hasOther = true;
-        v.other = row.source;
-        v.otherSerial = row.planner->activeSerial;
-        v.inputs.otherMembers = row.planner->members;
-        v.inputs.otherTask = row.planner->grouped->replanning->previous;
-      }
+    if (!s.driver) {
+      for (auto &row : s.planners)
+        if (row.planner && row.source != root) {
+          need(!v.hasOther, "automatic search supports two friendly members");
+          v.hasOther = true;
+          v.other = row.source;
+          v.otherSerial = row.planner->activeSerial;
+          v.inputs.otherMembers = row.planner->members;
+          v.inputs.otherTask = row.planner->grouped->replanning->previous;
+        }
+    }
     // Pinned ordinary reset admission: largest available two-member root,
     // no healthy task, no net regional danger, owner roots<20 and both
     // specialized pending queues below3. The bounded domain has no competing
@@ -128,15 +141,23 @@ void automatic(Continuation &c, const NativeCreatureProfile &profile,
                                 c.native.regionalRiskPowers, true);
     }
     v.inputs.splitFirst =
-        current->members.size() == 2 && (!previous || previous->completed) &&
+        current->members.size() >= 2 && (!previous || previous->completed) &&
         assigned && netDanger <= 0 &&
         std::count_if(s.planners.begin(), s.planners.end(),
-                      [](const auto &row) { return row.planner.has_value(); }) <
-            20 &&
+                      [&](const auto &row) {
+                        return row.planner &&
+                               row.planner->owner == current->owner;
+                      }) < 20 &&
         s.storage.pending.wizard.size() < 3 &&
         s.storage.pending.other.size() < 3;
+    if (s.driver)
+      for (const auto &row : s.planners)
+        if (row.planner && row.planner->owner == current->owner &&
+            row.planner->members.size() > current->members.size())
+          v.inputs.splitFirst = false;
     v.inputs.weighted = current->selection.weighted;
     v.scratch = *c.native.ownerPlanner;
+    v.scratch.owner = current->owner;
     v.scratch.members = v.inputs.members;
     v.scratch.actor = v.inputs.members.front();
     v.scratch.grouped->perMember = true;
@@ -146,8 +167,40 @@ void automatic(Continuation &c, const NativeCreatureProfile &profile,
   if (v.hasOther)
     v.inputs.otherTask = context(v.other)->grouped->replanning->previous;
   // Explicit native planning allocation, independent of execution.
-  int budget = int(s.planningAllocation);
+  int localBudget = int(s.planningAllocation);
+  int &budget = externalBudget ? *externalBudget : localBudget;
   model::OwnerSourceDecisionServices lower;
+  if (s.driver)
+    lower.chooseOther = [&](model::RandomState &random) {
+      std::vector<model::OwnerMergeCandidate> choices;
+      auto points = [&](const NativeOwnerPlanner &p) {
+        std::vector<model::Cell> out;
+        for (auto actor : p.members)
+          out.push_back(c.world.creatures.at(actor).ai.position);
+        return out;
+      };
+      const auto *current = context(v.source);
+      const auto from = points(*current);
+      for (auto id : storage.manager.nodes) {
+        const auto *p = context(id);
+        if (p && id != v.source && p->owner == current->owner &&
+            !p->members.empty())
+          choices.push_back({id, model::ownerSourceDistance(
+                                     from, points(*p), c.world.dimensions)});
+      }
+      auto selected =
+          model::chooseOwnerMergeCandidate(std::move(choices), random);
+      v.hasOther = selected.has_value();
+      v.inputs.otherMembers.clear();
+      v.inputs.otherTask.reset();
+      if (selected) {
+        v.other = *selected;
+        const auto *p = context(v.other);
+        v.otherSerial = p->activeSerial;
+        v.inputs.otherMembers = p->members;
+        v.inputs.otherTask = p->grouped->replanning->previous;
+      }
+    };
   lower.select = [&](const auto &members, bool rootSource, float bias,
                      const auto *old, bool rejectOne, int &b) {
     auto base = std::move(*c.native.ownerPlanner);
@@ -171,6 +224,10 @@ void automatic(Continuation &c, const NativeCreatureProfile &profile,
   need(s.decisions < std::numeric_limits<unsigned>::max(),
        "source decision overflow");
   ++s.decisions;
+  if (s.driver) {
+    s.lastDecisions.push_back(v.source);
+    s.lastDecisions.push_back(unsigned(v.decision.winner + 1));
+  }
   const auto winner = v.decision.winner;
   auto *current = context(v.source);
   const auto value = v.scratch.selection.value - v.decision.winningBias;
@@ -185,7 +242,8 @@ void automatic(Continuation &c, const NativeCreatureProfile &profile,
     return;
   }
   const auto selected = v.scratch.grouped->best;
-  const int duration = v.scratch.grouped->replanning->bestDuration;
+  const int duration = selected ? v.scratch.grouped->replanning->bestDuration
+                                : model::ownerFallbackDuration();
   const auto decision = v.decision;
   const auto input = v.inputs;
   unsigned destination = v.source;
@@ -220,14 +278,20 @@ void automatic(Continuation &c, const NativeCreatureProfile &profile,
   synchronize(c);
   auto *target = context(destination);
   need(target, "automatic source destination missing");
-  if (!selected)
-    return; // The fallback evaluator owns no installed task.
+  if (!selected && !s.driver)
+    return; // Legacy taskless fallback policy.
   auto &g = *target->grouped;
+  g.fallbackActive = !selected;
+  if (!selected)
+    ++s.fallbacks;
   g.perMember = true;
   g.active = selected;
-  target->active = model::OwnerHostileTask{
-      model::ownerGroupKeys(selected->groups, selected->root).front(),
-      selected->groups.nodes[selected->root].position};
+  if (selected)
+    target->active = model::OwnerHostileTask{
+        model::ownerGroupKeys(selected->groups, selected->root).front(),
+        selected->groups.nodes[selected->root].position};
+  else
+    target->active.reset();
   need(s.nextSerial < std::numeric_limits<unsigned>::max() && duration >= 0 &&
            unsigned(duration) <=
                unsigned(std::numeric_limits<int>::max()) - c.native.tick,
@@ -257,11 +321,15 @@ void automatic(Continuation &c, const NativeCreatureProfile &profile,
 std::vector<unsigned> nativeOwnerSourceActors(const NativeOwnerPlanner &s) {
   return s.members.empty() ? std::vector<unsigned>{s.actor} : s.members;
 }
-void prepareNativeOwnerSources(Continuation &c) {
+void prepareNativeOwnerSources(Continuation &c, bool allOwners) {
   need(c.native.ownerPlanner && !c.native.ownerSources && !c.native.tick,
        "native source setup requires fresh planner");
   auto staged = c;
   auto &s = staged.native.ownerSources.emplace();
+  if (allOwners) {
+    s.driver.emplace();
+    s.automatic = true;
+  }
   auto &v = s.storage.sources;
   v.roots.resize(c.world.creatures.size());
   v.actorFlag8e5.assign(c.world.creatures.size(), 1);
@@ -270,7 +338,8 @@ void prepareNativeOwnerSources(Continuation &c) {
   v.random = c.native.ownerPlanner->random;
   model::SourceControllerConfiguration cfg;
   for (unsigned i = 0; i < c.world.creatures.size(); ++i)
-    if (c.world.creatures[i].ai.owner == int(c.native.ownerPlanner->owner)) {
+    if (allOwners ||
+        c.world.creatures[i].ai.owner == int(c.native.ownerPlanner->owner)) {
       model::updateCreatureSourceOwned(i, staged.world, v, s.storage.manager,
                                        s.storage.pending, cfg,
                                        [](unsigned) { return true; });
@@ -280,10 +349,14 @@ void prepareNativeOwnerSources(Continuation &c) {
       v.graph[*leaf].activity = 3;
     }
   synchronize(staged);
+  if (allOwners)
+    for (auto &row : s.planners)
+      if (row.planner)
+        row.planner->grouped->perMember = true;
   validate(staged);
   c = std::move(staged);
 }
-void validateNativeOwnerSources(const Continuation &c) {
+void validateNativeOwnerSources(const Continuation &c, bool advancing) {
   if (!c.native.ownerSources)
     return;
   const auto &s = *c.native.ownerSources;
@@ -303,8 +376,8 @@ void validateNativeOwnerSources(const Continuation &c) {
        "native source shared random state");
   for (auto id : s.storage.manager.nodes) {
     if (auto actor = s.storage.sources.graph[id].actor)
-      need(c.world.creatures.at(*actor).ai.owner ==
-               int(c.native.ownerPlanner->owner),
+      need(s.driver || c.world.creatures.at(*actor).ai.owner ==
+                           int(c.native.ownerPlanner->owner),
            "native source foreign actor");
     if (auto task = s.storage.sources.information[id].recipient)
       need(*task < s.planners.size() && s.planners[*task].planner &&
@@ -323,7 +396,7 @@ void validateNativeOwnerSources(const Continuation &c) {
     for (const auto &row : s.planners)
       if (row.planner)
         count += row.planner->members.size();
-    need(count <= 2, "automatic source member bound");
+    need(count <= (s.driver ? 8u : 2u), "automatic source member bound");
   }
   if (s.search) {
     const auto &v = *s.search;
@@ -342,7 +415,8 @@ void validateNativeOwnerSources(const Continuation &c) {
          "automatic source proposal continuation");
     need(!v.decision.reset && v.decision.stage < 5 &&
              !v.inputs.members.empty() &&
-             v.inputs.members.size() + v.inputs.otherMembers.size() <= 2 &&
+             v.inputs.members.size() + v.inputs.otherMembers.size() <=
+                 (s.driver ? 8u : 2u) &&
              v.inputs.speeds.size() == v.inputs.members.size() &&
              v.inputs.members == model::ownerSourceMembers(
                                      s.storage.sources.graph, v.source, 3) &&
@@ -354,11 +428,47 @@ void validateNativeOwnerSources(const Continuation &c) {
              v.scratch.grouped && v.scratch.grouped->perMember &&
              !v.scratch.active && !v.scratch.grouped->active &&
              !v.scratch.grouped->replanning->previous &&
-             v.scratch.owner == c.native.ownerPlanner->owner,
+             v.scratch.owner ==
+                 unsigned(
+                     c.world.creatures.at(v.inputs.members.front()).ai.owner),
          "automatic source search identity");
     model::validateOwnerTaskSelection(v.scratch.selection, 2);
     validateNativeOwnerGroupPlanner(c, &v.scratch);
   }
+  if (s.driver) {
+    model::validateOwnerBrainDriver(*s.driver);
+    need(s.automatic &&
+             unsigned(s.driver->clock) + (advancing ? 1u : 0u) ==
+                 c.native.tick &&
+             s.worldAllocation <= 4096,
+         "native brain driver identity/allocation");
+    std::array<unsigned, 8> population{};
+    for (const auto &row : s.planners)
+      if (row.planner) {
+        const auto &p = *row.planner;
+        population.at(p.owner) += p.members.size();
+        need(!p.selection.weighted,
+             "ordinary native driver uses maximum selection");
+      }
+    for (auto count : population)
+      need(count <= 3, "ordinary native faction member bound");
+    need(!s.search || !s.search->inputs.weighted,
+         "ordinary native pending weighted decision");
+    need(s.retirements < s.nextSerial && s.fallbacks < s.nextSerial,
+         "ordinary native task counters");
+    if (s.driver->current)
+      need(std::find(s.storage.manager.nodes.begin(),
+                     s.storage.manager.nodes.end(),
+                     *s.driver->current) != s.storage.manager.nodes.end(),
+           "native brain current source");
+    need(s.lastDecisions.size() <= 256 && s.lastDecisions.size() % 2 == 0 &&
+             s.lastExecutions.size() <= 128,
+         "native brain trace bound");
+  } else
+    need(s.worldAllocation == 64 && !s.retirements && !s.executions &&
+             !s.fallbacks && s.lastDecisions.empty() &&
+             s.lastExecutions.empty(),
+         "inactive brain driver state");
   std::set<unsigned> roots, serials;
   for (unsigned i = 0; i < s.planners.size(); ++i) {
     const auto &row = s.planners[i];
@@ -372,7 +482,7 @@ void validateNativeOwnerSources(const Continuation &c) {
          "native source planner root");
     const auto &p = *row.planner;
     need(!p.members.empty() && p.actor == p.members.front() &&
-             p.owner == c.native.ownerPlanner->owner &&
+             (s.driver || p.owner == c.native.ownerPlanner->owner) &&
              p.activeSerial < s.nextSerial && p.grouped &&
              p.grouped->scheduler && p.grouped->replanning &&
              p.grouped->replanning->eventInputs,
@@ -389,14 +499,20 @@ void validateNativeOwnerSources(const Continuation &c) {
            "native source member has duplicate contribution roots");
     }
     const auto recipient = s.storage.sources.information[row.source].recipient;
-    need(bool(p.active) == recipient.has_value() &&
+    need((bool(p.active) || p.grouped->fallbackActive) ==
+                 recipient.has_value() &&
              (!recipient || *recipient == i),
          "native source task ownership");
   }
+  if (s.driver)
+    need(std::uint64_t(s.retirements) + serials.size() ==
+             std::uint64_t(s.nextSerial) - 1,
+         "native task lifecycle conservation");
 }
 void updateNativeOwnerSources(Continuation &c,
                               const NativeCreatureProfile &profile,
-                              model::OwnedCreatureCommands &commands) {
+                              model::OwnedCreatureCommands &commands,
+                              const NativeOwnerTaskVerifier &verifier) {
   auto &s = *c.native.ownerSources;
   auto &storage = s.storage;
   for (auto id : storage.manager.nodes)
@@ -405,6 +521,10 @@ void updateNativeOwnerSources(Continuation &c,
       storage.sources.graph[id].activity = a.active && a.health ? 3 : 0;
     }
   synchronize(c);
+  if (s.driver) {
+    updateNativeOwnerBrain(c, profile, commands, verifier);
+    return;
+  }
   // Preserve pending source classifications in checkpoints. The native host
   // folds ordinary queue notifications into root work, then visits one root
   // per frame. Original specialized421f70 and World allocation are separate.
@@ -468,6 +588,145 @@ void updateNativeOwnerSources(Continuation &c,
       automatic(c, profile, commands, root);
     break;
   }
+}
+void updateNativeOwnerBrain(Continuation &c,
+                            const NativeCreatureProfile &profile,
+                            model::OwnedCreatureCommands &commands,
+                            const NativeOwnerTaskVerifier &verifier) {
+  auto &s = *c.native.ownerSources;
+  auto &storage = s.storage;
+  s.lastDecisions.clear();
+  s.lastExecutions.clear();
+  // Actor activity is a native producer. Original source traversal consumes
+  // activity words; it does not itself inspect health.
+  for (unsigned i = 0; i < s.planners.size(); ++i) {
+    auto &row = s.planners[i];
+    if (row.planner &&
+        model::ownerSourceMembers(storage.sources.graph, row.source, 3)
+            .empty()) {
+      if (row.planner->activeSerial)
+        ++s.retirements;
+      if (storage.sources.information[row.source].recipient)
+        model::unbindOwnerSourceTask(storage, i);
+      row.planner.reset();
+    }
+  }
+  if (s.search) {
+    const auto &v = *s.search;
+    const auto current =
+        model::ownerSourceMembers(storage.sources.graph, v.source, 3);
+    if (current != v.inputs.members ||
+        (v.hasOther && model::ownerSourceMembers(storage.sources.graph, v.other,
+                                                 3) != v.inputs.otherMembers))
+      s.search.reset();
+  }
+  if (s.driver->current &&
+      model::ownerSourceMembers(storage.sources.graph, *s.driver->current, 3)
+          .empty()) {
+    s.driver->phase = 0;
+    s.driver->current.reset();
+    s.search.reset();
+  }
+  model::pruneOwnerSources(storage, c.world, s.driver->current,
+                           s.search && s.search->hasOther
+                               ? std::optional<unsigned>(s.search->other)
+                               : std::nullopt);
+  synchronize(c);
+  auto visit = [&](unsigned i, NativeOwnerTaskVisit &request) {
+    auto &row = s.planners.at(i);
+    auto base = std::move(*c.native.ownerPlanner);
+    *c.native.ownerPlanner = std::move(*row.planner);
+    auto &p = *c.native.ownerPlanner;
+    p.random = storage.sources.random;
+    p.nextSerial = s.nextSerial;
+    updateNativeOwnerGroupPlanner(c, profile, commands, nullptr, true,
+                                  &request);
+    storage.sources.random = p.random;
+    s.nextSerial = p.nextSerial;
+    *row.planner = std::move(p);
+    *c.native.ownerPlanner = std::move(base);
+  };
+  model::OwnerBrainDriverServices lower;
+  lower.cleanup = [&] {
+    for (unsigned i = 0; i < s.planners.size(); ++i)
+      if (s.planners[i].planner) {
+        const auto serial = s.planners[i].planner->activeSerial;
+        NativeOwnerTaskVisit request;
+        request.cleanup = true;
+        visit(i, request);
+        if (serial && !s.planners[i].planner->activeSerial) {
+          ++s.retirements;
+          model::unbindOwnerSourceTask(storage, i);
+          auto &q = s.driver->execution;
+          q.erase(std::remove(q.begin(), q.end(), serial), q.end());
+          model::registerSourceRoot(c.world, storage.sources, storage.pending,
+                                    s.planners[i].source);
+        }
+      }
+  };
+  // Owned snapshots are retained inside each evaluator. This service has no
+  // pointer-backed world to swap; mutable-world cache epochs remain explicit.
+  lower.snapshot = [](bool) {};
+  lower.sources = [&] { return storage.manager.nodes; };
+  lower.hasTask = [&](unsigned root) {
+    return storage.sources.information.at(root).recipient.has_value();
+  };
+  lower.plan = [&](unsigned root, bool specialized, int &budget) {
+    auto row =
+        std::find_if(s.planners.begin(), s.planners.end(), [&](const auto &r) {
+          return r.planner && r.source == root;
+        });
+    if (row == s.planners.end())
+      return; // empty/nested ordinary projections
+    if (specialized) {
+      // Whole421f70 ordinary nonwizard no-candidate branch: kind5 requires
+      // a direct unparented leaf with absent controller or flag704. Neither
+      // condition is present in this configured ordinary skirmish.
+      if (auto actor = storage.sources.graph.at(root).actor) {
+        const auto &a = c.world.creatures.at(*actor);
+        need(!model::creatureControllerAbsent(a.ai.owner,
+                                              storage.sources.controllers) &&
+                 !a.ai.flag704,
+             "ordinary registration requires unsupported kind5 candidate");
+      }
+      return;
+    }
+    automatic(c, profile, commands, root, &budget);
+  };
+  lower.tasks = [&] {
+    std::vector<unsigned> out;
+    for (const auto &row : s.planners)
+      if (row.planner && row.planner->activeSerial)
+        out.push_back(row.planner->activeSerial);
+    std::sort(out.begin(), out.end());
+    return out;
+  };
+  lower.execute = [&](unsigned serial, int &budget) {
+    auto row =
+        std::find_if(s.planners.begin(), s.planners.end(), [&](const auto &r) {
+          return r.planner && r.planner->activeSerial == serial;
+        });
+    if (row == s.planners.end())
+      return;
+    auto &p = *row->planner;
+    auto &g = *p.grouped;
+    if (g.scheduler->executionComplete ||
+        int(c.native.tick) >= g.replanning->previous->expires)
+      return;
+    NativeOwnerTaskVisit request;
+    request.execute = true;
+    request.budget = &budget;
+    request.verifier = &verifier;
+    visit(unsigned(row - s.planners.begin()), request);
+    row->planner->grouped->scheduler->executionComplete = !request.continuing;
+    need(s.executions < std::numeric_limits<unsigned>::max(),
+         "native execution counter overflow");
+    ++s.executions;
+    s.lastExecutions.push_back(serial);
+  };
+  (void)model::advanceOwnerBrainDriver(
+      *s.driver, storage,
+      model::ownerWorldBrainAllocation(int(s.worldAllocation)), lower);
 }
 void enableAutomaticOwnerSources(Continuation &c) {
   validate(c);

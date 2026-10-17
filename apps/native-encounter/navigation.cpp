@@ -90,6 +90,28 @@ void enableOwnerVisibility(Profile &p) {
 }
 void placeOwnerPlannerEncounter(Profile &p) {
   auto staged=p.initial;
+  if(p.scenario==9){
+    if(staged.native.regions.empty() || staged.native.tick)throw std::invalid_argument("skirmish setup requires fresh regions");
+    for(auto &cell:staged.native.cells)cell.occupant=0xffff;
+    cs::NativeCreatureGeometry geometry(staged,p.native);
+    std::vector<cs::model::Cell> points;
+    for(const auto &region:staged.native.regions){
+      if(!region.parameter)continue;
+      points.clear();const auto center=region.position;
+      for(int x=-6;x<=6 && points.size()<6;x+=3)for(int y=-6;y<=6 && points.size()<6;y+=3){
+        cs::model::Cell q{center.x+x,center.y+y,center.z};
+        if(q.x<0 || q.y<0 || q.x>=staged.world.dimensions.x || q.y>=staged.world.dimensions.y || !geometry.legal(staged.world.creatures[0],q) || !geometry.ground(staged.world.creatures[0],q))continue;
+        points.push_back(q);
+      }
+      if(points.size()==6)break;
+    }
+    if(points.size()!=6)throw std::invalid_argument("crop has no six legal skirmish stands");
+    for(unsigned i=0;i<6;++i){auto &a=staged.world.creatures[i];a.ai.position=points[i];a.ai.home=a.destination=a.ai.position;staged.execution[i].roamHome=a.ai.position;
+      const auto query=cs::nativeRegionalQuery(geometry,a,{i,a.ai.owner,0,0});
+      a.region=cs::model::lookupNavigationRegion(staged.native.regions,a.ai.position,query,staged.world.dimensions,p.native.boundary,0,0,cs::nativeRegionalServices(staged,p.native,geometry,a));
+      if(a.region<0)throw std::invalid_argument("skirmish stand has no assigned region");}
+    cs::prepareNativeContinuation(staged,p.native);p.initial=std::move(staged);return;
+  }
   if((staged.world.creatures.size()!=2&&staged.world.creatures.size()!=3)||staged.native.regions.empty()||staged.native.tick)
     throw std::invalid_argument("owner planner encounter setup domain");
   for(auto &cell:staged.native.cells)cell.occupant=0xffff;

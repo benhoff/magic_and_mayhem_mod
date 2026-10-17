@@ -10163,3 +10163,58 @@ The existing taskless native fallback remains a host policy; original kind0
 lifetime/execution, full two-member original task6/423590 composition, larger
 groups and original World scheduling remain separate pending work. Accepted
 records preserve original/installed inputs and all historical fingerprints.
+
+## NS86 — autonomous ordinary native skirmish
+
+Extend the opt-in host to six ordinary type 17 actors in two factions with
+three-member source search and per-member probes, installed kind 0 fallback and
+task 6, task ownership/lifetime/retirement and death cleanup. Replace one-root/frame
+queue folding with the recovered ordinary count driver, while keeping allocation 64,
+active-health availability, logical commander mapping and mutable snapshot/epoch
+policies explicit. CMD1 v19 retains driver/source/task continuation within 1 MiB and
+stores an exact shared model once. Old command layouts/default modes remain.
+
+New scoped contracts cover count queues/World allocation call-site, kind 0 fallback,
+three-member proposals/centers, three-member task probes/execution, captured task
+replay and native integration. Original and native acceptance remain separate.
+The new three-enemy comparison corrects the task memory center to a raw-coordinate
+incremental mean; unique speed and distance tree keys explain equal-key proposals.
+No old evidence hashes or historical statuses are refreshed. Incoming NS85 commit
+accounting is retained separately in `coverage/history-review-ns85-to-ns86-20261017.json`.
+
+`run-skirmish` uses actual installed creature/terrain/animation/model inputs and
+native ordinary combat through victory and source cleanup. Its operation-local
+verifier can capture portable task calls; a separate original oracle replays body
+commands, budgets and refreshed node state against those actual native inputs.
+That does not establish whole-original creature frames or composed World/decision
+candidate generation. See [scope, reproduction and boundaries](owner-native-skirmish.md).
+Fresh prospectively bound results are recorded in the linked milestone document.
+
+Full original multi-source decision-to-task-generation composition, World
+perception/snapshot production, timing/rdtsc and difficulty, second-brain and other
+specialized task families, wizard spellcasting, training, actor factories/owner
+transfer, campaign and live replacement remain pending. Source/context capacity 128
+and maximum-selection ordinary admission remain explicit bounds. Gameplay balance
+features are unchanged and outstanding.
+
+NS86 component acceptance: seven new prospectively bound original32/native64/
+ASan+UBSan+LSan comparisons pass 13,984 fixtures and 1,419,927 checks. This includes
+multi-task count queues/expiry, both normal World brain-allocation calls, real
+kind 0 installation/lifetime, healthy-task three-member decisions, unique speed/
+distance keys, source centers, three-member candidate probes and three-versus-three
+body commands/centers. Five new recovered contracts have current scoped evidence;
+native integration and captured replay have separate source-bound acceptance. The
+two exact fallback accessor/expiry recovered ranges preserve the remaining binary
+discovery inventory.
+
+NS86 native acceptance: clean native64 and ASan/UBSan/LSan builds produce identical
+two-battle snapshots, task traces and lifecycle logs. The new suite passes 29,760
+checks across 2,445 frames, 42 sliced restores, eight deaths, 14 refusals and two
+verifier rollbacks; the legacy suites, both core runs, 36 cold-process restores and
+public CLI continuation also pass. `NS86.native-owner-skirmish` promotes only the
+new ordinary scenario to headless integration. Independently bound original body
+replays cover all 4,262 captured task-6 calls and 1,296,318 checks across both
+factions; together with component execution, the new original comparisons pass
+2,716,245 checks. All seven new scoped behaviors have current fingerprints, while
+historical staleness, incomplete World composition and live replacement remain
+explicit. No full original battle equivalence is claimed.

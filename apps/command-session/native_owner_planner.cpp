@@ -48,7 +48,7 @@ model::OwnerPlannerActor nativeOwnerPlannerActor(const Continuation &c,
   model::validateOwnerPlannerActor(out);
   return out;
 }
-void validateNativeOwnerPlanner(const Continuation &c) {
+void validateNativeOwnerPlanner(const Continuation &c, bool advancing) {
   if (!c.native.ownerPlanner)
     return;
   auto state = [&](const NativeOwnerPlanner &s) {
@@ -73,7 +73,8 @@ void validateNativeOwnerPlanner(const Continuation &c) {
     need(s.nextSerial && s.percent >= 0 && s.percent <= 10000 &&
              s.activeSerial < s.nextSerial,
          "owner planner task identity");
-    need(s.active.has_value() == (s.activeSerial != 0),
+    need((s.active.has_value() || (s.grouped && s.grouped->fallbackActive)) ==
+             (s.activeSerial != 0),
          "owner planner active task identity");
     need(std::isfinite(s.candidateScore) && s.candidateScore >= -1 &&
              s.candidateScore <= 1,
@@ -98,11 +99,11 @@ void validateNativeOwnerPlanner(const Continuation &c) {
   };
   state(*c.native.ownerPlanner);
   if (c.native.ownerSources) {
-    validateNativeOwnerSources(c);
+    validateNativeOwnerSources(c, advancing);
     for (const auto &row : c.native.ownerSources->planners)
       if (row.planner)
         state(*row.planner);
-    if(c.native.ownerSources->search)
+    if (c.native.ownerSources->search)
       state(c.native.ownerSources->search->scratch);
   }
   for (const auto &rows : c.native.ownerKnowledge->records)
@@ -141,12 +142,13 @@ void prepareNativeOwnerPlanner(Continuation &c,
   c = std::move(staged);
 }
 void updateNativeOwnerPlanner(Continuation &c, const NativeCreatureProfile &p,
-                              model::OwnedCreatureCommands &commands) {
+                              model::OwnedCreatureCommands &commands,
+                              const NativeOwnerTaskVerifier &verifier) {
   if (!c.native.ownerPlanner)
     return;
-  validateNativeOwnerPlanner(c);
+  validateNativeOwnerPlanner(c, true);
   if (c.native.ownerSources) {
-    updateNativeOwnerSources(c, p, commands);
+    updateNativeOwnerSources(c, p, commands, verifier);
     return;
   }
   if (c.native.ownerPlanner->grouped) {
