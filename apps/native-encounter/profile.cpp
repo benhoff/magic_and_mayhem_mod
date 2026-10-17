@@ -209,6 +209,17 @@ Profile decodeInputs(game::Bytes bytes) {
   p.native.maintenance.drainDivisor = 1;
   p.melee.base = row(hth, "HTH_Matrix")[17];
   p.melee.stunThreshold = row(hth, "Stun_Matrix")[17];
+  // Original416d80 uses config280/LRC and1a0/HTH. The supported source
+  // is physical class1/type17, so target58 scaling cannot apply.
+  auto &credit = p.taskCredit[17];
+  credit.kind = 1;
+  credit.capacity = p.maximum;
+  credit.flag58 = 1;
+  const auto first = row(hth, "LRC_Matrix"), second = row(hth, "HTH_Matrix");
+  for (unsigned i = 0; i < 28; ++i) {
+    credit.first[i] = unsigned(first[i]);
+    credit.second[i] = unsigned(second[i]);
+  }
   p.scenario = scenario;
   auto &c = p.initial;
   c.world.dimensions = {int(map.geometry.width), int(map.geometry.height),

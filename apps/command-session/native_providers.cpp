@@ -1,5 +1,6 @@
 #include "native_owner_visibility.hpp"
 #include "native_owner_planner.hpp"
+#include "native_owner_task_inputs.hpp"
 #include "native_regional_danger.hpp"
 #include "native_geometry.hpp"
 #include "native_route.hpp"
@@ -100,6 +101,17 @@ class NativeContext {
     s.fallDamage=fx_.flight.fallDamage;s.defended=fx_.flight.defended;
     s.snap=[this](auto &actor,model::Cell p,unsigned){geometry_.snap(actor,p);};
     s.reset=[&commands](auto &actor){commands.reset(actor);};
+    if(c_.native.ownerPlanner&&c_.native.ownerPlanner->grouped&&
+       c_.native.ownerPlanner->grouped->replanning&&
+       c_.native.ownerPlanner->grouped->replanning->eventInputs){
+      auto score=s.score;
+      s.score=[this,score,slot](unsigned type,float ratio){
+        need(bool(score),"native task completion account missing");
+        auto amount=score(type,ratio);
+        creditNativeOwnerMovement(c_,slot,amount);
+        return amount;
+      };
+    }
 
     s.legal=[this](const auto &actor,model::Cell p){return geometry_.legal(actor,normalized(p));};
     s.regionCandidate=[this](auto &actor,auto &candidate,unsigned parameter,auto desired){nativeRegionalCandidate(c_,*p_,geometry_,actor,candidate,parameter,desired);};

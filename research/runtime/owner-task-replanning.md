@@ -157,3 +157,12 @@ families, model training/feedback, notification consequences,415c40 dual-brain/W
 species/campaign construction and live replacement remain pending. The original
 full game still requires Wine. Commander orders, veterancy and mana balance
 remain separate gameplay work.
+
+## Event-driven inputs after NS80
+
+[NS81](owner-task-inputs.md) replaces fresh sessions' fixed region/occupancy and
+owner-ratio inputs with native producers and connects accounted health/movement
+reward/cost. The old successes/attempts names refer to score totals, not route
+counts. NS80 evidence and scope stay historical; v14 reads preserve its supplied
+policy and v15 explicitly opts into the new event composition. Notification,
+resource, FC-flag/global-ratio and broader World producers remain pending.

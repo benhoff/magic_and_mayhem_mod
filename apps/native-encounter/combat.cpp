@@ -1,4 +1,5 @@
 #include "../command-session/native_owner_visibility.hpp"
+#include "../command-session/native_owner_task_inputs.hpp"
 #include "../../reconstruction/combat/autonomy_tables.hpp"
 #include "../../reconstruction/combat/health.hpp"
 #include "../command-session/native_geometry.hpp"
@@ -241,7 +242,7 @@ public:
            "encounter ordinary actor domain");
   }
   void health(m::AutonomousCreature &a, m::Entry entry, int amount,
-              int source = -1) {
+              int source = -1, int sourceSlot = -1, bool notify = true) {
     need(commands != nullptr, "encounter operation context missing");
     m::Inputs input;
     input.baseMaximum = p->maximum;
@@ -249,6 +250,7 @@ public:
     input.owner = unsigned(a.ai.owner);
     input.selectedOwner = 0;
     input.attributionOwner = source;
+    input.notify = notify;
     input.visibleMask = 0;
     for (unsigned i = 0; i < 8; ++i)
       if (a.ai.visible[i])
@@ -265,6 +267,23 @@ public:
       repairPeers(a.ai.slot);
     count(1, before >= a.ai.health ? before - a.ai.health : 0);
     for (auto event : r.events) {
+      if (event.kind == m::Effect::feedback && c.native.ownerPlanner &&
+          c.native.ownerPlanner->grouped &&
+          c.native.ownerPlanner->grouped->replanning &&
+          c.native.ownerPlanner->grouped->replanning->eventInputs) {
+        // Ordinary empty-mana/rank0 feedback. Lethal cleanup has already
+        // zeroed health and emits quantity0; do not credit pre-cleanup HP.
+        const auto credited = m::contributionAccount(
+            p->taskCredit, a.ai.type, 0, int(event.a), 0, 0, 0);
+        if (amount < 0 || entry != m::Entry::signedHealth)
+          cs::creditNativeOwnerDamage(c, a.ai.slot, sourceSlot, credited);
+        else {
+          auto &planner = *c.native.ownerPlanner;
+          auto &previous = planner.grouped->replanning->previous;
+          if (previous && planner.actor == a.ai.slot)
+            m::addOwnerTaskReward(*previous, credited);
+        }
+      }
       if (event.kind == m::Effect::behavior) {
         count(4);
         a.ai.marker = 0;
@@ -310,7 +329,7 @@ public:
     dispatch.event = [&](const auto &event) {
       if (event.kind == m::MeleeEffect::damage) {
         count(0);
-        health(b, m::Entry::defendedDamage, event.value, a.ai.owner);
+        health(b, m::Entry::defendedDamage, event.value, a.ai.owner, int(a.ai.slot));
       } else if (event.kind == m::MeleeEffect::stunHandled) {
         applyControl(b, m::knockbackResponse(controlState(b)));
         count(3);
@@ -368,6 +387,12 @@ public:
     f.completion.environment = noop;
     f.completion.animation = noop;
     f.completion.terrain = noop;
+    if (c.native.ownerPlanner && c.native.ownerPlanner->grouped &&
+        c.native.ownerPlanner->grouped->replanning &&
+        c.native.ownerPlanner->grouped->replanning->eventInputs)
+      f.completion.score = [self](unsigned type, float ratio) {
+        return m::contributionAccount(self->p->taskCredit, type, 0, 0, 0, 0, ratio);
+      };
     f.movement.fallback = no;
     f.movement.renew = [](auto &, const auto &) {};
     f.movement.clearOverlay = noop;
@@ -379,8 +404,8 @@ public:
     f.maintenance.refresh = noop;
     f.maintenance.color = [](auto &, auto, unsigned) {};
     f.maintenance.upkeep = noop;
-    f.maintenance.health = [self](auto &a, int n, int owner, bool) {
-      self->health(a, m::Entry::signedHealth, n, owner);
+    f.maintenance.health = [self](auto &a, int n, int owner, bool notify) {
+      self->health(a, m::Entry::signedHealth, n, owner, -1, notify);
     };
     f.maintenance.remove = [self](auto &a) { self->remove(a); };
     f.maintenance.removeFromWorld = noop;

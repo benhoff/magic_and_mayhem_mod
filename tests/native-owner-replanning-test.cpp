@@ -19,6 +19,7 @@ int main(int argc, char **argv) try {
   // Controlled external sightings/world movement isolate the composed native
   // planner from creature motion. Every slice also runs from a CMD1 restore.
   auto journey = p.initial;
+  journey.native.ownerPlanner->grouped->replanning->eventInputs = false;
   // Authored 72-dimensional model isolates a changed enemy valuation. The
   // real grouped feature producer and inference run; the selected score and
   // active lifetime are never assigned by this fixture.

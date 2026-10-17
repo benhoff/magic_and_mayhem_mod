@@ -1,6 +1,7 @@
 #include "../../reconstruction/creature-ai/owner_group_features.hpp"
 #include "../../reconstruction/pathfinding/route_neighbors.hpp"
 #include "native_owner_planner.hpp"
+#include "native_owner_task_inputs.hpp"
 #include "native_regional.hpp"
 #include <algorithm>
 #include <cmath>
@@ -35,6 +36,20 @@ void validateNativeOwnerGroupPlanner(const Continuation &c) {
        "group planner unprepared hostile evaluator");
   if (g.replanning) {
     const auto &r = *g.replanning;
+    if (r.eventInputs) {
+      const auto &roots = c.actions.segments.at(s.actor).contributionRoots;
+      need(!roots[0] && !roots[1], "event planner has duplicate contribution roots");
+      const auto &in = c.native.regionalDanger->inputs;
+      const int commander = in.commander.at(s.owner);
+      need(commander < 0 ||
+               c.world.creatures.at(unsigned(commander)).ai.owner == int(s.owner),
+           "event planner commander owner differs");
+      for (auto point : in.observationPoints)
+        need(point.x >= 0 && point.x < c.world.dimensions.x && point.y >= 0 &&
+                 point.y < c.world.dimensions.y && point.z >= 0 &&
+                 point.z < c.world.dimensions.z,
+             "event planner special cell domain");
+    }
     model::validateOwnerReplacementPolicy(r.policy);
     need(r.admission.brain <= 1 && r.candidateDuration >= 0 &&
              r.bestDuration >= 0,
@@ -132,6 +147,7 @@ void updateNativeOwnerGroupPlanner(Continuation &c,
   const int tick = int(c.native.tick);
   NativeCreatureGeometry geometry(c, p);
   auto *replanning = g.replanning ? &*g.replanning : nullptr;
+  updateNativeOwnerTaskInputs(c);
   if (g.active && (!replanning || (!replanning->previous->completed &&
                                    tick < replanning->previous->expires))) {
     int raw = 0, net = 0;

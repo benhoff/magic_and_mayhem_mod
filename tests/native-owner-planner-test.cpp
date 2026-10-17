@@ -35,8 +35,8 @@ int main(int argc, char **argv) try {
     ++refusals;
   };
   const auto initial = cs::encode(p.initial);
-  check(initial.at(4) == 14, "CMD1v14");
-  for (unsigned version : {10u, 11u, 12u, 13u})
+  check(initial.at(4) == 15, "CMD1v15");
+  for (unsigned version : {10u, 11u, 12u, 13u, 14u})
     rejects([&] { (void)cs::encode(p.initial, version); });
   auto oldGrouped = p.initial;
   oldGrouped.native.ownerPlanner->grouped->replanning.reset();

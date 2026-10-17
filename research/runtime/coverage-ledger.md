@@ -9987,3 +9987,50 @@ owner-task-native-ns80-20261016.json. Sixty coverage-audit and51 gate-tool tests
 also pass. Interrupted development/final-v1 runs remain retained without new
 validation claims. The audit preserves historical broader staleness; none of
 these results claims full World or live equivalence.
+
+## NS81: native task event inputs
+
+Fresh ordinary owner planning now derives preparation input from task percent,
+regional membership and special-cell occupant tokens, and reads the native
+regional producer's published danger/support totals. Task `+2f/+33` are accounted
+reward/cost totals, not success/attempt or route counts. Actual native melee
+attacker identity, damage cost, notifying healing and one-shot flagged movement
+completion feed the retained task through the recovered account model. Brain0/root,
+ordinary singleton source, designated ordinary commander, observation-point
+construction and FC global score ratio remain explicit lab policies/boundaries.
+
+The4096-case/20480-check original32/native64/sanitizer comparison independently
+covers52a3a0 distress (supplied maximum),522690 occupancy (supplied enumeration),
+and514990 nonlethal/dead/zero credit with supplied score/source-ID endpoints and
+actual victim ancestry. Static discovery identifies constructor task percent100,
+regional publication stores, the strict binary64 distress ratio>0.5, and loader
+502b20's LRC_Matrix at280/HTH_Matrix at1a0. A mistaken development FearHate mapping
+was corrected before the accepted final native run; superseded runs are excluded.
+
+CMD1v15 appends eventInputs. v14 preserves supplied NS80 inputs, including an
+expired active task, and lossy writes refuse. The native authored-model journey
+runs actual grouped features/inference and lifetime draws, then actual damage
+causes an expired task replacement while an undamaged control at the same clocks
+retains the identical proposal. It also checks admission failures, health/healing
+notify/attacker rewards, one-shot FC cost, actual nonzero support publication and
+per-slice resume. Exact counts and native/sanitizer, installed-model, core-suite
+and cold-resume outcomes are recorded in
+[the NS81 research](owner-task-inputs.md) and its separate immutable reports.
+
+Scope/confidence, original comparison, headless integration and live replacement
+remain independent. Original credit numerics and source resolution are bounded
+separately, not a whole original health-to-planner comparison. Sighting observer
+notifications, resource/interaction/cast task credit, production of FC flags/global
+ratio and observation-point lists, wizard/campaign/configuration factories,
+source split/merge/dual-brain ancestry, training, whole task-generation-to-original
+driver composition, World cadence and live replacement remain pending. Historical
+NS80/shared-source evidence hashes are preserved; new source-bound native proof
+supports the NS81 contract only. Incoming be0a865b..0c0605ae history has39 committed
+files and291 file/345 behavior transitions with complete exact receipt chains;
+this adds historical accounting, not a past gate pass or new engine validation.
+
+The authorized older visibility build cache was relocated to the second NVMe,
+3724 entries/1722969742 logical bytes verified and its old path preserved by
+symlink. Originals, tracked sources and raw experiment evidence were retained.
+`working/retention/ns81-visibility-cache-relocation-20261016.json` records storage
+provenance only; no cold archive/cleanup or engine validation is inferred.

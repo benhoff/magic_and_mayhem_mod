@@ -10,6 +10,9 @@ add_library(mnm-native-command-session STATIC runtime.cpp codec.cpp
   ../../reconstruction/creature-ai/regional_danger.cpp
   ../../reconstruction/creature-ai/owner_knowledge.cpp
   native_regional_danger.cpp native_owner_visibility.cpp native_owner_planner.cpp native_owner_group_planner.cpp
+  native_owner_task_inputs.cpp
+  ../../reconstruction/creature-ai/owner_task_inputs.cpp
+  ../../reconstruction/creature-ai/contribution_account.cpp
   ../../reconstruction/creature-ai/owner_group_features.cpp
   ../../reconstruction/creature-ai/owner_memory_groups.cpp
   ../../reconstruction/creature-ai/owner_task_probe.cpp

@@ -62,6 +62,9 @@ struct NativeOwnerReplanning {
   std::optional<reconstruction::combat::OwnerPreviousTask> previous;
   int candidateDuration=0,bestDuration=0;
   bool eligible=false,prepared=false;
+  // v15: derive admission/owner ratio and task credit from native services.
+  // Older continuations retain their explicitly supplied v14 inputs.
+  bool eventInputs=false;
 };
 struct NativeOwnerGroupPlanner {
   reconstruction::combat::OwnerMemoryGroups groups;

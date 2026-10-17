@@ -1,10 +1,10 @@
-# Native command continuation versions 1–12
+# Native command continuation versions 1–15
 
 This is a native application format inside the outer native `State.systems`
 checkpoint. It is unrelated to original Magic & Mayhem save/object layouts.
 
 The byte stream starts with four ASCII bytes `CMD1`, then little-endian32-bit
-version12 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
+version15 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
 integers use two's-complement words with explicit checked reconstruction; narrow
 values reject overflow. Booleans are exactly0 or 1. An optional is a0/1 word and,
 when present, its value. A vector begins with its word length; a fixed array has
@@ -324,3 +324,15 @@ projection. Writes below14 refuse to drop an enabled projection. Fresh sessions
 use14. These fields express owned state, never original addresses or host layouts.
 Original gate recovery, explicit native input/cadence policy and excluded event
 producers are documented in [task replanning](../runtime/owner-task-replanning.md).
+
+## CMD1v15: task event inputs (NS81)
+
+The v14 `NativeOwnerReplanning` field sequence gains one trailing bool
+`eventInputs`. Fresh activation writes true; v14 reads default false, retaining
+supplied admission/progress policy. Writing v14 or earlier with event inputs
+refuses loss. The existing previous-task reward/cost, owner danger/support
+publication state, source/occupancy and candidate/probe state remain the sole
+continuation storage for those events. No host task pointer or inferred owner
+attribution becomes a task identity. See
+[owner task event inputs](../runtime/owner-task-inputs.md) for the supported
+single-root mapping, validation and remaining producer boundaries.

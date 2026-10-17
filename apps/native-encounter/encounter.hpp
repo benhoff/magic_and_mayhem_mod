@@ -1,5 +1,6 @@
 #pragma once
 #include "../../reconstruction/creature-ai/regional_graph.hpp"
+#include "../../reconstruction/creature-ai/contribution_account.hpp"
 #include "../command-session/native_providers.hpp"
 #include "../command-session/native_regional_graph.hpp"
 #include "../world-scene/map_navigation.hpp"
@@ -11,6 +12,7 @@ struct Profile {
   cs::NativeCreatureProfile native;
   cs::Continuation initial;
   reconstruction::combat::MeleeInputs melee;
+  reconstruction::combat::ContributionProfiles taskCredit;
   unsigned maximum = 0, scenario = 0;
   unsigned projectedObjects = 0, projectedReferences = 0;
 };

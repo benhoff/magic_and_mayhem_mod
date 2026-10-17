@@ -75,3 +75,12 @@ own their strategic exponential lifetime draw. Admission/progress signals and
 frame cadence remain explicit two-actor lab inputs. Versions12/13 retain their
 previous policy on resume. See [task replanning](../../research/runtime/owner-task-replanning.md)
 for original comparison boundaries and pending World/configuration producers.
+
+NS81 fresh planner sessions derive task admission from percent, regional
+membership, special-cell occupancy and the logical owner service, and read
+published danger/support totals for replanning. Actual melee/health/healing and
+flagged motion completion update task reward/cost through the recovered account
+model. CMD1v15 preserves those events; v14 resumes retain their supplied-input
+policy. See [event inputs](../../research/runtime/owner-task-inputs.md) for the
+bounded expired-task replacement journey and remaining notification/resource,
+wizard/campaign and World scheduling boundaries.
