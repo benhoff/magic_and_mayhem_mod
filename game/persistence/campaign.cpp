@@ -53,6 +53,13 @@ void validate(const CampaignState& c,const CampaignLimits& l) {
             if(realm.id==r.realm && region.id==r.region) found=true;
         if(!found) fail("campaign result region is missing");
     }
+    if(c.graph) {
+        for(const auto* list:{&c.graph->completed,&c.graph->choices}) {
+            bounded(list->size(),16);std::set<unsigned> seen;
+            for(auto i:*list) if(i>=16 || !seen.insert(i).second) fail("invalid campaign graph index");
+        }
+        if((c.battle && !c.battle->attempt) || (c.mission && c.mission->version!=2)) fail("invalid graph continuation version/attempt");
+    }
     if(c.mission) {
         const auto& m=*c.mission;
         if(!c.battle || !c.battle->attempt || (m.version!=1 && m.version!=2)) fail("invalid mission continuation version/attempt");
@@ -96,6 +103,11 @@ struct Writer {
         bytes.insert(bytes.end(),s.begin(),s.end());
     }
     void list(const std::vector<std::string>& v) {word(v.size());for(const auto& s:v) string(s);}
+    void objectives(const MissionProgress& m) {
+        word(m.groups.size());
+        for(const auto& group:m.groups) {word(group.size());for(auto h:group) {word(h.slot);word(h.generation);}}
+        word(m.objectives.size());for(const auto& o:m.objectives) {word(o.complete,1);word(o.elapsed);}
+    }
 };
 struct Reader {
     const Bytes& bytes;const CampaignLimits& limits;std::size_t pos=0;
@@ -116,6 +128,17 @@ struct Reader {
         for(std::uint32_t i=0;i<n;++i) v.push_back(string());
         return v;
     }
+    MissionProgress objectives() {
+        MissionProgress m;m.version=2;const auto groups=count(8,4);
+        for(unsigned i=0;i<groups;++i) {
+            std::vector<Handle> group;const auto actors=count(8,8);
+            for(unsigned j=0;j<actors;++j) group.push_back({unsigned(word()),unsigned(word())});
+            m.groups.push_back(std::move(group));
+        }
+        const auto nodes=count(16,5);
+        for(unsigned i=0;i<nodes;++i) {MissionProgress::Objective o;o.complete=flag();o.elapsed=word();m.objectives.push_back(o);}
+        return m;
+    }
 };
 void binding(const State& state,const CampaignState& c,const CampaignIdentity& expected) {
     if(c.identity.id!=expected.id || c.identity.contentRevision!=expected.contentRevision) fail("campaign content identity mismatch");
@@ -125,7 +148,7 @@ void binding(const State& state,const CampaignState& c,const CampaignIdentity& e
 Bytes encodeCampaign(const CampaignState& c,const CampaignLimits& l) {
     validate(c,l);Writer out{{},l};
     for(auto v:magic) out.word(v,1);
-    const unsigned version=c.mission ? (c.mission->version==2 ? 4 : 3) : c.lastResult || (c.battle && c.battle->attempt) ? 2 : 1;
+    const unsigned version=c.graph ? 5 : c.mission ? (c.mission->version==2 ? 4 : 3) : c.lastResult || (c.battle && c.battle->attempt) ? 2 : 1;
     out.word(version);out.string(c.identity.id);out.string(c.identity.contentRevision);
     out.word(c.difficulty);out.word(c.transition,8);out.string(c.player);out.string(c.realm);out.string(c.region);out.word(c.completed,1);
     out.word(c.wizards.size());
@@ -155,18 +178,17 @@ Bytes encodeCampaign(const CampaignState& c,const CampaignLimits& l) {
         const auto& m=*c.mission;out.word(m.stage);out.word(m.reinforcement,1);
         for(const auto* group:{&m.initial,&m.wave}) {out.word(group->size());for(auto h:*group) {out.word(h.slot);out.word(h.generation);}}
     }
-    if(version==4) {
-        const auto& m=*c.mission;out.word(m.groups.size());
-        for(const auto& group:m.groups) {out.word(group.size());for(auto h:group) {out.word(h.slot);out.word(h.generation);}}
-        out.word(m.objectives.size());
-        for(const auto& o:m.objectives) {out.word(o.complete,1);out.word(o.elapsed);}
+    if(version==4) out.objectives(*c.mission);
+    if(version==5) {
+        for(const auto* list:{&c.graph->completed,&c.graph->choices}) {out.word(list->size());for(auto i:*list) out.word(i);}
+        out.word(c.mission.has_value(),1);if(c.mission) out.objectives(*c.mission);
     }
     return out.bytes;
 }
 CampaignState decodeCampaign(const Bytes& bytes,const CampaignLimits& l) {
     bounded(bytes.size(),l.bytes);Reader in{bytes,l};
     for(auto v:magic) if(in.word(1)!=v) fail("invalid campaign signature");
-    const auto version=in.word();if(version!=1 && version!=2 && version!=3 && version!=4) fail("unsupported campaign version");
+    const auto version=in.word();if(version!=1 && version!=2 && version!=3 && version!=4 && version!=5) fail("unsupported campaign version");
     CampaignState c;c.identity={in.string(),in.string()};c.difficulty=in.word();c.transition=in.word(8);
     c.player=in.string();c.realm=in.string();c.region=in.string();c.completed=in.flag();
     auto n=in.count(l.wizards,45);
@@ -191,24 +213,18 @@ CampaignState decodeCampaign(const Bytes& bytes,const CampaignLimits& l) {
             CampaignResult r;r.attempt=in.word(8);r.realm=in.string();r.region=in.string();
             r.outcome=static_cast<CampaignOutcome>(in.word());c.lastResult=std::move(r);
         }
-        if(!c.lastResult && (!c.battle || !c.battle->attempt)) fail("version-2 campaign requires continuation data");
+        if(version<5 && !c.lastResult && (!c.battle || !c.battle->attempt)) fail("version-2 campaign requires continuation data");
     }
     if(version==3) {
         MissionProgress m;m.stage=in.word();m.reinforcement=in.flag();
         for(auto* group:{&m.initial,&m.wave}) {const auto count=in.count(8,8);for(unsigned i=0;i<count;++i) group->push_back({unsigned(in.word()),unsigned(in.word())});}
         c.mission=std::move(m);
     }
-    if(version==4) {
-        MissionProgress m;m.version=2;
-        const auto groups=in.count(8,4);
-        for(unsigned i=0;i<groups;++i) {
-            std::vector<Handle> group;const auto count=in.count(8,8);
-            for(unsigned j=0;j<count;++j) group.push_back({unsigned(in.word()),unsigned(in.word())});
-            m.groups.push_back(std::move(group));
-        }
-        const auto objectives=in.count(16,5);
-        for(unsigned i=0;i<objectives;++i) {MissionProgress::Objective o;o.complete=in.flag();o.elapsed=in.word();m.objectives.push_back(o);}
-        c.mission=std::move(m);
+    if(version==4) c.mission=in.objectives();
+    if(version==5) {
+        CampaignGraphProgress graph;
+        for(auto* list:{&graph.completed,&graph.choices}) {const auto n=in.count(16,4);for(unsigned i=0;i<n;++i) list->push_back(unsigned(in.word()));}
+        c.graph=std::move(graph);if(in.flag()) c.mission=in.objectives();
     }
     if(in.pos!=bytes.size()) fail("unexpected trailing campaign bytes");
     validate(c,l);return c;

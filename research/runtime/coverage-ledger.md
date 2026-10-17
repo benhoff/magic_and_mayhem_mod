@@ -13699,3 +13699,35 @@ This is native policy with a headless acceptance boundary. No new presentation,
 original-comparison, gameplay balance or live-replacement milestone is claimed.
 See [semantics and remaining gaps](native-mission-objectives.md) and
 [wire contract](../formats/native-mission-objectives.md).
+
+## Native campaign graph and Crossroads chapter — 2026-10-17
+
+`NP.campaign-graph` adds a bounded compiled progression graph with all/any
+prerequisites, exclusive route commitment on mission start, persistent ordered
+victories, explicit idle mission selection and derived spell rewards. Crossroads
+has an opening, alternative Last Stand/Watchpost roads and a shared arena finale.
+Cure and Magic Sphere are earned on the respective roads; combat values/resources
+are unchanged. The graph continuation uses native campaign version 5 while earlier
+native identities and formats remain separate.
+
+CAMPAIGN03.crossroads-headless prospectively binds 630 unchanged
+source keys and the Crossroads headless scenario. Normal and ASan/UBSan/LSan
+contracts agree: both full-health routes complete using production native orders,
+with a 308-tick opening, 477-tick Last Stand, 308-tick Watchpost and
+19-tick ordinary finales. Separate earned-spell fixtures verify Cure healing and
+Magic Sphere damage. Asset-free contracts cover malformed/forged saves and graphs,
+failed-start rollback, defeat/retry, exclusive choices, reward derivation and
+terminal completion. All 114 headless CTests pass.
+
+19 retained transition/effect checkpoints round-trip exactly and match direct
+versus split fresh-process continuation. Production player resumes from both route
+checkpoints reach the exact reference win bytes; CLI create/select/start matches
+the installed contract. Seven old native save profiles covering versions 1–4
+round-trip unchanged. Installed input hashes, compiler dependency closure and the
+original 2,927-file manifest bookends pass. This result supplies headless native
+integration only; historical shared-source fingerprints and their freshness
+limitations remain unchanged. No window or original/live milestone is promoted.
+ No window,
+original-campaign comparison or live-replacement milestone is claimed. See
+[semantics, acceptance and gaps](native-campaign-graph.md) and
+[the format](../formats/native-campaign-graph.md).

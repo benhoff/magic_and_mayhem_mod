@@ -266,3 +266,11 @@ objectives and two timed waves; victory unlocks Cure for the arena finale.
 See [objective semantics](../../research/runtime/native-mission-objectives.md)
 and [definition/save format](../../research/formats/native-mission-objectives.md).
 The new profile has CLI acceptance; it has no new window entry point.
+
+The headless Crossroads chapter uses `create-crossroads OUTPUT.mnmc` in the map
+campaign CLI. After the opening, `select INPUT OUTPUT celtic last-stand` or
+`select INPUT OUTPUT celtic watchpost` chooses the next mission; `start` commits
+the exclusive route. Last Stand earns Cure, Watchpost earns Magic Sphere, and both
+rejoin the existing arena finale. `inspect` lists available missions and saved
+choices. See [campaign graph semantics](../../research/runtime/native-campaign-graph.md)
+and [the version-5 format](../../research/formats/native-campaign-graph.md).

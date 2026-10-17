@@ -56,6 +56,18 @@ void view(const mnm::game::CampaignSession& s,unsigned settlements=0) {
         std::cout<<"]}";
     } else std::cout<<"null";
     std::cout<<",\"cure_available\":"<<(s.spellAvailable(mnm::game::Spell::cure)?"true":"false");
+    std::cout<<",\"sphere_available\":"<<(s.spellAvailable(mnm::game::Spell::sphere)?"true":"false");
+    std::cout<<",\"available_missions\":[";
+    const auto available=s.availableMissions();
+    for(std::size_t i=0;i<available.size();++i) {if(i) std::cout<<',';std::cout<<"{\"realm\":";quoted(std::cout,available[i].realm);std::cout<<",\"region\":";quoted(std::cout,available[i].region);std::cout<<'}';}
+    std::cout<<"],\"graph\":";
+    if(p.graph) {
+        std::cout<<"{\"completed\":[";
+        for(std::size_t i=0;i<p.graph->completed.size();++i) {if(i) std::cout<<',';std::cout<<p.graph->completed[i];}
+        std::cout<<"],\"choices\":[";
+        for(std::size_t i=0;i<p.graph->choices.size();++i) {if(i) std::cout<<',';std::cout<<p.graph->choices[i];}
+        std::cout<<"]}";
+    } else std::cout<<"null";
     std::cout<<",\"battle\":";
     if(s.battle()) mnm::skirmish::trace(std::cout,*s.battle());else std::cout<<"null";
     std::cout<<"}\n";
@@ -71,11 +83,12 @@ int main(int argc,char** argv) try {
     if(argc<3) throw std::invalid_argument("Usage: mnm-map-campaign-cli ASSET_ROOT COMMAND ...");
     --argc;++argv;
     const auto make=[&](std::string_view mode){
+        const bool branches=mode=="create-crossroads";
         const bool objectives=mode=="create-objectives";
-        const bool staged=objectives || mode=="create-mission";
+        const bool staged=branches || objectives || mode=="create-mission";
         const bool mixed=staged || mode=="create-species";
         const bool creatures=mixed || mode=="create-creatures";
-        return mnm::skirmish::newMapCampaign(mnm::skirmish::mapCampaignResources(argv[0],mode!="create",creatures || mode=="create-sphere",creatures,mixed,staged,objectives));
+        return mnm::skirmish::newMapCampaign(mnm::skirmish::mapCampaignResources(argv[0],mode!="create",creatures || mode=="create-sphere",creatures,mixed,staged,objectives,branches));
     };
     const auto load=[&](const char* path){return mnm::skirmish::loadMapCampaign(std::filesystem::path(argv[0]),path);};
 #else
@@ -86,12 +99,15 @@ int main(int argc,char** argv) try {
 #endif
     const std::string_view command=argc>1?argv[1]:"";
 #ifdef MNM_MAP_CAMPAIGN_CLI
-    const bool creatureCampaign = command=="create-creatures" || command=="create-species" || command=="create-mission" || command=="create-objectives";
+    const bool creatureCampaign = command=="create-creatures" || command=="create-species" || command=="create-mission" || command=="create-objectives" || command=="create-crossroads";
 #else
     const bool creatureCampaign = false;
 #endif
     if((command=="create" || command=="create-cure" || command=="create-sphere" || creatureCampaign) && argc==3) {
         auto s=make(command);save(argv[2],s);view(s);return 0;
+    }
+    if(command=="select" && argc==6) {
+        auto s=load(argv[2]);s.selectMission(argv[4],argv[5]);save(argv[3],s);view(s);return 0;
     }
     if(command=="inspect" && argc==3) {view(load(argv[2]));return 0;}
     if(command=="start" && argc==4) {
@@ -135,6 +151,6 @@ int main(int argc,char** argv) try {
         for(unsigned i=0;i<ticks && s.battle();++i) if(s.step().result) ++settlements;
         save(argv[3],s);view(s,settlements);return 0;
     }
-    throw std::invalid_argument("Usage: mnm-campaign-cli [--installation ROOT] create OUTPUT | inspect INPUT | start INPUT OUTPUT | "
+    throw std::invalid_argument("Usage: mnm-campaign-cli [--installation ROOT] create OUTPUT | inspect INPUT | start INPUT OUTPUT | select INPUT OUTPUT REALM REGION | "
                                 "cast INPUT OUTPUT bolt | cast INPUT OUTPUT summon X Y | cast INPUT OUTPUT cure/sphere TARGET-SLOT | attack INPUT OUTPUT SUBJECT-SLOT TARGET-SLOT | resume INPUT OUTPUT TICKS");
 } catch(const std::exception& error) {std::cerr<<error.what()<<'\n';return 1;}
