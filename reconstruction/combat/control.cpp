@@ -90,7 +90,9 @@ ReachResult meleeReach(const ReachActor &a, const ReachActor &b, Extent e,
   r.admitted = true;
   if (dx && dy) {
     r.diagonalChecked = true;
-    r.admitted = diagonal && diagonal(pos, a.position);
+    // 0x50c063..0x50c0ae pushes target XYZ first, then supplied source XYZ;
+    // the callee receives source -> target. Terrain movement is directional.
+    r.admitted = diagonal && diagonal(a.position, pos);
   }
   return r;
 }

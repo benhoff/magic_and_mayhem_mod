@@ -12,7 +12,8 @@ struct EffectProjectionState {
 // creatures, unchanged cell, metadata kind 0/68 with zero distance allowance.
 // parameters[9] is the original iteration count (0..64). Counter admission
 // is bounded at8192 for long type3 continuation; older comparisons retain
-// their narrower authored domains. Authored trajectory
+// their narrower authored domains. Non-type3 retains iteration<=8/counter<=64.
+// Authored trajectory
 // setup remains separate. Refusals leave both inputs unchanged.
 unsigned projectEffectSameCell(EffectPlacementRecord&,EffectProjectionState&,
                               unsigned width,unsigned height,unsigned layers);

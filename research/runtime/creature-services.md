@@ -3,7 +3,7 @@
 Build: No-CD40209ca7. Original motion, execution, decision, callbacks and casting
 projections retain their independent current evidence and lower boundaries.
 The next uncovered contracts are50f3b0 object action13,512220 queue delivery,
-514c60 upkeep and52a9f0 environment pass. No balance changes or native session
+514c60 ownership-conversion scan and52a9f0 environment pass. No balance changes or native session
 integration are implied by registering these gaps.
 
 50f3b0 is **an object-interaction callback, not teleport**. Its action-table
@@ -31,3 +31,1032 @@ exception, replacing the inappropriate static-only evidence binding. Historical
 static evidence and partial statuses remain unchanged; this adds no original
 World/session integration or live replacement and does not complete the other
 services above.
+
+
+## Corrected helper roles
+
+512220 creates local-owner queued-move markers, not command delivery. Kind2 nodes
+without a marker receive an initialized63-DWORD record: duplicate fine destination
+coordinates, actor slot, threeffffffff words, fixed words10/12=1 and word11 marking
+destination/reference inequality.49cec0 allocation is stored in the node before
+493f20 kind70 initialization; initializer failure does not clear that token.
+520ad0 performs actual commands. Lower pool/effect/render ownership is separate.
+
+514c60 is called when maintenance bonusMode124 equals2. It gates on an
+owner-associated actor's signed8f5/8f1 counts, scans ten slots from15c with an
+unsigned125 cap, checks active/living/diplomacy/same-type and wrapped XY distance,
+then calls56c650 and51ec80 in order. A newly full owner stops with the current
+index retained; a completed scan at125 resets tozero. The historical export's
+`upkeep` filename is a misleading label and is not refreshed or repurposed.
+
+Actual periodic resource contribution is inline509faa..50a0da. It updates the100
+deadline before the controller gate, reads unsignedE8 high-byte values before
+and after507f00, incorporates42 available inventory type19 entries by wrapped
+addition, calls416d80 with a signed truncated aggregate and float delta, and
+credits the returned word to counter2f at the terminal owner of each678/67c
+ancestry chain. Numeric roles do not establish scoring/veterancy semantics or
+a new mana balance rule. Whole maintenance with this branch needs fresh evidence;
+earlier tests deliberately excludedgateFC admission.
+
+52a9f0 initializes an actor-pool iterator/filter and calls5076f0 for selected
+movement-kind/height/water conditions. Its initialBL byte is loaded from an
+uninitialized stack local; out-of-table kinds can retain it or a prior actor's
+latch. Dispatch data and caller/configured domains need review before a native
+policy or broader original-equivalence claim. Do not silently treat it aszero.
+
+## Object action current comparison
+
+The prospectively bound whole-body run passes12,288 original32/native64/
+sanitized64 cases and three native-only grid/chain refusals. Behavior, cue,
+matched/unmatched and four-corner branches are nonempty. Full actor/config/map/
+pool/body guards and ordered calls match. Recovery from the concurrent main
+stash preserves every source hash; the isolated native CMake build and CTest
+also pass. Complete lower World/service ownership and session integration stay
+pending. No original pointer/cycle or incidental-return semantics are claimed.
+
+## Queued marker current comparison (NS39)
+
+Whole512220 passes16,384 prospectively bound original32/native64/sanitized64
+cases with ordered allocation/initialization and complete63-word/full-byte
+guards. Token storage precedes initialization; failed initialization retains
+the token. Logical tokenzero is valid when mapped to a nonnull owned legacy
+fixture pointer. Command delivery and lower renderer/secondary ownership remain
+separate; no native World/session or replacement stage is promoted.
+
+The fresh staticv3 record preserves corrected helper labels and aligns the
+contribution window at509fa4. Staticv2 remains retained inworking with its
+misaligned509fa3 window and is not registered as semantic/execution proof. The
+living predicate412aa0 returns health!=0. The environment table maps kinds0/1
+to52aaa6 (top below waterline), kind2 to52aad0 (water edge test), and kind3 to
+52ab04 (clear latch). Those valid arms always assignBL. Out-of-table kinds retain
+the uninitialized/prior latch and remain an explicit unresolved domain.
+
+The isolated native CMake build and CTest for markers pass. The first configure
+attempt was launched from the storage wrapper's main-checkout cwd and stopped
+before building; retry explicitly sets the isolated worktree cwd. Both logs are
+retained.
+
+## Ownership conversion and environment comparisons (NS40)
+
+Whole514c60 and whole52a9f0 each pass8,192 prospectively source/scope-bound
+original32/native64/ASan+UBSan+LSan64 cases. Both independent native CMake builds
+and CTests pass. Immutable records are original-creature-conversion-bound-20261012.json
+and original-creature-environment-bound-20261012.json. Complete actor/global/
+iterator-or-limit/body guards and ordered consequences match. Conversion covers
+2,642 transfers,411 rollovers and718 retained cursors, including owner reload
+after notification. Environment covers11,240 water queries and125,572 forced
+health calls, including later actor/config mutations with captured waterline
+and per-hit damage reload.
+
+Four conversion and three environment native-only domain refusals are distinct
+from original behavior. Movement kinds beyond0..3 remain excluded: the original
+uninitialized/prior BL is not silently assigned a zero default. Complete lower
+associated-actor/notification/transfer/water/health ownership, installed profile
+validation, composed World/session execution and live replacement remain pending.
+Incoming marker commit4dda04ea is reviewed against its exact receipts and actual
+staged gate:19 file and116 behavior transitions, with no unresolved accounting
+gaps. This history review asserts no new execution or past gate result.
+
+
+## Periodic resource contribution comparison (NS41)
+
+Whole509e50 now has a separate prospectively bound contribution comparison:
+8,192 original32/native64/ASan+UBSan+LSan64 cases,2,275 paired grants/account
+calls,3,187 blocked deadlines and820 duplicate-root fixtures. Unsigned high-byte
+snapshots, wrapped grant/42-entry inventory aggregation, signed truncation and
+float delta, controller gate and both ancestry counter2f credits match. Callback
+changes to inventory/source type are read at the original points. Full actor,
+ancestry/recipient/controller/config bytes, ordered consequences and whole body
+are guarded. Four native-only malformed-domain refusals require caller rollback.
+The independent native CMake build and CTest pass. The initial development build
+failed on a fixture member typo and indentation warning; those logs are retained.
+
+The fixture extension preserves its caller's main macro and adds optional owned
+field packing/guards. The ordinary lifecycle corpus separately passes8,192 fresh
+source-bound cases with the extension inactive; its historical excluded-upkeep
+scope is unchanged. NS35 records retain their old source hashes. Contribution is
+recorded under AI.upkeep-admission, distinct from514c60 ownership conversion.
+Neither proof supplies complete lower466870/507f00/416d80 ownership or composed
+World/session execution. No balance change or integration/replacement promotion.
+
+The new static lower-service export pins507f00/507fa0/466870/51ec80/416d80 bodies.
+Instruction review finds resource change uses signed negative-tozero followed by
+unsigned capacity clamp, while foreign-owner snapshot uses signed capacity clamp;
+these differ on high-bit capacities. Local wizard UI notifications occur in order
+and reload current resource after the first callback. Associated actor resolution
+uses the owner enabled flag and unsigned controller/index capacity, with no living
+filter. Owner transfer and numeric account still require scoped execution and full
+lower services. Static evidence does not establish equivalence. Incoming NS40
+commit bf07d2e7 has22 file/118 behavior transitions reviewed against exact receipts
+and the actual staged gate, with no unresolved accounting gaps.
+
+
+## Lower resource and associated actor comparison (NS42)
+
+Whole507f00,507fa0 and466870 pass24,576 prospectively bound original32/native64/
+ASan+UBSan+LSan64 cases, including2,023 paired UI sequences,1,998 resolved
+subjects and906 own-owner inventory snapshots. Full actor,definition,owner,
+global and original-body guards match. Associated resolution returns canonical
+pointers for inactive/dead slots; it does not add a living filter. Four native
+invalid-owner refusals are separate from original pointer behavior. The isolated
+native CMake build and CTest pass. Immutable proof:
+original-creature-resource-services-bound-20261012.json.
+
+Resource adjustment preserves signed-negative-tozero then unsigned capacity
+clamp, first-display/second-display reload and unconditional dirty update. The
+foreign-owner snapshot retains signed capacity clamp; own-owner snapshot ignores
+delta and credits all42 available type19 inventory magnitudes with wrapped
+addition. Current native service APIs own values and indices, not host pointers.
+Installed construction, UI implementation and composed World/session integration
+remain pending. NS41 e2c7f03e has33 file/125 behavior transitions reviewed against
+exact parent/current receipts and actual staged gate with no accounting gaps.
+No new execution is inferred from that committed-history review.
+
+
+## Numeric contribution account comparison (NS43)
+
+Whole416d80 and both profile accessors505bf0/505c50 now pass24,576 prospectively
+bound original32/native64/ASan+UBSan+LSan64 cases. The original account executes
+the actual whole profile accessors and59bee0 truncate helper, with zero redirects.
+Readonly profile/body guards and x87 controlword/stack checks pass; the independent
+native CMake build and CTest pass. Immutable proof is
+original-contribution-account-bound-20261012.json.
+
+The model retains class0/24/25/26's reciprocal quantity calculation with profile0
+capacity square; other classes use28-pair wrapped sum, unsigned average/product
+and capacity division. The first profile accessor gives source kinds8/20 fixed10;
+otherwise both accessors use target/source58 flags for signed truncation bythree.
+Pinned numeric constants1,180000,30,1000000 and double0.999999 preserve original
+roles. Both conversions retain the signed64 low word and intermediate signed-word
+interpretation. No scoring/veterancy interpretation or balance change is added.
+
+Five native numeric/type refusals are separate from original undefined behavior.
+This comparison explicitly sets x87 precision64 and nearest rounding; original
+Windows caller/FPU modes and broader conversion/divisor/profile domains remain
+unvalidated. Complete native World/session composition and replacement stay
+pending. Incoming NS42 commit6cc03cbd is reviewed against exact receipts and its
+actual staged gate; committed-history accounting adds no new execution claim.
+
+
+## Owned maintenance contribution chain (NS44)
+
+The complete contribution branch now composes native owner lookup,resource change
+and numeric account. Its single persistent current-resource vector is shared
+through display reentry; controller/index and enabled fields resolve the same
+owned actor. No second persistent resource copy is introduced.
+
+A fresh prospective comparison passes8,192 original32/native64/ASan+UBSan+LSan64
+cases through unchanged509e50,466870,507f00,416d80,505bf0,505c50 and59bee0. All
+seven bodies execute without helper redirects within that graph.181 UI sequences
+and2,120 credited fixtures are nonempty. Complete actors/catalog/owner/ancestry/
+recipient/config/body guards and ordered consequences match. The isolated native
+CMake build and CTest pass. Immutable record:
+original-contribution-owned-bound-20261012.json.
+
+The first development corpus stopped before original execution because correlated
+controller/owner seeds left its UI branch empty. The corrected corpus decouples
+those seeds. The inherited lifecycle fixture's death-account redirect is restored
+to the pinned whole account before graph execution; that restoration and body
+guards are explicit. Both development reports remain retained.
+
+UI implementation and other maintenance siblings remain supplied. The composed
+domain uses positive initial resource/inventory/capacity, canonical1..128 actors,
+valid acyclic ancestry and precision64/nearest; broader primitive domains remain
+covered only by their separate scoped proofs. This is a recovered call-chain
+comparison, not complete native World/session integration or live replacement.
+Incoming NS43 c31d0571 has15 file/128 behavior transitions reviewed against exact
+receipts and actual staged gate with no unresolved accounting gaps.
+
+
+## Ownership transfer and leaf comparisons (NS45/NS46)
+
+Whole51ec80 passes16,384 prospectively bound original32/native64/sanitized64
+cases:5,461 same-owner no-ops,10,923 fixtures invoking root callbacks and2,789
+display writes. Ordered owner-count/visibility/reset/UI/color/target-repair/root/
+controller calls and complete actor/definition/effect/root/display/global/body
+guards match. Each ancestry root is reloaded separately. The terminal display
+write uses the requested owner even if a callback changes the actor owner. Two
+native-only malformed display refusals require caller rollback.
+
+Whole411e50,407b90,51a880 and512340 independently pass32,768 prospective
+original32/native64/ASan+UBSan+LSan64 cases. Wizard class0/24/25/26 returnsone.
+Root activity89 changes1to0 or3to2; every other word is preserved. Visibility
+sets24-array words30 for own/shared-allied owners, otherwisezero, and clears
+separate48-array words. Marker clear releases only kind2 nonnull effects, then
+clears that node's token; later token mutations are read at the original points.
+Full actor-or-root/list/sentinel/node/effect/relation/body guards match. Two
+native-only invalid visibility-owner refusals are separate from baseline behavior.
+Independent native CMake builds and CTests pass for both components.
+
+Static lower-helper review corrects provisional names:522340 recounts owner
+creatures,51a880 refreshes visibility,407b90 clears a finite root activity state,
+and416590 remains source-controller work rather than established list insertion.
+The transfer fixture's root callback counters are supplied consequence data, not
+a claim about407b90 reference counts. Final transferv1 with provisional names is
+retained inworking; renamed source/scope is freshly compared under finalv2.
+Staticv1 is also retained; corrected staticv2 is the new registered result.
+
+These are parent and leaf projections, not a composed ownership chain. Lower
+count/target/controller/color/UI/reset/effect ownership, installed construction,
+complete native World/session and live replacement remain pending. No balance
+changes or broad integration stages are asserted. Incoming NS44 f62ba148 is
+reviewed against exact receipts and actual staged gate; historical review is
+separate from these new execution results.
+
+
+## Owner count and target repair comparisons (NS47/NS48)
+
+Whole522340 with actual unchanged466870 lookup passes16,384 prospectively bound
+original32/native64/ASan+UBSan+LSan64 cases. The associated actor is cached; count
+includes active/living same-associated-owner actors except its slot and type27.
+The count write precedes local wizard UI.2,201 count display calls,212 below-limit
+and181 at-limit calls validate signed saved-old/current/maximum thresholds after
+UI reentry. Full actors/definitions/owner/global/two-body guards match. Two native
+owner/limit backing refusals are separate from original behavior.
+
+Whole51edf0 passes8,192 prospectively bound original32/native64/sanitized64 cases:
+102,441 behavior callbacks,78,109 resets and68,284 engagement notifications.
+Behavior is cached before the action callback, while target/pending/logical count
+and later actor/owner fields reload at the original points. Callback death does
+not add a new same-iteration health gate. Source preparation precedes logical
+count reads; callbacks can shrink or expand count with fixed backing. Complete
+actor/relation/count/fixed-capacity/body guards and ordered calls match. Two
+native malformed count/owner refusals require staged caller rollback.
+
+Independent native CMake builds and CTests pass. Count UI and target preparation/
+peer/behavior/reset consequences remain supplied; neutral relation alias,
+invalid pointers/indices/capacity, arbitrary adjusted indirect handlers, installed
+profiles and complete World/session/live replacement remain outside these proofs.
+Both immutable records preserve fresh source/compiler/declaration closure and
+original-manifest before/after verification. Incoming NS45/46 ad348ede is reviewed
+against its exact receipts and actual staged gate:25 file/141 behavior transitions
+with no accounting gaps. This history review adds no new execution evidence.
+
+
+## Source graph traversal and roots (NS49)
+
+Whole407920/4079f0/514810/5183f0/51e790 pass32,768 prospectively bound
+original32/native64/ASan+UBSan+LSan64 cases with zero helper redirects. All five
+bodies and complete141-byte nodes/child vectors/actors/owner records are guarded.
+7,387 actor yields,1,639 round-robin fallbacks and2,731 absent controllers are
+nonempty. Eight mutable traversal slots choose the first free slot or rotate
+when occupied, initialize nested cursors and use signed activity>=mode. The
+iterator introduces no active/health filter. Caller mode changes between calls
+are preserved. Root assignment honors owner flag4, terminal lookup follows39
+parents, and the absent-controller predicate checks owner+C equalffffffff.
+Five native cycle/rotation/owner/family refusals require caller-staged rollback.
+The isolated native CMake build and CTest pass. Immutable proof:
+original-source-graph-bound-20261012.json.
+
+The fresh static dependency export also pins source coordinate wrappers, vector
+insertion and recipient registration.416590 groups source roots by a minimum
+normalized squared distance after temporarily selecting traversal mode3. It
+allocates141-byte nodes and changes parent/recipient relationships and pending
+registration. Complete grouping/allocation/recipient semantics remain pending.
+Stack accounting shows the byte copied to node25 can initially be the low byte
+of the incoming actor argument: sub1c plus four pushes makes currentesp+30 the
+argument slot; traversal setne atesp+34 while one argument is pushed overwrites
+that same byte. No-traversal paths retain it. Its allocator/representation role
+is unconfirmed; do not label it an established random/uninitialized value or
+invent a zero baseline. This static finding does not establish execution parity.
+
+The existing reconstructed250-word RNG can be reused by future composition;
+this change adds no alternative generator or validation claim. Installed
+construction, full controller/group/recipient/World ownership, native session
+and live replacement remain pending. NS47/48 be4199a9 is reviewed against exact
+receipts and actual staged gate:28 file/143 behavior transitions, no accounting
+gaps. Historical review adds no new execution result.
+
+
+## Logical source-controller grouping (NS50)
+
+Whole416590 with12 actual unchanged traversal/root/controller/RNG/coordinate
+helpers passes8,192 prospectively bound original32/native64/ASan+UBSan+LSan64
+cases.5,473 leaf allocations,3,098 group allocations,2,719 blocked inputs and
+1,113 conditional RNG draws are nonempty. Owner/8e5/704/type22/network gates,
+mode3 enumeration/drain/restoration, fresh restored-mode traversal, signed
+threshold/parity draw, minimum normalized squared distance, exclusions, parent/
+recipient transfer and final registration calls match. Complete modelled node/
+actor/owner/recipient/list/scalar/RNG/body guards and ordered events pass.
+The independent native CMake build and CTest pass. Five malformed native domains
+refuse with caller-staged rollback. Immutable record:
+original-source-controller-bound-20261012.json.
+
+Allocation supplies zero-filled successful141-byte nodes; generic vector append
+stays within reserved backing and recipient registration is a supplied service.
+These storage/registration boundaries remain separate from the recovered grouping
+rules. Byte25 is not asserted baseline-equal to the native tag. Coordinate
+temporary construction also overwrites the reused incoming-argument stack slot
+with its final temporary address, entryESP-68. The private invocation thunk
+captures the real entry stack without changing any compared body; the original
+byte is independently reconstructed and guarded. Native configurable tags use
+owned deterministic representation.32 metamorphic native tag changes preserve
+all decisions, graph/roots/RNG and ordered events. Allocator interpretation and
+arbitrary original heap/caller representations remain unvalidated.
+
+Developmentv1 stopped on a fixture mixed-type auto declaration. Developmentv2
+caught byte25's coordinate-stack provenance;v3 passed with explicit representation
+accounting. All failed/source versions remain retained; the final result has
+its own prospective declaration and stable source/compiler closure. Earlier
+static findings about initial argument/traversal-byte reuse remain historical
+and are extended here, not rewritten.
+
+Whole source registration416fe0, complete collection/allocation/recipient
+ownership, installed profile construction, canonical World/session composition
+and live replacement remain pending. Registration has separate general2a,
+wizard5a and other8a pending queues; this is instruction evidence awaiting fresh
+comparison. NS49 421caf78 has18 file/149 behavior transitions reviewed against
+exact receipts and staged gate with no accounting gaps; history review adds no
+new execution or broad integration claim.
+
+
+## Source pending registration (NS51)
+
+Whole416fe0 with actual407920/4079f0/411e50/42d830/430140 passes8,192
+prospectively bound original32/native64/ASan+UBSan+LSan64 cases.1,536 general,
+1,238 wizard and2,828 other queue admissions are nonempty. Recipient-present
+roots skip the initial general2a admission. The full signed source traversal
+finds the first wizard-kind0/24/25/26 with zero block7c and drains remaining
+actors, then chooses wizard5a or other8a. Each selected queue deduplicates and
+pushes at the front; existing repeated entries are preserved. No health/active
+filter is introduced. Full node/actor/config/recipient/three queue/block/map/
+child/mode/body guards match. Two malformed native root/actor cases refuse
+with caller-staged rollback. The native CMake build and CTest pass.
+Immutable proof:original-source-pending-bound-20261012.json.
+
+Deque capacity preparation is a supplied boundary and the original iterator
+helpers run on one reserved4096-byte block per queue. Cross-block/reallocation
+and original storage ownership remain separate from native stddeque storage.
+The first development corpus stopped before original execution because recipient
+and queue-length seeds suppressed all new general admissions. Independent seeds
+correct that domain; the failed report remains retained. A launcher typo targeted
+a nonexistent driver and consumed no original artifact; the corrected guarded
+run is separate. No historical report hashes are refreshed.
+
+Grouping and registration are individually compared; their composed graph,
+complete native World/session construction and live replacement remain pending.
+NS50 7e19a955 has22 file/154 behavior transitions reviewed against exact receipts
+and actual staged gate with no accounting gaps. That history review adds no
+new execution result.
+
+
+## Owned source grouping and registration chain (NS52)
+
+Native grouping now invokes native pending registration on the same owned source
+tree/three queue set. A fresh prospective comparison passes8,192 original32/
+native64/ASan+UBSan+LSan64 cases through17 unchanged original bodies, including
+actual416fe0 registration,411e50 classification and deque iterators. Registration
+is not redirected.5,345 general,2,233 wizard and3,112 other admissions plus3,098
+groups are nonempty. Full modelled nodes/roots/actors/configs/queues/maps/owners/
+recipients/mode/RNG/body guards and ordered allocation events match. New cursor
+initialization after registration is compared explicitly. The native CMake build
+and CTest pass. Immutable proof:original-source-owned-bound-ns52-20261012.json.
+
+The common controller fixture preserves an including caller's main macro, saves
+the original registration body before its standalone redirect, and adds optional
+comparison extensions for shared queues/configs/new cursors. The unchanged
+standalone controller domain separately passes8,192 fresh bound cases with these
+extensions inactive; the NS50 record retains its original source hashes. Both
+records have prospective declarations and stable compiler/source closure.
+
+Successful zero-filled allocation, generic vector append and reserved deque
+capacity remain supplied storage boundaries. Original allocator/private byte25
+equality is excluded and the captured machine stack-byte guard remains explicit.
+Complete storage/installed construction and canonical native World/session/live
+replacement stay pending; this chain comparison does not promote those stages.
+Incoming NS51 ab90556f has25 file/157 behavior transitions reviewed against exact
+receipts and actual staged gate with no gaps. History review adds no execution.
+
+
+## Owned ownership-transfer consequences (NS53)
+
+Native ownership transfer now composes recount/associated-owner lookup, owner
+visibility, queued-marker clearing, wizard classification and root activity on
+the caller's existing World actors, limits, orders and source graph. Whole51ec80
+plus actual522340/466870/51a880/512340/411e50/407b90 passes16,384 prospectively
+bound original32/native64/ASan+UBSan+LSan64 cases.6,826 same-owner no-ops,3,502
+root activity changes,9,558 visibility changes,15,817 combined route/queued-effect
+releases and2,402 display writes are nonempty.2,274 count UI calls,263 below-limit
+and161 at-limit callbacks cover the signed threshold reload after UI mutation.
+Complete actor/config/owner/relation/limit/selection/source/list/effect/display/
+global/body guards match, including effect reentry that changes a later marker.
+The independent native CMake build and CTest pass.
+Immutable proof:original-transfer-owned-bound-ns53-20261013.json.
+
+The bounded corpus uses one canonical1..32-actor World, owner/request0..7, eight
+owner records, four source nodes, stable0..15 orders/32 logical effects and one
+display. Lower reset, effect lifetime, UI/color, owner-target repair and source
+controller work remain supplied. Complete installed profiles, native session
+construction and live replacement remain pending. Two native malformed display
+refusals retain the caller-rollback requirement. The initial five-body development
+composition and expanded seven-body development run both passed; their records
+remain retained independently of the final bound result. Existing component
+source and historical evidence hashes are unchanged.
+
+Incoming NS52 c15fd872 has29 file/158 behavior transitions reviewed against exact
+receipts and its actual successful staged gate, with no unresolved accounting
+gaps. This committed-history review adds no new execution result.
+
+
+## Owned transfer and target-repair chain (NS54)
+
+Ownership transfer now calls native whole51edf0 target repair on the same
+canonical actors as its owned recount/lookup/visibility/marker/classification/
+activity rules. Fresh prospectively bound original32/native64/ASan+UBSan+LSan64
+passes16,384 cases through eight unchanged original bodies, with no target-repair
+redirect.43,942 behavior callbacks and27,774 peer callbacks are nonempty. The
+scan reloads mutable count/source owner/later activity, caches behavior before
+action20 callbacks and reloads target/pending afterwards. Callbacks can kill
+a visited actor or disable the next actor without introducing a new intra-slot
+health gate. Full actor/config/relation/limit/selection/source/list/effect/display/
+global/body guards pass. Native CMake build and CTest pass. Immutable proof:
+original-transfer-targets-owned-bound-ns54-20261013.json.
+
+Both transfer and target repair use the same lower.reset consequence, matching
+the shared original50ab30 call. A deliberately rejecting secondary repair reset
+callback verifies that this chain uses the canonical reset service. Lower
+prepare/peer/behavior/reset internals, effect lifetime, UI/color and source
+controller work remain supplied. The finite1..32-actor backing/order/root domain
+and caller rollback for native malformed references stay explicit. Complete
+installed construction, native World/session integration and live replacement
+remain pending; this composed proof promotes neither. The successful development
+record is retained with its original source version; the final shared-reset
+version has its own prospective declaration and stable compiler closure.
+
+NS53 357264ed has27 file/157 behavior transitions reviewed against exact receipts
+and its actual successful staged gate with no unresolved gaps. This incoming
+committed-history review adds no new execution result.
+
+
+## Owned transfer, target repair and reset transitions (NS55)
+
+Ownership transfer and target repair now call native whole50ab30 reset on the
+same canonical World actors and per-actor execution vector. Reset composes
+whole50aa30 behavior transition and50a930 resolver with executed argument1.
+Fresh prospectively bound original32/native64/ASan+UBSan+LSan64 passes16,384
+cases through11 unchanged original bodies. Reset and transition are not
+redirected. Complete actor/config/owner/relation/limit/selection/source/per-actor
+list/effect/display/global/body guards and resolver table/callback identities
+pass. The independent native CMake build and CTest pass. Immutable proof:
+original-transfer-reset-owned-bound-ns55-20261013.json.
+
+Reset's mode/color ordering, pending8 gate, byte/word flag clearing, home update,
+disengagement and behavior2 route/order releases execute in the composed chain.
+The effect-release endpoint is shared with transfer/marker clearing; the peer
+endpoint is shared with target repair. Rejecting duplicate factory callbacks
+verify those bindings.31,867 supplied idle callbacks,18,743 color restores and
+27,290 final newly bound actor callback states are nonempty.18,437 moving actor
+states retain pending1; that is a state count, not a claim that each was newly
+deferred. The native64/sanitized64 digest includes all added reset fields as
+well as actor/execution/queue/continuation outcomes.
+
+The original transition installs a callback independently of later behavior-word
+changes. The supplied logical callback bridge therefore retains initial versus
+idle binding separately; later repair dispatch follows that binding. Raw legacy
+function/this-adjust fields are guarded against the expected original identity.
+This does not claim complete native behavior binding/body ownership. Color
+restoration, behavior bodies, prepare/peer internals, effect lifetime, UI/color
+and controller work remain supplied. Installed profiles, arbitrary pointer/
+resolver callers, reshaping backing and complete native World/session/live
+replacement remain pending. Two native display refusals preserve caller rollback.
+
+The successful unbound development record retains its source version. The final
+comparison has a separate prospective declaration and stable compiler closure;
+existing component source and historical evidence fingerprints remain unchanged.
+Incoming NS54 e5be42d5 has31 file/158 behavior transitions reviewed against exact
+receipts and its successful actual staged gate, with no unresolved accounting
+gaps. This history review adds no new execution or retrospective gate assertion.
+
+
+## Owned idle behavior and callback continuation (NS56)
+
+The composed ownership transfer/repair/reset chain now owns whole50acb0 idle
+behavior and an explicit per-actor supplied/idle callback binding. Reset installs
+the idle binding before running it; later target-repair dispatch follows that
+binding even when a lower consequence changes the behavior word. The initial
+other callback remains supplied. No raw function pointer or this-adjust value
+is stored by the native binding model. An unknown logical binding refuses at
+dispatch, with caller rollback required; this is native representation/admission
+policy, separate from original malformed-pointer behavior.
+
+Fresh prospectively bound original32/native64/ASan+UBSan+LSan64 passes16,384
+cases through12 unchanged original bodies, including actual50acb0. Idle is not
+redirected.26,417 immediate,24,554 interaction,14,652 follow and11,495 queue
+queries are nonempty, along with8,436 action1 and13,738 action6 consequences.
+The initial type22/27 gate, cached admission when the immediate callback edits
+type, ordered short circuits and later field/callback reloads match. The record
+counts final bound callbacks whose behavior word differs from1; raw callback
+identity and zero this-adjust are guarded independently of the word. Complete
+actor/config/owner/relation/limit/selection/source/per-actor list/effect/display/
+global/resolver-table/body guards and native64 semantic digests pass. Native
+CMake build and CTest pass. Immutable record:
+original-transfer-idle-owned-bound-ns56-20261013.json.
+
+Three native-only refusals cover the two display domains plus invalid binding99.
+Rejecting duplicate idle/reset/release/peer providers guard canonical dispatch.
+Lower immediate/interaction/follow/queue/action internals, other behavior bodies,
+color/prepare/peer internals, effect lifetime, UI and controller work remain
+supplied. Installed profiles, unknown/raw callback families, reshaping backing
+and complete native World/session/live replacement remain pending. The successful
+development source/report remain retained separately from the final prospective
+proof; earlier component source and evidence fingerprints are unchanged.
+
+Incoming NS55 36434067 has34 file/159 behavior transitions reviewed against exact
+receipts and its successful actual staged gate, with no accounting gaps. That
+history review adds no new execution result or retrospective gate assertion.
+
+
+## Owned follow pursuit in the idle/reset chain (NS57)
+
+Idle follow now calls native whole513850 on the same canonical World actors/
+execution. Fresh bound original32/native64/ASan+UBSan+LSan64 passes16,384 cases
+through14 unchanged original bodies, including actual513850 and40e250 descriptor
+construction. Follow is not redirected. 9022 geometry adjustments and6151
+moves cover both successful and rejected adjustments. Raw XY separation precedes
+target health and XY normalization; its initial gate does not use wrapped
+distance. Geometry can clear the follow reference or kill the target after
+coordinates are copied; admitted moves retain those copied values. Full actor/
+config/owner/relation/limit/selection/source/per-actor list/effect/display/global/
+body/dispatch/callback guards and descriptor22 ABI match. Native CMake build and
+CTest pass. Immutable proof:original-transfer-follow-owned-bound-ns57-20261013.json.
+
+The finite corpus has1..32 actors, valid follow references or-1, positive16x16
+dimensions and XY-1..17/Z0..3. Descriptor22 copies four DWORD profile arguments
+at0/4/8/12, zero byte16, current kind DWORD17 and zero byte21. Fixture profiles
+bind configuration offsetsC/8/3c/44 without assigning unconfirmed installed
+meanings. Geometry/move, action/queue/immediate/interaction and remaining lower
+ownership stay supplied. Complete profile/World/session/live replacement remain
+pending. Development seeds initially correlated follow admission with geometry
+success; independent final seeds cover rejection. The old source/report remain
+unchanged. Current read-only export:original-follow-queue-static-ns57-20261013.json;
+earlier export versions remain retained separately. Broad helper spans include
+padding and are static findings, not complete recovered-boundary assertions.
+
+Queue instruction review finds terminal noncycling cleanup calls512340, which
+releases kind2 markers, then generic52d0c0 teardown. Current native advanceOrders
+releases every remaining effect. This scoped instruction/model discrepancy is
+pending a broader paired queue corpus; the existing0..4-node corpus retains its
+original results. Incoming NS56 93e4867e has37 file/161 behavior transitions
+reviewed against exact receipts and staged gate with no accounting gaps; that
+history review adds no new execution.
+
+
+## Owned queue advancement in the ownership chain (NS58)
+
+Ownership transfer/reset/idle/follow now advances native owned order vectors on
+canonical actors and execution state, using stable serial cursors. Whole524130
+and five initializer/cursor/scalar/list-clear helpers join the prior fourteen
+unchanged original bodies. Command delivery520ad0 and fixed-slot free597870
+remain supplied. Queue delivery and transfer/reset/marker clearing share the
+same effect release service; deliberately rejecting duplicate providers guard
+that composition.
+
+Fresh prospectively declared original32/native64/ASan+UBSan+LSan64 comparison
+passes16,384 cases across20 unchanged original bodies, with6889 command deliveries
+and5841 retired nodes. The finite corpus has1..32 actors and0..15 allocated order
+slots per actor, repeat/cycle flags and valid initial serial cursors, bounded
+coordinates and at least one kind2 anchor in nonempty cyclic queues. The original
+live doubly-linked payload/link/count/cursor state is normalized to native order
+vectors. Retired IDs match removed native serials, double-free is rejected,
+retired snapshots remain unchanged after free, and padding/unused backing are
+guarded. This does not compare native physical retired-node bytes. Full actor,
+configuration, effects, globals, dispatch, body and live-storage guards pass.
+The independent CMake build and CTest pass. Immutable comparison:
+original-transfer-queue-owned-bound-ns58-20261013.json.
+
+The larger corpus confirms the NS57 cleanup discrepancy. Case219 of development-v2
+releases only kind2 markers2/5/8 in the original, while the previous native code
+also released non-move effects1/4/7. Terminal noncycling cleanup now releases only
+kind2 effects before clearing storage, matching actual512340 followed by52d0c0.
+Development-v2 and diagnostic development-v3 retain their failures and original
+source fingerprints. Development-v4 passes after that one-line semantic fix;
+final-v1 independently binds current source and scope. Existing historical records
+are preserved. Fresh current-code component proofs separately pass32768 queued
+order cases/eight bodies and16384 follow-chain cases/fourteen bodies:
+original-orders-current-bound-ns58-20261013.json and
+original-transfer-follow-current-bound-ns58-20261013.json.
+
+Delivery latches motion/action15, may change behavior/pending and may change the
+current non-anchor node kind after command data is copied. Original advancement
+reloads that kind before removal. Callbacks preserve cursor/topology/backing.
+Development-v1 stopped natively before original execution because repeated idle
+entry could reach an end cursor with live orders. Same-tick terminal-cursor reentry
+remains excluded rather than asserted recovered; motion-latching delivery bounds
+that path in the compared corpus. All-target cyclic queues, reshaping callbacks,
+out-of-range order coordinates and physical allocator equality remain excluded.
+Four native-only refusals include missing serial999 and the earlier display/binding
+domains. Caller rollback remains required; original malformed pointers are not
+compared. Native storage admission is registered independently as policy with no
+original-comparison promotion.
+
+Other affected historical component evidence may be source-stale after orders.cpp
+changed. Its recorded hashes/statuses remain preserved; the fresh proofs above
+cover their declared domains only. Complete command/action/geometry/effect/controller
+services, installed profiles, native World/session integration and live replacement
+remain pending. NS57 a9c84616 incoming history has43 file/163 behavior transitions
+reviewed against exact receipts and its successful actual staged gate, with zero
+unresolved accounting gaps. This history review is not a new execution result or
+retrospective gate assertion.
+
+
+## Owned command dispatch in the ownership chain (NS59)
+
+Ownership/reset/idle/follow/queue now calls native whole520ad0 command dispatch
+on the same canonical actor/execution/order state. The dispatcher selects kind2
+move, kind3 only when the referenced target's health is nonzero, and kind4
+coordinate attack. Other modes do nothing. Lower50fae0/50ad10/50ca30 command
+bodies remain supplied. Follow and delivery use the same supplied50fae0 move
+consequence, matching the original shared call boundary. Duplicate queue
+performOrder and release providers deliberately throw if composition escapes.
+
+Fresh prospectively source/scope-bound original32/native64/ASan+UBSan+LSan64
+passes20,480 cases:16,384 composed ownership fixtures through21 unchanged bodies
+and4096 direct dispatcher fixtures. Delivery520ad0 is not redirected. Direct
+modes0..6 cover585 move,293 living-target,585 coordinate,292 dead-target and2341
+unsupported-mode cases. Dead targets and unsupported modes have no lower command
+calls or actor/order changes. All complete actor/configuration/effect/global/
+dispatch/body/live-list/retired-identity/padding guards pass. The composed corpus
+has1316 target handlers,1412 coordinate handlers,9258 shared move handlers and
+4995 retired nodes. Shared moves include follow and queue movement; they are not
+a count of queue deliveries or follow moves alone. Native CMake build and CTest
+pass. Immutable final proof:
+original-transfer-delivery-owned-bound-ns59-20261013.json. Read-only pinned
+520ad0 export:original-order-delivery-static-ns59-20261013.json. Confidence is
+high only within these explicitly bounded domains.
+
+Composed fixtures have1..32 actors,0..15 fixed order slots, valid serial cursors,
+positive16x16 dimensions and bounded coordinates. First and last nodes of each
+nonempty queue are kind2 move anchors. Target slots vary over valid actors;
+lower target handlers may kill an admitted target, and lower target/coordinate
+handlers may change the current non-anchor non-tail node kind after delivery
+copies command fields. Lower command consequences latch motion and preserve
+backing/topology/cursor. Mutable target health is tested after the living gate;
+the dispatcher calls its admitted handler once. The original fixed-slot free
+boundary remains supplied. Native vectors/serials do not model physical retired
+payloads or raw allocator state.
+
+Development-v1 stopped in native execution before running the original because
+unanchored dead-target delivery could reach the previously recorded end-cursor
+reentry refusal. Its failed report/source fingerprints and manifest checks are
+retained; it establishes neither original behavior nor equivalence. Reviewing
+524130 shows it reads repeat/effect fields through its current cursor before
+comparing the advanced cursor to the sentinel. Installed sentinel payload and
+end-cursor reentry therefore remain unresolved. Development-v2 and final-v1
+use explicit first/last move anchors and preserve that boundary, rather than
+promoting it. Invalid cursors/raw targets, all-target cyclic lists, topology
+changes, wider coordinates/profiles and installed queue construction remain
+excluded. Four native-only display/binding/missing-serial refusals preserve the
+existing caller-rollback policy. Original malformed pointers are not compared.
+
+Complete lower move/target/coordinate/immediate/interaction/action/geometry/
+effect/controller services, installed profiles, native World/session scheduling
+and live replacement remain pending. This adds composed dispatcher ownership,
+not native session integration. Existing component sources and historical
+evidence hashes remain unchanged. NS58 2868446d incoming history has45 file/165
+behavior transitions reviewed against exact parent/current receipts and its
+successful actual staged gate, with zero accounting gaps. That review adds no
+execution result or retrospective gate assertion.
+
+The earlier1280GiB storage policy refused both static/history preflights at
+1289.26GiB due concurrent output; neither experiment started. The user's prior
+storage authorization supplies a private1312GiB cap for NS59 while preserving
+100GiB filesystem free space. The inventory and authorization record remain
+under working/retention. This is storage provenance, not engine validation.
+
+
+## Owned command handlers and callback continuation (NS60)
+
+A new OwnedCreatureCommands context runs whole50fae0 move,50ad10 target and50ca30
+coordinate admission alongside the existing ownership/reset/idle/follow/queue/
+delivery ports. Follow and command movement use the same owned orderMove body.
+Reset, transitions, release and peer consequences share canonical actor/execution
+storage. Command bindings supplied/idle/move/target/coordinate retain the installed
+callback identity separately from a lower callback's later behavior-word edits.
+Repair dispatch follows that identity; native tags do not store host/PE pointers.
+Lower510010/50afa0/50ccd0 behavior bodies, action, movement renewal516fd0,
+orientation5084f0 and queue refresh5120c0 remain explicit supplied boundaries.
+
+The finite comparison has16384 composed first/last move-anchor fixtures and4096
+direct dispatcher fixtures,1..32 canonical actors and0..15 order slots. Composed
+queues exclude type27 reset recursion; direct type27 reset uses empty queues and
+absent follow references. Positive16x16x4 dimensions and32x32x4 map backing with
+16 tile heights bound coordinate aim. Full actor/cast/route/live-order/global/
+map/body/dispatch/retired-ID/padding guards compare24 unchanged declared original
+bodies. Cross-architecture digests additionally cover cast aim/source/target/spell,
+target distance, route changes, action and all logical order payloads. Native
+CMake/CTest and prospectively declared original32/native64/ASan+UBSan+LSan64
+execution are recorded in the final NS60 proof. Append/clear/follow context APIs
+are implemented but their new composed ingress validation remains separately
+pending under AI.owned-command-ingress; this proof does not promote that scope.
+
+Development-v1 supplied wrong helper ABIs:516fd0 is renewal,5084f0 takes fine XY
+orientation arguments, and move refresh calls5120c0 rather than512220. Its private
+original execution fault and debugger output remain retained, with manifest
+verification. Development-v2 then found peer marker68 was left as padding;
+canonical marker68 and animationKind now initialize all actors. Development-v3
+found the synthetic release callback incorrectly treated physical node indices
+as live vector positions after removals. Both native and original callbacks now
+select the next live serial; declared command bodies remain unchanged. The corrected
+development-v4 passes all20480 cases. Final-v1 additionally guards native reentry
+and topology; final-v2 extends the cross-architecture digest and command-binding
+counters. All earlier records/source fingerprints remain retained separately.
+
+Native queue recursion and lower command changes to live serial topology/cursor/
+count refuse before returning to indexed advancement. The operation-local guard
+resets on exception; callers still must roll back staged actor/queue/effect state.
+These tests are native admission policy, not original recursive/malformed-pointer
+comparisons. Unknown callback99 and earlier display/missing-serial refusals remain
+separate. Complete native session publication, end-cursor/installed sentinel
+semantics, all-target cycling, broader profiles and live replacement remain
+pending for subsequent milestones. Lower behavior/action/route/geometry/visual/
+effect/controller ownership also remains explicit.
+
+NS59 32b042d5 incoming history reviews48 file/167 behavior transitions against
+exact receipts and its successful actual staged gate, with no unresolved accounting
+gaps. This is history accounting, not new execution or a retrospective gate pass.
+Refused1312GiB preflights at1342.90GiB/140.45GiB free and the user's authorized
+private1376GiB/100GiB-free guard are retained under working/retention; no cleanup
+or archive was used.
+
+
+## Cyclic end cursors and zero sentinel continuation (NS61)
+
+The repeated524130 corpus now compares128 seeds ×4 shapes ×4 calls =2048
+steps, with an explicitly zeroed original sentinel payload at bytes8..44.
+Cycling from logical end advances to the first live node without a target purge.
+Wrapping from a live tail purges kind3 targets; if that empties the list, original
+524130 still dispatches zero-sentinel mode0 and returns1. Development-v1 confirms
+this return mismatch against the prior native false result. The port now dispatches
+that no-op command and returns true. It leaves the cycling flag set and logical
+cursor at end; a later call on the empty list returns false through the ordinary
+empty-list gate. No sentinel effect or repeat state is invented.
+
+Fresh prospective original32/native64/ASan+UBSan+LSan64 passes all2048 steps,
+including128 successful empty wraps and189 nonempty end-cursor starts. Full
+actor/config/map/global/body/callback/live-list/retirement/padding guards pass;
+24 unchanged declared bodies are guarded, with524130 as the repeated entry.
+The scope does not infer that every guarded body executes on every step.
+Immutable proof:original-queue-continuation-bound-ns61-20261013.json.
+Native CMake/CTest pass. Source-current component proofs separately pass20480
+full command-chain cases and32768 queued-order primitive cases, preserving old
+records rather than rewriting their source hashes.
+
+Development-v2 faulted because the fixture rebuilt sparse live nodes at contiguous
+physical positions after removals. Development-v3 then found payload import still
+indexed the shortened vector by physical slot ID. Both now resolve stable live
+serials. Development-v4 caught the missing explicit algorithm include; the fixed
+v5 passes. These reports/debugger output and earlier source fingerprints remain
+retained. Initial callback bindings are now reconstructed independently of current
+behavior words before every repeated call. Comparison support accepts a declared
+entry operation without redirecting that entry or the owned command bodies.
+
+Native zero-sentinel representation and terminal admission are separate policy.
+Noncycling end entry refuses; a noncycling delivery that leaves live nodes at end
+also refuses before a caller can publish that continuation. The session still
+must roll back actor/order/effect/backend mutations; NS62 validates publication.
+These two native-only refusals are not original unsafe-pointer comparisons.
+Installed/uninitialized sentinel payload, invalid references and broader recursive
+or reshaping original callbacks remain unknown/excluded. Native cyclic support
+does not establish installed sentinel equivalence or complete original queue
+construction. Full lower services/campaign/live replacement remain pending.
+
+NS60 1ac5f6b9 incoming exact history covers51 files/172 behaviors with no accounting
+gaps against actual parent/current receipts and staged gate. It adds no execution
+or retrospective gate assertion. Other source-affected historical results retain
+explicit stale-source limits; the fresh components above cover only their scopes.
+The user-authorized private1408GiB cap retains100GiB filesystem free after the
+1376GiB guard refused at1376.34GiB; retained storage records are provenance only.
+
+
+## Owned command ingress and native rule-session publication (NS62)
+
+Append523be0, clear5243b0 and follow524460 now have a new composed original
+comparison through the owned command context. The finite1536 corpus contains512
+cases per operation,1..32 actors,0..3 initial slots,16x16x4 bounded positions,
+valid targets and fixed16-slot allocation backing. Full actor/cast/route/map/
+body/callback/live-list/retirement/padding guards compare28 declared unchanged
+bodies. Original append receives an integer target index; dispatcher520ad0 receives
+a target pointer. The new supplied48-byte allocator initializes45 known bytes,
+preserving the three trailing padding bytes, and native serials identify every
+new live node. Clear retains the original logical cursor even when storage becomes
+empty. Follow reset/idle/command effects execute through the same canonical context.
+Broad duplicate geometry, original allocator lifetime and installed construction
+remain excluded. Fresh prospective original32/native64/sanitized64 and native
+CMake/CTest are recorded by the NS62 ingress proof.
+
+The original-only allocation counter caused an initial native warning failure;
+it is now compiled only in reference mode. The second development run supplied
+the wrong append target-pointer ABI, exposing a guarded raw payload mismatch.
+The corrected index ABI passes the third run. Original live payload import now
+reconstructs all fields from node bytes plus stable serials, allowing freshly
+allocated nodes rather than requiring them in the initial vector. Failed reports
+and source fingerprints remain retained. Affected full-command and repeated-queue
+proofs are rerun prospectively; earlier hashes/statuses are never refreshed.
+
+apps/command-session/Runtime implements the existing independent native
+CreatureRuleRuntime interface. CreatureRuleSession owns generation-checked semantic
+commands, candidate ticks and atomic publication. The adapter owns canonical
+actor/execution/installed callback state and a complete pointer-free CMD1/v1
+continuation; native entities receive position/type/owner/target projections.
+The codec explicitly preserves every current actor/execution field, coefficient
+and inventory array, order payload/serial, scheduler/environment, seed, generation
+and opaque staged backend bytes. Exact profile/pool/geometry/projection validation,
+checked lengths/versions/types/references and bounded coordinates reject malformed
+or unsupported continuation. Terrain aim uses checked wider arithmetic before
+calling the original-style signed32 expression.
+
+Fresh bound native/sanitized execution and CMake/CTest exercise all five semantic
+commands, queued delivery, invalid targets/positions, failed command/tick/terrain
+arithmetic/event publication, malformed/truncated/excessive/version/profile/stale
+restore input and three unsafe queue refusal/recovery cases. Two snapshot-restored
+sessions produce byte-identical state for80 subsequent ticks. Normal/sanitized
+final snapshot digests agree. Recursive/topology/noncycling end refusals now
+preserve actor/order/backend/entity/tick state at the real session boundary;
+clear recovers those queues. No Wine, PE image, Qt widget or original media is
+needed to execute these native session tests. Source closure is pinned before
+compilation and checked afterwards, including normalized compiler dependencies
+and actual configured CMake inputs. See apps/command-session/README.md and
+research/formats/native-command-continuation.md.
+
+This promotes bounded headless integration, not complete original frame/campaign
+or live equivalence. Applications still supply behavior/geometry/effect/frame
+providers operating only on staged continuation; the test frame provider is
+synthetic. There is no implicit substitute when a provider is missing. External
+side effects cannot be rolled back and must wait until successful publication.
+The dense1..128-actor adapter does not claim actor creation/removal or original
+save/profile rebinding. Installed/uninitialized sentinel semantics, complete
+original lower World/strategic/animation/geometry/effect/controller ownership,
+visible campaign integration and live replacement remain separate outstanding
+engine contracts. Full campaign Wine removal is not established by this milestone.
+
+NS61 56bc5ac1 exact committed-history review covers53 files/174 behaviors with no
+accounting gaps against receipts and its actual successful staged gate. That
+history review adds no execution or retrospective gate assertion. The100GiB
+reserve interrupted NS61 accounting before the final gate; the already authorized
+private90GiB reserve allowed the final reviewed check and normal hook to complete.
+Private1408GiB/90GiB final-check storage provenance remains under working/retention;
+originals, raw evidence and archives are preserved.
+
+NS62 immutable records are original-command-ingress-bound-ns62-20261013.json,
+original-commands-current-bound-ns62-20261013.json and
+original-queue-current-bound-ns62-20261013.json. The native adapter is a native
+policy, not an original function without a binary anchor. The accounting review
+corrected its initial prospective classification and required a fresh execution
+claim under that policy; the earlier native result remains historical evidence.
+The current native integration record is
+native-command-session-policy-bound-ns62-20261013.json. Older scope/source claims
+retain their limitations rather than receiving updated fingerprints.
+
+## Owned move/target/coordinate behavior continuation (NS63)
+
+The command context can now install recovered callback bodies once before a
+staged operation. It passes its own context to the body, so movement's nested
+move/reset, dead-target transition, target maintenance and ranged maintenance
+use the original canonical world/execution roots and queue recursion/topology
+admission. The body adapter requires matching maintenance and movement roots;
+foreign command roots, actors, unsupported selectors and duplicate/empty provider
+installation are native admission policies, not original malformed-pointer proofs.
+
+The composed scope contains whole510010,50afa0,50ccd0,50b0c0,50b2c0 and505cf0
+alongside the existing command/transition/reset/idle/follow/queue path. Action,
+geometry, form/animation, renewal, landing/health/occupancy/removal and full frame
+services remain explicit. Movement retains temporary form/block restoration,
+arrival/reset/type27 removal, adjacency/fallback and landing ordering. Target
+retains reach/incoming/moving-target gates and nested class-specific ranged or
+maintenance work; coordinate retains readiness/deadline/range/motion routing.
+Understanding of these bodies and integration of this composition remain separate
+from owning their lower providers and complete original campaign execution.
+
+The finite comparison has1024 seeds x6 callback/transition entries,1..32 actors,
+28 types/classes, bounded16x16x4 actor coordinates and empty queues.30 unchanged
+bodies and full actor/map/config/callback/order/padding guards are declared.
+Extra fixture import/pack hooks preserve the shared actor projection without
+redirecting the six added body entries. The native session exercises all three
+owned command bodies, callback failure rollback and80 byte-identical restored
+ticks with explicit synthetic route/frame/geometry/action providers. Complete
+original frame timing, movement physics, campaign and live replacement remain
+excluded. Historical shared-fixture and session results are preserved; affected
+command/queue/ingress/session proofs must be rerun before current validation.
+
+CMD1/version2 appends complete CreatureMaintenance and MovementBehaviorState
+vectors to the previous schema. All scalar/array/effect-token fields are explicit;
+no provider, object pointer or transient guard is serialized. Version1 decodes
+with absent vectors and is admitted only for profiles retaining supplied bodies.
+Recovered-body profiles require matching vectors and reject missing state at
+restore. The outer application map/profile identity is independent of this schema
+version. New native continuation behavior is documented in the format and app
+README; original save/profile rebinding and dynamic actor lifecycle remain pending.
+
+Composition exposed a distinction hidden by the earlier observation adapter:
+51010a calls50fae0 for route-renew movement, while5103ca calls509230 after landing
+relocation. These are distinct lower contracts. MovementBehaviorServices now has
+an explicit renewMove slot; the owned adapter wires only that slot to the shared
+move command and leaves landing movement supplied. Existing one-endpoint
+observation callers retain their old mapping when renewMove is absent. Static
+movement_behavior.asm from the retained static-v10 export provides instruction
+and call evidence; the new comparison separately exercises the composed mapping.
+Likewise landing invalidation51aa30 has no stack argument, while type27 completion
+uses51f5e0 with zero. Both supplied ABIs must retain their own stack contract.
+Initial development failures, debugger traces and source-change refusals are
+preserved and do not constitute current equivalence evidence.
+
+Native body admission also rejects unrepresentable signed movement subtraction/
+absolute value and ranged fine-position plus aim arithmetic. These refusals
+precede lower provider calls; ranged continuation rechecks fine aim after the supplied
+target-reach query. The finite original comparison does not execute unsafe arithmetic inputs.
+Native tests distinguish this exact refusal from a missing-provider exception and
+retain atomic session rollback coverage. The context corpus therefore has eight
+installation/root/actor/selector/arithmetic refusals.
+
+Current NS63 immutable proofs are original-command-behaviors-owned-bound-ns63-
+20261013.json and native-command-behavior-session-bound-ns63-20261013.json.
+Source-current command/queue/ingress/lifecycle results have their own new NS63
+records and evidence IDs; earlier hashes remain historical. Normal and sanitized
+native continuations match, including the existing session corpus and new owned
+behavior corpus. NS62 history review covers77 file transitions/132 behaviors with
+no missing exact receipts; it does not infer new original comparison or live
+replacement. Final builds, snapshots and checks use the authorized private1408GiB
+cap with100GiB free reserve; prior90GiB development guard records remain retained.
+
+
+## NS64: owned action selection and animation-event continuation
+
+`OwnedCommandActions` shares the staged world/execution roots and existing
+`OwnedCreatureCommands` context. Optional paired action installation routes
+reset/move/idle and recovered movement/target/coordinate/ranged action requests
+through the recovered50db60 selector. The50da50 mapping is preserved as a logical
+installed callback in `CreatureExecution.actionCallback`; null entries remain
+inert. Selection installs a callback without immediately invoking it.
+
+Installed8/9/15 callbacks execute recovered50e6f0/50e670/50f7c0 respectively.
+Animation event1/2, main/overlay poll order, cast suppression, recovery deadline,
+form restoration and its behavior2 early return, and ready cooldown/repeated
+behavior calls are retained. A behavior call uses the installed command binding,
+not the mutable behavior word; action tick likewise uses the installed callback,
+not the current action word. Other valid action handlers require an explicit
+remaining-body provider and refuse if missing. Foreign actors/roots, malformed
+logical callback tokens and incomplete/duplicate installation are native policies.
+
+The original comparison runs4096 seeds x7 operations through five unchanged
+bodies. It compares selection followed by installed ranged/ready/null/shared
+callback dispatch, motion suppression, independent action/behavior word edits,
+ordered scripted lower services, full actor bytes and configuration/list/body
+guards. Its lower behavior callback is supplied: it does not claim a paired
+original full command-body/action/frame execution. Existing command bodies are
+regressed separately, and their composition with owned actions is exercised in
+the real native rule session. Native tests resume80 ticks exactly, route three
+semantic command kinds through owned selection, and roll back failed ANI poll
+and cast consequences before publication; nine context refusals are separate.
+
+ANI event production, RNG, overlay configuration, cast effects and form work
+remain explicit providers, as do other action bodies, geometry, route/frame
+scheduling and World lifecycle. The finite native profile uses scripted events
+and staged backend counters/RNG bytes; it does not establish original animation
+timing or RNG equivalence. These provider boundaries are simulation work and
+are independent of native Qt/OpenGL presentation. Complete campaign execution
+and live replacement remain pending; no balance changes are introduced.
+
+CMD1/version2 already stores installed action callback, readiness/deadline,
+previous move/animation/route state and opaque staged backend bytes. This change
+adds no fields or wire version. Providers must retain all mutable event/RNG/cast
+state in that continuation and keep external effects unpublished until success.
+The NS63 incoming-history review checks89 file transitions/202 behaviors against
+exact receipts with no missing accounting. Historical evidence/source hashes
+remain unchanged, including failed development attempts and stale unrelated
+contracts. Fresh NS64 records are separate evidence IDs.
+
+
+## NS65: complete installed action-body dispatch
+
+All logical callbacks returned by50da50 now have a native shared-context path.
+NS64 retains8/9/15; `OwnedCommandActionBodies` routes1/2/3/10/13/14/18/20/21/23/24
+to the existing recovered idle/motion/corpse/main-melee/object/stun/interaction/
+alternate-melee/finishing/ascent/descent bodies. Their action, behavior transition,
+reset and installed behavior-call consequences share the operation command
+context. Motion's descriptor-only binding uses `bindOriginal` without invoking
+a new behavior. Original full behavior descriptors are opt-in; unsupported
+profiles retain the existing command-only admission. Null12 is installed only
+after an admitted transition, while motion/health gates preserve the old binding.
+
+CMD1/v3 preserves complete callback, motion/sample, segment/region/contribution
+and object action roots and descriptor mode. Legacy writes reject state loss;
+v1/v2 reads retain absence, and required-root profiles refuse such restoration.
+Native integration uses14 handler profiles,24 exact resumed ticks each and staged
+melee failure rollback. Existing primitive original comparisons remain separate
+from this new composed native dispatcher; no paired whole-frame equivalence is
+inferred. Lower ANI/RNG, geometry, segment completion, health/effects and original
+special/autonomous behavior providers remain explicit at this milestone.
+
+NS64 committed history review checks102 file transitions/204 behaviors with no
+missing exact receipts. Final native build outputs and temporary accounting
+snapshots use an isolated directory on the second NVMe outside the cold archive,
+with the existing100GiB primary reserve guard. Original media and historical
+failed/execution records are preserved; no cleanup or balance changes occur.
+
+
+NS66 integrates owned ANI/RNG, native geometry, saved route search/segment motion
+and creature-core frame providers into the same staged command context. See
+[native creature providers](native-creature-providers.md) for confirmed static
+ordering, paired controller/line admission evidence, the native profile and its
+explicit lower-services/campaign/lifecycle boundaries. CMD1/v4 owns their mutable
+continuation; older versions decode absence and required profiles refuse loss.

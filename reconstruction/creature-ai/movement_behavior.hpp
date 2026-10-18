@@ -9,6 +9,9 @@ struct MovementBehaviorState {
 struct MovementBehaviorServices {
   std::function<void(AutonomousCreature &, const std::array<unsigned, 8> &)>
       renew;
+  // 50fae0 on route renewal and509230 on landing are distinct calls.
+  // Absent renewMove preserves callers that supply one observation endpoint.
+  std::function<void(AutonomousCreature &, Cell)> renewMove;
   std::function<void(AutonomousCreature &, Cell)> move, releaseOccupancy,
       relocate;
   std::function<void(AutonomousCreature &, unsigned)> action;

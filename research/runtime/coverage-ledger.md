@@ -15737,3 +15737,1777 @@ and this negative both remain retained. No alias/writer/global-route closure,
 is promoted. See [read reservations](drawing-source-read-reservations.md),
 [physical frame admission](drawing-physical-frame-admission.md) and
 `source-reservations-provenance-20261017.json`.
+
+## NS38: original object interaction action13 and remaining service map
+
+Whole50f3b0 passes12,288 prospectively bound original/native/sanitized cases and
+three separate native refusals. Full actor/config/map/pool/body guards and ordered
+events agree. Action13 scans object-linked footprint cells; it is not teleport.
+Static pinned services clarify512220 queued-move markers,514c60 ownership
+conversion, inline maintenance resource contribution and52a9f0 environment work.
+Those remaining bodies and lower World/ANI/pool/resource/score ownership remain
+pending, with no native session integration or live replacement. NS38 sources
+were recovered into an isolated worktree after concurrent origin reconciliation
+stashed them; all nine source hashes still match the prior bound execution.
+See [creature services](creature-services.md) and the preserved recovery report.
+
+## NS39: original queued move marker projection
+
+Whole512220 passes16,384 prospectively bound original/native/sanitized cases,
+full63-word parameters and actor/list/pool/body guards. Allocation is stored
+before initialization; failed initialization retains the token; logicalzero
+tokens remain valid. This is visual marker creation, separate from520ad0 command
+delivery. Lower secondary/render/World ownership and session integration remain
+pending. Staticv3 corrects helper labels/window alignment and maps all four valid
+environment arms plus the living predicate; out-of-table latch semantics remain
+unresolved. See [creature services](creature-services.md).
+
+
+## Ownership conversion and environment comparisons (NS40)
+
+Whole514c60 and whole52a9f0 each pass8,192 prospectively source/scope-bound
+original32/native64/ASan+UBSan+LSan64 cases. Both independent native CMake builds
+and CTests pass. Immutable records are original-creature-conversion-bound-20261012.json
+and original-creature-environment-bound-20261012.json. Complete actor/global/
+iterator-or-limit/body guards and ordered consequences match. Conversion covers
+2,642 transfers,411 rollovers and718 retained cursors, including owner reload
+after notification. Environment covers11,240 water queries and125,572 forced
+health calls, including later actor/config mutations with captured waterline
+and per-hit damage reload.
+
+Four conversion and three environment native-only domain refusals are distinct
+from original behavior. Movement kinds beyond0..3 remain excluded: the original
+uninitialized/prior BL is not silently assigned a zero default. Complete lower
+associated-actor/notification/transfer/water/health ownership, installed profile
+validation, composed World/session execution and live replacement remain pending.
+Incoming marker commit4dda04ea is reviewed against its exact receipts and actual
+staged gate:19 file and116 behavior transitions, with no unresolved accounting
+gaps. This history review asserts no new execution or past gate result.
+
+
+## Periodic resource contribution comparison (NS41)
+
+Whole509e50 now has a separate prospectively bound contribution comparison:
+8,192 original32/native64/ASan+UBSan+LSan64 cases,2,275 paired grants/account
+calls,3,187 blocked deadlines and820 duplicate-root fixtures. Unsigned high-byte
+snapshots, wrapped grant/42-entry inventory aggregation, signed truncation and
+float delta, controller gate and both ancestry counter2f credits match. Callback
+changes to inventory/source type are read at the original points. Full actor,
+ancestry/recipient/controller/config bytes, ordered consequences and whole body
+are guarded. Four native-only malformed-domain refusals require caller rollback.
+The independent native CMake build and CTest pass. The initial development build
+failed on a fixture member typo and indentation warning; those logs are retained.
+
+The fixture extension preserves its caller's main macro and adds optional owned
+field packing/guards. The ordinary lifecycle corpus separately passes8,192 fresh
+source-bound cases with the extension inactive; its historical excluded-upkeep
+scope is unchanged. NS35 records retain their old source hashes. Contribution is
+recorded under AI.upkeep-admission, distinct from514c60 ownership conversion.
+Neither proof supplies complete lower466870/507f00/416d80 ownership or composed
+World/session execution. No balance change or integration/replacement promotion.
+
+The new static lower-service export pins507f00/507fa0/466870/51ec80/416d80 bodies.
+Instruction review finds resource change uses signed negative-tozero followed by
+unsigned capacity clamp, while foreign-owner snapshot uses signed capacity clamp;
+these differ on high-bit capacities. Local wizard UI notifications occur in order
+and reload current resource after the first callback. Associated actor resolution
+uses the owner enabled flag and unsigned controller/index capacity, with no living
+filter. Owner transfer and numeric account still require scoped execution and full
+lower services. Static evidence does not establish equivalence. Incoming NS40
+commit bf07d2e7 has22 file/118 behavior transitions reviewed against exact receipts
+and the actual staged gate, with no unresolved accounting gaps.
+
+
+## Lower resource and associated actor comparison (NS42)
+
+Whole507f00,507fa0 and466870 pass24,576 prospectively bound original32/native64/
+ASan+UBSan+LSan64 cases, including2,023 paired UI sequences,1,998 resolved
+subjects and906 own-owner inventory snapshots. Full actor,definition,owner,
+global and original-body guards match. Associated resolution returns canonical
+pointers for inactive/dead slots; it does not add a living filter. Four native
+invalid-owner refusals are separate from original pointer behavior. The isolated
+native CMake build and CTest pass. Immutable proof:
+original-creature-resource-services-bound-20261012.json.
+
+Resource adjustment preserves signed-negative-tozero then unsigned capacity
+clamp, first-display/second-display reload and unconditional dirty update. The
+foreign-owner snapshot retains signed capacity clamp; own-owner snapshot ignores
+delta and credits all42 available type19 inventory magnitudes with wrapped
+addition. Current native service APIs own values and indices, not host pointers.
+Installed construction, UI implementation and composed World/session integration
+remain pending. NS41 e2c7f03e has33 file/125 behavior transitions reviewed against
+exact parent/current receipts and actual staged gate with no accounting gaps.
+No new execution is inferred from that committed-history review.
+
+
+## Numeric contribution account comparison (NS43)
+
+Whole416d80 and both profile accessors505bf0/505c50 now pass24,576 prospectively
+bound original32/native64/ASan+UBSan+LSan64 cases. The original account executes
+the actual whole profile accessors and59bee0 truncate helper, with zero redirects.
+Readonly profile/body guards and x87 controlword/stack checks pass; the independent
+native CMake build and CTest pass. Immutable proof is
+original-contribution-account-bound-20261012.json.
+
+The model retains class0/24/25/26's reciprocal quantity calculation with profile0
+capacity square; other classes use28-pair wrapped sum, unsigned average/product
+and capacity division. The first profile accessor gives source kinds8/20 fixed10;
+otherwise both accessors use target/source58 flags for signed truncation bythree.
+Pinned numeric constants1,180000,30,1000000 and double0.999999 preserve original
+roles. Both conversions retain the signed64 low word and intermediate signed-word
+interpretation. No scoring/veterancy interpretation or balance change is added.
+
+Five native numeric/type refusals are separate from original undefined behavior.
+This comparison explicitly sets x87 precision64 and nearest rounding; original
+Windows caller/FPU modes and broader conversion/divisor/profile domains remain
+unvalidated. Complete native World/session composition and replacement stay
+pending. Incoming NS42 commit6cc03cbd is reviewed against exact receipts and its
+actual staged gate; committed-history accounting adds no new execution claim.
+
+
+## Owned maintenance contribution chain (NS44)
+
+The complete contribution branch now composes native owner lookup,resource change
+and numeric account. Its single persistent current-resource vector is shared
+through display reentry; controller/index and enabled fields resolve the same
+owned actor. No second persistent resource copy is introduced.
+
+A fresh prospective comparison passes8,192 original32/native64/ASan+UBSan+LSan64
+cases through unchanged509e50,466870,507f00,416d80,505bf0,505c50 and59bee0. All
+seven bodies execute without helper redirects within that graph.181 UI sequences
+and2,120 credited fixtures are nonempty. Complete actors/catalog/owner/ancestry/
+recipient/config/body guards and ordered consequences match. The isolated native
+CMake build and CTest pass. Immutable record:
+original-contribution-owned-bound-20261012.json.
+
+The first development corpus stopped before original execution because correlated
+controller/owner seeds left its UI branch empty. The corrected corpus decouples
+those seeds. The inherited lifecycle fixture's death-account redirect is restored
+to the pinned whole account before graph execution; that restoration and body
+guards are explicit. Both development reports remain retained.
+
+UI implementation and other maintenance siblings remain supplied. The composed
+domain uses positive initial resource/inventory/capacity, canonical1..128 actors,
+valid acyclic ancestry and precision64/nearest; broader primitive domains remain
+covered only by their separate scoped proofs. This is a recovered call-chain
+comparison, not complete native World/session integration or live replacement.
+Incoming NS43 c31d0571 has15 file/128 behavior transitions reviewed against exact
+receipts and actual staged gate with no unresolved accounting gaps.
+
+
+## Ownership transfer and leaf comparisons (NS45/NS46)
+
+Whole51ec80 passes16,384 prospectively bound original32/native64/sanitized64
+cases:5,461 same-owner no-ops,10,923 fixtures invoking root callbacks and2,789
+display writes. Ordered owner-count/visibility/reset/UI/color/target-repair/root/
+controller calls and complete actor/definition/effect/root/display/global/body
+guards match. Each ancestry root is reloaded separately. The terminal display
+write uses the requested owner even if a callback changes the actor owner. Two
+native-only malformed display refusals require caller rollback.
+
+Whole411e50,407b90,51a880 and512340 independently pass32,768 prospective
+original32/native64/ASan+UBSan+LSan64 cases. Wizard class0/24/25/26 returnsone.
+Root activity89 changes1to0 or3to2; every other word is preserved. Visibility
+sets24-array words30 for own/shared-allied owners, otherwisezero, and clears
+separate48-array words. Marker clear releases only kind2 nonnull effects, then
+clears that node's token; later token mutations are read at the original points.
+Full actor-or-root/list/sentinel/node/effect/relation/body guards match. Two
+native-only invalid visibility-owner refusals are separate from baseline behavior.
+Independent native CMake builds and CTests pass for both components.
+
+Static lower-helper review corrects provisional names:522340 recounts owner
+creatures,51a880 refreshes visibility,407b90 clears a finite root activity state,
+and416590 remains source-controller work rather than established list insertion.
+The transfer fixture's root callback counters are supplied consequence data, not
+a claim about407b90 reference counts. Final transferv1 with provisional names is
+retained inworking; renamed source/scope is freshly compared under finalv2.
+Staticv1 is also retained; corrected staticv2 is the new registered result.
+
+These are parent and leaf projections, not a composed ownership chain. Lower
+count/target/controller/color/UI/reset/effect ownership, installed construction,
+complete native World/session and live replacement remain pending. No balance
+changes or broad integration stages are asserted. Incoming NS44 f62ba148 is
+reviewed against exact receipts and actual staged gate; historical review is
+separate from these new execution results.
+
+
+## Owner count and target repair comparisons (NS47/NS48)
+
+Whole522340 with actual unchanged466870 lookup passes16,384 prospectively bound
+original32/native64/ASan+UBSan+LSan64 cases. The associated actor is cached; count
+includes active/living same-associated-owner actors except its slot and type27.
+The count write precedes local wizard UI.2,201 count display calls,212 below-limit
+and181 at-limit calls validate signed saved-old/current/maximum thresholds after
+UI reentry. Full actors/definitions/owner/global/two-body guards match. Two native
+owner/limit backing refusals are separate from original behavior.
+
+Whole51edf0 passes8,192 prospectively bound original32/native64/sanitized64 cases:
+102,441 behavior callbacks,78,109 resets and68,284 engagement notifications.
+Behavior is cached before the action callback, while target/pending/logical count
+and later actor/owner fields reload at the original points. Callback death does
+not add a new same-iteration health gate. Source preparation precedes logical
+count reads; callbacks can shrink or expand count with fixed backing. Complete
+actor/relation/count/fixed-capacity/body guards and ordered calls match. Two
+native malformed count/owner refusals require staged caller rollback.
+
+Independent native CMake builds and CTests pass. Count UI and target preparation/
+peer/behavior/reset consequences remain supplied; neutral relation alias,
+invalid pointers/indices/capacity, arbitrary adjusted indirect handlers, installed
+profiles and complete World/session/live replacement remain outside these proofs.
+Both immutable records preserve fresh source/compiler/declaration closure and
+original-manifest before/after verification. Incoming NS45/46 ad348ede is reviewed
+against its exact receipts and actual staged gate:25 file/141 behavior transitions
+with no accounting gaps. This history review adds no new execution evidence.
+
+
+## Source graph traversal and roots (NS49)
+
+Whole407920/4079f0/514810/5183f0/51e790 pass32,768 prospectively bound
+original32/native64/ASan+UBSan+LSan64 cases with zero helper redirects. All five
+bodies and complete141-byte nodes/child vectors/actors/owner records are guarded.
+7,387 actor yields,1,639 round-robin fallbacks and2,731 absent controllers are
+nonempty. Eight mutable traversal slots choose the first free slot or rotate
+when occupied, initialize nested cursors and use signed activity>=mode. The
+iterator introduces no active/health filter. Caller mode changes between calls
+are preserved. Root assignment honors owner flag4, terminal lookup follows39
+parents, and the absent-controller predicate checks owner+C equalffffffff.
+Five native cycle/rotation/owner/family refusals require caller-staged rollback.
+The isolated native CMake build and CTest pass. Immutable proof:
+original-source-graph-bound-20261012.json.
+
+The fresh static dependency export also pins source coordinate wrappers, vector
+insertion and recipient registration.416590 groups source roots by a minimum
+normalized squared distance after temporarily selecting traversal mode3. It
+allocates141-byte nodes and changes parent/recipient relationships and pending
+registration. Complete grouping/allocation/recipient semantics remain pending.
+Stack accounting shows the byte copied to node25 can initially be the low byte
+of the incoming actor argument: sub1c plus four pushes makes currentesp+30 the
+argument slot; traversal setne atesp+34 while one argument is pushed overwrites
+that same byte. No-traversal paths retain it. Its allocator/representation role
+is unconfirmed; do not label it an established random/uninitialized value or
+invent a zero baseline. This static finding does not establish execution parity.
+
+The existing reconstructed250-word RNG can be reused by future composition;
+this change adds no alternative generator or validation claim. Installed
+construction, full controller/group/recipient/World ownership, native session
+and live replacement remain pending. NS47/48 be4199a9 is reviewed against exact
+receipts and actual staged gate:28 file/143 behavior transitions, no accounting
+gaps. Historical review adds no new execution result.
+
+
+## Logical source-controller grouping (NS50)
+
+Whole416590 with12 actual unchanged traversal/root/controller/RNG/coordinate
+helpers passes8,192 prospectively bound original32/native64/ASan+UBSan+LSan64
+cases.5,473 leaf allocations,3,098 group allocations,2,719 blocked inputs and
+1,113 conditional RNG draws are nonempty. Owner/8e5/704/type22/network gates,
+mode3 enumeration/drain/restoration, fresh restored-mode traversal, signed
+threshold/parity draw, minimum normalized squared distance, exclusions, parent/
+recipient transfer and final registration calls match. Complete modelled node/
+actor/owner/recipient/list/scalar/RNG/body guards and ordered events pass.
+The independent native CMake build and CTest pass. Five malformed native domains
+refuse with caller-staged rollback. Immutable record:
+original-source-controller-bound-20261012.json.
+
+Allocation supplies zero-filled successful141-byte nodes; generic vector append
+stays within reserved backing and recipient registration is a supplied service.
+These storage/registration boundaries remain separate from the recovered grouping
+rules. Byte25 is not asserted baseline-equal to the native tag. Coordinate
+temporary construction also overwrites the reused incoming-argument stack slot
+with its final temporary address, entryESP-68. The private invocation thunk
+captures the real entry stack without changing any compared body; the original
+byte is independently reconstructed and guarded. Native configurable tags use
+owned deterministic representation.32 metamorphic native tag changes preserve
+all decisions, graph/roots/RNG and ordered events. Allocator interpretation and
+arbitrary original heap/caller representations remain unvalidated.
+
+Developmentv1 stopped on a fixture mixed-type auto declaration. Developmentv2
+caught byte25's coordinate-stack provenance;v3 passed with explicit representation
+accounting. All failed/source versions remain retained; the final result has
+its own prospective declaration and stable source/compiler closure. Earlier
+static findings about initial argument/traversal-byte reuse remain historical
+and are extended here, not rewritten.
+
+Whole source registration416fe0, complete collection/allocation/recipient
+ownership, installed profile construction, canonical World/session composition
+and live replacement remain pending. Registration has separate general2a,
+wizard5a and other8a pending queues; this is instruction evidence awaiting fresh
+comparison. NS49 421caf78 has18 file/149 behavior transitions reviewed against
+exact receipts and staged gate with no accounting gaps; history review adds no
+new execution or broad integration claim.
+
+
+## Source pending registration (NS51)
+
+Whole416fe0 with actual407920/4079f0/411e50/42d830/430140 passes8,192
+prospectively bound original32/native64/ASan+UBSan+LSan64 cases.1,536 general,
+1,238 wizard and2,828 other queue admissions are nonempty. Recipient-present
+roots skip the initial general2a admission. The full signed source traversal
+finds the first wizard-kind0/24/25/26 with zero block7c and drains remaining
+actors, then chooses wizard5a or other8a. Each selected queue deduplicates and
+pushes at the front; existing repeated entries are preserved. No health/active
+filter is introduced. Full node/actor/config/recipient/three queue/block/map/
+child/mode/body guards match. Two malformed native root/actor cases refuse
+with caller-staged rollback. The native CMake build and CTest pass.
+Immutable proof:original-source-pending-bound-20261012.json.
+
+Deque capacity preparation is a supplied boundary and the original iterator
+helpers run on one reserved4096-byte block per queue. Cross-block/reallocation
+and original storage ownership remain separate from native stddeque storage.
+The first development corpus stopped before original execution because recipient
+and queue-length seeds suppressed all new general admissions. Independent seeds
+correct that domain; the failed report remains retained. A launcher typo targeted
+a nonexistent driver and consumed no original artifact; the corrected guarded
+run is separate. No historical report hashes are refreshed.
+
+Grouping and registration are individually compared; their composed graph,
+complete native World/session construction and live replacement remain pending.
+NS50 7e19a955 has22 file/154 behavior transitions reviewed against exact receipts
+and actual staged gate with no accounting gaps. That history review adds no
+new execution result.
+
+
+## Owned source grouping and registration chain (NS52)
+
+Native grouping now invokes native pending registration on the same owned source
+tree/three queue set. A fresh prospective comparison passes8,192 original32/
+native64/ASan+UBSan+LSan64 cases through17 unchanged original bodies, including
+actual416fe0 registration,411e50 classification and deque iterators. Registration
+is not redirected.5,345 general,2,233 wizard and3,112 other admissions plus3,098
+groups are nonempty. Full modelled nodes/roots/actors/configs/queues/maps/owners/
+recipients/mode/RNG/body guards and ordered allocation events match. New cursor
+initialization after registration is compared explicitly. The native CMake build
+and CTest pass. Immutable proof:original-source-owned-bound-ns52-20261012.json.
+
+The common controller fixture preserves an including caller's main macro, saves
+the original registration body before its standalone redirect, and adds optional
+comparison extensions for shared queues/configs/new cursors. The unchanged
+standalone controller domain separately passes8,192 fresh bound cases with these
+extensions inactive; the NS50 record retains its original source hashes. Both
+records have prospective declarations and stable compiler/source closure.
+
+Successful zero-filled allocation, generic vector append and reserved deque
+capacity remain supplied storage boundaries. Original allocator/private byte25
+equality is excluded and the captured machine stack-byte guard remains explicit.
+Complete storage/installed construction and canonical native World/session/live
+replacement stay pending; this chain comparison does not promote those stages.
+Incoming NS51 ab90556f has25 file/157 behavior transitions reviewed against exact
+receipts and actual staged gate with no gaps. History review adds no execution.
+
+
+### NS53: composed ownership-transfer consequences (2026-10-13)
+
+- Composes51ec80 with owned522340/466870 recount/lookup,51a880 visibility,
+  512340 queued markers,411e50 wizard classification and407b90 root activity
+  on existing canonical actor/limit/order/source state.
+- Fresh prospectively bound original32/native64/ASan+UBSan+LSan64:16,384cases,
+  seven whole unchanged bodies; complete fixture/global/body guards and ordered
+  callback consequences. Signed count UI reentry and later-marker mutation covered.
+- Independent native CMake build and CTest pass.
+- Final immutable proof:`original-transfer-owned-bound-ns53-20261013.json`;
+  scenario:`ownership-transfer-owned-20261013`. The two successful development
+  versions remain separate historical experiments.
+- Reset, effect lifetime, UI/color, target repair, controller work, installed
+  construction and native World/session composition remain pending. Integration
+  and live replacement stay none; no balance/veterancy/commander change.
+- NS52 c15fd872 committed-history exact29-file/158-behavior review has no gaps.
+
+
+### NS54: composed ownership transfer and target repair (2026-10-13)
+
+- Whole51ec80 now calls owned51edf0 target repair on the same canonical actors
+  as NS53 recount/lookup/visibility/markers/classification/source activity.
+  Transfer and repair share one supplied reset50ab30 consequence.
+- Fresh bound original32/native64/ASan+UBSan+LSan64 passes16,384 cases through
+  eight whole unchanged original bodies;43,942 behavior and27,774 peer callbacks.
+  Complete backing/global/body guards cover mutable scan count/source owner,
+  cached behavior, callback death/next-actor disable and target/pending reload.
+- Independent native CMake build and CTest pass. Immutable result:
+  `original-transfer-targets-owned-bound-ns54-20261013.json`; explicit headless
+  scenario:`ownership-transfer-targets-owned-20261013`. Development proof retained.
+- Lower prepare/peer/behavior/reset internals, effects/UI/color/controller work,
+  installed construction and full native World/session remain pending. Integration
+  and live replacement stay none; no gameplay balance change.
+- Exact NS53 357264ed history review:27 file/157 behavior transitions, no gaps.
+
+
+### NS55: composed ownership reset and transition rules (2026-10-13)
+
+- Transfer and target repair now call owned50ab30 reset and50aa30/50a930
+  behavior transition/resolver (executed argument1) on the canonical actor and
+  per-actor execution vectors. Release/peer consequences are shared across callers.
+- Fresh bound original32/native64/ASan+UBSan+LSan64:16,384 cases through11 whole
+  unchanged original bodies. Complete backing/field/global/body/dispatch-table/
+  callback guards; mode/color/pending8, home/flags, engagement and effect cleanup,
+  health/motion gates and supplied callback-binding continuation covered.
+- Native CMake build and CTest pass. Immutable record:
+  `original-transfer-reset-owned-bound-ns55-20261013.json`; scenario:
+  `ownership-transfer-reset-owned-20261013`. Development history retained.
+- Behavior body/binding/color/prepare/peer internals, effects/UI/controller work,
+  installed construction and full native World/session stay pending. Integration
+  and live replacement remain none. No gameplay balance change.
+- Exact incoming NS54 e5be42d5 history review:31 file/158 behavior transitions,
+  no accounting gaps; history review is separate from the new comparison.
+
+
+### NS56: owned idle handler and callback continuation (2026-10-13)
+
+- Composed transfer/repair/reset now owns50acb0 idle and the per-actor supplied/idle
+  binding. Reset installs idle; later dispatch follows the binding independently
+  of behavior-word edits. Invalid-tag admission is an explicit native policy.
+- Fresh bound original32/native64/ASan+UBSan+LSan64:16,384 cases through12 whole
+  unchanged bodies, including actual idle. Full backing/field/global/table/callback/
+  body guards and semantic digests; type22/27/cached admission and ordered
+  immediate/interaction/follow/queue/action1or6 callbacks covered.
+- Native CMake build and CTest pass. Three native-only refusals, including tag99.
+  Immutable result:`original-transfer-idle-owned-bound-ns56-20261013.json`;
+  scenario:`ownership-transfer-idle-owned-20261013`. Development history retained.
+- Lower query/action/other behavior/color/prepare/peer/effect/UI/controller internals,
+  installed construction and complete native World/session remain pending. Integration
+  and live replacement remain none; no gameplay balance change.
+- Exact incoming NS55 36434067 review:34 file/159 behavior transitions, no gaps.
+
+
+### NS57: owned follow pursuit in the idle chain (2026-10-13)
+
+- Owns513850 pursuit on canonical actors/execution: raw XY separation, living
+  target admission, normalization and cached geometry/move consequences.
+- Fresh bound original32/native64/ASan+UBSan+LSan64:16,384 cases through14 whole
+  unchanged bodies, including513850/40e250. Full state/backing/body/table/callback/
+  descriptor22 guards; successful and rejected geometry callbacks. CMake/CTest pass.
+- Proof:`original-transfer-follow-owned-bound-ns57-20261013.json`; scenario:
+  `ownership-transfer-follow-owned-20261013`. Development/export history retained.
+- Lower geometry/move/queue/action/immediate/interaction and complete native session
+  remain pending; integration/live replacement stay none. Terminal queue cleanup's
+  non-kind2 effect discrepancy awaits broader paired validation.
+- Exact incoming NS56 93e4867e history:37 file/161 behavior transitions, no gaps.
+
+
+### NS58 — owned queue advancement and terminal marker cleanup (2026-10-13)
+
+Native ownership/reset/idle/follow now composes whole524130 queue advancement
+with serial/vector storage and shared release consequences. Fresh prospective
+original32/native64/ASan+UBSan+LSan64 comparison passes16,384 cases through20
+unchanged bodies, including five queue initializer/cursor/scalar/list-clear
+helpers,6889 deliveries and5841 retired nodes. Full actor/global/live-list/body
+and retired-identity/padding guards pass; native CMake/CTest pass. See
+`original-transfer-queue-owned-bound-ns58-20261013.json` and NS58 in
+`creature-services.md`. Integration and live replacement remain none.
+
+Original case219 confirms terminal noncycling cleanup releases only kind2
+markers. Native orders.cpp now filters that cleanup accordingly; old failures and
+historical evidence fingerprints are preserved. Fresh affected component proofs
+pass32768 queued-order cases/eight bodies and16384 follow cases/fourteen bodies.
+Other affected historical evidence retains explicit source-stale limits.
+
+Free and command delivery remain supplied. Delivery latches motion; repeated
+same-tick end-cursor entry with live orders remains unresolved and excluded, as do
+all-target cyclic queues, callback topology changes, physical retired-payload
+comparison and broader coordinate/profile domains. Missing native serial refusal
+is separate storage policy requiring caller rollback. Complete lower services,
+installed AI construction and native World/session/live ownership remain pending.
+NS57 incoming exact-history review covers43 files/163 behaviors with no gaps and
+adds no execution or retrospective gate assertion.
+
+
+### NS59 — owned command dispatcher in the ownership chain (2026-10-13)
+
+Canonical ownership/reset/idle/follow/queue now owns whole520ad0 delivery mode
+selection and living-target admission. Fresh prospective original32/native64/
+ASan+UBSan+LSan64 passes20,480 cases:16,384 composed cases through21 unchanged
+bodies plus4096 direct dispatch cases. Direct move/living-target/coordinate/
+dead-target/unsupported-mode paths are nonempty; full actor/global/body/list
+and retired-ID/padding guards pass. CMake/CTest pass. See
+`original-transfer-delivery-owned-bound-ns59-20261013.json` and NS59 in
+`creature-services.md`. Delivery is not redirected; original whole-body command
+services50fae0/50ad10/50ca30 remain supplied. Shared move consequences serve both
+follow and delivery. Integration and live replacement remain none.
+
+Development-v1 retains its native end-cursor reentry refusal before original
+execution. The final composed corpus uses first/last move anchors, bounded valid
+orders and motion-latching lower handlers. Installed sentinel payload, end-cursor
+reentry, invalid/all-target cyclic queues, callback topology changes and physical
+allocator/retired-byte equality remain excluded. Four native safety refusals
+retain caller rollback. Existing component sources/evidence fingerprints remain
+unchanged. Lower command/geometry/action/controller ownership, installed profiles
+and full native World/session scheduling remain pending.
+
+NS58 incoming history reviews45 file/165 behavior transitions against exact
+receipts and the actual successful staged gate, with no accounting gaps and no
+new execution claim. Refused1280GiB preflights and the authorized private1312GiB
+NS59 policy/100GiB free reserve are retained under working/retention.
+
+
+### NS60 — owned move, target and coordinate admission (2026-10-13)
+
+OwnedCreatureCommands closes50fae0/50ad10/50ca30 command handlers into canonical
+ownership/reset/idle/follow/queue/delivery. Shared release/peer/reset consequences
+and supplied/idle/move/target/coordinate logical bindings preserve raw original
+callback identity independently of later behavior-word edits. The finite paired
+corpus has16384 composed and4096 direct cases through24 unchanged declared bodies,
+with complete cast/route/order/actor/map/body/global/retirement guards and full
+cross-architecture command digests. Fresh prospective original32/native64/sanitized64
+and native CMake/CTest evidence is recorded by NS60. Integration/replacement none.
+
+Six native refusals include recursive queue and changed command topology; caller
+rollback remains required. Earlier fixture ABI/padding/live-serial failures are
+retained. Append/clear/follow owned-context ingress is partial with new composed
+validation pending, not covered by this milestone. End-cursor/sentinel/all-target
+cycling and native session publication follow separately. Lower behavior/action/
+route/geometry/visual/effect/controller ownership and installed/live scope remain
+pending. See NS60 in creature-services.md and the bound NS60 proof.
+
+NS59 exact-history review covers48 files/167 behaviors with no accounting gaps;
+no new execution or retrospective gate assertion. Authorized private storage
+headroom is1376GiB with100GiB filesystem reserve after concurrent-output refusal;
+reports are retained under working/retention.
+
+
+### NS61 — cyclic end-cursor and empty-wrap continuation (2026-10-13)
+
+Whole524130 repeated continuation with known-zero sentinel payload now passes2048
+original32/native64/sanitized64 steps,128 successful empty all-target wraps and189
+nonempty end starts. Corrected the confirmed empty-wrap false/true mismatch and
+admitted cycling logical end without target purge. Full actor/map/body/global/
+callback/live-list/retirement/padding guards and CMake/CTest pass;24 unchanged
+bodies are guarded, not an assertion of all-body execution on every step.
+Immutable proof:original-queue-continuation-bound-ns61-20261013.json.
+Source-current full-command/queued-order component proofs pass20480/32768 cases.
+
+Native zero sentinel and two noncycling end/unsafe-publication refusals are separate
+policies requiring caller rollback. Installed/uninitialized sentinel, original
+unsafe reentry, broader construction and full campaign/live replacement remain
+pending. Native session publication is the next milestone. Repeated-frame fixture
+link/import failures and compilation correction are retained. Existing historical
+hashes/statuses remain; other affected stale-source evidence is explicit.
+
+NS60 incoming history reviews51 files/172 behaviors with no gaps and no new
+execution/retrospective gate assertion. See NS61 in creature-services.md.
+
+
+### NS62 — composed ingress and transactional native command session (2026-10-13)
+
+Canonical append/clear/follow ingress has1536 prospective original32/native64/
+sanitized64 cases through28 declared unchanged bodies and full actor/map/body/
+callback/list/retirement guards. New allocated payloads use stable serials and
+append's index ABI is distinct from dispatcher's pointer ABI. CMake/CTest pass;
+failed fixture versions and prior evidence hashes remain retained. Affected
+full-command and repeated-queue evidence is freshly rerun.
+
+The native command Runtime now implements CreatureRuleRuntime and integrates
+with the real CreatureRuleSession generation/transaction/checkpoint boundary.
+CMD1/v1 explicitly owns every actor/execution/callback/order/scheduler/backend
+field without pointers/layout assumptions. Bound native/sanitized/CMake execution
+covers five commands, queued ingress, invalid/malformed/stale/profile/arithmetic/
+publication refusal and three unsafe queue rollback/recovery cases. Normal and
+snapshot-restored sessions remain byte-identical for80 ticks. Headless integration
+is bounded; original complete-frame/campaign/live equivalence is not promoted.
+See NS62 in creature-services.md, apps/command-session/README.md and the native
+command continuation format document.
+
+Lower behavior/geometry/effect/frame providers remain explicit and staged-only;
+the test frame provider is synthetic. Dynamic actor lifecycle, original save/
+profile rebinding, installed sentinel and complete original World/strategic/
+renderer/motion/effect/controller campaign integration remain outstanding. No
+full campaign Wine-removal or live replacement claim. NS61 incoming review covers
+53 files/174 behaviors with no accounting gaps or new execution assertion.
+Authorized final snapshot/check reserve is90GiB under a private1408GiB cap after
+the100GiB guard interrupted accounting; reports/originals/archives are retained.
+
+The native adapter is explicitly a native policy; accounting corrected its initial
+prospective recovered classification and reran the native proof under the policy.
+The earlier result is preserved. NS62 current original ingress/commands/queue
+records and native-command-session-policy-bound-ns62-20261013.json keep execution,
+headless integration and replacement independent.
+
+
+### NS63 — owned command behavior callbacks and complete native continuation (2026-10-13)
+
+Move510010, target50afa0 and coordinate50ccd0 callbacks now execute recovered
+bodies on the shared command context, including target-maintenance50b0c0,
+ranged50b2c0/505cf0 and nested reset/move/transition/idle/queue consequences.
+6144 bounded original32/native64/sanitized64 steps cover six direct/transition
+entries and30 unchanged declared bodies with full actor/map/config/callback/list/
+padding guards. Route-renew50fae0 and landing509230 are distinct contracts;
+renewMove is owned, landing remains supplied. Separate invalidation stack ABIs
+are preserved. The legacy one-endpoint movement projection remains supported and
+its8192-case lifecycle comparison is rerun. CMake/CTest pass.
+
+Real native sessions now install owned bodies on their existing operation context
+and retain full maintenance/movement vectors in CMD1/version2. Version1 decoding
+leaves missing vectors absent; supplied-body profiles can migrate, while recovered
+body profiles refuse missing state. Native/sanitized execution exercises three
+owned command bodies, failed callback rollback,80 byte-identical resumed ticks,
+eight installation/root/actor/selector/arithmetic refusals and complete state retention. The
+previous native-session rollback/decoder/semantic command corpus also passes.
+Fresh command20480, queue2048 and ingress1536 comparisons preserve current scoped
+support after shared source changes. NS62 committed-history review covers77 file
+transitions/132 behaviors with no receipt gaps, adding no retrospective execution
+or gate claim. Earlier failed/debug/source-change runs and hashes are retained.
+
+Action/geometry/form/ANI/renewal/landing/health/occupancy/removal/effect and original
+complete-frame/World/campaign services remain explicit. The native route/frame
+fixture is synthetic; dynamic actor lifecycle, original-save/profile rebinding,
+installed sentinel, visible campaign integration and live replacement remain
+outstanding. This owns command callback behavior and bounded native continuation;
+it does not establish complete campaign Wine removal. Final guarded executions
+and accounting retain100GiB free under the previously authorized private1408GiB
+cap; earlier private90GiB development provenance is preserved without cleanup here.
+
+
+## NS64 — owned action selection and ranged/ready continuation (2026-10-13)
+
+Native commands and recovered movement/target/coordinate/ranged body action
+requests can now share one staged action selector. Recovered50db60 selection and
+50da50 logical callback mapping preserve motion admission, animation/overlay and
+engagement/carry state. Installed8/9/15 events use recovered50e6f0/50e670/50f7c0;
+behavior continuations use installed command bindings independently of later
+word edits. Other valid action bodies require an explicit remaining provider;
+null callbacks are inert. This is simulation ownership, separate from Qt/OpenGL
+presentation and complete live rendering replacement.
+
+The prospectively source/scope-bound five-body original32/native64/sanitized64
+comparison passed28,672 cases:1,433 casts,8,192 behavior resumes,1,638 double
+behavior calls and5,850 null callbacks. Full actor/config/list/body/service guards
+and original manifest/hash before/after remain required. Its lower behavior
+handler is supplied; it does not establish paired original whole-command/frame
+execution. Existing command-body/ownership/queue/ingress and action/control
+comparisons are regressed under separate immutable NS64 evidence IDs.
+
+Real native CreatureRuleSession integration passed three CTests and normal/
+ASan+UBSan+LSan execution. The action profile exercises three semantic command
+kinds,80 byte-identical snapshot-resumed ticks, staged ANI cursor/RNG/cast state,
+two poll/cast rollback cases and nine context admission refusals. CMD1/version2
+already contains its model roots and logical callback; no wire fields changed.
+Native callback/token/provider admission is a policy, separate from original
+malformed-pointer semantics. NS63 incoming history checks89 file transitions/
+202 behavior transitions with no missing exact receipts.
+
+Remaining: other action bodies, original ANI timing/RNG/profile overlays/cast and
+form effects, geometry/reach/route/frame/World services, dynamic actor lifecycle,
+original-save/profile/campaign integration and live replacement. Explicit
+synthetic providers and scoped comparison are not complete original execution.
+Historical evidence and failed development attempts remain immutable; unrelated
+staleness is retained. Fresh records, staged census and exact review receipts
+are included with the implementation. The authorized private1408GiB storage cap
+and100GiB free reserve protect final builds/checks; no original media is changed.
+
+
+## NS65 — complete installed action dispatcher and checkpoints (2026-10-13)
+
+Every50da50 logical handler now has a native shared-context path. The remaining
+idle/corpse/motion/main and alternate melee/object/stun/interaction/finishing/
+ascent/descent bodies use existing recovered models; ranged/ready retain NS64.
+Action/reset/transition/installed behavior calls share the command context.
+Original descriptor mode permits1..16/null12, preserves deferred/health-rejected
+bindings and supports motion's bind-without-invocation branch. Other original
+behavior bodies and ANI/geometry/health/effect/segment providers stay explicit.
+
+CMD1/v3 appends complete callback, motion/sample, segment/contribution/region and
+object-action roots. Legacy reads retain absence; full profiles reject missing
+roots, and explicit legacy writes refuse dropping required state. Native normal/
+sanitizer execution and four CTests pass14 handler profiles x24 resumed ticks,
+melee failure rollback, null/deferred descriptors and v1/v2 absence migration,
+plus all previous command/behavior/action session corpora. Primitive original
+comparisons remain separate; no full composed original frame/campaign/live claim.
+
+NS64 history review accounts for102 file transitions/204 behavior transitions
+with no missing receipts. Source-current evidence, census and exact reviews are
+included; historical proofs and failed development attempts remain unchanged.
+Second-NVMe build/snapshot output preserves the cold archive and uses the existing
+100GiB primary reserve guard. No original media or balance changes are made.
+
+Next within the authorized scope: owned ANI/RNG, native geometry/motion and the
+recovered maintenance/budget/environment creature-frame order. Full World effects,
+installed profile/campaign/save rebinding, dynamic actor lifecycle and visible
+live replacement remain independent contracts.
+
+
+### NS66 — owned ANI, geometry, motion and creature-core frame providers (2026-10-14)
+
+Native command sessions can now use decoded ANI with recovered forward/reverse
+controller timing, original RNG, canonical terrain/occupancy and wrapped movement,
+line-based diagonal reach, persisted budgeted route searches, segment initialization/
+interpolation/completion and maintenance/eight-ANI/scheduler/environment creature
+passes. Normal/alternate simulation counters are explicit; no universal wall-clock
+rate or complete46afc0 World/network/audio equivalence is asserted.
+
+Whole guarded original ANI controller bodies match512 controlled cases (96 state
+steps each) and whole4f4ba0 line admission matches8192 cases with ordered declared
+4f3990 outcomes. Current source-bound reports retain original manifest checks,
+unchanged target bodies and native64/original32/sanitized64 agreement. Native
+provider integration uses the actual installed crocodile ANI and a controlled
+3-actor16x16x4 profile for120 byte-identical resumed ticks through completed route
+and fine motion. A128x128x1 profile exhausts the53-node budget, checkpoints open
+search state and agrees for30 more resumed ticks. Occupancy/wrap, alternate-frame,
+pause, profile incompatibility, rollback and legacy migration checks are included.
+The prior four command/behavior/action/all-action native corpora remain checked.
+
+CMD1/v4 appends complete typed ANI/RNG/cell/search/segment/environment state and
+rejects lossy legacy writes. Native fixed-pool occupancy/profile/admission policies
+remain separate from recovered baseline contracts. Explicit lower health/effect/
+region/owner/hazard/ranged/special-profile services, large attack/animation-kind1
+profile work, CFG/MAP/campaign import, dynamic actors, original-save rebinding,
+whole composed original frames and live replacement remain pending. No Wine is
+needed for these native headless providers; the existing game launcher still
+hosts other original engine systems. No balance changes are introduced.
+
+NS65 committed-history review covers110 file transitions/206 behaviors without
+missing exact receipts. Exact current census/reviews and fresh scoped evidence are
+recorded together; historical source hashes and failed attempts remain unchanged.
+Build and temporary snapshots use isolated secondary-NVMe storage outside the
+verified cold archive, under the existing100GiB primary reserve guard.
+
+Static510480 corpse-flight and4f3260 four-cell height findings are mapped as
+provisional partial behaviors with explicit pending helper comparisons and native
+profile tests; the passing width1/living-actor corpus does not cover those branches.
+
+
+## NS67 — installed encounter support (2026-10-14)
+
+Whole pinned50e400 attack selection,4f3260 four-cell height and510480 corpse-flight
+predicate match native across82,176 original/native/sanitized cases. Actor, tables,
+configuration and unchanged body guards passed. Ordinary width2/height2 target
+selection is integrated with owned ANI and native geometry;24 additional resumed
+ticks pass alongside the five native session suites. Installed crocodile CFG has
+width2,height2,swimming3,acceleration10 and health360; the prior one-cell fixture
+was synthetic. Original helpers, headless synthetic provider integration and full
+installed encounter remain independent. Special attack attachment/visual effects,
+health/effects/World/profile construction and live replacement are pending. The
+incoming NS66 exact receipts were reviewed with zero missing transitions.
+
+
+## NS68 — installed ordinary native encounter (2026-10-14)
+
+Selected encrypted creature/HTH CFG, Crocodile ANI and Celtic Plains CPsec01
+MAP/Terrain TTD now construct an owned two-actor native encounter. Real2x2 shape,
+swimming3,acceleration10,HP360,HTH18/stun9 and AI matrix/bravery/wander fields are
+used. Native routing/geometry/ANI/creature-core ordering and recovered AI/action
+flow bind actual ordinary health, synchronous melee, stun/knockback and physical
+death. The previous-move charge branch50c4ea is recovered and compared, including
+strict threshold ties, wrapping interpolation and charge>200 optional effect.
+Canonical context binding and autonomous facing/move/route/immediate services are
+completed. Portable profile and280-byte health/counter backend complement CMD1/v4;
+no host pointers are saved. Physical removal releases occupancy and retains the
+fixed dead identity; peer repair and empty World/owner/effect services are explicit
+native policies. Full original construction, other crops/species, water/flying,
+dynamic actors, World/campaign/save and live replacement remain independent gaps.
+
+Fresh prospectively bound native/sanitized execution agrees on3,072 one-tick
+snapshot resumes across three seeds:76 hits,three stuns,two knockbacks,103 fine
+movement samples,six acquisitions and one completed death/removal. Injected
+post-damage/control failure rolls back the whole snapshot; retry agrees. Pause,
+profile refusal and dead occupancy checks pass. Ten fresh processes resume without
+installation/PE/Wine/Qt to a byte-identical uninterrupted checkpoint. Five native
+core CTests also pass. The headless runtime has no Wine or Qt linkage; this does
+not remove Wine from the remaining original-backed full campaign.
+
+The source-bound published-state trace independently agrees with unchanged pinned
+original bodies across499 main-action polls,15 hit events,13 ready events,
+484 full ANI timing states,2,048 target/home selectors,1,024 reach/direction cases
+and15 nonterminal motion cases including10 changed positions. Native64/original32/
+ASan+UBSan+LSan64 results match, with actor/buffer/body and original manifest guards.
+Declared admission/line/height/stun/transition/audio/World endpoints remain
+explicit. Whole original frame/decision/stun/death/terminal segment/campaign
+composition and live replacement are not promoted. Primitive comparisons,
+headless installed integration and original replay have separate behavior IDs.
+
+Fresh neighboring original regressions retain historical hashes and compare10,240
+melee formula,4,368 main-action,18,432 ANI timing,8,622 health,29,178 reach,1,454
+stun and57,344 complete motion cases. Macro hygiene supports reused isolated
+fixtures without changing their original helper scope. Incoming NS67 hashes and
+exact receipts were reviewed with zero unresolved committed-history transitions.
+Source census and exact staged reviews accompany this change; unrelated historical
+staleness remains visible and is not rewritten as current execution evidence.
+
+## NS69 — persistent original/native encounters (2026-10-15)
+
+The original two-actor pool, terrain/occupancy, ANI, routes/search containers,
+scheduler and R250 state now persist independently beside the normal native
+command session. After a common bounded installed initialization, original
+maintenance/action509e50, scheduler52a780 and environment52a9f0 run without native
+post-state inputs. This compares composed creature-core behavior beyond the NS68
+per-poll supplied-helper trace. Original World/owner/inventory/effect services are
+explicitly empty; dynamic removal remains a retained-identity boundary. Full
+World/campaign construction, other species/crops, generic region/shared routes,
+cached-attack516d60, water/flying and live replacement remain separate gaps.
+
+The composed encounter exposed and corrected idle516800 RNG admission, direct
+terrain route513370, motion opponent response/cache517580/516ee0, anchor/volume
+occupancy flags509230/5093e0, canonical health aliases, melee response-field
+selection, repeated-stun ANI-break reset, lethal peer repair ordering and one-hop
+knockback destination publication. Reverse ANI state is included in the expanded
+comparison; the forward-only development projection refusal is retained. The
+separate helper corpus supplies lower geometry and matrix services. Selected
+native integrations do not assert full generic function coverage or change
+creature balance.
+
+Native checkpoints restore their actual portable state in fresh processes. The
+original rebuilds its prefix from immutable inputs/seed and verifies its saved
+projection before continuing; this is replay-backed oracle recovery, not an
+original save/heap loader. First-divergence artifacts retain before/after native
+snapshots and oracle projections plus a tick/field diagnostic. Historical NS68
+hashes are unchanged; changed shared sources leave older comparisons pending
+until independently refreshed. Incoming NS68 history was reviewed across37 file
+transitions and35 affected behavior transitions, with no missing exact receipts.
+
+Fresh prospective source-bound original32/native64/ASan+UBSan+LSan64 execution
+matches3,072 composed ticks:90 hits, six stun/recovery cycles, one knockback,
+eight route completions and two deaths/removals. All65,536 helper cases agree.
+Six fresh processes restore native continuations and reconstruct original oracle
+prefixes to identical final artifacts. The intentional native health divergence
+at tick137/+e4 reproduces byte-for-byte from the saved preceding checkpoint;
+corrupt oracle input is refused. Text/media/installed-input and214-source guards
+pass. The existing native encounter continuation/rollback/profile/cleanup corpus
+and five core CTests also pass. Original comparison, native headless integration
+and live replacement remain independent statuses; the new fixture claims only its
+explicit bounded projection. See the
+[NS69 execution report](paired-native-encounter-bound-ns69-20261015.json).
+
+The reviewed [coverage snapshot](coverage/summary-paired-encounter-20261015.md)
+and [committed-history review](coverage/history-review-ns68-to-ns69-20261015.json)
+retain the independent current/pending boundaries. Coverage audit reports no
+errors or census drift; the five new behavior contracts have fresh implementation,
+original comparison and headless integration support, with no replacement claim.
+
+## NS70 — crowded obstructed native encounters (2026-10-15)
+
+Four/eight retained hostile actors now exercise the existing native creature
+session beside independent original32 state. The declared installed12x12 type17
+fixture adds a sealed column and common move into an occupied destination.
+Recovered516d60 cached attacks/51b130 footprint obstacles and508810 footprint
+facing bind actual native providers. Scheduler5128a0 now owns a shared native
+search and signed frame/request budgets, exact request identity and131-word route
+scratch. Independent512800 immediate/knockback requests use the original250-budget
+search rather than the old one-hop shortcut. Directional diagonal reach uses the
+original one-cell parameter block and source-to-target order. Complete48-word
+sample ordinals permit reverse motion across a sample-bank boundary; empty-anchor
+cleanup restores link0x80 within the declared absent-object-column domain.
+
+Fresh prospectively bound original32/native64/ASan+UBSan+LSan64 execution compares
+9,216 ticks across nine2/4/8-actor encounters and three seeds. It records
+506 hits, 47 stuns, 45 stun recoveries,
+3 knockbacks, 28 route completions,
+16 deaths/removals, 10 search budget yields,
+3 blocked-route transitions and 3 replans,
+42 target changes and 43 cached-attack transitions.
+The65,536 prior helper,65,536 attack/obstacle,32,768 facing and420 actual
+reach/selection/immediate-route cases agree across architectures/sanitizers.
+All221 compiler/configure/test source fingerprints, installed inputs, original
+text and media manifests verify unchanged.
+
+Twenty-four fresh processes restore native snapshots directly and rebuild oracle
+prefixes independently, including unfinished shared search. Final snapshots and
+per-tick digests match. An injected native health fault at137 reproduces exactly
+from its preceding checkpoint, and a corrupt oracle checkpoint is rejected.
+Five native command-session CTests pass on native64 and sanitizers, including
+mid-search rollback, CMD1/v5 roundtrip and quiescent-v4 migration/refusal guards.
+The installed native continuation/rollback/profile/cleanup corpus also passes.
+
+Fixture policy, recovered original comparison and headless integration have
+separate contracts and statuses; no live replacement is claimed. Original search
+heap internals are not projected or serialized. Friendly displacement, region
+graphs, auxiliary cell/object columns, general species/water/flying, dynamic
+actors, complete World/constructor/campaign and original saves remain pending.
+The full original-backed game still has its Wine runtime boundary. No gameplay
+balance coefficients change. See [findings](crowded-native-encounter.md) and the
+[NS70 execution report](crowded-native-encounter-bound-ns70-20261015.json).
+
+The incoming NS69 commit range was reviewed across30 file and20 behavior
+transitions with no missing exact receipts; the
+[history report](coverage/history-review-ns69-to-ns70-20261015.json) asserts neither
+past gate execution nor new engine validation. Historical evidence hashes remain
+unchanged. Broader shared-source contracts retain explicit pending limitations;
+the fresh report supports only its twelve declared bounded contracts. The new
+census, generated summary and exact staged review receipts accompany this commit.
+
+## NS71 — native friendly traffic and displacement (2026-10-15)
+
+Native providers now bind the recovered51a600 displacement controller, blocker
+permission/priority and ranked yielding candidates, moving-blocker wait and
+bounded dependency-chain refusal, yielding order and no-region temporary route
+probe. Shared search/budget progresses while the probe restores all131 actor
+route/motion words. Its old-goal membership/result branch is separately retained.
+AI geometry now honors ignore-occupancy queries, and the common installed fixture
+carries original initial slope float0x3f781062; neither is a gameplay balance policy.
+
+Twenty-four1024-tick independent original32/native32 encounters cover hostile,
+mixed-team and all-allied cases on the actual installed type17 CFG/HTH/ANI and
+12x12x23 Celtic Plains terrain, seeds17/42/91. Scenarios3/4 use allied pairs;5
+exercises shared-owner traffic;6 an unreachable destination;7 test-only stun, new
+orders and signed-health death. Native64 and ASan/UBSan/LSan64 snapshots and every
+projection digest agree. All64 fresh-process checkpoint restores pass;27 yielding
+actor states occur across those checkpoint starts. Original continuation replays
+the immutable prefix; native restores directly. First-divergence reproduction and
+corrupt-oracle refusal pass. Original text/media and installed inputs remain unchanged.
+
+Observed totals: 40 displacement orders, 38 displacement pauses, 40 displacement resumes, 867 hits, 77 stuns, 74 stun recoveries, 7 knockbacks, 32 deaths, 32 removals, 106 route completions, 13 budget yields, 88 blocked routes, 103 replans.
+
+The new102400 helper checks compare blocker/permission/moving/chain-wait/overlap
+queries and yielding decisions with supplied order/action endpoints. The coupled
+encounters execute actual order/action bodies. Together with the retained helper
+regressions,266660 helper checks agree across original32/native64/sanitizer. Both
+native64 and sanitized runs pass five command-session CTests and the installed
+continuation/rollback/profile/cleanup regression. All226 prospective source
+fingerprints remain unchanged.
+
+CMD1/v6 appends validated displacement-owner indices, retaining priority, prior
+goal, pause and shared displacement continuation. v5 zero-owner migration and
+lossy-write refusal are checked. A separate native128x128 fixture restores and
+rolls back an unfinished displacement search; it is not an original large-map
+comparison. Regional graph probe branches explicitly refuse.
+
+See [findings](friendly-native-displacement.md), the
+[NS71 execution report](friendly-native-displacement-bound-ns71-20261015.json),
+and [committed-history review](coverage/history-review-ns70-to-ns71-20261015.json).
+The incoming NS70 commit has32 exact file and76 behavior transitions with no
+missing receipts. This history review asserts no past gate execution or new
+engine validation. Historical evidence hashes remain unchanged; broader shared
+source contracts retain pending limitations. New source census, summary and exact
+staged review receipts accompany this milestone.
+
+This is scoped headless integration. Region graphs, object columns, generic
+species/forms/water/flight, full constructor/CFG import, World/campaign, dynamic
+pool release, original saves and live replacement remain pending. The full
+original-backed game still has its Wine runtime boundary. Commander-order
+features, veterancy and mana-economy changes remain separate outstanding work.
+
+## NS72 — owned regional navigation (2026-10-15)
+
+The native request now binds recovered regional lookup53d7d0, clearance/neighbor
+admission53a380, graph search53e5e0, edge distance53ea50, danger523070 and
+waypoint selection513cf0. Terrain legality/endpoint adjustment4f4900/4f4f90,
+regional scheduler lookup, segment completion and the regional51b300 friendly
+probe compose these providers. The scheduler now publishes actor region indices
+when regional mode is enabled. Original budgets, partial-path publication,
+fifty-entry truncation, danger/traffic costs and ordered tie behavior remain
+separate from native storage/admission policies.
+
+CMD1/v7 owns graph records, ordered search queues/records and risk powers;
+per-actor paths/cursors/final goals already have portable fields. Older reads
+retain empty defaults; lossy older writes refuse. The native map crop policy now
+admits4..64 XY and at most65536 cells; checkpoint encoding retains its independent
+one-MiB limit. The coupled fixtures use actual installed32x32x23 Celtic Plains
+terrain, original type17 inputs and explicitly declared graphs shared with the
+original. Their graph-building test policy does not recover original graph
+production. Dynamic World danger production, full-map World/campaign loading,
+generic species/forms/water/flight and live replacement remain outstanding.
+
+Prospectively bound execution covers clearance/danger/lookup/waypoint helpers,
+interrupted graph search and its50-entry output limit; four journeys cover long
+regional movement, a wall opening, an unreachable partition and friendly yielding
+on a regional leg. Native64 and sanitizer replay plus fresh-process checkpoints
+compare against the independent original32/native32 pair. The final immutable
+execution report, scope register and staged receipts record actual outcomes;
+source-only historical evidence remains historical. Existing native provider and
+installed encounter regressions run separately in that report.
+
+The incoming NS71 commit's exact file and behavior transitions have no missing
+receipts, as recorded in coverage/history-review-ns71-to-ns72-20261015.json.
+This retrospective review asserts neither a past gate pass nor new execution.
+The full original-backed game still retains Wine; this milestone advances the
+headless native simulation. Gameplay balance and the outstanding commander,
+veterancy and mana objectives remain separate.
+
+The [final NS72 execution report](regional-navigation-bound-ns72-20261015.json)
+passes258440 helper checks and8192 original/native comparison ticks, with all
+native64 and ASan/UBSan/LSan64 traces and final snapshots identical. There are1052
+checkpoint restores:1024 in-process restores across both native builds and28
+fresh native processes. Successful travel/chokepoint and friendly-yielding
+journeys arrive; the sealed partition stays unreachable. Both five-test command
+suites and the3072-restored-tick installed encounter regression pass. All238
+prospective sources, installed inputs and immutable originals remain unchanged.
+Original text is checked after each original-backed helper/journey process.
+Only AI.regional-navigation and NP.regional-native-continuation receive fresh
+scope-bound promotions; broader historical contracts retain pending limitations.
+The displacement adapter's alias-derived lookahead at a truncated path tail
+remains outside coupled validation. The final census is
+coverage/source-index-regional-navigation-20261015-v3.json; intermediate snapshots
+and unsuccessful development reports retain their original hashes.
+
+## NS73 — terrain-derived regional navigation (2026-10-15)
+
+The native simulation now owns static graph construction:53ab20 two-pass node
+placement,53b600 ordered footprint adjustment,53d710/53d6f0 full-capacity sort,
+53bb40 pair admission and53c320/53cd30/53ce50 connection/clearance generation,
+including542220 greedy probes and generic mode-one tile-search fallback. Native
+and original graphs are independently generated from installed terrain and the
+normalized28-creature height/width/movement-kind table. Nodes, parameters and
+all18 cost/destination/twenty-clearance connection slots are compared before
+coupled simulation. Graph construction is no longer supplied fixture data in
+these new journeys; NS72's declared-graph fixtures remain a separate regression.
+
+The explicit native `run-regional` CLI builds and publishes an owned graph,
+enables regional scheduling and retains the existing CMD1/v7 checkpoint format.
+Native admission/refusal and shape import are separately registered policies,
+not original World construction. The51b300 cursor49 next-entry read aliases
+actor+dcf (the current regional cursor); native displacement now models that
+DWORD read explicitly and tests an active region49 without array overrun.
+
+Incoming NS72 history has31 exact file and32 behavior transitions with matching
+receipts and no unresolved gaps, retained in
+coverage/history-review-ns72-to-ns73-20261015.json. This retrospective review
+asserts neither a past gate pass nor fresh execution. A whole-image read-only
+inventory re-export identifies the23-byte comparator53d6f0..53d706. The reviewed
+inventory adds only that function, retains all previous functions/flows/imports
+and preserves the remaining unknown ranges. The raw export's unrelated55a650
+contiguous-body broadening is retained as pending discovery evidence, with
+its SHA-bound review in coverage/inventory-review-regional-graph-20261015.json.
+No semantic mapping or equivalence is inferred for that unrelated candidate.
+
+The [construction contract](regional-graph-construction.md) records bounded
+static construction and headless integration separately from dynamic repair
+53c070/53f710, World danger production, general species/forms/water/flying
+execution, full-map/World/campaign loading, original saves and live replacement.
+Those broader boundaries remain in the original objective. The original-backed
+full game still retains Wine; gameplay balance and commander/veterancy/mana
+features remain separate. Historical source/evidence fingerprints are preserved.
+
+The [final NS73 execution report](regional-graph-bound-ns73-20261015.json) passes
+250067 graph/helper checks across11 fixtures (534 nodes/3652 directed edges),
+10240 original/native comparison ticks, native64/sanitizer trace and final
+snapshot agreement, and1315 checkpoint restores (35 fresh native processes).
+Travel and chokepoint journeys arrive; the sealed partition stays unreachable;
+both ordinary and cursor49 friendly-yielding cases issue orders and arrive.
+The explicit native CLI builds52 regions and its1024-tick run matches a separate
+fresh-process resume. The258440-check existing regional suite, four1024-tick
+NS72 declared-graph comparisons, both five-test command suites and both3072-
+restored-tick installed encounter regressions pass. All247 prospective sources,
+239 build inputs, installed inputs and immutable originals remain unchanged.
+
+Fresh validation is confined to AI.regional-graph-construction,
+AI.regional-displacement-tail and NP.regional-graph-loading. Historical evidence
+is retained without refreshed hashes or broader equivalence claims. The reviewed
+source census is coverage/source-index-regional-graph-20261015-v2.json; earlier
+intermediate snapshots and raw development/discovery results remain preserved.
+
+## NS74 — Dynamic regional connection maintenance
+
+NS74 recovers the runtime queue behind 540140/5404a0/540820/5416d0,
+4f49e0/540430 change signatures and 53c070 local reconnection. 53f710 is confirmed
+to be a startup finalizer, not the general runtime terrain-change callback;
+its authored boundary placement/reindexing remains a separate partial contract.
+Native terrain edits stage cell kind/flags, classify/enqueue changes and retain
+unfinished repairs through optional CMD1/v8 state. Normal native frames advance
+one repair slice. Actor paths and regional searches are retained across repairs;
+a failed order does not acquire an invented automatic-retry policy.
+
+The immutable regional-maintenance-bound-ns74-20261015.json records
+198,447,618 original/native helper checks and 7,495 maintenance slices across
+four boundary 0/6/partition fixtures. Eight paired 2048-tick journeys pass
+16,384 ticks, including 32 edit events, 10 overlaps with retained actor
+routes, 836 connection-change frames and successful goal occupancy in every
+journey. The declared 1536-tick move command tests repaired graph use after a
+failed move; goal-frame counts are not automatic retries or distinct arrivals.
+Native 64-bit and ASan/UBSan/LSan64 agree through 2,112 journey restores
+(2048 in-process/64 fresh-process steps), plus helper continuation round-trips.
+A paused independent regional search and retained actor path survive repairs.
+Queue overflow/wrap/merge/decrease, invalid batch rollback, malformed state,
+older-wire admission and CLI edited-checkpoint/refusal cases pass. Eleven static
+graph fixtures, 258,440 regional helper checks, five 1024-tick generated static
+journeys, both five-test command suites and both installed encounter regressions
+pass. All 254 declared sources, 246 compiler/configure inputs, installed
+inputs and 2927 immutable originals remain unchanged; original text is guarded.
+
+Fresh scope-bound validation belongs only to AI.regional-graph-maintenance,
+NP.native-terrain-edits and NP.regional-maintenance-checkpoint. The reviewed
+census is coverage/source-index-regional-maintenance-20261015-v2.json (2453 files,
+2259 linked). Historical NS72/NS73 hashes/statuses remain intact and independently
+stale where shared sources changed. The incoming f00213b9..45f64f41 range reviews
+28 file/457 behavior transitions with exact receipts and no unresolved gaps;
+this is not a past gate pass or new execution. Three category dispatch tables
+and the authored startup orientation table remain incomplete, retaining their
+unmapped categories/defaults and all prior binary unknown ranges/flows.
+
+The interrupted v1 run and superseded fixture source are retained separately;
+only v2 supplies execution proof. Validation survived a daemon restart, and the
+existing process group received a replacement 100 GiB free-space monitor. Storage
+and recovery records remain under the main checkout's working/retention. Full
+World scheduling, authored startup finalization, unused helper category 3, nonzero
+probe adjustment, general species/forms, World danger, campaign and live
+replacement remain outside this milestone. See regional-graph-maintenance.md.
+
+
+## NS75 — Regional danger production (2026-10-15)
+
+The native simulation now owns bounded 41a060 remembered-threat and 41d270
+friendly-deduction production, including four-record/qualified-actor slices,
+32-region effect phases, owner wrap, saturation, scratch/publication rows,
+542810 connectivity/center and 529e40 support totals. Declared area/base inputs
+cover 41f6a0/4202e0/420e20. Existing 523070/53e5e0 navigation consumes the resulting
+rows; a produced hazard changes the preferred branch in original/native search.
+The handler/translation tables remain incomplete with other/default kinds
+explicitly unmapped. No unknown ranges or unresolved flows are removed.
+
+Native visibility memories, one producer context per admitted normal frame,
+first-actor commanders and explicit resource/effect inputs are separate policies.
+Hidden actors retain their last observed position/health/threat/timestamp;
+visible death and friendship refresh/remove the remembered hostility. Danger-
+enabled periodic valuation binds shared CFG+589/+5ad route fields. CMD1/v9 retains
+memory and partial publication state; older reads omit it, and lossy older writes
+refuse. The explicit run-danger CLI and embedded-input resume/edit paths compose
+these services without Wine. The original-backed full game still needs Wine.
+
+The immutable regional-danger-bound-ns75-20261015.json passes
+5,203,818 helper checks, 1,024 producer slice pairs, the generated-hazard
+route-choice witness, and 16,384 paired ticks in eight journeys.
+Native 64-bit and ASan/UBSan/LSan 64-bit full replay traces and final snapshots match
+with 2048 in-process restores; 64 fresh-process boundaries match final snapshots
+(2,112 journey restores total).
+The state suite passes 399 checks, 96 round trips and
+10 refusals. Hidden moving memories, visible death,
+diplomacy, area/base inputs and real combat are exercised; successful goal frames
+represent occupancy, not separate arrivals. CLI run-danger/edit/resume and refused
+edit output pass. Eleven graph fixtures, 258,440 navigation checks, one bounded
+maintenance fixture, five 1024-tick static journeys, both five-test command suites
+and both installed encounter regressions pass. All 265 declared
+sources, 257 compiler/configure inputs, installed inputs
+and 2927 immutable originals remain unchanged. Original text remains guarded.
+Only AI.regional-danger-production, NP.visible-threat-observations and
+NP.regional-danger-continuation receive fresh scoped validation. The census is
+coverage/source-index-regional-danger-20261015-v2.json (2464 files, 2270 linked).
+Research and limitations are in regional-danger-production.md.
+The incoming `45f64f41..79d3fd3f` history has 30 file/38 behavior transitions with
+matching exact receipts and no unresolved gap; this is retrospective accounting,
+not a past gate pass or new execution. Original owner knowledge/task production,
+visibility generation, resource/mana economy, spell/entity lifetime, dual-brain
+World scheduling, arbitrary species/forms, full World/campaign and live
+replacement remain pending. Commander/veterancy/mana gameplay changes remain
+separate from recovered baseline validation.
+
+## NS76 — Original owner creature knowledge (2026-10-16)
+
+The native simulation now owns the bounded4181d0 modes1/2 creature-memory
+projection: mode1 marking, eight-work/eight-owner scan bounds, enabled-owner
+wrap and sweep epochs, nearest owner/type/movement-bounded matching, pool-order
+ties, anonymous owner-local keys, new living hostile sightings, retained hidden
+snapshots and signed age>1024 expiry. Existing records can match allied or dead
+active actors, or a different same-type slot; the earlier slot-key policy is
+preserved separately. The recovered model feeds regional danger through explicit
+mark/danger/deduction/knowledge ordering per admitted normal native frame.
+Visibility, owner eligibility and empty strategic task/notification inputs remain
+declared boundaries. This is not original visibility generation or World cadence.
+
+CMD1/v10 preserves records/fine positions/markers, next keys, sweep epochs,
+owner/key cursor, reset and125 matched flags, with checked danger-memory aliases.
+Older versions decode absent knowledge; lossy older writes refuse. Activation
+stages a private continuation. CLI run-knowledge and embedded-input resume/edit
+compose the recovered pipeline without Wine; run-danger retains the NS75 policy.
+The original-backed full game still requires Wine.
+
+The immutable owner-knowledge-bound-ns76-20261015.json records57,369,512
+lifecycle checks across18,432 synthetic ticks and18,432 paired installed
+encounter ticks in eight journeys. Native64/ASan/UBSan/LSan traces and final
+snapshots agree, with2304 in-process and80 fresh-process journey restores.
+The native state suite passes4873 checks,288 round trips and8 refusals. Hidden
+movement/expiry/reacquisition/death, diplomacy and real melee are exercised;
+combat seeds yield36/19 hits and1/0 deaths. Goal counts are occupancy frames.
+The danger regression passes5,203,818 checks; both five-test core suites, both
+installed encounter regressions, legacy policy state tests and CLI edited-save
+continuation/refused output pass. All272 declared sources,264 compiler/configure
+inputs, five installed inputs and2927 originals are stable within each stage;
+original text is guarded.
+
+Evidence is explicitly composed: the preserved v1 engine stage passed every
+helper/journey/replay/checkpoint, then stopped at a standalone legacy version9
+assertion. V2 accepts only the exact9-to-10 assertion correction and its recovery
+driver, verifies unchanged engine/paired-test sources, identical claims and all
+1270 upstream artifacts, then executes the remaining suites and CLI checks.
+It rechecks upstream hashes afterward and claims no repeated original execution.
+The engine-stage report and superseded source texts are durable separate
+artifacts; five negative reuse guards pass. See owner-creature-knowledge.md.
+
+Only AI.owner-creature-knowledge and NP.owner-knowledge-continuation receive
+current scoped validation. The census is
+coverage/source-index-owner-knowledge-20261015-v2.json (2471 files,2277 linked).
+The incoming79d3fd3f..7011dd87 history has273 file/323 behavior transitions with
+matching exact receipts and no unresolved gap, retained in
+coverage/history-review-ns75-to-ns76-20261015.json; this establishes neither a past
+gate pass nor new execution. Existing evidence hashes and independent statuses
+are preserved, including staleness after shared-source changes. Geometric/shared
+visibility production, nonempty strategic task/notification consequences,
+dual-brain World scheduling, nonzero resource/inventory lifecycle comparisons,
+arbitrary status/form/extreme arithmetic domains, general species, campaign and
+live replacement remain pending. Gameplay balance features remain outstanding.
+
+
+## NS77 — Original creature visibility and portable perception (2026-10-16)
+
+The native headless simulation now owns the declared52b540 creature-perception
+projection: staggered living observers, visibility countdown and observer-reference
+expiry, hidden/type/locked-target admission, and508ca0 relation/share propagation.
+Original5150a0 range,515270 creature sight,5151b0 point sight and4e14a0 terrain-bit
+rays use the recovered trajectory initializer/stepper. The new view profile also
+required5084f0 fine-center direction sectors and a connected51d3a0 threat-orientation
+consequence; the earlier cell rounding/no-op was insufficient. Geometry-driven
+sightings now feed owner memory, danger, navigation and creature decisions.
+
+`run-visibility` opts into this pipeline. Installed encrypted CFG supplies
+ViewRange/LRCOffsets; selected type-initialization instructions establish center
+mapping. Full original CFG-loader behavior remains pending. CMD1/v11 retains
+scan phase, sharing, sight definitions and logical observer slots. Versions1..10
+read absent; lossy legacy writes refuse. Native admission fixes capacity125,
+uses one perception pass per normal frame and admits an empty object pool and
+empty attenuation columns. Direct helpers compare authored nonempty columns;
+production of installed columns is a separate gap. Sprite clipping and explored
+map/fog are separate rendering/World contracts.
+
+The immutable owner-visibility-bound-ns77-20261016.json records7,170,048
+component checks over18,432 scan ticks and24,576 direct ray/point/facing cases
+per operation. Eight installed original32/native32 journeys pass18,432 ticks;
+native64 and ASan/UBSan/LSan traces/final snapshots agree, with
+2304 in-process and80 fresh-process journey restores.
+The native state suite passes4621
+checks,288 round trips and
+10 refusals. Both five-test core
+suites, installed regressions, old native knowledge/danger state suites and CLI
+whole/split portable continuation pass. All283 declared
+sources,258 compiler/configure inputs, five installed
+inputs and2927 originals remain stable within their stages. The preserved v1
+engine stage completed original execution and every replay/checkpoint/regression,
+then its broad CTest selection encountered unbuilt inherited targets. V2 verifies
+unchanged engine/paired sources, matching scope, every retained artifact and eight
+embedded input sets, then freshly completes the intended five-test core suites
+and CLI. Only the driver changes; no repeated original execution is asserted. Travel goal occupancy is1760 frames per seed; hidden
+journeys have1338 hidden/1023 remembered-hidden frames and one death. Counters
+are frame witnesses, not distinct arrivals or events.
+
+AI.owner-visibility-production, AI.fine-coordinate-facing and
+NP.owner-visibility-continuation receive independent scoped/current stages;
+none claims live replacement. The reviewed census is
+coverage/source-index-owner-visibility-20261016-v2.json (2480 files,2286 linked).
+Incoming7011dd87..8427fae4 has282 file/325 behavior accounting transitions and32
+committed files with matching exact receipts, retained in
+coverage/history-review-ns76-to-ns77-20261016.json. No unresolved transition was
+found; this review asserts neither a past gate pass nor fresh engine validation.
+Historical evidence and source hashes are preserved. UI discovery/local commander
+reveal, neutral owners, observation-point fog, script diplomacy setters and their
+immediate reveal effects, installed attenuation-column production, strategic
+notifications/tasks, World/two-brain scheduling, general species/campaign and live
+replacement remain pending. Gameplay balance changes remain outstanding; the
+original-backed full game still requires Wine. See owner-visibility.md.
+
+
+## NS78 — Bounded owner task planning and portable inference (2026-10-16)
+
+The native lab now connects owner sightings to singleton hostile-task features,
+installed model6 inference, a resumable taskless selector and active target or
+last-known-position command delivery. `run-planner` opts into two ordinary type17
+actors on a32x32 crop, choosing legal same-region stands. CMD1v12 embeds the
+model, snapshot feature projections, independent strategic250-word RNG,
+selector/evaluator state, candidate, task serials and active memory key/center.
+Versions1..11 read absent and legacy writes refuse losing planner state.
+Fresh activation and frame execution are staged; inference failure rolls back
+perception, tasks, RNG and commands with the preceding published snapshot intact.
+
+Five independent source-bound original32/native64/sanitizer component comparisons
+pass7,997,070 checks: taskless4284e0 selection7,360,480 across26,456 slices
+(22,360 yields), present-model4766b0 inference2,688 across896 vectors/all seven
+installed models, ordered67-feature40b420 prefix274,432 across4096 cases,
+prepared431ce0/414ff0/40edb0 candidate completion303,104 across4096 cases,
+and singleton432900/407c10 execution56,366 across8192 cases. The latter includes
+2673 target orders,2515 stale/missing-memory moves,523 completions and2481
+suppressed orders. These are corpus counts, not full owner-journey equivalence.
+Explicit allocator/inference/lower-command services remain declared; original
+target text is protected and immutable input manifests verified before/after.
+The first bound reports are retained but not adopted: a report-only assertion
+about object-write guards was unsupported. The v2 runs remove that
+assertion and freshly repeat all five comparisons. A final v3 reruns them after
+trailing-blank-line cleanup in the report driver, retaining v2 reports/source
+without refreshing their hashes. The component records assert protected target
+text and the actual compared state, not whole-object memory-write coverage.
+
+The native64 and ASan/UBSan/LSan integration passes1050 planner checks,
+128 restore checkpoints,18 refusals and an inference-failure rollback witness.
+Both seeds exercise34 active-task frames and496 selection frames combined;
+1024 frames retain enemy memory. Five mid-selection/active/late checkpoints and
+one public CLI split restore in fresh processes (PATH unavailable) match final
+snapshots exactly. Both five-test core suites and native visibility/knowledge/
+danger regressions pass. All native/sanitizer snapshots,254 declared sources,
+254 compiler/build inputs and six installed inputs remain stable. No Wine or Qt
+appears in the runtime linkage. These witnesses establish native policy integration,
+not a coupled original owner journey or live replacement.
+
+The native integration has a separate policy contract. Its two-count-unit cadence,
+explicit1/0/1 coefficients and100 percent, supplied zero path summaries/false
+assigned flag, singleton/same-region admission and retained active-task lifetime
+are intentional lab policies. Multi-record memories yield no candidate; original
+413330 grouping,431ce0 path probes,52a430 risk-stop, previous-task replacement,
+replanning deadlines, full415c40 dual-brain/World cadence and other task families
+remain pending. No original risk/probe success or coefficient initialization is
+inferred from the component tests. General species, resources/spells, campaign
+construction, notification consequences and live replacement remain outstanding.
+The original-backed full game still requires Wine. Commander orders, veterancy
+and mana balance changes remain separate work.
+
+The focused inventory adds16 pinned function bodies to the reviewed6676 baseline
+(6692 total), preserving all prior flows/imports and unknowns. Five metadata
+renames and unrelated55a650 body broadening are not adopted; new-function flow
+attribution remains pending in raw discovery. The sparse54-entry factory mapping
+is explicitly incomplete. Incoming8427fae4..8cb7fbdc has295 file/329 behavior
+accounting transitions and37 committed files with exact receipts and no unresolved
+transition, in coverage/history-review-ns77-to-ns78-20261016.json. This is a
+committed-history review, not a past gate-pass or new execution assertion.
+The reviewed census is coverage/source-index-owner-planner-20261016-v2.json:
+2509 source/build files,2315 explicitly linked. Shared codec/provider/header/build
+changes leave older evidence historical/pending; prior source hashes and statuses
+are preserved. See owner-strategic-planner.md and owner-planner-*-ns78-20261016.json.
+
+The generated scope/freshness snapshot is coverage/summary-owner-planner-20261016-v1.md; the full machine report is retained under working/tests/planner-ns78-accounting/audit-final-v1.json.
+
+### NS79: memory groups, actual task6 probes and grouped pursuit
+
+The bounded task6 model now owns original413330 anonymous-memory clustering,
+ordinary grouped67-feature aggregation, real431ce0 regional probe continuation,
+route-derived feature/risk production, and grouped432900 pursuit with actual
+52a430 danger rejection. Fresh source/scope-bound native64/original32/sanitizer
+comparisons pass8,832 cases and580,499 checks: grouping2,048 cases/253,621 checks,
+group features2,048/137,216, probes512/15,501 (1,330 slices), grouped execution
+4,096/161,233, and128 coupled episodes/12,928 (384 probe slices). The coupled
+fixture retains original-generated groups through original probe/features and
+execution; supplied sightings/world motion, inference and lower command recorders
+remain explicit boundaries. The parameter-zero terrain-cover composition remains
+static recovery with native movement-line composition, not a new original terrain
+comparison.
+
+Two earlier hypotheses are corrected: grouping matches copied flag104, not enemy
+owner, and suffix71 measures terrain cover, not task assignment. The grouping
+metric/spread uses wrapped XY plus floor(dz²/4). Nested wrappers remain owned:
+flattening inactive leaves would change the original near-center completion gate.
+Saved risk is the maximum raw danger along the full reverse path, independently
+of travel time/cumulative danger/destination danger feature summaries. Pinned
+binary32 0.2 grant/refund and per-friendly20 work limits retain yielded, failed and
+last-discarded-expansion cases. Original input manifests and RX target text guards
+passed; historical NS78 evidence and source hashes remain unchanged.
+
+Fresh native lab activations implement ordered multi-record, cross-region
+candidates and grouped active pursuit. CMD1v13 owns frozen observations, logical
+group trees, unfinished search/path state and separate candidate/best/active task
+copies. v12 reads preserve the singleton policy; lossy writes refuse. Native
+fresh-sweep cache timing, origin-change probe restart, two-unit frame budget,
+preparation tick+22 deadline, active-task retention, coefficients1/0/1,100 percent
+and danger excess0 remain explicit native policies. Complete original task
+eligibility, previous-task replacement/replanning, other strategic families,
+notification consequences,415c40 dual-brain/World cadence, campaign integration
+and live replacement remain pending. The original-backed full game still needs
+Wine. Commander orders, veterancy and mana balance remain separate work.
+
+The incoming8cb7fbdc..454d7d08 range has296 file/597 behavior transitions and71
+committed files with exact receipts and no unresolved transition, retained in
+coverage/history-review-ns78-to-ns79-20261016.json. This is committed-history
+accounting, not a past gate-pass or new engine execution claim. The reviewed
+source/build census is coverage/source-index-owner-group-planner-20261016-v3.json:
+2,531 files,2,337 explicitly linked;22 additions,14 content edits and no removals.
+Older evidence affected by shared codec/header/build edits remains historical and
+pending; no recorded hashes were refreshed. See owner-grouped-planner.md and
+owner-planner-*-ns79-20261016.json for individual evidence boundaries.
+
+Fresh native/sanitizer integration now passes two512-frame seeds,128 restore
+checkpoints,1,062 planner state checks and29 refusals, plus the10-check controlled
+multi-memory/cross-region probe and pursuit/loss/reacquisition/risk-stop restore
+journey. Six cold process resumes need neither installation access nor Wine/Qt;
+CLI whole/split/resumed snapshots agree. Both five-test core suites and native
+visibility/knowledge/danger regressions pass, and failed inference rolls back the
+staged frame. Frozen observations now reject out-of-map coordinates on all three
+axes. The final result is owner-planner-native-ns79-20261016.json; interrupted
+storage/development runs remain retained without new validation claims. The
+user-approved1.7 GiB active build-cache relocation verified2,591 files and kept
+original paths as symlinks, recorded under working/retention/; it is storage
+provenance, not fresh engine evidence.
+
+The generated scope/freshness snapshot is coverage/summary-owner-group-planner-20261016-v1.md; the full machine report is retained under working/tests/planner-ns79-accounting/audit-final-v1.json.
+
+## NS80: ordinary task admission and active-task replanning (2026-10-16)
+
+The bounded owner lab now evaluates fresh grouped hostile proposals while keeping
+its active pursuit, then uses the original ordinary direct-root replacement gate
+to retain or replace it. Whole431be0 preparation predicates, previous-task4284e0
+admission and whole423590 direct-root decisions are separately registered as
+AI.owner-task6-admission, AI.owner-task-replacement and
+AI.owner-direct-root-replanning. Native policy/continuation is independently
+NP.owner-task-replanning-continuation. Recovery and exclusions are documented in
+[task replanning](owner-task-replanning.md).
+
+Three fresh prospective original32/native64/ASan/UBSan/LSan comparisons pass12,288
+cases and16,812,666 checks:2048 admission cases,8192 previous-task/lifetime/RNG
+fixtures over52,913 slices, and2048 ordinary direct-root replacement episodes over
+6139 slices. The latter includes1045 replacements,1003 retentions,591 strict-score
+improvements,266 completed-task replacements and an explicit expired low-progress
+replacement; remaining accepted cases have no previous task. Special-cell,
+distress/cache production, evaluator generation and task construction/destruction
+are explicit service boundaries, not original implementation substitutions claimed
+as equivalence. Manifest, original protected text and source fingerprints remain
+unchanged. Original reports are owner-task-{admission,replanning,replacement-
+journey}-ns80-20261016.json. Static constants are separately typed.
+
+The strict improvement threshold is pinned binary32~0.9. The alternative is
+pow(progress, elapsedFraction)<binary32~0.001 with a positive proposal, not the
+reverse exponent order. Native active state owns original start/expiry,
+completed/weighted/value, baseline and separate progress counters. Successful
+candidate completion now owns the actual mean100 exponential lifetime draw,
+replacing NS79's discarded preparation word; rejected/losing candidates still
+consume it. Zero masked RNG words refuse instead of reproducing invalid
+logarithm/ftol; zero finite lifetime retains the original execution-expiry gate.
+
+CMD1v14 persists admission/policy/preparation, distinct candidate/best durations,
+and previous-task state alongside pending probes and active groups. Versions12/13
+preserve earlier policies and lossy writes refuse. Task6 enabling, assignments,
+special-cell/distress and owner progress inputs are explicit lab values; producers
+are not recovered by testing supplied predicates. The existing two-unit frame
+cadence, cache epochs, origin restart, coefficients and danger policy remain
+native choices. Original multi-source split/merge, task6 generation coupled
+through423590, training/feedback, notifications, full415c40/World scheduling,
+other task families/campaigns and live replacement remain pending. No gameplay
+balance feature or full-game Wine removal is claimed.
+
+The committed-history review covers454d7d08..be0a865b:54 committed files and all297
+file/341 behavior transitions have exact receipt chains, without unresolved gaps.
+This checks historical accounting only. The new durable source census has2541
+files/2347 explicit links,10 new sources and no removals;194 preexisting unlinked
+sources remain. All prior execution evidence and hashes are preserved. Shared
+source edits leave historical broader contracts stale rather than asserting new
+validation for them; fresh NS80 proofs cover their declared scopes only.
+
+Fresh declared native/sanitizer validation passes two512-frame installed-model
+seeds,128 restore checkpoints,1067 planner checks/33 refusals, and the32-check
+controlled authored-model journey with21 slice restores. In that journey a changed
+enemy valuation passes through actual grouped features/inference to replace the
+task; selected scores and active lifetimes are not assigned by the fixture.
+Retention, improved replacement, moving target, failed-route retention and risk
+completion/fallback all have explicit witnesses. Six cold process resumes and
+whole/split CLI continuation agree with Wine/Qt absent from linkage and PATH
+unavailable during cold resumes. Both five-test core suites plus native visibility,
+knowledge and danger regressions pass; v13 grouped policy is restored through
+its actual older wire format. The immutable result is
+owner-task-native-ns80-20261016.json. Sixty coverage-audit and51 gate-tool tests
+also pass. Interrupted development/final-v1 runs remain retained without new
+validation claims. The audit preserves historical broader staleness; none of
+these results claims full World or live equivalence.
+
+## NS81: native task event inputs
+
+Fresh ordinary owner planning now derives preparation input from task percent,
+regional membership and special-cell occupant tokens, and reads the native
+regional producer's published danger/support totals. Task `+2f/+33` are accounted
+reward/cost totals, not success/attempt or route counts. Actual native melee
+attacker identity, damage cost, notifying healing and one-shot flagged movement
+completion feed the retained task through the recovered account model. Brain0/root,
+ordinary singleton source, designated ordinary commander, observation-point
+construction and FC global score ratio remain explicit lab policies/boundaries.
+
+The4096-case/20480-check original32/native64/sanitizer comparison independently
+covers52a3a0 distress (supplied maximum),522690 occupancy (supplied enumeration),
+and514990 nonlethal/dead/zero credit with supplied score/source-ID endpoints and
+actual victim ancestry. Static discovery identifies constructor task percent100,
+regional publication stores, the strict binary64 distress ratio>0.5, and loader
+502b20's LRC_Matrix at280/HTH_Matrix at1a0. A mistaken development FearHate mapping
+was corrected before the accepted final native run; superseded runs are excluded.
+
+CMD1v15 appends eventInputs. v14 preserves supplied NS80 inputs, including an
+expired active task, and lossy writes refuse. The native authored-model journey
+runs actual grouped features/inference and lifetime draws, then actual damage
+causes an expired task replacement while an undamaged control at the same clocks
+retains the identical proposal. It also checks admission failures, health/healing
+notify/attacker rewards, one-shot FC cost, actual nonzero support publication and
+per-slice resume. Exact counts and native/sanitizer, installed-model, core-suite
+and cold-resume outcomes are recorded in
+[the NS81 research](owner-task-inputs.md) and its separate immutable reports.
+
+Scope/confidence, original comparison, headless integration and live replacement
+remain independent. Original credit numerics and source resolution are bounded
+separately, not a whole original health-to-planner comparison. Sighting observer
+notifications, resource/interaction/cast task credit, production of FC flags/global
+ratio and observation-point lists, wizard/campaign/configuration factories,
+source split/merge/dual-brain ancestry, training, whole task-generation-to-original
+driver composition, World cadence and live replacement remain pending. Historical
+NS80/shared-source evidence hashes are preserved; new source-bound native proof
+supports the NS81 contract only. Incoming be0a865b..0c0605ae history has39 committed
+files and291 file/345 behavior transitions with complete exact receipt chains;
+this adds historical accounting, not a past gate pass or new engine validation.
+
+The authorized older visibility build cache was relocated to the second NVMe,
+3724 entries/1722969742 logical bytes verified and its old path preserved by
+symlink. Originals, tracked sources and raw experiment evidence were retained.
+`working/retention/ns81-visibility-cache-relocation-20261016.json` records storage
+provenance only; no cold archive/cleanup or engine validation is inferred.
+
+### NS82 — composed ordinary task6 driver and lifetime correction (2026-10-17)
+
+- Added `AI.owner-task6-composed-loop` and
+  [the bounded journey research](owner-task6-composed-loop.md). Actual original
+  423590 now calls431be0/413330 grouping,431ce0 regional probes/features/lifetime,
+  4766b0 inference,4284e0 selection,4261b0 save and4289e0 installation in one
+  comparison. Installed432900 task execution and514990 credit join the journey.
+- The composed comparison exposed a real native lifetime omission. At
+  432535..432552 the original adds produced travel and pinned binary32 constant
+  **600** to its mean100 exponential draw before truncating. The first failing
+  development case had native expiry104 versus original1280 (travel576+600).
+  `ownerTask6Duration` and the native grouped planner now implement the complete
+  expression. Standalone40b3f0 remains an independent random-term primitive.
+- Fresh prospectively declared original32/native64/ASan/UBSan/LSan evidence:
+  **128 episodes,431,713 checks,1,313 planning slices,896 installed execution
+  slices**;128 initial installations,320 retained sweeps,192 replacements and128
+  risk stops. Disabled admission, maximum/weighted selection, merged/separate
+  targets, actual nonuniform72-dimensional model inference, all250 RNG words and
+  cursors each slice, saved features and task fields, identical-proposal
+  retention, supplied-accounted34 damage through original514990, expired
+  replacement/weighted retention and completed-task replacement agree. Native
+  negative-travel/overflow/zero-draw refusals are separate bounded policy.
+- Fresh unchanged original4284e0/40a3b0/40b3f0 component regression:
+  **8,192 cases,16,761,501 checks,52,913 slices**, native and sanitizers agree.
+  The static600-byte/assembly report is independent from execution evidence.
+- Fresh native64 and sanitizer CMD1v15 integration over274 declared sources:
+  **3,807 event-journey checks,3,650 per-slice restores**, damage cost34,1,753
+  expired slices before replacement and retained undamaged control; native
+  melee/healing/flagged-completion and published-owner inputs pass. Two512-frame
+  installed-model seeds add1,068 checks/128 restores/34 refusals; both core suites,
+  visibility/knowledge/danger regressions, **six cold-process restores** and CLI
+  whole/split identity pass. Runtime linkage needs neither Wine nor Qt. Native
+  supplied cadence/cache/order and full original World claims stay independent.
+- NS80/NS81 evidence hashes remain unchanged. Shared lifecycle/provider/test
+  changes leave affected older reports historical/stale; only fresh scope-bound
+  results support current validation. Existing serialized lifetimes remain
+  stored values; newly completed candidates use corrected arithmetic. No wire
+  version change, gameplay balance change or full-game Wine removal is claimed.
+- Supplied creature/world/observation/model construction, fresh-evaluator clone,
+  teardown, training registration and score34 remain explicit comparison
+  boundaries. Full original perception/health-to-owner/World composition,
+  notification/resource/cast/interaction credit, source split/merge and
+  dual-brain/World scheduling, wizard/campaign/configuration producers, broader
+  species and live replacement remain pending. Commander orders, veterancy and
+  mana balance remain separate unimplemented gameplay work.
+
+
+### NS83 ordinary task6 caller and native scheduler
+
+The new bounded milestone models415c40 count-mode planning-before-execution,
+independent half budgets and phase continuation, actual task-map execution and
+428b40 expiry/progress/result cleanup. Execution-result+14 is separate from
+replacement-invalidated+15; the latter retains the historical logical API name.
+Fresh native sessions carry optional CMD1v16 scheduler state, while absent
+scheduler state preserves v13-v15 native cadence and stored lifetimes.
+
+Source/perception/snapshot production, source queue insertion, specialized queues,
+simultaneous displaced tasks, split/merge, dual brains, rdtsc/World allocation,
+training and live replacement remain pending. Original and native execution
+results are recorded independently in the central register after fresh binding;
+static discovery, development failures, history review and source indexing are
+not new execution-equivalence evidence. See [scheduler scope](owner-task-scheduler.md).
+
+NS83 execution: original32/native64/sanitizer agreement over64 episodes,4,865,080 checks/14,080 caller slices, including separate result flags, expiry and progress retirement; fresh276-source native/sanitizer integration, scheduled and legacy actual-event journeys, two512-frame seeds, core suites and six cold resumes pass. New original and native contracts have independent bound evidence; supplied source/World boundaries and historical staleness remain explicit.
+
+
+## NS84 — owned friendly source and task lifecycle
+
+New scoped reconstruction covers407780/407820 detachment/cursors, whole417580
+protected source pruning with actual destruction and queue/vector erase, and
+selected423590 split/merge commit topology with explicitly supplied task/storage
+services. Existing NS52 creation/join/recipient registration primitives are reused.
+New whole432900 comparison extends ordinary task6 execution to two friendly
+members and one enemy, preserving the shared charge, group rejection/spread and
+assigned-threat accounting. Original comparison and native integration have
+separate prospective evidence under `AI.source-task-ownership`,
+`AI.owner-source-group-execution` and `NP.owned-friendly-source-continuation`.
+
+Native scenario8 and `run-sources` carry formed/split/merged source groups,
+concurrent tasks, shared strategic RNG/serials and pending queues through CMD1v17.
+The one-root/frame allocation, active-health availability, member-epoch restart,
+empty-source retirement and representative same-region probe are native policies.
+Automatic423590 partition/merge proposal search and winner selection, full
+per-member probe production, specialized421f70 queues, original World cadence,
+dual brains, training, campaign and live replacement remain pending. Selected
+commit execution is not proof of automatic strategic decision recovery.
+
+NS84 execution: two original32/native64/sanitizer comparisons pass13,824 cases and
+1,064,522 checks. The source-maintenance/selected-commit result includes256
+splits/256 merges/384 displaced tasks; ordinary task6 execution includes both
+friendly traversal orders and shared target accounting. Independent clean
+285-source native/sanitizer execution passes the512-frame source journeys,
+626 checks/66 restores/26 refusals,27 concurrent-task frames, legacy planner,
+scheduled event and core regressions, eight cold resumes and public CLI identity.
+Only the new bounded source contracts are promoted; automatic strategic topology
+search and the explicit native/World boundaries above remain pending.
+
+## NS85 — automatic two-member source decisions
+
+Own bounded423590 normal task/merge versus split-first search, per-member431ce0
+probe generation and native automatic topology/task continuation. The decision
+and probe original comparisons are independent, with evaluator or preparation
+services explicitly supplied; the installed-model native scenario composes their
+owned projections. CMD1v18 preserves pending decisions and member probes, while
+v1-v17 retain their existing layouts/hosts. Native queue folding, active-health
+availability, one-root execution cadence, planning allocation and epoch restarts
+remain policies. See `owner-source-decisions.md` for exact scopes and pending
+boundaries. Full original World/campaign integration and live replacement remain
+pending. NS84's pending automatic search and representative probe gaps are
+addressed only within these new bounded contracts; historical NS84 evidence is
+unchanged. Execution acceptance is recorded after fresh bound runs.
+
+NS85 original execution: the independently bound automatic-search and prepared
+per-member task6 comparisons pass768 cases and624,467 checks under original32,
+native64 and ASan/UBSan/LSan. Search budgets/phases/winners/saved member order and
+full strategic RNG agree; prepared task6 probes additionally agree on72 features,
+path totals/risk and generated lifetime. Explicit evaluator/preparation/storage
+services and the original World/composition exclusions remain recorded.
+
+NS85 native acceptance: clean288-source native/sanitizer builds pass the768-frame
+maximum-selection automatic journeys,2,608 checks/72 restores/7 refusals,
+146 partial second-member states and281 decisions (15 splits/14 merges).
+All27 cold process restores and public CLI continuations match uninterrupted
+snapshots. Legacy source/planner/event/core regressions pass in both builds.
+The existing taskless native fallback remains a host policy; original kind0
+lifetime/execution, full two-member original task6/423590 composition, larger
+groups and original World scheduling remain separate pending work. Accepted
+records preserve original/installed inputs and all historical fingerprints.
+
+## NS86 — autonomous ordinary native skirmish
+
+Extend the opt-in host to six ordinary type 17 actors in two factions with
+three-member source search and per-member probes, installed kind 0 fallback and
+task 6, task ownership/lifetime/retirement and death cleanup. Replace one-root/frame
+queue folding with the recovered ordinary count driver, while keeping allocation 64,
+active-health availability, logical commander mapping and mutable snapshot/epoch
+policies explicit. CMD1 v19 retains driver/source/task continuation within 1 MiB and
+stores an exact shared model once. Old command layouts/default modes remain.
+
+New scoped contracts cover count queues/World allocation call-site, kind 0 fallback,
+three-member proposals/centers, three-member task probes/execution, captured task
+replay and native integration. Original and native acceptance remain separate.
+The new three-enemy comparison corrects the task memory center to a raw-coordinate
+incremental mean; unique speed and distance tree keys explain equal-key proposals.
+No old evidence hashes or historical statuses are refreshed. Incoming NS85 commit
+accounting is retained separately in `coverage/history-review-ns85-to-ns86-20261017.json`.
+
+`run-skirmish` uses actual installed creature/terrain/animation/model inputs and
+native ordinary combat through victory and source cleanup. Its operation-local
+verifier can capture portable task calls; a separate original oracle replays body
+commands, budgets and refreshed node state against those actual native inputs.
+That does not establish whole-original creature frames or composed World/decision
+candidate generation. See [scope, reproduction and boundaries](owner-native-skirmish.md).
+Fresh prospectively bound results are recorded in the linked milestone document.
+
+Full original multi-source decision-to-task-generation composition, World
+perception/snapshot production, timing/rdtsc and difficulty, second-brain and other
+specialized task families, wizard spellcasting, training, actor factories/owner
+transfer, campaign and live replacement remain pending. Source/context capacity 128
+and maximum-selection ordinary admission remain explicit bounds. Gameplay balance
+features are unchanged and outstanding.
+
+NS86 component acceptance: seven new prospectively bound original32/native64/
+ASan+UBSan+LSan comparisons pass 13,984 fixtures and 1,419,927 checks. This includes
+multi-task count queues/expiry, both normal World brain-allocation calls, real
+kind 0 installation/lifetime, healthy-task three-member decisions, unique speed/
+distance keys, source centers, three-member candidate probes and three-versus-three
+body commands/centers. Five new recovered contracts have current scoped evidence;
+native integration and captured replay have separate source-bound acceptance. The
+two exact fallback accessor/expiry recovered ranges preserve the remaining binary
+discovery inventory.
+
+NS86 native acceptance: clean native64 and ASan/UBSan/LSan builds produce identical
+two-battle snapshots, task traces and lifecycle logs. The new suite passes 29,760
+checks across 2,445 frames, 42 sliced restores, eight deaths, 14 refusals and two
+verifier rollbacks; the legacy suites, both core runs, 36 cold-process restores and
+public CLI continuation also pass. `NS86.native-owner-skirmish` promotes only the
+new ordinary scenario to headless integration. Independently bound original body
+replays cover all 4,262 captured task-6 calls and 1,296,318 checks across both
+factions; together with component execution, the new original comparisons pass
+2,716,245 checks. All seven new scoped behaviors have current fingerprints, while
+historical staleness, incomplete World composition and live replacement remain
+explicit. No full original battle equivalence is claimed.
+
+## NS87 — wizard AI, in progress
+
+The wizard milestone extends decisions through spell selection, resource admission,
+cast delivery, effects and portable native continuation. Stable contracts
+`AI.wizard-controller` and `AI.wizard-spell-control` retain whole-controller and
+component status separately. Static constructor/vtable discovery covers kinds
+14–59 without promoting their semantics or silently changing binary boundaries.
+The first shared model covers original `51e530` mana readiness, including all
+42 inventory reserves and eligible same-owner production; comparison is pending
+until a prospective source-bound run is registered. Native composition and
+end-to-end wizard behavior remain pending. See [wizard AI](wizard-ai.md).
+
+
+NS87 independent component acceptance now records seven new prospectively bound
+original/native/sanitizer comparisons: shared wizard mana wait (32768 fixtures),
+eight target-task bodies (65536), Magic Sphere task (16384), installed Greek Male
+wizard ground banks (128/6272 checks), Cure effect (32768), projectile update/actor
+impact (32768), and actual type3 Magic Sphere collision (560 fixtures/1120 calls,
+198 hits). Target text/input/source guards and both immutable-original manifests
+pass. Six components total180352 fixtures; collision is a separate560-fixture
+whole guarded-state comparison. Lower services, component scope and native
+composition remain independent. No whole original wizard-controller promotion.
+
+A broader first collision fixture exposed non-type3 distance-return4 at488b19–53;
+the original explicitly exempts types3/71. `FX.motion-distance-stop` retains that
+new branch as pending native implementation and original comparison. Failed/raw
+source and binaries are preserved; narrowing the passing sphere case to actual
+moving type3 does not remove that gap. Full original per-spell evaluators,
+repertoire, source/brain scheduling, survival and campaign remain outstanding.
+
+NS87 discovery publishes only nine exactly reviewed spell-task bodies, extending
+the retained6692-function baseline to6701 while preserving previous flows/unknowns.
+Read-only static export/tooling covers204 inspected ranges, constructor/vtable
+mapping and execution-slot links. Committed-history review of1961f306..4a504852
+checks all62 committed files and exact receipt chains (332 file and363 behavior
+transitions), with no unresolved transition; it establishes neither a past gate
+pass nor fresh engine validation. Report:
+`coverage/history-review-ns86-to-ns87-20261017.json`.
+
+The new source census acknowledges implementation/test/dependency links. Shared
+ANI reader, comparison runner, rendering/catalog admission, command codec and
+encounter integration edits leave affected old source-bound results historical;
+no old fingerprints are refreshed. New original evidence supports only its stated
+contracts. Native/core regressions do not restore whole-original equivalence for
+older branches. The exact hash-bound change review records remaining gaps.
+
+
+NS87 native acceptance: `NS87.native-wizard-encounter` binds341 current compiler/
+build inputs and the headless three-spell scenario. Both native64 and ASan/UBSan/
+LSan agree on5120 frames,426277 checks,116 sliced restores,27 refusals,4 verifier
+rollbacks,63 casts,28 heals,27 projectile actor impacts,4 summons, one mana-item
+use,204 production visits,9 actual health-to-zero transitions and3 wizard defeats.
+Seventeen cold-process restores and public wizard CLI continuation are identical;
+all wizard snapshots/traces, ordinary skirmish/encounter and both core regressions
+pass. Final v3 is an explicit incremental rebuild after the retained clean
+bootstrap; superseded v1/v2 runs do not assert complete integration acceptance.
+Current type3 original comparison is a new v3 evidence ID, preserving the earlier
+passing source version and the excluded nonprojectile distance-return4 gap.
+
+`NP.native-wizard-encounter` alone gains headless integration. Actor-target task,
+readiness, ground-profile and effect comparisons retain their narrower component
+scopes. Full original `AI.wizard-controller`, its scoring/repertoire/source/World
+and campaign/factory/producer ownership remain open. See `wizard-ai.md` and
+`../formats/native-wizard-continuation.md`. Commander orders, veterancy and mana
+economy changes remain outstanding; no installed balance data was modified.
+
+## Wizard AI branch integration into master (2026-10-17)
+
+The master integration combines the48 incoming AI commits through
+360229b293d1928e9a6c90baeb292dc64a5a5254 with master
+ac8480563fc05530c23066c3ae395465ba308e44. Both append-only review histories,
+immutable execution records, focused imports and historical source indexes remain
+retained. The stable-ID register combines independent scenarios and evidence.
+Recovered object/environment/contribution findings retain their incoming scoped
+milestones as historical inheritance, independently of combined-source freshness.
+Shared Cure/projectile contracts retain both sets of historical evidence links.
+
+The reviewed effect conflicts retain master support and the NS87 type3-only
+expanded iteration/counter domain; non-type3 stays bounded at8/64 and Magic Sphere
+creature collision requires type3. Static creature service labels retain their
+corrected queued-marker, owner-conversion and contribution roles. Comparison
+runners bind their CMake inputs and use the actual projectile CMake directory.
+The projection regression now admits type3 iterations9/64 and counters33/8192,
+refuses65/8193 and explicitly retains non-type3 iteration8/counter64 bounds.
+The previous fixture expected the narrower historical type3 domain and failed;
+both failed logs remain retained alongside the passing corrected fixture.
+No additional spell/controller, replacement or balance milestone is promoted.
+
+The merged compiler closure differs from NS87 in11 game simulation/build files
+already committed on master. Its earlier native/sanitizer results are historical;
+a separate clean merged native wizard/ordinary/core regression run is retained
+under working/merge-accounting/validation-v1 in the integration worktree. This
+merge does not establish a new original comparison, sanitizer comparison or full
+original wizard controller equivalence. Pending exact merge review explicitly
+retains those current-source validation boundaries. See the merged census,
+summary and history-review-wizard-master-merge-20261017.json for accounting.

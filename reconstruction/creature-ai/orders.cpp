@@ -156,23 +156,30 @@ bool advanceOrders(AutonomousCreature &a, CreatureExecution &e,
   auto current =
       std::find_if(e.orders.begin(), e.orders.end(),
                    [&](const auto &o) { return e.orderCursor == o.serial; });
-  if (current == e.orders.end())
-    throw std::invalid_argument("queue cursor does not identify a live node");
-  if (current->repeat) {
-    current->repeat = false;
-    e.queuedFlag = 1;
-  }
-  unsigned next = unsigned(current - e.orders.begin()) + 1;
-  if (!e.queuedFlag) {
-    release(current->effect, s);
-    e.orders.erase(current);
-    --e.queuedCount;
-    --next;
+  unsigned next = 0;
+  if (current == e.orders.end()) {
+    // Logical end represents an explicitly zeroed sentinel payload. A cycling
+    // end increments to the first live node without purging target nodes.
+    if (e.orderCursor || !e.queuedFlag)
+      throw std::invalid_argument("queue cursor does not identify a live node");
+  } else {
+    if (current->repeat) {
+      current->repeat = false;
+      e.queuedFlag = 1;
+    }
+    next = unsigned(current - e.orders.begin()) + 1;
+    if (!e.queuedFlag) {
+      release(current->effect, s);
+      e.orders.erase(current);
+      --e.queuedCount;
+      --next;
+    }
   }
   if (next == e.orders.size()) {
     if (!e.queuedFlag) {
       for (auto &o : e.orders)
-        release(o.effect, s);
+        if (o.kind == 2)
+          release(o.effect, s);
       e.orders.clear();
       e.queuedFlag = e.queuedCount = 0;
       e.orderCursor.reset();
@@ -191,7 +198,12 @@ bool advanceOrders(AutonomousCreature &a, CreatureExecution &e,
   }
   if (e.orders.empty()) {
     e.orderCursor.reset();
-    return false;
+    // 524130 still dispatches the zero sentinel command and returns1 after a
+    // cycling all-target purge. This does not recover uninitialized sentinels.
+    CreatureOrder sentinel;
+    sentinel.kind = 0;
+    s.performOrder(sentinel);
+    return true;
   }
   e.orderCursor = e.orders.at(next).serial;
   auto command = e.orders[next];

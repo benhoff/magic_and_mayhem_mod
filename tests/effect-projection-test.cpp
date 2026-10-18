@@ -30,12 +30,29 @@ int main(){
         if(mode==1)s.trajectory.words[1]=48;
         if(mode==2)s.trajectory.words[4]=2048;
         if(mode==3)r.parameters[8]=1;
-        if(mode==4)r.parameters[9]=9;
-        if(mode==5)s.changes=33;
+        if(mode==4)r.parameters[9]=65;
+        if(mode==5)s.changes=8193;
         if(mode==6)r.position[0]=0;
         old=r;oldState=s;refused=false;
         try{projectEffectSameCell(r,s,32,32,3);}catch(const std::invalid_argument&){refused=true;}
         require(refused && r.parameters==old.parameters && r.units==old.units && r.position==old.position && r.sentinels==old.sentinels);
+        require(s.trajectory.words==oldState.trajectory.words && s.changes==oldState.changes);
+    }
+    // Long type3 continuation is admitted; other types keep the old bounds.
+    for(unsigned iterations:{9u,64u}){
+        r=created();r.parameters[9]=iterations;s={};
+        require(projectEffectSameCell(r,s,32,32,3)==3);
+    }
+    for(unsigned changes:{33u,8192u}){
+        r=created();s={};s.changes=changes;
+        require(projectEffectSameCell(r,s,32,32,3)==3);
+    }
+    for(unsigned type:{13u,22u,24u,36u})for(unsigned mode=0;mode<2;++mode){
+        r=created();r.type=type;s={};
+        if(mode==0)r.parameters[9]=9;else s.changes=65;
+        old=r;oldState=s;refused=false;
+        try{projectEffectSameCell(r,s,32,32,3);}catch(const std::invalid_argument&){refused=true;}
+        require(refused && r.parameters==old.parameters && r.units==old.units);
         require(s.trajectory.words==oldState.trajectory.words && s.changes==oldState.changes);
     }
     r=created(1,1);s={};s.trajectory.words[4]=32;s.trajectory.words[5]=0xffffffe0u;

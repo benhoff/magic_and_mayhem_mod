@@ -41,10 +41,12 @@ std::uint32_t nextRandom(RandomState &s) {
   return n;
 }
 MeleeResult resolveMelee(const MeleeInputs &p,
-                         const std::function<std::uint32_t()> &next) {
+                         const std::function<std::uint32_t()> &next,
+                         const MeleeDispatch &dispatch) {
   if (!next || p.rank > 2)
     throw std::invalid_argument("unsupported ordinary melee inputs");
   MeleeResult r;
+  auto emit=[&](MeleeEffect kind,int value=0){MeleeEvent event{kind,value};r.events.push_back(event);if(dispatch.event)dispatch.event(event);};
   auto draw = [&](unsigned modulus) {
     const auto word = next();
     r.draws.push_back(word);
@@ -60,7 +62,15 @@ MeleeResult resolveMelee(const MeleeInputs &p,
           : p.height < 0 ? signedBits(0U - std::uint32_t(p.heightBonus))
                          : 0,
           p.responseModifier);
-  r.events.push_back({MeleeEffect::responseQuery, 0});
+  emit(MeleeEffect::responseQuery);
+  int charge=0;
+  if(p.charge){
+    if(p.chargeScalar>1000)charge=mul(p.chargeBonus,4);
+    else if(p.chargeScalar>750)charge=add(mul(p.chargeBonus,3),mul(add(p.chargeScalar,-750),p.chargeBonus)/250);
+    else if(p.chargeScalar>500)charge=add(mul(p.chargeBonus,2),mul(add(p.chargeScalar,-500),p.chargeBonus)/250);
+    else if(p.chargeScalar>200)charge=add(p.chargeBonus,mul(add(p.chargeScalar,-200),p.chargeBonus)/300);
+    modifier=add(modifier,charge);
+  }
   if (p.targetResponse)
     modifier = add(modifier, 50);
   if (modifier)
@@ -75,21 +85,20 @@ MeleeResult resolveMelee(const MeleeInputs &p,
   if (p.quarterFlag)
     amount = mul(amount, 4);
   r.amount = amount;
-  r.events.push_back({MeleeEffect::damage, amount});
-  r.events.push_back({MeleeEffect::hostileCredit, amount});
+  emit(MeleeEffect::damage,amount);
+  emit(MeleeEffect::hostileCredit,amount);
   const auto stun = draw(100);
   if (stun <= p.stunThreshold) {
-    r.events.push_back(
-        {MeleeEffect::stunQuery,
-         add(stun, signedBits(0U - std::uint32_t(p.stunThreshold)))});
-    if (p.stunHandled)
-      r.events.push_back({MeleeEffect::stunHandled, 0});
+    const auto argument=add(stun,signedBits(0U-std::uint32_t(p.stunThreshold)));
+    emit(MeleeEffect::stunQuery,argument);
+    if (dispatch.tryStun?dispatch.tryStun(argument):p.stunHandled)
+      emit(MeleeEffect::stunHandled);
     else
-      r.events.push_back({MeleeEffect::stunFallback, draw(20) + 20});
+      emit(MeleeEffect::stunFallback,draw(20)+20);
   }
-  r.events.push_back({MeleeEffect::attackSound, 0});
-  if (p.bloodLust || p.quarterFlag || p.targetResponse)
-    r.events.push_back({MeleeEffect::effectAdmission, 0});
+  emit(MeleeEffect::attackSound);
+  if (charge>200 || p.bloodLust || p.quarterFlag || p.targetResponse)
+    emit(MeleeEffect::effectAdmission);
   return r;
 }
 MeleeActionResult meleeEvent(MeleeActionState s, std::int32_t event,

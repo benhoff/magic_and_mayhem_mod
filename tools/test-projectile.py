@@ -81,7 +81,7 @@ def main():
         # declaration remains mandatory for scope-bound evidence, but omitted
         # claims must never permit a mixed-version build to look successful.
         dependency_text = run('pre-build-dependencies', flags + ['-m32', '-DMNM_PROJECTILE_REFERENCE', '-MM'] + sources)
-        initial_dependencies = {'tools/test-projectile.py', *sources}
+        initial_dependencies = {'tools/test-projectile.py', 'reconstruction/casting/projectile/CMakeLists.txt', *sources}
         for token in shlex.split(dependency_text.replace('\\\n', ' ')):
             path = Path(token)
             if not path.is_absolute() and (ROOT / path).is_file():
@@ -119,7 +119,7 @@ def main():
         original = json.loads(run('original', [args.output / 'reference', executable]))
         sanitized = json.loads(run('sanitized', [args.output / 'sanitized'], env={**os.environ, 'ASAN_OPTIONS': 'detect_leaks=1:halt_on_error=1', 'UBSAN_OPTIONS': 'halt_on_error=1:print_stacktrace=1'}))
         assert native == original == sanitized
-        run('cmake-configure', ['cmake', '-S', 'reconstruction/casting/cure',
+        run('cmake-configure', ['cmake', '-S', 'reconstruction/casting/projectile',
                                '-B', args.output / 'cmake', '-DCMAKE_BUILD_TYPE=Debug'])
         run('cmake-build', ['cmake', '--build', args.output / 'cmake', '-j2'])
         run('cmake-ctest', ['ctest', '--test-dir', args.output / 'cmake', '--output-on-failure'])

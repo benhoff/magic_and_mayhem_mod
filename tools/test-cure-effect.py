@@ -81,7 +81,7 @@ def main():
         # declaration remains mandatory for scope-bound evidence, but omitted
         # claims must never permit a mixed-version build to look successful.
         dependency_text = run('pre-build-dependencies', flags + ['-m32', '-DMNM_CURE_REFERENCE', '-MM'] + sources)
-        initial_dependencies = {'tools/test-cure-effect.py', *sources}
+        initial_dependencies = {'tools/test-cure-effect.py', 'reconstruction/casting/cure/CMakeLists.txt', *sources}
         for token in shlex.split(dependency_text.replace('\\\n', ' ')):
             path = Path(token)
             if not path.is_absolute() and (ROOT / path).is_file():

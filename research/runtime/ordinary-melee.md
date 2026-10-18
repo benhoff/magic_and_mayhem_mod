@@ -1,5 +1,11 @@
 # Ordinary melee exchange (NS24)
 
+NS68 extends the default no-charge/supplied-stun interface with recovered charge
+thresholds and synchronous damage/stun dispatch. Installed encounter integration
+and current source-bound trace/regression records are documented in
+[native-installed-encounter.md](native-installed-encounter.md). The NS24/NS25
+sections below retain their historical validation boundaries and evidence hashes.
+
 No-CD SHA-256 `40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168`.
 Preferred VAs are build-specific, never host pointers. High confidence applies
 only to the executed projection below. The original still owns the campaign.

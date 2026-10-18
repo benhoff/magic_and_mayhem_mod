@@ -1,6 +1,9 @@
+#pragma push_macro("main")
+#undef main
 #define main unused_execution_fixture_main
 #include "creature-execution-test.cpp"
 #undef main
+#pragma pop_macro("main")
 #include "../reconstruction/creature-ai/death_behavior.hpp"
 namespace {
 struct LifeFixture {
@@ -514,8 +517,16 @@ void installLife() {
                  {0x50ab30, reinterpret_cast<void *>(resetStub)}})
     redirect(v.first, v.second);
 }
+// Additional owned fields can be compared while executing the complete parent
+// body. The ordinary lifecycle suite keeps its original domain and defaults.
+struct LifeCompareExtension {
+  std::function<void()> install;
+  std::function<void(Bytes &, bool)> pack;
+  std::function<void()> verify;
+};
 void compareLife(const LifeFixture &input, const LifeFixture &expected,
-                 unsigned op, bool ready, const std::vector<Event> &trace) {
+                 unsigned op, bool ready, const std::vector<Event> &trace,
+                 const LifeCompareExtension *extension = nullptr) {
   auto f = input;
   life = &f;
   fixture = &f.base;
@@ -571,6 +582,10 @@ void compareLife(const LifeFixture &input, const LifeFixture &expected,
   global(0x6bf0f3, 42);
   if (op == 1)
     redirect(0x51f5e0, reinterpret_cast<void *>(lifeInvalidateArgStub));
+  if (extension) {
+    extension->install();
+    extension->pack(actors, false);
+  }
   auto before = actors;
   unsigned entry = op == 0   ? 0x509e50
                    : op == 1 ? 0x510010
@@ -616,6 +631,8 @@ void compareLife(const LifeFixture &input, const LifeFixture &expected,
               expected.base.execution[i], expected.maintenance[i],
               expected.movement[i]);
   }
+  if (extension)
+    extension->pack(before, true);
   if (before != actors) {
     unsigned i = 0;
     while (i < actors.size() && before[i] == actors[i])
@@ -636,6 +653,8 @@ void compareLife(const LifeFixture &input, const LifeFixture &expected,
       throw std::runtime_error("corpse flag write");
   if (std::memcmp(reinterpret_cast<void *>(entry), body->data(), body->size()))
     throw std::runtime_error("life text modified");
+  if (extension)
+    extension->verify();
 }
 #endif
 } // namespace

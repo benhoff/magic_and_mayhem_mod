@@ -20,7 +20,8 @@ unsigned transitionEffectCreatureCatalog(EffectPlacementPool& pool,unsigned slot
  auto candidatePool=pool;auto next=state;
  const auto creator=candidatePool.records()[slot].parameters[6],iterations=candidatePool.records()[slot].parameters[9],kind=candidatePool.records()[slot].parameters[8];
  if(kind!=0 && kind!=34 && kind!=68 && kind!=73)throw std::invalid_argument("Unsupported creature collision kind");
- if(iterations>64)throw std::invalid_argument("Creature collision iteration bound exceeded");
+ if(kind==73 && candidatePool.records()[slot].type!=3)throw std::invalid_argument("Magic Sphere collision requires type3");
+ if(iterations>64 || (candidatePool.records()[slot].type!=3 && iterations>8))throw std::invalid_argument("Creature collision iteration bound exceeded");
  // Reuse bounded movement bookkeeping. Kind 34 differs in creator selection;
  // the public empty-world operation retains its original admission.
  candidatePool.records()[slot].parameters[8]=(kind==34 || kind==73)?0:kind;

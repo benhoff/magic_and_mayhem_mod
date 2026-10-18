@@ -11,6 +11,7 @@ using namespace mnm::reconstruction;
 namespace {
 std::uint64_t meleeCases = 0, meleeDraws = 0, actionCases = 0,
               animationTicks = 0;
+bool streamStun = false;
 #ifdef MNM_HEALTH_REFERENCE
 const MeleeInputs *meleeInputs = nullptr;
 std::vector<MeleeEvent> meleeTrace;
@@ -25,6 +26,7 @@ extern "C" unsigned __attribute__((thiscall)) meleeStun(void *, int n,
                                                         unsigned actor) {
   check(actor == 0, "stun source");
   meleeTrace.push_back({MeleeEffect::stunQuery, n});
+  if(streamStun){using Next=unsigned(__attribute__((thiscall)) *)(void *);reinterpret_cast<Next>(0x54e200)(reinterpret_cast<void*>(0x6e1ac8));}
   return meleeInputs->stunHandled;
 }
 extern "C" void __attribute__((thiscall)) meleeHandled(void *) {
@@ -136,6 +138,7 @@ struct Fixture {
     put(a, 0x94, p.bloodLust ? 1U : 0U);
     put(a, 0x10, std::uint32_t(p.height));
     put(a, 0x124, p.rank);
+    put(a, 0x16c, p.charge ? 1U : 0U);put(a, 0x170, unsigned(p.chargeScalar));
     put(a, 0x81d, p.quarterFlag ? 1U : 0U);
     put(b, 0x6ac, p.targetResponse ? 1U : 0U);
     std::copy(a.begin(), a.end(), pool.begin());
@@ -146,6 +149,7 @@ struct Fixture {
     global(0x6def58,
            std::uint32_t(reinterpret_cast<std::uintptr_t>(pool.data())));
     global(0x5e1778, std::uint32_t(p.heightBonus));
+    global(0x5e177c, std::uint32_t(p.chargeBonus));
     global(0x5e1758, std::uint32_t(p.responseModifier));
     global(0x5e1910, std::uint32_t(p.rankBonus));
     global(0x5e1914, std::uint32_t(p.rankBonus));
@@ -166,6 +170,7 @@ struct Fixture {
     auto expectedTarget = targetBefore;
     healthFields(expectedTarget, expected);
     auto expectedSource = sourceBefore;
+    if(meleeInputs->charge&&(!action||!r.draws.empty()))put(expectedSource,0x16c,0U);
     if (action) {
       put(expectedSource, 0x664, s.engaged);
       put(expectedSource, 0x66c, s.cooldown);
@@ -208,13 +213,17 @@ void checkRandom(const RandomState &s) {
         "RNG word/cursor consumption differs");
 }
 #endif
-void formula(const MeleeInputs &p, unsigned seed, unsigned hp) {
+void formula(const MeleeInputs &p, unsigned seed, unsigned hp, bool stream=false) {
+  streamStun=stream;
   auto random = seedRandom(seed);
 #ifdef MNM_HEALTH_REFERENCE
   Fixture fixture(p, hp);
   putRandom(random);
 #endif
-  auto result = resolveMelee(p, [&] { return nextRandom(random); });
+  MeleeDispatch dispatch;std::vector<MeleeEvent> immediate;
+  if(stream){dispatch.event=[&](const auto &e){immediate.push_back(e);};dispatch.tryStun=[&](int){nextRandom(random);return p.stunHandled;};}
+  auto result = resolveMelee(p, [&] { return nextRandom(random); },dispatch);
+  if(stream)check(immediate==result.events,"streamed melee endpoint order");
   State before;
   before.health = hp;
   Inputs h;
@@ -496,6 +505,10 @@ int main(int argc, char **argv) try {
         p.stunHandled = seed & 1;
         formula(p, seed, 360);
       }
+  for(unsigned seed=0;seed<128;++seed)for(int scalar:{-1,0,200,201,499,500,501,749,750,751,999,1000,1001,0x7fffffff}){
+    MeleeInputs p;p.charge=true;p.chargeScalar=scalar;p.chargeBonus=seed%2?62:-1000000;p.stunThreshold=99;p.stunHandled=seed&1;formula(p,seed,360,true);
+  }
+  streamStun=false;
   for (unsigned seed = 0; seed < 64; ++seed)
     for (unsigned event : {0U, 1U, 2U, 3U, 4U})
       for (bool blocked : {false, true})
@@ -509,7 +522,7 @@ int main(int argc, char **argv) try {
             << ",\"draws\":" << meleeDraws
             << ",\"action_cases\":" << actionCases
             << ",\"animation_ticks\":" << animationTicks
-            << ",\"rng_words\":262144}\n";
+            << ",\"charge_stream_cases\":1792,\"rng_words\":262144}\n";
   return 0;
 } catch (const std::exception &e) {
   std::cerr << "case " << meleeCases << " action " << actionCases << ": "

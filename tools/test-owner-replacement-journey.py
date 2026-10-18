@@ -1,0 +1,5 @@
+#!/usr/bin/env python3
+"""Whole423590 direct-root comparison across budgeted task reconsideration."""
+from owner_planner_comparison import SUITES, main
+SUITES['replacement-journey']=dict(ranges=[(0x423590,0x425c9e),(0x4284e0,0x4289d7),(0x40a3b0,0x40a413)],endpoints=[0x597850,0x597870,0x4289e0,0x418050],scope='Whole423590 ordinary single direct-root actor, no other source groups, no owner wizard available and no source split/merge; actual4284e0 selection and original progress/pow gate, absent/completed/weighted/retained previous task, count-budget continuation and strategic RNG. Evaluator generation/save, selected task construction and previous task destruction are explicit recorders. Full World cadence, task6 generation coupling and multi-source planning excluded.',suite='owner-task-replacement-journey',sources=['tests/owner-task-replacement-journey-test.cpp','reconstruction/creature-ai/owner_task_lifecycle.cpp','reconstruction/creature-ai/owner_planner.cpp','reconstruction/combat/melee.cpp','reconstruction/creature-ai/brain_inference.cpp','assets/dat.cpp'],wrapper='tools/test-owner-replacement-journey.py')
+if __name__=='__main__':main('replacement-journey')

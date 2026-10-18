@@ -20,7 +20,8 @@ unsigned projectEffectSameCell(EffectPlacementRecord& record,EffectProjectionSta
     if(!record.active || !record.initialized ||
        (record.type!=3 && record.type!=13 && record.type!=22 && record.type!=24 && record.type!=36) ||
        record.parameters[6]!=0xffffffffu ||
-       (record.parameters[8]!=0 && record.parameters[8]!=68) || record.parameters[9]>64 || state.changes>8192)
+       (record.parameters[8]!=0 && record.parameters[8]!=68) || record.parameters[9]>64 || state.changes>8192 ||
+       (record.type!=3 && (record.parameters[9]>8 || state.changes>64)))
         throw std::invalid_argument("Effect projection outside empty-cell movement scope");
     if(record.units[0]>=width*32 || record.units[1]>=height*32 || record.units[2]>=layers*16 ||
        record.position!=std::array<unsigned,3>{record.units[0]>>5,record.units[1]>>5,record.units[2]>>4} ||
