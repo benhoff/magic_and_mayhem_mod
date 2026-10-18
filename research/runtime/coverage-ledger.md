@@ -18088,3 +18088,31 @@ promotions are not carried into the committed register. See
 [native-only commit boundary](native-only-commit-boundary-20261018.md) for the
 remaining scope and the preserved declarations. This is source implementation,
 not a complete-renderer or original-pixel equivalence milestone.
+
+
+## NS88 — original-first ordinary decision-pipeline capture (2026-10-18)
+
+`AI.owner-decision-pipeline-trace` now compares an original-captured composed
+`415c40` -> task6 candidate generation/grouping/probes/features/inference ->
+selection/save/installation -> retirement/body/commands pipeline with independent
+native64 and sanitizer replay. The original runs first without native decision
+outputs as expectations. Captured stimuli include original-derived task-date
+clock jumps; native replay does not regenerate those inputs from its own tasks.
+
+The [scope and reproduction](owner-decision-pipeline.md) and
+[immutable execution record](owner-decision-pipeline-original-ns88-20261018.json)
+cover one ordinary brain0 direct-root source and a source-bound authored fixture
+deck: 32 fixtures, 7,040 slices, 2,446,668 checks, 192 installations and 6,073
+body visits. Exact scheduler state, full strategic RNG, selected score, task
+serial/lifetime/progress/result flags, all 72 saved features, selected target and
+commands match. ASan/UBSan/LSan equality and four corrupt-transcript refusals pass;
+original manifests bracket execution. Raw transcript and binaries are retained.
+
+This is the bounded captured original decision-pipeline comparison milestone,
+beyond helper or individual task-body replay. It preserves supplied perception,
+source maintenance, snapshot, clone/training and credit boundaries. Losing
+candidate intermediate buffers and planning-budget endpoints are not separately
+captured. Full original multi-source candidate-to-task composition, wizard
+scoring/survival, other task families, second brain and World timing/difficulty/
+perception/allocation scheduling remain pending. Native battle integration and
+live replacement are independent; gameplay balance remains unchanged.

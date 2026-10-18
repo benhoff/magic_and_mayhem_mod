@@ -119681,6 +119681,137 @@
         "tools/test-native-pacer.py",
         "tools/test_native_restart_support.py"
       ]
+    },
+    {
+      "id": "AI.owner-decision-pipeline-trace",
+      "subsystem": "creature_ai",
+      "kind": "recovered",
+      "title": "Captured original ordinary decision pipeline and independent native replay",
+      "scope": "Original-first capture of whole415c40 for a single enabled ordinary direct-root source in count-budget mode, followed by independent native64 and sanitizer replay of captured stimuli. Actual task6 admission, grouping, regional probes, 72 features, nonuniform authored-model inference, candidate selection/save/installation, retirement and installed execution compose under the original caller. Each slice compares scheduler continuation, exact shared strategic RNG, selected score, installed serial/lifetime/progress/flags/saved features/target and ordered commands. Fixed source-bound authored 32-fixture deck, supplied perception/snapshot/source maintenance/clone/training/accounted-credit services. No original perception production, installed-model or multi-source topology composition, wizard scoring/survival, additional families, second brain, rdtsc/difficulty/World allocation producer, whole battle or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4283456,
+          "scope": "Ordinary single-root count-budget caller; source maintenance/perception/snapshots supplied, specialized queues empty."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4361024,
+          "scope": "Actual enabled ordinary source task retirement; task-map erasure, no-op task6 expiry virtual, explicit source queue/training/teardown services."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4224432,
+          "scope": "Count-mode budget initialization; timing modes excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4339088,
+          "scope": "Composed ordinary task6 direct-root planning as NS82."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4401408,
+          "scope": "Actual installed ordinary body invoked by415c40, including result flag14 and budget debit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4360672,
+          "scope": "Actual task map installation and distinct flag14/15 initialization."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4403120,
+          "scope": "Task6 expiry virtual is a no-op.",
+          "recovered_range": "owner-task6-expire-432fb0"
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-decision-pipeline.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/owner_group_features.cpp",
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_group_task.cpp",
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner.cpp",
+        "reconstruction/creature-ai/owner_planner.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_inputs.cpp",
+        "reconstruction/creature-ai/owner_task_inputs.hpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.cpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.hpp",
+        "reconstruction/creature-ai/owner_task_probe.cpp",
+        "reconstruction/creature-ai/owner_task_probe.hpp",
+        "reconstruction/creature-ai/owner_task_scheduler.cpp",
+        "reconstruction/creature-ai/owner_task_scheduler.hpp"
+      ],
+      "tests": [
+        "tests/owner-decision-pipeline-test.cpp",
+        "tools/test-owner-decision-pipeline.py",
+        "tools/test_owner_decision_config.py"
+      ],
+      "evidence": [
+        "NS88.owner-decision-pipeline-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_hostile_task.hpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/regional_danger.cpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.cpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-task-probe-test.cpp",
+        "tests/owner-task6-loop-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py"
+      ],
+      "validation_domain": {
+        "required_inputs": "Pinned NoCD image and source-bound authored fixture deck; original capture must finish before native replay. Explicit captured tick/budget/pause/loss/risk/credit stimuli; portable bounded version1 transcript.",
+        "branches": "Maximum/weighted selection, small/zero/odd count allocations, partial planning and shared RNG continuation, real candidate-to-task generation, expiry/progress/completion, target/move/stop, disabled clock advance.",
+        "failures": "Magic/version, size/count bounds, truncation/trailing bytes and changed expected state refuse; source/input drift rejects the experiment. Malformed original ABI inputs excluded.",
+        "exclusions": "Multiple source trees, specialized queues, wizard/controller/survival, additional tasks, second brain, World timing/difficulty/allocation/perception producers, installed model/data or full battle equivalence, live integration/replacement."
+      }
     }
   ],
   "evidence": [
@@ -251952,6 +252083,108 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NS88.owner-decision-pipeline-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Original-first capture of whole415c40 for a single enabled ordinary direct-root source in count-budget mode, followed by independent native64 and sanitizer replay of captured stimuli. Actual task6 admission, grouping, regional probes, 72 features, nonuniform authored-model inference, candidate selection/save/installation, retirement and installed execution compose under the original caller. Each slice compares scheduler continuation, exact shared strategic RNG, selected score, installed serial/lifetime/progress/flags/saved features/target and ordered commands. Fixed source-bound authored 32-fixture deck, supplied perception/snapshot/source maintenance/clone/training/accounted-credit services. No original perception production, installed-model or multi-source topology composition, wizard scoring/survival, additional families, second brain, rdtsc/difficulty/World allocation producer, whole battle or live replacement.",
+      "record": "research/runtime/owner-decision-pipeline-original-ns88-20261018.json",
+      "sha256": "1f63f6e91cb4e9f9960a49b19e398ce5db270d8720147cac1ced40ad479887c1",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/capture_before_replay",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/checks",
+          "equals": 2446668
+        },
+        {
+          "pointer": "/slices",
+          "equals": 7040
+        },
+        {
+          "pointer": "/installed",
+          "equals": 192
+        },
+        {
+          "pointer": "/executed",
+          "equals": 6073
+        },
+        {
+          "pointer": "/pending",
+          "equals": 1750
+        },
+        {
+          "pointer": "/completed",
+          "equals": 101
+        },
+        {
+          "pointer": "/target",
+          "equals": 5497
+        },
+        {
+          "pointer": "/move",
+          "equals": 480
+        },
+        {
+          "pointer": "/stop",
+          "equals": 96
+        },
+        {
+          "pointer": "/expired",
+          "equals": 32
+        },
+        {
+          "pointer": "/transcript_refusals",
+          "equals": [
+            "magic",
+            "truncated",
+            "trailing",
+            "state"
+          ]
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -272577,8 +272810,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-only-commit-v3-20261018.json",
-    "sha256": "270f175f0c5f710f4e604142bda52cef82d692e6d3735ef92d57c0a7b2efe51e"
+    "path": "research/runtime/coverage/source-index-owner-decision-pipeline-commit-20261018.json",
+    "sha256": "ef8c850d04e04e2a200089ac8091efdc2245adc147c519acb3aa21c3a8ee0134"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
