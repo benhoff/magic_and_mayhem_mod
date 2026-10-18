@@ -38152,7 +38152,8 @@
         "runtime/drawing/aux_save_readback.h",
         "protocols/include/mnm/drawing_aux_save_readback_v1.h",
         "runtime/drawing/worker_producer_points.h",
-        "protocols/include/mnm/drawing_worker_producer_points_v1.h"
+        "protocols/include/mnm/drawing_worker_producer_points_v1.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "NR.drawing-session-api.forwarding-native-20261011",
@@ -38336,7 +38337,8 @@
         "runtime/menu/drawing_actor_latches.h",
         "runtime/scene/source_pending_policy.h",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "validation_domain": "Prospective original-game metadata journal, applied menu statuses, actual input calls, passive gameplay samples and independent physical viewport snapshots. Visible screenshots carry no synchronized original-frame assertion; full readback mode is diagnostic until interference is resolved. Fresh results readiness/accepted Continue/Quit plus fresh Main readiness verify the scoped exit; combat, tooltip, complete picking and pause equivalence remain pending.",
       "remaining_gaps": [
@@ -63617,7 +63619,8 @@
         "reconstruction/rendering/vertical_bar.h",
         "runtime/scene/source_pending_policy.h",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-point-getter-fixture-01-20261012",
@@ -63930,7 +63933,8 @@
         "tools/build-drawing-x11-delivery.py",
         "tools/drawing_x11_delivery.py",
         "tools/capture-drawing-interactive.py",
-        "tools/drawing-session-runner.py"
+        "tools/drawing-session-runner.py",
+        "runtime/display/presentation_route_guard.h"
       ],
       "evidence": [
         "DRAW02.draw02-glx-delivery-fixture-01-native_integration-20261012",
@@ -63986,7 +63990,8 @@
         "tools/drawing_x11_delivery.py",
         "tools/capture-drawing-interactive.py",
         "tools/drawing_process_snapshot.py",
-        "tools/drawing-session-runner.py"
+        "tools/drawing-session-runner.py",
+        "runtime/display/presentation_route_guard.h"
       ],
       "evidence": [
         "DRAW02.draw02-egl-delivery-fixture-01-native_integration-20261012",
@@ -64091,7 +64096,8 @@
         "tools/drawing_x11_delivery.py",
         "tools/capture-drawing-interactive.py",
         "tools/drawing-session-runner.py",
-        "tests/drawing-egl-delivery-test.c"
+        "tests/drawing-egl-delivery-test.c",
+        "runtime/display/presentation_route_guard.h"
       ],
       "evidence": [
         "DRAW02.draw02-egl-fence-fixture-01-native_integration-20261012",
@@ -64207,7 +64213,8 @@
         "runtime/drawing/session.c",
         "runtime/shadow/win32_min.h",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-import-inventory-01-static-20261012",
@@ -64265,7 +64272,8 @@
         "runtime/drawing/session.c",
         "tools/inspect-drawing-wine-imports.py",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-lifetime-fixture-01-native_integration-20261012",
@@ -64316,7 +64324,8 @@
         "runtime/drawing/wine_lifetime.h",
         "tools/drawing_wine_lifetime.py",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-generation-fixture-01-native_integration-20261012",
@@ -64366,7 +64375,8 @@
         "runtime/drawing/wine_lifetime.h",
         "tools/inspect-drawing-wine-imports.py",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-buffer-fixture-01-native_integration-20261012",
@@ -64410,7 +64420,8 @@
         "runtime/drawing/wine_submission.h",
         "tools/inspect-drawing-wine-imports.py",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-texture-entry-fixture-01-native_integration-20261012",
@@ -64504,7 +64515,8 @@
         "runtime/drawing/wine_blit_worker.h",
         "runtime/drawing/wine_submission.h",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-blit-packet-fixture-01-native_integration-20261012",
@@ -64557,7 +64569,8 @@
         "runtime/drawing/wine_blit_packet.h",
         "runtime/drawing/wine_blit_worker.h",
         "runtime/display/egl_delivery.c",
-        "protocols/include/mnm/drawing_worker_context_v1.h"
+        "protocols/include/mnm/drawing_worker_context_v1.h",
+        "runtime/display/presentation_route_guard.h"
       ],
       "evidence": [
         "DRAW02.draw02-egl-worker-context-fixture-01-native_integration-20261012",
@@ -64750,7 +64763,8 @@
         "runtime/drawing/wine_submission.h",
         "runtime/scene/source_pending_policy.h",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-worker-lease-fixture-01-native_integration-20261012",
@@ -64809,7 +64823,8 @@
         "tools/drawing_source_pending_refusal.py",
         "tools/drawing_fixture_prefix.py",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-held-fixture-01-native_integration-20261012",
@@ -65006,7 +65021,12 @@
         "DRAW02.original120-window-span-01-20261014",
         "DRAW02.update-source-boundary-fixture-03-20261014",
         "DRAW02.update-accounting-original120-03-20261014",
-        "NATIVE.source-boundary.original120-20261017"
+        "NATIVE.source-boundary.original120-20261017",
+        "NATIVE.ownership-bypass.launch-negative-20261017",
+        "NATIVE.ownership-bypass.original120-20261017",
+        "NATIVE.ownership-bypass.ownership-20261017",
+        "NATIVE.ownership-bypass.capability-original120-20261018",
+        "NATIVE.ownership-bypass.capability-ownership-20261018"
       ],
       "status": {
         "understanding": "partial",
@@ -65208,7 +65228,8 @@
         "tools/drawing_quit_completion.py",
         "runtime/drawing/wine_map_storage_point.h",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-resource-imports-01-static-20261012",
@@ -65274,7 +65295,8 @@
         "tools/drawing_source_pending_refusal.py",
         "tools/drawing_fixture_prefix.py",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.held-refusal-fixture-01-native-20261012",
@@ -65339,7 +65361,8 @@
         "runtime/scene/drawing_storage_caller.h",
         "runtime/scene/source_pending_policy.h",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.map-storage-export-fixture-01-native-20261012",
@@ -65424,7 +65447,8 @@
         "runtime/scene/drawing_storage_caller.h",
         "runtime/scene/source_pending_policy.h",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.client-memory-imports-01-static-20261012",
@@ -65502,7 +65526,8 @@
         "runtime/scene/drawing_storage_transitions.h",
         "runtime/scene/drawing_storage_caller.h",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.retained-map-fixture-01-native-20261012",
@@ -65898,7 +65923,8 @@
         "tools/inspect-drawing-wine-resource-copy.py",
         "tools/inspect-drawing-wine-imports.py",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ]
     },
     {
@@ -66276,7 +66302,8 @@
         "protocols/include/mnm/drawing_input_point_v1.h",
         "tools/build-drawing-session.py",
         "runtime/drawing/wine_source_descriptor.h",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ]
     },
     {
@@ -67055,7 +67082,8 @@
         "tools/drawing_fixture_prefix.py",
         "tools/drawing_wine_submission.py",
         "tools/drawing_wine_lifetime.py",
-        "runtime/drawing/wine_source_map.h"
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.wine-source-descriptor-fixture-04-20261012",
@@ -67110,7 +67138,8 @@
         "tools/drawing_fixture_prefix.py",
         "tools/drawing_wine_source_descriptor.py",
         "tools/drawing_wine_submission.py",
-        "tools/drawing_wine_lifetime.py"
+        "tools/drawing_wine_lifetime.py",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.wine-source-map-fixture-02-20261012",
@@ -67216,7 +67245,8 @@
         "tools/drawing_wine_source_descriptor.py",
         "tools/drawing_wine_submission.py",
         "tools/drawing_wine_lifetime.py",
-        "tools/drawing_diagnostic_cadence.py"
+        "tools/drawing_diagnostic_cadence.py",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.wine-source-map-bounded-fixture-01-20261012",
@@ -67412,7 +67442,9 @@
         "DRAW02.primitive-lifetimes.egl-01-20261017",
         "NATIVE.completion.egl-20261017",
         "NATIVE.source-reservations.egl-20261017",
-        "NATIVE.source-boundary.egl-20261017"
+        "NATIVE.source-boundary.egl-20261017",
+        "NATIVE.ownership-bypass.egl-20261017",
+        "NATIVE.ownership-bypass.capability-egl-20261018"
       ],
       "status": {
         "understanding": "partial",
@@ -67477,7 +67509,8 @@
         "tools/drawing_wine_source_descriptor.py",
         "tools/drawing_wine_resource_mapping.py",
         "tools/drawing_wine_resource_copy.py",
-        "tools/inspect-drawing-wine-client-memory.py"
+        "tools/inspect-drawing-wine-client-memory.py",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.source-version-build-negative-01-20261013",
@@ -67604,7 +67637,8 @@
         "tools/drawing_wine_blit_packet.py",
         "tools/drawing_fixture_prefix.py",
         "runtime/drawing/worker_producer_points.h",
-        "protocols/include/mnm/drawing_worker_producer_points_v1.h"
+        "protocols/include/mnm/drawing_worker_producer_points_v1.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.gpu-completion-build-negative-01-20261013",
@@ -67834,7 +67868,8 @@
         "runtime/drawing/storage_point_exports.h",
         "runtime/shadow/win32_min.h",
         "tools/drawing_gpu_completion.py",
-        "tools/drawing_fixture_prefix.py"
+        "tools/drawing_fixture_prefix.py",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.quick-battle-original-01-20261014",
@@ -77293,7 +77328,9 @@
         "tools/drawing_egl_destination.py",
         "runtime/display/egl_drawable_rebind.h",
         "runtime/display/egl_xcb_image.h",
-        "runtime/display/egl_xcb_resize_crop.h"
+        "runtime/display/egl_xcb_resize_crop.h",
+        "runtime/display/presentation_route_guard.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.storage-action.original-20261016",
@@ -78029,7 +78066,8 @@
         "tools/drawing_egl_destination.py",
         "runtime/display/egl_drawable_rebind.h",
         "runtime/display/egl_xcb_image.h",
-        "runtime/display/egl_xcb_resize_crop.h"
+        "runtime/display/egl_xcb_resize_crop.h",
+        "runtime/display/presentation_route_guard.h"
       ],
       "evidence": [
         "DRAW02.cursor.egl-forwarding-20261016",
@@ -78079,7 +78117,8 @@
         "tools/drawing_egl_destination.py",
         "runtime/display/egl_drawable_rebind.h",
         "runtime/display/egl_xcb_image.h",
-        "runtime/display/egl_xcb_resize_crop.h"
+        "runtime/display/egl_xcb_resize_crop.h",
+        "runtime/display/presentation_route_guard.h"
       ],
       "evidence": [
         "DRAW02.cursor.original-final-20261016",
@@ -78127,7 +78166,8 @@
         "runtime/display/egl_delivery.c",
         "runtime/display/glx_delivery.c",
         "tools/build-drawing-x11-delivery.py",
-        "tools/drawing_egl_swap_completion.py"
+        "tools/drawing_egl_swap_completion.py",
+        "runtime/display/presentation_route_guard.h"
       ],
       "evidence": [
         "DRAW02.cursor.viewport-controls-20261016",
@@ -78181,7 +78221,8 @@
         "tools/build-drawing-x11-delivery.py",
         "runtime/display/egl_drawable_rebind.h",
         "runtime/display/egl_xcb_image.h",
-        "runtime/display/egl_xcb_resize_crop.h"
+        "runtime/display/egl_xcb_resize_crop.h",
+        "runtime/display/presentation_route_guard.h"
       ],
       "evidence": [
         "EGLDST.original.corrected-20261016",
@@ -78238,7 +78279,8 @@
         "runtime/display/egl_destination_trace.h",
         "tools/drawing_egl_destination.py",
         "runtime/display/egl_xcb_image.h",
-        "runtime/display/egl_xcb_resize_crop.h"
+        "runtime/display/egl_xcb_resize_crop.h",
+        "runtime/display/presentation_route_guard.h"
       ],
       "evidence": [
         "EGLDST.original.rebind-negative-20261016",
@@ -78293,7 +78335,8 @@
         "tools/build-drawing-x11-delivery.py",
         "runtime/display/egl_drawable_rebind.h",
         "runtime/display/egl_destination_trace.h",
-        "runtime/display/egl_xcb_resize_crop.h"
+        "runtime/display/egl_xcb_resize_crop.h",
+        "runtime/display/presentation_route_guard.h"
       ],
       "evidence": [
         "EGLDST.original.corrected-20261016",
@@ -78349,7 +78392,8 @@
         "tools/build-drawing-x11-delivery.py",
         "tools/drawing_egl_destination.py",
         "tools/drawing_egl_swap_completion.py",
-        "tests/test-drawing-egl-destination.py"
+        "tests/test-drawing-egl-destination.py",
+        "runtime/display/presentation_route_guard.h"
       ],
       "evidence": [
         "EGLDST.original.corrected-20261016",
@@ -84012,7 +84056,8 @@
         "tools/drawing_diagnostic_cadence.py",
         "tools/drawing_presented_session.py",
         "tools/drawing_quit_completion.py",
-        "tests/test-drawing-quit-completion.py"
+        "tests/test-drawing-quit-completion.py",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-cursor-gate-build-negative-01-20261012",
@@ -84107,7 +84152,8 @@
         "runtime/menu/channel.h",
         "runtime/menu/drawing_action.h",
         "runtime/drawing/session.c",
-        "runtime/shadow/win32_min.h"
+        "runtime/shadow/win32_min.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.source-gate-original16-negative-02-20261013",
@@ -84818,7 +84864,8 @@
         "tools/build-drawing-session.py",
         "tools/build-scene-observer.py",
         "tools/drawing-session-runner.py",
-        "tools/drawing_diagnostic_cadence.py"
+        "tools/drawing_diagnostic_cadence.py",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-worker-prefix-fixture-negative-01-20261013",
@@ -85392,7 +85439,8 @@
         "tools/test-drawing-source-gate-session.py",
         "tools/test-drawing-storage-point.py",
         "tools/test-drawing-storage-transitions.py",
-        "tools/test-drawing-worker-producer-points.py"
+        "tools/test-drawing-worker-producer-points.py",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013"
@@ -85698,7 +85746,8 @@
         "tools/test-drawing-source-gate-session.py",
         "tools/test-drawing-storage-point.py",
         "tools/test-drawing-storage-transitions.py",
-        "tools/test-drawing-worker-producer-points.py"
+        "tools/test-drawing-worker-producer-points.py",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
@@ -85745,7 +85794,8 @@
         "runtime/shadow/win32_min.h",
         "tools/build-drawing-session.py",
         "tools/capture-drawing-interactive.py",
-        "protocols/include/mnm/drawing_source_point_v1.h"
+        "protocols/include/mnm/drawing_source_point_v1.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.draw02-aux-save-readback-fixture-01-20261013",
@@ -86198,7 +86248,8 @@
         "tools/inspect-canvas-producers.py",
         "runtime/scene/canvas_producers.c",
         "tools/drawing_producer_points.py",
-        "tools/drawing_api_physical.py"
+        "tools/drawing_api_physical.py",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "DRAW02.update-routes-fixture-05-20261014",
@@ -86219,7 +86270,16 @@
         "NATIVE.source-boundary.original120-20261017",
         "NATIVE.source-boundary.accounting-20261017",
         "NATIVE.source-boundary.interval-gate-20261017",
-        "NATIVE.source-boundary.controls-20261017"
+        "NATIVE.source-boundary.controls-20261017",
+        "NATIVE.ownership-bypass.launch-negative-20261017",
+        "NATIVE.ownership-bypass.original120-20261017",
+        "NATIVE.ownership-bypass.accounting-20261017",
+        "NATIVE.ownership-bypass.interval-gate-20261017",
+        "NATIVE.ownership-bypass.ownership-20261017",
+        "NATIVE.ownership-bypass.capability-original120-20261018",
+        "NATIVE.ownership-bypass.capability-accounting-20261018",
+        "NATIVE.ownership-bypass.capability-interval-gate-20261018",
+        "NATIVE.ownership-bypass.capability-ownership-20261018"
       ],
       "status": {
         "understanding": "partial",
@@ -87324,7 +87384,8 @@
         "tools/inspect-canvas-producers.py",
         "tools/drawing_source_callback_windows.py",
         "runtime/drawing/wine_submission.h",
-        "runtime/drawing/wine_blit_packet.h"
+        "runtime/drawing/wine_blit_packet.h",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "NATIVE.completion.identity-fixture-20261017",
@@ -87660,7 +87721,8 @@
         "tools/drawing-session-runner.py",
         "tools/drawing_fixture_prefix.py",
         "tools/drawing_gpu_completion.py",
-        "tools/drawing_source_version.py"
+        "tools/drawing_source_version.py",
+        "runtime/drawing/wine_mutator_entry.h"
       ],
       "evidence": [
         "NATIVE.source-reservations.fixture-20261017",
@@ -87676,7 +87738,13 @@
         "NATIVE.source-reservations.pre-retirement-interval-gate-20261017",
         "NATIVE.source-reservations.pre-retirement-ownership-20261017",
         "NATIVE.source-reservations.controls-20261017",
-        "NATIVE.source-boundary.original120-20261017"
+        "NATIVE.source-boundary.original120-20261017",
+        "NATIVE.ownership-bypass.launch-negative-20261017",
+        "NATIVE.ownership-bypass.original120-20261017",
+        "NATIVE.ownership-bypass.reservation-regression-20261017",
+        "NATIVE.ownership-bypass.ownership-20261017",
+        "NATIVE.ownership-bypass.capability-original120-20261018",
+        "NATIVE.ownership-bypass.capability-ownership-20261018"
       ],
       "status": {
         "understanding": "partial",
@@ -110686,7 +110754,12 @@
         "NATIVE.source-boundary.fixture-20261017",
         "NATIVE.source-boundary.original120-20261017",
         "NATIVE.source-boundary.ownership-20261017",
-        "NATIVE.source-boundary.fixture-scenario-20261017"
+        "NATIVE.source-boundary.fixture-scenario-20261017",
+        "NATIVE.ownership-bypass.launch-negative-20261017",
+        "NATIVE.ownership-bypass.original120-20261017",
+        "NATIVE.ownership-bypass.ownership-20261017",
+        "NATIVE.ownership-bypass.capability-original120-20261018",
+        "NATIVE.ownership-bypass.capability-ownership-20261018"
       ],
       "status": {
         "understanding": "partial",
@@ -110698,6 +110771,181 @@
       "remaining_gaps": [
         "Final23controlled PE32 cases pass; original first120observations and unchanged strict accounting have zero pending callback frames and zero primary source-point gaps, with312primary witnesses and2584fenced COPY reservations. This is diagnostic scheduling, not recovered baseline timing.",
         "Physical backing allocations/alternate mappings, unhooked CPU/GPU writers, asynchronous work beyond observed frames, global presentation routes/all contexts, scanout, complete47/21journeys/operations and native replacement remain open. The unchanged interval checker still refuses the two global ownership gates."
+      ]
+    },
+    {
+      "id": "NR.drawing-mutator-entry-closure",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Pinned public Wine mutator entry coverage",
+      "scope": "With existing diagnostic source reservations enabled, patch four whole-instruction public Wine11.16 map/unmap/copy/rebind entry prologues after checking all sites and existing import originals; cached exports and other callers of those entries pass through existing reservation guards. No raw CPU stores, private worker/opcode writes, distinct-resource backing identity or global ownership proof.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/drawing-ownership-bypass-closure.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_mutator_entry.h"
+      ],
+      "tests": [
+        "tests/drawing-mutator-entry-test.c",
+        "tools/test-drawing-ownership-bypasses.py"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/drawing_aux_save_readback_v1.h",
+        "protocols/include/mnm/drawing_cursor_gate_v1.h",
+        "protocols/include/mnm/drawing_input_point_v1.h",
+        "protocols/include/mnm/drawing_primitive_point_v1.h",
+        "protocols/include/mnm/drawing_worker_context_v1.h",
+        "protocols/include/mnm/drawing_worker_producer_points_v1.h",
+        "runtime/drawing/action_boundary.h",
+        "runtime/drawing/aux_save_readback.h",
+        "runtime/drawing/call_intervals.h",
+        "runtime/drawing/input_point.h",
+        "runtime/drawing/physical_fence.h",
+        "runtime/drawing/primitive_api_identity.h",
+        "runtime/drawing/session.c",
+        "runtime/drawing/source_byte_witness.h",
+        "runtime/drawing/source_cursor_gate.h",
+        "runtime/drawing/source_held_snapshot.h",
+        "runtime/drawing/source_points.h",
+        "runtime/drawing/source_readonly_lease.h",
+        "runtime/drawing/source_worker_lease.h",
+        "runtime/drawing/storage_point_exports.h",
+        "runtime/drawing/update_timing.h",
+        "runtime/drawing/wine_blit_packet.S",
+        "runtime/drawing/wine_blit_packet.h",
+        "runtime/drawing/wine_blit_worker.h",
+        "runtime/drawing/wine_buffer.h",
+        "runtime/drawing/wine_client_memory.h",
+        "runtime/drawing/wine_gpu_completion.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/drawing/wine_map_storage_point.h",
+        "runtime/drawing/wine_mutator_entry.h",
+        "runtime/drawing/wine_resource_copy.h",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_retained_map_source.h",
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_source_reservations.h",
+        "runtime/drawing/wine_source_version.h",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_texture_entry.h",
+        "runtime/drawing/wine_worker_context.h",
+        "runtime/drawing/worker_producer_points.h",
+        "runtime/shadow/win32_min.h",
+        "tests/drawing-source-reservations-test.c",
+        "tests/drawing-source-version-test.c",
+        "tests/test-drawing-source-reservations.py",
+        "tools/build-drawing-session.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/drawing_gpu_completion.py",
+        "tools/drawing_source_reservations.py",
+        "tools/drawing_source_version.py",
+        "tools/test-drawing-ownership-bypasses.py",
+        "tools/test-drawing-source-reservations.py",
+        "tools/campaign_gameplay.py"
+      ],
+      "evidence": [
+        "NATIVE.ownership-bypass.controls-20261017",
+        "NATIVE.ownership-bypass.controls-superseded-20261017",
+        "NATIVE.ownership-bypass.controls-negative-20261017",
+        "NATIVE.ownership-bypass.launch-negative-20261017",
+        "NATIVE.ownership-bypass.original120-20261017",
+        "NATIVE.ownership-bypass.ownership-20261017",
+        "NATIVE.ownership-bypass.provenance-20261017",
+        "NATIVE.ownership-bypass.capability-controls-20261018",
+        "NATIVE.ownership-bypass.capability-original120-20261018",
+        "NATIVE.ownership-bypass.capability-ownership-20261018",
+        "NATIVE.ownership-bypass.capability-provenance-20261018"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "All four public entry trampolines execute under owned PE32 controls; direct cached map/copy/rebind writes refuse before forwarding, all-site mismatch preflight and post-close/default-off forwarding pass. Current capability-hardened original120executes with detours and completes2556current-context-fenced reservations and normal Quit.",
+        "Raw CPU stores, private Wine writers/opcodes and distinct-resource physical backing aliases are not intercepted by public entry coverage. Existing raw-write counterexample still passes the observed-path guard. The all-original-backing-alias-writers gate remains false."
+      ]
+    },
+    {
+      "id": "NR.presentation-resolver-refusal",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Fail closed for selected presentation resolver escapes",
+      "scope": "Optional MNM_DRAW_STRICT_ROUTES=1 refuses selected RTLD_NEXT lookups and seven alternate presentation entry names through dlsym, EGL and both GLX resolvers before exposing a function. Other caller-relative RTLD_NEXT resolution, default-off behavior and selected observed swaps are preserved. This is resolver policy, not a global sandbox: direct alternate/front-buffer calls, XCB/DRI paths and other contexts remain outside proof. Strict launcher admission additionally requires a matching current EGL/GLX policy-capable build manifest and records its digest for child admission; X11-only/GLX-only, missing, stale or binary-mismatched builds refuse.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/drawing-ownership-bypass-closure.md"
+      ],
+      "implementation": [
+        "runtime/display/presentation_route_guard.h",
+        "runtime/display/glx_delivery.c",
+        "runtime/display/egl_delivery.c"
+      ],
+      "tests": [
+        "tests/drawing-presentation-route-test.c",
+        "tests/drawing-route-next-provider.c",
+        "tools/test-drawing-ownership-bypasses.py"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/drawing_worker_context_v1.h",
+        "runtime/display/egl_blit_trace.h",
+        "runtime/display/egl_destination_trace.h",
+        "runtime/display/egl_drawable_rebind.h",
+        "runtime/display/egl_physical.h",
+        "runtime/display/egl_swap_completion.h",
+        "runtime/display/egl_viewport_policy.h",
+        "runtime/display/egl_window_trace.h",
+        "runtime/display/egl_worker_context.h",
+        "runtime/display/egl_xcb_image.h",
+        "runtime/display/egl_xcb_resize_crop.h",
+        "runtime/display/glx_symbol.S",
+        "runtime/display/presentation_route_guard.h",
+        "runtime/display/x11_delivery.c",
+        "tests/drawing-egl-delivery-test.c",
+        "tests/drawing-glx-delivery-test.c",
+        "tools/build-drawing-x11-delivery.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/drawing_source_reservations.py",
+        "tools/drawing_x11_delivery.py",
+        "tools/campaign_gameplay.py"
+      ],
+      "evidence": [
+        "NATIVE.ownership-bypass.controls-20261017",
+        "NATIVE.ownership-bypass.controls-superseded-20261017",
+        "NATIVE.ownership-bypass.controls-negative-20261017",
+        "NATIVE.ownership-bypass.launch-negative-20261017",
+        "NATIVE.ownership-bypass.original120-20261017",
+        "NATIVE.ownership-bypass.ownership-20261017",
+        "NATIVE.ownership-bypass.provenance-20261017",
+        "NATIVE.ownership-bypass.capability-controls-20261018",
+        "NATIVE.ownership-bypass.capability-original120-20261018",
+        "NATIVE.ownership-bypass.capability-ownership-20261018",
+        "NATIVE.ownership-bypass.capability-provenance-20261018"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh55resolver cases and default/strict EGL/GLX coloured-image comparisons pass, with exact caller-relative RTLD_NEXT and missing-symbol preservation. Original120completes under the explicit strict resolver policy.",
+        "This policy refuses resolver escapes only. Direct alternate calls, front-buffer writers, raw XCB/DRI paths, private driver lookups and other contexts remain outside proof. Global presentation-route closure stays false.",
+        "Versioned dlvsym resolution and separate loader namespaces are not interposed by the selected dlsym/proc-address policy. Direct dispatch and other contexts remain outside proof; the global gate stays false.",
+        "Launcher capability hardening now requires a matching current EGL/GLX policy build manifest and pins its digest for child admission. Six real build-manifest positive/refusal cases and a fresh complete original120run pass. The earlier source-stable run predates this launcher hardening and remains historical."
       ]
     }
   ],
@@ -211725,6 +211973,438 @@
           "equals": "u"
         }
       ]
+    },
+    {
+      "id": "NATIVE.ownership-bypass.controls-20261017",
+      "kind": "native_integration",
+      "scope": "Fresh9PE32 cached-entry controls,55resolver controls and4real software graphics comparisons; two prospective bound headless scenarios. No physical alias/all-writer or global-route proof.",
+      "record": "research/runtime/ownership-bypass-controls-20261017.json",
+      "sha256": "b3ab38b3363991a224bb07297511e31a3af135c869264b6139a5a490d8197378",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/physical_backing_owned",
+          "equals": false
+        },
+        {
+          "pointer": "/global_presentation_routes_closed",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.ownership-bypass.controls-superseded-20261017",
+      "kind": "native_integration",
+      "scope": "Prior passing owned controls before explicit launcher dependency declaration; preserved with historical scope/source bindings, superseded by final controls.",
+      "record": "research/runtime/ownership-bypass-controls-superseded-20261017.json",
+      "sha256": "c2211800b76980f53ea16e29938a6719156e3686e2d0edba23c13ae37ee5459e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.ownership-bypass.controls-negative-20261017",
+      "kind": "static",
+      "scope": "Retained owned fixture acquisition failure: two unlinked DSOs lacked caller-relative dependency lookup even without the observer. The final fixture links the second provider as a dependency; no graphics/original closure from this negative.",
+      "record": "research/runtime/ownership-bypass-controls-negative-20261017.json",
+      "sha256": "408cfac36db6075de3d6abf8d2616f41f028c34f0fd45f301039d218fa997bdd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.ownership-bypass.launch-negative-20261017",
+      "kind": "static",
+      "scope": "Retained Wine prefix initialization failure before game execution. Kernel32 loader error53; causal diagnosis remains unproved. Original manifest bookends passed. No engine validation.",
+      "record": "research/runtime/ownership-bypass-launch-negative-20261017.json",
+      "sha256": "824bad3b72ba6732e364d33e10a49978619dcb0514b68da8468388a2e46fa036",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.ownership-bypass.original120-20261017",
+      "kind": "live_observation",
+      "scope": "Fresh original-active diagnostic with public-entry detours and strict resolver policy: normal original Quit, stable sources,120source queues and current-context-fenced COPY reservations. No full source ownership, native parity, hardware or global presentation proof.",
+      "record": "research/runtime/ownership-bypass-original120-20261017.json",
+      "sha256": "4e70b4a222acb3099dae0e09622432b260173516ca4a8b11f2ffcabc1140cb36",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/source_update_window_observation/callbacks_with_pending_frames",
+          "equals": 0
+        },
+        {
+          "pointer": "/wine_source_reservation_observation/physical_backing_owned",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.ownership-bypass.reservation-regression-20261017",
+      "kind": "native_integration",
+      "scope": "Existing19PE32/six decoder reservation regressions, including retained unhooked CPU write counterexample. Owned bodies, no original engine or full ownership proof.",
+      "record": "research/runtime/ownership-bypass-reservation-regression-20261017.json",
+      "sha256": "2e67979ffd030c11d60a5753d68d74381f1b4d44fdbf68c315498b9a1b8def47",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/unobserved_direct_write_can_escape",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.ownership-bypass.egl-20261017",
+      "kind": "live_observation",
+      "scope": "Independent raw-bound selected source/worker/EGL reference replay of the fresh original interval; unchanged RGB tolerance1. No all-route/native parity promotion.",
+      "record": "research/runtime/ownership-bypass-egl-20261017.json",
+      "sha256": "61f0923ce2b19e878b52972dd1fe16a2195eb00f46b036a1c27a2390e69b77c5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.ownership-bypass.accounting-20261017",
+      "kind": "live_observation",
+      "scope": "Independent first120accepted-update/source/primary witness accounting of the fresh diagnostic. Global ownership gates remain strict.",
+      "record": "research/runtime/ownership-bypass-accounting-20261017.json",
+      "sha256": "62617bf2acb03c03cb5c718946be6cbb61dbbdd0ee82eade231c481d44cc0f5a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.ownership-bypass.interval-gate-20261017",
+      "kind": "live_observation",
+      "scope": "Unchanged full-interval admission retains the valid refusal of physical backing/alias writers and global presentation routes.",
+      "record": "research/runtime/ownership-bypass-interval-gate-20261017.json",
+      "sha256": "5fad44e2ac6f6bc68cdc16c74be449b761712c3acab1625274d9d86d27d73603",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        },
+        {
+          "pointer": "/failed_gates",
+          "equals": [
+            "all_original_backing_alias_writers_closed",
+            "global_presentation_routes_closed"
+          ]
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.ownership-bypass.ownership-20261017",
+      "kind": "live_observation",
+      "scope": "Explicit primitive/API/resource generation/reservation/worker joins on the new original capture. Public resource identity is not physical allocation identity.",
+      "record": "research/runtime/ownership-bypass-ownership-20261017.json",
+      "sha256": "fca3baca468509d14c9828c73af9219a485f857c7414b146e6439270c617400e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.ownership-bypass.provenance-20261017",
+      "kind": "static",
+      "scope": "Incremental public-entry and selected-resolver coverage only. Both global ownership gates remain unproved; retained negatives are not passing engine evidence.",
+      "record": "research/runtime/ownership-bypass-provenance-20261017.json",
+      "sha256": "27d86e95be601798eb364cd48f8a194b63973836b935806f5950dc443ec39a8b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/physical_alias_closure",
+          "equals": false
+        },
+        {
+          "pointer": "/global_route_closure",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.ownership-bypass.capability-controls-20261018",
+      "kind": "native_integration",
+      "scope": "Current prospective scope/scenario-bound9PE32/55resolver/six build-capability admission/four real software graphics comparisons. No global source or presentation closure.",
+      "record": "research/runtime/ownership-bypass-capability-controls-20261018.json",
+      "sha256": "8d73df001959908982680b413f1861648e161e07260494caf9fa5a645f5f705d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/capability_cases/0/refused",
+          "equals": true
+        },
+        {
+          "pointer": "/capability_cases/1/refused",
+          "equals": true
+        },
+        {
+          "pointer": "/capability_cases/2/refused",
+          "equals": false
+        },
+        {
+          "pointer": "/capability_cases/5/refused",
+          "equals": true
+        },
+        {
+          "pointer": "/physical_backing_owned",
+          "equals": false
+        },
+        {
+          "pointer": "/global_presentation_routes_closed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.ownership-bypass.capability-original120-20261018",
+      "kind": "live_observation",
+      "scope": "Current original120with public mutator entry detours and launcher-attested strict EGL/GLX resolver policy. Source-stable normal Quit and immutable-input bookends; no physical alias/all-writer/native parity/global-route closure.",
+      "record": "research/runtime/ownership-bypass-capability-original120-20261018.json",
+      "sha256": "82534b196c6e3debd575df841b3ac31be398082319b4debd21f60264d32dc322",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/source_update_window_observation/callbacks_with_pending_frames",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.ownership-bypass.capability-egl-20261018",
+      "kind": "live_observation",
+      "scope": "Current raw-bound selected source/worker/EGL region and whole-image replay at unchanged RGB tolerance1.",
+      "record": "research/runtime/ownership-bypass-capability-egl-20261018.json",
+      "sha256": "79ea3cad998c4076449519a98d432a1cf1ad29bdd5f5bf3e05307f0681c70bf9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.ownership-bypass.capability-accounting-20261018",
+      "kind": "live_observation",
+      "scope": "Current first120observed-update accounting, with both unsupported global ownership gates retained.",
+      "record": "research/runtime/ownership-bypass-capability-accounting-20261018.json",
+      "sha256": "a1fc88452e1708c61c8036ec76573ea33615b1d9c3a385854369a8a15e874280",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.ownership-bypass.capability-interval-gate-20261018",
+      "kind": "live_observation",
+      "scope": "Unchanged full interval checker validly refuses physical backing/alias writer and global presentation-route closure.",
+      "record": "research/runtime/ownership-bypass-capability-interval-gate-20261018.json",
+      "sha256": "8f734b9d5bfc440dd29f7d40be85b67544ee3b3c6d7941ef137ca75034a78c30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        },
+        {
+          "pointer": "/failed_gates",
+          "equals": [
+            "all_original_backing_alias_writers_closed",
+            "global_presentation_routes_closed"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.ownership-bypass.capability-ownership-20261018",
+      "kind": "live_observation",
+      "scope": "Current explicit primitive/API/resource reservation/worker joins; no physical allocation identity is inferred.",
+      "record": "research/runtime/ownership-bypass-capability-ownership-20261018.json",
+      "sha256": "639e78fab53f7aeee95bfae35ae4bd156ea9c91d458b8c4dd572ac8b4bc243e8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.ownership-bypass.capability-provenance-20261018",
+      "kind": "static",
+      "scope": "Launcher build-capability hardening and fresh controls/original reference results. Older records remain historical; global ownership still unproved.",
+      "record": "research/runtime/ownership-bypass-capability-provenance-20261018.json",
+      "sha256": "611f0b1df580578c2a60f07e77c17c08e40d2e8ce3a498778e9fe11dfd027b22",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/strict_policy_requested",
+          "equals": true
+        },
+        {
+          "pointer": "/physical_alias_closure",
+          "equals": false
+        },
+        {
+          "pointer": "/global_route_closure",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -231143,6 +231823,39 @@
       "evidence": [
         "NATIVE.source-boundary.fixture-scenario-20261017"
       ]
+    },
+    {
+      "id": "NR.drawing-mutator-entry-closure.controlled",
+      "scope": "With existing diagnostic source reservations enabled, patch four whole-instruction public Wine11.16 map/unmap/copy/rebind entry prologues after checking all sites and existing import originals; cached exports and other callers of those entries pass through existing reservation guards. No raw CPU stores, private worker/opcode writes, distinct-resource backing identity or global ownership proof.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-mutator-entry-closure"
+      ],
+      "tests": [
+        "tests/drawing-mutator-entry-test.c",
+        "tools/test-drawing-ownership-bypasses.py"
+      ],
+      "evidence": [
+        "NATIVE.ownership-bypass.controls-20261017",
+        "NATIVE.ownership-bypass.capability-controls-20261018"
+      ]
+    },
+    {
+      "id": "NR.presentation-resolver-refusal.controlled",
+      "scope": "Optional MNM_DRAW_STRICT_ROUTES=1 refuses selected RTLD_NEXT lookups and seven alternate presentation entry names through dlsym, EGL and both GLX resolvers before exposing a function. Other caller-relative RTLD_NEXT resolution, default-off behavior and selected observed swaps are preserved. This is resolver policy, not a global sandbox: direct alternate/front-buffer calls, XCB/DRI paths and other contexts remain outside proof. Also exercise matching EGL policy build admission and rejection of X11/GLX-only, missing, stale and binary-mismatched manifests.",
+      "level": "headless",
+      "behaviors": [
+        "NR.presentation-resolver-refusal"
+      ],
+      "tests": [
+        "tests/drawing-presentation-route-test.c",
+        "tests/drawing-route-next-provider.c",
+        "tools/test-drawing-ownership-bypasses.py"
+      ],
+      "evidence": [
+        "NATIVE.ownership-bypass.controls-20261017",
+        "NATIVE.ownership-bypass.capability-controls-20261018"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -231786,8 +232499,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-source-boundary-integrated-20261017.json",
-    "sha256": "2157c8eb0bfb6337177a50b9abec9fb3276bc9e62678a3da19f17722d708d117"
+    "path": "research/runtime/coverage/source-index-ownership-capability-20261018.json",
+    "sha256": "7a906873b0c7203edbaba1468b317a523fa3d93b133a4c2132ea3ac415d6bae1"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

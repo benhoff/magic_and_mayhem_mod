@@ -54,6 +54,7 @@ static EglSwap bind_egl_swap(EglSwap real){
  gl_refuse("EGL swap aliases exhausted");return 0;
 }
 static __eglMustCastToProperFunctionPointerType egl_proc_call(unsigned slot,const char* name){
+ presentation_route_lookup(name,0);
  EglProc real=__atomic_load_n(&egl_proc_originals[slot],__ATOMIC_ACQUIRE);if(!real)fail();__eglMustCastToProperFunctionPointerType result=real(name);
  if(result&&!strcmp(name,"eglSwapBuffers")){int saved=errno;EglSwap fn;memcpy(&fn,&result,sizeof(fn));fn=bind_egl_swap(fn);memcpy(&result,&fn,sizeof(result));errno=saved;}
  if(result&&(!strcmp(name,"glBlitFramebuffer")||!strcmp(name,"glBlitFramebufferEXT"))){void* pointer;memcpy(&pointer,&result,sizeof(pointer));pointer=bind_egl_blit(pointer);memcpy(&result,&pointer,sizeof(result));}

@@ -111,3 +111,16 @@ prefix gaps. The unchanged checker now refuses only physical backing/alias write
 and global presentation routes. [New provenance](source-boundary-provenance-20261017.json)
 retains the original results and development failures. The COPY resource guard
 still does not own separate physical aliases or exclude unhooked writers.
+
+
+## Public mutator entry coverage follow-up (2026-10-17)
+
+With reservations enabled, four pinned public Wine map/unmap/copy/rebind entry
+detours now supplement the DirectDraw import hooks. Cached exports and callers
+from other imports pass through the same guards. Fresh9PE32 entry cases and an
+original120capture pass;2,661COPY reservations complete through current-context
+fences. See [the bypass closure record](drawing-ownership-bypass-closure.md).
+This removes the public-entry bypass, while raw stores/private writers and
+distinct-resource physical aliases remain unproved. Optional selected-resolver
+refusal also passes; it does not close direct/other-context presentation. The
+unchanged interval checker still refuses the same two global ownership gates.

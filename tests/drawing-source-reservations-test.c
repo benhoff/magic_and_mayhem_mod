@@ -28,7 +28,10 @@ static u32 __attribute__((cdecl)) reserve_decref_original(void* texture){
  if(reserve_case==10){u32 sample[64]={0};sample[2]=100;sample[6]=2;sample[7]=wine_lifetime_find((void*)2,1);wine_reserve_begin(sample,(void*)2,(void*)3);ExitProcess(211);}
  __asm__ volatile("fninit; fld1":::"memory");snapshot_fp(result_fp);SetLastError(0x4321);return 1;
 }
-void start(void){
+#ifndef MNM_RESERVATION_FIXTURE_ENTRY
+#define MNM_RESERVATION_FIXTURE_ENTRY start
+#endif
+void MNM_RESERVATION_FIXTURE_ENTRY(void){
  check(initialize());char value[2];if(GetEnvironmentVariableA("MNM_TEST_VERSION",value,2)==1)mode=value[0]=='a'?10:value[0]-'0';
  if(GetEnvironmentVariableA("MNM_TEST_RESERVATION",value,2)==1)reserve_case=value[0]=='a'?10:value[0]=='b'?11:value[0]-'0';
  pixels=VirtualAlloc(0,4096,0x3000,4);check(pixels!=0);for(u32 i=0;i<3200;++i)pixels[i]=(u8)(i*7+3);

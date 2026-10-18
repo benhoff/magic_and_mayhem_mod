@@ -17549,3 +17549,54 @@ overlaps. The earlier master commit attempt was stopped during its hook before
 Git could overwrite that merge. The combined census/accounting is regenerated;
 renderer execution-source hashes remain identical, without a new AI validation
 claim. See `coverage/source-boundary-ai-merge-history-20261017.json`.
+
+
+## Source ownership public-entry and resolver bypass closure (2026-10-17)
+
+The [public-entry/resolver increment](drawing-ownership-bypass-closure.md) removes
+DirectDraw-import-only observation for four pinned public Wine mutators when COPY
+reservations are enabled. Cached exports and other calls to those entries now
+reach the existing wrappers; all-site expected-prefix checks precede mutation.
+The opt-in strict presentation policy refuses selected RTLD_NEXT and seven
+alternate presentation resolver escapes. It is exposed by the capture launcher,
+pinned in its manifest, and cleared from inherited child settings unless requested.
+
+Nine PE32 entry controls,55resolver controls and default/strict real software
+EGL/GLX comparisons pass. Existing19PE32/six decoder reservation controls and
+13accounting/admission guard methods pass. A fresh original run completes normal
+Quit/child exit0 with stable sources and2,927-file bookends: first120updates have
+120source queues,2,023inputs,298primary witnesses and zero pending source frames
+or source-point gaps. Across the capture,2,661COPY reservations reach exact
+workers/current-context fences and391selected EGL regions and whole-source images
+match RGB tolerance1. Retained acquisition negatives and superseded declarations
+are preserved separately. No historical evidence hash is refreshed.
+
+The unchanged full-interval checker still refuses physical backing/alias writers
+and global presentation routes. Raw CPU stores/private writers, distinct-resource
+physical storage aliases, direct alternate/front-buffer presentation, XCB/DRI and
+other contexts remain unproved. These policies have partial implementation and
+headless integration, with comparison/replacement remaining none. Diagnostic
+llvmpipe reference agreement does not establish original source atomicity,
+hardware/all-context completion, native parity,47/21closure or native replacement.
+
+
+## Source ownership observer capability hardening (2026-10-18)
+
+Final review found that requesting strict resolver mode could previously accept
+an X11-only observer. The launcher now requires the matching current EGL/GLX
+policy build manifest, verifies its binary and relevant source hashes, and pins
+its digest for child admission. Mixed/missing capability receipts refuse before
+game execution. Default observation remains unchanged.
+
+[Fresh controls](ownership-bypass-capability-controls-20261018.json) pass the
+existing9PE32/55resolver/four graphics cases plus six build-admission cases: X11
+and GLX-only observers, wrong binary, stale policy source and missing manifests
+refuse; the matching EGL/GLX build admits. The
+[fresh original run](ownership-bypass-capability-original120-20261018.json)
+executes this handoff and completes normal original Quit/child exit0, stable
+sources and2,927-file bookends. First120updates contain120source queues,
+2108inputs and284primary witnesses, with zero pending frames or source-point
+gaps. Across the capture,2556COPY reservations complete through current-context
+fences and379selected EGL regions and whole-source images match RGB tolerance1.
+The unchanged gate still refuses physical backing/alias writers and global
+presentation routes. Prior results and hashes remain historical.

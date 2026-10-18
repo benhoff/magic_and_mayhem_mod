@@ -97,6 +97,11 @@ os.environ['MNM_DRAW_SESSION_MODE']=metadata['observer_mode']
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(root/'events.bin').replace('/','\\')
 os.environ['MNM_MENU_CHANNEL']='Z:'+str(root/'channel.bin').replace('/','\\')
 os.environ['MNM_MENU_GAMEPLAY_OBSERVE']='Z:'+str(root/'capture/gameplay.bin').replace('/','\\')
+if metadata.get('strict_presentation_routes'):
+    receipt=(metadata.get('x11_delivery_library') or {}).get('strict_routes_build_manifest_sha256','')
+    if not isinstance(receipt,str) or len(receipt)!=64 or any(c not in '0123456789abcdef' for c in receipt):raise ValueError('Strict routes lack a pinned policy-capable observer build')
+    os.environ['MNM_DRAW_STRICT_ROUTES']='1'
+else:os.environ.pop('MNM_DRAW_STRICT_ROUTES',None)
 if observer:=metadata.get('x11_delivery_library'):
     library=Path(observer['path'])
     if hashlib.sha256(library.read_bytes()).hexdigest()!=observer['sha256']:raise ValueError('Unix delivery observer changed')

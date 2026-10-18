@@ -11,6 +11,7 @@ static Symbol original_symbol;
 static Swap originals[16];
 static Proc proc_originals[2][16];
 static void gl_refuse(const char* reason){write(2,reason,strlen(reason));write(2,"\n",1);fail();}
+#include "presentation_route_guard.h"
 static Symbol symbol_resolver(void){
  Symbol real=__atomic_load_n(&original_symbol,__ATOMIC_ACQUIRE);
  if(!real){int saved=errno;void* ptr=dlvsym(RTLD_NEXT,"dlsym","GLIBC_2.2.5");if(!ptr)gl_refuse("GLX dlsym bootstrap refused");memcpy(&real,&ptr,sizeof(real));__atomic_store_n(&original_symbol,real,__ATOMIC_RELEASE);errno=saved;}
@@ -38,6 +39,7 @@ static Swap bind_swap(Swap real){
  gl_refuse("GLX swap aliases exhausted");return 0;
 }
 static __GLXextFuncPtr proc_call(unsigned which,unsigned slot,const GLubyte* name){
+ presentation_route_lookup((const char*)name,0);
  Proc real=__atomic_load_n(&proc_originals[which][slot],__ATOMIC_ACQUIRE);if(!real)fail();
  __GLXextFuncPtr result=real(name);
  if(result&&!strcmp((const char*)name,"glXSwapBuffers")){int saved=errno;Swap fn;memcpy(&fn,&result,sizeof(fn));fn=bind_swap(fn);memcpy(&result,&fn,sizeof(result));errno=saved;}
@@ -63,6 +65,7 @@ static Proc bind_proc(unsigned which,Proc real){
  gl_refuse("GLX proc aliases exhausted");return 0;
 }
 static void* wrapped_symbol(void* handle,const char* name){
+ presentation_route_lookup(name,handle==RTLD_NEXT);
  Symbol real=symbol_resolver();void* ptr=real(handle,name);
  if(!ptr)return ptr;
  int saved=errno;
@@ -83,7 +86,7 @@ static void* wrapped_symbol(void* handle,const char* name){
 /* Assembly tail forwarding preserves caller-relative RTLD_NEXT semantics.
  * RTLD_NEXT-selected GL functions remain an explicit unobserved route. */
 __attribute__((visibility("hidden"))) Symbol mnm_delivery_symbol_target(void* handle,const char* name){
- int saved=errno;Symbol target=symbol_resolver();
+ int saved=errno;presentation_route_lookup(name,handle==RTLD_NEXT);Symbol target=symbol_resolver();
  if(handle!=RTLD_NEXT&&(!strcmp(name,"glXSwapBuffers")||!strcmp(name,"glXGetProcAddressARB")||!strcmp(name,"glXGetProcAddress")))target=wrapped_symbol;
 #ifdef MNM_EGL_DELIVERY
  if(handle!=RTLD_NEXT&&(!strcmp(name,"eglSwapBuffers")||!strcmp(name,"eglGetProcAddress")||!strcmp(name,"glBlitFramebuffer")||!strcmp(name,"glBlitFramebufferEXT")||egl_window_symbol(name)))target=wrapped_symbol;
