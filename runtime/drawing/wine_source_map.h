@@ -14,6 +14,7 @@ static int wine_source_map_limit(const char* name,u32 maximum,u32* value){
 static u32 wine_source_map_crc(const u8* data,u32 n){
  u32 crc=0xffffffffu;while(n--){crc^=*data++;for(u32 bit=0;bit<8;++bit)crc=(crc>>1)^(0xedb88320u&(0u-(crc&1)));}return crc^0xffffffffu;
 }
+#include "wine_source_handoff.h"
 static void wine_source_map_record(u32* r,void* texture){
  (void)texture;EnterCriticalSection(journal_lock);
  r[0]=++wine_source_map_records;++wine_source_map_samples;
@@ -30,6 +31,7 @@ static void wine_source_map(const u32* submission,void* texture){
  if(live){
   resource=((void*(__attribute__((cdecl))*)(void*))wine_resource_original[0])(texture);r[34]=1;r[38]=2;
   if(resource){
+   wine_handoff_source_available(resource);
    EnterCriticalSection(journal_lock);r[9]=wine_resource_id(resource,1);LeaveCriticalSection(journal_lock);
    r[11]=wine_source_descriptor_get(resource,r[8],r+19);r[34]=2;r[38]=3;
    if((i32)r[11]>=0){
@@ -58,11 +60,15 @@ static void wine_source_map(const u32* submission,void* texture){
         r[29]=mapped[0];r[30]=mapped[1];r[10]=6;
         if(mapped[0]>=r[25]*2&&mapped[0]<=32768&&readable((void*)mapped[2],(r[26]-1)*mapped[0]+r[25]*2)){
          version_epoch=wine_source_version_read(resource);
-         for(u32 y=0;y<r[26];++y)copy((u8*)owned+y*r[25]*2,(void*)(mapped[2]+y*mapped[0]),r[25]*2);
+         if(!wine_handoff_capture(r,texture,resource,r[8],mapped,r[25],r[26],owned)){
+          wine_phys_acquire(r[2],resource,r[8],mapped[2],mapped[0],r[26],r[25]);
+          for(u32 y=0;y<r[26];++y)copy((u8*)owned+y*r[25]*2,(void*)(mapped[2]+y*mapped[0]),r[25]*2);
+         }
          r[10]=0;
         }
         r[14]=((u32(__attribute__((cdecl))*)(void*,u32))wine_resource_original[2])(resource,r[8]);r[15]=GetLastError();++r[34];
         if((i32)r[14]<0)r[10]=9;
+        if(r[10]==0)wine_handoff_bind(r[2]);
        }
       }
      }

@@ -21,6 +21,7 @@ static void wine_source_version_emit(u32* r){
  r[0]=++wine_source_version_records;r[2]=GetCurrentThreadId();r[3]=GetTickCount();
  if(wine_source_version_records>131072||!write(wine_source_version_file,r,128))ExitProcess(99);
 }
+static void wine_phys_binding(void*);
 static void wine_reserve_write(void*,u32);
 static void wine_reserve_step(u32,u32,u32);
 /* Caller holds journal_lock. Entry and exit both invalidate an older read. */
@@ -93,7 +94,7 @@ static u32 __attribute__((cdecl)) wine_source_version_rebind(void* texture,u32 s
  if(!wine_source_version_enabled)return ((u32(__attribute__((cdecl))*)(void*,u32,void*,u32))wine_source_version_rebind_original)(texture,sub,memory,pitch);
  u32 error=GetLastError();u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);
  void* resource=((void*(__attribute__((cdecl))*)(void*))wine_resource_original[0])(texture);
- EnterCriticalSection(journal_lock);wine_source_version_write(resource,sub,4,1);LeaveCriticalSection(journal_lock);restore_fp(fp);SetLastError(error);
+ EnterCriticalSection(journal_lock);wine_phys_binding(memory);wine_source_version_write(resource,sub,4,1);LeaveCriticalSection(journal_lock);restore_fp(fp);SetLastError(error);
  u32 result=((u32(__attribute__((cdecl))*)(void*,u32,void*,u32))wine_source_version_rebind_original)(texture,sub,memory,pitch);
  error=GetLastError();snapshot_fp(fp);EnterCriticalSection(journal_lock);wine_source_version_write(resource,sub,4,2);LeaveCriticalSection(journal_lock);restore_fp(fp);SetLastError(error);return result;
 }
@@ -113,4 +114,5 @@ static void wine_source_version_close(u32 reason){
  if(!CloseHandle(wine_source_version_file))ExitProcess(99);wine_source_version_file=0;wine_source_version_enabled=0;
 }
 
+#include "wine_physical_owners.h"
 #include "wine_source_reservations.h"

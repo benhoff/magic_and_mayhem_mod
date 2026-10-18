@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "scope": "Bounded private-source ownership capture: preserve the stock World camera/click inputs and passive dwell, then leave World active until the independently observed exact120queue/next-update marker. The capture driver opens and verifies Results only after source completion; timed Escape events must not truncate the source denominator. Input injection is not semantic outcome proof.",
+  "actions": [
+    {
+      "kind": "wait",
+      "after_ms": 500
+    },
+    {
+      "kind": "wait",
+      "after_ms": 30000
+    },
+    {
+      "kind": "move",
+      "x": 400,
+      "y": 300,
+      "after_ms": 300
+    },
+    {
+      "kind": "click",
+      "x": 400,
+      "y": 300,
+      "button": 1,
+      "after_ms": 300
+    },
+    {
+      "kind": "hold",
+      "key": "Right",
+      "duration_ms": 300,
+      "after_ms": 300
+    },
+    {
+      "kind": "tap",
+      "key": "period",
+      "after_ms": 450
+    },
+    {
+      "kind": "tap",
+      "key": "period",
+      "after_ms": 450
+    },
+    {
+      "kind": "tap",
+      "key": "period",
+      "after_ms": 450
+    },
+    {
+      "kind": "hold",
+      "key": "Left",
+      "duration_ms": 300,
+      "after_ms": 300
+    },
+    {
+      "kind": "tap",
+      "key": "comma",
+      "after_ms": 450
+    },
+    {
+      "kind": "move",
+      "x": 744,
+      "y": 522,
+      "after_ms": 1000
+    },
+    {
+      "kind": "click",
+      "x": 744,
+      "y": 522,
+      "button": 1,
+      "after_ms": 300
+    },
+    {
+      "kind": "click",
+      "x": 440,
+      "y": 310,
+      "button": 3,
+      "after_ms": 2000
+    },
+    {
+      "kind": "wait",
+      "after_ms": 30000
+    },
+    {
+      "kind": "wait",
+      "after_ms": 800
+    }
+  ]
+}

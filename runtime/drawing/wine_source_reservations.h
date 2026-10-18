@@ -21,6 +21,7 @@ static void wine_reserve_refuse(const struct WineReadReservation* s,u32 reason,u
 /* Called before any of the four observed mutation entry points forwards. */
 static void wine_reserve_write(void* resource,u32 kind){
  if(!wine_reserve_enabled)return;
+ wine_phys_writer(resource,kind);
  for(u32 i=0;i<2048;++i)if(wine_reservations[i].submission&&wine_reservations[i].resource==resource)wine_reserve_refuse(wine_reservations+i,1,kind);
 }
 static void wine_reserve_begin(const u32* sample,void* texture,void* resource){
@@ -44,7 +45,7 @@ static void wine_reserve_step(u32 submission,u32 phase,u32 value){
  else if(phase==5){if(value!=2)wine_reserve_refuse(s,7,value);}
  else if(phase==6){if(value!=s->worker)wine_reserve_refuse(s,6,phase);++wine_reserve_released;}
  else wine_reserve_refuse(s,6,phase);
- s->state=phase;wine_reserve_emit(s,phase,0,0);if(phase==6)memset(s,0,sizeof(*s));
+ s->state=phase;wine_reserve_emit(s,phase,0,0);if(phase==6){wine_phys_release(submission);memset(s,0,sizeof(*s));}
 }
 /* Public getter is called outside journal_lock; preserve the wrapper's FP/error
  * around this additional diagnostic call. Any decref is refused conservatively,

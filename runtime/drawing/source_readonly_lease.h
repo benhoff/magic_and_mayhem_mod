@@ -15,11 +15,12 @@ static void source_lease_capture(struct Context* c,u32 phase){
  if(!source_lease_getter){void* scene=GetModuleHandleA("MnmScene.dll");source_lease_getter=scene?(SourceLease)GetProcAddress(scene,"SceneDrawingSourceLeaseV1"):0;if(!source_lease_getter)ExitProcess(99);}
  if(phase==2)source_worker_lease_wait(c);
  u32 r[32]={0};r[1]=phase;r[2]=c->r[29];r[3]=c->r[6];r[4]=GetTickCount();r[5]=c->r[4];
- EnterCriticalSection(journal_lock);
+ /* Scene callbacks may allocate through the observed heap. Never enter them
+    while holding journal_lock (Scene producer lock precedes this lock). */
  if(phase==2)source_held_capture(c,2);
  u32 result=phase==1?source_lease_getter((void*)c->args[2],0,r+16,64):c->source_lease?source_lease_getter((void*)c->args[2],c->source_lease,r+16,64):2;
- r[6]=result;if(phase==1&&result&0x80000000u){c->source_lease=result&0x7fffffffu;source_worker_lease_begin(c);source_held_capture(c,1);}r[7]=c->source_lease;
+ r[6]=result;if(phase==1&&result&0x80000000u){c->source_lease=result&0x7fffffffu;EnterCriticalSection(journal_lock);source_worker_lease_begin(c);LeaveCriticalSection(journal_lock);source_held_capture(c,1);}r[7]=c->source_lease;
  if(phase==2&&c->source_lease&&result)ExitProcess(99);
- r[0]=++source_lease_records;if(source_lease_records>4096||!write(source_lease_file,r,128))ExitProcess(99);LeaveCriticalSection(journal_lock);
+ EnterCriticalSection(journal_lock);r[0]=++source_lease_records;if(source_lease_records>4096||!write(source_lease_file,r,128))ExitProcess(99);LeaveCriticalSection(journal_lock);
 }
 static void source_lease_close(u32 reason){source_held_close(reason);source_worker_lease_close(reason);if(!source_lease_file)return;u32 r[32]={0};r[0]=++source_lease_records;r[1]=4;r[2]=reason;if(!write(source_lease_file,r,128)||!CloseHandle(source_lease_file))ExitProcess(99);source_lease_file=0;}

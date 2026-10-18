@@ -83,6 +83,15 @@ if metadata.get('wine_gpu_completion'):
 else:os.environ.pop('MNM_DRAW_WINE_GPU_COMPLETION',None)
 if metadata.get('wine_source_reservations'):os.environ['MNM_DRAW_WINE_SOURCE_RESERVATIONS']='1'
 else:os.environ.pop('MNM_DRAW_WINE_SOURCE_RESERVATIONS',None)
+if metadata.get('wine_physical_owners'):
+    if not metadata.get('wine_source_handoff'):raise ValueError('Live physical ownership requires private source handoff')
+    from drawing_physical_owners import pin_prefix_ntdll
+    nt_pin=pin_prefix_ntdll(Path(os.environ['WINEPREFIX']))
+    (root/'physical-owner-ntdll.json').write_text(json.dumps(nt_pin,indent=2)+'\n')
+    os.environ['MNM_DRAW_WINE_PHYSICAL_OWNERS']='1'
+else:os.environ.pop('MNM_DRAW_WINE_PHYSICAL_OWNERS',None)
+if metadata.get('wine_source_handoff'):os.environ['MNM_DRAW_WINE_SOURCE_HANDOFF']='1'
+else:os.environ.pop('MNM_DRAW_WINE_SOURCE_HANDOFF',None)
 if metadata.get('wine_source_version'):os.environ['MNM_DRAW_WINE_SOURCE_VERSION']='1'
 else:os.environ.pop('MNM_DRAW_WINE_SOURCE_VERSION',None)
 if metadata.get('wine_source_map'):os.environ['MNM_DRAW_WINE_SOURCE_MAP']='2' if metadata.get('wine_source_map_bounded') else '1'

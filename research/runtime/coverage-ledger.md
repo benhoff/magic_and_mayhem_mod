@@ -17600,3 +17600,54 @@ gaps. Across the capture,2556COPY reservations complete through current-context
 fences and379selected EGL regions and whole-source images match RGB tolerance1.
 The unchanged gate still refuses physical backing/alias writers and global
 presentation routes. Prior results and hashes remain historical.
+
+
+## Private submitted COPY ownership (2026-10-18)
+
+The opt-in pinned Wine11.16 path now transfers each submitted COPY into private
+backing, leases that value through its exact worker/current-context fence, then
+restores the original client pointer or Wine allocation before API return. Old
+physical aliases can modify the old storage after transfer without modifying
+the consumer's private value. Shared/imported/BO/unknown backing and active DCs
+refuse. General heap allocation bodies remain unchanged. See
+[detailed contract](drawing-physical-alias-ownership.md).
+
+The implementation covers cached public map/unmap/copy/rebind/GetDC/releaseDC
+entries,51CS dispatch slots, VM mutations and generation-bound allocation
+retirement. It fixes the observed Scene/journal lock inversion, exact heap
+lookup cost, address reuse before old free/realloc/destroy return, and recorder
+close during an unrelated CS callback. Long read-only leases on shared heap
+pages remain controlled-only; live acquisition requires the private handoff.
+
+[Controls](physical-alias-controls-20261018.json) pass36PE32 physical-memory
+cases, wrapped hash collisions, deterministic retirement reuse and five mutated
+raw joins. [Handoff controls](physical-alias-handoff-controls-20261018.json)
+pass16cases including old/distinct aliases, delayed consumer/fence, cached DC
+entry preflight and post-close forwarding. The
+[threaded regression](physical-alias-lock-controls-20261018.json) exercises all
+four production Scene getter interleavings and a deliberate inverse-order
+watchdog failure. Eleven physical and nine handoff parser checks, the existing
+19reservation/six decoder regressions, and13accounting/admission tests pass.
+
+The [fresh original capture](physical-alias-original120-20261018.json) completes
+120source queues and2,444private handoffs with normal original Quit/child exit0,
+stable sources, empty fatal journals and2,927-file original-manifest bookends.
+The [pixel join](physical-alias-egl-20261018.json) matches426selected EGL regions
+and whole-source images at unchanged RGB tolerance1, with zero mismatches.
+[First120accounting](physical-alias-accounting-20261018.json) retains2,080inputs
+and332primary witnesses, with zero pending source boundaries, source-point gaps
+or pixel gaps. Every selected witness joins to its exact private value in the
+[independent provenance](physical-alias-provenance-20261018.json).
+
+This closes submitted private-value ownership for the admitted COPY policy.
+It deliberately does not close all writers to the old original backing. The
+[unchanged strict gate](physical-alias-interval-gate-20261018.json) still refuses
+that broader claim and global presentation-route closure. There is no original
+allocator/cadence equivalence, arbitrary host/driver or other-context ownership,
+whole-journey/native pixel equivalence, or live render replacement promotion.
+The optional primitive-lifetime journal exhausted its bounded row budget in
+retained retries and is disabled in the final ownership capture; this is not
+new primitive-lifetime evidence. Historical results/hashes remain unchanged;
+[development provenance](physical-alias-development-20261018.json) preserves
+failed/superseded acquisitions and the unexecuted rejected general-allocator
+proposal separately.

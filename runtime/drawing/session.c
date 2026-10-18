@@ -3,6 +3,7 @@
 API void* WIN GetProcAddress(void*,const char*);
 API u32 WIN GetCurrentThreadId(void);
 API u32 WIN GetTickCount(void);
+#include "fatal_diagnostic.h"
 API void WIN InitializeCriticalSection(void*);
 API void WIN EnterCriticalSection(void*);
 API void WIN LeaveCriticalSection(void*);
@@ -130,7 +131,7 @@ static u32 end(struct Context* c,void* object,u32 result){
  }
  c->r[30]=planes;emit(c->r);input_point_record(c);
  LeaveCriticalSection(journal_lock);physical_fence(c);update_timing_capture(c,3);primitive_api_capture(c,3);producer_points_capture(c,object,3);EnterCriticalSection(journal_lock);interval_event(c,3);--pending;
- char name[600];path(name,"stop.flag");HANDLE stop=CreateFileA(name,0x80000000,3,0,3,0x80,0);if(stop!=(HANDLE)-1){CloseHandle(stop);if(!pending&&!wine_blit_worker_pending&&!wine_resource_pending)finish(2);}
+ char name[600];path(name,"stop.flag");HANDLE stop=CreateFileA(name,0x80000000,3,0,3,0x80,0);if(stop!=(HANDLE)-1){CloseHandle(stop);if(!pending&&!wine_blit_worker_pending&&!wine_resource_pending&&!wine_phys_active)finish(2);}
  LeaveCriticalSection(journal_lock);if(pixels.data)VirtualFree(pixels.data,0,0x8000);restore_fp(fp);SetLastError(error);return result;
 }
 static u32 WIN surface_0(void* o,u32 a0,u32 a1){u32 a[6]={a0,a1};struct Context c=begin(o,0,a,2,(u32)__builtin_return_address(0),1);u32 r=((u32(WIN*)(void*,u32,u32))table(o)->original[0])(o,a0,a1);return end(&c,o,r);}
@@ -216,6 +217,7 @@ static int initialize(void){
  char mode[16];u32 mode_length=GetEnvironmentVariableA("MNM_DRAW_SESSION_MODE",mode,sizeof(mode));int inputs_only=mode_length==6&&equal(mode,"inputs",6);(void)inputs_only;physical_enabled=mode_length==8&&equal(mode,"physical",8);readbacks_enabled=!(mode_length==8&&equal(mode,"metadata",8));
  if(!physical_budget()||!input_point_open())return 0;
  u32 n=GetEnvironmentVariableA("MNM_DRAW_SESSION_DIRECTORY",directory,sizeof(directory));if(!n)return 1;if(n>=sizeof(directory))return 0;if(!action_state_open())return 0;
+ char ownership_flag[2];if(GetEnvironmentVariableA("MNM_DRAW_WINE_PHYSICAL_OWNERS",ownership_flag,2)==1&&ownership_flag[0]=='1'){char fault_name[600];path(fault_name,"drawing-fatal.bin");drawing_fatal_file=CreateFileA(fault_name,0x40000000,3,0,1,0x80,0);if(drawing_fatal_file==(HANDLE)-1)return 0;}
  char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=physical_enabled?physical_byte_limit:1024u*1024u*1024u;header[8]=physical_enabled?3:inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64)||(physical_enabled&&!interval_open())||!update_timing_open()||!producer_points_open()||!primitive_api_open()||!aux_save_open()||!wine_submission_open()||!source_bytes_open()||!source_lease_open()||!drawing_cursor_gate_open())return 0;enabled=1;
 #ifndef MNM_DRAWING_SELFTEST
  u32 base=(u32)GetModuleHandleA(0);const u8 thunk[]={0xff,0x25,0x14,0x50,0x5c,0};if(base!=0x400000||!readable((void*)0x59755a,6)||!equal((void*)0x59755a,thunk,6))return 0;

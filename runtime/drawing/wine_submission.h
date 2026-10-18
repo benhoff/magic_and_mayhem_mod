@@ -59,21 +59,21 @@ static u32 __attribute__((cdecl)) wine_submission_blt(void* context,void* dst,u3
  if(wine_submission_enabled){r[12]=dstsub;r[13]=srcsub;r[14]=flags;r[24]=filter;r[25]=fx!=0;wine_submission_entry(r,1,dst,src,srcrect,dstrect);wine_client_source(r,src);wine_retained_source(r,src);wine_source_descriptor(r,src);wine_source_map(r,src);}
  restore_fp(fp);SetLastError(error);
  u32 result=((u32(__attribute__((cdecl))*)(void*,void*,u32,const void*,void*,u32,const void*,u32,const void*,u32))wine_submission_original[0])(context,dst,dstsub,dstrect,src,srcsub,srcrect,flags,fx,filter);
- error=GetLastError();snapshot_fp(fp);if(wine_submission_enabled)wine_submission_return(r,result,error);restore_fp(fp);SetLastError(error);return result;
+ error=GetLastError();snapshot_fp(fp);if(wine_submission_enabled){wine_handoff_finish(r[2]);wine_submission_return(r,result,error);}restore_fp(fp);SetLastError(error);return result;
 }
 static u32 __attribute__((cdecl)) wine_submission_present(void* swapchain,const void* src,const void* dst,void* window,u32 interval,u32 flags){
  u32 error=GetLastError(),r[48]={0};u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);
  if(wine_submission_enabled){r[12]=interval;r[14]=flags;r[26]=window!=0;wine_submission_entry(r,2,swapchain,0,src,dst);}
  restore_fp(fp);SetLastError(error);
  u32 result=((u32(__attribute__((cdecl))*)(void*,const void*,const void*,void*,u32,u32))wine_submission_original[1])(swapchain,src,dst,window,interval,flags);
- error=GetLastError();snapshot_fp(fp);if(wine_submission_enabled)wine_submission_return(r,result,error);restore_fp(fp);SetLastError(error);return result;
+ error=GetLastError();snapshot_fp(fp);if(wine_submission_enabled){wine_handoff_finish(r[2]);wine_submission_return(r,result,error);}restore_fp(fp);SetLastError(error);return result;
 }
 static int wine_submission_open(void){
  char flag[2];u32 n=GetEnvironmentVariableA("MNM_DRAW_WINE_SUBMISSION",flag,2);if(!n)return 1;
  if(n!=1||flag[0]!='1'||!physical_enabled)return 0;
  char name[600];path(name,"wine-submission.bin");wine_submission_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_submission_file==(HANDLE)-1)return 0;
  u32 h[16]={0};copy(h,"MNMWIN02",8);h[2]=2;h[3]=192;h[4]=0x40209ca7;h[5]=131072;h[6]=32;h[7]=2048;
- if(!write(wine_submission_file,h,64)||!wine_lifetime_open()||!wine_client_open()||!wine_buffer_open()||!wine_resource_open()||!wine_source_descriptor_open()||!wine_source_map_open()||!wine_copy_open()||!wine_blit_worker_open()||!wine_blit_packet_open()||!wine_worker_context_open()||!wine_source_version_open()||!wine_gpu_open()||!wine_reserve_open(wine_source_version_enabled&&wine_gpu_enabled))return 0;wine_submission_enabled=1;return 1;
+ if(!write(wine_submission_file,h,64)||!wine_lifetime_open()||!wine_client_open()||!wine_buffer_open()||!wine_resource_open()||!wine_source_descriptor_open()||!wine_source_map_open()||!wine_copy_open()||!wine_blit_worker_open()||!wine_blit_packet_open()||!wine_worker_context_open()||!wine_source_version_open()||!wine_gpu_open()||!wine_reserve_open(wine_source_version_enabled&&wine_gpu_enabled)||!wine_phys_open(wine_reserve_enabled)||!wine_handoff_open(wine_phys_enabled))return 0;wine_submission_enabled=1;return 1;
 }
 #include "wine_mutator_entry.h"
 static int wine_submission_install(void* ddraw){
@@ -82,12 +82,13 @@ static int wine_submission_install(void* ddraw){
  const u32 iat[2]={0x6d58c,0x6d6ac},target[2]={0x1de1d0,0x213200};
  const char* names[2]={"wined3d_device_context_blt","wined3d_swapchain_present"};void* hooks[2]={(void*)&wine_submission_blt,(void*)&wine_submission_present};
  for(u32 i=0;i<2;++i){void* expected=GetProcAddress(module,names[i]);void** slot=(void**)(base+iat[i]);if(expected!=(void*)((u32)module+target[i])||!readable(slot,4)||*slot!=expected)return 0;}
- if(!wine_gpu_install()||!wine_lifetime_install(ddraw,module)||!wine_client_install(ddraw,module)||!wine_buffer_install(ddraw,module)||!wine_resource_install(ddraw,module)||!wine_source_descriptor_install(module)||!wine_source_map_install()||!wine_copy_install(ddraw,module)||!wine_blit_worker_install(module)||!wine_blit_packet_install(module)||!wine_source_version_install(ddraw,module)||!wine_mutator_entry_patch(module))return 0;
+ if(wine_handoff_enabled){wine_handoff_dc_original[0]=GetProcAddress(module,"wined3d_texture_get_dc");wine_handoff_dc_original[1]=GetProcAddress(module,"wined3d_texture_release_dc");}
+ if(!wine_gpu_install()||!wine_lifetime_install(ddraw,module)||!wine_client_install(ddraw,module)||!wine_buffer_install(ddraw,module)||!wine_resource_install(ddraw,module)||!wine_source_descriptor_install(module)||!wine_source_map_install()||!wine_copy_install(ddraw,module)||!wine_blit_worker_install(module)||!wine_blit_packet_install(module)||!wine_source_version_install(ddraw,module)||!wine_mutator_entry_patch(module)||!wine_phys_install(module))return 0;
  for(u32 i=0;i<2;++i){void** slot=(void**)(base+iat[i]);u32 old,unused;if(!VirtualProtect(slot,4,4,&old))return 0;wine_submission_original[i]=*slot;*slot=hooks[i];if(!VirtualProtect(slot,4,old,&unused))return 0;}
  return 1;
 }
 static void wine_submission_close(u32 reason){
- if(!wine_submission_file)return;wine_reserve_close(reason);wine_source_version_close(reason);wine_blit_packet_close(reason);wine_blit_worker_close(reason);wine_gpu_close(reason);wine_buffer_close(reason);wine_copy_close(reason);wine_source_map_close(reason);wine_source_descriptor_close(reason);wine_resource_close(reason);wine_client_close(reason);wine_lifetime_close(reason);u32 r[48]={0};r[1]=4;r[2]=reason;r[3]=wine_submission_calls;r[4]=GetCurrentThreadId();r[7]=GetTickCount();r[10]=wine_submission_ids;wine_submission_emit(r);if(!CloseHandle(wine_submission_file))ExitProcess(99);wine_submission_file=0;wine_submission_enabled=0;
+ if(!wine_submission_file)return;wine_reserve_close(reason);wine_handoff_close(reason);wine_phys_close(reason);wine_source_version_close(reason);wine_blit_packet_close(reason);wine_blit_worker_close(reason);wine_gpu_close(reason);wine_buffer_close(reason);wine_copy_close(reason);wine_source_map_close(reason);wine_source_descriptor_close(reason);wine_resource_close(reason);wine_client_close(reason);wine_lifetime_close(reason);u32 r[48]={0};r[1]=4;r[2]=reason;r[3]=wine_submission_calls;r[4]=GetCurrentThreadId();r[7]=GetTickCount();r[10]=wine_submission_ids;wine_submission_emit(r);if(!CloseHandle(wine_submission_file))ExitProcess(99);wine_submission_file=0;wine_submission_enabled=0;
 }
 
 static int wine_source_version_open(void){

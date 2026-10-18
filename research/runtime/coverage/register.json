@@ -64988,7 +64988,8 @@
         "tests/test-canvas-producers-v4.py",
         "tests/canvas-producers-v4-test.cpp",
         "tools/capture-drawing-interactive.py",
-        "tests/canvas-sequence-test.cpp"
+        "tests/canvas-sequence-test.cpp",
+        "tests/fixtures/drawing-journeys/wine-source-map-world120-ownership-schedule.json"
       ],
       "validation_dependencies": [
         "runtime/engine-cadence/observer.c",
@@ -65041,7 +65042,8 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
         "Combined original120attempt01 times out after72whole queue pairs;4096source definitions fall back to3579inline primitives without input loss. Fresh retry02 adds bounded postinput/pre-Escape dwell and closes120whole source queues/476150records/2176checkpoints with no failures, exact next accepted boundary122 and normal original exit0. These queues span121advancing accepted windows, with no observed selected World queue at96; longest consecutive queue-bound sequence run95. Full presentation/source/action/backing ownership remains open; historical16/first120fingerprints remain immutable.",
         "Opt-in source callback journal opens only after directory configuration; initial pre-Main failure remains immutable. Fresh original03closes120queues/494412records/2202checkpoints ataccepted123, with123prefixpoints and32pending-frame boundaries. Complete per-window immutable sources/physical routes/semantics remain open.",
-        "Fresh source-boundary final original120uses timestamp-spanning prepare/commit/cancel admission. All120queues close with zero pending callback frames and zero primary source-point gaps;2054input calls/312matching primary witnesses/2584fenced source reservations are retained. The unchanged complete-interval checker refuses only globalpresentationroutes and alloriginalbackingaliaswriters. No original timing, all-source ownership or native parity promotion."
+        "Fresh source-boundary final original120uses timestamp-spanning prepare/commit/cancel admission. All120queues close with zero pending callback frames and zero primary source-point gaps;2054input calls/312matching primary witnesses/2584fenced source reservations are retained. The unchanged complete-interval checker refuses only globalpresentationroutes and alloriginalbackingaliaswriters. No original timing, all-source ownership or native parity promotion.",
+        "The private COPY ownership acquisition recipe leaves World active until the exact120-source marker before driving Results; this is a new scoped capture schedule, not a promotion of historical whole-capture equivalence or global alias/presentation ownership."
       ]
     },
     {
@@ -67444,7 +67446,8 @@
         "NATIVE.source-reservations.egl-20261017",
         "NATIVE.source-boundary.egl-20261017",
         "NATIVE.ownership-bypass.egl-20261017",
-        "NATIVE.ownership-bypass.capability-egl-20261018"
+        "NATIVE.ownership-bypass.capability-egl-20261018",
+        "NATIVE.physical-alias.egl-20261018"
       ],
       "status": {
         "understanding": "partial",
@@ -86279,7 +86282,9 @@
         "NATIVE.ownership-bypass.capability-original120-20261018",
         "NATIVE.ownership-bypass.capability-accounting-20261018",
         "NATIVE.ownership-bypass.capability-interval-gate-20261018",
-        "NATIVE.ownership-bypass.capability-ownership-20261018"
+        "NATIVE.ownership-bypass.capability-ownership-20261018",
+        "NATIVE.physical-alias.accounting-20261018",
+        "NATIVE.physical-alias.interval-gate-20261018"
       ],
       "status": {
         "understanding": "partial",
@@ -87744,7 +87749,8 @@
         "NATIVE.ownership-bypass.reservation-regression-20261017",
         "NATIVE.ownership-bypass.ownership-20261017",
         "NATIVE.ownership-bypass.capability-original120-20261018",
-        "NATIVE.ownership-bypass.capability-ownership-20261018"
+        "NATIVE.ownership-bypass.capability-ownership-20261018",
+        "NATIVE.physical-alias.reservation-regressions-20261018"
       ],
       "status": {
         "understanding": "partial",
@@ -110946,6 +110952,217 @@
         "This policy refuses resolver escapes only. Direct alternate calls, front-buffer writers, raw XCB/DRI paths, private driver lookups and other contexts remain outside proof. Global presentation-route closure stays false.",
         "Versioned dlvsym resolution and separate loader namespaces are not interposed by the selected dlsym/proc-address policy. Direct dispatch and other contexts remain outside proof; the global gate stays false.",
         "Launcher capability hardening now requires a matching current EGL/GLX policy build manifest and pins its digest for child admission. Six real build-manifest positive/refusal cases and a fresh complete original120run pass. The earlier source-stable run predates this launcher hardening and remains historical."
+      ]
+    },
+    {
+      "id": "NR.wine-private-backing-ownership",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Private Wine system-memory backing owners and alias leases",
+      "scope": "Opt-in pinned Wine11.16 private system-memory allocation owners and generation-bound views into tracked live private client heap allocations. Page leases exclude CPU stores, physical aliases within the supported guest mapping contract, guest memory mutations, heap retirement and reviewed CS resource writes through exact worker/fence retirement; all51CS entries are covered and unreviewed workers refuse. Shared/file-mapped/imported/BO/unknown backing, arbitrary host/direct GL writers and other-context GPU source identity remain outside admission. No global presentation or native replacement claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/drawing-physical-alias-ownership.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_physical_owners.h",
+        "runtime/drawing/wine_source_reservations.h",
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_source_version.h",
+        "runtime/drawing/wine_submission.h"
+      ],
+      "tests": [
+        "tests/drawing-physical-owners-test.c",
+        "tools/test-drawing-physical-owners.py",
+        "tests/test-drawing-physical-owners.py",
+        "tests/test-drawing-source-handoff.py",
+        "tests/drawing-source-lock-test.c",
+        "tools/test-drawing-source-lock.py"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/drawing_aux_save_readback_v1.h",
+        "protocols/include/mnm/drawing_cursor_gate_v1.h",
+        "protocols/include/mnm/drawing_input_point_v1.h",
+        "protocols/include/mnm/drawing_primitive_point_v1.h",
+        "protocols/include/mnm/drawing_worker_context_v1.h",
+        "protocols/include/mnm/drawing_worker_producer_points_v1.h",
+        "runtime/drawing/action_boundary.h",
+        "runtime/drawing/aux_save_readback.h",
+        "runtime/drawing/call_intervals.h",
+        "runtime/drawing/input_point.h",
+        "runtime/drawing/physical_fence.h",
+        "runtime/drawing/primitive_api_identity.h",
+        "runtime/drawing/session.c",
+        "runtime/drawing/source_byte_witness.h",
+        "runtime/drawing/source_cursor_gate.h",
+        "runtime/drawing/source_held_snapshot.h",
+        "runtime/drawing/source_points.h",
+        "runtime/drawing/source_readonly_lease.h",
+        "runtime/drawing/source_worker_lease.h",
+        "runtime/drawing/storage_point_exports.h",
+        "runtime/drawing/update_timing.h",
+        "runtime/drawing/wine_blit_packet.S",
+        "runtime/drawing/wine_blit_packet.h",
+        "runtime/drawing/wine_blit_worker.h",
+        "runtime/drawing/wine_buffer.h",
+        "runtime/drawing/wine_client_memory.h",
+        "runtime/drawing/wine_gpu_completion.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/drawing/wine_map_storage_point.h",
+        "runtime/drawing/wine_mutator_entry.h",
+        "runtime/drawing/wine_resource_copy.h",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_retained_map_source.h",
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_handoff.h",
+        "runtime/drawing/wine_source_handoff_state.h",
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_source_reservations.h",
+        "runtime/drawing/wine_source_version.h",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_texture_entry.h",
+        "runtime/drawing/wine_worker_context.h",
+        "runtime/drawing/worker_producer_points.h",
+        "runtime/shadow/win32_min.h",
+        "tests/drawing-source-reservations-test.c",
+        "tests/drawing-source-version-test.c",
+        "tests/test-drawing-source-reservations.py",
+        "tools/build-drawing-session.py",
+        "tools/build-shadow-bridge.py",
+        "tools/campaign_gameplay.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/drawing_gpu_completion.py",
+        "tools/drawing_physical_owners.py",
+        "tools/drawing_source_reservations.py",
+        "tools/drawing_source_version.py",
+        "tools/test-drawing-ownership-bypasses.py",
+        "tools/test-drawing-source-reservations.py",
+        "runtime/drawing/fatal_diagnostic.h"
+      ],
+      "evidence": [
+        "NATIVE.physical-alias.controls-20261018",
+        "NATIVE.physical-alias.development-20261018"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Controlled private allocation and borrowed-page leases pass. Long heap-page protection is not admitted for live original execution because heap metadata can share pages; live COPY uses NR.private-copy-source-handoff. Unknown/shared/imported/BO backing and arbitrary host/driver aliases remain outside admission; no global source or presentation closure."
+      ]
+    },
+    {
+      "id": "NR.private-copy-source-handoff",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Private per-submit reference COPY source ownership",
+      "scope": "Reference-only opt-in RGB565 single-subresource COPY value handoff: freeze known private source storage only across a callout-free snapshot, temporarily bind an unexposed private buffer to the original Wine texture, retain it through exact packet/worker/current-context fence, and restore the exact original CPU binding before API return. Renderer resource APIs and the existing matched Wine system-memory allocator are used; general heap allocation is unchanged. Shared/imported/drawable/DC/unknown sources refuse. No native pixel inputs, baseline allocator equivalence, arbitrary host/driver ownership or global presentation closure.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/drawing-physical-alias-ownership.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_source_handoff.h",
+        "runtime/drawing/wine_source_handoff_state.h",
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_submission.h"
+      ],
+      "tests": [
+        "tests/drawing-physical-owners-test.c",
+        "tools/test-drawing-physical-owners.py",
+        "tests/test-drawing-physical-owners.py",
+        "tests/test-drawing-source-handoff.py",
+        "tests/drawing-source-lock-test.c",
+        "tools/test-drawing-source-lock.py"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/drawing_aux_save_readback_v1.h",
+        "protocols/include/mnm/drawing_cursor_gate_v1.h",
+        "protocols/include/mnm/drawing_input_point_v1.h",
+        "protocols/include/mnm/drawing_primitive_point_v1.h",
+        "protocols/include/mnm/drawing_worker_context_v1.h",
+        "protocols/include/mnm/drawing_worker_producer_points_v1.h",
+        "runtime/drawing/action_boundary.h",
+        "runtime/drawing/aux_save_readback.h",
+        "runtime/drawing/call_intervals.h",
+        "runtime/drawing/input_point.h",
+        "runtime/drawing/physical_fence.h",
+        "runtime/drawing/primitive_api_identity.h",
+        "runtime/drawing/session.c",
+        "runtime/drawing/source_byte_witness.h",
+        "runtime/drawing/source_cursor_gate.h",
+        "runtime/drawing/source_held_snapshot.h",
+        "runtime/drawing/source_points.h",
+        "runtime/drawing/source_readonly_lease.h",
+        "runtime/drawing/source_worker_lease.h",
+        "runtime/drawing/storage_point_exports.h",
+        "runtime/drawing/update_timing.h",
+        "runtime/drawing/wine_blit_packet.S",
+        "runtime/drawing/wine_blit_packet.h",
+        "runtime/drawing/wine_blit_worker.h",
+        "runtime/drawing/wine_buffer.h",
+        "runtime/drawing/wine_client_memory.h",
+        "runtime/drawing/wine_gpu_completion.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/drawing/wine_map_storage_point.h",
+        "runtime/drawing/wine_mutator_entry.h",
+        "runtime/drawing/wine_physical_owners.h",
+        "runtime/drawing/wine_resource_copy.h",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_retained_map_source.h",
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_source_reservations.h",
+        "runtime/drawing/wine_source_version.h",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_texture_entry.h",
+        "runtime/drawing/wine_worker_context.h",
+        "runtime/drawing/worker_producer_points.h",
+        "runtime/shadow/win32_min.h",
+        "tests/drawing-source-reservations-test.c",
+        "tests/drawing-source-version-test.c",
+        "tests/test-drawing-source-reservations.py",
+        "tools/build-drawing-session.py",
+        "tools/build-shadow-bridge.py",
+        "tools/campaign_gameplay.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/drawing_gpu_completion.py",
+        "tools/drawing_physical_owners.py",
+        "tools/drawing_source_handoff.py",
+        "tools/drawing_source_reservations.py",
+        "tools/drawing_source_version.py",
+        "tools/test-drawing-ownership-bypasses.py",
+        "tools/test-drawing-source-reservations.py",
+        "runtime/drawing/fatal_diagnostic.h"
+      ],
+      "evidence": [
+        "NATIVE.physical-alias.handoff-controls-20261018",
+        "NATIVE.physical-alias.lock-controls-20261018",
+        "NATIVE.physical-alias.original120-20261018",
+        "NATIVE.physical-alias.development-20261018",
+        "NATIVE.physical-alias.egl-20261018",
+        "NATIVE.physical-alias.accounting-20261018",
+        "NATIVE.physical-alias.interval-gate-20261018",
+        "NATIVE.physical-alias.provenance-20261018"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current native-policy private COPY ownership passes2444handoffs and a completed original120source interval, including normal original Quit, restoration before API return and exact worker/fence retirement. The optional primitive-lifetime journal exhausted its bounded budget in retained retries and was disabled in the final ownership capture; no new primitive-lifetime evidence is claimed. Shared/imported/BO/unknown backing and arbitrary host/driver or other-context writers remain outside admission. This does not close all writers to original backing, global presentation routes, original scheduling/allocator equivalence or native replacement."
       ]
     }
   ],
@@ -212405,6 +212622,275 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NATIVE.physical-alias.controls-20261018",
+      "kind": "native_integration",
+      "scope": "Actual PE32 private backing/VM/heap alias guards,36cases, wrapped hash collisions and generation-bound retirement reuse;11physical and9handoff parser checks, five raw-join mutations. No global host/driver ownership.",
+      "record": "research/runtime/physical-alias-controls-20261018.json",
+      "sha256": "64e7fda7cb995a813f07b1efd2e3138390403d8b022d9e71a517bf861aac9816",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.physical-alias.handoff-controls-20261018",
+      "kind": "native_integration",
+      "scope": "16actual PE32 private source handoff cases: retained/distinct old aliases, delayed worker/fence, cached DC entries and preflight mismatches, exact original binding restoration and normal recorder close deferral.",
+      "record": "research/runtime/physical-alias-handoff-controls-20261018.json",
+      "sha256": "737ee2455ff5b549baa3ba6eaf3794cac06953683256eb03913e54ce6ffb3c64",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.physical-alias.lock-controls-20261018",
+      "kind": "native_integration",
+      "scope": "Four production source lease/held snapshot Scene-to-journal interleavings succeed; deliberately restoring the inverse lock order trips the watchdog.",
+      "record": "research/runtime/physical-alias-lock-controls-20261018.json",
+      "sha256": "9f0a40b2bcbe7e2a3caac5b5ac8c0f0d4d71f7506cfa668fa7a364679e85e023",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.physical-alias.reservation-regressions-20261018",
+      "kind": "native_integration",
+      "scope": "Existing19PE32 source reservation cases and six parser regressions with the new policies disabled; the prior raw-write escape remains explicit.",
+      "record": "research/runtime/physical-alias-reservation-regressions-20261018.json",
+      "sha256": "078ab4af515727ddf108fea2fcf611483923937366ca42f66ed7ced55a817622",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NATIVE.physical-alias.accounting-regressions-20261018",
+      "kind": "static",
+      "scope": "Seven accounting and six unchanged strict admission tests; no global ownership promotion.",
+      "record": "research/runtime/physical-alias-accounting-regressions-20261018.json",
+      "sha256": "707d23198d89e94b96c8bc4e0506c61356f67d1617560e58b0bef9635e85d802",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.physical-alias.original120-20261018",
+      "kind": "live_observation",
+      "scope": "Current pinned original120source updates under private per-submit COPY value policy:2444private handoffs through exact worker/current-context fences, original bindings restored before return, normal original Quit and immutable media bookends. Optional primitive-lifetime journal disabled; no baseline allocator/cadence/global-original-writer or presentation equivalence.",
+      "record": "research/runtime/physical-alias-original120-20261018.json",
+      "sha256": "630abc9351256c3575d97b9b7ab6df8d0ed11b10f2e08a416ab1584e0bd93b3f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/source_completion/expected_queues",
+          "equals": 120
+        },
+        {
+          "pointer": "/wine_source_handoff_observation/handoffs",
+          "equals": 2444
+        },
+        {
+          "pointer": "/wine_source_handoff_observation/private_copy_value_ownership_closed",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_source_handoff_observation/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.physical-alias.development-20261018",
+      "kind": "static",
+      "scope": "Static development provenance, not execution admission. All old reports and raw inputs remain immutable in the retained task root.",
+      "record": "research/runtime/physical-alias-development-20261018.json",
+      "sha256": "944c62677156664d58d75c5f657009d2cc1d27229b32cc762daf0765ed8925ee",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/approval_review/executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_original_backing_writer_closure",
+          "equals": false
+        },
+        {
+          "pointer": "/global_presentation_route_closure",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.physical-alias.egl-20261018",
+      "kind": "live_observation",
+      "scope": "Current independently raw-bound426selected EGL regions and whole-source images match unchanged RGB tolerance1. No unobserved presentation or native parity claim.",
+      "record": "research/runtime/physical-alias-egl-20261018.json",
+      "sha256": "7cf1aa1501d3dfba6287cd1fe953b8333455fb96650d042a6e56999fbcbfa345",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/matched_regions",
+          "equals": 426
+        },
+        {
+          "pointer": "/mismatched_regions",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.physical-alias.accounting-20261018",
+      "kind": "live_observation",
+      "scope": "Current first120consecutive advancing windows:120queues,2080inputs,332primary witnesses; source boundaries quiescent, no source-point/pixel gaps; both broader global ownership gates remain false.",
+      "record": "research/runtime/physical-alias-accounting-20261018.json",
+      "sha256": "f37e0c639ec7e5e01d4bbf1e7b27191dc6ba00712bcb667f2e1426ab491fee46",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.physical-alias.interval-gate-20261018",
+      "kind": "live_observation",
+      "scope": "Unchanged strict interval admission validly refuses all-original-backing writer closure and global presentation closure; private-value policy does not promote those claims.",
+      "record": "research/runtime/physical-alias-interval-gate-20261018.json",
+      "sha256": "ae083ae874fc1120e4fb8a2ec7ee87a88578d56669e804efb3b7e25ba928410a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        },
+        {
+          "pointer": "/failed_gates",
+          "equals": [
+            "all_original_backing_alias_writers_closed",
+            "global_presentation_routes_closed"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NATIVE.physical-alias.provenance-20261018",
+      "kind": "static",
+      "scope": "Static independently joined private-value ownership provenance for the completed120source-update capture; not global original allocation or presentation closure.",
+      "record": "research/runtime/physical-alias-provenance-20261018.json",
+      "sha256": "42b7d8ee4ea5cc90a45d69a439016f3b529228f43cd71c268e24db4ed4ee1fd8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_selected_egl_witnesses_have_exact_private_values",
+          "equals": true
+        },
+        {
+          "pointer": "/all_original_backing_alias_writers_closed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_presentation_routes_closed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -231043,7 +231529,8 @@
         "tests/test-drawing-source-reservations.py"
       ],
       "evidence": [
-        "NATIVE.source-reservations.fixture-20261017"
+        "NATIVE.source-reservations.fixture-20261017",
+        "NATIVE.physical-alias.reservation-regressions-20261018"
       ]
     },
     {
@@ -231856,6 +232343,60 @@
         "NATIVE.ownership-bypass.controls-20261017",
         "NATIVE.ownership-bypass.capability-controls-20261018"
       ]
+    },
+    {
+      "id": "NR.wine-private-backing-ownership.controlled",
+      "scope": "Opt-in pinned Wine11.16 private system-memory allocation owners and generation-bound views into tracked live private client heap allocations. Page leases exclude CPU stores, physical aliases within the supported guest mapping contract, guest memory mutations, heap retirement and reviewed CS resource writes through exact worker/fence retirement; all51CS entries are covered and unreviewed workers refuse. Shared/file-mapped/imported/BO/unknown backing, arbitrary host/direct GL writers and other-context GPU source identity remain outside admission. No global presentation or native replacement claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.wine-private-backing-ownership"
+      ],
+      "tests": [
+        "tests/drawing-physical-owners-test.c",
+        "tools/test-drawing-physical-owners.py",
+        "tests/test-drawing-physical-owners.py",
+        "tests/test-drawing-source-handoff.py",
+        "tests/drawing-source-lock-test.c",
+        "tools/test-drawing-source-lock.py"
+      ],
+      "evidence": [
+        "NATIVE.physical-alias.controls-20261018"
+      ]
+    },
+    {
+      "id": "NR.private-copy-source-handoff.controlled",
+      "scope": "Reference-only opt-in RGB565 single-subresource COPY value handoff: freeze known private source storage only across a callout-free snapshot, temporarily bind an unexposed private buffer to the original Wine texture, retain it through exact packet/worker/current-context fence, and restore the exact original CPU binding before API return. Renderer resource APIs and the existing matched Wine system-memory allocator are used; general heap allocation is unchanged. Shared/imported/drawable/DC/unknown sources refuse. No native pixel inputs, baseline allocator equivalence, arbitrary host/driver ownership or global presentation closure.",
+      "level": "headless",
+      "behaviors": [
+        "NR.private-copy-source-handoff"
+      ],
+      "tests": [
+        "tests/drawing-physical-owners-test.c",
+        "tools/test-drawing-physical-owners.py",
+        "tests/test-drawing-physical-owners.py",
+        "tests/test-drawing-source-handoff.py",
+        "tests/drawing-source-lock-test.c",
+        "tools/test-drawing-source-lock.py"
+      ],
+      "evidence": [
+        "NATIVE.physical-alias.handoff-controls-20261018",
+        "NATIVE.physical-alias.lock-controls-20261018"
+      ]
+    },
+    {
+      "id": "NR.private-copy-source-handoff.original120",
+      "scope": "Reference-only opt-in RGB565 single-subresource COPY value handoff: freeze known private source storage only across a callout-free snapshot, temporarily bind an unexposed private buffer to the original Wine texture, retain it through exact packet/worker/current-context fence, and restore the exact original CPU binding before API return. Renderer resource APIs and the existing matched Wine system-memory allocator are used; general heap allocation is unchanged. Shared/imported/drawable/DC/unknown sources refuse. No native pixel inputs, baseline allocator equivalence, arbitrary host/driver ownership or global presentation closure.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.private-copy-source-handoff"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-source-map-world120-ownership-schedule.json"
+      ],
+      "evidence": [
+        "NATIVE.physical-alias.original120-20261018"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -232499,8 +233040,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ownership-capability-20261018.json",
-    "sha256": "7a906873b0c7203edbaba1468b317a523fa3d93b133a4c2132ea3ac415d6bae1"
+    "path": "research/runtime/coverage/physical-alias-source-census-final-20261018.json",
+    "sha256": "f6a3f23058589991f99e0852360c18d2f0d6eb0c81e3ace2599078f6069eda7d"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
