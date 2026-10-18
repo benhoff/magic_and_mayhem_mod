@@ -44,6 +44,7 @@ static u32 WIN nd_release(struct NdObject* self) {
 #include "clipper.h"
 #include "surfaces.h"
 #include "history.h"
+#include "cpu_copy_boundary.h"
 #include "status.h"
 #include "producer_status.h"
 static i32 nd_create(void* guid,void** out,void* outer) {
@@ -61,7 +62,7 @@ static i32 nd_create(void* guid,void** out,void* outer) {
   ++nd_objects;++nd_creates;*out=&s->first;nd_status();SetLastError(error);return 0;
 }
 __declspec(dllexport) i32 WIN NativeDrawCreate(void* guid,void** out,void* outer) {
- u32 error=GetLastError();++nd_attempts;i32 result=nd_create(guid,out,outer);nd_last_create=(u32)result;nd_status();SetLastError(error);return result;
+ u32 error=GetLastError();ns_guard_initialize();ns_image_copy_install();++nd_attempts;i32 result=nd_create(guid,out,outer);nd_last_create=(u32)result;nd_status();SetLastError(error);return result;
 }
 typedef i32 (WIN *NdEnumCallback)(void*,const char*,const char*,void*);
 __declspec(dllexport) i32 WIN NativeDrawEnumerateA(NdEnumCallback callback,void* context) {
@@ -121,4 +122,4 @@ __declspec(dllexport) u32 WIN NativeDrawStatusStage(void) {return __atomic_load_
 __declspec(dllexport) void WIN NativeDrawStatusDeferV1(u32 begin) {nd_status_defer(begin);}
 __declspec(dllexport) u32 WIN NativeDrawObjects(void) {return nd_objects;}
 __declspec(dllexport) u32 WIN NativeDrawPalettes(void) {return np_objects;}
-i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;(void)reserved;if(reason==1){nd_init();nd_status_start();np_status_start();}else if(reason==0){np_status_finish();nd_status_finish();}return 1;}
+i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;(void)reserved;if(reason==1){nd_init();nd_status_start();np_status_start();}else if(reason==0){ns_guard_finish();np_status_finish();nd_status_finish();}return 1;}

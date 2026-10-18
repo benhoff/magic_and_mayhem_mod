@@ -119,3 +119,128 @@ gaps. Across the capture,2556COPY reservations complete through current-context
 fences and379selected EGL regions and whole-source images match RGB tolerance1.
 The unchanged gate still refuses physical backing/alias writers and global
 presentation routes. Prior results and hashes remain historical.
+
+
+## Native output and backing ownership profile (2026-10-18)
+
+`tools/run-native-owned.py` adds an explicit native-profile ownership boundary.
+Qt keeps its host display; Wine runs on a fresh authenticated private Xvfb
+server with MIT-SHM, DRI3 and GLX disabled. Before any Wine bootstrap, the final
+runner starts a separate user/PID/network/IPC namespace with an empty device
+tree, private temporary directories and masked `/run/user`. Only the private
+X11 filesystem socket is exposed. Host abstract X11 sockets are inaccessible
+in the new network namespace; host X11/Wayland filesystem sockets and graphics
+devices are absent. Inherited loader, Wayland and session-bus selectors are
+removed. The root filesystem is read-only except the separate disposable game
+session and admitted Wine prefix. No original file is modified.
+
+The private server cookie and socket identity are checked against a live
+ancestor-owned receipt. Invalid or stale receipts refuse. The native Qt input
+adapter authenticates separately to this private server; a wrong cookie refuses
+without falling back to the host connection. Private XIDs cannot be embedded on
+the host display. Original calls that bypass public presentation resolvers can
+therefore only target the contained legacy display through the admitted output
+endpoints. This is an operating-system boundary for the trusted game/Wine
+profile, not a claim of security against arbitrary hostile filesystem IPC.
+
+Admission requires resident native commands, owned drawing and all six producer
+families in no-forward mode. A current native-draw compiler receipt is checked
+before execution. `MNM_NATIVE_OWNERSHIP_REQUIRED=1` then refuses guard modes0–2,
+invalid selectors and nonresident operation before any facade object is created.
+Mode3 uses the existing allocation owner: anonymous section-backed public and
+private views, protected stale public pages even during writable Lock, private
+scalar-store emulation and exact typed history restoration. Allocation/protection
+failure refuses rather than silently using an unowned fallback. This increment
+requires that backing implementation; it does not take credit for its separate
+CPU reader and GPU history validation.
+
+Use a stopped admitted disposable prefix; the launcher refuses an active prefix.
+For example, with a hash-pinned working installation:
+
+```sh
+MNM_MENU_GAME_SOURCE=/absolute/path/under/working/source-game \
+  ./tools/run-native-owned.py --prefix /absolute/path/under/working/wineprefix
+```
+
+The wrapper records its server receipt, exact session admission and process
+result under `working/tests/native-output-owner/`, then retires its own Qt and
+server process groups. This remains an opt-in profile. The ordinary launcher,
+original-reference physical alias/global route gates, original pixel parity,
+complete-native release and hardware acceptance retain their separate scopes.
+
+
+### Original image-row copy boundary
+
+The first movement investigation under this profile retained a terminal mode3
+record at No-CD `0x533af7`: an original `REP MOVSD` destination store during a
+writable Lock, not an unknown GPU reader. The surrounding `0x533a00` clipped
+image routine prepares EAX=source, EDX=destination and EBP=row bytes at `0x533aec`,
+then copies DWORDs and residual bytes at `0x533af7`/`0x533afe`. This finding is
+confirmed for the retained staged build; other image/format branches remain
+unproved.
+
+The opt-in adapter now checks the exact eight original prefix bytes before a
+scripted in-memory jump. It restores current CPU history for either owned row
+operand through the existing typed lease service before replaying that prefix
+and executing the original copy. Bounds, flat ownership and forward direction
+are checked; private-view operands and unsupported spans refuse. GPRs, flags,
+LastError and FX state are preserved around preparation. No page is made writable
+inside the exception handler, and no new instruction is accepted by its store
+decoder. The original pixel algorithm remains in use and is outside the43route
+native producer denominator. This boundary is an explicit CPU ownership service,
+not a claim that all original drawing has been replaced.
+
+
+### Current execution and remaining boundary
+
+[Current controls](native-output-ownership-joined-kernel-20261018.json) pass10
+Python admission tests,120C selector cases, kernel namespace/device/socket
+exclusion, independently unchanged host pixels versus private drawing, and two
+actual Qt input cases including wrong-cookie refusal.
+[Nine actual PE32 schedules](native-output-ownership-joined-pe32-20261018.json)
+pass section-backed protection, exact restore and original DWORD/byte row copies;
+wrong prefixes and out-of-owned-range rows refuse before copying.
+
+The [bounded game journey](native-output-ownership-campaign-07-20261018.json)
+passes New Game/Enter, gameplay, Mini Cancel, Quit No/resume/Yes and normal
+original exit0. All7Worlds complete/import/return in balance;1029native producer
+calls have zero forwarding. Host embedding fallback is absent, sources stay
+stable and all2927original files verify before/after execution. This is software
+live observation, with movies and route pixel comparisons omitted.
+
+Movement/HUD stress is still **not accepted**. After the fixed row-copy boundary,
+[campaign06](native-output-ownership-campaign-06-20261018.json) stalls at an
+original DirectDraw error dialog contained on the private server. Its retained
+surface log reports `application_bltfast 80004001` with flags`10`; the precise
+unsupported surface/format condition is unproved. Containment prevents host
+presentation leakage but can leave Qt showing the last frame while an original
+modal waits. This is a concrete remaining compatibility/failure-reporting task,
+not evidence of a completed session. Full media/save/restart, hardware performance,
+original pixel parity and complete-native release remain pending.
+
+[Provenance](native-output-ownership-provenance-20261018.json) retains failed and
+superseded attempts, fixture/setup corrections and incoming history accounting.
+Prior hashes are not refreshed. The original-reference ownership gates remain
+false; the implemented policy owns admitted native backing and contains the
+named host output endpoints instead of claiming original Wine closure.
+
+
+### Subsequent shared-source edits and current validation limit
+
+The ownership control suites and campaign07 above passed for their exact recorded
+snapshot. A concurrent native-only admission change subsequently edited shared
+Qt, launcher and backing sources. Two combined retries again completed the
+original gameplay/Mini/No/resume/Yes/normal Quit flow, but their source-stability
+checks correctly refused acceptance: first `tools/native_only_contract.py`, then
+that module and `apps/qt-shell/native_only_session.hpp` changed during execution.
+The current game attempt completes7balanced Worlds and948native producer calls
+with zero forwards; its aggregate success is **false** because sources changed.
+The separate `--native-only` option was not exercised by these ownership retries.
+
+[Concurrent provenance](native-output-ownership-concurrent-provenance-20261018.json)
+preserves both attempts and the successful intermediate kernel/PE32 controls.
+Current combined-tree validation remains pending until the shared code settles
+and the declared runs are repeated. Historical stages/evidence remain recorded;
+no hashes are refreshed and these moving-source runs do not promote acceptance.
+The final change-gate attempt also detected the concurrent source/index drift;
+the earlier audit's zero-error result belongs to its retained snapshot.

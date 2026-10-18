@@ -24,7 +24,7 @@ static int write_all(HANDLE,const void* p,u32 n){++ioCalls;const auto* bytes=sta
 #include "../runtime/render/copy_timing.h"
 int QueryPerformanceCounter(unsigned long long* out){__atomic_add_fetch(&qpcCalls,1,__ATOMIC_RELAXED);*out=1000000+static_cast<unsigned long long>(tick)*1000;lastError=0xaa;return 1;}
 int QueryPerformanceFrequency(unsigned long long* out){*out=1000000;lastError=0xaa;return 1;}
-static u32 game_copy_order_enabled=1,game_lock_epoch,historyInvalid,game_cpu_transfer_wait,command_channel_session=1516015097;
+static u32 game_copy_order_enabled=1,game_lock_epoch,historyInvalid,game_cpu_transfer_wait,game_resident_world,command_channel_session=1516015097;
 struct GameCopyLease {u32 held,observe,deferred;};
 static u32* history_current(){return &historyInvalid;}
 #define history_invalid historyInvalid
@@ -46,7 +46,7 @@ static void deferredStatus(u32 begin){
 }
 static void reset(bool enabled){
     tick=mode=ioCalls=misses=wakes=qpcCalls=game_copy_owner=game_copy_started=game_copy_site=game_copy_phase=0;
-    game_lock_epoch=historyInvalid=game_alias_reset_pending=0;threadId=1;lastError=0x77;
+    game_lock_epoch=historyInvalid=game_alias_reset_pending=game_cpu_transfer_wait=game_resident_world=0;threadId=1;lastError=0x77;
     copy_trace_enabled=copy_trace_written=copy_trace_read=copy_trace_dropped=copy_trace_wait_id=copy_trace_armed=0;
     copy_trace_owner_sequence=copy_trace_owner_ready=copy_trace_acquisitions=0;copy_trace_file=nullptr;
     zero(copy_trace_slots,sizeof(copy_trace_slots));zero(copy_trace_owner,sizeof(copy_trace_owner));output.clear();
@@ -68,7 +68,11 @@ static void holder(u32 at){
     copy_trace_owner_open(reinterpret_cast<void*>(0x9000),56,2,at);copy_trace_owner_phase(4);
 }
 static i32 WaitOnAddress(volatile void*,void*,u32,u32 milliseconds){
-    require(milliseconds<=50,"unchanged wait budget");
+    require(milliseconds<=(game_resident_world?250u:50u)+(mode==3||mode==4?10000u:0),"ordinary and reader waits remain bounded");
+    if(mode==5){tick+=80;copy_trace_owner_close();game_copy_owner=0;return 1;}
+    if(mode==3 && tick==0){tick=120;game_cpu_transfer_wait=0;return 1;}
+    if(mode==3){tick+=20;copy_trace_owner_close();game_copy_owner=0;return 1;}
+    if(mode==4){tick=10051;return 0;}
     if(mode==1){tick+=65;return 0;}
     if(mode==2){for(u32 at:{25u,40u,49u}){copy_trace_owner_close();game_copy_owner=0;holder(at);}tick=65;return 1;}
     tick+=10;copy_trace_owner_close();game_copy_owner=0;return 1;
@@ -98,6 +102,16 @@ static void admission(){
         require(!lease.held&&!lease.observe&&tick==65&&!game_lock_epoch&&!misses&&!historyInvalid&&lastError==0x77,"read-only observation timeout preserves drawing history");
         command_callback_missed();require(game_alias_reset_pending==1,"callback invalidation unchanged");
         reset(enabled);lease=game_copy_shutdown_enter();require(lease.held&&lease.observe,"shutdown admission unchanged");game_copy_leave(&lease);
+        reset(enabled);holder(0);mode=3;game_cpu_transfer_wait=1;
+        lease=game_copy_enter_at(nullptr,17);
+        require(lease.held&&lease.observe&&tick==140&&!misses&&!game_lock_epoch,"reader deadline cannot shrink after a spurious wake");
+        game_cpu_transfer_wait=1;game_copy_leave(&lease);require(!game_cpu_transfer_wait,"reader marker retires with the owning callback");
+        reset(enabled);holder(0);mode=4;game_cpu_transfer_wait=1;
+        lease=game_copy_enter_at(nullptr,17);require(!lease.observe&&tick==10051&&misses==1,"reader extension is finite");
+        reset(enabled);holder(0);mode=5;game_resident_world=1;
+        lease=game_copy_enter_at(nullptr,17);require(lease.held&&lease.observe&&tick==80&&!misses,"resident copy admits a valid slow producer");game_copy_leave(&lease);
+        reset(enabled);holder(0);mode=1;game_resident_world=1;
+        lease=game_copy_enter_at(nullptr,17);require(!lease.observe&&tick==260&&misses==1,"resident copy still has a finite deadline");
     }
 }
 static void reacquisition(){

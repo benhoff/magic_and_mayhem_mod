@@ -27,14 +27,15 @@ static int ns_dc_plain(void* dc){
 static void ns_dc_drop(struct NsState* s){
  /* The cached DC belongs to this logical object; its physical lease may have
   * moved to another object, including a retained attached back surface. */
- for(struct NsState* p=ns_owned;p;p=p->next_owned)if(p->storage_dc==s){p->storage_dc=0;if(p->locked>0)--p->locked;}
+ for(struct NsState* p=ns_owned;p;p=p->next_owned)if(p->storage_dc==s){p->storage_dc=0;if(p->locked>0)--p->locked;ns_guard_refresh(p);}
  if(s->dc){for(u32 i=0;i<128;++i)if(ns_dc_owners[i]==s)ns_dc_owners[i]=0;
   SelectObject(s->dc,s->old_bitmap);DeleteObject(s->bitmap);DeleteDC(s->dc);--ns_dcs;}
- s->dc=s->bitmap=s->old_bitmap=s->dc_bits=0;nd_status();
+ s->dc=s->bitmap=s->old_bitmap=s->dc_bits=0;s->dc_owner=0;ns_guard_refresh(s);nd_status();
 }
 static i32 WIN ns_get_dc(struct NsObject* o,void** out){
  if(!out)return ND_INVALID;struct NsState* s=o->state;
  if(s->dc)return (i32)0x8876026cu;
+ if(ns_guard_enabled==3 && s->locked)return NS_BUSY;
  if(s->storage_dc || s->locked<0)return NS_BUSY;
  ns_cpu_require(s);
  if(ns_dcs>=128)return (i32)0x88760249u;
@@ -52,12 +53,14 @@ static i32 WIN ns_get_dc(struct NsObject* o,void** out){
  for(u32 y=0;y<s->height;++y){u8* target=(u8*)bits+y*pitch;const u8* source=(const u8*)s->pixels+y*s->pitch;
   for(u32 x=0;x<row_bytes;++x)target[x]=source[x];}
  s->dc=dc;s->bitmap=bitmap;s->old_bitmap=old;s->dc_bits=bits;
+ s->dc_owner=GetCurrentThreadId();
  s->storage_dc=s;++s->locked;
  for(u32 i=0;i<128;++i)if(!ns_dc_owners[i]){ns_dc_owners[i]=s;break;}
  ++ns_dcs;*out=dc;nd_status();return 0;
 }
 static i32 WIN ns_release_dc(struct NsObject* o,void* dc){
  struct NsState* s=o->state;if(!s->dc)return (i32)0x8876024au;
+ if(s->dc_owner!=GetCurrentThreadId())return NS_BUSY;
  if(s->dc!=dc || s->storage_dc!=s)return (i32)0x8876086cu;
  if(GetCurrentObject(dc,7)!=s->bitmap)return ND_INVALID;
  if(!GdiFlush())return (i32)0x80004005u;

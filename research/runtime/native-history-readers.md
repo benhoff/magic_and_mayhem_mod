@@ -227,3 +227,24 @@ active clipped/self call occurs; these branches are not proved dead. The output
 observer excludes the CPU-keyed commands, and seven post-retirement callbacks
 remain explicit exclusions. No general CPU-coherence or complete replacement
 claim is added.
+
+## Idle raw-access discovery follow-up
+
+The opt-in [idle CPU guard](native-cpu-reader-guard.md) now catches raw reads and
+writes to stale owned backing outside CPU leases. Its20 actual PE32 schedules
+retain active writable-lease reads as an explicit counterexample. This provides
+a fault census boundary; it does not materialize arbitrary readers or establish
+whole-game coherence.
+
+## Active writable Lock investigation
+
+The [mode2 reader census](native-cpu-reader-guard.md#active-lock-discovery-2026-10-17)
+now retains protection through writable Locks, permits selected pure stores with
+one owned single-step trap, and terminates loads/unsupported store candidates.
+Observed live barriers include metadata-only scene checkpoints, the held-Lock
+private Unlock baseline and the pure WORD splice9 permission query. Their routes
+preserve stale authority: metadata stays metadata, private snapshots stay write
+masks, and the raster's actual instructions remain guarded. The scene's existing
+World guard receives a checked loan rather than silently replacing the CPU guard.
+Actual pixel readers, DC DIB reads and concurrent escapees retain separate scope;
+no transparent coherence or complete replacement follows from these changes.

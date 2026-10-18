@@ -13,6 +13,7 @@ static int game_surface_publish_region(struct GameSurface*,u32,u32,u32,u32,u32);
 static int game_surface_colors(struct GameSurface*,u8*);
 static void game_pixel_misses_sync(void);
 static void game_native_primary_initial(struct GameSurface*,const u32*);
+static int game_native_blit_checkpoint(void*,u32);
 /* Identity/generation/count of the complete frame currently in the stream.
  * A partial upload is permitted only when it advances this exact checkpoint. */
 static void* game_presented_object;
@@ -312,10 +313,16 @@ static void game_blit_apply(const struct GameBlit* p,const struct Snapshot* src,
 static void game_blit_after(struct GameBlit* p,i32 result){
     if(p->gpu==2)return; /* Already committed by the explicit GPU route. */
     if(!lock_capture_path_length)return;
-    if(result<0){lock_diagnostic("blit_failed",p->target,0,(u32)p->source,0,result,0,0);game_blit_free(p);return;}
+    if(result<0){
+        /* A clipped CPU transform can retain earlier pieces before returning a
+         * rectangle error. Preserve that current owned result as well. */
+        if(game_surface_pixels_enter(p->target)){game_native_blit_checkpoint(p->target,p->caller);game_tracker_release();}
+        lock_diagnostic("blit_failed",p->target,0,(u32)p->source,0,result,0,0);game_blit_free(p);return;
+    }
     if(!game_surface_pixels_enter(p->target)){game_blit_free(p);return;}
     struct GameSurface *src=p->source?game_surface_find(p->source,0):0,*dst=game_surface_find(p->target,0);
     if(!p->valid || p->epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED) || (!p->fill && (!src || src->generation!=p->source_generation)) || !dst || dst->generation!=p->target_generation){
+        if(game_native_blit_checkpoint(p->target,p->caller))goto done;
         u32 refusal[19]={(u32)p->target,GetCurrentThreadId(),(u32)p->source,p->valid,p->epoch,
             __atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED),p->source_generation,src?src->generation:0,
             p->target_generation,dst?dst->generation:0,p->fill,p->bootstrap,p->direct,(u32)result,src?src->generation_origin:0,dst?dst->generation_origin:0,p->caller,src?src->generation_caller:0,src?src->generation_owner:0};

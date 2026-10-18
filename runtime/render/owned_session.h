@@ -148,6 +148,11 @@ static struct SessionSurface* session_surface(void* object,const struct Snapshot
 }
 static i32 (WIN *game_cpu_history)(const void*,u32,u32,u32,u32,u32);
 static i32 (WIN *game_native_cpu_transfer)(void*,u32*,const u16*,u32);
+static i32 (WIN *game_native_cpu_snapshot)(void*,u32*,u8*,u32);
+static i32 (WIN *game_native_cpu_lease_snapshot)(void*,const u32*,u16*,u32);
+static i32 (WIN *game_native_cpu_lease_transfer)(void*,u32*,const u16*,u32);
+static i32 (WIN *game_native_cpu_lease_mask)(void*,const u32*,u8*,u32,u32);
+__declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void*,const void*,u32,u32,u32);
 #include "../native-draw/initial_history.h"
 /* Called exactly at successful CreateSurface return, before the fresh result
  * escapes the ordered copy lease. Driver-backed surfaces have no such service. */
@@ -206,7 +211,7 @@ __declspec(dllexport) int WIN RenderResidentWorldV1(u32 pixels,u32 width,u32 hei
     if(!lock || lock->resident || lock->desc[3]!=width || lock->desc[2]!=height ||
        lock->desc[4]!=stride*2 || lock->desc[21]!=16 || lock->desc[19]!=0x40 ||
        lock->desc[22]!=0xf800 || lock->desc[23]!=0x7e0 || lock->desc[24]!=31 ||
-       !readable((void*)pixels,width*height*2))goto done;
+       (!game_native_cpu_lease_snapshot && !readable((void*)pixels,width*height*2)))goto done;
     u32 length=width*height*2;
     if(!lock->base.data){
         u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
@@ -217,7 +222,10 @@ __declspec(dllexport) int WIN RenderResidentWorldV1(u32 pixels,u32 width,u32 hei
     if(lock->base.length!=length)goto done;
     lock->base.width=width;lock->base.height=height;lock->base.bits=16;lock->base.flags=0x40;
     lock->base.r=0xf800;lock->base.g=0x7e0;lock->base.b=31;
-    copy(lock->base.data,(void*)pixels,length);
+    if(game_native_cpu_lease_snapshot){
+        u32 layout[4]={pixels,width,height,stride*2};
+        if(game_native_cpu_lease_snapshot(lock->object,layout,(u16*)lock->base.data,length))goto done;
+    }else copy(lock->base.data,(void*)pixels,length);
     struct SessionSurface* surface=session_surface(lock->object,&lock->base,0);if(!surface)goto done;
     u32 fields[5]={surface->id,generation_low,generation_high,nonce_low,nonce_high};
     if(!session_record(MNM_RENDER_STREAM_V4_OPERATION_WORLD,fields,20,0,0))goto done;
@@ -434,13 +442,30 @@ static i32 game_gpu_blit(struct GameBlit* p){
  * copy lease remains held by surface_dc. No per-World pixel return is enabled. */
 #include "../../protocols/include/mnm/native_cpu_read_v1.h"
 static u32 game_cpu_read_ticket,game_cpu_transfer_wait;
+static u32 game_cpu_read_completed_counts[4];
+static u32 game_cpu_read_completed_ticket;
+static void game_cpu_read_completed(u32 kind){
+ if(kind>=4)ExitProcess(124);++game_cpu_read_completed_counts[kind];
+ game_cpu_read_completed_ticket=game_cpu_read_ticket;
+}
+/* Shutdown owns closed application admission and joined publication. Never do
+ * diagnostic file I/O under the tracker, copy lease, or reader callback. */
+static int game_cpu_read_counts_flush(void){
+ if(!game_cpu_read_completed_ticket)return 1;
+ u32 r[12]={0x524d4e4d,0x31304344,1,48,game_cpu_read_completed_ticket,
+  game_cpu_read_completed_counts[0],game_cpu_read_completed_counts[1],game_cpu_read_completed_counts[2],game_cpu_read_completed_counts[3],0,0,0},done=0;
+ HANDLE file=CreateFileA("native-cpu-read-counts.bin",0x40000000,0,0,2,0x80,0);
+ if(file==(HANDLE)-1)return 0;
+ int ok=WriteFile(file,r,sizeof(r),&done,0) && done==sizeof(r);
+ CloseHandle(file);return ok;
+}
 static void game_cpu_read_refuse(u32 stage,void* object,u32 detail){
     u32 record[8]={0x434d4e4d,1,stage,(u32)object,detail,game_cpu_read_ticket,game_lock_epoch,command_channel_session},done=0;
     HANDLE file=CreateFileA("native-cpu-transfer-refusal.bin",0x40000000,0,0,1,0x80,0);
     if(file!=(HANDLE)-1){WriteFile(file,record,sizeof(record),&done,0);CloseHandle(file);}
     ExitProcess(124);
 }
-static void game_materialize_dc(void* object){
+static void game_materialize_reader(void* object,u32 kind){
     if(!game_resident_world)return;
     u32 error=GetLastError();
     if(!game_surface_pixels_enter(object))game_cpu_read_refuse(1,object,0);
@@ -449,6 +474,11 @@ static void game_materialize_dc(void* object){
     u32 identity[8];
     if(!game_native_cpu_transfer)game_cpu_read_refuse(2,object,0);
     i32 query=game_native_cpu_transfer(object,identity,0,0);
+    if(query<0)for(u32 i=0;i<32;++i)if(game_locks[i].active && game_alias_same(game_locks[i].object,object)){
+        /* The facade returns SURFACEBUSY for overlapping protected Lock/DC
+         * leases. Preserve the active checkpoint and let it return that result. */
+        game_tracker_release();SetLastError(error);return;
+    }
     if(query==1){source->gpu_history=0;game_tracker_release();SetLastError(error);return;}
     struct SessionSurface* surface=session_find(object);
     if(query || !surface || !session_active || game_cpu_read_ticket==0xffffffffu ||
@@ -484,10 +514,13 @@ static void game_materialize_dc(void* object){
     game_surface_drop_at(source,0);source->gpu_history=0;
     copy(&source->pixels,&result,sizeof(result));result.data=0;
     game_surface_bytes+=source->pixels.length;__atomic_sub_fetch(&lock_capture_reserved,source->pixels.length,__ATOMIC_RELAXED);
-    __atomic_store_n(&game_cpu_transfer_wait,0,__ATOMIC_RELEASE);
+    /* The enclosing ordered callback still owns its CPU conversion/DC work.
+     * game_copy_leave retires the reader deadline with that complete lease. */
     lock_diagnostic("resident_cpu_materialized",object,0,ticket,fields[0],0,source->pixels.length,0);
+    game_cpu_read_completed(kind);
     game_tracker_release();SetLastError(error);
 }
+static void game_materialize_dc(void* object){game_materialize_reader(object,0);}
 static void game_session_dc_checkpoint(struct GameSurface* surface){
     if(!game_session_enabled || (session_started && !session_active))return;
     struct SessionSurface* s=session_find(surface->object);int existing=s!=0;
@@ -503,6 +536,30 @@ static void game_session_dc_checkpoint(struct GameSurface* surface){
     }
     if(!session_check(s,&surface->pixels) || (surface->primary && !session_present(s)))return;
     session_done();
+}
+/* Native CPU transforms are owned producer output. Commit their current bytes
+ * through CREATE/UPDATE; CHECK remains a separate diagnostic, never input. */
+static int game_native_blit_checkpoint(void* object,u32 caller){
+ if(!game_native_cpu_snapshot || !game_session_continuous)return 0;
+ struct GameSurface* dst=game_surface_find(object,0);u32 layout[8];
+ if(!dst || dst->dc || !dst->layout_known || game_native_cpu_snapshot(object,layout,0,0))return 0;
+ for(u32 i=0;i<32;++i)if(game_locks[i].active && game_alias_same(object,game_locks[i].object))return 0;
+ struct Snapshot shape,result;copy(&shape,&dst->pixels,sizeof(shape));
+ if(shape.width!=layout[1] || shape.height!=layout[2] || shape.bits!=layout[4] ||
+    shape.r!=layout[5] || shape.g!=layout[6] || shape.b!=layout[7] || !game_surface_blank(&result,&shape))return 0;
+ if(game_native_cpu_snapshot(object,layout,result.data,result.length)){
+  __atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);free_snapshot(&result);return 0;
+ }
+ game_surface_drop_at(dst,0);copy(&dst->pixels,&result,sizeof(result));
+ game_surface_bytes+=result.length;__atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);
+ dst->gpu_history=0;dst->generation_origin=8;dst->generation_caller=caller;dst->generation_owner=GetCurrentThreadId();
+ struct SessionSurface* prior=session_find(object);
+ struct SessionSurface* surface=session_surface(object,&dst->pixels,0);
+ if(!surface)return 0;
+ if(prior){u32 fields[5]={surface->id,0,0,surface->width,surface->height};
+  if(!session_record(2,fields,20,dst->pixels.data,dst->pixels.length))return 0;}
+ if(!session_check(surface,&dst->pixels) || (dst->primary && !session_present(surface)))return 0;
+ session_done();lock_diagnostic("native_cpu_blit_checkpoint",object,0,caller,0,0,0,0);return 1;
 }
 /* Each packed UPDATE borrows only owned input. Scratch is freed before the
  * next rectangle; all updates precede CHECK/PRESENT and use existing budgets. */
@@ -530,12 +587,12 @@ static int session_unlock_region(struct SessionSurface* s,const struct Snapshot*
     return ok;
 }
 
-static int session_resident_unlock(struct SessionSurface* surface,const struct Snapshot* before,const struct Snapshot* after){
+static int session_resident_unlock(struct SessionSurface* surface,const struct Snapshot* before,const struct Snapshot* after,const u8* dirty){
     if(!before->data || before->width!=after->width || before->height!=after->height ||
        before->length!=after->length || before->bits!=16 || after->bits!=16){game_session_gap(4);return 0;}
     u32 regions[COMMAND_DIRTY_REGIONS][4];
     game_copy_stage(40);
-    u32 count=command_dirty_regions(before->data,after->data,after->width,after->height,2,regions);
+    u32 count=command_dirty_regions_mask(before->data,after->data,after->width,after->height,2,dirty,regions);
     game_copy_stage(41);
     for(u32 i=0;i<count;++i){u32 width=regions[i][2]-regions[i][0],height=regions[i][3]-regions[i][1];
         /* Bound record/scratch bytes even for a dense full-canvas UI write. */
@@ -548,13 +605,30 @@ static int session_resident_unlock(struct SessionSurface* surface,const struct S
             u32 fields[5]={surface->id,regions[i][0],regions[i][1]+row,width,rows};
             game_copy_stage(42);
             for(u32 y=0;y<rows;++y)for(u32 x=0;x<width;++x){u32 at=(fields[2]+y)*after->width+fields[1]+x,p=y*width+x;
-                copy(packed+p*2,after->data+at*2,2);packed[pixels*2+p]=!same(before->data+at*2,after->data+at*2,2);}
+                copy(packed+p*2,after->data+at*2,2);packed[pixels*2+p]=!same(before->data+at*2,after->data+at*2,2) || (dirty && (dirty[at*2] || dirty[at*2+1]));}
             game_copy_stage(43);
             int ok=session_record(MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE,fields,20,packed,length);
             HeapFree(GetProcessHeap(),0,packed);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);if(!ok)return 0;
         }
     }
     return 1;
+}
+static void game_cpu_lease_layout(const struct GameLock* lock,u32* layout){
+ layout[0]=lock->desc[9]-(lock->rectangle?(u32)lock->region.top*lock->desc[4]+(u32)lock->region.left*2:0);
+ layout[1]=lock->desc[3];layout[2]=lock->desc[2];layout[3]=lock->desc[4];
+}
+static i32 game_cpu_lease_dirty(const struct GameLock* lock,u8* out,u32 action){
+ if(!game_native_cpu_lease_mask)return 0;u32 layout[4];game_cpu_lease_layout(lock,layout);
+ return game_native_cpu_lease_mask(lock->object,layout,out,out?layout[1]*layout[2]*2:0,action);
+}
+static u8* game_cpu_lease_mask(const struct GameLock* lock,u32 bytes){
+ i32 flags=game_cpu_lease_dirty(lock,0,2);if(flags<0)game_cpu_read_refuse(16,lock->object,(u32)flags);
+ if(!flags)return 0;
+ u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
+ if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || bytes>GAME_SURFACE_LIMIT-game_surface_bytes-reserved)game_cpu_read_refuse(17,lock->object,bytes);
+ u8* mask=HeapAlloc(GetProcessHeap(),0,bytes);if(!mask)game_cpu_read_refuse(18,lock->object,bytes);
+ __atomic_add_fetch(&lock_capture_reserved,bytes,__ATOMIC_RELAXED);
+ if(game_cpu_lease_dirty(lock,mask,0)!=1)game_cpu_read_refuse(19,lock->object,0);return mask;
 }
 static void game_session_unlock(struct GameLock* lock,const struct Snapshot* after,u32 primary){
     if(!game_session_enabled)return;
@@ -568,7 +642,14 @@ static void game_session_unlock(struct GameLock* lock,const struct Snapshot* aft
         game_session_retire(lock->object);existing=0;
     }
     s=session_surface(lock->object,lock->rectangle?&lock->base:after,0);if(!s)return;
-    if(lock->resident || lock->gpu_history){if(!existing || !session_resident_unlock(s,&lock->base,after))return;goto present;}
+    if(lock->resident || lock->gpu_history){
+        u8* mask=game_cpu_lease_mask(lock,after->length);
+        int ok=existing && session_resident_unlock(s,&lock->base,after,mask);
+        if(mask){HeapFree(GetProcessHeap(),0,mask);__atomic_sub_fetch(&lock_capture_reserved,after->length,__ATOMIC_RELAXED);}
+        if(!ok)return;
+        if(game_cpu_lease_dirty(lock,0,1)<0)game_cpu_read_refuse(20,lock->object,0);
+        goto present;
+    }
     if(lock->rectangle || existing){
         struct Rect r={0,0,(i32)after->width,(i32)after->height};if(lock->rectangle)copy(&r,&lock->region,16);
         if(lock->rectangle && !session_check(s,&lock->base))return;

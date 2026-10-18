@@ -4,14 +4,17 @@
 API int WIN VirtualFree(void*,u32,u32);
 #define NS_BUSY ((i32)0x887601aeu)
 #define NS_RECT ((i32)0x88760096u)
-#define NS_UNSUPPORTED ((i32)0x80004001u)
+static void ns_native_only_initialize(void);
 struct NsState;
 struct NsObject {void** table;struct NsState* state;u32 kind;};
 struct NsState {
   struct NsObject aliases[5];u32 refs[5],interfaces;struct NdObject* device;
   u32 width,height,pitch,caps,bits,masks[3];u16* pixels;i32 locked;void* lock_pointer;
   struct NsState* storage_dc;
-  u32 history_generation[2],history_nonce[2],history_stale;
+  u32 history_generation[2],history_nonce[2],history_stale,cpu_guard,cpu_guard_world;
+  u32 lock_owner,lock_serial,lock_full,dc_owner;
+  u16* pixels_alias;HANDLE pixels_mapping;u32 cpu_guard_world_ready;
+  u8* cpu_dirty;u32 cpu_dirty_count,cpu_dirty_partial;
   u32 key_set,key_low,key_high;struct NsState* back;
   void *dc,*bitmap,*old_bitmap,*dc_bits;struct NcClipper* clipper;
   struct NsState *previous_owned,*next_owned;struct NpPalette* palette;
@@ -19,9 +22,12 @@ struct NsState {
 static struct NsState* ns_owned;
 static void* ns_tables[5][45];
 static u32 ns_bytes,ns_creates,ns_locks,ns_copies,ns_flips;
+static u32 ns_lock_serial;
 static void ns_dc_drop(struct NsState*);
 static void ns_cpu_require(struct NsState*);
 static int ns_borrowed(const struct NsState* s){return s->locked || s->dc || s->storage_dc;}
+#include "cpu_guard.h"
+#include "native_only.h"
 static const u8 ns_ids[4][16]={
  {0x81,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60},
  {0x85,0x58,0x80,0x57,0xec,0x6e,0xcf,0x11,0x94,0x41,0xa8,0x23,0x03,0xc1,0x0e,0x27},
@@ -40,7 +46,9 @@ static i32 WIN ns_query(struct NsObject* o,const u8* iid,void** out){
 static u32 WIN ns_retain(struct NsObject* o){if(!o->state->refs[o->kind]++)++o->state->interfaces;return o->state->refs[o->kind];}
 static u32 WIN ns_release(struct NsObject* o){
  struct NsState* s=o->state;u32 error=GetLastError(),refs=--s->refs[o->kind];
- if(!refs && !--s->interfaces){if(s->device->state->primary==s)s->device->state->primary=0;ns_dc_drop(s);if(s->palette)np_release(s->palette);if(s->clipper)nc_release(s->clipper);ns_bytes-=s->pitch*s->height;if(s->back)ns_release(&s->back->aliases[s->device->kind==3?3:1]);VirtualFree(s->pixels,0,0x8000);
+ if(!refs && !--s->interfaces){if(s->device->state->primary==s)s->device->state->primary=0;ns_dc_drop(s);if(s->palette)np_release(s->palette);if(s->clipper)nc_release(s->clipper);ns_bytes-=s->pitch*s->height;if(s->back)ns_release(&s->back->aliases[s->device->kind==3?3:1]);
+  if(s->pixels_mapping){UnmapViewOfFile(s->pixels);UnmapViewOfFile(s->pixels_alias);CloseHandle(s->pixels_mapping);}else VirtualFree(s->pixels,0,0x8000);
+  if(s->cpu_dirty)HeapFree(GetProcessHeap(),0,s->cpu_dirty);
   if(s->previous_owned)s->previous_owned->next_owned=s->next_owned;else ns_owned=s->next_owned;
   if(s->next_owned)s->next_owned->previous_owned=s->previous_owned;
   nd_release(s->device);HeapFree(GetProcessHeap(),0,s);--nd_surfaces;}
@@ -51,12 +59,13 @@ static void ns_surface_format(struct NsState* s,u32* p){
  for(u32 i=0;i<3;++i)p[4+i]=s->masks[i];
 }
 static u32 ns_read(const struct NsState* s,u32 x,u32 y){
- const u8* p=(const u8*)s->pixels+y*s->pitch+x*(s->bits/8);
+ const u8* p=(const u8*)(s->pixels_alias?s->pixels_alias:s->pixels)+y*s->pitch+x*(s->bits/8);
  if(s->bits==16)return *(const u16*)p;if(s->bits==8)return *p;
  if(s->bits==32)return *(const u32*)p;return (u32)p[0]|(u32)p[1]<<8|(u32)p[2]<<16;
 }
 static void ns_write(struct NsState* s,u32 x,u32 y,u32 value){
- u8* p=(u8*)s->pixels+y*s->pitch+x*(s->bits/8);
+ u8* p=(u8*)(s->pixels_alias?s->pixels_alias:s->pixels)+y*s->pitch+x*(s->bits/8);
+ ns_guard_dirty(s,y*s->pitch+x*(s->bits/8),s->bits/8);
  if(s->bits==16)*(u16*)p=(u16)value;else if(s->bits==8)*p=(u8)value;
  else if(s->bits==32)*(u32*)p=value;else {p[0]=(u8)value;p[1]=(u8)(value>>8);p[2]=(u8)(value>>16);}
 }
@@ -76,14 +85,23 @@ static i32 WIN ns_lock(struct NsObject* o,const i32* rect,u32* d,u32 flags,HANDL
  if(!d || d[0]!=(o->kind==3?124u:108u) || event || (flags&~0x7831u))return ND_INVALID;
  if(ns_borrowed(s))return NS_BUSY;if(!ns_rectangle(s,rect,r))return NS_RECT;
  i32 result=ns_desc(o,d);if(result)return result;
+ /* Guarded census mode refuses explicitly read-only stale leases. Writable
+  * leases remain an observation boundary, not proof of no reads. */
+ if(ns_guard_enabled && (flags&0x10))ns_cpu_require(s);
+ if(!s->pixels_alias)ns_guard_set(s,0);
  d[1]|=0x800;d[9]=(u32)s->pixels+(u32)r[1]*s->pitch+(u32)r[0]*(s->bits/8);
- s->locked=1;s->lock_pointer=(void*)d[9];if(!(++ns_locks&255))nd_status();return 0;
+ s->lock_owner=GetCurrentThreadId();s->lock_serial=__atomic_add_fetch(&ns_lock_serial,1,__ATOMIC_RELAXED);
+ if(!s->lock_serial)ExitProcess(124);
+ s->lock_full=r[0]==0 && r[1]==0 && r[2]==(i32)s->width && r[3]==(i32)s->height;
+ s->locked=1;s->lock_pointer=(void*)d[9];ns_guard_refresh(s);if(!(++ns_locks&255))nd_status();return 0;
 }
 static i32 WIN ns_unlock(struct NsObject* o,void* argument){
  struct NsState* s=o->state;if(!s->locked)return (i32)0x88760248u;
+ if(s->lock_owner && s->lock_owner!=GetCurrentThreadId())return NS_BUSY;
+ if(s->cpu_guard_world)ns_cpu_require(s);
  /* Surface4 accepts a rectangle, older interfaces accept the returned pointer. */
  if(o->kind!=3 && argument && argument!=s->lock_pointer)return ND_INVALID;
- if(s->locked<0)ExitProcess(125);--s->locked;s->lock_pointer=0;return 0;
+ if(s->locked<0)ExitProcess(125);--s->locked;s->lock_pointer=0;s->lock_owner=s->lock_full=0;ns_guard_refresh(s);return 0;
 }
 static i32 WIN ns_key(struct NsObject* o,u32 flags,const u32* key){
  if(flags!=8)return NS_UNSUPPORTED;
@@ -94,6 +112,7 @@ static i32 WIN ns_get_key(struct NsObject* o,u32 flags,u32* key){
  if(!key || flags!=8)return ND_INVALID;if(!o->state->key_set)return (i32)0x887600d7u;
  key[0]=o->state->key_low;key[1]=o->state->key_high;return 0;
 }
+#include "pixel_conversion.h"
 static i32 ns_draw_route(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx,u32 gpu){
  struct NsState *d=dst->state,*s=src?src->state:0;i32 rd[4],rs[4];
  for(u32 i=0;i<4;++i){rd[i]=dr?dr[i]:(i<2?0:(i==2?(i32)d->width:(i32)d->height));
@@ -101,48 +120,64 @@ static i32 ns_draw_route(struct NsObject* dst,const i32* dr,struct NsObject* src
  long long width=(long long)rd[2]-rd[0],height=(long long)rd[3]-rd[1];
  if(width<=0 || height<=0 || (s && (rs[2]<=rs[0] || rs[3]<=rs[1])))return NS_RECT;
  if(!d->clipper && (!ns_rectangle(d,rd,rd) || (s && !ns_rectangle(s,rs,rs))))return NS_RECT;
- if(s && ((long long)rs[2]-rs[0]!=width || (long long)rs[3]-rs[1]!=height))return NS_UNSUPPORTED;
  u32* clips=0;i32 result=0;
  if(d->clipper){result=nc_snapshot(d->clipper,&clips);if(result)return result;}
  if(ns_borrowed(d) || (s && ns_borrowed(s))){result=NS_BUSY;goto done;}
  if(flags&~(0x1000000u|0x8000u|0x400u)){result=NS_UNSUPPORTED;goto done;}
  if(flags&0x400){if(s || !fx || fx[0]!=100 || (flags&0x8000)){result=ND_INVALID;goto done;}}
  else if(!s || fx){result=ND_INVALID;goto done;}
- if(s && (s->bits!=d->bits || s->masks[0]!=d->masks[0] || s->masks[1]!=d->masks[1] || s->masks[2]!=d->masks[2])){result=NS_UNSUPPORTED;goto done;}
+ const int conversion=s && (s->bits!=d->bits || s->masks[0]!=d->masks[0] || s->masks[1]!=d->masks[1] || s->masks[2]!=d->masks[2]);
+ if(conversion && ((s->bits==8 && !s->palette) || (d->bits==8 && !d->palette))){result=ND_INVALID;goto done;}
  if((flags&0x8000) && !s->key_set){result=ND_INVALID;goto done;}
  /* The ordered native bridge owns GPU execution. This explicit route validates
   * the same COM geometry/leases before propagating physical authority, and
   * leaves both CPU allocations untouched. It cannot handle clipped/self copies. */
  if(gpu){
-  if(!s || s==d || !s->history_stale || clips || d->bits!=16 ||
+  if(!s || s==d || !s->history_stale || clips || d->bits!=16 || conversion ||
+     (long long)rs[2]-rs[0]!=width || (long long)rs[3]-rs[1]!=height ||
      !ns_rectangle(d,rd,rd) || !ns_rectangle(s,rs,rs)){result=NS_UNSUPPORTED;goto done;}
   d->history_stale=1;
   for(u32 i=0;i<2;++i){d->history_generation[i]=s->history_generation[i];d->history_nonce[i]=s->history_nonce[i];}
   ++ns_copies;goto done;
  }
  if(s)ns_cpu_require(s);
+ /* A CPU transform preserves destination pixels outside its footprint and
+  * keyed holes. Obtain current history before exposing its complete result. */
+ const int stretch=s && ((long long)rs[2]-rs[0]!=width || (long long)rs[3]-rs[1]!=height);
+ if(d->history_stale && (conversion || stretch || d==s || clips ||
+    ((flags&0x8000) && s->key_low!=s->key_high)))ns_cpu_require(d);
  /* Freeze the whole aliased backing, including samples outside a clipped first
   * piece. Earlier regions may remain written when a later source piece fails. */
  u8* frozen=0;struct NsState snapshot;
  if(d==s){frozen=HeapAlloc(GetProcessHeap(),0,s->pitch*s->height);if(!frozen){result=(i32)0x8007000eu;goto done;}
-  for(u32 i=0;i<s->pitch*s->height;++i)frozen[i]=((u8*)s->pixels)[i];snapshot.bits=s->bits;snapshot.pitch=s->pitch;snapshot.width=s->width;snapshot.height=s->height;snapshot.key_low=s->key_low;snapshot.key_high=s->key_high;snapshot.pixels=(u16*)frozen;s=&snapshot;}
+  for(u32 i=0;i<s->pitch*s->height;++i)frozen[i]=((u8*)s->pixels)[i];
+  snapshot.bits=s->bits;snapshot.pitch=s->pitch;snapshot.width=s->width;snapshot.height=s->height;
+  snapshot.key_low=s->key_low;snapshot.key_high=s->key_high;snapshot.palette=s->palette;
+  for(u32 i=0;i<3;++i)snapshot.masks[i]=s->masks[i];
+  snapshot.pixels=(u16*)frozen;snapshot.pixels_alias=0;s=&snapshot;}
+ if(!d->pixels_alias)ns_guard_set(d,0);
  for(u32 region=0;region<(clips?clips[2]:1u);++region){
   const i32* clip=clips?(const i32*)(clips+8+4*region):0;
   i32 left=rd[0],top=rd[1],right=rd[2],bottom=rd[3];
   if(left<0)left=0;if(top<0)top=0;if(right>(i32)d->width)right=d->width;if(bottom>(i32)d->height)bottom=d->height;
   if(clip){if(left<clip[0])left=clip[0];if(top<clip[1])top=clip[1];if(right>clip[2])right=clip[2];if(bottom>clip[3])bottom=clip[3];}
   if(left>=right || top>=bottom)continue;
-  long long sx=(long long)rs[0]+left-rd[0],sy=(long long)rs[1]+top-rd[1];
-  if(s && (sx<0 || sy<0 || sx+right-left>s->width || sy+bottom-top>s->height)){result=NS_RECT;break;}
+  const u32 sw=s?(u32)((long long)rs[2]-rs[0]):0,sh=s?(u32)((long long)rs[3]-rs[1]):0;
+  long long sx=(long long)rs[0]+ns_sample((u32)((long long)left-rd[0]),sw,(u32)width),
+            sy=(long long)rs[1]+ns_sample((u32)((long long)top-rd[1]),sh,(u32)height);
+  long long last_x=(long long)rs[0]+ns_sample((u32)((long long)right-1-rd[0]),sw,(u32)width),
+            last_y=(long long)rs[1]+ns_sample((u32)((long long)bottom-1-rd[1]),sh,(u32)height);
+  if(s && (sx<0 || sy<0 || last_x>=s->width || last_y>=s->height)){result=NS_RECT;break;}
   for(i32 y=top;y<bottom;++y)for(i32 x=left;x<right;++x){
-   u32 value=s?ns_read(s,(u32)(sx+x-left),(u32)(sy+y-top)):fx[20];
-   if(!(flags&0x8000) || value<s->key_low || value>s->key_high)ns_write(d,x,y,value);
+   u32 value=s?ns_read(s,(u32)((long long)rs[0]+ns_sample((u32)((long long)x-rd[0]),sw,(u32)width)),
+                          (u32)((long long)rs[1]+ns_sample((u32)((long long)y-rd[1]),sh,(u32)height))):fx[20];
+   if(!(flags&0x8000) || value<s->key_low || value>s->key_high)ns_write(d,x,y,s?ns_convert(d,s,value):value);
   }
  }
  if(frozen)HeapFree(GetProcessHeap(),0,frozen);
  if(!(flags&0x8000) && !d->clipper && rd[0]==0 && rd[1]==0 && rd[2]==(i32)d->width && rd[3]==(i32)d->height)d->history_stale=0;
  if(!(++ns_copies&255))nd_status();
-done:if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
+done:ns_guard_refresh(d);if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
 }
 static i32 ns_draw(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx){
  return ns_draw_route(dst,dr,src,sr,flags,fx,0);
@@ -158,8 +193,7 @@ __declspec(dllexport) i32 WIN NativeDrawGpuCopyV1(void* dst,const i32* dr,void* 
  i32 result=ns_draw_route(d,dr,s,sr,flags,0,1);
  /* Private write-mask baseline only: these bytes are explicitly not current
   * image pixels and must never initialize a native image or satisfy a reader. */
- if(result>=0 && baseline)for(u32 y=0;y<d->state->height;++y)for(u32 x=0;x<d->state->width;++x)
-  baseline[y*d->state->width+x]=d->state->pixels[y*(d->state->pitch/2)+x];
+ if(result>=0 && baseline)ns_guard_baseline(d->state,baseline);
  return result;
 }
 #include "gpu_copy_plan.h"
@@ -189,11 +223,20 @@ static i32 WIN ns_flip(struct NsObject* o,struct NsObject* target,u32 flags){
  if(flags&~0x1000001u)return NS_UNSUPPORTED;
  if(target && target->state!=back)return ND_INVALID;
  /* Mapping debt is an unsupported access sequence, not unsigned wraparound. */
- if(front->locked<0 || back->locked<0)return NS_BUSY;
+ if(front->locked<0 || back->locked<0 || front->cpu_guard_world || back->cpu_guard_world)return NS_BUSY;
  u16* temporary=front->pixels;front->pixels=back->pixels;back->pixels=temporary;
+ temporary=front->pixels_alias;front->pixels_alias=back->pixels_alias;back->pixels_alias=temporary;
+ HANDLE mapping=front->pixels_mapping;front->pixels_mapping=back->pixels_mapping;back->pixels_mapping=mapping;
+ u8* dirty=front->cpu_dirty;front->cpu_dirty=back->cpu_dirty;back->cpu_dirty=dirty;
+ u32 dirty_count=front->cpu_dirty_count;front->cpu_dirty_count=back->cpu_dirty_count;back->cpu_dirty_count=dirty_count;
+ dirty_count=front->cpu_dirty_partial;front->cpu_dirty_partial=back->cpu_dirty_partial;back->cpu_dirty_partial=dirty_count;
  i32 balance=front->locked;front->locked=back->locked;back->locked=balance;
  void* pointer=front->lock_pointer;front->lock_pointer=back->lock_pointer;back->lock_pointer=pointer;
+ u32 owner=front->lock_owner;front->lock_owner=back->lock_owner;back->lock_owner=owner;
+ u32 serial=front->lock_serial;front->lock_serial=back->lock_serial;back->lock_serial=serial;
+ u32 full=front->lock_full;front->lock_full=back->lock_full;back->lock_full=full;
  struct NsState* dc=front->storage_dc;front->storage_dc=back->storage_dc;back->storage_dc=dc;
+ u32 guard=front->cpu_guard;front->cpu_guard=back->cpu_guard;back->cpu_guard=guard;
  u32 stale=front->history_stale;front->history_stale=back->history_stale;back->history_stale=stale;
  for(u32 i=0;i<2;++i){u32 v=front->history_generation[i];front->history_generation[i]=back->history_generation[i];back->history_generation[i]=v;
   v=front->history_nonce[i];front->history_nonce[i]=back->history_nonce[i];back->history_nonce[i]=v;}
@@ -222,12 +265,20 @@ static i32 WIN ns_lost(struct NsObject* o){(void)o;return 0;}
 static i32 WIN ns_restore(struct NsObject* o){return ns_borrowed(o->state)?NS_BUSY:0;}
 static i32 WIN ns_status(struct NsObject* o,u32 flags){if(flags!=1 && flags!=2)return ND_INVALID;return ns_borrowed(o->state)?NS_BUSY:0;}
 static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,u32 caps,u32 bits,const u32* masks){
+ ns_guard_initialize();
  if(!width || !height || width>4096 || height>4096 || nd_surfaces>=512 || ((width*(bits/8)+7)&~7u)*height>256*1024*1024-ns_bytes)return 0;
  struct NsState* s=HeapAlloc(GetProcessHeap(),8,sizeof(*s));if(!s)return 0;
  /* Original distortion 005965f7 reads a DWORD but uses only its low WORD.
   * Keep that read valid at the last logical pixel without changing pitch or
   * exposing another row. This does not admit a source pixel past the surface. */
- s->bits=bits;for(u32 i=0;i<3;++i)s->masks[i]=masks[i];s->pitch=(width*(bits/8)+7)&~7u;s->pixels=VirtualAlloc(0,s->pitch*height+sizeof(u16),0x3000,4);
+ s->bits=bits;for(u32 i=0;i<3;++i)s->masks[i]=masks[i];s->pitch=(width*(bits/8)+7)&~7u;
+ if(ns_guard_enabled==3){
+  u32 bytes=(s->pitch*height+sizeof(u16)+4095u)&~4095u;
+  s->pixels_mapping=CreateFileMappingA((HANDLE)-1,0,4,0,bytes,0);
+  if(s->pixels_mapping){s->pixels=MapViewOfFile(s->pixels_mapping,6,0,0,bytes);s->pixels_alias=MapViewOfFile(s->pixels_mapping,6,0,0,bytes);}
+  if(bits==16)s->cpu_dirty=HeapAlloc(GetProcessHeap(),8,(width*height*2+7)/8);
+  if(!s->pixels || !s->pixels_alias || (bits==16 && !s->cpu_dirty)){if(s->pixels)UnmapViewOfFile(s->pixels);if(s->pixels_alias)UnmapViewOfFile(s->pixels_alias);if(s->pixels_mapping)CloseHandle(s->pixels_mapping);if(s->cpu_dirty)HeapFree(GetProcessHeap(),0,s->cpu_dirty);HeapFree(GetProcessHeap(),0,s);return 0;}
+ }else s->pixels=VirtualAlloc(0,s->pitch*height+sizeof(u16),0x3000,4);
  if(!s->pixels){HeapFree(GetProcessHeap(),0,s);return 0;}
  for(u32 i=0;i<5;++i)s->aliases[i]=(struct NsObject){ns_tables[i],s,i};
  s->interfaces=1;s->refs[device->kind==3?3:1]=1;s->device=device;nd_retain(device);s->width=width;s->height=height;s->caps=caps;

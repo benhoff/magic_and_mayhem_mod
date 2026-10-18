@@ -9,7 +9,11 @@ static int WIN rectPlane(const void* base,u32* d,u32 bytes){
  if(base!=ownedPixels||bytes!=24)return -1;d[0]=1;d[1]=ownedStride-7;d[2]=ownedHeight;d[3]=ownedStride;d[4]=1;d[5]=*reinterpret_cast<unsigned*>(0x6e1f88);return 0;
 }
 static unsigned historyQueries;
-static int WIN currentHistory(const void*,u32,u32,u32,u32,u32){++historyQueries;return 0;}
+static int WIN currentHistory(const void*,u32 action,u32,u32,u32,u32){
+ if(action==0)++historyQueries;
+ else if(action!=3)throw std::runtime_error("Unexpected history operation");
+ return 0; /* CPU-ready fixture; action3 only queries protected-span metadata. */
+}
 static void WIN countProducer(u32,u32,u32){}
 static void* rectProc(void*,const char* name){if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(currentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(countProducer);if(std::strcmp(name,"NativeDrawPlaneV1"))throw std::runtime_error("Unexpected plane lookup");return reinterpret_cast<void*>(rectPlane);}
 int main(int argc,char** argv)try{

@@ -1,10 +1,20 @@
 #include "window_host.hpp"
 #include <QGuiApplication>
+#include <QByteArray>
 #include <cstdlib>
 
 WindowHost::WindowHost() {
     if(QGuiApplication::platformName()!=QStringLiteral("xcb"))return;
-    int screen=0;connection_=xcb_connect(nullptr,&screen);
+    const auto legacy=qgetenv("MNM_LEGACY_DISPLAY");
+    const auto encoded=qgetenv("MNM_LEGACY_XCOOKIE");
+    int screen=0;
+    if(!legacy.isEmpty()){
+        const auto cookie=QByteArray::fromHex(encoded);
+        if(!qEnvironmentVariableIsSet("MNM_NATIVE_OUTPUT_OWNER") || cookie.size()!=16 || cookie.toHex()!=encoded)return;
+        char name[]="MIT-MAGIC-COOKIE-1";
+        xcb_auth_info_t auth{int(sizeof(name)-1),name,int(cookie.size()),const_cast<char*>(cookie.constData())};
+        connection_=xcb_connect_to_display_with_auth_info(legacy.constData(),&auth,&screen);
+    }else connection_=xcb_connect(nullptr,&screen);
     if(xcb_connection_has_error(connection_))return;
     auto screens=xcb_setup_roots_iterator(xcb_get_setup(connection_));
     while(screen-- && screens.rem)xcb_screen_next(&screens);

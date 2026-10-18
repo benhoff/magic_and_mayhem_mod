@@ -15,6 +15,7 @@ static int WIN rasterPlane(const void* base,u32* d,u32 bytes){
 static int WIN currentHistory(const void*,u32,u32,u32,u32,u32){return 0;}
 static void WIN countProducer(u32,u32,u32){}
 static void* rasterProc(void*,const char* name){if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(currentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(countProducer);if(std::strcmp(name,"NativeDrawPlaneV1"))throw std::runtime_error("Unexpected plane lookup");return reinterpret_cast<void*>(rasterPlane);}
+#ifndef MNM_RASTER_TEST_UTILITIES
 static Bytes encoded(unsigned w,unsigned h,unsigned seed,bool indexed){
  Bytes controls,colours;std::vector<unsigned> rows,pixels;
  for(unsigned y=0;y<h;++y){rows.push_back(controls.size());pixels.push_back(colours.size());unsigned x=0;
@@ -99,4 +100,5 @@ int main(int argc,char** argv)try{
  std::ofstream out(argv[2]);out<<"{\"success\":true,\"native_cases\":"<<admitted<<",\"captured_native_cases\":"<<capturedAdmitted<<",\"forward_or_hidden_cases\":"<<forwarded<<",\"workspace_cases\":"<<workspaceCases<<",\"physical_words\":"<<words<<",\"formats\":2,\"original_entries\":17,\"pixel_splices\":"<<MNM_RASTER_SITES<<",\"by_entry\":[";
  for(unsigned i=0;i<17;++i){if(i)out<<',';out<<byKind[i];}out<<"],";coverage.write(out,routeNames);out<<"}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
+#endif
 unsigned raster_x;

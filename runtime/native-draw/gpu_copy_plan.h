@@ -39,5 +39,5 @@ __declspec(dllexport) i32 WIN NativeDrawGpuCopyPlanV1(void* dst,const i32* dr,vo
  if(!s->history_stale || ((flags&0x8000) && s->key_low!=s->key_high)){result=NS_UNSUPPORTED;goto done;}
  ns_gpu_plan(out,d,s,rd,rs,clips,(flags&0x8000)!=0);
  if(out->count){d->history_stale=1;for(u32 i=0;i<2;++i){d->history_generation[i]=s->history_generation[i];d->history_nonce[i]=s->history_nonce[i];}++ns_copies;}
- done:if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
+ done:ns_guard_refresh(d);if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
 }

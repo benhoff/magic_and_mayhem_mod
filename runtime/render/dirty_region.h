@@ -1,11 +1,11 @@
 /* Tight, owned native rows only. Include every storage byte, including unused
  * RGB32 bits: native equality is stronger than displayed RGB equality. */
-static int command_dirty_region(const unsigned char* before,const unsigned char* after,
-    unsigned width,unsigned height,unsigned bytes,unsigned region[4]){
+static int command_dirty_region_mask(const unsigned char* before,const unsigned char* after,
+    unsigned width,unsigned height,unsigned bytes,const unsigned char* mask,unsigned region[4]){
     unsigned left=width,top=height,right=0,bottom=0,stride=width*bytes;
     for(unsigned y=0;y<height;++y)for(unsigned x=0;x<width;++x){
         unsigned at=y*stride+x*bytes,b=0;
-        while(b<bytes && before[at+b]==after[at+b])++b;
+        while(b<bytes && before[at+b]==after[at+b] && (!mask || !mask[at+b]))++b;
         if(b==bytes)continue;
         if(x<left)left=x;
         if(y<top)top=y;
@@ -15,15 +15,19 @@ static int command_dirty_region(const unsigned char* before,const unsigned char*
     if(!right)return 0;
     region[0]=left;region[1]=top;region[2]=right;region[3]=bottom;return 1;
 }
+static int command_dirty_region(const unsigned char* before,const unsigned char* after,
+    unsigned width,unsigned height,unsigned bytes,unsigned region[4]){
+    return command_dirty_region_mask(before,after,width,height,bytes,0,region);
+}
 
 /* A finite partition of the dirty envelope. Each cell has a tight rectangle;
  * choose it only when pixel bytes plus the 32-byte UPDATE envelope cost less
  * than the single rectangle. Dense input retains one UPDATE. No wire change. */
 #define COMMAND_DIRTY_REGIONS 32u
-static unsigned command_dirty_regions(const unsigned char* before,const unsigned char* after,
-    unsigned width,unsigned height,unsigned bytes,unsigned regions[COMMAND_DIRTY_REGIONS][4]){
+static unsigned command_dirty_regions_mask(const unsigned char* before,const unsigned char* after,
+    unsigned width,unsigned height,unsigned bytes,const unsigned char* mask,unsigned regions[COMMAND_DIRTY_REGIONS][4]){
     unsigned whole[4];
-    if(!command_dirty_region(before,after,width,height,bytes,whole))return 0;
+    if(!(mask?command_dirty_region_mask(before,after,width,height,bytes,mask,whole):command_dirty_region(before,after,width,height,bytes,whole)))return 0;
     unsigned count=0,cost=0,stride=width*bytes;
     for(unsigned cy=0;cy<8;++cy)for(unsigned cx=0;cx<4;++cx){
         unsigned x0=whole[0]+(whole[2]-whole[0])*cx/4,x1=whole[0]+(whole[2]-whole[0])*(cx+1)/4;
@@ -31,7 +35,7 @@ static unsigned command_dirty_regions(const unsigned char* before,const unsigned
         unsigned left=x1,top=y1,right=0,bottom=0;
         for(unsigned y=y0;y<y1;++y)for(unsigned x=x0;x<x1;++x){
             unsigned at=y*stride+x*bytes,b=0;
-            while(b<bytes && before[at+b]==after[at+b])++b;
+            while(b<bytes && before[at+b]==after[at+b] && (!mask || !mask[at+b]))++b;
             if(b==bytes)continue;
             if(x<left)left=x;
             if(y<top)top=y;
@@ -48,4 +52,8 @@ static unsigned command_dirty_regions(const unsigned char* before,const unsigned
         return 1;
     }
     return count;
+}
+static unsigned command_dirty_regions(const unsigned char* before,const unsigned char* after,
+    unsigned width,unsigned height,unsigned bytes,unsigned regions[COMMAND_DIRTY_REGIONS][4]){
+    return command_dirty_regions_mask(before,after,width,height,bytes,0,regions);
 }

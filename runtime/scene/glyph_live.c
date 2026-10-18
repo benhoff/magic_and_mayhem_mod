@@ -4,6 +4,9 @@
 #include "glyph_route.h"
 API u32 WIN GetCurrentThreadId(void);
 API HANDLE WIN HeapCreate(u32,u32,u32);
+API void* WIN GetProcAddress(HANDLE,const char*);
+#include "glyph_native_only.h"
+static i32 (WIN *glyph_cpu_history)(const void*,u32,u32,u32,u32,u32);
 extern void glyph_shadow_leave(void);
 static u32 mode,thread,busy,closed,directory_length,capture=1,io_writes;
 static char directory[220];
@@ -24,6 +27,7 @@ static u32 word(u32 at){return *(volatile u32*)at;}
 static int overlap(u32 a,u32 n,u32 b,u32 m){return a<b+m&&b<a+n;}
 static int extent(u32 at,u32 n,int writable){
  if(!at||!n||at>0xffffffffu-n)return 0;
+ if(glyph_cpu_history && glyph_cpu_history((void*)at,3,n,0,0,0)==1)return 1;
  u32 end=at+n;
  while(at<end){u32 m[7];if(VirtualQuery((void*)at,m,sizeof m)!=sizeof m||m[4]!=0x1000||(m[5]&0x101)||!(m[5]&0xee)||(writable&&!(m[5]&0xcc))||m[0]>at||m[3]>0xffffffffu-m[0])return 0;u32 next=m[0]+m[3];if(next<=at)return 0;at=next<end?next:end;}
  return 1;
@@ -35,6 +39,7 @@ void glyph_live_close(void){u32 error=GetLastError();closed=1;flush();SetLastErr
 void glyph_live_installed(void){stats[5]=1;flush();}
 int glyph_live_active(void){return mode!=0;}
 int glyph_live_configure(void){
+ glyph_native_only_configure();
  char flag[16];u32 n=GetEnvironmentVariableA("MNM_GLYPH_BACKEND",flag,sizeof flag);
  if(!n)return 0;
  if(n==6&&same(flag,"shadow",6))mode=1;
@@ -50,6 +55,8 @@ int glyph_live_configure(void){
  for(u32 i=0;i<5;++i)if(GetEnvironmentVariableA(conflicts[i],flag,sizeof flag) && !(resident && (i==0 || i==3)))return -1;
  directory_length=GetEnvironmentVariableA("MNM_GLYPH_DIR",directory,sizeof directory);
  if(!directory_length||directory_length>=sizeof directory)return -1;
+ void* draw=GetModuleHandleA("MnmDraw.dll");
+ if(draw)glyph_cpu_history=(i32 (WIN *)(const void*,u32,u32,u32,u32,u32))GetProcAddress(draw,"NativeDrawCpuHistoryV1");
  heap=HeapCreate(0,0,0);if(!heap)return -1;
  copy(stats,capture?"MNMGLST1":"MNMGLST2",8);stats[2]=capture?1:2;stats[3]=sizeof stats;stats[4]=mode;stats[13]=capture?65536:0;
  flush();return stats[11]?-1:(int)mode;
@@ -75,7 +82,7 @@ static int recheck(void){
  return same(pending.frame,(void*)pending.frame_address,pending.frame_bytes)&&same(pending.before,(void*)pending.canvas,pending.canvas_bytes)&&same(pending.coverage_before,(void*)0x6f5dac,256);
 }
 static void release(void){if(pending.allocation)HeapFree(heap,0,pending.allocation);pending.allocation=0;__sync_lock_release(&busy);}
-static int refuse(u32 reason){++stats[10];++stats[reason];release();if(capture && (stats[6]&63)==0)flush();return 0;}
+static int refuse(u32 reason){++stats[10];++stats[reason];release();if(capture && (stats[6]&63)==0)flush();glyph_native_only_refuse(reason);return 0;}
 static void sample(u32* returned,u8* fx){
  /* Bounded retained cohort: eight distinct frame/geometry/tint/control inputs.
   * Reserve six slots for black, one for tinted and one for cropped/skipped
@@ -96,8 +103,8 @@ static void sample(u32* returned,u8* fx){
  if(!ok){++stats[11];return;}copy(keys[stats[12]],key,sizeof key);++stats[12];++categories[category];
 }
 int glyph_live_enter(u32* saved,u8* fx){
- if(!mode)return 0;
- if(__sync_lock_test_and_set(&busy,1)){__sync_fetch_and_add(stats+14,1);__sync_fetch_and_add(stats+10,1);return 0;}
+ if(!mode){glyph_native_only_refuse(21);return 0;}
+ if(__sync_lock_test_and_set(&busy,1)){__sync_fetch_and_add(stats+14,1);__sync_fetch_and_add(stats+10,1);glyph_native_only_refuse(22);return 0;}
  if(stats[6]!=0xffffffffu)++stats[6];if(closed||(capture && stats[6]>stats[13]))return refuse(20);
  u32 current=GetCurrentThreadId();if(!thread)thread=current;if(thread!=current)return refuse(14);
  if(!globals()||!extent(saved[6],40,0))return refuse(15);

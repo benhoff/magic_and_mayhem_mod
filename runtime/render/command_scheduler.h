@@ -134,6 +134,7 @@ static int command_scheduler_shutdown_locked(u32 milliseconds){
     {u32 values[19]={command_pressure_waits,command_pressure_resumes,command_pressure_max_ms,
         COMMAND_PRESSURE_HIGH,COMMAND_PRESSURE_LOW,command_queue_peak,command_queue_failure,command_shutdown_complete};
      lock_diagnostic_values("command_pressure_summary",values);}
+    if(command_shutdown_complete && !game_cpu_read_counts_flush())command_shutdown_complete=0;
     command_channel_close();return command_shutdown_complete;
 }
 /* Process teardown cannot join. Retain worker-visible storage until OS cleanup.

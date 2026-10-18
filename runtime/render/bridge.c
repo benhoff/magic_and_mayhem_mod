@@ -73,6 +73,7 @@ static void game_copy_leave(struct GameCopyLease*);
 static void lock_diagnostic_worker_start(void);
 #include "command_scheduler.h"
 #include "copy_order.h"
+#include "cpu_reader.h"
 #include "lock_diagnostic_worker.h"
 static int command_control_start(void);
 #include "command_lifecycle.h"
@@ -563,7 +564,8 @@ __declspec(dllexport) u32 WIN RenderShutdown(u32 milliseconds){
     if(game_session_continuous && !session_started && !__atomic_load_n(&command_queue_end,__ATOMIC_ACQUIRE))command_channel_fail(MNM_RENDER_COMMANDS_V2_REASON_GAP);
     game_session_enabled=0;game_tracker_release();
     game_copy_leave(&admission);admission.held=0;
-    int complete=command_scheduler_shutdown_locked(milliseconds);SetLastError(error);return complete;
+    int complete=command_scheduler_shutdown_locked(milliseconds);
+    SetLastError(error);return complete;
 }
 #ifdef MNM_RENDER_SELFTEST
 /* Actual copy/tracker ownership held until a fixture releases the barrier.
@@ -683,10 +685,18 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
         game_native_gpu_plan=(i32 (WIN *)(void*,const i32*,void*,const i32*,u32,struct MnmGpuCopyPlan*,u32))GetProcAddress(native_draw,"NativeDrawGpuCopyPlanV1");
         game_native_gpu_copy=(i32 (WIN *)(void*,const i32*,void*,const i32*,u32,u16*,u32))GetProcAddress(native_draw,"NativeDrawGpuCopyV1");
         game_native_cpu_transfer=(i32 (WIN *)(void*,u32*,const u16*,u32))GetProcAddress(native_draw,"NativeDrawCpuTransferV1");
+        game_native_cpu_snapshot=(i32 (WIN *)(void*,u32*,u8*,u32))GetProcAddress(native_draw,"NativeDrawCpuSnapshotV1");
+        game_native_cpu_lease_snapshot=(i32 (WIN *)(void*,const u32*,u16*,u32))GetProcAddress(native_draw,"NativeDrawCpuLeaseSnapshotV1");
+        game_native_cpu_lease_transfer=(i32 (WIN *)(void*,u32*,const u16*,u32))GetProcAddress(native_draw,"NativeDrawCpuLeaseTransferV1");
+        game_native_cpu_lease_mask=(i32 (WIN *)(void*,const u32*,u8*,u32,u32))GetProcAddress(native_draw,"NativeDrawCpuLeaseMaskV1");
     }
     input_init();media_init();command_channel_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();
+    if(native_draw && game_resident_world){
+        i32 (WIN *register_reader)(void*)=(i32 (WIN *)(void*))GetProcAddress(native_draw,"NativeDrawCpuReaderV1");
+        if(!register_reader || register_reader((void*)&RenderRequireCpuHistoryV1))ExitProcess(124);
+    }
     game_gpu_census_init();
     game_copy_routes_init();
     if(game_resident_world && game_copy_order_enabled)game_copy_pressure_admit=&command_pressure_admit;

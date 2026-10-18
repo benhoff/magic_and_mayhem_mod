@@ -8,6 +8,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(parent),repo_(std::move(repository)){
+    if(qEnvironmentVariableIsSet("MNM_NATIVE_OUTPUT_OWNER"))winePrefix=qEnvironmentVariable("MNM_OWNED_WINE_PREFIX");
     progressedMenusEnabled=qEnvironmentVariable("MNM_EXPERIMENTAL_CAMPAIGN_MENUS")=="1";
     campaignBookEnabled=progressedMenusEnabled;
     campaignSpellboxEnabled=progressedMenusEnabled;
@@ -25,6 +26,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
     });
     connect(&process_,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),this,[this](int code,QProcess::ExitStatus status){
         if(process_.hardStopping())return;
+        if(!preparing_)launcherExitCode=status==QProcess::NormalExit?code:-1;
         if(preparing_){
             preparation_+=process_.readAllStandardOutput();preparing_=false;
             for(const auto& line:preparation_.split('\n'))if(line.startsWith("Evidence directory: "))root_=QString::fromLocal8Bit(line.mid(20)).trimmed();
@@ -62,6 +64,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
 }
 bool LiveMenuSession::start(){
     if(running())return false;
+    launcherExitCode=-1;
     preferencesStore_.begin(preferencesStorePath,{});
     cpuRead_=0;cpuReadStarted_=cpuReadGrace_=0;
     resultsAction_=0;preferencesToSave_=false;preparation_.clear();root_.clear();sequence_=0;state_={};pending_=transition_=bypass_=exitRequested_=quitting_=inBattle_=normalQuitAccepted_=false;
@@ -202,7 +205,7 @@ bool LiveMenuSession::finishSpells(const std::array<int,63>& assignments){
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 void LiveMenuSession::fallback(const QString& reason){
-    resultsAction_=0;preferencesToSave_=false;active_=false;bypass_=true;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
+    resultsAction_=0;preferencesToSave_=false;active_=false;bypass_=!nativeOnlyEnabled;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
     if(failed)failed(reason);
 }
 void LiveMenuSession::saveAcceptedPreferences(){

@@ -10,3 +10,7 @@ static int cpu_history_install(void){
 }
 static void cpu_history_require_route(const void* pixels,u32 route){if(cpu_history)cpu_history(pixels,0,MNM_HISTORY_FAMILY,route,(u32)__builtin_return_address(0),0);}
 #define cpu_history_require(pixels) cpu_history_require_route(pixels,0)
+
+/* A protected owned virtual span. The NOACCESS protection remains in place;
+ * this avoids rejecting a pure writer before its actual instructions execute. */
+static inline int cpu_history_guard_span(const void* pixels,u32 bytes){return cpu_history && cpu_history(pixels,3,bytes,0,0,0)==1;}

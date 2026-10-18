@@ -46,7 +46,7 @@ int main(int argc,char** argv) try{
     const auto frozen=repo.filePath("frozen.py"),child=repo.filePath("child.pid");
     script(frozen,"import os,signal,time\nfrom pathlib import Path\nsignal.signal(signal.SIGTERM,signal.SIG_IGN)\npid=os.fork()\nif pid: Path(__file__).with_name('child.pid').write_text(str(pid))\nwhile True: time.sleep(1)\n");
     QProcess unrelated;unrelated.start("/usr/bin/sleep",{"30"});check(unrelated.waitForStarted(),"unrelated process started");
-    GameProcess process;process.start(frozen);spin([&]{return QFile::exists(child);});
+    GameProcess process;process.start(frozen);spin([&]{return read(child).toLongLong()>0;});
     const auto descendant=read(child).toLongLong();check(alive(descendant),"frozen descendant exists");
     unsigned ticks=0;QTimer heartbeat;heartbeat.setInterval(5);QObject::connect(&heartbeat,&QTimer::timeout,[&]{++ticks;});heartbeat.start();
     bool done=false,success=false;unsigned ordinaryExits=0;
@@ -66,6 +66,15 @@ int main(int argc,char** argv) try{
     process.start("/usr/bin/sleep",{"30"});spin([&]{return process.state()==QProcess::Running;});
     done=false;process.forceStop(prefix,[&](bool ok,const QString& error){success=ok;check(!error.isEmpty(),"failed Wine stop explained");done=true;},repo.filePath("missing-wineserver"));
     spin([&]{return done;});check(!success,"failed shutdown refuses relaunch");
+    script(server,"import sys\nsys.exit(1 if sys.argv[1]=='-k' else 0)\n");
+    done=false;process.forceStop(prefix,[&](bool ok,const QString&){success=ok;done=true;},server);spin([&]{return done;});
+    check(success,"already absent Wine server still passes the wait barrier");
+    script(server,"import sys\nif sys.argv[1]=='-k': print('permission denied',file=sys.stderr)\nsys.exit(1 if sys.argv[1]=='-k' else 0)\n");
+    done=false;process.forceStop(prefix,[&](bool ok,const QString&){success=ok;done=true;},server);spin([&]{return done;});
+    check(!success,"diagnosed Wine kill failure refuses relaunch");
+    script(server,"import sys\nsys.exit(1)\n");
+    done=false;process.forceStop(prefix,[&](bool ok,const QString&){success=ok;done=true;},server);spin([&]{return done;});
+    check(!success,"absent kill status never bypasses a failed wait barrier");
     script(server,"import sys\nsys.exit(7)\n");
     done=false;process.forceStop(prefix,[&](bool ok,const QString&){success=ok;done=true;},server);spin([&]{return done;});
     check(!success,"nonzero Wine stop refuses relaunch");

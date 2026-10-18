@@ -363,6 +363,34 @@ def start_native_hardware(out,env):
         raise
 
 
+def validate_resident_cpu_census(resident, minimum_fps, census_only=False):
+    counts=[int(resident[k]) for k in ('completed','imports','verified_returns')]
+    gates=dict(minimum_worlds=64, worlds_passed=min(counts)>=64,
+               minimum_fps=minimum_fps, fps_passed=resident['engine_fps']>=minimum_fps)
+    if resident['error'] or min(counts)<1 or any(resident[k] for k in ('world_readbacks','native_readbacks','rgba_readbacks')):
+        raise ValueError('Resident World completion/import/no-readback proof failed: '+repr(resident))
+    if census_only and (not resident.get('normal_quit_retired') or resident['pending'] or len(set(counts))!=1):
+        raise ValueError('CPU census requires balanced normal World retirement')
+    if not census_only and not gates['worlds_passed']:
+        raise ValueError('Resident World completion/import/no-readback proof failed: '+repr(resident))
+    if not census_only and not gates['fps_passed']:
+        raise ValueError('Resident World engine FPS below target: '+str(resident['engine_fps']))
+    return gates
+
+def validate_cpu_census_claims(mode, claims):
+    expected=({'NP.active-lock-reader-census'} if mode==2 else
+              {'NP.active-lock-reader-restoration','NP.protected-cpu-lease-storage'} if mode==3 else set())
+    if not expected or {c['behavior'] for c in claims}!=expected:
+        raise ValueError('CPU census-only requires the exclusive claims for its selected guard mode')
+
+def parse_cpu_reader_counts(raw, ticket):
+    if len(raw)!=48 or not 1<=ticket<=0xffffffff:raise ValueError('Invalid CPU reader counter extent/ticket')
+    c=struct.unpack('<12I',raw)
+    if c[:5]!=(0x524d4e4d,0x31304344,1,48,ticket) or sum(c[5:9])!=ticket or any(c[9:]):
+        raise ValueError('CPU reader-kind counters do not match completed replies')
+    return dict(getdc=c[5],typed_lock=c[6],byte_unlock=c[7],typed_unborrowed=c[8])
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--stress-seconds', type=int, default=0, help='Exercise physical gameplay input per phase (0 or 10..120)')
@@ -391,6 +419,8 @@ def main():
     parser.add_argument('--profile-resident',action='store_true',help='Opt-in bounded CPU/GPU stage and original pacing diagnostics; cadence is instrumented')
     parser.add_argument('--capture-resident',action='store_true',help='Retain at most8192 ordered source-only World blocks/16GiB for offline resident replay')
     parser.add_argument('--gpu-copy-diagnostics',action='store_true',help='Bounded native-host copy input/output readbacks and independent CPU destination checks; resident World only')
+    parser.add_argument('--cpu-census-only',action='store_true',help='Explicit mode2/3 reader observation profile; requires the matching exclusive claims, normal Quit and no-forwarding. Records ordinary64-World/FPS gates separately')
+    parser.add_argument('--cpu-guard',type=int,choices=(1,2,3),help='Native CPU guard override:1 idle,2 legacy single-step census,3 protected dual-view stores; resident app default is3')
     parser.add_argument('--native-draw',action='store_true',help='Require owned graphics services with real DirectDraw disabled')
     parser.add_argument('--native-voices',action='store_true',help='Require native voice selection, successful upload/play and output retirement')
     parser.add_argument('--default-audio',action='store_true',help='Verify default native audio without an explicit shell audio flag; requires normal Quit')
@@ -433,6 +463,7 @@ def main():
     parser.add_argument('--mini-capture-delay-ms',type=int,choices=range(0,1001),default=0,metavar='0..1000',help='Bounded GUI stall after native Mini submission, before diagnostic capture; requires Save/Load')
     parser.add_argument('--require-command-pressure',action='store_true',help='Require actual high/low admission waits and clean joined shutdown in the rebuilt Save/Load journey')
     args = parser.parse_args()
+    if args.cpu_census_only and (args.cpu_guard not in (2,3) or not args.claims or not args.resident_world or not args.normal_quit or not args.other_pixel_producers or not args.no_pixel_forwarding):parser.error('CPU census-only requires mode2/3, explicit census-only claims, resident World, normal Quit and all native producers with no-forwarding')
     if args.require_intro_completion:
         if args.skip_movies or args.legacy_media:parser.error('Intro completion requires enabled native movies')
         args.default_media=True
@@ -580,6 +611,7 @@ def main():
             if Path(path).is_absolute() or not (ROOT/path).resolve().is_relative_to(ROOT):raise ValueError('Unsafe declared source')
             if sha(ROOT/path)!=expected:raise ValueError('Declared source changed before execution: '+path)
         report['claims']=declaration['claims'];report['sources'].update(declaration['sources'])
+        if args.cpu_census_only:validate_cpu_census_claims(args.cpu_guard,declaration['claims'])
         if args.native_voices and not any(c['behavior']=='HOST.native-menu-audio' for c in declaration['claims']):raise ValueError('Native audio requires its prospective behavior declaration')
         if args.native_loading and not any(c['behavior']=='HOST.native-wave-loading' for c in declaration['claims']):raise ValueError('Native loading requires its prospective behavior declaration')
         if args.native_factory and not any(c['behavior']=='HOST.native-audio-factory' for c in declaration['claims']):raise ValueError('Native factory requires its prospective behavior declaration')
@@ -612,6 +644,10 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    report['cpu_guard_mode']=args.cpu_guard
+    report['cpu_census_only']=args.cpu_census_only
+    report['ordinary_campaign_accepted']=False
+    if args.cpu_guard:env['MNM_NATIVE_CPU_GUARD']=str(args.cpu_guard)
     if args.gpu_copy_diagnostics:
         env['MNM_NATIVE_COPY_DIAGNOSTICS']=str(out/'copy-diagnostics')
         report['sources']['tools/native_gpu_copy_diagnostics.py']=sha(ROOT/'tools/native_gpu_copy_diagnostics.py')
@@ -797,6 +833,31 @@ def main():
                                 if words[6]==3:
                                     report['command_terminal']={'version':words[2],'session':words[4],'published':words[5],'state':words[6],'reason':words[7],'cancelled':words[8],'acknowledged':words[9]}
                                     raise RuntimeError('Native command producer terminated before campaign completion: reason '+str(words[7]))
+                    if (args.cpu_guard or args.resident_world) and len(roots)==1 and (roots[0]/'game/native-cpu-guard-fault.bin').exists():
+                        fault=roots[0]/'game/native-cpu-guard-fault.bin'
+                        raw=fault.read_bytes()
+                        if len(raw)!=96:raise ValueError('Truncated CPU reader census record')
+                        q=struct.unpack('<24I',raw)
+                        if q[:4]!=(0x434d4e4d,0x31465550,1,96):raise ValueError('Invalid CPU reader census record')
+                        modules=roots[0]/'game/native-cpu-guard-modules.bin'
+                        report['cpu_guard_fault']=dict(path=str(fault),sha256=sha(fault),record=list(q),
+                            instruction=q[4],access_address=q[5],access_kind=q[6],thread=q[7],
+                            locked=q[20],physical_base=q[8],generation=q[14:16],nonce=q[16:18],
+                            staged_sources={p.name:sha(p) for p in (roots[0]/'game').iterdir() if p.name in ('Chaos.exe','MnmDraw.dll','MnmRender.dll')})
+                        if modules.exists():
+                            m=struct.unpack('<14I',modules.read_bytes())
+                            mode=args.cpu_guard or 3
+                            if m[:4]!=(0x434d4e4d,0x33304d47 if mode==3 else 0x32304d47,mode,56):raise ValueError('Invalid CPU census module record')
+                            names=('Chaos.exe','MnmDraw.dll','MnmRender.dll','MnmScene.dll','MnmPanelWriters.dll','MnmPixelWriters.dll','MnmMinimapWriters.dll','MnmColourRect.dll','MnmRasterWriters.dll','MnmJpegPixels.dll')
+                            report['cpu_guard_fault']['module_bases']=dict(zip(names,m[4:]))
+                            for name,base in zip(names,m[4:]):
+                                staged=roots[0]/'game'/name
+                                if not base or not staged.is_file():continue
+                                data=staged.read_bytes();pe=struct.unpack_from('<I',data,0x3c)[0]
+                                extent=struct.unpack_from('<I',data,pe+24+56)[0]
+                                if base<=q[4]<base+extent:
+                                    report['cpu_guard_fault'].update(module=name,rva=q[4]-base,module_sha256=sha(staged))
+                        raise RuntimeError('CPU reader census terminated at instruction '+hex(q[4])+' access '+str(q[6])+' Lock balance '+str(q[20]))
                     if args.other_pixel_producers and len(roots)==1 and 'pixel_producer_builds' not in report and (roots[0]/'game/native-pixel-producers.bin').exists():
                         report['pixel_producer_builds']=validate_builds(roots[0],ROOT,report['sources'])
                     if args.other_pixel_producers and len(roots)==1 and (roots[0]/'game/native-cpu-history-refusal.bin').exists():
@@ -882,11 +943,12 @@ def main():
                     h=struct.unpack_from('<16I',raw)
                     if raw[:8]!=b'MNMCREAD' or h[2:4]!=(1,64) or not h[4] or not h[5] or h[6] or not h[7] or not 1<=h[8]<=2048 or not 1<=h[9]<=2048 or h[10]!=h[8]*h[9]*2 or len(raw)!=64+h[10] or not (h[11]|h[12]) or not (h[13]|h[14]) or h[15]!=1:
                         raise ValueError('Invalid completed native CPU reply')
-                    report['native_cpu_materialization']=dict(count=h[5],last_surface=h[7],command_session=h[4],width=h[8],height=h[9],last_bytes=h[10],generation=h[11]|h[12]<<32,nonce=h[13]|h[14]<<32,sha256=sha(reply),scope='Explicit ordered native GPU snapshot for CPU GetDC readers; not ordinary World returns or original pixels')
+                    counts=roots[0]/'game/native-cpu-read-counts.bin'
+                    kinds=parse_cpu_reader_counts(counts.read_bytes(),h[5])
+                    report['native_cpu_materialization']=dict(count=h[5],**kinds,counts_sha256=sha(counts),last_surface=h[7],command_session=h[4],width=h[8],height=h[9],last_bytes=h[10],generation=h[11]|h[12]<<32,nonce=h[13]|h[14]<<32,sha256=sha(reply),scope='Explicit ordered CPU-reader snapshots, classified separately from ordinary World returns and original pixels')
                 if args.other_pixel_producers and args.normal_quit and not reply.exists():raise ValueError('Combined normal Quit did not exercise native CPU materialization')
                 resident=json.loads((roots[0]/'resident-world-report.json').read_text())
-                if resident['error'] or min(int(resident[k]) for k in ('completed','imports','verified_returns'))<64 or any(resident[k] for k in ('world_readbacks','native_readbacks','rgba_readbacks')):
-                    raise ValueError('Resident World completion/import/no-readback proof failed: '+repr(resident))
+                report['ordinary_resident_gates']=validate_resident_cpu_census(resident,args.min_fps,args.cpu_census_only)
                 if args.normal_quit and (not resident.get('normal_quit_retired') or resident['pending'] or len({int(resident[k]) for k in ('completed','imports','verified_returns')})!=1):raise ValueError('Resident World normal Quit was not acknowledged and balanced')
                 if args.save_load:
                     snapshots=int(resident.get('explicit_producer_cpu_readbacks',0))
@@ -903,7 +965,6 @@ def main():
                 if args.pixel_camera_scenarios and not args.require_casting_combat:
                     from campaign_cadence import analyze_cadence
                     report['campaign_cadence']=analyze_cadence(flow,[json.loads((out/f'input-{i}.json').read_text()) for i in range(args.menu_cycles+1)],args.stress_seconds,args.min_fps)
-                if resident['engine_fps']<args.min_fps:raise ValueError('Resident World engine FPS below target: '+str(resident['engine_fps']))
                 if args.hardware and ('NVIDIA' not in resident['renderer'] or any(x in resident['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Resident World did not use NVIDIA hardware')
                 report['resident_world']=resident
                 scene=json.loads((roots[0]/'scene-bridge-build.json').read_text())
@@ -985,6 +1046,23 @@ def main():
                 report['inputs']={str(roots[0]/'game'/name):digest for name,digest in game_inputs.items()}
                 report['inputs_stable']=all(sha(Path(name))==digest for name,digest in report['inputs'].items())
                 if not report['inputs_stable']:raise ValueError('Native graphics game inputs changed during smoke')
+            if args.cpu_census_only:
+                game=roots[0]/'game'
+                forbidden=('native-cpu-guard-fault.bin','native-cpu-guard-refusal.bin','native-cpu-history-refusal.bin','native-cpu-transfer-refusal.bin','native-pixel-forward-refusal.bin')
+                if any((game/n).exists() for n in forbidden):raise ValueError('CPU census retained a terminal reader/refusal record')
+                modules=game/'native-cpu-guard-modules.bin'
+                catalog=struct.unpack('<14I',modules.read_bytes())
+                if catalog[:4]!=(0x434d4e4d,0x33304d47 if args.cpu_guard==3 else 0x32304d47,args.cpu_guard,56) or not all(catalog[i] for i in (4,5,6,7)):
+                    raise ValueError('Active Lock census initialization was not observed')
+                report['cpu_census']=dict(success=True,mode=args.cpu_guard,module_catalog_sha256=sha(modules),
+                    module_bases=list(catalog[4:]),worlds=int(resident['completed']),
+                    native_producer_calls=report['pixel_producers']['native'],
+                    explicit_getdc_snapshots=report['native_cpu_materialization']['getdc'],
+                    explicit_typed_lock_snapshots=report['native_cpu_materialization']['typed_lock'],
+                    explicit_byte_unlock_snapshots=report['native_cpu_materialization']['byte_unlock'],
+                    explicit_typed_unborrowed_snapshots=report['native_cpu_materialization']['typed_unborrowed'],
+                    unknown_reader_faults=0,original_forwards=report['pixel_producers']['forwarded'],
+                    scope='Bounded active writable Lock reader census and ordered GetDC/private-baseline routing; no DC DIB raw-read, concurrency, full campaign/performance or pixel-equivalence claim')
             report['native_precise_clock']={'enabled':not args.disable_precise_clock,'scope':'Real loaded WinMM timeGetTime uptime in guarded original clock import; game speed and wait target unchanged; full timing/physics equivalence excluded'}
             if not args.disable_precise_clock:
                 log=roots[0]/'lock-capture/lifecycle.log'
@@ -1059,7 +1137,8 @@ def main():
             if args.save_load:validate_storage_flow(flow)
             if not (args.save_load or args.healing_case or args.crowded_case):validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps,args.normal_quit)
             if any(sha(ROOT / p) != h for p,h in report['sources'].items()):raise RuntimeError('Source changed during execution')
-            report.update(success=True, status='passed', stage='campaign-complete', flow_completed=True, game_entry_verified=True)
+            report.update(success=True, status='passed', stage='cpu-census-complete' if args.cpu_census_only else 'campaign-complete', flow_completed=True, game_entry_verified=True)
+            report['ordinary_campaign_accepted']=not args.cpu_census_only
             exit_code = 0
     except (KeyboardInterrupt, OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
         report['error'] = str(error) or 'Campaign test interrupted'
@@ -1074,11 +1153,13 @@ def main():
                 except (OSError,ValueError) as error:
                     report.update(success=False,status='failed',profile_error=str(error))
                     exit_code=1
-            report["sources_unchanged"]=all(sha(ROOT/path)==expected for path,expected in report["sources"].items())
+            report["changed_sources"]=[path for path,expected in report["sources"].items() if sha(ROOT/path)!=expected]
+            report["sources_unchanged"]=not report["changed_sources"]
             corpus=out/'resident-source.bin'
             if corpus.exists():report['resident_capture']={'path':str(corpus),'bytes':corpus.stat().st_size,'sha256':sha(corpus)}
             if not report['sources_unchanged']:
-                report.update(success=False,status='failed',error='Declared sources changed during the run')
+                report.update(success=False,status='failed',source_stability_error='Declared sources changed during the run')
+                report.setdefault('error','Declared sources changed during the run')
                 exit_code=1
             stop_group(shell)
         except (OSError, subprocess.SubprocessError) as error:

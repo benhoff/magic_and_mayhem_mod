@@ -1,6 +1,7 @@
 #include "../shadow/win32_min.h"
 #include "producer_status.h"
 #include "../../reconstruction/rendering/raster_pixels.h"
+#include "../../renderer/sprites/displacement_boundary.h"
 #include "raster_workspace.h"
 API u32 WIN GetCurrentThreadId(void);
 API void* WIN GetProcAddress(void*,const char*);
@@ -10,6 +11,8 @@ typedef i32 (WIN *Plane)(const void*,u32*,u32);
 #include "raster_sites.h"
 uintptr_t mnm_raster_original[MNM_RASTER_SITES],mnm_raster_resume[MNM_RASTER_SITES];
 u32 mnm_raster_native[MNM_RASTER_SITES],mnm_raster_forwarded[MNM_RASTER_SITES];
+u32 mnm_raster_retained_calls[MNM_RASTER_SITES],mnm_raster_retained_pixels[MNM_RASTER_SITES];
+static u32 finite_counts_overflow;
 static Plane owned_plane;
 static volatile u32 owner;
 static int span(u32,u32,int);
@@ -42,7 +45,9 @@ static void raster_refusal(u32 site,u32 reason,const u32* r,const struct MnmPixe
 #define RASTER_REFUSE do{reason=__LINE__;goto done;}while(0)
 static u32 word(u32 at){const u8 *p=(const u8*)at;return p[0]|(u32)p[1]<<8|(u32)p[2]<<16|(u32)p[3]<<24;}
 static int span(u32 at,u32 n,int write){
- if(!at||!n||at>0xffffffffu-n)return 0;const u32 end=at+n;
+ if(!at||!n||at>0xffffffffu-n)return 0;
+ if(cpu_history_guard_span((void*)at,n))return 1;
+ const u32 end=at+n;
  while(at<end){u32 m[7];if(VirtualQuery((void*)at,m,28)!=28||m[4]!=0x1000||(m[5]&0x101)||!(m[5]&(write?0xcc:0xee))||m[0]>at||!m[3]||m[0]>0xffffffffu-m[3]||m[0]+m[3]<=at)return 0;at=m[0]+m[3];}return 1;
 }
 int mnm_raster_route(u32 *r,unsigned site){
@@ -94,7 +99,16 @@ int mnm_raster_route(u32 *r,unsigned site){
   else {q.period=amplitude*2;for(u32 y=0;y<q.period;++y)q.offsets[y]=(i32)word(0x5f14d0+(amplitude*16+(y+phase)%q.period)*4);}
  }
  const u32 thread=GetCurrentThreadId();if(!owner)__sync_bool_compare_and_swap(&owner,0,thread);if(thread!=owner)RASTER_REFUSE;
- if(!mnm_raster_pixels(&p,&q)){raster_refusal(site,__LINE__,r,&p,&q);RASTER_REFUSE;}
+ u32 retained=0;
+ if(!mnm_raster_pixels_with_sample_boundary(&p,&q,
+      q.mode==3?mnm_retain_outside_displacement:0,&retained)){
+  raster_refusal(site,__LINE__,r,&p,&q);RASTER_REFUSE;
+ }
+ if(retained){
+  if(mnm_raster_retained_calls[site]==0xffffffffu||
+     mnm_raster_retained_pixels[site]>0xffffffffu-retained)finite_counts_overflow=1;
+  else{++mnm_raster_retained_calls[site];mnm_raster_retained_pixels[site]+=retained;}
+ }
  if(s->family<=6)mnm_raster_workspace((u32*)0x5f1e50,&q,&p,frame,s->family==5&&site<11?1:s->family,s->clipped);
  /* Volatile ECX/EDX and upper AX bits of the fast/slow private bodies are not
   * C ABI results. Keep each original footer, nonvolatile state and WORD result. */
@@ -123,10 +137,28 @@ static int install(void){
  return 1;
 }
 __declspec(dllexport) void RasterWritersAnchor(void){}
+#ifndef MNM_RASTER_SELFTEST
+/* Persist after normal process shutdown, never during drawing/tracker work.
+ * Abnormal termination leaves missing evidence, never inferred zero traffic. */
+static void finite_counts_finish(void){
+ u32 data[6+2*MNM_RASTER_SITES],done=0;
+ data[0]=0x464d4e4d;data[1]=0x31505344;data[2]=1;data[3]=sizeof(data);
+ data[4]=MNM_RASTER_SITES;data[5]=finite_counts_overflow;
+ for(u32 i=0;i<MNM_RASTER_SITES;++i){data[6+i*2]=mnm_raster_retained_calls[i];data[7+i*2]=mnm_raster_retained_pixels[i];}
+ HANDLE file=CreateFileA("raster-finite-displacement.bin",0x40000000,0,0,2,0x80,0);
+ if(file!=(HANDLE)-1){WriteFile(file,data,sizeof(data),&done,0);CloseHandle(file);}
+}
+#endif
 #ifdef MNM_RASTER_SELFTEST
 __declspec(dllexport) int WIN RasterWritersInstallForTest(void){return install();}
 #endif
-int WIN DllMain(HANDLE module,u32 reason,void *reserved){(void)module;(void)reserved;if(reason!=1)return 1;
+int WIN DllMain(HANDLE module,u32 reason,void *reserved){(void)module;
+#ifndef MNM_RASTER_SELFTEST
+ if(!reason&&reserved)finite_counts_finish();
+#else
+ (void)reserved;
+#endif
+ if(reason!=1)return 1;
 #ifdef MNM_RASTER_SELFTEST
  return 1;
 #else

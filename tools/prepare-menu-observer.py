@@ -164,6 +164,8 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'native_render':native_render,'render_dll_sha256':hashlib.sha256(render_dll.read_bytes()).hexdigest() if render_dll else None,
               'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
+    from native_only_contract import selected, POLICY
+    metadata.update(native_only_policy=POLICY if selected(os.environ) else None, skip_movies=skip_movies)
     metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata);metadata.update(production_metadata);metadata.update(census_metadata)
     metadata.update(panel_metadata)
     metadata.update(pixel_metadata)

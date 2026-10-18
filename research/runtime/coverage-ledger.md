@@ -15589,29 +15589,6 @@ camera/copy claims exclude unrelated native-game/raster inventory; raw reports
 are unchanged. Exact committed-history reviews a904544f..9f6f5f80 and9f6f5f80..9a24c154 have0unresolved
 receipts and does not assert a historical gate pass.
 
-
-## 2026-10-17 — Matched cadence diagnosis and copy observer repair
-
-[Current-source matched cadence acceptance](native-campaign-cadence.md) supersedes
-the earlier software5FPS failure boundary for its recorded runs. Whole-journey
-GUI rates are 15.0681 FPS with diagnostics off and 6.9920
-with them; the dedicated worker passes at 6.3246. The metric and
-5FPS floor remain unchanged, and independent copy checks, camera coverage,
-original Quit, balanced retirement and original/source/cleanup checks pass.
-Earlier failed acquisitions remain failures. Active World imports are now
-measured separately from cached presentation and explicit readiness/menu time.
-The observer shares encoding/digests only after full word equality, preserving
-all output checks. This is bounded software functional evidence, not sustained
-hardware/60FPS or complete original-session parity. Multiple introductory Hermes
-interruptions can still exhaust the eight-turn camera budget and refuse the
-scenario; the cadence provenance retains that failed attempt.
-
-The new HOST.campaign-cadence-attribution policy has fresh scoped implementation
-and live observation only. Forty-nine Python test methods and native GL witness
-controls pass. [Provenance](native-campaign-cadence-provenance-20261017.json) retains
-all attempted runs and source versions. Current code is based on 6cada041;
-incoming intermediate receipt gaps are separately accounted retrospectively.
-
 ## Uncovered optional routes and zero-area rectangle repair — 2026-10-17
 
 `NP.uncovered-pixel-route-matrix` adds route-specific original comparisons for
@@ -15648,6 +15625,88 @@ RS.optional-pixel-routes.matrix-empty-fix-20261017,
 NP.pixel-routes.nonresident-fixed-20261017 and
 DRAW.raster-cpu-selection.original-20261017. Generic journey/presentation,
 GPU-copy caller, arbitrary-reader, physical-loss and hardware gates stay separate.
+
+## Native Crossroads campaign window — 2026-10-17
+
+`NP.campaign-graph-window` exposes the four-node chapter through semantic native
+Qt actions, route availability/rewards, typed objective text, earned spell gates
+and existing checkpoint/result/retry controls. Core progression, combat and save
+formats are unchanged. CAMPAIGN04.crossroads-window prospectively binds 635 unchanged source
+keys and the actual-widget scenario. Both complete full-health roads and their
+finales pass through ordinary unit picking, spell buttons, right clicks and Step;
+each queued order matches the headless strategy. 17 normal Qt processes and
+1 ASan/UBSan/LSan smoke process pass using the offscreen widget platform.
+The sanitizer scope is the 24-tick opening and its controls, not the full chapter.
+
+29 exact save comparisons cover new/start/selection, opening and both route
+checkpoints, fresh-process victories, earned rewards/finale transitions, completed
+reopening, explicit defeat/retry and actual Cure/Sphere queue/effect continuation.
+A retained version-4 objective save reopens unchanged, including typed objectives
+and terrain. All 118 existing CTests pass. Source/input stability, compiler
+dependency closure and original 2,927-file manifest bookends pass. Only the new
+native application behavior gains automated preview integration. This validates
+Qt offscreen widgets/dialogs/painting, not X11 or human visual acceptance; older
+shared-source evidence keeps its historical fingerprints and limitations.
+
+
+Automated actual-widget acceptance uses Qt's offscreen platform; no X11, human
+visual acceptance, original UI/campaign equivalence or live milestone is claimed.
+See [the window contract](native-crossroads-window.md). Historical shared-source
+evidence retains its original hashes and freshness limitations.
+
+Capture review found that the first result instruction was too long for the
+existing centered overlay. The graph prompt is now “Choose a mission, then
+Continue.” CAMPAIGN05.crossroads-window-layout prospectively binds the corrected
+635 source keys and repeats the entire acceptance: both roads/finales,
+18 widget processes including the 24-tick sanitizer smoke, 29 exact comparisons,
+all 118 CTests, stable installed inputs/compiler closure and original-manifest
+bookends. CAMPAIGN04 remains immutable evidence of the earlier source version;
+only CAMPAIGN05 supports current-code preview validation after the prompt edit.
+Additional installed-profile-switch and legacy terrain widget regressions passed
+on the preceding implementation; their raw logs remain under
+`working/tests/crossroads-window-compat-20261017-v2/` and promote no older milestone.
+
+## 2026-10-17 — Matched cadence diagnosis and copy observer repair
+
+[Current-source matched cadence acceptance](native-campaign-cadence.md) supersedes
+the earlier software5FPS failure boundary for its recorded runs. Whole-journey
+GUI rates are 15.0681 FPS with diagnostics off and 6.9920
+with them; the dedicated worker passes at 6.3246. The metric and
+5FPS floor remain unchanged, and independent copy checks, camera coverage,
+original Quit, balanced retirement and original/source/cleanup checks pass.
+Earlier failed acquisitions remain failures. Active World imports are now
+measured separately from cached presentation and explicit readiness/menu time.
+The observer shares encoding/digests only after full word equality, preserving
+all output checks. This is bounded software functional evidence, not sustained
+hardware/60FPS or complete original-session parity. Multiple introductory Hermes
+interruptions can still exhaust the eight-turn camera budget and refuse the
+scenario; the cadence provenance retains that failed attempt.
+
+The new HOST.campaign-cadence-attribution policy has fresh scoped implementation
+and live observation only. Forty-nine Python test methods and native GL witness
+controls pass. [Provenance](native-campaign-cadence-provenance-20261017.json) retains
+all attempted runs and source versions. Current code is based on 6cada041;
+incoming intermediate receipt gaps are separately accounted retrospectively.
+
+## Idle stale CPU reader discovery — 2026-10-17
+
+`NP.idle-cpu-history-guard` adds opt-in page protection for idle stale owned
+backing. Actual raw loads/stores record instruction/access/thread and physical
+generation/nonce before terminal refusal. Active writable CPU leases and private
+facade operation windows stay explicit observation gaps, not coherent readers.
+Guard state follows flips/GPU-copy authority; partial writes rearm stale backing,
+while full CPU overwrite and exact native transfer can establish current history.
+The default launch stays unchanged. No readback or renderer wait occurs in fault
+dispatch; exception callbacks retire on DLL unload.
+
+The final prospective controls pass20 PE32 schedules and six existing default
+history/GPU-copy/resource/refusal controls, including76330 native resource checks
+and zero final owners. They disable display access and reserve one private Wine
+prefix, leaving unrelated prefixes untouched. This is headless native-policy
+evidence, with no original-game reader census, active-lease read classification,
+automatic CPU recovery, whole-session equivalence or replacement promotion.
+See [reader guard](native-cpu-reader-guard.md) and
+NP.idle-cpu-guard.controls-20261017.
 
 
 ## DRAW-02 primitive source and return lifetimes (2026-10-17)
@@ -17512,6 +17571,46 @@ original wizard controller equivalence. Pending exact merge review explicitly
 retains those current-source validation boundaries. See the merged census,
 summary and history-review-wizard-master-merge-20261017.json for accounting.
 
+### Active writable Lock CPU reader discovery (2026-10-17)
+
+`NP.active-lock-reader-census` adds opt-in mode2 protection during writable Locks.
+Actual scalar stores can execute under an owned single-step trap; loads and
+unsupported store candidates terminate with physical history and loaded-image
+identity. This does not exclude concurrent escapees or observe a separate GDI DIB.
+Live acquisition exposed metadata-only checkpoint and pure WORD splice9 permission
+checks, plus the held-Lock private Unlock baseline. Exact owned private snapshots
+retain stale authority and rearm protection; a checked loan coordinates the
+existing mandatory World guard and refuses incomplete Unlock/Flip. The raster's
+diagnostic extent query leaves actual instructions protected. Default reader
+restoration and GPU-copy admission remain independently bounded contracts.
+
+NP.active-lock.controls-20261017 passes28 actual PE32 schedules and six existing
+default controls, including76330 resource conditions and zero final owners. This
+establishes the isolated facade paths, not current original pixel equivalence or
+live campaign acceptance. Retained live failures and startup timeouts remain
+separate from passing controls. A source-stable historical journey completed
+normal Quit with36 explicit GetDC transfers,1082 native producer calls/zero
+forwards and8 balanced Worlds; its overall ordinary campaign result remains
+failed because64 Worlds and valid FPS proof were not established. The later
+explicit census-only attempt is inconclusive after concurrent source changes.
+Six pure census-policy controls pass without weakening ordinary campaign gates.
+Fresh NP.active-lock.app-controls-20261017 passes all28 schedules and six default
+regressions with stable current sources. Current full live validation and the
+concrete visible app symptom remain pending.
+See [active discovery](native-cpu-reader-guard.md).
+
+
+The2026-10-18 frozen-source follow-up now passes bounded live observation:
+NP.active-lock.live-census-20261018 records9 balanced World imports/returns,
+31 ordered GetDC snapshots,1047 native producer calls,zero forwards/unknown
+reader faults and normal original Quit. All1464 acquisition source hashes match
+the main checkout at registration; staged inputs, original bookends and private
+Wine cleanup pass. New frozen controls pass28 PE32 schedules, six default facade
+regressions and six policy tests. Integration advances only to live_observation;
+comparison/replacement remain none.27 installed routes, concurrent escapees and
+raw held-DC DIB reads remain open. Ordinary64-World/FPS gates remain unmet and
+ordinary campaign acceptance remains false. The changed-source attempt is
+retained separately; see the linked active discovery report for exact provenance.
 
 ## Quiescent source boundaries and accepted timestamps (2026-10-17)
 
@@ -17549,6 +17648,142 @@ overlaps. The earlier master commit attempt was stopped during its hook before
 Git could overwrite that merge. The combined census/accounting is regenerated;
 renderer execution-source hashes remain identical, without a new AI validation
 claim. See `coverage/source-boundary-ai-merge-history-20261017.json`.
+
+
+## 2026-10-17: Alternate CPU-family producer callers and bounded RGB no-op candidate
+
+`NP.raster-cpu-game-callers` now records actual original game callers for
+`raster/splice0,1,4,5,11,12,14`. A test-owned PE32 hardware debugger supplies only
+CPUID.1 EAX raw-family bits before unchanged original4845f0/484470 consume them.
+Original code computes5947b2/595b47/5968a4/597086; all561pinned bytes match at
+entry/post-CPUID/return. No debugger instruction/dispatch/drawing-input/counter
+writes. Current-source controls execute both CPU branches and reject altered
+code, missing initialization and stale output; ten Python controls cover the
+proof decoder and direct/batch launch/selector boundaries.
+
+The final frozenac848056 default-policy Apprentice journey passes914079native
+calls,zero forwards/history refusal,all seven explicit route requirements,two
+10-second ordinary-input phases,Mini Cancel/resume,normal Quit/private Wine
+stop,source/original bookends and unchanged5FPS floor. It observes31/43 routes;
+its union with retained physical-host31/43 is38distinct routes. Physical-host
+coverage remains31/43 and denominator43 stays unchanged. PCX words,brighten,row
+copy,raster15 andcamera3 natural callers remain unresolved. Unknown indirect and
+external flows remain; the known camera table still selects0/2/0/1. This is
+caller/execution evidence on the named frozen producer tree, not original
+pixels,physical alternate hardware or current merged-renderer validation.
+
+`RS.rgb-add-empty` separately passes256original no-pixel comparisons in565/555
+andDF0/1,128eight-byte guarded descriptors,540672physical WORDs plus8default-off
+forward/history/LastError controls. The existing positive pixel suite also
+passes. The original skips RGB/backing reads for positive rows and empty or
+negative horizontal clipping; native preserves right/skip/zeroECX and AX-only
+return behavior without operation0history materialization when explicitly
+selected. Operation3metadata span classification remains allowed. The candidate
+is default-off (`MNM_PIXEL_EMPTY_RGB_NATIVE=1`); its original comparison and
+implementation are separate from live integration.
+
+The first instrumented game reaches all seven but fails on2RGB forwards. Enabled
+geometry diagnostics do not reproduce them; their cause is unassigned. Two
+subsequent ungated empty-RGB attempts stop in presentation with producer reason2;
+no attribution or current live-empty equivalence follows. Final default-off
+route acceptance passes, while those failed acquisitions remain immutable.
+All original2927-file bookends pass. The main CPU-guard span edit is preserved
+and included in the current original RGB comparison, but excluded from the
+frozen producer witness. Current source differences remain explicit; no old
+fingerprint is refreshed. Actual49-commit/50-parent native-AI merge accounting
+retains existing receipt chains and adds conservative exact pending merge
+receipts; it grants no historical gate pass or new AI/rendering validation.
+
+See [caller evidence and reproduction](native-pixel-cpu-callers.md),
+[the RGB candidate](rgb-add-empty.md), and
+[all successful/failed acquisitions](native-pixel-cpu-callers-provenance-20261017.json).
+Generic presented sessions,current merged renderer,other maps,arbitrary CPU
+readers,physical loss and hardware/performance gates remain separate.
+
+The CPU helper implementation remains partial because subsequent shared
+campaign-runner edits make its controls historical. Current-source validation
+is pending; the frozen original-game caller witness is retained independently.
+The RGB candidate's executed fixture closure remains current for its isolated
+original comparison. The full checkout audit/gate is blocked by eight unrelated
+empty-evidence scenarios in active-lock-reader/protected-CPU-lease work and
+concurrent census drift. Exact task receipts use a stable copied view that
+excludes only those eight scenarios during validation; this is not a full-root,
+staged-tree or CI pass.
+
+The subsequent shared history/bridge edit was followed by a new original RGB
+comparison (`RS.rgb-add-empty.followup-scoped-original-20261017`): 256 enabled
+cases, eight default-off controls and 5,028 positive pixel admissions pass with
+stable source and original-input bookends. Earlier records remain unchanged.
+
+
+## CPU history during writable leases (2026-10-18)
+
+`NP.active-lock-reader-restoration` and `NP.protected-cpu-lease-storage` implement
+ordered restoration and protected storage as native policies. Typed readers stage
+pending CPU bytes, request matching native history, merge only bytes actually
+written, publish complete WORD updates and restore the same allocation/Lock tuple.
+Same-value stores and single-byte writes are preserved, including partial Locks
+and byte-only Unlock. The active reader cannot survive owner, generation, nonce,
+Lock serial, layout or session changes. DIB source reads enter the typed history
+boundary before native work or original GDI fallback. Held DCs reject GPU
+invalidation and foreign release; overlapping protected Lock/GetDC returns busy.
+
+Resident sessions default to mode3 dual-mapped storage. Public stale pages remain
+NOACCESS while scalar MOV/STOS stores and private snapshots use an internal view.
+There is no temporary public writable interval. The checked store decoder, exact
+byte mask and World V2 begin/end ownership have separate actual PE32 controls.
+Unsupported raw instructions remain terminal observations for later routing.
+Explicit mode2 retains its historical single-thread census scope.
+
+[PE32 controls](native-cpu-coherence-joined-controls-20261018.json) pass five schedules,
+19 restorations,38 WORD updates and37,909 decoder checks; the concurrent observer,
+foreign raw-reader refusal, all12 tuple mutations, held-DC and protected World
+handoff schedules pass. [Native OpenGL replay](native-cpu-coherence-joined-gl-20261018.json)
+checks9.12 million reader WORDs and9.6 million presentation WORDs over20 frames;
+ordinary World readbacks remain zero. [Legacy controls](native-cpu-coherence-joined-legacy-20261018.json)
+pass28 schedules and six regressions; [eight policy tests](native-cpu-coherence-joined-policy-20261018.json)
+pass. [Five original-reference producer suites](native-cpu-coherence-joined-routes-20261018.json)
+pass with unchanged original-manifest bookends, including every raster splice
+family. CPU-ready fixture comparison does not establish live route reachability
+or original GPU-history equivalence. Both new policies have current partial
+implementation/headless integration; comparison and replacement remain none.
+
+[Acquisition provenance](native-cpu-coherence-joined-acquisition-20261018.json) preserves
+immutable source views, isolated build output and failed/superseded experiments.
+The first final live attempt reaches gameplay with815 native producer calls and
+zero forwards, then fails a menu deadline after a consumer
+stall and a10000ms CPU-transfer wait. Its transfer refusal is retained. It is retained without acceptance credit. Existing ordinary campaign/FPS
+and complete route requirements remain unchanged. The earlier mode2 census is
+historical after these source changes; its hashes are preserved.
+
+
+The [final joined-shutdown journey](native-cpu-coherence-joined-live-20261018.json)
+passes14 balanced World returns,41 ordered GetDC restorations and1,155 native
+producer calls with zero forwards, guard/history/transfer refusal records and
+normal original exit. Immutable-original bookends,1499 stable source inputs,
+stable staged artifacts and stopped private Wine state pass. Mode3 protected
+storage advances to live_observation; active typed-Lock/byte-Unlock restoration
+remains headless because its live counters are zero.27 installed routes remain
+unexercised; ordinary64-World/FPS acceptance remains false. No original pixel
+equivalence or live replacement status is promoted.
+
+Live investigation also found tracker-held diagnostic file I/O could cause a
+session gap during disk stalls. Counters now update memory only and persist at
+the common successful joined boundary used by both RenderShutdown and automatic
+RenderStop. The final PE32 test calls both, asserts no counter file during reader
+work, and checks19 exact completed reads after stop. All controlled/GL/producer
+suites were rerun against this source. Earlier passing records remain historical;
+failed menu/transfer waits, tracker contention, missing automatic-stop metadata
+and compact-snapshot execution-permission setup are retained in the linked
+acquisition records. These do not receive current acceptance credit.
+
+## All27 absent optional routes: current follow-up (2026-10-18)
+
+[Route-by-route evidence](native-pixel-route-27-followup.md) refreshes every member of the exact27-route cohort absent from the protected joined-shutdown journey. All27 pass independent original production-splice/native controls in RGB565/555 with positive matched physical changes. Ten cohort/provenance tests and actual PE32 debugger controls pass. The source-bound physical-host game executes1,297,960 native calls/31 routes; the authored raw-CPUID15 original game executes917,672 calls/31 routes. Each requires normal Quit, stable inputs, original-manifest bookends, private Wine stop, zero forwarding/history refusal and the5FPS software floor. The original selects its own dispatch; no instruction/dispatch/counter/drawing-input writes force route credit.
+
+Across separate nonresident CPU contexts,22/27 cohort routes and38/43 total routes have observed original-game callers. PCX words, brighten, row copy, raster15 and camera3 remain unresolved. Full already-registered window reference review finds no external direct/stored-address candidate; preceding RETs exclude ordinary fallthrough. The original camera table selects camera0/2/0/1, excluding camera3 only from that dispatcher. Computed/external flows remain unknown, all43 routes stay in the denominator and no dead-code claim is made. All handlers already have native paths; this follow-up changes investigation/accounting, not production drawing or gameplay.
+
+`NP.pixel-route-27-followup` is partial implementation/bounded live_observation, and the new prospectively bound CPU15 witness refreshes `NP.raster-cpu-game-callers` to live_observation. Native-policy comparison/replacement remain none. CPU-ready controls do not establish natural callers, resident active-Lock/DC behavior or original GPU-history/session pixels. The prior protected resident journey remains separately bounded. Large new outputs are retained in second-NVMe scratch under the main-drive retention guard; no existing evidence/original/archive was moved. Historical evidence hashes remain unchanged.
 
 
 ## Source ownership public-entry and resolver bypass closure (2026-10-17)
@@ -17602,6 +17837,66 @@ The unchanged gate still refuses physical backing/alias writers and global
 presentation routes. Prior results and hashes remain historical.
 
 
+## Remaining producer boundaries and default RGB no-op (2026-10-18)
+
+[Current producer evidence](producer-rest-acquisition-20261018.json) adds512
+original/native empty-RGB cases (256 default,256 explicit1),256 guard-page
+source descriptors and8 explicit0 fallback/history/LastError controls; positive
+pixel regression passes5,028 native admissions. The bounded no-op now defaults
+enabled; explicit0 retains fallback. A prior explicit-enable natural empty call
+is source-historical. Fresh default physical/authored-CPU journeys pass strict
+normal-Quit acceptance with876,981/763,089 native calls, no forwards/history
+refusal and matching708/1,776 read-only RGB observations, but no empty calls.
+Default-empty branch integration remains none. Six PE32 debugger controls and
+seventeen decoder/selector tests pass; CPU and RGB proof layouts stay separate.
+
+[Allocation-edge analysis](raster-displacement-physical-boundary.md) retains the
+failed camera-stress acquisition with7splice14 forwards. Original57dbd0 produces
+the recorded displacement table. A192-case original production-splice comparison
+passes164 native cases and28 atomic native refusals/original-once fallbacks,
+92,565,504 physical WORDs; two interior controls admit all phases. The existing
+raster suite passes9,323 native cases. Native ownership was not widened and
+camera-stress acceptance remains pending.
+
+[Entry/module analysis](pixel-route-entry-boundaries.md) and12 parser controls
+support five provisional unused-candidate classifications, not global dead-code
+or live execution. Seven PE32 inputs were parsed; non-PE media, unaligned/resource
+candidates, system/unpacked and runtime-constructed paths remain explicit gaps.
+The independently retained route union stays38/43, with31/43 in each context.
+All43 native handlers remain installed. Whole renderer replacement, physical
+alternate CPU and original GPU/session pixel equivalence remain unclaimed.
+The arrived ownership commit is separately reviewed in the
+[exact parent/current history report](coverage/producer-rest-arrived-history-20261018.json).
+No historical hash, original artifact, archive or gameplay balance was changed.
+
+The [final producer audit summary](coverage/summary-producer-rest-complete-20261018.md)
+records zero errors, while retaining unrelated historical stale evidence and
+unknown functions. [Completion metadata](producer-rest-completion-20261018.json)
+links each current scoped result and the unchanged original initializer mapping.
+
+## CPU displacement physical-edge repair (2026-10-18)
+
+The [finite CPU policy](finite-cpu-displacement.md) closes the known unowned-sample forwarding failure without enlarging allocation ownership. Valid taps preserve recovered linear addressing; a tap outside ownership retains its destination. Strict recovered admission remains independently available, and malformed/alias/invalid-destination inputs still refuse atomically. This intentional native policy follows the existing public native World boundary behavior and changes no gameplay balance.
+
+New guarded sanitizer controls pass38 cases and five counter-decoder methods. The complete raster regression passes9,323 native cases. Captured original preparation and all16 sine phases/both formats/DF settings pass192 production native cases, zero original-once fallbacks,28 strict atomic refusals and60 deliberately retained WORDs.92,565,504 physical WORDs match original-defined output plus the explicit finite boundary policy. Normal-exit counters distinguish observed edge execution from a camera journey that misses the edge; no drawing/history/tracker/fault path writes the counter file. Source-bound original-game journeys and their exact counter outcomes are recorded separately in the linked report. Five unused-candidate natural callers remain unresolved;43 installed native routes and the38-route observed union are retained. Historical hashes, original artifacts and cold archives are unchanged.
+
+Three new camera journeys accept normal Quit with zero forwarding/history refusal; the longer uses two60-second input phases. All three have zero finite-edge counters, so the repaired branch remains current headless integration rather than live_observation. Its captured real-shape regression is fixed and accepted game behavior is preserved; no positive rare-branch or five unused-caller claim is invented. The unfulfilled camera declaration and setup timeout refusal remain in the immutable acquisition catalog.
+
+The renewed accepted CPU/RGB/27-route original-game witness naturally observes6 finite-edge calls/17 retained WORDs among1,347,324 native calls with zero forwards/history refusal and normal Quit. Nine accepted journeys total13,406,642 native calls. Five dedicated finite-policy confirmations miss the edge, so no retrospective scope binding or separate finite-policy live promotion is asserted. Its current implementation/headless evidence remains valid. The seven affected older producer policies have fresh prospective parser/selector, real PE32 debugger, original RGB, clarified strict API and actual original-game caller evidence; legacy fallback scope is explicitly historical. The complete acquisition catalog retains all attempts and preserves the five unused-candidate caller gaps and43-route denominator.
+
+## Five producer caller branch review (2026-10-18)
+
+**No confirmed natural original-game caller has ever been found or observed
+in the recorded investigations for `pixel/pcx_words` (`0x54b5f0`),
+`pixel/brighten` (`0x58d770`), `pixel/row_copy` (`0x58d3b0`),
+`raster/splice15` (`0x57e1b0`) or `minimap/camera3` (`0x5532f0`).**
+Their native implementations and isolated comparisons exist. Caller discovery
+remains unresolved; the provisional `unused_candidate` label does not establish
+that the functions are unreachable or that a broken caller exists.
+
+The [direct-branch investigation](pixel-route-branch-callers.md) corrects the shared camera3 search end from553640 to the already registered5536bc RET boundary and adds short/conditional/loop/far-offset candidate scanning.23 synthetic controls pass. Three external byte candidates are ordinary operand overlaps; the former camera3 overlap is internal to its complete range. The remaining5c6022 data coincidence is inside a double consumed by two original FADD QWORD instructions. Rechecked preferred VAs, stored RVAs/file offsets and PE roots add no candidates. This closes specific investigation gaps, not the five original-game caller milestones: native implementations already exist, no actual caller was found or rerouted, and43 routes/38 observed remain. Broad older producer/finite-policy source fingerprints become stale through the shared analysis dependency; historical execution is retained, current-source validation remains pending, and fresh parser controls renew only the scoped analysis implementation.
+
+
 ## Private submitted COPY ownership (2026-10-18)
 
 The opt-in pinned Wine11.16 path now transfers each submitted COPY into private
@@ -17651,3 +17946,145 @@ new primitive-lifetime evidence. Historical results/hashes remain unchanged;
 [development provenance](physical-alias-development-20261018.json) preserves
 failed/superseded acquisitions and the unexecuted rejected general-allocator
 proposal separately.
+
+
+## Explicit native output and backing ownership — 2026-10-18
+
+`NP.native-output-ownership` introduces an opt-in Linux/X11 launch profile. Qt
+owns host presentation; the original Wine child receives a separate authenticated
+Xvfb server inside user/PID/network/IPC namespaces, without host graphics devices
+or host display endpoints. A distinct authenticated Qt input connection addresses
+the private game window, while host embedding of private XIDs is refused.
+Admission requires all six no-forward producer families, current native-draw
+compiler receipts and resident protected backing mode3 before facade creation.
+The default launch policy and original-reference ownership gates are unchanged.
+See [ownership implementation and boundaries](drawing-ownership-bypass-closure.md).
+
+The movement investigation exposed original image-copy `REP MOVSD` at533af7
+writing a stale active Lock. A checked eight-byte splice at533aec now requests
+current typed CPU history for bounded source/destination rows before the original
+DWORD/byte loop. It preserves the protected backing policy and does not add
+readback to the exception handler. This retains an original CPU pixel algorithm;
+it does not add a route to the43native producer denominator or claim complete
+original drawing replacement. Other unknown reads/stores remain terminal.
+
+Current PE32 controls pass protected section-backed storage, exact restore and
+actual original-instruction row copies, plus invalid-mode/nonresident/prefix/span
+refusals. Actual-game integration and final execution links are recorded in the
+ownership research; ordinary-session performance, full original pixel equivalence,
+media/save/restart acceptance and complete-native release remain separate work.
+Historical evidence and fingerprints are preserved. The incoming private COPY
+ownership commit's43parent/current file transitions match retained exact receipts;
+[the history review](coverage/native-output-owner-incoming-history-20261018.json)
+is accounting only and asserts no historical gate pass.
+
+
+[Final controls](native-output-ownership-joined-kernel-20261018.json) pass10Python
+admission tests,120C selector cases and real kernel/Qt containment/input checks;
+[nine PE32 schedules](native-output-ownership-joined-pe32-20261018.json) pass the
+protected backing and explicit image-copy boundary. The
+[bounded actual game journey](native-output-ownership-campaign-07-20261018.json)
+completes7balanced Worlds,1029native producer calls/zero forwards, Mini Cancel,
+Quit No/resume/Yes and normal original exit0. This supports native-policy live
+observation only. Movement/HUD stress still reaches an unsupported BltFast
+`80004001` private error dialog; its exact surface/format cause and visible Qt
+failure handling remain pending. Ordinary64-World/FPS, original pixels and full
+session acceptance remain false. All2927original files verify before/after;
+[provenance](native-output-ownership-provenance-20261018.json) preserves attempts.
+
+
+### Subsequent shared-source edits and current validation limit
+
+The ownership control suites and campaign07 above passed for their exact recorded
+snapshot. A concurrent native-only admission change subsequently edited shared
+Qt, launcher and backing sources. Two combined retries again completed the
+original gameplay/Mini/No/resume/Yes/normal Quit flow, but their source-stability
+checks correctly refused acceptance: first `tools/native_only_contract.py`, then
+that module and `apps/qt-shell/native_only_session.hpp` changed during execution.
+The current game attempt completes7balanced Worlds and948native producer calls
+with zero forwards; its aggregate success is **false** because sources changed.
+The separate `--native-only` option was not exercised by these ownership retries.
+
+[Concurrent provenance](native-output-ownership-concurrent-provenance-20261018.json)
+preserves both attempts and the successful intermediate kernel/PE32 controls.
+Current combined-tree validation remains pending until the shared code settles
+and the declared runs are repeated. Historical stages/evidence remain recorded;
+no hashes are refreshed and these moving-source runs do not promote acceptance.
+The final change-gate attempt also detected the concurrent source/index drift;
+the earlier audit's zero-error result belongs to its retained snapshot.
+
+## Unified native-only launch contract (2026-10-18)
+
+The [versioned native-only profile](native-only-launch.md) now joins producer
+selection, source/binary startup admission, protected ownership, terminal fallback
+and session outcome. `tools/run-native-owned.py --native-only` rejects conflicting
+settings before staging and verifies all ten graphics/menu DLLs and their329
+canonical compiler/source receipts before Wine. Owned mode3 backing, resident
+continuous V3 World, glyph takeover and six guarded producer families are
+mandatory. Native or disabled movies are required. Qt original-menu/presentation
+fallback is unavailable, and a failed session clears rendering/input, stops its
+owned process and exits nonzero. Explicit facade E_NOTIMPL capabilities terminate
+before the original application can wait in a hidden error dialog; expected busy
+and rectangle/key errors and ordinary non-strict modes retain their ABI.
+
+Atomic shell records are sticky and cannot overwrite a previous session on a
+duplicate begin. Independent final admission requires matching session identities,
+original Quit/exit0, zero forwarding/history refusal, no terminal artifacts and
+balanced World retirement. Qt uint64 decimal strings are parsed exactly, without
+float coercion; missing, malformed, foreign or incomplete outcomes refuse even
+when Qt exits0. `complete_replacement` remains false.
+
+[Current controls](native-only-launch-controls-20261018.json) pass nine Python
+contract methods, ten existing admission methods, actual Qt sticky/retirement
+checks and eight actual PE32 strict/compatibility unsupported/stretched/busy/
+rectangle cases. The [fresh bounded original-game journey](native-only-launch-campaign-20261018.json)
+passes gameplay, Mini Cancel/resume, Quit No/resume/Yes and normal original exit0:
+9balanced Worlds,1,002native producer calls, zero forwarding and accepted exact
+shell/owner outcomes. Sixteen optional routes execute;27do not. All452declared
+sources are stable and2,927-file original bookends pass. Movies, route screenshots,
+ordinary64-World/FPS and complete original pixels remain outside this result.
+
+`NP.native-only-launch-contract` has scoped policy implementation and bounded live
+observation; original comparison/replacement remain none. The checked533aec
+image-row compatibility body still executes its original CPU copy algorithm, and
+unknown instruction/resource domains refuse. Broader callers/journeys, media/
+storage/restart composition, hardware cadence and original-reference backing/
+presentation closure retain independent gaps. [Provenance](native-only-launch-provenance-20261018.json)
+preserves every failed/superseded attempt. Incoming committed-history inspection
+covers76d4fa72's44parent/current transitions; it is accounting, not retrospective
+validation. Shared incoming work and historical evidence hashes are preserved.
+
+### Native-only combined-source and glyph closure follow-up
+
+Incoming work now supplies native533aec row copying, canonical format/stretch
+conversion, owned raw-reader continuation and verified fresh-generation restart
+retirement. Their separate behavior-comparison milestones are not inferred from
+this launch contract. The earlier9-World source snapshot remains historical.
+
+Code inspection also found a real escape: glyph takeover could return0 to the
+original pixel body when admission failed. Native-only configuration now requires
+uncaptured resident takeover and terminates rejected, busy and post-close glyph
+calls before original continuation, recording a32-byte refusal. Ordinary mode
+retains its behavior. [Final policy controls](native-only-launch-final-controls-20261018.json)
+pass ten Python methods, ten ownership methods, current Qt sticky/retirement checks
+and ten actual PE32 strict/compatibility cases including glyph refusal.
+[Fresh combined gameplay](native-only-launch-final-campaign-20261018.json) passes
+12balanced Worlds,1,230native producer calls/zero forwards and normal original
+Quit/exit0, with707stable inputs and2,927-file original bookends. Sixteen optional
+routes execute;27do not. Original whole-frame parity, live restart/media/storage/
+context-loss, ordinary campaign/FPS and hardware acceptance remain separate.
+
+Later concurrent surface/copy-order/CPU-reader/owned-session edits make the final
+707-source execution historical for current-code freshness. The implementation
+remains present; latest combined-source validation is explicitly pending and no
+old result/hash is refreshed. Full-checkout audit/gate failures from other
+in-progress scenarios and native policies remain separate from this feature.
+
+## Native-only implementation commit boundary (2026-10-18)
+
+The source/dependency commit retains the twelve-World/1,230-call launch result
+while marking later combined-source validation pending. New uncommitted status
+promotions are not carried into the committed register. See
+[native-only commit boundary](native-only-commit-boundary-20261018.md) for the
+remaining scope and the preserved declarations. This is source implementation,
+not a complete-renderer or original-pixel equivalence milestone.

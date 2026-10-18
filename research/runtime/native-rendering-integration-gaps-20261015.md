@@ -14,14 +14,21 @@ GPU and physical X11 comparisons plus isolated PE32 producer controls. Two fresh
 original-game campaign attempts do not complete and remain explicit limitations.
 Concurrent Cure and native campaign-persistence work is outside this renderer scope.
 
+A later [finite CPU displacement repair](finite-cpu-displacement.md) closes the
+captured allocation-edge forwarding case through an explicit native retain-pixel
+policy, preserving strict recovered admission separately. Its192 captured cases
+and9,323 native raster regressions pass; three new camera journeys accept normal
+Quit with zero forwards/history refusal, but have zero finite-edge events. Positive
+live branch proof and the five unused-candidate natural callers remain open.
+
 ## Current status
 
 | Area | What the current code establishes | Remaining gap |
 | --- | --- | --- |
 | Long sessions | V3 wrapping transport, private queue, owned emitter and decoder pass actual traffic beyond 4 GiB with bounded storage. | Finite sequences, capacity/deadlines and unbounded original-game duration remain separate; matched controls and a natural-intro 480-World V3 storage journey now pass. |
 | CPU/GPU history | Explicit ordered CPU_READ, physical identity/generation/nonce restoration, Save/Load synchronization and selected GPU copies exist. | Arbitrary raw readers are outside interception; selected unsupported dependencies still refuse. |
-| Complete-native release | Combined mode requires zero forwards/history refusal and positive execution for requested routes. | No capability-checked complete-renderer launch/release contract; reports explicitly retain complete-replacement false. |
-| Optional routes | Six valid families and 43 installed routes; a subsequent nonresident native journey reaches 31, explicitly requiring twelve additional CPU interiors. All 24 formerly absent routes now have individual original-splice comparisons in both formats. | Twelve natural live routes remain: seven alternate CPU-family variants and five entries without confirmed game callers. The earlier 19/43 reports retain their historical scope. See [the route follow-up](uncovered-native-pixel-routes.md). |
+| Native-only launch/release | The versioned `--native-only` profile unifies startup capabilities, all graphics/menu build receipts, protected backing, no-forward producers, terminal fallback/refusal and independently checked shutdown. | Full original-pixel replacement remains unaccepted: native row/format/reader bodies have separate comparison boundaries, and broader callers/journeys and parity/performance remain open. Reports keep complete-replacement false. See [the launch contract](native-only-launch.md). |
+| Optional routes | Six families/43 installed routes. Physical-host journeys reach31; a separate authored-CPU-family15 game journey reaches the seven alternate raster bodies, giving38 distinct observed routes across contexts. All24 formerly absent routes retain individual isolated comparisons. | Five natural callers remain unresolved. Physical-host coverage remains31/43; merged-current renderer and physical alternate-CPU validation are separate. Bounded empty-RGB admission now defaults enabled after512 original comparisons and8 opt-outs; current-source journeys observe no empty calls, so branch integration remains pending. Camera-stress displacement ownership refusals remain separate. Earlier19/43 and31/43 records keep their original scope. See [the caller follow-up](native-pixel-cpu-callers.md). |
 | Session composition/parity | Historical Save/Load/changed-canvas journeys pass; all 323 observed original Quick Battle frames now pass native GPU and displayed-output comparison in a portable corpus. | Generic action-bound/global presentation coverage, later maps and broader movies/input remain incomplete. |
 | Failure handling | Terminal resident cleanup and force-stop/fresh-launch exist; resident in-place recovery explicitly refuses. | Actual-game injected failure and Hard restart pass both World owners; physical context loss and other failure modes remain unproved. |
 | Performance | Retained hardware and software results distinguish engine cadence from presentation. | Sustained complete-session hardware/60 FPS acceptance remains unproved. This review does not probe hardware availability. |
@@ -110,22 +117,29 @@ Close actual new readers with an ordered owned representation or a documented
 capability refusal. Preserve the distinction between current native pixels and
 readable but stale CPU allocations. See [reader routing](native-history-readers.md).
 
-## RENDER-INT-03: Strict complete-native release policy
+## RENDER-INT-03: Unified native-only launch contract
 
-**Still missing as a complete-target contract. Existing combined admission is
-already strict about its declared producer counters.**
+**The declared native-only profile now has startup admission and terminal session
+accounting. Complete original renderer replacement remains a separate milestone.**
 
-The campaign report sets `complete_drawing_replacement: false`, and counter/
-route results set `complete_replacement=False`. Partial adapters retain original
-continuations outside their admitted domains; an unsupported facade call can
-also terminate. Neither a native-mode switch nor a zero-forward bounded run
-certifies every required game route.
+`tools/run-native-owned.py --native-only` rejects conflicting settings before
+staging, verifies all ten graphics/menu DLLs and their compiler source receipts
+before Wine, and requires owned mode3 backing, continuous resident World, glyph
+and all six guarded pixel families. Original Qt menu/presentation fallback is
+unavailable. Unsupported facade capabilities terminate before a hidden original
+error dialog; expected application errors keep their ABI. Failed sessions remain
+failed, and normal completion requires matching positive shell/owner/route/World
+and original-Quit records. See [the contract](native-only-launch.md).
 
-A complete mode needs a declared capability set, startup admission and a session
-outcome that ends its complete claim before any unsupported original pixel
-production resumes. Preserve intentional native Qt menu semantics and original
-simulation/required preparation side effects. No current unimplemented graphics
-API is assumed to be a required game path without a caller.
+The implementation must not be listed as absent merely because
+`complete_drawing_replacement` and `complete_replacement` remain false. Those
+fields deliberately retain the larger renderer-acceptance boundary. In particular,
+incoming shared code now supplies native533aec image-row copying, format/stretch
+conversion and an owned raw-reader continuation. These are implementations with
+separate behavior-comparison boundaries, outside the43optional route denominator.
+Unadmitted instruction/resource domains refuse. Required original simulation
+and preparation side effects and intentional native Qt menu semantics remain.
+The declared session policy does not certify every game caller or original pixels.
 
 ## RENDER-INT-04: Broader transition and interaction coverage
 

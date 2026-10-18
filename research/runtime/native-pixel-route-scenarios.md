@@ -176,3 +176,17 @@ five other entry windows still lack confirmed game callers. No route is removed
 or forced. This source-bound isolated nonresident result does not renew the
 concurrent resident camera journey or supply full presentation/World bypass.
 See [results, reproduction and exact boundaries](uncovered-native-pixel-routes.md).
+
+## Alternate CPU-context callers (2026-10-17)
+
+The [controlled original CPU-input follow-up](native-pixel-cpu-callers.md)
+executes seven additional alternate raster bodies without changing their game
+callers, original dispatcher, drawing inputs or counters. Its successful frozen
+default-policy journey observes31/43 routes/914079native calls with zero forwards
+and history refusal, normal Quit and unchanged5FPS floor. The union across that
+authored-family15 context and the retained physical-host31/43 result is38 routes.
+Five natural callers remain unknown; camera3 is still unselected by the known
+four-case table. No route is waived and no physical43-route run is claimed.
+Source differences from current main remain explicit in the scoped result.
+The independent empty-RGB candidate remains default-off pending live integration;
+failed forwarding and presentation acquisitions are preserved separately.

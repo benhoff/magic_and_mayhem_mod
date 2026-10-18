@@ -139,6 +139,7 @@ void installResidentRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
         }
         if(r->stage==5){
             auto s=cleanup();if(!s.value("terminal").toBool())return;
+            if(!s.value("restart_available").toBool())return; // Native-only force-stop must finish first.
             for(auto it=s.begin();it!=s.end();++it)if(!it.value().toBool()){event(s);finish(false,"Incomplete terminal cleanup: "+it.key());return;}
             if(!p.fallback||p.active||p.error.isEmpty()||p.recoveries){finish(false,"Failed generation retried or remained active");return;}
             event({{"step","terminal-cleanup"},{"state",s},{"error",p.error}});r->frames=p.frames;r->paints=p.paints;r->terminal.start();r->stage=6;
@@ -151,7 +152,8 @@ void installResidentRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
             r->cycle=1;r->stage=0;event({{"step","hard-restart-click"}});click("hardRestartGame");
         }
     });poll->start();
-    session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");session.preferencesStorePath=QFileInfo(path).dir().filePath("config/engine-preferences.json");
+    if(!qEnvironmentVariableIsSet("MNM_NATIVE_OUTPUT_OWNER"))session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");
+    session.preferencesStorePath=QFileInfo(path).dir().filePath("config/engine-preferences.json");
     QTimer::singleShot(590000,&window,[finish]{finish(false,"Restart journey deadline exceeded");});
     QTimer::singleShot(0,&window,[click]{click("launchGame");});
 }

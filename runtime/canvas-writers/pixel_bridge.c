@@ -13,6 +13,7 @@ static volatile u32 owner;
 static int installed;
 static int span(u32 at,u32 bytes,int writable) {
  if(!at || !bytes || at>0xffffffffu-bytes)return 0;
+ if(cpu_history_guard_span((void*)at,bytes))return 1;
  const u32 end=at+bytes;
  while(at<end){u32 m[7];
   if(VirtualQuery((void*)at,m,28)!=28 || m[4]!=0x1000 || (m[5]&0x101) || !(m[5]&0xee) ||
@@ -23,6 +24,24 @@ static int span(u32 at,u32 bytes,int writable) {
 static int owns_thread(void) {
  const u32 thread=GetCurrentThreadId();if(!owner)__sync_bool_compare_and_swap(&owner,0,thread);return owner==thread;
 }
+#ifndef MNM_PIXEL_WRITER_SELFTEST
+static u32 rgb_refusals;
+static void rgb_refusal(const u32* r,u32 reason) {
+ char enabled[2];if(rgb_refusals>=8 || GetEnvironmentVariableA("MNM_PIXEL_REFUSAL_DIAGNOSTICS",enabled,2)!=1 || enabled[0]!='1')return;
+ u32 data[48];for(u32 i=0;i<48;++i)data[i]=0;
+ data[0]=0x31525850;data[1]=1;data[2]=sizeof(data);data[3]=reason;
+ data[4]=1;data[5]=rgb_refusals;data[6]=GetCurrentThreadId();
+ for(u32 i=0;i<23;++i)data[8+i]=r[i];
+ data[31]=*(u32*)0x658174;data[32]=*(u32*)0x6a49b8;data[33]=*(u32*)0x656618;
+ data[34]=*(u32*)0x6a2dc8;data[35]=*(u32*)0x6e1f88;
+ const u32 object=r[13];if(span(object,20,0))for(u32 i=0;i<5;++i)data[36+i]=((u32*)object)[i];
+ char name[]="pixel-rgb-refusal-0.bin";name[18]=(char)('0'+rgb_refusals++);
+ HANDLE file=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(file==(HANDLE)-1)return;
+ u32 written;WriteFile(file,data,sizeof(data),&written,0);CloseHandle(file);
+}
+#else
+static void rgb_refusal(const u32* r,u32 reason){(void)r;(void)reason;}
+#endif
 static int pcx(u32 object,struct MnmPcxInput* s,int palette) {
  if(!span(object,20,0))return 0;
  const u32* o=(const u32*)object;
@@ -36,8 +55,21 @@ static int plane(u32 object,u32 pixels,struct MnmPixelPlane* p,int original_word
  *p=(struct MnmPixelPlane){(u16*)pixels,o[4],o[5],original_word_pitch?(o[6]&65535):o[6]/2,*(const u32*)0x6e1f88};
  return mnm_pixel_plane(p) && span(pixels,p->stride*p->height*2,1);
 }
+static int rgb_empty(const u32* r,u32* a) {
+ /* The original already excluded empty vertical extents before this splice.
+  * Empty horizontal rows only update locals/registers, even for negative right
+  * bounds. No backing/source RGB access or native history request is needed. */
+ char enabled[2];const u32 selected=GetEnvironmentVariableA("MNM_PIXEL_EMPTY_RGB_NATIVE",enabled,2);
+ if(selected && (selected!=1 || enabled[0]!='1'))return 0;
+ if(!span((u32)(r+9),0x38,0) || !owns_thread() || r[7]>2048 || r[4]>2048 || r[7]<=r[4])return 0;
+ const u32* stack=r+9;const i32 right=(i32)stack[0x30/4],skip=(i32)stack[0x28/4];
+ if(skip<0 || skip>2048 || right>skip || right < -2048 || right>2048)return 0;
+ a[7]=(u32)right;a[8]=(u32)skip;a[9]=1;return 1;
+}
 static int resolve(u32* r,unsigned kind,struct MnmPixelPlane* p,struct MnmPcxInput* s,u32* a) {
  const u32 error=GetLastError();int ok=0;u32* stack=r+9;
+ if(kind==MNM_RGB_ADD && rgb_empty(r,a)){ok=1;goto done;}
+ if(kind==MNM_RGB_ADD)SetLastError(error);
  if(kind==MNM_RGB_ADD)cpu_history_require_route(*(void**)0x658174,kind);
  else if(kind==MNM_BRIGHTEN)cpu_history_require_route((void*)r[7],kind);
  else if(kind==MNM_ROW_COPY)cpu_history_require_route((void*)r[1],kind);
@@ -53,16 +85,17 @@ static int resolve(u32* r,unsigned kind,struct MnmPixelPlane* p,struct MnmPcxInp
   if(!span(pixels,a[0],1))goto done;
   *p=(struct MnmPixelPlane){(u16*)pixels,s->width,s->height,stride,*(const u32*)0x6e1f88};
  }else if(kind==MNM_RGB_ADD){
-  const u32 object=stack[0x10/4];if(!span(object,20,0))goto done;
+  const u32 object=stack[0x10/4];if(!span(object,20,0)){rgb_refusal(r,3);goto done;}
   const u32* o=(const u32*)object;const i32 x=(i32)stack[0x30/4],skip=(i32)stack[0x28/4];
-  if(r[7]>2048 || r[4]>2048 || r[7]<=r[4])goto done;
+  if(r[7]>2048 || r[4]>2048 || r[7]<=r[4]){rgb_refusal(r,1);goto done;}
   const i32 rows=(i32)(r[7]-r[4]);
   const u32 stride=*(const u32*)0x6a2dc8,height=*(const u32*)0x656618,width=*(const u32*)0x6a49b8;
   *p=(struct MnmPixelPlane){*(u16**)0x658174,width,height,stride,*(const u32*)0x6e1f88};
   if(!mnm_pixel_plane(p) || !span((u32)p->pixels,stride*height*2,1) ||
-   skip<0 || x<=skip || x>2048 || rows<=0 || rows>2048 || r[0]<(u32)p->pixels || ((r[0]-(u32)p->pixels)&1))goto done;
+   skip<0 || x<=skip || x>2048 || rows<=0 || rows>2048 || r[0]<(u32)p->pixels || ((r[0]-(u32)p->pixels)&1)){
+   rgb_refusal(r,2);goto done;}
   const u32 start=(r[0]-(u32)p->pixels)/2,left=start%stride,top=start/stride;
-  if(left>=width || (u32)(x-skip)>width-left || top>=height || (u32)rows>height-top)goto done;
+  if(left>=width || (u32)(x-skip)>width-left || top>=height || (u32)rows>height-top){rgb_refusal(r,4);goto done;}
   a[0]=left;a[1]=top;a[2]=left+x-skip;a[3]=top+rows;
   a[4]=o[2]&65535;a[5]=o[3]&65535;a[6]=o[4]&65535;a[7]=(u32)x;a[8]=(u32)skip;
  }else if(kind==MNM_BRIGHTEN){if(!plane(r[0],r[7],p,0))goto done;
@@ -85,6 +118,7 @@ typedef i32 (WIN *DibCall)(void*,i32,i32,i32,i32,i32,i32,i32,i32,const u8*,const
 static DibCall native_dib;
 static i32 WIN dib(void* dc,i32 x,i32 y,i32 w,i32 h,i32 sx,i32 sy,i32 sw,i32 sh,const u8* bits,const u8* info,u32 usage,u32 rop) {
  const u32 error=GetLastError();i32 result=(i32)0x80000000u;
+ if(bits && w>0 && h>0 && sw>0 && sh>0)cpu_history_require(bits);
  if(native_dib && owns_thread() && w>0 && w<=2048 && h>0 && h<=2048 && span((u32)info,40,0)){
   const u32 depth=(u32)info[14]|(u32)info[15]<<8;
   if((depth==1 || depth==4 || depth==8 || depth==24) &&

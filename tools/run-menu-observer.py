@@ -48,8 +48,9 @@ def main():
         admit_prefix(root,metadata,args.prefix)
     if os.environ.get('MNM_VERIFY_ORIGINALS','1')!='0':subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
     try:
+        runner='owned-menu-game-runner.py' if env.get('MNM_NATIVE_OUTPUT_OWNER') else 'menu-game-runner.py'
         command=[str(REPO/'tools/run-game.sh'),'smoke' if args.seconds else 'launch','--no-gamescope',
-                 '--prefix',str(args.prefix.resolve()),'--runner',str(REPO/'tools/menu-game-runner.py')]
+                 '--prefix',str(args.prefix.resolve()),'--runner',str(REPO/'tools'/runner)]
         if metadata.get('source_game') and Path(metadata['source_game']).resolve()!=(REPO/'working/game-nocd').resolve():command+=['--source-game',metadata['source_game']]
         if args.seconds:command+=['--seconds',str(args.seconds)]
         result=subprocess.run(command,env=env)

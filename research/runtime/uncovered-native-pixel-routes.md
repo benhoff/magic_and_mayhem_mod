@@ -112,3 +112,44 @@ source/compiler provenance, original checks, immutable reports, failed attempts
 and diagnostics remain under `working/worktrees/uncovered-routes-20261017`,
 registered on the second NVMe. The main retention guard still monitors the
 main-drive reserve; second-drive outputs do not consume that reservation.
+
+## Authored CPU-context caller follow-up, 2026-10-17
+
+The [original game caller probe](native-pixel-cpu-callers.md) now observes all
+seven alternate CPU-selected raster routes through ordinary game execution.
+The debugger supplies only raw CPUID.1 family bits before the unchanged original
+helper consumes them; original code selects its own four targets. It writes no
+dispatch pointer or route counter. A frozen `ac848056` default-policy journey
+passes 914,079 native calls, zero forwards/history refusal, all seven explicit
+requirements, normal Quit/private Wine stop and the existing 5 FPS floor.
+
+That context exercises 31/43 routes. Its union with the retained physical-host
+31/43 result is **38 distinct observed routes**, leaving five natural callers
+unresolved: PCX words, brighten, row copy, raster splice15 and camera3. The
+physical-host count remains 31/43, and the denominator remains 43. Existing
+global indirect/external-flow limits still apply. This source-bound producer
+result does not renew the merged-current renderer or original whole-session
+pixels. Earlier comparison/campaign records above retain their exact hashes.
+
+The [empty horizontal RGB-add policy](rgb-add-empty.md) now defaults enabled after
+512 guarded original comparisons plus eight explicit opt-out controls. Current
+standard journeys pass but observe no empty calls, so branch live integration
+remains pending. Earlier default-off evidence and the two unassigned RGB forwards
+remain historical. The [current acquisition catalog](producer-rest-acquisition-20261018.json)
+retains successes, source differences and failed attempts.
+
+## Current27-route cohort refresh, 2026-10-18
+
+The [all27 current-code follow-up](native-pixel-route-27-followup.md) independently compares all27 routes absent from the protected joined-shutdown journey. All pass production-splice original/native checks with positive matched physical change in RGB565/555. Accepted new physical-host and authored-CPU15 game campaigns execute22 of those27 routes and38/43 total distinct routes across contexts, with zero forwarding/history refusal and normal Quit. Five caller gaps remain: PCX words, brighten, row copy, raster15 and camera3. Complete-window byte/reference and camera-table review narrows these gaps without declaring dead code or reducing the denominator. The27 absent handlers already have native implementations; no43/43 live or original resident-history equivalence is claimed.
+
+The [entry/module review](pixel-route-entry-boundaries.md) records all five as
+provisional unused candidates while retaining unresolved indirect/external paths
+and the43-route denominator. Twelve parser controls pass. The separately failed
+camera-stress attempt exposes a [physical displacement boundary](raster-displacement-physical-boundary.md):
+192 controlled original cases pass, including28 atomic native refusals and
+original-once fallbacks. Standard journey acceptance does not close that stress
+boundary or original GPU/session equivalence.
+
+## Finite CPU boundary and producer renewal (2026-10-18)
+
+The [finite CPU repair](finite-cpu-displacement.md) admits the captured allocation-edge shape safely by retaining destinations with unowned taps. The [new caller witness](finite-cpu-displacement-renewed-game-20261018.json) actually observes6 finite-edge calls/17 retained WORDs among1,347,324 native calls,zero forwards/history refusal and normal Quit. It renews the prospectively selected authored-CPU caller/27-route policies, while the finite policy is confirmed separately. All43 handlers remain installed; five original natural callers remain unused candidates and the denominator is unchanged. The earlier38/43 cross-context union is not a single resident or physical alternate-CPU result.

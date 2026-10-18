@@ -13,6 +13,8 @@ class LiveMenuSession final : public QObject {
 public:
     explicit LiveMenuSession(QString repository,QObject* parent=nullptr);
     bool nativeCommandsEnabled=false;
+    bool nativeOnlyEnabled=false;
+    int launcherExitCode=-1;
     bool nativeVoicesEnabled=false;
     bool nativeMediaEnabled=false;
     bool nativeMusicEnabled=false;

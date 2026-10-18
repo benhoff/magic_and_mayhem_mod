@@ -210,10 +210,12 @@ static void extent(u32* r,struct Surface* s){if(s){r[3]=s->id;r[5]=s->width;r[6]
 static void clip(u32* r){r[10]=get((void*)0x6e0008);r[11]=get((void*)0x6cbb6c);r[12]=get((void*)0x6a49b8);r[13]=get((void*)0x656618);}
 static void checkpoint(struct Surface* s,u32 reason){
  if(!s||!s->pixels||!s->dirty||s->dirty==s->sampled)return;
- if(!s->width||s->width>2048||!s->height||s->height>2048||s->stride<s->width||s->stride>4096||!readable(s->pixels,s->stride*s->height*2)){fail(10,s->id);return;}
+ if(!s->width||s->width>2048||!s->height||s->height>2048||s->stride<s->width||s->stride>4096){fail(10,s->id);return;}
  u32 n=s->width*s->height*2;if(oracle>=9999||oracle_bytes>oracle_byte_limit||n>oracle_byte_limit-oracle_bytes){fail(11,s->id);return;}
  if(session_producers){s->sampled=s->dirty;u32 r[24]={0};r[2]=MNM_PRODUCER_CHECKPOINT;extent(r,s);r[14]=++oracle;r[15]=reason;r[16]=queue;emit(r,0,0);return;}
  if(continuous_map){s->sampled=s->dirty;u32 r[24]={0};r[2]=MNM_PRODUCER_CHECKPOINT;extent(r,s);r[14]=oracle;r[15]=reason;r[16]=queue;emit(r,0,0);return;}
+ /* Metadata-only checkpoints above never consume compatibility pixels. */
+ if(!readable(s->pixels,s->stride*s->height*2)){fail(10,s->id);return;}
  char name[260];path(name,"producer-oracle-",++oracle,".565");HANDLE f=CreateFileA(name,0x40000000,0,0,1,0x80,0);
  if(f==(HANDLE)-1){fail(12,s->id);return;}
  int okay=1;if(s->stride==s->width)okay=write(f,(void*)s->pixels,n);else for(u32 y=0;y<s->height;++y)if(!write(f,(void*)(s->pixels+y*s->stride*2),s->width*2)){okay=0;break;}if(!CloseHandle(f))okay=0;

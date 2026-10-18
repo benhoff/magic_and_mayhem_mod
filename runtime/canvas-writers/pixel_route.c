@@ -26,7 +26,7 @@ int mnm_pixel_route(uint32_t *r, unsigned kind) {
         r[7] = r[6] = s.height;
         r[5] = (uint32_t)(uintptr_t)s.encoded + at;
     } else if (kind == MNM_RGB_ADD) {
-        if (!mnm_rgb_add(&p, (int32_t)args[0], (int32_t)args[1], (int32_t)args[2],
+        if (!args[9] && !mnm_rgb_add(&p, (int32_t)args[0], (int32_t)args[1], (int32_t)args[2],
             (int32_t)args[3], (uint16_t)args[4], (uint16_t)args[5], (uint16_t)args[6])) goto refuse;
         r[7] = args[7]; r[5] = args[8]; r[6] = 0;
     } else if (kind == MNM_BRIGHTEN) {

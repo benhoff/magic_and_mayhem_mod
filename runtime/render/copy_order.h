@@ -8,11 +8,13 @@ static int (*game_copy_pressure_admit)(u32,u32);
  * callbacks keep generation guards; timeout forwards and invalidates both sides
  * of the unobserved call. Other mutation families retain generation checks. */
 #define GAME_COPY_WAIT_MS 50u
+#define GAME_COPY_RESIDENT_WAIT_MS 250u
 enum { GAME_COPY_BIND=0, GAME_COPY_MUTATION=1, GAME_COPY_OBSERVATION=2 };
 static u32 game_copy_owner,game_copy_started,game_copy_site,game_copy_phase;
 static struct GameCopyLease game_copy_enter_policy(void* target,u32 site,u32 original_call){
-    u32 error=GetLastError(),thread=GetCurrentThreadId(),start=GetTickCount(),waited=0,pressure_started=start;
+    u32 error=GetLastError(),thread=GetCurrentThreadId(),start=GetTickCount(),waited=0,pressure_started=start,reader_wait=0;
     struct GameCopyLease lease={0,1,0};
+    const u32 ordinary_budget=game_resident_world?GAME_COPY_RESIDENT_WAIT_MS:GAME_COPY_WAIT_MS;
     struct CopyWaitTiming timing;copy_wait_begin(&timing,start);
     if(!game_copy_order_enabled)goto done;
     for(;;){
@@ -32,7 +34,8 @@ static struct GameCopyLease game_copy_enter_policy(void* target,u32 site,u32 ori
             if(!original_call)lease.observe=0;
             lock_diagnostic(original_call?"copy_order_reentrant":"resident_bind_reentrant",target,0,owner,0,0,0,0);break;
         }
-        u32 budget=__atomic_load_n(&game_cpu_transfer_wait,__ATOMIC_ACQUIRE)?10000u+GAME_COPY_WAIT_MS:GAME_COPY_WAIT_MS;
+        reader_wait|=__atomic_load_n(&game_cpu_transfer_wait,__ATOMIC_ACQUIRE);
+        u32 budget=ordinary_budget+(reader_wait?10000u:0);
         if(GetTickCount()-start>=budget){
             lease.observe=0;
             copy_wait_timeout(&timing,&game_copy_owner,command_channel_session,target,site);
@@ -70,6 +73,7 @@ static void game_copy_leave(struct GameCopyLease* lease){
     if(lease->held){u32 error=GetLastError(),flush=lease->deferred;
         copy_trace_owner_close();
         lease->held=lease->deferred=0;
+        __atomic_store_n(&game_cpu_transfer_wait,0,__ATOMIC_RELEASE);
         __atomic_store_n(&game_copy_owner,0,__ATOMIC_RELEASE);WakeByAddressAll(&game_copy_owner);
         if(flush && game_copy_native_defer)game_copy_native_defer(0);
         SetLastError(error);
@@ -90,12 +94,14 @@ static void game_lifetime_invalidate(void){
 /* Shutdown refusal must leave an active stream intact for a later retry.
  * Unlike a missed drawing callback, this does not forward an unobserved write. */
 static struct GameCopyLease game_copy_shutdown_enter(void){
-    u32 error=GetLastError(),thread=GetCurrentThreadId(),start=GetTickCount();struct GameCopyLease lease={0,1,0};
+    u32 error=GetLastError(),thread=GetCurrentThreadId(),start=GetTickCount(),reader_wait=0;struct GameCopyLease lease={0,1,0};
+    const u32 ordinary_budget=game_resident_world?GAME_COPY_RESIDENT_WAIT_MS:GAME_COPY_WAIT_MS;
     if(!game_copy_order_enabled)goto done;
     for(;;){
         if(__sync_bool_compare_and_swap(&game_copy_owner,0,thread)){lease.held=1;break;}
         if(__atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE)==thread){lease.observe=0;lock_diagnostic("command_shutdown_reentrant",0,0,thread,0,0,0,0);break;}
-        u32 budget=__atomic_load_n(&game_cpu_transfer_wait,__ATOMIC_ACQUIRE)?10000u+GAME_COPY_WAIT_MS:GAME_COPY_WAIT_MS;
+        reader_wait|=__atomic_load_n(&game_cpu_transfer_wait,__ATOMIC_ACQUIRE);
+        u32 budget=ordinary_budget+(reader_wait?10000u:0);
         if(GetTickCount()-start>=budget){lease.observe=0;lock_diagnostic("command_shutdown_admission_timeout",0,0,thread,0,0,0,0);break;}
         Sleep(0);
     }

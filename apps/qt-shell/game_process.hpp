@@ -16,7 +16,11 @@ public:
         connect(&server_,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),this,[this](int code,QProcess::ExitStatus status){
             if(!stopping_)return;
             if(timedOut_){serverDone_=true;complete();return;}
-            if(code!=0||status!=QProcess::NormalExit){error_="Wine shutdown failed: "+QString::fromLocal8Bit(server_.readAllStandardError());serverDone_=true;complete();return;}
+            const auto diagnostic=QString::fromLocal8Bit(server_.readAllStandardError());
+            // Wine -k exits1 without diagnostics when the namespace's server
+            // already disappeared. Still require the subsequent -w barrier.
+            const bool absent=!waitingServer_&&code==1&&diagnostic.isEmpty();
+            if((code!=0&&!absent)||status!=QProcess::NormalExit){error_="Wine shutdown failed: "+diagnostic;serverDone_=true;complete();return;}
             if(waitingServer_){serverDone_=true;complete();}
             else{waitingServer_=true;server_.start(serverProgram_,{"-w"});}
         });

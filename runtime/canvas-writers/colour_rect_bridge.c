@@ -13,7 +13,8 @@ static Plane owned_plane;
 static volatile u32 owner;
 static u32 word(u32 at){const u8 *p=(const u8*)at;return p[0]|(u32)p[1]<<8|(u32)p[2]<<16|(u32)p[3]<<24;}
 static int span(u32 at,u32 n,int write){
- if(!at||!n||at>0xffffffffu-n)return 0;const u32 end=at+n;
+ if(!at||!n||at>0xffffffffu-n)return 0;
+ if(cpu_history_guard_span((void*)at,n))return 1;const u32 end=at+n;
  while(at<end){u32 m[7];if(VirtualQuery((void*)at,m,28)!=28||m[4]!=0x1000||(m[5]&0x101)||!(m[5]&(write?0xcc:0xee))||m[0]>at||!m[3]||m[0]>0xffffffffu-m[3]||m[0]+m[3]<=at)return 0;at=m[0]+m[3];}return 1;
 }
 #ifndef MNM_COLOUR_RECT_SELFTEST

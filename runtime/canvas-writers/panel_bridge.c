@@ -12,6 +12,7 @@ static volatile u32 owner;
 static int installed;
 static int span(u32 at, u32 bytes, int writable) {
     if (!at || !bytes || at > 0xffffffffu - bytes) return 0;
+ if(cpu_history_guard_span((void*)at,bytes))return 1;
     const u32 end = at + bytes;
     while (at < end) {
         u32 m[7];

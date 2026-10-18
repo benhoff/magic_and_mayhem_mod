@@ -4,9 +4,13 @@
 API void* WIN AddVectoredExceptionHandler(u32,void*);
 API HANDLE WIN HeapCreate(u32,u32,u32);
 API u32 WIN GetCurrentThreadId(void);
+API void* WIN GetProcAddress(HANDLE,const char*);
 static u32 batch_enabled,batch_count,batch_transfers,batch_pixel_base,batch_pixel_bytes;
 static u32 batch_guard_base,batch_guard_bytes,batch_guard_old,batch_guard_open;
 static u32 batch_reject,batch_owner;
+static i32 (WIN *batch_cpu_guard_world)(const void*);
+static i32 (WIN *batch_cpu_guard_world_v2)(const void*,u32);
+static u32 batch_cpu_guard_borrowed;
 static u32 batch_rows[MNM_WORLD_BATCH_MAX][4];
 static struct Surface* batch_surface;
 struct BatchExceptionRecord {u32 code,flags,record,address,count,information[15];};
@@ -21,13 +25,19 @@ static int batch_init(void){
  char value[2];u32 n=GetEnvironmentVariableA("MNM_WORLD_RASTER_BATCH",value,2);
  if(!n)return 1;if(n!=1||value[0]!='1'||!raster_first||bypass_limit)return 0;
  producer_record_heap=HeapCreate(0,0,0);if(!producer_record_heap)return 0;
+ void* native_draw=GetModuleHandleA("MnmDraw.dll");
+ if(native_draw)batch_cpu_guard_world=(i32 (WIN *)(const void*))GetProcAddress(native_draw,"NativeDrawCpuGuardWorldV1");
+ if(native_draw)batch_cpu_guard_world_v2=(i32 (WIN *)(const void*,u32))GetProcAddress(native_draw,"NativeDrawCpuGuardWorldV2");
  batch_enabled=1;return AddVectoredExceptionHandler(1,(void*)batch_fault)!=0;
 }
 static int batch_start(struct Surface* s){
  batch_reject=1;if(!s||batch_guard_open||s->width!=800||s->height!=600||s->stride!=800)return 0;
  batch_reject=2;if(get((void*)0x6e1f88))return 0;
- const u32 n=s->stride*s->height*2,p=s->pixels;batch_reject=3;if(!readable(p,n))return 0;
- u32 m[7],end[7];batch_reject=4;if(VirtualQuery((void*)p,m,28)!=28||VirtualQuery((void*)(p+n-1),end,28)!=28||m[1]!=end[1]||m[5]!=end[5]||(m[5]!=4&&m[5]!=8))return 0;
+ const u32 n=s->stride*s->height*2,p=s->pixels;
+ batch_reject=7;i32 borrowed=batch_cpu_guard_world_v2?batch_cpu_guard_world_v2((void*)p,1):batch_cpu_guard_world?batch_cpu_guard_world((void*)p):0;
+ if(borrowed<0)return 0;batch_cpu_guard_borrowed=borrowed==1;
+ batch_reject=3;if(!readable(p,n) && !batch_cpu_guard_borrowed)return 0;
+ u32 m[7],end[7];batch_reject=4;if(VirtualQuery((void*)p,m,28)!=28||VirtualQuery((void*)(p+n-1),end,28)!=28||m[1]!=end[1]||m[5]!=end[5]||(m[5]!=4&&m[5]!=8&&!(batch_cpu_guard_borrowed&&m[5]==1)))return 0;
  batch_guard_base=p&~4095u;batch_guard_bytes=((p+n+4095u)&~4095u)-batch_guard_base;
  batch_reject=5;if(batch_guard_base<m[0]||batch_guard_bytes>m[3]-(batch_guard_base-m[0]))return 0;
  batch_count=0;batch_owner=GetCurrentThreadId();batch_surface=s;batch_pixel_base=p;batch_pixel_bytes=n;
@@ -44,7 +54,9 @@ static void batch_header(u32* h,struct Surface* s){
 }
 static int batch_restore(void){u32 prior;if(!batch_guard_open)return 0;producer_source_region_end();
  u32 at=batch_guard_base,end=at+batch_guard_bytes;while(at<end){u32 m[7];if(VirtualQuery((void*)at,m,28)!=28||m[4]!=0x1000||m[5]!=1||m[0]+m[3]<=at)return 0;at=m[0]+m[3];}
- if(!VirtualProtect((void*)batch_guard_base,batch_guard_bytes,batch_guard_old,&prior)||prior!=1)return 0;batch_guard_open=0;return 1;}
+ if(!VirtualProtect((void*)batch_guard_base,batch_guard_bytes,batch_guard_old,&prior)||prior!=1)return 0;
+ if(batch_cpu_guard_borrowed && batch_cpu_guard_world_v2 && batch_cpu_guard_world_v2((void*)batch_pixel_base,0))return 0;
+ batch_guard_open=0;batch_cpu_guard_borrowed=0;return 1;}
 static int batch_reply(struct Surface* s,const u32* request){
  if(!batch_identity(s)||!bypass_writable(s->pixels,batch_pixel_bytes))return 0;
  char name[260];path(name,"world-batch-",queue,".reply");u8* pixels=HeapAlloc(GetProcessHeap(),0,batch_pixel_bytes);if(!pixels)return 0;

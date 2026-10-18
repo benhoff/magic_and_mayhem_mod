@@ -214,6 +214,11 @@ static void game_unlock_before(void* object,u32 unlock_kind,void* argument,struc
         matched=slot;pending->object=slot->object;pending->generation=slot->generation;
         if(slot->owner!=GetCurrentThreadId()){reason="unlock_owner";break;}
         if(unlock_kind>=14?(argument!=slot->rectangle || (argument && (!readable(argument,16) || !same(argument,&slot->region,16)))):argument!=(void*)slot->desc[9]){reason="unlock_argument";break;}
+        if((slot->resident || slot->gpu_history) && (game_cpu_lease_dirty(slot,0,2)&2)){
+            u32 layout[4];game_cpu_lease_layout(slot,layout);game_tracker_release();
+            if(RenderRequireCpuHistoryV1(object,(void*)layout[0],0,0,0)!=1)game_cpu_read_refuse(21,object,0);
+            game_unlock_before(object,unlock_kind,argument,pending);return;
+        }
         u32* d=slot->desc;u32 width=d[3],height=d[2],bits=d[21];i32 pitch=(i32)d[4];
         if(!width || width>2048 || !height || height>2048 || !supported_format(d) || pitch==(-2147483647-1)){reason="unlock_layout";break;}
         if(bits!=8 && (!render_mask(d[22],bits) || !render_mask(d[23],bits) || !render_mask(d[24],bits) ||
@@ -221,16 +226,24 @@ static void game_unlock_before(void* object,u32 unlock_kind,void* argument,struc
         u32 row_width=slot->rectangle?(u32)(slot->region.right-slot->region.left):width;
         u32 rows=slot->rectangle?(u32)(slot->region.bottom-slot->region.top):height;
         u32 stride=width*(bits/8),row_stride=row_width*(bits/8),magnitude=(u32)(pitch<0?-pitch:pitch),offset=(rows-1)*magnitude,at=d[9];
+        int private_snapshot=game_native_cpu_lease_snapshot && (slot->resident || slot->gpu_history);
         if(magnitude<stride || magnitude>32768 || (pitch<0 && at<offset) ||
-           !readable((void*)(pitch<0?at-offset:at),offset+row_stride)){reason="unlock_memory";break;}
+           (!private_snapshot && !readable((void*)(pitch<0?at-offset:at),offset+row_stride))){reason="unlock_memory";break;}
         u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
         if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || stride*height>GAME_SURFACE_LIMIT-game_surface_bytes-reserved){reason="unlock_limit";break;}
         struct Snapshot* s=&pending->pixels;s->data=HeapAlloc(GetProcessHeap(),0,stride*height);if(!s->data){reason="unlock_allocation";break;}
         __atomic_add_fetch(&lock_capture_reserved,stride*height,__ATOMIC_RELAXED);
         s->width=width;s->height=height;s->bits=bits;s->flags=d[19];s->r=d[22];s->g=d[23];s->b=d[24];s->length=stride*height;
-        if(slot->rectangle)copy(s->data,slot->base.data,s->length);
-        for(u32 y=0;y<rows;++y){u32 target=slot->rectangle?((u32)slot->region.top+y)*stride+(u32)slot->region.left*(bits/8):y*stride;
-            copy(s->data+target,(u8*)at+(i32)y*pitch,row_stride);}
+        if(private_snapshot){
+            u32 base=at-(slot->rectangle?(u32)slot->region.top*(u32)pitch+(u32)slot->region.left*(bits/8):0);
+            u32 layout[4]={base,width,height,(u32)pitch};
+            i32 copied=game_native_cpu_lease_snapshot(object,layout,(u16*)s->data,s->length);
+            if(copied)game_cpu_read_refuse(9,object,(u32)copied);
+        }else{
+            if(slot->rectangle)copy(s->data,slot->base.data,s->length);
+            for(u32 y=0;y<rows;++y){u32 target=slot->rectangle?((u32)slot->region.top+y)*stride+(u32)slot->region.left*(bits/8):y*stride;
+                copy(s->data+target,(u8*)at+(i32)y*pitch,row_stride);}
+        }
         pending->owner=slot->owner;pending->kind=slot->kind;pending->flags=slot->flags;
         pending->primary=(d[1]&1) && (d[26]&0x200);reason="unlock_copied";break;
     }
@@ -284,7 +297,14 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
         game_copy_stage(32);
         game_surface_sync();game_surface_store(pending->object,s,pending->primary,slot->desc);
         struct GameSurface* surface=game_surface_find(pending->object,0);
-        if(surface)surface->gpu_history=slot->resident||slot->gpu_history;
+        if(surface){
+            surface->gpu_history=slot->resident||slot->gpu_history;
+            /* An explicit reader may have restored this physical allocation
+             * during the lease. Its resident origin does not make those now
+             * current CPU bytes stale again at Unlock. */
+            if(surface->gpu_history && game_native_cpu_transfer){u32 identity[8];
+                if(game_native_cpu_transfer(pending->object,identity,0,0)==1)surface->gpu_history=0;}
+        }
         if(surface && surface->primary && surface->pixels.bits==8)game_surface_publish(surface);
     }
     if(slot && result>=0){if(!s->data && !pending->pixels.width)game_session_invalidate(pending->object);game_lock_clear(slot);}
