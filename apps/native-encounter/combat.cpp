@@ -5,6 +5,7 @@
 #include "../command-session/native_geometry.hpp"
 #include "../command-session/native_route.hpp"
 #include "encounter.hpp"
+#include "wizards.hpp"
 #include <algorithm>
 #include <stdexcept>
 namespace mnm::encounter {
@@ -236,7 +237,8 @@ public:
          "encounter backend version");
     need(c.world.creatures.size() == p->initial.world.creatures.size() && c.world.creatures.size()<=8, "encounter fixed actor pool");
     for (const auto &a : c.world.creatures)
-      need(a.ai.type == 17 && a.ai.kind == 1 && a.width == 2 && a.height == 2 &&
+      need(((a.ai.type == 17 && a.ai.kind == 1 && a.width == 2 && a.height == 2) ||
+            (p->scenario == 10 && a.ai.type == 0 && a.ai.kind == 0 && a.width == 1 && a.height == 4)) &&
                !a.form && !a.mode && !a.ai.flying &&
                !c.execution.at(a.ai.slot).bonusMode124,
            "encounter ordinary actor domain");
@@ -245,7 +247,7 @@ public:
               int source = -1, int sourceSlot = -1, bool notify = true) {
     need(commands != nullptr, "encounter operation context missing");
     m::Inputs input;
-    input.baseMaximum = p->maximum;
+    input.baseMaximum = p->scenario == 10 ? a.ai.maximumHealth : p->maximum;
     input.slot = a.ai.slot;
     input.owner = unsigned(a.ai.owner);
     input.selectedOwner = 0;
@@ -307,6 +309,7 @@ public:
     need(a.ai.target >= 0, "encounter hit target");
     auto &b = c.world.creatures.at(unsigned(a.ai.target));
     auto parameters = p->melee;
+    if(p->scenario == 10){parameters.base=a.ai.hth.at(b.ai.type);parameters.stunThreshold=p->stun.at(a.ai.type).at(b.ai.type);}
     auto &e = c.execution.at(a.ai.slot);
     need(!a.block7c && !b.block7c, "encounter no evasion domain");
     parameters.charge = e.previousMove != 0;
@@ -351,6 +354,9 @@ public:
     f.execution.adjustDuplicate = [](auto &) { return false; };
     f.execution.duplicateMove = [](auto &, auto q) { return q; };
     f.callbacks.hit = [self](auto &a) { self->hit(a); };
+    f.damage = [self](auto &a, int amount, int owner, unsigned source) {
+      self->health(a,m::Entry::defendedDamage,amount,owner,int(source));
+    };
     f.callbacks.stun = [self](auto &a, unsigned d, unsigned mode) {
       self->stun(a, d, mode);
     };
@@ -462,13 +468,16 @@ cs::NativeConsequenceFactory consequences(const Profile &p) {
     return fx->services(fx);
   };
 }
-std::shared_ptr<const cs::Runtime> runtime(const Profile &p,cs::NativeOwnerTaskVerifier verifier) {
+std::shared_ptr<const cs::Runtime> runtime(const Profile &p,cs::NativeOwnerTaskVerifier verifier, WizardVerifier wizardVerifier) {
   auto lower=consequences(p);
-  cs::NativeConsequenceFactory checked=[lower,verifier](auto &c){auto fx=lower(c);fx.verifyOwnerTask=verifier;return fx;};
+  const auto owned=std::make_shared<const Profile>(p);
+  cs::NativeConsequenceFactory checked=[lower,verifier,owned,wizardVerifier](auto &c){auto fx=lower(c);fx.verifyOwnerTask=verifier;
+    if(c.native.wizards){const auto effects=fx;fx.worldWork=[&c,owned,effects,wizardVerifier](auto &commands){advanceWizardWorld(c,*owned,commands,effects);if(wizardVerifier)wizardVerifier(c);};}
+    return fx;};
   return std::make_shared<const cs::Runtime>(
       p.initial, p.bytes, cs::nativeProviders(p.native, std::move(checked)));
 }
-game::CreatureRuleSession create(const Profile &p, unsigned seed,cs::NativeOwnerTaskVerifier verifier) {
-  return {runtime(p,std::move(verifier)), p.bytes, seed, unsigned(p.initial.world.creatures.size())};
+game::CreatureRuleSession create(const Profile &p, unsigned seed,cs::NativeOwnerTaskVerifier verifier, WizardVerifier wizardVerifier) {
+  return {runtime(p,std::move(verifier),std::move(wizardVerifier)), p.bytes, seed, unsigned(p.initial.world.creatures.size())};
 }
 } // namespace mnm::encounter

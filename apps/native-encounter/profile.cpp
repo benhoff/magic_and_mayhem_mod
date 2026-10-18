@@ -5,6 +5,7 @@
 #include "../command-session/native_owner_planner.hpp"
 #include "../command-session/native_owner_sources.hpp"
 #include "encounter.hpp"
+#include "wizards.hpp"
 #include <algorithm>
 #include <charconv>
 #include <cstring>
@@ -117,7 +118,7 @@ void enableOwnerPlanner(Profile &p, const std::filesystem::path &path,
 game::Bytes loadInputs(const std::filesystem::path &root, scene::MapCrop crop,
                        unsigned scenario) {
   game::Bytes b{'M', 'N', 'M', 'E', 'N', 'C', '0', '1'};
-  need(scenario <= 9, "encounter scenario");
+  need(scenario <= 10, "encounter scenario");
   if (scenario) {
     b[7] = '2';
     word(b, scenario);
@@ -132,16 +133,17 @@ game::Bytes loadInputs(const std::filesystem::path &root, scene::MapCrop crop,
     word(b, unsigned(v.size()));
     b.insert(b.end(), v.begin(), v.end());
   }
-  return b;
+  return scenario==10 ? loadWizardInputs(std::move(b),root) : b;
 }
 Profile decodeInputs(game::Bytes bytes) {
+  if(bytes.size()>=8&&std::equal(bytes.begin(),bytes.begin()+8,"MNMWIZ01"))return decodeWizardInputs(std::move(bytes));
   need(bytes.size() >= 24 &&
            std::equal(bytes.begin(), bytes.begin() + 7, "MNMENC0") &&
            (bytes[7] == '1' || bytes[7] == '2'),
        "encounter input version");
   std::size_t at = 8;
   const unsigned scenario = bytes[7] == '2' ? take(bytes, at) : 0;
-  need(scenario <= 9, "encounter scenario");
+  need(scenario <= 10, "encounter scenario");
   const unsigned actors = scenario == 9 ? 6 : scenario == 8 ? 3 : scenario == 1 || scenario == 3 ? 4
                           : scenario >= 2                ? 8
                                                          : 2;

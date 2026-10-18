@@ -41,7 +41,14 @@ void result(const mnm::game::CreatureRuleSession &s) {
               << ",\"position\":[" << a.ai.position.x << ',' << a.ai.position.y
               << ',' << a.ai.position.z << "]}";
   }
-  std::cout << "]}\n";
+  std::cout << ']';
+  if(c.native.wizards){const auto &w=*c.native.wizards;
+    std::cout<<",\"wizard\":{\"casts\":"<<w.casts<<",\"heals\":"<<w.heals<<",\"impacts\":"<<w.impacts<<",\"bounces\":"<<w.bounces<<",\"expirations\":"<<w.expirations
+             <<",\"summons\":"<<w.summons<<",\"decisions\":"<<w.decisions<<",\"refusals\":"<<w.refusedCasts<<",\"mana\":[";
+    for(unsigned i=0;i<w.controllers.size();++i){if(i)std::cout<<',';std::cout<<w.admission.resource[w.controllers[i].actor];}
+    std::cout<<"]}";
+  }
+  std::cout << "}\n";
 }
 } // namespace
 int main(int argc, char **argv) try {
@@ -50,8 +57,8 @@ int main(int argc, char **argv) try {
   const bool sources=command=="run-sources" || command=="run-autogroups" || command=="run-skirmish";
   const bool planner=sources || command=="run-planner";
   const bool regional=planner || command=="run-regional" || command=="run-danger" || command=="run-knowledge" || command=="run-visibility";
-  if(argc==10 && (command=="run" || regional)){
-    const unsigned scenario=command=="run-skirmish"?9:sources?8:0;
+  if(argc==10 && (command=="run" || command=="run-wizards" || regional)){
+    const unsigned scenario=command=="run-wizards"?10:command=="run-skirmish"?9:sources?8:0;
     auto p=encounter::decodeInputs(encounter::loadInputs(argv[2],{number(argv[3]),number(argv[4]),number(argv[5]),number(argv[6])},scenario));
     if(regional)encounter::enableRegionalNavigation(p);
     if(command=="run-danger")encounter::enableRegionalDanger(p);
@@ -93,7 +100,7 @@ int main(int argc, char **argv) try {
     result(s);
     return 0;
   }
-  std::cerr << "Usage: native-encounter run|run-regional|run-danger|run-knowledge|run-visibility|run-planner|run-sources|run-autogroups|run-skirmish INSTALL X "
+  std::cerr << "Usage: native-encounter run|run-regional|run-danger|run-knowledge|run-visibility|run-planner|run-sources|run-autogroups|run-skirmish|run-wizards INSTALL X "
                "Y WIDTH "
                "HEIGHT SEED "
                "TICKS NEW_SNAPSHOT\n       native-encounter resume SNAPSHOT "

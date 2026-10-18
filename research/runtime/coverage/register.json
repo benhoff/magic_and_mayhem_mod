@@ -5,8 +5,8 @@
     {
       "id": "nocd-40209ca7",
       "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
-      "inventory": "research/runtime/coverage/binary-nocd-owner-planner-20261016.json",
-      "inventory_sha256": "1646a231ba2641917291301a70a360d81ac639ee82ab3305ce2b26e6aa0369e9"
+      "inventory": "research/runtime/coverage/binary-nocd-wizard-ai-20261017.json",
+      "inventory_sha256": "59aff7d05479cd392c1417ad2db23ffa8c2490d11751e4997542473eb818d759"
     }
   ],
   "behaviors": [
@@ -76262,6 +76262,860 @@
         "failures": "Missing/stale/unbound/changed producer or trace, malformed/truncated/oversized record and task/actor bounds refuse.",
         "exclusions": "Captured risk producer original equivalence, raw ABI fields outside projection, original decision/candidate generation/caller/creature-frame replay, full battle/World, wizard/other brains/training/live."
       }
+    },
+    {
+      "id": "AI.wizard-spell-control",
+      "subsystem": "creature_ai",
+      "kind": "recovered",
+      "title": "Wizard spell mana readiness and observed-peer availability",
+      "scope": "Whole51e530 fixed-point mana/count arithmetic, unsigned maximum admission, all42 inventory reserves and same-owner eligible active mana producers with configured rate/period. Producer412aa0 remains supplied. Separate40a950 present-first-wizard/observed-peer minimum projection; full peer traversal/51e6c0/known-spell producer and original inventory consumption/regeneration/World integration remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5367088,
+          "scope": "Whole mana wait computation with supplied producer predicate and configured inputs."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4237648,
+          "scope": "Present-first-wizard and observed-peer minimum projection only; traversal and peer wait provider remain separate."
+        }
+      ],
+      "documents": [
+        "research/runtime/wizard-ai.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/wizard_spell_control.hpp",
+        "reconstruction/creature-ai/wizard_spell_control.cpp"
+      ],
+      "tests": [
+        "tests/wizard-spell-control-test.cpp",
+        "tools/test-wizard-spell-control.py"
+      ],
+      "evidence": [
+        "NS87.spell-control-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py"
+      ]
+    },
+    {
+      "id": "AI.wizard-controller",
+      "subsystem": "creature_ai",
+      "kind": "recovered",
+      "title": "Original wizard strategic spell tasks and controller composition",
+      "scope": "Wizard source admission, availability and spell-task prepare/next/save/lifetime/execute routing, target/coordinate spells, summoning and survival within the original owner controller. Static family discovery currently identifies 46 kinds14..59 from constructor/vtable slots. Full semantic implementation, coupled candidate-to-cast comparison, installed wizard/spell/geometry/secondary/health/resource composition and continuation are pending; independent component evidence does not establish this whole controller.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4339088,
+          "scope": "Wizard source/evaluator selection branches remain pending beyond ordinary recovered scope."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4283456,
+          "scope": "Wizard-source queue dispatch; individual wizard planning bodies remain pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/wizard-ai.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tools/ghidra/ExportWizardAIInventory.java",
+        "tools/export-wizard-ai-inventory.py",
+        "tools/review-wizard-ai-inventory.py",
+        "tools/export-wizard-ai.py"
+      ]
+    },
+    {
+      "id": "AI.wizard-target-task",
+      "subsystem": "creature_ai",
+      "kind": "recovered",
+      "title": "Original actor-target wizard spell task execution",
+      "scope": "Whole actor-target execution for spell IDs41/42/74/78/79/83/84/85 at eight original entries: alive/max-health/status gates, issued latch, wait/inventory shortage, spell74 continuation after inventory use, spell79 omitted health reread, positioning and semantic descriptor words0/7..11. Explicit pure maximum/status inputs and wait/inventory/positioning/cast services with directed lower mutations. Preparation/scoring/lifetime/geometry/admission/effects and whole wizard/World remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4482800,
+          "scope": "Whole selected actor-target task execution; lower services remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4575920,
+          "scope": "Whole selected actor-target task execution; lower services remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4520400,
+          "scope": "Whole selected actor-target task execution; lower services remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4523904,
+          "scope": "Whole selected actor-target task execution; lower services remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4506976,
+          "scope": "Whole selected actor-target task execution; lower services remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4522176,
+          "scope": "Whole selected actor-target task execution; lower services remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4525792,
+          "scope": "Whole selected actor-target task execution; lower services remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4569952,
+          "scope": "Whole selected actor-target task execution; lower services remain explicit."
+        }
+      ],
+      "documents": [
+        "research/runtime/wizard-ai.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/wizard_target_task.hpp",
+        "reconstruction/creature-ai/wizard_target_task.cpp"
+      ],
+      "tests": [
+        "tests/wizard-target-task-test.cpp",
+        "tools/test-wizard-target-task.py"
+      ],
+      "evidence": [
+        "NS87.target-task-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py"
+      ]
+    },
+    {
+      "id": "AI.wizard-projectile-task",
+      "subsystem": "creature_ai",
+      "kind": "recovered",
+      "title": "Original Magic Sphere wizard task execution",
+      "scope": "Whole44ae70 MagicSphere73 task body: dead-target restoration, issued/mana/inventory/stand/action gates, position/cast services and saved command. Semantic descriptor0/7..11 and ordered calls; lower service mutations explicit. Candidate prediction/scoring/lifetime/lower services/World remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4501104,
+          "scope": "Whole Magic Sphere execution with explicit lower wait/inventory/position/cast/saved-command services."
+        }
+      ],
+      "documents": [
+        "research/runtime/wizard-ai.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/wizard_projectile_task.hpp",
+        "reconstruction/creature-ai/wizard_projectile_task.cpp"
+      ],
+      "tests": [
+        "tests/wizard-projectile-task-test.cpp",
+        "tools/test-wizard-projectile-task.py"
+      ],
+      "evidence": [
+        "NS87.projectile-task-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/wizard_target_task.cpp",
+        "reconstruction/creature-ai/wizard_target_task.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/wizard-target-task-test.cpp",
+        "tools/owner_planner_comparison.py"
+      ]
+    },
+    {
+      "id": "MV.wizard-ground-profile",
+      "subsystem": "creature_ai",
+      "kind": "recovered",
+      "title": "Wizard footstep-compatible ground movement banks",
+      "scope": "Whole505220/505160 selected ground-only type0 ANI bank production and maximum with installed version5 wizard walking programs containing footstep events5, event2,12sprites/repeat/stop. Endpoint-preserving translations,48words/max, no target redirects; full loader/flight/motion integration remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5263904,
+          "scope": "Selected ground-only type0 two-bank production; animation selection supplied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5263712,
+          "scope": "Ground maximum from produced banks."
+        }
+      ],
+      "documents": [
+        "research/runtime/wizard-ai.md"
+      ],
+      "implementation": [
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp"
+      ],
+      "tests": [
+        "tests/wizard-ground-profile-test.cpp",
+        "tools/test-wizard-ground-profile.py"
+      ],
+      "evidence": [
+        "NS87.ground-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/creature_movement.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py"
+      ]
+    },
+    {
+      "id": "CAST.cure-effect",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Original Cure effect dispatch",
+      "scope": "Spell41 selected whole-entry effect-dispatch projection: target/type gates, cached lookup, health/cleanse calls, ongoing-damage clear, visible feedback, failure cue, conditional shifted-cost refund and release. Explicit supplied lower services; no other spell arms, delivery lifecycle, installed profiles, native World composition or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4763888,
+          "scope": "Spell41 selected arm and shared failure tails only; supplied lower services and wider switch excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/wizard-ai.md",
+        "research/runtime/creature-ai-combat-spells.md"
+      ],
+      "implementation": [
+        "reconstruction/casting/cure_effect.cpp",
+        "reconstruction/casting/cure_effect.hpp"
+      ],
+      "tests": [
+        "tests/cure-effect-test.cpp",
+        "tools/test-cure-effect.py"
+      ],
+      "evidence": [
+        "NS87.cure-effect-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/casting/cure/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole original48b0f0 entry with spell41 compressed dispatch and unchanged body/table bytes; ordinary private FS chain restoration",
+          "Three owned guarded actor/config records; arbitrary unsigned health/status/visibility/resource values, signed magnitude/position and local-owner edge values",
+          "Target sentinel, valid/invalid bounded lookup, source sentinel or valid source, source/target alias, cached logical indices, deferred types6/7/11/30, deliveryMode4 refund refusal",
+          "Ordered supplied health/cleanse/cue/feedback/transition/chargeable/resource/release services; full actor/effect/config/spell bytes and contribution-pointer ABI"
+        ],
+        "excluded": [
+          "All other spell IDs and SEH exception/unwind behavior; incidental return register",
+          "Full lower health/cleansing/visual/resource/feedback/transition/release implementations, callback-driven actor-storage resizing or out-of-band cache mutation",
+          "Nonsentinel invalid source/cache pointers and actor storage over65536; deliberate native refusals",
+          "Installed profiles, creation/delivery/projectile lifecycle, native World/app/checkpoint composition and live replacement"
+        ]
+      }
+    },
+    {
+      "id": "CAST.projectile-update",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Original type3 projectile update and actor impact",
+      "scope": "Whole4970e0 type3 arm with auxiliary222 absent and actual48ecf0 actor-target dispatch. Supplied motion/bounce/defended-damage/release/ANI/logical audio services, DWORD lifetime wrap and signed timeout, hit-exclusion/attacker/cache/visibility writes and ordered calls. No terrain damage, complete lower ownership, installed profiles or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4813024,
+          "scope": "Type3 arm and ordinary epilogue only; other update types excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4779248,
+          "scope": "Actor-target branch only; terrain and area branches excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/wizard-ai.md",
+        "research/runtime/creature-ai-combat-spells.md"
+      ],
+      "implementation": [
+        "reconstruction/casting/projectile.cpp",
+        "reconstruction/casting/projectile.hpp"
+      ],
+      "tests": [
+        "tests/projectile-test.cpp",
+        "tools/test-projectile.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/casting/projectile/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS87.projectile-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.native-wizard-encounter",
+      "subsystem": "native_simulation",
+      "kind": "native_policy",
+      "title": "Native wizard spell-to-effect combat and continuation",
+      "scope": "Opt-in installed32x32x23 native eight-slot Gaea/type17 mixed encounter; authored mid-game learned repertoire17/41/73, original mana wait and target/projectile task execution with native candidate utility, current-position trajectory/terrain/creature shot prediction, preparation/move and cadence policies. Actual installed CFG/WZD/ANI, aim/muzzle bindings, selected cast admission, Cure animation/health and type3 trajectory/terrain/creature collision/damage. Same-owner producer input defaults false; authored care fixture enables pinned5/5 production and available kind19 inventory. Stationary summon delivery and fixed first-use creature slots; bounded effect release policy. Two2048-frame mixed journeys plus512-frame care/resource and wizard-defeat fixtures; transactional verifier rollback, lossy/malformed/profile-changing refusals, sliced and cold effect/partial-selection restores, native/sanitizer artifacts and public CLI. CMD1v20 stores selectors/candidates/tasks/mana/learning/effects/animation/motion/RNG/serials/counters and binds immutable inputs; v1-v19 hosts/layouts retained. All other spell families, original per-spell scoring/prediction/survival, full wizard source/World scheduling, producer/inventory/factory ownership, impact/audio, campaign defeat/progression and live replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/wizard-ai.md",
+        "research/formats/native-wizard-continuation.md"
+      ],
+      "implementation": [
+        "apps/command-session/native_wizard_state.hpp",
+        "apps/command-session/native_wizard_state.cpp",
+        "apps/command-session/native_wizards.hpp",
+        "apps/command-session/native_state.hpp",
+        "apps/command-session/codec.cpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/native_providers.hpp",
+        "apps/command-session/native_providers.cpp",
+        "apps/command-session/CMakeLists.txt",
+        "apps/native-encounter/wizard_profile.cpp",
+        "apps/native-encounter/wizards.cpp",
+        "apps/native-encounter/wizards.hpp",
+        "apps/native-encounter/profile.cpp",
+        "apps/native-encounter/combat.cpp",
+        "apps/native-encounter/encounter.hpp",
+        "apps/native-encounter/main.cpp",
+        "apps/native-encounter/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/native-wizard-encounter-test.cpp",
+        "tools/test-wizard-ai-integration.py"
+      ],
+      "evidence": [
+        "NS87.native-wizard-encounter"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/combat-sandbox/main.cpp",
+        "apps/command-session/native_geometry.cpp",
+        "apps/command-session/native_geometry.hpp",
+        "apps/command-session/native_owner_group_planner.cpp",
+        "apps/command-session/native_owner_planner.cpp",
+        "apps/command-session/native_owner_planner.hpp",
+        "apps/command-session/native_owner_sources.cpp",
+        "apps/command-session/native_owner_sources.hpp",
+        "apps/command-session/native_owner_task_inputs.cpp",
+        "apps/command-session/native_owner_task_inputs.hpp",
+        "apps/command-session/native_owner_visibility.cpp",
+        "apps/command-session/native_owner_visibility.hpp",
+        "apps/command-session/native_regional.cpp",
+        "apps/command-session/native_regional.hpp",
+        "apps/command-session/native_regional_danger.cpp",
+        "apps/command-session/native_regional_danger.hpp",
+        "apps/command-session/native_regional_graph.cpp",
+        "apps/command-session/native_regional_graph.hpp",
+        "apps/command-session/native_route.cpp",
+        "apps/command-session/native_route.hpp",
+        "apps/command-session/runtime.hpp",
+        "apps/native-encounter/navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/map_navigation.cpp",
+        "apps/world-scene/map_navigation.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/packed_container.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "assets/wizard.cpp",
+        "assets/wizard.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/creature_encounter.cpp",
+        "game/simulation/creature_encounter.hpp",
+        "game/simulation/creature_rules_session.cpp",
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/melee_exchange.cpp",
+        "game/simulation/melee_exchange.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/controller.cpp",
+        "reconstruction/animation/controller.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/casting/admission.cpp",
+        "reconstruction/casting/admission.hpp",
+        "reconstruction/casting/admission_tables.hpp",
+        "reconstruction/casting/cure_effect.cpp",
+        "reconstruction/casting/cure_effect.hpp",
+        "reconstruction/casting/descriptor.hpp",
+        "reconstruction/casting/projectile.cpp",
+        "reconstruction/casting/projectile.hpp",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.cpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/action_callbacks.cpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
+        "reconstruction/creature-ai/actor_route_request.cpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/cached_attack.cpp",
+        "reconstruction/creature-ai/cached_attack.hpp",
+        "reconstruction/creature-ai/coarse_route.cpp",
+        "reconstruction/creature-ai/coarse_route.hpp",
+        "reconstruction/creature-ai/command_action_bodies.cpp",
+        "reconstruction/creature-ai/command_action_bodies.hpp",
+        "reconstruction/creature-ai/command_actions_owned.cpp",
+        "reconstruction/creature-ai/command_actions_owned.hpp",
+        "reconstruction/creature-ai/command_behaviors_owned.cpp",
+        "reconstruction/creature-ai/command_behaviors_owned.hpp",
+        "reconstruction/creature-ai/contribution_account.cpp",
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/death_behavior.cpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/environment_pass.cpp",
+        "reconstruction/creature-ai/environment_pass.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
+        "reconstruction/creature-ai/full_motion_action.cpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.cpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/idle_gesture.cpp",
+        "reconstruction/creature-ai/idle_gesture.hpp",
+        "reconstruction/creature-ai/maintenance.cpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/motion_response.cpp",
+        "reconstruction/creature-ai/motion_response.hpp",
+        "reconstruction/creature-ai/movement_behavior.cpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/object_action.cpp",
+        "reconstruction/creature-ai/object_action.hpp",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/owner_brain_driver.cpp",
+        "reconstruction/creature-ai/owner_brain_driver.hpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_fallback_task.hpp",
+        "reconstruction/creature-ai/owner_group_features.cpp",
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_group_task.cpp",
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_hostile_task.cpp",
+        "reconstruction/creature-ai/owner_hostile_task.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner.cpp",
+        "reconstruction/creature-ai/owner_planner.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_task_inputs.cpp",
+        "reconstruction/creature-ai/owner_task_inputs.hpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.cpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.hpp",
+        "reconstruction/creature-ai/owner_task_probe.cpp",
+        "reconstruction/creature-ai/owner_task_probe.hpp",
+        "reconstruction/creature-ai/owner_task_scheduler.cpp",
+        "reconstruction/creature-ai/owner_task_scheduler.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/owner_visibility.cpp",
+        "reconstruction/creature-ai/owner_visibility.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/periodic.cpp",
+        "reconstruction/creature-ai/ranged_execution.cpp",
+        "reconstruction/creature-ai/regional_danger.cpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_graph.cpp",
+        "reconstruction/creature-ai/regional_graph.hpp",
+        "reconstruction/creature-ai/regional_maintenance.cpp",
+        "reconstruction/creature-ai/regional_maintenance.hpp",
+        "reconstruction/creature-ai/regional_navigation.cpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segment_completion.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/source_controller.cpp",
+        "reconstruction/creature-ai/source_controller.hpp",
+        "reconstruction/creature-ai/source_decision.cpp",
+        "reconstruction/creature-ai/source_decision.hpp",
+        "reconstruction/creature-ai/source_graph.cpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/source_lifecycle.cpp",
+        "reconstruction/creature-ai/source_lifecycle.hpp",
+        "reconstruction/creature-ai/source_owned.cpp",
+        "reconstruction/creature-ai/source_owned.hpp",
+        "reconstruction/creature-ai/source_pending.cpp",
+        "reconstruction/creature-ai/source_pending.hpp",
+        "reconstruction/creature-ai/special_flight_actions.cpp",
+        "reconstruction/creature-ai/special_flight_actions.hpp",
+        "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.cpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.hpp",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp",
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "reconstruction/creature-ai/wizard_projectile_task.cpp",
+        "reconstruction/creature-ai/wizard_projectile_task.hpp",
+        "reconstruction/creature-ai/wizard_spell_control.cpp",
+        "reconstruction/creature-ai/wizard_spell_control.hpp",
+        "reconstruction/creature-ai/wizard_target_task.cpp",
+        "reconstruction/creature-ai/wizard_target_task.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
+        "reconstruction/pathfinding/route_line.cpp",
+        "reconstruction/pathfinding/route_line.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "reconstruction/rendering/creature_footprint.cpp",
+        "reconstruction/rendering/creature_footprint.hpp",
+        "reconstruction/rendering/creature_occupancy.cpp",
+        "reconstruction/rendering/creature_occupancy.hpp",
+        "reconstruction/rendering/effect-creature/CMakeLists.txt",
+        "reconstruction/rendering/effect_animation_selection.cpp",
+        "reconstruction/rendering/effect_animation_selection.hpp",
+        "reconstruction/rendering/effect_cleanup.cpp",
+        "reconstruction/rendering/effect_cleanup.hpp",
+        "reconstruction/rendering/effect_creature_collision.cpp",
+        "reconstruction/rendering/effect_creature_collision.hpp",
+        "reconstruction/rendering/effect_lighting.cpp",
+        "reconstruction/rendering/effect_lighting.hpp",
+        "reconstruction/rendering/effect_motion_initializer.cpp",
+        "reconstruction/rendering/effect_motion_initializer.hpp",
+        "reconstruction/rendering/effect_placement.cpp",
+        "reconstruction/rendering/effect_placement.hpp",
+        "reconstruction/rendering/effect_projection.cpp",
+        "reconstruction/rendering/effect_projection.hpp",
+        "reconstruction/rendering/effect_trajectory.cpp",
+        "reconstruction/rendering/effect_trajectory.hpp",
+        "reconstruction/rendering/effect_trajectory_initializer.cpp",
+        "reconstruction/rendering/effect_trajectory_initializer.hpp",
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_map.cpp",
+        "reconstruction/rendering/terrain_map.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tests/native-command-action-session-test.cpp",
+        "tests/native-command-behavior-session-test.cpp",
+        "tests/native-command-session-test.cpp",
+        "tests/native-creature-providers-test.cpp",
+        "tests/native-encounter-test.cpp",
+        "tests/native-owner-skirmish-test.cpp",
+        "tests/owner-task-trace-wire.hpp",
+        "tools/test-installed-encounter.py"
+      ]
+    },
+    {
+      "id": "FX.wizard-projectile-collision",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Original Magic Sphere terrain and creature collision admission",
+      "scope": "Whole unchanged4883f0 selected spell73 Magic Sphere creature-aware motion:27-cell candidate ordering/refresh, creator exclusion, null/invalid ordinals, status27 filter, signed wrapped footprint differences, type3 continuation (moving type3 only), terrain/height/membership outcomes.560 authored fixtures/two visits with0..16 iterations and four-entry terrain catalog; full guarded record/cell/actor/catalog/column state. Native installed catalog adapter, trajectory initializer, actual profile, larger counters and World/lifetime remain separate. Non-type3 distance-return4 discovered in the first broader fixture remains excluded and pending; type3 and71 bypass that branch.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Whole function execution with selected spell73, bounded authored terrain/creature state; no redirected text."
+        }
+      ],
+      "documents": [
+        "research/runtime/wizard-ai.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_creature_collision.cpp",
+        "reconstruction/rendering/effect_creature_collision.hpp",
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/effect_projection.cpp",
+        "reconstruction/rendering/effect_projection.hpp"
+      ],
+      "tests": [
+        "tests/wizard-projectile-collision-test.cpp",
+        "tools/test-wizard-projectile-collision.py"
+      ],
+      "evidence": [
+        "NS87.projectile-collision-original",
+        "NS87.projectile-collision-original-v3"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/rendering/creature_footprint.cpp",
+        "reconstruction/rendering/creature_footprint.hpp",
+        "reconstruction/rendering/creature_occupancy.cpp",
+        "reconstruction/rendering/creature_occupancy.hpp",
+        "reconstruction/rendering/effect-creature/CMakeLists.txt",
+        "reconstruction/rendering/effect_cleanup.cpp",
+        "reconstruction/rendering/effect_cleanup.hpp",
+        "reconstruction/rendering/effect_lighting.cpp",
+        "reconstruction/rendering/effect_lighting.hpp",
+        "reconstruction/rendering/effect_placement.cpp",
+        "reconstruction/rendering/effect_placement.hpp",
+        "reconstruction/rendering/effect_trajectory.cpp",
+        "reconstruction/rendering/effect_trajectory.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "tests/effect-creature-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "FX.motion-distance-stop",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Unimplemented nonprojectile motion distance stop",
+      "scope": "Original4883f0 selected normal metadata branch at488b19..488b53 compares signed trajectory counter divided by2 with spell distance allowance+32 after movement. When exceeded, types3 and71 bypass termination; other admitted moving types return4. NS87 broader fixture297 second visit exposed native result3 versus original4 for a non-type3 mover. Exact other special-type allowance branches, native implementation and passing comparison remain pending; actual type3 wizard projectile scope excludes this branch.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Selected post-motion distance-return4 branch at488b19..488b53; other allowance branches remain pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/wizard-ai.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -144077,6 +144931,629 @@
           "equals": "ce94296fd1c116d5be289301844efa48ab66cd6850a4d567e99a19e3e568cd42"
         }
       ]
+    },
+    {
+      "id": "NS87.spell-control-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole51e530 mana readiness: unsigned maximum admission, fixed-point/count DWORD arithmetic, signed deficit, all42 ordered inventory slots and same-owner eligible active production/ceil wait. Producer412aa0 supplied as a predicate, finite owned pool and configured rate/period; actor bytes unchanged. Native observed-peer availability projection tested separately, not whole40a950 or wholewizard/World/regen/inventory consumption equivalence.",
+      "record": "research/runtime/wizard-spell-control-original-ns87-20261017.json",
+      "sha256": "2229d72c012d0f492a0bf2dbd1700e66922a1b3db451810f235dcb467ae9cb2b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/checks",
+          "equals": 32768
+        },
+        {
+          "pointer": "/digest",
+          "equals": "11123598427199899149"
+        }
+      ]
+    },
+    {
+      "id": "NS87.target-task-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole actor-target wizard task execution for spells41/42/74/78/79/83/84/85: alive/max-health/status gates, issued latch, wait/inventory shortage, reread health, cast positioning and semantic descriptor words0/7..11. Supplied pure maximum/status projection and wait/inventory/positioning/cast services; directed lower mutations. Full preparation/candidate scoring/lifetime/geometry/effects/World remain separate.",
+      "record": "research/runtime/wizard-target-task-original-ns87-20261017.json",
+      "sha256": "aa69d8376b20c8b49cb72452c141c8099ff87eb4b198c28f79f18141a1a3ed82",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 65536
+        },
+        {
+          "pointer": "/checks",
+          "equals": 379624
+        },
+        {
+          "pointer": "/digest",
+          "equals": "13365931492811218138"
+        }
+      ]
+    },
+    {
+      "id": "NS87.projectile-task-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole44ae70 MagicSphere73 execution: dead-target saved-command restoration, issued/readiness/inventory gates, exact stand/action admission, positioning, semantic cast descriptor words0/7..11 and ordered normalized saved command. Supplied wait/inventory/positioning/cast/saved-command services, directed health/mana mutations; candidate prediction/scoring, lifetime and full lower effects/World separate.",
+      "record": "research/runtime/wizard-projectile-task-original-ns87-20261017.json",
+      "sha256": "b8c8ceade5c3322d258e814cc478e8c584cbdac5a241f9004408b4217d588115",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/checks",
+          "equals": 143104
+        },
+        {
+          "pointer": "/digest",
+          "equals": "17184559301559805884"
+        }
+      ]
+    },
+    {
+      "id": "NS87.ground-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole505220/505160 selected ground-only type0 wizard ANI two-bank production and maximum. Installed version5 first-eight programs contain12 sprites, footstep events5, event2, repeated first sprite and stop. Endpoint-preserving translations; complete48 words/max compared, no text redirects. Original full CFG/asset selection, flight, gameplay motion and native World separate.",
+      "record": "research/runtime/wizard-ground-original-ns87-20261017.json",
+      "sha256": "46c3d9f06f95eb46f2c64ab4ea9a18355ad2e9de91db2e44aa85b340c0366593",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 128
+        },
+        {
+          "pointer": "/checks",
+          "equals": 6272
+        },
+        {
+          "pointer": "/digest",
+          "equals": "1053002058037916931"
+        },
+        {
+          "pointer": "/asset_sha256",
+          "equals": "586746551163356b746120820be204a65fc0abc762af0fcc7237675cecd71024"
+        }
+      ]
+    },
+    {
+      "id": "NS87.cure-effect-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Spell41 selected arm of unchanged whole-entry48b0f0: deferred delivery, target/cache/health/cleanse/feedback gates, failure/refund/release with supplied lower services. Full guarded effect/actor/config/spell bytes and ordered calls; no other spell arms, complete lower service ownership, delivery lifecycle, native World integration or live replacement.",
+      "record": "research/runtime/wizard-cure-effect-original-ns87-20261017.json",
+      "sha256": "1cec6aa89013be180ea4843ff0dace7f7e9438cf5c8d807b885dc4ab9d9f2066",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/outcome_digest",
+          "equals": "a3d9381f080785c1"
+        }
+      ]
+    },
+    {
+      "id": "NS87.projectile-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole unchanged4970e0 type3 arm and actual48ecf0 actor-target dispatch: supplied motion, defended damage, bounce, release, ANI and logical audio services; full guarded effect/actor state, FS restoration and ordered calls. No terrain damage, original lower ownership, installed profiles or live replacement",
+      "record": "research/runtime/wizard-projectile-original-ns87-20261017.json",
+      "sha256": "d83610c5637533b20b1cdca562be1808a42966e0eef439f06650d3873d2c620f",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/outcome_digest",
+          "equals": "6d648d7f422c2163"
+        }
+      ]
+    },
+    {
+      "id": "NS87.projectile-collision-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole unmodified 004883f0 selected creature-aware movement: initial and refreshed 27-cell candidates, kind73 Magic Sphere, creator exclusion, null/out-of-catalog entries, status27 filter, wrapped signed coordinate differences, first footprint hit and type3 continuation (moving type3 only); bounded owned world, no other moving types/spell kinds, full installed catalog/capture/live replacement",
+      "record": "research/runtime/wizard-projectile-collision-original-ns87-20261017.json",
+      "sha256": "e58aec9a66c82a5a82ef5dfedb77f385e4e33800daa197cc20204269b5ed3896",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 560
+        },
+        {
+          "pointer": "/calls",
+          "equals": 1120
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 198
+        },
+        {
+          "pointer": "/output_sha256",
+          "equals": "7f4d1f86fc6db3924791798d02e1fbd5b13841d439184a49a9ca5a5677463fc8"
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "NS87.projectile-collision-original-v3",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole unmodified 004883f0 selected creature-aware movement: initial and refreshed 27-cell candidates, kind73 Magic Sphere, creator exclusion, null/out-of-catalog entries, status27 filter, wrapped signed coordinate differences, first footprint hit and type3 continuation (moving type3 only); bounded owned world, no other moving types/spell kinds, full installed catalog/capture/live replacement",
+      "record": "research/runtime/wizard-projectile-collision-original-ns87-20261017-v3.json",
+      "sha256": "5c3e9060b408161c5674a61f70aa82f8984163b55635632955d106768f5fee00",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 560
+        },
+        {
+          "pointer": "/calls",
+          "equals": 1120
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 198
+        },
+        {
+          "pointer": "/output_sha256",
+          "equals": "7f4d1f86fc6db3924791798d02e1fbd5b13841d439184a49a9ca5a5677463fc8"
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "NS87.native-wizard-encounter",
+      "kind": "native_integration",
+      "scope": "Opt-in installed32x32x23 native eight-slot Gaea/type17 mixed encounter; authored mid-game learned repertoire17/41/73, original mana wait and target/projectile task execution with native candidate utility, current-position trajectory/terrain/creature shot prediction, preparation/move and cadence policies. Actual installed CFG/WZD/ANI, aim/muzzle bindings, selected cast admission, Cure animation/health and type3 trajectory/terrain/creature collision/damage. Same-owner producer input defaults false; authored care fixture enables pinned5/5 production and available kind19 inventory. Stationary summon delivery and fixed first-use creature slots; bounded effect release policy. Two2048-frame mixed journeys plus512-frame care/resource and wizard-defeat fixtures; transactional verifier rollback, lossy/malformed/profile-changing refusals, sliced and cold effect/partial-selection restores, native/sanitizer artifacts and public CLI. CMD1v20 stores selectors/candidates/tasks/mana/learning/effects/animation/motion/RNG/serials/counters and binds immutable inputs; v1-v19 hosts/layouts retained. All other spell families, original per-spell scoring/prediction/survival, full wizard source/World scheduling, producer/inventory/factory ownership, impact/audio, campaign defeat/progression and live replacement remain pending.",
+      "record": "research/runtime/native-wizard-encounter-ns87-20261017.json",
+      "sha256": "6509b684f8349dd26e31e98836ba6333aba3b48a2269e1538cf57471ca1ee10b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/core_suites_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cli_resume_identical",
+          "equals": true
+        },
+        {
+          "pointer": "/clean_rebuilds",
+          "equals": false
+        },
+        {
+          "pointer": "/incremental_rebuilds",
+          "equals": true
+        },
+        {
+          "pointer": "/cold_process_restores",
+          "equals": 17
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/checks",
+          "equals": 426277
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/frames",
+          "equals": 5120
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/restores",
+          "equals": 116
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/refusals",
+          "equals": 27
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/rollbacks",
+          "equals": 4
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/pending",
+          "equals": 942
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/issued",
+          "equals": 2964
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/cure_frames",
+          "equals": 812
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/projectile_frames",
+          "equals": 70
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/casts",
+          "equals": 63
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/heals",
+          "equals": 28
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/impacts",
+          "equals": 27
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/summons",
+          "equals": 4
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/mana_uses",
+          "equals": 1
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/regeneration",
+          "equals": 204
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/deaths",
+          "equals": 9
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/wizard_defeats",
+          "equals": 3
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/cleanups",
+          "equals": 17
+        },
+        {
+          "pointer": "/suites/native-wizard-encounter-test/digest",
+          "equals": "6723382577666867194"
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -148722,6 +150199,222 @@
         },
         {
           "value": "other-families-pending",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "AI.wizard-kind21-vtable",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6050944,
+        "relation": "data",
+        "scope": "Seven-slot wizard task vtable; only execution slot5 is semantically compared."
+      },
+      "document": "research/runtime/wizard-ai.md",
+      "scope": "Static seven-slot constructor/vtable mapping for spell41. Only slot5 execution is recovered here; other slots retain their independent pending boundaries.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.wizard-target-task"
+          ]
+        },
+        {
+          "value": "other-slots-pending",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "AI.wizard-kind38-vtable",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6051112,
+        "relation": "data",
+        "scope": "Seven-slot wizard task vtable; only execution slot5 is semantically compared."
+      },
+      "document": "research/runtime/wizard-ai.md",
+      "scope": "Static seven-slot constructor/vtable mapping for spell73. Only slot5 execution is recovered here; other slots retain their independent pending boundaries.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.wizard-projectile-task"
+          ]
+        },
+        {
+          "value": "other-slots-pending",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "AI.wizard-kind39-vtable",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6051308,
+        "relation": "data",
+        "scope": "Seven-slot wizard task vtable; only execution slot5 is semantically compared."
+      },
+      "document": "research/runtime/wizard-ai.md",
+      "scope": "Static constructor/vtable mapping; only slot5 actor-target execution is recovered here. Candidate/lifetime/other slots retain independent pending boundaries.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.wizard-target-task"
+          ]
+        },
+        {
+          "value": "other-slots-pending",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "AI.wizard-kind43-vtable",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6051364,
+        "relation": "data",
+        "scope": "Seven-slot wizard task vtable; only execution slot5 is semantically compared."
+      },
+      "document": "research/runtime/wizard-ai.md",
+      "scope": "Static constructor/vtable mapping; only slot5 actor-target execution is recovered here. Candidate/lifetime/other slots retain independent pending boundaries.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.wizard-target-task"
+          ]
+        },
+        {
+          "value": "other-slots-pending",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "AI.wizard-kind44-vtable",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6051168,
+        "relation": "data",
+        "scope": "Seven-slot wizard task vtable; only execution slot5 is semantically compared."
+      },
+      "document": "research/runtime/wizard-ai.md",
+      "scope": "Static constructor/vtable mapping; only slot5 actor-target execution is recovered here. Candidate/lifetime/other slots retain independent pending boundaries.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.wizard-target-task"
+          ]
+        },
+        {
+          "value": "other-slots-pending",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "AI.wizard-kind47-vtable",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6051336,
+        "relation": "data",
+        "scope": "Seven-slot wizard task vtable; only execution slot5 is semantically compared."
+      },
+      "document": "research/runtime/wizard-ai.md",
+      "scope": "Static constructor/vtable mapping; only slot5 actor-target execution is recovered here. Candidate/lifetime/other slots retain independent pending boundaries.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.wizard-target-task"
+          ]
+        },
+        {
+          "value": "other-slots-pending",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "AI.wizard-kind48-vtable",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6051392,
+        "relation": "data",
+        "scope": "Seven-slot wizard task vtable; only execution slot5 is semantically compared."
+      },
+      "document": "research/runtime/wizard-ai.md",
+      "scope": "Static constructor/vtable mapping; only slot5 actor-target execution is recovered here. Candidate/lifetime/other slots retain independent pending boundaries.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.wizard-target-task"
+          ]
+        },
+        {
+          "value": "other-slots-pending",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "AI.wizard-kind51-vtable",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6051784,
+        "relation": "data",
+        "scope": "Seven-slot wizard task vtable; only execution slot5 is semantically compared."
+      },
+      "document": "research/runtime/wizard-ai.md",
+      "scope": "Static constructor/vtable mapping; only slot5 actor-target execution is recovered here. Candidate/lifetime/other slots retain independent pending boundaries.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.wizard-target-task"
+          ]
+        },
+        {
+          "value": "other-slots-pending",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "AI.wizard-kind52-vtable",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6051840,
+        "relation": "data",
+        "scope": "Seven-slot wizard task vtable; only execution slot5 is semantically compared."
+      },
+      "document": "research/runtime/wizard-ai.md",
+      "scope": "Static constructor/vtable mapping; only slot5 actor-target execution is recovered here. Candidate/lifetime/other slots retain independent pending boundaries.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.wizard-target-task"
+          ]
+        },
+        {
+          "value": "other-slots-pending",
           "behaviors": []
         }
       ]
@@ -158347,6 +160040,21 @@
       "evidence": [
         "NS86.native-owner-skirmish"
       ]
+    },
+    {
+      "id": "NS87.native-wizard-spell-delivery",
+      "scope": "Headless native decision-to-effect17/41/73 mixed wizard/creature simulation, two faction seeds and authored care/defeat fixtures with portable partially selected, issued, animated and moving effect state. Native policies explicit; full original wizard AI/controller/campaign equivalence excluded.",
+      "level": "headless",
+      "behaviors": [
+        "NP.native-wizard-encounter"
+      ],
+      "tests": [
+        "tests/native-wizard-encounter-test.cpp",
+        "tools/test-wizard-ai-integration.py"
+      ],
+      "evidence": [
+        "NS87.native-wizard-encounter"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -158909,8 +160617,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ordinary-skirmish-ns86-20261017.json",
-    "sha256": "9f32e7743b1e5011ae09f280b6debf28a341c41aba2c13ccedf96571144cb4ec"
+    "path": "research/runtime/coverage/source-index-wizard-ai-ns87-20261017-v3.json",
+    "sha256": "fa64a9d881d6e8c5818f33ccb64ee299a19991e3d521106d5dbcf32e62f91312"
   },
   "claim_bindings_required": true
 }

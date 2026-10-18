@@ -91,6 +91,7 @@ def main(suite):
     p.add_argument('--brain', type=Path)
     p.add_argument('--trace', type=Path)
     p.add_argument('--trace-origin', type=Path)
+    p.add_argument('--asset', type=Path)
     args = p.parse_args()
     args.output = args.output.resolve()
     if args.output.exists():
@@ -144,6 +145,7 @@ def main(suite):
         report['original_target_sha256'] = {hex(a): hashlib.sha256(image_bytes(a, b-a)).hexdigest() for a, b in ranges}
         report['redirect_original_bytes'] = {hex(a): image_bytes(a, 5).hex() for a in endpoints}
         flags = ['g++', '-std=c++17', '-Wall', '-Wextra', '-Werror', '-Ireconstruction/combat', '-Iassets', '-ffunction-sections', '-fdata-sections', '-Wl,--gc-sections']
+        flags += ['-I'+path for path in config.get('include_dirs', [])]
         sources = config['sources']
         # Development runs also need a stable transitive source closure. A
         # declaration remains mandatory for scope-bound evidence, but omitted
@@ -185,6 +187,10 @@ def main(suite):
             raise ValueError('Unbound compiler inputs: ' + str(sorted(dependencies - claims['sources'].keys())))
         if suite == 'brain': report['brain_sha256'] = sha(args.brain)
         inputs = [args.brain] if suite == 'brain' else []
+        if args.asset:
+            report['asset_sha256'] = sha(args.asset)
+            report['asset_path'] = str(args.asset.resolve())
+            inputs.append(args.asset)
         if args.trace:
             report['trace_sha256'] = sha(args.trace)
             report['trace_path'] = str(args.trace.resolve())
@@ -210,6 +216,7 @@ def main(suite):
         assert executable.read_bytes() == raw
         if suite == 'brain': assert sha(args.brain) == report['brain_sha256']
         if args.trace: assert sha(args.trace) == report['trace_sha256']
+        if args.asset: assert sha(args.asset) == report['asset_sha256']
         if args.trace_origin:
             assert sha(args.trace_origin)==report['trace_origin_sha256']
             assert all(sha(ROOT/k)==v for k,v in origin['source_sha256'].items())

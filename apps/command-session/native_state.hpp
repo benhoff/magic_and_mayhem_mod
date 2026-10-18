@@ -20,6 +20,7 @@
 #include "../../reconstruction/creature-ai/source_lifecycle.hpp"
 #include "../../reconstruction/creature-ai/source_decision.hpp"
 #include "../../reconstruction/creature-ai/owner_brain_driver.hpp"
+#include "native_wizard_state.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -151,5 +152,7 @@ struct NativeProviderState {
   std::optional<NativeOwnerVisibility> ownerVisibility;
   std::optional<NativeOwnerPlanner> ownerPlanner;
   std::optional<NativeOwnerSources> ownerSources;
+  // v20: opt-in owned wizard decisions, mana and secondary continuation.
+  std::optional<NativeWizardState> wizards;
 };
 } // namespace mnm::command_session

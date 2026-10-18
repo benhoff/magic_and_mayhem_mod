@@ -52,6 +52,9 @@ struct NativeConsequences {
   model::DeathServices death;
   model::AutonomousServices autonomy;
   std::function<void(model::AutonomousCreature &)> preDecision,ownerWork;
+  // Operation-local native World work after owner planning and before actors.
+  std::function<void(model::OwnedCreatureCommands &)> worldWork;
+  std::function<void(model::AutonomousCreature &,int,int,unsigned)> damage;
   std::function<int(model::AutonomousCreature &)> region;
 };
 using NativeConsequenceFactory=std::function<NativeConsequences(Continuation &)>;

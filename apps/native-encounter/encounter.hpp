@@ -15,6 +15,8 @@ struct Profile {
   reconstruction::combat::ContributionProfiles taskCredit;
   unsigned maximum = 0, scenario = 0;
   unsigned projectedObjects = 0, projectedReferences = 0;
+  // Opt-in mixed wizard encounter; older ordinary profiles retain their input.
+  std::array<std::array<int,28>,28> stun{};
 };
 // Portable immutable inputs: encrypted CFG/HTH, ANI, MAP, TTD and crop.
 game::Bytes loadInputs(const std::filesystem::path &, scene::MapCrop,
@@ -31,8 +33,9 @@ void enableOwnerPlanner(Profile &, const std::filesystem::path &brain, unsigned 
 void editTerrain(game::CreatureRuleSession &, const Profile &,
                  const std::vector<cs::NativeTerrainEdit> &);
 cs::NativeConsequenceFactory consequences(const Profile &);
-std::shared_ptr<const cs::Runtime> runtime(const Profile &,cs::NativeOwnerTaskVerifier = {});
-game::CreatureRuleSession create(const Profile &, unsigned seed,cs::NativeOwnerTaskVerifier = {});
+using WizardVerifier = std::function<void(const cs::Continuation &)>;
+std::shared_ptr<const cs::Runtime> runtime(const Profile &,cs::NativeOwnerTaskVerifier = {}, WizardVerifier = {});
+game::CreatureRuleSession create(const Profile &, unsigned seed,cs::NativeOwnerTaskVerifier = {}, WizardVerifier = {});
 struct Statistics {
   unsigned hits = 0, damage = 0, stuns = 0, knockbacks = 0, deaths = 0,
            cues = 0;

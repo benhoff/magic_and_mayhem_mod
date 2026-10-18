@@ -1,5 +1,6 @@
 #include "runtime.hpp"
 #include "native_owner_planner.hpp"
+#include "native_wizards.hpp"
 #include <cstring>
 #include <algorithm>
 #include <limits>
@@ -125,7 +126,24 @@ auto fields(model::OwnerBrainDriver &v){return std::tie(v.clock,v.phase,v.curren
 auto fieldsV18(NativeOwnerSources &v){return std::tuple_cat(fieldsV17(v),std::tie(v.automatic,v.planningAllocation,v.search,v.decisions,v.splits,v.merges));}
 auto fields(NativeOwnerSources &v){return std::tuple_cat(fieldsV18(v),std::tie(v.driver,v.worldAllocation,v.retirements,v.executions,v.fallbacks,v.lastDecisions,v.lastExecutions));}
 auto fieldsV16(NativeProviderState &v){return std::tuple_cat(fieldsV11(v),std::tie(v.ownerPlanner));}
-auto fields(NativeProviderState &v){return std::tuple_cat(fieldsV16(v),std::tie(v.ownerSources));}
+auto fields(reconstruction::casting::CastSpellConfiguration &v){return std::tie(v.cost,v.pathMode,v.resourceMode,v.resourceDelta,v.travelKind,v.observed);}
+auto fields(reconstruction::casting::CastLearningState &v){return std::tie(v.known,v.notices);}
+auto fields(reconstruction::casting::CastAdmissionState &v){return std::tie(v.spells,v.profiles,v.resource,v.direction,v.muzzle,v.resourceCounter,v.specialValue,v.iteratorCursor);}
+auto fields(reconstruction::casting::CurePosition &v){return std::tie(v.x,v.y,v.z);}
+auto fields(reconstruction::casting::CureEffect &v){return std::tie(v.spell,v.type,v.source,v.target,v.deliveryMode,v.attribution,v.position,v.contributions,v.cachedActor);}
+auto fields(reconstruction::casting::ProjectileEffect &v){return std::tie(v.type,v.spell,v.source,v.target,v.attacker,v.attribution,v.remaining,v.audio,v.contributions,v.cachedActor);}
+auto fields(reconstruction::EffectTrajectory &v){return std::tie(v.words);}
+auto fields(reconstruction::EffectProjectionState &v){return std::tie(v.trajectory,v.previousUnits,v.changes);}
+auto fields(reconstruction::EffectTransitionState &v){return std::tie(v.motion,v.previousPosition,v.terrain);}
+auto fields(reconstruction::EffectCreatureTransitionState &v){return std::tie(v.movement,v.candidate);}
+auto fields(reconstruction::EffectPlacementRecord &v){return std::tie(v.active,v.type,v.parameters,v.position,v.units,v.initialPosition,v.sentinels,v.next,v.cell,v.initialized);}
+auto fields(NativeWizardSpell &v){return std::tie(v.magnitude,v.duration,v.range,v.speed);}
+auto fields(NativeWizardPlan &v){return std::tie(v.spell,v.target,v.serial,v.started,v.expires,v.stand,v.aim,v.score,v.issued);}
+auto fields(NativeWizardController &v){return std::tie(v.actor,v.maximumMana,v.cursor,v.nextThink,v.producing,v.learned,v.selection,v.candidate,v.best,v.active);}
+auto fields(NativeWizardEffect &v){return std::tie(v.active,v.generation,v.spell,v.animationAsset,v.animationSequence,v.cure,v.projectile,v.placement,v.movement,v.animation);}
+auto fields(NativeWizardState &v){return std::tie(v.tick,v.nextSerial,v.casts,v.heals,v.impacts,v.summons,v.retirements,v.decisions,v.manaUses,v.regeneration,v.refusedCasts,v.bounces,v.expirations,v.planningAllocation,v.regenerationRate,v.regenerationPeriod,v.effectCapacity,v.controllers,v.spells,v.admission,v.random,v.effects,v.usedSummonSlots,v.cureAsset,v.cureSequence,v.projectileAsset,v.projectileSequence);}
+auto fieldsV19(NativeProviderState &v){return std::tuple_cat(fieldsV16(v),std::tie(v.ownerSources));}
+auto fields(NativeProviderState &v){return std::tuple_cat(fieldsV19(v),std::tie(v.wizards));}
 auto fieldsV1(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend);}
 auto fieldsV2(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement);}
 auto fieldsV3(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement,v.originalBehaviorBindings,v.actions);}
@@ -142,7 +160,7 @@ struct Writer {
   game::Bytes bytes;
   void word(std::uint32_t v){for(unsigned i=0;i<4;++i)bytes.push_back(std::uint8_t(v>>(8*i)));}
   template<class T>void value(T &v){
-    if constexpr(std::is_same_v<T,NativeProviderState>){word(v.present);if(v.present){if(version<5)std::apply([&](auto &...x){(value(x),...);},fieldsV4(v));else if(version==5)std::apply([&](auto &...x){(value(x),...);},fieldsV5(v));else if(version==6)std::apply([&](auto &...x){(value(x),...);},fieldsV6(v));else if(version==7)std::apply([&](auto &...x){(value(x),...);},fieldsV7(v));else if(version==8)std::apply([&](auto &...x){(value(x),...);},fieldsV8(v));else if(version==9)std::apply([&](auto &...x){(value(x),...);},fieldsV9(v));else if(version==10)std::apply([&](auto &...x){(value(x),...);},fieldsV10(v));else if(version==11)std::apply([&](auto &...x){(value(x),...);},fieldsV11(v));else if(version<17)std::apply([&](auto &...x){(value(x),...);},fieldsV16(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}}
+    if constexpr(std::is_same_v<T,NativeProviderState>){word(v.present);if(v.present){if(version<5)std::apply([&](auto &...x){(value(x),...);},fieldsV4(v));else if(version==5)std::apply([&](auto &...x){(value(x),...);},fieldsV5(v));else if(version==6)std::apply([&](auto &...x){(value(x),...);},fieldsV6(v));else if(version==7)std::apply([&](auto &...x){(value(x),...);},fieldsV7(v));else if(version==8)std::apply([&](auto &...x){(value(x),...);},fieldsV8(v));else if(version==9)std::apply([&](auto &...x){(value(x),...);},fieldsV9(v));else if(version==10)std::apply([&](auto &...x){(value(x),...);},fieldsV10(v));else if(version==11)std::apply([&](auto &...x){(value(x),...);},fieldsV11(v));else if(version<17)std::apply([&](auto &...x){(value(x),...);},fieldsV16(v));else if(version<20)std::apply([&](auto &...x){(value(x),...);},fieldsV19(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}}
     else if constexpr(std::is_same_v<T,NativeOwnerReplanning>){if(version<15)std::apply([&](auto &...x){(value(x),...);},fieldsV14(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}
     else if constexpr(std::is_same_v<T,NativeOwnerSources>){if(version<18)std::apply([&](auto &...x){(value(x),...);},fieldsV17(v));else if(version<19)std::apply([&](auto &...x){(value(x),...);},fieldsV18(v));else {const bool prior=compactModels;compactModels=true;std::apply([&](auto &...x){(value(x),...);},fields(v));compactModels=prior;}}
     else if constexpr(std::is_same_v<T,NativeOwnerGroupPlanner>){if(version<14)std::apply([&](auto &...x){(value(x),...);},fieldsV13(v));else if(version<16)std::apply([&](auto &...x){(value(x),...);},fieldsV15(v));else if(version<18)std::apply([&](auto &...x){(value(x),...);},fieldsV17(v));else if(version<19)std::apply([&](auto &...x){(value(x),...);},fieldsV18(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}
@@ -163,7 +181,7 @@ struct Reader {
   const game::Bytes &bytes;std::size_t pos=0;unsigned version=16;bool compactModels=false;
   std::uint32_t word(){need(bytes.size()-pos>=4,"truncated native command continuation");std::uint32_t v=0;for(unsigned i=0;i<4;++i)v|=std::uint32_t(bytes[pos++])<<(8*i);return v;}
   template<class T>void value(T &v){
-    if constexpr(std::is_same_v<T,NativeProviderState>){auto tag=word();need(tag<=1,"invalid native provider tag");v.present=tag!=0;if(v.present){if(version<5)std::apply([&](auto &...x){(value(x),...);},fieldsV4(v));else if(version==5)std::apply([&](auto &...x){(value(x),...);},fieldsV5(v));else if(version==6)std::apply([&](auto &...x){(value(x),...);},fieldsV6(v));else if(version==7)std::apply([&](auto &...x){(value(x),...);},fieldsV7(v));else if(version==8)std::apply([&](auto &...x){(value(x),...);},fieldsV8(v));else if(version==9)std::apply([&](auto &...x){(value(x),...);},fieldsV9(v));else if(version==10)std::apply([&](auto &...x){(value(x),...);},fieldsV10(v));else if(version==11)std::apply([&](auto &...x){(value(x),...);},fieldsV11(v));else if(version<17)std::apply([&](auto &...x){(value(x),...);},fieldsV16(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}}
+    if constexpr(std::is_same_v<T,NativeProviderState>){auto tag=word();need(tag<=1,"invalid native provider tag");v.present=tag!=0;if(v.present){if(version<5)std::apply([&](auto &...x){(value(x),...);},fieldsV4(v));else if(version==5)std::apply([&](auto &...x){(value(x),...);},fieldsV5(v));else if(version==6)std::apply([&](auto &...x){(value(x),...);},fieldsV6(v));else if(version==7)std::apply([&](auto &...x){(value(x),...);},fieldsV7(v));else if(version==8)std::apply([&](auto &...x){(value(x),...);},fieldsV8(v));else if(version==9)std::apply([&](auto &...x){(value(x),...);},fieldsV9(v));else if(version==10)std::apply([&](auto &...x){(value(x),...);},fieldsV10(v));else if(version==11)std::apply([&](auto &...x){(value(x),...);},fieldsV11(v));else if(version<17)std::apply([&](auto &...x){(value(x),...);},fieldsV16(v));else if(version<20)std::apply([&](auto &...x){(value(x),...);},fieldsV19(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}}
     else if constexpr(std::is_same_v<T,NativeOwnerReplanning>){if(version<15)std::apply([&](auto &...x){(value(x),...);},fieldsV14(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}
     else if constexpr(std::is_same_v<T,NativeOwnerSources>){if(version<18)std::apply([&](auto &...x){(value(x),...);},fieldsV17(v));else if(version<19)std::apply([&](auto &...x){(value(x),...);},fieldsV18(v));else {const bool prior=compactModels;compactModels=true;std::apply([&](auto &...x){(value(x),...);},fields(v));compactModels=prior;}}
     else if constexpr(std::is_same_v<T,NativeOwnerGroupPlanner>){if(version<14)std::apply([&](auto &...x){(value(x),...);},fieldsV13(v));else if(version<16)std::apply([&](auto &...x){(value(x),...);},fieldsV15(v));else if(version<18)std::apply([&](auto &...x){(value(x),...);},fieldsV17(v));else if(version<19)std::apply([&](auto &...x){(value(x),...);},fieldsV18(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}
@@ -219,6 +237,7 @@ void validate(const Continuation &c){
     for(const auto &o:a.objects.objects)need(o.next==0xffff||o.next<a.objects.objects.size(),"native command object link differs");
     for(const auto &s:a.segments)need(s.count<=s.route.size()&&s.cursor<=s.count&&s.regionCursor<s.regionPath.size(),"native command segment cursor differs");
   }
+  validateNativeWizards(c);
   const auto &native=c.native;
   if(native.present){
     need(c.originalBehaviorBindings&&a.callbacks.size()==n&&native.animation.size()==n&&native.search.size()==n&&native.initialization.size()==n,
@@ -313,10 +332,11 @@ game::Bytes encode(const Continuation &input, unsigned version){
       (input.native.ownerSources->automatic || std::any_of(input.native.ownerSources->planners.begin(),input.native.ownerSources->planners.end(),[](const auto &row){return row.planner&&row.planner->grouped&&row.planner->grouped->perMember;}))) ||
       (input.native.ownerPlanner && input.native.ownerPlanner->grouped && input.native.ownerPlanner->grouped->perMember);
   const bool driver=input.native.ownerSources && input.native.ownerSources->driver.has_value();
+  if(!version && input.native.wizards)version=20;
   if(!version && driver)version=19;
   if(!version && extended)version=18;
   if(!version)version=input.native.ownerSources || (input.native.ownerPlanner && !input.native.ownerPlanner->members.empty())?17:16;
-  validate(input);need(version>=1&&version<=19,"unsupported native command write version");
+  validate(input);need(version>=1&&version<=20,"unsupported native command write version");
   if(version<4)need(!input.native.present,"legacy command write loses native providers");
   if(version<3)need(!input.originalBehaviorBindings&&input.actions.callbacks.empty(),"legacy command write loses action state");
   if(version==1)need(input.maintenance.empty()&&input.movement.empty(),"legacy command write loses behavior state");
@@ -325,6 +345,7 @@ game::Bytes encode(const Continuation &input, unsigned version){
     for(const auto &row:input.native.ownerSources->planners)if(row.planner)need(sameBrainModel(row.planner->model,shared),"source model differs from shared v19 model");
     if(input.native.ownerSources->search)need(sameBrainModel(input.native.ownerSources->search->scratch.model,shared),"search model differs from shared v19 model");
   }
+  if(version<20)need(!input.native.wizards,"legacy command write loses wizard state");
   if(version<19)need(!driver,"legacy command write loses ordinary brain driver");
   if(version<18)need(!extended,"legacy command write loses automatic sources");
   if(version<17)need(!input.native.ownerSources && (!input.native.ownerPlanner || input.native.ownerPlanner->members.empty()),"legacy command write loses friendly sources");
@@ -349,7 +370,7 @@ game::Bytes encode(const Continuation &input, unsigned version){
 }
 Continuation decode(const game::Bytes &bytes){
   need(bytes.size()>=8&&bytes.size()<=1024*1024&&game::Bytes(bytes.begin(),bytes.begin()+4)==game::Bytes{'C','M','D','1'},"unknown native command continuation");
-  Reader r{bytes,4};const auto version=r.word();need(version>=1&&version<=19,"unsupported native command continuation version");Continuation c;r.version=version;
+  Reader r{bytes,4};const auto version=r.word();need(version>=1&&version<=20,"unsupported native command continuation version");Continuation c;r.version=version;
   if(version==1)std::apply([&](auto &...x){(r.value(x),...);},fieldsV1(c));
   else if(version==2)std::apply([&](auto &...x){(r.value(x),...);},fieldsV2(c));
   else if(version==3)std::apply([&](auto &...x){(r.value(x),...);},fieldsV3(c));

@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.16)
 project(mnm_installed_native_encounter LANGUAGES CXX)
 add_subdirectory(../command-session command-session)
+add_subdirectory(../../reconstruction/rendering/effect-creature wizard-effects)
 # Decode-only entry points have no filesystem/Qt dependency. The unused
 # AssetFile wrappers are discarded; no substitute AssetFile implementation.
 add_library(mnm-encounter-input-decoders STATIC
   ../../assets/config_loader.cpp ../../assets/packed_container.cpp ../../assets/dat.cpp
+  ../../assets/wizard.cpp ../../assets/effect_animation_catalog.cpp
   ../../assets/creature_movement.cpp ../../assets/map.cpp
   ../../assets/terrain_catalog.cpp ../world-scene/map_navigation.cpp
   ../../reconstruction/rendering/terrain_map.cpp)
@@ -12,11 +14,16 @@ target_compile_features(mnm-encounter-input-decoders PUBLIC cxx_std_17)
 target_compile_options(mnm-encounter-input-decoders PRIVATE -ffunction-sections -fdata-sections)
 target_include_directories(mnm-encounter-input-decoders PRIVATE ../../assets ../../reconstruction/rendering ../../reconstruction/pathfinding ../../reconstruction/motion)
 target_link_libraries(mnm-encounter-input-decoders PUBLIC mnm-native-command-session)
-add_library(mnm-native-encounter STATIC profile.cpp combat.cpp navigation.cpp ../../reconstruction/combat/health.cpp)
+add_library(mnm-native-encounter STATIC profile.cpp combat.cpp navigation.cpp wizards.cpp wizard_profile.cpp
+  ../../reconstruction/combat/health.cpp ../../reconstruction/casting/admission.cpp
+  ../../reconstruction/casting/cure_effect.cpp ../../reconstruction/casting/projectile.cpp
+  ../../reconstruction/rendering/effect_motion_initializer.cpp
+  ../../reconstruction/rendering/effect_trajectory_initializer.cpp
+  ../../reconstruction/rendering/effect_animation_selection.cpp)
 target_compile_features(mnm-native-encounter PUBLIC cxx_std_17)
 target_compile_options(mnm-native-encounter PRIVATE -Wall -Wextra -Werror -pedantic)
 target_link_options(mnm-native-encounter INTERFACE -Wl,--gc-sections)
-target_link_libraries(mnm-native-encounter PUBLIC mnm-encounter-input-decoders)
+target_link_libraries(mnm-native-encounter PUBLIC mnm-encounter-input-decoders mnm-effect-creature)
 add_executable(native-encounter main.cpp)
 target_link_libraries(native-encounter PRIVATE mnm-native-encounter)
 target_compile_options(native-encounter PRIVATE -Wall -Wextra -Werror -pedantic)
@@ -193,3 +200,7 @@ target_compile_options(native-owner-source-decisions-test PRIVATE -Wall -Wextra 
 add_executable(native-owner-skirmish-test ../../tests/native-owner-skirmish-test.cpp)
 target_link_libraries(native-owner-skirmish-test PRIVATE mnm-native-encounter)
 target_compile_options(native-owner-skirmish-test PRIVATE -Wall -Wextra -Werror -pedantic)
+
+add_executable(native-wizard-encounter-test ../../tests/native-wizard-encounter-test.cpp)
+target_link_libraries(native-wizard-encounter-test PRIVATE mnm-native-encounter)
+target_compile_options(native-wizard-encounter-test PRIVATE -Wall -Wextra -Werror -pedantic)

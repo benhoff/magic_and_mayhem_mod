@@ -1,4 +1,5 @@
 #include "runtime.hpp"
+#include "native_wizards.hpp"
 #include <limits>
 #include <stdexcept>
 namespace mnm::command_session {
@@ -46,6 +47,7 @@ void Runtime::initialize(game::State &s, std::uint32_t seed) const {
   continuation.generations.clear();
   for (const auto &slot : s.slots) continuation.generations.push_back(slot.generation);
   continuation.seed = seed;
+  if(continuation.native.wizards)continuation.native.wizards->random=model::seedRandom(seed);
   s.map = "native-command-session-v1";
   for (auto &slot : s.slots) slot.entity = game::Entity{};
   publish(s, continuation);
@@ -69,6 +71,7 @@ Continuation Runtime::read(const game::State &s) const {
        "native command action profile differs");
   need(c.native.present==initial_.native.present && c.native.profileStamp==initial_.native.profileStamp,
        "native command provider profile differs");
+  validateNativeWizardConfiguration(c, initial_);
   for (unsigned i = 0; i < s.slots.size(); ++i) {
     const auto &slot = s.slots[i]; const auto &a = c.world.creatures[i];
     need(slot.generation == c.generations[i] && slot.entity.has_value(), "native command actor generation differs");

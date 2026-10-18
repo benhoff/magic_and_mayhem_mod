@@ -309,6 +309,7 @@ public:
     updateNativeOwnerVisibility(c_, *p_);
     updateNativeRegionalDanger(c_, *p_);
     updateNativeOwnerPlanner(c_, *p_, commands,fx_.verifyOwnerTask);
+    if(fx_.worldWork)fx_.worldWork(commands);
     for(auto &a:c_.world.creatures)if(a.ai.active){if(!channel(a,false).bound&&c_.execution.at(a.ai.slot).actionCallback)commands.action(a,a.ai.action);
       auto s=fx_.maintenance;s.random=[this]{return random();};s.action=[&commands](auto &actor){commands.tickAction(actor);};s.poll=[this](auto &actor,model::MaintenanceAnimation which){return poll(c_.native.animation.at(actor.ai.slot).auxiliary.at(unsigned(which)));};
       auto env=p_->maintenance;env.tick=c_.native.tick;model::maintainCreature(a,c_.execution.at(a.ai.slot),c_.maintenance.at(a.ai.slot),c_.world,env,s);
@@ -341,7 +342,7 @@ void prepareNativeContinuation(Continuation &c,const NativeCreatureProfile &p){
   c.actions.objects.dimensions=c.world.dimensions;if(c.actions.objects.heads.empty())c.actions.objects.heads.assign(std::size_t(c.world.dimensions.x)*c.world.dimensions.y*c.world.dimensions.z,0xffff);
   c.native.present=true;c.native.profileStamp=stamp(p);c.native.animation.resize(n);c.native.search.resize(n);c.native.displacementOwners.resize(n);c.native.initialization.resize(n);
   need(c.native.cells.size()==c.actions.objects.heads.size(),"native terrain inputs are missing");
-  NativeCreatureGeometry geometry(c,p);for(auto &a:c.world.creatures){geometry.snap(a,a.ai.position);geometry.reserve(a,a.ai.position,true);}
+  NativeCreatureGeometry geometry(c,p);for(auto &a:c.world.creatures)if(a.ai.active){geometry.snap(a,a.ai.position);geometry.reserve(a,a.ai.position,true);}
 }
 HookFactory nativeProviders(NativeCreatureProfile profile,NativeConsequenceFactory lower){
   need(bool(lower),"native consequence factory missing");auto p=std::make_shared<const NativeCreatureProfile>(std::move(profile));

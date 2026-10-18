@@ -10218,3 +10218,69 @@ factions; together with component execution, the new original comparisons pass
 2,716,245 checks. All seven new scoped behaviors have current fingerprints, while
 historical staleness, incomplete World composition and live replacement remain
 explicit. No full original battle equivalence is claimed.
+
+## NS87 — wizard AI, in progress
+
+The wizard milestone extends decisions through spell selection, resource admission,
+cast delivery, effects and portable native continuation. Stable contracts
+`AI.wizard-controller` and `AI.wizard-spell-control` retain whole-controller and
+component status separately. Static constructor/vtable discovery covers kinds
+14–59 without promoting their semantics or silently changing binary boundaries.
+The first shared model covers original `51e530` mana readiness, including all
+42 inventory reserves and eligible same-owner production; comparison is pending
+until a prospective source-bound run is registered. Native composition and
+end-to-end wizard behavior remain pending. See [wizard AI](wizard-ai.md).
+
+
+NS87 independent component acceptance now records seven new prospectively bound
+original/native/sanitizer comparisons: shared wizard mana wait (32768 fixtures),
+eight target-task bodies (65536), Magic Sphere task (16384), installed Greek Male
+wizard ground banks (128/6272 checks), Cure effect (32768), projectile update/actor
+impact (32768), and actual type3 Magic Sphere collision (560 fixtures/1120 calls,
+198 hits). Target text/input/source guards and both immutable-original manifests
+pass. Six components total180352 fixtures; collision is a separate560-fixture
+whole guarded-state comparison. Lower services, component scope and native
+composition remain independent. No whole original wizard-controller promotion.
+
+A broader first collision fixture exposed non-type3 distance-return4 at488b19–53;
+the original explicitly exempts types3/71. `FX.motion-distance-stop` retains that
+new branch as pending native implementation and original comparison. Failed/raw
+source and binaries are preserved; narrowing the passing sphere case to actual
+moving type3 does not remove that gap. Full original per-spell evaluators,
+repertoire, source/brain scheduling, survival and campaign remain outstanding.
+
+NS87 discovery publishes only nine exactly reviewed spell-task bodies, extending
+the retained6692-function baseline to6701 while preserving previous flows/unknowns.
+Read-only static export/tooling covers204 inspected ranges, constructor/vtable
+mapping and execution-slot links. Committed-history review of1961f306..4a504852
+checks all62 committed files and exact receipt chains (332 file and363 behavior
+transitions), with no unresolved transition; it establishes neither a past gate
+pass nor fresh engine validation. Report:
+`coverage/history-review-ns86-to-ns87-20261017.json`.
+
+The new source census acknowledges implementation/test/dependency links. Shared
+ANI reader, comparison runner, rendering/catalog admission, command codec and
+encounter integration edits leave affected old source-bound results historical;
+no old fingerprints are refreshed. New original evidence supports only its stated
+contracts. Native/core regressions do not restore whole-original equivalence for
+older branches. The exact hash-bound change review records remaining gaps.
+
+
+NS87 native acceptance: `NS87.native-wizard-encounter` binds341 current compiler/
+build inputs and the headless three-spell scenario. Both native64 and ASan/UBSan/
+LSan agree on5120 frames,426277 checks,116 sliced restores,27 refusals,4 verifier
+rollbacks,63 casts,28 heals,27 projectile actor impacts,4 summons, one mana-item
+use,204 production visits,9 actual health-to-zero transitions and3 wizard defeats.
+Seventeen cold-process restores and public wizard CLI continuation are identical;
+all wizard snapshots/traces, ordinary skirmish/encounter and both core regressions
+pass. Final v3 is an explicit incremental rebuild after the retained clean
+bootstrap; superseded v1/v2 runs do not assert complete integration acceptance.
+Current type3 original comparison is a new v3 evidence ID, preserving the earlier
+passing source version and the excluded nonprojectile distance-return4 gap.
+
+`NP.native-wizard-encounter` alone gains headless integration. Actor-target task,
+readiness, ground-profile and effect comparisons retain their narrower component
+scopes. Full original `AI.wizard-controller`, its scoring/repertoire/source/World
+and campaign/factory/producer ownership remain open. See `wizard-ai.md` and
+`../formats/native-wizard-continuation.md`. Commander orders, veterancy and mana
+economy changes remain outstanding; no installed balance data was modified.

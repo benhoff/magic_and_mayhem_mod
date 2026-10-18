@@ -19,6 +19,7 @@ std::array<std::uint32_t,48> groundMovementSamples(const assets::Animation& ani)
         for(unsigned i=a;i<z;++i){const auto& r=ani.records[i];
             if(r.opcode==0){if(event){if(repeated)throw std::invalid_argument("Extra ground ANI repeat");repeated=&r;}else sprites.push_back(&r);}
             else if(r.opcode==5 && r.argument==2 && !event && sprites.size()==12)event=true;
+            else if(r.opcode==5 && r.argument==5 && !event){} // Wizard footstep events do not change the sample endpoints.
             else if(r.opcode==6 && i+1==z && event && repeated){}
             else throw std::invalid_argument("Unsupported ground ANI controls");
         }
