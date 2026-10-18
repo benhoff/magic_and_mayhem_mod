@@ -1,4 +1,5 @@
-/* Isolated No-CD diagnostic. No pacing/tick/state mutation; memory-only events
+/* Isolated No-CD diagnostic. Whole-update mode adds bounded source-boundary
+ * scheduling before accepted timestamps; no tick/gameplay-state mutation. Memory-only events
  * while gameplay runs. Scripted import staging verifies the complete source PE. */
 #include "../shadow/win32_min.h"
 API u32 WIN GetCurrentThreadId(void);
@@ -49,7 +50,7 @@ void cadence_record(u32* registers,u32 event){
  if(tid!=__atomic_load_n(&owner,__ATOMIC_ACQUIRE)){__sync_fetch_and_add(&foreign,1);SetLastError(error);return;}
  if(count==LIMIT){++dropped;SetLastError(error);return;}
  u32* r=rows[count];r[0]=count+1;r[1]=event;r[2]=tid;
- if(!QueryPerformanceCounter(r+3)){++dropped;SetLastError(error);return;}
+ if((event!=2||!update_boundary_enabled)&&!QueryPerformanceCounter(r+3)){++dropped;SetLastError(error);return;}
  r[5]=get(0x6c4830);
  r[6]=get(0x6cbb78+0xfd62);r[7]=get(0x6dbe95);r[8]=get(0x6dbe99);
  r[9]=get(0x6e1f00);r[10]=*(u8*)(0x6cbb78+0xfd5a);r[11]=get(0x6f34e0);
@@ -68,6 +69,10 @@ void cadence_record(u32* registers,u32 event){
    for(u32 i=0;i<9;++i)r[15+i]=get(p+i*4);
  }
  if(event==6||event==16){r[15]=get(0x6df188);r[16]=get(0x6def58+0x258);r[17]=get(0x6def58+0x25c);r[18]=get(0x6def58+0x264);}
+ if(event==2&&update_boundary_enabled){
+  update_boundary_prepare(r);
+  if(!QueryPerformanceCounter(r+3)){update_boundary_cancel();++dropped;SetLastError(error);return;}
+ }
  ++count;update_boundary_observe(r);SetLastError(error);
 }
 #include "queue_point.h"

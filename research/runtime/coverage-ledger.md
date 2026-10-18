@@ -17511,3 +17511,41 @@ merge does not establish a new original comparison, sanitizer comparison or full
 original wizard controller equivalence. Pending exact merge review explicitly
 retains those current-source validation boundaries. See the merged census,
 summary and history-review-wizard-master-merge-20261017.json for accounting.
+
+
+## Quiescent source boundaries and accepted timestamps (2026-10-17)
+
+This supersedes the four-gate status of the earlier `ac848056`
+source-reservation capture; its historical evidence and fingerprints remain unchanged.
+Ordinary callbacks previously retained pending cursor primitives. Terminal draining
+also released the recorder lock before recording. Every callback now drains and
+retains the lock through its source record. A generation-qualified same-thread
+prepare/commit/cancel ABI additionally spans the accepted cadence QPC sample.
+Draining only after timestamping still left41source-point gaps in the retained
+development run; the timestamp-spanning policy removes those gaps. Same-owner
+frames anywhere in the table refuse immediately, including behind another owner.
+
+The final23case PE32 fixture passes, as do default cadence preservation and17
+accounting/admission guard methods. The fresh original first120capture closes
+2584COPY reservations through their selected workers/current-context fences.
+Its2054inputs and312primary witnesses remain in the interval denominator;
+406selected source/worker/EGL regions and whole images match at unchanged RGB
+tolerance1. Source boundaries and primary source-point prefix gaps are both zero.
+Normal original Quit/child exit0, stable source hashes and2927-file bookends pass.
+The software GL/readback diagnostic changes scheduling; it is not production
+cadence, hardware source atomicity or native parity.
+
+The unchanged strict interval checker still refuses physical backing/alias writer
+ownership and global presentation routes. Direct unhooked writes, distinct resource
+backing aliases, other contexts and unobserved outputs are still actual gaps, not
+missing positive tests. No complete presented interval,47/21closure or native
+replacement status is promoted. See [the admission contract](drawing-source-boundary-quiescence.md)
+and [retained provenance](source-boundary-provenance-20261017.json).
+
+
+The final integration base is native AI merge `1d03ccdd`. Its780changed files
+have779exact non-journal receipt matches and zero renderer execution-source
+overlaps. The earlier master commit attempt was stopped during its hook before
+Git could overwrite that merge. The combined census/accounting is regenerated;
+renderer execution-source hashes remain identical, without a new AI validation
+claim. See `coverage/source-boundary-ai-merge-history-20261017.json`.

@@ -99,3 +99,15 @@ Physical backing and alias writer closure, quiescent source boundaries, live
 source points for every primary witness and global presentation routes remain
 open. Generic47journey/21operation requirements and complete native replacement
 remain open. Enabling this policy must not promote those gates.
+
+
+## Later source-boundary admission (2026-10-17)
+
+The preceding execution section describes the `ac848056` cohort. The subsequent
+[source-boundary admission](drawing-source-boundary-quiescence.md) fixes ordinary
+callback draining, the terminal lock gap and timestamp ordering. Its fresh final
+120-update interval has zero pending primitives and zero primary source-point
+prefix gaps. The unchanged checker now refuses only physical backing/alias writers
+and global presentation routes. [New provenance](source-boundary-provenance-20261017.json)
+retains the original results and development failures. The COPY resource guard
+still does not own separate physical aliases or exclude unhooked writers.

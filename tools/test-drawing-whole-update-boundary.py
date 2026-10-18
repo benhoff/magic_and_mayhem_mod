@@ -15,7 +15,7 @@ def main():
     parent=ROOT/'working/tests/drawing-whole-update';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent))
     spec=importlib.util.spec_from_file_location('cadence_build',ROOT/'tools/build-engine-cadence.py');build=importlib.util.module_from_spec(spec);spec.loader.exec_module(build);dll=build.build(run/'build')
     flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-Wno-unused-function']
-    definition=(dll.parent/'kernel32.def').read_text()+'InitializeCriticalSection@4\nEnterCriticalSection@4\nLeaveCriticalSection@4\nCreateThread@24\n'
+    definition=(dll.parent/'kernel32.def').read_text()+'InitializeCriticalSection@4\nEnterCriticalSection@4\nLeaveCriticalSection@4\nCreateThread@24\nTryEnterCriticalSection@4\nCreateEventA@16\nSetEvent@4\nWaitForSingleObject@8\n'
     (run/'fixture-kernel32.def').write_text(definition);subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(run/'fixture-kernel32.def'),'-l',str(run/'fixture-kernel32.lib')],check=True)
     subprocess.run(flags+['-c',str(ROOT/'tests/drawing-whole-update-boundary-test.c'),'-o',str(run/'fixture.obj')],check=True);binary=run/'fixture.exe'
     subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(binary),str(run/'fixture.obj'),str(run/'fixture-kernel32.lib')],check=True)
@@ -26,11 +26,14 @@ def main():
     cases=[]
     try:
         with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
-        for mode in ('g','s','t','r','o','p','a','n','e','c','f','w','z'):
+        for mode in ('g','s','t','r','o','p','a','n','e','c','f','w','z','d','q','b','l','j','h','i','k','m','u'):
             target=run/mode;target.mkdir();env.update(MNM_FIXTURE_MODE=mode,MNM_SCENE_DIR='Z:'+str(target).replace('/','\\'))
             with (target/'fixture.log').open('x') as out:execution=subprocess.run(['wine',str(binary)],env=env,stdout=out,stderr=subprocess.STDOUT,timeout=20)
-            expected=0 if mode in ('g','w') else 99
+            expected=0 if mode in ('g','w','d','l','j','h','i','k') else 99
             if execution.returncode!=expected:raise ValueError(f'{mode}: {execution.returncode}, expected {expected}')
+            if mode=='u':
+                refusal=struct.unpack('<32I',(target/'whole-update-refusal-0000.bin').read_bytes())
+                if refusal[2]!=2 or refusal[13:15]!=(1,99):raise ValueError('Same-owner frame hidden behind another owner was not refused directly')
             cases.append(dict(mode=mode,returncode=execution.returncode))
         done=(run/'g/canvas-producers.done').read_bytes()
         if len(done)!=32 or done[:8]!=b'MNMPDONE' or struct.unpack('<8I',done)[2:]!=(1,1,1,0,0,160):raise ValueError('Whole-update completion marker')
@@ -38,8 +41,12 @@ def main():
             data=(run/'g/source-update-windows-0000.bin').read_bytes()
             rows=list(struct.iter_unpack('<16I',data[64:]))
             if data[:8]!=b'MNMDWIN1' or len(rows)!=3 or [r[1] for r in rows]!=[1,1,4] or [r[3] for r in rows[:2]]!=[30,31] or rows[-1][7:10]!=(1,1,0):raise ValueError('Source boundary prefixes not retained')
+        if a.update_routes:
+            for mode in ('g','w','d','l'):
+                raw=(run/mode/'source-update-windows-0000.bin').read_bytes()
+                if any(row[10] for row in struct.iter_unpack('<16I',raw[64:]) if row[1]==1):raise ValueError('Admitted nonquiescent callback: '+mode)
         if not stable():raise ValueError('Fixture sources changed during execution')
-        report=dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),cases=cases,done_sha256=sha(done),original_game_executed=False,scope='Actual PE32 boundary/callback code: early no-op, one closure/checkpoints/end marker/done/LastError/idempotence; sequence/counter/event/owner/frame/active/incomplete/failure/checkpoint/flush refusals. Owned emit/checkpoint/close stand-ins; no original source or hardware completion.')
+        report=dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),cases=cases,done_sha256=sha(done),original_game_executed=False,scope='Actual PE32 boundary/callback code: all observed frames drain at ordinary and terminal callbacks, recorder lock retained from prepare through accepted QPC and boundary, exact token/owner/tuple/cancel and repeated-release controls, same-owner (including hidden behind another owner), exhausted token generation and stalled ordinary callbacks refuse, stop during wait produces no boundary; early no-op, one closure/checkpoints/end marker/done/LastError/idempotence; sequence/counter/event/owner/frame/active/incomplete/failure/checkpoint/flush refusals. Owned emit/checkpoint/close stand-ins; no original source or hardware completion.')
         a.report.parent.mkdir(parents=True,exist_ok=True);a.report.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(dict(success=True,cases=len(cases))))
     finally:
         subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
