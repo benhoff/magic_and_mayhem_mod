@@ -50,13 +50,15 @@ changes.
 
 ## Working storage budget
 
-- Retain at least 100 GiB of filesystem free space on the main checkout's drive.
+- Retain at least 90 GiB of filesystem free space on the main checkout's drive
+  (explicitly approved by the user on 2026-10-19 for tranche 2 completion and
+  tranche 3 issue work).
   There is no fixed size cap on `working/`, including nested worktree output.
 - Before a storage-producing experiment or large build, use the main checkout's
   `tools/working-retention.py run --reserve-gib <estimated-output> -- <command>`.
   If the preflight refuses, review storage or obtain an explicit budget change
   before proceeding. The guard monitors free space every two seconds and stops
-  its launched process group below the 100 GiB reserve. Reservations are estimates;
+  its launched process group below the 90 GiB reserve. Reservations are estimates;
   this is not a filesystem quota and cannot constrain other writers.
 - Use `tools/working-retention.py inventory --output <new-report-path>` to prepare
   cleanup. Preserve registered worktrees, referenced evidence and `.retain` pins.

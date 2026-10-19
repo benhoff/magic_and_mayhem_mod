@@ -52,7 +52,7 @@ template<class T> std::uint64_t storage(const std::vector<T>& v){return std::uin
 std::uint64_t storage(const Sprite& s){
     auto bytes=storage(s.palettes)+storage(s.frames);
     for(const auto& f:s.frames){
-        bytes+=std::visit([](const auto& p){return storage(p);},f.pixels)+storage(f.opaqueMask);
+        bytes+=std::visit([](const auto& p){return storage(p);},f.pixels)+storage(f.opaqueMask)+storage(f.opaqueRuns);
         for(const auto& a:f.auxiliaryData)bytes+=storage(a);
     }
     return bytes;

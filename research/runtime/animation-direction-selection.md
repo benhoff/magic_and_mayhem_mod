@@ -115,3 +115,20 @@ Final controller evidence: `working/tests/animation-switch/run-mraqfj_r/`: **2,1
 traces / 70,620 states**, covering **118 installed ANI assets** and five synthetic
 control traces; all match. The retained report records per-asset coverage, source
 and input hashes, static artifacts and the full generated report hash.
+
+## Rendering behavior reconciliation — 2026-10-19
+
+The preview scope above remains unchanged. `AN.world-facing` previously listed
+no native implementation, but the separate command-session provider already
+contains the selected cell-coordinate arithmetic in `NativeContext::facing`,
+reached through its existing `execution().orient` callback when owner visibility
+is absent. It wraps canonical deltas, preserves zero displacement, applies the
+3:2 dominant-axis rule, and publishes camera/reverse animation facing. The
+register now links this existing implementation and records partial code rather
+than absence. A synthetic provider fixture exercises the production callback
+with an owned profile/terrain; it is not an original-binary comparison.
+
+Complete original targeting and attachment state, camera/global/flag lifetimes,
+configured action-base provenance and live replacement remain unresolved. The
+separately scoped footprint-opponent facing and native creature-provider results
+do not automatically validate this entire contract.

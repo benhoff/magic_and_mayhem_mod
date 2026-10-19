@@ -105,3 +105,32 @@ after artifact-consuming captures/exports. Native output receives none of these
 pixels; World shadow presentation and full live replacement remain separate.
 
 The producer follow-up in [native-canvas-producers.md](native-canvas-producers.md) corrects the initial copy-direction interpretation and the generic sprite-dispatch label for `0x581ec0`. Historical diagnostic reports and their hashes remain unchanged.
+
+## Tranche 2 bounded recovery (2026-10-19)
+
+New private unchanged-original controls execute40 selected creation cells,
+13,824 Lock/Restore/retry/callback/teardown cells,48 ordinary/padded dispatcher
+windows and25 full-fill cells. Creation COM outputs, Lock/consumer/Post bodies
+and fill-driver completion are explicitly scripted boundaries. Logged creation
+errors use authored returned interfaces; fatal children stop at the isolated UI
+teardown endpoint. The Lock matrix retains Restore separately from retry Lock
+and includes null surfaces and conditional early Unlock. These are selected
+wrapper contracts, not real DirectDraw recovery or physical allocation proof.
+
+The dispatcher fixture executes4fd438..4fd5ad and original setters, with both
+video dimensions, padding, alternate/ordinary routes and null Lock. Word stride31,
+bind height23 and clip bottom17 are deliberately independent. The full-fill
+fixture retains word-zero and low16 color, row padding and a null-interface
+no-Blt case. Caller-owned fixture storage is the observation boundary; the
+actual first startup driver's completion remains unsampled.
+
+Two independent original-active producer/storage captures each close845 calls
+and774 observed Lock-return epochs. The source-only replay compares every one
+of1061 original checkpoints. The final pre-World checkpoint reconstructs all
+480,000 words on logical canvas2; only a source-to-presentation copy, clip and
+rebind intervene before queue1. Native storage starts undefined and takes no
+original destination samples. Same numerical storage identities on different
+launches are never joined; reuse across logical generations within a run is
+retained. Unknown physical allocations, COM aliases and unobserved driver/writer
+intervals remain explicit. This before-state comparison does not follow merely
+from matching completed World outputs.

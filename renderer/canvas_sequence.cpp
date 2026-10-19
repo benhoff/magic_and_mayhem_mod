@@ -1,4 +1,5 @@
 #include "canvas_sequence.hpp"
+#include "../assets/sprite_run_clipping.hpp"
 #include <algorithm>
 #include <cmath>
 #include <stdexcept>
@@ -395,6 +396,15 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
     throw std::invalid_argument("Invalid producer raster mode");
   const auto left = std::int64_t(x) - f.originX,
              top = std::int64_t(y) - f.originY;
+  std::vector<std::uint8_t> clippedCoverage;
+  const auto* coverage=&f.opaqueMask;
+  if(mode==3 && backend==7 && (left<clip.left || left+f.width>clip.right)){
+    clippedCoverage.assign(f.opaqueMask.size(),0);
+    for(const auto& run:assets::clipWholeOpaqueRuns(f,std::int64_t(clip.left)-left,std::int64_t(clip.right)-left))
+      std::fill(clippedCoverage.begin()+std::size_t(run.row)*f.width+run.left,
+                clippedCoverage.begin()+std::size_t(run.row)*f.width+run.right,1);
+    coverage=&clippedCoverage;
+  }
   if(backend==11){
     if(mode!=0 || !std::holds_alternative<std::vector<std::uint16_t>>(f.pixels))throw std::invalid_argument("Grayscale backend mode or source");
     if(left>=clip.left && left+f.width<=clip.right)mode=6;
@@ -413,7 +423,7 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
     auto visit = [&](const auto &pixel) {
     for (int row = 0; row < (last - first + 1) / 2; ++row)
       for (unsigned col = 0; col < f.width; ++col) {
-        if (!f.opaqueMask.at(std::size_t(first + row * 2) * f.width + col))
+        if (!coverage->at(std::size_t(first + row * 2) * f.width + col))
           continue;
         const auto dx = left + col + last / 2 - row,
                    dy = shadowTop + first + row;
@@ -443,7 +453,7 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
     const auto count = std::size_t(lastX - firstX);
     for (auto row = firstY; row < lastY; ++row) {
       auto *defined = s.defined.data() + slot(s.image, int(left + firstX), int(top + row));
-      const auto *mask = f.opaqueMask.data() + std::size_t(row) * f.width + firstX;
+      const auto *mask = coverage->data() + std::size_t(row) * f.width + firstX;
       for (std::size_t i = 0; i < count; ++i)
         if(mask[i])defined[i]=0;
     }
@@ -455,7 +465,7 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
         const auto dx = left + i, dy = top + j;
         if (dx < 0 || dy < 0 || dx >= s.image.width || dy >= s.image.height ||
             dx < clip.left || dx >= clip.right || dy < clip.top || dy >= clip.bottom ||
-            !f.opaqueMask[std::size_t(j) * f.width + i]) continue;
+            !(*coverage)[std::size_t(j) * f.width + i]) continue;
         requireCpu(id,s,slot(s.image,int(dx),int(dy)));
         if (mode == 3) {
           const int shift = offsets[unsigned(dy) % period];
@@ -479,7 +489,7 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
           dy >= clip.bottom)
         continue;
       const auto from = std::size_t(j) * f.width + i;
-      if (!f.opaqueMask[from])
+      if (!(*coverage)[from])
         continue;
       const auto at = slot(s.image, int(dx), int(dy));
       if (invalidateOnly) { s.defined[at] = 0; continue; }

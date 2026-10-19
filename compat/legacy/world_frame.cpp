@@ -59,6 +59,6 @@ render::SceneDraw worldPrimitiveDraw(const WorldDraw& d){
 }
 std::vector<render::SceneDraw> worldDisplay(const WorldFrame& frame,const SnapshotResources& resources){
     std::vector<render::SceneDraw> draws;draws.reserve(frame.draws.size());
-    for(const auto& d:frame.draws){if(d.additive||d.colourRectangle){draws.push_back(worldPrimitiveDraw(d));continue;}const auto bound=resources.resolve(d.frame,true);render::SceneDraw draw{bound.resource,bound.frame,d.x,d.y,true,true,d.colours,d.clip,d.composite};draws.push_back(std::move(draw));}return draws;
+    for(const auto& d:frame.draws){if(d.additive||d.colourRectangle){draws.push_back(worldPrimitiveDraw(d));continue;}const auto bound=resources.resolve(d.frame,true);render::SceneDraw draw{bound.resource,bound.frame,d.x,d.y,true,true,d.colours,d.clip,d.composite};draw.wholeOpaqueRunClipping=d.backend==7&&d.composite.mode==render::CompositeMode::displace;draws.push_back(std::move(draw));}return draws;
 }
 }

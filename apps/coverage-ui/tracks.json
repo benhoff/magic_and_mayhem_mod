@@ -3,6 +3,275 @@
   "description": "Curated, equally counted capability milestones. Status comes from current registered contracts; no effort or whole-game completion estimate. Shared contracts may contribute to different scoped outcomes.",
   "tracks": [
     {
+      "id": "simulation",
+      "title": "Engine simulation",
+      "goal": "Own world state and execute creature decisions, combat, spells and campaign continuation with explicit original-engine validation boundaries.",
+      "subsystems": [
+        "native-simulation",
+        "native_simulation",
+        "creature_ai",
+        "creature-ai",
+        "creature-execution",
+        "creature-autonomy",
+        "creature-segments",
+        "creature-routing",
+        "creature-control",
+        "creature-special-actions",
+        "combat",
+        "casting"
+      ],
+      "planned": false,
+      "focus": {
+        "boundary": "Native headless sessions and playable campaign slices have bounded registered results. Ordinary owner decision traces are original comparisons. Complete original world scheduling, entity lifetime, wizard strategy and full gameplay composition remain open; these milestones do not establish live simulation replacement.",
+        "documents": [
+          "research/runtime/owner-native-skirmish.md",
+          "research/runtime/owner-decision-pipeline.md",
+          "research/runtime/owner-multisource-pipeline.md",
+          "research/runtime/wizard-ai.md",
+          "research/runtime/world-tick-loop.md",
+          "research/runtime/entity-lifetimes.md",
+          "research/runtime/native-campaign-graph.md"
+        ]
+      },
+      "milestones": [
+        {
+          "id": "owned-state",
+          "title": "Owned world state & checkpoints",
+          "scope": "Native identity, generation checks and versioned staged restoration; native policies retain their own scope.",
+          "remaining": "Complete the registered owned-world foundation; do not infer original lifetime or scheduler equivalence.",
+          "requirements": [
+            {
+              "behaviors": [
+                "WORLD.owned",
+                "NP.checkpoints"
+              ],
+              "status": {
+                "implementation": "scoped"
+              }
+            }
+          ]
+        },
+        {
+          "id": "command-session",
+          "title": "Native command execution & continuation",
+          "scope": "Bounded canonical command context, semantic ingress and portable headless continuation.",
+          "remaining": "Extend the installed providers and campaign composition beyond the bounded command session.",
+          "requirements": [
+            {
+              "behaviors": [
+                "AI.native-command-session",
+                "NP.command-continuation"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "live_equivalence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "owner-skirmish",
+          "title": "Autonomous ordinary creature skirmish",
+          "scope": "Installed ordinary type17 three-versus-three owner decisions, task execution and portable continuation under explicit native policies.",
+          "remaining": "Extend species, wizard composition, timing and broader world interactions beyond this ordinary bounded encounter.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.native-owner-skirmish"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "live_equivalence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "decision-comparison",
+          "title": "Original decision pipeline comparisons",
+          "scope": "Original-first single-source and multi-source count-budget traces compared with independent native replay, within captured inputs and supplied-service limits.",
+          "remaining": "Extend the compared source/task families and world services; original capture is not live native simulation replacement.",
+          "requirements": [
+            {
+              "behaviors": [
+                "AI.owner-decision-pipeline-trace",
+                "AI.owner-multisource-pipeline-trace"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "battle-rules",
+          "title": "Installed creature combat in the native battle",
+          "scope": "Bounded ordinary creature selection, ANI-event melee and authoritative health in the authored native battle.",
+          "remaining": "Extend species, full original scheduling and wider combat composition.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.creature-battle"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": "preview"
+              }
+            }
+          ]
+        },
+        {
+          "id": "spell-effects",
+          "title": "Cure & Magic Sphere battle integration",
+          "scope": "Two named spells with native authoritative health/mana, effect lifetime and save continuation; authored arena policies remain explicit.",
+          "remaining": "Extend the spell families and recover full spell selection and original balance before parity claims.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.cure-battle",
+                "NP.sphere-battle"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": "preview"
+              }
+            }
+          ]
+        },
+        {
+          "id": "campaign-continuation",
+          "title": "Transactional campaign continuation",
+          "scope": "Native attempts, resource rebinding, result settlement and a bounded four-node campaign graph; no original campaign equivalence.",
+          "remaining": "Extend mission and campaign scope beyond the authored bounded chapter.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.campaign-session",
+                "NP.campaign-graph"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "live_equivalence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "playable-campaign",
+          "title": "Playable installed-terrain campaign",
+          "scope": "Native map campaign and Crossroads windows, semantic orders, typed objectives and paused save/load within registered diagnostic presentation.",
+          "remaining": "Review current-source widget validation and extend presentation and original mission behavior beyond the bounded native campaign.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.map-campaign-window"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": "preview"
+              }
+            }
+          ]
+        },
+        {
+          "id": "wizard-strategy",
+          "title": "Original wizard strategy & spell tasks",
+          "scope": "Whole wizard strategic controller, candidate-to-cast composition and continuation; component comparisons alone do not complete this outcome.",
+          "remaining": "Recover coupled wizard source admission, strategic spell selection, summoning and survival, then compare bounded controller execution.",
+          "requirements": [
+            {
+              "behaviors": [
+                "AI.wizard-controller"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "original-tick-lifetime",
+          "title": "Original world scheduling & entity lifetime",
+          "scope": "Original tick/pause scheduler and entity allocation, membership and cleanup; native storage policies do not prove these contracts.",
+          "remaining": "Recover and independently compare the complete registered scheduler and lifetime scope.",
+          "requirements": [
+            {
+              "behaviors": [
+                "GP.tick",
+                "GP.lifetime"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "original-gameplay",
+          "title": "Complete original gameplay composition",
+          "scope": "Registered original AI, combat, casting and campaign progression boundaries; bounded component results remain separate.",
+          "remaining": "Recover and integrate the remaining full gameplay contracts without replacing their scope with native policies.",
+          "requirements": [
+            {
+              "behaviors": [
+                "GP.ai",
+                "GP.combat",
+                "GP.cast",
+                "GP.progression"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_equivalence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "live-simulation",
+          "title": "Verified live simulation replacement",
+          "scope": "Recovered original world tick and lifetime work bypassed during live native execution, with scoped replacement evidence.",
+          "remaining": "Establish integrated equivalence and explicit original-work bypass before claiming live simulation replacement.",
+          "requirements": [
+            {
+              "behaviors": [
+                "GP.tick",
+                "GP.lifetime"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "replacement": "scoped_live",
+                "integration": "live_equivalence"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "movement",
       "title": "Movement & navigation",
       "goal": "Move creatures through a native world with the original route and motion rules.",
@@ -459,7 +728,7 @@
           "id": "world-raster-takeover",
           "title": "Replace complete admitted startup World raster queues",
           "scope": "Actual original-body suppression and independent exact-entry pixel/AX comparisons within startup queues1..32; original traversal and outside-World producers remain active.",
-          "remaining": "Reduce delivery cost and extend beyond queue32, with all unknown callers, clips and side effects retained as gaps.",
+          "remaining": "This startup experiment retains its original bounded scope. Later continuous native-only delivery exists under separate contracts; renew comparisons and validate the broader profile rather than treating queue32 as its implementation ceiling.",
           "requirements": [
             {
               "behaviors": [
@@ -478,7 +747,7 @@
           "id": "world-batch-takeover",
           "title": "Replace guarded startup World raster batches",
           "scope": "Mandatory original destination-access guard and one native final writeback per admitted startup World queue; independent original intermediate/AX comparison. This is bounded raster suppression, not complete drawing replacement.",
-          "remaining": "Extend continuous active gameplay, outside-World producer suppression, transitions and current-source independent comparisons.",
+          "remaining": "This guarded startup experiment retains its own scope. Continuous native-only delivery and ownership services are separate implemented paths; broader current-source original comparison and supported-session acceptance remain validation work.",
           "requirements": [
             {
               "behaviors": [
@@ -494,10 +763,130 @@
           ]
         },
         {
+          "id": "native-only-launch",
+          "title": "Native-only launch implemented; combined validation pending",
+          "scope": "Delivered startup admission, no hidden original pixel fallback, strict glyph refusal and terminal session accounting. The register retains partial status after shared-source changes.",
+          "remaining": "Rerun the declared native-only controls and original-game session against current combined sources; retain route, movie, pixel and performance exclusions.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.native-only-launch-contract"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "live_equivalence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "owned-copy-readers",
+          "title": "Owned copy and CPU-reader implementations; validation pending",
+          "scope": "Delivered format/stretch conversion, checked native image-row copying and owned raw instruction continuation. Native policies remain separate from original-driver equivalence.",
+          "remaining": "Renew source-bound copy and CPU-read/restore controls and integrated original-game caller journeys after the shared renderer edits.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.native-copy-transforms",
+                "NP.native-cpu-instruction-resume",
+                "NP.native-image-row-copy"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "live_equivalence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "extended-2d",
+          "title": "Extended 2D operations and whole clipped-image copy",
+          "scope": "Bounded ROP3, key, rotation/palette/display-depth native-policy controls and isolated full 533a00 body copying. Current component evidence is separate from complete application caller coverage.",
+          "remaining": "Extend required live caller/transition and original-driver validation; retain the independent whole-game acceptance gates.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.native-extended-2d",
+                "NP.native-clipped-image-copy"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": "headless"
+              }
+            }
+          ]
+        },
+        {
+          "id": "isolated-recovery",
+          "title": "Isolated renderer fault and platform recovery",
+          "scope": "Opt-in worker replacement, exactly-once draw retry, checkpoint/journal replay and Qt platform recreation under real OpenGL synthetic controls.",
+          "remaining": "Validate actual-game fault continuation, physical hardware reset and sustained recovery/IPC/readback cost; synthetic controls do not establish those outcomes.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.native-isolated-render-recovery"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": "headless"
+              }
+            }
+          ]
+        },
+        {
+          "id": "generation-restart",
+          "title": "Native-only hard restart implemented; validation pending",
+          "scope": "Delivered generation retirement, fresh launcher/channel admission and preserved failure outcomes. Earlier successful live restart evidence remains historical after shared-source edits.",
+          "remaining": "Renew current-source controls and bounded live failure/restart with independent retirement, new-generation and normal-Quit checks.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.native-only-generation-restart"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "live_equivalence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "recorded-session",
+          "title": "Compare a bounded complete recorded interval",
+          "scope": "All 323 frames in the registered observed-EGL interval have native GPU and displayed X11 comparisons. Original observation closure, generic action-bound journeys and live all-game equivalence remain separate.",
+          "remaining": "Grow action-bound supported-session acceptance with complete resource/semantic/pixel checks rather than treating one recorded interval as all-game proof.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NR.recorded-session-corpus"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": "headless"
+              }
+            }
+          ]
+        },
+        {
           "id": "world-initialization",
-          "title": "Own the original World initialization contract",
+          "title": "Validate the complete original World initialization contract",
           "scope": "Recover canvas allocation, generation, clearing/reuse and upstream producers. Selected retained-state observations do not complete this contract.",
-          "remaining": "Resolve the nonzero startup canvas and untraced writes; compare independent native history against live output.",
+          "remaining": "Native ownership/history implementations exist separately. Recover and compare the remaining original allocation, generation, clearing/reuse and upstream producer scope before promoting this broad recovered contract.",
           "requirements": [
             {
               "behaviors": [
@@ -585,20 +974,40 @@
         }
       ],
       "focus": {
-        "boundary": "Native surface/resource/presentation foundations and selected direct-word bypass exist. Independent scalar/guarded World raster-body proofs include source-only startup queues1..32. Software-Mesa delivery remains too slow for real-time continuous play. Original traversal and outside-World producers remain active; complete live drawing replacement is outstanding.",
-        "next_title": "Reduce delivery cost and extend beyond queue32",
-        "next_task": "Renew independent original raster comparison for current sources, extend guarded takeover into active gameplay and classify outside-World UI/GDI/CPU producers. Retain initialization, ownership, clips and side-effect gaps. Consult the binary/API crosswalk for category support; dashboard milestones are not effort weights.",
+        "boundary": "Selected native-only rendering capabilities have bounded implementations, including continuous World delivery, owned copy/CPU-reader paths, clipped-image copying, extended 2D and isolated renderer recovery. The full rendering and animation track still contains partially implemented and unimplemented contracts. Implementation status and execution validation are reported separately below; complete live drawing replacement is not certified.",
+        "next_title": "Validate bounded native rendering profiles",
+        "next_task": "Renew combined-source native-only launch, copy/CPU-reader and hard-restart controls and original-game journeys. Then close enabled movies, storage/transitions, live renderer faults, independent presented-session pixels and sustained hardware performance within a declared supported scope. Component controls already pass for extended 2D/image operations and isolated recovery; they do not certify all-game replacement. Preserve historical results and record new execution under new evidence IDs.",
         "next_behaviors": [
-          "RS.world-raster-queue-replacement",
-          "RS.world-raster-batch-return",
+          "NP.native-only-launch-contract",
+          "NP.native-copy-transforms",
+          "NP.native-cpu-instruction-resume",
+          "NP.native-only-generation-restart",
+          "NP.native-isolated-render-recovery",
           "RS.world-initial-state",
           "NR.live-drawing-replacement"
         ],
         "documents": [
+          "research/runtime/native-render-implementation-closure.md",
+          "research/runtime/native-render-functional-closure.md",
+          "research/runtime/native-isolated-render-recovery.md",
+          "research/runtime/native-only-launch.md",
           "docs/live-drawing-replacement.md",
-          "research/runtime/rendering-coverage.md",
-          "research/runtime/native-world-raster-queue.md",
-          "research/runtime/native-world-raster-batch.md"
+          "research/runtime/native-rendering-integration-gaps-20261015.md",
+          "research/runtime/rendering-coverage.md"
+        ],
+        "implementation_title": "Resolve original and aggregate rendering scope",
+        "implementation_task": "Use the per-contract reconciliation before adding code. Existing bounded algorithms/services and diagnostic tools are accounted for separately. AN.world-facing now links the existing native provider arithmetic; complete original targeting/lifetimes remain open. Recover the unresolved original contracts and reconcile broad surface/palette/recovery/retirement entries against their narrower supplied implementations before sizing additional implementation work.",
+        "implementation_behaviors": [
+          "AN.world-facing",
+          "RS.world-initial-state",
+          "RS.world-dispatch-targets",
+          "RS.world-kind8-virtual",
+          "RS.displacement-final-word-read",
+          "NR.surfaces",
+          "NR.palette-resources",
+          "NR.command-checkpoint-attachment",
+          "NR.directdraw-retirement",
+          "NR.public-resident-world"
         ]
       }
     },

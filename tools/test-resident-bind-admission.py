@@ -26,10 +26,14 @@ def sha(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--claims', type=Path, required=True)
+    parser.add_argument('--case', choices=['baseline','tracker','reentrant','timeout'], default='baseline')
+    parser.add_argument('--wine-prefix',type=Path,help='Reuse a stopped, owned private test prefix')
     parser.add_argument('--expect-refusal', action='store_true', help='Retain the pre-fix negative control')
     parser.add_argument('--publication-probe', action='store_true', help='Simulate100ms delay only if hooked Unlock pumps on its calling thread')
     parser.add_argument('--expect-inline-publication', action='store_true', help='Retain the pre-isolation publication negative control')
     args = parser.parse_args()
+    if args.wine_prefix and (not args.wine_prefix.is_dir() or not args.wine_prefix.resolve().is_relative_to(ROOT/'working/tests')):
+        parser.error('Expected an initialized private prefix under working/tests')
     if args.expect_inline_publication and not args.publication_probe:
         parser.error('--expect-inline-publication requires --publication-probe')
     declaration = json.loads(args.claims.read_text())
@@ -42,11 +46,14 @@ def main():
     out = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
     print(out, flush=True)
     negative_control = args.expect_refusal or args.expect_inline_publication
+    # The tracker has its own shorter budget. A held tracker must refuse;
+    # the resident bind wait applies to copy admission, never widens this guard.
+    expect_no_world = args.expect_refusal or args.case in ('tracker','reentrant','timeout')
     report = dict(success=False, sources=sources, claims=declaration['claims'], expected_refusal=args.expect_refusal,
                   publication_probe=args.publication_probe, expected_inline_publication=args.expect_inline_publication,
                   scope='Synthetic actual PE32 exported resident binding, delayed copy/tracker ownership, original Lock/Unlock results and LastError, poisoned borrowed pixels and ordered owned V5 bytes. No original game, GPU execution, public cadence or pixel equivalence.')
     env = {k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
-    env.update(WINEPREFIX=str(out/'wineprefix'), WINEDEBUG='-all')
+    env.update(WINEPREFIX=str(args.wine_prefix.resolve() if args.wine_prefix else out/'wineprefix'), WINEDEBUG='-all', MNM_BIND_CASE=args.case)
     child = None
     try:
         spec = importlib.util.spec_from_file_location('bind_build', ROOT/'tools/build-render-bridge.py')
@@ -100,7 +107,7 @@ def main():
             state, reason = struct.unpack_from('<II', mapping, 24)
             assert state == 2 and reason == 0 and struct.unpack_from('<I', mapping, 20)[0] == consumed
         result = struct.unpack('<13I', (out/'bind-result.bin').read_bytes())
-        assert result[:6] == (int(not args.expect_refusal), 0x77, 1, 1, 1, 1), result
+        assert result[:6] == (int(not expect_no_world), 0x77, 1, 1, 1, 1), result
         assert (result[10] >= 1 if args.expect_inline_publication else result[10] == 0), result
         archive = (capture/'session-00000001.bin').read_bytes()
         assert archive == collected and archive[:16] == b'MNMCMD05'+struct.pack('<II', 5, 16)
@@ -113,10 +120,10 @@ def main():
             at += 12+size
         assert at == len(archive)
         world = [fields for op,fields in records if op == 19]
-        assert len(world) == int(not args.expect_refusal)
+        assert len(world) == int(not expect_no_world)
         if world:
             assert struct.unpack('<5I', world[0]) == (1, 1, 0, 17, 34)
-        assert [op for op,_ in records] == ([1, 6, 7, 8] if args.expect_refusal else [1, 19, 6, 7, 8])
+        assert [op for op,_ in records] == ([1, 6, 7, 8] if expect_no_world else [1, 19, 6, 7, 8])
         assert len(records[0][1]) == 28+800*600*2 and not any(records[0][1][28:])
         elapsed = result[6] | result[7] << 32
         frequency = result[8] | result[9] << 32
@@ -124,7 +131,11 @@ def main():
         unlock_ms=unlock_elapsed*1000/frequency
         if args.expect_inline_publication:
             assert unlock_ms >= 90, unlock_ms
-        report.update(success=not negative_control, negative_control_verified=negative_control,
+        trace=None
+        if args.publication_probe and not args.expect_inline_publication:
+            trace=struct.unpack('<5I',(out/'publication-trace.bin').read_bytes())
+            assert trace[0] and trace[0]!=trace[4] and trace[1]>0 and trace[2:4]==(0,0),trace
+        report.update(case=args.case, expected_no_world=expect_no_world, publication_trace=list(trace) if trace else None, success=not negative_control, negative_control_verified=negative_control,
                       original_locks=result[2], original_unlocks=result[3],
                       last_error=result[1], bind_succeeded=bool(result[0]), complete_shutdown=True,
                       bind_ms=elapsed*1000/frequency, opcodes=[op for op,_ in records],

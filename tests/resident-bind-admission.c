@@ -2,6 +2,8 @@
 API void WIN RenderInstallForTest(void*,u32);
 API u32 WIN RenderResidentBindHoldForTest(void);
 API u32 WIN RenderCallbackPublicationProbeForTest(u32);
+API u32 WIN RenderResidentReentryForTest(u32*);
+API u32 WIN RenderPublicationTraceForTest(u32*);
 API void WIN RenderResidentHistoryForTest(void*);
 API u32 WIN RenderResidentWorldV1(u32,u32,u32,u32,u32,u32,u32,u32);
 API u32 WIN RenderShutdown(u32);
@@ -45,7 +47,7 @@ static u32 WIN hold(void* unused){
     if(GetLastError()!=0x77)ExitProcess(15);return 0;
 }
 static u32 WIN release(void* unused){
-    (void)unused;await_file("bind-attempt.bin");Sleep(20);u32 value=1;
+    (void)unused;await_file("bind-attempt.bin");char mode[16];GetEnvironmentVariableA("MNM_BIND_CASE",mode,sizeof(mode));Sleep(mode[0]=='t'&&mode[1]=='i'?500:20);u32 value=1;
     output("bind-release.bin",&value,4);return 0;
 }
 void start(void){
@@ -53,21 +55,25 @@ void start(void){
     static void* table[33];table[25]=(void*)lock;table[32]=(void*)unlock;void** object=table;
     RenderInstallForTest(&object,14);u32 d[31]={124};SetLastError(0x77);
     if(((i32(WIN*)(void*,void*,u32*,u32,HANDLE))table[25])(&object,0,d,1,0)!=13 || GetLastError()!=0x88)ExitProcess(16);
-    HANDLE owner=CreateThread(0,0,hold,0,0,0);if(!owner)ExitProcess(17);await_file("bind-held.bin");
-    HANDLE releaser=CreateThread(0,0,release,0,0,0);if(!releaser)ExitProcess(18);
+    char mode[16];GetEnvironmentVariableA("MNM_BIND_CASE",mode,sizeof(mode));u32 reentrant=mode[0]=='r';
+    HANDLE owner=0,releaser=0;
+    if(!reentrant){owner=CreateThread(0,0,hold,0,0,0);if(!owner)ExitProcess(17);await_file("bind-held.bin");
+    releaser=CreateThread(0,0,release,0,0,0);if(!releaser)ExitProcess(18);}else holder=1;
     u32 attempted=1;output("bind-attempt.bin",&attempted,4);
     unsigned long long begin,end,frequency;QueryPerformanceFrequency(&frequency);QueryPerformanceCounter(&begin);
-    SetLastError(0x77);u32 bound=RenderResidentWorldV1((u32)pixels,800,600,800,1,0,17,34);
+    u32 request[8]={(u32)pixels,800,600,800,1,0,17,34};
+    SetLastError(0x77);u32 bound=reentrant?RenderResidentReentryForTest(request):RenderResidentWorldV1((u32)pixels,800,600,800,1,0,17,34);
     u32 error=GetLastError();QueryPerformanceCounter(&end);
     if(histories!=bound)ExitProcess(25);
-    if(WaitForSingleObject(owner,2000) || WaitForSingleObject(releaser,2000))ExitProcess(19);
-    CloseHandle(owner);CloseHandle(releaser);
+    if(!reentrant){if(WaitForSingleObject(owner,2000) || WaitForSingleObject(releaser,2000))ExitProcess(19);
+    CloseHandle(owner);CloseHandle(releaser);}
     char probe[8];u32 publication_probe=GetEnvironmentVariableA("MNM_BIND_PUBLICATION_PROBE",probe,sizeof(probe))==1 && probe[0]=='1';
     SetLastError(0x77);if(publication_probe){RenderCallbackPublicationProbeForTest(1);if(GetLastError()!=0x77)ExitProcess(22);}
     unsigned long long unlock_begin,unlock_end;QueryPerformanceCounter(&unlock_begin);
     SetLastError(0x77);if(((i32(WIN*)(void*,void*))table[32])(&object,0)!=19 || GetLastError()!=0x88)ExitProcess(20);
     QueryPerformanceCounter(&unlock_end);SetLastError(0x77);
-    u32 pump_calls=publication_probe?RenderCallbackPublicationProbeForTest(0):0;
+    u32 trace[5]={0};if(publication_probe){u32 began=GetTickCount();while(!RenderPublicationTraceForTest(trace)){if(GetTickCount()-began>2000)ExitProcess(26);Sleep(1);}output("publication-trace.bin",trace,sizeof(trace));}
+    SetLastError(0x77);u32 pump_calls=publication_probe?RenderCallbackPublicationProbeForTest(0):0;
     if(GetLastError()!=0x77)ExitProcess(23);
     SetLastError(0x77);u32 complete=RenderShutdown(3000);if(GetLastError()!=0x77)ExitProcess(21);
     unsigned long long elapsed=end-begin;

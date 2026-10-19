@@ -22,13 +22,51 @@ network visitors can view its registered research/source/evidence links.
 Ctrl+C stops the server. Python's standard library is sufficient; there is no
 frontend build, package installation, hosted service or game execution.
 
-The default **Native rendering** view is a permanent focus page and sidebar entry.
-It follows native World composition, owned history, continuous shadow presentation,
-refusal recovery and selected word-sprite bypass, with the initial-canvas task and
-authoritative replacement roadmap always visible. Milestone states and evidence
-freshness come from the current register. Open contracts for exact scope and
-evidence; browse rendering gaps for both recovered behavior and native policies.
-Bookmark `#view=rendering`; existing view bookmarks continue to work.
+The default **Engine overview** view summarizes each active engine track:
+implemented/partially implemented/not implemented behaviors, current and historical original comparison,
+headless/preview/observation integration, scoped live replacement and the next
+open milestone. Summary behavior counts deduplicate contracts shared by tracks;
+track rows retain their own denominators. Planned gameplay changes remain separate.
+Bookmark `#view=engine`.
+
+The **Simulation roadmap** follows owned state/checkpoints, command execution,
+ordinary owner skirmishes, original decision-pipeline comparisons, creature combat,
+Cure/Sphere effects, campaign continuation and playable native campaign slices.
+Wizard strategy, original tick/lifetime, full original gameplay composition and
+live simulation replacement remain independent open gates. Open each milestone
+for its exact required stages and behavior evidence; **Browse gaps** includes
+both recovered contracts and native policies. `tracks.json` defines the checklist;
+**Refresh audit** recomputes states from the current register without editing it.
+Bookmark `#view=simulation`. A native preview does not imply original
+engine equivalence or live replacement. UI checks validate presentation only.
+
+The **Native rendering** page separates **Implementation** from **Validation**.
+Implementation counts all registered rendering/animation behaviors, provides
+expandable lists of partially implemented and not implemented contracts, and
+names a separate implementation follow-up. Validation counts the curated
+milestones by current, historical, pending or unknown execution support, with
+its own next task and evidence-gap action. These denominators are different.
+Every rendering milestone has independent implementation and validation panels.
+The **Open contracts, reconciled** panel reviews all 203 previously partial/absent
+entries by role: 111 diagnostic/research tools, 67 bounded implementations located,
+13 unresolved original contracts, five aggregate contracts with narrower supplied
+implementations, and seven acceptance/corpus targets. Open a group or behavior
+for its concrete finding, source witness and remaining work. These static findings
+do not add to the registered implemented count. Changed source/scope/status makes
+a finding historical. The linked register/review preserves the full denominator,
+original unknowns and independent execution statuses. `AN.world-facing` now links
+existing native provider arithmetic and is partial; its synthetic controls do not
+prove the entire original targeting contract.
+
+Validation checks required comparison/integration/replacement stages and their
+execution evidence independently of code or understanding completion; a code-only
+milestone still needs implementation execution evidence. Current validation also
+requires current source and scope bindings. Missing mappings remain unknown.
+The combined milestone checklist retains all original requirements and statuses.
+Selected native-only capabilities do not establish completion of the broader
+rendering track. Research, release gates and existing `#view=rendering` bookmarks
+remain available. **Refresh audit** updates counts; a running server must be
+restarted after changes to the Python snapshot producer.
 
 For API/producer denominators rather than equally counted dashboard milestones,
 use `python3 tools/report-rendering-coverage.py`. The
@@ -42,14 +80,15 @@ suppress current readiness while preserving historical scoped results.
 The **Major tracks** view groups movement, native scene controls,
 rendering/animation, effects/lighting, audio, assets/persistence, menus/campaign,
 and core gameplay/spells. Planned commander orders, veterancy and mana changes
-appear separately. Each card shows demonstrated capabilities, partial work,
-a named milestone percentage and a concrete next task. Open a track to inspect
+appear separately. Each card shows implemented and partially implemented capabilities,
+a behavior implementation percentage and a concrete next task. Milestone
+requirements and current validation are reported separately. Open a track to inspect
 its full milestone checklist and required behavior/evidence links, then browse
 its behavior gaps. Track drilldowns include both recovered and native policies.
 
-The **Detailed coverage** view separates binary mapping, scoped implementation,
-original comparison and scoped live replacement. Select a subsystem to inspect its
-remaining work. **Work remaining** filters missing code, partial implementation,
+The **Detailed coverage** view separates binary mapping, implementation,
+original comparison and live replacement. Select a subsystem to inspect its
+remaining work. **Work remaining** filters not implemented and partially implemented code,
 understanding, comparisons, stale evidence, tests, integration and replacement.
 Open a behavior for its verbatim scope, research, code, tests and evidence.
 **Binary explorer** searches function names, behavior IDs and hexadecimal entry
@@ -59,18 +98,205 @@ remain visible. Filters are retained in the URL for bookmarks.
 
 ## Reading the percentages
 
-- **Track milestones demonstrated**: achieved named goals / all named goals in
-  that track. `tracks.json` curates the outcomes and explicit required contracts;
-  all required statuses and applicable non-static execution evidence must exist.
-  Partial code is shown as in progress, with no estimated fraction. Missing IDs
-  or empty required groups remain visible as mapping gaps and never count ready.
-  The spell dispatch register contributes one spell goal. Goals have equal weight;
-  their scope and size differ, so these are roadmap percentages, not estimated
-  effort, whole-game completion, or full native feature parity. A live observation
-  goal retains original engine ownership. Replacement requires replacement proof.
-  Newly registered contracts in an assigned subsystem appear in the track's
-  behavior drilldown; adding a new product outcome requires curating a new goal.
-  Supporting tooling outside these tracks remains visible in detailed coverage.
+The Native rendering page also ranks **planning importance** from 1/5
+(Supporting) to 5/5 (Critical). All 341 current rendering contracts have an
+explicit weight and reason in [importance.json](importance.json). The default
+queue includes all 199 partially implemented contracts, ordered by descending
+importance with stable behavior-ID ties: 33 Critical, 50 High, 16 Medium, nine
+Low and 91 Supporting. Filters select status, kind of work and importance.
+Weights also appear in behavior details, the behavior register, work remaining
+and reconciled rendering lists. Other tracks remain visibly unrated.
+
+The **Critical work: 3 tranches** panel plans all 33 Critical, partially
+implemented behaviors once, with 11 behaviors in each ordered tranche:
+
+1. **Storage, ownership and callback safety**: tail reads, CPU continuation,
+   output containment/failure reporting, binding/publication/pressure controls,
+   read-only continuity, checkpoint and palette residuals, displacement edges
+   and source-region epochs.
+2. **Original canvas history and native producers**: create/Lock branches,
+   padded binding, clear completion, pre-World reuse and initial state, producer
+   attribution, palette/wave domains, owned replay, startup composition and
+   producer caller effects.
+3. **Integrated journeys and acceptance evidence**: finite history and handoff,
+   targeted DirectDraw compatibility, stable-source launch/restart, zero-forward
+   controls, original publication, action-bound storage sessions, hardware replay
+   and physical-frame identity.
+
+Each behavior has a concrete next action, implementation boundary, validation
+check, completion condition and registered test/research links. Open a task's
+details or the behavior dialog to read them; the importance list also shows its
+tranche action. Tranche order is a proposed execution sequence, not a recovered
+dependency graph. A reproduced contained graphics failure in tranche 1 supplies a minimal
+compatibility fixture for the targeted tranche-3 repair. Unknown original producer/history inputs
+must be resolved or explicitly refused before dependent comparisons run.
+
+Tranche 1 has a reviewed execution brief for each behavior: required inputs,
+actual entrypoint templates and their current coverage, missing fixture cases,
+strict pass criteria and explicit handoffs. Its order is tail allocation, CPU
+continuation, region permissions, bind admission, publication isolation, pressure,
+read-only continuity, palette residuals, checkpoint residuals, displacement and
+finally output ownership. The last task owns one shared 20-second stress pilot,
+after the ten bounded controls pass; other tasks do not each require their own
+public game run. The runner's existing flow deadline and bounded attempt policy
+remain visible in the tranche execution rules.
+
+Several planned assertions need fixture work before they can be run: complete
+continuation state, additional bind schedules, publication thread/ownership
+records, producer-level region epochs, a cross-thread palette lifetime collision
+and checkpoint opaque-capacity/abandoned-owner cases. Existing helper-only,
+same-thread or fake-clock results cannot stand in for those controls. Command
+templates use real current CLI flags; legacy runners without prospective claim
+support require a new declaration-bound wrapper before their output can support
+current validation. Required retained inputs are preflighted rather than silently
+substituted.
+
+Tranche 2 also has eleven reviewed execution briefs. Its
+[source and planning review](../../research/runtime/rendering-tranche2-planning-review-20261019.md)
+places selected producer recovery before first-World history and separates
+source-only producer replay from the existing native word-zero World comparison.
+Startup/World and producer capture use separate incompatible CLI pipelines;
+equal pointers in separate runs cannot establish one canvas lifetime.
+The startup comparison's `success` field means measurement completed; task
+acceptance additionally checks every required pixel-match field and source hash.
+The [tranche-2 state review](../../research/runtime/rendering-tranche2-state-review-20261019.md)
+now records eight implemented scopes and three unresolved aggregates (pre-World
+reuse, producer history and initial state), with no identified concrete missing-code
+branch. The retained initial-state mismatch is a separate acceptance failure;
+historical matching 16-queue completed outputs do not reconstruct the initial canvas.
+Creation, bind/rebind, clear, palette-selector, wave and generic-caller reference
+fixtures are supplied. Padded dimensions, a native wave initializer and the finite
+generic caller signature/tag guard with zero-EAX return domain are implemented.
+Their fresh execution remains pending. A supplied same-run history checker still
+needs valid matching inputs and does not prove all writers or physical ownership.
+
+Tranche 3 uses the [implementation-state review](../../research/runtime/rendering-tranche3-state-review-20261019.md)
+to distinguish **Implemented within scope**, **Partially implemented** (a named
+missing branch or mechanism), and **Unresolved aggregate** (reconcile delivered
+services before sizing code). **Acceptance failure** is a separate label and can
+coexist with implemented code. Its eleven tasks now show current state, validation,
+acceptance and next steps by kind of work. Ten scoped mechanisms are implemented;
+DirectDraw retirement needs aggregate reconciliation. No concrete missing code is
+identified in the ten scoped tasks. Storage parity and the hardware suite retain
+the same baseline negative as acceptance failures, without implying two native
+defects. The obsolete request to add the already delivered default-offscreen
+descriptor policy has been replaced with pilot diagnosis and scope reconciliation.
+
+The subsequent [tranche-3 issue execution](../../research/runtime/rendering-tranche3-issues-review-20261019.md)
+records a fresh 1,061-checkpoint / 16-World finite handoff pass and advances only
+its integration stage to **headless**. Factory, surface, DC/clipper and resource
+comparisons pass after a stale mode-enumeration fixture is repaired; full
+DirectDraw retirement remains an unresolved aggregate. The complete unchanged
+238-frame storage reference still fails at ordinal 170 (252 combined pixels).
+The separate 222-frame corrected-driver and 323-frame Quick Battle profiles pass.
+Task cards retain these different outcomes, prior source assessments and the
+diagnostic limits; an expected-negative harness pass never clears pixel parity.
+
+These source assessments do not renew historical engine execution or change the
+registered stage counts; task details show that older accounting separately.
+Source fingerprint drift flags the assessment for review. Pending validation,
+excluded domains and a deliberately false complete-replacement flag do not by
+themselves mean partial implementation. All three tranches now use these definitions.
+
+Tranche 1 now has a [state review](../../research/runtime/rendering-tranche1-state-review-20261019.md):
+nine implemented scoped mechanisms, two unresolved aggregates (palette resources
+and checkpoint attachment), and one overlapping output-ownership acceptance
+failure. Ten bounded PASS results remain historical. Already delivered continuation,
+producer-epoch, bind/publication, palette-race and opaque-borrow controls are listed
+as supplied, rather than proposed as missing fixtures. Next steps separate
+current-source validation, aggregate reconciliation and retained-pilot diagnosis.
+
+The shared status guide defines all five work labels. Reviewed behavior rows,
+work summaries, importance entries and dialogs use their source assessments;
+unreviewed partial entries say **Registered partial** / **Scope review pending**.
+The importance filter also offers **Partially implemented (reviewed missing code)**,
+**Implemented within scope**, **Unresolved aggregate**, **Not implemented (reviewed)**
+and **Acceptance failure**.
+No missing-code conclusion is inferred from stale evidence or an excluded domain.
+
+The **High work: 3 tranches** panel covers all 51 unfinished High contracts
+(50 registered partial and one registered not implemented), in three groups of 17:
+
+1. Terrain generation, palette and lighting.
+2. Animation, sprites and native drawing.
+3. Ownership diagnostics and continuous journeys.
+
+The [High source review](../../research/runtime/rendering-high-tranches-review-20261019.md)
+finds 48 implementations within their bounded scopes needing validation, two
+unresolved aggregates (`NR.surfaces` and `NR.public-resident-world`) needing a
+scope crosswalk, and one unimplemented original model
+(`RS.displacement-final-word-read`) needing operand/caller recovery before sizing
+implementation. Its native padding and finite-edge policies already exist;
+this is not a request to reproduce unsafe reads. The 47 already scoped High
+contracts retain their ranking but are excluded from this unfinished-work plan.
+
+Each task separates its implementation assessment, historical or pending
+validation, concrete next action, completion condition and wider boundary.
+The **Not implemented (reviewed)** filter identifies the missing model separately
+from aggregate uncertainty and implemented code awaiting validation. These are
+source reviews and plans, not new execution results or registered stage promotions.
+Source, scope, status or priority drift flags the task for another review.
+
+The newer bounded tranche-1 normal acceptance and tranche-2 task passes supersede
+the earlier blanket output-ownership blocker for the finite handoff. Earlier
+stage-13/camera failures remain historical risks; a pinned pass does not establish
+arbitrary-scheduling, native-only/restart, hardware or complete replacement
+acceptance. New journeys retain their own scope and budget requirements.
+
+Task acceptance now requires its positive and expected-refusal matrix to pass
+with stable sources and inputs. A report listing mismatches or an unresolved
+diagnosis is not a pass. The old contained BltFast failure is a historical
+hypothesis: bounded non-reproduction is reported honestly, and a new failure
+stays failed even if it produces a useful fixture. A bound failure can be handed
+to the targeted compatibility repair while broader session acceptance remains
+held. Region query success is also distinct from permission-cache admission:
+an inadmissible descriptor can be returned successfully while remaining uncached.
+
+The plan is **planned work**, not an experiment runner or an execution result.
+Review each tranche's 11 outcomes and unresolved findings before moving on;
+completing its bounded tasks does not automatically mark all contracts
+implemented or validated. Scope, status or importance changes flag the task for
+review, and newly Critical partial contracts are shown as unassigned. Execution
+uses prospective claims, new evidence IDs, unchanged historical hashes and the
+repository's existing storage, immutable-input and coverage-accounting rules.
+
+These are initial engineering judgments for reliable native rendering and
+eventual complete replacement. Session safety, ownership and unresolved original
+producer boundaries carry high importance; visible capabilities, optimization
+and narrow diagnostics receive different weights. Some focused ownership
+investigations are High despite being diagnostic. Every entry retains its reason
+and explicit work type: capability, original recovery, broad aggregate,
+acceptance/assurance or diagnostic/research. A Critical acceptance target is not
+automatically a missing implementation task. Broad aggregates overlap narrower
+contracts; weights are not additive estimates of independent work.
+
+Importance describes the documented contract as a whole, not the measured size,
+severity, execution frequency or effort of its remaining gap. It is independent
+of implementation and validation: partial code receives no completion fraction,
+and completed Critical contracts stay important while leaving the unfinished
+queue. No weighted completion percentage is calculated. Scope changes flag the
+importance as needing review; new rendering contracts stay unrated until an
+explicit judgment is added. Weights can be revised as priorities and documented
+boundaries change; they are planning metadata, not reverse-engineering evidence.
+
+- **Behaviors implemented**: behaviors with registered `implementation: scoped` /
+  all registered behaviors in that track or selected scope. Registered stage
+  badges retain **Implemented**, **Registered partial** or **Not implemented**.
+  Reviewed source assessments use the four work labels separately.
+  Implemented means code covers the documented scope; it does not imply complete
+  original parity, current validation, integration or live replacement. Partial
+  code receives no completion weight. Shared behaviors count once in overview
+  totals; per-track denominators remain local. Spell dispatch entries count
+  individually in behavior percentages, so these are checklist proportions, not
+  effort or whole-game completion estimates.
+- **Milestone requirements met/pending**: all explicitly required stages and
+  applicable execution evidence for a named milestone. These are separate from
+  implementation badges: code can be implemented while comparison, integration
+  or replacement requirements are pending. Each milestone also shows the
+  implementation status of its required behaviors; missing mappings show
+  **Implementation unknown**. Milestone counts weight goals equally and group
+  the spell dispatch checklist as one outcome. `tracks.json` defines this
+  checklist; no milestones or evidence statuses are promoted by display labels.
 - **Current execution fingerprints** on a track: each requirement has at least
   one current execution record of every needed kind (comparison/integration/
   replacement). Older records remain historical; this does not claim all linked
@@ -86,9 +312,6 @@ remain visible. Filters are retained in the URL for bookmarks.
   implemented or validated. Overlaps are counted once. Padding, embedded data
   and undiscovered code remain in the executable denominator; virtual zero-fill
   and external DLL bodies are outside it.
-- **Scoped implementation**: behaviors marked `scoped` / selected behaviors.
-  `partial` and `none` are shown separately, without estimated effort weights.
-  Scoped means only the documented input/behavior boundary.
 - **Comparison and replacement**: applicable recovered behaviors only. Native
   policy and tooling behavior is separate; an empty denominator is `N/A`.
   Original comparisons remain historical if linked source fingerprints changed.

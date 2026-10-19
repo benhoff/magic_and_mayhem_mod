@@ -68,7 +68,7 @@ def main():
         run('decoder-build',['cc','-std=c11','-O2','-Wall','-Wextra','-Werror',ROOT/'tests/native-cpu-store-test.c','-o',out/'decoder'])
         run('decoder',[out/'decoder']);report['decoder']=json.loads((out/'decoder.log').read_text())
         report['binaries']={p.name:sha(p) for p in [dll,bridge,out/'probe.exe',out/'decoder']}
-        for label,mode,expected in [('concurrent-store-observer','c',0),('held-dc-history','d',0),('protected-world-handoff','w',0),('foreign-raw-reader','r',124),('ordered-active-readers','i',0)]:
+        for label,mode,expected in [('concurrent-store-observer','c',0),('held-dc-history','d',0),('protected-world-handoff','w',0),('expired-lease','e',0),('foreign-raw-reader','r',124),('ordered-active-readers','i',0)]:
             dest=out/label;dest.mkdir();shutil.copyfile(dll,dest/'MnmDraw.dll');shutil.copyfile(bridge,dest/'MnmRender.dll')
             extra=dict(MNM_COHERENCE_CASE=mode)
             if mode!='i':run(label,['wine',out/'probe.exe'],dest,extra,expected)

@@ -149,3 +149,37 @@ explicit-reset recovery and cleanup assertions remain exercised.
 Committed-history review: `coverage/committed-history-native-startup-sequence-20261008.json`
 checks 8e43ed5..63f32b1 against exact receipts with no unresolved gaps. It excludes
 concurrent uncommitted changes and asserts no retrospective validation.
+
+## Tranche 2 branch comparisons (2026-10-19)
+
+The original initializer uses the approximate binary64 angle
+`0x1.921fb52713c02p-2`, rather than an ideal pi/8 constant. The independent
+native supplier reproduces all256 table words;33 original cold/warm/default/zero
+cells compare4096 words, retaining the original integer-truncation helper.
+A further768 original cases cover amplitudes1..8, explicit/default selection,
+phases0/3/15/31, horizontal/vertical clipping and adjacent opaque runs separated
+by a zero-transparent run. Complete original/CPU/OpenGL outputs compare
+1,572,864 words per native backend, with identical SHA-256
+`12e48d07f8bf3c6ccbdb4ec13213805adbe79706c267cd5e894bc720a380b359`.
+
+These controls exposed a real native clipping difference. In the horizontally
+clipped5806f0 branch, the effective right bound is the minimum of frame end and
+clip right. An opaque run starting inside the left bound must end strictly
+before that right bound to draw; a run crossing the left bound can end at it.
+Whole crossing runs can be skipped. Preserving only a per-pixel opacity mask
+loses this distinction, especially for adjacent encoded opaque runs. Native
+SPR storage now retains run boundaries; the CPU replay and selected GPU World
+adapter apply the recovered rule. Ordinary native displacement keeps its
+existing policy unless the compatibility adapter selects whole-run clipping.
+
+The slow57de00 selector separately compares5355 shift/shade/ordinal cells and
+1,370,880 palette words: canonical neutral shapes, shifts1..7, shades-127..127,
+and linked-list ordinals0/1/2. Ordinal0 follows zero links, ordinal1 one link,
+and ordinal2 two links. Synthetic explicit-black/fallback and invalid-table
+controls remain separate from this unchanged-original selector execution.
+
+The current16-queue word-zero comparison again matches all three completed
+canvas comparisons across7,680,000 pixels. Its native-before/live-before and
+between-queue differences remain recorded; producer-seeded initialization is
+a different experiment. See the tranche-2 execution record and immutable raw
+reports under the retained rendering-tranche2 worktree.

@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import struct
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -51,6 +52,9 @@ def main():
             ('transforms',dict(MNM_TEST_LIBRARY=wine_path),0)]:
             case=out/name;case.mkdir()
             run(name,['wine',out/(name+'.exe')],cwd=case,extra=dict(MNM_NATIVE_CPU_GUARD='3',MNM_PUBLIC_RESIDENT_WORLD='1')|extra,expected=expected)
+        state=struct.unpack('<3I',(out/'backing/continuation-state.bin').read_bytes())
+        if state[0:2]!=(5,45) or state[2]<500:raise ValueError('Incomplete architectural continuation assertions: '+repr(state))
+        report['continuation_state']=dict(instructions=state[0],gpr_esp_eflags_assertions=state[1],fxsave_byte_assertions=state[2],last_error_preserved=True)
         for strict in (False,True):
             for case in ('unsupported_flags','key_flags','busy','rectangle'):
                 label='capability-'+str(int(strict))+'-'+case;directory=out/label;directory.mkdir()

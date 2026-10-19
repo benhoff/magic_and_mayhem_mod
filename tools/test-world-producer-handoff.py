@@ -15,6 +15,7 @@ def source_paths():
     paths += ['tests/world-producer-reference.cpp','tests/world-raster-queue-reference.cpp','tests/world-raster-reference.hpp','tools/test-world-raster-queue.py','tools/inspect-world-raster-callers.py']
     paths += ['protocols/include/mnm/world_raster_batch_v3.h','compat/legacy/world_raster_batch.cpp','compat/legacy/world_raster_batch.hpp','tests/world-raster-batch-test.cpp','tests/world-raster-batch-reference.cpp','tools/test-world-raster-batch.py','tools/inspect-world-raster-batch.py']
     paths += ['protocols/include/mnm/canvas_producers_v3.h']
+    paths += [p.relative_to(ROOT).as_posix() for p in (ROOT/'renderer').rglob('*.inc')]
     return sorted(set(paths))
 def world_record(r,p):
     width,height=struct.unpack_from('<II',p,4);ox,oy=struct.unpack_from('<ii',p,12)
@@ -34,7 +35,7 @@ def world_bytes(queue,width,height,records):
     raw=b''.join(records);h=[0]*20;h[:2]=struct.unpack('<2I',b'MNMWRLD1');h[2:9]=[1,80,80+len(raw),queue,width,height,width];h[9]=len(records);h[11]=0x40209ca7
     return struct.pack('<20I',*h)+raw
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--capture-report',type=Path,required=True);parser.add_argument('--claims',type=Path);parser.add_argument('--complete-raster-queues',action='store_true');parser.add_argument('--prepare-raster-queue',type=int,choices=range(1,17));args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--capture-report',type=Path,required=True);parser.add_argument('--claims',type=Path);parser.add_argument('--executable',type=Path,default=ROOT/'original/Arcane_Nocd/Chaos.exe');parser.add_argument('--complete-raster-queues',action='store_true');parser.add_argument('--prepare-raster-queue',type=int,choices=range(1,17));args=parser.parse_args()
     claims=json.loads(args.claims.read_text()) if args.claims else None
     sources={n:sha(ROOT/n) for n in source_paths()}
     if claims:
@@ -58,7 +59,7 @@ def main():
         for n in sorted(set(names)|set(sources)):
             p=ROOT/n
             if not n or n.split('/')[0] in ('working','original','.git') or not p.is_file():continue
-            if n not in sources and p.suffix not in ('.cpp','.hpp','.c','.h','.S','.py','.cmake') and p.name not in ('CMakeLists.txt','README.md'):continue
+            if n not in sources and p.suffix not in ('.cpp','.hpp','.inc','.c','.h','.S','.py','.cmake') and p.name not in ('CMakeLists.txt','README.md'):continue
             target=frozen/n;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,target)
         assert all(sha(frozen/n)==h for n,h in sources.items())
         nativeInputs=out/'native-inputs';nativeInputs.mkdir();shutil.copyfile(stream,nativeInputs/stream.name);shutil.copyfile(directory/'canvas-producers.done',nativeInputs/'canvas-producers.done')
@@ -91,7 +92,7 @@ def main():
             assert (original['sequence'],original['canvas'],original['oracle'])==(completed['sequence'],completed['canvas'],completed['oracle'])
             old=directory/original['path'];pin(old);a=old.read_bytes();b=(native/completed['path']).read_bytes();assert len(a)==len(b)
             comparisons.append({'oracle':original['oracle'],'pixels':len(a)//2,'equal':a==b})
-        reference=out/'world-reference';run('reference-build',['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-no-pie',frozen/'tests/world-frame-reference.cpp','-o',reference]);pe=ROOT/'original/Arcane_Nocd/Chaos.exe';pin(pe);assert sha(pe)==ORIGINAL_SHA
+        reference=out/'world-reference';run('reference-build',['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-no-pie',frozen/'tests/world-frame-reference.cpp','-o',reference]);pe=args.executable.resolve();pin(pe);assert sha(pe)==ORIGINAL_SHA
         exact=out/'generic-reference';run('generic-reference-build',['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-no-pie',frozen/('tests/world-raster-queue-reference.cpp' if args.complete_raster_queues or args.prepare_raster_queue else 'tests/world-producer-reference.cpp'),'-o',exact])
         active=0;requests=[];entries={f['queue']:native/f['entry'] for f in viewer['world_frames']};originalChecks=[];bypassChecks=[]
         selected=prepared or {row['sequence']:row for row in capture.get('native_producers',{}).get('native_bypass_replies',[])}

@@ -33,6 +33,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--capture-report', type=Path, required=True)
     parser.add_argument('--claims', type=Path)
+    parser.add_argument('--executable', type=Path, default=ROOT/'working/game-nocd/Chaos.exe')
+    parser.add_argument('--prefix-template', type=Path, default=ROOT/'working/tests/scene-selftest-wine')
     args = parser.parse_args()
     if not os.environ.get('DISPLAY'):
         parser.error('Run under xvfb-run -a')
@@ -70,7 +72,7 @@ def main():
         path = ROOT/name
         if not name or name.split('/')[0] in {'original', 'working', '.git'} or not path.is_file():
             continue
-        if path.suffix not in {'.c', '.h', '.S', '.cpp', '.hpp', '.py', '.cmake', '.mk'} and path.name not in {'CMakeLists.txt', 'README.md'}:
+        if path.suffix not in {'.c', '.h', '.S', '.cpp', '.hpp', '.inc', '.py', '.cmake', '.mk'} and path.name not in {'CMakeLists.txt', 'README.md'}:
             continue
         data = path.read_bytes()
         target = sourceRoot/name
@@ -126,7 +128,7 @@ def main():
         identities = list(struct.iter_unpack('<16I', lifetime.read_bytes()[64:]))[:count]
         if len(identities) != count or not identities[0][3] or any(row[3:7] != identities[0][3:7] for row in identities):
             raise ValueError('Startup chain requires one observed canvas identity/extent')
-        pe = ROOT/'working/game-nocd/Chaos.exe'
+        pe = args.executable.resolve()
         if sha(pe) != world.BUILD_HASH:
             raise ValueError('Unsupported original reference executable')
         pin(pe)
@@ -163,7 +165,9 @@ def main():
         abi = out/'wave-abi.exe'
         run('abi-link', ['lld-link', '/machine:x86', '/entry:start', '/subsystem:console', '/nodefaultlib',
                          '/base:0x400000', '/dynamicbase:no', '/safeseh:no', '/timestamp:0', '/out:'+str(abi), *objects, pebuild/'kernel32.lib'])
-        run('abi-forwarding', ['wine', abi], {**env, 'WINEPREFIX': str(ROOT/'working/tests/scene-selftest-wine')})
+        abiPrefix=out/'wineprefix'
+        run('abi-prefix', ['cp','-a','--reflink=auto',args.prefix_template.resolve(),abiPrefix])
+        run('abi-forwarding', ['wine', abi], {**env, 'WINEPREFIX': str(abiPrefix)})
         report['wave_return_abi_passed'] = True
         report['shade_minus127_palette_capture_passed'] = True
         reference = out/'reference'

@@ -80,11 +80,14 @@ static void policies(Create create,void* module){
  if(surface(draw,d,&a,0) || surface(draw,d,&b,0))ExitProcess(141);
  pixels(a,0,0,17,1);pixels(b,0,before,0xffff,1);
  i32 source[4]={0,0,6,4},target[4]={0,0,7,4},invalid[4]={-1,0,6,4};
- if(((Blt)table(b)[5])(b,target,a,source,0x1000000,0)!=(i32)0x80004001u)ExitProcess(142);
+ /* Stretching and RGB555 are now supported native policies. Retain actual
+  * unsupported flags/format negatives rather than rejecting delivered work. */
+ if(((Blt)table(b)[5])(b,target,a,source,0x81000000u,0)!=(i32)0x80004001u)ExitProcess(142);
  if(((Blt)table(b)[5])(b,invalid,a,source,0x1000000,0)!=(i32)0x88760096u)ExitProcess(143);
  if(((Fast)table(b)[7])(b,0xffffffffu,0,a,source,0x10)!=(i32)0x88760096u)ExitProcess(144);
  if(((Blt)table(b)[5])(b,0,a,0,0x1008000,0)!=(i32)0x80070057u)ExitProcess(145);
- if(((Blt)table(b)[5])(b,0,a,0,0x200,0)!=(i32)0x80004001u)ExitProcess(146);
+ u32 effect[25]={100};effect[4]=9001;
+ if(((Blt)table(b)[5])(b,0,a,0,0x40000u,effect)!=(i32)0x80004001u)ExitProcess(146);
  describe(d,0);d[0]=107;if(((Lock)table(b)[25])(b,0,d,1,0)!=(i32)0x80070057u)ExitProcess(147);
  describe(d,0);if(((Lock)table(b)[25])(b,0,d,1,0))ExitProcess(148);
  u32 again[31];describe(again,0);if(((Lock)table(b)[25])(b,0,again,1,0)!=(i32)0x887601aeu)ExitProcess(149);
@@ -93,7 +96,7 @@ static void policies(Create create,void* module){
  ((Ref)table(a)[2])(a);((Ref)table(b)[2])(b);
  describe(d,0);d[26]=0x1800;void* rejected=(void*)0x1234;
  if(surface(draw,d,&rejected,0)!=(i32)0x80004001u || rejected)ExitProcess(163);
- describe(d,0);d[26]=0x800;d[22]=0x7c00;rejected=(void*)0x1234;
+ describe(d,0);d[26]=0x800;d[22]=0x7c01;rejected=(void*)0x1234;
  if(surface(draw,d,&rejected,0)!=(i32)0x80004001u || rejected)ExitProcess(164);
  default_offscreen(create);
  final_pixel_read(create);

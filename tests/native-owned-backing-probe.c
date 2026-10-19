@@ -24,6 +24,7 @@ __attribute__((naked)) static void image_copy(const void* source __attribute__((
  __asm__ volatile("pushl %ebx;pushl %ebp;pushl %esi;pushl %edi;movl 20(%esp),%eax;movl 24(%esp),%edx;movl 28(%esp),%ebp;xorl %ebx,%ebx;movl $0x533aec,%ecx;calll *%ecx;popl %edi;popl %esi;popl %ebp;popl %ebx;retl");
 }
 static void require(int value,u32 code){if(!value)ExitProcess(code);}
+#include "native-continuation-state.h"
 static void** table(void* object){return *(void***)object;}
 static u32 release(void* object){return ((u32(WIN*)(void*))table(object)[2])(object);}
 void start(void){
@@ -68,11 +69,10 @@ void start(void){
  for(u32 test=0;test<5;++test){
   require(!history((void*)pixels,1,3+test,0,17,34),196);
   ((volatile u8*)pixels)[6]=0x89;SetLastError(0x4321);
+  t1_state_check(test,pixels,source);
   if(test==0)require(pixels[3]==0x4589,197);
-  if(test==1){pixels[3]^=0x1234;require(pixels[3]==(0x4589^0x1234),198);}
+  if(test==1)require(pixels[3]==(0x4589^0x1234),198);
   if(test==2){
-   const u8* input=source;u8* output=(u8*)pixels+32;u32 count=sizeof(source);
-   __asm__ volatile("rep movsb":"+S"(input),"+D"(output),"+c"(count)::"memory");
    for(u32 i=0;i<sizeof(source);++i)require(((const u8*)pixels)[32+i]==source[i],199);
   }
   if(test==3){
@@ -80,11 +80,14 @@ void start(void){
    __asm__ volatile("movdqu (%0),%%xmm2;movdqu (%1),%%xmm0;movdqu %%xmm2,(%2)"::"r"(expected),"r"(pixels),"r"(observed):"memory");
    for(u32 i=0;i<4;++i)require(observed[i]==expected[i],200);
   }
-  if(test==4){__asm__ volatile("lock addw $3,(%0)"::"r"(pixels+3):"memory","cc");require(pixels[3]==0x458c,201);}
+  if(test==4)require(pixels[3]==0x458c,201);
   require(GetLastError()==0x4321 && reader_calls==test+2,202);
  }
  require(!((i32(WIN*)(void*,void*))table(surface)[32])(surface,(void*)pixels),184);
  require(!release(surface)&&!release(draw),185);
+ u32 states[3]={5,45,t1_fx_checks},state_written=0;
+ HANDLE state_file=CreateFileA("continuation-state.bin",0x40000000,0,0,1,0x80,0);
+ require(state_file!=(HANDLE)-1&&WriteFile(state_file,states,sizeof(states),&state_written,0)&&state_written==sizeof(states)&&CloseHandle(state_file),221);
  u32 result[8]={0x4d4e4f57,1,13,9,0x40000,1,1,1},written=0;
  HANDLE output=CreateFileA("backing-owner-result.bin",0x40000000,0,0,1,0x80,0);
  require(output!=(HANDLE)-1&&WriteFile(output,result,sizeof(result),&written,0)&&written==sizeof(result)&&CloseHandle(output),186);

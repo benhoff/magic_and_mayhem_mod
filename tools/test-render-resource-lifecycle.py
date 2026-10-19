@@ -15,7 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('resource_continuous', ROOT/'tools/test-render-continuous-producer.py')
 continuous = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(continuous)
-live, ring = continuous.live, continuous.ring
+# These lifecycle/mutation fixtures exercise the V2 transport. The continuous
+# producer selects V2/V3 locally; importing its former global ring is ambiguous.
+live, ring = continuous.live, continuous.legacy_ring
 CASES = ['cross-release', 'release-timeout', 'cross-alias', 'alias-timeout', 'cross-create', 'create-timeout','churn', 'pixels', 'alias', 'untracked', 'held', 'dc', 'contention', 'conflict', 'bounded']
 
 

@@ -1,5 +1,303 @@
 # Engine modernization coverage ledger
 
+## Critical rendering tranche commit validation — 2026-10-19
+
+The three critical eleven-behavior tranches, their implementation/validation
+separation and preserved successful/failed attempts are prepared together with
+the CPU reply and camera capture publication repairs. The native-facing
+production callback was rerun on this commit tree: 168 synthetic cases pass,
+source declarations remain stable, and no original artifacts are consumed.
+The new result is `native-facing-commit-validation-20261019.json`; the earlier
+result and its recorded hashes remain historical. This supports only the
+existing partial native-facing implementation, without original equivalence or
+live integration. The source-bound finite world-producer handoff result remains
+separate. Broad gameplay, hardware/performance, arbitrary scheduling and full
+native-only/restart acceptance remain pending. The separately developed
+campaign-window feature and unfinished DirectDraw-retirement changes remain
+outside this commit; retained historical fixture inputs do not claim those
+features are integrated here.
+
+## Camera helper publication repair — 2026-10-19
+
+The unchanged CameraDialogueGuard reproduces its ten-second capture deadline
+when the former PNG/ACK publisher enters an injected eleven-second durable sync.
+Current diagnostic PNGs and metadata use flushed/closed temporaries and atomic
+rename without that persistence prerequisite. ACK follows both image attempts;
+failed image or metadata publication is rejected and propagated. Native/reference
+pixels, request validation, bounded worker/GUI ownership and the deadline remain
+unchanged. The actual-helper regression and extended encoder controls pass.
+
+Two stable-source untraced20-second/Mini/20-second/Quit journeys pass: 647
+balanced Worlds, 617 CPU restorations and 14 accepted camera captures
+across six physical Mini input phases, followed by original exit0. See
+[camera-helper-publication-fix-20261019.json](camera-helper-publication-fix-20261019.json).
+The earlier camera failure and all prior source fingerprints remain retained.
+This fixes a reproduced publication mechanism; other historical causes, broader
+current-tree/scheduling, original parity, hardware/FPS and native-only/restart
+acceptance remain separate. Raw coverage milestones are unchanged.
+
+## CPU reply publication fix — 2026-10-19
+
+A reproduced CPU-history timeout mechanism is fixed: volatile replies no longer
+wait for durable disk sync before atomic publication. The injected eleven-second
+sync makes the former publisher miss the unchanged ten-second reader deadline;
+the replacement publishes identical RGB565 words without entering durable sync.
+Session/ticket/surface/history/extent/length checks and tracker/copy guards remain
+unchanged. The actual GL fixture passes960000 WORDs,36 malformed replies and
+wrong-session rejection with zero remaining surfaces.
+
+Two pinned, untraced20-second/Mini/20-second/Quit journeys pass: 639 balanced
+Worlds and 580 CPU-history restorations, stable sources and original exit0.
+See [the new execution record](cpu-reply-publication-fix-20261019.json). This
+records a fixed failure mechanism, rather than inferring a repair from a later
+PASS. Filesystem timestamps support that mechanism in an older failure; they do
+not prove every historical stage13 cause. A separate old-source copy-order/GAP
+failure is retained. Current-tree drift, arbitrary timing, hardware/FPS, full
+parity and native-only/restart remain separate. Raw coverage stages and all old
+source/evidence fingerprints are unchanged.
+
+## Tranche 1 scope resolution and bounded normal acceptance — 2026-10-19
+
+The source assessment is now **11 implemented within scope, zero concrete missing
+code branches identified, zero unresolved aggregates**. The palette/checkpoint
+crosswalk in `tranche1-aggregate-scope-resolution-20261019.json` maps factory,
+property/lifetime, complete-state/recovery and borrow domains to supplied
+contracts, deliberate refusal, or capabilities explicitly excluded by the existing
+design. It retains dedicated scheduling/current-source validation as validation
+work. Unobserved driver destruction, independently joining external hosts and
+arbitrary thread-death reclamation are not silently accepted.
+
+`tranche1-remaining-acceptance-20261019.json` records a new **bounded normal PASS**:
+an immutable-source, untraced 20-second/Mini/20-second/Quit journey with 275 balanced
+Worlds, normal original exit, and passing same-snapshot kernel/private-output and
+authenticated input controls. A separate shared-checkout journey completed 278
+Worlds but failed source stability; its unsuccessful report remains. Failed
+snapshot staging and outer-wrapper path accounting are retained independently
+from the successful strict child campaign report. The earlier normal stage-13
+refusals and every historical fingerprint remain unchanged.
+
+**The intermittent refusal's root cause remains unproved.** No semantic engine
+repair is inferred from this later passing execution. The active-Lock reader now
+captures its local request, last observed reply header, poll/open/header-match and
+payload counts, file error, reply readiness and existing tracker context only on
+terminal failure. Identity checks and the 10-second deadline are unchanged.
+Current-checkout drift, broader gameplay/frame/performance, native-only/restart and
+arbitrary scheduling acceptance remain separate. Native/ASan/UBSan opaque-borrow
+capacity/abandoned-return controls pass. Raw understanding, implementation,
+comparison, integration and replacement milestones are unchanged.
+
+
+## Campaign harness repair and CPU-history acceptance failure — 2026-10-19
+
+The [new record](native-ownership-viewport-fix-20261019.json) supersedes the
+viewport blocker in the historical tranche-1 section below. Seven campaign and
+four restart/healing lookups now find the QWidget `GlViewport` wrapper directly.
+The Qt build passes. Separate live restart/healing journeys were not executed.
+Stress Mini transitions use existing bounded capture/OCR readiness and original
+callback witnesses. No engine protocol, production guard or deadline changed.
+The runner now detects all five existing native refusal/fault record families
+and explicitly records optional Wine file tracing.
+
+**Normal output-owner acceptance remains FAIL.** Two runs on stable sources
+refused CPU-history transfer at stage 13 (copied-tree ticket 4 after 8 Worlds;
+shared-checkout ticket 3). A matching reply is retained, but the existing record
+conflates reply readiness and tracker reacquisition. The failure needs bounded
+local request/header, ready/file-error, tracker owner/site and timing diagnostics
+before any engine change. The same rendering/scene/native DLL bytes were used by
+the earlier successful shared-checkout journeys; no new missing graphics
+operation is established by this failure.
+
+Current kernel/private-X11/authenticated-input controls pass. A separate
+**file-trace diagnostic PASS** completes both 20-second input intervals, Mini
+Cancel/resume, Quit No/Yes, normal original exit,270 balanced World returns and
+zero producer forwarding. Three Mini witnesses/capture hashes validate. Tracing
+changes timing, so this result does not clear the normal failure or establish
+ordinary campaign/FPS acceptance. The UI keeps the task FAIL and behavior
+implementation partial, with the new precise next diagnostic.
+
+All failed, source-drift, preflight and traced attempts are retained. The pinned
+copy initially omitted its installation manifest and stopped before game launch;
+that input was supplied before its original run. All 4,848 source-game files stay
+unchanged and original manifests pass before/after experiments. Historical
+evidence hashes, prior outcomes and raw behavior milestones are preserved.
+RREC05 statically reviews only this harness/runner delta; unrelated fingerprints
+and source-staleness remain historical. Broader parity, hardware, Save/Load,
+movies, native-only/restart and arbitrary scheduling remain separate.
+
+## Rendering critical tranche 2 planning review — 2026-10-19
+
+Reviewed all eleven tasks against their registered scopes, current code, research
+and actual runner/fixture coverage. The [review](rendering-tranche2-planning-review-20261019.md)
+and coverage UI now distinguish original branch recovery, logical Lock epochs,
+producer history, the separate native word-zero startup policy and caller bypass.
+Selected producer recovery precedes first-World history; every task has explicit
+inputs, prerequisites, missing fixtures, acceptance and handoffs. Existing
+startup/producer capture modes cannot be combined. Completed measurement is not
+pixel equivalence, incoming-state preservation is not outgoing caller recovery,
+and the generic bypass lacks the later raster path's caller guard.
+
+No engine or original experiment was run and no engine status or historical
+evidence hash was changed. Tranche-1 output acceptance remains FAIL; dependent
+integration/replacement execution stays held until a repaired, separately budgeted
+acceptance run passes. Source/fixture preparation and independent component work
+can proceed. This review supplies no additional pilot attempt.
+The expanded planning test is broadly fingerprinted by all eleven historical
+tranche-1 reports; its source change leaves their current validation stale.
+Recorded outcomes/hashes remain unchanged, with explicit pending accounting;
+no engine rerun was used to refresh this planning-only source mismatch.
+
+## Rendering critical tranche 1 execution — 2026-10-19
+
+All eleven bounded tasks were attempted: **ten PASS; output-ownership acceptance
+FAIL**. The [execution record](rendering-tranche1-execution-20261019.json) retains
+prospective declarations, exact report hashes, task-specific limits and both
+pilot attempts. The UI shows task results separately from behavior implementation.
+The 341 rendering contracts remain 138 scoped, 199 partial and four absent; none
+of these broad contracts or original comparison/replacement stages is promoted.
+
+| Task | Result | Bounded evidence |
+| --- | --- | --- |
+| Surface final-word policy | PASS | Four tail cases; 64 unchanged Wine/native comparisons; 37,440 pixel and 2,048 caller words match. |
+| CPU continuation | PASS | Five instruction classes; 45 GPR/ESP/flags and 875 meaningful FX-state byte assertions; 19 ordered reads; foreign/expired/World exclusions. |
+| Source-region epoch | PASS | Production-shared permission dispatch and current-byte copy; owner/background/epoch/content controls, native and ASan/UBSan. |
+| Resident bind admission | PASS | Copy-contention success; tracker-budget, reentrant and copy-timeout refusal; original results, LastError, owned bytes and shutdown. |
+| Callback publication | PASS | Distinct worker identity, zero callback pumps and no worker-owned copy/tracker leases. Worker/callback overlap through private owned bytes is allowed. |
+| Command pressure | PASS | Twelve pressure controls per native/sanitized run plus PE32 pause/stall/cancel/invalid-ACK schedules. |
+| Description continuity | PASS | Eight description/mutation/refusal schedules and 12 full-frame comparisons. |
+| Palette resources | PASS | Native/sanitized baseline, two real-hook lifetime schedules and three mutation schedules with 325 exact frames. |
+| Checkpoint attachment | PASS | Seven checkpoints/60 frames, six host recoveries/87 frames, seven direct recoveries, and native/sanitized opaque capacity/abandoned-return controls. |
+| Displacement finite edge | PASS | 960,064 original-entry words, two captured native cases, 14 mask controls and two regressions. |
+| Output ownership acceptance | FAIL | Kernel/private-input controls pass. Campaign reaches 70 native command frames/60 painted frames, then the stress harness fails before the 20-second interval and normal Quit. |
+
+Implementation work extracted the existing producer epoch/copy policy into shared
+helpers and added SELFTEST-only inspection/state/lifetime fixtures. Existing
+probe/runner drift was repaired: supported operations are no longer negative
+controls; V2 transport is selected explicitly; negative mutation schedules wait
+for their valid prefix; internal palette reads have their own LastError oracle.
+No admission budget or production refusal was relaxed. Additional producer bridge
+compilation is a build observation, not validation of untouched assembly adapters
+or the entire original producer flow.
+
+Palette shape/entry guards, identity retirement, ordered callbacks and native row
+reuse supply narrower parts of the palette aggregate. Outstanding borrows,
+startup, arbitrary nested/failed QI, alias/owner disappearance and all driver
+ordering remain open. Complete owned checkpoint state, candidate/gate/recovery
+services likewise leave sustained actual-game recovery and external attachment
+open. The new opaque-table tests exercise the production policy with fake Win32
+time; they do not establish arbitrary thread-death recovery. Capacity uncertainty
+deliberately remains sticky. Selected real PE32 recovery controls separately prove
+untouched pre-claim files, spent post-claim candidates and distinct higher-session
+retry. Native finite-edge clipping remains intentional policy, separate from the
+selected original linear-wrap oracle.
+
+The first pilot refused before game launch because the generic Wine template
+lacked exact DirectPlay ownership. Its one targeted confirmation used a checked,
+stopped admitted prefix and a separate verified source game; it failed with
+`Native stress viewport unavailable`. The failure is in
+`apps/qt-shell/campaign_smoke_test.cpp:288`: it looks up the named viewport as
+`QOpenGLWidget`, whereas `GlViewport` now derives from `QWidget` and wraps its GL
+canvas. Similar obsolete typed lookups remain in that harness. The game did run
+and show native frames, but stress completion, normal Quit, balanced final World
+retirement and accepted zero-forwarding counters were **not established**.
+
+Handoff to `NR.directdraw-retirement`: update/audit the campaign harness's typed
+viewport lookups against the QWidget wrapper, rebuild and verify that harness,
+then run a separately budgeted pilot with the admitted prefix. Both authorized
+attempts are preserved; no third pilot or deadline extension was performed here.
+The original manifest passed before/after original-consuming controls. All 4,848
+source-game files were unchanged across the pilot. Existing patched working
+input, historical evidence and unrelated campaign/skirmish changes were preserved.
+
+RREC04 records a new incremental source/scope review; RREC03's recorded hashes
+remain unchanged. Fresh execution applies only to the bounded results above;
+historical/shared-branch validation limitations remain explicit.
+
+## Rendering behavior reconciliation — 2026-10-19
+
+All 203 rendering-track contracts formerly marked partial/absent now have explicit
+source/scope review records and central links: 111 diagnostic/research tools,
+67 located bounded implementations, 13 unresolved original contracts, five broad
+contracts with narrower implemented suppliers, and seven acceptance/corpus targets.
+The whole 341-contract denominator remains; no entry is deleted or broadly marked
+complete. The 18 original/aggregate scopes can require substantial further code.
+
+`AN.world-facing` was stale accounting: existing native provider arithmetic was
+unlinked. It now links the provider and synthetic production-callback controls,
+with partial implementation rather than absence. The 168-case controls cover
+canonical wrapped direction, 3:2 boundaries, zero displacement, camera turns and
+reverse-facing. They are native execution only, with no original artifacts or
+binary comparison. Complete original targeting/visual/action-base/lifetime scope
+remains pending. Scoped implementation counts stay at 138; partial/none become
+199/4. No original comparison, integration or replacement stage is promoted.
+
+RREC03 is the current static reconciliation; RREC02 and unsuccessful probe/build
+attempts remain historical. RREC01 separately records the bounded native controls.
+The UI exposes per-entry roles, exact source/scope fingerprints, narrower supplied
+contracts and remaining work, visibly historical on changed inputs. See
+[the full reconciliation](rendering-behavior-reconciliation-20261019.md).
+
+## Rendering UI implementation / validation split — 2026-10-19
+
+The Native rendering page now has independent Implementation and Validation
+sections. Registered behavior implementation counts and explicit unfinished
+behavior lists use the full rendering/animation track. Validation counts current,
+historical, pending and unknown execution support across the curated milestones;
+its denominator and next task are separate. Each milestone shows both dimensions.
+Evidence requirements are evaluated independently from code/understanding status,
+while combined milestone requirements remain unchanged. Selected delivered native
+capabilities no longer imply completion of the broader rendering track. This is
+presentation/accounting work only; no engine contract status, original comparison,
+integration or live replacement is promoted, and historical hashes are preserved.
+
+## Coverage UI implementation vocabulary — 2026-10-19
+
+All coverage atlas pages use Implemented, Partially implemented and Not
+implemented for registered code status, with a common scope definition.
+Engine overview replaces the ambiguous Engine & simulation navigation label;
+existing view bookmarks remain valid. Track percentages now count implemented
+registered behaviors, with partial and absent implementations counted separately.
+Overview totals deduplicate shared behaviors; track denominators remain local.
+
+Roadmaps and dialogs show required-behavior implementation independently from
+Milestone requirements met/pending, current validation, original comparison,
+integration and live replacement. Missing mappings show Implementation unknown.
+These UI calculations do not promote engine statuses or renew historical
+fingerprints. Spell dispatch entries count individually in behavior percentages;
+the separate milestone checklist still groups them as one outcome. UI checks
+exercise presentation only; original comparisons and live replacement retain
+their existing scope and pending validation boundaries.
+
+## Native rendering progress refresh — 2026-10-19
+
+The coverage atlas now includes the delivered native-only launch, owned copy and
+CPU-reader implementations, extended 2D and whole clipped-image copy, isolated
+renderer recovery, hard restart and the bounded recorded-session comparison.
+The old queue32 experiment remains historical scope; it is no longer the next
+implementation task or a ceiling on the later resident profile.
+
+Current-source component evidence exists for extended 2D/image controls and
+isolated renderer recovery. Native-only launch, copy/reader and hard-restart
+records retain changed-source limitations; complete original World initialization,
+all-game pixels/routes/journeys, live faults and sustained hardware performance
+remain separate acceptance work. This presentation/accounting refresh does not
+change engine statuses or renew historical engine evidence.
+
+## Engine and simulation progress UI — 2026-10-19
+
+The local coverage atlas now opens on an engine overview, with independent
+implementation, current/historical original comparison, integration mode and
+live replacement counts for each active track. A curated simulation roadmap
+links owned state, command execution, ordinary owner AI/skirmishes, original-first
+decision traces, creature combat, Cure/Sphere and campaign continuation to their
+existing behavior contracts. Shared contracts count once in overview totals.
+
+Original world scheduling/lifetime, wizard strategy, full gameplay composition
+and live simulation replacement remain separate open milestones. Existing native
+results retain their bounded policies; no engine status is promoted by this UI
+change. Rendering and existing detailed bookmarks remain available. UI validation
+exercises presentation and navigation only; engine evidence hashes are preserved.
+See [dashboard usage](../../apps/coverage-ui/README.md).
+
 ## Native panel pixel-loop adapter — 2026-10-13
 
 `RS.panel-loop-state`, `NP.panel-loop-admission` and `NP.panel-loop-launch`
@@ -18249,3 +18547,210 @@ Synthetic storage/guard checks cover lossless splitting, tampering, missing and
 escaping paths, staged reads and historical Git reads. Changes to the accounting
 tools leave their earlier execution records historical; no engine comparison,
 integration or replacement result is renewed by this storage repair.
+
+
+## Rendering tranche 3: implementation state separated from acceptance (2026-10-19)
+
+The [tranche-3 state review](rendering-tranche3-state-review-20261019.md) and
+coverage dashboard now use explicit source assessments: implemented within scope,
+partially implemented only with named missing code, unresolved aggregate, and a
+separate acceptance-failure label. Ten scoped mechanisms are located, no concrete
+partial code gap is identified among those ten, and DirectDraw retirement remains
+an unresolved aggregate. The unchanged storage baseline and hardware parity suite
+retain the same252-pixel negative as two affected acceptance contracts, not two
+diagnosed native defects. The already delivered default-offscreen descriptor is
+removed from proposed missing implementation work. Every task records current
+state, typed next steps, validation boundaries and reviewed source fingerprints.
+
+This is planning/source review and UI validation only. Registered implementation,
+comparison, integration and replacement stages, original unknowns, historical
+reports and their source hashes are preserved. Changes to broadly fingerprinted
+planning/browser tests can leave earlier execution evidence historical; no engine
+result is renewed here. Tranches1/2 keep their earlier task assessments. Independent
+component work can proceed; dependent live execution remains held on tranche-1
+output-ownership acceptance and the relevant tranche-2 inputs, with no additional
+pilot authorized. Reports and exact change accounting are retained under
+`working/tests/rendering-tranche3-review-20261019/`.
+
+
+## Rendering tranche 1: source assessments and partial-implementation wording (2026-10-19)
+
+The [tranche-1 state review](rendering-tranche1-state-review-20261019.md) records
+nine implemented scoped mechanisms, two unresolved aggregates (palette resources
+and checkpoint attachment), no identified concrete partial-code gap, and the
+separate failed output-ownership pilot. All ten bounded PASS / one pilot FAIL
+results and historical engine fingerprints remain unchanged. Delivered continuation,
+epoch/copy, bind/publication, palette-race and opaque-borrow controls replace stale
+fixture TODOs. Typed next steps distinguish validation, scope review and diagnosis;
+the exhausted pilot budget is preserved.
+
+The web UI applies implemented-within-scope, concrete partial-code, unresolved
+aggregate and acceptance-failure wording across reviewed lists and dialogs.
+Unreviewed entries retain explicit registered-partial/scope-review labels. Source
+assessment filters separate reviewed missing code from implemented mechanisms,
+aggregates and failed acceptance; historical denominators and engine stages are
+unchanged. This is source/planning/UI work only, with no original artifact consumed
+or new live run. Reports and exact accounting are under
+`working/tests/rendering-tranche1-state-review-20261019/`; concurrent tranche-2 and
+campaign changes remain outside this source assessment.
+
+Concurrent ownership follow-up changed the latest output-task diagnosis while the
+UI review was in progress. The viewport repair and normal CPU-history stage-13
+refusals in `native-ownership-viewport-fix-20261019.json` are preserved, together
+with a distinct traced pass that does not clear default acceptance. The task still
+uses implemented-within-scope plus acceptance-failure labels; the latest diagnostic
+next steps replace the obsolete viewport-only diagnosis. This source/UI review
+adds no engine experiment or status promotion.
+
+## Rendering tranche 2: independent implementation and history assessment (2026-10-19)
+
+The [tranche-2 state review](rendering-tranche2-state-review-20261019.md) records
+eight implemented scopes, three unresolved aggregates (pre-World reuse, producer
+history and initial state), no concrete missing-code branch identified, and one
+overlapping retained initial-state acceptance failure. It distinguishes selected
+observer/model implementations from unresolved physical ownership and causal
+writer history. The 7-pixel and four-frame 15-pixel initial-history differences
+remain separate from the historical successful 16-queue completed-output comparison.
+
+Original reference fixtures, padded binding and native wave suppliers, generic
+caller guard/zero-EAX return handling, source-only replay negatives and the
+same-run history checker are recorded as supplied. Fresh engine execution remains
+pending; source review does not validate the new fixtures or reconstruct initial
+pixels. Typed next steps distinguish validation, scope reconciliation and diagnosis.
+The shared web UI now applies the four work labels to all 33 tranche tasks while
+preserving raw stage counts and historical evidence hashes. No original artifact,
+pilot or engine experiment is consumed here. Dependent live work retains tranche-1
+default output-acceptance and separately budgeted-run gates. Reports and exact
+accounting are under `working/tests/rendering-tranche2-state-review-20261019/`.
+
+## Rendering critical tranche 2 execution — 2026-10-19
+
+Initial outcome, superseded by the bounded acceptance completion below:
+ten bounded task matrices passed. The selected59521a count1 live bypass also
+compares480,000 words against independent original prefix and exact-body replay;
+all1061 checkpoints and16 World completions match. Whole-tranche acceptance is
+not complete: the current ownership journey misses its camera diagnostic
+deadline, and the100GiB storage guard stops final confirmation. A90GiB budget
+change or reviewed explicit cleanup is pending user input; no automatic cleanup
+or reserve reduction was performed.
+
+The original matrices cover40 creation cells,13,824 Lock/Restore/retry cells,
+48 ordinary/padded dispatcher cells,25 full-fill cells,5355 palette selector
+cells and33 initializer controls. A newly exposed whole-opaque-run clipping
+difference is repaired in native CPU and GPU paths. All768 complete wave cases
+match1,572,864 original words per backend; native storage and caches retain and
+budget encoded run boundaries. Both16-queue original-active storage captures
+close845 calls and774 observed Lock-return epochs; source-only replay matches
+all1061 checkpoints and independently reconstructs the complete first-World
+before-canvas. The separate word-zero World sequence matches all three
+completed-canvas comparisons across7,680,000 pixels and retains initial/HUD
+differences.
+
+Scripted COM/driver boundaries, real initial-clear completion, physical
+allocation/COM aliases, unobserved external writers, other amplitude/ordinal/
+dispatch domains and live5947b2 remain explicit. Earlier CPU transfer stage13
+and later camera deadline failures remain negative evidence. Fast lossless
+atomic PNG publication passes its unit controls but does not clear the actual
+deadline failure. Current concurrent CPU-reader diagnostics require review and
+renewed execution. No behavior/status promotion or historical fingerprint
+refresh is asserted.
+
+See [the execution record](rendering-tranche2-execution-20261019.json) and new
+immutable result copies under `rendering-tranche2-results-20261019/`. Final
+registration and source census were subsequently written after the approved
+storage decision. Exact review receipts and final audit reports record the
+accounting separately; existing historical staleness and baseline gate debt
+remain visible.
+
+### Tranche 2 bounded acceptance completion — 2026-10-19
+
+The eleven declared bounded tasks now pass. The subsequent static acceptance review links the independently compared single `59521a` replacement to the supplied source-stable 275-World normal campaign and same-snapshot isolation/input controls. All gameplay engine and harness fingerprints match the current checkout; differences are coverage tooling/tests and the approved 90 GiB reserve policy. See [the execution record](rendering-tranche2-execution-20261019.json) and `rendering-tranche2-results-20261019/bounded-acceptance-review.json`. This supersedes the earlier blocked task verdict, preserves all negative attempts and old source hashes, and promotes no broad engine status. Earlier stage-13/camera failures remain historical risks; no `5947b2`, complete/default/native-only/restart, hardware/FPS or arbitrary-scheduling acceptance follows. No evidence was deleted or archived.
+
+## Tranche 3 issue execution and scope reconciliation — 2026-10-19
+
+The [issue review](rendering-tranche3-issues-review-20261019.md) and
+[execution record](rendering-tranche3-issues-execution-20261019.json) retain the
+three requested workstreams. The final-source finite producer handoff matches all
+1,061 checkpoints / 474,235,312 pixels and all 16 independent original World
+completions / 7,680,000 pixels, with four native controls, source/input stability
+and immutable-original bookends. `NR.world-producer-handoff` integration advances
+from none to **headless**, bound to the existing offline scenario. Implementation,
+comparison and live replacement stages are unchanged; no new game capture or
+bypass was executed.
+
+Complete software replay retains the unchanged 238-frame storage failure at
+ordinal 170: 126 GPU plus 126 physical pixels. The separate corrected-driver
+222-frame profile and 323-frame Quick Battle regression match. The corrected
+profile's source/default/physical witnesses and actual owned XCB/EGL controls
+pass. The original baseline frame is black, and 37 tested downward translations
+hide its missing cursor; it cannot identify a unique 120-pixel offset or an
+internal Wine/Mesa cause. No diagnostic transform changes native inputs,
+acceptance, tolerance or the failing reference. Full unmodified parity and the
+unrenewed hardware suite remain acceptance failures.
+
+Factory (128 lifetimes), surface (64 cases), DC/clipper (64 cases), clipping
+(408 cases), format (80 cases) and six HWND-region comparisons pass within their
+boundaries. Scope reconciliation replaces the stale missing-descriptor,
+palette and clipped-Blt TODOs with delivered suppliers and explicit unknown
+required routes/loss/semantic-retirement domains. Full DirectDraw retirement
+remains an unresolved aggregate; no new required missing COM branch was proved.
+
+The actual services fixture failure at exit 196 is retained. Its obsolete
+unfiltered two-mode assumption is repaired with an explicit RGB565 filter,
+all-eight native format/size enumeration, cancellation and extent filtering;
+the runner checks a 13-callback receipt. Native supported formats are unchanged.
+The EGL control runner also gains isolated-library selection and a before/after
+binary check. Five actual native drawing CTests, four native handoff CTests,
+67 Python component methods and the owned diagnostic controls pass. Initial
+empty CTest discovery and Wine-reservation refusals remain recorded.
+
+Old source hashes are preserved. Initial replay/factory/surface reports broadly
+fingerprinted the services fixture/runner; that later fixture-only edit leaves
+them historical. A separate final finite-handoff execution uses its actual
+dependency closure and supplies the headless milestone. The aggregate scope
+correction retains its prior scope in the static crosswalk and renews no broad
+retirement validation. Records are registered under `T3I.*` and retained in
+`rendering-tranche3-results-20261019/` and
+`working/tests/rendering-tranche3-issues-20261019/`.
+
+The user approved operation below the prior 100 GiB reserve; the existing 90 GiB
+floor stays guarded. Only verified abandoned orphan test processes/displays were
+stopped to release the global Wine reservation; no files were deleted or
+archived. All 2,927 immutable original files pass final verification. Historical
+failure evidence, unrelated work and the existing repository-wide accounting
+backlog are preserved.
+
+
+### High rendering work: three planned tranches (2026-10-19)
+
+The [High source review](rendering-high-tranches-review-20261019.md) and static
+`HIGH01.rendering-work-review-20261019` record organize all 51 unfinished High
+contracts into three groups of 17: terrain/palette/lighting;
+animation/sprites/native drawing; and ownership diagnostics/continuous journeys.
+The 47 High contracts already registered scoped remain outside this work plan.
+
+Source review identifies 48 bounded implementations needing validation, two
+aggregate scopes requiring reconciliation (`NR.surfaces`,
+`NR.public-resident-world`), and one original final-WORD read model with no linked
+implementation. Recover its operands, callers and required domain before sizing
+that work; the separate native padding/finite-edge policies already exist.
+World-facing native math and the shadow horizontal-envelope refusal also already
+exist. Task cards retain their narrower validation and original-comparison limits.
+
+The dashboard now presents these implementation assessments separately from
+validation, recovery work and acceptance, with concrete next steps and completion
+conditions. This planning/UI change runs no engine or original comparison and
+promotes no registered understanding, implementation, comparison, integration or
+replacement stage. Historical source hashes and Critical task outcomes remain
+preserved; new source fingerprints in the static record do not renew execution.
+
+
+The subsequent High UI verification retains the 31 planning and 21 HTTP/backend
+checks under `working/tests/rendering-high-tranches-20261019/run-001/`.
+Three High importance identities (resident World, continuous source and normal
+performance) were reviewed against their current scope/dependency declarations
+without changing weights. Concurrent edits to native drawing factory/surface
+interfaces and the menu runner leave affected static source assessments
+historical; the task cards flag review rather than refreshing the `HIGH01`
+fingerprints. Browser and final accounting reports retain their own scope and
+outcomes. Repository-wide accounting backlog is independent of this plan.

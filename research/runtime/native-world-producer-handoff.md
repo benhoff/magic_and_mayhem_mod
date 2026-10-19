@@ -111,3 +111,31 @@ failed audit; it and that audit are retained unchanged. A new static index recor
 the capture driver fingerprint. These findings establish neither real-time
 throughput nor wider draw replacement. Older shared behavior contracts need their
 own fresh, scope-bound evidence before current equivalence can be claimed.
+
+## Tranche 2 generic caller boundary (2026-10-19)
+
+The finite generic path now admits only tag13/14 at exact byte-checked
+continuations500512/500a4e/57e940. Unknown or mutated callers fail43 before a
+request or destination writeback. The selected nonempty fully-inside rectangle
+domain returns EAX0, matching private unchanged5947b2/59521a execution.
+Empty/clipped requests forward original work. Each continuation restores20
+argument bytes and consumes AX after overwriting flags; preserving every
+incoming scratch value was not a substitute for comparing consumed return
+semantics. Other original scratch-global/unsampled caller effects remain open.
+
+Original controls compare36 cases, six caller/tag pairs and27,648 words. Actual
+PE32 forwarding/refusal controls retain flags/x87/SSE/LastError, prescribed zero
+EAX, unknown/mutated caller refusal, malformed replies and timeout behavior.
+
+After a separately bounded untraced ownership pilot and positive source-only
+GPU handoff, a fresh16-queue capture replaces exactly one59521a body in queue16.
+Independent original prefix and exact-body execution both match all480,000
+reply words. All1061 checkpoints and16 World completions also match externally.
+The corrected opaque-run renderer has its own fresh capture/comparison.
+No live5947b2 reachability, all-producer replacement or complete native ownership
+is inferred from this single selected body. Earlier failed ownership journeys
+and all pre-correction artifacts remain retained separately.
+
+### Tranche 2 bounded acceptance completion — 2026-10-19
+
+The eleven declared bounded tasks now pass. The subsequent static acceptance review links the independently compared single `59521a` replacement to the supplied source-stable 275-World normal campaign and same-snapshot isolation/input controls. All gameplay engine and harness fingerprints match the current checkout; differences are coverage tooling/tests and the approved 90 GiB reserve policy. See [the execution record](rendering-tranche2-execution-20261019.json) and `rendering-tranche2-results-20261019/bounded-acceptance-review.json`. This supersedes the earlier blocked task verdict, preserves all negative attempts and old source hashes, and promotes no broad engine status. Earlier stage-13/camera failures remain historical risks; no `5947b2`, complete/default/native-only/restart, hardware/FPS or arbitrary-scheduling acceptance follows. No evidence was deleted or archived.

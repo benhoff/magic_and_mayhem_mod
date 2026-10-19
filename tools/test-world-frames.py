@@ -30,7 +30,7 @@ def sources():
     paths=set()
     for directory in ['assets','renderer','compat/legacy','runtime/scene']:
         for path in (ROOT/directory).rglob('*'):
-            if path.is_file() and (path.suffix in ['.cpp','.hpp','.c','.h','.S'] or path.name in ['CMakeLists.txt','README.md']):paths.add(path)
+            if path.is_file() and (path.suffix in ['.cpp','.hpp','.inc','.c','.h','.S'] or path.name in ['CMakeLists.txt','README.md']):paths.add(path)
     paths.update(ROOT/p for p in ['protocols/include/mnm/world_frame_v1.h','protocols/include/mnm/scene_snapshot_v1.h','runtime/shadow/win32_min.h','tests/world-frame-test.cpp','tests/world-frame-reference.cpp','tests/sprite-binary-reference.cpp','tests/resource-fixtures.hpp','tools/test-world-frames.py','tools/capture-scene-game.py','tools/build-scene-observer.py','tools/prepare-scene-observer.py','tools/scene-game-runner.py','research/formats/world-frame-v1.md','research/runtime/native-world-frame-rendering.md'])
     return {str(path.relative_to(ROOT)):sha(path) for path in sorted(paths)}
 

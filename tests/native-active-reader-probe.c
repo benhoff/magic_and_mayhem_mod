@@ -117,6 +117,12 @@ void start(void){
   require(!history((void*)pixels,1,1,0,17,34),426);
   u32 identity[12];require(!transfer(surface,identity,0,0),427);
   joined(CreateThread(0,0,foreign_query,0,0,0));
+  if(mode[0]=='e'){
+   require(!((i32(WIN*)(void*,void*))table(surface)[32])(surface,(void*)pixels),464);
+   u32 layout[4]={(u32)pixels,800,600,pitch};u16 sentinel=0xbeef;
+   require(transfer(surface,identity,0,0)<0 && snapshot(surface,layout,&sentinel,800*600*2)<0 && sentinel==0xbeef && !history((void*)pixels,3,2,0,0,0),465);
+   u32 result[4]={1,'e',0,0};save("active-reader-result.bin",result,sizeof(result));ExitProcess(0);
+  }
   if(mode[0]=='r'){joined(CreateThread(0,0,foreign_read,0,0,0));ExitProcess(428);}
   if(mode[0]=='w'){
    u32 layout[4]={(u32)pixels,800,600,pitch};u16* copy=HeapAlloc(GetProcessHeap(),0,800*600*2);require(copy!=0,429);

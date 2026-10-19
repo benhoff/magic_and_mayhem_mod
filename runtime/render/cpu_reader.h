@@ -53,19 +53,50 @@ __declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void* object,const void*
  game_tracker_release();
  char path[544];u32 n=GetEnvironmentVariableA("MNM_RENDER_COMMAND_CHANNEL",path,512);
  if(!n || n>=512)game_cpu_read_refuse(12,object,n);copy(path+n,".cpu-reply",11);
- u32 start=GetTickCount(),ready=0;
+ u32 start=GetTickCount(),ready=0,last_header[16]={0},polls=0,opens=0,headers=0,matches=0;
+ u32 file_error=0,file_bytes=0,header_bytes=0,payload_bytes=0;
  while(GetTickCount()-start<MNM_NATIVE_CPU_READ_V1_TIMEOUT_MS){
   if(!command_channel_identity() || command_channel_refused ||
      __atomic_load_n(command_channel+6,__ATOMIC_ACQUIRE)>=2 || __atomic_load_n(command_channel+8,__ATOMIC_ACQUIRE))break;
-  HANDLE file=CreateFileA(path,0x80000000,7,0,3,0x80,0);
-  if(file!=(HANDLE)-1){u32 h[16],read=0,file_bytes=GetFileSize(file,0);
-   if(ReadFile(file,h,64,&read,0) && read==64 && mnm_native_cpu_read_reply(h,file_bytes,fields) &&
-      ReadFile(file,result.data,result.length,&read,0) && read==result.length)ready=1;
+  ++polls;HANDLE file=CreateFileA(path,0x80000000,7,0,3,0x80,0);
+  if(file!=(HANDLE)-1){u32 h[16]={0},read=0;++opens;file_bytes=GetFileSize(file,0);
+   i32 header_ok=ReadFile(file,h,64,&read,0);header_bytes=read;
+   if(!header_ok)file_error=GetLastError();
+   if(header_ok && read==64){++headers;copy(last_header,h,64);
+    if(mnm_native_cpu_read_reply(h,file_bytes,fields)){++matches;
+     i32 payload_ok=ReadFile(file,result.data,result.length,&read,0);payload_bytes=read;
+     if(!payload_ok)file_error=GetLastError();
+     if(payload_ok && read==result.length)ready=1;
+    }
+   }
    CloseHandle(file);if(ready)break;
-  }
+  }else file_error=GetLastError();
   Sleep(1);
  }
- if(!ready || !game_tracker_acquire())game_cpu_read_refuse(13,object,GetTickCount()-start);
+ if(!ready || !game_tracker_acquire()){
+  /* Preserve the distinction between a reply timeout and tracker admission.
+   * Fatal-path diagnostics do not extend the wait or admit stale pixels. */
+  u32 context[16]={0x574d4e4d,1,ticket,ready,GetCurrentThreadId(),
+   __atomic_load_n(&game_locks_busy,__ATOMIC_ACQUIRE),
+   __atomic_load_n(&game_locks_owner,__ATOMIC_ACQUIRE),
+   __atomic_load_n(&game_tracker_site_owner,__ATOMIC_RELAXED),
+   GetTickCount()-start,__atomic_load_n(&game_cpu_transfer_wait,__ATOMIC_ACQUIRE),
+   __atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE),
+   __atomic_load_n(&command_queue_written,__ATOMIC_ACQUIRE),
+   __atomic_load_n(&command_queue_read,__ATOMIC_ACQUIRE),
+   __atomic_load_n(command_channel+6,__ATOMIC_ACQUIRE),
+   __atomic_load_n(command_channel+8,__ATOMIC_ACQUIRE),command_channel_refused},done=0;
+  HANDLE diagnostic=CreateFileA("native-cpu-reader-wait.bin",0x40000000,0,0,1,0x80,0);
+  if(diagnostic!=(HANDLE)-1){WriteFile(diagnostic,context,sizeof(context),&done,0);CloseHandle(diagnostic);}
+  /* Only the terminal path writes diagnostics. Keep the request and the last
+   * header read locally: a later matching file cannot prove what this wait saw. */
+  u32 reply[40]={0x504d4e4d,1,160,polls,opens,headers,matches,file_error,file_bytes,header_bytes,payload_bytes,ready,
+   GetTickCount()-start,command_channel_refused};
+  copy(reply+14,fields,40);copy(reply+24,last_header,64);done=0;
+  diagnostic=CreateFileA("native-cpu-reader-reply.bin",0x40000000,0,0,1,0x80,0);
+  if(diagnostic!=(HANDLE)-1){WriteFile(diagnostic,reply,sizeof(reply),&done,0);CloseHandle(diagnostic);}
+  game_cpu_read_refuse(13,object,GetTickCount()-start);
+ }
  if(!lock->active || lock->generation!=generation || lock->epoch!=epoch || epoch!=game_lock_epoch ||
     lock->owner!=GetCurrentThreadId() || !game_alias_same(lock->object,object) ||
     !session_find(object) || session_find(object)->id!=surface_id)game_cpu_read_refuse(14,object,0);

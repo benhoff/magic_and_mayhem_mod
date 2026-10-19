@@ -109,10 +109,8 @@ static int oracle_configure(const char* number,u32 n){
 }
 static u32 get(const void* p){const u8* b=p;return b[0]|(u32)b[1]<<8|(u32)b[2]<<16|(u32)b[3]<<24;}
 static void put(void* p,u32 v){u8* b=p;b[0]=v;b[1]=v>>8;b[2]=v>>16;b[3]=v>>24;}
-static void copy(void* d,const void* s,u32 n){u8* a=d;const u8* b=s;
- if(continuous_map){u32 count=n/4;__asm__ __volatile__("cld; rep movsl" : "+D"(a), "+S"(b), "+c"(count) : : "memory","cc");n%=4;}
- while(n--)*a++=*b++;
-}
+#include "world_source_copy.h"
+static void copy(void* d,const void* s,u32 n){mnm_world_source_copy(d,s,n,continuous_map!=0);}
 static void zero(void* p,u32 n){u8* b=p;while(n--)*b++=0;}
 static u32 continuous_region_queries;
 API u32 WIN GetCurrentThreadId(void);
@@ -121,15 +119,13 @@ static u32 producer_record_budget(void){return (session_producers||whole_update_
 
 static u32 producer_uncached_region_query(u32 p,u32* m){if(continuous_map)++continuous_region_queries;return VirtualQuery((void*)p,m,28);}
 #define MNM_WORLD_REGION_QUERY(p,m) producer_uncached_region_query(p,m)
-#include "world_source_regions.h"
+#include "world_source_epoch.h"
 static struct MnmWorldSourceRegions continuous_source_regions;
 static u32 continuous_source_region_owner;
 static void producer_source_region_begin(u32 owner);
 static void producer_source_region_end(void);
 static u32 producer_region_query(u32 p,u32* m){
- if(__atomic_load_n(&continuous_source_region_owner,__ATOMIC_ACQUIRE)==GetCurrentThreadId())
-  return mnm_world_source_regions_query(&continuous_source_regions,p,m);
- return producer_uncached_region_query(p,m);
+ return mnm_world_source_epoch_query(&continuous_source_regions,&continuous_source_region_owner,GetCurrentThreadId(),p,m);
 }
 #define MNM_REGION_QUERY(p,m) producer_region_query(p,m)
 #include "readable_extent.h"
@@ -404,12 +400,10 @@ static void frame_enter(u32* registers,u32 tag){
 }
 #include "world_producer_bypass.c"
 static void producer_source_region_begin(u32 owner){
- mnm_world_source_regions_reset(&continuous_source_regions);
- __atomic_store_n(&continuous_source_region_owner,continuous_map && continuous_resident && continuous_public_bind?owner:0,__ATOMIC_RELEASE);
+ mnm_world_source_epoch_begin(&continuous_source_regions,&continuous_source_region_owner,continuous_map && continuous_resident && continuous_public_bind,owner);
 }
 static void producer_source_region_end(void){
- __atomic_store_n(&continuous_source_region_owner,0,__ATOMIC_RELEASE);
- mnm_world_source_regions_reset(&continuous_source_regions);
+ mnm_world_source_epoch_end(&continuous_source_regions,&continuous_source_region_owner);
 }
 
 #include "drawing_publication.h"
@@ -451,6 +445,7 @@ int producer_enter_observe(u32* registers,u32 tag,u8* fx){
    ++batch_surface->dirty;registers[7]=0;SetLastError(error);return 1;
   }
   if(!*producer_trace_depth(producer_trace_mode?GetCurrentThreadId():0)&&((bypass_limit&&queue==bypass_queue&&bypass_completed<bypass_limit&&(tag==13||tag==14))||(raster_active()&&hooks[tag].raster>=0))){
+   if(!raster_active()&&!generic_bypass_caller((registers+9)[0],tag)){fail(43,tag);ExitProcess(95);}
    if(raster_active()&&(!raster_caller((registers+9)[0],tag)||bypass_completed>=MNM_WORLD_RASTER_MAX)){u32 refusal[24]={0};refusal[2]=MNM_PRODUCER_FAILURE;refusal[14]=43;refusal[15]=tag;refusal[22]=(registers+9)[0];++failures;emit(refusal,0,0);ExitProcess(95);}
    if(raster_active()&&tag==21&&get((void*)0x5f14d0)==0x7d00){
     /* Preserve original non-drawing lazy table preparation, on a zero-size frame. */
@@ -461,13 +456,21 @@ int producer_enter_observe(u32* registers,u32 tag,u8* fx){
    u8* data=request(&f);if(!data){fail(40,tag);ExitProcess(95);}
    u32* r=(u32*)data;struct Surface* s=bound();
    if(r[2]!=MNM_PRODUCER_RASTER||(!raster_active()&&(r[14]||r[15]!=1||!r[17]))||!s||r[3]!=s->id){raster_release(data);fail(41,tag);ExitProcess(95);}
+   if(!raster_active()){
+    /* Selected generic callers consume AX. Admit only a nonempty fully inside
+     * rectangle, whose unchanged original body returns zero. Wider clipping
+     * and fallback return domains require their own original comparison. */
+    long long left=(i32)r[8]-(i32)get(data+108),top=(i32)r[9]-(i32)get(data+112);
+    u32 width=get(data+100),height=get(data+104);
+    if(!width||!height||left<(i32)r[10]||top<(i32)r[11]||left+width>=(i32)r[12]||top+height>(i32)r[13]){raster_release(data);frame_enter(registers,tag);SetLastError(error);return 0;}
+   }
    r[21]=registers[7];
    if(raster_active()){raster_state(data,tag);r[21]=0;if(tag==12||tag==23||tag==24){long long left=(i32)r[8]-(i32)get(data+96+12);u32 w=get(data+100),h=get(data+104);r[21]=w&&h&&(left<(i32)r[10]||left+w>=(i32)r[12]);}}
    r[1]=sequence+1;
    if(!batch_enabled&&!bypass_notify(r,hooks[tag].address)){raster_release(data);fail(42,tag);ExitProcess(95);}
    emit(r,data+96,r[18]);
    if(stopped||!(batch_enabled?batch_accept(r,s,hooks[tag].address):bypass_reply(r,s,hooks[tag].address))){raster_release(data);fail(42,tag);ExitProcess(95);}
-   ++s->dirty;if(raster_active())registers[7]=r[21];raster_release(data);SetLastError(error);return 1;
+   ++s->dirty;registers[7]=raster_active()?r[21]:0;raster_release(data);SetLastError(error);return 1;
   }
   frame_enter(registers,tag);
  }

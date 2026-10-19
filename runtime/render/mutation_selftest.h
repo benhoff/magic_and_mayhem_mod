@@ -5,7 +5,7 @@ struct MuSurface {void** table;u32 width,height,bits,primary,held,variant;u8 nat
 static struct MuSurface mu_front,mu_back;
 static void** mu_palette;
 static u8 mu_colors[1024];
-static u32 mu_calls[10],mu_failed,mu_frames,mu_nested_metadata;
+static u32 mu_calls[10],mu_failed,mu_frames,mu_nested_metadata,mu_factory_read;
 static u32 mu_gate_dc,mu_gate_flip,mu_gate_property,mu_gate_metadata,mu_metadata_calls;
 static u32 mu_description_tracker;
 API u32 WIN RenderDescriptionDomainForTest(u32,u32*);
@@ -136,7 +136,11 @@ static i32 WIN mu_flip(void* object,void* target,u32 flags){
     for(u32 i=0;i<mu_front.width*mu_front.height*(mu_front.bits/8);++i){u8 v=mu_front.native[i];mu_front.native[i]=mu_back.native[i];mu_back.native[i]=v;}if(mu_gate_flip)mu_record();return 23;
 }
 static i32 WIN mu_caps(void* object,u32* caps){(void)object;mu_entry();*caps=0x54;return 23;}
-static i32 WIN mu_read(void* object,u32 flags,u32 first,u32 count,u8* colors){(void)object;mu_entry();if(flags || first || count!=256)ExitProcess(348);copy_bytes(colors,mu_colors,1024);return 23;}
+static i32 WIN mu_read(void* object,u32 flags,u32 first,u32 count,u8* colors){(void)object;
+    /* CreatePalette's follow-up observation inherits the factory's LastError.
+     * Application GetEntries still checks its independently authored entry. */
+    if(mu_factory_read){mu_factory_read=0;if(GetLastError()!=0x88)ExitProcess(340);}else mu_entry();
+    if(flags || first || count!=256)ExitProcess(348);copy_bytes(colors,mu_colors,1024);return 23;}
 static i32 WIN mu_write(void* object,u32 flags,u32 first,u32 count,u8* colors){
     (void)object;(void)flags;if(mu_gate_property==3)__atomic_store_n(&mu_gate_original,1,__ATOMIC_RELEASE);mu_entry();++mu_calls[8];if(mu_failed==5){mu_failed=0;return -1;}
     copy_bytes(mu_colors+first*4,colors,count*4);for(u32 i=0;i<count*4;++i)colors[i]=0xcc;return 23;
@@ -147,7 +151,7 @@ static u32 mu_palette_refs;
 static i32 WIN mu_palette_query(void* object,const u8* iid,void** out){(void)object;(void)iid;mu_entry();++mu_palette_refs;*out=&mu_palette_alias;return 23;}
 static u32 WIN mu_palette_release(void* object){(void)object;mu_entry();if(!mu_palette_refs)ExitProcess(377);return --mu_palette_refs;}
 static u32 WIN mu_surface_release(void* object){(void)object;mu_entry();if(!mu_palette_refs)ExitProcess(378);--mu_palette_refs;return 0;}
-static i32 WIN mu_palette_factory(void* object,u32 flags,u8* entries,void** out,void* outer){(void)object;(void)outer;mu_entry();if(flags!=0x44 || mu_palette_refs)ExitProcess(379);copy_bytes(mu_colors,entries,1024);for(u32 i=0;i<1024;++i)entries[i]=0xcc;mu_palette_refs=1;*out=&mu_palette;return 23;}
+static i32 WIN mu_palette_factory(void* object,u32 flags,u8* entries,void** out,void* outer){(void)object;(void)outer;mu_entry();if(flags!=0x44 || mu_palette_refs)ExitProcess(379);copy_bytes(mu_colors,entries,1024);for(u32 i=0;i<1024;++i)entries[i]=0xcc;mu_palette_refs=1;mu_factory_read=1;*out=&mu_palette;return 23;}
 static void mu_cycle(struct MuSurface*,u32,u32,u32);
 static void mu_palette_lifetimes(void){
     static const u8 iid[16]={0x84,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
@@ -256,7 +260,9 @@ static void test_mutations(const char* mode){
     if(palette_resources && bits==8){mu_palette_alias=pal;mu_palette_refs=3;SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[31])(&mu_back,&mu_palette)!=23 || GetLastError()!=0x88)ExitProcess(376);}
     mu_output=CreateFileA("mutation-frames.bin",0x40000000,1,0,1,0x80,0);if(mu_output==(HANDLE)-1)ExitProcess(366);
     mu_cycle(&mu_front,0,5,0);
-    if(bounded)mu_wait_first_frame();
+    /* Negative schedules need a witnessed valid prefix before inducing GAP.
+     * Otherwise a fast refusal can overtake the first worker publication. */
+    if(bounded || !valid)mu_wait_first_frame();
     if(mu_gate_dc){
         u32 info[13]={40,6,(u32)-4,(bits<<16)|1,3,0,0,0,0,0,mu_mask(bits,0),mu_mask(bits,1),mu_mask(bits,2)};
         mu_dc=CreateCompatibleDC(0);mu_bitmap=CreateDIBSection(mu_dc,info,0,(void**)&mu_dib,0,0);

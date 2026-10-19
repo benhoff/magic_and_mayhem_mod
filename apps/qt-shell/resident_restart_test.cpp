@@ -75,7 +75,7 @@ void installResidentRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
         if(viewport)viewport();
         if(r->done||r->stage!=8)return;
         r->stage=9;window.activateWindow();window.raise();
-        auto* view=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
+        auto* view=window.findChild<GlViewport*>("nativeGameViewport");
         if(!view||!view->isVisible()){finish(false,"Quit viewport unavailable");return;}
         const auto rect=view->imageRect();const auto pos=view->mapToGlobal(rect.topLeft().toPoint());
         helper({QDir::current().filePath("tools/campaign-quit-input.py"),"--rect",QString::number(pos.x()),QString::number(pos.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--answer","yes","--experiment",session.evidenceDirectory(),"--output",QFileInfo(path).dir().filePath("quit-input.json")},{});
@@ -97,7 +97,7 @@ void installResidentRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
             try{
                 const auto name=readNativeCaptureRequest(request);
                 if(!name.isEmpty()){
-                    auto* view=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
+                    auto* view=window.findChild<GlViewport*>("nativeGameViewport");
                     FrameStream reference;QImage original;
                     if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))original=reference.nextFrame();
                     if(!view||!view->isVisible()||original.isNull())return;

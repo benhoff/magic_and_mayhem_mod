@@ -3,7 +3,7 @@
 #include "../../renderer/command_copy_diagnostics.hpp"
 #include "../../protocols/include/mnm/render_stream_v5.h"
 #include <stdexcept>
-#include <QSaveFile>
+#include "cpu_reply_file.hpp"
 #include <QtEndian>
 #include <cstring>
 #include "../../protocols/include/mnm/native_cpu_read_v1.h"
@@ -134,8 +134,7 @@ void LiveCommandRenderer::publishCpuRead(const mnm::render::SurfaceCommand& c,co
         if(image.pixels[i]>65535)throw std::runtime_error("Non-WORD explicit CPU reply");
         qToLittleEndian(quint16(image.pixels[i]),reply.data()+64+i*2);
     }
-    QSaveFile file(cpuReplyPath_);
-    if(!file.open(QIODevice::WriteOnly) || file.write(reply)!=reply.size() || !file.commit())
+    if(!publishCpuReplyFile(cpuReplyPath_,reply))
         throw std::runtime_error("Explicit CPU reply publication failed");
     if(cpuReadPending)cpuReadPending(0);
 }

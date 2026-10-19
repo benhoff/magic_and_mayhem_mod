@@ -138,6 +138,16 @@ Sprite parseFrames(Reader& r,const SpriteLimits& limits,const detail::SpriteFram
             f.auxiliaryOffsets[1] ? f.auxiliaryOffsets[1] : f.encodedSize;
         if (firstPixel < rowTableEnd || firstPixel > pixelEnd)
             r.fail(SpriteErrorCode::malformedData, start + frameHeader + 4, "Pixel plane overlaps headers or trailing data");
+        std::uint64_t runCount=0;
+        for(std::uint32_t y=0;y<f.height;++y){
+            const auto row=start+frameHeader+std::size_t(y)*8;
+            const auto begin=r.u32(row),end=y+1<f.height?r.u32(row+8):firstPixel;
+            if(begin<rowTableEnd || begin>end || end>firstPixel)
+                r.fail(SpriteErrorCode::malformedData,row,"Invalid owned run ranges");
+            for(std::uint64_t at=std::uint64_t(begin)+1;at<end;at+=2)if(bytes[start+at])++runCount;
+        }
+        budget(r,byteBudget,runCount*sizeof(SpriteOpaqueRun),limits.decodedBytes,start+frameHeader);
+        f.opaqueRuns.reserve(static_cast<std::size_t>(runCount));
         f.opaqueMask.resize(static_cast<std::size_t>(total), 0);
         if (palettes) std::get<std::vector<std::uint8_t>>(f.pixels).resize(static_cast<std::size_t>(total), 0);
         else std::get<std::vector<std::uint16_t>>(f.pixels).resize(static_cast<std::size_t>(total), 0);
@@ -155,6 +165,9 @@ Sprite parseFrames(Reader& r,const SpriteLimits& limits,const detail::SpriteFram
                 const auto run = bytes[static_cast<std::size_t>(at)];
                 if (run > f.width - x) r.fail(SpriteErrorCode::malformedData, static_cast<std::size_t>(at), "Run exceeds row width");
                 if (colour) {
+                    if(run){
+                        f.opaqueRuns.push_back({y,std::uint32_t(x),std::uint32_t(x+run)});
+                    }
                     r.extent(cursor, std::uint64_t(run) * bytesPerPixel, start + rowPixelEnd);
                     for (std::uint32_t k = 0; k < run; ++k) {
                         const auto slot = static_cast<std::size_t>(std::uint64_t(y) * f.width + x + k);

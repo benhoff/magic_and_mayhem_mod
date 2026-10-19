@@ -571,12 +571,22 @@ __declspec(dllexport) u32 WIN RenderShutdown(u32 milliseconds){
     SetLastError(error);return complete;
 }
 #ifdef MNM_RENDER_SELFTEST
+/* Read-only identity/colour inspection; execution still uses real COM hooks. */
+__declspec(dllexport) u32 WIN RenderPaletteStateForTest(void* object,void* palette,u32* out){
+    u32 error=GetLastError();if(!game_tracker_acquire()){SetLastError(error);return 0;}
+    struct GamePalette* p=game_palette_find(palette,0);struct GameSurface* s=game_surface_find(object,0);
+    out[0]=p?p->identity_generation:0;out[1]=p?game_palette_complete(p):0;out[2]=s && s->palette==palette;
+    if(p)copy(out+3,p->colors,1024);else zero(out+3,1024);
+    game_tracker_release();SetLastError(error);return 1;
+}
 /* Actual copy/tracker ownership held until a fixture releases the barrier.
  * Production has no barrier export or file wait. */
 __declspec(dllexport) u32 WIN RenderResidentBindHoldForTest(void){
     u32 error=GetLastError();
-    struct GameCopyLease lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(0);
-    if(!lease.held || !lease.observe || !game_tracker_acquire()){SetLastError(error);return 0;}
+    char mode[16];GetEnvironmentVariableA("MNM_BIND_CASE",mode,sizeof(mode));
+    struct GameCopyLease lease __attribute__((cleanup(game_copy_leave)))={0,1,0};
+    if(mode[0]!='t' || mode[1]!='r')lease=game_copy_enter(0);
+    if(!lease.observe || !game_tracker_acquire()){SetLastError(error);return 0;}
     u32 mark=1,written,start=GetTickCount();
     HANDLE file=CreateFileA("bind-held.bin",0x40000000,1,0,1,0x80,0);
     int ready=file!=(HANDLE)-1 && WriteFile(file,&mark,4,&written,0) && written==4;
@@ -587,6 +597,11 @@ __declspec(dllexport) u32 WIN RenderResidentBindHoldForTest(void){
         Sleep(1);
     }
     game_tracker_release();SetLastError(error);return 0;
+}
+__declspec(dllexport) u32 WIN RenderResidentReentryForTest(u32* r){
+    u32 error=GetLastError();struct GameCopyLease lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(0);
+    u32 result=lease.held?RenderResidentWorldV1(r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7]):2;
+    SetLastError(error);return result;
 }
 __declspec(dllexport) void WIN RenderLifecyclePauseForTest(u32 phase){__atomic_store_n(&command_lifecycle_pause,phase,__ATOMIC_RELEASE);}
 /* Deterministic full-transition contention without production wait controls. */
@@ -615,6 +630,21 @@ __declspec(dllexport) u32 WIN RenderCallbackPublicationProbeForTest(u32 arm){
     if(arm){__atomic_store_n(&command_publication_probe_calls,0,__ATOMIC_RELAXED);__atomic_store_n(&command_publication_probe_thread,GetCurrentThreadId(),__ATOMIC_RELEASE);}
     else __atomic_store_n(&command_publication_probe_thread,0,__ATOMIC_RELEASE);
     SetLastError(error);return calls;
+}
+static u32 publication_trace_worker,publication_trace_count,publication_trace_copy,publication_trace_tracker;
+static void command_publication_trace_for_test(u32 thread){
+    u32 callback=__atomic_load_n(&command_publication_probe_thread,__ATOMIC_ACQUIRE);
+    if(callback && callback!=thread){
+        __atomic_store_n(&publication_trace_worker,thread,__ATOMIC_RELEASE);
+        __atomic_add_fetch(&publication_trace_count,1,__ATOMIC_RELAXED);
+        if(__atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE)==thread)__atomic_add_fetch(&publication_trace_copy,1,__ATOMIC_RELAXED);
+        if(__atomic_load_n(&game_locks_owner,__ATOMIC_ACQUIRE)==thread)__atomic_add_fetch(&publication_trace_tracker,1,__ATOMIC_RELAXED);
+    }
+}
+__declspec(dllexport) u32 WIN RenderPublicationTraceForTest(u32* out){
+    u32 error=GetLastError();out[0]=__atomic_load_n(&publication_trace_worker,__ATOMIC_ACQUIRE);
+    out[1]=__atomic_load_n(&publication_trace_count,__ATOMIC_ACQUIRE);out[2]=__atomic_load_n(&publication_trace_copy,__ATOMIC_ACQUIRE);out[3]=__atomic_load_n(&publication_trace_tracker,__ATOMIC_ACQUIRE);
+    out[4]=GetCurrentThreadId();SetLastError(error);return out[1]!=0;
 }
 /* Read-only fixture inspection of opaque tokens after a refused lifetime. */
 __declspec(dllexport) u32 WIN RenderAliasSameForTest(void* first,void* second){

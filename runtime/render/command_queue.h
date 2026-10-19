@@ -106,9 +106,11 @@ static void command_queue_drain(void){
 /* A callback-only simulated publication stall. The real worker remains free
  * to drain; arm/disarm surrounds just the fixture's hooked Unlock. */
 static u32 command_publication_probe_thread,command_publication_probe_calls;
+static void command_publication_trace_for_test(u32);
 #endif
 static void command_channel_pump(void){
 #ifdef MNM_RENDER_SELFTEST
+    command_publication_trace_for_test(GetCurrentThreadId());
     if(__atomic_load_n(&command_publication_probe_thread,__ATOMIC_ACQUIRE)==GetCurrentThreadId()){
         __atomic_add_fetch(&command_publication_probe_calls,1,__ATOMIC_RELAXED);Sleep(100);
     }

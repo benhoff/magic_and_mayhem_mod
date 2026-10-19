@@ -11,6 +11,7 @@ import signal
 import struct
 import subprocess
 import time
+import tempfile
 
 from world_channel import create
 from world_refusal import log_refusal
@@ -31,6 +32,7 @@ def main():
     parser.add_argument('--native-draw',action='store_true',help='Guarded native graphics services with real ddraw disabled; V4 continuous test only')
     parser.add_argument('--source-game',type=Path,help='Pinned read-only source installation for an isolated capture')
     parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64')
+    parser.add_argument('--admitted-prefix-template',action='store_true',help='Clone a stopped hash-admitted DirectPlay prefix without a redundant Wineboot update')
     parser.add_argument('--samples',type=int,choices=[*range(1,17),32],default=4)
     parser.add_argument('--map',type=int,choices=range(1,129),default=2)
     parser.add_argument('--magic-items',type=int,choices=range(22),default=0,help='Original Quick Battle item count; nonzero accepts its initial spell assignments through the existing V3 bridge')
@@ -57,6 +59,7 @@ def main():
     parser.add_argument('--skip-window-screenshot',action='store_true',help='Skip the diagnostic desktop screenshot; raw completion comparisons remain independent')
     parser.add_argument('--manual-input',action='store_true',help='Bounded producer/batch session controlled through the original window; closing either window cancels')
     parser.add_argument('--canvas-startup',action='store_true',help='Trace selected creation/lock/bind/clear/copy paths from process startup through first World queue')
+    parser.add_argument('--producer-storage-transitions',action='store_true',help='Original-active producer recorder with same-run logical wrapper and Lock-return epochs')
     parser.add_argument('--startup-queues',type=int,choices=range(1,257),help='Retain every raw queue in this startup prefix (automatic with canvas/refusal diagnostics)')
     parser.add_argument('--kind8-objects',action='store_true',help='Finite read-only kind8 object/vtable diagnostics')
     parser.add_argument('--sample-kind8',action='store_true',help='Finite full-queue samples only when kind8 occurs; retain the startup journal')
@@ -70,6 +73,7 @@ def main():
     parser.add_argument('--minimap-owned',action='store_true',help='Observe owned four-view minimap inputs in producer journal V2; original drawing stays active')
     parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
+    if args.producer_storage_transitions and (not args.canvas_producers or args.producer_live or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix or args.drawing_publication):parser.error('Storage transition observation requires original-active producer capture without a live viewer or replacement')
     if args.drawing_publication and (not args.canvas_producers or args.producer_live or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('--drawing-publication requires original-active producer capture without live bypass/viewer')
     if args.drawing_physical_peer and not args.drawing_publication:parser.error('--drawing-physical-peer requires --drawing-publication')
     if args.native_draw and not args.continuous_resident:parser.error('--native-draw requires V4 continuous GPU ownership')
@@ -120,6 +124,7 @@ def main():
         parser.error('Run under xvfb-run -a -s "-screen 0 1280x1024x24"')
     sources=[*sorted((ROOT/'runtime/scene').glob('*.[chS]')),ROOT/'protocols/include/mnm/scene_snapshot_v1.h',
              ROOT/'runtime/shadow/win32_min.h',ROOT/'tools/build-scene-observer.py',ROOT/'tools/prepare-scene-observer.py',ROOT/'tools/capture-scene-game.py',ROOT/'tools/scene-game-runner.py',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',ROOT/'protocols/include/mnm/world_channel_v2.h',ROOT/'tools/world_channel.py']
+    if args.admitted_prefix_template:sources += [ROOT/'tools/native_prefix_template.py',ROOT/'tools/directplay_dx6_launch.py']
     if args.drawing_publication:sources.append(ROOT/'tools/drawing_publication.py')
     if args.drawing_physical_peer:sources += [ROOT/p for p in ['tools/drawing_physical.py','tools/drawing_presented_session.py','apps/drawing-session/observe.cpp','apps/drawing-session/CMakeLists.txt','apps/qt-shell/window_host.cpp','apps/qt-shell/window_host.hpp']]
     if args.startup_queues:sources.append(ROOT/'tools/inspect-startup-queues.py')
@@ -158,9 +163,9 @@ def main():
             os.killpg(process.pid,signal.SIGTERM)
             try:process.wait(timeout=5)
             except subprocess.TimeoutExpired:os.killpg(process.pid,signal.SIGKILL);process.wait(timeout=5)
-        if process:
-            subprocess.run(['wineserver','-k'],env=env,timeout=10,check=False)
-            process=None
+        if root is not None and (root/'wineprefix').is_dir():
+            subprocess.run(['wineserver','-k'],env={**os.environ,'WINEPREFIX':str(root/'wineprefix')},timeout=10,check=False)
+        process=None
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
         root=staging.prepare(menu=True,word_mode=args.word_sprites,world_frames=args.world_frames,world_live=bool(args.world_live),source_game=args.source_game,glyph_mode=args.glyph_backend,native_draw=args.native_draw);print(root,flush=True)
@@ -200,6 +205,8 @@ def main():
         env.update(MNM_SCENE_EXPERIMENT=str(root),MNM_SCENE_SAMPLES=str(args.samples),WINEDEBUG='-all',
                    WINEPREFIX=str(root/'wineprefix'))
         env.update(MNM_SCENE_SKIP=str(args.skip_queues),MNM_SCENE_INTERVAL=str(args.interval))
+        if args.producer_storage_transitions:
+            env.update(MNM_DRAW02_PRODUCER_BIND='1',MNM_DRAW_STORAGE_TRANSITIONS='1')
         if args.continuous_queues is not None and not args.continuous_verify:env['MNM_CONTINUOUS_PRECISE_CLOCK']='1'
         if args.world_raster_queue:env['MNM_WORLD_RASTER_QUEUE']=str(args.world_raster_queue)
         if args.world_raster_prefix:env['MNM_WORLD_RASTER_PREFIX']=str(args.world_raster_prefix)
@@ -217,9 +224,14 @@ def main():
         if args.sample_kind8:env['MNM_SCENE_KIND8_SAMPLES']='1'
         if args.startup_replay:env['MNM_SCENE_STARTUP_REPLAY']='1'
         env.pop('WAYLAND_DISPLAY',None)
-        subprocess.run(['cp','-a','--reflink=auto',str(args.prefix_template.resolve()),env['WINEPREFIX']],check=True)
-        with (root/'wineboot.log').open('x') as log:
-            subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=subprocess.STDOUT,timeout=90,check=True)
+        if args.admitted_prefix_template:
+            from native_prefix_template import clone
+            prefix_receipt=clone(args.prefix_template,root/'wineprefix',env)
+            (root/'prefix-template.json').write_text(json.dumps(prefix_receipt,indent=2)+'\n')
+        else:
+            subprocess.run(['cp','-a','--reflink=auto',str(args.prefix_template.resolve()),env['WINEPREFIX']],check=True)
+            with (root/'wineboot.log').open('x') as log:
+                subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=subprocess.STDOUT,timeout=90,check=True)
         menu_version=3 if args.magic_items else 2;menu_size=65536 if args.magic_items else 32768
         raw=bytearray(menu_size);raw[:16]=(b'MNMMCMD3' if args.magic_items else b'MNMMCMD2')+struct.pack('<II',menu_version,menu_size);struct.pack_into('<III',raw,16,2,1,1)
         with (root/'channel.bin').open('xb') as f:f.write(raw)
@@ -266,8 +278,10 @@ def main():
                 physical_log=(root/'physical-peer.log').open('x')
                 physical_peer=subprocess.Popen([str(args.drawing_physical_peer.resolve()),str(root/'capture'),str(root/'physical-report.json')],
                     env={**os.environ,'QT_QPA_PLATFORM':'xcb','QT_SCALE_FACTOR':'1'},stdout=physical_log,stderr=subprocess.STDOUT)
-            process=subprocess.Popen([*(['strace','-qq','-f','-Y','--seccomp-bpf','-k','--stack-trace-frame-limit=12','-ttt','-T','-s','0','-e','trace=pselect6,clock_nanosleep','-o',str(root/'producer-waits.log')] if args.continuous_producer_waits else ['perf','record','-F','99','-g','--call-graph','dwarf','-o',str(root/'producer-perf.data'),'--'] if args.continuous_producer_profile else []),str(ROOT/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',env['WINEPREFIX'],
-                '--runner',str(ROOT/'tools/scene-game-runner.py')],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+            # The staged observer has its own checked binary manifest and private
+            # prefix. The ordinary launcher validates/copies a default installation
+            # before invoking wrappers, which is unrelated to this experiment.
+            process=subprocess.Popen([*(['strace','-qq','-f','-Y','--seccomp-bpf','-k','--stack-trace-frame-limit=12','-ttt','-T','-s','0','-e','trace=pselect6,clock_nanosleep','-o',str(root/'producer-waits.log')] if args.continuous_producer_waits else ['perf','record','-F','99','-g','--call-graph','dwarf','-o',str(root/'producer-perf.data'),'--'] if args.continuous_producer_profile else []),str(ROOT/'tools/scene-game-runner.py'),str(root/'game/Chaos.exe')],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
             if not args.manual_input:
                 send(3,1);send(22,4)
                 s=wait(14);rules=list(struct.unpack_from('<13I',s[1],8))
@@ -520,6 +534,14 @@ def main():
         report={'success':False,'cancelled':True,'reason':str(cancelled),'experiment':str(root),
                 'manual_input':True,'sources':fingerprints,'original_pixels_used_as_native_inputs':False,
                 'scope':'Interactive window closure before the bounded producer chain completed; no equivalence or replacement validation asserted'}
+    except Exception as error:
+        if root is None:
+            parent=ROOT/'working/experiments/scene-observer';parent.mkdir(parents=True,exist_ok=True)
+            root=Path(tempfile.mkdtemp(prefix='failed-',dir=parent))
+        report={'success':False,'error':str(error),'experiment':str(root) if root else None,
+                'sources':fingerprints,'original_pixels_used_as_native_inputs':False,
+                'scope':'Incomplete bounded capture; no original equivalence or replacement validation.'}
+        if claims:report['claims']=claims['claims']
     finally:
         if physical_peer and physical_peer.poll() is None:
             (root/'capture/physical-stop.flag').touch(exist_ok=True)
@@ -538,8 +560,11 @@ def main():
         subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     if report is not None:
         report['original_manifest_verified_before_after']=True
+        report['sources_stable']=all(sha(ROOT/n)==h for n,h in fingerprints.items())
+        report['success']=report.get('success',False) and report['sources_stable']
         with (root/'report.json').open('x') as f:json.dump(report,f,indent=2);f.write('\n')
         print(root/'report.json',flush=True)
+        if not report['success'] and not report.get('cancelled'):raise SystemExit(1)
 
 
 if __name__=='__main__':main()

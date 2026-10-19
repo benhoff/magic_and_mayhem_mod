@@ -16,10 +16,13 @@ from urllib.parse import parse_qs, urlsplit
 
 from coverage_audit import audit, STAGES
 from coverage_claims import stage_kinds
+from rendering_reconciliation import load_reviews
+from coverage_importance import importance_view
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTER = 'research/runtime/coverage/register.json'
 TRACKS = 'apps/coverage-ui/tracks.json'
+IMPORTANCE = 'apps/coverage-ui/importance.json'
 ORIGINAL_EVIDENCE = {'isolated_original', 'live_equivalence', 'live_replacement'}
 
 
@@ -88,11 +91,22 @@ def track_view(definition, behaviors, evidence):
                     kinds = [stage_kinds(s, b['status'][s]) for s in stages]
                     proofs = [[by_evidence[eid] for eid in b['evidence']
                                if eid in by_evidence and by_evidence[eid]['kind'] in bucket] for bucket in kinds]
+                    # Evidence requirements are independent of code/understanding
+                    # completion. Preserve the existing combined milestone state.
+                    validation_matched = all(
+                        b['status'].get(stage) in (target if isinstance(target, list) else [target])
+                        for stage, target in expected.items()
+                        if stage in {'comparison', 'integration', 'replacement'})
+                    if b['kind'] == 'native_policy' and any(s in expected for s in ('comparison', 'replacement')):
+                        validation_matched = False
+                    current_proofs = all(any(e['freshness'] == 'current'
+                        and e['id'] in b.get('current_validation', {}).get(stage, {}).get('evidence', [])
+                        for e in proof) for stage, proof in zip(stages, proofs))
                     checks.append({'behavior': bid, 'expected': expected,
                                    'met': matched and all(proofs),
-                                   'fresh': matched and all(any(e['freshness'] == 'current'
-                                       and e['id'] in b.get('current_validation', {}).get(stage, {}).get('evidence', [])
-                                       for e in proof) for stage, proof in zip(stages, proofs))})
+                                   'fresh': matched and current_proofs,
+                                   'validation_met': validation_matched and all(proofs),
+                                   'validation_current': validation_matched and current_proofs})
             ids = sorted({c['behavior'] for c in checks})
             ready = bool(checks) and not missing and all(c['met'] for c in checks)
             started = any(by_id[bid]['status']['implementation'] != 'none' for bid in ids)
@@ -238,6 +252,12 @@ def build_snapshot(root=ROOT):
     if report['errors']:
         raise ValueError('Coverage audit failed: ' + '; '.join(report['errors']))
     behaviors, stale = enrich_behaviors(register, report)
+    reviews = load_reviews(root, register)
+    reviewed = {entry['behavior']: {**entry, 'record': review['record']}
+                for review in reviews for entry in review['entries']}
+    for behavior in behaviors:
+        if behavior['id'] in reviewed:
+            behavior['reconciliation'] = reviewed[behavior['id']]
     snapshot = {
         'schema': 1, 'generated_at': datetime.now(timezone.utc).isoformat(),
         'register_sha256': hashlib.sha256(source).hexdigest(),
@@ -246,16 +266,34 @@ def build_snapshot(root=ROOT):
         'evidence': [{**e, 'freshness': 'stale' if e['id'] in stale else 'current',
                       'changed_sources': stale.get(e['id'], [])} for e in register['evidence']],
         'scenarios': register['scenarios'], 'dispatch_tables': register['dispatch_tables'],
+        'implementation_reviews': reviews,
         'summary': {kind: summarize([b for b in behaviors if kind == 'all' or b['kind'] == kind])
                     for kind in ('all', 'recovered', 'native_policy')},
     }
     snapshot['tracks'] = track_view(json.loads((root / TRACKS).read_text()), behaviors, snapshot['evidence'])
-    allowed = {REGISTER, TRACKS}
+    importance = importance_view(json.loads((root / IMPORTANCE).read_text()), register, snapshot['tracks'], root=root)
+    snapshot['importance'] = importance
+    rated = {entry['behavior']: entry for entry in importance['entries']}
+    planned = {task['behavior']: {**task, 'tranche': tranche['id'], 'plan_priority': priority,
+                                'tranche_order': tranche['order'], 'tranche_title': tranche['title']}
+               for key, priority in (('tranche_plan', 'Critical'), ('high_tranche_plan', 'High'))
+               for tranche in importance.get(key, {}).get('tranches', [])
+               for task in tranche['tasks']}
+    for behavior in behaviors:
+        if behavior['id'] in rated:
+            behavior['importance'] = rated[behavior['id']]
+        if behavior['id'] in planned:
+            behavior['tranche_task'] = planned[behavior['id']]
+    allowed = {REGISTER, TRACKS, IMPORTANCE}
     for b in behaviors:
         for role in ('documents', 'implementation', 'tests'): allowed.update(b[role])
     allowed.update(e['record'] for e in register['evidence'])
     allowed.update(t['document'] for t in register['dispatch_tables'])
     allowed.update(r['document'] for r in register['recovered_ranges'])
+    for key in ('tranche_plan', 'high_tranche_plan'):
+        document = importance.get(key, {}).get('review_document')
+        if document:
+            allowed.add(document)
     return snapshot, allowed
 
 

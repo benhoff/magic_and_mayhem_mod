@@ -22,6 +22,7 @@ def main():
     parser.add_argument('--prefix-template',type=Path,required=True)
     parser.add_argument('--source-game',type=Path,required=True)
     parser.add_argument('--stress-seconds',type=int,choices=[0,*range(10,121)],default=0)
+    parser.add_argument('--file-trace',action='store_true',help='Diagnostic Wine file-API trace; changes timing and supplies no performance acceptance')
     parser.add_argument('--claims',type=Path,required=True)
     parser.add_argument('--report',type=Path,required=True)
     args=parser.parse_args()
@@ -34,10 +35,10 @@ def main():
     root=Path(tempfile.mkdtemp(prefix='campaign-',dir=parent));(root/'.retain').write_text('Native output ownership actual-game observation, preserve attempts.\n')
     report=dict(schema=1,success=False,claims=declaration['claims'],sources=sources,
         original_game_executed=False,complete_replacement=False,ordinary_campaign_accepted=False,
-        artifacts=str(root.relative_to(ROOT)),stress_seconds=args.stress_seconds,scope=__doc__)
+        artifacts=str(root.relative_to(ROOT)),stress_seconds=args.stress_seconds,file_trace=args.file_trace,scope=__doc__)
     env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE'))}
     env.update(XDG_CONFIG_HOME=str(root/'config'),PYTHONDONTWRITEBYTECODE='1',TMPDIR=str(root),LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='4',
-        QT_QPA_PLATFORM='xcb',QT_XCB_GL_INTEGRATION='xcb_glx',WINEDEBUG='-all',
+        QT_QPA_PLATFORM='xcb',QT_XCB_GL_INTEGRATION='xcb_glx',WINEDEBUG='-all,+file' if args.file_trace else '-all',
         MNM_CAMPAIGN_SMOKE_TEST='1',MNM_CAMPAIGN_DIFFICULTY='1',MNM_CAMPAIGN_NORMAL_QUIT='1',
         MNM_NO_ROUTE_SCREENSHOTS='1',MNM_CAMPAIGN_STRESS_SECONDS=str(args.stress_seconds),MNM_CAMPAIGN_MENU_CYCLES='1',
         MNM_CAMPAIGN_TIMEOUT_MS='270000',MNM_GLYPH_BACKEND='takeover',MNM_CACHE_ADAPTERS='1',
@@ -73,7 +74,9 @@ def main():
                     # credit; validate its event order in the final flow. Apply
                     # strict reader checks to every normally completing one.
                     if not args.restart or len(sessions)>1:
-                        for name in ('native-cpu-guard-fault.bin','native-cpu-history-refusal.bin'):
+                        for name in ('native-cpu-guard-fault.bin','native-cpu-guard-refusal.bin',
+                                     'native-cpu-history-refusal.bin','native-cpu-transfer-refusal.bin',
+                                     'native-pixel-forward-refusal.bin'):
                             fault=session/'game'/name
                             if fault.exists():raise RuntimeError('Native ownership refused: '+str(fault))
                     if campaign.world_ready(session):

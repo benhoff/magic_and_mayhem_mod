@@ -85,7 +85,9 @@ def main():
         if len(startup_a)!=16*16*4 or startup_a!=startup_b:raise ValueError('Startup null-window/primary/Surface3/4 caller mismatch')
         stats=struct.unpack('<24I',(out/'status.bin').read_bytes())
         if stats[:5]!=(0x444d4e4d,0x31305752,2,96,0) or any(stats[5:9]) or not stats[20] or stats[22] or stats[23]:raise ValueError('Invalid module/resource diagnostic teardown')
-        report['startup_policy']=dict(original_compared_cases=16,original_compared_words=256,caller_sha256=sha(out/'native/startup-results.bin'),logical_mode_callbacks=3,host_storage_budget_bytes=256*1024*1024,allocation_accounting_bytes=32*9,original_mode_memory_equivalence=False,status_sha256=sha(out/'status.bin'),status_words=list(stats))
+        mode_policy=struct.unpack('<5I',(out/'native/startup-mode-policy.bin').read_bytes())
+        if mode_policy!=(2,1,8,1,1):raise ValueError('Incomplete filtered/unfiltered mode policy controls')
+        report['startup_policy']=dict(original_compared_cases=16,original_compared_words=256,caller_sha256=sha(out/'native/startup-results.bin'),logical_mode_callbacks=sum(mode_policy),mode_policy=dict(rgb565_callbacks=mode_policy[0],rgb565_cancel_callbacks=mode_policy[1],all_format_callbacks=mode_policy[2],all_format_cancel_callbacks=mode_policy[3],extent_filtered_callbacks=mode_policy[4],depths=[16,8,24,32],sha256=sha(out/'native/startup-mode-policy.bin')),host_storage_budget_bytes=256*1024*1024,allocation_accounting_bytes=32*9,original_mode_memory_equivalence=False,status_sha256=sha(out/'status.bin'),status_words=list(stats))
         refusals=[]
         for letter,family,kind,slot in [('D',1,1,3),('S',2,1,8),('C',3,0,5)]:
             dest=out/('refusal-'+letter);dest.mkdir()

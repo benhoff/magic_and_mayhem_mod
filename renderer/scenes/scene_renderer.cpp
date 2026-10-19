@@ -1,4 +1,5 @@
 #include "scene_renderer.hpp"
+#include "../../assets/sprite_run_clipping.hpp"
 #include <algorithm>
 #include <stdexcept>
 #include <type_traits>
@@ -194,8 +195,27 @@ bool SceneRenderer::drawNext(const SceneBatchBudget& budget){
                 const auto left=std::max<std::int64_t>(draw.anchorX,clip.left),top=std::max<std::int64_t>(draw.anchorY,clip.top);
                 const auto right=std::min<std::int64_t>(std::int64_t(draw.anchorX)+a.width,clip.right),bottom=std::min<std::int64_t>(std::int64_t(draw.anchorY)+a.height,clip.bottom);
                 if(left<right&&top<bottom)renderer_.additiveRect(canvas_,{int(left),int(top),int(right),int(bottom)},a.channels);
-            }else if(draw.visible)cache_.draw(draw.resource,draw.frame,canvas_,draw.anchorX,draw.anchorY,
-                draw.clip?std::make_optional(draw.viewport.value_or(viewport_)):std::nullopt,draw.colours?&*draw.colours:nullptr,draw.composite);
+            }else if(draw.visible){
+                bool split=false;
+                if(draw.wholeOpaqueRunClipping){
+                    if(!draw.clip||draw.composite.mode!=CompositeMode::displace)throw std::invalid_argument("Whole-run clip requires displacement");
+                    const auto& resource=limits_.cache.residentOnly?resources_.resident(draw.resource):resources_.load(draw.resource);
+                    const auto* sprite=std::get_if<assets::Sprite>(&resource.image);
+                    if(!sprite)throw std::invalid_argument("Whole-run clip requires owned SPR runs");
+                    const auto& f=sprite->frames.at(draw.frame);const auto clip=draw.viewport.value_or(viewport_);
+                    const auto left=std::int64_t(draw.anchorX)-f.originX,top=std::int64_t(draw.anchorY)-f.originY;
+                    if(left<clip.left||left+f.width>clip.right){
+                        split=true;
+                        for(const auto& run:assets::clipWholeOpaqueRuns(f,std::int64_t(clip.left)-left,std::int64_t(clip.right)-left)){
+                            const auto y=top+run.row;if(y<clip.top||y>=clip.bottom)continue;
+                            cache_.draw(draw.resource,draw.frame,canvas_,draw.anchorX,draw.anchorY,
+                                Rect{int(left+run.left),int(y),int(left+run.right),int(y+1)},draw.colours?&*draw.colours:nullptr,draw.composite);
+                        }
+                    }
+                }
+                if(!split)cache_.draw(draw.resource,draw.frame,canvas_,draw.anchorX,draw.anchorY,
+                    draw.clip?std::make_optional(draw.viewport.value_or(viewport_)):std::nullopt,draw.colours?&*draw.colours:nullptr,draw.composite);
+            }
             ++cursor_;need_.reset();supplied_=false;
         }
     });}catch(...){drawing_=false;pending_.clear();need_.reset();throw;}

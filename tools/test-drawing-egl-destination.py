@@ -10,12 +10,14 @@ from drawing_egl_destination import decode,decode_rebind,decode_xcb,plane
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--claims',type=Path,required=True);parser.add_argument('--report',type=Path,required=True)
+    parser.add_argument('--library',type=Path,default=ROOT/'working/build/drawing-egl-delivery/libmnm-drawing-egl-delivery.so',help='Observer library from an isolated, source-pinned build')
     args=parser.parse_args()
     if args.report.exists():parser.error('Refusing evidence overwrite')
     claims=json.loads(args.claims.read_text());sources=claims['sources']
     if any(sha((ROOT/p).read_bytes())!=h for p,h in sources.items()):raise ValueError('Prospective source changed')
     parent=ROOT/'working/tests/egl-destination-controls';parent.mkdir(parents=True,exist_ok=True)
-    run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));binary=run/'fixture';library=ROOT/'working/build/drawing-egl-delivery/libmnm-drawing-egl-delivery.so'
+    run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));binary=run/'fixture';library=args.library.resolve()
+    library_before=sha(library.read_bytes())
     subprocess.run(['gcc','-std=c11','-O2','-Wall','-Wextra','-Werror',str(ROOT/'tests/drawing-egl-resize-forwarding-test.c'),'-lEGL','-lGL','-lX11','-o',str(binary)],check=True)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.pop('LD_PRELOAD',None);env.update(LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='4')
     results={};planes=[]
@@ -37,7 +39,9 @@ def main():
     xcb=[decode_xcb(p.read_bytes()) for p in sorted((run/'xcb').glob('egl-xcb-image-*.bin'))]
     crop=[decode_xcb(p.read_bytes()) for p in sorted((run/'crop').glob('egl-xcb-image-*.bin'))]
     stable=all(sha((ROOT/p).read_bytes())==h for p,h in sources.items());control=results['control'];success=stable and not any(r.returncode or r.stdout!=control.stdout for r in results.values()) and len(control.stdout.splitlines())==7 and all(b' mismatch 0 ' in line and line.endswith(b'error0') for line in control.stdout.splitlines()) and len(planes)==35 and bool(xcb) and len(crop)==7 and not any(r['resize_crop_applied'] for r in crop) and all(len(v)==7 and [r['count'] for r in v]==[1,1,0,1,0,1,0] and all(r['policy_mode']==(2 if mode=='release' else 1) for r in v) for mode,v in rebound.items()) and all(not row['mismatching_words'] and row['prior_read_fbo'] and row['prior_read_buffer']==0x8ce0 and row['default_read_buffer']==0x404 and row['restored'] for row in planes)
-    report=dict(schema=1,success=success,sources=sources,claims=claims['claims'],sources_stable=stable,original_execution=False,artifacts=str(run.relative_to(ROOT)),frames=7,destination_planes=planes,rebind_calls=rebound,xcb_images=xcb,crop_images=crop,exit_codes={k:v.returncode for k,v in results.items()},stdout_sha256={k:sha(v.stdout) for k,v in results.items()},library_sha256=sha(library.read_bytes()),binary_sha256=sha(binary.read_bytes()),original_pixels_used_as_native_inputs=False,scope='Seven owned control/completion/destination/rebind/release/XCB/crop variants across seven resize frames. Exact known-pattern destination pixels, physical output, source/default read-buffer and viewport restoration, and GL error checks. No original-game or unrestricted observation neutrality claim.')
+    library_unchanged=sha(library.read_bytes())==library_before
+    success=success and library_unchanged
+    report=dict(schema=1,success=success,sources=sources,claims=claims['claims'],sources_stable=stable,original_execution=False,artifacts=str(run.relative_to(ROOT)),frames=7,destination_planes=planes,rebind_calls=rebound,xcb_images=xcb,crop_images=crop,exit_codes={k:v.returncode for k,v in results.items()},stdout_sha256={k:sha(v.stdout) for k,v in results.items()},library_sha256=library_before,library_unchanged=library_unchanged,binary_sha256=sha(binary.read_bytes()),original_pixels_used_as_native_inputs=False,scope='Seven owned control/completion/destination/rebind/release/XCB/crop variants across seven resize frames. Exact known-pattern destination pixels, physical output, source/default read-buffer and viewport restoration, and GL error checks. No original-game or unrestricted observation neutrality claim.')
     with args.report.open('x') as out:json.dump(report,out,indent=2);out.write('\n')
     print(json.dumps(dict(success=success,frames=len(planes),exit_codes=report['exit_codes'])));return int(not success)
 

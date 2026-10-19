@@ -248,3 +248,62 @@ masks, and the raster's actual instructions remain guarded. The scene's existing
 World guard receives a checked loan rather than silently replacing the CPU guard.
 Actual pixel readers, DC DIB reads and concurrent escapees retain separate scope;
 no transparent coherence or complete replacement follows from these changes.
+
+## Tranche 2 prerequisite diagnostics (2026-10-19)
+
+### CPU reply publication under delayed writeback
+
+The host formerly published each private `.cpu-reply` through `QSaveFile`.
+Its durable-sync step can block publication beyond the reader's unchanged
+10,000 ms deadline. This mechanism is confirmed by the prospectively bound
+`tools/test-cpu-reply-publication.py` fixture: an injected 11-second disk-sync
+delay holds the former publisher's reply for 11.036 seconds; the volatile
+publisher exposes the same 480,000 RGB565 words in 0.018 seconds without entering
+durable sync. Concurrent observations see only the previous or complete new
+reply. Failed rename preserves the destination and cleans up the temporary.
+Confidence: confirmed for this host IPC failure mechanism, independently of
+original rendering semantics.
+
+`cpu_reply_file.hpp` now writes and flushes a private temporary in the reply's
+directory, closes it, checks errors, then uses atomic POSIX rename to replace the
+reply. This transport is volatile IPC; it does not require crash-durable disk
+storage. Partial writes and failed publication remain terminal. The session,
+ticket, surface, extent, generation/nonce and exact-length checks, tracker and
+copy admission, and the 10-second reader deadline are unchanged.
+
+[The new execution record](cpu-reply-publication-fix-20261019.json) retains the
+actual GL controls and two source-stable, untraced normal journeys: 639 balanced
+Worlds, 580 CPU-history restorations, Mini Cancel/resume and normal Quit with
+original exit 0. A separate repeat stopped at the camera capture deadline without
+a CPU-transfer refusal and is retained as an unsuccessful journey. These are
+bounded executions; current-checkout differences, arbitrary scheduling, broader
+gameplay, hardware/FPS and native-only/restart acceptance remain separate.
+
+Historical launch `run-b77b_2zp` retained a matching ticket-3 reply whose write
+and rename metadata timestamps differ by 10.504 seconds; its terminal refusal
+followed the rename by about 2 ms. That supports delayed publication as a cause,
+but filesystem timestamps do not prove the exact syscall duration or establish
+the cause of every older stage-13 refusal. In particular, the other retained
+failure combined reply readiness and tracker reacquisition. Preserve both failed
+runs and their original hashes. A new normal-run attempt on the old pinned
+source stopped at a separate copy-order timeout/GAP without a CPU-transfer
+refusal; that is not a reproduction of stage 13.
+
+A retained untraced pilot fails CPU transfer stage13 after64 verified World
+returns. The stage originally combined reply readiness and tracker admission.
+Its fatal path now writes a separate64-byte `native-cpu-reader-wait.bin` context
+before the unchanged32-byte refusal: magic/version, ticket, reply-ready flag,
+thread, tracker busy/owner/site, elapsed time, transfer-wait flag, copy owner,
+queue written/read cursors, channel state/error and local refusal. This adds no
+admission, fallback or wait extension. Positive later runs do not establish the
+root cause of the earlier failure or validate every fatal diagnostic branch.
+
+Another untraced run reaches the camera helper with no rendering refusal but
+misses its existing10-second capture deadline. Its native PNG is complete; the
+original PNG is truncated and completion metadata is absent. The campaign
+harness now writes these diagnostic images losslessly with compression0 through
+QSaveFile, committing both before its metadata ACK. The image-encoder fixture
+checks exact pixel round-trip, bounded queue/GUI heartbeat, null/failed output
+and continued work after an authored exception. Camera deadlines, dialogue
+witnesses, gameplay input and ownership checks are unchanged. Each actual-game
+journey result is recorded independently in the tranche-2 execution report.

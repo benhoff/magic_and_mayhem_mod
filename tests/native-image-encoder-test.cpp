@@ -11,7 +11,7 @@ int main(int argc,char** argv)try{
     NativeImageEncoder encoder;std::promise<void> started,release;auto unlocked=release.get_future();
     auto blocked=encoder.submit([&]{started.set_value();unlocked.wait();return true;});started.get_future().wait();
     QImage image(800,600,QImage::Format_RGB32);image.fill(0xff124578);const auto path=directory.filePath("pixels.png");
-    auto pixels=encoder.submit([image,path]{return image.save(path);});
+    auto pixels=encoder.submit([image,path]{return saveNativeCaptureImage(path,image);});
     auto failure=encoder.submit([]()->bool{throw std::runtime_error("Authored encoder failure");});
     bool refused=false;try{encoder.submit([]{});}catch(const std::runtime_error&){refused=true;}
     require(!encoder.trySubmit([]{}).valid(),"Opportunistic task did not skip full queue");
@@ -19,6 +19,13 @@ int main(int argc,char** argv)try{
     QTimer::singleShot(50,[&]{release.set_value();});QTimer::singleShot(150,&app,&QCoreApplication::quit);app.exec();
     require(ticks>=20&&refused&&blocked.get(),"GUI blocked or encoder queue unbounded");
     require(pixels.get(),"PNG write failed");QImage decoded(path);require(decoded==image,"PNG pixel roundtrip changed");
+    require(!saveNativeCaptureImage(path,QImage{})&&QImage(path)==image,"Null capture replaced valid output");
+    require(!saveNativeCaptureImage(directory.filePath("missing/image.png"),image),"Invalid capture destination accepted");
+    const auto metadata=directory.filePath("capture.json");
+    require(encoder.submit([&]{return saveNativeCaptureMetadata(metadata,{{"native_saved",true},{"original_saved",true},{"fallback",false}});}).get(),"Capture ACK write failed");
+    QFile ack(metadata);require(ack.open(QIODevice::ReadOnly),"Capture ACK missing");
+    require(QJsonDocument::fromJson(ack.readAll()).object().value("original_saved").toBool(),"Capture ACK changed");ack.close();
+    require(!saveNativeCaptureMetadata(directory.filePath("missing/capture.json"),{}),"Failed ACK publication reported success");
     bool propagated=false;try{failure.get();}catch(const std::runtime_error&){propagated=true;}
     require(propagated&&encoder.submit([]{return true;}).get(),"Encoder failure broke future work");
     const auto request=directory.filePath("capture-request.json");

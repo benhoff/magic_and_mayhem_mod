@@ -13,6 +13,7 @@ enum class SpriteStorage { indexed8, rgb565 };
 struct SpriteRgb { std::uint8_t red = 0, green = 0, blue = 0; };
 using SpritePalette = std::array<SpriteRgb, 256>;
 using SpritePixels = std::variant<std::vector<std::uint8_t>, std::vector<std::uint16_t>>;
+struct SpriteOpaqueRun { std::uint32_t row, left, right; };
 struct SpriteFrame {
     std::uint32_t width = 0, height = 0;
     std::int32_t originX = 0, originY = 0;
@@ -30,6 +31,9 @@ struct SpriteFrame {
     // Top-down, width*height entries, 0 transparent / 1 opaque. Transparent
     // pixel slots contain zero; opaque index/word zero remains distinguishable.
     std::vector<std::uint8_t> opaqueMask;
+    // Preserve encoded run boundaries, including adjacent runs separated by a
+    // zero transparent run. Some recovered consumers clip whole encoded runs.
+    std::vector<SpriteOpaqueRun> opaqueRuns;
     bool empty() const { return width == 0 && height == 0; }
 };
 struct Sprite {

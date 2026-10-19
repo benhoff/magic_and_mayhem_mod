@@ -23,7 +23,6 @@
 #include <future>
 #include <stdexcept>
 #include <QElapsedTimer>
-#include <QOpenGLWidget>
 #include <cstdio>
 
 // Public controls and ordinary session feature flags. No engine readiness fix,
@@ -61,7 +60,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         else if(normalQuit&&success&&run->stage==11)app.exit(0);
     };
     auto snapshot=[run,&window,path,&session,noRouteScreenshots,synchronousRouteCapture,finish](const QString& name){
-        auto* activityViewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
+        auto* activityViewport=window.findChild<GlViewport*>("nativeGameViewport");
         if(noRouteScreenshots){run->steps.append(QJsonObject{{"step",name},{"route_capture_skipped",true}});return true;}
         if(run->routeJob.valid()){
             if(run->routeName!=name||run->routeCycle!=run->cycle){finish(false,"Overlapping route capture identity");return false;}
@@ -112,12 +111,14 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(!button||!button->isVisible()||!button->isEnabled()){finish(false,"Public control unavailable: "+name);return;}
         button->click();
     };
-    auto sendEscape=[run,&window,&session,path,finish]{
+    auto sendEscape=[run,&window,&session,path,finish,stressSeconds]{
         window.activateWindow();window.raise();
         QStringList arguments{QDir::current().filePath("tools/test-live-campaign-mini.py"),"--send-escape"};
-        if(qEnvironmentVariableIntValue("MNM_PIXEL_CAMERA_SCENARIOS")==1){
-            auto* viewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
-            if(!viewport||!viewport->isVisible()){finish(false,"Native camera Mini viewport unavailable");return;}
+        // Ordinary stress can also leave a Hermes card over World. Use the
+        // existing witnessed readiness protocol before requesting Mini.
+        if(stressSeconds>0||qEnvironmentVariableIntValue("MNM_PIXEL_CAMERA_SCENARIOS")==1){
+            auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");
+            if(!viewport||!viewport->isVisible()){finish(false,"Native Mini viewport unavailable");return;}
             const auto rect=viewport->imageRect();const auto origin=viewport->mapToGlobal(rect.topLeft().toPoint());
             arguments={QDir::current().filePath("tools/campaign-camera-menu-input.py"),"--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--experiment",session.evidenceDirectory(),"--output",QFileInfo(path).dir().filePath(QString("mini-input-%1.json").arg(run->escapeCounter++))};
         }
@@ -177,7 +178,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(normalQuit&&run->stage==10)return; // native report Continue awaits fresh Main
         if(normalQuit&&run->stage==8){
             run->stage=9;run->quitAnswered=false;window.activateWindow();window.raise();
-            auto* viewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
+            auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");
             if(!viewport||!viewport->isVisible()){finish(false,"Native Quit viewport unavailable");return;}
             const auto rect=viewport->imageRect();const auto origin=viewport->mapToGlobal(rect.topLeft().toPoint());
             auto* input=new QProcess(&window);
@@ -197,7 +198,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     auto* poll=new QTimer(&window);poll->setInterval(100);
     QObject::connect(poll,&QTimer::timeout,&window,[run,probe,finish,snapshot,path,stressSeconds,cycles,castingCombat,normalQuit,captureRequestPath,sendEscape,samplingClock,&session,&window]{
         if(run->done)return;
-        auto* phaseViewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
+        auto* phaseViewport=window.findChild<GlViewport*>("nativeGameViewport");
         GlViewport::ActivityScope campaignActivity(phaseViewport,GlViewport::Activity::CampaignPoll);
         const auto p=probe();
         if(!run->diagnosticClock.isValid() || run->diagnosticClock.elapsed()>=1000){
@@ -229,7 +230,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
             run->requestJob=run->encoder.trySubmit([captureRequest]{return readNativeCaptureRequest(captureRequest);});
         if(p.active&&captureReady&&!run->captureName.isEmpty()){
                 const auto name=run->captureName;
-                    auto* activityViewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
+                    auto* activityViewport=window.findChild<GlViewport*>("nativeGameViewport");
                     GlViewport::ActivityScope capture(activityViewport,GlViewport::Activity::DiagnosticCapture);
                     QElapsedTimer captureClock;captureClock.start();
                     FrameStream reference;
@@ -237,7 +238,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                     {GlViewport::ActivityScope read(activityViewport,GlViewport::Activity::ReferenceRead);if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))originalImage=reference.nextFrame();}
                     const double originalCopyMs=captureClock.nsecsElapsed()/1000000.0;
                     if(!originalImage.isNull()){
-                    auto* viewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
+                    auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");
                     QImage nativeImage;
                     if(viewport&&viewport->isVisible()){
                         const auto rect=viewport->imageRect();const auto ratio=viewport->devicePixelRatioF();
@@ -250,10 +251,11 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                     const auto directory=QFileInfo(path).dir();
                     run->captureJob=run->encoder.submit([nativeImage,originalImage,directory,name,p,originalCopyMs,captureOwnerMs,captureRequest]{
                         if(!QFile::remove(captureRequest))throw std::runtime_error("Diagnostic request cleanup failed");
-                        const bool nativeSaved=!nativeImage.isNull()&&nativeImage.save(directory.filePath(name+"-native.png"));
-                        const bool originalSaved=!originalImage.isNull()&&originalImage.save(directory.filePath(name+"-original.png"));
-                        QSaveFile result(directory.filePath(name+".json"));
-                        if(result.open(QIODevice::WriteOnly)){result.write(QJsonDocument(QJsonObject{{"native_saved",nativeSaved},{"original_saved",originalSaved},{"native_frames",qint64(p.frames)},{"painted_frames",qint64(p.paints)},{"fallback",p.fallback},{"original_copy_ms",originalCopyMs},{"native_readback_ms",captureOwnerMs-originalCopyMs},{"capture_owner_ms",captureOwnerMs}}).toJson());result.commit();}
+                        const bool nativeSaved=saveNativeCaptureImage(directory.filePath(name+"-native.png"),nativeImage);
+                        const bool originalSaved=saveNativeCaptureImage(directory.filePath(name+"-original.png"),originalImage);
+                        if(!saveNativeCaptureMetadata(directory.filePath(name+".json"),QJsonObject{{"native_saved",nativeSaved},{"original_saved",originalSaved},{"native_frames",qint64(p.frames)},{"painted_frames",qint64(p.paints)},{"fallback",p.fallback},{"original_copy_ms",originalCopyMs},{"native_readback_ms",captureOwnerMs-originalCopyMs},{"capture_owner_ms",captureOwnerMs}}))
+                            throw std::runtime_error("Diagnostic capture acknowledgement publication failed");
+                        if(!nativeSaved||!originalSaved)throw std::runtime_error("Diagnostic capture image publication failed");
                     });
                     run->captureName.clear();
                     }
@@ -285,9 +287,9 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
             if(!run->stressRunning){
                 run->stressRunning=true;run->sampleClock.start();run->sampleHostUs=NativeFrameTrace::now();run->sampleFrames=p.frames;run->samplePaints=p.paints;run->sampleWorlds=p.sourceGeneration;
                 window.activateWindow();window.raise();
-                auto* viewport=window.findChild<QOpenGLWidget*>("nativeGameViewport");
+                auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");
                 if(!viewport||!viewport->isVisible()){finish(false,"Native stress viewport unavailable");return;}
-                viewport->setFocus();auto* native=dynamic_cast<GlViewport*>(viewport);const auto rect=native?native->imageRect():QRectF(viewport->rect());const auto origin=viewport->mapToGlobal(rect.topLeft().toPoint());
+                viewport->setFocus();const auto rect=viewport->imageRect();const auto origin=viewport->mapToGlobal(rect.topLeft().toPoint());
                 auto* input=new QProcess(&window);
                 QObject::connect(input,&QProcess::errorOccurred,&window,[finish](QProcess::ProcessError error){if(error==QProcess::FailedToStart)finish(false,"Could not start gameplay input helper");});
                 QObject::connect(input,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),&window,[run,input,finish](int code,QProcess::ExitStatus status){

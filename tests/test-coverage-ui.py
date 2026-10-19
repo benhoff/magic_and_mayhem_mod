@@ -113,6 +113,29 @@ class TracksTest(unittest.TestCase):
         self.assertEqual(t['milestones'][0]['missing'],['b'])
         self.assertEqual(t['progress']['count'],0)
 
+    def test_validation_requirements_are_independent_of_implementation(self):
+        a=behavior(implementation='partial');a['status']['comparison']='recorded';a['evidence']=['original']
+        d=self.definition([{'behaviors':['one'],'status':{'implementation':'scoped','comparison':'recorded'}}])
+        e=[{'id':'original','kind':'isolated_original','freshness':'current'}]
+        t=track_view(d,[a],e)[0];c=t['milestones'][0]['checks'][0]
+        self.assertEqual(t['progress']['count'],0)  # combined milestone remains incomplete
+        self.assertFalse(c['met']);self.assertTrue(c['validation_met']);self.assertTrue(c['validation_current'])
+        e[0]['freshness']='stale'
+        c=track_view(d,[a],e)[0]['milestones'][0]['checks'][0]
+        self.assertTrue(c['validation_met']);self.assertFalse(c['validation_current'])
+        a['status']['implementation']='scoped';a['evidence']=[]
+        c=track_view(d,[a],e)[0]['milestones'][0]['checks'][0]
+        self.assertFalse(c['validation_met']);self.assertFalse(c['validation_current'])
+        a['evidence']=['original'];a['current_validation']={}
+        c=track_view(d,[a],[{**e[0],'freshness':'current'}])[0]['milestones'][0]['checks'][0]
+        self.assertTrue(c['validation_met']);self.assertFalse(c['validation_current'])
+        a['status']['comparison']='none'
+        c=track_view(d,[a],e)[0]['milestones'][0]['checks'][0]
+        self.assertFalse(c['validation_met'])
+        a['kind']='native_policy';a['status']['comparison']='recorded'
+        c=track_view(d,[a],e)[0]['milestones'][0]['checks'][0]
+        self.assertFalse(c['validation_met']);self.assertFalse(c['validation_current'])
+
     def test_invalid_status_targets_fail_before_progress_is_generated(self):
         definition = self.definition([{'behaviors': ['one'], 'status': {'integration': ['scoped_live']}}])
         with self.assertRaisesRegex(ValueError, 'invalid integration target'):
@@ -199,6 +222,50 @@ class TracksTest(unittest.TestCase):
         # Native preview must not earn an original comparison or replacement gate.
         self.assertNotIn('replacement',goals['world-shadow']['requirements'][0]['status'])
         self.assertNotIn('comparison',goals['canvas-history']['requirements'][0]['status'])
+
+    def test_simulation_roadmap_keeps_native_results_and_original_gates_separate(self):
+        definition=json.loads((ROOT/TRACKS).read_text())
+        register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
+        track=next(t for t in definition['tracks'] if t['id']=='simulation')
+        documents={p for b in register['behaviors'] for p in b['documents']}
+        self.assertTrue(set(track['focus']['documents']) <= documents)
+        self.assertTrue({'creature-ai','creature-execution','casting','combat','native-simulation'} <= set(track['subsystems']))
+        goals={m['id']:m for m in track['milestones']}
+        self.assertEqual(goals['decision-comparison']['requirements'][0]['status']['comparison'],'recorded')
+        self.assertNotIn('comparison',goals['owner-skirmish']['requirements'][0]['status'])
+        self.assertNotIn('replacement',goals['playable-campaign']['requirements'][0]['status'])
+        self.assertEqual(goals['live-simulation']['requirements'][0]['status']['replacement'],'scoped_live')
+        # Even perfect native execution cannot complete the original tick/lifetime gates.
+        evidence=[{**e,'freshness':'current'} for e in register['evidence']]
+        result=track_view({'tracks':[track]},register['behaviors'],evidence)[0]
+        states={m['id']:m['state'] for m in result['milestones']}
+        self.assertEqual(states['owner-skirmish'],'demonstrated')
+        self.assertEqual(states['decision-comparison'],'demonstrated')
+        self.assertEqual(states['wizard-strategy'],'not_started')
+        self.assertEqual(states['original-tick-lifetime'],'not_started')
+        self.assertEqual(states['live-simulation'],'not_started')
+        self.assertFalse(any(m['current'] for m in result['milestones']))
+
+    def test_rendering_followup_keeps_delivered_code_and_acceptance_separate(self):
+        definition=json.loads((ROOT/TRACKS).read_text())
+        register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
+        track=next(t for t in definition['tracks'] if t['id']=='rendering')
+        self.assertIn('Validate bounded',track['focus']['next_title'])
+        evidence=[{**e,'freshness':'current'} for e in register['evidence']]
+        result=track_view({'tracks':[track]},register['behaviors'],evidence)[0]
+        goals={m['id']:m for m in result['milestones']}
+        self.assertEqual(goals['extended-2d']['state'],'demonstrated')
+        self.assertEqual(goals['isolated-recovery']['state'],'demonstrated')
+        self.assertEqual(goals['native-only-launch']['state'],'in_progress')
+        self.assertEqual(goals['owned-copy-readers']['state'],'in_progress')
+        self.assertEqual(goals['generation-restart']['state'],'in_progress')
+        self.assertEqual(goals['complete-replacement']['state'],'not_started')
+        self.assertIn('NP.native-isolated-render-recovery',result['behaviors'])
+        self.assertTrue(set(track['focus']['implementation_behaviors']) <= set(result['behaviors']))
+        self.assertIn('partially implemented and unimplemented',track['focus']['boundary'])
+        # Native policy controls cannot require or substitute for original equivalence.
+        self.assertNotIn('comparison',goals['extended-2d']['requirements'][0]['status'])
+        self.assertNotIn('replacement',goals['isolated-recovery']['requirements'][0]['status'])
 
 
 class BindAuthorityTest(unittest.TestCase):

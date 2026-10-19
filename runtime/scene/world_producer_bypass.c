@@ -8,6 +8,17 @@ API u32 WIN GetTickCount(void);
 static u32 bypass_limit,bypass_queue,bypass_completed;
 static u32 raster_first,raster_last,raster_preparations,raster_world_open;
 #include "world_raster_callers.h"
+#include "../../reconstruction/rendering/generic_producer_caller.h"
+#ifdef MNM_SCENE_SELFTEST
+static u32 generic_bypass_fixture;
+#endif
+static int generic_bypass_caller(u32 caller,u32 tag){
+#ifdef MNM_SCENE_SELFTEST
+ if(generic_bypass_fixture)return 1; /* Synthetic trampoline body, not caller recovery. */
+#endif
+ if(caller!=0x500512&&caller!=0x500a4e&&caller!=0x57e940)return 0;
+ return readable(caller,10)&&mnm_generic_producer_caller(caller,tag,(const u8*)caller);
+}
 static int raster_active(void){return raster_world_open&&raster_first&&queue>=raster_first&&queue<=raster_last;}
 static u32 raster_number(const char* name){char value[8];u32 n=GetEnvironmentVariableA(name,value,8),v=0;if(!n)return 0;if(n>=8)return 99;for(u32 i=0;i<n;++i){if(value[i]<'0'||value[i]>'9')return 99;v=v*10+value[i]-'0';}return v;}
 static int raster_init(u32 queues){u32 selected=raster_number("MNM_WORLD_RASTER_QUEUE"),prefix=raster_number("MNM_WORLD_RASTER_PREFIX");if(selected&&prefix)return 0;if(selected>queues||prefix>queues)return 0;raster_first=selected?selected:prefix?1:0;raster_last=selected?selected:prefix;return 1;}

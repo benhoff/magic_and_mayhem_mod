@@ -17,6 +17,7 @@ struct SceneDraw {
     SpriteComposite composite{};
     std::optional<AdditiveRectangle> additive{};
     std::optional<ColourRectangle> colourRectangle{};
+    bool wholeOpaqueRunClipping=false;
 };
 struct SceneLimits {
     std::size_t draws=12320;

@@ -73,19 +73,39 @@ static i32 WIN mode(u32* d,void* context){
  if(context!=(void*)0x1234 || d[0]!=124 || d[1]!=0x4100e || d[2]!=(mode_count?600u:480u) || d[3]!=(mode_count?800u:640u) || d[4]!=d[3]*2 || d[6]!=60 || d[18]!=32 || d[21]!=16 || d[22]!=0xf800 || d[23]!=0x7e0 || d[24]!=0x1f)ExitProcess(196);
  ++mode_count;return mode_stop?0:1;
 }
+static u32 all_mode_count,all_mode_stop;
+static i32 WIN all_modes(u32* d,void* context){
+ static const u32 depths[4]={16,8,24,32};
+ if(all_mode_count>=8)ExitProcess(208);
+ u32 depth=depths[all_mode_count/2],large=all_mode_count%2;
+ u32 red=depth==8?0:(depth==16?0xf800:0xff0000);
+ u32 green=depth==8?0:(depth==16?0x7e0:0xff00),blue=depth==8?0:(depth==16?0x1f:0xff);
+ if(context!=(void*)0x4321 || d[0]!=124 || d[1]!=0x4100e || d[2]!=(large?600u:480u) || d[3]!=(large?800u:640u) || d[4]!=d[3]*(depth/8) || d[6]!=60 || d[18]!=32 || d[19]!=(depth==8?0x60u:0x40u) || d[21]!=depth || d[22]!=red || d[23]!=green || d[24]!=blue || d[25])ExitProcess(209);
+ ++all_mode_count;return all_mode_stop?0:1;
+}
 static void startup_policy(Create create){
  void *draw=0,*draw4=0,*surface=0;u32 d[31],caps[4]={0x4000},total=0,free=0;
  if(create(0,&draw,0) || ((i32 (WIN *)(void*,const u8*,void**))table(draw)[0])(draw,startup_ids[2],&draw4))ExitProcess(197);
- for(u32 i=0;i<31;++i)d[i]=0;d[0]=124;
+ for(u32 i=0;i<31;++i)d[i]=0;d[0]=124;d[1]=0x1000;d[21]=16;
  typedef i32 (WIN *Modes)(void*,u32,const u32*,void*,i32 (WIN *)(u32*,void*));
  if(((Modes)table(draw)[8])(draw,1,d,(void*)0x1234,mode) || mode_count!=2)ExitProcess(198);
  mode_count=0;mode_stop=1;if(((Modes)table(draw)[8])(draw,1,d,(void*)0x1234,mode) || mode_count!=1)ExitProcess(199);
+ /* RGB565 filtering is separate from the current four-format native policy. */
+ d[1]=0;d[21]=0;
+ if(((Modes)table(draw)[8])(draw,1,d,(void*)0x4321,all_modes) || all_mode_count!=8)ExitProcess(210);
+ all_mode_count=0;all_mode_stop=1;
+ if(((Modes)table(draw)[8])(draw,1,d,(void*)0x4321,all_modes) || all_mode_count!=1)ExitProcess(211);
+ d[1]=0x1006;d[2]=480;d[3]=640;d[21]=16;mode_count=mode_stop=0;
+ if(((Modes)table(draw)[8])(draw,1,d,(void*)0x1234,mode) || mode_count!=1)ExitProcess(212);
  typedef i32 (WIN *Memory)(void*,const u32*,u32*,u32*);
  Memory memory=(Memory)table(draw4)[23];if(memory(draw4,caps,&total,&free) || total!=256*1024*1024 || free!=total)ExitProcess(200);
  desc(d);if(((Surface)table(draw)[6])(draw,d,&surface,0) || memory(draw4,caps,0,&free) || free!=total-32*H)ExitProcess(201);
  ((Ref)table(surface)[2])(surface);if(memory(draw4,caps,0,&free) || free!=total)ExitProcess(202);
  caps[0]=0;free=0xabcdef;if(memory(draw4,caps,0,&free)!=(i32)0x80004001u || free!=0xabcdef)ExitProcess(203);
  ((Ref)table(draw4)[2])(draw4);((Ref)table(draw)[2])(draw);
+ u32 checks[5]={2,1,8,1,1},n=0;
+ HANDLE output=CreateFileA("startup-mode-policy.bin",0x40000000,0,0,2,0x80,0);
+ if(output==(HANDLE)-1 || !WriteFile(output,checks,sizeof(checks),&n,0) || n!=sizeof(checks))ExitProcess(213);CloseHandle(output);
 }
 static void refusal(Create create,char family){
  void *draw=0,*object=0;u32 d[31];if(create(0,&draw,0))ExitProcess(204);

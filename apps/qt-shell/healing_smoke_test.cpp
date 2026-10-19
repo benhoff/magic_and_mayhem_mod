@@ -268,8 +268,7 @@ void installNativeHealingSmokeTest(
                              .filePath("render-frame.bin")))
               original = ref.nextFrame();
             if (!original.isNull()) {
-              auto *v = dynamic_cast<GlViewport *>(
-                  window.findChild<QOpenGLWidget *>("nativeGameViewport"));
+              auto *v = window.findChild<GlViewport *>("nativeGameViewport");
               QImage native;
               if (v && v->isVisible()) {
                 const auto r = v->imageRect();
@@ -341,8 +340,7 @@ void installNativeHealingSmokeTest(
                 (const uchar *)bytes.constData() + at + 12));
         if (ticks.size() < 3)
           return;
-        auto *v = dynamic_cast<GlViewport *>(
-            window.findChild<QOpenGLWidget *>("nativeGameViewport"));
+        auto *v = window.findChild<GlViewport *>("nativeGameViewport");
         if (!v || !v->isVisible()) {
           finish(false, "Native healing viewport unavailable");
           return;

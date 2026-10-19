@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Reproduce retained public bottom-edge displacement and validate native policy."""
+import argparse
 import hashlib
 import importlib.util
 import json
@@ -17,6 +18,12 @@ def sha(path):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--experiment', type=Path, default=ROOT/'working/experiments/menu-observer/run-r9nz3st2')
+    parser.add_argument('--executable', type=Path, default=ROOT/'working/game-nocd/Chaos.exe')
+    args = parser.parse_args()
+    if not args.experiment.resolve().is_relative_to(ROOT/'working'):
+        parser.error('Require an owned retained experiment under working')
     parent = ROOT / 'working/tests/displacement-finite-edge'
     parent.mkdir(parents=True, exist_ok=True)
     out = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
@@ -32,6 +39,7 @@ def main():
     env = dict(os.environ, TMPDIR=str(ROOT / 'working/coverage-hook-tmp'),
                QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1',
                GALLIUM_DRIVER='llvmpipe', LP_NUM_THREADS='4')
+    Path(env['TMPDIR']).mkdir(parents=True,exist_ok=True)
     for key in ['MESA_LOADER_DRIVER_OVERRIDE', '__GLX_VENDOR_LIBRARY_NAME',
                 '__EGL_VENDOR_LIBRARY_FILENAMES', 'QT_XCB_GL_INTEGRATION']:
         env.pop(key, None)
@@ -47,7 +55,7 @@ def main():
     try:
         run('original-before', [ROOT / 'tools/original-manifest.sh', 'verify'])
         before = True
-        experiment = ROOT / 'working/experiments/menu-observer/run-r9nz3st2'
+        experiment = args.experiment.resolve()
         channel = experiment / 'world-continuous.bin'
         inputs[str(channel)] = sha(channel)
         raw = channel.read_bytes()
@@ -75,7 +83,7 @@ def main():
         for name, digest in json.loads(manifest.read_text()).items():
             assert sha(assets / name) == digest, name
             inputs[str(assets / name)] = digest
-        pe = ROOT / 'working/game-nocd/Chaos.exe'
+        pe = args.executable.resolve()
         inputs[str(pe)] = sha(pe)
         assert inputs[str(pe)] == '40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
         reference = out / 'reference'

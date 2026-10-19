@@ -11,7 +11,8 @@ static unsigned query(unsigned p,unsigned* m){
  return 0;
 }
 #define MNM_WORLD_REGION_QUERY(p,m) query(p,m)
-#include "../runtime/scene/world_source_regions.h"
+#include "../runtime/scene/world_source_epoch.h"
+#include "../runtime/scene/world_source_copy.h"
 int main(){
  MnmWorldSourceRegions cache{};unsigned m[7];regions={{4096,4096,0x1000,4},{8192,4096,0x1000,2},{12288,4096,0x1000,1}};
  mnm_world_source_regions_reset(&cache);
@@ -28,5 +29,26 @@ int main(){
  assert(cache.count==64);const auto before=calls;assert(mnm_world_source_regions_query(&cache,4096,m)==28 && calls==before+1);
  // Invalid overflowing region answers cannot become proofs.
  regions={{~0u-15,32,0x1000,4}};mnm_world_source_regions_reset(&cache);assert(mnm_world_source_regions_query(&cache,~0u-7,m)==28 && !cache.count);
- std::cout<<"{\"success\":true,\"repeated_queries\":10000,\"physical_queries\":2,\"region_capacity\":64,\"epoch_permission_revalidated\":true}\n";
+ // This is the same dispatch/begin/end policy called by canvas_producers.c.
+ unsigned owner=0;regions={{4096,4096,0x1000,4}};
+ mnm_world_source_epoch_begin(&cache,&owner,1,17);auto at=calls;
+ assert(mnm_world_source_epoch_query(&cache,&owner,17,4096,m)==28);
+ assert(mnm_world_source_epoch_query(&cache,&owner,17,4096,m)==28&&calls==at+1);
+ assert(mnm_world_source_epoch_query(&cache,&owner,18,4096,m)==28&&calls==at+2);
+ assert(mnm_world_source_epoch_query(&cache,&owner,18,4096,m)==28&&calls==at+3);
+ // Permission reuse never caches the content: the consumer reads it per request.
+ unsigned char content[7]={1,2,3,4,5,6,7},first[7],second[7];
+ mnm_world_source_copy(first,content,7,1);
+ content[2]=29;assert(mnm_world_source_epoch_query(&cache,&owner,17,4096,m)==28);
+ mnm_world_source_copy(second,content,7,1);
+ assert(first[2]==3&&second[2]==29&&calls==at+3);
+ for(unsigned i=0;i<7;++i)assert(first[i]==i+1&&second[i]==(i==2?29:i+1));
+ mnm_world_source_epoch_end(&cache,&owner);assert(!cache.count&&!owner);
+ assert(mnm_world_source_epoch_query(&cache,&owner,17,4096,m)==28&&calls==at+4);
+ mnm_world_source_epoch_begin(&cache,&owner,0,17);
+ assert(mnm_world_source_epoch_query(&cache,&owner,17,4096,m)==28);
+ assert(mnm_world_source_epoch_query(&cache,&owner,17,4096,m)==28&&!cache.count&&!owner&&calls==at+6);
+ regions[0].protection=1;mnm_world_source_epoch_begin(&cache,&owner,1,17);
+ assert(mnm_world_source_epoch_query(&cache,&owner,17,4096,m)==28&&m[5]==1&&!cache.count);
+ std::cout<<"{\"success\":true,\"repeated_queries\":10000,\"physical_queries\":2,\"region_capacity\":64,\"epoch_permission_revalidated\":true,\"producer_dispatch_cases\":8,\"content_rechecked\":true}\n";
 }

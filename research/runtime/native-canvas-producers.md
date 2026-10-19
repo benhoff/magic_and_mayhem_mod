@@ -116,3 +116,31 @@ failure/lifetime remain pending.
 The [final current-source shadow](native-canvas-producers-final-shadow-20261010.json)
 passes 954 completed checkpoints/422875312 pixels,
 2002 glyph calls, zero differences and exact GPU mirrors.
+
+## Tranche 2 source and history validation (2026-10-19)
+
+The new same-run `--producer-storage-transitions` observer is limited to the
+original-active finite producer pipeline. It cannot be combined with a live
+viewer, replacement or publication mode. Its V5 journal binds logical wrapper
+generations and observed Lock epochs to exact producer prefixes. It does not
+assert physical allocation ownership or stable addresses across launches.
+`--admitted-prefix-template` explicitly clones a stopped checked DirectPlay
+prefix; the isolated scene runner validates staged binary hashes directly.
+For this Wine/Xvfb configuration use `-screen 0 800x600x24`: larger default
+geometry failed before the menu with DirectDraw's Action-not-supported dialog.
+The failed captures are retained, not silently retried into a passing report.
+
+Default source-only CPU replay and CPU/GPU World handoff are renewed separately
+on a closed16-queue original capture. Each compares1061 independent checkpoints
+with zero mismatches; handoff additionally compares16 private original World
+chains. Native initial storage remains undefined until admitted source work
+defines it, and no reference destination files enter native input directories.
+The history checker compares the complete before-canvas, pins the replay's
+native checkpoint manifest and rejects extent/stride changes or intervening
+recorded destination writers/lifecycle transitions.
+
+Private original547d80 mode0/NULL-plane controls compare180 clipped uniform
+cases and64,260 words against the native packed565 fill policy. This recovers
+that selected leaf; it does not establish live attribution of the historical
+4x75 physical residuals. Unsupported modes/planes and physical writer causality
+remain separately bounded.

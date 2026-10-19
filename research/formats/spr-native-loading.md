@@ -189,3 +189,18 @@ preserving mask and origin semantics.
 
 The newer legacy milestone adds all seven version-2 inputs. Version-4 counts
 and original draw evidence above retain their historical scope.
+
+## Retained encoded opaque runs (2026-10-19)
+
+Native decoded frames now retain each nonempty opaque RLE run as owned
+`(row,left,right)` metadata in addition to the pixel/mask planes. A zero-length
+transparent run can separate adjacent opaque runs, so merging mask coverage
+would lose original consumer behavior. The horizontally clipped5806f0 runtime
+branch supplies an independently executed example; see native-startup-sequence
+research for its whole-run right-edge rule. The on-disk layout is unchanged.
+
+The decoder counts and budgets run metadata before reserving its output vector.
+Decoded-frame and resource caches include its allocated capacity in their byte
+budgets. Consumers that require whole-run clipping reject missing, overlapping
+or mask-inconsistent run history. Ordinary per-pixel native uses retain their
+existing policy.

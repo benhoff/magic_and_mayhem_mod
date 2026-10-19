@@ -87,7 +87,7 @@ std::shared_ptr<const assets::SpriteFrame> CanvasFrameCache::frame(const CanvasP
   auto decoded = std::make_shared<const assets::SpriteFrame>(decodeFrame(c, indexed));
   ++stats_.decodes;
   Key key{indexed, {c.bytes().begin(), c.bytes().begin() + size}};
-  auto bytes = key.encoded.capacity() + decoded->opaqueMask.capacity();
+  auto bytes = key.encoded.capacity() + decoded->opaqueMask.capacity() + decoded->opaqueRuns.capacity()*sizeof(assets::SpriteOpaqueRun);
   std::visit([&](const auto &plane) { bytes += plane.capacity() * sizeof(plane[0]); }, decoded->pixels);
   for (const auto &plane : decoded->auxiliaryData) bytes += plane.capacity();
   if (bytes > limits_.bytes) { ++stats_.bypasses; return decoded; }

@@ -115,7 +115,7 @@ def main():
             (case/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
             output,active=case/'qt.json',case/'producer.active'
             child=dict(env,MNM_RENDER_ORDERED_COPIES='1' if mode in METADATA_CASES or mode in ['cross-key', 'key-timeout', 'cross-clipper', 'clipper-timeout', 'cross-palette', 'palette-timeout', 'indexed','cross-dc','dc-timeout','cross-flip','flip-timeout','cross-lock','lock-timeout','cross-fast','cross-copy','copy-timeout','source-write','source-key','dc32','mx16'] else '0',MNM_RENDER_PALETTE_RESOURCES='1' if args.palette_resources else '0',MNM_MUTATION_SELFTEST=mode,MNM_RENDER_CONTINUOUS='0' if mode=='bounded' else '1',MNM_RENDER_OWNED_SESSION='1',MNM_RENDER_SESSION_ARCHIVE='1',MNM_RENDER_COMMAND_CHANNEL='Z:'+str(channel).replace('/', '\\'),MNM_RENDER_STREAM='Z:'+str(frame).replace('/', '\\'),MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/', '\\'))
-            if mode=="bounded":child["MNM_MUTATION_FIRST_FRAME_FOR_TEST"]="Z:"+str(output).replace("/", "\\")+".first-frame"
+            child["MNM_MUTATION_FIRST_FRAME_FOR_TEST"]="Z:"+str(output).replace("/", "\\")+".first-frame"
             if mode=='desc-tracker':child['MNM_RENDER_ORDERED_COPIES']='0'
             valid=(mode not in METADATA_CASES or mode in ['cross-desc','desc-timeout','desc-tracker','desc-gate','cross-attached','status-flush']) and mode not in ['bounded','partial','unsupported','palette-flags','meta-change','source-write','source-key','copy-timeout','lock-timeout','dc-timeout','flip-timeout','key-timeout','clipper-timeout','palette-timeout']
             with (case/'qt.log').open('w') as qlog,(case/'wine.log').open('w') as wlog:
@@ -198,7 +198,13 @@ def main():
         assert all(live.sha(ROOT/p)==h for p,h in fingerprints.items()),'Source changed during execution'
         report.update(sources_unchanged=True,status='passed',palette_resources=args.palette_resources,success=True,full_frame_comparisons=sum(c['presentations'] for c in report['cases']),valid_sessions=sum(c['valid_session'] for c in report['cases']),refused_sessions=sum(not c['valid_session'] for c in report['cases']))
         (run/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(run/'report.json',flush=True)
+    except Exception as error:
+        report.update(success=False,status='failed',error=str(error))
+        raise
     finally:
+        report['sources_unchanged']=all(live.sha(ROOT/p)==h for p,h in fingerprints.items())
+        report['success'] &= report['sources_unchanged']
+        (run/'report.json').write_text(json.dumps(report,indent=2)+'\n')
         # The default fresh prefix or explicitly selected private test prefix
         # belongs only to this invocation for the duration of the run.
         subprocess.run(['wineserver','-k'],env=env,stdout=subprocess.DEVNULL,
