@@ -91,7 +91,7 @@ int main(int argc, char **argv) {
                                    std::size_t(sysconf(_SC_PAGESIZE))
                              : std::size_t(0);
   };
-  QObject::connect(&viewport, &QOpenGLWidget::frameSwapped, [&] {
+  QObject::connect(&viewport, &GlViewport::frameSwapped, [&] {
     if (presentation && presentation != lastPainted) {
       ++paints;
       lastPainted = presentation;

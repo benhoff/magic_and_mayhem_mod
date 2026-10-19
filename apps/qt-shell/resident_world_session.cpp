@@ -59,6 +59,11 @@ void ResidentWorldSession::collectGpuTimings(){
 }
 ResidentWorldSession::~ResidentWorldSession(){if(snapshotQueue_)snapshotQueue_->stop();displayedFrame_={};ownedFrame_={};ownedPending_.reset();if(gpuProduction_)gpuProduction_->join();channel_.cancel();if(reportWork_.valid())reportWork_.wait();}
 void ResidentWorldSession::abort(const QString& error){error_=error;channel_.cancel();}
+void ResidentWorldSession::checkpointGraphics(){if(renderer_ && !renderer_->hasRecoveryCheckpoint())renderer_->checkpointRecovery();}
+void ResidentWorldSession::recoverGraphics(){
+    if(gpuProduction_)gpuProduction_->recoverContext(target_.context());
+    if(renderer_)renderer_->recoverContext(target_.context(),target_.offscreen);
+}
 void ResidentWorldSession::poll(bool acceptedNormalQuit){
     if(independent_){pollOwned(acceptedNormalQuit);return;}
     QElapsedTimer phaseClock;phaseClock.start();

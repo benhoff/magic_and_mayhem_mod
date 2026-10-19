@@ -9,7 +9,8 @@
 #include <vector>
 NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const QString& game,const QString& reportPath):viewport_(v),reportPath_(reportPath){
     baselineUiClock_=qEnvironmentVariableIntValue("MNM_WORLD_UI_CLOCK_BASELINE")==1;
-    NativeRenderTarget target{[this]{return share_!=nullptr;},[this]{return share_;},
+    if(durableGraphics_)viewport_.recoverGraphics=[this]{return requestGraphicsRecovery();};
+    NativeRenderTarget target{[this]{return started_ && (share_!=nullptr || mnm::render::GlBlitter::isolatedRecoveryEnabled());},[this]{return share_;},
         [this](auto frame){rendered_=std::move(frame);frameChanged_=rendered_.valid();},[]{return QString();},&surface_,&worldSurface_};
     world_=std::make_unique<ResidentWorldSession>(target,path,game,true);
     commands_=std::make_unique<LiveCommandSession>(target);
@@ -18,7 +19,7 @@ NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const Q
     commands_->residentReady=[this](auto g,auto n){return world_->ready(g,n);};
     commands_->prepareResidentFrames=true;
     commands_->reuseSealedUi=!baselineUiClock_ && qEnvironmentVariableIntValue("MNM_WORLD_FIRST_SEAL_BASELINE")!=1;
-    if(frameTrace_.enabled())QObject::connect(&viewport_,&QOpenGLWidget::frameSwapped,this,[this]{
+    if(frameTrace_.enabled())QObject::connect(&viewport_,&GlViewport::frameSwapped,this,[this]{
         std::lock_guard<std::mutex> lock(mutex_);
         frameTrace_.recordGui({paintedSerial_,paintedGeneration_,NativeFrameTrace::now(),1,drawAllowed_,paused_});
     });
@@ -32,7 +33,7 @@ NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const Q
             std::lock_guard<std::mutex> lock(mutex_);
             frameTrace_.recordGui({guiSerial_,guiGeneration_,NativeFrameTrace::now(),complete?5:4,drawAllowed_,paused_,int(activity)});
         };
-        QObject::connect(&viewport_,&QOpenGLWidget::aboutToCompose,this,[this]{
+        QObject::connect(&viewport_,&GlViewport::aboutToCompose,this,[this]{
             std::lock_guard<std::mutex> lock(mutex_);
             frameTrace_.recordGui({paintedSerial_,paintedGeneration_,NativeFrameTrace::now(),8,drawAllowed_,paused_});
         });
@@ -44,7 +45,7 @@ NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const Q
         });heartbeat->start();
     }
 }
-NativeRenderWorker::~NativeRenderWorker(){if(frameTrace_.enabled()){viewport_.framePaintTiming={};viewport_.activityTiming={};}join(false);}
+NativeRenderWorker::~NativeRenderWorker(){if(durableGraphics_)viewport_.recoverGraphics={};if(frameTrace_.enabled()){viewport_.framePaintTiming={};viewport_.activityTiming={};}join(false);}
 bool NativeRenderWorker::create(const QString& path,quint32 session,quint32 version,int timeout){
     if(version!=2 && version!=3){status_.error="Render worker requires streaming owned World commands";return false;}
     if(!commands_->create(path,session,version,timeout)){status_.error=commands_->error();return false;}
@@ -52,27 +53,31 @@ bool NativeRenderWorker::create(const QString& path,quint32 session,quint32 vers
 }
 bool NativeRenderWorker::poll(bool normalQuit,bool drawAllowed,bool paused){
     mnm::render::GpuFrame frame;
-    std::uint64_t serial=0,generation=0;
+    std::uint64_t serial=0,generation=0;bool recovering=false;
     {GlViewport::ActivityScope pickup(&viewport_,GlViewport::Activity::RenderStatusPickup);
      {
         std::lock_guard<std::mutex> lock(mutex_);
         normalQuit_=normalQuit;drawAllowed_=drawAllowed;paused_=paused;
         status_=published_;frame=std::move(readyFrame_);
         serial=readySerial_;generation=readyGeneration_;
+        recovering=graphicsRecoveryPending_;
      }
     }
     wake_.notify_one();
     if(!started_ && viewport_.ready()){
-        share_=viewport_.context();surface_.setFormat(share_->format());surface_.create();
+        share_=viewport_.context();
+        if(!mnm::render::GlBlitter::isolatedRecoveryEnabled()){
+        surface_.setFormat(share_->format());surface_.create();
         if(!surface_.isValid()){status_.error="Render worker offscreen surface creation failed";return false;}
         if(qEnvironmentVariableIntValue("MNM_ASYNC_WORLD_GPU")==1){
             worldSurface_.setFormat(share_->format());worldSurface_.create();
             if(!worldSurface_.isValid()){status_.error="World producer offscreen surface creation failed";return false;}
         }
+        }
         started_=true;start();
     }
     if(!status_.error.isEmpty())return false;
-    if(frame.valid() && !paused){
+    if(frame.valid() && !paused && !recovering){
         viewport_.setGpuFrame(std::move(frame));
         if(frameTrace_.enabled()){
             std::lock_guard<std::mutex> lock(mutex_);guiSerial_=serial;guiGeneration_=generation;
@@ -84,6 +89,12 @@ bool NativeRenderWorker::poll(bool normalQuit,bool drawAllowed,bool paused){
     return true;
 }
 bool NativeRenderWorker::requestStop(){std::lock_guard<std::mutex> lock(mutex_);requestStop_=true;wake_.notify_one();return true;}
+bool NativeRenderWorker::requestGraphicsRecovery(){
+    if(!durableGraphics_ || !started_)return false;
+    std::lock_guard<std::mutex> lock(mutex_);
+    if(stop_ || graphicsRecoveries_>=3 || !viewport_.ready() || !viewport_.context())return false;
+    viewport_.setGpuFrame({});readyFrame_={};recoveryShare_=viewport_.context();graphicsRecoveryPending_=true;wake_.notify_one();return true;
+}
 void NativeRenderWorker::abort(){join(false);}
 bool NativeRenderWorker::finishProducer(){join(true);return status_.error.isEmpty()&&ended();}
 void NativeRenderWorker::join(bool producerExited){
@@ -108,6 +119,7 @@ void NativeRenderWorker::run(){
         next.report=world_->report();
         next.report["media_presentation_paused"]=mediaPaused;
         next.report["native_render_owner"]="dedicated-thread";
+        next.report["graphics_recovery"]=QJsonObject{{"enabled",durableGraphics_},{"completed",int(graphicsRecoveries_)},{"policy","Native RAM checkpoints at completed render turns; quiescent context rebuild preserves session and frame identities. Isolated renderer operations retry after worker failure/deadline; native state and game session are retained. Raster presentation uses no GUI GL driver."}};
         next.report["status_publication"]=QJsonObject{{"policy",statusEveryTurn_?"every-turn":"bounded-16ms"},{"snapshots",QString::number(statusBuilds_)},{"skipped_turns",QString::number(statusSkipped_)},{"period_ms",16},{"scope","Heavy status construction only; lifecycle/pause/quit/error/stop publish immediately. Render/source/command work and output leases remain independent. Busy turns may delay nonterminal reports beyond16ms."}};
         next.report["presentation_source_allocations"]=QString::number(next.hasResult?next.result.stats.gpuPresentationAllocations:0);
         next.report["presentation_exports"]=QString::number(exports_);
@@ -145,12 +157,18 @@ void NativeRenderWorker::run(){
     try{
         for(;;){
             NativeFrameTrace::Turn trace;trace.begin=frameTrace_.stamp();trace.turn=turns_;
-            bool stop,exited,quit,draw,pause,request;
-            {std::lock_guard<std::mutex> lock(mutex_);stop=stop_;exited=producerExited_;quit=normalQuit_;draw=drawAllowed_;pause=paused_;request=requestStop_;requestStop_=false;}
+            bool stop,exited,quit,draw,pause,request,recover;
+            QOpenGLContext* recoveryShare=nullptr;
+            {std::lock_guard<std::mutex> lock(mutex_);stop=stop_;exited=producerExited_;quit=normalQuit_;draw=drawAllowed_;pause=paused_;request=requestStop_;requestStop_=false;recover=graphicsRecoveryPending_;recoveryShare=recoveryShare_;}
             if(stop){
                 if(exited){world_->poll(quit);commands_->finishProducer();}
                 else{world_->abort("Render owner cancelled");commands_->abort();}
                 updateStatus();save();break;
+            }
+            if(recover){
+                share_=recoveryShare;world_->recoverGraphics();commands_->recoverGraphics();frameChanged_=rendered_.valid();
+                {std::lock_guard<std::mutex> lock(mutex_);++graphicsRecoveries_;graphicsRecoveryPending_=false;}
+                updateStatus();
             }
             QElapsedTimer turnClock,stageClock;turnClock.start();stageClock.start();
             if(request)commands_->requestStop();
@@ -221,6 +239,7 @@ void NativeRenderWorker::run(){
                     frameChanged_=false;
                 }
             }
+            if(durableGraphics_){world_->checkpointGraphics();commands_->checkpointGraphics();}
             exportMs=stageClock.nsecsElapsed()/1000000.;if(exportMs>0.1)exportTiming_.add(exportMs);
             if(frameTrace_.capturesHitches())trace.delivery=world_->traceDeliveryState();
             trace.exportEnd=frameTrace_.stamp();trace.framesAfter=world_->nativeFrames();trace.pending=world_->displayState().pending;trace.reason=reason;

@@ -1,4 +1,5 @@
 #include "dib.hpp"
+#include "isolated_renderer.hpp"
 #include "blit.hpp"
 #include "surface_copy.hpp"
 #include "known_pixels.hpp"
@@ -48,7 +49,7 @@ struct Current {
     bool switched=false;
     Current(QOpenGLContext& context,QSurface* target):context(context){
         if(previous==&context && surface==target)return;
-        if(!context.makeCurrent(target))throw std::runtime_error("Cannot make the OpenGL context current");
+        if(!context.makeCurrent(target))throw GraphicsFailure("Cannot make the OpenGL context current");
         switched=true;
     }
     ~Current(){if(switched){if(previous && surface)previous->makeCurrent(surface);else context.doneCurrent();}}
@@ -199,12 +200,15 @@ void validateFormat(PixelFormat f){
     }
     if((f.masks[0]&f.masks[1]) || (f.masks[0]&f.masks[2]) || (f.masks[1]&f.masks[2]))throw std::runtime_error("Overlapping RGB masks");
 }
+std::atomic<SurfaceId> serial{1};
+void reserveId(SurfaceId used){auto n=serial.load();while(n<=used && !serial.compare_exchange_weak(n,used+1)){} }
 SurfaceId nextId(){
-    static std::atomic<SurfaceId> serial{1};auto id=serial.load();
+    auto id=serial.load();
     for(;;){if(id==UINT64_MAX)throw std::runtime_error("Surface IDs exhausted");if(serial.compare_exchange_weak(id,id+1))return id;}
 }
 }
 struct GpuFrame::Data {
+    QImage raster;
     std::shared_ptr<GlBlitter::Impl> owner;
     GLuint texture=0;
     QSize dimensions;
@@ -273,6 +277,12 @@ struct GlBlitter::Impl {
     Driver info;
     RenderStats counters;
     std::unordered_map<SurfaceId,Surface> surfaces;
+    std::vector<std::weak_ptr<GpuFrame::Data>> frames;
+    std::uint64_t revision=0;
+    void trackFrame(const std::shared_ptr<GpuFrame::Data>& frame){
+        if(frames.size()>64)frames.erase(std::remove_if(frames.begin(),frames.end(),[](const auto& f){return f.expired();}),frames.end());
+        frames.push_back(frame);
+    }
     explicit Impl(QOpenGLContext* shareContext,QOffscreenSurface* externalSurface){
         if(!qobject_cast<QGuiApplication*>(QCoreApplication::instance()) ||
            (!externalSurface && QThread::currentThread()!=QCoreApplication::instance()->thread()))
@@ -347,7 +357,7 @@ struct GlBlitter::Impl {
 #else
         (void)immediate;
 #endif
-        if(const auto error=gl.glGetError();error!=GL_NO_ERROR)throw std::runtime_error("OpenGL error: "+std::to_string(error));
+        if(const auto error=gl.glGetError();error!=GL_NO_ERROR)throw GraphicsFailure("OpenGL error: "+std::to_string(error));
     }
     void useProgram(GLuint id){if(boundProgram!=id){gl.glUseProgram(id);boundProgram=id;++counters.programChanges;}}
     void draw(GLsizei vertices){gl.glDrawArrays(GL_TRIANGLES,0,vertices);++counters.drawCalls;++counters.drawInstances;}
@@ -376,7 +386,7 @@ struct GlBlitter::Impl {
         if(attached!=texture){
             attached=0; // A failed attachment must not leave a valid old cache.
             gl.glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,texture,0);
-            if(gl.glCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE)throw std::runtime_error("Integer framebuffer is incomplete");
+            if(gl.glCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE)throw GraphicsFailure("Integer framebuffer is incomplete");
             attached=texture;++counters.framebufferAttachments;
         }
         if(viewport!=QSize(width,height)){gl.glViewport(0,0,width,height);viewport={width,height};}
@@ -432,7 +442,8 @@ struct GlBlitter::Impl {
         }
         for(int row=0;row<height;++row)for(int col=0;col<width;++col)s.coverage[std::size_t(y+row)*s.width+x+col]=std::uint8_t(words[std::size_t(row)*width+col]);
     }
-    static void damage(Surface& s,Rect r,bool nativeWrite=true){
+    void damage(Surface& s,Rect r,bool nativeWrite=true){
+        ++revision;
         if(nativeWrite)s.coverage.clear();
         // CPU diagnostic and shared GPU outputs may resolve at different times.
         // Retain an independent envelope for each until its conversion succeeds.
@@ -552,13 +563,19 @@ struct GlBlitter::Impl {
     }
 };
 GpuFrame::Data::~Data(){
-    owner->thread();Current current(owner->context,owner->surface);
-    if(produced)owner->gl.glDeleteSync(produced);
-    if(consumed){owner->gl.glWaitSync(consumed,0,GL_TIMEOUT_IGNORED);owner->gl.glDeleteSync(consumed);}
-    owner->deleteTextures(1,&texture);
+    if(!owner)return;
+    owner->thread();
+    try{Current current(owner->context,owner->surface);
+        if(produced)owner->gl.glDeleteSync(produced);
+        if(consumed){owner->gl.glWaitSync(consumed,0,GL_TIMEOUT_IGNORED);owner->gl.glDeleteSync(consumed);}
+        owner->deleteTextures(1,&texture);
+    }catch(const std::exception&){} // Lost context storage retires with its owner.
 }
 QSize GpuFrame::size() const{return data_?data_->dimensions:QSize{};}
+bool GpuFrame::hasRaster() const{return data_ && !data_->owner;}
+QImage GpuFrame::raster() const{if(!hasRaster())throw std::runtime_error("Frame has no raster transport");std::lock_guard<std::mutex> lock(data_->mutex);return data_->raster;}
 unsigned GpuFrame::textureForCurrentContext() const{
+    if(hasRaster())throw std::runtime_error("Isolated frame requires raster presentation");
     if(!data_)throw std::runtime_error("Empty GPU frame");
     auto& p=*data_->owner;if(!data_->immutable)p.thread();
     std::lock_guard<std::mutex> lock(data_->mutex);
@@ -578,11 +595,17 @@ void GpuFrame::samplingComplete() const{
     auto* g=QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext());
     if(data_->consumed)g->glDeleteSync(data_->consumed);
     data_->consumed=g->glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
-    if(!data_->consumed)throw std::runtime_error("Cannot fence GPU sampling");
+    if(!data_->consumed)throw GraphicsFailure("Cannot fence GPU sampling");
     g->glFlush();
 }
 GpuFrame GpuFrame::snapshot(GpuFrame reusable) const{
     if(!data_)throw std::runtime_error("Empty GPU snapshot");
+    if(hasRaster()){
+        if(reusable.valid() && (!reusable.hasRaster() || !reusable.unique() || !reusable.data_->immutable || reusable.size()!=size() || reusable.data_->format.bits!=data_->format.bits || reusable.data_->format.masks!=data_->format.masks))throw std::runtime_error("Raster snapshot buffer is leased or incompatible");
+        auto frozen=std::move(reusable.data_);if(!frozen)frozen=std::make_shared<Data>();
+        {std::lock_guard<std::mutex> lock(data_->mutex);frozen->raster=data_->raster;frozen->dimensions=data_->dimensions;frozen->format=data_->format;frozen->immutable=true;}
+        return GpuFrame(std::move(frozen));
+    }
     auto& p=*data_->owner;p.thread();Current current(p.context,p.surface);auto& g=p.gl;
     if(reusable.valid() && (!reusable.unique() || !reusable.data_->immutable || reusable.data_->owner!=data_->owner || reusable.size()!=size() || reusable.data_->format.bits!=data_->format.bits || reusable.data_->format.masks!=data_->format.masks))
         throw std::runtime_error("GPU snapshot buffer is leased or incompatible");
@@ -590,6 +613,7 @@ GpuFrame GpuFrame::snapshot(GpuFrame reusable) const{
     if(!frozen){
         frozen=std::make_shared<Data>();frozen->owner=data_->owner;frozen->dimensions=data_->dimensions;frozen->format=data_->format;frozen->immutable=true;
         g.glActiveTexture(GL_TEXTURE0);frozen->texture=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,size().width(),size().height(),nullptr);
+        p.trackFrame(frozen);
     }
     if(frozen->consumed){g.glWaitSync(frozen->consumed,0,GL_TIMEOUT_IGNORED);g.glDeleteSync(frozen->consumed);frozen->consumed=nullptr;}
     if(frozen->produced){g.glDeleteSync(frozen->produced);frozen->produced=nullptr;}
@@ -599,11 +623,87 @@ GpuFrame GpuFrame::snapshot(GpuFrame reusable) const{
     p.attached=data_->texture;g.glBindTexture(GL_TEXTURE_2D,frozen->texture);
     g.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,0,0,size().width(),size().height());
     frozen->produced=g.glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
-    if(!frozen->produced)throw std::runtime_error("Cannot fence immutable GPU snapshot");
-    g.glFlush();p.check();return GpuFrame(std::move(frozen));
+    if(!frozen->produced)throw GraphicsFailure("Cannot fence immutable GPU snapshot");
+    g.glFlush();p.check();++p.revision;return GpuFrame(std::move(frozen));
 }
-GlBlitter::GlBlitter(QOpenGLContext* shareContext,QOffscreenSurface* externalSurface):impl_(std::make_shared<Impl>(shareContext,externalSurface)){}
+struct GlBlitter::Recovery {
+    struct Surface {SurfaceId id;Impl::Surface state;Image pixels;};
+    struct Frame {std::weak_ptr<GpuFrame::Data> lease;std::vector<std::uint8_t> bytes;};
+    std::vector<Surface> surfaces;
+    std::vector<Frame> frames;
+    std::uint64_t revision=0;
+};
+bool GlBlitter::isolatedRecoveryEnabled(){return IsolatedRenderer::enabled();}
+GlBlitter::GlBlitter(QOpenGLContext* shareContext,QOffscreenSurface* externalSurface){
+    if(IsolatedRenderer::enabled())isolated_=std::make_unique<IsolatedRenderer>();
+    else impl_=std::make_shared<Impl>(shareContext,externalSurface);
+}
+void GlBlitter::injectGraphicsFault(unsigned mode){if(!isolated_ || mode<1 || mode>3)throw std::runtime_error("Fault injection requires isolated renderer and mode1..3");isolated_->faultNext(mode);}
+bool GlBlitter::hasRecoveryCheckpoint() const{if(isolated_)return true;return recovery_ && recovery_->revision==impl_->revision;}
+void GlBlitter::checkpointRecovery(){
+    if(isolated_){isolated_->checkpoint();return;}
+    auto& p=*impl_;p.thread();p.flushCopies();Current current(p.context,p.surface);
+    auto saved=std::make_unique<Recovery>();saved->revision=p.revision;
+    auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);std::uint64_t reads=0;
+    for(const auto& entry:p.surfaces){
+        Recovery::Surface s{entry.first,entry.second,{entry.second.width,entry.second.height,{}}};
+        s.pixels.pixels.resize(std::size_t(s.pixels.width)*s.pixels.height);
+        g.glBindTexture(GL_TEXTURE_2D,entry.second.native);
+        g.glGetTexImage(GL_TEXTURE_2D,0,GL_RED_INTEGER,GL_UNSIGNED_INT,s.pixels.pixels.data());++reads;
+        s.state.native=s.state.palette=s.state.rgba=0;saved->surfaces.push_back(std::move(s));
+    }
+    p.frames.erase(std::remove_if(p.frames.begin(),p.frames.end(),[](const auto& f){return f.expired();}),p.frames.end());
+    for(const auto& weak:p.frames)if(auto frame=weak.lock()){
+        std::lock_guard<std::mutex> lock(frame->mutex);
+        Recovery::Frame f{frame,std::vector<std::uint8_t>(std::size_t(frame->dimensions.width())*frame->dimensions.height()*4)};
+        g.glBindTexture(GL_TEXTURE_2D,frame->texture);
+        g.glGetTexImage(GL_TEXTURE_2D,0,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,f.bytes.data());++reads;
+        saved->frames.push_back(std::move(f));
+    }
+    p.check(true);++p.counters.recoveryCheckpoints;p.counters.recoveryReadbacks+=reads;recovery_=std::move(saved);
+}
+void GlBlitter::recoverContext(QOpenGLContext* shareContext,QOffscreenSurface* externalSurface){
+    if(isolated_){isolated_->restart();return;}
+    auto old=impl_;old->thread();
+    if(!hasRecoveryCheckpoint() || old->batchDepth || !old->instances.empty())
+        throw std::runtime_error("Graphics recovery requires a current completed native checkpoint");
+    auto next=std::make_shared<Impl>(shareContext,externalSurface);
+    Current current(next->context,next->surface);auto& g=next->gl;g.glActiveTexture(GL_TEXTURE0);
+    struct Frame {std::shared_ptr<GpuFrame::Data> lease;GLuint texture;};std::vector<Frame> frames;
+    try{
+        for(const auto& saved:recovery_->surfaces){
+            auto s=saved.state;
+            try{
+                s.native=next->texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,s.width,s.height,saved.pixels.pixels.data());
+                if(s.format.bits==8){std::array<std::uint8_t,1024> colours{};
+                    for(unsigned i=0;i<256;++i){const auto c=s.paletteColors[i];colours[i*4]=c.red;colours[i*4+1]=c.green;colours[i*4+2]=c.blue;colours[i*4+3]=255;}
+                    s.palette=next->texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,256,1,colours.data());}
+                s.rgbaDamage=s.gpuDamage=Rect{0,0,s.width,s.height};next->surfaces.emplace(saved.id,std::move(s));
+            }catch(...){next->release(s);throw;}
+        }
+        for(const auto& saved:recovery_->frames)if(auto lease=saved.lease.lock()){
+            const auto texture=next->texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,lease->dimensions.width(),lease->dimensions.height(),saved.bytes.data());
+            frames.push_back({std::move(lease),texture});
+        }
+        next->check(true);g.glFinish();
+    }catch(...){for(const auto& frame:frames)next->deleteTextures(1,&frame.texture);throw;}
+    // Consumers are quiescent. No old context read or source-process restart is
+    // needed here; all identity, validity and pixel inputs came from native RAM.
+    for(auto& frame:frames){std::lock_guard<std::mutex> lock(frame.lease->mutex);
+        try{Current previous(old->context,old->surface);
+            if(frame.lease->produced)old->gl.glDeleteSync(frame.lease->produced);
+            if(frame.lease->consumed)old->gl.glDeleteSync(frame.lease->consumed);
+            old->deleteTextures(1,&frame.lease->texture);
+        }catch(const std::exception&){}
+        frame.lease->texture=frame.texture;frame.lease->produced=frame.lease->consumed=nullptr;
+        frame.lease->consumer=nullptr;frame.lease->owner=next;next->frames.push_back(frame.lease);
+    }
+    next->counters=old->counters;++next->counters.recoveryRebuilds;next->revision=old->revision;
+    impl_=std::move(next);
+}
 GlBlitter::~GlBlitter(){
+    if(isolated_)return;
+    serviceFrames_.clear();
     // Frames retain the context, but must not retain unrelated native surfaces.
     try {
         auto& p=*impl_;p.thread();p.flushCopies();Current current(p.context,p.surface);
@@ -611,16 +711,18 @@ GlBlitter::~GlBlitter(){
         p.surfaces.clear();p.counters.pixels=0;
     }catch(const std::exception&){}
 }
-Driver GlBlitter::driver() const{return impl_->info;}
+Driver GlBlitter::driver() const{if(isolated_)return wire::decode<Driver>(isolated_->call(wire::message(wire::Op::driver)));return impl_->info;}
 void GlBlitter::batch(const std::function<void()>& operations){
+    if(isolated_){if(!operations)throw std::runtime_error("Missing renderer batch operations");operations();return;}
     auto& p=*impl_;p.thread();
     if(!operations)throw std::runtime_error("Missing renderer batch operations");
     Current current(p.context,p.surface);++p.batchDepth;
     try {operations();}catch(...){--p.batchDepth;if(!p.batchDepth)p.flushCopies();throw;}
     --p.batchDepth;if(!p.batchDepth)p.flushCopies();p.check();
 }
-RenderStats GlBlitter::stats() const{impl_->thread();auto result=impl_->counters;result.surfaces=impl_->surfaces.size();result.paletteCacheRows=impl_->paletteRows.size();for(const auto& entry:impl_->surfaces)result.coverageProofBytes+=entry.second.coverage.capacity();return result;}
+RenderStats GlBlitter::stats() const{if(isolated_){auto s=wire::decode<RenderStats>(isolated_->call(wire::message(wire::Op::stats)));s.recoveryRebuilds+=isolated_->recoveries();return s;}impl_->thread();auto result=impl_->counters;result.surfaces=impl_->surfaces.size();result.paletteCacheRows=impl_->paletteRows.size();for(const auto& entry:impl_->surfaces)result.coverageProofBytes+=entry.second.coverage.capacity();return result;}
 bool GlBlitter::profileBatch(std::uint64_t sequence,const std::function<void()>& operations){
+    if(isolated_){if(!sequence)throw std::runtime_error("Invalid GPU timing identity");batch(operations);return false;}
     auto& p=*impl_;p.thread();
     if(!sequence || !operations || p.profiling ||
        std::any_of(p.gpuTimings.begin(),p.gpuTimings.end(),[&](const auto& t){return t.sequence==sequence;}))
@@ -640,6 +742,7 @@ bool GlBlitter::profileBatch(std::uint64_t sequence,const std::function<void()>&
     return recorded;
 }
 std::vector<GpuTiming> GlBlitter::pollGpuTimings(){
+    if(isolated_)return {};
     auto& p=*impl_;p.thread();Current current(p.context,p.surface);
     std::vector<GpuTiming> result;
     while(!p.gpuTimings.empty()){
@@ -656,8 +759,9 @@ std::vector<GpuTiming> GlBlitter::pollGpuTimings(){
     }
     p.check(true);return result;
 }
-std::size_t GlBlitter::pendingGpuTimings() const{impl_->thread();return impl_->gpuTimings.size();}
+std::size_t GlBlitter::pendingGpuTimings() const{if(isolated_)return 0;impl_->thread();return impl_->gpuTimings.size();}
 SurfaceId GlBlitter::create(const Image& image,PixelFormat format){
+    if(isolated_){const auto requested=nextId();isolated_->call(wire::message(wire::Op::create,requested,image,format),true);return requested;}
     validateFormat(format);validateImage(image,format.bits);auto& p=*impl_;p.thread();p.flushCopies();
     if(image.width>p.maxTexture || image.height>p.maxTexture)throw std::runtime_error("Surface exceeds the OpenGL texture limit");
     if(p.surfaces.size()>=64 || image.pixels.size()>16*1024*1024-p.counters.pixels)throw std::runtime_error("Renderer surface budget exceeded: handles="+std::to_string(p.surfaces.size())+",pixels="+std::to_string(p.counters.pixels));
@@ -670,9 +774,10 @@ SurfaceId GlBlitter::create(const Image& image,PixelFormat format){
             s.palette=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,256,1,black.data());}
         p.check(true);p.surfaces.emplace(id,std::move(s));
     }catch(...){p.release(s);throw;}
-    ++p.counters.uploads;p.counters.pixels+=image.pixels.size();return id;
+    ++p.counters.uploads;p.counters.pixels+=image.pixels.size();++p.revision;return id;
 }
 SurfaceId GlBlitter::allocate(int width,int height,PixelFormat format){
+    if(isolated_){const auto requested=nextId();isolated_->call(wire::message(wire::Op::allocate,requested,width,height,format),true);return requested;}
     validateFormat(format);auto& p=*impl_;p.thread();p.flushCopies();
     if(width<1||height<1||width>2048||height>2048||width>p.maxTexture||height>p.maxTexture)
         throw std::runtime_error("Invalid allocated surface dimensions");
@@ -687,9 +792,10 @@ SurfaceId GlBlitter::allocate(int width,int height,PixelFormat format){
             s.palette=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,256,1,black.data());}
         p.check(true);p.surfaces.emplace(id,std::move(s));
     }catch(...){p.release(s);throw;}
-    p.counters.pixels+=count;return id;
+    p.counters.pixels+=count;++p.revision;return id;
 }
 SurfaceId GlBlitter::cloneSurface(SurfaceId source){
+    if(isolated_){const auto requested=nextId();isolated_->call(wire::message(wire::Op::clone,requested,source),true);return requested;}
     auto& p=*impl_;p.thread();const auto& src=p.get(source);
     const auto width=src.width,height=src.height;const auto format=src.format;
     const auto copy=allocate(width,height,format);
@@ -697,6 +803,7 @@ SurfaceId GlBlitter::cloneSurface(SurfaceId source){
     return copy;
 }
 void GlBlitter::restoreSurface(SurfaceId source,SurfaceId destination){
+    if(isolated_){isolated_->call(wire::message(wire::Op::restore,source,destination),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();const auto& src=p.get(source);auto& dst=p.get(destination);
     if(source==destination || src.width!=dst.width || src.height!=dst.height ||
        src.format.bits!=dst.format.bits || src.format.masks!=dst.format.masks)
@@ -716,11 +823,13 @@ void GlBlitter::restoreSurface(SurfaceId source,SurfaceId destination){
     p.damage(dst,{0,0,dst.width,dst.height});dst.coverage=std::move(coverage);++p.counters.nativeSnapshotCopies;
 }
 void GlBlitter::updateRows(SurfaceId id,const Image& plane,int first,int rows){
+    if(isolated_){isolated_->call(wire::message(wire::Op::rows,id,plane,first,rows),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();const auto& s=p.get(id);
     if(plane.width!=s.width||plane.height!=s.height)throw std::runtime_error("Invalid upload plane extent");
     updateRegionRows(id,0,0,plane,first,rows);
 }
 void GlBlitter::updateRegionRows(SurfaceId id,int x,int y,const Image& plane,int first,int rows){
+    if(isolated_){isolated_->call(wire::message(wire::Op::regionRows,id,x,y,plane,first,rows),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);
     if(plane.width<1||plane.height<1||plane.pixels.size()!=std::size_t(plane.width)*plane.height||first<0||rows<1||first>plane.height-rows||
        x<0||y<0||x>s.width-plane.width||y>s.height-plane.height)
@@ -733,10 +842,12 @@ void GlBlitter::updateRegionRows(SurfaceId id,int x,int y,const Image& plane,int
     p.check();s.validity.define({x,y+first,x+plane.width,y+first+rows});p.damage(s,{x,y+first,x+plane.width,y+first+rows},false);p.uploadedCoverage(s,x,y+first,plane.width,rows,&*begin);++p.counters.uploads;
 }
 void GlBlitter::destroy(SurfaceId id){
+    if(isolated_){isolated_->call(wire::message(wire::Op::destroy,id),true);rasterFrames_.erase(id);return;}
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);Current current(p.context,p.surface);
-    p.counters.pixels-=std::size_t(s.width)*s.height;p.release(s);p.surfaces.erase(id);p.check();
+    p.counters.pixels-=std::size_t(s.width)*s.height;p.release(s);p.surfaces.erase(id);++p.revision;p.check();
 }
 void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
+    if(isolated_){isolated_->call(wire::message(wire::Op::update,id,x,y,patch),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);validateImage(patch,s.format.bits);
     if(x<0 || y<0 || x>s.width-patch.width || y>s.height-patch.height)throw std::runtime_error("Update rectangle is out of bounds");
     Current current(p.context,p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
@@ -744,11 +855,13 @@ void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
     p.check();s.validity.define({x,y,x+patch.width,y+patch.height});p.damage(s,{x,y,x+patch.width,y+patch.height},false);p.uploadedCoverage(s,x,y,patch.width,patch.height,patch.pixels.data());++p.counters.uploads;
 }
 void GlBlitter::updateMasked(SurfaceId id,int x,int y,const Image& patch,const std::vector<std::uint8_t>& coverage){
+    if(isolated_){isolated_->call(wire::message(wire::Op::masked,id,x,y,patch,coverage),true);return;}
  impl_->thread();const auto& s=impl_->get(id);
  if(s.format.bits!=16 || s.format.masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,31})throw std::invalid_argument("Masked updates require RGB565");
  updateCoveredWords(id,x,y,patch,coverage);
 }
 void GlBlitter::updateCoveredWords(SurfaceId id,int x,int y,const Image& patch,const std::vector<std::uint8_t>& coverage){
+    if(isolated_){isolated_->call(wire::message(wire::Op::covered,id,x,y,patch,coverage),true);return;}
     auto& p=*impl_;p.thread();auto& s=p.get(id);validateImage(patch,s.format.bits);
     if(!((s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,31}) || (s.format.bits==32 && s.format.masks==std::array<std::uint32_t,3>{0xff0000,0xff00,0xff})) ||
        x<0 || y<0 || x>s.width-patch.width || y>s.height-patch.height ||
@@ -777,6 +890,7 @@ void GlBlitter::updateCoveredWords(SurfaceId id,int x,int y,const Image& patch,c
     ++p.counters.uploads;
 }
 void GlBlitter::reloadDib(SurfaceId id,const DibInput& dib,const std::optional<std::vector<Rect>>& dcRegions){
+    if(isolated_){isolated_->call(wire::message(wire::Op::dib,id,dib,dcRegions),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);
     const bool indexed=s.format.bits==8;
     const bool rgb565=s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f};
@@ -835,6 +949,7 @@ void GlBlitter::reloadDib(SurfaceId id,const DibInput& dib,const std::optional<s
 }
 void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key,
                      std::optional<SurfaceId> mask,std::uint32_t keyMask){
+    if(isolated_){isolated_->call(wire::message(wire::Op::copy,source,destination,r,x,y,key,mask,keyMask),true);return;}
     auto& p=*impl_;p.thread();auto& src=p.get(source);auto& dst=p.get(destination);
     if(source==destination)throw std::runtime_error("Self-copy is unsupported");
     if(src.format.bits!=dst.format.bits || src.format.masks!=dst.format.masks)throw std::runtime_error("Copy requires identical native formats");
@@ -854,6 +969,7 @@ void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,s
     dst.validity.define({x,y,x+r.right-r.left,y+r.bottom-r.top});
 }
 void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,int y,SurfaceId mask,const SpriteComposite& c,const std::array<std::uint16_t,256>* palette){
+    if(isolated_){isolated_->call(wire::message(wire::Op::composite,source,destination,r,x,y,mask,c,palette?std::optional<std::array<std::uint16_t,256>>(*palette):std::nullopt),true);return;}
     if(c.mode==CompositeMode::copy&&!palette){copy(source,destination,r,x,y,std::nullopt,mask);return;}
     auto& p=*impl_;p.thread();auto& src=p.get(source);auto& dst=p.get(destination);auto& coverage=p.get(mask);
     const PixelFormat rgb565{16,{0xf800,0x7e0,0x1f}};
@@ -888,6 +1004,7 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
     p.draw(3);p.check();++p.counters.copies;
 }
 void GlBlitter::colourRect(SurfaceId destination,const Image& pixels,Rect source,int x,int y,const SpriteComposite& mode){
+    if(isolated_){isolated_->call(wire::message(wire::Op::colour,destination,pixels,source,x,y,mode),true);return;}
     if(pixels.width>64||pixels.height>64)throw std::invalid_argument("Colour rectangle exceeds primitive budget");
     SurfaceId colour=0,mask=0;
     try{colour=create(pixels,{16,{0xf800,0x7e0,0x1f}});mask=create({pixels.width,pixels.height,std::vector<std::uint32_t>(pixels.pixels.size(),1)},{8,{}});
@@ -895,6 +1012,7 @@ void GlBlitter::colourRect(SurfaceId destination,const Image& pixels,Rect source
     }catch(...){if(mask)destroy(mask);if(colour)destroy(colour);throw;}
 }
 void GlBlitter::additiveRect(SurfaceId destination,Rect r,const std::array<std::uint16_t,3>& channels){
+    if(isolated_){isolated_->call(wire::message(wire::Op::additive,destination,r,channels),true);return;}
     auto& p=*impl_;p.thread();auto& dst=p.get(destination);
     if(dst.format.bits!=16||dst.format.masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f}||
        r.left<0||r.top<0||r.right<=r.left||r.bottom<=r.top||r.right>dst.width||r.bottom>dst.height)
@@ -910,14 +1028,17 @@ void GlBlitter::additiveRect(SurfaceId destination,Rect r,const std::array<std::
     p.check();++p.counters.copies;
 }
 void GlBlitter::invalidateContents(SurfaceId id){
-    auto& p=*impl_;p.thread();p.flushCopies();p.get(id).validity.invalidate();p.get(id).coverage.clear();
+    if(isolated_){isolated_->call(wire::message(wire::Op::invalidate,id),true);return;}
+    auto& p=*impl_;p.thread();p.flushCopies();p.get(id).validity.invalidate();p.get(id).coverage.clear();++p.revision;
 }
 void GlBlitter::setClipper(SurfaceId id,const ClipperState& clipper){
+    if(isolated_){isolated_->call(wire::message(wire::Op::clip,id,clipper),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);
-    validateClipper(clipper,s.width,s.height);s.clipper=clipper;
+    validateClipper(clipper,s.width,s.height);s.clipper=clipper;++p.revision;
 }
 SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,const SurfaceCopyRequest& request,
                                        std::optional<std::uint32_t> nativeKey){
+    if(isolated_){return wire::decode<SurfaceCopyResult>(isolated_->call(wire::message(wire::Op::surfaceCopy,source,destination,request,nativeKey),true));}
     auto& p=*impl_;p.thread();p.flushCopies();const auto& s=p.get(source);auto& d=p.get(destination);
     if(source==destination && request.flags!=0 && request.flags!=(request.api==SurfaceCopyApi::BltFast?0x10u:0x01000000u))
         throw std::runtime_error("Self-copy requires opaque flags");
@@ -948,6 +1069,7 @@ SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,
     return {plan.hresult,unsigned(plan.pieces.size())};
 }
 void GlBlitter::swapContents(SurfaceId first,SurfaceId second){
+    if(isolated_){isolated_->call(wire::message(wire::Op::swap,first,second),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();auto& a=p.get(first);auto& b=p.get(second);
     if(first==second || a.width!=b.width || a.height!=b.height ||
        a.format.bits!=b.format.bits || a.format.masks!=b.format.masks)
@@ -956,6 +1078,7 @@ void GlBlitter::swapContents(SurfaceId first,SurfaceId second){
     p.damage(a,{0,0,a.width,a.height},false);p.damage(b,{0,0,b.width,b.height},false);
 }
 void GlBlitter::setPalette(SurfaceId id,unsigned first,const std::vector<Rgb>& colors){
+    if(isolated_){isolated_->call(wire::message(wire::Op::palette,id,first,colors),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);
     if(s.format.bits!=8 || colors.empty() || first>=256 || colors.size()>256-first)throw std::runtime_error("Invalid indexed palette update");
     std::vector<std::uint8_t> bytes;bytes.reserve(colors.size()*4);
@@ -965,6 +1088,7 @@ void GlBlitter::setPalette(SurfaceId id,unsigned first,const std::vector<Rgb>& c
     p.check();for(unsigned i=0;i<colors.size();++i){s.paletteColors[first+i]=colors[i];s.paletteKnown[first+i]=true;}p.damage(s,{0,0,s.width,s.height},false);++p.counters.paletteUpdates;
 }
 Image GlBlitter::read(SurfaceId id){
+    if(isolated_){return wire::decode<Image>(isolated_->call(wire::message(wire::Op::read,id)));}
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,p.surface);p.attach(s.native,s.width,s.height);
     Image out{s.width,s.height,std::vector<std::uint32_t>(std::size_t(s.width)*s.height)};
     p.gl.glReadPixels(0,0,s.width,s.height,GL_RED_INTEGER,GL_UNSIGNED_INT,out.pixels.data());
@@ -992,6 +1116,7 @@ void resolvePresentation(Owner& p,Surface& s,GLuint target,const std::optional<R
 }
 }
 QImage GlBlitter::present(SurfaceId id){
+    if(isolated_){return wire::decode<QImage>(isolated_->call(wire::message(wire::Op::present,id)));}
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,p.surface);auto& g=p.gl;
     if(!s.rgba){g.glActiveTexture(GL_TEXTURE0);s.rgba=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,s.width,s.height,nullptr);s.rgbaDamage=Rect{0,0,s.width,s.height};}
     resolvePresentation(p,s,s.rgba,s.rgbaDamage);s.rgbaDamage.reset();
@@ -1001,27 +1126,36 @@ QImage GlBlitter::present(SurfaceId id){
     p.check(true);++p.counters.presentations;++p.counters.rgbaReadbacks;return out;
 }
 QSize GlBlitter::dimensions(SurfaceId id) const{
+    if(isolated_){return wire::decode<QSize>(isolated_->call(wire::message(wire::Op::dimensions,id)));}
     auto& p=*impl_;p.thread();const auto& s=p.get(id);return {s.width,s.height};
 }
 GpuFrame GlBlitter::presentGpu(SurfaceId id){
+    if(isolated_){
+        auto bytes=isolated_->call(wire::message(wire::Op::frame,id));QDataStream in(bytes);in.setVersion(QDataStream::Qt_6_0);
+        QImage pixels;PixelFormat format;wire::values(in,pixels,format);wire::check(in);
+        auto lease=rasterFrames_[id].lock();if(!lease){lease=std::make_shared<GpuFrame::Data>();rasterFrames_[id]=lease;}
+        {std::lock_guard<std::mutex> lock(lease->mutex);lease->raster=std::move(pixels);lease->dimensions=lease->raster.size();lease->format=format;}
+        return GpuFrame(std::move(lease));
+    }
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,p.surface);auto& g=p.gl;
     auto frame=s.gpu.lock();
     if(!frame){
         frame=std::make_shared<GpuFrame::Data>();frame->owner=impl_;frame->dimensions={s.width,s.height};frame->format=s.format;
         g.glActiveTexture(GL_TEXTURE0);
         frame->texture=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,s.width,s.height,nullptr);
-        s.gpu=frame;++p.counters.gpuPresentationAllocations;
+        s.gpu=frame;p.trackFrame(frame);++p.counters.gpuPresentationAllocations;
         s.gpuDamage=Rect{0,0,s.width,s.height};
     }
     if(frame->consumed){g.glWaitSync(frame->consumed,0,GL_TIMEOUT_IGNORED);g.glDeleteSync(frame->consumed);frame->consumed=nullptr;}
     resolvePresentation(p,s,frame->texture,s.gpuDamage);s.gpuDamage.reset();
     if(frame->produced)g.glDeleteSync(frame->produced);
     frame->produced=g.glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
-    if(!frame->produced)throw std::runtime_error("Cannot fence GPU presentation");
-    g.glFlush();p.check();++p.counters.presentations;++p.counters.gpuPresentations;
+    if(!frame->produced)throw GraphicsFailure("Cannot fence GPU presentation");
+    g.glFlush();p.check();++p.counters.presentations;++p.counters.gpuPresentations;++p.revision;
     return GpuFrame(std::move(frame));
 }
 void GlBlitter::importGpu565(SurfaceId id,const GpuFrame& frame){
+    if(isolated_){if(!frame.hasRaster())throw std::runtime_error("Isolated import requires owned raster frame");isolated_->call(wire::message(wire::Op::importFrame,id,frame.raster(),frame.data_->format),true);return;}
     auto& p=*impl_;p.thread();auto& s=p.get(id);
     const PixelFormat f{16,{0xf800,0x7e0,31}};
     if(!frame.data_ || s.format.bits!=f.bits || s.format.masks!=f.masks ||
@@ -1036,8 +1170,10 @@ void GlBlitter::importGpu565(SurfaceId id,const GpuFrame& frame){
     frame.samplingComplete();s.validity.define({0,0,s.width,s.height});
     p.damage(s,{0,0,s.width,s.height});++p.counters.copies;
 }
-ClipperState GlBlitter::surfaceClipper(SurfaceId id) const{impl_->thread();return impl_->get(id).clipper;}
+ClipperState GlBlitter::surfaceClipper(SurfaceId id) const{
+    if(isolated_){return wire::decode<ClipperState>(isolated_->call(wire::message(wire::Op::clipper,id)));}impl_->thread();return impl_->get(id).clipper;}
 void GlBlitter::copyCoordinates(SurfaceId pixels,std::optional<SurfaceId> source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key){
+    if(isolated_){isolated_->call(wire::message(wire::Op::coordinates,pixels,source,destination,r,x,y,key),true);return;}
  auto& p=*impl_;p.thread();p.flushCopies();auto& a=p.get(pixels);auto& d=p.get(destination);
  if(d.format.bits!=32 || r.left<0 || r.top<0 || r.right> a.width || r.bottom>a.height || r.right<=r.left || r.bottom<=r.top || x<0 || y<0 || x+r.right-r.left>d.width || y+r.bottom-r.top>d.height)throw std::invalid_argument("Coordinate copy bounds/format");
  if(source && *source==destination){
@@ -1051,6 +1187,7 @@ void GlBlitter::copyCoordinates(SurfaceId pixels,std::optional<SurfaceId> source
  const auto u=[&](const char* name){return p.coordinateProgram->uniformLocation(name);};g.glUniform1i(u("sourcePixels"),0);g.glUniform1i(u("sourceCoordinates"),1);g.glUniform1i(u("mappedSource"),bool(source));g.glUniform1i(u("hasKey"),bool(key));g.glUniform1ui(u("sourceKey"),key.value_or(0));g.glUniform2i(u("sourceOrigin"),r.left,r.top);g.glUniform2i(u("destinationOrigin"),x,y);p.draw(3);p.check();d.validity.define({x,y,x+r.right-r.left,y+r.bottom-r.top});p.damage(d,{x,y,x+r.right-r.left,y+r.bottom-r.top});++p.counters.copies;
 }
 void GlBlitter::assembleMappedWorld(SurfaceId destination,SurfaceId ui,SurfaceId coordinates,const GpuFrame& world){
+    if(isolated_){if(!world.hasRaster())throw std::runtime_error("Isolated import requires owned raster frame");isolated_->call(wire::message(wire::Op::mapped,destination,ui,coordinates,world.raster(),world.data_->format),true);return;}
  auto& p=*impl_;p.thread();p.flushCopies();auto& d=p.get(destination);auto& a=p.get(ui);auto& c=p.get(coordinates);const PixelFormat rgb{16,{0xf800,0x7e0,31}};
  if(!world.data_ || world.data_->format.bits!=16 || world.data_->format.masks!=rgb.masks || a.format.bits!=16 || a.format.masks!=rgb.masks || d.format.bits!=16 || d.format.masks!=rgb.masks || c.format.bits!=32 || a.width!=d.width || a.height!=d.height || c.width!=d.width || c.height!=d.height || destination==ui || destination==coordinates)throw std::invalid_argument("Mapped native frame extent/format");
  a.validity.require({0,0,a.width,a.height});c.validity.require({0,0,c.width,c.height});Current current(p.context,p.surface);auto& g=p.gl;const auto texture=world.textureForCurrentContext();p.attach(d.native,d.width,d.height);p.setScissor(false);p.useProgram(p.mappedWorldProgram->programId());
@@ -1066,4 +1203,5 @@ Image GlBlitter::draw(const Blit& c){
         auto output=read(dst);destroy(dst);dst=0;destroy(src);src=0;return output;
     }catch(...){if(dst)destroy(dst);if(src)destroy(src);throw;}
 }
+#include "isolated_dispatch.inc"
 }

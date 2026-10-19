@@ -133,9 +133,12 @@ static i32 WIN create_palette(void* object,u32 flags,void* entries,void** result
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
     if(!copy_lease.observe){game_lifetime_invalidate();i32 forwarded=((i32 (WIN *)(void*,u32,void*,void**,void*))lookup(object)->original[5])(object,flags,entries,result,outer);game_lifetime_invalidate();game_copy_unobserved(object);return forwarded;}
     u32 entry=GetLastError();struct Table* t=lookup(object);u8 colors[1024];
-    int valid=game_palette_supported(flags) && readable(entries,1024);if(valid)copy(colors,entries,1024);SetLastError(entry);
+    u32 count=game_palette_entry_count(flags);
+    int valid=count && readable(entries,count*4);if(valid){zero(colors,1024);copy(colors,entries,count*4);}SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,u32,void*,void**,void*))t->original[5])(object,flags,entries,result,outer);u32 error=GetLastError();
-    if(status>=0 && result && *result){install_table(*result,20);game_palette_created(*result,flags,valid?colors:0);}
+    if(status>=0 && result && *result){install_table(*result,20);
+        if(valid){struct Table* palette=lookup(*result);valid=palette && ((i32(WIN*)(void*,u32,u32,u32,void*))palette->original[4])(*result,0,0,count,colors)>=0;}
+        game_palette_created(*result,flags,valid?colors:0);}
     SetLastError(error);return status;
 }
 static i32 WIN palette_caps(void* object,u32* caps){

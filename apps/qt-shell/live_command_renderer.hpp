@@ -16,6 +16,8 @@ public:
     bool finishProducer();
     void abort();
     void setPresentationSuspended(bool suspended);
+    void checkpointGraphics(){if(renderer_ && !renderer_->hasRecoveryCheckpoint())renderer_->checkpointRecovery();}
+    void recoverGraphics(){if(renderer_)renderer_->recoverContext(target_.context(),target_.offscreen);}
     std::function<void()> framePresented;
     std::function<void(std::uint64_t)> cpuReadPending;
     std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;

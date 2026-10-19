@@ -11,6 +11,7 @@ import tempfile
 
 from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, draft, load_json, snapshot
 from coverage_merge_history import inherited_history
+from coverage_reviews import load_journal, read_journal
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -109,7 +110,9 @@ def run(args, stack):
         # Only one full tree is needed at a time, even for a Git-base check.
         reviews = None
         if not args.freeze_baseline:
-            reviews = json.loads((args.reviews or current_root/REVIEWS).read_text())
+            reviews = (read_journal(lambda name: args.reviews.read_bytes() if name == REVIEWS
+                                   else (current_root/name).read_bytes())[0] if args.reviews
+                       else load_journal(current_root)[0])
             if args.bootstrap:
                 staged_baseline = load_json(current_root, BASELINE)
             elif not args.base:

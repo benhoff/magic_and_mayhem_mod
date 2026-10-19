@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 from coverage_audit import audit, pointer, source_hashes
+from coverage_reviews import load_journal
 
 spec = importlib.util.spec_from_file_location('gate_source_index', Path(__file__).with_name('index-coverage-sources.py'))
 source_index = importlib.util.module_from_spec(spec)
@@ -78,11 +79,12 @@ def snapshot(root, register=None):
         resolved = (root/path).resolve()
         if not resolved.is_relative_to(root) or resolved.relative_to(root).parts[0] in {'original', 'working'}:
             raise ValueError(f'Unsafe source-census target: {path}')
+    journal, review_paths = load_journal(root) if (root/REVIEWS).is_file() else ({'reviews': []}, {REVIEWS})
     sources = {item['path']: item for item in source_index.index(root, register)['files']}
     for name in ('research', 'docs'):
         for path in sorted((root/name).rglob('*')):
             relative = path.relative_to(root).as_posix()
-            if path.is_file() and path.suffix in {'.md', '.json'} and relative not in {BASELINE, REVIEWS}:
+            if path.is_file() and path.suffix in {'.md', '.json'} and relative not in {BASELINE} | review_paths:
                 sources[relative] = {'path': relative, 'sha256': file_digest(path), 'role': 'research', 'references': []}
     for path in CONTROL_FILES:
         if (root/path).is_file():
@@ -119,9 +121,9 @@ def snapshot(root, register=None):
             'inventories': {b['inventory']: b['inventory_sha256'] for b in register['builds']},
             'research_artifacts': {p.relative_to(root).as_posix(): file_digest(p)
                                    for p in sorted((root/'research').rglob('*.json'))
-                                   if p.relative_to(root).as_posix() not in {BASELINE, REVIEWS}},
+                                   if p.relative_to(root).as_posix() not in {BASELINE} | review_paths},
             'builds': {b['id']: b['source_sha256'] for b in register['builds']},
-            'historical_reviews': load_json(root, REVIEWS)['reviews'] if (root/REVIEWS).is_file() else [],
+            'historical_reviews': journal['reviews'],
             'claim_bindings_required': register.get('claim_bindings_required', False),
             'gaps': gap_items(report)}, report
 

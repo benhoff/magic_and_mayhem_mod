@@ -28,6 +28,8 @@ public:
     bool submit(std::uint64_t,Work,std::shared_ptr<void> metadata={});
     bool take(Completion&);
     Stats stats() const;
+    // Serialized on the production owner; caller has quiesced frame sampling.
+    void recoverContext(QOpenGLContext*);
     void join();
 private:
     struct Job {std::uint64_t sequence;Work work;std::shared_ptr<void> metadata;};
@@ -41,6 +43,8 @@ private:
     std::deque<Completion> ready_;
     Stats state_;
     bool stopping_=false;
+    bool recoveryRequested_=false;
+    QOpenGLContext* recoveryShare_=nullptr;
     std::thread owner_;
 };
 }

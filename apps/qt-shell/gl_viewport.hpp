@@ -1,5 +1,6 @@
 #pragma once
 #include <QImage>
+#include <QPointer>
 #include <functional>
 #include "blit.hpp"
 #include <QOpenGLFunctions>
@@ -7,11 +8,24 @@
 #include <QOpenGLWidget>
 #include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
-class GlViewport final:public QOpenGLWidget,protected QOpenGLFunctions {
+class GlViewportCanvas;
+class GlViewport final:public QWidget,protected QOpenGLFunctions {
+    Q_OBJECT
 public:
     enum class Scaling { Sharp, Smooth, Integer };
     explicit GlViewport(QWidget* parent=nullptr);
     ~GlViewport() override;
+    QOpenGLContext* context() const;
+    void makeCurrent();
+    void doneCurrent();
+    QImage grabFramebuffer();
+    void update();
+    void repaint();
+    bool rasterPresentation() const{return raster_;}
+signals:
+    void frameSwapped();
+    void aboutToCompose();
+public:
     void setFrame(QImage image);
     void setGpuFrame(mnm::render::GpuFrame frame);
     std::uint64_t imageUploads() const{return imageUploads_;}
@@ -24,6 +38,9 @@ public:
     QString error() const{return error_;}
     // Optional native diagnostic observer: false begins painting, true completes.
     std::function<void(bool)> framePaintTiming;
+    std::function<bool()> recoverGraphics;
+    // The application owns desired visibility; Qt hides widgets on surface loss.
+    std::function<bool()> shouldRestorePlatformSurface;
     enum class Activity { PresentationPoll, RouteCapture, ReferenceRead, ScreenCapture, NativeReadback, ImageEncoding, DiagnosticCapture, CampaignPoll, ProgressPublication, CaptureRequest, WindowDiscovery, InputHeartbeat, RenderStatusPickup };
     std::function<void(Activity,bool)> activityTiming;
     class ActivityScope {
@@ -36,9 +53,20 @@ public:
         GlViewport* viewport_;Activity activity_;
     };
 protected:
-    void initializeGL() override;
-    void paintGL() override;
+    void initializeGL();
+    void paintGL();
+    void paintEvent(QPaintEvent*) override;
+    void resizeEvent(QResizeEvent*) override;
+    bool event(QEvent*) override;
+    bool eventFilter(QObject*,QEvent*) override;
+    void showEvent(QShowEvent*) override;
 private:
+    friend class GlViewportCanvas;
+    bool raster_=false,platformRecoveryQueued_=false,platformRecoveryCancelled_=false;
+    QPointer<QWidget> platformHost_;
+    QPointer<QWindow> platformWindow_;
+    GlViewportCanvas* canvas_=nullptr;
+    void paintRaster(QPainter&);
     QRect physicalImageRect() const;
     Scaling scaling_=Scaling::Sharp;
     void release();

@@ -1,5 +1,6 @@
 /* Execute actual facade call boundaries; no original executable or media. */
 #include "../runtime/shadow/win32_min.h"
+#include "../runtime/native-draw/image_copy_original.h"
 API void* WIN LoadLibraryA(const char*);
 API void* WIN GetProcAddress(void*,const char*);
 API i32 WIN SetEnvironmentVariableA(const char*,const char*);
@@ -15,9 +16,9 @@ void start(void){
  if(mode[0]=='g'){glyph_native_only_configure();glyph_native_only_refuse(17);ExitProcess(0);}
  void* module=LoadLibraryA(name);require(module!=0,182);
  i32(WIN* create)(void*,void**,void*)=GetProcAddress(module,"NativeDrawCreate");require(create!=0,183);
- u8* site=(u8*)0x533aec;u32 page[7],old;
+ u8* site=(u8*)0x533a00;u32 page[7],old;
  require(VirtualQuery(site,page,28)==28 && page[1]==0x400000 && VirtualProtect(site,8,0x40,&old),184);
- const u8 prefix[20]={0x8b,0xcd,0x8b,0xf0,0x8b,0xfa,0x03,0xc3,0xc1,0xe9,2,0xf3,0xa5,0x8b,0xcd,0x83,0xe1,3,0xf3,0xa4};for(u32 i=0;i<20;++i)site[i]=prefix[i];
+ for(u32 i=0;i<sizeof(ns_image_copy_original);++i)site[i]=ns_image_copy_original[i];
  void* draw=0;require(!create(0,&draw,0)&&draw,185);
  u32 desc[27]={108,7,9,13};desc[26]=0x840;void* surface=0;
  require(!((i32(WIN*)(void*,const u32*,void**,void*))table(draw)[6])(draw,desc,&surface,0),186);

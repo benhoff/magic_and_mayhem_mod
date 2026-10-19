@@ -24,6 +24,8 @@ public:
     ~ResidentWorldSession();
     void poll(bool acceptedNormalQuit=false);
     void abort(const QString&);
+    void checkpointGraphics();
+    void recoverGraphics();
     mnm::render::GpuFrame import(std::uint64_t generation,std::uint64_t nonce);
     QJsonObject report() const;
     bool ready(std::uint64_t generation,std::uint64_t nonce) const;

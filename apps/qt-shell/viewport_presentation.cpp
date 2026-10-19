@@ -14,7 +14,7 @@ ViewportPresentation::ViewportPresentation(QWidget& window,GlViewport& viewport,
     viewport_.setScaling(options.scaling);
     // Application filters run before InputForwarder, including its ShortcutOverride handling.
     qApp->installEventFilter(this);
-    connect(&viewport_,&QOpenGLWidget::frameSwapped,this,[this]{if(fullscreenActive_)scheduleChromeUpdate();});
+    connect(&viewport_,&GlViewport::frameSwapped,this,[this]{if(fullscreenActive_)scheduleChromeUpdate();});
 }
 ViewportPresentation::~ViewportPresentation(){qApp->removeEventFilter(this);}
 void ViewportPresentation::addControls(QToolBar& toolbar){

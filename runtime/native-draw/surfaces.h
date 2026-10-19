@@ -16,6 +16,7 @@ struct NsState {
   u16* pixels_alias;HANDLE pixels_mapping;u32 cpu_guard_world_ready;
   u8* cpu_dirty;u32 cpu_dirty_count,cpu_dirty_partial;
   u32 key_set,key_low,key_high;struct NsState* back;
+  u32 dest_key_set,dest_key_low,dest_key_high;
   void *dc,*bitmap,*old_bitmap,*dc_bits;struct NcClipper* clipper;
   struct NsState *previous_owned,*next_owned;struct NpPalette* palette;
 };
@@ -73,7 +74,8 @@ static i32 WIN ns_desc(struct NsObject* o,u32* d){
  u32 size=o->kind==3?124:108;if(!d || d[0]!=size)return ND_INVALID;
  struct NsState* s=o->state;ns_zero(d,size/4);d[0]=size;d[1]=0x100f;
  d[2]=s->height;d[3]=s->width;d[4]=s->pitch;ns_surface_format(s,d+18);d[26]=s->caps;
- if(s->key_set){d[1]|=0x10000;d[16]=s->key_low;d[17]=s->key_high;}return 0;
+ if(s->key_set){d[1]|=0x10000;d[16]=s->key_low;d[17]=s->key_high;}
+ if(s->dest_key_set){d[1]|=0x4000;d[12]=s->dest_key_low;d[13]=s->dest_key_high;}return 0;
 }
 static int ns_rectangle(struct NsState* s,const i32* input,i32* r){
  if(input){for(u32 i=0;i<4;++i)r[i]=input[i];}
@@ -104,15 +106,19 @@ static i32 WIN ns_unlock(struct NsObject* o,void* argument){
  if(s->locked<0)ExitProcess(125);--s->locked;s->lock_pointer=0;s->lock_owner=s->lock_full=0;ns_guard_refresh(s);return 0;
 }
 static i32 WIN ns_key(struct NsObject* o,u32 flags,const u32* key){
- if(flags!=8)return NS_UNSUPPORTED;
+ if((flags&~1u)!=8 && (flags&~1u)!=2)return NS_UNSUPPORTED;
  struct NsState* s=o->state;if(key){if(key[0]>key[1] || (s->bits<32 && key[1]>((1u<<s->bits)-1)))return ND_INVALID;
-  s->key_low=key[0];s->key_high=key[1];s->key_set=1;}else s->key_set=0;return 0;
+  if((flags&~1u)==2){s->dest_key_low=key[0];s->dest_key_high=key[1];s->dest_key_set=1;return 0;}
+  s->key_low=key[0];s->key_high=key[1];s->key_set=1;}else {if((flags&~1u)==2)s->dest_key_set=0;else s->key_set=0;}return 0;
 }
 static i32 WIN ns_get_key(struct NsObject* o,u32 flags,u32* key){
- if(!key || flags!=8)return ND_INVALID;if(!o->state->key_set)return (i32)0x887600d7u;
+ if(!key || (flags!=8 && flags!=2))return ND_INVALID;
+ if(flags==2){if(!o->state->dest_key_set)return (i32)0x887600d7u;key[0]=o->state->dest_key_low;key[1]=o->state->dest_key_high;return 0;}
+ if(!o->state->key_set)return (i32)0x887600d7u;
  key[0]=o->state->key_low;key[1]=o->state->key_high;return 0;
 }
 #include "pixel_conversion.h"
+#include "blit_effects.h"
 static i32 ns_draw_route(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx,u32 gpu){
  struct NsState *d=dst->state,*s=src?src->state:0;i32 rd[4],rs[4];
  for(u32 i=0;i<4;++i){rd[i]=dr?dr[i]:(i<2?0:(i==2?(i32)d->width:(i32)d->height));
@@ -198,6 +204,7 @@ __declspec(dllexport) i32 WIN NativeDrawGpuCopyV1(void* dst,const i32* dr,void* 
 }
 #include "gpu_copy_plan.h"
 static i32 WIN ns_blt(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx){
+ if(flags&~(0x1000000u|0x8000u|0x400u))return ns_effect_draw(dst,dr,src,sr,flags,fx);
  return ns_draw(dst,dr,src,sr,flags,fx);
 }
 static i32 WIN ns_fast(struct NsObject* dst,u32 x,u32 y,struct NsObject* src,const i32* rect,u32 flags){
@@ -208,8 +215,9 @@ static i32 WIN ns_fast(struct NsObject* dst,u32 x,u32 y,struct NsObject* src,con
  if(dst->state->clipper)return (i32)0x8876023eu;
  if(!ns_rectangle(src->state,r,r))return NS_RECT;
  /* Wine's selected missing-key and unsupported-flag Fast calls copy opaque. */
- if(flags&~0x80000011u)return NS_UNSUPPORTED;
+ if(flags&~0x80000013u)return NS_UNSUPPORTED;
  i32 d[4]={(i32)x,(i32)y,(i32)(x+w),(i32)(y+h)};
+ if((flags&2) && dst->state->dest_key_set)return ns_effect_draw(dst,d,src,r,0x2000|((flags&1) && src->state->key_set?0x8000:0),0);
  return ns_draw(dst,d,src,r,(flags&1) && src->state->key_set?0x8000:0,0);
 }
 static i32 WIN ns_caps(struct NsObject* o,u32* caps){if(!caps)return ND_INVALID;caps[0]=o->state->caps;if(o->kind==3)ns_zero(caps+1,3);return 0;}
@@ -302,7 +310,8 @@ static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer
   if(o->state->primary)return (i32)0x88760234u;
   if(!o->state->coop)return (i32)0x88760212u;
   if((caps==0x200 && flags!=1) || (caps==0x218 && (flags!=0x21 || d[5]!=1)))return NS_UNSUPPORTED;
-  w=o->state->width;h=o->state->height;
+  w=o->state->width;h=o->state->height;bits=o->state->depth;
+  if(bits!=16){masks[0]=bits==8?0:0xff0000;masks[1]=bits==8?0:0xff00;masks[2]=bits==8?0:0xff;}
  }else {
   if((flags!=7 && flags!=0x1007) || (caps!=0x840 && caps!=0x40 && caps!=0x800))return ns_surface_refusal(o,d,1,__builtin_return_address(0));
   if(flags==0x1007){bits=d[21];for(u32 i=0;i<3;++i)masks[i]=d[22+i];
@@ -320,10 +329,14 @@ static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer
 
 typedef i32 (WIN *NdModeCallback)(u32*,void*);
 static i32 WIN nd_enum_modes(struct NdObject* o,u32 flags,const u32* filter,void* context,NdModeCallback callback){
- (void)o;if(!callback || (flags!=0 && flags!=1) || (filter && ((filter[0]!=108 && filter[0]!=124) || filter[1])))return NS_UNSUPPORTED;
+ (void)o;if(!callback || (flags!=0 && flags!=1) || (filter && ((filter[0]!=108 && filter[0]!=124) || (filter[1]&~0x1006u))))return NS_UNSUPPORTED;
  u32 size=filter?filter[0]:108;
- for(u32 i=0;i<2;++i){u32 d[31];ns_zero(d,31);d[0]=size;d[1]=0x4100e;d[2]=i?600:480;d[3]=i?800:640;d[4]=d[3]*2;d[6]=60;ns_format(d+18);
-  if(!callback(d,context))break;}return 0;
+ const u32 depths[4]={16,8,24,32};
+ for(u32 mode=0;mode<4;++mode)for(u32 i=0;i<2;++i){u32 d[31];ns_zero(d,31);d[0]=size;d[1]=0x4100e;d[2]=i?600:480;d[3]=i?800:640;d[4]=d[3]*(depths[mode]/8);d[6]=60;ns_format(d+18);
+  if(mode){d[19]=depths[mode]==8?0x60:0x40;d[21]=depths[mode];d[22]=mode==1?0:0xff0000;d[23]=mode==1?0:0xff00;d[24]=mode==1?0:0xff;}
+  if(filter && (((filter[1]&4) && filter[3]!=d[3]) || ((filter[1]&2) && filter[2]!=d[2]) || ((filter[1]&0x1000) && filter[21]!=d[21])))continue;
+  if(!callback(d,context))return 0;}
+ return 0;
 }
 static i32 WIN nd_memory(struct NdObject* o,const u32* caps,u32* total,u32* available){
  if(!caps || (!total && !available) || caps[0]!=0x4000 || (o->kind==3 && (caps[1] || caps[2] || caps[3])))return NS_UNSUPPORTED;
@@ -335,7 +348,7 @@ static i32 WIN nd_cooperate(struct NdObject* o,void* window,u32 flags){
 static i32 WIN nd_mode(struct NdObject* o,u32 w,u32 h,u32 depth,u32 refresh,u32 flags){
  if(o->state->primary)return NS_BUSY;
  if(o->state->coop!=0x11)return (i32)0x887600e1u;
- if(!w || !h || w>4096 || h>4096 || depth!=16 || refresh || flags)return NS_UNSUPPORTED;
+ if(!w || !h || w>4096 || h>4096 || (depth!=8 && depth!=16 && depth!=24 && depth!=32) || refresh || flags)return NS_UNSUPPORTED;
  o->state->width=w;o->state->height=h;o->state->depth=depth;return 0;
 }
 static i32 WIN nd_mode1(struct NdObject* o,u32 w,u32 h,u32 depth){return nd_mode(o,w,h,depth,0,0);}

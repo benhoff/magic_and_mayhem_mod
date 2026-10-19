@@ -230,7 +230,7 @@ public:
                 statusBar()->showMessage(state.ready?(state.screen==7?QString("Spell selection connected. Edits apply on Start battle. Time remaining: %1").arg(state.spells.seconds<0?QString("expired"):QString::number(state.spells.seconds)):state.screen==14?"Battle setup connected. Edits apply when opening Map, changing a player or starting.":"Native menu connected to the engine. Other actions are available through Use original menus."):"Waiting for the engine menu transition…");
             };
         }
-        if(opengl_){gl_=new GlViewport(viewport_);gl_->setObjectName("nativeGameViewport");connect(gl_,&QOpenGLWidget::frameSwapped,this,[this]{if(nativeActive()&&gl_->isVisible()&&(!menuStack_||menuStack_->currentWidget()==viewport_))++nativePaintedFrames_;});layout_->addWidget(gl_);gl_->hide();input_=std::make_unique<InputForwarder>(*gl_,host_);}
+        if(opengl_){gl_=new GlViewport(viewport_);gl_->setObjectName("nativeGameViewport");gl_->shouldRestorePlatformSurface=[this]{return nativeActive() && !residentTerminal_;};connect(gl_,&GlViewport::frameSwapped,this,[this]{if(nativeActive()&&gl_->isVisible()&&(!menuStack_||menuStack_->currentWidget()==viewport_))++nativePaintedFrames_;});layout_->addWidget(gl_);gl_->hide();input_=std::make_unique<InputForwarder>(*gl_,host_);}
         auto* toolbar=addToolBar("Game");toolbar->setMovable(false);
         launch_=new QPushButton("Launch game",this);launch_->setObjectName("launchGame");toolbar->addWidget(launch_);
         restart_=new QPushButton("Hard restart",this);toolbar->addWidget(restart_);
@@ -323,6 +323,10 @@ public:
                         }}
                     }catch(const std::exception& e){residentFailed(QString::fromUtf8(e.what()));return;}
                 }
+                if(qEnvironmentVariableIntValue("MNM_NATIVE_DEVICE_RECOVERY")==1 && commands_ && commands_->error().isEmpty()){
+                    try{if(residentWorld_)residentWorld_->checkpointGraphics();commands_->checkpointGraphics();}
+                    catch(const std::exception& e){residentFailed(QString::fromUtf8(e.what()));return;}
+                }
                 if(liveMenus_)liveMenus_->renderingProgress();
                 const double totalMs=workClock.nsecsElapsed()/1000000.0;
                 if(residentWorld_&&nativePollTiming_&&nativePollTimingRows_<256&&(totalMs>=50||gap>=100)){
@@ -391,6 +395,7 @@ protected:
         if(nativeOnly_&&!nativeOnlySession_.completed())QCoreApplication::exit(1);
     }
 private:
+    unsigned guiGraphicsRecoveries_=0;
     bool createNativeVoices(const QString& path,const QString& soundsRoot={}){
         voices_=std::make_unique<mnm::audio::VoiceBroker>();
         voices_->failed=[this](const QString& error){log_->appendPlainText("Native voice output failed: "+error);};
@@ -439,6 +444,13 @@ private:
                     frames_.setInterval(1);
                 }else{
                     commands_=std::make_unique<LiveCommandSession>(*gl_);
+                    guiGraphicsRecoveries_=0;
+                    if(qEnvironmentVariableIntValue("MNM_NATIVE_DEVICE_RECOVERY")==1)gl_->recoverGraphics=[this]{
+                        if(!commands_ || !commands_->error().isEmpty() || guiGraphicsRecoveries_>=3)return false;
+                        ++guiGraphicsRecoveries_;
+                        try{if(residentWorld_)residentWorld_->recoverGraphics();commands_->recoverGraphics();gl_->update();return true;}
+                        catch(const std::exception& e){residentWorldError_=QString::fromUtf8(e.what());return false;}
+                    };
                     commands_->cpuReadPending=[this](auto ticket){if(liveMenus_)liveMenus_->renderingProgress(ticket);};
                     if(resident){
                         try{residentWorld_=std::make_unique<ResidentWorldSession>(*gl_,directory.filePath("world-continuous.bin"),directory.filePath("game"),false);}

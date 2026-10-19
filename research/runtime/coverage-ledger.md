@@ -18080,6 +18080,14 @@ remains present; latest combined-source validation is explicitly pending and no
 old result/hash is refreshed. Full-checkout audit/gate failures from other
 in-progress scenarios and native policies remain separate from this feature.
 
+## Native renderer functional compatibility closure (2026-10-18)
+
+The four implementation policies in [functional closure](native-render-functional-closure.md) are now present: canonical copy conversion/scaling, ordered raw owner-Lock instruction continuation, native533aec row copying and fresh-generation native-only Hard restart. Successful Unlock reconciles physical CPU authority before subsequent GPU-copy selection. Resident copy scheduling has a bounded250ms budget and retains the explicit reader extension through its complete owner.
+
+Current PE32/Qt/process and independent FIFO controls pass. A current source-stable native-only20-second input-stress journey completes217balanced Worlds,4828native producer calls, zero forwards, native Mini/Cancel and Quit No/Yes, and original exit0. Four actual533aec restoration tags are retained in its lifecycle log. The current restart journey injects one live producer failure, observes500ms of terminal cleanup, uses public Hard restart, verifies a new launcher/channel, then completes3balanced Worlds and normal Quit with673native calls and zero forwards. Both game acquisitions verify all2927original files before/after.
+
+Raw instruction classes and all25 cross-format/scaling combinations have headless integration controls; no positive live execution of every class, original-driver colour/whole-session equivalence, physical-context-loss continuation or hardware/FPS acceptance is inferred. The cancelled generation gets no rendering credit. Complete replacement remains false; original outer clipping/preparation and simulation remain. Failed setup/runtime attempts and exact historical hashes are preserved in the acquisition catalog.
+
 ## Native-only implementation commit boundary (2026-10-18)
 
 The source/dependency commit retains the twelve-World/1,230-call launch result
@@ -18088,6 +18096,66 @@ promotions are not carried into the committed register. See
 [native-only commit boundary](native-only-commit-boundary-20261018.md) for the
 remaining scope and the preserved declarations. This is source implementation,
 not a complete-renderer or original-pixel equivalence milestone.
+
+
+## Native rendering implementation follow-up (2026-10-18)
+
+[Implementation scope](native-render-implementation-closure.md) registers
+NP.native-extended-2d, NP.native-clipped-image-copy and
+NP.native-device-checkpoints. The whole checked No-CD533a00 image routine now
+runs native clipping/preparation and row copies. Owned facade extensions include
+ROP3/patterns, destination/source keys and overrides, mirroring/quarter-turns,
+small/reserved-endpoint palettes and canonical primary depths. The RGB565 World
+producer retains its own contract.
+
+[Current PE32 controls](native-extended-draw-final-20261018.json) pass528 exact original
+function-body comparisons,256ROP tables,16mirrored/rotated copies, palette/depth
+and mode enumeration controls, plus existing five-format/raw owner-Lock
+regressions. The current PE32 bridge builds.
+[Current OpenGL controls](native-device-checkpoints-completed-20261018.json) rebuild into
+a different sharing group and back, preserving native pixels, partial validity,
+palettes, clipping and frame/surface identities. Async queue recovery preserves
+both leased outputs through a pending third job, then continues ordered source
+updates. Ordinary queue controls pass separately; the complete Qt host builds.
+Both reports bind prospective scopes/sources and verify source stability. These
+are isolated/headless integrations, not new live game or physical reset evidence.
+
+The opt-in --device-recovery mode retains completed-turn native RAM checkpoints
+and performs explicitly counted GPU recovery readbacks. GUI and dedicated
+render-owner adapters request bounded quiescent rebuilds without restarting game
+or command sessions. In-flight draw/producer faults, hung drivers and lost Qt
+platform surfaces still require Hard restart; universal progress-preserving
+recovery remains an implementation gap. Native device checkpoint implementation
+therefore remains partial. Existing live/report hashes and milestones stay
+historical; shared changes leave their current validation pending. All2927
+original files verify unchanged around the original-artifact inspection.
+
+A supplemental normal-game smoke completes9balanced Worlds,976native producer
+calls/zero forwards, Mini/Cancel/resume, Quit No/Yes and original exit0. It does
+not positively count the whole-image entry or supply a complete Qt compiler
+closure, so the image policy integration remains headless. The20-second and
+10-second input-stress journeys both stall at campaign stage7 before the second
+Mini opening, while Worlds continue and renderer errors remain empty. The second
+run also observes an intervening source change and is not current-source
+acceptance. Input/menu-state versus harness timing remains unresolved; neither
+stress attempt passes. All acquisitions and failures are preserved in the
+[native implementation acquisition catalog](native-implementation-closure-acquisition-final-20261018.json).
+
+## Isolated native rendering recovery (2026-10-18)
+
+The existing `--device-recovery` option now runs GL operations in a replaceable
+service, commits native checkpoints and bounded operation journals, and retries
+interrupted draws without replaying application acknowledgments or restarting the
+game. A raster Qt host retains frame/input state through platform-window
+recreation and keeps GUI driver calls outside the recovery profile. Native
+readback/IPC costs are explicit. See [implementation and failure policy](native-isolated-render-recovery.md).
+
+`NP.native-isolated-render-recovery` owns this intentional native policy. Its
+synthetic renderer/Qt continuation controls and ordinary-path regressions have a
+new prospective execution record; physical hardware-reset, live-game recovery and
+sustained performance acceptance remain separate, pending milestones. Semantic
+producer errors and exhausted retries continue to fail explicitly. The existing
+local quiescent API retains its narrower scope and historical evidence.
 
 
 ## NS88 — original-first ordinary decision-pipeline capture (2026-10-18)
@@ -18116,3 +18184,34 @@ captured. Full original multi-source candidate-to-task composition, wizard
 scoring/survival, other task families, second brain and World timing/difficulty/
 perception/allocation scheduling remain pending. Native battle integration and
 live replacement are independent; gameplay balance remains unchanged.
+
+## Local renderer commit checks (2026-10-18)
+
+Fresh prospective [extended drawing controls](native-extended-draw-commit-20261018.json)
+and [local checkpoint controls](native-device-checkpoints-commit-20261018.json)
+pass on the staged render source revision. The former retains528 independent
+original clipped-copy comparisons,256ROP tables,16transform cases, palette/mode
+controls and existing CPU-backing regressions. The latter rebuilds actual GL
+contexts across sharing groups, retains frame leases and continues the bounded
+queue; the complete Qt shell builds. Both report stable declared sources.
+The eleven isolated recovery controls remain source-identical to their final
+registered execution. No new live-game, physical-reset or hardware-performance
+acceptance is asserted.
+
+Earlier functional/live results and exact receipts stay historical after shared
+source changes. Their last committed stage declarations are retained rather
+than promoting them from stale execution. Pending receipts account for shared
+source changes without claiming renewed original equivalence or live replacement.
+Unfinished native campaign/AI source and metadata remain outside this render commit.
+
+## Coverage journal push repair (2026-10-19)
+
+The two final unpushed review-journal versions exceeded GitHub's 100 MiB blob
+limit. The journal now stores older receipts in ordered, SHA-256-pinned shards
+of at most 32 MiB, preserving all receipt values and their order. Filesystem,
+staged and historical Git readers load the same append-only history. Existing
+evidence reports, recorded source hashes and milestone statuses remain unchanged.
+Synthetic storage/guard checks cover lossless splitting, tampering, missing and
+escaping paths, staged reads and historical Git reads. Changes to the accounting
+tools leave their earlier execution records historical; no engine comparison,
+integration or replacement result is renewed by this storage repair.

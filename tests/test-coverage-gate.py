@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
 from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, digest, draft, snapshot, source_index
 from coverage_claims import behavior_contract
+from coverage_reviews import ARCHIVES, load_journal, read_journal, split_journal
 
 spec = importlib.util.spec_from_file_location('gate_cli', ROOT/'tools/check-re-coverage.py')
 cli = importlib.util.module_from_spec(spec)
@@ -137,6 +138,63 @@ class GateTests(unittest.TestCase):
         self.json('research/runtime/coverage/change-reviews.json', reviews)
         baseline, _ = self.current()
         self.assert_error(self.result({'schema': 1, 'reviews': []}, before=baseline), 'Historical change review removed or rewritten')
+
+    def test_sharded_journal_preserves_receipts_and_append_only_enforcement(self):
+        self.write('assets/model.cpp', 'first\n')
+        reviews = self.receipt()
+        # Force two shards, keeping complete receipts and their order intact.
+        extra = copy.deepcopy(reviews['reviews'][0])
+        extra['id'] += '-second'
+        reviews['reviews'].append(extra)
+        self.json(REVIEWS, reviews)
+        before, _ = self.current()
+        size = len(json.dumps(extra, separators=(',', ':'))) + 1200
+        split_journal(self.root, max_bytes=size)
+        loaded, paths = load_journal(self.root)
+        self.assertEqual(loaded['reviews'], reviews['reviews'])
+        self.assertGreater(len(paths), 1)
+        after, report = self.current()
+        self.assertEqual(changes(before, after)['files'], [])
+        self.assertEqual(check(before, after, loaded, report)['errors'], [])
+        self.assert_error(check(before, after, dict(loaded, reviews=loaded['reviews'][1:]), report),
+                          'Historical change review removed or rewritten')
+        # The same byte reader is used for historical Git trees.
+        historical, _ = read_journal(lambda name: (self.root/name).read_bytes())
+        self.assertEqual(historical['reviews'], loaded['reviews'])
+        revision = self.init_git()
+        historical, _ = read_journal(lambda name: cli.git(self.root, 'show', revision + ':' + name))
+        self.assertEqual(historical['reviews'], loaded['reviews'])
+        with cli.staged_tree(self.root) as staged:
+            self.assertEqual(load_journal(staged)[0]['reviews'], loaded['reviews'])
+        archive = next(p for p in paths if p != REVIEWS)
+        self.write(archive, '{}\n')
+        with self.assertRaisesRegex(ValueError, 'hash mismatch'):
+            self.current()
+
+    def test_sharded_journal_rejects_escaping_duplicate_and_missing_archives(self):
+        sha = 'a' * 64
+        entry = {'path': ARCHIVES + sha + '.json', 'sha256': sha}
+        self.json(REVIEWS, {'schema': 1, 'reviews': [], 'archives': [entry]})
+        with self.assertRaises(FileNotFoundError):
+            load_journal(self.root)
+        entry['path'] = '../outside.json'
+        self.json(REVIEWS, {'schema': 1, 'reviews': [], 'archives': [entry]})
+        with self.assertRaisesRegex(ValueError, 'Invalid review archive path'):
+            load_journal(self.root)
+        data = b'{"schema":1,"reviews":[]}'
+        sha = hashlib.sha256(data).hexdigest()
+        entry = {'path': ARCHIVES + sha + '.json', 'sha256': sha}
+        self.write(entry['path'], data.decode())
+        self.json(REVIEWS, {'schema': 1, 'reviews': [], 'archives': [entry, entry]})
+        with self.assertRaisesRegex(ValueError, 'Duplicate review archive'):
+            load_journal(self.root)
+
+    def test_sharding_rejects_oversized_receipt_without_changing_journal(self):
+        self.json(REVIEWS, {'schema': 1, 'reviews': [{'id': 'large', 'reason': 'x' * 1000}]})
+        original = (self.root/REVIEWS).read_bytes()
+        with self.assertRaisesRegex(ValueError, 'One review exceeds'):
+            split_journal(self.root, max_bytes=500)
+        self.assertEqual((self.root/REVIEWS).read_bytes(), original)
 
     def test_pending_hash_bound_review_passes_without_clearing_staleness(self):
         self.write('assets/model.cpp', 'different\n')
@@ -577,7 +635,7 @@ class GateTests(unittest.TestCase):
         self.assertEqual(json.loads(target.read_text())['sources'], self.before['sources'])
 
     def prepare_hook(self):
-        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_claims.py', 'coverage_merge_history.py', 'index-coverage-sources.py'):
+        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_claims.py', 'coverage_merge_history.py', 'coverage_reviews.py', 'index-coverage-sources.py'):
             self.write('tools/' + name, (ROOT/'tools'/name).read_text())
         self.write('.githooks/pre-commit', (ROOT/'.githooks/pre-commit').read_text())
         (self.root/'.githooks/pre-commit').chmod(0o755)

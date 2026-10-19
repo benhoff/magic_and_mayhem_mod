@@ -18,6 +18,8 @@ public:
     bool requestStop();
     bool finishProducer();
     void abort();
+    void checkpointGraphics(){if(renderer_)renderer_->checkpointGraphics();}
+    void recoverGraphics(){if(renderer_)renderer_->recoverGraphics();}
     bool ended() const{return state_==State::Ended;}
     bool hasPendingCommands() const{return renderer_ && state_!=State::Recovering && state_!=State::Fallback && state_!=State::Ended && renderer_->hasPendingCommands();}
     QString error() const{return error_;}

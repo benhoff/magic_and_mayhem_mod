@@ -16,7 +16,7 @@ static u32 ns_convert(const struct NsState* d,const struct NsState* s,u32 value)
  else {r=ns_component(value,s->masks[0]);g=ns_component(value,s->masks[1]);b=ns_component(value,s->masks[2]);}
  if(d->bits!=8)return ns_pack_component(r,d->masks[0])|ns_pack_component(g,d->masks[1])|ns_pack_component(b,d->masks[2]);
  u32 nearest=0,distance=0xffffffffu;
- for(u32 i=0;i<256;++i){u32 c=d->palette->entries[i];i32 dr=(i32)r-(i32)(c&255),dg=(i32)g-(i32)((c>>8)&255),db=(i32)b-(i32)((c>>16)&255);
+ for(u32 i=0;i<d->palette->count;++i){u32 c=d->palette->entries[i];i32 dr=(i32)r-(i32)(c&255),dg=(i32)g-(i32)((c>>8)&255),db=(i32)b-(i32)((c>>16)&255);
   u32 current=(u32)(dr*dr+dg*dg+db*db);if(current<distance){distance=current;nearest=i;}}
  return nearest;
 }

@@ -447,3 +447,20 @@ baseline from the index, then release that temporary tree before materializing
 a Git base. Scratch storage holds one full repository tree at a time. Unstaged
 reviews or baseline changes cannot alter the captured staged metadata; all
 original source/gap/history/validation checks remain in force.
+
+### Review journal storage
+
+`change-reviews.json` keeps the active receipts and an ordered `archives` list.
+Each archive is a repository-relative, SHA-256-addressed JSON shard under
+`review-archives/`. The gate loads archived receipts before active receipts,
+verifies their hashes, and enforces the same append-only receipt comparison
+across filesystem, staged and historical Git trees. Archives are journal storage,
+excluded from their own source fingerprints just like the active journal.
+Legacy journals without archives remain supported.
+
+Run `python3 tools/coverage_reviews.py` to split a growing journal into compact
+32 MiB shards without changing receipt values or their order. Append new receipts
+to the active `reviews` array; retain every referenced archive. This does not
+change evidence reports, source fingerprints, historical claims or validation.
+A deletion at the tip cannot remove an oversized blob from an earlier commit;
+repair unpushed history before retrying a rejected push.

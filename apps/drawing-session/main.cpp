@@ -158,7 +158,7 @@ int main(int argc,char **argv) {
                     viewport.resize(int(w),int(h)); viewport.move(0,0);
                     viewport.setGpuFrame(renderer.presentGpu(surface));
                     unsigned swaps=0;
-                    auto connection=QObject::connect(&viewport,&QOpenGLWidget::frameSwapped,[&]{
+                    auto connection=QObject::connect(&viewport,&GlViewport::frameSwapped,[&]{
                         if(framePainted)++swaps;else ++ignoredPrePaintSwaps;
                     });
                     viewport.show(); window.show(); window.raise(); viewport.update();

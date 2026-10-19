@@ -2,11 +2,89 @@
 #include "native_render_target.hpp"
 #include <QOpenGLContext>
 #include <cmath>
-GlViewport::GlViewport(QWidget* parent):QOpenGLWidget(parent){setMinimumSize(320,240);setFocusPolicy(Qt::StrongFocus);setMouseTracking(true);}
+#include <QPainter>
+#include <QResizeEvent>
+#include <QPlatformSurfaceEvent>
+#include <QWindow>
+#include <QTimer>
+#include <QShowEvent>
+class GlViewportCanvas final:public QOpenGLWidget {
+public:
+    explicit GlViewportCanvas(GlViewport& owner):QOpenGLWidget(&owner),owner_(owner){setAttribute(Qt::WA_TransparentForMouseEvents);setFocusPolicy(Qt::NoFocus);}
+protected:
+    void initializeGL() override{owner_.initializeGL();}
+    void paintGL() override{owner_.paintGL();}
+private:
+    GlViewport& owner_;
+};
+GlViewport::GlViewport(QWidget* parent):QWidget(parent){
+    setMinimumSize(320,240);setFocusPolicy(Qt::StrongFocus);setMouseTracking(true);
+    raster_=mnm::render::GlBlitter::isolatedRecoveryEnabled();
+    if(raster_){ready_=true;setAttribute(Qt::WA_OpaquePaintEvent);}
+    else{canvas_=new GlViewportCanvas(*this);connect(canvas_,&QOpenGLWidget::frameSwapped,this,&GlViewport::frameSwapped);connect(canvas_,&QOpenGLWidget::aboutToCompose,this,&GlViewport::aboutToCompose);}
+}
+void GlViewport::update(){if(canvas_)canvas_->update();QWidget::update();}
+void GlViewport::repaint(){if(canvas_)canvas_->repaint();else QWidget::repaint();}
+QOpenGLContext* GlViewport::context() const{return canvas_?canvas_->context():nullptr;}
+void GlViewport::makeCurrent(){if(canvas_)canvas_->makeCurrent();}
+void GlViewport::doneCurrent(){if(canvas_)canvas_->doneCurrent();}
+void GlViewport::resizeEvent(QResizeEvent* event){if(canvas_)canvas_->setGeometry(rect());QWidget::resizeEvent(event);}
+bool GlViewport::event(QEvent* event){
+    // Native window/platform recreation retains the CPU frame and render session.
+    const bool result=QWidget::event(event);
+    if(raster_ && event->type()==QEvent::PlatformSurface && static_cast<QPlatformSurfaceEvent*>(event)->surfaceEventType()==QPlatformSurfaceEvent::SurfaceCreated)update();
+    return result;
+}
+void GlViewport::showEvent(QShowEvent* event){
+    QWidget::showEvent(event);
+    if(!raster_)return;
+    platformRecoveryCancelled_=false;
+    auto* host=this->window();
+    if(platformHost_!=host){if(platformHost_)platformHost_->removeEventFilter(this);platformHost_=host;host->installEventFilter(this);}
+    auto* window=host->windowHandle();
+    if(platformWindow_!=window){if(platformWindow_)platformWindow_->removeEventFilter(this);platformWindow_=window;if(window)window->installEventFilter(this);}
+}
+bool GlViewport::eventFilter(QObject* object,QEvent* event){
+    if((object==platformHost_ || object==platformWindow_) && event->type()==QEvent::Close)platformRecoveryCancelled_=true;
+    if(raster_ && object==platformWindow_ && event->type()==QEvent::PlatformSurface &&
+       static_cast<QPlatformSurfaceEvent*>(event)->surfaceEventType()==QPlatformSurfaceEvent::SurfaceAboutToBeDestroyed &&
+       shouldRestorePlatformSurface && shouldRestorePlatformSurface() && !platformRecoveryCancelled_ && !platformRecoveryQueued_){
+        platformRecoveryQueued_=true;platformRecoveryCancelled_=false;const auto window=platformWindow_;const auto host=platformHost_;
+        QTimer::singleShot(0,this,[this,window,host]{
+            platformRecoveryQueued_=false;
+            if(!window || window!=platformWindow_ || !host || host!=platformHost_ || platformRecoveryCancelled_ || !shouldRestorePlatformSurface || !shouldRestorePlatformSurface())return;
+            // Qt also destroys surfaces during reparent/hide/teardown. Only a
+            // window still requested by the application is restored next turn. Qt
+            // may hide its QWidget while destroying the platform surface, so
+            // use the captured visibility intent and resynchronize QWidget state.
+            host->hide();host->show();host->update();update();
+        });
+    }
+    return QWidget::eventFilter(object,event);
+}
+void GlViewport::paintRaster(QPainter& painter){
+    painter.fillRect(rect(),Qt::black);
+    if(frameSize().isEmpty())return;
+    painter.setRenderHint(QPainter::SmoothPixmapTransform,scaling_==Scaling::Smooth);
+    painter.drawImage(imageRect(),gpuFrame_.valid()?gpuFrame_.raster():frame_);
+}
+void GlViewport::paintEvent(QPaintEvent* event){
+    if(!raster_){QWidget::paintEvent(event);return;}
+    emit aboutToCompose();
+    if(gpuFrame_.valid() && framePaintTiming)framePaintTiming(false);
+    {QPainter painter(this);paintRaster(painter);}
+    if(gpuFrame_.valid() && framePaintTiming)framePaintTiming(true);
+    emit frameSwapped();
+}
+QImage GlViewport::grabFramebuffer(){
+    if(canvas_)return canvas_->grabFramebuffer();
+    const auto ratio=devicePixelRatioF();QImage image(qRound(width()*ratio),qRound(height()*ratio),QImage::Format_RGBA8888);image.setDevicePixelRatio(ratio);
+    QPainter painter(&image);paintRaster(painter);return image;
+}
 GlViewport::~GlViewport(){if(context()){disconnect(context(),nullptr,this,nullptr);makeCurrent();release();doneCurrent();}}
 void GlViewport::release(){if(texture_)glDeleteTextures(1,&texture_);texture_=0;textureSize_={};vertices_.destroy();vao_.destroy();shader_.removeAllShaders();gpuShader_.removeAllShaders();ready_=false;}
-void GlViewport::setFrame(QImage image){if(ready_)error_.clear();gpuFrame_={};frame_=image.convertToFormat(QImage::Format_RGBA8888);dirty_=true;update();}
-void GlViewport::setGpuFrame(mnm::render::GpuFrame frame){if(ready_)error_.clear();gpuFrame_=std::move(frame);frame_={};dirty_=false;update();}
+void GlViewport::setFrame(QImage image){if(ready_)error_.clear();gpuFrame_={};frame_=image.convertToFormat(QImage::Format_RGBA8888);dirty_=true;if(canvas_)canvas_->update();else update();}
+void GlViewport::setGpuFrame(mnm::render::GpuFrame frame){if(frame.valid() && raster_!=frame.hasRaster())throw std::runtime_error("Frame transport does not match viewport");if(ready_)error_.clear();gpuFrame_=std::move(frame);frame_={};dirty_=false;if(canvas_)canvas_->update();else update();}
 QRect GlViewport::physicalImageRect() const{
     if(frameSize().isEmpty())return {};
     const double ratio=devicePixelRatioF();
@@ -69,7 +147,7 @@ void GlViewport::paintGL(){
     if(gpuFrame_.valid() && framePaintTiming)framePaintTiming(false);
     glActiveTexture(GL_TEXTURE0);
     try {glBindTexture(GL_TEXTURE_2D,gpuFrame_.valid()?gpuFrame_.textureForCurrentContext():texture_);}
-    catch(const std::exception& e){error_=QString::fromUtf8(e.what());return;}
+    catch(const std::exception& e){error_=QString::fromUtf8(e.what());if(recoverGraphics && recoverGraphics())error_.clear();return;}
     if(dirty_){glPixelStorei(GL_UNPACK_ALIGNMENT,1);
         if(textureSize_!=frame_.size()){
             glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,frameSize().width(),frameSize().height(),0,GL_RGBA,GL_UNSIGNED_BYTE,frame_.constBits());textureSize_=frame_.size();
@@ -81,7 +159,7 @@ void GlViewport::paintGL(){
     shader.bind();shader.setUniformValue("frame",0);shader.setUniformValue("smoothScaling",scaling_==Scaling::Smooth);
     vao_.bind();glDrawArrays(GL_TRIANGLE_STRIP,0,4);vao_.release();shader.release();
     if(gpuFrame_.valid())try {gpuFrame_.samplingComplete();}
-    catch(const std::exception& e){error_=QString::fromUtf8(e.what());}
+    catch(const std::exception& e){error_=QString::fromUtf8(e.what());if(recoverGraphics && recoverGraphics())error_.clear();return;}
     if(gpuFrame_.valid() && error_.isEmpty() && framePaintTiming)framePaintTiming(true);
 }
 

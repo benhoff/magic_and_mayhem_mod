@@ -162,6 +162,23 @@ static void game_native_primary_initial(struct GameSurface* surface,const u32* d
        !(descriptor[1]&1)||descriptor[26]!=0x200||(descriptor[1]&0x20)||
        surface->pixels.data||surface->gpu_history)return;
     u32 identity[8];
+    if(game_native_cpu_snapshot && !game_native_cpu_snapshot(surface->object,identity,0,0) && identity[4]!=16){
+        if(identity[1]<1 || identity[1]>2048 || identity[2]<1 || identity[2]>2048 ||
+           (identity[4]!=8 && identity[4]!=24 && identity[4]!=32))return;
+        struct Snapshot shape;zero(&shape,sizeof(shape));shape.width=identity[1];shape.height=identity[2];
+        shape.bits=identity[4];shape.flags=shape.bits==8?0x60:0x40;
+        shape.r=identity[5];shape.g=identity[6];shape.b=identity[7];
+        shape.length=shape.width*shape.height*(shape.bits/8);struct Snapshot initial;
+        if(!game_surface_blank(&initial,&shape))return;
+        if(game_native_cpu_snapshot(surface->object,identity,initial.data,initial.length)){
+            __atomic_sub_fetch(&lock_capture_reserved,initial.length,__ATOMIC_RELAXED);free_snapshot(&initial);return;
+        }
+        copy(&surface->pixels,&initial,sizeof(initial));game_surface_bytes+=initial.length;
+        __atomic_sub_fetch(&lock_capture_reserved,initial.length,__ATOMIC_RELAXED);
+        surface->layout_known=surface->primary=1;surface->caps=0x200;
+        surface->back_count_known=1;surface->back_count=0;
+        lock_diagnostic("native_primary_initial_owned",surface->object,0,identity[1],identity[2],identity[4],initial.length,0);return;
+    }
     if(game_native_cpu_transfer(surface->object,identity,0,0)!=1||
        !mnm_owned_initial_identity(identity,identity[1],identity[2])||
        !readable((void*)identity[0],identity[3]*identity[2])||

@@ -1,6 +1,7 @@
 /* Palette observation holds no COM references. Entries are RGB+reserved flags;
  * flags never become alpha. Slots retire when no tracked surface uses them. */
 struct HistoryPalette {u32 used,live,count;void* aliases[16];u8 entries[1024];};
+#include "palette_shape.h"
 static struct HistoryPalette history_palettes[16];
 static struct HistoryPalette* history_palette_find(void* object){
     for(u32 i=0;i<16;++i)if(history_palettes[i].live)
@@ -20,9 +21,9 @@ static int palette_rgb_equal(const u8* a,const u8* b,u32 first,u32 count){
 }
 static int palette_read(void* object,u8* entries){
     struct Table* t=lookup(object);u32 caps=0;
-    return t && t->kind==20 && ((i32 (WIN *)(void*,u32*))t->original[3])(object,&caps)>=0 &&
-        (caps&4) && !(caps&~0xfcu) &&
-        ((i32 (WIN *)(void*,u32,u32,u32,void*))t->original[4])(object,0,0,256,entries)>=0;
+    if(!t || t->kind!=20 || ((i32 (WIN *)(void*,u32*))t->original[3])(object,&caps)<0)return 0;
+    u32 count=game_palette_entry_count(caps);if(!count)return 0;zero(entries,1024);
+    return ((i32 (WIN *)(void*,u32,u32,u32,void*))t->original[4])(object,0,0,count,entries)>=0;
 }
 static void history_palette_retire(struct HistoryPalette* p){
     if(!p)return;

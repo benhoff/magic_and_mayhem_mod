@@ -11,6 +11,7 @@ target_compile_options(mnm-world-rolling PRIVATE -Wall -Wextra -Werror -pedantic
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets OpenGLWidgets)
 add_executable(mnm-world-rolling-live ../../../apps/qt-shell/world_rolling_main.cpp ../../../apps/qt-shell/gl_viewport.cpp)
+set_target_properties(mnm-world-rolling-live PROPERTIES AUTOMOC ON)
 target_link_libraries(mnm-world-rolling-live PRIVATE mnm-world-rolling Qt6::Widgets Qt6::OpenGLWidgets)
 target_compile_options(mnm-world-rolling-live PRIVATE -Wall -Wextra -Werror -pedantic)
 if(BUILD_TESTING)
@@ -36,6 +37,7 @@ if(BUILD_TESTING)
 endif()
 
 add_executable(mnm-world-continuous ../../../apps/qt-shell/world_continuous_main.cpp ../../../apps/qt-shell/gl_viewport.cpp)
+set_target_properties(mnm-world-continuous PROPERTIES AUTOMOC ON)
 target_link_libraries(mnm-world-continuous PRIVATE mnm-world-rolling Qt6::Widgets Qt6::OpenGLWidgets)
 target_compile_options(mnm-world-continuous PRIVATE -Wall -Wextra -Werror -pedantic)
 if(BUILD_TESTING)

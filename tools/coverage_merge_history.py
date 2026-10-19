@@ -8,6 +8,7 @@ from pathlib import Path
 import subprocess
 
 from coverage_claims import behavior_contract
+from coverage_reviews import read_journal
 
 REGISTER = 'research/runtime/coverage/register.json'
 REVIEWS = 'research/runtime/coverage/change-reviews.json'
@@ -73,7 +74,7 @@ def inherited_history(root, base, current, reviews, staged=False):
     if not parents:
         return result
     current_reviews = {r['id']: r for r in reviews['reviews']}
-    baseline_reviews = json.loads(git(root, 'show', base + ':' + REVIEWS))
+    baseline_reviews, _ = read_journal(lambda path: git(root, 'show', base + ':' + path))
     old_ids = {r['id'] for r in baseline_reviews['reviews']}
     historical = set()
     for parent in sorted(parents):
@@ -105,7 +106,7 @@ def inherited_history(root, base, current, reviews, staged=False):
             result['statuses'][b['id']] = {
                 'commit': parent, 'status': b['status'],
                 'contract_sha256': behavior_contract(b, builds), 'evidence': b['evidence']}
-        journal = json.loads(git(root, 'show', parent + ':' + REVIEWS))
+        journal, _ = read_journal(lambda path: git(root, 'show', parent + ':' + path))
         for r in journal['reviews']:
             if r['id'] not in old_ids and current_reviews.get(r['id']) == r:
                 historical.add(r['id'])

@@ -36,9 +36,11 @@ palette updates cannot define them. Existing renderer ownership/recovery fixture
 cover shared palettes, aliases, borrowed flip state and explicit reloads separately.
 
 Boundaries: the facade admits at most256 canonical clip rectangles and256 palette
-objects. Reserved-endpoint/4-bit/primary palettes, indexed primary display modes,
-stretched copies, physical driver loss, arbitrary concurrent callers and complete
-resident GPU/CPU history coherence remain explicit independent contracts.
+objects. Copy conversion/stretching and the subsequently implemented small or
+reserved-endpoint/primary palettes, indexed primary modes and2D effects have their
+own [implementation scopes and results](native-render-implementation-closure.md).
+Physical driver loss, arbitrary concurrent callers and complete resident GPU/CPU
+history coherence remain independent contracts.
 Execution evidence and current live integration are recorded separately in the
 coverage ledger; implementation is not a whole-game replacement claim.
 

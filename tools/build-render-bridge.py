@@ -8,12 +8,12 @@ import subprocess
 import sys
 REPO=Path(__file__).resolve().parent.parent
 
-def build(selftest=False):
+def build(selftest=False,output=None):
     subprocess.run([sys.executable, str(REPO/"protocols/generate.py"), "--check"], check=True)
     spec=importlib.util.spec_from_file_location('shadow_build',REPO/'tools/build-shadow-bridge.py')
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     imports=dict(module.IMPORTS,ReadFile=20,FreeLibrary=4,CreateFileMappingA=24,MapViewOfFile=20,UnmapViewOfFile=4,GetFileSize=8,GetFileInformationByHandle=8,GetTickCount=0,GetCurrentThreadId=0,GetProcAddress=8,Sleep=4,CreateThread=24,WaitForSingleObject=8,QueryPerformanceCounter=4,QueryPerformanceFrequency=4)
-    root=REPO/('working/build/render-selftest' if selftest else 'working/build/render');root.mkdir(parents=True,exist_ok=True)
+    root=Path(output).resolve() if output else REPO/('working/build/render-selftest' if selftest else 'working/build/render');root.mkdir(parents=True,exist_ok=True)
     definition=root/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{name}@{size}\n' for name,size in imports.items()))
     subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(root/'kernel32.lib')],check=True)
     gdi_definition=root/'gdi32.def';gdi_definition.write_text('LIBRARY GDI32.dll\nEXPORTS\nGetCurrentObject@8\nGetObjectA@12\nGetBitmapBits@12\nGdiFlush@0\n')
@@ -53,4 +53,4 @@ def build(selftest=False):
     return dll
 if __name__=='__main__':
     import argparse
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--selftest',action='store_true');print(build(parser.parse_args().selftest))
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--selftest',action='store_true');parser.add_argument('--output',type=Path);args=parser.parse_args();print(build(args.selftest,args.output))

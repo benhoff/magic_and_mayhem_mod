@@ -67,6 +67,7 @@ def start_display(directory, allow_glx=False):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--native-only', action='store_true', help='Require the versioned native-only graphics contract; conflicts and fallback terminate')
+    parser.add_argument('--device-recovery', action='store_true', help='Isolate native graphics with replay/retry and raster presentation; adds IPC and GPU readbacks')
     parser.add_argument('--prefix', type=Path, required=True, help='Stopped, admitted private Wine prefix under working/')
     parser.add_argument('--output', type=Path, help='New ownership evidence directory under working/')
     parser.add_argument('arguments', nargs=argparse.REMAINDER)
@@ -79,6 +80,7 @@ def main():
     strict = args.native_only or selected(os.environ)
     try:
         policy_env = configure(os.environ,extra) if strict else dict(os.environ)
+        if args.device_recovery:policy_env['MNM_NATIVE_DEVICE_RECOVERY']='1'
     except ValueError as error:
         parser.error(str(error))
     prefix = args.prefix.resolve()

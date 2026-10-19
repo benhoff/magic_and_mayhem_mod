@@ -7,6 +7,8 @@
 #include <array>
 #include <functional>
 #include <QImage>
+#include <QByteArray>
+#include <unordered_map>
 #include <QSize>
 class QOpenGLContext;
 class QOffscreenSurface;
@@ -48,7 +50,8 @@ struct SpriteComposite {
 struct Rgb {std::uint8_t red=0,green=0,blue=0;};
 // Owner-thread lease of mutable GPU presentation. Copies share its texture.
 // It survives source-surface and renderer destruction; subsequent presentations
-// of that surface update existing leases. Consumers bracket draws with these
+// of that surface update existing leases. Isolated recovery frames instead
+// own raster pixels and may retire on any host thread. Consumers bracket GPU draws with these
 // methods in a sharing context, establishing GPU ordering in both directions.
 // snapshot() exports immutable cross-thread pixels under an explicit owner-held
 // lease; the render owner must reclaim the final reference before context teardown.
@@ -61,6 +64,9 @@ public:
     // Immutable presentation copy. Keep a lease on the render owner until all
     // consumer leases return; final destruction must occur on that owner.
     GpuFrame snapshot(GpuFrame reusable={}) const;
+    // Owned native presentation for isolated/raster transport; no GPU access.
+    bool hasRaster() const;
+    QImage raster() const;
     unsigned textureForCurrentContext() const;
     void samplingComplete() const;
 private:
@@ -82,13 +88,16 @@ struct RenderStats {
     std::uint64_t scratchAllocations=0,scratchPixels=0,snapshotPixels=0;
     std::uint64_t copyBatches=0,maxCopyBatch=0,nativeSnapshotCopies=0;
     std::uint64_t maskedScratchAllocations=0,maskedScratchPixels=0;
+    std::uint64_t recoveryCheckpoints=0,recoveryReadbacks=0,recoveryRebuilds=0;
     std::size_t surfaces=0,pixels=0,coverageProofBytes=0;
 };
 
-// Thread-affine owner of a dedicated OpenGL 3.3 context. Worker construction
+// Thread-affine rendering owner. Device-recovery mode isolates GL in a service;
+// otherwise this owns a dedicated OpenGL 3.3 context. Worker construction
 // requires a GUI-created external platform surface that outlives this owner.
 // No captured output is
 // supplied to draw(): only source pixels, the old destination and the command.
+class IsolatedRenderer;
 class GlBlitter final {
 public:
     explicit GlBlitter(QOpenGLContext* shareContext=nullptr,QOffscreenSurface* externalSurface=nullptr);
@@ -166,9 +175,26 @@ public:
     QImage present(SurfaceId surface);
     GpuFrame presentGpu(SurfaceId surface);
     RenderStats stats() const;
+    // Explicit durable native checkpoint, including partial validity and live
+    // frame leases. Requires a quiescent consumer during recovery. These GPU
+    // readbacks are recovery work and never diagnostic/original pixel input.
+    void checkpointRecovery();
+    void recoverContext(QOpenGLContext* shareContext,QOffscreenSurface* externalSurface=nullptr);
+    bool hasRecoveryCheckpoint() const;
+    // Internal process service entry. The protocol has no host pointers.
+    QByteArray dispatchIsolated(const QByteArray&);
+    void injectGraphicsFault(unsigned mode);
+    static bool isolatedRecoveryEnabled();
 private:
+    QByteArray saveIsolatedState();
+    void loadIsolatedState(const QByteArray&);
+    std::unique_ptr<IsolatedRenderer> isolated_;
+    std::unordered_map<SurfaceId,std::weak_ptr<GpuFrame::Data>> rasterFrames_;
+    std::unordered_map<SurfaceId,GpuFrame> serviceFrames_;
     struct Impl;
+    struct Recovery;
     std::shared_ptr<Impl> impl_;
+    std::unique_ptr<Recovery> recovery_;
     friend class GpuFrame;
     friend class NativeFrameRecipe;
     ClipperState surfaceClipper(SurfaceId) const;

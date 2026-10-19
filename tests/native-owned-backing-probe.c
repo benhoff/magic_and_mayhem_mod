@@ -1,5 +1,6 @@
 /* Actual PE32 facade creation: strict mode, section-backed storage and leases. */
 #include "../runtime/shadow/win32_min.h"
+#include "../runtime/native-draw/image_copy_original.h"
 API void* WIN LoadLibraryA(const char*);
 API void* WIN GetProcAddress(void*,const char*);
 __declspec(allocate(".own")) static u8 owner_code[0x140000] __attribute__((used));
@@ -34,13 +35,13 @@ void start(void){
  require(create&&history&&transfer,172);
  u8* stub=(u8*)0x533000;u32 page[7],protection;
  require(VirtualQuery(stub,page,28)==28 && page[1]==0x400000 && page[4]==0x1000 && VirtualProtect(stub,4096,0x40,&protection),187);
- const u8 copy[]={0x8b,0xcd,0x8b,0xf0,0x8b,0xfa,0x03,0xc3,0xc1,0xe9,2,0xf3,0xa5,0x8b,0xcd,0x83,0xe1,3,0xf3,0xa4,0xc3};
- for(u32 i=0;i<sizeof(copy);++i)stub[0xaec+i]=copy[i];
+ for(u32 i=0;i<sizeof(ns_image_copy_original);++i)stub[0xa00+i]=ns_image_copy_original[i];
  char mismatch[2];if(GetEnvironmentVariableA("MNM_OWNER_BAD_COPY_PREFIX",mismatch,2)==1)stub[0xaec]=0x90;
  void* draw=0;require(!create(0,&draw,0)&&draw,173);
  char simple[2];if(GetEnvironmentVariableA("MNM_OWNER_PROBE_ONLY_CREATE",simple,2)==1){require(!release(draw),174);ExitProcess(0);}
  /* Any return to the old REP body now traps, so success proves replacement. */
  for(u32 i=8;i<20;++i)stub[0xaec+i]=0xcc;
+ stub[0xb00]=0xc3; /* Direct row ABI control returns after the replaced body. */
  u32 descriptor[27]={0};descriptor[0]=108;descriptor[1]=7;descriptor[2]=9;descriptor[3]=13;descriptor[26]=0x840;
  void* surface=0;require(!((i32(WIN*)(void*,const u32*,void**,void*))table(draw)[6])(draw,descriptor,&surface,0)&&surface,175);
  descriptor[0]=108;require(!((i32(WIN*)(void*,const void*,u32*,u32,void*))table(surface)[25])(surface,0,descriptor,1,0),176);

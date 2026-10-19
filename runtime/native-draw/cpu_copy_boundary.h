@@ -1,6 +1,7 @@
 /* Native No-CD40209ca7 image-row body, including its caller-visible registers
  * and defined flags. The original twenty-byte CPU copy body is never entered. */
 API i32 WIN FlushInstructionCache(HANDLE,const void*,u32);
+#include "image_copy_original.h"
 static u32 ns_image_copy_installed;
 __attribute__((used,noinline)) static void ns_image_copy_prepare(u32* r){
  u32 error=GetLastError(),source=r[7],destination=r[5],bytes=r[2];
@@ -31,13 +32,44 @@ __attribute__((naked)) static void ns_image_copy_entry(void){
   "fxrstor (%esp)\n\tmovl %eax,%esp\n\tpopal\n\tpopfl\n\t"
   "pushl $0x533b00\n\tretl\n\t");
 }
+/* Complete recovered thiscall entry: destination, destination byte pitch,
+ * unused third argument, x, y and clip. Horizontal clipping is in bytes.
+ * Preserve the original non-WORD preparation quirk (initial source stride=x),
+ * rather than silently changing an unobserved branch to a different policy. */
+static i32 __attribute__((thiscall)) ns_image_copy_full(const u32* image,u8* destination,i32 pitch,
+ u32 unused,i32 x,i32 y,const i32* clip){
+ (void)unused;u32 error=GetLastError();
+ i32 word=image[4]!=0,width=(i32)image[2],height=(i32)image[3];
+ if(!clip || width<0 || height<0 || width>8*1024*1024 || height>1024*1024)ExitProcess(124);
+ long long origin=word?(long long)x*2:x;
+ long long left=origin,top=y,right=origin+(long long)width*2,bottom=(long long)y+height;
+ long long cLeft=(long long)clip[0]*(word?2:1),cRight=(long long)clip[2]*(word?2:1);
+ if(left<cLeft)left=cLeft;if(right>cRight)right=cRight;
+ if(top<clip[1])top=clip[1];if(bottom>clip[3])bottom=clip[3];
+ if(right<=left || bottom<=top){SetLastError(error);return 0;}
+ const i32 stride=word?width*2:width;
+ long long source=(long long)image[0]+(top-y)*(word?width*2:x)-origin+left;
+ long long target=(u32)destination+top*pitch+left;
+ if(right-left>16*1024*1024 || bottom-top>1024*1024)ExitProcess(124);
+ for(long long row=top;row<bottom;++row){
+  if(source<0 || source>0xffffffffu || target<0 || target>0xffffffffu)ExitProcess(124);
+  u32 r[9]={0};r[7]=(u32)source;r[5]=(u32)target;r[2]=(u32)(right-left);
+  ns_image_copy_prepare(r);source+=stride;target+=pitch;
+ }
+ SetLastError(error);return (i32)source;
+}
 static void ns_image_copy_install(void){
  if(!ns_ownership_required || ns_image_copy_installed)return;
  const u8 expected[20]={0x8b,0xcd,0x8b,0xf0,0x8b,0xfa,0x03,0xc3,0xc1,0xe9,2,0xf3,0xa5,0x8b,0xcd,0x83,0xe1,3,0xf3,0xa4};
- u8* site=(u8*)0x533aec;u32 memory[7],old,ignored;
+ u8* site=(u8*)0x533aec;u8* entry=(u8*)0x533a00;u32 memory[7],old,ignored;
  if((u32)GetModuleHandleA(0)!=0x400000 || VirtualQuery(site,memory,28)!=28 ||
     memory[4]!=0x1000 || !(memory[5]&0xee) || (memory[5]&0x101))ExitProcess(124);
  for(u32 i=0;i<sizeof(expected);++i)if(site[i]!=expected[i])ExitProcess(124);
+ for(u32 i=0;i<sizeof(ns_image_copy_original);++i)if(entry[i]!=ns_image_copy_original[i])ExitProcess(124);
+ if(!VirtualProtect(entry,8,0x40,&old))ExitProcess(124);
+ entry[0]=0xe9;*(u32*)(entry+1)=(u32)ns_image_copy_full-(u32)entry-5;
+ entry[5]=entry[6]=entry[7]=0x90;
+ if(!VirtualProtect(entry,8,old,&ignored) || !FlushInstructionCache((HANDLE)-1,entry,8))ExitProcess(124);
  if(!VirtualProtect(site,8,0x40,&old))ExitProcess(124);
  site[0]=0xe9;*(u32*)(site+1)=(u32)ns_image_copy_entry-(u32)site-5;
  site[5]=site[6]=site[7]=0x90;

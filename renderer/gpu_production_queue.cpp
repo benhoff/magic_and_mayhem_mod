@@ -5,7 +5,7 @@
 namespace mnm::render {
 GpuProductionQueue::GpuProductionQueue(QOpenGLContext* share,QOffscreenSurface* surface,std::function<void()> cleanup)
     :share_(share),surface_(surface),cleanup_(std::move(cleanup)) {
-    if(!share||!surface)throw std::invalid_argument("GPU production requires an owned platform target");
+    if((!share||!surface) && !GlBlitter::isolatedRecoveryEnabled())throw std::invalid_argument("GPU production requires an owned platform target");
     owner_=std::thread([this]{run();});
 }
 GpuProductionQueue::~GpuProductionQueue(){join();}
@@ -32,6 +32,15 @@ bool GpuProductionQueue::take(Completion& result){
     wake_.notify_one();return true;
 }
 GpuProductionQueue::Stats GpuProductionQueue::stats() const{std::lock_guard<std::mutex> lock(mutex_);return state_;}
+void GpuProductionQueue::recoverContext(QOpenGLContext* share){
+    std::unique_lock<std::mutex> lock(mutex_);
+    if((!share && !GlBlitter::isolatedRecoveryEnabled()) || stopping_ || state_.stopped || !state_.error.empty() || recoveryRequested_)
+        throw std::runtime_error("GPU production recovery is unavailable");
+    recoveryShare_=share;recoveryRequested_=true;wake_.notify_all();
+    if(!wake_.wait_for(lock,std::chrono::seconds(10),[this]{return !recoveryRequested_ || stopping_ || state_.stopped || !state_.error.empty();}))
+        throw std::runtime_error("GPU production recovery deadline exceeded");
+    if(recoveryRequested_ || !state_.error.empty())throw std::runtime_error("GPU production recovery failed: "+state_.error);
+}
 void GpuProductionQueue::join(){
     {std::lock_guard<std::mutex> lock(mutex_);stopping_=true;}
     wake_.notify_one();if(owner_.joinable())owner_.join();
@@ -41,13 +50,25 @@ void GpuProductionQueue::run(){
     std::unique_ptr<GlBlitter> renderer;
     try{
         renderer=std::make_unique<GlBlitter>(share_,surface_);
+        const bool durable=qEnvironmentVariableIntValue("MNM_NATIVE_DEVICE_RECOVERY")==1;
+        auto recover=[&]{
+            QOpenGLContext* share=nullptr;
+            {std::lock_guard<std::mutex> lock(mutex_);if(recoveryRequested_)share=recoveryShare_;}
+            {std::lock_guard<std::mutex> lock(mutex_);if(!recoveryRequested_)return;}
+            renderer->recoverContext(share,surface_);
+            {std::lock_guard<std::mutex> lock(mutex_);share_=share;recoveryRequested_=false;}
+            wake_.notify_all();
+        };
         for(;;){
+            recover();
             Job job;
-            {std::unique_lock<std::mutex> lock(mutex_);wake_.wait(lock,[this]{return stopping_||!jobs_.empty();});
+            {std::unique_lock<std::mutex> lock(mutex_);wake_.wait(lock,[this]{return stopping_||recoveryRequested_||!jobs_.empty();});
              if(stopping_)break;
+             if(recoveryRequested_)continue;
              job=std::move(jobs_.front());jobs_.pop_front();}
             auto available=exports.end();
             for(;;){
+                recover();
                 available=std::find_if(exports.begin(),exports.end(),[](const auto& f){return f.unique();});
                 if(available!=exports.end()||exports.size()<2)break;
                 std::unique_lock<std::mutex> lock(mutex_);if(stopping_)break;
@@ -64,11 +85,12 @@ void GpuProductionQueue::run(){
                 result.frame=frame.snapshot();exports.push_back(result.frame);
                 std::lock_guard<std::mutex> lock(mutex_);++state_.allocations;
             }
+            if(durable && !GlBlitter::isolatedRecoveryEnabled())renderer->checkpointRecovery();
             result.completed=Clock::now();
             {std::lock_guard<std::mutex> lock(mutex_);++state_.produced;
              if(!stopping_)ready_.push_back(std::move(result));}
         }
-    }catch(const std::exception& error){std::lock_guard<std::mutex> lock(mutex_);state_.error=error.what();}
+    }catch(const std::exception& error){std::lock_guard<std::mutex> lock(mutex_);state_.error=error.what();wake_.notify_all();}
     catch(...){std::lock_guard<std::mutex> lock(mutex_);state_.error="Unknown native GPU production failure";}
     // Internal completions are returned on this owner. External leases must be
     // returned by the compositor before join; polling never destroys them there.
@@ -81,6 +103,6 @@ void GpuProductionQueue::run(){
     catch(const std::exception& error){std::lock_guard<std::mutex> lock(mutex_);if(state_.error.empty())state_.error=error.what();}
     catch(...){std::lock_guard<std::mutex> lock(mutex_);if(state_.error.empty())state_.error="Unknown native GPU cleanup failure";}
     renderer.reset();
-    {std::lock_guard<std::mutex> lock(mutex_);state_.stopped=true;}
+    {std::lock_guard<std::mutex> lock(mutex_);state_.stopped=true;wake_.notify_all();}
 }
 }

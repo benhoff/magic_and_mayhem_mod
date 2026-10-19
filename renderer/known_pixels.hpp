@@ -28,6 +28,11 @@ public:
     KnownPixels(int width,int height):width_(width),height_(height){
         if(width<1 || height<1 || width>2048 || height>2048)throw std::runtime_error("Invalid validity dimensions");
     }
+    const std::vector<std::uint8_t>& serialized() const{return known_;}
+    void restore(const std::vector<std::uint8_t>& mask){
+        if(!mask.empty() && (mask.size()!=std::size_t(width_)*height_ || std::any_of(mask.begin(),mask.end(),[](auto b){return b>1;})))throw std::runtime_error("Invalid native validity checkpoint");
+        known_=mask;unknown_=std::count(known_.begin(),known_.end(),0);defined_.clear();nextDefined_=0;
+    }
     void invalidate(){known_.assign(std::size_t(width_)*height_,0);unknown_=known_.size();defined_.clear();nextDefined_=0;}
     bool known(Rect r) const {
         validate(r);if(!unknown_)return true;

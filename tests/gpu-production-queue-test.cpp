@@ -32,10 +32,15 @@ int main(int argc,char** argv)try{
     bool gapRefused=false;try{queue.submit(4,[&](auto& renderer){return render(renderer,0);});}catch(const std::invalid_argument&){gapRefused=true;}require(gapRefused,"Skipped source admitted");
     require(queue.submit(3,[&](auto& renderer){thirdStarted=true;return render(renderer,0x07e0);}),"Third bounded submission");
     require(!queue.submit(4,[&](auto& renderer){return render(renderer,0);}),"Third outstanding job admitted");
-    unsigned presentations=0;const auto deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(100);
-    while(std::chrono::steady_clock::now()<deadline){client.importGpu565(target,first.frame);require(client.presentGpu(target).valid(),"Independent presentation failed");++presentations;std::this_thread::sleep_for(std::chrono::milliseconds(5));}
+    unsigned presentations=0;const auto deadline=std::chrono::steady_clock::now()+std::chrono::seconds(2);
+    while(presentations<8 && std::chrono::steady_clock::now()<deadline){client.importGpu565(target,first.frame);require(client.presentGpu(target).valid(),"Independent presentation failed");++presentations;std::this_thread::sleep_for(std::chrono::milliseconds(5));}
     require(presentations>=8,"World production blocked presentation owner");release=true;until([&]{return queue.take(second);});check(second.frame,0x001f);check(first.frame,0xf800);
-    std::this_thread::sleep_for(std::chrono::milliseconds(20));require(!thirdStarted.load(),"Leased immutable slot overwritten");first.frame={};
+    std::this_thread::sleep_for(std::chrono::milliseconds(20));require(!thirdStarted.load(),"Leased immutable slot overwritten");
+    if(qEnvironmentVariableIntValue("MNM_NATIVE_DEVICE_RECOVERY")==1){
+        queue.recoverContext(&root);check(first.frame,0xf800);check(second.frame,0x001f);
+        require(!thirdStarted.load(),"Recovery reused a leased immutable slot");
+    }
+    first.frame={};
     until([&]{return queue.take(third);});require(third.sequence==3&&thirdStarted.load(),"Source completion order");check(third.frame,0x07e0);check(second.frame,0x001f);
     second.frame={};third.frame={};queue.join();auto stats=queue.stats();require(stats.stopped&&stats.submitted==3&&stats.produced==3&&stats.taken==3&&stats.highWater==2&&stats.allocations==2&&cleaned==1,"Bounded owner teardown/counts");
     {

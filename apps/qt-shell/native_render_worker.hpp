@@ -17,6 +17,7 @@ public:
     bool create(const QString&,quint32,quint32,int);
     bool poll(bool normalQuitAccepted,bool drawAllowed,bool paused=false);
     bool requestStop();
+    bool requestGraphicsRecovery();
     bool finishProducer();
     void abort();
     LiveCommandSession::State state() const{return status_.state;}
@@ -52,6 +53,10 @@ private:
     std::mutex mutex_;
     std::condition_variable wake_;
     bool frameChanged_=false,started_=false,stop_=false,producerExited_=false,requestStop_=false;
+    const bool durableGraphics_=qEnvironmentVariableIntValue("MNM_NATIVE_DEVICE_RECOVERY")==1;
+    bool graphicsRecoveryPending_=false;
+    QOpenGLContext* recoveryShare_=nullptr;
+    unsigned graphicsRecoveries_=0;
     bool normalQuit_=false,drawAllowed_=false,paused_=false;
     bool baselineUiClock_=false;
     bool statusEveryTurn_=qEnvironmentVariableIntValue("MNM_WORKER_STATUS_CADENCE")!=1 || qEnvironmentVariableIntValue("MNM_WORKER_STATUS_EVERY_TURN")==1;

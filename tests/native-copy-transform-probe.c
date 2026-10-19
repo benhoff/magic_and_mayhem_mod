@@ -21,6 +21,7 @@ static void paint(void* s,u32 format,int pattern){
   for(u32 b=0;b<d[21]/8;++b)p[b]=(u8)(v>>(8*b));}
  require(!((i32(WIN*)(void*,void*))table(s)[32])(s,(void*)d[9]),64);
 }
+#ifndef MNM_TRANSFORM_HELPERS_ONLY
 void start(void){
  char path[1024];require(GetEnvironmentVariableA("MNM_TEST_LIBRARY",path,sizeof(path))>0,65);
  void* module=LoadLibraryA(path);require(module!=0,66);Create create=GetProcAddress(module,"NativeDrawCreate");
@@ -46,3 +47,4 @@ void start(void){
  }
  require(!release(draw),75);ExitProcess(0);
 }
+#endif
