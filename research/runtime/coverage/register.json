@@ -123000,6 +123000,192 @@
         "failures": "Magic/version, size/count bounds, truncation/trailing bytes and changed expected state refuse; source/input drift rejects the experiment. Malformed original ABI inputs excluded.",
         "exclusions": "Multiple source trees, specialized queues, wizard/controller/survival, additional tasks, second brain, World timing/difficulty/allocation/perception producers, installed model/data or full battle equivalence, live integration/replacement."
       }
+    },
+    {
+      "id": "AI.owner-multisource-pipeline-trace",
+      "subsystem": "creature_ai",
+      "kind": "recovered",
+      "title": "Captured original multi-source candidate-to-task pipeline",
+      "scope": "Original-first capture of whole415c40 brain0 count scheduling from two ordinary source roots containing three friendly creatures, with actual423590 merge/speed-partition proposals and per-member431be0/413330/431ce0 candidate generation, 72 produced features, authored nonuniform4766b0 inference, shared4284e0 selection,4261b0 save, topology commit,4289e0 installation,428b40 task retirement and432900 command execution. Independent native64/sanitizer replay compares source membership/topology, chosen score, shared RNG and sliced scheduler continuation, ordered candidate calls including losing features, installed/pending task-map keys, installed tasks/lifetime/saved features/commands and displaced retirement. Authored stable world/memory/model and real523240/52a430 danger from authored regional fields; supplied source registration/maintenance, snapshots, clone/training, allocator/vector storage and command endpoints. Maximum selection only; original perception/World allocation/timing/difficulty, installed model, wizard/other families/second brain, mutable-world production and live replacement remain excluded. Pending source stages/winners are compared while reset is clear; completed stale phase fields are excluded. Committed topology is projected from child lists while original proposal scratch parents are active. Pinned merge/split caps1.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4283456,
+          "scope": "Whole count-mode caller with actual multi-source planning and task-map execution; source/perception/snapshot services supplied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4361024,
+          "scope": "Actual enabled ordinary source task retirement; task-map erasure, no-op task6 expiry virtual, explicit source queue/training/teardown services."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4339088,
+          "scope": "Whole ordinary three-friendly-source proposal search through real task6 generation and selected split/merge/task installation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4401408,
+          "scope": "Actual installed ordinary body invoked by415c40, including result flag14 and budget debit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4360672,
+          "scope": "Actual task map installation and distinct flag14/15 initialization."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4403120,
+          "scope": "Task6 expiry virtual is a no-op.",
+          "recovered_range": "owner-task6-expire-432fb0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4398048,
+          "scope": "Whole ordinary task6 source admission and memory-group preparation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4398304,
+          "scope": "Whole ordered member probes, features, authored-model inference and generated lifetime."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4679344,
+          "scope": "Real inference for authored nonuniform models dependent on generated source spread."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4359392,
+          "scope": "Shared generated-candidate score and selection continuation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4350384,
+          "scope": "Whole generated winner payload save."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4237152,
+          "scope": "Actual source centers during merge geometry."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4362864,
+          "scope": "Actual wrapped merge-source distance."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5386816,
+          "scope": "Actual summed regional net-danger predicate for split admission and installed body rejection from authored region hazards."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5415984,
+          "scope": "Actual body danger excess rejection from authored regional fields."
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-multisource-pipeline.md",
+        "research/formats/native-owner-multisource-trace-v1.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/owner_brain_driver.cpp",
+        "reconstruction/creature-ai/owner_brain_driver.hpp",
+        "reconstruction/creature-ai/owner_group_features.cpp",
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_group_task.cpp",
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner.cpp",
+        "reconstruction/creature-ai/owner_planner.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_inputs.cpp",
+        "reconstruction/creature-ai/owner_task_inputs.hpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.cpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.hpp",
+        "reconstruction/creature-ai/owner_task_probe.cpp",
+        "reconstruction/creature-ai/owner_task_probe.hpp",
+        "reconstruction/creature-ai/owner_task_scheduler.cpp",
+        "reconstruction/creature-ai/owner_task_scheduler.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/source_decision.cpp",
+        "reconstruction/creature-ai/source_decision.hpp",
+        "reconstruction/creature-ai/source_graph.cpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/source_lifecycle.cpp",
+        "reconstruction/creature-ai/source_lifecycle.hpp",
+        "reconstruction/creature-ai/source_pending.cpp",
+        "reconstruction/creature-ai/source_pending.hpp"
+      ],
+      "tests": [
+        "tests/owner-multisource-pipeline-test.cpp",
+        "tools/test-owner-multisource-pipeline.py",
+        "tools/test_owner_multisource_config.py"
+      ],
+      "evidence": [
+        "NS89.owner-multisource-pipeline-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_hostile_task.hpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/regional_danger.cpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.cpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/source_controller.hpp",
+        "reconstruction/creature-ai/source_owned.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-task-probe-test.cpp",
+        "tests/owner-task6-loop-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py"
+      ],
+      "validation_domain": {
+        "required_inputs": "Pinned NoCD private image; initial grouped2 plus1 ordinary source topology, three ordinary friendly slots and two hostile observations, source-bound authored eight-region world/model deck, stable explicit producer services; original completes capture before independent replay.",
+        "branches": "Real candidate production and inference for unchanged, merged and speed-partition membership, shared RNG/budget continuation, simultaneous installed task maps and ordered bodies, expiry/completion/displaced retirement. Model sign, baseline danger and all eight independent three-member speed assignments; parented/empty source admission; zero-budget and disabled continuation; committed topology and task-map conservation. Caps1 and maximum only.",
+        "failures": "Bounded transcript magic/count/domain/truncation/trailing/state mismatches refuse; source/compiler/original drift rejects acceptance. Original malformed inputs excluded.",
+        "exclusions": "Weighted multi-source selection, full source/perception producers and maintenance/registration semantics, installed model inference, actor motion/health production and a whole battle, wizard/other task families/second brain, World allocation/time/difficulty and live replacement. Completed phase/winner bytes are stale and unobserved; committed child-list topology ignores only the two identified original scratch proposal parent addresses, whose members are independently captured at each candidate next call."
+      }
     }
   ],
   "evidence": [
@@ -255702,6 +255888,100 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS89.owner-multisource-pipeline-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Original-first capture of whole415c40 brain0 count scheduling from two ordinary source roots containing three friendly creatures, with actual423590 merge/speed-partition proposals and per-member431be0/413330/431ce0 candidate generation, 72 produced features, authored nonuniform4766b0 inference, shared4284e0 selection,4261b0 save, topology commit,4289e0 installation,428b40 task retirement and432900 command execution. Independent native64/sanitizer replay compares source membership/topology, chosen score, shared RNG and sliced scheduler continuation, ordered candidate calls including losing features, installed/pending task-map keys, installed tasks/lifetime/saved features/commands and displaced retirement. Authored stable world/memory/model and real523240/52a430 danger from authored regional fields; supplied source registration/maintenance, snapshots, clone/training, allocator/vector storage and command endpoints. Maximum selection only; original perception/World allocation/timing/difficulty, installed model, wizard/other families/second brain, mutable-world production and live replacement remain excluded. Pending source stages/winners are compared while reset is clear; completed stale phase fields are excluded. Committed topology is projected from child lists while original proposal scratch parents are active. Pinned merge/split caps1.",
+      "record": "research/runtime/owner-multisource-pipeline-original-ns89-20261018.json",
+      "sha256": "cd450a74a9d698c566ff6c01fe5f35438d7b836e5bab0b779750aeb9c68377f1",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/capture_before_replay",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/checks",
+          "equals": 2659248
+        },
+        {
+          "pointer": "/slices",
+          "equals": 4096
+        },
+        {
+          "pointer": "/installed",
+          "equals": 250
+        },
+        {
+          "pointer": "/executed",
+          "equals": 6533
+        },
+        {
+          "pointer": "/pending",
+          "equals": 1683
+        },
+        {
+          "pointer": "/split_slices",
+          "equals": 27
+        },
+        {
+          "pointer": "/merged_slices",
+          "equals": 1804
+        },
+        {
+          "pointer": "/retirements",
+          "equals": 183
+        },
+        {
+          "pointer": "/transcript_refusals",
+          "equals": [
+            "magic",
+            "truncated",
+            "trailing",
+            "state"
+          ]
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -276433,8 +276713,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-journal-shards-20261019.json",
-    "sha256": "461151f6c57a982973dd153ff11de4b04cc87fc280262e64ca988d2ddb195501"
+    "path": "research/runtime/coverage/source-index-journal-shards-final-20261019.json",
+    "sha256": "e0af26c2cf0be9cd011cd78c1c0e79660f75b4f18a2f138871dc8a2abdbf8e6e"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

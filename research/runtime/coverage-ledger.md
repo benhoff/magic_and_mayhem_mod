@@ -18204,6 +18204,40 @@ than promoting them from stale execution. Pending receipts account for shared
 source changes without claiming renewed original equivalence or live replacement.
 Unfinished native campaign/AI source and metadata remain outside this render commit.
 
+
+## NS89 — Original multi-source candidate-to-task composition (2026-10-18)
+
+`AI.owner-multisource-pipeline-trace` extends NS88 to two ordinary source roots
+with three friendly creatures. Actual original candidate production and authored
+nonuniform inference drive automatic split/merge proposals, selected topology,
+task installation/retirement and installed commands under whole415c40 count
+scheduling. Original32 capture precedes independent native64 and ASan/UBSan/LSan
+replay. The prospective, source-bound
+[NS89 result](owner-multisource-pipeline-original-ns89-20261018.json) passes 32
+fixtures, 4,096 slices and 2,659,248 checks: 250 installations, 6,533 executions and 183
+retirements. Installed/pending task-map keys, committed graph, losing candidate
+features/scores/budgets, all strategic RNG words and continuation are compared.
+Four damaged transcript controls refuse; original manifests/text and all sources
+remain unchanged. Raw outputs are retained under
+`working/tests/owner-multisource-pipeline-ns89-20261018/.retain`.
+
+Scope remains authored stable eight-region world/memory/model, three ordinary
+actors, maximum selection and proposal caps 1, with explicit source registration/
+maintenance, perception/snapshot, clone/training, allocation/vector and command
+services. Real523240/52a430 danger executes. Pending decision phases are compared;
+stale completed fields are excluded. Committed child-list topology distinguishes
+the two known transient scratch parents. Empty/parented source admission is
+recorded in the [research](owner-multisource-pipeline.md) and
+[wire layout](../formats/native-owner-multisource-trace-v1.md).
+
+This closes the bounded multi-source original-first comparison milestone.
+Weighted composition, wizard scoring/survival, additional task families, second
+brain, mutable perception/source maintenance, installed models and full World
+allocation/timing/difficulty remain pending. No integration/live-replacement or
+gameplay balance change is claimed. Incoming committed accounting ranges through
+2a95d55c were checked separately; retained exact history reports assert no new
+engine validation or historical gate pass.
+
 ## Coverage journal push repair (2026-10-19)
 
 The two final unpushed review-journal versions exceeded GitHub's 100 MiB blob
