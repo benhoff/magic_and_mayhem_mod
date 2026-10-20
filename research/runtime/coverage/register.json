@@ -21874,7 +21874,7 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Pinned numeric World queue jump targets",
-      "scope": "Read-only No-CD PE32 consumer signatures and 35 numeric targets from each of three original dispatch tables at501184/501210/50129c. Retain full consumer disassembly through501150; special kind33 terrain precedes the first table. Mode selection, virtual/tint/distortion/word raster semantics, all defaults and unsupported manual kind identification remain pending. Static target inventory only, not expanded native admission.",
+      "scope": "Pinned No-CD5002a0 table targets plus owned native primary/auxiliary/software row routing. RS.world-dispatch-routing supplies value-token backend calls, literal wave/tint arguments, signed offsets, AX fallback/normalization and metadata for the declared synthetic matrix. Clip/prelude/postlude state, concrete helper receivers, downstream pixel semantics, arbitrary queue/object inputs and live dispatcher replacement remain pending. Native routing is partial coverage of the broader consumer contract; a table target does not establish raster admission.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -21884,60 +21884,82 @@
         }
       ],
       "documents": [
-        "research/runtime/native-world-kind-diagnostics.md"
+        "research/runtime/native-world-kind-diagnostics.md",
+        "research/runtime/native-world-dispatch-methods-20261019.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "implementation": [
-        "tools/inspect-world-dispatch.py"
+        "tools/inspect-world-dispatch.py",
+        "reconstruction/rendering/world_dispatch.hpp"
       ],
-      "tests": [],
+      "tests": [
+        "tests/world-dispatch-test.cpp",
+        "tools/test-world-dispatch.py",
+        "tests/drawing-dispatch-reference.cpp"
+      ],
       "evidence": [
         "RS.world-dispatch-targets.static-20261008",
         "RREC02.rendering-contract-reconciliation-20261019",
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "WORLD01.dispatch-methods.original-20261019",
+        "WORLD04.dispatch-methods.helper-closure-20261019",
+        "N20.world-dispatch.original-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "MEDIUM01.rendering-implementation-review-20261019",
+        "review": "WORLD01.dispatch-methods-source-review-20261019",
         "entry": "RS.world-dispatch-targets"
-      }
+      },
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/world-dispatch/CMakeLists.txt",
+        "tools/coverage_claims.py"
+      ]
     },
     {
       "id": "RS.world-kind8-virtual",
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Kind8 static virtual draw branch and numeric object rows",
-      "scope": "Pinned first-table entry8 at5011a4 targets5006a2: frame/object pointer at row+4, y/x stack arguments and virtual method at vtable+0xc through call5006af. Separate frozen map1/item15 pointer fixture records actual unsupported kind8 rows beginning queue133; this does not prove the first-table mode at that later entry or identify the exact journal-free manual queue13 kind. Concrete object class/vtable targets, writer inputs, pixel semantics, other table modes and native implementation remain pending. Current investigation adds bounded read-only class/vtable/object observation while preserving refusal; concrete method discovery, versioned pointer-free raster inputs and native admission require separate proof before widening support.",
+      "scope": "Pinned first-table entry8 at5011a4 targets5006a2 with object at row+4 and virtual slot+0xc through5006af. Six selected class/method pairs have additive/colour/flag-only primitives and owned wrapper models:5c7420/54ab00,5c73f0/54aaa0,5c7408/546540,5c7494and5c74b0/54ab60,5c74cc/54ac00. Runtime admission corrects the observed5c73f0pair;54aaa0/546540 use shape+0x34 without flag writes, while54ab00 uses+0x30andflag+0x44. Bounded source-token routing, owner/player gates, flags and synthetic returns are separately compared in RS.world-kind8-methods. Unknown classes, object construction/lifetime/writers, other table modes, exact journal-free manual queue13 attribution, complete pixel/init semantics and live replacement remain pending.",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5244578,
-          "scope": "Selected static first-table kind8 branch to unresolved object vtable method; no full consumer or method recovery."
+          "scope": "Selected first-table virtual dispatch; known method models/primitive suppliers have separate bounded contracts, not full kind8 recovery."
         }
       ],
       "documents": [
         "research/runtime/native-world-kind-diagnostics.md",
-        "research/runtime/native-world-kind8.md"
+        "research/runtime/native-world-kind8.md",
+        "research/runtime/native-world-dispatch-methods-20261019.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "implementation": [
         "tools/inspect-world-dispatch.py",
         "tools/inspect-startup-queues.py",
         "runtime/scene/kind8_observer.c",
-        "tools/inspect-kind8.py"
+        "tools/inspect-kind8.py",
+        "reconstruction/rendering/kind8_method.hpp",
+        "runtime/scene/world_trace.c"
       ],
       "tests": [
         "tools/capture-scene-game.py",
         "tests/kind8-observer-test.c",
-        "tools/test-kind8.py"
+        "tools/test-kind8.py",
+        "tests/kind8-method-test.cpp",
+        "tools/test-world-dispatch.py",
+        "tests/kind8-hook-test.c"
       ],
       "validation_dependencies": [
         "runtime/scene/startup_queue.c",
@@ -21946,7 +21968,13 @@
         "runtime/shadow/win32_min.h",
         "tools/build-scene-observer.py",
         "tools/native_prefix_template.py",
-        "tools/directplay_dx6_launch.py"
+        "tools/directplay_dx6_launch.py",
+        "runtime/scene/world_entry.S",
+        "protocols/include/mnm/world_frame_v1.h",
+        "tests/sprite-binary-reference.cpp",
+        "tests/canvas-startup-call.S",
+        "reconstruction/rendering/world-dispatch/CMakeLists.txt",
+        "tools/coverage_claims.py"
       ],
       "evidence": [
         "RS.world-dispatch-targets.static-20261008",
@@ -21958,17 +21986,20 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "WORLD01.dispatch-methods.original-20261019",
+        "WORLD04.dispatch-methods.helper-closure-20261019",
+        "N20.world-dispatch.original-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "MEDIUM01.rendering-implementation-review-20261019",
+        "review": "WORLD01.dispatch-methods-source-review-20261019",
         "entry": "RS.world-kind8-virtual"
       }
     },
@@ -126177,6 +126208,134 @@
         "Selected system-memory COM aliases and native-owned allocation lifetime only; original physical aliases, unobserved writers and arbitrary driver intervals remain outside this proof.",
         "An early caller-device release while aliases remain is excluded: the retained Wine diagnostic faults at the next alias Lock. This does not prove original-game physical ownership or a missing native implementation."
       ]
+    },
+    {
+      "id": "RS.world-dispatch-routing",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Owned World queue branch routing and metadata",
+      "scope": "No-CD5002a0 primary, auxiliary and software row dispatch over kinds-2..35 with owned source tokens, signed offsets, direct/indexed markers, literal wave/tint arguments, AX normalization/fallback and preserved/default/zero metadata. Backend execution is injected; no original pointers enter the native model. Auxiliary clip setup, traversal/postlude, concrete helper receiver identity, raster pixel bodies and live installation remain separate. Compare the unchanged original consumer under synthetic backend bindings before claiming equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Branch argument/return and metadata decisions only; clip setup, traversal, pixels and live replacement excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-world-dispatch-methods-20261019.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/world_dispatch.hpp"
+      ],
+      "tests": [
+        "tests/world-dispatch-test.cpp",
+        "tools/test-world-dispatch.py",
+        "tests/drawing-dispatch-reference.cpp"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/world-dispatch/CMakeLists.txt",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "WORLD01.dispatch-methods.original-20261019",
+        "WORLD04.dispatch-methods.helper-closure-20261019",
+        "N20.world-dispatch.original-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WORLD01.dispatch-methods-source-review-20261019",
+        "entry": "RS.world-dispatch-routing"
+      }
+    },
+    {
+      "id": "RS.world-kind8-methods",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Owned kind8 method dispatch, owner gates and flags",
+      "scope": "Six pinned kind8 vtable/method pairs with owned owner/player values, exact additive shape offset0x30, inherited/gated additive offset0x34, colour offset0x1c, unconditional flag+0x44 ordering and flag-only+0x40. Compare selected original wrappers/vtable bindings under synthetic raster returns: full object preservation except the normalized owner token. Reject unknown pairs. Object construction/lifetime/writers, raster pixels, allocation/alias semantics, other classes and live installation are excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5548800,
+          "scope": "Selected wrapper shape offset, flag ordering and low16 return only.",
+          "recovered_range": "kind8-draw-wrapper-54ab00"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5530944,
+          "scope": "Owner/player gate, shape+0x34 and zero AX; no drawn flag write.",
+          "recovered_range": "kind8-owner-wrapper-546540"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5548896,
+          "scope": "Colour shape offset and forwarded low16 return only.",
+          "recovered_range": "kind8-colour-wrapper-54ab60"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5549056,
+          "scope": "Flag+0x40 write, no raster call and zero AX.",
+          "recovered_range": "kind8-noop-wrapper-54ac00"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5548704,
+          "scope": "Observed5c73f0 slot+0xc: unconditional shape+0x34 additive without flags/owner gate; downstream low16 return.",
+          "recovered_range": "kind8-inherited-wrapper-54aaa0"
+        }
+      ],
+      "documents": [
+        "research/runtime/native-world-dispatch-methods-20261019.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/kind8_method.hpp"
+      ],
+      "tests": [
+        "tests/kind8-method-test.cpp",
+        "tools/test-world-dispatch.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "runtime/scene/world_trace.c",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/shadow/win32_min.h",
+        "tests/kind8-hook-test.c",
+        "tests/canvas-startup-call.S",
+        "tools/build-scene-observer.py",
+        "protocols/include/mnm/world_frame_v1.h",
+        "reconstruction/rendering/world-dispatch/CMakeLists.txt",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "WORLD01.dispatch-methods.original-20261019",
+        "WORLD04.dispatch-methods.helper-closure-20261019",
+        "N20.world-dispatch.original-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WORLD01.dispatch-methods-source-review-20261019",
+        "entry": "RS.world-kind8-methods"
+      }
     }
   ],
   "evidence": [
@@ -283441,6 +283600,275 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "WORLD01.dispatch-methods.original-20261019",
+      "kind": "isolated_original",
+      "scope": "Owned native routing matches2,432 unchanged consumer cases/2,692 logical calls; six actual vtable pairs match960 unchanged wrapper cases with synthetic raster returns. Active PE32 class admission/ABI and two native CTests pass. Clip/helper receiver identities, raster pixels, object writers and live replacement excluded.",
+      "record": "research/runtime/native-world-dispatch-validation-20261019.json",
+      "sha256": "a9a6fe6bb7f771416de3b2ca6c755435aabf144e5e2686802045509d6ca42897",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/routing_and_metadata_match",
+          "equals": true
+        },
+        {
+          "pointer": "/class_methods_match",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2432
+        },
+        {
+          "pointer": "/class_method_cases",
+          "equals": 960
+        },
+        {
+          "pointer": "/active_kind8_admission_and_hook_abi",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ctests_passed",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WORLD02.kind8-repair.original-20261019",
+      "kind": "isolated_original",
+      "scope": "Current selected RGB565 primitives:17synthetic cases/1,048,960 pixels plus asset-free worker/CLI and active hook ABI; unchanged54aaa0inherited wrapper preserves object fields and matches native additive pixels. No captured full queue replay, live initial-canvas equivalence or original bypass.",
+      "record": "research/runtime/native-world-kind8-repair-validation-20261019.json",
+      "sha256": "fec43113d1da754cf07b028d1f6893ee022b3610f5dfb05c3f59620e8a2615de",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/inherited_additive_wrapper_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 1048960
+        },
+        {
+          "pointer": "/active_hook_abi_and_class_gates_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "equivalence_pointer": "/independent_original_pixels_match"
+    },
+    {
+      "id": "WORLD02.kind8-repair.native-20261019",
+      "kind": "native_integration",
+      "scope": "Current selected RGB565 primitives:17synthetic cases/1,048,960 pixels plus asset-free worker/CLI and active hook ABI; unchanged54aaa0inherited wrapper preserves object fields and matches native additive pixels. No captured full queue replay, live initial-canvas equivalence or original bypass.",
+      "record": "research/runtime/native-world-kind8-repair-validation-20261019.json",
+      "sha256": "fec43113d1da754cf07b028d1f6893ee022b3610f5dfb05c3f59620e8a2615de",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/inherited_additive_wrapper_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 1048960
+        },
+        {
+          "pointer": "/active_hook_abi_and_class_gates_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WORLD03.distortion-word-read.original-20261019",
+      "kind": "isolated_original",
+      "scope": "Renewed18guarded tail/interior original/native cases and13native controls for the selected5965f7DWORD load/low-WORD store. No historical live operand recovery, other leaf or replacement claim.",
+      "record": "research/runtime/native-world-distortion-validation-20261019.json",
+      "sha256": "f28349eb54de450938b0e2246e7407b9a45415f43f0967bc8fc5617667e0ebdc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls",
+          "equals": 13
+        }
+      ]
+    },
+    {
+      "id": "WORLD04.dispatch-methods.helper-closure-20261019",
+      "kind": "isolated_original",
+      "scope": "Owned native routing matches2,432 unchanged consumer cases/2,692 logical calls; six actual vtable pairs match960 unchanged wrapper cases with synthetic raster returns. Active PE32 class admission/ABI and two native CTests pass. Clip/helper receiver identities, raster pixels, object writers and live replacement excluded. Renewed result pins the contract helper explicitly and checks contracts remain unchanged; earlier result stays historical after the dependency-closure extension.",
+      "record": "research/runtime/native-world-dispatch-helper-validation-20261019.json",
+      "sha256": "69215cac070f928d148e5ae7996d8af05c4c445255283fa4fa22028cd175317a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/routing_and_metadata_match",
+          "equals": true
+        },
+        {
+          "pointer": "/class_methods_match",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2432
+        },
+        {
+          "pointer": "/class_method_cases",
+          "equals": 960
+        },
+        {
+          "pointer": "/active_kind8_admission_and_hook_abi",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ctests_passed",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "N20.world-dispatch.original-20261020",
+      "kind": "isolated_original",
+      "scope": "Fresh isolated 5,472 unchanged consumer cases / 6,084 logical backend calls with nine full-width return words, plus 960 original kind8 wrapper cases, actual PE32 whitelist/ABI controls and two native CTests. Exact low-AX fallback/normalization, metadata, class flags and owner gates. Clip state, concrete helper receiver identities, raster pixels, object lifetime/writers and live replacement remain excluded.",
+      "record": "research/runtime/next20-world-dispatch-20261020.json",
+      "sha256": "c5e6a31ae43ec06e8eb5bb0ab1b019190d78fae88f8a2b074dad660a95aa0528",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 5472
+        },
+        {
+          "pointer": "/class_method_cases",
+          "equals": 960
+        },
+        {
+          "pointer": "/routing_and_metadata_match",
+          "equals": true
+        },
+        {
+          "pointer": "/class_methods_match",
+          "equals": true
+        },
+        {
+          "pointer": "/active_kind8_admission_and_hook_abi",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ctests_passed",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -304291,6 +304719,15 @@
       "document": "research/runtime/owner-native-skirmish.md",
       "evidence": "NS86.owner-count-driver-original",
       "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "kind8-inherited-wrapper-54aaa0",
+      "build": "nocd-40209ca7",
+      "start": 5548704,
+      "end": 5548725,
+      "document": "research/runtime/native-world-kind8.md",
+      "evidence": "WORLD04.dispatch-methods.helper-closure-20261019",
+      "anchors_pointer": "/anchors"
     }
   ],
   "register_imports": [
@@ -304401,8 +304838,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-rendering-medium-commit-ready-20261019.json",
-    "sha256": "3093e720422a7c598bce31e276ab928210b53b47cd819ae2ad2a8f380560982c"
+    "path": "research/runtime/coverage/source-index-next20-dispatch-20261020.json",
+    "sha256": "e234d518c796b0ff0fa090a70dba3d9ac7a806654b177ccb14c2c7b8b8952731"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -304422,6 +304859,11 @@
       "id": "MEDIUM01.rendering-implementation-review-20261019",
       "path": "research/runtime/coverage/rendering-medium-source-review-20261019.json",
       "sha256": "9f4bb3963ad7efc01345508034662ea6feb25dcae8a0eecd2596f49dd3b3a203"
+    },
+    {
+      "id": "WORLD01.dispatch-methods-source-review-20261019",
+      "path": "research/runtime/coverage/world-dispatch-source-review-20261019.json",
+      "sha256": "4b7580f9deb29d98dcdd1e59f57619abbf5b5b7cfcb9e6f5792b459355bc43f5"
     }
   ]
 }

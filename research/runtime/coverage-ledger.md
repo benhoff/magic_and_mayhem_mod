@@ -18895,3 +18895,14 @@ branches, broader original allocation/caller recovery and sustained60FPS remain
 pending; no raw stage, pacing, budget, deadline or acceptance threshold is
 relaxed. Hardware attempts and their limitations are retained separately. See
 `rendering-medium-fixes-20261019.md` and the54-entry findings inventory.
+
+## Next twenty partial contracts, group 1 — 2026-10-20
+
+Corrected the observed kind-8 inherited-additive whitelist and reviewed the
+owned queue/class dispatch models. Extended original/native comparison covers
+5,472 queue cases, 6,084 logical calls and 960 class-wrapper cases; PE32 hook
+admission/ABI and two native CTests also pass. Backend return upper bits are
+compared separately from the original low-AX fallback and metadata semantics.
+Broader queue state, object lifetime, pixel/live replacement and remaining
+selected contracts stay independent. [Progress](next20-implementation-progress-20261020.md)
+and [new execution](next20-world-dispatch-20261020.json) preserve the bounds.
