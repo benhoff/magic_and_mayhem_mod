@@ -3,6 +3,7 @@
 #include "world_kinds.h"
 #include "world_colour.h"
 #include "../../reconstruction/rendering/kind8_class.h"
+#include "../../reconstruction/rendering/kind8_sprite_class.h"
 extern void world_leave(void);
 extern void world_wave_leave(void);
 extern u8* world_stream_begin(u32*);
@@ -86,9 +87,12 @@ static int kind8_supported(u32 row){
        Other modes/auxiliary drawing remain a separate reconstruction. */
     if(!get((void*)0x5e1404)||get((void*)(row+28))!=0x8ad08ad0||get((void*)0x6e1f88)||!readable(object,4))return 0;
     u32 table=get((void*)object);
-    if(!readable(table,16))return 0;u32 method=get((void*)(table+12));
+    if(!readable(table,16))return 0;
+    u32 method=get((void*)(table+12));
     const struct MnmKind8Class type=mnm_kind8_class(table,method);
-    return type.method!=MNM_K8_UNKNOWN&&readable(object,type.readable_bytes);
+    if(type.method!=MNM_K8_UNKNOWN)return readable(object,type.readable_bytes);
+    const struct MnmKind8SpriteClass sprite=mnm_kind8_sprite_class(table,method);
+    return sprite.kind&&readable(object,sprite.root_bytes);
 }
 void world_begin(u32* registers,u32 sample){
     if(active||!GetEnvironmentVariableA("MNM_SCENE_WORLD",directory,2))return;

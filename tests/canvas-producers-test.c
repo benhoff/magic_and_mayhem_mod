@@ -231,6 +231,7 @@ static void extent640_fixture(void){
  surfaces[0]=saved;file=saved_file;limit=saved_limit;sequence=saved_sequence;bytes=saved_bytes;failures=saved_failures;stopped=saved_stop;enabled=saved_enabled;batch_enabled=0;raster_first=raster_last=0;
  put((void*)0x658174,saved.pixels);put((void*)0x6a49b8,saved.width);put((void*)0x656618,saved.height);
 }
+#include "kind8-sprite-hook-fixture.h"
 void start(void){
  oracle_config_fixture();
  reserve[sizeof(reserve)-1]=1;u32 old;
@@ -256,6 +257,7 @@ void start(void){
  source_point_fixture();
  effect_hook_fixture();
  extent640_fixture();
+ sprite_hook_fixture();
  canvas_producers_close();
  for(u32 i=0;i<HOOKS;++i)canvas_test_call(hooks[i].address,i==3?0x700000:0x700100,4,hooks[i].pop,after);
  char name[260];path(name,"producer-fixture-pass-",0,".bin");

@@ -1,5 +1,6 @@
 #pragma once
 #include "world_dispatch.hpp"
+#include "kind8_sprite_class.h"
 #include <array>
 #include <cstdint>
 #include <stdexcept>
@@ -7,8 +8,9 @@
 namespace mnm::reconstruction {
 enum class Kind8Sprite { flies, cure };
 inline Kind8Sprite kind8SpriteClass(std::uint32_t table,std::uint32_t method){
-    if(table==0x5c74e4 && method==0x5492b0)return Kind8Sprite::flies;
-    if(table==0x5c74fc && method==0x549730)return Kind8Sprite::cure;
+    const auto type=mnm_kind8_sprite_class(table,method);
+    if(type.kind==1)return Kind8Sprite::flies;
+    if(type.kind==2)return Kind8Sprite::cure;
     throw std::invalid_argument("Unrecovered kind8 sprite class/method");
 }
 struct Kind8SpriteFrame {std::uint32_t token{};bool words{};};

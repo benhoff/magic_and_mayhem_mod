@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate a reviewed, build-pinned World raster caller whitelist from observed sources."""
-import argparse,hashlib,importlib.util,json,struct,subprocess
+import argparse,hashlib,importlib.util,json,re,struct,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
@@ -72,6 +72,24 @@ static inline int mnm_world_raster_caller(u32 caller,u32 tag,const u8* bytes){
    literal=' {0x%x,{%s}},'%(int(row['address'],16),','.join(hex(x) for x in bytes.fromhex(row['return_signature'])))
    if literal not in trailer:raise ValueError('Trail guard template does not match original bytes')
   with a.header.open('a') as output:output.write('\n'+trailer)
-  report={'success':True,'source_executable_sha256':HASH,'caller_count':len(rows),'callers':rows,'trail_context':trail_rows,'sources':{str(Path(__file__).relative_to(ROOT)):hashlib.sha256(Path(__file__).read_bytes()).hexdigest()},'input_stream':{'path':str(a.stream),'sha256':hashlib.sha256(a.stream.read_bytes()).hexdigest()},'generated_header_sha256':hashlib.sha256(a.header.read_bytes()).hexdigest(),'scope':'Static observed-caller whitelist and bytes; not pixel equivalence or whole-function recovery.'};a.report.open('x').write(json.dumps(report,indent=2)+'\n')
+  # Keep the reviewed primary-only sprite policy independent of observations.
+  policy_path=ROOT/'runtime/scene/world_raster_callers.h';policy=policy_path.read_text()
+  marker='/* Selected sprite virtual methods require the primary kind8 row/call context. */'
+  sprite_policy=policy[policy.index(marker):].strip()+'\n'
+  expected=[(0x549333,0x5c74e4,0x5492b0,0x6f2150,7,0x1000400000),(0x549354,0x5c74e4,0x5492b0,0x6f2150,9,0x6000),(0x549369,0x5c74e4,0x5492b0,0x6f2150,9,0x20000),(0x5497d3,0x5c74fc,0x549730,0x6f2268,7,0x1000400000),(0x5497f4,0x5c74fc,0x549730,0x6f2268,9,0x6000),(0x549809,0x5c74fc,0x549730,0x6f2268,9,0x20000)]
+  matches=re.findall(r'\{(0x[0-9a-f]+),(0x[0-9a-f]+),(0x[0-9a-f]+),(0x[0-9a-f]+),([0-9]+),(0x[0-9a-f]+)ull,\{([^}]+)\}\}',sprite_policy)
+  if [tuple(int(x,0) for x in row[:6]) for row in matches]!=expected:raise ValueError('Sprite context policy bindings changed')
+  if at(0x5006a2,16).hex()!='8b560c8b4e04528b56088b0152ff500c' or at(0x5006b2,10).hex()!='e9910100000fbf4e120f':raise ValueError('Primary virtual call context changed')
+  sprite_rows=[]
+  for fields,row in zip(expected,matches):
+   va,table,method,bank,parent_word,mask=fields;sig=bytes(int(x,0) for x in row[6].split(','))
+   if at(va,10)!=sig or at(table+12,4)!=struct.pack('<I',method) or at(method,9)!=b'\x8b\x15'+struct.pack('<I',bank)+b'\x53\x56\x57':raise ValueError('Sprite method/caller identity changed')
+   if mask==0x20000:
+    call=at(va-5,5)
+    if call[0]!=0xe8 or va+struct.unpack('<i',call[1:])[0]!=0x57de00:raise ValueError('Sprite clipped call binding changed')
+   elif at(va-6,6)!=b'\xff\x15'+struct.pack('<I',0x6903dc if parent_word==7 else 0x6c4e3c):raise ValueError('Sprite indirect call slot changed')
+   sprite_rows.append(dict(address=hex(va),table=hex(table),method=hex(method),tags=[tag for tag in range(64) if mask&(1<<tag)],parent_word=parent_word,row_word=parent_word-2,outer='0x5006b2',return_signature=sig.hex(),origin='checked_sprite_primary_context'))
+  with a.header.open('a') as output:output.write('\n'+sprite_policy)
+  report={'success':True,'source_executable_sha256':HASH,'caller_count':len(rows),'callers':rows,'trail_context':trail_rows,'kind8_sprite_context':sprite_rows,'sources':{str(Path(__file__).relative_to(ROOT)):hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),str(policy_path.relative_to(ROOT)):hashlib.sha256(policy_path.read_bytes()).hexdigest()},'input_stream':{'path':str(a.stream),'sha256':hashlib.sha256(a.stream.read_bytes()).hexdigest()},'generated_header_sha256':hashlib.sha256(a.header.read_bytes()).hexdigest(),'scope':'Static observed-caller whitelist and bytes; not pixel equivalence or whole-function recovery.'};a.report.open('x').write(json.dumps(report,indent=2)+'\n')
  finally:subprocess.run([ROOT/'tools/original-manifest.sh','verify'],check=True)
 if __name__=='__main__':main()

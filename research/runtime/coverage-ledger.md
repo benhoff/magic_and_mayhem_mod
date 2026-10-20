@@ -19254,3 +19254,29 @@ checks inside manifest bookends and full method-range hashes/entry anchors.
 Explicit5492b0..549375and549730..549815range exceptions preserve the missing
 Ghidra function-body gap. Earlier source-bound comparisons remain historical
 after driver/provenance extensions; their bytes/hashes are retained.
+
+## Selected primary sprite admission (2026-10-20)
+
+K8SADM admits only Flies5c74e4/5492b0and Cure5c74fc/549730under the pinned
+first-table virtual CALL5006af/return5006b2. Six contextual leaf PCs/ten tag
+pairs are separate from ordinary43PC/50pairs and remain refused by the legacy
+per-draw pixel reply path. Class/table/root/stack/signature, mode/auxiliary,
+player/owner/bank/format/source selector and protected batch owner guards apply.
+The observer recognizes the same exact roots; unknown modes/classes stay open.
+
+144000original primary/method traces match17344guarded callbacks. Actual PE32
+Win32 protection/query checks pass ten class calls/five ABI entries/708controls,
+including628protected short spans. The CPU World canvas remains inaccessible
+and unchanged. Two independent authored sources produce15owned CPS rasters;
+the native decoder and actual canonical batch yield GPU output equal to all
+480000original destination WORDs, with no ordinary readback. K8SPR4 repeats the
+72000case method model after sharing class metadata. Original manifest bookends
+and source stability pass; original pixels never initialize native history.
+
+This proves a bounded controlled primary fragment and owned source adapter,
+not natural class reachability, complete queue consumer, original RNG, source/
+object construction or lifetime, other modes/classes, physical aliases, full
+live drawing or release performance. Broad World/kind8remain partial and full
+live replacement remains none. Shared historical effect/trail/extent evidence
+is preserved after dependency changes; their full current-code pixel/campaign
+validation remains pending despite the common entry fixture regression.
