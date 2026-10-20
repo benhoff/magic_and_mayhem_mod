@@ -10,7 +10,7 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def summary(values):
  v=sorted(values);return dict(samples=len(v),median=statistics.median(v),p95=v[min(len(v)-1,int(len(v)*.95))],maximum=max(v)) if v else None
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--native-draw',action='store_true',help='Native graphics services with real ddraw disabled; V4 resident delivery');p.add_argument('--profile-producer',action='store_true');p.add_argument('--profile-waits',action='store_true');p.add_argument('--profile',action='store_true',help='Separate CPU sampling probe; timings remain charged to the full-path budget');p.add_argument('--hardware',action='store_true',help='Private no-monitor NVIDIA seat; refuse software fallback');p.add_argument('--hardware-driver',choices=['zink','nvidia'],default='zink');p.add_argument('--impossible-budget',action='store_true',help='Negative control: require warm median <=0.001ms');p.add_argument('--resident',action='store_true',help='V4 GPU delivery without pixel replies; retains normal performance gates');p.add_argument('--normal',action='store_true',help='Measured normal path without CPU reference composition');p.add_argument('--queues',type=int,default=4096);p.add_argument('--mode',choices=['complete','consumer-death','producer-death'],default='complete');p.add_argument('--prepared',type=Path);a=p.parse_args();assert 1<=a.queues<=4096
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--native-draw',action='store_true',help='Native graphics services with real ddraw disabled; V4 resident delivery');p.add_argument('--profile-producer',action='store_true');p.add_argument('--profile-waits',action='store_true');p.add_argument('--profile',action='store_true',help='Separate CPU sampling probe; timings remain charged to the full-path budget');p.add_argument('--hardware',action='store_true',help='Private no-monitor NVIDIA seat; refuse software fallback');p.add_argument('--hardware-driver',choices=['zink','nvidia'],default='zink');p.add_argument('--impossible-budget',action='store_true',help='Negative control: require warm median <=0.001ms');p.add_argument('--resident',action='store_true',help='V4 GPU delivery without pixel replies; retains normal performance gates');p.add_argument('--normal',action='store_true',help='Measured normal path without CPU reference composition');p.add_argument('--queues',type=int,default=4096);p.add_argument('--mode',choices=['complete','consumer-death','producer-death'],default='complete');p.add_argument('--prepared',type=Path);p.add_argument('--source-game',type=Path,help='Pinned source installation under working/');a=p.parse_args();assert 1<=a.queues<=4096
  # Compiler dependency paths are absolute; normalize reuse roots before containment checks.
  if a.prepared:a.prepared=a.prepared.resolve()
  if a.native_draw:a.resident=True
@@ -29,7 +29,7 @@ def main():
   with (out/(name+'.log')).open('x') as log:return subprocess.run([str(x) for x in cmd],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=kw.pop('timeout',600),**kw)
  try:
   run('original-before',[ROOT/'tools/original-manifest.sh','verify'],check=True);before=True
-  frozen=out/'source';configured={n for n in subprocess.check_output(['git','ls-files','-z'],cwd=ROOT).decode().split('\0') if n and (Path(n).suffix in ('.cpp','.hpp','.c','.h','.S','.cmake') or Path(n).name=='CMakeLists.txt')}
+  frozen=out/'source';configured={n for n in subprocess.check_output(['git','ls-files','-z'],cwd=ROOT).decode().split('\0') if n and (Path(n).suffix in ('.cpp','.hpp','.c','.h','.S','.inc','.cmake') or Path(n).name=='CMakeLists.txt')}
   for n in sorted(configured|set(sources)):
    target=frozen/n;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/n,target)
   report['frozen_sources']={n:sha(frozen/n) for n in configured|set(sources)};build=out/'build';dependency_root=frozen
@@ -76,6 +76,10 @@ def main():
    run('hardware-driver',['glxinfo','-B'],check=True,timeout=20);driver=(out/'hardware-driver.log').read_text();assert 'NVIDIA' in driver and 'Accelerated: yes' in driver and 'llvmpipe' not in driver and 'lavapipe' not in driver,'Hardware fallback refused'
    report['hardware_driver']=a.hardware_driver;report['hardware_environment']={k:env[k] for k in ['DISPLAY','MESA_LOADER_DRIVER_OVERRIDE','GALLIUM_DRIVER','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','QT_XCB_GL_INTEGRATION'] if k in env};report['hardware_driver_log_sha256']=sha(out/'hardware-driver.log')
   command=['xvfb-run' ,'-a','-s','-screen 0 1280x1024x24','python3',ROOT/'tools/capture-scene-game.py','--canvas-producers','--world-producer-handoff','--samples','32','--world-raster-prefix','32','--world-raster-batch','--skip-window-screenshot','--map','2','--magic-items','0','--producer-live',build/'mnm-world-continuous','--continuous-queues',str(a.queues),'--claims',declaration,*([] if a.normal else ['--continuous-verify'])]
+  if a.source_game:
+   source=a.source_game.resolve()
+   if not source.is_relative_to(ROOT/'working') or not source.is_dir():raise ValueError('Source game must be under working/')
+   command.extend(['--source-game',source]);report['source_game']=str(source)
   if a.native_draw:command.append('--native-draw')
   if a.resident:command.append('--continuous-resident')
   if a.profile_producer:command.append('--continuous-producer-profile')

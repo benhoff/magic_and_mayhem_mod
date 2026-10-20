@@ -2,6 +2,8 @@
 """Guarded, hash-pinned palette construction and whole-frame draw comparison."""
 import argparse,hashlib,json,os,struct,subprocess,tempfile,sys
 from pathlib import Path
+from terrain_validation_inputs import terrain_executable
+from terrain_validation_pixels import rgb565_rgba
 ROOT=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -16,7 +18,7 @@ def main():
  def verify(phase):run([ROOT/'tools/original-manifest.sh','verify'],'original-'+phase)
  verify('before')
  try:
-  pe=ROOT/'working/game-nocd/Chaos.exe'
+  pe=terrain_executable(ROOT)
   if sha(pe)!=HASH:raise ValueError('Executable hash mismatch')
   binaries=[a.preview.resolve(),a.sanitized_preview.resolve()];root=ROOT/'working/game-clean';paths=[pe,Path(__file__),*binaries]
   for folder in ['assets','renderer','renderer/sprites','reconstruction/rendering','apps/terrain-preview']:
@@ -54,7 +56,7 @@ def main():
     if sprite not in inputs:inputs[sprite]=sha(sprite)
     reference=out/f'original-{index}-{build}.565';run([helper,pe,sprite,16,queue,reference],f'original-{index}-{build}')
     assert prefix.with_suffix('.565').read_bytes()==reference.read_bytes(),(index,build,shade)
-    raw=reference.read_bytes();rgba=b''.join(bytes((((v>>11)&31)*255//31,((v>>5)&63)*255//63,(v&31)*255//31,255)) for (v,) in struct.iter_unpack('<H',raw))
+    raw=reference.read_bytes();rgba=rgb565_rgba(v for (v,) in struct.iter_unpack('<H',raw))
     assert hashlib.sha256(rgba).hexdigest()==native['rgba_sha256'];matched.append(sha(reference))
    assert matched[0]==matched[1];frames.append(dict(realm=realm,view=native['view'],shade=shade,queue=len(native['queue']),pixels_sha256=matched[0]))
    if index%32==0:print('matched',index+1,'fixtures',flush=True)

@@ -39,6 +39,11 @@ static void wine_reserve_step(u32 submission,u32 phase,u32 status){require(submi
 static struct {u32 depth,entry[32];} wine_submission_parents[32];
 static u32 wine_submission_slot(void){return 0;}
 static void wine_source_version_write(void* r,u32 s,u32 k,u32 p){(void)r;(void)s;(void)k;(void)p;}
+/* Resource-map forwarding also has an optional source-handoff guard. It is
+ * disabled in this completion-only fixture; any accidental invocation fails.
+ * The physical-owner/handoff suite executes the enabled production guard. */
+static u32 wine_handoff_enabled;
+static void wine_handoff_resource_guard(void* resource,u32 tag){(void)resource;(void)tag;ExitProcess(250);}
 #include "../runtime/drawing/wine_resource_mapping.h"
 static u32 late_resource_calls;
 static void* __attribute__((cdecl)) original_get(void* texture){require(texture==(void*)0x1111&&GetLastError()==0xbeef,220);++late_resource_calls;SetLastError(0xcafe);return(void*)0x2222;}

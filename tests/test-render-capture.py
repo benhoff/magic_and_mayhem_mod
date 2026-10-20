@@ -84,5 +84,21 @@ class CaptureTest(unittest.TestCase):
         for data in (header+event[:-1], header+event*2, header+event*2049):
             with self.assertRaises(ValueError): replay.summarize_events(data)
 
+    def test_rgb565_preview_matches_independent_repeated_bit_strings(self):
+        c = replay.decode(fixture())
+        c['dst_size'] = (256, 256)
+        words = struct.pack('<65536H', *range(65536))
+        expected = bytearray()
+        old_floor = bytearray()
+        for word in range(65536):
+            bits = f'{word:016b}'
+            for field in (bits[:5], bits[5:11], bits[11:]):
+                expected.append(int((field * 2)[:8], 2))
+                old_floor.append(int(field, 2) * 255 // (2**len(field)-1))
+        actual = replay.ppm(c, words).split(b'\n', 3)[3]
+        self.assertEqual(actual, expected)
+        self.assertNotEqual(actual, old_floor)
+        self.assertEqual(replay.compare(c, c['after'])['mismatching_pixels'], 0)
+
 
 if __name__ == '__main__': unittest.main()

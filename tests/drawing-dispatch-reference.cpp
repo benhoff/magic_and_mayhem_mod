@@ -48,7 +48,8 @@ int main(int argc,char** argv)try{
     using Consumer=void (__attribute__((thiscall)) *)(void*);
     unsigned cases=0;
     for(unsigned video:{0u,1u})for(unsigned auxiliary:{0u,1u})for(unsigned indexed:{0u,1u})
-    for(int offset:{-127,3})for(unsigned value:{0u,1u,0x1234u,0xffffu}){
+    for(int offset:{-127,3})for(unsigned value:{0u,1u,0x1234u,0xffffu,
+        0x10000u,0x10001u,0x12340001u,0xffff0000u,0xffffffffu}){
       for(int kind=-2;kind<=35;++kind){
         std::uint32_t row[9]={0,pointer(object),120,100,0,0,std::uint32_t(kind),0,0};
         const std::int16_t x=offset,y=7;std::memcpy(reinterpret_cast<unsigned char*>(row)+16,&x,2);
@@ -62,7 +63,7 @@ int main(int argc,char** argv)try{
         std::uint16_t actual;std::memcpy(&actual,reinterpret_cast<unsigned char*>(row)+30,2);
         const bool defaulted=kind<0||kind>34||(!video&&(kind==7||kind==32));
         const bool normalized=video&&indexed&&offset==-127&&(kind==0||kind==31);
-        const std::uint16_t expected=kind==9?0:defaulted?second:normalized?std::uint16_t(value==1):std::uint16_t(value);
+        const std::uint16_t expected=kind==9?0:defaulted?second:normalized?std::uint16_t(std::uint16_t(value)==1):std::uint16_t(value);
         check(actual==expected,"Consumer AX/zero/default metadata policy");
         if(kind>=15&&kind<=30){
           const auto waves=std::count_if(calls.begin(),calls.end(),[](const auto& c){return c.tag==0x5806f0;});
@@ -81,5 +82,5 @@ int main(int argc,char** argv)try{
         }std::cout<<"]}\n";++cases;
       }
     }
-    check(cases==2432,"Case count");return 0;
+    check(cases==5472,"Case count");return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

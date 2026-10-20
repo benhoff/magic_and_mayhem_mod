@@ -20,7 +20,7 @@ int main(int argc, char **argv) try {
   auto &r=raster.fields;
   r[2]=9;r[3]=7;r[5]=5;r[6]=3;r[8]=2;r[12]=5;r[13]=3;r[15]=get(16)?1:8;r[17]=get(16)!=0;r[19]=size;r[20]=get(16)?512:0;r[18]=size+r[20];
   raster.payload.assign(raw.begin()+at,raw.begin()+at+size);
-  std::fill(raster.payload.begin()+28,raster.payload.begin()+32,0);
+  for(std::size_t i=28;i<32;++i)raster.payload.at(i)=0;
   if(r[17])for(unsigned i=0;i<256;++i){raster.payload.push_back(0);raster.payload.push_back(0xfc);}
   legacy::CanvasProducer create{};create.fields[2]=1;create.fields[3]=7;create.fields[5]=5;create.fields[6]=3;
   legacy::CanvasProducer fill{};fill.fields[2]=5;fill.fields[3]=7;fill.fields[12]=5;fill.fields[13]=3;fill.fields[14]=0x1234;

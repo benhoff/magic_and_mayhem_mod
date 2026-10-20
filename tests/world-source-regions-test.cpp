@@ -50,5 +50,18 @@ int main(){
  assert(mnm_world_source_epoch_query(&cache,&owner,17,4096,m)==28&&!cache.count&&!owner&&calls==at+6);
  regions[0].protection=1;mnm_world_source_epoch_begin(&cache,&owner,1,17);
  assert(mnm_world_source_epoch_query(&cache,&owner,17,4096,m)==28&&m[5]==1&&!cache.count);
+ // Unknown protection combinations must never become reusable proofs.
+ for(unsigned protection:{6u,0x12u,0x200u}){
+  regions[0].protection=protection;mnm_world_source_epoch_begin(&cache,&owner,1,17);const auto queried=calls;
+  for(unsigned repeat=0;repeat<2;++repeat)
+   assert(mnm_world_source_epoch_query(&cache,&owner,17,4096,m)==28&&m[5]==protection&&!cache.count);
+  assert(calls==queried+2);
+ }
+ for(unsigned protection:{2u,4u,8u,0x20u,0x40u,0x80u}){
+  regions[0].protection=protection;mnm_world_source_epoch_begin(&cache,&owner,1,17);const auto queried=calls;
+  for(unsigned repeat=0;repeat<2;++repeat)
+   assert(mnm_world_source_epoch_query(&cache,&owner,17,4096,m)==28&&m[5]==protection&&cache.count==1);
+  assert(calls==queried+1);
+ }
  std::cout<<"{\"success\":true,\"repeated_queries\":10000,\"physical_queries\":2,\"region_capacity\":64,\"epoch_permission_revalidated\":true,\"producer_dispatch_cases\":8,\"content_rechecked\":true}\n";
 }

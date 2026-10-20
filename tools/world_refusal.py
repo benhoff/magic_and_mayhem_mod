@@ -15,8 +15,13 @@ def diagnose(root):
     native_path = root/'native-world.json'
     native_bytes = native_path.read_bytes()
     native = json.loads(native_bytes)
-    if native.get('producer_reason') != 8:
+    if not isinstance(native, dict) or type(native.get('producer_reason')) is not int:
+        raise ValueError('Invalid native refusal report identity')
+    if native['producer_reason'] != 8:
         return None
+    presentations = native.get('presentations')
+    if type(presentations) is not int or presentations < 0:
+        raise ValueError('Invalid native refusal presentation count')
     channel_path = root/'world-channel.bin'
     with channel_path.open('rb') as channel:
         header = channel.read(HEADER)
@@ -32,6 +37,8 @@ def diagnose(root):
                 words[14:17] != (INPUT, ORACLE, BUILD) or words[17] != slots or
                 any(words[18:])):
             raise ValueError('Invalid refused history channel identity')
+        if presentations > published:
+            raise ValueError('Native presentations exceed published history')
         sequence = published + 1
         channel.seek(HEADER + published*(32 + INPUT + ORACLE) + 32)
         failed = channel.read(80)
@@ -52,7 +59,7 @@ def diagnose(root):
         raise ValueError('Kind refusal lacks complete unsupported raw draw rows')
     return {'schema': 1, 'scope': 'Stopped live-history kind refusal; raw queue diagnostics only, no raster equivalence or rendering inputs.',
             'producer_reason': 8, 'failed_source_queue': sequence,
-            'published_frames': published, 'presented_frames': native['presentations'],
+            'published_frames': published, 'presented_frames': presentations,
             'target_frames': slots, 'captured_queues': len(paths),
             'complete_prefix': len(paths) == slots, 'refused_queue': refused,
             'native_report_sha256': hashlib.sha256(native_bytes).hexdigest(),

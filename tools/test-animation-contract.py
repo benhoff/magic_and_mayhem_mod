@@ -23,7 +23,7 @@ def main():
         (out/f'original-{phase}.log').write_text(p.stdout+p.stderr);print(p.stdout,end='',flush=True);p.check_returncode()
     verify('before')
     try:
-        exe=REPO/'working/game-nocd/Chaos.exe'
+        exe=REPO/'original/Arcane_Nocd/Chaos.exe'
         if sha(exe.read_bytes())!=HASH:raise ValueError('Unsupported executable')
         sources=['assets/animation.cpp','assets/animation.hpp','assets/animation_inspect_main.cpp',
                  'reconstruction/animation/no_cd.cpp','reconstruction/animation/no_cd.hpp',

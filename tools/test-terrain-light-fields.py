@@ -2,6 +2,7 @@
 """Original byte-grid/kernel/source comparisons and per-cell lit terrain scenes."""
 import argparse,hashlib,json,os,struct,subprocess,tempfile,sys,random,importlib.util
 from pathlib import Path
+from terrain_validation_inputs import terrain_executable
 ROOT=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -17,7 +18,7 @@ def main():
  def verify(phase):run([ROOT/'tools/original-manifest.sh','verify'],'original-'+phase)
  verify('before')
  try:
-  pe=ROOT/'working/game-nocd/Chaos.exe';root=ROOT/'working/game-clean';binaries=[a.preview.resolve(),a.sanitized_preview.resolve()]
+  pe=terrain_executable(ROOT);root=ROOT/'working/game-clean';binaries=[a.preview.resolve(),a.sanitized_preview.resolve()]
   if sha(pe)!=HASH:raise ValueError('Executable hash mismatch')
   inputs={path:sha(path) for path in [pe,*binaries,Path(__file__),root/'CFG/Encrypted/chaos.cfg',root/'CFG/prefs.cfg']}
   for folder in ['assets','renderer','renderer/sprites','reconstruction/rendering','apps/terrain-preview','tests']:

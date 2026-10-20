@@ -60,6 +60,12 @@ class Publication(unittest.TestCase):
     def test_unbalanced_world_refuses(self):
         self.records[4][2]=4;self.save()
         with self.assertRaises(ValueError):analyze(self.root)
+    def test_final_publication_must_follow_world_return(self):
+        self.row[4]=4;self.save() # The queue has entered but has not returned.
+        with self.assertRaises(ValueError):analyze(self.root)
+    def test_world_return_cannot_precede_entry(self):
+        self.records[3][2],self.records[4][2]=12,11;self.save()
+        with self.assertRaises(ValueError):analyze(self.root)
     def test_trace_truncation_refuses(self):
         p=self.root/'drawing-publication-0000.bin';p.write_bytes(p.read_bytes()[:-1])
         with self.assertRaises(ValueError):analyze(self.root)

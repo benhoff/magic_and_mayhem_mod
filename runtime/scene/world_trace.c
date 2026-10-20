@@ -54,7 +54,8 @@ static int kind8_supported(u32 row){
     u32 table=get((void*)object);
     if(!readable(table,16))return 0;u32 method=get((void*)(table+12));
     return (table==0x5c7420&&method==0x54ab00)||
-        ((table==0x5c73f0||table==0x5c7408)&&method==0x546540&&readable(object,100))||
+        (table==0x5c73f0&&method==0x54aaa0)||
+        (table==0x5c7408&&method==0x546540&&readable(object,100))||
         ((table==0x5c7494||table==0x5c74b0)&&method==0x54ab60)||(table==0x5c74cc&&method==0x54ac00);
 }
 void world_begin(u32* registers,u32 sample){
@@ -204,7 +205,8 @@ int world_colour_test_setup(void){
     if(!world_additive_test_setup())return 0;
     u32 object=0x600000,row=0x630000;put((void*)object,0x5c7494);put((void*)0x5c74a0,0x54ab60);if(!kind8_supported(row))return 0;
     put((void*)object,0x5c74b0);put((void*)0x5c74bc,0x54ab60);if(!kind8_supported(row))return 0;
-    put((void*)object,0x5c73f0);put((void*)0x5c73fc,0x546540);if(!kind8_supported(row))return 0;
+    put((void*)object,0x5c73f0);put((void*)0x5c73fc,0x546540);if(kind8_supported(row))return 0;
+    put((void*)0x5c73fc,0x54aaa0);if(!kind8_supported(row))return 0;
     put((void*)object,0x5c7408);put((void*)0x5c7414,0x546540);if(!kind8_supported(row))return 0;
     put((void*)object,0x5c74cc);put((void*)0x5c74d8,0x54ac00);if(!kind8_supported(row))return 0;
     put((void*)(object+28),2);put((void*)(object+32),2);put((void*)(object+36),3);

@@ -276,7 +276,7 @@ def build_snapshot(root=ROOT):
     rated = {entry['behavior']: entry for entry in importance['entries']}
     planned = {task['behavior']: {**task, 'tranche': tranche['id'], 'plan_priority': priority,
                                 'tranche_order': tranche['order'], 'tranche_title': tranche['title']}
-               for key, priority in (('tranche_plan', 'Critical'), ('high_tranche_plan', 'High'))
+               for key, priority in (('tranche_plan', 'Critical'), ('high_tranche_plan', 'High'), ('low_tranche_plan', 'Low'))
                for tranche in importance.get(key, {}).get('tranches', [])
                for task in tranche['tasks']}
     for behavior in behaviors:
@@ -290,7 +290,7 @@ def build_snapshot(root=ROOT):
     allowed.update(e['record'] for e in register['evidence'])
     allowed.update(t['document'] for t in register['dispatch_tables'])
     allowed.update(r['document'] for r in register['recovered_ranges'])
-    for key in ('tranche_plan', 'high_tranche_plan'):
+    for key in ('tranche_plan', 'high_tranche_plan', 'low_tranche_plan'):
         document = importance.get(key, {}).get('review_document')
         if document:
             allowed.add(document)

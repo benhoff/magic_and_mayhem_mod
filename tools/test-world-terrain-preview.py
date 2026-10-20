@@ -2,6 +2,8 @@
 """Guarded four-orientation world traversal and complete native image checks."""
 import argparse,hashlib,importlib.util,json,os,struct,subprocess,sys,tempfile
 from pathlib import Path
+from terrain_validation_inputs import terrain_executable
+from terrain_validation_pixels import rgb565_rgba
 REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -18,7 +20,7 @@ def main():
     def verify(phase):run([str(REPO/'tools/original-manifest.sh'),'verify'],'original-'+phase)
     verify('before')
     try:
-        exe=REPO/'working/game-nocd/Chaos.exe';assert sha(exe)==HASH;root=REPO/'working/game-clean';realm=root/'Realms/Celtic/Forest'
+        exe=terrain_executable(REPO);assert sha(exe)==HASH;root=REPO/'working/game-clean';realm=root/'Realms/Celtic/Forest'
         binaries=[args.binary.resolve()]+([args.sanitized.resolve()] if args.sanitized else [])
         paths=[exe,realm/'Terrain.ttd',realm/'Terrain.spr']+binaries
         for directory in ['apps/terrain-preview','reconstruction/rendering','renderer/sprites']:
@@ -50,7 +52,7 @@ def main():
                             x,y=draw['x']-ox+dx,draw['y']-oy+dy
                             if 0<=x<512 and 0<=y<256:pixels[y*512+x]=v;inside+=1
                         partial+=bool(inside and inside<len(values))
-                    words=struct.pack('<'+'H'*len(pixels),*pixels);rgba=b''.join(bytes((((v>>11)&31)*255//31,((v>>5)&63)*255//63,(v&31)*255//31,255)) for v in pixels)
+                    words=struct.pack('<'+'H'*len(pixels),*pixels);rgba=rgb565_rgba(pixels)
                     for build,binary in enumerate(binaries):
                         prefix=out/f'frame-{index:02}-{build}';request='Realms\\Celtic\\Forest\\'+name.swapcase();command=[str(binary),'--root',str(root),'--map',request,'--world','--view',str(view),'--camera',','.join(map(str,camera)),'--pan',','.join(map(str,pan)),'--output',str(prefix)]
                         if visibility:command+=['--visibility']

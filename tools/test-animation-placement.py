@@ -17,7 +17,7 @@ def main():
         (out/f'original-{phase}.log').write_text(p.stdout+p.stderr);p.check_returncode()
     verify('before')
     try:
-        exe=REPO/'working/game-nocd/Chaos.exe'
+        exe=REPO/'original/Arcane_Nocd/Chaos.exe'
         if sha(exe)!=HASH:raise ValueError('Unsupported executable')
         sources=[REPO/p for p in ('reconstruction/animation/placement.cpp','reconstruction/animation/placement.hpp','assets/animation.hpp','tests/animation-placement-reference.cpp','tools/test-animation-placement.py')]
         inputs={p:sha(p) for p in sources+[exe]};helper=out/'reference'

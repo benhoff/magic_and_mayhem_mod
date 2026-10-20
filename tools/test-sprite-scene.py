@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Compare bounded scene selection/events to original ANI ticks and native pixels to independent SPR rows."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -12,9 +13,13 @@ REPO=Path(__file__).resolve().parent.parent
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def sha(b):return hashlib.sha256(b).hexdigest()
 def main():
-    if '--display-owned' not in sys.argv:
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--preview',type=Path,default=REPO/'working/build/sprite-scene/mnm-sprite-scene-preview')
+    parser.add_argument('--display-owned',action='store_true',help=argparse.SUPPRESS)
+    args=parser.parse_args()
+    if not args.display_owned:
         subprocess.run(['xvfb-run','-a','env','QT_QPA_PLATFORM=xcb','LIBGL_ALWAYS_SOFTWARE=1',
-                        'python3',str(Path(__file__).resolve()),'--display-owned'],check=True)
+                        'python3',str(Path(__file__).resolve()),*sys.argv[1:],'--display-owned'],check=True)
         return
     parent=REPO/'working/tests/sprite-scene';parent.mkdir(parents=True,exist_ok=True)
     out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(f'Native scene evidence: {out}',flush=True)
@@ -23,10 +28,10 @@ def main():
         (out/f'original-{phase}.log').write_text(p.stdout+p.stderr);print(p.stdout,end='',flush=True);p.check_returncode()
     verify('before')
     try:
-        exe=REPO/'working/game-nocd/Chaos.exe';root=REPO/'working/game-clean'
+        exe=REPO/'original/Arcane_Nocd/Chaos.exe';root=REPO/'working/game-clean'
         ani=root/'Creatures/redcap.ani';spr=root/'Creatures/RedCap.spr'
         if sha(exe.read_bytes())!=HASH:raise ValueError('Executable hash differs')
-        preview=REPO/'working/build/sprite-scene/mnm-sprite-scene-preview';preview_hash=sha(preview.read_bytes())
+        preview=args.preview.resolve();preview_hash=sha(preview.read_bytes())
         sources=['apps/sprite-scene/scene.cpp','apps/sprite-scene/scene.hpp','apps/sprite-scene/main.cpp',
                  'reconstruction/animation/no_cd.cpp','reconstruction/animation/no_cd.hpp','reconstruction/animation/placement.cpp','reconstruction/animation/placement.hpp','reconstruction/animation/attachment.cpp','reconstruction/animation/attachment.hpp',
                  'assets/animation.cpp','assets/animation.hpp','renderer/sprites/sprite.cpp','renderer/blit.cpp',

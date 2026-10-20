@@ -1,4 +1,5 @@
 #include "controller.hpp"
+#include "campaign_view.hpp"
 #include "cure_runtime.hpp"
 #include "creature_runtime.hpp"
 #include "persistence/snapshot.hpp"
@@ -39,30 +40,23 @@ void Controller::changed() {
 }
 ArenaView Controller::view() const {
     ArenaView v;
-    if(campaign_) {
-        if(const auto* plan=campaign_->missionPlan()) {
-            v.briefing=QString::fromStdString(plan->briefing);
-            if(campaign_->progress().mission) {
-                const auto& m=*campaign_->progress().mission;
-                v.objective=QString("Objective %1 / 3: %2").arg(m.stage+1).arg(QString::fromStdString(plan->objectives[m.stage]));
-                if(m.stage==1 && !m.reinforcement) v.objective+=" Reinforcements awaiting a clear arrival area.";
-            }
+    if(campaign_) presentCampaign(*campaign_,mapResources_?&mapResources_->definition():nullptr,v);
+    if(mapPresentation_ && mapResources_ && campaign_) {
+        bool terrain=campaign_->currentMission().map==mapResources_->mission().map;
+        if(!campaign_->progress().graph && !hasBattle() && campaign_->progress().lastResult) {
+            const auto &result=*campaign_->progress().lastResult;
+            for(const auto &mission:mapResources_->definition().missions)
+                terrain|=mission.realm==result.realm && mission.region==result.region && mission.map==mapResources_->mission().map;
         }
-        const auto& p=campaign_->progress();
-        if(p.identity.id=="native-plains-objectives-campaign" && p.lastResult && p.lastResult->region=="plains-crossing" && p.lastResult->outcome==game::CampaignOutcome::victory)
-            v.reward="Reward earned: Cure unlocked for the arena finale.";
+        if(terrain) v.mission=mapPresentation_;
     }
-    if (mapPresentation_ && campaign_ && (campaign_->progress().identity.id=="native-plains-campaign" || campaign_->progress().identity.id=="native-plains-creature-campaign" || campaign_->progress().identity.id=="native-plains-species-campaign" || campaign_->progress().identity.id=="native-plains-objectives-campaign") &&
-        ((hasBattle() && (session().mission().map=="native-plains-crop-v1" || session().mission().map==terrainBattleMap)) ||
-         (!hasBattle() && campaign_->progress().lastResult && campaign_->progress().lastResult->region=="plains-crossing")))
-        v.mission=mapPresentation_;
     if (!hasBattle()) {
         const auto &progress = campaign_->progress();
         v.resultHelp =
             progress.completed ? "Campaign complete. Save your progress."
             : progress.lastResult && progress.lastResult->outcome == game::CampaignOutcome::victory
-                ? "Continue to the next duel, or save your progress."
-                : "Retry this duel, or save your progress.";
+                ? progress.graph ? "Choose a mission, then Continue." : "Continue to the next duel, or save your progress."
+                : progress.lastResult ? "Retry this mission, or save your progress." : "Continue to start this mission, or save your progress.";
         v.selection = progress.completed ? "Campaign complete" : "Ready for the next attempt";
         if (progress.lastResult) {
             switch (progress.lastResult->outcome) {
@@ -163,7 +157,11 @@ void Controller::advance() {
         auto report = campaign_->step();
         if(before && campaign_->progress().mission) {
             const auto& after=*campaign_->progress().mission;
-            if(after.stage!=before->stage) feedback_=QString::fromStdString(campaign_->missionPlan()->objectives[after.stage]);
+            if(after.version==2) {
+                for(std::size_t i=0;i<after.objectives.size();++i) if(after.objectives[i].complete && !before->objectives[i].complete && campaign_->missionPlan()->nodes.at(i).kind!=game::ObjectiveKind::protect)
+                    feedback_=QString::fromStdString(campaign_->missionPlan()->nodes.at(i).text)+" — complete.";
+                for(std::size_t i=0;i<after.groups.size();++i) if(!after.groups[i].empty() && before->groups[i].empty()) feedback_="Enemy reinforcements have arrived.";
+            } else if(after.stage!=before->stage) feedback_=QString::fromStdString(campaign_->missionPlan()->objectives[after.stage]);
             else if(after.reinforcement && !before->reinforcement) feedback_="Enemy reinforcements have arrived.";
         }
         last_ = report.battle.value_or(game::SkirmishReport{});
@@ -172,8 +170,8 @@ void Controller::advance() {
             mode_ = CursorMode::select;
             feedback_ = campaign_->progress().completed ? "Campaign complete. Save your progress."
                         : report.result->outcome == game::CampaignOutcome::victory
-                            ? "Victory. Continue to the next duel."
-                            : "Attempt ended. Retry this duel.";
+                            ? "Victory. Choose the next mission or Continue."
+                            : "Attempt ended. Retry this mission.";
         }
     } else
         last_ = session_.step();
@@ -200,6 +198,7 @@ void Controller::restart() {
     auto fresh = newSession(driver_);
     session_ = std::move(fresh);
     campaign_.reset();
+    mapResources_.reset();mapPresentation_.reset();
     selected_ = session().state().wizards[0].actor;
     mode_ = CursorMode::select;
     last_ = {};
@@ -289,6 +288,7 @@ void Controller::load(const std::filesystem::path &p) {
     auto candidate = skirmish::load(p);
     session_ = std::move(candidate);
     campaign_.reset();
+    mapResources_.reset();mapPresentation_.reset();
     selected_ = session().state().wizards[0].actor;
     mode_ = CursorMode::select;
     last_ = {};
@@ -316,22 +316,24 @@ void Controller::adopted(const QString &message) {
     feedback_ = message;
     changed();
 }
-void Controller::newMapCampaign(std::filesystem::path root, bool stagedMission) {
+void Controller::newMapCampaign(std::filesystem::path root, bool stagedMission) {startMapCampaign(std::move(root),stagedMission,false);}
+void Controller::newCrossroadsCampaign(std::filesystem::path root) {startMapCampaign(std::move(root),false,true);}
+void Controller::startMapCampaign(std::filesystem::path root, bool stagedMission, bool crossroads) {
     pause();
     if(root.empty()) root=mapRoot_;
     if(root.empty()) throw std::invalid_argument("Select the installed game data directory");
-    auto resources=mapCampaignResources(root,true,true,bool(driver_) || stagedMission,bool(driver_) || stagedMission,stagedMission);
+    auto resources=mapCampaignResources(root,true,true,bool(driver_) || stagedMission || crossroads,bool(driver_) || stagedMission || crossroads,stagedMission,false,crossroads);
     auto presentation=std::make_shared<const MissionPresentation>(*resources);
     auto candidate=std::make_unique<game::CampaignSession>(skirmish::newMapCampaign(resources));
     candidate->startMission();
-    mapRoot_=std::move(root);mapPresentation_=std::move(presentation);campaign_=std::move(candidate);
+    mapRoot_=std::move(root);mapResources_=std::move(resources);mapPresentation_=std::move(presentation);campaign_=std::move(candidate);
     adopted("Plains campaign started. Move and cast on the installed terrain. Playback is paused.");
 }
 void Controller::newCampaign() {
     pause();
     auto candidate = std::make_unique<game::CampaignSession>(skirmish::newCampaign(true,true,driver_));
     candidate->startMission();
-    mapPresentation_.reset();
+    mapPresentation_.reset();mapResources_.reset();
     campaign_ = std::move(candidate);
     adopted("New campaign. First duel is paused.");
 }
@@ -341,16 +343,19 @@ void Controller::loadCampaign(const std::filesystem::path &path) {
     const auto progress=game::decodeCampaign(outer.campaign);
     std::unique_ptr<game::CampaignSession> candidate;
     std::shared_ptr<const MissionPresentation> presentation;
-    if(progress.identity.id=="native-plains-campaign" || progress.identity.id=="native-plains-creature-campaign" || progress.identity.id=="native-plains-species-campaign" || progress.identity.id=="native-plains-objectives-campaign") {
+    std::shared_ptr<const MapCampaignResources> resources;
+    if(progress.identity.id=="native-plains-campaign" || progress.identity.id=="native-plains-creature-campaign" || progress.identity.id=="native-plains-species-campaign" || progress.identity.id=="native-plains-objectives-campaign" || progress.identity.id=="native-plains-survival-campaign" || progress.identity.id=="native-plains-crossroads-campaign") {
         if(mapRoot_.empty()) throw std::invalid_argument("Load this campaign with --asset-root GAME_DIRECTORY, or start a map campaign first");
-        const bool staged=progress.identity.id=="native-plains-objectives-campaign";
+        const bool crossroads=progress.identity.id=="native-plains-crossroads-campaign";
+        const bool objectives=progress.identity.id=="native-plains-survival-campaign";
+        const bool staged=crossroads || objectives || progress.identity.id=="native-plains-objectives-campaign";
         const bool enabled=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"cure")!=w.spells.end();});
         const bool spheres=std::any_of(progress.wizards.begin(),progress.wizards.end(),[&](const auto &w){return w.id==progress.player && std::find(w.spells.begin(),w.spells.end(),"magic-sphere")!=w.spells.end();});
-        auto resources=mapCampaignResources(mapRoot_,enabled || staged,spheres || staged,staged || progress.identity.id=="native-plains-creature-campaign" || progress.identity.id=="native-plains-species-campaign",staged || progress.identity.id=="native-plains-species-campaign",staged);
+        resources=mapCampaignResources(mapRoot_,enabled || staged,spheres || staged,staged || progress.identity.id=="native-plains-creature-campaign" || progress.identity.id=="native-plains-species-campaign",staged || progress.identity.id=="native-plains-species-campaign",staged,objectives,crossroads);
         presentation=std::make_shared<const MissionPresentation>(*resources);
         candidate=std::make_unique<game::CampaignSession>(skirmish::loadMapCampaign(resources,path));
     } else candidate=std::make_unique<game::CampaignSession>(skirmish::loadCampaign(path,driver_));
-    mapPresentation_=std::move(presentation);campaign_=std::move(candidate);
+    mapResources_=std::move(resources);mapPresentation_=std::move(presentation);campaign_=std::move(candidate);
     adopted("Campaign loaded. Playback is paused.");
 }
 void Controller::saveCampaign(const std::filesystem::path &path, bool overwrite) {
@@ -363,11 +368,16 @@ void Controller::saveCampaign(const std::filesystem::path &path, bool overwrite)
     feedback_ = "Campaign saved. Playback is paused.";
     changed();
 }
+void Controller::selectCampaignMission(const QString &realm,const QString &region) {
+    if(!campaign_) throw std::invalid_argument("Start or load a campaign first");
+    pause();campaign_->selectMission(realm.toStdString(),region.toStdString());
+    adopted("Mission selected. Continue starts it and commits the route. Playback is paused.");
+}
 void Controller::continueCampaign() {
     if (!campaign_)
         throw std::invalid_argument("Start or load a campaign first");
     pause();
     campaign_->startMission();
-    adopted("Campaign duel started. Playback is paused.");
+    adopted("Campaign mission started. Playback is paused.");
 }
 } // namespace mnm::skirmish

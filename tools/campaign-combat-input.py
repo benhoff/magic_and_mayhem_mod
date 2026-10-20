@@ -48,6 +48,7 @@ def main():
         record('click',button=b)
     def state():return creatures(read_rows(trace))
     def capture(label, count=False):
+        if len(captures)>=96:raise RuntimeError('Combat diagnostic capture budget exhausted')
         name=f'combat-{len(captures):02d}-{label}'
         request=out/'capture-request.json';temp=out/'capture-request.tmp'
         temp.write_text(json.dumps(dict(name=name)));temp.replace(request)
@@ -67,6 +68,37 @@ def main():
                 item['ocr'][route]=text
         captures.append(item);record('capture',name=name)
         return item
+    def settle_dialogue(label, minimum_seconds=12):
+        # Keep the original bounded introduction proof separate from later
+        # readiness diagnostics; its validator retains the12-check limit.
+        checks=result.setdefault('dialogue_checks' if label=='dialogue-check' else 'additional_dialogue_checks',[])
+        quiet_since=None;quiet=0;dismissed=0
+        # Delayed introductory pages reset the quiet interval. Keep observation
+        # and elapsed-time bounds separate from the twelve-page dismissal cap;
+        # twelve observations cannot cover multiple pages plus twelve quiet seconds.
+        deadline=time.monotonic()+90
+        for attempt in range(48):
+            if time.monotonic()>=deadline:break
+            item=capture(label+'-'+str(attempt))
+            texts={}
+            from PIL import Image
+            for route in ('native','original'):
+                crop=out/(item['name']+'-'+route+'-dialogue.png')
+                Image.open(out/(item['name']+'-'+route+'.png')).crop((225,90,600,270)).save(crop)
+                texts[route]=subprocess.run(['tesseract',str(crop),'stdout','--psm','6'],capture_output=True,text=True,check=True,timeout=10).stdout.strip()
+            visible={r:'hermes' in texts[r].lower() for r in texts}
+            checks.append(dict(stage=label,capture=item['name'],texts=texts,visible=visible))
+            record('dialogue-check',stage=label,capture=item['name'],attempt=attempt,visible=visible)
+            if not any(visible[r] for r in (('native',) if resident_dialogue else ('native','original'))):
+                if quiet_since is None:quiet_since=time.monotonic()
+                quiet+=1
+                if time.monotonic()-quiet_since>=minimum_seconds and quiet>=2:return dismissed
+                time.sleep(2);continue
+            quiet=0;quiet_since=None
+            if not resident_dialogue and visible['native']!=visible['original']:time.sleep(.5);continue
+            if dismissed>=12:break
+            click(400,300);dismissed+=1;time.sleep(.6)
+        raise RuntimeError('Introductory Hermes dialogue did not clear after bounded native input')
     def center():
         click(744,522);click(744,522);time.sleep(.75)
     def blocked_cast(label, owner, wizard_slot):
@@ -78,6 +110,9 @@ def main():
         if created or current[wizard_slot]['mana']<prior[wizard_slot]['mana']:raise RuntimeError('Expected blocked cast created a Zombie or spent mana')
         item=dict(kind=label,before_sequence=begin,after_sequence=current_rows[-1][0],mana_before=prior[wizard_slot]['mana'],mana_after=current[wizard_slot]['mana'],created_slots=created)
         capture(label,True);result.setdefault('blocked_casts',[]).append(item);record('blocked-cast',**item)
+        # A refusal or queued introduction can display a modal. Do not let it
+        # consume the next spell-selection click or count as a valid refusal.
+        settle_dialogue('after-'+label)
     try:
         deadline=time.monotonic()+12
         while not trace.exists() or not state():
@@ -91,32 +126,20 @@ def main():
         # Resident World drawing does not clear old CPU World pixels, so only
         # the resident image can classify dialogue there. Successful original
         # summon/cast/combat observations below separately prove input admission.
-        result['dialogue_checks']=[]
-        dialogue_start=time.monotonic();quiet=0
-        for attempt in range(12):
-            item=capture('dialogue-check-'+str(attempt))
-            texts={}
-            from PIL import Image
-            for route in ('native','original'):
-                crop=out/(item['name']+'-'+route+'-dialogue.png')
-                Image.open(out/(item['name']+'-'+route+'.png')).crop((225,90,600,270)).save(crop)
-                texts[route]=subprocess.run(['tesseract',str(crop),'stdout','--psm','6'],capture_output=True,text=True,check=True,timeout=10).stdout.strip()
-            visible={r:'hermes' in texts[r].lower() for r in texts}
-            result['dialogue_checks'].append(dict(capture=item['name'],texts=texts,visible=visible))
-            record('dialogue-check',attempt=attempt,visible=visible)
-            if not any(visible[r] for r in (('native',) if resident_dialogue else ('native','original'))):
-                quiet+=1
-                if time.monotonic()-dialogue_start>=12 and quiet>=2:break
-                time.sleep(2);continue
-            quiet=0
-            if not resident_dialogue and visible['native']!=visible['original']:time.sleep(.5);continue
-            click(400,300);time.sleep(.6)
-        else:raise RuntimeError('Introductory Hermes dialogue did not clear after bounded native input')
+        settle_dialogue('dialogue-check',12)
         before=capture('before-summon',True)
         validate_summon_capture(before,out,'0/15',resident_dialogue)
         if args.spell_cases:
-            center();blocked_cast('invalid-target',owner,wizard['slot'])
-        click(523,575);time.sleep(.5);cast_before=read_rows(trace)[-1][0];cast_prior=state()
+            center();settle_dialogue('after-center');blocked_cast('invalid-target',owner,wizard['slot'])
+        for selection in range(3):
+            click(523,575);time.sleep(.5)
+            # Selection can itself meet a newly queued modal. Re-admit only
+            # selection after clearing it; the positive cast below remains one
+            # physical order and is never retried after consumption.
+            if not settle_dialogue('summon-selection-'+str(selection),2):break
+        else:raise RuntimeError('Spell selection repeatedly consumed by dialogue')
+        capture('selected-before-summon',True)
+        cast_before=read_rows(trace)[-1][0];cast_prior=state()
         click(440,310,3);record('summon-order',before_sequence=cast_before)
         deadline=time.monotonic()+12; summoned=[]
         while time.monotonic()<deadline:

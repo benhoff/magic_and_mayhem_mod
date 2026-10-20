@@ -13,7 +13,7 @@ def main():
         (out/f'original-{phase}.log').write_text(p.stdout+p.stderr);p.check_returncode()
     verify('before')
     try:
-        exe=REPO/'working/game-nocd/Chaos.exe';cfg=REPO/'working/game-clean/CFG/Encrypted/effectani.cfg'
+        exe=REPO/'original/Arcane_Nocd/Chaos.exe';cfg=REPO/'working/game-clean/CFG/Encrypted/effectani.cfg'
         if sha(exe)!=HASH:raise ValueError('Unsupported executable')
         spec=importlib.util.spec_from_file_location('cfg',REPO/'tools/decode-cfg.py');module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
         _,clear=module.decode(cfg.read_bytes());sections={};section=None

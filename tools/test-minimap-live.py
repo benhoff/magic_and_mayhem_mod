@@ -11,7 +11,7 @@ import tempfile
 ROOT=Path(__file__).resolve().parents[1]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
- parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--claims',type=Path,required=True);parser.add_argument('--motion',action='store_true',help='Paced private-Xvfb rotation/pan schedule');args=parser.parse_args()
+ parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--claims',type=Path,required=True);parser.add_argument('--source-game',type=Path,default=ROOT/'working/game-nocd',help='Pinned unchanged original executable with installed assets; staged/native installations refuse');parser.add_argument('--motion',action='store_true',help='Paced private-Xvfb rotation/pan schedule');args=parser.parse_args()
  declaration=json.loads(args.claims.read_text());sources=declaration['sources']
  if not all(sha(ROOT/n)==h for n,h in sources.items()):raise ValueError('Prospective sources changed')
  parent=ROOT/'working/tests/minimap-live';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
@@ -31,7 +31,7 @@ def main():
    run('input-configure',['cmake','-S',ROOT/'tests/minimap-live-input','-B',out/'input-build'])
    run('input-build',['cmake','--build',out/'input-build','-j','4'])
    capture_extra=['--minimap-input-fixture',out/'input-build/mnm-minimap-live-input']
-  run('capture',['xvfb-run','-a','-s','-screen 0 1280x1024x24','python3',ROOT/'tools/capture-scene-game.py','--canvas-producers','--minimap-owned','--samples','16','--magic-items','0','--skip-window-screenshot','--claims',args.claims.resolve(),*capture_extra]);capturepath,capture=result('capture')
+  run('capture',['xvfb-run','-a','-s','-screen 0 1280x1024x24','python3',ROOT/'tools/capture-scene-game.py','--source-game',args.source_game.resolve(),'--canvas-producers','--minimap-owned','--samples','16','--magic-items','0','--skip-window-screenshot','--claims',args.claims.resolve(),*capture_extra]);capturepath,capture=result('capture')
   run('replay',['python3',ROOT/'tools/test-native-canvas-producers.py','--capture-report',capturepath,'--claims',args.claims.resolve()]);replaypath,replay=result('replay')
   observed=capture['canvas_producers']['minimap_owned']
   if not observed['terrain_calls'] or any(not observed['kinds'].get(str(k)) for k in range(3)):raise ValueError('Missing observed terrain or overlay kind')

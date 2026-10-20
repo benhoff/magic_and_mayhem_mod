@@ -11,7 +11,12 @@ struct UnitView {
     unsigned width = 1;
 };
 class MissionPresentation;
+struct CampaignChoiceView {
+    QString realm, region, text, detail;
+    bool enabled=false, selected=false;
+};
 struct ArenaView {
+    std::vector<CampaignChoiceView> choices;
     std::shared_ptr<const MissionPresentation> mission;
     std::vector<UnitView> units;
     std::vector<game::Projectile> projectiles;

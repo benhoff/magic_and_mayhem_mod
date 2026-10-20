@@ -35,8 +35,8 @@ def main():
                        cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, timeout=60, check=True)
     if sources != {name:sha(ROOT/name) for name in sources}:
         raise RuntimeError('Sources changed during diagnostic validation')
-    report = {'success':True, 'sources':sources, 'sources_stable':True, 'tests':16,
-              'scope':'Synthetic stopped-channel/raw-journal correlation and strict malformed/missing cases; no original raster or live launcher equivalence.',
+    report = {'success':True, 'sources':sources, 'sources_stable':True, 'tests':17,
+              'scope':'Synthetic stopped-channel/raw-journal correlation and strict malformed/missing cases, including malformed native reports that must not mask the launch failure; no original raster or live launcher equivalence.',
               'input_fixture_sha256':sources['tests/world-refusal-diagnostics-test.py']}
     if claims:
         report['claims'] = claims['claims']
