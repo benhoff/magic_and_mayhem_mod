@@ -12971,7 +12971,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.real-game-command-shadow"
       }
     },
@@ -18794,7 +18794,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.observer-lock-avoidance"
       }
     },
@@ -22308,7 +22308,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.world-kind-diagnostic"
       }
     },
@@ -24401,7 +24401,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.world-batch-profiling"
       }
     },
@@ -24988,7 +24988,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.minimap-owned-observation"
       }
     },
@@ -25213,7 +25213,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.minimap-input-fixture"
       }
     },
@@ -30336,7 +30336,8 @@
       "original": [],
       "documents": [
         "research/runtime/font-glyph-live-shadow.md",
-        "research/runtime/rendering-low20-20261020.md"
+        "research/runtime/rendering-low20-20261020.md",
+        "research/runtime/rendering-low20-glyph-renewal-20261020.md"
       ],
       "implementation": [
         "renderer/canvas_sequence.cpp",
@@ -30531,7 +30532,9 @@
       "evidence": [
         "NR.font-glyph-live-shadow.live-20261010",
         "NR.font-glyph-live-shadow.live-producers-20261010",
-        "LOW20.component-controls-20261020"
+        "LOW20.component-controls-20261020",
+        "LOW20.glyph-live-incomplete-storage-20261020",
+        "LOW20.glyph-live-renewal-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -30544,7 +30547,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.font-glyph-live-shadow"
       }
     },
@@ -34890,7 +34893,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.drawing-actions"
       }
     },
@@ -35692,7 +35695,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.world-rolling-hardware"
       }
     },
@@ -39951,7 +39954,7 @@
         "Offline temporal mutator surface relationships add source changes to lifetime analyzer/tests; pre-change lifetime01remains historical. Fresh02passes24synthetic guards and preserves all earlier lifetime fields, but classifies only observed local-generation/QueryInterface relationships. No fresh PE32 forwarding, original reexecution, native pixel parity, driver ordering or full ownership validation is asserted."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.drawing-session-api"
       }
     },
@@ -40099,7 +40102,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.drawing-interactive-acquisition"
       }
     },
@@ -43551,7 +43554,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.drawing-fenced-acquisition"
       }
     },
@@ -43811,7 +43814,7 @@
         "Storage automation emits an empty steps array; its requested minimum_fps does not exercise the ordinary smoke flow worst-window cadence validator. The successful480-World storage journey is functional/resource evidence, not a new per-window paint-rate or sustained hardware pass."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.resident-stage-profiling"
       }
     },
@@ -44283,7 +44286,7 @@
         "Fresh TITAN4545World casting/combat/portrait/menu/Quit trace passes and establishes4355advancing1counter/8globalANI/1scheduler/1queue windows plus189non-advancing1queue/no selected tick/ANI/maintenance/scheduler windows. Field+fd5a is observed as a low byte; complete mode policy and other timers/world/effect work are excluded. Repeated original render-only invocation safety, independent simulation timing, arbitrary long stalls, complete pause/network/alternate pacing/all-animation/lifecycle/driver/pixel equivalence and60FPS remain unproven."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.engine-cadence-observation"
       }
     },
@@ -44435,7 +44438,7 @@
         "Wireversion5 controlled44cases/20decoder refusals pass. TITAN16paired consumer intervals average28.67579ms of30.55809ms total, leaving1.88230ms build/surround; protected state and ordered rows match. Full instrumented campaign fails18.68812FPS despite input/flow/normal retirement; formal gameplay checks remain unasserted. Five fresh LOW20 same-process PE32 controls pass success-then-admission-refusal with zero refused-row extra/consumer durations and calls; this closes the diagnostic timing follow-up without renewing original performance acceptance. Sustained scheduling and lower native delivery cost pending."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.scene-production-repetition"
       }
     },
@@ -50308,7 +50311,7 @@
         "Final full native19FPS/half-rate gameplay and unchanged19.866Hz advancing simulation pass;296extra draws preserve exact protected states/scenes.24.530WorldFPS/20.423aggregate miss25/20.5experiment gates,4prediction misses remain; uniform60FPS, interpolation, default activation, unclassified module/map/nested/pause/network behavior remain pending."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.scene-draw-budget"
       }
     },
@@ -51496,7 +51499,7 @@
         "Integration with master startup changes 40b6ac2a/9e074d4e: historical paired replay and full gameplay source closures are stale at apps/qt-shell/main.cpp, tools/menu-game-runner.py and tools/prepare-menu-observer.py. Their recorded hashes are preserved. Renderer/cache implementation sources are unchanged; fresh merged launcher/gameplay execution is pending. Historical live_observation status does not assert fresh current-code validation."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.native-draw-cost-profiling"
       }
     },
@@ -64227,7 +64230,7 @@
         "The recorded128-World TITAN profile-off/on comparison and bounded native owner timings pass; quieter captured prefix is not the busy public workload. Shared-source changes retain historical freshness limitations. Live phase costs, original simulation CPU, GPU busy attribution, scanout and sustained60FPS remain pending."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.native-world-owner-costs"
       }
     },
@@ -70596,7 +70599,7 @@
         "Pending fresh complete bounded original session capture and native comparison; legacy capture scopes remain historical."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.drawing-session-producer-capture"
       }
     },
@@ -70655,7 +70658,7 @@
         "Pending fresh original normal-Quit validation after late resource helper fix; existing scoped observer evidence remains historical."
       ],
       "implementation_review": {
-        "review": "LOW20.diagnostic-implementation-review-20261020",
+        "review": "LOW20.committed-glyph-assessment-20261020",
         "entry": "NR.drawing-observer-shutdown"
       }
     },
@@ -287608,6 +287611,98 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "LOW20.glyph-live-incomplete-storage-20261020",
+      "kind": "live_observation",
+      "scope": "Additional glyph live renewal interrupted by100GiB storage guard; retained prospective declarations are deliberately unbound for current milestone credit. Original preservation bookends/owned Wine retirement pass; no completed source/pixel/session equivalence result.",
+      "record": "research/runtime/rendering-low20-glyph-incomplete-20261020.json",
+      "sha256": "6c0ef64378d50cf4e2ea87e40cc2301b8d107f1a656f5cf8a66bade2be585b95",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/outcome",
+          "equals": "INCOMPLETE_STORAGE_GUARD"
+        },
+        {
+          "pointer": "/complete_live_acceptance",
+          "equals": false
+        },
+        {
+          "pointer": "/private_wine_wait_exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "LOW20.glyph-live-renewal-20261020",
+      "kind": "live_equivalence",
+      "scope": "Four startup World returns with live native owned menu/loading/HUD history, positive tinted glyph inputs and external whole-canvas completion/GPU mirror comparisons. Original text state and drawing active; no byte-state hook or suppression. Fresh source-exact second-NVMe execution; retain earlier storage interruption independently. No wider text/session/driver or replacement credit.",
+      "record": "research/runtime/rendering-low20-glyph-live-20261020.json",
+      "sha256": "4ba2a487ab319e52b07355a37c5e171a6e5bd44e23a0312627133834f216e6d1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "equivalence_pointer": "/gpu_mirror_equal",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/glyph_calls",
+          "equals": 1915
+        },
+        {
+          "pointer": "/world_returns",
+          "equals": 4
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 941
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 416635312
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/gpu_mirror_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -297774,7 +297869,8 @@
       ],
       "evidence": [
         "NR.font-glyph-live-shadow.live-20261010",
-        "NR.font-glyph-live-shadow.live-producers-20261010"
+        "NR.font-glyph-live-shadow.live-producers-20261010",
+        "LOW20.glyph-live-renewal-20261020"
       ]
     },
     {
@@ -308726,8 +308822,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-master-merge-final-20261020.json",
-    "sha256": "3792d5184f61ca79d1d7f842b9ba07bf9ae91c4a0ecbe52ce9cceee1c7fc0884"
+    "path": "research/runtime/coverage/source-index-low20-glyph-commit-20261020.json",
+    "sha256": "344182c30edddbc7e97e7a0e3f6cc376252092d12d89b871d44233df5d906e72"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -308754,9 +308850,9 @@
       "sha256": "10cfad43821c5521eea3ab2abb4cbbcd114ead679f2083fa6457c803d944caee"
     },
     {
-      "id": "LOW20.diagnostic-implementation-review-20261020",
-      "path": "research/runtime/coverage/low20-diagnostic-source-review-20261020.json",
-      "sha256": "a66239a67950ab9d9182bf7e4254455c58b9007e2b71c422be9fb9c7fbb3ce28"
+      "id": "LOW20.committed-glyph-assessment-20261020",
+      "path": "research/runtime/coverage/low20-committed-glyph-assessment-20261020.json",
+      "sha256": "c121279347163f95e202bb9813c87a23132998d8915c8fbe24f0df4a586e7ec6"
     },
     {
       "id": "next20.focused-source-review-20261020-scene-master-merge",

@@ -19139,3 +19139,24 @@ the new native admission policy alone has scoped implementation execution credit
 contracts and the remaining boundaries. Canvas broad-snapshot freshness becomes
 historical after these animation edits; original hashes and execution records
 are not rewritten.
+
+## Low rendering glyph renewal after duplicate cleanup — 2026-10-20
+
+`LOW20.glyph-live-renewal-20261020` renews the declared original-active
+four-World startup shadow:1,915 glyph calls,941 checkpoints and416,635,312
+pixels compare with zero mismatches and exact GPU mirrors. Source/input
+stability and original-manifest bookends pass. The existing glyph runner ran
+from an exact source copy with new outputs on the second NVMe, while the main
+drive's100GiB guard remained active. All841 declared sources still match the
+main checkout. The prior storage-interrupted result and source-copy preflight
+refusal remain separate; historical fingerprints and engine stages are intact.
+
+User-approved duplicate cleanup removed26,952 exact research copies/26.91GiB
+from inactive completed snapshots, preserving all differing versions, raw
+evidence, installations, binaries, logs and pins. The new [execution and cleanup
+provenance](rendering-low20-glyph-execution-20261020.json) and [bounded validation
+review](rendering-low20-glyph-renewal-20261020.md) record the retained roots and
+hashes. Wider text/session/driver acceptance and the existing pixel/timing
+failures remain pending independently of this pass.
+
+The storage-interrupted glyph attempt remains separately retained as INCOMPLETE_STORAGE_GUARD and grants no milestone credit. The follow-up commit reviews merged HEAD87105990: all841 source hashes in the successful glyph record match that tree. No historical fingerprint or engine stage is rewritten.

@@ -29,6 +29,10 @@ The existing public-backend changed-redraw instability, resident/gameplay timing
 
 The [fresh original minimap motion renewal](rendering-low20-minimap-live-20261020.json) PASS covers16 World returns, all four orientations, seven observed centers, same-orientation panning and1062 exact checkpoints/474236912 pixels with zero differences. Original-manifest bookends and source stability pass. This closes the selected bounded motion comparison; normal-session timing, camera generation, border/alias/driver domains remain outside it. The first unsupported-default-executable attempt remains retained.
 
+The earlier additional [glyph live attempt](rendering-low20-glyph-incomplete-20261020.json) remains **INCOMPLETE_STORAGE_GUARD**. The100GiB guard stopped that attempt at99.86GiB free. It grants no equivalence; its recorded hashes and owned-prefix/original-manifest cleanup remain preserved.
+
+The subsequent [glyph live renewal](rendering-low20-glyph-live-20261020.json) **PASS** covers four startup World returns,1,915 glyph calls and941 checkpoints/416,635,312 pixels with zero mismatches and exact GPU mirrors. Original rendering stayed active; source/input stability and original-manifest bookends pass. The [execution record](rendering-low20-glyph-execution-20261020.json) binds the unchanged source snapshot and new outputs on the second NVMe. Approved duplicate cleanup removed26.91GiB while preserving differing versions and raw evidence. This bounded renewal does not close the wider text, session or driver exclusions.
+
 ## Per-contract findings and next steps
 
 ### 1. `NR.drawing-actions`
@@ -107,7 +111,9 @@ The [fresh original minimap motion renewal](rendering-low20-minimap-live-2026102
 
 **Component result:** PASS. Authored diagnostic controls do not renew this contract's complete original/live acceptance.
 
-**Next step:** Renew the four-World map2 zero-item glyph-bearing live shadow; require positive glyph traffic, every ordered completion/checkpoint and exact CPU/GPU mirror equality with zero refusals.
+**Live result:** PASS for the declared four-World map2 zero-item shadow:1,915 glyph calls,941 checkpoints, zero differing pixels and exact GPU mirrors. The earlier storage-interrupted attempt remains in history.
+
+**Next step:** Validate additional text routes, other resolutions and complete-session/physical-driver behavior under separate prospective declarations; retain source-only admission and independent completion oracles. Per-glyph live comparison and text-entry bypass remain separate targets.
 
 **Remaining boundary:** No per-glyph live oracle, text-entry bypass, all resolutions, full session or driver equivalence is claimed.
 
@@ -117,7 +123,7 @@ The [fresh original minimap motion renewal](rendering-low20-minimap-live-2026102
 
 **Component result:** PASS. Authored diagnostic controls do not renew this contract's complete original/live acceptance.
 
-**Next step:** Run the16-return motion fixture; require all four observed orientations, a same-orientation center change, no stuck keys and exact native minimap checkpoints. Keep fixture pacing separate from normal input timing.
+**Next step:** The16-return motion comparison passed. Broader validation concerns normal unpaced input timing and original camera generation; keep the250ms fixture result separate.
 
 **Remaining boundary:** General input dispatch, original camera generation and normal-session timing remain outside this fixture.
 
@@ -127,7 +133,7 @@ The [fresh original minimap motion renewal](rendering-low20-minimap-live-2026102
 
 **Component result:** PASS. Authored diagnostic controls do not renew this contract's complete original/live acceptance.
 
-**Next step:** Renew the16-return capture/replay with positive terrain and every overlay kind; enumerate actual orientation/center states, full destination comparisons and strict journal/resource bounds.
+**Next step:** The16-return motion comparison passed. Broader validation concerns source visibility/camera generation, border/row-alias cases and physical drivers beyond the observed V2 journal.
 
 **Remaining boundary:** Four-view authored controls do not prove unobserved live states, source visibility/camera generation, border rows, arbitrary aliases or replacement.
 
