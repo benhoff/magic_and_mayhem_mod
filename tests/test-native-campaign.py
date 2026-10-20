@@ -16,9 +16,29 @@ spec.loader.exec_module(smoke)
 
 
 class EvidenceTests(unittest.TestCase):
+    def test_deferred_rate_retains_failure_without_deferring_ownership_errors(self):
+        resident=dict(completed=64,imports=64,verified_returns=64,engine_fps=7.6,
+                      error='',world_readbacks=0,native_readbacks=0,rgba_readbacks=0)
+        gates=smoke.validate_resident_cpu_census(resident,19,defer_rate_failure=True)
+        self.assertTrue(gates['worlds_passed'])
+        self.assertFalse(gates['fps_passed'])
+        with self.assertRaisesRegex(ValueError,'FPS below target'):
+            smoke.validate_resident_cpu_census(resident,19)
+        for change in (dict(world_readbacks=1),dict(error='ownership failure'),dict(imports=63)):
+            with self.subTest(change=change),self.assertRaisesRegex(ValueError,'completion/import'):
+                smoke.validate_resident_cpu_census(dict(resident,**change),19,defer_rate_failure=True)
+
     def flow(self):
         return {'success': True, 'native_command_fallback': False, 'native_command_frames': 6,
                 'steps': [{'step': s, 'screenshot_saved': True} for s in smoke.STEPS]}
+
+    def test_unknown_hover_policy_cannot_skip_readiness_validation(self):
+        with self.assertRaisesRegex(ValueError,'Unsupported original hover'):
+            smoke.validate_casting_combat(Path('/unused'),dict(hover_readiness_policy='future-unreviewed'),Path('/unused'))
+
+    def test_unknown_summon_policy_cannot_skip_creation_validation(self):
+        with self.assertRaisesRegex(ValueError,'Unsupported additional summon'):
+            smoke.validate_casting_combat(Path('/unused'),dict(additional_summon_policy='future-unreviewed'),Path('/unused'))
 
     def test_complete_flow(self):
         smoke.validate_flow(self.flow())

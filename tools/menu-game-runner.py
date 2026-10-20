@@ -111,6 +111,16 @@ if original_gameplay or os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')=='1':
     spells=root/'spell-events.bin'
     if spells.exists() or spells.is_symlink():raise ValueError('Refusing stale spell observation')
     os.environ['MNM_MENU_SPELL_OBSERVE']='Z:'+str(spells).replace('/','\\')
+os.environ.pop('MNM_MENU_INPUT_ADMISSION_OBSERVE',None)
+if os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')=='1':
+    if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')!='1' or not metadata.get('native_render'):
+        raise ValueError('Input admission observation requires the private casting diagnostic')
+    admission=root/'input-admission.bin'
+    if admission.exists() or admission.is_symlink():raise ValueError('Stale input admission observation')
+    os.environ['MNM_MENU_INPUT_ADMISSION_OBSERVE']='Z:'+str(admission).replace('/','\\')
+    region=root/'input-admission-region.bin'
+    if region.exists() or region.is_symlink():raise ValueError('Stale Region input observation')
+    os.environ['MNM_DRAW_REGION_INPUT_FILE']='Z:'+str(region).replace('/','\\')
 if os.environ.get('MNM_MENU_NATIVE_RENDER')=='1':
     if not metadata.get('native_render'):raise ValueError('Native rendering was not staged')
     if hashlib.sha256((game/'MnmRender.dll').read_bytes()).hexdigest()!=metadata['render_dll_sha256']:raise ValueError('Render DLL hash mismatch')
