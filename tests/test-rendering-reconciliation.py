@@ -76,17 +76,31 @@ class ReviewTest(unittest.TestCase):
 class ActualReviewTest(unittest.TestCase):
     def test_all_203_reviewed_contracts_have_explicit_source_scope_decisions(self):
         root=Path(__file__).resolve().parents[1];r=json.loads((root/'research/runtime/coverage/register.json').read_text())
-        review=next(row for row in load_reviews(root,r) if row['track']=='rendering')
-        self.assertEqual(review['reviewed_count'],203)
-        self.assertEqual(review['counts'],{'bounded_code':71,'diagnostic_tooling':111,'original_scope':12,'umbrella_scope':2,'acceptance_scope':7})
-        rows={row['behavior']:row for row in review['entries']}
+        reviews=load_reviews(root,r)
+        review=next(row for row in reviews if row['track']=='rendering')
+        retained=json.loads((root/review['record']).read_text())
+        superseded=retained['superseded_entries_retained']
+        self.assertEqual(retained['historical_reviewed_count'],203)
+        self.assertEqual(review['reviewed_count'],201)
+        self.assertEqual({row['behavior'] for row in superseded},{'RS.world-dispatch-targets','RS.world-kind8-virtual'})
+        self.assertEqual(review['reviewed_count']+len(superseded),203)
+        self.assertEqual(review['counts'],{'bounded_code':71,'diagnostic_tooling':111,'original_scope':10,'umbrella_scope':2,'acceptance_scope':7})
+        rows={row['behavior']:row for group in reviews for row in group['entries']}
+        # The focused review owns both active entries; the old broad decisions
+        # remain readable without duplicating active ownership.
+        for entry in superseded:
+            self.assertNotIn(entry['behavior'],{row['behavior'] for row in review['entries']})
+            self.assertIn(entry['behavior'],rows)
+            self.assertEqual(entry['disposition'],'original_scope')
         self.assertEqual(rows['AN.world-facing']['recorded_implementation'],'partial')
         self.assertIn('native_providers.cpp',rows['AN.world-facing']['code_witness']['path'])
         self.assertEqual(rows['RS.displacement-final-word-read']['disposition'],'bounded_code')
         self.assertIn('distortion_word_read.hpp',rows['RS.displacement-final-word-read']['code_witness']['path'])
         self.assertEqual(rows['NR.surfaces']['disposition'],'bounded_code')
         self.assertIn('NR.surface-backend.formats-pitch',rows['NR.surfaces']['related_behaviors'])
-        self.assertIn('RS.world-kind8-additive',rows['RS.world-kind8-virtual']['related_behaviors'])
+        self.assertIn('RS.world-kind8-methods',rows['RS.world-kind8-virtual']['related_behaviors'])
+        previous=next(row for row in superseded if row['behavior']=='RS.world-kind8-virtual')
+        self.assertIn('RS.world-kind8-additive',previous['related_behaviors'])
         self.assertEqual(rows['NR.live-drawing-replacement']['disposition'],'acceptance_scope')
         self.assertTrue(all(row['finding'] and row['remaining'] and row['reviewed_paths'] for row in rows.values()))
 if __name__=='__main__':unittest.main()

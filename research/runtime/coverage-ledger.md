@@ -18919,3 +18919,41 @@ native HUD history. Pre-World reuse/initial-state evidence remains historical;
 all-writer, physical ownership, full startup/live replacement are not promoted.
 [Progress](next20-implementation-progress-20261020.md) and the three new immutable
 execution records keep those domains independent.
+
+
+## Remaining Medium rendering follow-up — 2026-10-20
+
+Retained the54planning priorities (38scoped/16partial); these are not54confirmed
+defects. Fixed native display deadline phase drift, bounded physical hover/quiet/
+spell/integer admission, delayed accepted-summon attribution and portable owned
+snapshot invocation. Read-only V2 observations distinguish Qt publication from
+actual original Region return and later World picking. Ground pursuit validates
+living type/owner matches; no allocation-generation, AI or balance claim follows.
+Independent functional diagnostics now run before the identical final sourceFPS
+gate; ownership/readback/count failures still stop immediately.
+
+Current33native/status/Python controls,68Python tests,12CTest controls and selected
+original960000linear/960064backed-edge/530432grayscale words pass. The renewed
+owned queue passes12failures,512legacyV4leases and actual80-byte PE32ACK mutations.
+The23GPUcopy-plan and deferred-status fixtures remain source/scope current.
+Retained-prefix replay confirms an accepted Zombie born13178ms after its physical
+press and13melee hits; this is new helper execution over old original observations.
+MEDIUM07 records new results without rebinding earlier hashes or statuses.
+
+Hardware009completed its raw input/flow/normal-Quit journey but failed the
+unchanged19FPSsource gate at7.604087FPS. Hardware010confirmed summon,Fireball,
+melee and lethal enemy, then the original wizard died before retreat; sources,
+original verification and private cleanup were stable. Its source7.691299/native
+44.349112FPS are unsuccessful performance evidence. Full current-source journey
+reliability, other routes/failures, physical loss/Restore, broader original caller/
+allocation recovery, full equivalence/replacement and sustained60FPS remain
+pending. The opt-in worker status cadence remains opt-in.
+
+User-authorized cleanup hardlinked eleven identical immutable generated caches,
+recovering about3.55GiB while preserving every path, byte, pin and raw evidence;
+originals and the cold archive were untouched. The90GiBreserve remains active.
+Shared dependency links and static-review ownership are reconciled independently
+of execution. Incoming3578ab10..ed556c8d and concurrented556c8d..63a6da3c history
+receipts were inspected; the concurrent animation work is not integrated into
+this isolated branch. See [the findings and evidence](remaining-medium-20261020/input-admission.md)
+and [all54priorities](remaining-medium-20261020/medium-findings-review.json).
