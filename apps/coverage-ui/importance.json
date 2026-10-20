@@ -31,28 +31,28 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Mode-one attachment binding: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "88aee703112dbadbe002f0c284f2e37ae33c99859384e78f9ed53a1eef016f64"
+      "contract_sha256": "7ccdf04563a602edaf7f0a69e50fb0c521db296b5aeec234fb2543ed80c81ab8"
     },
     {
       "behavior": "AN.direction",
       "weight": 4,
       "work_type": "capability",
       "reason": "Forward phase-preserving sequence switch: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "a7fa1d58eefd865fa7c400813e00d4b555a5d35f059ce7f3adb228775c3bf869"
+      "contract_sha256": "b1a5453cbd47d779e4fbea9fbc45f92f4b2c5c4ac2c8aa66a74e69d00b82cb9a"
     },
     {
       "behavior": "AN.forward",
       "weight": 4,
       "work_type": "capability",
       "reason": "Forward animation controller: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "2cbfe22939e7595cf37bff78cf5bd3b29a92bac86d26c73a732b181b838ef81d"
+      "contract_sha256": "83ab857aa1b88f5566d44fe874f69d41741c510e6ec4a88e7044f4fd62edd01f"
     },
     {
       "behavior": "AN.placement",
       "weight": 4,
       "work_type": "capability",
       "reason": "Body and attachment placement: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "fe0b84860900f6985fcf3970c26efa4840b8139662c1cfddb26f1b399b6d23fe"
+      "contract_sha256": "1bedb2933a517cd9e263f876c666b5164413baa2a27932770283c74e24729fe4"
     },
     {
       "behavior": "AN.reverse-controller",
@@ -73,42 +73,42 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Whole native clipped image-copy entry: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "98f8e87573e196980b5e9d6cc42a3714fb612849b46d28195e954db1195d1fb4"
+      "contract_sha256": "14cfaee7b2ba2e56d3bdaa4ee9e10849edd5f2bc41f52982656bc756a3112fea"
     },
     {
       "behavior": "NP.native-copy-route-census",
       "weight": 3,
       "work_type": "acceptance",
       "reason": "Closed application copy routing and GPU admission linkage: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code.",
-      "contract_sha256": "b18066152c1349329bd0e8b968cfa8762d53c39047e53a9dd0229d542e7dc3ce"
+      "contract_sha256": "0a0c62d17e62d021b5f294f8bb565b9f9a954f4b2b090eb7d89c5713b72995e8"
     },
     {
       "behavior": "NP.native-copy-transforms",
       "weight": 4,
       "work_type": "capability",
       "reason": "Native canonical copy conversion and scaling: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "c2683633e42be422f5079e60b956580c20449b45c508fe1857fd45c4ab5b19dd"
+      "contract_sha256": "9efa71abada1fb1c9c3b1cf7094f14d49a7f29203b3d856936980eb642145e5d"
     },
     {
       "behavior": "NP.native-cpu-instruction-resume",
       "weight": 5,
       "work_type": "capability",
       "reason": "Ordered CPU instruction resumption under an owned Lock: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "83eded1d55ff7bfb61c2af1aee31791efc9b22d35c4da17d9019113353d17a21"
+      "contract_sha256": "b05bd61eaa143ca3ad0170ebe8e3fe84b1a6ae670fd05755eb9a9fc79da6dc67"
     },
     {
       "behavior": "NP.native-extended-2d",
       "weight": 4,
       "work_type": "capability",
       "reason": "Owned extended 2D effects, palette classes and display depths: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "39b4646c5276b3020d7730a2c261312564f906217a94d8f45f10b2382f6ca5e8"
+      "contract_sha256": "4a0dc1e5d10a709ac8318ef5a3b71b7d03e13e44515d050986f92edd03a2a01b"
     },
     {
       "behavior": "NP.native-gpu-copy-live-validation",
       "weight": 3,
       "work_type": "acceptance",
       "reason": "Caller-bound live GPU-copy observations and independent destinations: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code.",
-      "contract_sha256": "7d2aeed9db08f2f7ffd5a058454fb2a15b7587e0829a926f1a22ab1933fd9004"
+      "contract_sha256": "ced44bd376ac68e09f7b02f5ce635e458de400420c2962b627b78a610ff9060c"
     },
     {
       "behavior": "NP.native-gpu-copy-plan",
@@ -122,42 +122,42 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Native checked image-row copy body: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "108d4e2ed521eec5d64a49294bf3a76d69163fc682e1b1520f1799f092590357"
+      "contract_sha256": "aed71198470066e064e997f273007564319750b796acdc04276ac2dc0d8a6dc0"
     },
     {
       "behavior": "NP.native-isolated-render-recovery",
       "weight": 5,
       "work_type": "capability",
       "reason": "Isolated native renderer operation retry and raster session continuity: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "6bf42089015cd4bd07063800dd6362aea5c62a6b9dfba22253febb294c4c255e"
+      "contract_sha256": "516675d8a7ae671e936ec1d10c0d176d2f09fb9cd9d5e5cfa85fd184dd23b695"
     },
     {
       "behavior": "NP.native-only-generation-restart",
       "weight": 5,
       "work_type": "capability",
       "reason": "Native-only fresh generation restart: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "365542c3c85f323b61ade89a0de8d34be09057cf3533ae25407b93aa8e229d16"
+      "contract_sha256": "3b9306d056246d6f879e6db1c9004c1ea115962d183387700eee67765622e26b"
     },
     {
       "behavior": "NP.native-only-launch-contract",
       "weight": 5,
       "work_type": "capability",
       "reason": "Unified native-only launch admission and terminal session outcome: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "16d435d0f9278adb96f2d34720fe60ee752959d6d882653a3a1542cf586cf4c7"
+      "contract_sha256": "195f283f5a616573c756c2fd6678d21a02826bf083ed3a74cc739a9787151be0"
     },
     {
       "behavior": "NP.native-output-ownership",
       "weight": 5,
       "work_type": "capability",
       "reason": "Isolated legacy output and mandatory native backing ownership: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "44f135f0b94edf5a57e8cd70dc529f099c73ac9fb8b5f306af519a0edb17f2ed"
+      "contract_sha256": "1678c80fd5a0b6df55b6418ca851bf4aad85c05ed4d60d183e102869b48c5a48"
     },
     {
       "behavior": "NP.pixel-forwarding-guard",
       "weight": 5,
       "work_type": "capability",
       "reason": "Six-family native pixel no-forward guard: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "cef058ba56d5f693ca0313ed7747d4af91f6b3b6a5291e7c2e439a7250a87321"
+      "contract_sha256": "ff2de3fe26c012f58a0b7a845c92689d80b9e8126dd692282b3c74ae67c56ed1"
     },
     {
       "behavior": "NP.surface-final-word-read",
@@ -262,14 +262,14 @@
       "weight": 5,
       "work_type": "capability",
       "reason": "Mapped native ring reader and cooperative owned producer queue: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "f8fdac15952b115bd651991430f444ff311e81eb1095138739beb5124c01b74f"
+      "contract_sha256": "9b0d8149b2a89004161869a34735d57a9d2f318813f1cddba931bad2094036d9"
     },
     {
       "behavior": "NR.command-streaming",
       "weight": 5,
       "work_type": "capability",
       "reason": "Bounded-memory sustained native command decoding: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "4c68a98dbcee0313d5b1b5dbea9f974bf80b423e95120d9fd90d8205a81fe150"
+      "contract_sha256": "9e7982970b8cb08deacc6465927970e9d994c152f5cdd791e178e09745802f6d"
     },
     {
       "behavior": "NR.continuous-mutations",
@@ -304,7 +304,7 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Bounded cost-selected full Unlock partitions reduce measured live wire redundancy: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "54fcd18edc59644380f35ce629c8907aeb50d354e20c67ab02f583df243d2f94"
+      "contract_sha256": "1dff2350acc1e3485c8b4ac1a1eb6fc57ede218cd3958ffc831b405fec1724ca"
     },
     {
       "behavior": "NR.cpu-handoff-order",
@@ -332,28 +332,28 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Owned graphics in the standalone native OpenGL launcher: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "6552b82c165d0513554a32c6dd8e5686e1be8b5368efef2183276263bd416258"
+      "contract_sha256": "1ddd931ba4f35b19219f51a2b4094bfd0851669216c4f63cdb3de280cd25d148"
     },
     {
       "behavior": "NR.directdraw-public-native-menu",
       "weight": 4,
       "work_type": "capability",
       "reason": "Owned graphics in the public native menus and command presentation route: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "2b57cd0b231cca6af8a49bc4a241f5bbac48852e93219d6803d161dba36819db"
+      "contract_sha256": "63fd1d5515e5c8e37e291af28d017b7ab11dc01443d6b543890772a264fa4676"
     },
     {
       "behavior": "NR.directdraw-retirement",
       "weight": 5,
       "work_type": "aggregate",
       "reason": "Native graphics compatibility and real DirectDraw retirement: This aggregate retains lifecycle, palette or complete-state admission boundaries that can invalidate a session. Review residual ownership/failure domains against existing narrower implementations.",
-      "contract_sha256": "c4c2049bb6822d721950b4b1a642454bbe201b36eb44cae71439df0bbfb09736"
+      "contract_sha256": "15dd3ba9cd2fef98f6d176e0e156166c4625910e856479b53ccac5a5a5a72319"
     },
     {
       "behavior": "NR.displacement-finite-edge",
       "weight": 5,
       "work_type": "capability",
       "reason": "Defined native World displacement at the finite canvas edge: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "454d442ce95e12d52511a21e69e5ce6d1b53cc8cadc28446f97d79a5ef2cc287"
+      "contract_sha256": "b01f687a79bab24e21b09a0b6f362dba47acb49781a39015cc0840ad5bb1d17d"
     },
     {
       "behavior": "NR.draw-startup-order",
@@ -367,7 +367,7 @@
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Applied original menu adapter dispatch phase observation: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "c7ad22adcd1ef5173098fddf9980b4bbac8ff995cc08b2343478d72e26776784"
+      "contract_sha256": "883e030d4c393fe2a8b036b2bd4c213a7538ef72ae5c13d1b75fba1a16e3e521"
     },
     {
       "behavior": "NR.drawing-actor-latch-binding",
@@ -598,7 +598,7 @@
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Guarded original post-copy physical frame witnesses: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "2020751307be6a789e250b2913494ef9c0273e3d707fd99c712f683376719234"
+      "contract_sha256": "a70160c1cc9d4b6ce023f925040bafff83e9b054ff24be70c0f002c586f4faa5"
     },
     {
       "behavior": "NR.drawing-glx-delivery-observation",
@@ -626,21 +626,21 @@
       "weight": 1,
       "work_type": "diagnostic",
       "reason": "HUD samples with exact original cursor journal metadata: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "488cf0897514449ea26729560b37e9eb217fc57f20e7419ede93627284cdff9a"
+      "contract_sha256": "4262746434e614dabcbb418d5b428d91590d3ad5ddee9debb17aebee0bcae53c"
     },
     {
       "behavior": "NR.drawing-hud-state-observation",
       "weight": 1,
       "work_type": "diagnostic",
       "reason": "Read-only candidate hit identity and actual camera sampling: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "53b5c25bdfcb0dc136e37fbf5619392a4a95ed7ba3325586131ec1250b0966d8"
+      "contract_sha256": "83d97e4f8b8912dabbda210c492c3ca5d8921e432e23163df842fa82e066a150"
     },
     {
       "behavior": "NR.drawing-interactive-acquisition",
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Original-active Quick Battle XTest acquisition with strict API admission: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "ec633aeb9fa5307757945ba85bce8071088fe23fa70d0a2c1df1028d3f5b658d"
+      "contract_sha256": "9b2c2c7f268e1333b81e212dfcc246f943ce660761d2e36167ad77f1b47a1333"
     },
     {
       "behavior": "NR.drawing-journey",
@@ -661,7 +661,7 @@
       "weight": 4,
       "work_type": "diagnostic",
       "reason": "Pinned public Wine mutator entry coverage: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature.",
-      "contract_sha256": "1bac2f88c3b7367b77a52800417f05f4c34299ec08965c805c0272284bc2914c"
+      "contract_sha256": "e4b0a2f361c39edd8d16aef1fc924b219854ad4a154e31efc6785a7441675c8d"
     },
     {
       "behavior": "NR.drawing-observer-shutdown",
@@ -773,7 +773,7 @@
       "weight": 1,
       "work_type": "diagnostic",
       "reason": "Bounded original Region mouse callback entry/return observer: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "148de9b9e75bd0825da8656c2f9894067ac901884725f7417df8ca2912f2e2d0"
+      "contract_sha256": "ff23afb0b911e722bbbc963eb1407999b73283e9a3635091e998b6016ec09ba1"
     },
     {
       "behavior": "NR.drawing-result-comparison",
@@ -787,7 +787,7 @@
       "weight": 1,
       "work_type": "diagnostic",
       "reason": "Bounded repeated Results redraw acquisition stimulus: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "28f8c3e5be20c8add8fb6b73252110a902e9380a1b315ec3e9a6f75338ea31e2"
+      "contract_sha256": "d541fc12281a09385b4a7834b2628081ffa4b7dd8434ecb62c58271c02e1fd82"
     },
     {
       "behavior": "NR.drawing-scene",
@@ -808,7 +808,7 @@
       "weight": 1,
       "work_type": "diagnostic",
       "reason": "Bounded original menu/world state sampling for drawing journeys: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "7f0acae32faa4078521236b08b797505f3684cea62db8bcdb28c73782c20e849"
+      "contract_sha256": "f99598012e3f47d852d4fcb26b37e3af7b268b02163e59f28a83456dccdc4bb7"
     },
     {
       "behavior": "NR.drawing-sequence",
@@ -899,7 +899,7 @@
       "weight": 4,
       "work_type": "diagnostic",
       "reason": "Observed-path COPY resource read reservations: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature.",
-      "contract_sha256": "34ada5e3e45f72c0f4b6316a797910c6d1065b64bb4c534d8e3cbbbaa4b96100"
+      "contract_sha256": "a5849637b2139a3e951e735139eac498fe294450cd729b244fba1168df66bf1e"
     },
     {
       "behavior": "NR.drawing-source-readonly-lease",
@@ -920,7 +920,7 @@
       "weight": 4,
       "work_type": "diagnostic",
       "reason": "Observed resource write versions between mapped snapshot and selected worker: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature.",
-      "contract_sha256": "c4334f1466c163707ce32c78e4619d2539288ffd807e9b9084783d5943b1301c"
+      "contract_sha256": "3dfbb5d9217d47ec47d0cc13138f869de7344d710ddf7fb16659bc125d07072f"
     },
     {
       "behavior": "NR.drawing-source-worker-egl-binding",
@@ -1116,7 +1116,7 @@
       "weight": 1,
       "work_type": "diagnostic",
       "reason": "Repeated Results acquisition with optional worker-prefix sidecar disabled: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "611c2655a41e70b1187d24422c97f3b1aa4bef36714c980e3765ead4a76b9e43"
+      "contract_sha256": "0d73334a61edfab36c2af5f717fcc2d0a70e080e126417af46878fb2b43875c2"
     },
     {
       "behavior": "NR.drawing-worker-producer-prefix",
@@ -1137,7 +1137,7 @@
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Bounded unchanged original simulation/animation/World cadence observation: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "386d9fe96b97bc3fa56268c2c2d5927f336911f91af74bf9f8e975439f5db73e"
+      "contract_sha256": "2ecf8719923c8167176f01057877510161c7cc0e03f81d4fd784f6ac4f452685"
     },
     {
       "behavior": "NR.font-byte-producer",
@@ -1158,7 +1158,7 @@
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Bounded live glyph-bearing native canvas shadow admission: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "0ba81c4831855bd29945c1162d3dd5822bae4798fc072bae576e7a75496ffd35"
+      "contract_sha256": "4814ca5eda47773c09f62704b8c561e1d340c688894a6fd220ffc56b7e66e0c1"
     },
     {
       "behavior": "NR.glyph-backend-admission",
@@ -1179,14 +1179,14 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Public Qt launcher defaults guarded glyph takeover: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "37a32104bc1847630f7183430f36ee7440c3bead5c098cd050d5acf53dc794f8"
+      "contract_sha256": "cc436f170e7dd1e64b3989663901e8e8f860f25ed18a094f1e141d3016e8faef"
     },
     {
       "behavior": "NR.glyph-live-admission",
       "weight": 5,
       "work_type": "capability",
       "reason": "Bounded live glyph process-memory admission and launch policy: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "8032837f8f87d1ce422a759fe31f387ed4b0a242219f3080e1cb306b24707ea4"
+      "contract_sha256": "f4df2f30abb43661dd732bed0631f679ffb04891e5778d09e90a4cf585229dcd"
     },
     {
       "behavior": "NR.gpu-presentation",
@@ -1228,7 +1228,7 @@
       "weight": 5,
       "work_type": "capability",
       "reason": "Bounded mapped live native command transport: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "f3546105785846dd8a077fd3022a4ab7b3f03f3b6a0f4df043e42e4fc067e6c5"
+      "contract_sha256": "ecd8243ea82e14e75a7083a53252bc93629d4513ebc9cf88d6b44358d0a7fb48"
     },
     {
       "behavior": "NR.live-drawing-replacement",
@@ -1242,7 +1242,7 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Admit displacement by actual covered in-bounds samples: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport.",
-      "contract_sha256": "7f7a9f818a476fe1c16315638054143cc8bacea812f53943e70804c40626fa68"
+      "contract_sha256": "9b2b4c907b51ff2a47c9811f7e240f2d4a8d1aa5e97aebb44d10d5a8ca5e80eb"
     },
     {
       "behavior": "NR.masked-update-scratch-reuse",
@@ -1277,7 +1277,7 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Bounded V2 minimap presentation in the public startup launcher: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport.",
-      "contract_sha256": "4322bdf7f84e7c550171ff54ff474b8ac101b849600d2af613548cb24907634f"
+      "contract_sha256": "5022610d4a870241342d2ca5b709c8cae0c79b594a805df8dfdcaab3db4cb8b6"
     },
     {
       "behavior": "NR.minimap-owned-observation",
@@ -1298,28 +1298,28 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Bounded native colour rectangle pixel atlas: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "e9d5d3a6fffdcaeb9b5ba4e7b8e14fc1786ca4b80d6468727762670cd3cb129b"
+      "contract_sha256": "032205d574a1b8966136fdba9c80e8461eeff4a5c0c7954b859cc7d535bcf04e"
     },
     {
       "behavior": "NR.native-draw-cost-profiling",
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Bounded native draw and upload cost attribution: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "a3ad03b341d4fd08c183d93d0b9757b2378281302756226fd0e5a4944cc74be9"
+      "contract_sha256": "ecd183ccd4a6afd5bb60959e137e0ac0f4402dae243930ecad89f2f2a7657ccb"
     },
     {
       "behavior": "NR.native-draw-status-session-file",
       "weight": 1,
       "work_type": "diagnostic",
       "reason": "Native graphics diagnostic file lifetime outside drawing callbacks: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "22f001a5241dd7fba6ffc5963ee13492110cb6b297bf6b93d93a6cf4619f30a6"
+      "contract_sha256": "5e8a9bd8145abdbc7e5b549fec5ea1db84b10326ef4fd6e063d211198a8e1f44"
     },
     {
       "behavior": "NR.native-palette-row-cache",
       "weight": 3,
       "work_type": "capability",
       "reason": "Bounded exact native indexed palette-row reuse: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "80e142eb8cc80b00d888fecd4a4f342121e9d37ecfa491ef6f49a12d11bfec8a"
+      "contract_sha256": "87e7af84ac18907109c4546e37c0deab84c26a3dfc0125355f2ef87c0d49c594"
     },
     {
       "behavior": "NR.native-prepared-command-frame",
@@ -1340,7 +1340,7 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Reuse completed native World images between source updates: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "818d151a90ca0b9e2b58bad8da439b8599787c0427121bf64b4d1f0c572d19d5"
+      "contract_sha256": "4607196d90d268af081c0700e717fcbd078bd2feaaa501bb9cf2633e870dd646"
     },
     {
       "behavior": "NR.native-status-outside-drawing",
@@ -1354,7 +1354,7 @@
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Bounded native World render-owner CPU phase diagnostics: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "3644f7f1f2a527c5656d5be7eab7063a2775e6ea57fcb66656b155c4c8f38f4a"
+      "contract_sha256": "7c715f141ee58fd765b8735f178cd18ca00bda0aeeaa48b8e1d0e7bca5e6e01c"
     },
     {
       "behavior": "NR.observed-metadata-idempotence",
@@ -1375,7 +1375,7 @@
       "weight": 3,
       "work_type": "acceptance",
       "reason": "Offline retained-renderer soak and adversarial pixel admission: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code.",
-      "contract_sha256": "51811cb4a373715cf2f8a29beaec8617f382aab89f20b8286dd0535e310ab665"
+      "contract_sha256": "43dee5f108d1be0d85ee9ab0a08098dce1604024d5eda4e4712f8dea985cf7d3"
     },
     {
       "behavior": "NR.owned-session-dc",
@@ -1431,21 +1431,21 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Bounded incremental presentation of HUD and portrait updates: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "85a41e187b067b54ff65e07313e1e6937d191fef0c0a26e999650f15394de696"
+      "contract_sha256": "b528d6e60033871a25ac1a9ae9eb9876b2f70cb2e1022741e290ad82a263e62c"
     },
     {
       "behavior": "NR.presentation-resolver-refusal",
       "weight": 4,
       "work_type": "diagnostic",
       "reason": "Fail closed for selected presentation resolver escapes: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature.",
-      "contract_sha256": "992c7af2f130f40a7ad9d0a006d516c7fbeb908f6b2d42f9aa926b8b4593b1a8"
+      "contract_sha256": "8511be6f1f200fb5fee2c5e311d3568775ce6c8351337376cf3a33f1c296a8fc"
     },
     {
       "behavior": "NR.private-copy-source-handoff",
       "weight": 4,
       "work_type": "diagnostic",
       "reason": "Private per-submit reference COPY source ownership: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature.",
-      "contract_sha256": "80cf33ecf6a4ac0aac009bc0fd835365ca0c5d22a9c5e7d6d321bd463a35a5fa"
+      "contract_sha256": "c4365616db0cfaa9d462c81c15003b6668e941c73eeaee396d52456954e6a992"
     },
     {
       "behavior": "NR.producer-recorder-thread-policy",
@@ -1466,14 +1466,14 @@
       "weight": 4,
       "work_type": "aggregate",
       "reason": "Resident World import into public command composition: This broad contract connects multiple delivered services. Reconcile its residual domains against narrower contracts before writing code; its weight is not additional independent feature effort.",
-      "contract_sha256": "cbd1e5e6c4de8490b1d958f8a4b68b0f577dd230d66d61caa41a6805fd7c84a9"
+      "contract_sha256": "46c0abf8c0ce2ced4d735dbf5b614f0c556a6ec2b4dc616caff7912410787c33"
     },
     {
       "behavior": "NR.qt-quick-battle-app-journey",
       "weight": 3,
       "work_type": "acceptance",
       "reason": "Actual native Qt Quick Battle input, results and normal Quit journey: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code.",
-      "contract_sha256": "d298f83f793728b38d37ade05bac0d4b0e3706b9e2cef4d546d31e799c59043c"
+      "contract_sha256": "63639c7d3b943308e6680699451fd8ada882c0e5ce4f5a54474e780baa398402"
     },
     {
       "behavior": "NR.readonly-description-continuity",
@@ -1529,7 +1529,7 @@
       "weight": 5,
       "work_type": "capability",
       "reason": "Resident drawing admission under command queue pressure: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "160df63266e9f8674020cf7e87b52d5afe1e0f038528aead0822b18f6012dadb"
+      "contract_sha256": "a621867448934a3521d9d58c033b8b7b166edcaeb0d27b99cf9f8ac230e4c5da"
     },
     {
       "behavior": "NR.resident-prepared-shared-budget",
@@ -1543,7 +1543,7 @@
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Bounded resident World CPU, GPU and original pacing diagnostics: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "064e1292b0cc6099ad78ec64f799c73a33eee02357df746e8778c39cacd60f37"
+      "contract_sha256": "8a865715bd6a9583269eddaef4838d82219f579d99c37cc991e11de83c2e7138"
     },
     {
       "behavior": "NR.resource-cache",
@@ -1557,7 +1557,7 @@
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Budgeted prepared-scene drawing under unchanged original simulation pacing: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "0fbb681a892f904211da526bcc26be34bd2240c5680bcd54f67846436e98e5a1"
+      "contract_sha256": "b743c27ee840e4994a184ce16823cf4e3d496bacb5f79262fa0cd6cbf81f6117"
     },
     {
       "behavior": "NR.scene-history",
@@ -1571,7 +1571,7 @@
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Bounded repeated original scene production with exact state auditing: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "3fc2049639e4de35fa174499c25bd9d4e0b073e515637bcb1d408449a53d128a"
+      "contract_sha256": "6e6cbc14ff3da56768543b9d691c657b6abd1d5b4e2678bccf961af2928bc250"
     },
     {
       "behavior": "NR.scene-service",
@@ -1585,14 +1585,14 @@
       "weight": 3,
       "work_type": "acceptance",
       "reason": "Bounded original display queue observation and native asset rebinding: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code.",
-      "contract_sha256": "4efe47afed14fea195e4f1c7d628bc6499b0ff8c41283d1203731ea4d0de9e3a"
+      "contract_sha256": "9a625fe0dbe657f4dbdf1e0ab4199edf83b447847088e53505f9d6f008bb2e08"
     },
     {
       "behavior": "NR.source-boundary-quiescence",
       "weight": 4,
       "work_type": "diagnostic",
       "reason": "Quiescent observed primitive callback boundaries: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature.",
-      "contract_sha256": "44a86c95f1f630d02b1eacf721b74c8f619a435eb1a5a7cb6195e5de74d0972b"
+      "contract_sha256": "3078e56f81379b8bdb3f067a548c634312ea9ede0be0636b62d5cef7b1fc2520"
     },
     {
       "behavior": "NR.sprite-atlas",
@@ -1746,7 +1746,7 @@
       "weight": 4,
       "work_type": "diagnostic",
       "reason": "Private Wine system-memory backing owners and alias leases: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature.",
-      "contract_sha256": "f70980b60775f1cc471fb254009bc4a10c26a3d2660d5846fd66b2438497b99b"
+      "contract_sha256": "81f8f960850ef0b613d1b9c67a5372f04093ab009f41424eed523e747aa6bb27"
     },
     {
       "behavior": "NR.word-admission",
@@ -1760,14 +1760,14 @@
       "weight": 5,
       "work_type": "capability",
       "reason": "Atomic guarded clipped takeover and conservative x87 admission: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "95a548f2507a1f43815bbc728549cd348db6338ba625ea2ca609222953a176d5"
+      "contract_sha256": "4da3c094bd6a93b9812b00c816f2e0fe5d97e338c7033c404d7c580d4c7df4e3"
     },
     {
       "behavior": "NR.word-clipping-plane-bounds",
       "weight": 4,
       "work_type": "capability",
       "reason": "Atomic main-word preflight bounded by opaque auxiliary offsets: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "1130963f535e7310c53fc409bb087c927b5d9b4e553c912256e403d9049740d1"
+      "contract_sha256": "1cbdf08c78ef9588de1f78cbd521094f4cc8bc49c00852922b7a9cd338f2b1d0"
     },
     {
       "behavior": "NR.word-cpu-clipping-admission",
@@ -1788,42 +1788,42 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Versioned bounded World takeover beyond sixteen queues: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "1d9640bde593868a8407a5e74467cb70f668c478171e35304e0e4dfabf5df028"
+      "contract_sha256": "450e539051570cd2ef441ee164d71e7c95f34f6212e5174ada1aefe12bab3600"
     },
     {
       "behavior": "NR.world-batch-profiling",
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Consumer timings for guarded World batches: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "15e053efa9ab3660b40ff09bf6f4ca4dc69c5ebb2f660fab45d2f841b617a912"
+      "contract_sha256": "840368f8009007382e9a5884878798a602c7d68a0e2e7dd21a2941fadc3281d9"
     },
     {
       "behavior": "NR.world-batch-throughput",
       "weight": 3,
       "work_type": "capability",
       "reason": "Bounded guarded World transport and scratch throughput: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "adefcd63907171ff8bee9071ec27450e6b88d382aa0bfd5ec18beed8184b6f5b"
+      "contract_sha256": "387c6dd6fe7875a606f0133d15b79b71762f50aad866475860f23bff0c18171d"
     },
     {
       "behavior": "NR.world-channel",
       "weight": 4,
       "work_type": "capability",
       "reason": "Bounded continuous owned World delivery: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "f0844816219d97ab5edcea533bf695468dde75fa3d30434ee032237f2b848440"
+      "contract_sha256": "90f436b6931db8c0102619e61024e6d8a6763d1c4114c6647f96dbe1912259ea"
     },
     {
       "behavior": "NR.world-continuous-normal-performance",
       "weight": 4,
       "work_type": "acceptance",
       "reason": "Normal continuous native World full-path performance: Sustained speed and complete representative input coverage affect practical use. Measure the acceptance target independently from individual algorithm implementation.",
-      "contract_sha256": "8db5e57c2a98401b484db3c3a8531b65fbf36810e39e82f75ae23a7e6ad56e04"
+      "contract_sha256": "eb72b0e7623188b419f9be417190fc71eaae936a9d8f56f7f39a0139ca521423"
     },
     {
       "behavior": "NR.world-continuous-source",
       "weight": 4,
       "work_type": "capability",
       "reason": "Bounded original-to-native continuous World source delivery: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "ab7df387307c698e4675ea8b5feaec07fabf8d63a26486dbee0afd49ae541c56"
+      "contract_sha256": "bbed07b696181229cfff16b85dd7f67e171e955ca806ae2cea1d0a12ca810221"
     },
     {
       "behavior": "NR.world-cpu-composition-reuse",
@@ -1844,7 +1844,7 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Versioned live GPU acknowledgement without pixel replies: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "994e791e46a56c0667d88aaee77df189a5e16e6ea49bf37c4e05dc3fb8acd12e"
+      "contract_sha256": "786d386ef71eb858941a8585c5b9b38890ef2a4ddc8ec245953d9642c65be68e"
     },
     {
       "behavior": "NR.world-gpu-resident-frame",
@@ -1865,35 +1865,35 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Opt-in bounded interactive World batch launcher: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "5449d2195403f0d0e6eab6124209f762a819ce6166e35c9ffcc72121184cfdf1"
+      "contract_sha256": "8db413c1db31bcd40ef7e34dffb16906fe2f90268f74c837c2e5b820566d33f2"
     },
     {
       "behavior": "NR.world-kind-diagnostic",
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Stopped live history refusal with exact raw queue kinds: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "4a481efc000495e7b80aa4fa329d9d4be84388ca099a15e4291e15c229bb53d1"
+      "contract_sha256": "6c8249b3e23d89afa8e904fdaeccac60725736a1966c0ba2e154f55db22eb671"
     },
     {
       "behavior": "NR.world-live-history",
       "weight": 5,
       "work_type": "capability",
       "reason": "Async native presentation of contiguous startup canvases: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "ef6ce9216434c314c4ea172c51d8933138425076eb011ae4088a4f244596e216"
+      "contract_sha256": "13e3c1a05c70f699cf1d2297f49c562b7ec5be4aca471e65922fc54373df2bf0"
     },
     {
       "behavior": "NR.world-live-view",
       "weight": 4,
       "work_type": "capability",
       "reason": "Continuous native World Qt presentation: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "d7aebb30bac1855c3bca35e1f25f1f800416dc9d23555d2f526201d9ceee42c2"
+      "contract_sha256": "1d780f2abeddc94c3b66ae6eed1d6f10997a6a97c2ae3b68529da41c49ef9c71"
     },
     {
       "behavior": "NR.world-owned-snapshot-delivery",
       "weight": 3,
       "work_type": "capability",
       "reason": "Owned World snapshot delivery before GPU execution: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "65be00b4afcfb5fa8217819fb72a3e25c88dc0d7d80a7dc9ed49276848bc4108"
+      "contract_sha256": "d526210ff64dce73ca3b5b152dae7b5ab73f647f293ffb51689d1a0b77a677c4"
     },
     {
       "behavior": "NR.world-preparation",
@@ -1921,14 +1921,14 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Owned World raster queue batches with one canvas completion: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "949a8b95004f6afec296b193b1648e50dfa585326fc4874d22ccde5049f1ae92"
+      "contract_sha256": "c041e9cabe0ee72fb9da6b6f4b3a4a82e10e5f66483d9d12a401e90fd0b612db"
     },
     {
       "behavior": "NR.world-resource-reuse",
       "weight": 3,
       "work_type": "capability",
       "reason": "Revision-bound World visual checks and retained atlas submission: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "1766d8e6035afa7cbf1f1971bbe79e46bb610cb010dcae53c5003a5a533b63a7"
+      "contract_sha256": "303c803fd5d97c7c42fbaf8a566aebd5bfd0fca95d1a8091f292911489fcd20d"
     },
     {
       "behavior": "NR.world-rolling-delivery",
@@ -1949,28 +1949,28 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Guarded original source handoff to ordered native rolling delivery: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "71b7a8d1debb5684c93c7eb3c806c5ac6e3194a7ddc45de19bff1b387e6b50eb"
+      "contract_sha256": "ab72aabfd34b31339c39dee4a1e0c65ec58d08160489325aee33ec5eac34eb37"
     },
     {
       "behavior": "NR.world-shadow-refusal",
       "weight": 5,
       "work_type": "capability",
       "reason": "Normal World shadow capability refusal without ending the game: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "ad7212802a00f812f08186df4cd8bb391417f095da5b3f05630974b0cd3d7c91"
+      "contract_sha256": "cfb3855b63edf46a9fd19021e57645258f74d17b8a8887756d8baf714815c125"
     },
     {
       "behavior": "NR.world-source-region-epoch",
       "weight": 5,
       "work_type": "capability",
       "reason": "Guarded World owner permission-query epoch: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "b5eb47dbf6e81768c779d8cfb30f6a15aa71c4ccda42d28d1d44974777fe0b48"
+      "contract_sha256": "0606fe11cf393b514b47003c92ff147941b0680049d50c243f6620da4683bf0c"
     },
     {
       "behavior": "NR.world-startup-launcher",
       "weight": 4,
       "work_type": "capability",
       "reason": "Public finite source-only startup producer launcher: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "9db7c96f8fe4adbc11cb518debd562d35cdf8fe6a61d3d629e1d49f952655f8c"
+      "contract_sha256": "e3a6c887e2ee9bf1fed7dbda7d5930c254b16fbdff0c5c7f3b1e12ac920c9fb1"
     },
     {
       "behavior": "NR.world-startup-sequence",
@@ -2117,7 +2117,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "All four terrain traversal rotations: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "d1570cfb68d3dee8851b616f60e2b5c1de10de94b6a11f50190de85715c2b893"
+      "contract_sha256": "9dbe81be647ac8147a1896325abfcf84c757ba33b3f8d0afdf2503a08fa2af31"
     },
     {
       "behavior": "RS.canvas-bind-clip",
@@ -2173,7 +2173,7 @@
       "weight": 5,
       "work_type": "original_recovery",
       "reason": "Guarded original opaque-copy publication COM results and independent primary readbacks: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "11b31ba6d691d826fb776fa81b81192fa28b983601dd2b2d2baf1fccadb61252"
+      "contract_sha256": "373b15edd3edb1251219a68d85c0be3114678b5015b6d4cf5c16141ffa3125fb"
     },
     {
       "behavior": "RS.glyph-backend",
@@ -2194,7 +2194,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Bounded live glyph caller/pixel route: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "2b82be44601fbf8824799470aeff0d1021be5d3e0f2d0dcb36f80065c1a5cf9a"
+      "contract_sha256": "e6e854243b801bc9aa6d0db86f8965a27ffbfa2ed26a01532c7db9439267c4d6"
     },
     {
       "behavior": "RS.minimap-camera-corners",
@@ -2250,21 +2250,21 @@
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Clipped main-word shadow admission with opaque auxiliary planes and diverse clipped capture: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "00a8e17c61e0e1c3d3f1dd2a9e19667953f614ea2496d25cb521c85c98a011ea"
+      "contract_sha256": "8347d5c3e28f609bbc73ef9cd640f073f4560fe611c28f81ea8cd2602f9df216"
     },
     {
       "behavior": "RS.word-clip-shadow",
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Opt-in guarded direct-word clipping shadow comparison: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "e8de374c08c27e0635a83af714a7b326c7354051ff7f40fdf2ffa567c1a8a65d"
+      "contract_sha256": "370e5a039a83f6401d0b804beddc1cddd6d66356d5cd7256290dfdc2fcd9c6ea"
     },
     {
       "behavior": "RS.word-clip-takeover",
       "weight": 4,
       "work_type": "capability",
       "reason": "Guarded opt-in native clipped main-word backend takeover: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "7bf305e682db30902d6fe4805e6eddd83de2115a6665460ef8fac91afedb16d1"
+      "contract_sha256": "d60cc29a537024b38249bf0f7e2952fa07c48986cade85ef3321723c36cbfb70"
     },
     {
       "behavior": "RS.word-clipping",
@@ -2292,7 +2292,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Scoped direct-word sprite backend bypass: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "b31ca0d5a6c5b28904ca5b32baef2f6484d8e35e63b47833aeef3bb1160f2cb8"
+      "contract_sha256": "14bdab786f2404e095c089dd413c03788ed5f8ec5f0960a8040f905bc23507d1"
     },
     {
       "behavior": "RS.world-composition",
@@ -2313,7 +2313,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Owned effective World raster inputs and complete native canvas comparison: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "4d52e28378440315315314f6450189a74a35578ae51bd08f977ab89d9c6af0bb"
+      "contract_sha256": "ddc6c62127aa97d67723234aaa07fb9e5eab3245aba71c13024cbea75671a640"
     },
     {
       "behavior": "RS.world-initial-state",
@@ -2327,21 +2327,21 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Selected kind8 saturated additive rectangle raster: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport.",
-      "contract_sha256": "2095fb8a393203a29ad8000cb3e678173d2dba0c248292d30fa6be35a4c92b6b"
+      "contract_sha256": "1d5029c50b34e075274a6cf92ce7a3878edc224a7c9d091214e95f424856412c"
     },
     {
       "behavior": "RS.world-kind8-colour",
       "weight": 3,
       "work_type": "capability",
       "reason": "Selected kind8 owned RGB channel rectangle raster: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport.",
-      "contract_sha256": "549a634a7e4b92075a2b614efa941e471dfc953c73f48c07b138253021c808e1"
+      "contract_sha256": "e90708334f2313cfdfdd85683d978cc07685f3102f20228fa2fab10d02ad6f47"
     },
     {
       "behavior": "RS.world-kind8-noop",
       "weight": 3,
       "work_type": "capability",
       "reason": "Selected kind8 flag-only virtual draw: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport.",
-      "contract_sha256": "44491a5d0c3d68d6130e84a646b0f89c8056a75b0cec1bc6612bc11199b9635f"
+      "contract_sha256": "6042cac87c4c930d131fd815eaaa32bf90ae519f218a6ee879ba794677e04cbf"
     },
     {
       "behavior": "RS.world-kind8-virtual",
@@ -2362,14 +2362,14 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Protected World queue return boundary and immediate raster fallback: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "cb86b5791bd52f985ec62a7b29d7f9477ae2960ece90292b95b3c767e07b69f9"
+      "contract_sha256": "b355c9408a9ebb3859f27ae0f33f074a9bd3ff581d08ca68c0316c51890284a4"
     },
     {
       "behavior": "RS.world-raster-queue-replacement",
       "weight": 4,
       "work_type": "capability",
       "reason": "Bounded complete World raster queue replacement with recovered AX fallback: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "a509247c681d25fb98cd20946fb4eee39dea8c9f1b2731c92ed943b40d27eeae"
+      "contract_sha256": "43cdeb34d002407611e816926be0bc4799cf0b5bbb812de0300ea5d02bd45a96"
     },
     {
       "behavior": "RS.world-startup-palette",
@@ -2383,7 +2383,7 @@
       "weight": 1,
       "work_type": "diagnostic",
       "reason": "Contiguous startup consumer queues and actual unsupported draw kinds: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "8e4d81dd8b5c5d49bea1bfc3507b7f5e57eb90c1a809d265e097d2a14a843516"
+      "contract_sha256": "e81a9222975292dbd0d35234c42bea2d691e2355336ce4f41f49a3ddef772582"
     },
     {
       "behavior": "RS.world-startup-wave",
@@ -2397,7 +2397,7 @@
       "weight": 2,
       "work_type": "diagnostic",
       "reason": "Postcheck captured gameplay without clearing performance failures: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "7c01c1c423a75a95e3a95007f0718e42d160172caab2d378e06eaa747ee77a79"
+      "contract_sha256": "5db9363ea5042e3e58ee289de396d9f99e2a9f5988606afe0240ede9eddf2eab"
     },
     {
       "behavior": "NP.native-draw-page-hints",
@@ -2654,7 +2654,7 @@
             "documents": [
               "research/runtime/native-render-functional-closure.md"
             ],
-            "contract_sha256": "83eded1d55ff7bfb61c2af1aee31791efc9b22d35c4da17d9019113353d17a21",
+            "contract_sha256": "b05bd61eaa143ca3ad0170ebe8e3fe84b1a6ae670fd05755eb9a9fc79da6dc67",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Other threads/expired leases/unsupported resource domains remain refused; renew raw instruction and integrated caller validation.",
             "execution_brief": {
@@ -2862,7 +2862,7 @@
               "research/runtime/public-resident-world.md",
               "research/runtime/public-resident-region-epoch-fixtures-20261011.json"
             ],
-            "contract_sha256": "e5fcbf4e34238a52c7de2b095b27cec1533260fa5726d38c8476ab632114e283",
+            "contract_sha256": "0606fe11cf393b514b47003c92ff147941b0680049d50c243f6620da4683bf0c",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Fresh synchronous readable proof is not cross-callback storage ownership; preserve that limit in integration tests.",
             "execution_brief": {
@@ -2900,7 +2900,7 @@
               "current_state": "Owner-thread permission epochs, begin/end/reset, background query bypass and per-request fresh byte copies are implemented in production-shared helpers. Permission caching never grants source ownership.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Production-shared epoch dispatch/copy helpers: owner-only permission reuse, uncached background reads, epoch reset and fresh content reads; native and ASan/UBSan; production PE32 producer compiles. Retained execution is historical; this source/UI review does not renew current engine validation.",
+              "validation_summary": "Production-shared epoch dispatch/copy helpers: owner-only permission reuse, uncached background reads, epoch reset and fresh content reads; native and ASan/UBSan; production PE32 producer compiles. Retained execution is historical; this source/UI review does not renew current engine validation. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "A bounded PASS is retained; current-source and wider acceptance remain separate. Permission caching grants no source ownership. Complete producer scheduling, arbitrary concurrent mutation and all original memory permissions remain outside this bounded fixture.",
               "evidence": [
@@ -2945,7 +2945,11 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ]
             },
             "work_review_history": [
               {
@@ -3280,7 +3284,7 @@
             "documents": [
               "research/runtime/resident-command-pressure.md"
             ],
-            "contract_sha256": "160df63266e9f8674020cf7e87b52d5afe1e0f038528aead0822b18f6012dadb",
+            "contract_sha256": "a621867448934a3521d9d58c033b8b7b166edcaeb0d27b99cf9f8ac230e4c5da",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Natural pressure/resume has a retained integration result; broader current-source timing and all failure schedules require validation.",
             "execution_brief": {
@@ -4444,7 +4448,7 @@
             "documents": [
               "research/runtime/native-masked-displacement-admission.md"
             ],
-            "contract_sha256": "bb197c617202b9c29adbf5465473557d50063ced7e7fcdddc07da001ed5ae32b",
+            "contract_sha256": "b01f687a79bab24e21b09a0b6f362dba47acb49781a39015cc0840ad5bb1d17d",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Positive all-game caller/continuity and FPS proof remain open; out-of-range taps deliberately do not claim original equivalence.",
             "execution_brief": {
@@ -4588,7 +4592,7 @@
             "documents": [
               "research/runtime/drawing-ownership-bypass-closure.md"
             ],
-            "contract_sha256": "44f135f0b94edf5a57e8cd70dc529f099c73ac9fb8b5f306af519a0edb17f2ed",
+            "contract_sha256": "1678c80fd5a0b6df55b6418ca851bf4aad85c05ed4d60d183e102869b48c5a48",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Reference-side physical aliases/presentation routes and original pixel parity remain independent requirements; native containment code is present.",
             "execution_brief": {
@@ -4959,7 +4963,7 @@
               "research/formats/canvas-startup-diagnostics.md",
               "research/runtime/draw02-canvas-storage-generations.md"
             ],
-            "contract_sha256": "81e49b701ce26058b107f7bfe18ef49a50c3c2e829139af6dc45cf93b7a68a10",
+            "contract_sha256": "deb3086b864188804b91f501b6a2a362fe31017df77d78a6e4f137005f3f9487",
             "reviewed_implementation": "partial",
             "remaining_at_review": "The selected startup observer records wrapper interfaces/dimensions, returned Lock pixels and byte pitch with entry/return forwarding. Original creation/fatal-child and separate Lock/Restore/retry fixtures are supplied. This observer is not a native allocator; physical allocation/alias ownership and unsampled driver paths remain unresolved.",
             "execution_brief": {
@@ -5007,7 +5011,7 @@
               "current_state": "40 original creation cells and13,824 Lock/Restore/retry cells; two closed original-active storage captures. Real COM allocation, alias ownership, unsampled driver outcomes and arbitrary pointer lifetimes remain outside the scripted fixtures.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "40 original creation cells and13,824 Lock/Restore/retry cells; two closed original-active storage captures. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift.",
+              "validation_summary": "40 original creation cells and13,824 Lock/Restore/retry cells; two closed original-active storage captures. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "Declared bounded task PASS. Real COM allocation, alias ownership, unsampled driver outcomes and arbitrary pointer lifetimes remain outside the scripted fixtures. Wider contract acceptance remains pending.",
               "evidence": [
@@ -5053,7 +5057,11 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ]
             },
             "execution_result": {
               "outcome": "PASS",
@@ -5132,7 +5140,7 @@
               "research/runtime/native-world-canvas-startup.md",
               "research/formats/canvas-startup-diagnostics.md"
             ],
-            "contract_sha256": "61062b1a09bf9ff77ac08759cca03b2afa0e2d2521e32d2309bd2f52eeead85b",
+            "contract_sha256": "e3636d8da24da38c1343fbb6ce1547543c6ed94842d3999c50903b5f250f703f",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Binding/clip observation and the independent padded stride/height calculation are implemented. The original 4fd438..4fd5ad bind/consume/rebind window fixture covers ordinary/padded and absent-Lock cases with distinct height, stride and clip globals. This does not execute the whole 4fd280 dispatcher or prove live alternate-buffer reachability.",
             "execution_brief": {
@@ -5181,7 +5189,7 @@
               "current_state": "48 original ordinary/padded dispatcher cells, two video dimensions and independent stride/height/clip values. The live alternate allocation/writer route remains unobserved.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "48 original ordinary/padded dispatcher cells, two video dimensions and independent stride/height/clip values. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift.",
+              "validation_summary": "48 original ordinary/padded dispatcher cells, two video dimensions and independent stride/height/clip values. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "Declared bounded task PASS. The live alternate allocation/writer route remains unobserved. Wider contract acceptance remains pending.",
               "evidence": [
@@ -5224,7 +5232,11 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ]
             },
             "execution_result": {
               "outcome": "PASS",
@@ -5300,7 +5312,7 @@
               "research/runtime/native-world-canvas-startup.md",
               "research/formats/canvas-startup-diagnostics.md"
             ],
-            "contract_sha256": "07c89501ec60878d21145be61ec319479ec024deb94eedfadb9a931bb709267c",
+            "contract_sha256": "5f8ef29dd6799217bee22f79d10eb5604222dab4b8a75cb2ae0cba595da1fe1e",
             "reviewed_implementation": "partial",
             "remaining_at_review": "The observer records the selected full word-zero fill request. Original 58bc10 success/lost/restore/retry/null-interface fixtures now supply scripted completion and guarded visible/padding expectations. The initial live clear has no valid prior Lock sample, so actual driver completion and hidden writers are still unknown.",
             "execution_brief": {
@@ -5350,7 +5362,7 @@
               "current_state": "25 unchanged-original full-fill result cells with caller-owned fixture pixels, padding guards and null interface; native zero remains separate policy. Actual initial-startup driver completion/observation lease remains unsampled.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "25 unchanged-original full-fill result cells with caller-owned fixture pixels, padding guards and null interface; native zero remains separate policy. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift.",
+              "validation_summary": "25 unchanged-original full-fill result cells with caller-owned fixture pixels, padding guards and null interface; native zero remains separate policy. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "Declared bounded task PASS. Actual initial-startup driver completion/observation lease remains unsampled. Wider contract acceptance remains pending.",
               "evidence": [
@@ -5392,7 +5404,11 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ]
             },
             "execution_result": {
               "outcome": "PASS",
@@ -5519,7 +5535,7 @@
               "current_state": "The selected bounded contract is implemented. The delivered observer invalidates cached associations on selected create/release and records selected Lock returns. Run-local generations, not repeated pointer numbers, bind the source history.",
               "implementation_gaps": [],
               "validation_state": "pending",
-              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent.",
+              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "Bounded task PASS. Original physical allocation/COM alias ownership, every writer and arbitrary sessions remain separate recovery requirements, explicitly outside this selected contract.",
               "evidence": [
@@ -5657,7 +5673,10 @@
                   ]
                 }
               ],
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md"
+              ]
             },
             "execution_result": {
               "outcome": "PASS",
@@ -5838,7 +5857,7 @@
               "research/formats/canvas-producers-v1.md",
               "research/runtime/draw02-producer-recorder.md"
             ],
-            "contract_sha256": "0b22b37c247639351e8b06c27186fef199888654b2708239211af920b16502cb",
+            "contract_sha256": "26621ca69cc0d4920b8cac18cd5a87ff22bae2652c04655375a80abd32e164c0",
             "reviewed_implementation": "partial",
             "remaining_at_review": "The bounded recorder, source requests and native producer services are delivered, including original-active uniform mode-0/NULL-plane 547d80 fill/clip requests and an original clipping/packing fixture. A complete immutable source/producer history and attribution of physical-frame residuals remain unresolved; broader modes and unobserved writers are not implied to be supported.",
             "execution_brief": {
@@ -5887,7 +5906,7 @@
               "current_state": "The selected bounded contract is implemented. Owned encoded assets, constants, source requests and observed lifetime/order reconstruct the selected producer chain; destination images remain external oracles.",
               "implementation_gaps": [],
               "validation_state": "pending",
-              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent.",
+              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "Bounded task PASS. Original physical allocation/COM alias ownership, every writer and arbitrary sessions remain separate recovery requirements, explicitly outside this selected contract.",
               "evidence": [
@@ -6056,7 +6075,11 @@
                   ]
                 }
               ],
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ]
             },
             "execution_result": {
               "outcome": "PASS",
@@ -6264,7 +6287,7 @@
             "documents": [
               "research/runtime/native-startup-sequence.md"
             ],
-            "contract_sha256": "dfac7d177eee6a677f54e800e2ea073d8f07c021729976df9f345e57080d29c5",
+            "contract_sha256": "ac3666a4dc9dd505469e47564bf1a4b70afa6fa0f3c1801688ca6a7f68e07363",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Capture selects actual palettes for nonblack primitives, including shade -127 fallback, and zero palettes only for explicit black tags 0/10. A new original slow-path table-selector fixture covers shade/shift/ordinal cases; it does not by itself validate dispatcher fallback, every primitive or independent native palette generation.",
             "execution_brief": {
@@ -6305,7 +6328,7 @@
               "current_state": "5355 unchanged-original shade/shift/ordinal cells compare1,370,880 words; retained black/fallback and invalid-source controls. Canonical neutral shapes and ordinals0/1/2 only; no full palette dispatcher recovery.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "5355 unchanged-original shade/shift/ordinal cells compare1,370,880 words; retained black/fallback and invalid-source controls. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift.",
+              "validation_summary": "5355 unchanged-original shade/shift/ordinal cells compare1,370,880 words; retained black/fallback and invalid-source controls. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "Declared bounded task PASS. Canonical neutral shapes and ordinals0/1/2 only; no full palette dispatcher recovery. Wider contract acceptance remains pending.",
               "evidence": [
@@ -6341,7 +6364,11 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ]
             },
             "execution_result": {
               "outcome": "PASS",
@@ -6408,7 +6435,7 @@
             "documents": [
               "research/runtime/native-startup-sequence.md"
             ],
-            "contract_sha256": "931bc195af62f50d08f9973941e0f659e7343f044856c69dc55e8352a287b9ba",
+            "contract_sha256": "5b535c45351ddb052e54efb75ddf971e638d0d49fb705203ceb066418287f932",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Post-original lazy-initializer capture and an independent bounded native 16x16 wave-table supplier are implemented. Cold/warm, zero/default amplitude and phase/clipping original-reference fixtures are supplied. The older synthetic i*13 ABI fixture remains a return-state test, not generator equivalence; arbitrary FPU/hardware and reentrancy remain excluded.",
             "execution_brief": {
@@ -6450,7 +6477,7 @@
               "current_state": "33 initializer controls/4096 table comparisons plus768 complete original/CPU/GPU canvases,1,572,864 words per native backend. Selected native supplier and encoded whole-run clip rule only; other hardware/FPU modes, arbitrary amplitudes and dispatch routes remain open.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "33 initializer controls/4096 table comparisons plus768 complete original/CPU/GPU canvases,1,572,864 words per native backend. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift.",
+              "validation_summary": "33 initializer controls/4096 table comparisons plus768 complete original/CPU/GPU canvases,1,572,864 words per native backend. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "Declared bounded task PASS. Selected native supplier and encoded whole-run clip rule only; other hardware/FPU modes, arbitrary amplitudes and dispatch routes remain open. Wider contract acceptance remains pending.",
               "evidence": [
@@ -6518,7 +6545,9 @@
                 "assets/sprite_run_clipping.hpp",
                 "compat/legacy/world_frame.cpp",
                 "renderer/canvas_sequence.cpp",
-                "renderer/scenes/scene_renderer.cpp"
+                "renderer/scenes/scene_renderer.cpp",
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
               ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
@@ -6675,7 +6704,7 @@
               "current_state": "The selected bounded contract is implemented. Native storage begins undefined and reconstructs all480000 words from the closed owned producer history before queue1.",
               "implementation_gaps": [],
               "validation_state": "pending",
-              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent.",
+              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "Bounded task PASS. Original physical allocation/COM alias ownership, every writer and arbitrary sessions remain separate recovery requirements, explicitly outside this selected contract.",
               "evidence": [
@@ -6849,7 +6878,10 @@
                   ]
                 }
               ],
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md"
+              ]
             },
             "execution_result": {
               "outcome": "PASS",
@@ -7260,7 +7292,7 @@
             "documents": [
               "research/runtime/native-startup-sequence.md"
             ],
-            "contract_sha256": "6313ff1499fd8f53f1df1fc76d40711a87478a79374030b25fce79e4e7becc29",
+            "contract_sha256": "eb58b5c70f09590ffad5a3810910e8c7e0811a39ff915f1b8302c44bb8f1acc0",
             "reviewed_implementation": "partial",
             "remaining_at_review": "The separate finite word-zero World-history policy, contiguous queue retention and independent original/live comparisons are implemented. Historical evidence matches all 16 completed canvases across 7,680,000 pixels, while initial and between-queue producer states differ. Those measured upstream gaps do not imply missing code in this policy or prove original initialization.",
             "execution_brief": {
@@ -7300,7 +7332,7 @@
               "current_state": "All 16 completed canvases and all three word-zero completion comparisons match 7,680,000 pixels. Original initial/menu/HUD state differences remain measured; the initial state is reconstructed independently from owned producer history.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "All16 word-zero queues and all three completed-canvas comparisons match7,680,000 pixels, with current workspace sources matching. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift.",
+              "validation_summary": "All16 word-zero queues and all three completed-canvas comparisons match7,680,000 pixels, with current workspace sources matching. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "Declared bounded task PASS. Original initial/menu/HUD state differences remain measured and are not repaired by original pixels. Wider contract acceptance remains pending.",
               "evidence": [
@@ -7361,7 +7393,11 @@
                   "reason": "Source-review newly linked full original/CPU/GPU wave word-comparison runner, input/source pinning, exact 768-case admission and separate table/CPU/GPU equality checks. This additive fixture review preserves all earlier hashes and classifications and grants no execution or current engine validation."
                 }
               ],
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ]
             },
             "execution_result": {
               "outcome": "PASS",
@@ -7455,7 +7491,7 @@
             "documents": [
               "research/runtime/native-world-producer-handoff.md"
             ],
-            "contract_sha256": "f873234b8c72da77d379c323ea32c110adfab34042a75171fd6dbcfb2abfe704",
+            "contract_sha256": "142e898d86a06694997bc0db3fb3d88785419fbb75f4ba3238f77860e4128c25",
             "reviewed_implementation": "partial",
             "remaining_at_review": "The finite generic bypass now checks exact selected continuation bytes at 500512/500a4e/57e940 for tags 13/14 before requests/writeback. Admitted nonempty fully-inside rectangles use recovered zero EAX; clipping/empty cases forward original work. Caller-mutation/reference controls are supplied. Other consumed effects, scratch globals and unsampled live callers remain bounded recovery limits.",
             "execution_brief": {
@@ -7500,7 +7536,7 @@
               "current_state": "Current finite count1 replacement of59521a matches original prefix/exact body and480,000 words; all1061 checkpoints and16 original World completions match. Separate pinned 275-World normal ownership journey and same-source isolation/input controls pass; engine/harness fingerprints match. Single59521a body only. No live5947b2, complete/default/native-only/restart or arbitrary scheduling acceptance. Earlier failures remain retained.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Current finite count1 replacement of59521a matches original prefix/exact body and480,000 words; all1061 checkpoints and16 original World completions match. Separate pinned 275-World normal ownership journey and same-source isolation/input controls pass; engine/harness fingerprints match. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift.",
+              "validation_summary": "Current finite count1 replacement of59521a matches original prefix/exact body and480,000 words; all1061 checkpoints and16 original World completions match. Separate pinned 275-World normal ownership journey and same-source isolation/input controls pass; engine/harness fingerprints match. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "Declared bounded task PASS. Single59521a body only. No live5947b2, complete/default/native-only/restart or arbitrary scheduling acceptance. Earlier failures remain retained. Wider contract acceptance remains pending.",
               "evidence": [
@@ -7549,7 +7585,11 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ]
             },
             "execution_result": {
               "outcome": "PASS",
@@ -7866,7 +7906,7 @@
               "research/formats/world-channel-v2.md",
               "research/runtime/native-world-live-history.md"
             ],
-            "contract_sha256": "ef6ce9216434c314c4ea172c51d8933138425076eb011ae4088a4f244596e216",
+            "contract_sha256": "13e3c1a05c70f699cf1d2297f49c562b7ec5be4aca471e65922fc54373df2bf0",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Full initialization/HUD history and unbounded transition support are excluded; later resident/rolling paths must be reviewed separately.",
             "work_review": {
@@ -8089,7 +8129,7 @@
             "documents": [
               "research/runtime/native-world-producer-handoff.md"
             ],
-            "contract_sha256": "99fa100642d8107b057ac2167be69878c22359671e2ff53144b72ef81a5b8366",
+            "contract_sha256": "3f9fc3fc05c434e60836c41d781ea901310eb3541bd053003ae91b780537c02f",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Fresh final-source finite headless handoff passes:1061/1061 checkpoints and16 independent original World completions match. Fully defined native history, HUD retention and native GPU commits are exercised; no original destination pixels enter native inputs. Registered integration is now headless; live/continuous replacement remains separate.",
             "work_review": {
@@ -8097,7 +8137,7 @@
               "current_state": "Fresh final-source finite headless handoff passes:1061/1061 checkpoints and16 independent original World completions match. Fully defined native history, HUD retention and native GPU commits are exercised; no original destination pixels enter native inputs. Registered integration is now headless; live/continuous replacement remains separate.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Final actual dependency closure, four native controls, stable sources/inputs and original-manifest bookends pass. Earlier broad-source reports remain historical after the unrelated services-fixture repair.",
+              "validation_summary": "Final actual dependency closure, four native controls, stable sources/inputs and original-manifest bookends pass. Earlier broad-source reports remain historical after the unrelated services-fixture repair. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "PASS for the renewed finite headless task. No new game capture, live bypass, hardware, continuous-delivery or complete-replacement acceptance.",
               "evidence": [
@@ -8164,7 +8204,11 @@
                   "reason": "Source-review newly linked full original/CPU/GPU wave word-comparison runner, input/source pinning, exact 768-case admission and separate table/CPU/GPU equality checks. This additive fixture review preserves all earlier hashes and classifications and grants no execution or current engine validation."
                 }
               ],
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ]
             },
             "work_review_history": [
               {
@@ -8338,7 +8382,7 @@
               "research/runtime/directdraw-retirement-20261019.md",
               "research/runtime/directdraw-retirement-execution-20261019.json"
             ],
-            "contract_sha256": "c4c2049bb6822d721950b4b1a642454bbe201b36eb44cae71439df0bbfb09736",
+            "contract_sha256": "15dd3ba9cd2fef98f6d176e0e156166c4625910e856479b53ccac5a5a5a72319",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Two concrete implementation gaps are repaired: Surface2/3/4 PageLock/PageUnlock and the original DirectX checker losing Surface3/4 aliases. Current facade, native ownership/ABI and shutdown-policy controls pass. Pinned native-only normal Quit completes179 Worlds with zero graphics owners; public Hard restart and33 NVIDIA standalone frames pass. Full required caller/writer/alias and physical/performance compatibility remains an unresolved aggregate.",
             "work_review": {
@@ -9339,7 +9383,7 @@
             "documents": [
               "research/runtime/native-only-launch.md"
             ],
-            "contract_sha256": "16d435d0f9278adb96f2d34720fe60ee752959d6d882653a3a1542cf586cf4c7",
+            "contract_sha256": "195f283f5a616573c756c2fd6678d21a02826bf083ed3a74cc739a9787151be0",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Renew combined-source launch/movie/storage/restart journeys and capability/caller evidence; a false complete-replacement flag is intentional, not absent launch code.",
             "work_review": {
@@ -9556,7 +9600,7 @@
             "documents": [
               "research/runtime/native-render-functional-closure.md"
             ],
-            "contract_sha256": "365542c3c85f323b61ade89a0de8d34be09057cf3533ae25407b93aa8e229d16",
+            "contract_sha256": "3b9306d056246d6f879e6db1c9004c1ea115962d183387700eee67765622e26b",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Renew combined-source fault/restart and final normal-Quit controls; in-place unsaved-progress preservation is a different policy.",
             "work_review": {
@@ -9753,7 +9797,7 @@
               "research/runtime/native-pixel-forwarding-guard.md",
               "research/formats/native-pixel-guard-v1.md"
             ],
-            "contract_sha256": "cef058ba56d5f693ca0313ed7747d4af91f6b3b6a5291e7c2e439a7250a87321",
+            "contract_sha256": "ff2de3fe26c012f58a0b7a845c92689d80b9e8126dd692282b3c74ae67c56ed1",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Zero forwarding in one bounded run does not certify complete routes, pixels or all-game replacement.",
             "work_review": {
@@ -9865,7 +9909,7 @@
               "research/runtime/draw02-publication.md",
               "research/formats/drawing-publication-v1.md"
             ],
-            "contract_sha256": "d5dc4e8ba23d8adf93149060c970e23528a284f1cee0f3bc3072972ed8456780",
+            "contract_sha256": "373b15edd3edb1251219a68d85c0be3114678b5015b6d4cf5c16141ffa3125fb",
             "reviewed_implementation": "partial",
             "remaining_at_review": "All publication routes, original failure/Restore/caller-state equivalence and physical identity are not established by the selected observation.",
             "work_review": {
@@ -9873,7 +9917,7 @@
               "current_state": "The selected 0x58bf40 observer and parser implement guarded COM-site result/LastError recording, logical generations, primary readback and loss accounting through final HUD/cursor publication. This is observation tooling, not a native publication replacement.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Historical original-active one- and sixteen-return acquisitions exist. Synthetic parser failures do not execute original driver failure/Restore paths or prove observer ABI equivalence.",
+              "validation_summary": "Historical original-active one- and sixteen-return acquisitions exist. Synthetic parser failures do not execute original driver failure/Restore paths or prove observer ABI equivalence. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
               "acceptance": "pending",
               "acceptance_summary": "Pending current-source selected-route observation validation. Broader publication recovery and action/global presentation acceptance remain separate.",
               "evidence": [
@@ -9919,7 +9963,11 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ]
             },
             "work_review_history": [
               {
@@ -11424,7 +11472,7 @@
             "documents": [
               "research/runtime/terrain-traversal-rotations.md"
             ],
-            "contract_sha256": "d1570cfb68d3dee8851b616f60e2b5c1de10de94b6a11f50190de85715c2b893",
+            "contract_sha256": "9dbe81be647ac8147a1896325abfcf84c757ba33b3f8d0afdf2503a08fa2af31",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Preserve physical-cell carry/wrap and rectangular-grid boundaries; full scene producer equivalence is a separate contract.",
             "work_review": {
@@ -11849,7 +11897,7 @@
               "research/runtime/native-render-functional-closure.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "108d4e2ed521eec5d64a49294bf3a76d69163fc682e1b1520f1799f092590357",
+            "contract_sha256": "aed71198470066e064e997f273007564319750b796acdc04276ac2dc0d8a6dc0",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Do not reimplement the row body; broader image callers and whole-entry ABI/equivalence retain their independent bounds.",
             "work_review": {
@@ -12023,7 +12071,7 @@
               "research/runtime/native-render-functional-closure.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "c2683633e42be422f5079e60b956580c20449b45c508fe1857fd45c4ab5b19dd",
+            "contract_sha256": "9efa71abada1fb1c9c3b1cf7094f14d49a7f29203b3d856936980eb642145e5d",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Native policy is implemented; original-driver colour/stretch equivalence, unobserved callers and fresh combined-source execution remain separate.",
             "work_review": {
@@ -12484,7 +12532,7 @@
               "research/runtime/animation-forward-contract.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "570e92fddcc411d283a6bf9bdee5d80c0c037a98d941c2a8f77c73040430f239",
+            "contract_sha256": "83ab857aa1b88f5566d44fe874f69d41741c510e6ec4a88e7044f4fd62edd01f",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. The reverse controller now has its own scoped contract; broader runtime effects/lifetime remain separate. Renew forward execution before status promotion.",
             "work_review": {
@@ -12647,7 +12695,7 @@
               "research/runtime/animation-direction-selection.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "2d99fc33c3a0c5145a7c650bc623db4475193ab919fc02cdc23dbf5d6af2f22d",
+            "contract_sha256": "b1a5453cbd47d779e4fbea9fbc45f92f4b2c5c4ac2c8aa66a74e69d00b82cb9a",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Phase-preserving switching is supplied. The located native facing provider has its own review; full original targeting/attachment/lifetime and live integration remain separate.",
             "work_review": {
@@ -12810,7 +12858,7 @@
               "research/runtime/animation-placement-attachments.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "9fb063dd291c4f57cf717ce6b3e16966d3f8bc841c68beadc27c609af06343a0",
+            "contract_sha256": "1bedb2933a517cd9e263f876c666b5164413baa2a27932770283c74e24729fe4",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Complete entity producer composition, reverse/runtime states and lifetime remain separate.",
             "work_review": {
@@ -12970,7 +13018,7 @@
               "research/runtime/animation-mode-one-attachment.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "c270d179845c2ae79663910e3431049d88f26de7d68ed015b98df475527a5c52",
+            "contract_sha256": "7ccdf04563a602edaf7f0a69e50fb0c521db296b5aeec234fb2543ed80c81ab8",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Other modes and original object lifetime/admission remain outside this bounded implementation.",
             "work_review": {
@@ -13126,7 +13174,7 @@
               "research/runtime/animation-direction-selection.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "87e87ba8d334cd5c5595213f9f4f6adfb6ffce98d02c26d5be56d9006560a917",
+            "contract_sha256": "a0ef85ea7bdb28344faba69fd21eba7fd54b158499965987220715b905ff992d",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. The register now links that existing code and records partial implementation. Synthetic controls do not establish complete original targeting/attachment/action-base/lifetime equivalence or live replacement.",
             "work_review": {
@@ -14595,7 +14643,7 @@
               "research/formats/drawing-storage-transitions.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "0268dd535e2de05ab53a77856696211e88b131b64d179d39a5d011728461de97",
+            "contract_sha256": "d50926a4e78f4730e20f08afeadad76a79f36364dab0d700673613c25e566abf",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Observed query/Lock identity is not allocator, alias or submitted source ownership.",
             "work_review": {
@@ -14784,7 +14832,7 @@
               "research/formats/drawing-storage-transitions.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "367fd6dfc94703dc2dcaec2069f460d7307bff36e74d77b41459361c9c622fc4",
+            "contract_sha256": "700fae301a178739be7218efb07e3d9719b969af60df4d4ea8ab29e28314b0a0",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Numerical interval identity does not establish physical allocation or all alias ownership.",
             "work_review": {
@@ -14941,7 +14989,7 @@
               "research/runtime/draw02-gpu-backing-provenance.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "b2da0e0509d7ab5bffd7db52ce0aa72f3526700ef5b9816f90c024c3b80127f5",
+            "contract_sha256": "0d841fa0e020b0f307490a60c6921c23340cddcebf30b944dc23b54e423206d2",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. The missing physical location/alias ownership remains unknown rather than supplied by a classifier.",
             "work_review": {
@@ -15823,7 +15871,7 @@
               "research/runtime/draw02-copy-order.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "b5bbc82f08632321619af7f2e83de536aa649268d3d4c6b0da3b7ff007fe3327",
+            "contract_sha256": "a7dd6576374aeb464369d2fc402e11b2fef2232dac8964fd8e281fa6470e5072",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Preserving a failure is implemented diagnostics; the failed acquisition/ownership domain remains open.",
             "work_review": {
@@ -16091,7 +16139,7 @@
               "research/runtime/native-world-continuous.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "ab7df387307c698e4675ea8b5feaec07fabf8d63a26486dbee0afd49ae541c56",
+            "contract_sha256": "bbed07b696181229cfff16b85dd7f67e171e955ca806ae2cea1d0a12ca810221",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Source history, unbounded duration and independent all-game output/performance remain outside the bounded delivery proof.",
             "work_review": {
@@ -16306,7 +16354,7 @@
               "research/runtime/drawing-copy-driver-order.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "f77123b2aba6a2063779c55f22d5f7a6ec98426ed2561e74defc9ff37b9d12f8",
+            "contract_sha256": "444674f51943b405130867e16d6030382e12d0c3b973ed958ddcc71243c85780",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Broader action-bound reference/native parity and all required journeys remain independent acceptance targets.",
             "work_review": {
@@ -16517,7 +16565,7 @@
               "research/runtime/native-master-integration-latest-master-standalone-pass-20261011.json",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "6552b82c165d0513554a32c6dd8e5686e1be8b5368efef2183276263bd416258",
+            "contract_sha256": "1ddd931ba4f35b19219f51a2b4094bfd0851669216c4f63cdb3de280cd25d148",
             "reviewed_implementation": "partial",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Whole-game equivalence and hardware performance remain validation boundaries for this launch route.",
             "work_review": {
@@ -16738,7 +16786,7 @@
               "research/runtime/surface-final-word-read.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "2b57cd0b231cca6af8a49bc4a241f5bbac48852e93219d6803d161dba36819db",
+            "contract_sha256": "63fd1d5515e5c8e37e291af28d017b7ab11dc01443d6b543890772a264fa4676",
             "reviewed_implementation": "partial",
             "remaining_at_review": "The unchanged full-session throughput/combat or worst-frame gate failed; implementation remains located. Preserve exact negative records and diagnose the declared cohort before acceptance.",
             "work_review": {
@@ -17062,7 +17110,7 @@
               "research/runtime/scene-production-prepared-campaign-20261012.json",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "cbd1e5e6c4de8490b1d958f8a4b68b0f577dd230d66d61caa41a6805fd7c84a9",
+            "contract_sha256": "46c0abf8c0ce2ced4d735dbf5b614f0c556a6ec2b4dc616caff7912410787c33",
             "reviewed_implementation": "partial",
             "remaining_at_review": "The unchanged full-session throughput/combat or worst-frame gate failed; implementation remains located. Preserve exact negative records and diagnose the declared cohort before acceptance.",
             "work_review": {
@@ -17444,7 +17492,7 @@
               "research/runtime/native-world-continuous.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "8db5e57c2a98401b484db3c3a8531b65fbf36810e39e82f75ae23a7e6ad56e04",
+            "contract_sha256": "eb72b0e7623188b419f9be417190fc71eaae936a9d8f56f7f39a0139ca521423",
             "reviewed_implementation": "partial",
             "remaining_at_review": "The complete isolated hardware cohort passes its unchanged budgets. Public asynchronous/retained-image sessions, other maps/backends and physical ownership remain separate acceptance domains.",
             "work_review": {

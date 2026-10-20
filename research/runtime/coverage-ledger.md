@@ -19170,3 +19170,111 @@ retain the historical normalized journal hash. Reviewed backing classification,
 V1..V5storage epochs/callers and same-thread numerical Lock bindings without
 physical ownership or fresh original/live promotion. The [batch progress](third20-implementation-progress-20261020.md)
 keeps the frozen twenty selection and independent remaining boundaries.
+
+## Remaining Medium rendering follow-up — 2026-10-20
+
+Retained the54planning priorities (38scoped/16partial); these are not54confirmed
+defects. Fixed native display deadline phase drift, bounded physical hover/quiet/
+spell/integer admission, delayed accepted-summon attribution and portable owned
+snapshot invocation. Read-only V2 observations distinguish Qt publication from
+actual original Region return and later World picking. Ground pursuit validates
+living type/owner matches; no allocation-generation, AI or balance claim follows.
+Independent functional diagnostics now run before the identical final sourceFPS
+gate; ownership/readback/count failures still stop immediately.
+
+Current33native/status/Python controls,68Python tests,12CTest controls and selected
+original960000linear/960064backed-edge/530432grayscale words pass. The renewed
+owned queue passes12failures,512legacyV4leases and actual80-byte PE32ACK mutations.
+The23GPUcopy-plan and deferred-status fixtures remain source/scope current.
+Retained-prefix replay confirms an accepted Zombie born13178ms after its physical
+press and13melee hits; this is new helper execution over old original observations.
+MEDIUM07 records new results without rebinding earlier hashes or statuses.
+
+Hardware009completed its raw input/flow/normal-Quit journey but failed the
+unchanged19FPSsource gate at7.604087FPS. Hardware010confirmed summon,Fireball,
+melee and lethal enemy, then the original wizard died before retreat; sources,
+original verification and private cleanup were stable. Its source7.691299/native
+44.349112FPS are unsuccessful performance evidence. Full current-source journey
+reliability, other routes/failures, physical loss/Restore, broader original caller/
+allocation recovery, full equivalence/replacement and sustained60FPS remain
+pending. The opt-in worker status cadence remains opt-in.
+
+User-authorized cleanup hardlinked eleven identical immutable generated caches,
+recovering about3.55GiB while preserving every path, byte, pin and raw evidence;
+originals and the cold archive were untouched. The90GiBreserve remains active.
+Shared dependency links and static-review ownership are reconciled independently
+of execution. Incoming3578ab10..ed556c8d and concurrented556c8d..63a6da3c history
+receipts were inspected; the concurrent animation work is not integrated into
+this isolated branch. See [the findings and evidence](remaining-medium-20261020/input-admission.md)
+and [all54priorities](remaining-medium-20261020/medium-findings-review.json).
+
+
+## Remaining Medium integration into master — 2026-10-20
+
+Merged250ba337with current master63a6da3c. Native rendering/admission changes and
+the independent owned animation work are both retained. Combined focused review
+ownership follows master; new direct dependencies are explicit pending inputs
+in fresh incremental review copies. Original evidence definitions and parent
+milestones are preserved exactly. Merge accounting does not renew full original,
+public gameplay/Quit or performance evidence. The previously recorded19FPSand
+60FPStarget failures remain open. Current Python admission/decoder/fixture and
+review/importance controls pass; no original artifact or game is consumed by the
+merge checks. Exact incoming-history review also retrospectively pins48research
+research artifacts outside the normal active-source/Markdown/JSON gate, without
+claiming a past gate pass or current equivalence. Existing uncommitted main work
+is backed up separately and is not included in the merge commit.
+
+
+## Concurrent scene-closeout master integration — 2026-10-20
+
+Master advanced to87105990while the first remaining-Medium merge was being
+validated. The publication guard refused the outdated tip before changing or
+stashing any main files. This follow-up combines87105990with040e4d86, retaining
+scene lifecycle/closure and animation work alongside the bounded Medium fixes.
+Active static ownership follows the newer master; incremental review copies add
+pending direct dependency paths without rebinding historical evidence. Menu
+staging provenance checks and the96capture budget are retained with V2 input
+readiness and the exact original press/accepted-summon observations. All113Python
+checks pass on the combined tree. This merge consumes no original artifacts and
+does not renew full live/Quit, physical-loss, original-equivalence or19/60FPS
+acceptance. Existing main edits are preserved separately from the committed tree.
+
+
+## Final remaining-Medium master integration — 2026-10-20
+
+The final merge combines master f0c4e03a with a8f0c822, retaining the committed
+Low glyph assessment alongside the bounded Medium fixes and scene/animation
+work. Active review copies retain the newer master's ownership and explicitly
+record the Medium dependency additions as pending. Historical evidence definitions
+remain unchanged. The earlier combined 113 Python controls remain applicable to
+unchanged engine/helper sources; final importance and reconciliation controls are
+repeated for the merged metadata. This is merge/accounting validation only: full
+live/Quit reliability, physical-loss, original equivalence and the unchanged
+19/60 FPS acceptance remain pending. No original artifacts are consumed.
+
+The user authorized preserving the separate task's staged and working state in
+`working/worktrees/master-work-before-medium-20261020`, on branch
+`preserve/master-work-before-medium-20261020`, before completing the merge.
+The preservation records the exact index tree, staged/unstaged binary patches
+and raw working bytes under `working/integration/remaining-medium-master-20261020/`
+so those edits stay separate from this merge.
+
+
+## Concurrent commit recovery during Medium integration — 2026-10-20
+
+While the final master commit gate was running, another task completed ce0cd336
+from its earlier staged snapshot. Its parents include a8f0c822, but its tree is
+the preserved 31-path task index and omits the incoming Medium source/evidence.
+The obsolete Medium commit attempt was stopped before it could update HEAD.
+This follow-up preserves ce0cd336 and its COPY identity/capture-failure fixes,
+then restores the reviewed Medium changes alongside them. No published history
+is rewritten. The concurrent commit also has a preservation branch; the original
+staged and unstaged worktree snapshot remains intact.
+
+The 31 first-parent file transitions have exact journal receipts. Current active
+review ownership follows ce0cd336 with 127 explicit pending Medium dependencies;
+both ce0cd336 and a8f0c822 evidence definitions are retained exactly. New merge
+checks cover the COPY/failure controls and repeated importance/reconciliation
+controls. Earlier 113 Medium source controls remain applicable to unchanged
+Medium implementation files. This correction does not renew full original/live,
+Quit, physical-loss or 19/60 FPS acceptance.

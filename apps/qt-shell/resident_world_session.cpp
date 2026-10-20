@@ -1,3 +1,4 @@
+#include "native_frame_cadence.hpp"
 #include "resident_world_session.hpp"
 #include "resident_profile_capture.hpp"
 #include "gl_viewport.hpp"
@@ -216,10 +217,7 @@ void ResidentWorldSession::pollOwned(bool acceptedNormalQuit){
         regionQueries_+=source.ticks[9];rasters_+=source.handoff.batch.header[14];
         completed_=source.generation;returns_=queue.returned;ownedPending_=std::move(source);
         if(completed_==64){renderRate_.start();renderRateBase_=completed_+extraFrames_;}
-        if(!nextFrame_.time_since_epoch().count())nextFrame_=now;
-        const auto late=std::chrono::duration_cast<std::chrono::microseconds>(now-nextFrame_).count();
-        if(late>=16667){frameMisses_+=std::uint64_t(late/16667);nextFrame_=now;}
-        nextFrame_+=std::chrono::microseconds(16667);
+        advanceNativeFrameDeadline(nextFrame_,now,frameMisses_);
     }catch(const std::exception& e){error_=e.what();channel_.cancel();snapshotQueue_->stop();throw;}
 }
 void ResidentWorldSession::pollAsynchronous(bool acceptedNormalQuit){
@@ -277,18 +275,14 @@ void ResidentWorldSession::pollAsynchronous(bool acceptedNormalQuit){
         regionQueries_+=source.ticks[9];rasters_+=source.handoff.batch.header[14];completed_=result.sequence;ownedFrame_=std::move(result.frame);ownedPending_=std::move(source);
         if(!displayWhilePending_){
         if(completed_==64){renderRate_.start();renderRateBase_=completed_+extraFrames_;}
-        if(!nextFrame_.time_since_epoch().count())nextFrame_=now;
-        const auto late=std::chrono::duration_cast<std::chrono::microseconds>(now-nextFrame_).count();
-        if(late>=16667){frameMisses_+=std::uint64_t(late/16667);nextFrame_=now;}nextFrame_+=std::chrono::microseconds(16667);
+        advanceNativeFrameDeadline(nextFrame_,now,frameMisses_);
         }
     }catch(const std::exception& e){error_=e.what();channel_.cancel();snapshotQueue_->stop();throw;}
 }
 mnm::render::GpuFrame ResidentWorldSession::drawIndependent(std::uint64_t generation){
     if(!independent_ || normalQuitRetired_ || !error_.isEmpty() || (ownedPending_&&!displayWhilePending_) || (!world_&&!asynchronous_) || generation!=(displayWhilePending_?imports_:completed_) || (displayWhilePending_&&!displayedFrame_.valid()) || channel_.cancelled())return {};
     const auto now=std::chrono::steady_clock::now();if(now<nextFrame_)return {};
-    const auto late=std::chrono::duration_cast<std::chrono::microseconds>(now-nextFrame_).count();
-    if(late>=16667){frameMisses_+=std::uint64_t(late/16667);nextFrame_=now;}
-    nextFrame_+=std::chrono::microseconds(16667);
+    advanceNativeFrameDeadline(nextFrame_,now,frameMisses_);
     try{QElapsedTimer timing;timing.start();auto frame=displayWhilePending_?displayedFrame_:asynchronous_?ownedFrame_:world_->replayPrepared();if(displayWhilePending_&&ownedPending_)++pendingRedraws_;extraWorldMs_+=timing.nsecsElapsed()/1000000.0;++extraFrames_;return frame;}
     catch(const std::exception& e){error_=e.what();channel_.cancel();snapshotQueue_->stop();throw;}
 }
@@ -304,11 +298,7 @@ mnm::render::GpuFrame ResidentWorldSession::import(std::uint64_t generation,std:
             displayedFrame_=frame;
             if(generation==64){renderRate_.start();renderRateBase_=nativeFrames();}
             const auto now=std::chrono::steady_clock::now();
-            if(nextFrame_.time_since_epoch().count()){
-                const auto late=std::chrono::duration_cast<std::chrono::microseconds>(now-nextFrame_).count();
-                if(late>=16667)frameMisses_+=std::uint64_t(late/16667);
-            }
-            nextFrame_=now+std::chrono::microseconds(16667);
+            advanceNativeFrameDeadline(nextFrame_,now,frameMisses_);
         }
         if(completed_%64==0)queueReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));
         return frame;

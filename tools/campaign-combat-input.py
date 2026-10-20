@@ -10,8 +10,10 @@ from pathlib import Path
 import subprocess
 import time
 
+from campaign_input_admission import DialogueReadiness, spell_selection_points, fresh_hover, logical_input_point, pursuit_waypoint, living_engaged_targets, ground_waypoint, resolve_additional_summons
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
 from campaign_spell import read_spell_rows, player_fireball_damage, player_engaged_fireball_lethal
+from campaign_input_observation import decode as decode_input_observation
 from campaign_render_oracle import oracle, validate_summon_capture
 
 
@@ -33,20 +35,53 @@ def main():
     xt.XTestFakeMotionEvent.argtypes=[c.c_void_p,c.c_int,c.c_int,c.c_int,c.c_ulong]
     display=x.XOpenDisplay(os.environ['DISPLAY'].encode())
     if not display:raise RuntimeError('No native input display')
-    start=time.monotonic(); actions=[]; captures=[]
+    button_hold_ms=int(os.environ.get('MNM_CAMPAIGN_BUTTON_HOLD_MS','120'))
+    if not 30<=button_hold_ms<=1500:raise ValueError('Invalid bounded physical button hold')
+    hover_required=os.environ.get('MNM_CAMPAIGN_HOVER_READINESS')=='1'
+    admission_path=args.experiment/'input-admission.bin'
+    start=time.monotonic(); actions=[]; captures=[]; summon_attempts=[]
     resident_dialogue=os.environ.get('MNM_PUBLIC_RESIDENT_WORLD')=='1'
-    result=dict(success=False,monotonic_start=start,dialogue_oracle=oracle(resident_dialogue),summon_count_oracle=oracle(resident_dialogue))
+    result=dict(success=False,additional_summon_policy='accepted-cast-prefix-v1',summon_attempts=summon_attempts,summon_observation_end_sequence=0,input_readiness_policy="continuous-quiet-distinct-spell-v2",button_hold_ms=button_hold_ms,hover_readiness_policy="original-world-after-motion-v1" if hover_required else "fixed-delay-legacy",monotonic_start=start,dialogue_oracle=oracle(resident_dialogue),summon_count_oracle=oracle(resident_dialogue))
     def record(action,**values):
         actions.append(dict(action=action,seconds=time.monotonic()-start,**values))
         args.output.write_text(json.dumps(dict(result,seconds=time.monotonic()-start,actions=actions,captures=captures),indent=2)+'\n')
-    def click(px,py,b=1):
+    def input_rows():
+        if admission_path.is_symlink():raise RuntimeError('Redirected input readiness trace')
+        return decode_input_observation(admission_path.read_bytes())['rows']
+    def click(px,py,b=1,admit_cast=False):
+        px,py=logical_input_point(px,py)
+        prior=input_rows() if hover_required and b==3 else []
+        after=prior[-1]['sequence'] if prior else 0
+        already=bool(prior and prior[-1]['input_active']==1 and abs(prior[-1]['x']-px)<=1 and abs(prior[-1]['y']-py)<=1)
         if not xt.XTestFakeMotionEvent(display,-1,x0+int(w*px/800),y0+int(h*py/600),0):raise RuntimeError('Motion injection failed')
         x.XFlush(display);record('motion',logical_x=px,logical_y=py);time.sleep(.1)
+        if hover_required and b==3:
+            deadline=time.monotonic()+10
+            admitted=None
+            while time.monotonic()<deadline:
+                try:admitted=fresh_hover(input_rows(),(px,py),after,already,admit_cast)
+                except (OSError,ValueError):admitted=None
+                if admitted is not None:break
+                time.sleep(.05)
+            if admitted is None:raise RuntimeError('Original hover did not become ready before physical right-click')
+            proof=dict(after_sequence=after,ready_sequence=admitted['sequence'],point=[px,py],already_there=already,require_cast=admit_cast,ground=admitted['ground'],cursor_type=admitted['cursor_type'])
+            result.setdefault('hover_admissions',[]).append(proof);record('original-hover-ready',**proof)
+
+        press_sequence=read_rows(trace)[-1][0] if b==3 else None
         for down in (1,0):
             if not xt.XTestFakeButtonEvent(display,b,down,0):raise RuntimeError('Button injection failed')
-            x.XFlush(display);time.sleep(.12)
-        record('click',button=b)
+            x.XFlush(display);time.sleep(button_hold_ms/1000 if down else .12)
+        record('click',button=b,hold_ms=button_hold_ms,before_sequence=press_sequence)
+        return press_sequence
     def state():return creatures(read_rows(trace))
+    def reconcile_summons(rows=None):
+        rows=read_rows(trace) if rows is None else rows
+        confirmed,pending=resolve_additional_summons(rows,read_spell_rows(args.experiment/'spell-events.bin'),
+                                                   summon_attempts,result['player_owner'],result['wizard_slot'])
+        result['additional_summons']=confirmed
+        result['pending_additional_summons']=pending
+        result['summon_observation_end_sequence']=rows[-1][0]
+        return pending
     def capture(label, count=False):
         if len(captures)>=96:raise RuntimeError('Combat diagnostic capture budget exhausted')
         name=f'combat-{len(captures):02d}-{label}'
@@ -69,41 +104,48 @@ def main():
         captures.append(item);record('capture',name=name)
         return item
     def settle_dialogue(label, minimum_seconds=12):
-        # Keep the original bounded introduction proof separate from later
-        # readiness diagnostics; its validator retains the12-check limit.
-        checks=result.setdefault('dialogue_checks' if label=='dialogue-check' else 'additional_dialogue_checks',[])
-        quiet_since=None;quiet=0;dismissed=0
-        # Delayed introductory pages reset the quiet interval. Keep observation
-        # and elapsed-time bounds separate from the twelve-page dismissal cap;
-        # twelve observations cannot cover multiple pages plus twelve quiet seconds.
-        deadline=time.monotonic()+90
-        for attempt in range(48):
-            if time.monotonic()>=deadline:break
-            item=capture(label+'-'+str(attempt))
-            texts={}
+        initial = label == 'dialogue-check'
+        checks = result.setdefault('dialogue_checks' if initial else 'additional_dialogue_checks', [])
+        gate = DialogueReadiness(resident_dialogue, minimum_seconds, 48)
+        while True:
+            item = capture(label+'-'+str(gate.observations))
+            texts = {}
             from PIL import Image
-            for route in ('native','original'):
-                crop=out/(item['name']+'-'+route+'-dialogue.png')
+            for route in ('native', 'original'):
+                crop = out/(item['name']+'-'+route+'-dialogue.png')
                 Image.open(out/(item['name']+'-'+route+'.png')).crop((225,90,600,270)).save(crop)
-                texts[route]=subprocess.run(['tesseract',str(crop),'stdout','--psm','6'],capture_output=True,text=True,check=True,timeout=10).stdout.strip()
-            visible={r:'hermes' in texts[r].lower() for r in texts}
-            checks.append(dict(stage=label,capture=item['name'],texts=texts,visible=visible))
-            record('dialogue-check',stage=label,capture=item['name'],attempt=attempt,visible=visible)
-            if not any(visible[r] for r in (('native',) if resident_dialogue else ('native','original'))):
-                if quiet_since is None:quiet_since=time.monotonic()
-                quiet+=1
-                if time.monotonic()-quiet_since>=minimum_seconds and quiet>=2:return dismissed
-                time.sleep(2);continue
-            quiet=0;quiet_since=None
-            if not resident_dialogue and visible['native']!=visible['original']:time.sleep(.5);continue
-            if dismissed>=12:break
-            click(400,300);dismissed+=1;time.sleep(.6)
-        raise RuntimeError('Introductory Hermes dialogue did not clear after bounded native input')
+                texts[route] = subprocess.run(['tesseract',str(crop),'stdout','--psm','6'],capture_output=True,text=True,check=True,timeout=10).stdout.strip()
+            visible = {r: 'hermes' in texts[r].lower() for r in texts}
+            observed = time.monotonic()
+            decision = gate.observe(visible, observed)
+            checks.append(dict(stage=label,capture=item['name'],texts=texts,visible=visible,observed_monotonic=observed,quiet_seconds=minimum_seconds,decision=decision))
+            record('dialogue-check',stage=label,visible=visible,decision=decision)
+            if decision == 'ready':
+                return gate.dismissals
+            if decision == 'dismiss':
+                click(400,300)
+                time.sleep(.6)
+            else:
+                time.sleep(3 if minimum_seconds>=12 else 2)
+    def select_spell(spell):
+        # Re-admit selection after a modal, never repeat an executed cast.
+        for attempt in range(3):
+            for point in spell_selection_points(spell):
+                click(*point)
+                time.sleep(.25)
+            # After the first observed summon, gameplay checks each cast's
+            # original effect. Introductory readiness does not become an
+            # expensive per-cast framebuffer sampling loop during combat.
+            if 'summon' in result or not settle_dialogue(spell+'-selection-'+str(attempt), 2):
+                record('spell-selected',spell=spell,attempt=attempt)
+                return
+        raise RuntimeError('Spell selection repeatedly consumed by dialogue')
     def center():
         click(744,522);click(744,522);time.sleep(.75)
     def blocked_cast(label, owner, wizard_slot):
+        select_spell('zombie')
         prior_rows=read_rows(trace);begin=prior_rows[-1][0];prior=creatures(prior_rows)
-        click(523,575);time.sleep(.25);click(90 if label=='invalid-target' else 440,90 if label=='invalid-target' else 310,3)
+        click(90 if label=='invalid-target' else 440,90 if label=='invalid-target' else 310,3)
         time.sleep(2);current_rows=read_rows(trace);current=creatures(current_rows)
         created=[a['slot'] for a in current.values() if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0 and
                  (a['slot'] not in prior or not prior[a['slot']]['active'] or prior[a['slot']]['type']!=14 or prior[a['slot']]['owner']!=owner)]
@@ -131,16 +173,11 @@ def main():
         validate_summon_capture(before,out,'0/15',resident_dialogue)
         if args.spell_cases:
             center();settle_dialogue('after-center');blocked_cast('invalid-target',owner,wizard['slot'])
-        for selection in range(3):
-            click(523,575);time.sleep(.5)
-            # Selection can itself meet a newly queued modal. Re-admit only
-            # selection after clearing it; the positive cast below remains one
-            # physical order and is never retried after consumption.
-            if not settle_dialogue('summon-selection-'+str(selection),2):break
-        else:raise RuntimeError('Spell selection repeatedly consumed by dialogue')
+        select_spell('zombie');cast_before=read_rows(trace)[-1][0];cast_prior=state()
         capture('selected-before-summon',True)
-        cast_before=read_rows(trace)[-1][0];cast_prior=state()
-        click(440,310,3);record('summon-order',before_sequence=cast_before)
+        cast_before=click(440,310,3,admit_cast=True)
+        cast_prior=creatures([r for r in read_rows(trace) if r[0]<=cast_before])
+        record('summon-order',before_sequence=cast_before)
         deadline=time.monotonic()+12; summoned=[]
         while time.monotonic()<deadline:
             summoned=[a for a in state().values() if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0 and
@@ -181,7 +218,9 @@ def main():
         capture('navigation-start')
         combat_deadline=time.monotonic()+180; extra_slots=[summoned[0]['slot']]
         while 'combat' not in result and time.monotonic()<combat_deadline:
-            rows=read_rows(trace);hits=damage_rows(rows,owner,extra_slots,cast_before)
+            rows=read_rows(trace);pending_summons=reconcile_summons(rows)
+            extra_slots=[a['slot'] for a in [result['summon']]+result['additional_summons']]
+            hits=damage_rows(rows,owner,extra_slots,cast_before)
             if hits:
                 result['combat']=dict(first_hit=list(hits[0]),hit_count=len(hits));capture('combat-damage');break
             all_creatures=state();actor=all_creatures[wizard['slot']]
@@ -191,13 +230,13 @@ def main():
             enemy=min(enemies,key=lambda a:math.hypot(a['x']-actor['x'],a['y']-actor['y']))
             dx,dy=enemy['x']-actor['x'],enemy['y']-actor['y']
             if len(calibration)!=2:raise RuntimeError('No independent movement after bounded ground probes')
-            ((ax,ay),(asx,asy)),((bx,by),(bsx,bsy))=calibration;det=ax*by-ay*bx
-            if not det:raise RuntimeError('Wizard movement calibration did not move in two directions')
-            u=(by*dx-bx*dy)/det;v=(ax*dy-ay*dx)/det
-            sx=asx*u+bsx*v;sy=asy*u+bsy*v
-            scale=max(1,abs(sx)/170,abs(sy)/110);sx/=scale;sy/=scale
-            record('approach-enemy',wizard=actor,enemy=enemy,screen_delta=[sx,sy])
-            center();click(400+sx,280+sy,3);time.sleep(3)
+            # Walking deltas depend on pathfinding/obstacles and elapsed travel;
+            # they establish input progress, not the camera transform. Keep the
+            # independent probes, then use the existing isometric projection.
+            waypoint=ground_waypoint(actor,enemy)
+            record('approach-enemy',wizard=actor,enemy=enemy,logical_point=list(waypoint),
+                   projection_policy='isometric-ground-v1')
+            center();click(*waypoint,3);time.sleep(3)
             center()
             if math.hypot(dx,dy)<7:
                 if args.spell_cases and not result.get('ranged'):
@@ -211,7 +250,7 @@ def main():
                     spent=0
                     for px,py in (predicted,(400,220),(400,200),(420,225),(380,225),(400,270),(400,240),(430,270),(370,270)):
                         mana_before=state()[wizard['slot']]['mana']
-                        begin=read_rows(trace)[-1][0];click(477,575);time.sleep(.25);click(px,py,3);time.sleep(1)
+                        select_spell('fireball');begin=read_rows(trace)[-1][0];click(px,py,3);time.sleep(1)
                         effects=player_fireball_damage(read_spell_rows(args.experiment/'spell-events.bin'),owner,wizard['slot'])
                         record('fireball-order',before_sequence=begin,logical_x=px,logical_y=py)
                         spent+=int(state()[wizard['slot']]['mana']<mana_before)
@@ -227,22 +266,22 @@ def main():
                 summon_point=(max(90,min(650,400+32*(tx-ty)+32)),
                               max(100,min(430,300+16*(tx+ty-tz)+16)))
                 record('combat-summon-projection',wizard=actor,enemy=enemy,logical_point=list(summon_point))
-                click(523,575);cast_sequence=read_rows(trace)[-1][0];prior=state()
-                click(*summon_point,3)
-                # The original effect can create its creature after the old
-                # fixed two-second sample. Retain the actual creation interval;
-                # unrelated owned Zombies cannot silently become proven casts.
-                deadline=time.monotonic()+12
+                if pending_summons:
+                    record('summon-effect-pending',casts=pending_summons)
+                    time.sleep(.25);continue
+                select_spell('zombie');cast_sequence=click(*summon_point,3)
+                summon_attempts.append(dict(before_sequence=cast_sequence))
+                # Twelve seconds is one polling turn, not the lifetime of an
+                # accepted original effect. Reconcile the complete prefix on
+                # later turns without repeating that cast or changing the
+                # existing overall combat deadline.
+                deadline=min(time.monotonic()+12,combat_deadline)
                 while True:
-                    current=state();new=[]
-                    for a in current.values():
-                        old=prior.get(a['slot'])
-                        if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0 and (not old or not old['active'] or old['type']!=14 or old['owner']!=owner):
-                            new.append(dict(before_sequence=cast_sequence,after_sequence=a['sequence'],slot=a['slot']))
+                    pending_summons=reconcile_summons()
+                    new=[a for a in result['additional_summons'] if a['before_sequence']==cast_sequence]
                     if new or time.monotonic()>=deadline:break
                     time.sleep(.25)
-                result['additional_summons'].extend(new)
-                record('combat-summon-observation',summons=new,before_sequence=cast_sequence)
+                record('combat-summon-observation',summons=new,pending=pending_summons,before_sequence=cast_sequence)
                 extra_slots=[a['slot'] for a in [result['summon']]+result['additional_summons']]
                 capture('combat-approach')
                 # Keep the wizard's original engagement while the adjacent
@@ -254,12 +293,14 @@ def main():
         # Retain a finite observation window without changing AI/health or the
         # same-engaged-enemy player-party lethal and living-wizard requirements.
         finish_deadline=time.monotonic()+120
-        finishing_casts=0
+        finishing_casts=0; pursuit_orders=0; last_progress=time.monotonic(); last_hits=0; last_pursuit=0
         while True:
-            rows=read_rows(trace);hits=damage_rows(rows,owner,extra_slots,cast_before)
+            rows=read_rows(trace);pending_summons=reconcile_summons(rows)
+            extra_slots=[a['slot'] for a in [result['summon']]+result['additional_summons']]
+            hits=damage_rows(rows,owner,extra_slots,cast_before)
             lethal=player_lethal_rows(rows,owner,wizard['slot'],hits)
             spell_lethal=player_engaged_fireball_lethal(read_spell_rows(args.experiment/'spell-events.bin'),rows,owner,wizard['slot'],hits)
-            if (lethal or spell_lethal) and time.monotonic()-start>=args.seconds:
+            if (lethal or spell_lethal) and not pending_summons and time.monotonic()-start>=args.seconds:
                 result['combat'].update(hit_count=len(hits))
                 if lethal:result['combat']['lethal_hit']=list(lethal[0])
                 if spell_lethal:result['combat']['lethal_fireball_hit']=list(spell_lethal[0])
@@ -267,18 +308,37 @@ def main():
             if state()[wizard['slot']]['health']<=0:raise RuntimeError('Player wizard died before required combat completion')
             if time.monotonic()>finish_deadline:raise RuntimeError('No player party lethal health depletion before combat deadline')
             actor=state()[wizard['slot']]
-            if args.spell_cases and actor['health']<=120 and actor['mana']>0 and finishing_casts<2:
+            if len(hits)!=last_hits:
+                last_hits=len(hits);last_progress=time.monotonic()
+            living=state()
+            targets=living_engaged_targets(living,hits)
+            stalled=time.monotonic()-last_progress>=8
+            if args.spell_cases and (actor['health']<=120 or stalled) and actor['mana']>=6*256 and finishing_casts<2:
                 # Exercise another ordinary ranged cast to support the same
                 # melee-engaged enemy. Waiting motionless can kill the wizard
                 # before the required party lethal; no game state is patched.
-                living=state();targets=[living[h[8]] for h in hits if h[8] in living and living[h[8]]['active'] and living[h[8]]['health']>0]
+                living=state();targets=living_engaged_targets(living,hits)
                 if targets:
                     enemy=targets[-1];center();actor=state()[wizard['slot']];enemy=state()[enemy['slot']]
                     tx,ty,tz=enemy['x']-actor['x'],enemy['y']-actor['y'],enemy['z']-actor['z']
                     point=(max(90,min(650,400+32*(tx-ty))),max(100,min(430,300+16*(tx+ty-tz)-22)))
-                    begin=read_rows(trace)[-1][0];mana=actor['mana'];click(477,575);time.sleep(.25);click(*point,3);time.sleep(1);finishing_casts+=1
+                    select_spell('fireball');begin=read_rows(trace)[-1][0];mana=actor['mana'];click(*point,3);time.sleep(1);finishing_casts+=1
                     record('combat-finishing-fireball',before_sequence=begin,wizard=actor,enemy=enemy,logical_point=list(point),mana_before=mana,mana_after=state()[wizard['slot']]['mana'])
                     continue
+            # Follow only an enemy already struck by a proven player summon.
+            # The original AI can retreat beyond passive melee range. Physical
+            # ground orders retain the same lethal/living-wizard assertions,
+            # twelve-order budget and original 120-second finish deadline.
+            if targets and stalled and pursuit_orders<12 and time.monotonic()-last_pursuit>=8:
+                center();living=state();actor=living[wizard['slot']];targets=living_engaged_targets(living,hits)
+                if not targets:continue
+                enemy=targets[-1];point=pursuit_waypoint(actor,enemy)
+                if point is not None:
+                    before_sequence=read_rows(trace)[-1][0]
+                    click(*point,3);pursuit_orders+=1;last_pursuit=time.monotonic()
+                    record('combat-pursuit',order=pursuit_orders,before_sequence=before_sequence,
+                           wizard=actor,enemy=enemy,logical_point=list(point))
+                    time.sleep(2);continue
             if args.portrait_stress_seconds:
                 center();record('combat-portrait-recenter');time.sleep(1);continue
             # Continue observing the fight without repeatedly reselecting and

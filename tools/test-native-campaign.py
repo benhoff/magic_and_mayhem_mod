@@ -38,7 +38,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'apps/qt-shell/live_menu_session.hpp', 'apps/qt-shell/live_command_session.cpp',
            'apps/qt-shell/live_command_session.hpp', 'tools/prepare-menu-observer.py',
            'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py',
-           'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py', 'tools/campaign_render_oracle.py', 'tools/pixel_route_requirements.py', 'tools/campaign_pixel_routes.py']
+           'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py', 'tools/campaign_input_admission.py', 'tools/campaign_input_observation.py', 'runtime/menu/campaign_input_admission_observe.h', 'tools/campaign_render_oracle.py', 'tools/pixel_route_requirements.py', 'tools/campaign_pixel_routes.py']
 SOURCES += ['tools/campaign_storage.py', 'tools/menu-storage-input.py', 'tools/menu_save_store.py', 'apps/qt-shell/campaign_storage_test.cpp', 'tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 SOURCES += ['tools/directplay_dx6_launch.py','tools/native_prefix_template.py','tools/native_render_driver.py']
 SOURCES += ['tools/campaign_camera_dialogue.py', 'tools/campaign-camera-menu-input.py', 'tools/campaign_cadence.py']
@@ -115,7 +115,8 @@ def validate_dialogue_readiness(inputs, capture_root, resident_world=False):
         raise ValueError("Dialogue oracle differs from requested rendering mode")
     routes=("native",) if resident_world else ("native","original")
     checks=inputs.get('dialogue_checks',[])
-    if not 1<=len(checks)<=12 or set(checks[-1]['visible'])!={'native','original'} or any(checks[-1]['visible'][r] for r in routes):
+    check_limit=48 if inputs.get('input_readiness_policy')=='continuous-quiet-distinct-spell-v2' else 12
+    if not 1<=len(checks)<=check_limit or set(checks[-1]['visible'])!={'native','original'} or any(checks[-1]['visible'][r] for r in routes):
         raise ValueError('Missing cleared introductory dialogue from requested World oracle')
     captures={c['name']:c for c in inputs['captures']}
     for item in checks:
@@ -127,6 +128,9 @@ def validate_dialogue_readiness(inputs, capture_root, resident_world=False):
             raise ValueError('Invalid independent gameplay diagnostic capture')
         for route in ('native','original'):
             if sha(capture_root/(cap['name']+'-'+route+'.png'))!=cap['image_sha256'][route]:raise ValueError('Gameplay diagnostic image changed after capture')
+    if 'input_readiness_policy' in inputs:
+        from campaign_input_admission import validate_readiness_trace
+        validate_readiness_trace(inputs,resident_world)
     return dict(verified=True,checks=len(checks),dismissed=sum(all(i['visible'][r] for r in routes) for i in checks),oracle=oracle,
                 scope=('Bounded resident Hermes heading OCR with retained CPU diagnostic images; CPU World pixels are stale and cannot classify dismissal. Original summon/cast/combat observation separately required; full UI equivalence excluded.' if resident_world else 'Bounded introductory Hermes heading OCR from independent native/original images; other dialogue speakers/layouts and internal tutorial admission excluded'))
 
@@ -134,8 +138,30 @@ def validate_dialogue_readiness(inputs, capture_root, resident_world=False):
 def validate_casting_combat(experiment, inputs, capture_root, resident_world=False):
     if inputs.get('summon_count_oracle','dual-draw')!=oracle(resident_world):
         raise ValueError('Summon count oracle differs from requested rendering mode')
+    if inputs.get('hover_readiness_policy') not in (None,'fixed-delay-legacy','original-world-after-motion-v1'):
+        raise ValueError('Unsupported original hover readiness policy')
+    if inputs.get('hover_readiness_policy')=='original-world-after-motion-v1':
+        from campaign_input_observation import decode as decode_hover
+        from campaign_input_admission import fresh_hover
+        hover_rows=decode_hover((experiment/'input-admission.bin').read_bytes())['rows']
+        admissions=inputs.get('hover_admissions',[])
+        if not admissions or not any(h['require_cast'] for h in admissions):raise ValueError('Missing original hover admission before initial cast')
+        for h in admissions:
+            ready=fresh_hover([r for r in hover_rows if r['sequence']<=h['ready_sequence']],h['point'],h['after_sequence'],h['already_there'],h['require_cast'])
+            if not ready or ready['sequence']!=h['ready_sequence'] or ready['ground']!=h['ground'] or ready['cursor_type']!=h['cursor_type']:
+                raise ValueError('Original hover admission differs from retained samples')
+    if inputs.get('additional_summon_policy') not in (None,'accepted-cast-prefix-v1'):
+        raise ValueError('Unsupported additional summon policy')
     rows=read_rows(experiment/'gameplay-events.bin', complete=True)
     summon=inputs['summon']; before=summon['before_sequence']; after=summon['after_sequence']; slot=summon['slot']; owner=inputs['player_owner']
+    if inputs.get('additional_summon_policy')=='accepted-cast-prefix-v1':
+        from campaign_input_admission import resolve_additional_summons
+        end=inputs['summon_observation_end_sequence']
+        if not 0<end<=rows[-1][0]:raise ValueError('Invalid retained summon observation prefix')
+        confirmed,pending=resolve_additional_summons(rows[:end],read_spell_rows(experiment/'spell-events.bin',complete=True),
+                                                    inputs['summon_attempts'],owner,inputs['wizard_slot'])
+        if pending or confirmed!=inputs.get('additional_summons',[]):
+            raise ValueError('Additional summon proof differs from accepted casts and births')
     if len({r[2] for r in rows})!=1:raise ValueError('Gameplay observation thread changed')
     initial=creatures([r for r in rows if r[0]<=before])
     wizards=[a for a in initial.values() if a['type']==0 and a['active'] and a['health']>0]
@@ -374,7 +400,7 @@ def start_native_hardware(out,env):
         raise
 
 
-def validate_resident_cpu_census(resident, minimum_fps, census_only=False):
+def validate_resident_cpu_census(resident, minimum_fps, census_only=False, *, defer_rate_failure=False):
     counts=[int(resident[k]) for k in ('completed','imports','verified_returns')]
     gates=dict(minimum_worlds=64, worlds_passed=min(counts)>=64,
                minimum_fps=minimum_fps, fps_passed=resident['engine_fps']>=minimum_fps)
@@ -384,7 +410,7 @@ def validate_resident_cpu_census(resident, minimum_fps, census_only=False):
         raise ValueError('CPU census requires balanced normal World retirement')
     if not census_only and not gates['worlds_passed']:
         raise ValueError('Resident World completion/import/no-readback proof failed: '+repr(resident))
-    if not census_only and not gates['fps_passed']:
+    if not census_only and not gates['fps_passed'] and not defer_rate_failure:
         raise ValueError('Resident World engine FPS below target: '+str(resident['engine_fps']))
     return gates
 
@@ -408,6 +434,8 @@ def main():
     parser.add_argument('--menu-cycles', type=int, choices=range(1,6), default=1, help='Number of native Escape/Mini/Cancel returns')
     parser.add_argument('--min-fps', type=float, default=20, help='Minimum average native publications and visible Qt paints during stress')
     parser.add_argument('--difficulty', type=int, choices=range(4), default=0, help='Choose the normal Region Entry difficulty via its native radio (0 Initiate; 1 Apprentice for camera/combat stress)')
+    parser.add_argument('--observe-input-admission',action='store_true',help='Retain bounded read-only spell-bar/hit and Qt snapshot samples; diagnostic prefix only')
+    parser.add_argument('--button-hold-ms',type=int,default=120,help='Physical test button hold,30..1500ms; no repeated click or cast')
     parser.add_argument('--require-casting-combat', action='store_true', help='Require successful native-viewport summon and player-versus-enemy melee damage observation')
     parser.add_argument('--portrait-stress-seconds', type=int, default=0, help='Repeat portrait recentering after verified combat (0 or 10..120)')
     parser.add_argument('--disable-precise-clock',action='store_true',help='Diagnostic control: retain original coarse GetTickCount uptime')
@@ -530,6 +558,9 @@ def main():
     if args.require_casting_combat:
         if args.difficulty not in (1,2,3):parser.error('Casting/combat requires --difficulty 1, 2 or 3 (other campaign journeys remain separate)')
         if not args.stress_seconds:args.stress_seconds=60
+    if args.require_casting_combat:args.observe_input_admission=True
+    if args.observe_input_admission and not args.require_casting_combat:parser.error('Input observation requires the casting diagnostic')
+    if not 30<=args.button_hold_ms<=1500:parser.error('Button hold must be30..1500ms')
     if args.spell_cases and not args.require_casting_combat:parser.error('--spell-cases requires casting/combat')
     if args.native_voices and not (args.check_only or args.normal_quit):parser.error('Native voice retirement proof requires --normal-quit')
     if args.initial_silent_start and not (args.native_voices and args.native_loading and args.native_factory and args.native_media and args.native_music and args.normal_quit):
@@ -580,7 +611,7 @@ def main():
         if args.recreate_world:declaration_command.extend(['--behavior','NP.native-primary-initial-history'])
         if args.recreate_world:declaration_command.extend(['--behavior','NP.native-source-copy-refusal'])
         if args.recreate_world:declaration_command.extend(['--behavior','NR.menu-loading-source-chunks','--scenario','NR.menu-loading-source-chunks.reload'])
-        if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
+        if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence','--behavior','HOST.native-display-deadlines'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign','--behavior','NP.native-history-reader-routing','--scenario','NP.native-history-reader-routing.campaign','--behavior','NP.explicit-native-cpu-materialization','--scenario','NP.explicit-native-cpu-materialization.campaign'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.pixel-route-scenarios','--scenario','NP.pixel-route-scenarios.campaign'])
         if args.hardware and args.save_load:declaration_command.extend(['--behavior','HOST.native-renderer-observations','--scenario','HOST.native-renderer-observations.storage'])
@@ -608,7 +639,7 @@ def main():
         if args.wine_import_census:declaration_command.extend(['--behavior','HOST.wine-import-census','--scenario','wine-import-census-campaign-20261012'])
         if args.native_music:declaration_command.extend(['--behavior','HOST.native-menu-music','--scenario','native-menu-music-campaign-20261012'])
         if args.default_music or args.default_media:declaration_command.extend(['--behavior','HOST.native-audio-defaults','--scenario','native-audio-defaults-campaign-20261012'])
-        if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness','--behavior','HOST.native-campaign-spell-cases','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown'])
+        if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness','--behavior','HOST.native-campaign-spell-cases','--behavior','HOST.accepted-summon-observation','--scenario','HOST.accepted-summon-observation.public','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown'])
         if args.profile_resident:declaration_command.extend(['--behavior','NR.resident-stage-profiling','--scenario','NR.resident-stage-profiling.live'])
         if args.trace_engine_cadence:declaration_command.extend(['--behavior','NR.engine-cadence-observation','--scenario','NR.engine-cadence-observation.live'])
         if args.scene_production_probe:declaration_command.extend(['--behavior','NR.scene-production-repetition','--scenario','NR.scene-production-repetition.live'])
@@ -655,6 +686,11 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    env['MNM_CAMPAIGN_BUTTON_HOLD_MS']=str(args.button_hold_ms)
+    if args.observe_input_admission:env['MNM_CAMPAIGN_INPUT_ADMISSION']='1'
+    if args.require_casting_combat:env['MNM_CAMPAIGN_HOVER_READINESS']='1'
+    report['input_button_hold_ms']=args.button_hold_ms
+    report['input_admission_observation_requested']=args.observe_input_admission
     report['cpu_guard_mode']=args.cpu_guard
     report['cpu_census_only']=args.cpu_census_only
     report['ordinary_campaign_accepted']=False
@@ -958,7 +994,9 @@ def main():
                     report['native_cpu_materialization']=dict(count=h[5],**kinds,counts_sha256=sha(counts),last_surface=h[7],command_session=h[4],width=h[8],height=h[9],last_bytes=h[10],generation=h[11]|h[12]<<32,nonce=h[13]|h[14]<<32,sha256=sha(reply),scope='Explicit ordered CPU-reader snapshots, classified separately from ordinary World returns and original pixels')
                 if args.other_pixel_producers and args.normal_quit and not reply.exists():raise ValueError('Combined normal Quit did not exercise native CPU materialization')
                 resident=json.loads((roots[0]/'resident-world-report.json').read_text())
-                report['ordinary_resident_gates']=validate_resident_cpu_census(resident,args.min_fps,args.cpu_census_only)
+                # Retain independent functional results even when source throughput
+                # fails. The identical rate gate is enforced before acceptance below.
+                report['ordinary_resident_gates']=validate_resident_cpu_census(resident,args.min_fps,args.cpu_census_only,defer_rate_failure=True)
                 if args.normal_quit and (not resident.get('normal_quit_retired') or resident['pending'] or len({int(resident[k]) for k in ('completed','imports','verified_returns')})!=1):raise ValueError('Resident World normal Quit was not acknowledged and balanced')
                 if args.save_load:
                     snapshots=int(resident.get('explicit_producer_cpu_readbacks',0))
@@ -1147,6 +1185,8 @@ def main():
             if args.save_load:validate_storage_flow(flow)
             if not (args.save_load or args.healing_case or args.crowded_case):validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps,args.normal_quit)
             if any(sha(ROOT / p) != h for p,h in report['sources'].items()):raise RuntimeError('Source changed during execution')
+            if args.resident_world:
+                validate_resident_cpu_census(resident,args.min_fps,args.cpu_census_only)
             report.update(success=True, status='passed', stage='cpu-census-complete' if args.cpu_census_only else 'campaign-complete', flow_completed=True, game_entry_verified=True)
             report['ordinary_campaign_accepted']=not args.cpu_census_only
             exit_code = 0
@@ -1214,6 +1254,15 @@ def main():
             except (OSError, subprocess.SubprocessError) as error:
                 report.update(success=False, status='failed', original_manifest_error=str(error))
                 exit_code = 1
+        if args.observe_input_admission and len(roots)==1:
+            try:
+                from campaign_input_observation import decode as decode_admission
+                admission=roots[0]/'input-admission.bin'
+                report['input_admission_observation']=decode_admission(admission.read_bytes())
+                report['input_admission_sha256']=sha(admission)
+            except (OSError,ValueError) as error:
+                report['input_admission_error']=str(error)
+                report.update(success=False,status='failed');exit_code=1
         (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
     print(report['status'] + ': ' + report.get('error', report['stage']), flush=True)
     print('Report: ' + str(out / 'report.json'), flush=True)

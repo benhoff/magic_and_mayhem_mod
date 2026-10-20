@@ -91,6 +91,7 @@ static u32 THIS result_tick(void* object){
 #include "preferences_display.h"
 #include "campaign_observe.h"
 #include "campaign_gameplay_observe.h"
+#include "campaign_input_admission_observe.h"
 #include "campaign_world_observe.h"
 #include "campaign_mini_observe.h"
 #include "region_entry_observe.h"
@@ -132,7 +133,7 @@ static int install(void){
         if(!install_grimoire_observe())menu_retired=1;
         if(!install_campaign_observe())menu_retired=1;
         if((campaign_log||menu_version>=8)&&!install_campaign_world_observe())menu_retired=1;
-        if(!install_gameplay_observe())menu_retired=1;
+        if(!install_gameplay_observe()||!admission_open())menu_retired=1;
         if((campaign_log||menu_version>=9)&&!install_campaign_mini_observe())menu_retired=1;
         if(campaign_log&&menu_version<7&&!install_campaign_navigation())menu_retired=1;
         if(menu_version>=7){
@@ -245,5 +246,5 @@ int WIN DllMain(void* dll,u32 reason,void* reserved){
 #ifndef MNM_MENU_SELFTEST
     if(reason==1){u32 error=GetLastError();install();SetLastError(error);}
 #endif
-    if(reason==0){semantic_state_close();hud_state_close();region_input_close();latch_close();if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_admission_trace)CloseHandle(menu_admission_trace);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
+    if(reason==0){semantic_state_close();hud_state_close();region_input_close();admission_close();latch_close();if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_admission_trace)CloseHandle(menu_admission_trace);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
 }
