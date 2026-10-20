@@ -8,7 +8,8 @@
 struct NdState;
 struct NsState;
 struct NdObject {void** table;struct NdState* state;u32 kind;};
-struct NdState {struct NdObject first,second,unknown,fourth;u32 refs[4],interfaces;void* window;u32 coop,width,height,depth;struct NsState* primary;};
+struct NdState {struct NdObject first,second,unknown,fourth;u32 refs[4],interfaces;void* window;u32 coop,width,height,depth;struct NsState* primary;u32 creator;struct NdState *previous_owned,*next_owned;};
+static struct NdState* nd_owned;
 static void* nd_tables[4][28];
 static u32 nd_objects,nd_surfaces,nd_creates,nd_attempts,nd_enumerations,nd_last_create;
 static void nd_status(void);
@@ -36,7 +37,10 @@ static u32 WIN nd_retain(struct NdObject* self) {
 }
 static u32 WIN nd_release(struct NdObject* self) {
   u32 error=GetLastError(),refs=--self->state->refs[self->kind];
-  if(!refs && !--self->state->interfaces){HeapFree(GetProcessHeap(),0,self->state);--nd_objects;}
+  if(!refs && !--self->state->interfaces){struct NdState* s=self->state;
+   if(s->previous_owned)s->previous_owned->next_owned=s->next_owned;else nd_owned=s->next_owned;
+   if(s->next_owned)s->next_owned->previous_owned=s->previous_owned;
+   HeapFree(GetProcessHeap(),0,s);--nd_objects;}
   nd_status();SetLastError(error);return refs;
 }
 #include "refusal.h"
@@ -47,7 +51,9 @@ static u32 WIN nd_release(struct NdObject* self) {
 #include "cpu_copy_boundary.h"
 #include "status.h"
 #include "producer_status.h"
-static i32 nd_create(void* guid,void** out,void* outer) {
+#include "retirement.h"
+#include "startup_retirement.h"
+static i32 nd_create(void* guid,void** out,void* outer,u32 caller) {
   u32 error=GetLastError();
   if(!out)return ND_INVALID;
   *out=0;
@@ -59,10 +65,11 @@ static i32 nd_create(void* guid,void** out,void* outer) {
   s->first=(struct NdObject){nd_tables[1],s,1};s->second=(struct NdObject){nd_tables[2],s,2};
   s->unknown=(struct NdObject){nd_tables[0],s,0};s->fourth=(struct NdObject){nd_tables[3],s,3};
   s->width=800;s->height=600;s->depth=16;s->refs[1]=1;s->interfaces=1;
+  s->creator=caller;s->next_owned=nd_owned;if(nd_owned)nd_owned->previous_owned=s;nd_owned=s;
   ++nd_objects;++nd_creates;*out=&s->first;nd_status();SetLastError(error);return 0;
 }
 __declspec(dllexport) i32 WIN NativeDrawCreate(void* guid,void** out,void* outer) {
- u32 error=GetLastError();ns_guard_initialize();ns_image_copy_install();++nd_attempts;i32 result=nd_create(guid,out,outer);nd_last_create=(u32)result;nd_status();SetLastError(error);return result;
+ u32 error=GetLastError();ns_guard_initialize();ns_image_copy_install();++nd_attempts;i32 result=nd_create(guid,out,outer,(u32)__builtin_return_address(0));nd_last_create=(u32)result;nd_status();SetLastError(error);return result;
 }
 typedef i32 (WIN *NdEnumCallback)(void*,const char*,const char*,void*);
 __declspec(dllexport) i32 WIN NativeDrawEnumerateA(NdEnumCallback callback,void* context) {
@@ -122,4 +129,4 @@ __declspec(dllexport) u32 WIN NativeDrawStatusStage(void) {return __atomic_load_
 __declspec(dllexport) void WIN NativeDrawStatusDeferV1(u32 begin) {nd_status_defer(begin);}
 __declspec(dllexport) u32 WIN NativeDrawObjects(void) {return nd_objects;}
 __declspec(dllexport) u32 WIN NativeDrawPalettes(void) {return np_objects;}
-i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;(void)reserved;if(reason==1){nd_init();nd_status_start();np_status_start();}else if(reason==0){ns_guard_finish();np_status_finish();nd_status_finish();}return 1;}
+i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;if(reason==1){nd_init();nd_status_start();np_status_start();}else if(reason==0){nd_retirement_report(reserved!=0);ns_guard_finish();np_status_finish();nd_status_finish();}return 1;}

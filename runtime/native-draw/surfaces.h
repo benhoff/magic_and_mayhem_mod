@@ -19,6 +19,7 @@ struct NsState {
   u32 dest_key_set,dest_key_low,dest_key_high;
   void *dc,*bitmap,*old_bitmap,*dc_bits;struct NcClipper* clipper;
   struct NsState *previous_owned,*next_owned;struct NpPalette* palette;
+  u32 creator;
 };
 static struct NsState* ns_owned;
 static void* ns_tables[5][45];
@@ -272,6 +273,12 @@ static i32 WIN ns_set_palette(struct NsObject* o,struct NpPalette* p){
 static i32 WIN ns_lost(struct NsObject* o){(void)o;return 0;}
 static i32 WIN ns_restore(struct NsObject* o){return ns_borrowed(o->state)?NS_BUSY:0;}
 static i32 WIN ns_status(struct NsObject* o,u32 flags){if(flags!=1 && flags!=2)return ND_INVALID;return ns_borrowed(o->state)?NS_BUSY:0;}
+/* Surface2+ page residency hints. Owned host allocations never migrate to a
+ * display device. Unchanged Wine callers return success for these hints,
+ * including repeated/unbalanced calls and flags while locked; no pixel,
+ * interface-reference or drawing-lease state changes. The pinned wrapper
+ * 0058aeaa optionally invokes slot37 with flags0 during surface creation. */
+static i32 WIN ns_page_hint(struct NsObject* o,u32 flags){(void)o;(void)flags;return 0;}
 static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,u32 caps,u32 bits,const u32* masks){
  ns_guard_initialize();
  if(!width || !height || width>4096 || height>4096 || nd_surfaces>=512 || ((width*(bits/8)+7)&~7u)*height>256*1024*1024-ns_bytes)return 0;
@@ -322,6 +329,7 @@ static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer
  }
  struct NsState* s=ns_allocate(o,w,h,caps==0x40?0x10004040:(caps==0x800?0x840:caps),bits,masks);
  if(!s)return (i32)0x8007000eu;
+ s->creator=(u32)__builtin_return_address(0);
  if(caps==0x218){s->back=ns_allocate(o,w,h,0x14,bits,masks);if(!s->back){ns_release(&s->aliases[o->kind==3?3:1]);return (i32)0x8007000eu;}}
  if(caps==0x200 || caps==0x218)o->state->primary=s;
  *out=&s->aliases[o->kind==3?3:1];return 0;
@@ -373,5 +381,6 @@ static void nd_init(void){
   ns_tables[k][21]=(void*)&ns_pixel_format;ns_tables[k][22]=(void*)&ns_desc;ns_tables[k][24]=(void*)&ns_lost;
   ns_tables[k][17]=(void*)&ns_get_dc;ns_tables[k][26]=(void*)&ns_release_dc;
   ns_tables[k][25]=(void*)&ns_lock;ns_tables[k][27]=(void*)&ns_restore;ns_tables[k][29]=(void*)&ns_key;ns_tables[k][32]=(void*)&ns_unlock;
+  if(k>=2){ns_tables[k][37]=(void*)&ns_page_hint;ns_tables[k][38]=(void*)&ns_page_hint;}
  }
 }

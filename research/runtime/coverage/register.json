@@ -12867,7 +12867,9 @@
         "research/runtime/rendering-tranche2-state-review-20261019.md",
         "research/runtime/rendering-tranche3-issues-review-20261019.md",
         "research/runtime/rendering-tranche3-issues-execution-20261019.json",
-        "research/runtime/rendering-high-tranches-review-20261019.md"
+        "research/runtime/rendering-high-tranches-review-20261019.md",
+        "research/runtime/directdraw-retirement-execution-20261019.json",
+        "research/runtime/directdraw-retirement-20261019.md"
       ],
       "implementation": [
         "tools/coverage_ui.py",
@@ -36549,7 +36551,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native graphics compatibility and real DirectDraw retirement",
-      "scope": "Aggregate for full graphics compatibility and real DirectDraw retirement for the pinned build. Delivered bounded suppliers include Draw1/2/4 and Surface1/2/3/4 identities,108/124-byte descriptors, default510x180 offscreen admission, five canonical CPU formats, keys/copies/fills/overlap, palette/DC lifetimes, canonical explicit and current HWND clipping, owned GPU copy plans and guarded CPU dependencies. Factory/surface/DC original-Wine comparisons, native policy controls, source-only GPU handoff and live original-engine journeys retain separate evidence. Logical primary/one-backbuffer flip, four-format640x480/800x600 mode enumeration and256MiB host storage are native policies, not physical driver equivalence. Unknown methods terminate with family/interface/slot diagnostics; unsupported domains never imply complete forwarding or route coverage. Guarded imports and both12-byte dynamic loader strings redirect to MnmDraw with other original bytes preserved. The old rejected offscreen descriptor and blanket palette/clipped-Blt TODOs are superseded by supplied implementations and the20261019 crosswalk. Full encountered caller/route/writer/alias coverage, physical driver loss/restore semantics, whole-game original pixel parity, semantic COM cleanup, native-only/restart and sustained19/60FPS acceptance remain unresolved; bounded normal-Quit/275-World acceptance does not close them. No currently reproduced required missing descriptor/COM branch was identified. Preserve every historical failure, scope and source fingerprint.",
+      "scope": "Aggregate for full graphics compatibility and real DirectDraw retirement for the pinned build. Delivered bounded suppliers include Draw1/2/4 and Surface1/2/3/4 identities,108/124-byte descriptors, default510x180 offscreen admission, five canonical CPU formats, keys/copies/fills/overlap, palette/DC lifetimes, canonical explicit and current HWND clipping, owned GPU copy plans and guarded CPU dependencies. Factory/surface/DC original-Wine comparisons, native policy controls, source-only GPU handoff and live original-engine journeys retain separate evidence. Logical primary/one-backbuffer flip, four-format640x480/800x600 mode enumeration and256MiB host storage are native policies, not physical driver equivalence. Unknown methods terminate with family/interface/slot diagnostics; unsupported domains never imply complete forwarding or route coverage. Guarded imports and both12-byte dynamic loader strings redirect to MnmDraw with all other original bytes preserved except two guarded ten-byte DirectX-check Release sites, now routed to a temporary-alias cleanup adapter. The old rejected offscreen descriptor and blanket palette/clipped-Blt TODOs are superseded by supplied implementations and the20261019 crosswalk. Full encountered caller/route/writer/alias coverage, physical driver loss/restore semantics, whole-game original pixel parity, semantic COM cleanup, native-only/restart and sustained19/60FPS acceptance remain unresolved; bounded normal-Quit/275-World acceptance does not close them. No currently reproduced required missing descriptor/COM branch was identified. Preserve every historical failure, scope and source fingerprint.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -36605,7 +36607,10 @@
         "research/runtime/native-master-integration-current-world4096-pass-20261011.json",
         "research/runtime/native-default-offscreen-pass-20261011.json",
         "research/runtime/public-resident-surface-refusal-20261011.json",
-        "research/runtime/surface-final-word-read.md"
+        "research/runtime/surface-final-word-read.md",
+        "research/runtime/directdraw-retirement-20261019.md",
+        "research/runtime/directdraw-retirement-execution-20261019.json",
+        "research/runtime/directdraw-retirement-results-20261019/scope-resolution.json"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
@@ -36616,7 +36621,9 @@
         "runtime/native-draw/refusal.h",
         "runtime/native-draw/status.h",
         "tools/prepare-scene-observer.py",
-        "tools/scene-game-runner.py"
+        "tools/scene-game-runner.py",
+        "runtime/native-draw/retirement.h",
+        "runtime/native-draw/startup_retirement.h"
       ],
       "tests": [
         "tests/native-draw-factory-probe.c",
@@ -36625,7 +36632,10 @@
         "tools/test-native-draw-surfaces.py",
         "tests/native-draw-services-probe.c",
         "tools/test-native-draw-services.py",
-        "tools/test-native-world-continuous.py"
+        "tools/test-native-world-continuous.py",
+        "tests/native-draw-page-probe.c",
+        "tools/test-native-draw-pages.py",
+        "tests/test-native-draw-retirement.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/gl_viewport.cpp",
@@ -36860,7 +36870,11 @@
         "runtime/native-draw/history.h",
         "runtime/native-draw/producer_status.h",
         "tools/native_prefix_template.py",
-        "tools/directplay_dx6_launch.py"
+        "tools/directplay_dx6_launch.py",
+        "runtime/native-draw/retirement.h",
+        "tools/native_draw_retirement.py",
+        "tools/native_only_contract.py",
+        "tools/test-native-owned-campaign.py"
       ],
       "validation_domain": "Selected bounded startup World/HUD history. Unknown CPU-dependent history reads must refuse; no historical source/pixel proof is reused for this new ownership policy.",
       "evidence": [
@@ -36921,7 +36935,15 @@
         "T3I.facade-services-20261019",
         "T3I.facade-resources-20261019",
         "T3I.facade-mode-negative-20261019",
-        "T3I.retirement-scope-20261019"
+        "T3I.retirement-scope-20261019",
+        "DDR.native-only-20261019",
+        "DDR.diagnosis-20261019",
+        "DDR.pages-commit-20261019",
+        "DDR.factory-20261019",
+        "DDR.surfaces-20261019",
+        "DDR.services-20261019",
+        "DDR.resources-20261019",
+        "DDR.pages-20261019"
       ],
       "status": {
         "understanding": "partial",
@@ -36931,7 +36953,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "20261019: confirmed PageLock/PageUnlock and startup Surface3/4 reference leaks are repaired and current headless comparisons pass. Pinned strict normal Quit (179 Worlds), public restart and NVIDIA standalone startup pass; their broad live source fingerprints retain unrelated main-tree terrain/build drift. Full required caller/writer/alias closure, physical context loss, whole-game original pixels and sustained performance remain unresolved."
       ],
       "implementation_review": {
         "review": "HIGH02.rendering-implementation-review-20261019",
@@ -37302,6 +37325,7 @@
         "tools/test-native-draw-import.py"
       ],
       "validation_dependencies": [
+        "runtime/native-draw/startup_retirement.h",
         "tools/prepare-shadow-experiment.py"
       ],
       "validation_domain": "Eight offline pinned executable import/optional dynamic lookup compositions and ten byte mutation guards; no original engine execution.",
@@ -37312,7 +37336,8 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "DDR.import-guards-20261019"
       ],
       "status": {
         "understanding": "scoped",
@@ -38930,7 +38955,8 @@
         "reconstruction/rendering/pixel_kernel.c",
         "reconstruction/rendering/pixel_kernel.h",
         "runtime/native-draw/history.h",
-        "runtime/native-draw/producer_status.h"
+        "runtime/native-draw/producer_status.h",
+        "renderer/isolated_dispatch.inc"
       ],
       "evidence": [
         "NR.directdraw-native-opengl-launch.startup-20261011",
@@ -38944,7 +38970,8 @@
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "HIGH01.rendering-work-review-20261019"
+        "HIGH01.rendering-work-review-20261019",
+        "DDR.standalone-hardware-20261019"
       ],
       "status": {
         "understanding": "partial",
@@ -73891,7 +73918,8 @@
         "NP.native-resource-state.headless-20261015",
         "NP.native-resource-state.completion-20261015",
         "NP.native-history-readers.resources-20261015",
-        "T3I.facade-resources-20261019"
+        "T3I.facade-resources-20261019",
+        "DDR.resources-20261019"
       ],
       "status": {
         "understanding": "partial",
@@ -118390,7 +118418,8 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/native-only-launch.md"
+        "research/runtime/native-only-launch.md",
+        "research/runtime/directdraw-retirement-20261019.md"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -119103,7 +119132,9 @@
         "tools/test-native-campaign.py",
         "tools/test-native-clock.py",
         "tools/test-native-output-owner.py",
-        "tools/test-native-pacer.py"
+        "tools/test-native-pacer.py",
+        "runtime/native-draw/retirement.h",
+        "tools/native_draw_retirement.py"
       ],
       "evidence": [
         "NATIVE.native-only-launch.controls-20261018",
@@ -119116,7 +119147,9 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "DDR.shutdown-controls-20261019",
+        "DDR.native-only-20261019"
       ],
       "status": {
         "understanding": "scoped",
@@ -121479,7 +121512,8 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "DDR.restart-20261019"
       ],
       "status": {
         "understanding": "scoped",
@@ -125692,6 +125726,214 @@
         "failures": "Bounded transcript magic/count/domain/truncation/trailing/state mismatches refuse; source/compiler/original drift rejects acceptance. Original malformed inputs excluded.",
         "exclusions": "Weighted multi-source selection, full source/perception producers and maintenance/registration semantics, installed model inference, actor motion/health production and a whole battle, wizard/other task families/second brain, World allocation/time/difficulty and live replacement. Completed phase/winner bytes are stale and unobserved; committed child-list topology ignores only the two identified original scratch proposal parent addresses, whose members are independently captured at each candidate next call."
       }
+    },
+    {
+      "id": "NP.native-draw-page-hints",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned host storage Surface2/3/4 page residency hints",
+      "scope": "Surface2/3/4 PageLock and PageUnlock on owned system-memory storage, including flags, repeated/unbalanced calls and active Lock. Host backing never migrates to physical display memory; hints do not mutate pixel, interface reference or mapping state. Unchanged Wine caller comparison and static pinned optional caller 0058aeaa are separate from physical driver semantics and whole-game route closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "runtime/native-draw/surfaces.h"
+      ],
+      "tests": [
+        "tests/native-draw-page-probe.c",
+        "tools/test-native-draw-pages.py"
+      ],
+      "documents": [
+        "research/runtime/directdraw-retirement-20261019.md",
+        "research/runtime/directdraw-retirement-execution-20261019.json",
+        "research/runtime/coverage/directdraw-retirement-commit-review-20261019.md"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/native_gpu_copy_plan_v1.h",
+        "protocols/include/mnm/native_pixel_guard_v1.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/blit_effects.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/cpu_copy_boundary.h",
+        "runtime/native-draw/cpu_guard.h",
+        "runtime/native-draw/cpu_store.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/image_copy_original.h",
+        "runtime/native-draw/initial_history.h",
+        "runtime/native-draw/native_only.h",
+        "runtime/native-draw/ownership_admission.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/pixel_conversion.h",
+        "runtime/native-draw/producer_guard.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/retirement.h",
+        "runtime/native-draw/startup_retirement.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-native-draw.py",
+        "tools/native_draw_retirement.py"
+      ],
+      "evidence": [
+        "DDR.pages-commit-20261019",
+        "DDR.pages-20261019"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current focused headless controls pass. Original checker failure reachability, arbitrary game caller/alias closure, physical-driver behavior and broader acceptance remain separately scoped. Pinned successful native-only/restart live runs retain their exact broad source hashes and main-tree freshness limitations."
+      ]
+    },
+    {
+      "id": "NP.native-draw-clean-shutdown",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native COM and pixel-owner retirement before process reclamation",
+      "scope": "Session-local MNMDRET1 shutdown inventory captures remaining device/surface origins and interface references plus DC, clipper, palette and pixel allocation counts before process reclamation. Strict native-only normal completion requires fresh matching native admission, balanced World work, original exit zero, absent ddraw and zero surviving owner classes; process stop is not semantic reference cleanup. Missing or malformed evidence refuses. No all-game caller, physical-driver or performance assertion. The pinned original DirectX-check cleanup adapter verifies the temporary graph at its two guarded final device Release sites, releases stack-only Surface aliases and then the device, preserving ordinary COM semantics and the original Release return. It must reject unrelated callers/graphs before mutation.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/surfaces.h",
+        "runtime/native-draw/retirement.h",
+        "tools/native_draw_retirement.py",
+        "tools/menu-game-runner.py",
+        "tools/native_only_contract.py",
+        "runtime/native-draw/startup_retirement.h",
+        "tools/prepare-native-draw.py"
+      ],
+      "tests": [
+        "tests/test-native-draw-retirement.py",
+        "tests/test-native-only-contract.py",
+        "tools/test-native-owned-campaign.py",
+        "tools/test-native-draw-import.py"
+      ],
+      "documents": [
+        "research/runtime/directdraw-retirement-20261019.md",
+        "research/runtime/directdraw-retirement-execution-20261019.json",
+        "research/runtime/coverage/directdraw-retirement-commit-review-20261019.md"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/native_gpu_copy_plan_v1.h",
+        "protocols/include/mnm/native_pixel_guard_v1.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/blit_effects.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/cpu_copy_boundary.h",
+        "runtime/native-draw/cpu_guard.h",
+        "runtime/native-draw/cpu_store.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/image_copy_original.h",
+        "runtime/native-draw/initial_history.h",
+        "runtime/native-draw/native_only.h",
+        "runtime/native-draw/ownership_admission.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/pixel_conversion.h",
+        "runtime/native-draw/producer_guard.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/retirement.h",
+        "runtime/native-draw/startup_retirement.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-native-draw.py"
+      ],
+      "evidence": [
+        "DDR.shutdown-controls-20261019",
+        "DDR.native-only-20261019",
+        "DDR.restart-20261019"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current focused headless controls pass. Original checker failure reachability, arbitrary game caller/alias closure, physical-driver behavior and broader acceptance remain separately scoped. Pinned successful native-only/restart live runs retain their exact broad source hashes and main-tree freshness limitations."
+      ]
+    },
+    {
+      "id": "NP.native-draw-startup-probe-retirement",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Pinned startup capability-probe temporary reference retirement",
+      "scope": "Guarded adapter for the original DirectX capability check final device Release at RVAs bdb20 and bdb65. Require the pinned factory and primary creator RVAs, exact idle single-primary graph, native default dimensions/mode and bounded per-interface reference shape before releasing its lost stack-only Surface1/3/4 references and device. Preserve the original Release result and LastError. Owned synthetic PE32 stubs exercise three successful/failure-query lifetime shapes plus unrelated caller/creator, extra reference, active mapping and additional child atomic refusals. Actual original check execution and broader game acceptance are separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "runtime/native-draw/startup_retirement.h",
+        "tools/prepare-native-draw.py"
+      ],
+      "tests": [
+        "tests/native-draw-startup-retirement-probe.c",
+        "tools/test-native-draw-startup-retirement.py"
+      ],
+      "documents": [
+        "research/runtime/directdraw-retirement-20261019.md",
+        "research/runtime/directdraw-retirement-execution-20261019.json",
+        "research/runtime/coverage/directdraw-retirement-commit-review-20261019.md"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/native_gpu_copy_plan_v1.h",
+        "protocols/include/mnm/native_pixel_guard_v1.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/blit_effects.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/cpu_copy_boundary.h",
+        "runtime/native-draw/cpu_guard.h",
+        "runtime/native-draw/cpu_store.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/image_copy_original.h",
+        "runtime/native-draw/initial_history.h",
+        "runtime/native-draw/native_only.h",
+        "runtime/native-draw/ownership_admission.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/pixel_conversion.h",
+        "runtime/native-draw/producer_guard.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/retirement.h",
+        "runtime/native-draw/startup_retirement.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-native-draw.py",
+        "tools/native_draw_retirement.py",
+        "tests/native-draw-startup-retirement-pad.S"
+      ],
+      "evidence": [
+        "DDR.startup-controls-20261019"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current focused headless controls pass. Original checker failure reachability, arbitrary game caller/alias closure, physical-driver behavior and broader acceptance remain separately scoped. Pinned successful native-only/restart live runs retain their exact broad source hashes and main-tree freshness limitations."
+      ]
     }
   ],
   "evidence": [
@@ -260447,6 +260689,201 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DDR.shutdown-controls-20261019",
+      "kind": "native_integration",
+      "scope": "Owned native PE32 release/atomic-refusal plus 17 independent Python shutdown/admission methods. No original game or physical device loss execution.",
+      "record": "research/runtime/directdraw-retirement-results-20261019/shutdown-controls.json",
+      "sha256": "158f31280a988debc218874cc95ed41d6b9ec4432e43dfe13a6b01f29dae69ae",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.startup-controls-20261019",
+      "kind": "native_integration",
+      "scope": "Execute guarded startup alias retirement and atomic refusal with owned PE32 stubs.",
+      "record": "research/runtime/directdraw-retirement-results-20261019/startup-controls.json",
+      "sha256": "f5e8f51c0a0b5532509fb97436f89cdd5561db3ea3bf05e43c05d1a30380deee",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.native-only-20261019",
+      "kind": "live_observation",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/directdraw-retirement-results-20261019/native-only.json",
+      "sha256": "d17b51b8008c9470588d787712df94315e916c898da385a0e8a0370c95667e2a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.restart-20261019",
+      "kind": "live_observation",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/directdraw-retirement-results-20261019/restart.json",
+      "sha256": "47dd47f9ac2048b71be81158311a6dbec2ed42c18946123edff7f20e53180fbb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.standalone-hardware-20261019",
+      "kind": "live_observation",
+      "scope": "Actual standalone launcher main-menu startup/native GPU frames with real ddraw disabled; bounded cleanup, no gameplay/FPS/movies/normal Quit/COM release proof",
+      "record": "research/runtime/directdraw-retirement-results-20261019/standalone-hardware.json",
+      "sha256": "b0cbf1e9566918de464aaf7aa7e31bda4c79abc13742006f42db3f9cc2a1db42",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.import-guards-20261019",
+      "kind": "native_integration",
+      "scope": "Offline guarded pinned PE32 import redirection and temporary startup-probe retirement. Eight staging compositions preserve original IAT and every other original section byte, except two guarded12-byte loader strings and two ten-byte device Release sites in the enumeration variant. Each replacement calls the added named retirement import with the original stack argument. Mutations and duplicate staging refuse. No patched code, loader or game integration is executed by this offline check.",
+      "record": "research/runtime/directdraw-retirement-results-20261019/import-guards.json",
+      "sha256": "72598c538c133149ed8103df55b574772d88af48b682130e58b61bc0d57044ac",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.diagnosis-20261019",
+      "kind": "live_observation",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/directdraw-retirement-results-20261019/diagnosis.json",
+      "sha256": "ad8c9bb8c514f9c591ed15412c738f1d50aea656b8650a9f3deb55fb0e35875a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.pages-commit-20261019",
+      "kind": "native_integration",
+      "scope": "Compare unchanged Surface2/3/4 page-hint callers with Wine DirectDraw.\n\nRun in an isolated X display under working-retention.py. This checks owned\nsystem-memory storage, not physical driver residency or whole-game retirement.\n Focused commit scope excludes unused concurrent terrain sources; the prospective declaration covers every bounded policy and compiler input.",
+      "record": "research/runtime/directdraw-retirement-results-20261019/pages-commit.json",
+      "sha256": "6443c2add6a0a1f98609556698f95585d37ca7797e6ec7c233d7768b6f77c2f6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.factory-20261019",
+      "kind": "native_integration",
+      "scope": "128 isolated default native factory lifetimes with exact selected HRESULT/identity/per-interface reference/failure outputs versus real Wine DirectDraw. Native preserves incoming LastError as an explicit policy; Wine incidental error values are retained separately, not claimed equivalent. Original null-output creation fault is excluded from the common valid-caller corpus; native safe null-output refusal is a separate policy. Native enumeration is an explicit single-adapter policy. Native probe disables ddraw and verifies no module loads. Surface methods, real game integration, GPU presentation and DirectDraw retirement remain pending.",
+      "record": "research/runtime/directdraw-retirement-results-20261019/factory.json",
+      "sha256": "0bdc9d3b25c261768003b287ed3a170c9937052e7df666c782a052a5f01ca6e5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.surfaces-20261019",
+      "kind": "native_integration",
+      "scope": "Four native default-placement 510x180 RGB565 policies on108/124-byte descriptors and two malformed-cap/format refusals, separately from64 unchanged caller cases using DirectDraw1/4 and Surface1/2/4, odd-pitch system-memory RGB565, key/copy/fill/overlap and full native words against real Wine DirectDraw. Native run disables ddraw and checks no module loads; device modes are logical native policies. Primary/flip/DC/palette services, real game integration and GPU history read dependencies remain pending.",
+      "record": "research/runtime/directdraw-retirement-results-20261019/surfaces.json",
+      "sha256": "822060cdd65e2810eae10ecb57f25966bd2b664fa32f7491d5c8f19b4766f4aa",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.services-20261019",
+      "kind": "native_integration",
+      "scope": "64 unchanged clipper/DC caller cases and complete RGB565/COLORREF outputs against Wine DirectDraw, including DC-during-lock, repeated DC/refusals, GDI writes and teardown. Native ddraw disabled/module absent. Native logical primary/attached flip lifecycle is a separate policy; no driver presentation, clipped blit, palette or real game replacement claim.",
+      "record": "research/runtime/directdraw-retirement-results-20261019/services.json",
+      "sha256": "61dd7736de05f22f25ef177eb15f341fb26fc46deb952470787dca8050b848eb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.resources-20261019",
+      "kind": "native_integration",
+      "scope": "Native PE32 CPU facade versus retained independent 408-case Wine Surface2 clipping corpus; supplied five-format/alias/palette/DC/healthy Restore policies. No game, live GPU history, stretched drawing, physical loss or original Windows driver equivalence.",
+      "record": "research/runtime/directdraw-retirement-results-20261019/resources.json",
+      "sha256": "6f8f0fb124bf1a0c6c4379966cf66351b40c5e7d2e3c53f98baf2dd055bae147",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DDR.pages-20261019",
+      "kind": "native_integration",
+      "scope": "Compare unchanged Surface2/3/4 page-hint callers with Wine DirectDraw.\n\nRun in an isolated X display under working-retention.py. This checks owned\nsystem-memory storage, not physical driver residency or whole-game retirement.\n",
+      "record": "research/runtime/directdraw-retirement-results-20261019/pages.json",
+      "sha256": "a46f47bc58384f0042ea9579d69ea34c5dfa6e0b8cb03ea3d730089e62e483c9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -271238,7 +271675,8 @@
         "NR.directdraw-retirement.factory-isolated-20261010",
         "NR.directdraw-retirement.services-factory-pass-20261010",
         "NR.directdraw-retirement.startup-factory-current-20261010",
-        "T3I.facade-factory-20261019"
+        "T3I.facade-factory-20261019",
+        "DDR.factory-20261019"
       ]
     },
     {
@@ -271256,7 +271694,8 @@
         "NR.directdraw-retirement.surfaces-isolated-20261010",
         "NR.directdraw-retirement.services-surfaces-pass-20261010",
         "NR.directdraw-retirement.startup-surfaces-current-20261010",
-        "T3I.facade-surfaces-20261019"
+        "T3I.facade-surfaces-20261019",
+        "DDR.surfaces-20261019"
       ]
     },
     {
@@ -271290,7 +271729,8 @@
         "NR.directdraw-retirement.startup-services-current-20261010",
         "NR.directdraw-retirement.status-services-20261011",
         "NR.directdraw-retirement.mapped-services-20261011",
-        "T3I.facade-services-20261019"
+        "T3I.facade-services-20261019",
+        "DDR.services-20261019"
       ]
     },
     {
@@ -271330,7 +271770,8 @@
         "tools/test-native-draw-import.py"
       ],
       "evidence": [
-        "NR.directdraw-import-retirement.dual-loader-20261010"
+        "NR.directdraw-import-retirement.dual-loader-20261010",
+        "DDR.import-guards-20261019"
       ]
     },
     {
@@ -271424,7 +271865,8 @@
         "NR.directdraw-native-opengl-launch.status-startup-20261011",
         "NR.directdraw-native-opengl-launch.mapped-startup-20261011",
         "NR.directdraw-native-opengl-launch.master-current-startup-20261011",
-        "NR.directdraw-native-opengl-launch.latest-master-startup-20261011"
+        "NR.directdraw-native-opengl-launch.latest-master-startup-20261011",
+        "DDR.standalone-hardware-20261019"
       ]
     },
     {
@@ -277342,7 +277784,8 @@
       ],
       "evidence": [
         "NP.native-resource-state.headless-20261015",
-        "T3I.facade-resources-20261019"
+        "T3I.facade-resources-20261019",
+        "DDR.resources-20261019"
       ],
       "tests": [
         "tests/native-draw-resource-probe.c",
@@ -280653,6 +281096,77 @@
       "evidence": [
         "HIGH03.reservation-raw-admission-20261019"
       ]
+    },
+    {
+      "id": "native-draw-page-hints-20261019",
+      "level": "headless",
+      "scope": "Thirty unchanged original/native Surface2/3/4 idle/locked system-memory hint lifetimes, 180 PageLock/PageUnlock calls, all 3510 pixel words and 480 caller fields, with no ddraw in native execution and zero native owners at shutdown.",
+      "behaviors": [
+        "NP.native-draw-page-hints",
+        "NR.directdraw-retirement"
+      ],
+      "tests": [
+        "tests/native-draw-page-probe.c",
+        "tools/test-native-draw-pages.py"
+      ],
+      "evidence": [
+        "DDR.pages-commit-20261019",
+        "DDR.pages-20261019"
+      ]
+    },
+    {
+      "id": "native-draw-clean-shutdown-controls-20261019",
+      "level": "headless",
+      "scope": "Current native PE32 startup retirement and independent Python shutdown admission controls: three valid temporary alias graphs with preserved Release/LastError and zero native owners, five atomic unrelated/modified-graph refusals, and receipt refusal despite otherwise balanced normal exit. Owned synthetic caller stubs and policy tests; no original checker or arbitrary-gameplay equivalence.",
+      "behaviors": [
+        "NP.native-draw-clean-shutdown",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tests/test-native-draw-retirement.py",
+        "tests/test-native-only-contract.py",
+        "tests/native-draw-startup-retirement-probe.c",
+        "tests/native-draw-startup-retirement-pad.S",
+        "tools/test-native-draw-startup-retirement.py"
+      ],
+      "evidence": [
+        "DDR.shutdown-controls-20261019"
+      ]
+    },
+    {
+      "id": "native-draw-clean-shutdown-live-20261019",
+      "level": "live_observation",
+      "scope": "Actual pinned original engine through strict private native output startup, campaign and normal original Quit: require guarded startup-probe cleanup, zero COM and pixel owners before process reclamation, no ddraw module or native refusal, balanced resident Worlds and stable sources. No whole-game pixel, physical-driver or sustained hardware/FPS promotion.",
+      "behaviors": [
+        "NP.native-draw-clean-shutdown",
+        "NR.directdraw-retirement",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-native-owned-campaign.py",
+        "tools/native_draw_retirement.py",
+        "tools/menu-game-runner.py",
+        "tools/native_only_contract.py"
+      ],
+      "evidence": [
+        "DDR.native-only-20261019",
+        "DDR.restart-20261019"
+      ]
+    },
+    {
+      "id": "native-draw-startup-probe-retirement-20261019",
+      "level": "headless",
+      "scope": "Owned PE32 stubs exercise three temporary-probe alias graphs at the guarded caller RVAs, unchanged final Release result, zero remaining references/pixels, and five atomic invalid-caller/graph refusals before mutation. No original checker code is executed.",
+      "behaviors": [
+        "NP.native-draw-startup-probe-retirement"
+      ],
+      "tests": [
+        "tests/native-draw-startup-retirement-probe.c",
+        "tools/test-native-draw-startup-retirement.py"
+      ],
+      "evidence": [
+        "DDR.startup-controls-20261019"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -281296,8 +281810,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-high-tranche3-reservation-commit-final-20261019.json",
-    "sha256": "8d1ad26b0fbaf0de74e5428c9b4737bd68e5f39fdb2a6ba9441db4af2b161899"
+    "path": "research/runtime/coverage/source-index-directdraw-retirement-commit-20261019.json",
+    "sha256": "f87fee67c419d2578735177a12d2cf4d7aa2e2f041a55dded507ce36ed5d2f10"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

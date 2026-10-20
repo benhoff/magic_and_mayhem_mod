@@ -16,6 +16,7 @@ for name,key in [('Chaos.exe','staged_sha256'),('MnmScene.dll','scene_dll_sha256
     if hashlib.sha256((game/name).read_bytes()).hexdigest()!=metadata[key]:
         raise ValueError('Staged binary hash mismatch: '+name)
 os.environ.pop('MNM_NATIVE_DRAW_STATUS',None)
+os.environ.pop('MNM_NATIVE_DRAW_RETIREMENT',None)
 if type(metadata.get('native_draw',False)) is not bool:raise ValueError('Invalid native graphics mode')
 if metadata.get('native_draw'):
     status=Path(metadata['native_draw_status']).resolve()
@@ -27,6 +28,9 @@ if metadata.get('native_draw'):
         if separator and kept:overrides.append(','.join(kept)+'='+value)
     os.environ['WINEDLLOVERRIDES']=';'.join([*overrides,'ddraw='])
     os.environ['MNM_NATIVE_DRAW_STATUS']='Z:'+str(status).replace('/','\\')
+    retirement=root/'native-draw-retirement.bin'
+    if retirement.exists():raise ValueError('Refusing stale native graphics retirement output')
+    os.environ['MNM_NATIVE_DRAW_RETIREMENT']='Z:'+str(retirement).replace('/','\\')
 os.environ.pop('MNM_WORD_DIRECTORY',None)
 os.environ.pop('MNM_WORD_SPRITES',None)
 os.environ.pop('MNM_SCENE_WORLD',None)

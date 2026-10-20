@@ -346,7 +346,7 @@
       "weight": 5,
       "work_type": "aggregate",
       "reason": "Native graphics compatibility and real DirectDraw retirement: This aggregate retains lifecycle, palette or complete-state admission boundaries that can invalidate a session. Review residual ownership/failure domains against existing narrower implementations.",
-      "contract_sha256": "1f21338dbcaa247d2eec38e9b0d103b34db17fd648783105b628d95d93921b97"
+      "contract_sha256": "c4c2049bb6822d721950b4b1a642454bbe201b36eb44cae71439df0bbfb09736"
     },
     {
       "behavior": "NR.displacement-finite-edge",
@@ -2398,6 +2398,27 @@
       "work_type": "diagnostic",
       "reason": "Postcheck captured gameplay without clearing performance failures: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
       "contract_sha256": "7c01c1c423a75a95e3a95007f0718e42d160172caab2d378e06eaa747ee77a79"
+    },
+    {
+      "behavior": "NP.native-draw-page-hints",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Scoped native DirectDraw retirement supplier: implementation and current owned controls are supplied; broader compatibility, original comparison and live acceptance remain independent.",
+      "contract_sha256": "2f1b252687345cfd5f224c4ea84c31bfa545431c0517c4eb71e18a212ddc1ba5"
+    },
+    {
+      "behavior": "NP.native-draw-startup-probe-retirement",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Scoped native DirectDraw retirement supplier: implementation and current owned controls are supplied; broader compatibility, original comparison and live acceptance remain independent.",
+      "contract_sha256": "e0bbae1255527e922545882e33e388a7c034026b875a71daded05b5b94350986"
+    },
+    {
+      "behavior": "NP.native-draw-clean-shutdown",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Scoped native DirectDraw retirement supplier: implementation and current owned controls are supplied; broader compatibility, original comparison and live acceptance remain independent.",
+      "contract_sha256": "e19321656f20361e97c18f9b3b7d7e642d4865d529f64764825f1aab954a43c9"
     }
   ],
   "tranche_plan": {
@@ -2490,14 +2511,14 @@
               "code_witnesses": [
                 {
                   "path": "runtime/native-draw/surfaces.h",
-                  "line": 289,
+                  "line": 296,
                   "text": " }else s->pixels=VirtualAlloc(0,s->pitch*height+sizeof(u16),0x3000,4);"
                 }
               ],
               "source_sha256": {
                 "research/runtime/rendering-tranche1-execution-20261019.json": "395b3a15078faaf0fbbd00e65c2454b9ed5381d5daea1683850c33116e677ce9",
                 "research/runtime/surface-final-word-read.md": "67d511bc6f90314144877be3088390da33d42fde377ee25e417b6e361bd2b3d5",
-                "runtime/native-draw/surfaces.h": "753b228c619be7f48e778839424fdf7ff7bca4e4988d4e68586b7c9313e44bdf",
+                "runtime/native-draw/surfaces.h": "f2087f3730912f1d9fe2504300b0905868be4cdfbb59e5d31482cd5695abed64",
                 "tests/native-draw-surface-probe.c": "83a53e001c5b20e8e5671fd2e548d27f85be34228dbd62f7ed88b9bb461f22f3",
                 "tools/test-native-draw-surfaces.py": "0a27f428536116846ba2f393b31f27f4f5c8d48018d28cf65c49c688bc90cc75"
               }
@@ -2591,9 +2612,9 @@
                 "research/runtime/rendering-tranche1-execution-20261019.json": "395b3a15078faaf0fbbd00e65c2454b9ed5381d5daea1683850c33116e677ce9",
                 "runtime/native-draw/cpu_guard.h": "04114b8ebc10ce481310ddcb68a63402188b6ab7fab8daf94638ae1c341015fc",
                 "runtime/native-draw/cpu_store.h": "55170e97f34bb5c30215cda3146f02fe6936bcd15235b9fe1c9419ca6e41dce3",
-                "runtime/native-draw/factory.c": "9e6760cabdd0feaf6b06726255e1ef38e948bad57c30549721ecb4bea1f3b5a1",
+                "runtime/native-draw/factory.c": "bbb71c437c2bfb679d189a490925a8f6e61d223b5ba517206fa07ca575778c92",
                 "runtime/native-draw/history.h": "ce8ea75597f5f7f2152befc5c4cdfc91e56764e0ec2a97567ec01a475b3eade5",
-                "runtime/native-draw/surfaces.h": "753b228c619be7f48e778839424fdf7ff7bca4e4988d4e68586b7c9313e44bdf",
+                "runtime/native-draw/surfaces.h": "f2087f3730912f1d9fe2504300b0905868be4cdfbb59e5d31482cd5695abed64",
                 "runtime/render/bridge.c": "c281d05686e784013cb3f8a2244be8cbfa3a7a34acb5fe22f8a3c1b5c228f183",
                 "runtime/render/copy_order.h": "be68f193476fce50867b27512558c2a9e1412b79f0866c353eefb9e43b0317b1",
                 "runtime/render/cpu_reader.h": "2319f989d6e35a7a6382712bacf062586e42f5ac3ab122a5623746b78514949f",
@@ -2602,7 +2623,7 @@
                 "tests/native-active-reader-probe.c": "df90afa5d7599ae436dee0a390fb4baf3ddf28bbc953bebfc98c3ae83e28328a",
                 "tests/native-continuation-state.h": "555332b0b679cabae550d86763f3c4e67864eacfc8e1b69c80d3e094cb34557b",
                 "tests/native-owned-backing-probe.c": "b44a7b397491afc639462e5251b0f5078e17a8e71bdf476b0f4c2969a07d26fe",
-                "tools/build-native-draw.py": "6b9d3fae8978c2519acc8cef8e26486a74054b556ca3ad243863f59824725bf9",
+                "tools/build-native-draw.py": "d6caec8f153a8ada280da29a482fd274d4803cb5c67258b0cf9c4f69143a04d3",
                 "tools/test-native-active-reader.py": "60022af30c2575ad6f62f42ef1a3129ed18e38baa988fc51eb60e67550742c4b",
                 "tools/test-native-functional-closure.py": "a2d2766753143db88e7820ed4a36c2f5874a35b3d99813b934308c3dd17f6b09"
               }
@@ -3199,7 +3220,7 @@
                 "tests/render-palette-lifetime-probe.c": "127a1dcba6d23f285b4cceba56cae6e79c0d2884401beb1fe59dd24732b23014",
                 "tests/render-palette-resources-test.cpp": "4e4c3e10074b318507682bf7a9f27f13d065b04e2e821b0f7684c6e784e9db38",
                 "tools/build-render-bridge.py": "1edf98131c9d9acd9869314ac444501997763c6050abb9ad3428c6fe026a179c",
-                "tools/run-opengl-game.py": "e35f38e00017235a38a78863b7205cddc78eb3bd7e8ad50f82a1ade94e245e4a",
+                "tools/run-opengl-game.py": "de41b8f194c3b87d74ef92ad0b8821ce30f2b694e9b1cd6b436b4d1f231dd36d",
                 "tools/test-render-mutations.py": "f9762d8ec6801d61c3dca015280e3a5cd8c4677afe5c831bf6512f3ae9c92d5d",
                 "tools/test-render-palette-resources.py": "34d2acde84229539beee24aba70d9ef18f8110c51db580901b19865687e2316d",
                 "tools/test-rendering-tranche-fixtures.py": "f1df4a73e92012abd36f9571203d490fd4b6165558f27af05efb0fddd2b85d0b"
@@ -3719,7 +3740,7 @@
                 "research/runtime/rendering-tranche1-execution-20261019.json": "395b3a15078faaf0fbbd00e65c2454b9ed5381d5daea1683850c33116e677ce9",
                 "runtime/native-draw/cpu_copy_boundary.h": "a5a434fb252d7534a3c07e8c1d7a2df427ce91a01029909bfd0de0d14c32cb34",
                 "runtime/native-draw/cpu_guard.h": "04114b8ebc10ce481310ddcb68a63402188b6ab7fab8daf94638ae1c341015fc",
-                "runtime/native-draw/factory.c": "9e6760cabdd0feaf6b06726255e1ef38e948bad57c30549721ecb4bea1f3b5a1",
+                "runtime/native-draw/factory.c": "bbb71c437c2bfb679d189a490925a8f6e61d223b5ba517206fa07ca575778c92",
                 "runtime/native-draw/ownership_admission.h": "fbda44e79c112b4eaf05e49a9e9117f31ca24d94e4a6424816e8e888498f815a",
                 "tests/native-output-input-test.cpp": "b1e5a778730ea02aabf7b63f042a2974c2a2b785483a579f393d8699d8616d7b",
                 "tests/native-output-owner-child.py": "0b2426f27217fe55670c253ce2bb9b913dc7fb313f728c8b57e5c7cf073f6487",
@@ -3732,7 +3753,7 @@
                 "tools/run-native-owned.py": "a253290a8db44367a4d36e683693262c17a53bec596e539ff6caff97847948ff",
                 "tools/test-native-backing-owner.py": "e68f3e1a21db50c469426e61fece6e0aa11f85bbe0ecf31d5b7c72e2bc7dae97",
                 "tools/test-native-output-owner.py": "9193eb1c7f5b4d475e5b0699df0a3a5e849ce62a940b1cf82cd76f33626f9282",
-                "tools/test-native-owned-campaign.py": "44600e4efcaa337ef8c5ea5acfac91f91ac3cb386296c10a95fcf1c77feaef0f",
+                "tools/test-native-owned-campaign.py": "ec90621fdf53d77dc5ad1e43ddf155023e4ae0a56c10dd5e6f70198e481527da",
                 "research/runtime/native-ownership-viewport-fix-20261019.json": "a5778193f706bd8cba6f3e07f38887f438ee62acff5cc38eda43b070e535fcf4",
                 "research/runtime/tranche1-remaining-acceptance-20261019.json": "a110c468f9da70d62dedf94576b775fe0db7e86d06f63a193b3ab1f8c1d74290",
                 "research/runtime/cpu-reply-publication-fix-20261019.json": "b95b91d22814d27458bf3ecbfc9ac76a13ad48f56f9858332961adba6967968c",
@@ -5155,7 +5176,7 @@
           "canvas-producers"
         ],
         "goal": "Identify actual missing implementation separately from scope reconciliation, current-source validation and retained acceptance failures for all eleven contracts.",
-        "exit_gate": "Review implementation, validation and acceptance independently. Fresh finite headless producer handoff passes. Factory/surface/services/resource comparisons and aggregate reconciliation are recorded; full DirectDraw retirement remains pending. Complete unchanged238-frame software storage still fails at ordinal170/252combined pixels, while the separate222-frame corrected-driver and323-frame Quick Battle profiles pass. Hardware/native-only/restart/continuous acceptance retains its own prerequisites. The newer bounded tranche-1 and tranche-2 passes supersede the blanket viewport-only blocker; earlier stage13/camera failures remain historical risks, not erased outcomes.",
+        "exit_gate": "Review implementation, validation and acceptance independently. Fresh finite headless producer handoff passes. Factory/surface/services/resource comparisons and aggregate reconciliation are recorded; full DirectDraw retirement remains pending. Complete unchanged238-frame software storage still fails at ordinal170/252combined pixels, while the separate222-frame corrected-driver and323-frame Quick Battle profiles pass. Hardware/native-only/restart/continuous acceptance retains its own prerequisites. The newer bounded tranche-1 and tranche-2 passes supersede the blanket viewport-only blocker; earlier stage13/camera failures remain historical risks, not erased outcomes. DirectDraw follow-up repairs page hints and startup alias leaks; scoped controls and pinned native-only179-World/restart/NVIDIA startup pass. Full compatibility aggregate remains unresolved.",
         "tasks": [
           {
             "behavior": "NR.world-history-channel",
@@ -5227,7 +5248,7 @@
                 "tests/world-channel-test.cpp": "0b55a28c680e3551922275050b329e692b2344ccba713c660702a33324064fa3",
                 "tools/build-scene-observer.py": "4bf5a72a89e67328ad56f8a7e7727175800eb2e7afa79ee370ccada0ca1fbcc6",
                 "tools/run-world-history-validation.py": "89d3e979d850602d14dbbd56d83b0a4ba0573d50213e79ecc4cfad506640132a",
-                "tools/scene-game-runner.py": "7a553bc26e633e3bf8e01b1487f159ef0474f5e79faa7aa936a77e7548be624b",
+                "tools/scene-game-runner.py": "d62c2bb8e9dbff679cce4f604b8ab18c053af882764244da0412646677f5d679",
                 "tools/test-world-live-history.py": "01f06919865b137706c35e1ec900488300fe6fc1e11cb885e949e4ec5e32e225",
                 "tools/world_channel.py": "7a29c9710c7552a399b9ae6424505402f605785adb5dc53aae2d595a1d064db0"
               }
@@ -5311,7 +5332,7 @@
                 "tools/diagnose-native-history-gap.py": "02f30055309aa334b4d0390acef3e81efaccad03a5795d97297e6a22c2d33980",
                 "tools/run-native-world.py": "2d631d199123117e242698f136316c5976c8033c3999d17e49ea5b8d1e1320be",
                 "tools/run-world-history-validation.py": "89d3e979d850602d14dbbd56d83b0a4ba0573d50213e79ecc4cfad506640132a",
-                "tools/scene-game-runner.py": "7a553bc26e633e3bf8e01b1487f159ef0474f5e79faa7aa936a77e7548be624b",
+                "tools/scene-game-runner.py": "d62c2bb8e9dbff679cce4f604b8ab18c053af882764244da0412646677f5d679",
                 "tools/test-world-live-history.py": "01f06919865b137706c35e1ec900488300fe6fc1e11cb885e949e4ec5e32e225",
                 "tools/world_channel.py": "7a29c9710c7552a399b9ae6424505402f605785adb5dc53aae2d595a1d064db0"
               }
@@ -5492,7 +5513,7 @@
           {
             "behavior": "NR.directdraw-retirement",
             "mode": "Unresolved aggregate; diagnose required compatibility",
-            "next_action": "Use the supplied/refused domain crosswalk; retain unknown required caller/route, physical-driver and semantic-retirement boundaries explicitly. For a newly encountered unsupported required request, retain its exact refusal and independent failing original/native fixture before naming or implementing a missing branch. Validate complete retirement and native-only/restart/performance with their separate bounded matrices; isolated component passes do not supply whole-game acceptance.",
+            "next_action": "Retain the implemented page-hint and semantic cleanup scopes independently; finish required caller/writer/alias recovery and separate full-retirement acceptance.",
             "implementation_boundary": "Reconcile the aggregate against delivered default-placement, format/resource, clip/DC and copy/history services first. A failed viewport pilot does not name missing COM support. Require a still-reproduced necessary request and minimal independent fixture before defining an implementation gap.",
             "validation": "128 factory lifetimes,64 surface cases,64 DC/clipper cases,408 clipping cases,80 format cases and six HWND-region cases pass with their stated policies. Factory/surface broad fingerprints retain the later fixture-only staleness; current services/resource results and terminal refusals are separately bound.",
             "exit_condition": "Each required compatibility domain maps to a supplied implementation, a confirmed missing branch, an explicit refusal or an unresolved recovery gap. A diagnosed failing fixture remains FAIL; full retirement still requires its separate acceptance matrix.",
@@ -5503,52 +5524,72 @@
             ],
             "documents": [
               "research/runtime/native-gpu-frame-ownership.md",
-              "research/runtime/native-draw-device-surfaces.md"
+              "research/runtime/native-draw-device-surfaces.md",
+              "research/runtime/directdraw-retirement-20261019.md",
+              "research/runtime/directdraw-retirement-execution-20261019.json"
             ],
-            "contract_sha256": "1f21338dbcaa247d2eec38e9b0d103b34db17fd648783105b628d95d93921b97",
+            "contract_sha256": "c4c2049bb6822d721950b4b1a642454bbe201b36eb44cae71439df0bbfb09736",
             "reviewed_implementation": "partial",
-            "remaining_at_review": "Scope reconciliation maps factory/storage/default descriptors, canonical formats, palettes, clipping/DC and owned-copy services to supplied code. Bounded factory/surface/services/resource comparisons pass. A stale unfiltered two-mode fixture is repaired with explicit RGB565 and all-eight-mode controls. Full retirement and unknown required live domains remain an unresolved aggregate; no new required missing COM branch was identified.",
+            "remaining_at_review": "Two concrete implementation gaps are repaired: Surface2/3/4 PageLock/PageUnlock and the original DirectX checker losing Surface3/4 aliases. Current facade, native ownership/ABI and shutdown-policy controls pass. Pinned native-only normal Quit completes179 Worlds with zero graphics owners; public Hard restart and33 NVIDIA standalone frames pass. Full required caller/writer/alias and physical/performance compatibility remains an unresolved aggregate.",
             "work_review": {
               "implementation": "unresolved_aggregate",
-              "current_state": "Scope reconciliation maps factory/storage/default descriptors, canonical formats, palettes, clipping/DC and owned-copy services to supplied code. Bounded factory/surface/services/resource comparisons pass. A stale unfiltered two-mode fixture is repaired with explicit RGB565 and all-eight-mode controls. Full retirement and unknown required live domains remain an unresolved aggregate; no new required missing COM branch was identified.",
+              "current_state": "Two concrete implementation gaps are repaired: Surface2/3/4 PageLock/PageUnlock and the original DirectX checker losing Surface3/4 aliases. Current facade, native ownership/ABI and shutdown-policy controls pass. Pinned native-only normal Quit completes179 Worlds with zero graphics owners; public Hard restart and33 NVIDIA standalone frames pass. Full required caller/writer/alias and physical/performance compatibility remains an unresolved aggregate.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "128 factory lifetimes,64 surface cases,64 DC/clipper cases,408 clipping cases,80 format cases and six HWND-region cases pass with their stated policies. Factory/surface broad fingerprints retain the later fixture-only staleness; current services/resource results and terminal refusals are separately bound.",
+              "validation_summary": "Current scoped headless policies pass:30 page cases/180 calls/3510 pixels;3 startup graphs and5 atomic refusals;17 Python methods;128 factory,64 surface/DC cases,408 clipping and80 format cases. Pinned live normal/restart/GPU passes remain separately historical for18 concurrent broad terrain/build fingerprints. Commit isolation reruns the focused30-case page matrix with complete native compiler provenance; broad reports retain their exact original source fingerprints and historical boundaries.",
               "acceptance": "pending",
-              "acceptance_summary": "The bounded scope-review/component task passes; full DirectDraw retirement remains pending. Physical driver/loss, complete routes/writers/aliases, semantic cleanup, native-only/restart and sustained performance are not proved by these matrices.",
+              "acceptance_summary": "Backend exclusion and bounded semantic native shutdown pass. Full aggregate acceptance, complete required routes/writers/aliases, physical context loss, whole-game original pixels and sustained19/60FPS remain unresolved; the separate252-pixel storage-reference failure is unchanged.",
               "evidence": [
                 "T3I.retirement-scope-20261019",
                 "T3I.facade-factory-20261019",
                 "T3I.facade-surfaces-20261019",
                 "T3I.facade-services-20261019",
                 "T3I.facade-resources-20261019",
-                "T3I.facade-mode-negative-20261019"
+                "T3I.facade-mode-negative-20261019",
+                "DDR.native-only-20261019",
+                "DDR.diagnosis-20261019",
+                "DDR.pages-commit-20261019",
+                "DDR.factory-20261019",
+                "DDR.pages-20261019",
+                "DDR.resources-20261019",
+                "DDR.services-20261019",
+                "DDR.surfaces-20261019"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
                   "kind": "scope_review",
-                  "action": "Use the supplied/refused domain crosswalk; retain unknown required caller/route, physical-driver and semantic-retirement boundaries explicitly."
-                },
-                {
-                  "kind": "diagnosis",
-                  "action": "For a newly encountered unsupported required request, retain its exact refusal and independent failing original/native fixture before naming or implementing a missing branch."
+                  "action": "Close complete required caller/writer/alias coverage against the supplied services and explicit refusals; retain unknown domains as recovery gaps."
                 },
                 {
                   "kind": "validation",
-                  "action": "Validate complete retirement and native-only/restart/performance with their separate bounded matrices; isolated component passes do not supply whole-game acceptance."
+                  "action": "Renew affected main-tree live validation after concurrent source changes; retain the successful179-World normal Quit, restart and33-frame NVIDIA startup with their exact source snapshots."
+                },
+                {
+                  "kind": "validation",
+                  "action": "Execute the separately scoped physical context-loss, original-pixel and sustained-performance matrices before claiming full aggregate retirement."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "runtime/native-draw/surfaces.h",
-                  "line": 305,
-                  "text": "static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer){"
+                  "line": 281,
+                  "text": "static i32 WIN ns_page_hint(struct NsObject* o,u32 flags){(void)o;(void)flags;return 0;}"
+                },
+                {
+                  "path": "runtime/native-draw/startup_retirement.h",
+                  "line": 4,
+                  "text": "__declspec(dllexport) u32 WIN NativeDrawReleaseStartupProbeV1(void* pointer){"
+                },
+                {
+                  "path": "runtime/native-draw/retirement.h",
+                  "line": 7,
+                  "text": "static void nd_retirement_report(u32 process_exit){"
                 }
               ],
               "source_sha256": {
                 "research/runtime/native-default-offscreen-pass-20261011.json": "f74f43148083806e6b47888d5b7685ee96d7fecc420b766da78453da2f662c29",
-                "research/runtime/native-draw-device-surfaces.md": "dee89c0bde7b7aae31fbd03eb5ef5fe9441d5b37ac9c87f24a5592cf6ab43885",
+                "research/runtime/native-draw-device-surfaces.md": "c0c2390f62e190326ff0193ca977638b9af3a0e274b7b4105643e77d285f5f35",
                 "research/runtime/native-draw-final-4096-performance-failure-20261011.json": "7a8b6f3acee0b24c544340a664b281f444c594321c5d94ad800260bf4639d2d6",
                 "research/runtime/native-draw-mapped-status-consumer-death-pass-20261011.json": "58a93079dabe78b9159e757fa33a46b794dcb29a43ad5d0f798d87cc2ed2d5f6",
                 "research/runtime/native-draw-mapped-status-producer-death-pass-20261011.json": "1961470e2ba82cc04cf2c3cdb84eb9c84bfb67e018c6eec565c28d3518d46d7c",
@@ -5590,19 +5631,19 @@
                 "research/runtime/rendering-tranche3-results-20261019/facade-services.json": "67c8ca5dc95d7e8601944823e224f8f5ca1bc33b282deca27c052666c4dfb293",
                 "research/runtime/rendering-tranche3-results-20261019/facade-surfaces.json": "1113accd483db15df85d79a175f202a5b46d93378f227adb7a15d02dafd612ad",
                 "research/runtime/rendering-tranche3-results-20261019/retirement-scope.json": "6d92a743cee9b41c8d74329bd6c92c0e0b1ef49c9f3dc72c5487cbeb615b2a4e",
-                "research/runtime/surface-final-word-read.md": "67d511bc6f90314144877be3088390da33d42fde377ee25e417b6e361bd2b3d5",
+                "research/runtime/surface-final-word-read.md": "12b7d1ce586d1fc4034fb209060db06fba12f7d13c10712405a333f77e5c7d1e",
                 "runtime/native-draw/clipper.h": "58313e5bd17d43ca9ace5213b347e96aefb56f8af256bb851e3cff4ab084cea7",
                 "runtime/native-draw/dc.h": "9eaa4c2b23c85048ced371effd6d1ae619fceb7d5517396fc0bb4747f71d611b",
-                "runtime/native-draw/factory.c": "9e6760cabdd0feaf6b06726255e1ef38e948bad57c30549721ecb4bea1f3b5a1",
+                "runtime/native-draw/factory.c": "bbb71c437c2bfb679d189a490925a8f6e61d223b5ba517206fa07ca575778c92",
                 "runtime/native-draw/refusal.h": "d0b443d5357d19822c368a3a4e1de7b5b74566a12dd51ef611516f6ce5a9ebed",
                 "runtime/native-draw/status.h": "bf38d5b22745b46c16999efb3381d3a1f3d42df866b6beae722fc3fcbd2e0cc7",
-                "runtime/native-draw/surfaces.h": "753b228c619be7f48e778839424fdf7ff7bca4e4988d4e68586b7c9313e44bdf",
+                "runtime/native-draw/surfaces.h": "f2087f3730912f1d9fe2504300b0905868be4cdfbb59e5d31482cd5695abed64",
                 "tests/native-draw-factory-probe.c": "a72f99503b4362a223e841db396a96bc120c65ef7469b0dea4df884b352c8809",
                 "tests/native-draw-services-probe.c": "4bd51afefa292ccb141421490689578c28668bd8e0ed812c671042871666274b",
                 "tests/native-draw-surface-probe.c": "83a53e001c5b20e8e5671fd2e548d27f85be34228dbd62f7ed88b9bb461f22f3",
-                "tools/build-native-draw.py": "6b9d3fae8978c2519acc8cef8e26486a74054b556ca3ad243863f59824725bf9",
-                "tools/prepare-scene-observer.py": "e2dc2bb2f2becb37d9c3d813a066a16fae193f88e89bf3eaf30f2083e2577216",
-                "tools/scene-game-runner.py": "7a553bc26e633e3bf8e01b1487f159ef0474f5e79faa7aa936a77e7548be624b",
+                "tools/build-native-draw.py": "d6caec8f153a8ada280da29a482fd274d4803cb5c67258b0cf9c4f69143a04d3",
+                "tools/prepare-scene-observer.py": "81bd4e6c11e68c662aa9cadf4506d12a61661e39fa226e3b790e3568eb5e957e",
+                "tools/scene-game-runner.py": "d62c2bb8e9dbff679cce4f604b8ab18c053af882764244da0412646677f5d679",
                 "tools/test-native-draw-factory.py": "affa255d1c34133623853c3691939b1667dc7638d6feddba4e89f9412f6773a9",
                 "tools/test-native-draw-services.py": "09cf7de52bce531c97819e9f99e054c78be12253d3d0c5616a3b3d1a1f804fa2",
                 "tools/test-native-draw-surfaces.py": "0a27f428536116846ba2f393b31f27f4f5c8d48018d28cf65c49c688bc90cc75",
@@ -5610,9 +5651,19 @@
                 "runtime/native-draw/palette.h": "ed384fd69918ac45c6690a0ca1c0b693a70de83047267550d3d95ccbcd24d289",
                 "runtime/native-draw/gpu_copy_plan.h": "b97be896835c7b6f6dfcd0de8db1ee37c4c95af929b45f4071a620f00fb8027f",
                 "runtime/native-draw/pixel_conversion.h": "b0a1fb026370cdb02b9990574430bcc59800affec8826a7651c074868bf9441b",
-                "research/runtime/directdraw-retirement-20261019.md": "60ba9480477a3b1940d0092fe6d59349c842d374682114e52b79852415595d7d"
+                "research/runtime/directdraw-retirement-20261019.md": "362e2a87b5ffcb1ef1b1a512b56f1e8ea4a9cee1689df6600fd3d8fe87abfe21",
+                "runtime/native-draw/retirement.h": "a31a32ccf0db58924e7bdb89ae7e5e39726d817ec3d332e95d8327fa52f57205",
+                "runtime/native-draw/startup_retirement.h": "abb3f227de7d2b100825205ef471cf95eab2246bcc0ac217149488068ca8a3a4",
+                "tests/native-draw-page-probe.c": "dae84f579d28c291788ab365ddcaba4c9d4caf2a4c5d4efe3e674fe9a1212cc8",
+                "tests/test-native-draw-retirement.py": "d0066c813fde7ae2a4c863e2061b4264ad8eece146c5fe603f238734c9d9ef72",
+                "tools/test-native-draw-pages.py": "0e5f3f68c972f059d1a9b8e13836069f8a8c17a090ec2b903077b4d39e94b6da",
+                "tools/native_draw_retirement.py": "2f90af88c7bb969412b71d45803091065f8b82c359278a9e4d4d4fdbc192c081",
+                "tools/prepare-native-draw.py": "dec74232cf80af9dc007e3a0f1c7b443be1e8f5af59f40cf3a54f509087b8e98",
+                "tools/native_only_contract.py": "8d398d26685b9a09a4292cdb29ce71db6127e827e5e9d83ecac43a0ac82c0cb2",
+                "research/runtime/directdraw-retirement-results-20261019/scope-resolution.json": "13d9f363667757f13ce37beaffed2f6d08f393fe4a36ae49557e4fa04c4b0a5c",
+                "research/runtime/directdraw-retirement-execution-20261019.json": "f80aeb6ebd1e4439f6e947a339e27e0877a1b2c99ba53e251cebf28f3642c63f"
               },
-              "scope_resolution_record": "research/runtime/rendering-tranche3-results-20261019/retirement-scope.json",
+              "scope_resolution_record": "research/runtime/directdraw-retirement-results-20261019/scope-resolution.json",
               "scope_domains": [
                 {
                   "name": "Factory and surface identity/storage",
@@ -5669,10 +5720,38 @@
                   ],
                   "finding": "Unsupported domains return bounded errors or terminal family/interface/slot refusals without original fallback.",
                   "validation": "Three terminal refusal cases pass. Unknown required live routes and complete physical/lifecycle acceptance remain unresolved."
+                },
+                {
+                  "name": "Surface2/3/4 page residency hints",
+                  "disposition": "supplied",
+                  "finding": "Pinned optional slot37/38 route implemented for owned host storage; no physical-driver residency assertion.",
+                  "validation": "30 unchanged original/native cases,180 calls,3510 pixels and reference/zero-owner checks pass.",
+                  "suppliers": [
+                    "NP.native-draw-page-hints"
+                  ],
+                  "paths": [
+                    "runtime/native-draw/surfaces.h"
+                  ]
+                },
+                {
+                  "name": "Temporary checker aliases and semantic native shutdown",
+                  "disposition": "supplied",
+                  "finding": "Guarded two-site adapter releases only the verified startup graph; strict completion requires pre-reclamation zero-owner and positive cleanup receipts.",
+                  "validation": "Current three graph/five refusal/17 Python controls pass. Pinned179-World normal Quit and fresh restart pass; broader live fingerprint drift remains historical.",
+                  "suppliers": [
+                    "NP.native-draw-clean-shutdown",
+                    "NP.native-draw-startup-probe-retirement"
+                  ],
+                  "paths": [
+                    "runtime/native-draw/startup_retirement.h",
+                    "runtime/native-draw/retirement.h",
+                    "tools/native_draw_retirement.py"
+                  ]
                 }
               ],
-              "pending_source_review": [
-                "research/runtime/directdraw-retirement-20261019.md"
+              "pending_source_review": [],
+              "incremental_review_notes": [
+                "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted."
               ]
             },
             "work_review_history": [
@@ -5769,12 +5848,189 @@
                     "tools/test-native-world-continuous.py": "5d2b07a8454da564488bade6e3d0c0c0435cad6e3173219adeb508f5f0d9130c"
                   }
                 }
+              },
+              {
+                "implementation": "unresolved_aggregate",
+                "current_state": "Scope reconciliation maps factory/storage/default descriptors, canonical formats, palettes, clipping/DC and owned-copy services to supplied code. Bounded factory/surface/services/resource comparisons pass. A stale unfiltered two-mode fixture is repaired with explicit RGB565 and all-eight-mode controls. Full retirement and unknown required live domains remain an unresolved aggregate; no new required missing COM branch was identified.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "128 factory lifetimes,64 surface cases,64 DC/clipper cases,408 clipping cases,80 format cases and six HWND-region cases pass with their stated policies. Factory/surface broad fingerprints retain the later fixture-only staleness; current services/resource results and terminal refusals are separately bound.",
+                "acceptance": "pending",
+                "acceptance_summary": "The bounded scope-review/component task passes; full DirectDraw retirement remains pending. Physical driver/loss, complete routes/writers/aliases, semantic cleanup, native-only/restart and sustained performance are not proved by these matrices.",
+                "evidence": [
+                  "T3I.retirement-scope-20261019",
+                  "T3I.facade-factory-20261019",
+                  "T3I.facade-surfaces-20261019",
+                  "T3I.facade-services-20261019",
+                  "T3I.facade-resources-20261019",
+                  "T3I.facade-mode-negative-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Use the supplied/refused domain crosswalk; retain unknown required caller/route, physical-driver and semantic-retirement boundaries explicitly."
+                  },
+                  {
+                    "kind": "diagnosis",
+                    "action": "For a newly encountered unsupported required request, retain its exact refusal and independent failing original/native fixture before naming or implementing a missing branch."
+                  },
+                  {
+                    "kind": "validation",
+                    "action": "Validate complete retirement and native-only/restart/performance with their separate bounded matrices; isolated component passes do not supply whole-game acceptance."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/native-draw/surfaces.h",
+                    "line": 305,
+                    "text": "static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/native-default-offscreen-pass-20261011.json": "f74f43148083806e6b47888d5b7685ee96d7fecc420b766da78453da2f662c29",
+                  "research/runtime/native-draw-device-surfaces.md": "dee89c0bde7b7aae31fbd03eb5ef5fe9441d5b37ac9c87f24a5592cf6ab43885",
+                  "research/runtime/native-draw-final-4096-performance-failure-20261011.json": "7a8b6f3acee0b24c544340a664b281f444c594321c5d94ad800260bf4639d2d6",
+                  "research/runtime/native-draw-mapped-status-consumer-death-pass-20261011.json": "58a93079dabe78b9159e757fa33a46b794dcb29a43ad5d0f798d87cc2ed2d5f6",
+                  "research/runtime/native-draw-mapped-status-producer-death-pass-20261011.json": "1961470e2ba82cc04cf2c3cdb84eb9c84bfb67e018c6eec565c28d3518d46d7c",
+                  "research/runtime/native-draw-mapped-status-recovery128-pass-20261011.json": "e71612c12632e52e5fe743daeaca81a7be56b35525b259d41253148c8e64ed06",
+                  "research/runtime/native-draw-mapped-status-services-20261011.json": "1e4492f74833d9070509a06186cfdff800e02847117486678d1d3a0f3b02cc47",
+                  "research/runtime/native-draw-mapped-status-world4096-pass-20261011.json": "b3bed06aba11f3a9a6bde9abe370f7eecbfe9e532b2d162b16dd89e7e378fa22",
+                  "research/runtime/native-draw-public-lock-stage-repeated-failure-20261011.json": "22d876ca13c1db5910c7bd9802bc4fb33ba06c42e4b694b2be0898ba83772dca",
+                  "research/runtime/native-draw-public-status-close-failure-20261011.json": "5f5395fc05a3cf00c6c7249882a16d6d7035dc767149c4af20935c5ac976d092",
+                  "research/runtime/native-draw-services-20261010.md": "fe5463cc78a7e4eb4c5b1b422da29eaf3fe3c3da5116774ce65953bb8a08da79",
+                  "research/runtime/native-draw-startup-check-discovery-20261010.json": "4ec33ef3e3419dc14cc1e76c8b96088e5a15d2361be80368e1db7d13c9ff1922",
+                  "research/runtime/native-draw-status-artifacts-20261011.json": "280c352eb13bd40d2172360f41c907c8f0e525c8091835362282bb1482405dd0",
+                  "research/runtime/native-draw-status-consumer-death-pass-20261011.json": "1a1c57c9ad0bb158e361a1e0f163197d9e3658b1a831f95e706cf768101275a4",
+                  "research/runtime/native-draw-status-final-artifacts-20261011.json": "b3af7ec8e434f2a9e3a766fbf6d9e471c8fe4dc7f4e94e43f659ad5ee88a4657",
+                  "research/runtime/native-draw-status-producer-death-pass-20261011.json": "e71d69e278cb0f07731902755f50bedc7903d4b40f2cfd642770977e82850bc9",
+                  "research/runtime/native-draw-status-recovery128-pass-20261011.json": "6dbb9514df5f654309d081e12fe41d72b56bb1f90742efc524b98fce9231e00c",
+                  "research/runtime/native-draw-status-services-pass-20261011.json": "8a7142547742f8d716e11e1f9b22ca4240cd9004b352fd6f7b33c7b9097ca3a3",
+                  "research/runtime/native-draw-status-world4096-pass-20261011.json": "8d526d7449162c29296d70781e692477878428a11f5f3b626846f4723ca1a0a0",
+                  "research/runtime/native-fade-row-consumer-death-pass-20261011.json": "8269eea34a27013fe2ef70ee80e0afc41941916a1985062c23641859836d0144",
+                  "research/runtime/native-fade-row-producer-death-pass-20261011.json": "0ba7fb74d1526fe5ea0d24fdd1a3a3e2ecbe3d0fcba84cf56cae56f7198feab8",
+                  "research/runtime/native-fade-row-recovery128-pass-20261011.json": "76c178567b43cfb82b56d86c6094e8be5daae35a43766d54b38e5442d321f2dd",
+                  "research/runtime/native-fade-row-world128-pass-20261011.json": "7015cc8dd0b9d6c6eeede2b4a5ca6c10e59d4a8dc7cf54b2cccadf413afa88d1",
+                  "research/runtime/native-fade-row-world4096-pass-20261011.json": "78c8b03b9ea041d8171ae2cb69d0d0301c152584e6ec8fa8bcca3d499ca683c4",
+                  "research/runtime/native-fog-window-128-cold-failure-20261011.json": "7cec93670144ba520d2cdc7136cc0b57750da0e7c555f5a76bc5f86b360e9be9",
+                  "research/runtime/native-fog-window-4096-pass-20261011.json": "25690af7a3b46ff59f0b59f3681459a181824bbc6e1bcd84c6ed641eece257e4",
+                  "research/runtime/native-fog-window-artifacts-20261011.json": "5f8ee564e548c4f8ff2f928700d9ff3b3e63125a43eb18347ac3c4f2ae243155",
+                  "research/runtime/native-fog-window-consumer-death-pass-20261011.json": "d396072fa1e2e9bfd209dbb99513949bbae62664e19c99a25456abe4c9d99d63",
+                  "research/runtime/native-gpu-frame-ownership.md": "5199bf80c9c9f483bd1fc34d02b1e9ee6ec60cbdaa5dc57601a6b027b21cdccb",
+                  "research/runtime/native-master-integration-current-consumer-death-pass-20261011.json": "7378b699bc1e3adcaf9d3f484108e3701525a5c34d5875786f791deedaa36fa6",
+                  "research/runtime/native-master-integration-current-producer-death-pass-20261011.json": "4bb8ee415779310a460664c5c7bd9ea2bf92ca2fa64b8a387a7be5a8e42f15b8",
+                  "research/runtime/native-master-integration-current-recovery128-pass-20261011.json": "13cee9bf8ebae069e8b6a2cd3d027904f5d31612ceef6b667387cec67daf370b",
+                  "research/runtime/native-master-integration-current-world4096-pass-20261011.json": "29c155811e8511b1dcc4c0ff4ed9e6272fd8906ff5bb8cd6cc28d36bb3562571",
+                  "research/runtime/native-master-integration-world4096-pass-20261011.json": "7eebcd94637c32e77c7c256f1b0894f86cd20e9efcb41844fcc6c903ae2807b0",
+                  "research/runtime/native-world-canonical-cold-failure-20261011.json": "2c1b3aeabd5c24f36e02c670526ef82bfb1ef4e8b95f3a4af6afb05702548c94",
+                  "research/runtime/public-resident-surface-refusal-20261011.json": "9383b8a7793000447874594a4c71ec34d23ddce04b806fbe5dfe281198b25053",
+                  "research/runtime/rendering-tranche3-issues-review-20261019.md": "7c8dd409012351649b632d0dcd815ad6f379dca527f1a12dd3e5de6d628866fb",
+                  "research/runtime/rendering-tranche3-results-20261019/facade-factory.json": "d1a5b54c23f18ebdbccffca2cc3c505cf0cbeffc4752801558a798dea603eddc",
+                  "research/runtime/rendering-tranche3-results-20261019/facade-mode-negative.json": "0cbd3e4adf25f420b08597a6c15ca0a7763fc83ffdde5a2ccbe62929edd8ad8c",
+                  "research/runtime/rendering-tranche3-results-20261019/facade-resources.json": "7805c3c678e4bbf9261f4d97744b72ac76d87e7e48c64800deaa20fa3e3d2085",
+                  "research/runtime/rendering-tranche3-results-20261019/facade-services.json": "67c8ca5dc95d7e8601944823e224f8f5ca1bc33b282deca27c052666c4dfb293",
+                  "research/runtime/rendering-tranche3-results-20261019/facade-surfaces.json": "1113accd483db15df85d79a175f202a5b46d93378f227adb7a15d02dafd612ad",
+                  "research/runtime/rendering-tranche3-results-20261019/retirement-scope.json": "6d92a743cee9b41c8d74329bd6c92c0e0b1ef49c9f3dc72c5487cbeb615b2a4e",
+                  "research/runtime/surface-final-word-read.md": "67d511bc6f90314144877be3088390da33d42fde377ee25e417b6e361bd2b3d5",
+                  "runtime/native-draw/clipper.h": "58313e5bd17d43ca9ace5213b347e96aefb56f8af256bb851e3cff4ab084cea7",
+                  "runtime/native-draw/dc.h": "9eaa4c2b23c85048ced371effd6d1ae619fceb7d5517396fc0bb4747f71d611b",
+                  "runtime/native-draw/factory.c": "9e6760cabdd0feaf6b06726255e1ef38e948bad57c30549721ecb4bea1f3b5a1",
+                  "runtime/native-draw/refusal.h": "d0b443d5357d19822c368a3a4e1de7b5b74566a12dd51ef611516f6ce5a9ebed",
+                  "runtime/native-draw/status.h": "bf38d5b22745b46c16999efb3381d3a1f3d42df866b6beae722fc3fcbd2e0cc7",
+                  "runtime/native-draw/surfaces.h": "753b228c619be7f48e778839424fdf7ff7bca4e4988d4e68586b7c9313e44bdf",
+                  "tests/native-draw-factory-probe.c": "a72f99503b4362a223e841db396a96bc120c65ef7469b0dea4df884b352c8809",
+                  "tests/native-draw-services-probe.c": "4bd51afefa292ccb141421490689578c28668bd8e0ed812c671042871666274b",
+                  "tests/native-draw-surface-probe.c": "83a53e001c5b20e8e5671fd2e548d27f85be34228dbd62f7ed88b9bb461f22f3",
+                  "tools/build-native-draw.py": "6b9d3fae8978c2519acc8cef8e26486a74054b556ca3ad243863f59824725bf9",
+                  "tools/prepare-scene-observer.py": "e2dc2bb2f2becb37d9c3d813a066a16fae193f88e89bf3eaf30f2083e2577216",
+                  "tools/scene-game-runner.py": "7a553bc26e633e3bf8e01b1487f159ef0474f5e79faa7aa936a77e7548be624b",
+                  "tools/test-native-draw-factory.py": "affa255d1c34133623853c3691939b1667dc7638d6feddba4e89f9412f6773a9",
+                  "tools/test-native-draw-services.py": "09cf7de52bce531c97819e9f99e054c78be12253d3d0c5616a3b3d1a1f804fa2",
+                  "tools/test-native-draw-surfaces.py": "0a27f428536116846ba2f393b31f27f4f5c8d48018d28cf65c49c688bc90cc75",
+                  "tools/test-native-world-continuous.py": "5d2b07a8454da564488bade6e3d0c0c0435cad6e3173219adeb508f5f0d9130c",
+                  "runtime/native-draw/palette.h": "ed384fd69918ac45c6690a0ca1c0b693a70de83047267550d3d95ccbcd24d289",
+                  "runtime/native-draw/gpu_copy_plan.h": "b97be896835c7b6f6dfcd0de8db1ee37c4c95af929b45f4071a620f00fb8027f",
+                  "runtime/native-draw/pixel_conversion.h": "b0a1fb026370cdb02b9990574430bcc59800affec8826a7651c074868bf9441b",
+                  "research/runtime/directdraw-retirement-20261019.md": "60ba9480477a3b1940d0092fe6d59349c842d374682114e52b79852415595d7d",
+                  "runtime/native-draw/retirement.h": "a31a32ccf0db58924e7bdb89ae7e5e39726d817ec3d332e95d8327fa52f57205",
+                  "runtime/native-draw/startup_retirement.h": "abb3f227de7d2b100825205ef471cf95eab2246bcc0ac217149488068ca8a3a4",
+                  "tests/native-draw-page-probe.c": "dae84f579d28c291788ab365ddcaba4c9d4caf2a4c5d4efe3e674fe9a1212cc8",
+                  "tests/test-native-draw-retirement.py": "d0066c813fde7ae2a4c863e2061b4264ad8eece146c5fe603f238734c9d9ef72",
+                  "tools/test-native-draw-pages.py": "e74b7383fea33cc306cdbebb8ba3507579a89e617c3d0cb1a26fa45690faf42d"
+                },
+                "scope_resolution_record": "research/runtime/rendering-tranche3-results-20261019/retirement-scope.json",
+                "scope_domains": [
+                  {
+                    "name": "Factory and surface identity/storage",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NR.directdraw-retirement"
+                    ],
+                    "paths": [
+                      "runtime/native-draw/factory.c",
+                      "runtime/native-draw/surfaces.h"
+                    ],
+                    "finding": "Factory/interfaces, bounded offscreen storage and the prior510x180 descriptor are delivered.",
+                    "validation": "128 factory lifetimes/2176 caller fields and64 surface cases/37440 pixel words pass; their broad pre-fixture source hashes remain historical."
+                  },
+                  {
+                    "name": "Canonical formats, palette and clip/DC ownership",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NP.native-resource-state"
+                    ],
+                    "paths": [
+                      "runtime/native-draw/surfaces.h",
+                      "runtime/native-draw/clipper.h",
+                      "runtime/native-draw/dc.h",
+                      "runtime/native-draw/palette.h"
+                    ],
+                    "finding": "Five-format storage, palette/alias lifetime, explicit/current HWND clip snapshots and owned DC services are supplied.",
+                    "validation": "408 clipping/80 format/six HWND-region cases and the corrected64-case services matrix pass. Native healthy Restore is not physical loss equivalence."
+                  },
+                  {
+                    "name": "Owned GPU copies and native transforms",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NP.native-gpu-copy-plan",
+                      "NP.native-copy-transforms",
+                      "NP.owned-dc-copy"
+                    ],
+                    "paths": [
+                      "runtime/native-draw/gpu_copy_plan.h",
+                      "runtime/native-draw/pixel_conversion.h"
+                    ],
+                    "finding": "Narrower owned copy/transform suppliers exist; they are not missing aggregate COM code.",
+                    "validation": "These narrower contracts retain their own original/native and scheduling requirements; this review does not renew every route."
+                  },
+                  {
+                    "name": "Unknown methods and unsupported requests",
+                    "disposition": "guarded_refusal",
+                    "suppliers": [
+                      "NR.directdraw-retirement"
+                    ],
+                    "paths": [
+                      "runtime/native-draw/refusal.h",
+                      "runtime/native-draw/surfaces.h"
+                    ],
+                    "finding": "Unsupported domains return bounded errors or terminal family/interface/slot refusals without original fallback.",
+                    "validation": "Three terminal refusal cases pass. Unknown required live routes and complete physical/lifecycle acceptance remain unresolved."
+                  }
+                ],
+                "pending_source_review": [
+                  "research/runtime/directdraw-retirement-20261019.md",
+                  "runtime/native-draw/retirement.h",
+                  "runtime/native-draw/startup_retirement.h",
+                  "tests/native-draw-page-probe.c",
+                  "tests/test-native-draw-retirement.py",
+                  "tools/test-native-draw-pages.py"
+                ]
               }
             ],
             "execution_result": {
               "outcome": "PASS",
-              "report": "research/runtime/rendering-tranche3-issues-execution-20261019.json",
-              "note": "Scope reconciliation and bounded component checks complete. The mode-enumeration validation fixture was repaired; full retirement remains pending."
+              "report": "research/runtime/directdraw-retirement-execution-20261019.json",
+              "note": "Confirmed implementation gaps repaired; current scoped controls, pinned normal Quit/restart and NVIDIA startup pass. Full aggregate acceptance remains pending."
             }
           },
           {
@@ -5840,24 +6096,22 @@
                 "research/runtime/native-only-launch.md": "cbeddf3a867b85e752aef2be22a98ec1a97279a390ea80b69483fed5634cf03b",
                 "runtime/native-draw/cpu_guard.h": "04114b8ebc10ce481310ddcb68a63402188b6ab7fab8daf94638ae1c341015fc",
                 "runtime/native-draw/native_only.h": "0d9ac77684823dc29a6aade82d4e264f045b466a71a6324e4cec6d0a7b8a71f8",
-                "runtime/native-draw/surfaces.h": "753b228c619be7f48e778839424fdf7ff7bca4e4988d4e68586b7c9313e44bdf",
+                "runtime/native-draw/surfaces.h": "f2087f3730912f1d9fe2504300b0905868be4cdfbb59e5d31482cd5695abed64",
                 "runtime/scene/glyph_live.c": "787dde08768df8e77b246ebacdc0c96d33c286042d467875fef29763cc2031b0",
                 "runtime/scene/glyph_native_only.h": "682f376c6c91a98878c817158edcfff557bd597373faed598a09900d8c4783ab",
                 "tests/native-only-facade-probe.c": "aea783b7f3a1f753ff7094a3ce99be6bb5f9cf20ed69b6cfc69ba5155d04fb3a",
                 "tests/native-only-session-test.cpp": "0ced3120a78553ebbbc7a1882c735226a474b3a338f1c86dcd242a43b04b8038",
-                "tests/test-native-only-contract.py": "d12ee4a27efee5bbfad8a2884ce9b6369fbaacca114cae24c8e0ee1d5501208f",
-                "tools/native_only_contract.py": "c51f1d0a387a339373795f096a56fa194efe956932cbc67f10b4f14c22efcfb6",
+                "tests/test-native-only-contract.py": "a302f512c77e007ec3bebca7b3fe249ab8ca31c9f130fce4f3f6d281c91762b5",
+                "tools/native_only_contract.py": "8d398d26685b9a09a4292cdb29ce71db6127e827e5e9d83ecac43a0ac82c0cb2",
                 "tools/owned-menu-game-runner.py": "087ef421179447a2d03271022c74faee8ffc9852ce03b800f2f822471fff7d25",
-                "tools/prepare-menu-observer.py": "c971fce6d77d7ca263005be6464d9e4a5bc90ca05e8983d9a66027228c26737d",
+                "tools/prepare-menu-observer.py": "dad11ce8c37ec8d25d9b488bdf210693a323fd94372360e351dd7358f805dc7c",
                 "tools/run-native-owned.py": "a253290a8db44367a4d36e683693262c17a53bec596e539ff6caff97847948ff",
                 "tools/test-native-only.py": "57bd56cc9eb704f0b429a9ec8e5265ab31cbd0e1cf9c4035a95110f4869528e2",
-                "tools/test-native-owned-campaign.py": "44600e4efcaa337ef8c5ea5acfac91f91ac3cb386296c10a95fcf1c77feaef0f",
-                "research/runtime/directdraw-retirement-20261019.md": "60ba9480477a3b1940d0092fe6d59349c842d374682114e52b79852415595d7d"
+                "tools/test-native-owned-campaign.py": "ec90621fdf53d77dc5ad1e43ddf155023e4ae0a56c10dd5e6f70198e481527da",
+                "research/runtime/directdraw-retirement-20261019.md": "362e2a87b5ffcb1ef1b1a512b56f1e8ea4a9cee1689df6600fd3d8fe87abfe21"
               },
               "incremental_review": "Campaign runner now monitors all five existing refusal/fault families and explicitly labels optional file tracing. Production engine guards and budgets are unchanged; separate native-only/restart validation is not renewed.",
-              "pending_source_review": [
-                "research/runtime/directdraw-retirement-20261019.md"
-              ]
+              "pending_source_review": []
             }
           },
           {
@@ -5909,7 +6163,7 @@
                 },
                 {
                   "path": "tools/native_only_contract.py",
-                  "line": 159,
+                  "line": 161,
                   "text": "def restart_outcome(root, admission, shell):"
                 }
               ],
@@ -5925,8 +6179,8 @@
                 "research/runtime/native-render-functional-closure.md": "b11a7c6c5e788a993f755eab8b16b517f4f06cf54fbaec5ea1febb49524b8547",
                 "tests/game-hard-restart-test.cpp": "1498582a185923b8b9522ef4984b198f2f92a26abfa03267e66221748e7eb41d",
                 "tests/native-only-session-test.cpp": "0ced3120a78553ebbbc7a1882c735226a474b3a338f1c86dcd242a43b04b8038",
-                "tests/test-native-only-contract.py": "d12ee4a27efee5bbfad8a2884ce9b6369fbaacca114cae24c8e0ee1d5501208f",
-                "tools/native_only_contract.py": "c51f1d0a387a339373795f096a56fa194efe956932cbc67f10b4f14c22efcfb6",
+                "tests/test-native-only-contract.py": "a302f512c77e007ec3bebca7b3fe249ab8ca31c9f130fce4f3f6d281c91762b5",
+                "tools/native_only_contract.py": "8d398d26685b9a09a4292cdb29ce71db6127e827e5e9d83ecac43a0ac82c0cb2",
                 "tools/owned-menu-game-runner.py": "087ef421179447a2d03271022c74faee8ffc9852ce03b800f2f822471fff7d25",
                 "tools/run-native-owned.py": "a253290a8db44367a4d36e683693262c17a53bec596e539ff6caff97847948ff",
                 "tools/test-native-functional-closure.py": "a2d2766753143db88e7820ed4a36c2f5874a35b3d99813b934308c3dd17f6b09"

@@ -33,7 +33,7 @@ def main():
     out = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
     print(out, flush=True)
     report = dict(success=False, sources=claims['sources'], claims=claims['claims'],
-                  scope='Offline guarded pinned PE32 import redirection only. Eight staging compositions preserve original IAT and section bytes, with only the explicit enumeration variant changing the two guarded12-byte DLL names, change the graphics descriptor name to native and add the anchor. Ten mutations and duplicate staging refuse. No executable instructions or loader/game integration are executed.',
+                  scope='Offline guarded pinned PE32 import redirection and temporary startup-probe retirement. Eight staging compositions preserve original IAT and every other original section byte, except two guarded12-byte loader strings and two ten-byte device Release sites in the enumeration variant. Each replacement calls the added named retirement import with the original stack argument. Mutations and duplicate staging refuse. No patched code, loader or game integration is executed by this offline check.',
                   real_game_directdraw_retired=False)
     before = False
     try:
@@ -59,9 +59,20 @@ def main():
                     ('MnmRender.dll', 'RenderAnchor', b'.mnmgl')][:index]:
                 incoming = imports.add_import(incoming, dll, symbol, section)
             patched = native.redirect(incoming,enumeration=enumeration)
-            expected = native.remap_enumerator(incoming) if enumeration else incoming
+            expected = bytearray(native.remap_enumerator(incoming) if enumeration else incoming)
             sections, offset, old = native.layout(incoming)
             _, new_offset, new = native.layout(patched)
+            if enumeration:
+                lookup, _, _, _, iat = struct.unpack_from('<5I', patched, new[-1])
+                symbol = struct.unpack_from('<I', patched, new_offset(lookup,8))[0]
+                symbol_at = new_offset(symbol,2)+2
+                if patched[symbol_at:patched.index(b'\0',symbol_at)] != b'NativeDrawReleaseStartupProbeV1':
+                    raise ValueError('Startup retirement import symbol differs')
+                if struct.unpack_from('<I',patched,new_offset(lookup,8)+4)[0]:
+                    raise ValueError('Unexpected additional startup retirement thunk')
+                for rva in (0xbdb20,0xbdb65):
+                    at=offset(rva,10)
+                    expected[at:at+10]=bytes.fromhex('ff742410ff15')+struct.pack('<I',0x400000+iat)
             for name, _, _, size, raw in sections:
                 if patched[raw:raw+size] != expected[raw:raw+size]:
                     raise ValueError('Existing section modified: '+repr(name))
@@ -88,11 +99,12 @@ def main():
                 raise ValueError('Duplicate native staging admitted')
             (out/f'case-{case}.exe').write_bytes(patched)
             report['cases'].append(dict(existing_additions=index, output_sha256=sha(patched),
-                                        original_sections_unchanged=not enumeration, dynamic_loader_redirect=enumeration, guarded_data_bytes_changed=24 if enumeration else 0, all_other_section_bytes_unchanged=True, original_iat_unchanged=True,
+                                        original_sections_unchanged=not enumeration, dynamic_loader_redirect=enumeration, guarded_data_bytes_changed=24 if enumeration else 0, guarded_instruction_region_bytes=20 if enumeration else 0, startup_probe_retirement=enumeration, all_other_section_bytes_unchanged=True, original_iat_unchanged=True,
                                         directdraw_import_absent=True, duplicate_refused=True))
         sections, offset, descriptors = native.layout(data)
         mutations = [raw for _, _, _, _, raw in sections]
         mutations += [offset(0x1e1264,12)+10,offset(0x1e1264,12)+11,offset(0x1f1a84,12)+10,offset(0x1f1a84,12)+11,descriptors[3]+12, offset(struct.unpack('<5I', native.DESCRIPTOR)[0], 12)]
+        mutations += [offset(0xbdb20,10),offset(0xbdb65,10)]
         for position in mutations:
             damaged = bytearray(data)
             damaged[position] ^= 1

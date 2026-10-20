@@ -17,6 +17,7 @@ if native_draw:binaries.append(('MnmDraw.dll','native_draw_sha256'))
 for name,key in binaries:
     if hashlib.sha256((game/name).read_bytes()).hexdigest()!=metadata[key]:raise ValueError(f'{name} hash mismatch')
 os.environ.pop('MNM_NATIVE_DRAW_STATUS',None)
+os.environ.pop('MNM_NATIVE_DRAW_RETIREMENT',None)
 if native_draw:
     status=root/'native-draw-status.bin'
     if metadata.get('native_draw_status')!=str(status) or status.exists():raise ValueError('Refusing redirected or stale native graphics status')
@@ -26,6 +27,9 @@ if native_draw:
             path=game/name
             if Path(name).is_absolute() or '..' in Path(name).parts or hashlib.sha256(path.read_bytes()).hexdigest()!=digest:raise ValueError('Native graphics input changed before launch: '+name)
     os.environ['MNM_NATIVE_DRAW_STATUS']='Z:'+str(status).replace('/','\\')
+    retirement=root/'native-draw-retirement.bin'
+    if retirement.exists():raise ValueError('Refusing stale native graphics retirement output')
+    os.environ['MNM_NATIVE_DRAW_RETIREMENT']='Z:'+str(retirement).replace('/','\\')
     overrides=os.environ.get('WINEDLLOVERRIDES','')
     os.environ['WINEDLLOVERRIDES']=(overrides+';' if overrides else '')+'ddraw='
 os.environ.pop('MNM_WORD_DIRECTORY',None)

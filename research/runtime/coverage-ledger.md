@@ -18791,3 +18791,37 @@ execution fingerprints. The four concurrent incomplete DirectDraw-retirement
 scenario records block the whole-tree coverage gate; its refusal and exact
 pending limitations are retained. No game journey, live replacement, balance
 change, deletion, archive or commit is asserted by this work.
+
+## DirectDraw retirement implementation and shutdown follow-up — 2026-10-19
+
+The new [execution review](directdraw-retirement-20261019.md) and
+[immutable results](directdraw-retirement-execution-20261019.json) repair two
+confirmed gaps found after the earlier aggregate reconciliation. Surface2/3/4
+PageLock/PageUnlock now match 30 unchanged Wine caller cases (180 hints, 480
+caller fields, 3,510 pixels). The original DirectX capability checker leaked its
+queried Surface3/4 aliases, retaining one primary/device and 960,000 bytes even
+after successful normal Quit. Two guarded ten-byte Release-site adapters now
+retire only that verified temporary graph, preserving ordinary COM behavior,
+the original Release result and LastError. Eight owned native graph/ABI/refusal
+cases and 17 independent Python policy methods pass; native-only completion now
+requires positive pre-reclamation zero-owner evidence.
+
+The source-stable pinned strict campaign passes 179 balanced Worlds and normal
+original Quit with no ddraw module, fallback/forwarding or surviving device,
+surface, DC, clipper, palette or pixel allocation. Public Hard restart keeps the
+injected failure terminal, creates a fresh generation and completes three
+balanced Worlds and normal Quit with zero graphics owners. Standalone NVIDIA
+startup presents 33 native GPU frames and retires consumer resources. Current
+factory/surface/DC/resource regressions pass, including 408 clipping cases,
+80 format cases, palettes and HWND regions. Offline staging checks eight import
+compositions, twelve mutations and eight duplicate refusals, preserving every
+other original section/IAT byte. Failed setup and reservation attempts remain.
+
+Only the three bounded native policies receive scoped implementation/headless
+integration milestones. Broad pinned live reports retain 18 concurrently changed
+terrain test/build fingerprints and their source snapshots; no historical hash
+is refreshed. The complete DirectDraw retirement aggregate remains unresolved
+for all required callers/writers/aliases, physical context loss, whole-game pixel
+equivalence and sustained performance. The separate unmodified storage-reference
+252-pixel failure remains FAIL. Original manifest bookends verify all 2,927 files;
+the user-approved 90 GiB guard remains enforced, with no cleanup or archiving.

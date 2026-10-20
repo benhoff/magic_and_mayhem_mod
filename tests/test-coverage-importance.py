@@ -82,7 +82,7 @@ class ImportanceTest(unittest.TestCase):
         catalog = json.loads((ROOT / 'apps/coverage-ui/importance.json').read_text())
         result = importance_view(catalog, register, tracks)
         self.assertEqual(register, before)
-        self.assertEqual(len(result['entries']), 341)
+        self.assertEqual(len(result['entries']), 344)
         self.assertEqual(result['unrated'], [])
         behaviors = {b['id']: b for b in register['behaviors']}
         builds = {b['id']: b for b in register['builds']}
@@ -386,7 +386,7 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual(plan['unplanned_high'], [])
         self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 0)
         self.assertEqual(sum(e['weight'] == 4 and e['implementation'] == 'scoped'
-                             for e in result['entries']), 47)
+                             for e in result['entries']), 50)
         for task in tasks:
             execution = task.get('execution_result')
             if execution:

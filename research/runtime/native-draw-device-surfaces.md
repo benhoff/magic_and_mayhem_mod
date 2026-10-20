@@ -1,5 +1,15 @@
 # Native graphics compatibility device and owned surfaces
 
+The [2026-10-19 retirement follow-up](directdraw-retirement-20261019.md) supplies
+the pinned optional PageLock/PageUnlock route and repairs the original DirectX
+checker's lost Surface3/4 references through two guarded Release-site adapters.
+Strict native-only normal Quit and Hard restart now have positive zero-owner
+evidence; NVIDIA standalone startup also passes. Earlier sections below retain
+their historical scope, including the former instruction-byte preservation
+claim. Current staging additionally changes two ten-byte checker regions.
+Full required caller/alias, physical-loss, pixel-equivalence and performance
+acceptance remains an unresolved aggregate.
+
 The native PE32 factory and storage import no DirectDraw implementation. This is
 an incremental compatibility boundary; isolated admission is not game retirement.
 Unregistered device/surface methods terminate with exit97/98 rather than forward.

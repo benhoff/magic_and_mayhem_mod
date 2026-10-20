@@ -54,6 +54,7 @@ if os.environ.get('MNM_MENU_CAMPAIGN_OBSERVE'):
     if not metadata.get('campaign_observe') or os.environ['MNM_MENU_CAMPAIGN_OBSERVE']!=expected or campaign.exists():
         raise ValueError('Refusing unapproved or stale campaign observation output')
 os.environ.pop('MNM_NATIVE_DRAW_STATUS',None)
+os.environ.pop('MNM_NATIVE_DRAW_RETIREMENT',None)
 native_draw=metadata.get('native_draw',False)
 if type(native_draw) is not bool:raise ValueError('Invalid native graphics policy')
 if native_draw:
@@ -67,6 +68,9 @@ if native_draw:
             path=game/name
             if Path(name).is_absolute() or '..' in Path(name).parts or hashlib.sha256(path.read_bytes()).hexdigest()!=digest:raise ValueError('Native graphics input changed before launch: '+name)
     os.environ['MNM_NATIVE_DRAW_STATUS']='Z:'+str(status).replace('/','\\')
+    retirement=root/'native-draw-retirement.bin'
+    if retirement.exists():raise ValueError('Refusing stale native graphics retirement output')
+    os.environ['MNM_NATIVE_DRAW_RETIREMENT']='Z:'+str(retirement).replace('/','\\')
     overrides=os.environ.get('WINEDLLOVERRIDES','')
     os.environ['WINEDLLOVERRIDES']=(overrides+';' if overrides else '')+'ddraw='
 os.environ.pop('MNM_ENGINE_CADENCE_FILE',None)

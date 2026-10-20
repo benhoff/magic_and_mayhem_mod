@@ -89,14 +89,14 @@ def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source
         draw_dll=load('scene_native_draw_build','tools/build-native-draw.py').build(output/'native-draw-build')
         staged=load('scene_native_draw_stage','tools/prepare-native-draw.py').redirect(staged,enumeration=True)
         shutil.copy2(draw_dll,game/draw_dll.name)
-        manifest.update(native_draw=True,native_draw_sha256=sha(draw_dll),native_draw_status=str(output/'native-draw-status.bin'))
+        manifest.update(native_draw=True,native_draw_sha256=sha(draw_dll),native_draw_status=str(output/'native-draw-status.bin'),native_draw_startup_retirement=True)
         manifest['scope']+='; native owned graphics services, real DirectDraw must be disabled by the runner'
-    # Original code and data bytes remain unchanged except the guarded10-byte
-    # dynamic graphics loader alias when native graphics is explicitly selected.
+    # Native graphics changes two guarded loader strings and the capability
+    # check's two final Release sites. All other original section bytes match.
     import struct
     pe=struct.unpack_from('<I',data,60)[0];count=struct.unpack_from('<H',data,pe+6)[0]
     table=pe+24+struct.unpack_from('<H',data,pe+20)[0]
-    expected=load('scene_native_draw_expected','tools/prepare-native-draw.py').remap_enumerator(data) if native_draw else data
+    expected=load('scene_native_draw_expected','tools/prepare-native-draw.py').expected_original_sections(data,staged) if native_draw else data
     for i in range(count):
         size,raw=struct.unpack_from('<II',data,table+i*40+16)
         if staged[raw:raw+size]!=expected[raw:raw+size]:

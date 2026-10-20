@@ -129,7 +129,9 @@ def admit(root, repository, metadata, environment):
             sources[path] = expected
         binaries[dll] = digest
     build = json.loads((root/'native-draw-build.json').read_text())
-    if build.get('directdraw_imports') is not False or 'runtime/native-draw/native_only.h' not in build['sources']:
+    if (build.get('directdraw_imports') is not False
+            or not {'runtime/native-draw/native_only.h','runtime/native-draw/startup_retirement.h'} <= set(build['sources'])
+            or metadata.get('native_draw_startup_retirement') is not True):
         raise ValueError('Native-only facade lacks terminal capability admission')
     return dict(policy=POLICY, binaries=binaries, sources=sources,
                 original_pixel_equivalence=False, complete_replacement=False)
@@ -209,5 +211,9 @@ def outcome(root):
             or counter(world.get('verified_returns')) != completed or not (pending is False or type(pending) is int and pending==0)
             or world.get('normal_quit_retired') is not True or world.get('error') != ''):
         raise ValueError('Native-only World work did not retire in balance')
+    from native_draw_retirement import require_retired, read_startup_retirement
+    graphics = require_retired(root/'native-draw-retirement.bin')
+    graphics['startup_probe']=read_startup_retirement(root/'game/native-draw-startup-retirement.bin')
     return dict(policy=POLICY, state='completed', native_calls=counters['native'],
-                forwarded=0, worlds=completed, complete_replacement=False)
+                forwarded=0, worlds=completed, graphics_retirement=graphics,
+                complete_replacement=False)

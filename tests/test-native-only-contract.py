@@ -22,11 +22,13 @@ class Contract(unittest.TestCase):
         (self.root/'game').mkdir()
         self.env=contract.configure({},[])
         self.metadata=dict(origin='menu_action_bridge',native_only_policy=contract.POLICY,
-            glyph_backend_mode='takeover',glyph_capture=False,native_media=True,
+            glyph_backend_mode='takeover',glyph_capture=False,native_media=True,native_draw_startup_retirement=True,
             **{key:True for key in REQUIRED})
         self.source=self.repo/'runtime/native-draw/native_only.h';self.source.parent.mkdir(parents=True)
         self.source.write_text('source')
         sources={'runtime/native-draw/native_only.h':hashlib.sha256(b'source').hexdigest()}
+        startup=self.source.with_name('startup_retirement.h');startup.write_text('startup')
+        sources['runtime/native-draw/startup_retirement.h']=hashlib.sha256(b'startup').hexdigest()
         for name,(dll,key) in contract.BUILDS.items():
             (self.root/'game'/dll).write_bytes(dll.encode());digest=hashlib.sha256(dll.encode()).hexdigest()
             self.metadata[key]=digest
@@ -40,6 +42,10 @@ class Contract(unittest.TestCase):
         self.write('native-only-session.json',dict(policy=contract.POLICY,session=str(self.root),state='completed',normal_quit=True,fallback=False,error='',launcher_exit=0))
         self.write('original-process-result.json',dict(original_exit_code=0))
         self.write('resident-world-report.json',dict(completed=3,imports=3,verified_returns=3,pending=0,error='',normal_quit_retired=True))
+        (self.root/'native-draw-retirement.bin').write_bytes(struct.pack('<16I',
+            0x444d4e4d,0x31544552,1,64,1,0,0,0,0,0,0,2,69,0,0,0))
+        (self.root/'game/native-draw-startup-retirement.bin').write_bytes(struct.pack('<16I',
+            0x444d4e4d,0x31425250,1,64,0xbdb6f,2,0,1,1,1,0,1,0,1,0,0))
         values=[0x50504e4d,2,(4+6*32*3)*4,6]
         for routes in ROUTES.values():
             for i in range(32):values.extend([1,int(i==0),0] if i<len(routes) else [0,0,0])
@@ -107,6 +113,16 @@ class Contract(unittest.TestCase):
             self.write('resident-world-report.json',dict(world,completed=value))
             with self.subTest(value=value),self.assertRaises(ValueError):contract.outcome(self.root)
         self.write('resident-world-report.json',dict(world,imports='9007199254740992'))
+        with self.assertRaises(ValueError):contract.outcome(self.root)
+
+    def test_normal_exit_and_balanced_world_cannot_hide_graphics_owners(self):
+        self.shutdown()
+        header=[0x444d4e4d,0x31544552,1,64,1,1,1,0,0,0,960000,2,69,0,0,0]
+        rows=[1,0x1234]+[0]*14+[2,0x5678]+[0]*14
+        receipt=self.root/'native-draw-retirement.bin'
+        receipt.write_bytes(struct.pack('<48I',*(header+rows)))
+        with self.assertRaisesRegex(ValueError,'survived normal Quit'):contract.outcome(self.root)
+        receipt.unlink()
         with self.assertRaises(ValueError):contract.outcome(self.root)
 
     def test_abnormal_shutdown_or_cross_session_receipt_never_succeeds(self):

@@ -53,6 +53,7 @@ def build(output, declared=None):
         raise ValueError('Undeclared native DLL compiler/builder inputs: '+repr(sorted(closure-set(declared))))
     dll = output/'MnmDraw.dll'
     exports = {'NativeDrawCreate': ('NativeDrawCreate', 12),
+               'NativeDrawReleaseStartupProbeV1': ('NativeDrawReleaseStartupProbeV1', 4),
                'DirectDrawCreate': ('NativeDrawCreate', 12),
                'NativeDrawEnumerateA': ('NativeDrawEnumerateA', 8),
                'DirectDrawEnumerateA': ('NativeDrawEnumerateA', 8),

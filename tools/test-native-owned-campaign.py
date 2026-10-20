@@ -122,6 +122,9 @@ def main():
                 0<int(resident['completed'])==int(resident['imports'])==int(resident['verified_returns'])):
             raise RuntimeError('Native ownership World retirement was not balanced')
         if report['original_process']['original_exit_code']!=0:raise RuntimeError('Original game did not exit normally')
+        from native_draw_retirement import require_retired, read_startup_retirement
+        report['graphics_retirement']=require_retired(session/'native-draw-retirement.bin')
+        report['graphics_retirement']['startup_probe']=read_startup_retirement(session/'game/native-draw-startup-retirement.bin')
         if args.native_only:
             owner_result=json.loads((root/'owner/launch-result.json').read_text())
             if owner_result.get('success') is not True or not owner_result.get('native_only_sessions'):

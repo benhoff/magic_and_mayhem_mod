@@ -18,6 +18,10 @@ SECTIONS = {
 }
 DESCRIPTOR = bytes.fromhex('3c611d0000000000000000003c661d0010501c00')
 LOOKUP = bytes.fromhex('24661d0010661d0000000000')
+STARTUP_RELEASES = {
+    0xbdb20: bytes.fromhex('8b442410508b08ff5108'),
+    0xbdb65: bytes.fromhex('8b442410508b10ff5208'),
+}
 
 
 def layout(data):
@@ -61,6 +65,60 @@ def remap_enumerator(data):
     return bytes(result)
 
 
+def retire_startup_probe(data, add_import):
+    """Release only the pinned capability check's lost temporary COM aliases.
+
+    Replace each ten-byte final device Release with an ABI-compatible call to
+    the guarded adapter. Normal COM callers and the checker result are retained.
+    """
+    _, offset, _ = layout(data)
+    for rva, expected in STARTUP_RELEASES.items():
+        at = offset(rva, len(expected))
+        if data[at:at+len(expected)] != expected:
+            raise ValueError('Pinned startup probe Release bytes differ')
+    result = bytearray(add_import(data, 'MnmDraw.dll', 'NativeDrawReleaseStartupProbeV1', b'.mnmret'))
+    _, new_offset, descriptors = layout(result)
+    iat = struct.unpack_from('<I', result, descriptors[-1]+16)[0]
+    pe = struct.unpack_from('<I', result, 60)[0]
+    base = struct.unpack_from('<I', result, pe+24+28)[0]
+    if base != 0x400000:
+        raise ValueError('Pinned startup probe image base differs')
+    replacement = bytes.fromhex('ff742410ff15')+struct.pack('<I', base+iat)
+    for rva in STARTUP_RELEASES:
+        at = new_offset(rva, len(replacement))
+        result[at:at+len(replacement)] = replacement
+    return bytes(result)
+
+
+def expected_original_sections(data, staged):
+    """Expected original section bytes after the three guarded native edits.
+
+    Resolve the named cleanup thunk from the actual composed import table, so
+    later menu/audio/observer imports cannot change the permitted code target.
+    """
+    _, offset, _ = layout(data)
+    _, staged_offset, descriptors = layout(staged)
+    matches=[]
+    for descriptor in descriptors:
+        lookup, _, _, name, iat = struct.unpack_from('<5I',staged,descriptor)
+        at=staged_offset(name,1)
+        if staged[at:staged.index(b'\0',at)] != b'MnmDraw.dll':continue
+        for index in range(256):
+            symbol=struct.unpack_from('<I',staged,staged_offset(lookup+4*index,4))[0]
+            if not symbol:break
+            if symbol & 0x80000000:continue
+            at=staged_offset(symbol,2)+2
+            if staged[at:staged.index(b'\0',at)] == b'NativeDrawReleaseStartupProbeV1':matches.append(iat+index*4)
+        else:raise ValueError('Unbounded native graphics import lookup')
+    if len(matches)!=1:raise ValueError('Startup retirement import missing or ambiguous')
+    expected=bytearray(remap_enumerator(data))
+    for rva,original in STARTUP_RELEASES.items():
+        at=offset(rva,len(original))
+        if data[at:at+len(original)]!=original:raise ValueError('Pinned startup Release bytes differ')
+        expected[at:at+10]=bytes.fromhex('ff742410ff15')+struct.pack('<I',0x400000+matches[0])
+    return bytes(expected)
+
+
 def redirect(data, enumeration=False):
     """Guard all original section bytes, then preserve old lookup/IAT addresses."""
     sections, offset, descriptors = layout(data)
@@ -90,4 +148,4 @@ def redirect(data, enumeration=False):
     struct.pack_into('<I', result, new_descriptors[3]+12, new_name)
     if struct.unpack_from('<I', result, new_descriptors[3]+16)[0] != iat:
         raise ValueError('Original graphics IAT moved')
-    return remap_enumerator(bytes(result)) if enumeration else bytes(result)
+    return retire_startup_probe(remap_enumerator(bytes(result)), module.add_import) if enumeration else bytes(result)
