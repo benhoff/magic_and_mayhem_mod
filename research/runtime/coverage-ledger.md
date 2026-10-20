@@ -18857,3 +18857,26 @@ broad dispatch and virtual-object entries now link these partial implementations
 concrete raster/helper effects, object writers/lifetime, other state domains and
 complete live drawing takeover remain pending. The first commit independently
 records the corrected class admission and selected native raster pixel parity.
+
+
+### Kind9 sprite trail helper — 2026-10-19
+
+4df840 is a sprite-stamp line placement loop. Its first four numeric arguments
+are endpoint coordinates; source/shade/ordinal pass to580a90 at every inclusive
+Bresenham point with strict greater-than tie handling. The native owned-value
+model matches42483 unchanged-original cases and the full final EAX return.
+WTRAIL.original/native-20261019 separately records placement and atomic native
+work/overflow admission with no partial stamps. Native budget limits are policy,
+not recovered original clipping. Concrete580a90 pixels, actual producer/writer
+inputs, source ownership/history and live installation remain pending. The
+existing original function inventory already covers the discovered helper range.
+
+
+The WTRAIL2 follow-up composes native row routing, checked seven-value call
+decoding and trail placement against the actual unchanged5002a0/4df840
+consumer/helper pair.84966 queue cells plus42483 direct cells compare902601
+stamp calls, full helper return and zero metadata/unchanged container effects.
+Four native controls reject malformed calls and excessive/overflow work before
+output. This supplies headless integration for the selected trail contract;
+580a90 pixels, physical source ownership, writers and live installation remain
+pending. Initial WTRAIL reports/source hashes and static review remain intact.

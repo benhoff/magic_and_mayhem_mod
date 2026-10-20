@@ -70,12 +70,18 @@ class ReviewTest(unittest.TestCase):
         self.assertEqual(safe(self.root,'sub/../code.cpp'),self.root/'code.cpp')
 
 class ActualReviewTest(unittest.TestCase):
-    def test_all_203_reviewed_contracts_have_explicit_source_scope_decisions(self):
+    def test_all_reviewed_contracts_have_explicit_source_scope_decisions(self):
         root=Path(__file__).resolve().parents[1];r=json.loads((root/'research/runtime/coverage/register.json').read_text())
-        review=next(row for row in load_reviews(root,r) if row['track']=='rendering')
-        self.assertEqual(review['reviewed_count'],203)
-        self.assertEqual(review['counts'],{'bounded_code':71,'diagnostic_tooling':111,'original_scope':12,'umbrella_scope':2,'acceptance_scope':7})
-        rows={row['behavior']:row for row in review['entries']}
+        reviews=[row for row in load_reviews(root,r) if row['track']=='rendering']
+        entries=[entry for review in reviews for entry in review['entries']]
+        from collections import Counter
+        self.assertEqual(len(entries),208)
+        self.assertEqual(dict(Counter(e['disposition'] for e in entries)),{'bounded_code':76,'diagnostic_tooling':111,'original_scope':10,'umbrella_scope':4,'acceptance_scope':7})
+        rows={row['behavior']:row for row in entries}
+        self.assertEqual(len(rows),len(entries))
+        self.assertEqual(rows['RS.world-queue-state']['disposition'],'bounded_code')
+        self.assertIn('world_queue.hpp',rows['RS.world-queue-state']['code_witness']['path'])
+        self.assertEqual(rows['RS.world-kind9-trail']['disposition'],'bounded_code')
         self.assertEqual(rows['AN.world-facing']['recorded_implementation'],'partial')
         self.assertIn('native_providers.cpp',rows['AN.world-facing']['code_witness']['path'])
         self.assertEqual(rows['RS.displacement-final-word-read']['disposition'],'bounded_code')

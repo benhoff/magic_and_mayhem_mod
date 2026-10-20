@@ -126142,6 +126142,101 @@
         "review": "WQUEUE.source-review-20261019",
         "entry": "RS.world-queue-state"
       }
+    },
+    {
+      "subsystem": "native_rendering",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-world-kind9-trail.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/world_trail.hpp"
+      ],
+      "tests": [
+        "tests/world-trail-test.cpp",
+        "tools/test-world-trail.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "reconstruction/rendering/world-trail/CMakeLists.txt",
+        "reconstruction/rendering/world_dispatch.hpp"
+      ],
+      "evidence": [
+        "WTRAIL.original-20261019",
+        "WTRAIL.native-20261019",
+        "WTRAIL2.original-20261019",
+        "WTRAIL2.native-20261019"
+      ],
+      "id": "RS.world-kind9-trail",
+      "kind": "recovered",
+      "title": "Kind9 sprite trail point placement and return",
+      "scope": "Pinned No-CD4df840 sprite trail placement with owned source tokens and injected580a90 raster: signed endpoints, source/shade/ordinal forwarding, inclusive Bresenham points in all octants, strict greater-than half-step ties and entire final EAX return. Integrate primary/software kind9 row dispatch through a validated seven-value typed adapter: nominal row x is the frame token, software shade is zero, metadata is zero and queue/container fields remain otherwise unchanged. Compare42483 direct helper cells plus84966 unchanged5002a0 consumer/helper cells over start-3..3/end-8..8, shade-127/0/3, ordinal-32768 and synthetic high return values. Overflow-free bounded deltas only; excludes580a90 pixels, actual pointer/alias/history ownership, natural writers and live installation. Native work/call-shape admission is a separate policy.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5109824,
+          "scope": "Placement loop and exact580a90 argument/order/final return, excluding downstream raster pixels and overflow inputs."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Selected primary/software kind9 argument decoding, zero metadata and unchanged row/container fields composed with the actual4df840 helper; downstream580a90 remains synthetic."
+        }
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WTRAIL2.source-review-20261019",
+        "entry": "RS.world-kind9-trail"
+      }
+    },
+    {
+      "subsystem": "native_rendering",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-world-kind9-trail.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/world_trail.hpp"
+      ],
+      "tests": [
+        "tests/world-trail-test.cpp",
+        "tools/test-world-trail.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "reconstruction/rendering/world-trail/CMakeLists.txt",
+        "reconstruction/rendering/world_dispatch.hpp"
+      ],
+      "evidence": [
+        "WTRAIL.original-20261019",
+        "WTRAIL.native-20261019",
+        "WTRAIL2.original-20261019",
+        "WTRAIL2.native-20261019"
+      ],
+      "id": "NP.world-trail-admission",
+      "kind": "native_policy",
+      "title": "Atomic owned sprite trail work admission",
+      "scope": "Validate the objectHelper backend and exactly seven owned logical call values before decoding signed endpoints and a source token. Before invoking any backend stamp, require max(abs(dx),abs(dy))+1 within the caller-supplied point budget and deltas no greater than INT32_MAX/2. Refuse malformed call shape, excessive work or doubled-error overflow domain without partial output. Native policy is separate from original clipping/limits, physical source ownership and live drawing replacement.",
+      "original": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WTRAIL2.source-review-20261019",
+        "entry": "NP.world-trail-admission"
+      }
     }
   ],
   "evidence": [
@@ -261227,6 +261322,224 @@
           "equals": 3
         }
       ]
+    },
+    {
+      "id": "WTRAIL.original-20261019",
+      "kind": "isolated_original",
+      "scope": "Owned sprite trail placement and distinct atomic native work admission:42483 original/native call/return cases, all octants/endpoints/ties in bounded coordinates, two native refusal controls and standalone CTest. Synthetic downstream580a90; no raster pixels, pointer/writer/source ownership or live replacement.",
+      "record": "research/runtime/native-world-kind9-trail-validation-20261019.json",
+      "sha256": "e5e7e4bd61f67fd0e0b28419dba88a7d4e59800d91af66fb27e38f977a7a4b84",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/calls_and_full_return_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_helper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/oversized_and_overflow_refused_before_effects",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 42483
+        },
+        {
+          "pointer": "/native_admission_controls",
+          "equals": 2
+        },
+        {
+          "pointer": "/native_ctests_passed",
+          "equals": 1
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/calls_and_full_return_match"
+    },
+    {
+      "id": "WTRAIL.native-20261019",
+      "kind": "native_integration",
+      "scope": "Owned sprite trail placement and distinct atomic native work admission:42483 original/native call/return cases, all octants/endpoints/ties in bounded coordinates, two native refusal controls and standalone CTest. Synthetic downstream580a90; no raster pixels, pointer/writer/source ownership or live replacement.",
+      "record": "research/runtime/native-world-kind9-trail-validation-20261019.json",
+      "sha256": "e5e7e4bd61f67fd0e0b28419dba88a7d4e59800d91af66fb27e38f977a7a4b84",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/calls_and_full_return_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_helper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/oversized_and_overflow_refused_before_effects",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 42483
+        },
+        {
+          "pointer": "/native_admission_controls",
+          "equals": 2
+        },
+        {
+          "pointer": "/native_ctests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "WTRAIL2.original-20261019",
+      "kind": "isolated_original",
+      "scope": "Expanded original/native closure:42483 helper and84966 actual primary/software queue/helper cells,127449 total, inclusive/tie/octant stamp placement, source/options, full helper return and zero queue metadata/unchanged container. Four atomic native work/overflow/call-shape controls; standalone CTest. Synthetic580a90 only; no raster pixels, actual source/writers/alias/history or live replacement.",
+      "record": "research/runtime/native-world-kind9-trail-queue-validation-20261019.json",
+      "sha256": "99a33f69958a4d708232e56659251abc4d6b7bfdaad7af854dc54b963419850e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/calls_and_full_return_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_helper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/oversized_and_overflow_refused_before_effects",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ctests_passed",
+          "equals": 1
+        },
+        {
+          "pointer": "/cases",
+          "equals": 127449
+        },
+        {
+          "pointer": "/queue_cases",
+          "equals": 84966
+        },
+        {
+          "pointer": "/queue_to_trail_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_queue_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_admission_controls",
+          "equals": 4
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/calls_and_full_return_match"
+    },
+    {
+      "id": "WTRAIL2.native-20261019",
+      "kind": "native_integration",
+      "scope": "Expanded original/native closure:42483 helper and84966 actual primary/software queue/helper cells,127449 total, inclusive/tie/octant stamp placement, source/options, full helper return and zero queue metadata/unchanged container. Four atomic native work/overflow/call-shape controls; standalone CTest. Synthetic580a90 only; no raster pixels, actual source/writers/alias/history or live replacement.",
+      "record": "research/runtime/native-world-kind9-trail-queue-validation-20261019.json",
+      "sha256": "99a33f69958a4d708232e56659251abc4d6b7bfdaad7af854dc54b963419850e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/calls_and_full_return_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_helper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/oversized_and_overflow_refused_before_effects",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ctests_passed",
+          "equals": 1
+        },
+        {
+          "pointer": "/cases",
+          "equals": 127449
+        },
+        {
+          "pointer": "/queue_cases",
+          "equals": 84966
+        },
+        {
+          "pointer": "/queue_to_trail_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_queue_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_admission_controls",
+          "equals": 4
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -263345,7 +263658,7 @@
         "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending. Additional984960cell direct-marker/ordinary-offset native fixture covers unchanged original client state for all kinds-2..35, four raw backend results and changed prior metadata. Actual helpers, indexed/-127 changed-prior variants, pixels/objects/live API/lifetime and full dispatch closure remain pending. Subsequent4924800cell matrix adds changed-prior direct/indexed markers and ordinary/-127offsets, including high-EAX/AX1 distinction. Selected original client branches now pass across those combinations; actual external helpers, pixels/arbitrary objects/lifetimes and complete live dispatch/scenario closure remain pending.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending. Additional984960cell direct-marker/ordinary-offset native fixture covers unchanged original client state for all kinds-2..35, four raw backend results and changed prior metadata. Actual helpers, indexed/-127 changed-prior variants, pixels/objects/live API/lifetime and full dispatch closure remain pending. Subsequent4924800cell matrix adds changed-prior direct/indexed markers and ordinary/-127offsets, including high-EAX/AX1 distinction. Selected original client branches now pass across those combinations; actual external helpers, pixels/arbitrary objects/lifetimes and complete live dispatch/scenario closure remain pending. Owned-value row routing and bounded queue-state composition are compared independently in WQUEUE.original-20261019. Primary/software kind9 placement is recovered as4df840 sprite stamps under synthetic580a90 in WTRAIL; actual raster pixels, writer/source ownership and complete live dispatch remain pending.",
       "complete": false,
       "entries": [
         {
@@ -263354,7 +263667,9 @@
             "DRAW.queue-dispatch",
             "RS.world-composition",
             "RS.world-frame",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263363,7 +263678,9 @@
             "DRAW.queue-dispatch",
             "RS.world-composition",
             "RS.world-frame",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263372,7 +263689,9 @@
             "DRAW.queue-dispatch",
             "RS.world-composition",
             "RS.world-frame",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263381,7 +263700,9 @@
             "DRAW.queue-dispatch",
             "RS.world-composition",
             "RS.world-frame",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263390,7 +263711,9 @@
             "DRAW.queue-dispatch",
             "RS.world-composition",
             "RS.world-frame",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263399,7 +263722,9 @@
             "DRAW.queue-dispatch",
             "RS.world-composition",
             "RS.world-frame",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263408,14 +263733,18 @@
             "DRAW.queue-dispatch",
             "RS.world-composition",
             "RS.world-frame",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 7,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263423,56 +263752,74 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "RS.world-kind8-virtual",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state",
+            "RS.world-kind8-methods"
           ]
         },
         {
           "value": 9,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state",
+            "RS.world-kind9-trail"
           ]
         },
         {
           "value": 10,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 11,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 12,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 13,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 14,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 15,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263481,7 +263828,9 @@
             "DRAW.queue-dispatch",
             "DRAW.world-kind-16",
             "RS.world-startup-wave",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263490,21 +263839,27 @@
             "DRAW.queue-dispatch",
             "DRAW.world-kind-17",
             "RS.world-startup-wave",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 18,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 19,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263514,14 +263869,18 @@
             "DRAW.world-kind-20",
             "RS.world-initial-state",
             "RS.world-startup-wave",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 21,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263530,63 +263889,81 @@
             "DRAW.queue-dispatch",
             "RS.world-composition",
             "RS.world-frame",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 23,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 24,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 25,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 26,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 27,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 28,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 29,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 30,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263595,35 +263972,45 @@
             "DRAW.queue-dispatch",
             "RS.world-composition",
             "RS.world-frame",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 32,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 33,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 34,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": "other-or-default",
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         }
       ]
@@ -263637,119 +264024,151 @@
         "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending. Additional984960cell direct-marker/ordinary-offset native fixture covers unchanged original client state for all kinds-2..35, four raw backend results and changed prior metadata. Actual helpers, indexed/-127 changed-prior variants, pixels/objects/live API/lifetime and full dispatch closure remain pending. Subsequent4924800cell matrix adds changed-prior direct/indexed markers and ordinary/-127offsets, including high-EAX/AX1 distinction. Selected original client branches now pass across those combinations; actual external helpers, pixels/arbitrary objects/lifetimes and complete live dispatch/scenario closure remain pending.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending. Additional984960cell direct-marker/ordinary-offset native fixture covers unchanged original client state for all kinds-2..35, four raw backend results and changed prior metadata. Actual helpers, indexed/-127 changed-prior variants, pixels/objects/live API/lifetime and full dispatch closure remain pending. Subsequent4924800cell matrix adds changed-prior direct/indexed markers and ordinary/-127offsets, including high-EAX/AX1 distinction. Selected original client branches now pass across those combinations; actual external helpers, pixels/arbitrary objects/lifetimes and complete live dispatch/scenario closure remain pending. Owned-value row routing and bounded queue-state composition are compared independently in WQUEUE.original-20261019. Primary/software kind9 placement is recovered as4df840 sprite stamps under synthetic580a90 in WTRAIL; actual raster pixels, writer/source ownership and complete live dispatch remain pending.",
       "complete": false,
       "entries": [
         {
           "value": 0,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 1,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 2,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 3,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 4,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 5,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 6,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 7,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 8,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 9,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 10,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 11,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 12,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 13,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 14,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 15,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263757,7 +264176,9 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "DRAW.world-kind-16",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263765,21 +264186,27 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "DRAW.world-kind-17",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 18,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 19,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -263787,112 +264214,144 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "DRAW.world-kind-20",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 21,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 22,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 23,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 24,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 25,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 26,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 27,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 28,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 29,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 30,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 31,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 32,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 33,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 34,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": "other-or-default",
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         }
       ]
@@ -263906,119 +264365,153 @@
         "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending. Additional984960cell direct-marker/ordinary-offset native fixture covers unchanged original client state for all kinds-2..35, four raw backend results and changed prior metadata. Actual helpers, indexed/-127 changed-prior variants, pixels/objects/live API/lifetime and full dispatch closure remain pending. Subsequent4924800cell matrix adds changed-prior direct/indexed markers and ordinary/-127offsets, including high-EAX/AX1 distinction. Selected original client branches now pass across those combinations; actual external helpers, pixels/arbitrary objects/lifetimes and complete live dispatch/scenario closure remain pending.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending. Additional984960cell direct-marker/ordinary-offset native fixture covers unchanged original client state for all kinds-2..35, four raw backend results and changed prior metadata. Actual helpers, indexed/-127 changed-prior variants, pixels/objects/live API/lifetime and full dispatch closure remain pending. Subsequent4924800cell matrix adds changed-prior direct/indexed markers and ordinary/-127offsets, including high-EAX/AX1 distinction. Selected original client branches now pass across those combinations; actual external helpers, pixels/arbitrary objects/lifetimes and complete live dispatch/scenario closure remain pending. Owned-value row routing and bounded queue-state composition are compared independently in WQUEUE.original-20261019. Primary/software kind9 placement is recovered as4df840 sprite stamps under synthetic580a90 in WTRAIL; actual raster pixels, writer/source ownership and complete live dispatch remain pending.",
       "complete": false,
       "entries": [
         {
           "value": 0,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 1,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 2,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 3,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 4,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 5,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 6,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 7,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 8,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state",
+            "RS.world-kind8-methods"
           ]
         },
         {
           "value": 9,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state",
+            "RS.world-kind9-trail"
           ]
         },
         {
           "value": 10,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 11,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 12,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 13,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 14,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 15,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -264026,7 +264519,9 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "DRAW.world-kind-16",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -264034,21 +264529,27 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "DRAW.world-kind-17",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 18,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 19,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
@@ -264056,112 +264557,144 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "DRAW.world-kind-20",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 21,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 22,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 23,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 24,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 25,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 26,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 27,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 28,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 29,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 30,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 31,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 32,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 33,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": 34,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         },
         {
           "value": "other-or-default",
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.queue-client-state"
+            "DRAW.queue-client-state",
+            "RS.world-dispatch-routing",
+            "RS.world-queue-state"
           ]
         }
       ]
@@ -281511,6 +282044,23 @@
       "evidence": [
         "DDR.startup-controls-20261019"
       ]
+    },
+    {
+      "id": "world-trail-bounds",
+      "level": "headless",
+      "scope": "Owned source-token trail placement composed with primary/software kind9 queue dispatch and checked typed call decoding, full helper returns/zero queue metadata and atomic malformed/work/overflow refusals. Synthetic downstream580a90 only; no raster pixels, physical source ownership or live installation.",
+      "behaviors": [
+        "RS.world-kind9-trail",
+        "NP.world-trail-admission"
+      ],
+      "tests": [
+        "tests/world-trail-test.cpp",
+        "tools/test-world-trail.py"
+      ],
+      "evidence": [
+        "WTRAIL.native-20261019",
+        "WTRAIL2.native-20261019"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -282163,8 +282713,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-queue-20261019.json",
-    "sha256": "6fdf62a98b214fa32d251bdd530c62ecc7dfeb58fe954e04567b00a52ff527b2"
+    "path": "research/runtime/coverage/source-index-world-trail-queue-20261019.json",
+    "sha256": "3d4fff5d12eabccfa0707e2e4d0cf0048c4497693b43bcaa6b427d475471705f"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -282189,6 +282739,11 @@
       "id": "WQUEUE.source-review-20261019",
       "path": "research/runtime/coverage/world-queue-source-review-20261019.json",
       "sha256": "56806013aa23149b2435ccf74ca54d0581555725e08c440f7251ce974c7ded4c"
+    },
+    {
+      "id": "WTRAIL2.source-review-20261019",
+      "path": "research/runtime/coverage/world-trail-queue-source-review-20261019.json",
+      "sha256": "7b213ecb26bd2e8c021d6af17d761d9fb2447aab13c423b2228c152b1212b2d9"
     }
   ]
 }

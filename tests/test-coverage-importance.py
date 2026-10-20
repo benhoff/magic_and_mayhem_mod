@@ -82,14 +82,14 @@ class ImportanceTest(unittest.TestCase):
         catalog = json.loads((ROOT / 'apps/coverage-ui/importance.json').read_text())
         result = importance_view(catalog, register, tracks)
         self.assertEqual(register, before)
-        self.assertEqual(len(result['entries']), 344)
+        self.assertEqual(len(result['entries']), 349)
         self.assertEqual(result['unrated'], [])
         behaviors = {b['id']: b for b in register['behaviors']}
         builds = {b['id']: b for b in register['builds']}
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        self.assertEqual(result['partial_counts'], {1: 91, 2: 9, 3: 16, 4: 51, 5: 33})
+        self.assertEqual(result['partial_counts'], {1: 91, 2: 9, 3: 16, 4: 51, 5: 35})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -106,17 +106,17 @@ class TrancheTest(unittest.TestCase):
                                  [{**e, 'freshness': 'historical'} for e in self.register['evidence']])
         self.catalog = json.loads((ROOT / 'apps/coverage-ui/importance.json').read_text())
 
-    def test_three_tranches_cover_all_critical_partials_once_without_execution_credit(self):
+    def test_frozen_tranches_and_new_partial_recovery_remain_explicit(self):
         before = copy.deepcopy((self.catalog, self.register))
         result = importance_view(self.catalog, self.register, self.tracks)
         plan = result['tranche_plan']
         self.assertEqual(plan['state'], 'planned')
         self.assertEqual(plan['selected_count'], 33)
-        self.assertEqual(plan['unplanned_critical'], [])
+        self.assertEqual(plan['unplanned_critical'], ['RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
         self.assertEqual([len(t['tasks']) for t in plan['tranches']], [11, 11, 11])
         tasks = [task for t in plan['tranches'] for task in t['tasks']]
         critical = {e['behavior'] for e in result['entries'] if e['weight'] == 5 and e['implementation'] == 'partial'}
-        self.assertEqual({task['behavior'] for task in tasks}, critical)
+        self.assertEqual({task['behavior'] for task in tasks} | set(plan['unplanned_critical']), critical)
         self.assertTrue(all(t['implementation'] == 'partial' for t in tasks))
         self.assertTrue(all(t['review_state'] in {'current','needs_review'} for t in tasks))
         for task in tasks:
@@ -159,7 +159,7 @@ class TrancheTest(unittest.TestCase):
         next(e for e in self.catalog['entries'] if e['behavior'] == 'AN.world-facing')['weight'] = 5
         result = importance_view(self.catalog, self.register, self.tracks)['tranche_plan']
         self.assertEqual(result['selected_count'], 33)
-        self.assertEqual(result['unplanned_critical'], ['AN.world-facing'])
+        self.assertEqual(result['unplanned_critical'], ['AN.world-facing', 'RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
 
     def test_first_tranche_briefs_gate_one_pilot_after_ten_controls(self):
         result = importance_view(self.catalog, self.register, self.tracks)
@@ -386,7 +386,7 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual(plan['unplanned_high'], [])
         self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 0)
         self.assertEqual(sum(e['weight'] == 4 and e['implementation'] == 'scoped'
-                             for e in result['entries']), 50)
+                             for e in result['entries']), 53)
         for task in tasks:
             execution = task.get('execution_result')
             if execution:

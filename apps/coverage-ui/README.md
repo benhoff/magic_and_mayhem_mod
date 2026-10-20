@@ -367,3 +367,12 @@ The script refuses to overwrite its output directory, exercises the real
 controls, compares displayed percentages to the current register, and retains
 desktop/mobile screenshots and a machine-readable result. No original game
 execution or source-status promotion is implied by UI verification.
+
+
+The World dispatch/kind8/queue/trail follow-up adds five bounded rendering
+contracts, bringing the importance catalog to349 entries. The two aggregate
+World dispatch/kind8 contracts now have partial native implementations; they
+remain critical and appear as newly unplanned partials alongside the retained
+33-task tranche plan. No task is silently inserted into that historical plan.
+Their scoped routing/method/state/trail suppliers retain separate comparison
+and live replacement boundaries; planning weights grant no execution credit.
