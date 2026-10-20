@@ -17,6 +17,50 @@ from campaign_input_observation import decode as decode_input_observation
 from campaign_render_oracle import oracle, validate_summon_capture
 
 
+def prepare_summon(click, center, settle_dialogue, blocked_cast, *, owner,
+                   wizard_slot, spell_cases, wait=time.sleep, spell_selector=None):
+    """Select the caster before either route admits its single positive cast."""
+    center()
+    settle_dialogue('after-center')
+    if spell_cases:
+        blocked_cast('invalid-target', owner, wizard_slot)
+    if spell_selector is not None:
+        spell_selector('zombie')
+        return
+    for selection in range(3):
+        click(523,575)
+        wait(.5)
+        # Retry only HUD selection consumed by a modal, never a positive cast.
+        if not settle_dialogue('summon-selection-'+str(selection),2):
+            return
+    raise RuntimeError('Spell selection repeatedly consumed by dialogue')
+
+
+def ground_step(actor, target):
+    """Bound the existing isometric ground projection, independent of path progress."""
+    dx,dy,dz=(target[k]-actor[k] for k in ('x','y','z'))
+    sx,sy=32*(dx-dy),16*(dx+dy-dz)
+    scale=max(1,abs(sx)/170,abs(sy)/110)
+    return sx/scale,sy/scale
+
+
+def combat_approach(center, read_state, *, wizard_slot, owner):
+    """Center first, then choose a bounded ground target from fresh observations."""
+    center()
+    actors = read_state()
+    actor = actors.get(wizard_slot)
+    if not actor or actor['type'] != 0 or actor['owner'] != owner or not actor['active']:
+        raise RuntimeError('Expected active player wizard for combat approach')
+    if actor['health'] <= 0:
+        raise RuntimeError('Player wizard died before verified combat')
+    enemies = [a for a in actors.values() if a['active'] and a['health'] > 0
+               and a['type'] == 10 and a['owner'] != owner]
+    if not enemies:
+        raise RuntimeError('No living enemy Redcap for combat')
+    enemy = min(enemies, key=lambda a: math.hypot(a['x']-actor['x'], a['y']-actor['y']))
+    return actor, enemy, ground_waypoint(actor, enemy)
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--rect', nargs=4, type=int, required=True)
@@ -171,9 +215,10 @@ def main():
         settle_dialogue('dialogue-check',12)
         before=capture('before-summon',True)
         validate_summon_capture(before,out,'0/15',resident_dialogue)
-        if args.spell_cases:
-            center();settle_dialogue('after-center');blocked_cast('invalid-target',owner,wizard['slot'])
-        select_spell('zombie');cast_before=read_rows(trace)[-1][0];cast_prior=state()
+        prepare_summon(click,center,settle_dialogue,blocked_cast,owner=owner,
+                       wizard_slot=wizard['slot'],spell_cases=args.spell_cases,
+                       spell_selector=select_spell)
+        cast_before=read_rows(trace)[-1][0];cast_prior=state()
         capture('selected-before-summon',True)
         cast_before=click(440,310,3,admit_cast=True)
         cast_prior=creatures([r for r in read_rows(trace) if r[0]<=cast_before])
@@ -223,20 +268,11 @@ def main():
             hits=damage_rows(rows,owner,extra_slots,cast_before)
             if hits:
                 result['combat']=dict(first_hit=list(hits[0]),hit_count=len(hits));capture('combat-damage');break
-            all_creatures=state();actor=all_creatures[wizard['slot']]
-            if actor['health']<=0:raise RuntimeError('Player wizard died before verified combat')
-            enemies=[a for a in all_creatures.values() if a['active'] and a['health']>0 and a['type']==10 and a['owner']!=owner]
-            if not enemies:raise RuntimeError('No living enemy Redcap for combat')
-            enemy=min(enemies,key=lambda a:math.hypot(a['x']-actor['x'],a['y']-actor['y']))
-            dx,dy=enemy['x']-actor['x'],enemy['y']-actor['y']
             if len(calibration)!=2:raise RuntimeError('No independent movement after bounded ground probes')
-            # Walking deltas depend on pathfinding/obstacles and elapsed travel;
-            # they establish input progress, not the camera transform. Keep the
-            # independent probes, then use the existing isometric projection.
-            waypoint=ground_waypoint(actor,enemy)
+            actor,enemy,waypoint=combat_approach(center,state,wizard_slot=wizard['slot'],owner=owner)
             record('approach-enemy',wizard=actor,enemy=enemy,logical_point=list(waypoint),
                    projection_policy='isometric-ground-v1')
-            center();click(*waypoint,3);time.sleep(3)
+            click(*waypoint,3);time.sleep(3)
             center()
             if math.hypot(dx,dy)<7:
                 if args.spell_cases and not result.get('ranged'):

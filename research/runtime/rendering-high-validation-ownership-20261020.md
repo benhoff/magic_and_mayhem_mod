@@ -41,3 +41,22 @@ Next steps are concrete acceptance work: isolate/profile the public original acc
 New results are under `research/runtime/high-validation-ownership-results-20261020/`; raw attempts remain pinned under the task output. The committed range `34730ab8..0a7410fd` was checked against Git parent/current SHA-256s and eleven exact receipt chains in `committed-history-review.json`. This retrospective check is separate from uncommitted changes and asserts neither a past gate pass nor new engine validation. The subsequent range `0a7410fd..3578ab10` was also checked: three incoming commits and 274 parent/current file versions have exact receipt chains in `committed-history-incoming-3578.json`. The combined summary records no missing committed-version chains. Unrelated concurrent World/lifecycle/critical work is preserved. Census, exact review receipts and audit output accompany this change; no global freshness or complete renderer acceptance is asserted.
 
 The exact pending receipt covers current uncommitted versions and explicit gaps without asserting execution for unrelated work. Fresh scoped validation is recorded separately where all registered stages have matching execution support. The working-tree gate also reviews inherited terrain/campaign changes; stale historical evidence and their unrenewed promotions remain visible rather than being rewritten or bypassed. This follow-up does not assert a passing global Git gate.
+
+
+### Rendering commit validation follow-up — 2026-10-20
+
+The renewed terrain cohort passes all seventeen original/native comparisons
+across the initial and serial retry reports, retaining three initial timeouts.
+Twenty normal and twenty sanitizer terrain/palette controls pass. The campaign
+window passes eighteen actual-widget journeys, twenty-nine checkpoint comparisons,
+119 CTests and sanitizer opening against its declared source pins. Its harness now
+creates the current objectives checkpoint through the production CLI and records
+generated compiler headers separately from repository sources. HIGH04 evidence
+retains the earlier failed attempts and original manifest bookends.
+
+Incoming publication/cache commits change shared dependencies of some historical
+High tranche 2/3 proofs. A source-only reconciliation preserves those original
+hashes and milestones without claiming current execution for the changed scope.
+Public World throughput, the physical summon/combat input precondition and original
+private-copy handoff remain acceptance gaps. No ordinary-session acceptance or
+global renderer equivalence is asserted by this commit.

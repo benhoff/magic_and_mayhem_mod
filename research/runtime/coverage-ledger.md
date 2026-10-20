@@ -19125,6 +19125,44 @@ all-writer, physical ownership, full startup/live replacement are not promoted.
 [Progress](next20-implementation-progress-20261020.md) and the three new immutable
 execution records keep those domains independent.
 
+### Rendering commit validation follow-up — 2026-10-20
+
+The renewed terrain cohort passes all seventeen original/native comparisons
+across the initial and serial retry reports, retaining three initial timeouts.
+Twenty normal and twenty sanitizer terrain/palette controls pass. The campaign
+window passes eighteen actual-widget journeys, twenty-nine checkpoint comparisons,
+119 CTests and sanitizer opening against its declared source pins. Its harness now
+creates the current objectives checkpoint through the production CLI and records
+generated compiler headers separately from repository sources. HIGH04 evidence
+retains the earlier failed attempts and original manifest bookends.
+
+Incoming publication/cache commits change shared dependencies of some historical
+High tranche 2/3 proofs. A source-only reconciliation preserves those original
+hashes and milestones without claiming current execution for the changed scope.
+Public World throughput, the physical summon/combat input precondition and original
+private-copy handoff remain acceptance gaps. No ordinary-session acceptance or
+global renderer equivalence is asserted by this commit.
+
+### Default physical summon/combat input repair — 2026-10-20
+
+The repaired default helper selects/centers the wizard before spell selection,
+and computes bounded isometric approach steps from fresh positions after
+centering. Short obstacle-limited path progress is retained as movement evidence
+and is no longer fitted as a camera transform. Six new controls and 23 existing
+campaign controls pass. New CINPUT evidence records an actual owned summon,
+native 0/15 -> 1/15 count, original 4,352-unit mana debit, two independent movement
+probes, 16 Zombie melee events and the same enemy's lethal 2 -> 0 transition.
+The wizard remains alive with 86 health. No game-state or balance writes occur.
+
+The full parent flow completes and quits normally without fallback/recovery,
+but fails the unchanged 19 FPS engine gate at 8.671475 FPS. Its failed report and
+three earlier isolated prelaunch failures remain retained. The new narrow
+HOST.campaign-physical-combat-driver policy has current default-route observation;
+the wider casting/combat/throughput contract and extended spell/portrait cases
+are not promoted. The ed556c8d..38fe6e3f history audit covers 412 parent/current
+file versions with no missing exact receipt chains, independently of this new
+uncommitted source change and without asserting a historical gate pass.
+
 ## Next twenty partial contracts, group 3 — 2026-10-20
 
 Supplied owned body null-display startup288+facing/inclusive SPR-bound descriptors
@@ -19296,3 +19334,32 @@ that incomplete merge from this current combined review. Broad all-writer/alias,
 physical backing, full game/hardware/FPS and live replacement remain separate;
 all twenty findings and remaining partial milestones are recorded in
 `research/runtime/third20-implementation-progress-20261020.md`.
+
+### Master integration of rendering and physical combat input — 2026-10-20
+
+The combined tree preserves the rendering/physical-input commits and master
+through native scene closeout 87105990, including owned animation and Low
+diagnostic work. Original evidence fingerprints and exact historical receipts
+remain append-only. Selected static review imports preserve their parent pins;
+combined links and changed sources remain pending where prior execution does
+not cover this tree. The default summon/combat driver retains its validated
+source fingerprints. Integration accounting and focused regression controls
+do not renew original comparison, broader acceptance or live replacement.
+
+### Final master integration of physical combat input — 2026-10-20
+
+The merge retains master through f0c4e03a, including the Low glyph
+validation and cleanup provenance, together with the verified rendering and
+summon/combat integration d30425f9. Evidence and receipt history are retained.
+The default driver source fingerprints remain unchanged; combined static
+review imports preserve their parent pins and explicit pending boundaries.
+No broader execution or replacement milestone follows from this merge.
+
+### Final master integration of physical combat input — 2026-10-20
+
+The merge retains master through 4e397ba2, including the Low glyph
+validation and cleanup provenance, together with the verified rendering and
+summon/combat integration d30425f9. Evidence and receipt history are retained.
+The default driver source fingerprints remain unchanged; combined static
+review imports preserve their parent pins and explicit pending boundaries.
+No broader execution or replacement milestone follows from this merge.
