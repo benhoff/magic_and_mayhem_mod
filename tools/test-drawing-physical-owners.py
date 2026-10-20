@@ -26,7 +26,7 @@ def main():
         env['MNM_DRAW_WINE_SOURCE_HANDOFF']='1'
         cases=[('0',0,None),('l',0,None),('z',0,None),('2',0,None),('1',99,'fault'),('3',99,12),('a',99,'handoff-40'),('p',99,'handoff-5'),('{',99,'handoff-15'),('c',99,'handoff-9'),('U',99,'handoff-3'),('V',99,'handoff-3'),('X',0,None),('Y',0,'preflight'),('Z',0,'preflight'),('[',0,None)]
     try:
-        with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
+        with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-i' if a.shared_fixture_prefix else '-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
         registry=run/'registry';registry.mkdir()
         registry_env=dict(env,MNM_TEST_PHYSICAL='W',MNM_DRAW_SESSION_DIRECTORY='Z:'+str(registry).replace('/',chr(92)))
         with (registry/'wine.log').open('x') as out:subprocess.run(['wine',str(binary)],env=registry_env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=30)

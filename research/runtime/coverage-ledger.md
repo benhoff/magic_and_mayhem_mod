@@ -19278,3 +19278,21 @@ checks cover the COPY/failure controls and repeated importance/reconciliation
 controls. Earlier 113 Medium source controls remain applicable to unchanged
 Medium implementation files. This correction does not renew full original/live,
 Quit, physical-loss or 19/60 FPS acceptance.
+
+
+## Third twenty: scene generation and native guard controls — 2026-10-20
+
+The remaining fifteen selected High partial contracts have fresh bounded controls
+in`T20.native-controls-20261020` and selected original ANI/SPR comparisons in
+`T20.original-controls-20261020`. Fixed stale decoded body/attachment references by
+binding scene resource generations and refusing after unload/reload before model
+or GPU changes.11native/2sanitizer tests,91SPR frames,195scene frames/390actor states,
+five retained complete-destination surface captures,150transform cases/17,550pixels
+and all six serial ownership suites pass. Failed prefix-update attempts remain
+retained; task-owned shared prefixes initialize without forced repeated updates.
+Incoming Medium source/evidence and Low/offline history are reconciled after
+shared merge state affected the first commit. Exact history receipts distinguish
+that incomplete merge from this current combined review. Broad all-writer/alias,
+physical backing, full game/hardware/FPS and live replacement remain separate;
+all twenty findings and remaining partial milestones are recorded in
+`research/runtime/third20-implementation-progress-20261020.md`.

@@ -28,7 +28,7 @@ def main():
         binary=run/'fixture.exe';subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(binary),str(run/'fixture.obj'),str(dll.parent/'packet.obj'),str(dll.parent/'kernel32.lib')],check=True)
         prefix,lock=prepare(ROOT,run,a.prefix_template,a.shared_fixture_prefix)
         wine_env=dict(env,WINEPREFIX=str(prefix),WINEDEBUG='-all',MNM_DRAW_SESSION_MODE='physical',MNM_DRAW_WINE_SUBMISSION='1',MNM_DRAW_WINE_TEXTURE_ENTRY='1',MNM_DRAW_WINE_RESOURCE_MAP='1',MNM_DRAW_WINE_RESOURCE_COPY='1',MNM_DRAW_WINE_SOURCE_DESCRIPTOR='1',MNM_DRAW_WINE_SOURCE_MAP='2',MNM_DRAW_WINE_BLIT_WORKER='1',MNM_DRAW_WINE_BLIT_PACKET='1',MNM_DRAW_WINE_SOURCE_VERSION='1',MNM_DRAW_WINE_GPU_COMPLETION='1',MNM_DRAW_WINE_SOURCE_RESERVATIONS='1')
-        with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-u'],env=wine_env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
+        with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-i' if a.shared_fixture_prefix else '-u'],env=wine_env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
         pe_cases=[]
         for case in ['0','1','2','3','4','5','6','7','off']:
             target=run/('entry-'+case);target.mkdir();trial=dict(wine_env,MNM_TEST_ENTRY='0' if case=='off' else case,MNM_DRAW_SESSION_DIRECTORY='Z:'+str(target).replace('/',chr(92)))

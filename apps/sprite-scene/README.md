@@ -149,3 +149,11 @@ python3 tools/test-sprite-visibility-scene.py \
 Use the run directories printed by the respective original comparison tools.
 See [visibility contract](../../research/runtime/sprite-visibility.md) and
 [native evidence](../../research/runtime/native-sprite-visibility-scene.md).
+
+Scene construction binds the current body and attachment resource revisions.
+Explicit unload or reload requires a new scene. Selection, ticks and drawing
+refuse retired generations before changing animation or accepted GPU output;
+`read()` can still inspect the last accepted image. Scene metadata no longer
+retains decoded body references across calls. The resource manager and renderer
+must outlive the scene. This is native lifetime policy, not original entity or
+allocation equivalence.

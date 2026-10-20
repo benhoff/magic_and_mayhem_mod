@@ -40,12 +40,16 @@ public:
     void setCreatureHealth(std::size_t actor,std::int32_t health);
     void setModeOneAttachment(std::size_t actor,bool enabled);
     static render::Image background();
-    const assets::Sprite& sprite() const{return sprite_;}
+    const assets::Sprite& sprite() const;
 private:
     assets::ResourceManager& resources_;
     assets::ResourceId body_;
-    const assets::Sprite& sprite_;
-    const assets::Animation& animation_;
+    std::uint64_t bodyRevision_=0;
+    std::vector<std::uint64_t> layerRevisions_;
+    const assets::VisualResource& bodyResource() const;
+    const assets::VisualResource& layerResource(std::size_t) const;
+    const assets::Animation& animation() const;
+    void validateResources() const;
     const assets::Sprite& layerSprite(std::size_t) const;
     std::vector<assets::AnimationRecord> sequence(std::uint32_t index) const;
     std::vector<reconstruction::NoCdAnimationPlayer> players_;

@@ -24,7 +24,7 @@ def main():
     prefix,lock=prepare(ROOT,run,a.prefix_template,a.shared_fixture_prefix)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all',MNM_DRAW_SESSION_MODE='physical',MNM_DRAW_WINE_SUBMISSION='1',MNM_DRAW_WINE_TEXTURE_ENTRY='1',MNM_DRAW_WINE_RESOURCE_MAP='1',MNM_DRAW_WINE_RESOURCE_COPY='1',MNM_DRAW_WINE_SOURCE_DESCRIPTOR='1',MNM_DRAW_WINE_SOURCE_MAP='2',MNM_DRAW_WINE_BLIT_WORKER='1',MNM_DRAW_WINE_BLIT_PACKET='1',MNM_DRAW_WINE_SOURCE_VERSION='1')
     try:
-        with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
+        with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-i' if a.shared_fixture_prefix else '-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
         results=[]
         for mode,reason,forwards in [('0',None,1),('7',None,1),('8',None,1),('1',8,0),('2',8,0),('3',3,0),('4',9,1),('5',8,0),('6',7,0),('9',2,0),('a',None,1),('b',None,1),('off',None,1)]:
             target=run/('case-'+mode);target.mkdir();trial=dict(env,MNM_TEST_VERSION='0' if mode=='off' else mode,MNM_DRAW_SESSION_DIRECTORY='Z:'+str(target).replace('/',chr(92)))

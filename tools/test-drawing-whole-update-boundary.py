@@ -25,7 +25,7 @@ def main():
     if a.update_routes:env['MNM_DRAW_UPDATE_ROUTES']='1'
     cases=[]
     try:
-        with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
+        with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-i' if a.shared_fixture_prefix else '-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
         for mode in ('g','s','t','r','o','p','a','n','e','c','f','w','z','d','q','b','l','j','h','i','k','m','u'):
             target=run/mode;target.mkdir();env.update(MNM_FIXTURE_MODE=mode,MNM_SCENE_DIR='Z:'+str(target).replace('/','\\'))
             with (target/'fixture.log').open('x') as out:execution=subprocess.run(['wine',str(binary)],env=env,stdout=out,stderr=subprocess.STDOUT,timeout=20)

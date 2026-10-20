@@ -22,30 +22,48 @@ const assets::VisualResource& animated(assets::ResourceManager& resources,const 
     return r;
 }
 }
+const assets::VisualResource& SpriteScene::bodyResource() const{
+    const auto& r=resources_.resident(body_);
+    if(r.revision!=bodyRevision_)throw std::runtime_error("Scene body resource generation changed");
+    return r;
+}
+const assets::VisualResource& SpriteScene::layerResource(std::size_t index) const{
+    const auto& r=resources_.resident(layerAssets_.at(index).resource);
+    if(r.revision!=layerRevisions_.at(index))throw std::runtime_error("Scene layer resource generation changed");
+    return r;
+}
+const assets::Sprite& SpriteScene::sprite() const{return std::get<assets::Sprite>(bodyResource().image);}
+const assets::Animation& SpriteScene::animation() const{return *bodyResource().animation;}
+void SpriteScene::validateResources() const{
+    (void)bodyResource();
+    for(std::size_t i=0;i<layerAssets_.size();++i)(void)layerResource(i);
+}
 const assets::Sprite& SpriteScene::layerSprite(std::size_t index) const{
-    return std::get<assets::Sprite>(resources_.load(layerAssets_.at(index).resource).image);
+    return std::get<assets::Sprite>(layerResource(index).image);
 }
 SpriteScene::SpriteScene(render::GlBlitter& renderer,assets::ResourceManager& resources,assets::ResourceId body,
                          const std::vector<std::uint32_t>& sequences,bool loop,ScenePlacement placement,std::vector<SpriteLayer> layers)
-    :resources_(resources),body_(std::move(body)),sprite_(std::get<assets::Sprite>(animated(resources_,body_).image)),
-     animation_(*resources_.load(body_).animation),placement_(placement),layerAssets_(std::move(layers)),loop_(loop){
-    const auto& animation=animation_;
+    :resources_(resources),body_(std::move(body)),bodyRevision_(animated(resources_,body_).revision),placement_(placement),layerAssets_(std::move(layers)),loop_(loop){
+    const auto& animation=this->animation();
+    const auto& bodySprite=sprite();
     if(sequences.empty() || sequences.size()>4)throw std::runtime_error("Scene needs 1..4 explicit ANI sequences");
     if(layerAssets_.size()>2)throw std::runtime_error("Scene supports at most two attachment layers");
+    for(const auto& layer:layerAssets_)layerRevisions_.push_back(animated(resources_,layer.resource).revision);
     for(auto sequence:sequences){
         if(animation.starts.size()<2 || sequence>=animation.starts.size()-1)throw std::runtime_error("Scene sequence index out of range");
         const auto first=animation.starts[sequence],end=animation.starts[sequence+1];
         if(first>=end || end>animation.records.size())throw std::runtime_error("Scene sequence extent invalid");
         std::vector<assets::AnimationRecord> records(animation.records.begin()+first,animation.records.begin()+end);
-        for(const auto& r:records)if(r.opcode==0 && (r.argument<0 || std::uint32_t(r.argument)>=sprite_.frames.size()))
+        for(const auto& r:records)if(r.opcode==0 && (r.argument<0 || std::uint32_t(r.argument)>=bodySprite.frames.size()))
             throw std::runtime_error("Animation sprite index outside paired SPR");
         players_.emplace_back(std::move(records));players_.back().start();
         actors_.push_back({sequence,int((actors_.size()+1)*512/(sequences.size()+1)),190,{},0,{}});
         queueInputs_.push_back({{std::int32_t((actors_.size()-1)*32),0,0,0},{{6,8,9}}});
         layerPlayers_.emplace_back();layerEvents_.emplace_back();
         health_.push_back(1);attachmentModes_.push_back(1);
-        for(const auto& layer:layerAssets_){
-            const auto& resource=animated(resources_,layer.resource);const auto& a=*resource.animation;const auto s=layer.sequence;
+        for(std::size_t layerIndex=0;layerIndex<layerAssets_.size();++layerIndex){
+            const auto& layer=layerAssets_[layerIndex];
+            const auto& resource=layerResource(layerIndex);const auto& a=*resource.animation;const auto s=layer.sequence;
             if(a.starts.size()<2 || s>=a.starts.size()-1 || a.starts[s]>=a.starts[s+1] || a.starts[s+1]>a.records.size())throw std::runtime_error("Layer sequence extent invalid");
             std::vector<assets::AnimationRecord> selected(a.records.begin()+a.starts[s],a.records.begin()+a.starts[s+1]);
             for(const auto& r:selected)if(r.opcode==0 && (r.argument<0 || std::uint32_t(r.argument)>=std::get<assets::Sprite>(resource.image).frames.size()))throw std::runtime_error("Layer sprite index outside paired SPR");
@@ -57,17 +75,19 @@ SpriteScene::SpriteScene(render::GlBlitter& renderer,assets::ResourceManager& re
     drawing_=std::make_unique<render::SceneRenderer>(renderer,resources_,background());
 }
 std::vector<assets::AnimationRecord> SpriteScene::sequence(std::uint32_t index) const{
-    if(animation_.starts.size()<2 || index>=animation_.starts.size()-1)throw std::runtime_error("Sequence index out of range");
-    const auto a=animation_.starts[index],z=animation_.starts[index+1];
-    if(a>=z || z>animation_.records.size())throw std::runtime_error("Sequence extent invalid");
-    std::vector<assets::AnimationRecord> result(animation_.records.begin()+a,animation_.records.begin()+z);
-    for(const auto& r:result)if(r.opcode==0 && (r.argument<0 || std::uint32_t(r.argument)>=sprite_.frames.size()))
+    const auto& animation=this->animation();
+    if(animation.starts.size()<2 || index>=animation.starts.size()-1)throw std::runtime_error("Sequence index out of range");
+    const auto a=animation.starts[index],z=animation.starts[index+1];
+    if(a>=z || z>animation.records.size())throw std::runtime_error("Sequence extent invalid");
+    std::vector<assets::AnimationRecord> result(animation.records.begin()+a,animation.records.begin()+z);
+    for(const auto& r:result)if(r.opcode==0 && (r.argument<0 || std::uint32_t(r.argument)>=sprite().frames.size()))
         throw std::runtime_error("Sequence references sprite outside paired SPR");
     return result;
 }
 std::vector<std::uint32_t> SpriteScene::directionalGroups() const{
+    const auto& animation=this->animation();
     std::vector<std::uint32_t> groups;
-    for(std::uint32_t base=0;std::size_t(base)+8<animation_.starts.size();base+=8){
+    for(std::uint32_t base=0;std::size_t(base)+8<animation.starts.size();base+=8){
         bool compatible=true;
         try{
             const auto first=sequence(base);
@@ -83,6 +103,7 @@ std::vector<std::uint32_t> SpriteScene::directionalGroups() const{
     return groups;
 }
 void SpriteScene::selectGroup(std::size_t actor,std::uint32_t base,std::uint32_t facing){
+    validateResources();
     const auto groups=directionalGroups();
     if(actor>=players_.size() || facing>=8 || std::find(groups.begin(),groups.end(),base)==groups.end())
         throw std::runtime_error("Actor/group/facing selection invalid");
@@ -90,6 +111,7 @@ void SpriteScene::selectGroup(std::size_t actor,std::uint32_t base,std::uint32_t
     players_[actor]=std::move(replacement);actors_[actor].sequence=base+facing;actors_[actor].event=0;
 }
 void SpriteScene::selectFacing(std::size_t actor,std::uint32_t facing){
+    validateResources();
     if(actor>=players_.size() || facing>=8)throw std::runtime_error("Actor/facing selection invalid");
     const auto base=actors_[actor].sequence-(actors_[actor].sequence%8);const auto groups=directionalGroups();
     if(std::find(groups.begin(),groups.end(),base)==groups.end())throw std::runtime_error("Actor has no verified directional group");
@@ -97,6 +119,7 @@ void SpriteScene::selectFacing(std::size_t actor,std::uint32_t facing){
 }
 SpriteScene::~SpriteScene()=default;
 void SpriteScene::advance(){
+    validateResources();
     for(std::size_t i=0;i<players_.size();++i){
         if(loop_ && !players_[i].state().active){players_[i].start();actors_[i].event=0;}
         else actors_[i].event=players_[i].tick();
@@ -110,6 +133,7 @@ void SpriteScene::setQueueInput(std::size_t actor,SceneQueueInput input){
 }
 void SpriteScene::setAnchor(std::size_t actor,int x,int y){actors_.at(actor).anchorX=x;actors_.at(actor).anchorY=y;}
 std::vector<SceneDraw> SpriteScene::drawQueue() const{
+    validateResources();
     std::vector<SceneDraw> draws;std::vector<reconstruction::SpriteQueueEntry> queue;
     const auto states=actors();const auto attached=layers();
     auto add=[&](std::size_t actor,std::uint32_t asset,std::uint32_t frame,reconstruction::AnimationOffset where){
@@ -129,7 +153,7 @@ std::vector<SceneDraw> SpriteScene::drawQueue() const{
     for(const auto& entry:queue)ordered.push_back(draws.at(entry.payload));
     if(visibility_){
         std::vector<reconstruction::SpriteVisibilityEntry> entries;
-        for(const auto& draw:ordered){const auto& source=draw.asset?layerSprite(draw.asset-1):sprite_;
+        for(const auto& draw:ordered){const auto& source=draw.asset?layerSprite(draw.asset-1):sprite();
             const auto& frame=source.frames.at(draw.frame);
             entries.push_back({reconstruction::decodeSpriteVisibility(frame.auxiliaryData[0],frame.auxiliaryData[1],frame.originX,frame.originY),
                 draw.anchor.x,draw.anchor.y,draw.kind,0,{}});}
@@ -166,6 +190,7 @@ std::vector<LayerState> SpriteScene::layers() const{
 }
 void SpriteScene::setCreatureHealth(std::size_t actor,std::int32_t health){health_.at(actor)=health;}
 void SpriteScene::setModeOneAttachment(std::size_t actor,bool enabled){
+    validateResources();
     auto& mode=attachmentModes_.at(actor);const unsigned next=enabled?1:0;if(mode==next)return;
     for(std::size_t l=0;l<layerAssets_.size();++l)if(layerAssets_[l].modeOne){
         if(enabled)layerPlayers_[actor][l].start();else layerPlayers_[actor][l].stop();layerEvents_[actor][l]=0;}

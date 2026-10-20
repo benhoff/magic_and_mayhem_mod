@@ -30,7 +30,7 @@ def main():
     prefix,lock=prepare(ROOT,run,a.prefix_template,a.shared_fixture_prefix);env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all')
     results=[]
     try:
-        with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
+        with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-i' if a.shared_fixture_prefix else '-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
         for name,expected in (('callbacks-outside-journal',0),('inverted-lock-negative',211)):
             target=run/name;target.mkdir();trial=dict(env,MNM_DRAW_SESSION_DIRECTORY='Z:'+str(target).replace('/',chr(92)))
             if expected:trial['MNM_TEST_INVERSE_LOCK']='1'
