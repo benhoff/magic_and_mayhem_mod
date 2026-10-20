@@ -57,6 +57,7 @@ unshaded ambiguity refusal remains its default.
 | 5 projected shadow | Same table layout; recovered alternating-row coverage and destination darkening |
 | 6 additive rectangle | No encoded frame, indexed flag zero; five DWORDs: width, height, red, green, blue increments |
 | 7 colour rectangle | No encoded frame, indexed flag zero; width/height/mode DWORDs then width*height RGB565 WORDs |
+| 8 additive sprite | Backend13 exclusively; indexed frame plus256 selected RGB565 WORDs; saturate source/destination channels |
 
 Non-displacement periods must be zero. Native displacement admits offsets
 0..16 and refuses sampling outside its owned canvas. Blend and shadow arithmetic
@@ -111,3 +112,61 @@ The exact payload is12+2*width*height bytes. X/Y are top-left anchors. It has
 no asset binding, coverage gaps or source/host pointers. Every owned WORD is
 opaque, including zero. Admission rejects SPR bytes, indexed flags, other
 backend combinations, geometry/mode/size mismatches or trailing bytes.
+
+Operation8 is a tagged extension retaining the v1 header and record layout.
+It requires backend13, indexed flag1, a normalized encoded SPR frame and exactly
+512palette bytes. It uses the existing signed anchors, per-record clip and asset
+identity checks; period must be zero. Shade and palette ordinal remain diagnostics
+because the payload already owns the selected table. Channel sums clamp to31/63/31;
+there is no rectangle increment wrap. Transparent runs retain the preceding
+destination. Older readers refuse operation8. This tag alone grants no live
+queue admission or original producer bypass.
+
+
+## Encoded-run outline extension
+
+Operation9/backend14 carries an indexed normalized frame plus the512-byte
+selected RGB565 palette. It follows the sprite record layout, has no pointers,
+and requires zero displacement period. The signed anchor minus frame origin
+and original frame width select the native operation: horizontal clipping
+uses integer half blend; otherwise only encoded opaque-run endpoints copy.
+Vertical clipping alone retains endpoint copying. Adjacent opaque runs with a
+zero transparent skip remain separate. Old readers refuse the unknown tag;
+backend14 on another operation and operation9 on another backend refuse.
+This format supports owned offline inputs; the live producer does not emit it.
+
+
+## Tinted run-pair extension
+
+Operation10/backend15 requires an indexed normalized frame, zero palette
+ordinal/phase, signed shade-127..127, and tight canvas rows(stride==width).
+The524-byte payload contains the selected256-WORD palette followed by three
+raw little-endian RGB DWORDs. Low bytes are scaled by(shade+127)/127, clamped
+to255 and converted toRGB565. Horizontal clipping selects palette half blend.
+Otherwise each encoded run writes the tinted pairs(start-1,start) and, for a
+run longer than one pixel,(end-2,end-1). These linear pairs may cross a row or
+clip edge; native admission refuses the entire frame if any pair is outside
+its owned canvas. Vertical clipping alone retains pair writes. Padded physical
+storage and wider shade arithmetic are refused/outside this input contract.
+This tagged extension is separate from ordinary operation9endpoints. Old
+readers refuse the unknown tag. The live producer does not emit it yet.
+
+
+## Explicit owned row-effect extensions
+
+Operation11/backend16 requires an indexed normalized frame and a selected
+512-byte RGB565 palette, followed by one signed DWORD shift per source row.
+Operation12/backend7 carries only the row shifts and uses the normalized frame
+as an opaque-run stencil; indexed source colours are not read. Record+60 equals
+the frame height for both operations. The exact payload is512+4*height or
+4*height respectively. Rows must be tight, shifts must be0..32 and signed
+anchor-minus-origin arithmetic must fit signed32. Phase, shade and palette
+ordinal are diagnostics: the payload already owns the effective input state.
+
+Operation11 clips source coverage before shifting the resulting linear writes.
+Operation12 preserves the original whole-run horizontal clipping rule and
+samples a frozen native canvas per draw. Both permit linear row/clip crossings
+inside owned storage. Admission derives and checks every covered write/read
+before mutation and refuses the whole frame on an out-of-range span. Original
+cached table addresses, object pointers and the private test sidecar are absent
+from this wire contract. These extensions grant no live producer admission.

@@ -43,8 +43,9 @@ int main(int argc, char** argv) try {
     (void)argv;
     if (argc != 1) throw std::invalid_argument("Expected no native inputs");
 #endif
-    constexpr std::uint32_t pairs[6][2]{{0x5c7420, 0x54ab00}, {0x5c73f0, 0x54aaa0},
-        {0x5c7408, 0x546540}, {0x5c7494, 0x54ab60}, {0x5c74b0, 0x54ab60}, {0x5c74cc, 0x54ac00}};
+    constexpr std::uint32_t pairs[9][2]{{0x5c7420, 0x54ab00}, {0x5c73f0, 0x54aaa0},
+        {0x5c7408, 0x546540}, {0x5c7494, 0x54ab60}, {0x5c74b0, 0x54ab60}, {0x5c74cc, 0x54ac00},
+        {0x5c7438,0x54ac30},{0x5c7450,0x54ac40},{0x5c7470,0x54ac40}};
     for (const auto& pair : pairs) for (bool present : {false, true})
     for (unsigned gate : {0u, 1u}) for (int player = -1; player <= 8; ++player)
     for (unsigned enabled : {0u, 0x80000000u}) for (unsigned seed : {0u, 0xa5u}) {
@@ -92,7 +93,7 @@ int main(int argc, char** argv) try {
         catch (const std::invalid_argument&) { ++refused; }
     }
     try { kind8Class(0, 0); } catch (const std::invalid_argument&) { ++refused; }
-    if (refused != 7) throw std::runtime_error("Unknown class pair admitted");
+    if (refused != 10) throw std::runtime_error("Unknown class pair admitted");
     Kind8Flags flags{};
     try {
         drawKind8(kind8Class(0x5c7420, 0x54ab00), flags, {}, -1, 0, 0,

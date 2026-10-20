@@ -32,6 +32,7 @@ primitive 9
 primitive 10
 primitive 11
 primitive 12
+primitive 13
 .globl _world_leave
 _world_leave:
     pushfl

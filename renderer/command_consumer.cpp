@@ -1,3 +1,4 @@
+#include "../protocols/include/mnm/world_raster_batch_v3.h"
 #include "commands.hpp"
 #include "command_state.hpp"
 #include "native_frame_recipe.hpp"
@@ -118,7 +119,7 @@ void CommandState::accept(const SurfaceCommand& c){
     case MNM_RENDER_STREAM_V4_OPERATION_WORLD:{
         const auto& s=get(w[0]);const auto gen=std::uint64_t(w[1])|(std::uint64_t(w[2])<<32);
         const auto nonce=std::uint64_t(w[3])|(std::uint64_t(w[4])<<32);
-        require(c.version>=4 && s.width==800 && s.height==600 && s.format.bits==16 &&
+        require(c.version>=4 && mnm_world_batch_extent(unsigned(s.width),unsigned(s.height),unsigned(s.width)) && s.format.bits==16 &&
           s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,31},"Resident World destination contract");
         require(worldGeneration!=UINT64_MAX && gen==worldGeneration+1 && nonce &&
           (!worldNonce || nonce==worldNonce),"Resident World generation/nonce");payload=20;break;}

@@ -285,7 +285,15 @@ def importance_view(catalog, register, tracks, root=ROOT):
                                                  priority=2,size=20,count=1)
         selected = [t['behavior'] for tr in result['low_tranche_plan']['tranches'] for t in tr['tasks']]
         native = {b['id'] for b in register['behaviors'] if b.get('subsystem') == 'native_rendering'}
-        expected = sorted(e['behavior'] for e in entries if e['weight']==2 and e['behavior'] in native)[:20]
-        if selected != expected:
-            raise ValueError('Low batch must select the first20 native rendering behaviors in UI order')
+        current_low = sorted(e['behavior'] for e in entries if e['weight']==2 and e['behavior'] in native)
+        # Preserve the reviewed batch when a merge adds an earlier sorting ID.
+        # New contracts need their own assignment and cannot displace old results.
+        cohort = catalog['low_tranche_plan'].get('selection_cohort', current_low)
+        if (not isinstance(cohort, list) or len(cohort) < 20 or
+                any(not isinstance(bid, str) for bid in cohort) or
+                cohort != sorted(set(cohort)) or not set(cohort).issubset(native)):
+            raise ValueError('Low batch needs an ordered, unique reviewed native cohort')
+        if selected != cohort[:20]:
+            raise ValueError('Low batch must select the first20 reviewed native rendering behaviors in UI order')
+        result['low_tranche_plan']['unplanned_low'] = sorted(set(current_low) - set(selected))
     return result

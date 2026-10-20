@@ -14,6 +14,7 @@ API u32 WIN WaitForSingleObject(HANDLE,u32);
 API int WIN QueryPerformanceCounter(unsigned long long*);
 API int WIN QueryPerformanceFrequency(unsigned long long*);
 static u16 pixels[800*600];
+static u32 width=800,height=600;
 static u32 locks,unlocks,holder,histories;
 static i32 WIN history(const void* data,u32 operation,u32 low,u32 high,u32 nonce_low,u32 nonce_high){
     if(data!=pixels || operation!=1 || low!=1 || high || nonce_low!=17 || nonce_high!=34)ExitProcess(24);
@@ -33,13 +34,13 @@ static void await_file(const char* name){
 }
 static i32 WIN lock(void* object,void* rect,u32* d,u32 flags,HANDLE event){
     if(!object || rect || event || flags!=1 || d[0]!=124 || GetLastError()!=0x77)ExitProcess(13);
-    ++locks;d[1]=1;d[2]=600;d[3]=800;d[4]=1600;d[9]=(u32)pixels;
+    ++locks;d[1]=1;d[2]=height;d[3]=width;d[4]=width*2;d[9]=(u32)pixels;
     d[19]=0x40;d[21]=16;d[22]=0xf800;d[23]=0x7e0;d[24]=31;d[26]=0x200;
     SetLastError(0x88);return 13;
 }
 static i32 WIN unlock(void* object,void* rect){
     if(!object || rect || GetLastError()!=0x77)ExitProcess(14);
-    ++unlocks;for(u32 i=0;i<800*600;++i)pixels[i]=0xcccc;
+    ++unlocks;for(u32 i=0;i<width*height;++i)pixels[i]=0xcccc;
     SetLastError(0x88);return 19;
 }
 static u32 WIN hold(void* unused){
@@ -52,17 +53,20 @@ static u32 WIN release(void* unused){
 }
 void start(void){
     RenderResidentHistoryForTest((void*)history);
+    char size_mode[8];if(GetEnvironmentVariableA("MNM_BIND_WIDTH",size_mode,sizeof(size_mode))==3 && size_mode[0]=='6'){width=640;height=480;}
     static void* table[33];table[25]=(void*)lock;table[32]=(void*)unlock;void** object=table;
     RenderInstallForTest(&object,14);u32 d[31]={124};SetLastError(0x77);
     if(((i32(WIN*)(void*,void*,u32*,u32,HANDLE))table[25])(&object,0,d,1,0)!=13 || GetLastError()!=0x88)ExitProcess(16);
+    const u32 invalid[4][3]={{640,600,640},{800,480,800},{641,480,641},{640,480,642}};
+    for(u32 i=0;i<4;++i){SetLastError(0x77);if(RenderResidentWorldV1((u32)pixels,invalid[i][0],invalid[i][1],invalid[i][2],1,0,17,34)||GetLastError()!=0x77)ExitProcess(26);}
     char mode[16];GetEnvironmentVariableA("MNM_BIND_CASE",mode,sizeof(mode));u32 reentrant=mode[0]=='r';
     HANDLE owner=0,releaser=0;
     if(!reentrant){owner=CreateThread(0,0,hold,0,0,0);if(!owner)ExitProcess(17);await_file("bind-held.bin");
     releaser=CreateThread(0,0,release,0,0,0);if(!releaser)ExitProcess(18);}else holder=1;
     u32 attempted=1;output("bind-attempt.bin",&attempted,4);
     unsigned long long begin,end,frequency;QueryPerformanceFrequency(&frequency);QueryPerformanceCounter(&begin);
-    u32 request[8]={(u32)pixels,800,600,800,1,0,17,34};
-    SetLastError(0x77);u32 bound=reentrant?RenderResidentReentryForTest(request):RenderResidentWorldV1((u32)pixels,800,600,800,1,0,17,34);
+    u32 request[8]={(u32)pixels,width,height,width,1,0,17,34};
+    SetLastError(0x77);u32 bound=reentrant?RenderResidentReentryForTest(request):RenderResidentWorldV1((u32)pixels,width,height,width,1,0,17,34);
     u32 error=GetLastError();QueryPerformanceCounter(&end);
     if(histories!=bound)ExitProcess(25);
     if(!reentrant){if(WaitForSingleObject(owner,2000) || WaitForSingleObject(releaser,2000))ExitProcess(19);

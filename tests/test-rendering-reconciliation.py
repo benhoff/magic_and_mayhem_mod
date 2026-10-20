@@ -90,6 +90,9 @@ class ActualReviewTest(unittest.TestCase):
         self.assertLessEqual({entry['disposition'] for entry in entries},
                             {'bounded_code','diagnostic_tooling','original_scope','umbrella_scope','acceptance_scope'})
         rows={row['behavior']:row for row in entries}
+        self.assertEqual(rows['RS.world-queue-state']['disposition'],'bounded_code')
+        self.assertIn('world_queue.hpp',rows['RS.world-queue-state']['code_witness']['path'])
+        self.assertEqual(rows['RS.world-kind9-trail']['disposition'],'bounded_code')
         self.assertEqual(rows['AN.world-facing']['recorded_implementation'],'partial')
         self.assertIn('native_providers.cpp',rows['AN.world-facing']['code_witness']['path'])
         self.assertEqual(rows['RS.displacement-final-word-read']['disposition'],'bounded_code')

@@ -7,7 +7,7 @@ API u32 WIN GetCurrentThreadId(void);
 API void* WIN GetProcAddress(HANDLE,const char*);
 static u32 batch_enabled,batch_count,batch_transfers,batch_pixel_base,batch_pixel_bytes;
 static u32 batch_guard_base,batch_guard_bytes,batch_guard_old,batch_guard_open;
-static u32 batch_reject,batch_owner;
+static u32 batch_reject,batch_owner,batch_width,batch_height,batch_stride;
 static i32 (WIN *batch_cpu_guard_world)(const void*);
 static i32 (WIN *batch_cpu_guard_world_v2)(const void*,u32);
 static u32 batch_cpu_guard_borrowed;
@@ -31,7 +31,9 @@ static int batch_init(void){
  batch_enabled=1;return AddVectoredExceptionHandler(1,(void*)batch_fault)!=0;
 }
 static int batch_start(struct Surface* s){
- batch_reject=1;if(!s||batch_guard_open||s->width!=800||s->height!=600||s->stride!=800)return 0;
+ batch_reject=1;if(!s||batch_guard_open||!mnm_world_batch_extent(s->width,s->height,s->stride))return 0;
+ /* Legacy continuous pixel replies retain their fixed800x600 envelope. */
+ if(continuous_map&&!continuous_resident&&s->width!=800)return 0;
  batch_reject=2;if(get((void*)0x6e1f88))return 0;
  const u32 n=s->stride*s->height*2,p=s->pixels;
  batch_reject=7;i32 borrowed=batch_cpu_guard_world_v2?batch_cpu_guard_world_v2((void*)p,1):batch_cpu_guard_world?batch_cpu_guard_world((void*)p):0;
@@ -40,11 +42,11 @@ static int batch_start(struct Surface* s){
  u32 m[7],end[7];batch_reject=4;if(VirtualQuery((void*)p,m,28)!=28||VirtualQuery((void*)(p+n-1),end,28)!=28||m[1]!=end[1]||m[5]!=end[5]||(m[5]!=4&&m[5]!=8&&!(batch_cpu_guard_borrowed&&m[5]==1)))return 0;
  batch_guard_base=p&~4095u;batch_guard_bytes=((p+n+4095u)&~4095u)-batch_guard_base;
  batch_reject=5;if(batch_guard_base<m[0]||batch_guard_bytes>m[3]-(batch_guard_base-m[0]))return 0;
- batch_count=0;batch_owner=GetCurrentThreadId();batch_surface=s;batch_pixel_base=p;batch_pixel_bytes=n;
+ batch_count=0;batch_owner=GetCurrentThreadId();batch_surface=s;batch_pixel_base=p;batch_pixel_bytes=n;batch_width=s->width;batch_height=s->height;batch_stride=s->stride;
  batch_reject=6;if(!VirtualProtect((void*)batch_guard_base,batch_guard_bytes,1,&batch_guard_old))return 0;
  batch_guard_open=1;producer_source_region_begin(batch_owner);batch_reject=0;return 1;
 }
-static int batch_identity(struct Surface* s){return s&&s==batch_surface&&s->pixels==batch_pixel_base&&s->width==800&&s->height==600&&s->stride==800;}
+static int batch_identity(struct Surface* s){return s&&s==batch_surface&&s->pixels==batch_pixel_base&&s->width==batch_width&&s->height==batch_height&&s->stride==batch_stride;}
 static int batch_accept(u32* r,struct Surface* s,u32 entry){
  if(!batch_guard_open||!batch_identity(s)||batch_count>=MNM_WORLD_BATCH_MAX||r[21]>1||r[3]!=s->id)return 0;
  u32* row=batch_rows[batch_count++];row[0]=r[1];row[1]=entry;row[2]=r[21];if(continuous_map){u32 hash=bypass_hash((u8*)r,96);for(u32 k=0;k<4;++k)hash=(hash^((get((u8*)r+r[0])>>(k*8))&255u))*16777619u;row[3]=hash;}else row[3]=bypass_hash((u8*)r,r[0]);++bypass_completed;return 1;

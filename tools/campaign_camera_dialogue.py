@@ -9,6 +9,13 @@ import time
 from campaign_render_oracle import oracle
 
 
+def dialogue_crop(width, height):
+    """Retain the reviewed heading crop at both admitted native World sizes."""
+    if (width, height) not in ((640, 480), (800, 600)):
+        raise ValueError('Unsupported camera dialogue canvas extent')
+    return (225*width//800, 90*height//600, 600*width//800, 270*height//600)
+
+
 class CameraDialogueGuard:
     def __init__(self, output, click, record, resident_world):
         self.root, self.prefix = output.parent, 'camera-'+output.stem
@@ -39,7 +46,7 @@ class CameraDialogueGuard:
             path = self.root/(name+'-'+route+'.png')
             hashes[route] = hashlib.sha256(path.read_bytes()).hexdigest()
             crop = self.root/(name+'-'+route+'-dialogue.png')
-            with Image.open(path) as image:image.crop((225,90,600,270)).save(crop)
+            with Image.open(path) as image:image.crop(dialogue_crop(*image.size)).save(crop)
             texts[route] = subprocess.run(['tesseract',str(crop),'stdout','--psm','6'],capture_output=True,
                                          text=True,check=True,timeout=10).stdout.strip()
         return dict(name=name, metadata=meta, image_sha256=hashes, texts=texts,

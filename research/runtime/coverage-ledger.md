@@ -18934,6 +18934,53 @@ world restoration, scene-preview lifecycle, physical audio/original-manager
 validation and original-engine/live replacement remain open. Historical evidence,
 original hashes, other contributors' work and gameplay balance are preserved.
 
+
+### Kind8 inherited class correction — 2026-10-19
+
+The observed5c73f0 class dispatches54aaa0, not the owner-gated546540. The
+active hook now admits that exact pair and refuses the erroneous pair. The
+original reference checks inherited shape+0x34 additive pixels and whole-object
+preservation alongside the other selected kind8 paths.54ab00alone writes the
++0x44 flag; both34-offset wrappers preserve flags. This corrects admission and
+its documented contract; constructors, writers, other classes/formats and full
+live drawing replacement remain separate work. New execution is recorded under
+K8FIX.original/native-20261019; historical reports are preserved.
+
+
+### Owned World dispatch and queue state — 2026-10-19
+
+New native models implement all three35-entry row tables, six checked kind8
+method/owner/flag wrappers and queue clip/traversal/metadata/postlude composition
+using owned values and injected backends. WQUEUE.original-20261019 records2432
+routing cells,960 method cases and50772 sampled queue-state cells matching
+unchanged original code, plus active kind8 hook checks and3 native CTests. The
+broad dispatch and virtual-object entries now link these partial implementations;
+concrete raster/helper effects, object writers/lifetime, other state domains and
+complete live drawing takeover remain pending. The first commit independently
+records the corrected class admission and selected native raster pixel parity.
+
+
+### Kind9 sprite trail helper — 2026-10-19
+
+4df840 is a sprite-stamp line placement loop. Its first four numeric arguments
+are endpoint coordinates; source/shade/ordinal pass to580a90 at every inclusive
+Bresenham point with strict greater-than tie handling. The native owned-value
+model matches42483 unchanged-original cases and the full final EAX return.
+WTRAIL.original/native-20261019 separately records placement and atomic native
+work/overflow admission with no partial stamps. Native budget limits are policy,
+not recovered original clipping. Concrete580a90 pixels, actual producer/writer
+inputs, source ownership/history and live installation remain pending. The
+existing original function inventory already covers the discovered helper range.
+
+
+The WTRAIL2 follow-up composes native row routing, checked seven-value call
+decoding and trail placement against the actual unchanged5002a0/4df840
+consumer/helper pair.84966 queue cells plus42483 direct cells compare902601
+stamp calls, full helper return and zero metadata/unchanged container effects.
+Four native controls reject malformed calls and excessive/overflow work before
+output. This supplies headless integration for the selected trail contract;
+580a90 pixels, physical source ownership, writers and live installation remain
+pending. Initial WTRAIL reports/source hashes and static review remain intact.
 ## Critical top-20 rendering fixes — 2026-10-19
 
 Reproduced and fixed native-only receipt/generation transitions and strict
@@ -19499,3 +19546,397 @@ surface acceptance stays false. No original artifacts or new game/Wine session
 are consumed. Hardware and whole-game caller/format/lifetime/loss/live evidence
 remain separate. The frozen twenty now have16 scoped implementations and four
 broader acceptance targets; historical evidence fingerprints are unchanged.
+
+Full live acceptance, prior intermittent pixel instability, unobserved GPU copy
+branches, broader original allocation/caller recovery and sustained60FPS remain
+pending; no raw stage, pacing, budget, deadline or acceptance threshold is
+relaxed. Hardware attempts and their limitations are retained separately. See
+`rendering-medium-fixes-20261019.md` and the54-entry findings inventory.
+
+
+### Native indexed additive sprite pixels — 2026-10-20
+
+The580a90 leaf used by kind10 and kind9 trails is saturated palette addition.
+Native RGB565 masked composition, owned World v1 operation8/backend13, pinned
+asset binding and preparation now implement that selected pixel contract.
+WADD.original/native-20261020 prospectively pins the source closure and compares
+4,195,710 new additive pixels plus1,048,960 existing kind8 regression pixels
+against unchanged original code:83 fixtures, zero differences. Every RGB565
+destination word and every red/green/blue channel pair is covered, alongside
+sparse clipping/overlap and independent palette-chain/shade selection. Original
+manifest bookends pass. Native drawing has no normal pixel readback.
+
+Original returned status, other masks, actual frame/palette writers and physical
+ownership, live observation/admission and original pixel bypass remain pending.
+The broad live replacement entry is unchanged. See
+[native additive sprite research](native-world-additive-sprite.md).
+
+
+### Selected distortion DWORD load/store completion — 2026-10-20
+
+Fresh DWORD.original-20261020 compares all18 original protected-page cases and
+13 native controls with the already implemented owned-span load/store model.
+The implementation stage is now scoped for this exact existing contract;
+comparison remains recorded and integration/replacement remain none. The first
+sandbox attempt stopped atSIGSYS before its original address witness and is
+retained separately; the successful host comparison supplies the proof.
+
+This completes the named final-WORD DWORD-read model. Actual live fault
+attribution, coordinate producers, other leaves and physical ownership remain
+separate. It does not widen native sampling or original pixel bypass.
+
+
+### Inherited kind8 resident caller repair — 2026-10-20
+
+The native resident whitelist omitted the54aaa0 continuation54aab2 even after
+the separate read-only class correction. It now accepts the pinned RET8
+continuation for additive producer tag26 through the tested shared predicate.
+K8CALL.native-20261020 checks32 continuations/39 caller-tag pairs and2534
+refusals, static method/vtable binding, generated-policy preservation with an
+authored empty queue, and both hook builds. Original manifest bookends pass.
+
+This is native caller-policy implementation and compilation evidence. No
+original instructions run in that test; existing primitive contracts retain
+their separate pixel/state proof. Natural live encounter, physical ownership,
+new original return equivalence and full-session replacement remain pending.
+See [caller admission research](native-world-kind8-caller-admission.md).
+
+
+The K8CALL2 follow-up preserves that initial report and additionally compares
+8316 unchanged54aaa0 low16 returns over the declared37x19 clipped/empty
+intersection domain. Every return is zero, matching the existing native policy.
+Both native predicate/generator controls and production/selftest builds repeat
+with prospective source claims. Full register/pixel equivalence, larger return
+domains, natural live reachability and replacement acceptance remain separate.
+
+
+### World encoded-run outline pixels — 2026-10-20
+
+The previously unimplemented57fe10/kind7 pixel leaf now has owned native
+World tag9/backend14 support. Native SPR preparation preserves encoded run
+endpoints in the existing coverage texture. Unclipped horizontal geometry copies
+endpoints; horizontal clipping half-blends all surviving opaque pixels. Signed
+anchors, vertical-only clips, adjacent zero-skip runs, palette zero and ordered
+overlap are preserved. Visual rebinding includes run segmentation.
+
+WOUT.original/native-20261020 prospectively pins the complete native/test
+closure.219 fixtures compare13,898,234 unchanged-original RGB565 words exactly,
+including136 new outline cases and the83 additive/kind8 regression cases.
+The136 outline cases also match through the separate renderer process. Worker,
+atlas/non-atlas, malformed tag/backend refusal and covered displacement bounds
+pass. Original manifest bookends pass. Existing WADD evidence remains immutable;
+WOUT records its current-code regression result under new IDs. The new protocol
+source makes the separate K8CALL2 closure historical; no natural-live claim is
+inferred from either result.
+
+Original return/register state, other masks,581200 tint,580260 source-write
+shifts, real source/object ownership, live producer admission and complete-session
+release gates remain pending. Broad World dispatch and live replacement stages
+remain partial/none. See [run-outline research](native-world-run-outline.md).
+
+
+### Tinted World run-pair pixels and owned writes — 2026-10-20
+
+The581200leaf used by kinds12..14 now has native owned tag10/backend15 input
+and cached two-pixel rectangle rendering. It writes(start-1,start) and, for
+runs longer than one pixel,(end-2,end-1). Horizontal clipping instead uses the
+selected palette half blend. The bounded low-byte RGB/shade conversion and
+linear row/clip crossings are recovered separately from NP.tint-owned-canvas-writes,
+which deliberately refuses negative/past-end pairs and non-tight wire rows
+before mutation. Original arbitrary physical writes are not admitted.
+
+WTINT.original/native-20261020 prospectively pins all four selected contracts
+and the complete compiler/test closure.480original canvases compare13,967,543
+RGB565 WORDs exactly;397outline/tint/distortion cases also match through the
+separate renderer process. Tests cover255bounded shades, every low-byte RGB
+value, sparse ordered clips, atlas/worker paths and atomic span/wire refusals.
+The original oracle now uses596490for backend9 with clipped-top normalization,
+including indexed masks; a new original/native regression exercises that path.
+Older failed endpoint/compile attempts and successful intermediate comparisons
+remain preserved with their original hashes in a verified archive under
+working/tests/tint-pair-retained-20261020. No old execution report is refreshed.
+Returned registers/status, wider shades, padded physical storage, other leaves,
+actual writers/object lifetime and live admission/replacement remain pending.
+See [tinted pair research](native-world-tint-outline.md).
+
+### Fresh kind8 observation and an open World replay — 2026-10-20
+
+K8OBS.live-20261020 observes four known class/method pairs in a fresh
+original-active map1/item15run:27921rows across138queues, with one sampled
+owned World queue and no observer refusal. It does not witness54aaa0, infer
+first-table mode at that entry, or identify the old journal-free manual queue13.
+A preceding160queue passive run found no kind8 samples. The attempted drag
+helper failed at window retirement, so no action attribution/acceptance follows.
+
+The new captured queue matches native/private-original pixels from zero.
+Replaying the recorded prior canvas still differs from the actual after-canvas
+at88cyan WORDs. Precise copy-entry and direct-distortion reference probes leave
+that count unchanged. The visible marker-shaped pixels do not identify their
+writer or establish a physical alias/cadence cause. Preserve the open all-writer
+and source-ownership boundary; this is not a new complete/live equivalence result.
+The read-only success and failed replay are separate registered records; their
+raw captures, helpers and probes are retained in the verified archive under
+working/tests/kind8-live-diagnostics-20261020. Broad kind8, World and complete live
+replacement statuses are unchanged.
+
+
+### 2026-10-20: owned source/sampling row effects
+
+The remaining580260source-write and5806f0amplitude9..16pixel paths now have
+bounded native implementations over explicit effective per-source-row shifts.
+WROWS records486 unchanged-original/native canvases and1251666 exact RGB565
+WORDs with zero differences; all486 repeat through the separate render process.
+World decoding, resource binding, worker descriptors, atlas/non-atlas GPU paths,
+linear row/clip crossings, unsigned phase wrap and per-draw history pass.
+Native range policy validates every covered read/write before mutation, refusing
+past-end requests while preserving the completed frame. A shared World sprite
+conversion repairs the worker's dropped descriptor and preserves whole-run flags
+across all assembly paths. See[native row-effect evidence](native-world-row-effects.md).
+
+The original references consume authored frozen tables/amplitude/phase; native
+inputs carry effective row shifts. Lazy table initialization and overlapping
+cache writers, returned status/registers, original source lifetime/physical alias
+proof and live producer admission remain pending. Operations11/12 are owned
+wire extensions; no live producer emits them yet. Broad World/kind8 scopes stay
+partial and complete live drawing replacement stays unimplemented. The88cyan
+live replay difference remains open and is independent of these pixel results.
+
+WROWS.regression-original/native-20261020 refreshes the earlier additive, outline
+and tinted-pair contracts after these shared changes:480original canvases,
+13967543 exact WORDs and397isolated render-process canvases still match. Prior
+reports retain their original fingerprints and become historical where sources
+changed. The new row scopes add three reviewed bounded implementations; the
+importance catalog has359entries and the static review has216entries.
+
+
+### 2026-10-20: missing clipped direct-word observation repaired
+
+The World observer now traces both independent597086and596cb8direct-word
+bodies, with separate checked trampolines and owned copy/backend8inputs. The
+new diagnostic run selected596cb8at6903dc; unknown selector values refuse.
+WCOLOR.live-20261020 retains bounded selected-colour checkpoints and a completed
+private-Xvfb input journal, without semantic action/class attribution.
+WWORD.original/native-20261020 compare all480000WORDs of a1318draw captured
+World: native zero base, private original zero base and live after all agree.
+Omitting just its two direct-word records causes88mismatches. ABI, malformed
+source/selector and read-only scan/stream controls pass.
+
+The older run-d8agynel snapshot already contains the two omitted kind31word
+rows. Strict unique-neighbour reconstruction inserts these owned inputs without
+changing any historical capture. WWORD.frozen-original-20261020 compares480000
+exact native/private-original zero-base WORDs and480000original-prior/live WORDs.
+It resolves the previous88-pixel queue-contribution gap:48cyan and40other
+marker colours. Its native zero base still differs from the complete live
+canvas, so native prior-history closure remains independent. Original before/
+after pixels are never native inputs. Historical selector identity and the
+journal-free manual queue13kind remain unknown. Broad World/kind8scopes stay
+partial and complete live replacement stays none.
+
+The new private observer header is an explicit compiled dependency of affected
+contracts. Historical evidence hashes/statuses are preserved; only the new
+observation/word-entry scopes receive current execution claims. Older static
+reviews may remain historical after those dependency changes. Source census
+review and renewed importance hashes do not assert new execution for them.
+
+
+### 2026-10-20: three empty kind8 virtual methods
+
+Nine exact class/method pairs now share one build-specific matcher. The three
+new pairs5c7438/54ac30and5c7450+5c7470/54ac40 clearAX/RET8 without object
+loads/writes or raster calls. WEMPTY.original/native-20261020 compare1440method
+cases, including480empty cases, with three native CTests and active PE32 ABI
+checks. Production admission accepts an exact empty-class four-byte object
+bordering a protected page; existing pixel-class guards remain72/100bytes.
+The original complete queue was not run with this protected-page object.
+
+K8EMPTY regressions independently compare17primitive fixtures/1048960WORDs and
+a new1361draw World/480000WORD canvas. Nativezero, privateoriginalzero and
+liveafter agree; removing9word records produces531differences. Historical1505
+draw repair still separates exact zero-base parity from original-prior/live
+parity and does not close native history. Live samples do not establish natural
+empty-class reachability. Construction/lifetime, other classes/modes, original
+upperEAX/flags and full replacement/release gates remain open. See
+[narrow method proof](native-world-kind8-empty.md). Historical evidence and
+static source hashes remain unchanged; new shared-header dependency accounting
+keeps unrelated validation pending. The review journal was losslessly sharded
+with identical flattened receipt values/order, not an engine validation step.
+
+
+### 2026-10-20: owned effect producers and exact low16 completion
+
+The resident producer now has checked580a90/57fe10/581200/580260entries and
+large-period5806f0owned rows. V3/V4/V5 carry tagged operations8..12and backend
+13/14/15/16/7 with selected palette/tint/effective rows, using canonical native
+World decoding. Eleven exact direct continuations are retained independently of
+observed reachability; unknown/helper callers refuse. Default V1 keeps53sites.
+
+WFX.returns-original-20261020 executes67421effect calls over966authored canvases
+with low16zero. WFX.native/hook-native-20261020 compare948GPU canvases and
+14169546original WORDs through producer/source references, plus five actual PE32
+entry paths with exact cleanup/flags/x87/SSE/LastError, seven malformed refusals
+and an unchanged protected original canvas. Caller controls cover43addresses/
+50pairs/3381refusals; inherited8316return cases remain valid in a fresh result.
+
+Original empty-frame preparation with unreadable canvas/palette inputs checks
+source amplitudes1..16, wave256DWORDs/groups0..15 and17cached calls. Native
+inputs copy actual effective offsets, rather than generating an ideal sine.
+Wavegroup16and following storage are not written by this initializer; effective
+values still need the explicit0..32bound. No larger writer/lifetime claim follows.
+
+These are scoped original/headless/synthetic-entry results. Natural effect-route
+reachability, kind9/helper caller admission, class/source lifetime, other modes,
+native prior history, player journeys, performance and full release gates remain
+open. Broad World/kind8stay partial and complete live replacement stays none.
+See [effect producer proof](native-world-effect-producers.md) and
+[low16 model](native-world-effect-returns.md). Historical evidence/source hashes
+remain unchanged; compiled-header reconciliation does not refresh unrelated work.
+
+The effect producer direct-continuation scope is primary/auxiliary. Its earlier
+primary/software wording was a table-label error; the software table is not
+admitted by these eleven continuations. WFX2 repeats the complete948-canvas,
+67421-draw producer/entry/table suite under the corrected prospective contract.
+WFX V4 remains historical after that scope correction; original source hashes
+and reports are preserved. No broader table-mode or live replacement claim follows.
+
+## Context-bound kind9 raster continuation (2026-10-20)
+
+WTRCTX admits five exact580a90 internal returns only with the checked4df840
+stack/prologue and primary/software enclosing queue return.127449 original
+queue/helper cases cover902601 synthetic raster calls and all five paths; native
+10context pairs/2014controls include protected short frames and preserve ordinary
+callers. Generator regeneration retains all seven context bindings. WFX3 repeats
+the948-canvas/14169546-WORD effect producer/entry/table regressions with current
+shared sources. This is scoped headless caller admission; actual helper pixels,
+Windows query equivalence, natural reachability, source lifetime, other table
+callers and complete live release gates remain separate. Umbrella World/kind8
+remain partial and complete live replacement remains none.
+
+## Bounded640/800resident World admission (2026-10-20)
+
+A verified private clean No-CD installation exposes three fixed800x600guards
+in producer batch admission, exported owned-Lock binding and frontend World
+import. Each now admits exactly tight RGB565640x480and800x600with the same
+predicate. Queue identity captures width/height/stride; existing format, owner,
+source, nonce/generation and protection controls remain. Legacy continuous
+pixel replies retain800x600and refuse640before accessing their fixed slot.
+
+WEXT passes host batch/reply,27bad manifests per extent, actual protected640
+PE32entry/four bad extents/five midqueue changes, public binds at both extents,
+and exact GPU World/HUD/copy composition with no ordinary World readback.
+WFX4 repeats948canvases/67421draws/14169546original WORDs and five entry paths;
+WTRCTX2 repeats127449unchanged-original cases/902601synthetic leaf calls and
+2014native caller controls. Original manifest bookends pass.
+
+The first complete640smoke reaches13verified World returns/imports and normal
+Quit with zero World readback; it fails the ordinary64World minimum. The next
+reaches192Worlds but the known SelectZombieSpell tutorial blocks Mini, outside
+the Hermes-only automation. Neither is a passing campaign. Apprentice retry
+outcome is retained separately. Bulk evidence/builds use an isolated RAM
+workspace/private temporary namespace after/tmpquota/Xvfb failures.
+Umbrella World/kind8remain partial; full live replacement remains none.
+
+The Apprentice retry run-_nhbzgvo completes328balanced verified World returns,
+imports, native menu/resume and normal Quit with zero optional forwards and no
+World pixel readbacks. It fails the unchanged20FPS gate at8.023software-GL FPS;
+299explicit typed CPU materializations are tracked separately. This is retained
+as failed performance acceptance, with the new extent integration still headless.
+No release or full replacement status is promoted.
+
+## Selected kind8 Flies/Cure sprite method models (2026-10-20)
+
+K8SPR recovers selected5c74e4/5492b0and5c74fc/549730control/data flow with
+owned player/bank/frame tokens and explicit external random/raster callbacks.
+72000unchanged-original cases match13248random calls,3936word calls,3552generic
+calls and1184clipped fallbacks;64512cases have no raster. Both methods retain
+objects and clearAX. Eight native controls pass. The original RNG and raster
+implementations, native positive4096frame bound, constructors/writers/lifetime,
+negative original counts/malformed pointers, highEAX and natural queue reachability
+remain separate. Class/caller runtime admission stays refused pending its own
+versioned owned-source and active-entry proof. Broad World/kind8remain partial.
+
+The late hardware extent attempt run-lizqdk07uses verified NVIDIA/zink with
+192balanced World returns/imports and no World readback. Physical Mini/readiness
+automation fails, so it remains a failed campaign, separately retained after
+the4aaac46aextent commit. No complete live replacement promotion follows.
+
+Current K8SPR3 proof includes reproducible constructor/slot/bank/resource byte
+checks inside manifest bookends and full method-range hashes/entry anchors.
+Explicit5492b0..549375and549730..549815range exceptions preserve the missing
+Ghidra function-body gap. Earlier source-bound comparisons remain historical
+after driver/provenance extensions; their bytes/hashes are retained.
+
+## Selected primary sprite admission (2026-10-20)
+
+K8SADM admits only Flies5c74e4/5492b0and Cure5c74fc/549730under the pinned
+first-table virtual CALL5006af/return5006b2. Six contextual leaf PCs/ten tag
+pairs are separate from ordinary43PC/50pairs and remain refused by the legacy
+per-draw pixel reply path. Class/table/root/stack/signature, mode/auxiliary,
+player/owner/bank/format/source selector and protected batch owner guards apply.
+The observer recognizes the same exact roots; unknown modes/classes stay open.
+
+144000original primary/method traces match17344guarded callbacks. Actual PE32
+Win32 protection/query checks pass ten class calls/five ABI entries/708controls,
+including628protected short spans. The CPU World canvas remains inaccessible
+and unchanged. Two independent authored sources produce15owned CPS rasters;
+the native decoder and actual canonical batch yield GPU output equal to all
+480000original destination WORDs, with no ordinary readback. K8SPR4 repeats the
+72000case method model after sharing class metadata. Original manifest bookends
+and source stability pass; original pixels never initialize native history.
+
+This proves a bounded controlled primary fragment and owned source adapter,
+not natural class reachability, complete queue consumer, original RNG, source/
+object construction or lifetime, other modes/classes, physical aliases, full
+live drawing or release performance. Broad World/kind8remain partial and full
+live replacement remains none. Shared historical effect/trail/extent evidence
+is preserved after dependency changes; their full current-code pixel/campaign
+validation remains pending despite the common entry fixture regression.
+
+##640Hermes crop and hardware release journey (2026-10-20)
+
+CAMCROP fixes the fixed800heading crop used on640native captures. All four
+retained failed hardware images read “rlermes” with the old crop and “Hermes”
+with the correctly scaled rectangle. Production capture/OCR replay and four
+authored speaker/staleCPUcontrols pass, with four unsupported extents refused
+before quiet classification. Eleven readiness/transition unit methods pass.
+Exact old failed context/journal/eight PNG inputs are retained reproducibly.
+
+The new NVIDIA/zink run-ys11j89bcompletes internal native NewGame/Enter,
+two36second camera phases with all three selected bodies/four fresh turns,
+Mini Cancel, QuitNo/resume, QuitYes/report/Main exit and normal retirement.
+877Worldreturns/imports remain balanced and ordinary World/native/RGBA readbacks
+are zero. No positive camera-helper Hermes dismissal occurs in that interval;
+headless old-image recognition and live positive reachability stay separate.
+The unchanged20FPSgate fails at9.3659engineFPS, so overall success and
+flow_completed remain false. Source bookends/Wine shutdown pass. Broad camera
+readiness retains historical status/current proof pending; full native drawing
+replacement and release acceptance remain none. The next measured blocker is
+native World throughput, while unknown World/kind8modes/classes/writers remain
+separate unresolved original behavior.
+
+
+## Native rendering branch integration into master (2026-10-20)
+
+The rendering branch91869fc8 is merged with master825a1fee, preserving strict
+private source ownership, portable surface corpus work, completed scoped native
+implementations and all incoming World queue/effect/extent/kind8/Hermes work.
+The combined observer uses shared nine-class metadata and selected two-sprite
+roots; the queue comparison retains master's high-EAX return matrix alongside
+incoming queue-state and empty-method controls. The Low batch remains bound to
+its original23-contract cohort; the newly merged colour observation appears as
+unplanned Low work without displacing historical task results.
+
+The [incoming history review](coverage/rendering-master-incoming-history-20261020.json)
+checks40commits and2424first-parent file hash transitions across both lineages.
+Every non-journal transition has an exact existing receipt; no retrospective
+receipt or past-gate inference is needed. Parent evidence and source fingerprints
+remain unchanged. Static review ownership is reconciled once per behavior, with
+added dependencies explicitly pending rather than renewing old execution.
+
+Merged native dispatch, kind8, queue-state and trail CTests pass, and production
+and selftest PE32 observers compile. Dashboard/dialogue/reconciliation controls
+and the staged coverage gate are checked on the final combined tree. These are
+merge regression checks; broader original pixel, captured World, physical alias,
+live integration and sustained performance proof remain independently pending.
+Broad World/kind8 contracts remain partial and full live drawing replacement
+remains none; the retained877-World hardware journey still fails the20FPSgate.
+The unrelated dirty master work is excluded from the merge commit and preserved.

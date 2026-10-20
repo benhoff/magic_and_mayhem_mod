@@ -89,7 +89,7 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        self.assertEqual(result['partial_counts'], {1: 91, 2: 9, 3: 16, 4: 36, 5: 32})
+        self.assertEqual(result['partial_counts'], {1: 91, 2: 9, 3: 16, 4: 34, 5: 32})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -111,7 +111,7 @@ class TrancheTest(unittest.TestCase):
         result = importance_view(self.catalog, self.register, self.tracks)
         tasks = result['low_tranche_plan']['tranches'][0]['tasks']
         native = {b['id'] for b in self.register['behaviors'] if b['subsystem']=='native_rendering'}
-        expected = sorted(e['behavior'] for e in result['entries'] if e['weight']==2 and e['behavior'] in native)[:20]
+        expected = self.catalog['low_tranche_plan']['selection_cohort'][:20]
         self.assertEqual([t['behavior'] for t in tasks], expected)
         self.assertEqual(len(tasks),20)
         self.assertEqual({t['reviewed_implementation'] for t in tasks},{'scoped','partial'})
@@ -122,6 +122,18 @@ class TrancheTest(unittest.TestCase):
             self.assertTrue(work['next_steps'])
             self.assertIn(work['acceptance'],{'pending','acceptance_failure'})
         self.assertEqual(self.register,before)
+
+    def test_low_batch_retains_reviewed_cohort_when_new_contract_sorts_first(self):
+        result = importance_view(self.catalog, self.register, self.tracks)
+        plan = result['low_tranche_plan']
+        self.assertEqual(plan['tranches'][0]['tasks'][0]['behavior'], 'NR.drawing-actions')
+        self.assertIn('NP.world-colour-observation', plan['unplanned_low'])
+        self.assertNotIn('NP.world-colour-observation', plan['selection_cohort'])
+        for cohort in [[], ['NR.drawing-actions'] * 20, ['invented'] * 20]:
+            catalog = copy.deepcopy(self.catalog)
+            catalog['low_tranche_plan']['selection_cohort'] = cohort
+            with self.subTest(cohort=cohort), self.assertRaises(ValueError):
+                importance_view(catalog, self.register, self.tracks)
 
     def test_low_batch_cannot_skip_reorder_or_duplicate_a_contract(self):
         for change in ('reverse','duplicate','skip'):
@@ -418,14 +430,14 @@ class TrancheTest(unittest.TestCase):
         completed = {e['behavior'] for e in json.loads((ROOT /
             'research/runtime/coverage/native-implementation-completion-20261020.json').read_text())['entries']
             if e['decision'] == 'scoped_implementation_complete'}
-        self.assertEqual({t['behavior'] for t in tasks}, expected | completed)
-        self.assertEqual({t['behavior'] for t in tasks if t['implementation'] == 'scoped'}, completed)
+        self.assertEqual({t['behavior'] for t in tasks}, expected | completed | {'RS.displacement-final-word-read'})
+        self.assertEqual({t['behavior'] for t in tasks if t['implementation'] == 'scoped'}, completed | {'RS.displacement-final-word-read'})
         self.assertTrue(all(t['reviewed_implementation'] in {'partial', 'none'} for t in tasks))
         self.assertEqual(len(tasks), 51)
         self.assertEqual(plan['unplanned_high'], [])
         self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 0)
         self.assertEqual(sum(e['weight'] == 4 and e['implementation'] == 'scoped'
-                             for e in result['entries']), 53 + len(completed))
+                             for e in result['entries']), 72 + len(completed))
         for task in tasks:
             execution = task.get('execution_result')
             if execution:

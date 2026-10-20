@@ -6,7 +6,7 @@
 namespace mnm::render {
 using SpriteColourTable=std::array<std::uint16_t,256>;
 struct PreparedSpriteFrame {
-    Image pixels,mask;
+    Image pixels,mask; // coverage:0 transparent,1 interior,3 encoded-run endpoint
     std::int32_t originX=0,originY=0;
     std::optional<SpriteColourTable> palette={}; // indices when present, RGB565 otherwise
 };
@@ -33,6 +33,8 @@ public:
     void draw(SurfaceId destination,int anchorX,int anchorY,const SpriteComposite& composite={});
     // Native destination clipping policy; viewport must lie within destination.
     void drawClipped(SurfaceId destination,int anchorX,int anchorY,Rect viewport,const SpriteComposite& composite={});
+    // Native source coordinates avoid re-encoding signed legacy origins.
+    void drawRegion(SurfaceId,Rect source,int x,int y,const SpriteComposite& composite={});
     bool empty() const {return width_==0;}
 private:
     std::optional<PreparedSpriteFrame> pending_;

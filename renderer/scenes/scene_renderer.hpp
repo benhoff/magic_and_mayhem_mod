@@ -1,5 +1,6 @@
 #pragma once
 #include "resource_cache.hpp"
+#include "../sprites/row_effect.hpp"
 #include <chrono>
 
 namespace mnm::render {
@@ -18,6 +19,7 @@ struct SceneDraw {
     std::optional<AdditiveRectangle> additive{};
     std::optional<ColourRectangle> colourRectangle{};
     bool wholeOpaqueRunClipping=false;
+    std::optional<SpriteRowEffect> rowEffect{};
 };
 struct SceneLimits {
     std::size_t draws=12320;
@@ -84,7 +86,7 @@ private:
     SurfaceId colourAtlas_=0,colourMask_=0;
     std::uint64_t colourAge_=0;
     ColourRectangleCacheStats colourStats_;
-    void drawColourRectangle(const Image&,Rect,int,int,const SpriteComposite&);
+    void drawColourRectangle(const Image&,Rect,int,int,const SpriteComposite&,bool forceCache=false);
     void validate(const SceneDraw&);
     std::optional<ResourceUploadRequest> request(const SceneDraw&);
 };

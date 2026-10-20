@@ -21,3 +21,17 @@
 /* Tagged extension: backend11, no frame/index, five DWORD geometry/channels. */
 #define MNM_WORLD_ADDITIVE_RECT 6u
 #define MNM_WORLD_COLOUR_RECT 7u
+/* Tagged extension: backend13, indexed frame and selected RGB565 palette.
+ * Older v1 decoders reject this tag rather than treating it as copy. */
+#define MNM_WORLD_ADDITIVE_SPRITE 8u
+/* Tagged extension: indexed backend14/57fe10. Geometry selects unclipped
+ * encoded-run endpoint copying or the horizontally clipped half blend. */
+#define MNM_WORLD_RUN_OUTLINE 9u
+/* Indexed581200 extension: backend15, selected palette followed by three
+ * raw RGB DWORDs (low8 bits each). Signed shade is restricted to-127..127. */
+#define MNM_WORLD_TINT_OUTLINE 10u
+/* Per-source-row owned offsets, one DWORD per encoded frame row. Backend16
+ * source placement adds an indexed palette; backend7 destination sampling has
+ * offsets only. Tight canvas rows required; old readers reject these tags. */
+#define MNM_WORLD_SOURCE_ROW_SHIFT 11u
+#define MNM_WORLD_DESTINATION_ROWS 12u

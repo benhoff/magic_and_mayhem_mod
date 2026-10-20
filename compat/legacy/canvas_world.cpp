@@ -1,3 +1,5 @@
+#include "../../protocols/include/mnm/world_effect_raster_v1.h"
+#include "../../protocols/include/mnm/world_frame_v1.h"
 #include "canvas_world.hpp"
 #include <cstdlib>
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
@@ -45,6 +47,28 @@ WorldDraw producerWorldDraw(const CanvasProducer &c) {
     render::AdditiveRectangle rectangle;rectangle.width=int(word(c.bytes(),0));rectangle.height=int(word(c.bytes(),4));
     for(unsigned i=0;i<3;++i)rectangle.channels[i]=std::uint16_t(word(c.bytes(),8+i*4));
     draw.additive=rectangle;draw.backend=11;return draw;
+  }
+  if(r[2]==MNM_PRODUCER_RASTER && r[14]>=8 && r[14]<=12){
+    if(r[19]<40 || r[19]>1048576 || c.bytes().size()!=r[19]+r[20] ||
+       word(c.bytes(),0)!=r[19] || word(c.bytes(),28) || r[23] ||
+       !mnm_world_effect_raster(r[14],r[15],r[17],word(c.bytes(),8),r[20]))
+      throw std::invalid_argument("Unclosed owned effect producer");
+    // Use the canonical tagged decoder, including tint pairs/whole-run rows,
+    // rather than casting a wire operation to a composition enum.
+    QByteArray wire(144+c.bytes().size(),0);
+    std::memcpy(wire.data(),MNM_WORLD_MAGIC,8);
+    auto put=[&](unsigned at,unsigned v){for(unsigned k=0;k<4;++k)wire[at+k]=char(v>>(k*8));};
+    put(8,1);put(12,80);put(16,wire.size());put(20,1);
+    put(24,r[5]);put(28,r[6]);put(32,r[7]);put(36,1);put(44,MNM_WORLD_BUILD);
+    put(80,64+c.bytes().size());put(84,r[14]);put(88,r[8]);put(92,r[9]);
+    for(unsigned k=0;k<4;++k)put(96+k*4,r[10+k]);
+    put(112,r[19]);put(116,r[17]);put(120,r[20]);put(124,r[16]);put(132,r[15]);
+    if(r[14]>=11)put(140,word(c.bytes(),8));
+    std::memcpy(wire.data()+144,c.bytes().data(),c.bytes().size());
+    auto draw=decodeWorldFrame(wire).draws.front();
+    if(c.ownedPayload)draw.frame={bool(r[17]),QByteArray::fromRawData(
+      reinterpret_cast<const char*>(c.bytes().data()),r[19]),c.ownedPayload};
+    return draw;
   }
   if (r[2] != MNM_PRODUCER_RASTER || r[14] > 5 || r[15] > 10 || r[17] > 1 ||
       r[19] < 40 || r[19] > 1048576 || c.bytes().size() != r[19] + r[20] ||

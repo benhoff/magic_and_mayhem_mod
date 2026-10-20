@@ -1,4 +1,5 @@
 #include "scene_renderer.hpp"
+#include "../sprites/tint_outline.hpp"
 #include "../../assets/sprite_run_clipping.hpp"
 #include <algorithm>
 #include <stdexcept>
@@ -25,8 +26,8 @@ SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resour
 }
 SceneRenderer::~SceneRenderer(){cache_.clear();if(colourMask_)renderer_.destroy(colourMask_);if(colourAtlas_)renderer_.destroy(colourAtlas_);if(ownsCanvas_)renderer_.destroy(canvas_);if(background_)renderer_.destroy(background_);}
 ColourRectangleCacheStats SceneRenderer::colourCacheStats() const {checkThread();auto s=colourStats_;s.entries=std::count_if(colourTiles_.begin(),colourTiles_.end(),[](const auto& t){return !t.image.pixels.empty();});s.pixels=colourAtlas_?2*512*512:0;return s;}
-void SceneRenderer::drawColourRectangle(const Image& image,Rect rect,int x,int y,const SpriteComposite& mode){
-    if(!limits_.cacheColourRectangles){renderer_.colourRect(canvas_,image,rect,x,y,mode);return;}
+void SceneRenderer::drawColourRectangle(const Image& image,Rect rect,int x,int y,const SpriteComposite& mode,bool forceCache){
+    if(!limits_.cacheColourRectangles&&!forceCache){renderer_.colourRect(canvas_,image,rect,x,y,mode);return;}
     if(colourAge_==std::numeric_limits<std::uint64_t>::max())throw std::overflow_error("Colour cache age exhausted");
     // Exact owned source pixels form the key; no pointer identity, palette,
     // destination screenshot or frame-generation inference enters the cache.
@@ -60,6 +61,8 @@ void SceneRenderer::checkThread() const{
 }
 void SceneRenderer::validate(const SceneDraw& draw){
     if(!draw.visible)return;
+    if(draw.rowEffect&&(draw.additive||draw.colourRectangle||!draw.clip||draw.composite.mode!=CompositeMode::copy||draw.wholeOpaqueRunClipping))
+        throw std::invalid_argument("Row effect requires a clipped sprite and a plain composite");
     if(draw.colourRectangle){
         const auto& p=draw.colourRectangle->pixels;
         if(draw.additive||draw.colours||!draw.clip||p.width<1||p.height<1||p.width>64||p.height>64||p.pixels.size()!=std::size_t(p.width)*p.height||std::any_of(p.pixels.begin(),p.pixels.end(),[](auto v){return v>65535;})||
@@ -88,7 +91,27 @@ void SceneRenderer::validate(const SceneDraw& draw){
         throw std::runtime_error("Scene frame exceeds renderer/cache extent");
     if(draw.colours && !indexed)throw std::invalid_argument("Scene colour table requires indexed input");
     if(draw.viewport){const auto r=*draw.viewport;if(!draw.clip||r.left<0||r.top<0||r.right<=r.left||r.bottom<=r.top||r.right>viewport_.right||r.bottom>viewport_.bottom)throw std::invalid_argument("Scene draw viewport outside canvas");}
-    if(draw.composite.mode!=CompositeMode::copy&&draw.composite.mode!=CompositeMode::half&&draw.composite.mode!=CompositeMode::quarterSource&&draw.composite.mode!=CompositeMode::quarterDestination&&draw.composite.mode!=CompositeMode::displace&&draw.composite.mode!=CompositeMode::projectedShadow)throw std::invalid_argument("Unsupported scene composite");
+    if(draw.composite.mode!=CompositeMode::copy&&draw.composite.mode!=CompositeMode::half&&draw.composite.mode!=CompositeMode::quarterSource&&draw.composite.mode!=CompositeMode::quarterDestination&&draw.composite.mode!=CompositeMode::displace&&draw.composite.mode!=CompositeMode::projectedShadow&&draw.composite.mode!=CompositeMode::additive&&draw.composite.mode!=CompositeMode::runOutline&&draw.composite.mode!=CompositeMode::tintOutline)throw std::invalid_argument("Unsupported scene composite");
+    if(draw.rowEffect){
+        const auto* sprite=std::get_if<assets::Sprite>(&resource.image);if(!sprite)throw std::invalid_argument("Row effect requires owned SPR runs");
+        const auto clip=draw.viewport.value_or(viewport_);
+        (void)planRowEffect(sprite->frames[draw.frame],*draw.rowEffect,x,y,clip.left,clip.top,clip.right,clip.bottom,viewport_.right,viewport_.bottom);
+    }
+    if(draw.composite.mode==CompositeMode::tintOutline){
+        const auto* sprite=std::get_if<assets::Sprite>(&resource.image);const auto clip=draw.viewport.value_or(viewport_);
+        if(!sprite||!draw.colours||!draw.clip||x<clip.left||x+width>clip.right||
+           std::any_of(draw.colours->begin(),draw.colours->end(),[&](auto value){return value!=(*draw.colours)[0];}))
+            throw std::invalid_argument("Tint outline requires an owned SPR, uniform tint and unclipped horizontal geometry");
+        const auto& f=sprite->frames[draw.frame];
+        if(f.opaqueRuns.empty()&&std::any_of(f.opaqueMask.begin(),f.opaqueMask.end(),[](auto value){return value!=0;}))
+            throw std::invalid_argument("Tint outline lacks encoded run boundaries");
+        (void)tintOutlineSpans(f,x,y,clip.top,clip.bottom,viewport_.right,viewport_.bottom);
+    }
+    if(draw.composite.mode==CompositeMode::runOutline){
+        const auto* sprite=std::get_if<assets::Sprite>(&resource.image);
+        if(!sprite||(sprite->frames[draw.frame].opaqueRuns.empty()&&std::any_of(sprite->frames[draw.frame].opaqueMask.begin(),sprite->frames[draw.frame].opaqueMask.end(),[](auto v){return v!=0;})))
+            throw std::invalid_argument("Run outline requires preserved SPR run boundaries");
+    }
     if(draw.composite.mode==CompositeMode::projectedShadow){
         const auto* sprite=std::get_if<assets::Sprite>(&resource.image);if(!sprite||!draw.clip)throw std::invalid_argument("Projected shadow requires clipped SPR input");
         const auto r=draw.viewport.value_or(viewport_);const auto top=y+height/2;
@@ -142,7 +165,8 @@ void SceneRenderer::beginFrame(const std::vector<SceneDraw>& draws,SceneStart st
     pending_=std::move(owned);cursor_=0;drawing_=true;need_.reset();supplied_=false;
 }
 std::optional<ResourceUploadRequest> SceneRenderer::request(const SceneDraw& draw){
-    if(!draw.visible||draw.additive||draw.colourRectangle)return {};
+    if(!draw.visible||draw.additive||draw.colourRectangle||draw.composite.mode==CompositeMode::tintOutline||
+       (draw.rowEffect&&draw.rowEffect->kind==RowEffectKind::sampleDestination))return {};
     if(draw.composite.mode!=CompositeMode::projectedShadow)return cache_.request(draw.resource,draw.frame,draw.colours?&*draw.colours:nullptr);
     const auto& f=std::get<assets::Sprite>(resources_.resident(draw.resource).image).frames.at(draw.frame);
     const auto r=draw.viewport.value_or(viewport_);
@@ -185,7 +209,37 @@ bool SceneRenderer::drawNext(const SceneBatchBudget& budget){
                     if(!cache_.advance(*req,bytes)){if(bytes==before)break;else continue;}
                 }
             }
-            if(draw.visible&&draw.colourRectangle){
+            if(draw.visible&&draw.rowEffect){
+                const auto& resource=limits_.cache.residentOnly?resources_.resident(draw.resource):resources_.load(draw.resource);
+                const auto& frame=std::get<assets::Sprite>(resource.image).frames.at(draw.frame);const auto clip=draw.viewport.value_or(viewport_);
+                const auto plan=planRowEffect(frame,*draw.rowEffect,std::int64_t(draw.anchorX)-frame.originX,std::int64_t(draw.anchorY)-frame.originY,
+                    clip.left,clip.top,clip.right,clip.bottom,viewport_.right,viewport_.bottom);
+                const bool sample=draw.rowEffect->kind==RowEffectKind::sampleDestination;
+                SurfaceId frozen=sample&&!plan.empty()?renderer_.cloneSurface(canvas_):0;
+                try{
+                    for(const auto& span:plan){auto destination=span.destination,source=span.sample;int copied=0;
+                        while(copied<span.count){
+                            const int x=int(destination%viewport_.right),y=int(destination/viewport_.right);
+                            const int sx=int(source%viewport_.right),sy=int(source/viewport_.right);
+                            const int count=std::min(span.count-copied,std::min(viewport_.right-x,sample?viewport_.right-sx:viewport_.right));
+                            if(sample)renderer_.copy(frozen,canvas_,{sx,sy,sx+count,sy+1},x,y);
+                            else cache_.drawRegion(draw.resource,draw.frame,canvas_,{span.sourceFirst+copied,span.sourceRow,span.sourceFirst+copied+count,span.sourceRow+1},x,y,draw.colours?&*draw.colours:nullptr);
+                            destination+=count;source+=count;copied+=count;
+                        }
+                    }
+                }catch(...){if(frozen)renderer_.destroy(frozen);throw;}
+                if(frozen)renderer_.destroy(frozen);
+            }else if(draw.visible&&draw.composite.mode==CompositeMode::tintOutline){
+                const auto& resource=limits_.cache.residentOnly?resources_.resident(draw.resource):resources_.load(draw.resource);
+                const auto& f=std::get<assets::Sprite>(resource.image).frames.at(draw.frame);const auto clip=draw.viewport.value_or(viewport_);
+                const auto spans=tintOutlineSpans(f,std::int64_t(draw.anchorX)-f.originX,std::int64_t(draw.anchorY)-f.originY,
+                    clip.top,clip.bottom,viewport_.right,viewport_.bottom);
+                for(const auto& span:spans)for(auto at=span.first;at<span.last;){
+                    const int y=int(at/viewport_.right),x=int(at%viewport_.right),end=int(std::min(span.last,(std::int64_t(y)+1)*viewport_.right)-at);
+                    const auto colour=(*draw.colours)[0];
+                    drawColourRectangle({2,1,{colour,colour}},{0,0,end,1},x,y,{},true);at+=end;
+                }
+            }else if(draw.visible&&draw.colourRectangle){
                 const auto& pixels=draw.colourRectangle->pixels;const auto clip=draw.viewport.value_or(viewport_);
                 const auto left=std::max<std::int64_t>(draw.anchorX,clip.left),top=std::max<std::int64_t>(draw.anchorY,clip.top);
                 const auto right=std::min<std::int64_t>(std::int64_t(draw.anchorX)+pixels.width,clip.right),bottom=std::min<std::int64_t>(std::int64_t(draw.anchorY)+pixels.height,clip.bottom);

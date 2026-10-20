@@ -1,3 +1,4 @@
+#include "../../protocols/include/mnm/world_effect_raster_v1.h"
 #include "canvas_producers.hpp"
 #include "../../assets/jpeg.hpp"
 #include "../../assets/pcx.hpp"
@@ -150,7 +151,7 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
     if (r[2]==MNM_PRODUCER_PAYLOAD_SOURCE) {
       if (!extendedWorld || (r[14]!=8 && r[14]!=9) || r[19]<40 || r[19]>1048576 ||
           r[18]!=r[19]+r[20] || word(c.bytes(),0)!=r[19] || word(c.bytes(),28) ||
-          (r[14]==8 ? r[20]!=272 : r[17]>1 || (r[20]!=0 && r[20]!=64 && r[20]!=512)) ||
+          (r[14]==8 ? r[20]!=272 : r[17]>1 || !mnm_world_effect_source(r[17],word(c.bytes(),8),r[20])) ||
           result.ownedPayloads.size()>=((sessionInput||wholeUpdate)?MNM_PRODUCER_V4_SOURCES:MNM_PRODUCER_V3_SOURCES) ||
           c.bytes().size()>MNM_PRODUCER_V3_SOURCE_BYTES-result.ownedPayloadBytes)
         throw std::invalid_argument("Invalid producer owned-source definition");
@@ -163,6 +164,7 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
       if (r[2] == 8 && r[20] != 272)
         throw std::invalid_argument("Invalid producer font table");
       if (r[2] == 9 &&
+          !(extendedWorld && mnm_world_effect_raster(r[14],r[15],r[17],word(c.bytes(),8),r[20])) &&
           (r[14] > 5 || r[15] > 11 || r[17] > 1 ||
            r[20] != (r[14] == 3 ? 64u : r[17] ? 512u : 0u)))
         throw std::invalid_argument("Invalid producer raster table");

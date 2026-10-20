@@ -1,24 +1,27 @@
 #pragma once
+#include "kind8_class.h"
 #include <array>
 #include <cstdint>
 #include <stdexcept>
 
 namespace mnm::reconstruction {
-enum class Kind8Method { additive, inheritedAdditive, ownerAdditive, colour, flagOnly };
+enum class Kind8Method { additive, inheritedAdditive, ownerAdditive, colour, flagOnly, empty };
 struct Kind8Class {
     Kind8Method method;
     unsigned shapeOffset;
 };
 // Build-specific numeric identities are compared only; never dereferenced.
 inline Kind8Class kind8Class(std::uint32_t table, std::uint32_t method) {
-    if (table == 0x5c7420 && method == 0x54ab00) return {Kind8Method::additive, 0x30};
-    if (table == 0x5c73f0 && method == 0x54aaa0)
-        return {Kind8Method::inheritedAdditive, 0x34};
-    if (table == 0x5c7408 && method == 0x546540)
-        return {Kind8Method::ownerAdditive, 0x34};
-    if ((table == 0x5c7494 || table == 0x5c74b0) && method == 0x54ab60)
-        return {Kind8Method::colour, 0x1c};
-    if (table == 0x5c74cc && method == 0x54ac00) return {Kind8Method::flagOnly, 0};
+    const auto found=mnm_kind8_class(table,method);
+    switch(found.method){
+    case MNM_K8_ADDITIVE:return {Kind8Method::additive,found.shape_offset};
+    case MNM_K8_INHERITED:return {Kind8Method::inheritedAdditive,found.shape_offset};
+    case MNM_K8_OWNER:return {Kind8Method::ownerAdditive,found.shape_offset};
+    case MNM_K8_COLOUR:return {Kind8Method::colour,found.shape_offset};
+    case MNM_K8_FLAG_ONLY:return {Kind8Method::flagOnly,0};
+    case MNM_K8_EMPTY:return {Kind8Method::empty,0};
+    default:break;
+    }
     throw std::invalid_argument("Unrecovered kind8 class/method pair");
 }
 struct Kind8Owner {
@@ -51,6 +54,8 @@ std::uint16_t drawKind8(Kind8Class type, Kind8Flags& flags, const Kind8Owner& ow
         return std::uint16_t(raster(type, x, y));
     case Kind8Method::colour:
         return std::uint16_t(raster(type, x, y));
+    case Kind8Method::empty:
+        return 0; // Exact no-object-write/no-raster draw bodies54ac30/54ac40.
     case Kind8Method::flagOnly:
         flags.at40 = 1;
         return 0;

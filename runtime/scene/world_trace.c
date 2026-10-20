@@ -1,13 +1,16 @@
 #include "../shadow/win32_min.h"
 #include "../../protocols/include/mnm/world_frame_v1.h"
 #include "world_kinds.h"
+#include "world_colour.h"
+#include "../../reconstruction/rendering/kind8_class.h"
+#include "../../reconstruction/rendering/kind8_sprite_class.h"
 extern void world_leave(void);
 extern void world_wave_leave(void);
 extern u8* world_stream_begin(u32*);
 extern void world_stream_publish(u32,u32,u32,u32,u32,u32);
 extern void world_stream_fail(u32);
-extern void world_primitive_0(void),world_primitive_1(void),world_primitive_2(void),world_primitive_3(void),world_primitive_4(void),world_primitive_5(void),world_primitive_6(void),world_primitive_7(void),world_primitive_8(void),world_primitive_9(void),world_primitive_10(void),world_primitive_11(void),world_primitive_12(void);
-u32 world_return,world_wave_return,world_trampolines[13];
+extern void world_primitive_0(void),world_primitive_1(void),world_primitive_2(void),world_primitive_3(void),world_primitive_4(void),world_primitive_5(void),world_primitive_6(void),world_primitive_7(void),world_primitive_8(void),world_primitive_9(void),world_primitive_10(void),world_primitive_11(void),world_primitive_12(void),world_primitive_13(void);
+u32 world_return,world_wave_return,world_trampolines[14];
 static u32 active,failed,at,count,sequence,canvas,stride,height,streaming,startup_replay;
 static u32 wave_pending,wave_amplitude,wave_phase;
 static u8* inputs;
@@ -25,6 +28,35 @@ static int save(const char* suffix,const void* bytes,u32 n){
     HANDLE f=CreateFileA(path,0x40000000,0,0,1,0x80,0);if(f==(HANDLE)-1)return 0;
     u32 done=0;while(done<n){u32 wrote=0;if(!WriteFile(f,(const u8*)bytes+done,n-done,&wrote,0)||!wrote||wrote>n-done){CloseHandle(f);return 0;}done+=wrote;}return CloseHandle(f)!=0;
 }
+/* A separate, opt-in diagnostic: no source pixels or admission decisions enter
+   World wire records. Entry checkpoints cannot identify an intervening writer. */
+static u8* colour_probe;
+static u32 colour_events,colour_word,colour_failure;
+static void colour_checkpoint(u32 tag,u32 caller){
+    if(!colour_probe||colour_failure)return;
+    if(colour_events>=MNM_WORLD_MAX_DRAWS+2){colour_failure=2;return;}
+    if(get((void*)0x658174)!=canvas||get((void*)0x6a2dc8)!=stride||!readable(canvas,stride*height*2)){colour_failure=3;return;}
+    struct mnm_colour_checkpoint result=mnm_colour_scan((const u8*)canvas,get(inputs+24),height,stride,colour_word);
+    result.tag=tag;result.caller=caller;
+    u8* event=colour_probe+64+colour_events*32;
+    const u32 values[8]={result.tag,result.caller,result.count,result.positions,result.left,result.top,result.right,result.bottom};
+    for(u32 i=0;i<8;++i)put(event+i*4,values[i]);++colour_events;
+}
+static void colour_begin(void){
+    char value[8];u32 length=GetEnvironmentVariableA("MNM_SCENE_COLOUR_WORD",value,sizeof(value));
+    if(streaming||!length||length>=sizeof(value))return;
+    colour_word=0;for(u32 i=0;i<length;++i){if(value[i]<'0'||value[i]>'9')return;colour_word=colour_word*10+(u32)(value[i]-'0');if(colour_word>65535)return;}
+    colour_probe=HeapAlloc(GetProcessHeap(),0,64+(MNM_WORLD_MAX_DRAWS+2)*32);if(!colour_probe)return;
+    zero(colour_probe,64);copy(colour_probe,"MNMCOL1",8);put(colour_probe+8,1);put(colour_probe+12,64);
+    put(colour_probe+20,sequence);put(colour_probe+24,get(inputs+24));put(colour_probe+28,height);put(colour_probe+32,stride);put(colour_probe+36,colour_word);
+    put(colour_probe+48,canvas);put(colour_probe+52,get((void*)0x6903dc));put(colour_probe+56,get((void*)0x6e1f24));
+    colour_events=colour_failure=0;colour_checkpoint(0xfffffffe,0);
+}
+static void colour_complete(void){
+    if(!colour_probe)return;
+    colour_checkpoint(0xffffffff,0);put(colour_probe+16,64+colour_events*32);put(colour_probe+40,colour_events);put(colour_probe+44,colour_failure);
+    save(".colour",colour_probe,64+colour_events*32);HeapFree(GetProcessHeap(),0,colour_probe);colour_probe=0;
+}
 static int hook(u32 tag,u32 address,void* entry,u32 length,const u8* signature){
     if(world_trampolines[tag])return 1;
     if(!readable(address,length))return 0;
@@ -36,27 +68,31 @@ static int hook(u32 tag,u32 address,void* entry,u32 length,const u8* signature){
     u8 patch[8];for(u32 i=0;i<length;++i)patch[i]=0x90;patch[0]=0xe9;put(patch+1,(u32)entry-address-5);copy((void*)address,patch,length);
     FlushInstructionCache(GetCurrentProcess(),trampoline,length+5);FlushInstructionCache(GetCurrentProcess(),(void*)address,length);VirtualProtect((void*)address,length,old,&unused);return 1;
 }
+static int word_backend_supported(void){
+    const u32 target=get((void*)0x6903dc);return target==0x597086||target==0x596cb8;
+}
 static int install(void){
     const u8 normal[]={0x55,0x8b,0xec,0x56,0x57,0x53},slow[]={0x55,0x8b,0xec,0x83,0xec,0x18},half[]={0x83,0xec,0x1c,0x53,0x55,0x56},quarter[]={0x83,0xec,0x24,0x53,0x55,0x56},wave[]={0x83,0xec,0x20,0x8b,0x44,0x24,0x28};
     u32 generic=get((void*)0x6c4e3c),terrain=get((void*)0x689b7c),wave_backend=get((void*)0x689b78);
-    if(wave_backend!=0x596490&&wave_backend!=0x5968a4)return 0;
+    if((wave_backend!=0x596490&&wave_backend!=0x5968a4)||!word_backend_supported())return 0;
     const u8 colour[]={0x83,0xec,0x24,0xa1,0x88,0x1f,0x6e,0x00};
     const u8 additive[]={0x83,0xec,0x1c,0xa1,0x88,0x1f,0x6e,0x00};
     const u8 shadow[]={0x83,0xec,0x18,0xa1,0x88,0x1f,0x6e,0x00};
     if((generic!=0x5947b2&&generic!=0x59521a)||(terrain!=0x595b47&&terrain!=0x59603e))return 0;
-    return hook(0,0x595677,world_primitive_0,6,normal)&&hook(1,generic,world_primitive_1,6,normal)&&hook(2,terrain,world_primitive_2,6,normal)&&hook(3,0x57de00,world_primitive_3,6,slow)&&hook(4,0x57ec90,world_primitive_4,6,half)&&hook(5,0x57f0f0,world_primitive_5,6,quarter)&&hook(6,0x57f5f0,world_primitive_6,6,quarter)&&hook(7,0x5806f0,world_primitive_7,7,wave)&&hook(8,0x597086,world_primitive_8,6,normal)&&hook(9,wave_backend,world_primitive_9,6,normal)&&hook(10,0x57e540,world_primitive_10,8,shadow)&&hook(11,0x545c10,world_primitive_11,8,additive)&&hook(12,0x547d80,world_primitive_12,8,colour);
+    return hook(0,0x595677,world_primitive_0,6,normal)&&hook(1,generic,world_primitive_1,6,normal)&&hook(2,terrain,world_primitive_2,6,normal)&&hook(3,0x57de00,world_primitive_3,6,slow)&&hook(4,0x57ec90,world_primitive_4,6,half)&&hook(5,0x57f0f0,world_primitive_5,6,quarter)&&hook(6,0x57f5f0,world_primitive_6,6,quarter)&&hook(7,0x5806f0,world_primitive_7,7,wave)&&hook(8,0x597086,world_primitive_8,6,normal)&&hook(9,wave_backend,world_primitive_9,6,normal)&&hook(10,0x57e540,world_primitive_10,8,shadow)&&hook(11,0x545c10,world_primitive_11,8,additive)&&hook(12,0x547d80,world_primitive_12,8,colour)&&hook(13,0x596cb8,world_primitive_13,6,normal);
 }
 static int kind8_supported(u32 row){
     u32 object=get((void*)(row+4));
     /* Only the observed first-table route with inactive auxiliary markers.
        Other modes/auxiliary drawing remain a separate reconstruction. */
-    if(!get((void*)0x5e1404)||get((void*)(row+28))!=0x8ad08ad0||get((void*)0x6e1f88)||!readable(object,72))return 0;
+    if(!get((void*)0x5e1404)||get((void*)(row+28))!=0x8ad08ad0||get((void*)0x6e1f88)||!readable(object,4))return 0;
     u32 table=get((void*)object);
-    if(!readable(table,16))return 0;u32 method=get((void*)(table+12));
-    return (table==0x5c7420&&method==0x54ab00)||
-        (table==0x5c73f0&&method==0x54aaa0)||
-        (table==0x5c7408&&method==0x546540&&readable(object,100))||
-        ((table==0x5c7494||table==0x5c74b0)&&method==0x54ab60)||(table==0x5c74cc&&method==0x54ac00);
+    if(!readable(table,16))return 0;
+    u32 method=get((void*)(table+12));
+    const struct MnmKind8Class type=mnm_kind8_class(table,method);
+    if(type.method!=MNM_K8_UNKNOWN)return readable(object,type.readable_bytes);
+    const struct MnmKind8SpriteClass sprite=mnm_kind8_sprite_class(table,method);
+    return sprite.kind&&readable(object,sprite.root_bytes);
 }
 void world_begin(u32* registers,u32 sample){
     if(active||!GetEnvironmentVariableA("MNM_SCENE_WORLD",directory,2))return;
@@ -80,12 +116,14 @@ void world_begin(u32* registers,u32 sample){
            amplitudes2/3/6. Keep this admission opt-in until startup comparison. */
         if(!world_kind_admitted(kind)&&!(kind==8&&kind8_supported(base+i*36))&&!(startup_replay&&(kind==16||kind==17||kind==20))){failed=8;break;}}
     if(!streaming&&!save(".before.565",(void*)canvas,stride*height*2)){HeapFree(GetProcessHeap(),0,inputs);inputs=0;return;}
-    u32* return_slot=(u32*)(registers[3]+4);world_return=*return_slot;*return_slot=(u32)world_leave;active=1;
+    u32* return_slot=(u32*)(registers[3]+4);world_return=*return_slot;*return_slot=(u32)world_leave;active=1;colour_begin();
 }
 void world_observe(u32* registers,u32 tag){
     u32 error=GetLastError();
     if(!active||failed)goto done;
+    colour_checkpoint(tag,((u32*)(registers[3]+4))[0]);
     u32* args=(u32*)(registers[3]+4); /* original return, then stack arguments */
+    if(tag==13)tag=8; /* Both independent direct-word bodies share owned copy inputs. */
     if(tag==12){
         u32 shape=registers[6];if(!readable(shape,22)||get((void*)0x6e1f88)){failed=2;goto done;}
         u32 mode=get((void*)shape);i32 w=(i32)get((void*)(shape+4)),h=(i32)get((void*)(shape+8)),x=(i32)args[1],y=(i32)args[2];
@@ -222,6 +260,48 @@ int world_additive_test_check(void){
         get(test_additive+88)==4&&get(test_additive+92)==5&&get(test_additive+132)==11&&
         get(test_additive+144)==2&&get(test_additive+148)==3&&get(test_additive+152)==12&&get(test_additive+156)==65535&&get(test_additive+160)==6;
 }
+int world_kind8_empty_test(void){
+    u8* pages=VirtualAlloc(0,8192,0x3000,4);u32 old;
+    if(!pages||!VirtualProtect(pages+4096,4096,1,&old))return 0;
+    const u32 object=(u32)(pages+4092),row=0x630000;
+    zero((void*)row,36);put((void*)(row+4),object);put((void*)(row+28),0x8ad08ad0);
+    put((void*)0x5e1404,1);put((void*)0x6e1f88,0);
+    const u32 pairs[3][2]={{0x5c7438,0x54ac30},{0x5c7450,0x54ac40},{0x5c7470,0x54ac40}};
+    for(u32 i=0;i<3;++i){
+        put((void*)object,pairs[i][0]);put((void*)(pairs[i][0]+12),pairs[i][1]);
+        if(!kind8_supported(row))return 0;
+        put((void*)(pairs[i][0]+12),pairs[i][1]+1);if(kind8_supported(row))return 0;
+        put((void*)(pairs[i][0]+12),pairs[i][1]);
+    }
+    /* Pixel classes keep their previous object extent, including across a
+       protected next page. Empty methods have no shape/owner/object reads. */
+    put((void*)object,0x5c7420);put((void*)0x5c742c,0x54ab00);if(kind8_supported(row))return 0;
+    put((void*)object,0x5c7438);
+    put((void*)0x5e1404,0);if(kind8_supported(row))return 0;put((void*)0x5e1404,1);
+    put((void*)0x6e1f88,1);if(kind8_supported(row))return 0;put((void*)0x6e1f88,0);
+    put((void*)(row+28),0);if(kind8_supported(row))return 0;put((void*)(row+28),0x8ad08ad0);
+    put((void*)(row+4),1);if(kind8_supported(row))return 0;
+    return 1;
+}
+int world_word_entry_test(void){
+    const u32 frame=0x600000;u32 args[4]={0,frame,4,5},regs[8]={0};
+    for(u32 i=0;i<4;++i){put((void*)0x6903dc,i==0?0x597086:i==1?0x596cb8:i==2?0x596cb9:0);
+        if(word_backend_supported()!=(i<2))return 0;}
+    zero((void*)frame,54);put((void*)frame,54);put((void*)(frame+4),2);put((void*)(frame+8),1);put((void*)(frame+28),0xffffffff);
+    put((void*)(frame+40),48);put((void*)(frame+44),50);((u8*)frame)[49]=2;((u8*)frame)[50]=0x34;((u8*)frame)[51]=0x12;((u8*)frame)[52]=0xff;((u8*)frame)[53]=0x45;
+    canvas=0x700000;stride=32;put((void*)0x658174,canvas);put((void*)0x6a2dc8,stride);
+    put((void*)0x6e0008,0);put((void*)0x6cbb6c,0);put((void*)0x6a49b8,32);put((void*)0x656618,12);
+    regs[3]=(u32)args-4;
+    for(u32 leaf=0;leaf<3;++leaf){
+        zero(test_additive,sizeof(test_additive));inputs=test_additive;active=1;failed=count=0;at=80;
+        if(leaf==2)args[1]=1;
+        SetLastError(1234);world_observe(regs,leaf?13:8);
+        if(GetLastError()!=1234)return 0;
+        if(leaf==2){if(failed!=1||count)return 0;}
+        else if(failed||count!=1||at!=198||get(inputs+84)||get(inputs+132)!=8||get(inputs+116)||get(inputs+144+28)||inputs[144+52]!=0xff||inputs[144+53]!=0x45)return 0;
+    }
+    active=0;inputs=0;return 1;
+}
 void world_wave_test_setup(void){
     zero(test_wave,sizeof(test_wave));inputs=test_wave;active=1;failed=0;
     wave_pending=80;wave_amplitude=3;wave_phase=5;put(inputs+80+32,40);
@@ -257,7 +337,7 @@ int world_wave_test_check(void){
 }
 #endif
 void world_complete(u32* registers){
-    u32 error=GetLastError();active=0;
+    u32 error=GetLastError();colour_complete();active=0;
     if(wave_pending){failed=7;wave_pending=0;}
     if(get((void*)0x658174)!=canvas||get((void*)0x6a2dc8)!=stride||!readable(canvas,stride*height*2))failed=5;
     // Retain a post-consumer diagnostic even for refused startup requests. Its

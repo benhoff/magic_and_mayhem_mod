@@ -120,12 +120,20 @@ void main(){
         nativePixel=(channels.x<<11u)|(channels.y<<5u)|channels.z;return;
     }
     ivec2 at=destination-destinationOrigin+sourceOrigin;
-    if(texelFetch(sourceMask,at,0).r==0u)discard;
+    uint coverage=texelFetch(sourceMask,at,0).r;
+    if(coverage==0u||(mode==8&&(coverage&2u)==0u))discard;
     uint s=texelFetch(sourcePixels,at,0).r;
     if(indexedSource)s=spritePalette[s];
     uint d=texelFetch(oldPixels,destination-oldOrigin,0).r;
     uint m=0x7befu;
-    if(mode==1)nativePixel=((s>>1u)&m)+((d>>1u)&m);
+    if(mode==8){nativePixel=s;return;}
+    if(mode==7){
+        uvec3 source=uvec3(s>>11u,(s>>5u)&63u,s&31u);
+        uvec3 destination=uvec3(d>>11u,(d>>5u)&63u,d&31u);
+        uvec3 sum=min(source+destination,uvec3(31u,63u,31u));
+        nativePixel=(sum.x<<11u)|(sum.y<<5u)|sum.z;
+    }
+    else if(mode==1)nativePixel=((s>>1u)&m)+((d>>1u)&m);
     else if(mode==2){uint halfway=(d>>1u)&m;nativePixel=halfway+((halfway>>1u)&m)+((s>>2u)&(m>>1u)&m);}
     else if(mode==4){uint halfway=(s>>1u)&m;nativePixel=halfway+((halfway>>1u)&m)+((d>>2u)&(m>>1u)&m);}
     else {
@@ -438,12 +446,12 @@ struct GlBlitter::Impl {
     }
     static void uploadedCoverage(Surface& s,int x,int y,int width,int height,const std::uint32_t* words){
         if(s.format.bits!=8)return;
-        if(std::any_of(words,words+std::size_t(width)*height,[](auto v){return v>1;})){s.coverage.clear();return;}
+        if(std::any_of(words,words+std::size_t(width)*height,[](auto v){return v>255;})){s.coverage.clear();return;}
         if(s.coverage.empty()){
             if(x||y||width!=s.width||height!=s.height)return;
             s.coverage.resize(std::size_t(s.width)*s.height);
         }
-        for(int row=0;row<height;++row)for(int col=0;col<width;++col)s.coverage[std::size_t(y+row)*s.width+x+col]=std::uint8_t(words[std::size_t(row)*width+col]);
+        for(int row=0;row<height;++row)for(int col=0;col<width;++col)s.coverage[std::size_t(y+row)*s.width+x+col]=std::uint8_t(words[std::size_t(row)*width+col]!=0);
     }
     void damage(Surface& s,Rect r,bool nativeWrite=true){
         ++revision;
@@ -979,7 +987,7 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
     if(source==destination||mask==destination||src.format.bits!=rgb565.bits||src.format.masks!=rgb565.masks||dst.format.bits!=rgb565.bits||dst.format.masks!=rgb565.masks||coverage.format.bits!=8||coverage.width!=src.width||coverage.height!=src.height)
         throw std::invalid_argument("Sprite composition requires distinct RGB565 source/destination and matching coverage");
     if(r.left<0||r.top<0||r.right<=r.left||r.bottom<=r.top||r.right>src.width||r.bottom>src.height||x<0||y<0||x>dst.width-(r.right-r.left)||y>dst.height-(r.bottom-r.top))throw std::invalid_argument("Composition rectangle outside storage");
-    if(c.mode!=CompositeMode::copy&&c.mode!=CompositeMode::half&&c.mode!=CompositeMode::quarterSource&&c.mode!=CompositeMode::quarterDestination&&c.mode!=CompositeMode::displace)throw std::invalid_argument("Unsupported sprite composite mode");
+    if(c.mode!=CompositeMode::copy&&c.mode!=CompositeMode::half&&c.mode!=CompositeMode::quarterSource&&c.mode!=CompositeMode::quarterDestination&&c.mode!=CompositeMode::displace&&c.mode!=CompositeMode::additive&&c.mode!=CompositeMode::runOutline)throw std::invalid_argument("Unsupported sprite composite mode");
     int reach=0;
     if(c.mode==CompositeMode::displace){
         if(!c.rowPeriod||c.rowPeriod>16)throw std::invalid_argument("Displacement row period outside bounds");

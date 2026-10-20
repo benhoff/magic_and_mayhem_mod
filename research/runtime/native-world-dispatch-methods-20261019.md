@@ -51,3 +51,26 @@ Failed setup/sandbox/comparison attempts remain under
 modified working executable, sandbox32-bit SIGSYS, two terrain parameter
 mismatches and the wrong vtable-pair detection. Successful results are registered
 under new evidence IDs; historical reports are never rewritten.
+
+
+## Owned queue state and traversal
+
+`world_queue.hpp` composes the three row tables with the video/software mode
+selection, signed prior metadata adjustment, two opening clips, auxiliary clip
+and second dispatch, restoration and optional postlude. Calls and mutations
+remain ordered. Empty queues still execute the requested postlude; pending
+counters reset only after it returns. Queue rows beyond the explicit owned count
+remain unchanged, and an excessive count is rejected before effects. Arithmetic
+uses PE32 wrap with explicit signed comparisons. Original addresses are identity
+constants, never native pointers.
+
+A deterministic stride97 sample of the existing4924800-cell state matrix
+compares50772 cells with unchanged original5002a0 instructions and synthetic
+backends. It covers every table/kind and all matrix axes: empty/one/two rows,
+video/software, indexed/direct, -127/ordinary offset, strict480/600 clip
+boundaries, sentinel/changed prior metadata, backend low16/high EAX values and
+postlude on/off. The full historical original fixture remains available without
+`--sample`. This new comparison includes each meaningful clip/draw/cleanup
+argument and complete row words; arbitrary dimensions/clips, concrete helper
+side effects, physical graphics state, object writers and live replacement are
+not established by this fixed16/4-dimension,19-pitch,3/0/799/600-clip sample.

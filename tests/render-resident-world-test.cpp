@@ -14,8 +14,8 @@ const PixelFormat rgb565{16,{0xf800,0x7e0,31}};
 void word(QByteArray& b,unsigned v){char a[4];qToLittleEndian<quint32>(v,a);b.append(a,4);}
 void record(QByteArray& b,unsigned seq,unsigned op,const QByteArray& p){word(b,op);word(b,seq);word(b,unsigned(p.size()));b+=p;}
 QByteArray fields(std::initializer_list<unsigned> values){QByteArray b;for(auto v:values)word(b,v);return b;}
-QByteArray create(unsigned id){auto p=fields({id,800,600,16,0xf800,0x7e0,31});p.append(QByteArray(800*600*2,0));return p;}
-void fixture(GlViewport& viewport){
+QByteArray create(unsigned id,unsigned width,unsigned height){auto p=fields({id,width,height,16,0xf800,0x7e0,31});p.append(QByteArray(width*height*2,0));return p;}
+void fixture(GlViewport& viewport,unsigned width,unsigned height){
     viewport.makeCurrent();GlBlitter world(viewport.context()),ui(viewport.context());
     Image values{256,256,{}};for(unsigned i=0;i<65536;++i)values.pixels.push_back(i);
     const auto source=world.create(values,rgb565),dest=ui.allocate(256,256,rgb565);
@@ -26,19 +26,19 @@ void fixture(GlViewport& viewport){
     const auto wrongSize=ui.allocate(255,256,rgb565),wrongFormat=ui.allocate(256,256,{16,{0x7c00,0x3e0,31}});
     refused([&]{ui.importGpu565(wrongSize,frame);});refused([&]{ui.importGpu565(wrongFormat,frame);});refused([&]{ui.importGpu565(dest,{});});
     ui.destroy(dest);ui.destroy(wrongSize);ui.destroy(wrongFormat);world.destroy(source);
-    Image canvas{800,600,std::vector<std::uint32_t>(800*600)};
+    Image canvas{int(width),int(height),std::vector<std::uint32_t>(width*height)};
     for(unsigned i=0;i<canvas.pixels.size();++i)canvas.pixels[i]=(i*17+311)&65535;
     const auto worldId=world.create(canvas,rgb565);auto canvasFrame=world.presentGpu(worldId);
     QByteArray stream("MNMCMD04",8);word(stream,4);word(stream,16);
-    record(stream,1,1,create(1));record(stream,2,1,create(2));
+    record(stream,1,1,create(1,width,height));record(stream,2,1,create(2,width,height));
     record(stream,3,19,fields({1,1,0,0x12345678,0x98765432}));
     auto patch=fields({1,19,37,2,1});patch.append(char(0xe0));patch.append(char(0x07));patch.append(char(0xcd));patch.append(char(0xab));patch.append(char(1));patch.append(char(0));record(stream,4,20,patch);
-    record(stream,5,3,fields({1,2,0,0,800,600,0,0,0,0}));record(stream,6,6,fields({2}));
+    record(stream,5,3,fields({1,2,0,0,width,height,0,0,0,0}));record(stream,6,6,fields({2}));
     record(stream,7,7,fields({1}));record(stream,8,7,fields({2}));record(stream,9,8,{});
     auto commands=decodeCommands(stream);unsigned imports=0,presents=0;
     CommandConsumerOptions options{CommandDiagnostics::Verify,false,CommandStreamMode::Streaming};
     options.residentWorld=[&](std::uint64_t generation,std::uint64_t nonce){require(generation==1 && nonce==0x9876543212345678ULL,"Provider identity changed");++imports;return canvasFrame;};
-    canvas.pixels[37*800+19]=0x7e0;
+    canvas.pixels[37*width+19]=0x7e0;
     CommandConsumer consumer(ui,[&](GpuFrame gpu){++presents;require(gpu.valid(),"Presentation lost lease");},options);
     consumer.submit(commands.data(),6);
     require(ui.stats().nativeReadbacks==2 && ui.stats().rgbaReadbacks==0 && world.stats().nativeReadbacks==0 && world.stats().rgbaReadbacks==0,"Command handoff performed a pixel readback");
@@ -62,12 +62,12 @@ void fixture(GlViewport& viewport){
     }
     world.destroy(worldId);canvasFrame={};frame={};
     require(world.stats().surfaces==0 && ui.stats().surfaces==0,"Fixture left native surfaces");
-    std::printf("{\"rgb565_words\":65536,\"world_readbacks\":0,\"ordinary_import_readbacks\":0,\"hud_and_copy_checks\":2,\"rejections\":7,\"remaining_surfaces\":0,\"provider_calls\":%u}\n",imports);
+    std::printf("{\"width\":%u,\"height\":%u,\"rgb565_words\":65536,\"world_readbacks\":0,\"ordinary_import_readbacks\":0,\"hud_and_copy_checks\":2,\"rejections\":7,\"remaining_surfaces\":0,\"provider_calls\":%u}\n",width,height,imports);
 }
 }
 int main(int argc,char** argv){
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);
     QApplication app(argc,argv);GlViewport viewport;viewport.resize(800,600);viewport.show();QElapsedTimer timer;timer.start();
     while(!viewport.ready() && timer.elapsed()<10000)QApplication::processEvents();
-    try{require(viewport.ready(),"Viewport unavailable");fixture(viewport);return 0;}catch(const std::exception& e){std::fprintf(stderr,"%s\n",e.what());return 1;}
+    try{require(viewport.ready(),"Viewport unavailable");fixture(viewport,640,480);fixture(viewport,800,600);return 0;}catch(const std::exception& e){std::fprintf(stderr,"%s\n",e.what());return 1;}
 }

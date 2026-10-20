@@ -8,13 +8,14 @@ from pathlib import Path
 import re
 import struct
 import subprocess
-from coverage_claims import behavior_contract, required_sources
+from coverage_claims import behavior_contract, required_sources, scenario_contract
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILD = '40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 SOURCES = ['reconstruction/rendering/world_dispatch.hpp', 'tests/world-dispatch-test.cpp',
            'reconstruction/rendering/kind8_method.hpp', 'tests/kind8-method-test.cpp',
-           'tools/coverage_claims.py',
+           'reconstruction/rendering/world_queue.hpp', 'tests/world-queue-state-test.cpp',
+           'tests/drawing-queue-state-reference.cpp', 'tools/coverage_claims.py',
            'tools/test-world-dispatch.py', 'tests/drawing-dispatch-reference.cpp',
            'tests/sprite-binary-reference.cpp']
 
@@ -68,18 +69,20 @@ def main():
     out.mkdir(parents=True)
     register = json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
     behaviors = [b for b in register['behaviors'] if b['id'] in
-                 ('RS.world-dispatch-routing', 'RS.world-kind8-methods',
-                  'RS.world-dispatch-targets', 'RS.world-kind8-virtual')]
-    if len(behaviors) != 4:
+                 ('RS.world-dispatch-routing', 'RS.world-kind8-methods', 'RS.world-queue-state',
+                  'RS.world-dispatch-targets', 'RS.world-kind8-virtual','RS.world-kind8-empty-methods')]
+    if len(behaviors) != 6:
         raise ValueError('Register routing and method contracts before execution')
     builds = {b['id']: b for b in register['builds']}
     paths = set(SOURCES) | set().union(*(required_sources(b) for b in behaviors))
     sources = {p: sha(ROOT/p) for p in sorted(paths)}
-    claims = [dict(behavior=b['id'], contract_sha256=behavior_contract(b, builds)) for b in behaviors]
+    scenario=next(s for s in register['scenarios'] if s['id']=='native-kind8-empty-methods')
+    claims = [dict(behavior=b['id'], contract_sha256=behavior_contract(b, builds), **({'scenarios':{scenario['id']:scenario_contract(scenario)}} if b['id']=='RS.world-kind8-empty-methods' else {})) for b in behaviors]
     report = dict(schema=1, success=False, claims=claims, sources=sources,
                   source_executable_sha256=BUILD, scope=__doc__,
                   live_replacement=False, raster_pixels_compared=False,
-                  helper_receiver_identity_compared=False, clip_setup_compared=False)
+                  helper_receiver_identity_compared=False, clip_setup_compared=True,
+                  clip_setup_domain="Bounded queue-state sample, fixed clip/dimensions; no live graphics helper effects")
     (out/'prospective.json').write_text(json.dumps(report, indent=2)+'\n')
 
     def run(label, command, output=None, env=None):
@@ -129,6 +132,49 @@ def main():
                 (out/'mismatch.json').write_text(json.dumps(dict(native=actual, original=expected), indent=2)+'\n')
                 raise ValueError('Native routing differs from original; see mismatch.json')
             calls += len(actual['calls'])
+        run('state-original-build', ['g++', '-m32', '-O2', '-std=c++17', '-fno-pie', '-no-pie',
+            '-mno-sse', '-mno-mmx', '-Wall', '-Wextra', '-Werror',
+            ROOT/'tests/drawing-queue-state-reference.cpp', '-o', out/'state-original'])
+        run('state-native-build', ['g++', '-O2', '-std=c++17', '-Wall', '-Wextra', '-Werror',
+            ROOT/'tests/world-queue-state-test.cpp', '-o', out/'state-native'])
+        run('state-original', [out/'state-original', args.executable, '--sample'], 'state-original.jsonl')
+        run('state-native', [out/'state-native'], 'state-native.jsonl')
+        from itertools import zip_longest
+        state_cases = state_calls = 0
+        with (out/'state-original.jsonl').open() as original_state, (out/'state-native.jsonl').open() as native_state:
+            for a, b in zip_longest(original_state, native_state):
+                if a is None or b is None:
+                    raise ValueError('Incomplete queue-state comparison')
+                expected, actual = json.loads(a), json.loads(b)
+                expected.pop('opening_clips')
+                calls_for_state = []
+                for call in expected['calls']:
+                    if call['tag'] == 0x57dc60:
+                        calls_for_state.append(dict(backend='clip', values=[call['ecx'], call['edx'], *call['args'][:2]]))
+                    elif call['tag'] == 0x4d8ab0:
+                        if call['ecx'] != 0x6ddf78:
+                            raise ValueError('Wrong original postlude receiver')
+                        calls_for_state.append(dict(backend='postlude', values=call['args'][:3]))
+                    else:
+                        call['ecx_object'] = call['ecx'] == 0
+                        calls_for_state.append(normalize(call))
+                expected['calls'] = calls_for_state
+                if actual != expected:
+                    (out/'state-mismatch.json').write_text(json.dumps(dict(native=actual, original=expected), indent=2)+'\n')
+                    raise ValueError('Native queue state differs from original')
+                state_cases += 1
+                state_calls += len(calls_for_state)
+        if state_cases != 50772:
+            raise ValueError('Wrong queue-state sample count')
+        for address in (0x54ac30,0x54ac40):
+            for index in range(sections):
+                _,va,size,offset=struct.unpack_from('<4I',raw,pe+24+optional+index*40+8)
+                delta=address-0x400000-va
+                if 0<=delta and delta+6<=size:
+                    actual=raw[offset+delta:offset+delta+6].hex()
+                    if actual!='6633c0c20800':raise ValueError('Empty kind8 method bytes changed')
+                    report['anchors'][hex(address)]=actual;break
+            else:raise ValueError('Empty kind8 method not file-backed')
         for name, flags in [('original', ['-m32', '-DMNM_ORIGINAL_REFERENCE', '-fno-pie', '-no-pie']),
                             ('native', [])]:
             run('kind8-'+name+'-build', ['g++', *flags, '-O2', '-std=c++17',
@@ -137,8 +183,14 @@ def main():
             run('kind8-'+name, [out/('kind8-'+name), *([args.executable] if flags else [])],
                 'kind8-'+name+'.jsonl')
         methods = (out/'kind8-native.jsonl').read_bytes()
-        if len(methods.splitlines()) != 960 or methods != (out/'kind8-original.jsonl').read_bytes():
+        if len(methods.splitlines()) != 1440 or methods != (out/'kind8-original.jsonl').read_bytes():
             raise ValueError('Native kind8 method/flags/owner gates differ from original')
+        empty_rows=[json.loads(line) for line in methods.splitlines() if json.loads(line)['vtable'] in (0x5c7438,0x5c7450,0x5c7470)]
+        if len(empty_rows)!=480:raise ValueError('Incomplete empty-method matrix')
+        for row in empty_rows:
+            expected=[i*0x01010101+0x123 for i in range(26)];expected[0]=row['vtable'];expected[24]=777 if row['owner'] else 0
+            for at in (16,17):expected[at]=(expected[at]&0xffffff00)|row['seed']
+            if row['result'] or row['calls'] or row['object']!=expected:raise ValueError('Empty method changed object/raster/return')
         flags = ['clang', '--target=i686-pc-windows-msvc', '-O2', '-ffreestanding',
                  '-fno-builtin', '-fno-stack-protector', '-mno-sse', '-mno-mmx',
                  '-Wall', '-Wextra', '-Werror', '-DMNM_SCENE_STARTUP_REPLAY_SELFTEST']
@@ -177,9 +229,10 @@ def main():
             raise ValueError('Declared contracts changed during execution')
         report.update(success=True, sources_stable=True, cases=len(native), calls_compared=calls,
                       routing_and_metadata_match=True,
-                      class_method_cases=960, class_methods_match=True,
+                      class_method_cases=1440, class_methods_match=True, empty_method_cases=480, empty_methods_no_raster_or_writes=True, guarded_empty_object_admission=True,
                       active_kind8_admission_and_hook_abi=True,
-                      native_ctests_passed=2,
+                      native_ctests_passed=3,
+                      queue_state_cases=state_cases, queue_state_calls=state_calls, queue_state_match=True,
                       artifacts={p.name: sha(p) for p in out.iterdir() if p.is_file()})
     finally:
         run('original-after', [ROOT/'tools/original-manifest.sh', 'verify'])

@@ -39,6 +39,7 @@ def main():
     parser.add_argument('--glyph-backend',choices=['shadow','takeover'],help='Bounded live glyph admission through producer tag10')
     parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow','clip-takeover'],help='Observe the explicit partial direct-word raster experiment')
     parser.add_argument('--world-frames',action='store_true',help='Capture complete effective raster inputs and separate original output oracles')
+    parser.add_argument('--world-colour-word',type=int,choices=range(65536),metavar='0..65535',help='Finite read-only colour count/position checkpoints; no writer attribution or native admission')
     parser.add_argument('--world-lifetime',action='store_true',help='Bounded diagnostic canvas identity/initial-content observations from first queue call')
     parser.add_argument('--continuous-resident',action='store_true',help='Explicit V4 native GPU acknowledgement delivery')
     parser.add_argument('--continuous-producer-waits',action='store_true',help='Separate bounded original/Wine blocking-syscall trace; never enabled by normal rendering')
@@ -73,6 +74,7 @@ def main():
     parser.add_argument('--minimap-owned',action='store_true',help='Observe owned four-view minimap inputs in producer journal V2; original drawing stays active')
     parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
+    if args.world_colour_word is not None and (not args.world_frames or args.world_live or args.canvas_producers or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('Colour checkpoints require finite original-active World capture')
     if args.producer_storage_transitions and (not args.canvas_producers or args.producer_live or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix or args.drawing_publication):parser.error('Storage transition observation requires original-active producer capture without a live viewer or replacement')
     if args.drawing_publication and (not args.canvas_producers or args.producer_live or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('--drawing-publication requires original-active producer capture without live bypass/viewer')
     if args.drawing_physical_peer and not args.drawing_publication:parser.error('--drawing-physical-peer requires --drawing-publication')
@@ -123,12 +125,13 @@ def main():
     if not os.environ.get('DISPLAY'):
         parser.error('Run under xvfb-run -a -s "-screen 0 1280x1024x24"')
     sources=[*sorted((ROOT/'runtime/scene').glob('*.[chS]')),ROOT/'protocols/include/mnm/scene_snapshot_v1.h',
-             ROOT/'runtime/shadow/win32_min.h',ROOT/'tools/build-scene-observer.py',ROOT/'tools/prepare-scene-observer.py',ROOT/'tools/capture-scene-game.py',ROOT/'tools/scene-game-runner.py',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',ROOT/'protocols/include/mnm/world_channel_v2.h',ROOT/'tools/world_channel.py']
+             ROOT/'runtime/shadow/win32_min.h',ROOT/'reconstruction/rendering/kind8_class.h',ROOT/'protocols/include/mnm/world_effect_raster_v1.h',ROOT/'tools/build-scene-observer.py',ROOT/'tools/prepare-scene-observer.py',ROOT/'tools/capture-scene-game.py',ROOT/'tools/scene-game-runner.py',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',ROOT/'protocols/include/mnm/world_channel_v2.h',ROOT/'tools/world_channel.py']
     if args.admitted_prefix_template:sources += [ROOT/'tools/native_prefix_template.py',ROOT/'tools/directplay_dx6_launch.py']
     if args.drawing_publication:sources.append(ROOT/'tools/drawing_publication.py')
     if args.drawing_physical_peer:sources += [ROOT/p for p in ['tools/drawing_physical.py','tools/drawing_presented_session.py','apps/drawing-session/observe.cpp','apps/drawing-session/CMakeLists.txt','apps/qt-shell/window_host.cpp','apps/qt-shell/window_host.hpp']]
     if args.startup_queues:sources.append(ROOT/'tools/inspect-startup-queues.py')
     if args.kind8_objects:sources.append(ROOT/'tools/inspect-kind8.py')
+    if args.world_colour_word is not None:sources.append(ROOT/'tools/inspect-world-colour.py')
     if history:sources.append(ROOT/'tools/world_refusal.py')
     if args.magic_items:
         sources += [*sorted((ROOT/'runtime/menu').glob('*.[chS]')),ROOT/'tools/build-menu-observer.py',
@@ -211,6 +214,7 @@ def main():
         if args.world_raster_queue:env['MNM_WORLD_RASTER_QUEUE']=str(args.world_raster_queue)
         if args.world_raster_prefix:env['MNM_WORLD_RASTER_PREFIX']=str(args.world_raster_prefix)
         if args.world_raster_batch:env['MNM_WORLD_RASTER_BATCH']='1'
+        if args.world_colour_word is not None:env['MNM_SCENE_COLOUR_WORD']=str(args.world_colour_word)
         if args.world_lifetime:env['MNM_SCENE_LIFETIME']='1'
         if args.canvas_startup:env['MNM_CANVAS_STARTUP']='1'
         if args.minimap_owned:env['MNM_MINIMAP_OWNED']='1'
@@ -430,6 +434,9 @@ def main():
                             refusal.update(queue=queues[0]['queue'],queue_draw_count=queues[0]['draw_count'],kind_counts=queues[0]['kind_counts'],unsupported_draws=queues[0]['unsupported_draws'])
                             if failure==8 and not refusal['unsupported_draws']:raise RuntimeError('Kind refusal lacks the actual unsupported draw kinds')
                     refusals.append(refusal)
+            if args.world_colour_word is not None:
+                colour=importlib.util.spec_from_file_location('world_colour',ROOT/'tools/inspect-world-colour.py');module=importlib.util.module_from_spec(colour);colour.loader.exec_module(module)
+                report['world_colour_checkpoints']=[module.inspect(path.with_suffix('.colour'),args.world_colour_word) for path in worlds]
             report.update(world_frames={str(p.relative_to(root)):sha(p) for p in sorted((root/'capture').glob('world-*'))},skip_queues=args.skip_queues,queue_interval=args.interval)
             if args.observe_world_refusals:report.update(world_refusals=refusals,complete_native_admission=not refusals)
         if args.continuous_queues is not None:

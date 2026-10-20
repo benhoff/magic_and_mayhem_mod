@@ -5,7 +5,13 @@
 #include "sprite-binary-reference.cpp"
 #undef main
 #include "../protocols/include/mnm/world_frame_v1.h"
-int main(int argc,char** argv)try{
+#ifndef MNM_WORLD_RASTER_RESULT
+#define MNM_WORLD_RASTER_RESULT(op, call) ((void)(call))
+#endif
+#ifndef MNM_WORLD_REFERENCE_MAIN
+#define MNM_WORLD_REFERENCE_MAIN main
+#endif
+int MNM_WORLD_REFERENCE_MAIN(int argc,char** argv)try{
     if(argc!=4&&argc!=5)throw std::runtime_error("Expected pinned PE, World inputs, new output, optional diagnostic before-canvas");
     map_image(read(argv[1]));auto input=read(argv[2]);
     if(input.size()<80||std::memcmp(input.data(),MNM_WORLD_MAGIC,8)||u32(input,40)||u32(input,72)||u32(input,16)!=input.size())throw std::runtime_error("World input admission");
@@ -16,7 +22,7 @@ int main(int argc,char** argv)try{
     std::size_t at=80;
     for(unsigned i=0;i<u32(input,36);++i){
         const auto size=u32(input,at),op=u32(input,at+4),n=u32(input,at+32),indexed=u32(input,at+36),payload=u32(input,at+40);
-        if(size!=64+n+payload||(op<6&&n<40)||at+size>input.size()||op>7)throw std::runtime_error("World raster record");
+        if(size!=64+n+payload||((op<6||op>=8)&&n<40)||at+size>input.size()||op>MNM_WORLD_DESTINATION_ROWS)throw std::runtime_error("World raster record");
         if(op==7){
             if(n||indexed||payload<14||u32(input,at+52)!=12)throw std::runtime_error("Colour rectangle record");
             const auto w=u32(input,at+64),h=u32(input,at+68),mode=u32(input,at+72);
@@ -57,22 +63,81 @@ int main(int argc,char** argv)try{
             at+=size;continue;
         }
         Bytes frame(input.begin()+at+64,input.begin()+at+64+n);std::vector<std::uint32_t> palette(3+128,0);
-        if(indexed&&op!=3){if(payload!=512)throw std::runtime_error("Palette extent");std::memcpy(palette.data()+3,input.data()+at+64+n,512);const auto pointer=std::uint32_t(reinterpret_cast<std::uintptr_t>(palette.data()));std::memcpy(frame.data()+28,&pointer,4);}
+        if(op==8||op==9||op==10||op==MNM_WORLD_SOURCE_ROW_SHIFT){
+            const auto ordinal=u32(input,at+56);const auto shade=std::int32_t(u32(input,at+44));
+            if(indexed!=1||payload!=(op==10?524u:op==MNM_WORLD_SOURCE_ROW_SHIFT?512u+u32(frame,8)*4:512u)||ordinal>18||shade< -127||shade>127)throw std::runtime_error("Additive sprite palette inputs");
+            // Independent original selection through real linked nodes and
+            // shade tables. All other tables contain a deliberately wrong color.
+            const unsigned stride=3+128*128;palette.assign((ordinal+1)*stride,0xdeadbeef);
+            for(unsigned j=0;j<=ordinal;++j){auto* node=palette.data()+j*stride;
+                node[0]=j<ordinal?std::uint32_t(reinterpret_cast<std::uintptr_t>(node+stride)):0;node[1]=2;node[2]=64;}
+            int shifted=shade>>2;if(shifted<0)++shifted;
+            std::memcpy(palette.data()+ordinal*stride+3+(64+shifted)*128,input.data()+at+64+n,512);
+            const auto pointer=std::uint32_t(reinterpret_cast<std::uintptr_t>(palette.data()));std::memcpy(frame.data()+28,&pointer,4);
+        }else if(indexed&&op!=3&&op!=MNM_WORLD_DESTINATION_ROWS){if(payload!=512)throw std::runtime_error("Palette extent");std::memcpy(palette.data()+3,input.data()+at+64+n,512);const auto pointer=std::uint32_t(reinterpret_cast<std::uintptr_t>(palette.data()));std::memcpy(frame.data()+28,&pointer,4);}
         else if(!indexed){std::uint32_t marker=UINT32_MAX;std::memcpy(frame.data()+28,&marker,4);}
         for(const auto& pair:std::vector<std::pair<std::uintptr_t,unsigned>>{{0x6e0008,16},{0x6cbb6c,20},{0x6a49b8,24},{0x656618,28}})global(pair.first,u32(input,at+pair.second));
         using Draw=unsigned (__attribute__((fastcall)) *)(void*,int,int,int,int);
         const int x=std::int32_t(u32(input,at+8)),y=std::int32_t(u32(input,at+12));
         if(op==5){using Shadow=unsigned (__attribute__((fastcall)) *)(void*,int,int);reinterpret_cast<Shadow>(0x57e540)(frame.data(),x,y);}
+        else if(op==MNM_WORLD_SOURCE_ROW_SHIFT||op==MNM_WORLD_DESTINATION_ROWS){
+            const auto states=read((std::string(argv[2])+".rows").c_str());
+            if(states.size()!=12+u32(input,36)*132||std::memcmp(states.data(),"MNMSHFT1",8)||u32(states,8)!=u32(input,36))
+                throw std::runtime_error("Private original row-state descriptor");
+            const auto state=12+i*132,amplitude=u32(states,state);
+            if(!amplitude||amplitude>16||u32(input,at+60)!=u32(frame,8)||
+               payload!=(op==MNM_WORLD_SOURCE_ROW_SHIFT?512u:0u)+u32(frame,8)*4)
+                throw std::runtime_error("Original row-effect geometry/state");
+            global(0x6c4830,u32(input,at+48));
+            if(op==MNM_WORLD_SOURCE_ROW_SHIFT){
+                if(!indexed||u32(input,at+52)!=16)throw std::runtime_error("Source placement backend");
+                global(0x5e15f8,amplitude);
+                for(unsigned j=0;j<32;++j)global(0x5f1450+j*4,u32(states,state+4+j*4));
+                if(u32(states,state+4)==32000)throw std::runtime_error("Private fixture requires a frozen source-shift table");
+                MNM_WORLD_RASTER_RESULT(op, reinterpret_cast<Draw>(0x580260)(frame.data(),x,y,std::int32_t(u32(input,at+44)),int(u32(input,at+56))));
+            }else{
+                if(u32(input,at+52)!=7)throw std::runtime_error("Destination row backend");
+                global(0x5f14d0,0);
+                for(unsigned j=0;j<32;++j)global(0x5f14d0+(amplitude*16+j)*4,u32(states,state+4+j*4));
+                using Wave=unsigned (__attribute__((fastcall)) *)(void*,int,int,int);
+                MNM_WORLD_RASTER_RESULT(op, reinterpret_cast<Wave>(0x5806f0)(frame.data(),x,y,amplitude));
+            }
+        }
         else if(op==3){
             const auto period=u32(input,at+60),amplitude=period/2;if(!period||period>16||payload!=64)throw std::runtime_error("Wave extent");
+            const auto backend=u32(input,at+52);
+            if(backend==9){
+                if(period!=16)throw std::runtime_error("Direct distortion requires owned mask/period16");
+                const auto top=std::int64_t(y)-std::int32_t(u32(frame,16));
+                const auto skip=std::max<std::int64_t>(0,std::int32_t(u32(input,at+20))-top);
+                global(0x6c4830,std::uint32_t(skip-1));
+                for(unsigned j=0;j<16;++j)global(0x656640+j*4,u32(input,at+64+n+j*4));
+                using DirectDistortion=unsigned (*)(void*,int,int);
+                reinterpret_cast<DirectDistortion>(0x596490)(frame.data(),x,y);
+                at+=size;continue;
+            }
+            if(backend!=7)throw std::runtime_error("Unknown displacement backend");
             // Keep the original initializer inactive; the observed owned table
             // already contains this request's effective phase.
             global(0x5f14d0,0);for(unsigned j=0;j<16;++j)global(0x5f14d0+(amplitude*16+j)*4,u32(input,at+64+n+j*4));
             const auto left=x-std::int32_t(u32(frame,12));const bool clipped=left<std::int32_t(u32(input,at+16))||left+int(u32(frame,4))>std::int32_t(u32(input,at+24));
             global(0x6c4830,clipped?u32(input,at+48):0);
-            using Wave=unsigned (__attribute__((fastcall)) *)(void*,int,int,int);reinterpret_cast<Wave>(0x5806f0)(frame.data(),x,y,amplitude);
+            using Wave=unsigned (__attribute__((fastcall)) *)(void*,int,int,int);MNM_WORLD_RASTER_RESULT(op, reinterpret_cast<Wave>(0x5806f0)(frame.data(),x,y,amplitude));
         }else if(!indexed){using Direct=unsigned (*)(void*,int,int);reinterpret_cast<Direct>(0x597086)(frame.data(),x,y);}
-        else reinterpret_cast<Draw>(op==0?0x57e1b0:op==1?0x57ec90:op==2?0x57f5f0:0x57f0f0)(frame.data(),x,y,0,0);
+        else if(op==10){
+            if(u32(input,at+52)!=15||u32(input,at+56)||u32(input,at+48))throw std::runtime_error("Tint outline inputs");
+            using Tint=unsigned (__attribute__((fastcall)) *)(void*,int,int,int,int,int,int);
+            MNM_WORLD_RASTER_RESULT(op, reinterpret_cast<Tint>(0x581200)(frame.data(),x,y,std::int32_t(u32(input,at+44)),
+                int(u32(input,at+64+n+512)),int(u32(input,at+64+n+516)),int(u32(input,at+64+n+520))));
+        }
+        else if(op==8||op==9){
+            if(u32(input,at+52)!=(op==8?13u:14u))throw std::runtime_error("Additive sprite backend");
+            // Three WORD masks, not overlapping DWORD globals.
+            *reinterpret_cast<std::uint16_t*>(0x6e1f7c)=0xf800;
+            *reinterpret_cast<std::uint16_t*>(0x6e1f7e)=0x07e0;
+            *reinterpret_cast<std::uint16_t*>(0x6e1f80)=0x001f;
+            MNM_WORLD_RASTER_RESULT(op, reinterpret_cast<Draw>(op==8?0x580a90:0x57fe10)(frame.data(),x,y,std::int32_t(u32(input,at+44)),int(u32(input,at+56))));
+        }else reinterpret_cast<Draw>(op==0?0x57e1b0:op==1?0x57ec90:op==2?0x57f5f0:0x57f0f0)(frame.data(),x,y,0,0);
         at+=size;
     }
     {

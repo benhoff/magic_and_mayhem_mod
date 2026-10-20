@@ -1,6 +1,8 @@
 #include "world_frame.hpp"
 #include "../../protocols/include/mnm/world_frame_v1.h"
 #include <cstring>
+#include <limits>
+#include "../../renderer/sprites/tint_colour.hpp"
 #include <stdexcept>
 namespace mnm::legacy {
 namespace {
@@ -24,8 +26,13 @@ WorldFrame decodeWorldFrame(const QByteArray& b){
     qsizetype at=MNM_WORLD_HEADER;
     for(std::uint32_t i=0;i<count;++i){
         const auto size=word(b,at),op=word(b,at+4),encoded=word(b,at+32),indexed=word(b,at+36),payload=word(b,at+40);
-        if(size!=MNM_WORLD_RECORD+encoded+payload||(op<6&&encoded<40)||encoded>MNM_WORLD_MAX_FRAME||indexed>1||op>7||size>std::uint32_t(b.size()-at)||word(b,at+52)>12)throw std::invalid_argument("Invalid World raster record");
-        if((op!=MNM_WORLD_COLOUR_RECT&&payload!=(op==MNM_WORLD_ADDITIVE_RECT?20u:op==MNM_WORLD_WAVE?64u:indexed?512u:0u))||(op!=MNM_WORLD_WAVE&&word(b,at+60)))throw std::invalid_argument("Invalid World raster payload");
+        if(size!=MNM_WORLD_RECORD+encoded+payload||((op<6||op==MNM_WORLD_ADDITIVE_SPRITE||op==MNM_WORLD_RUN_OUTLINE||op==MNM_WORLD_TINT_OUTLINE||op==MNM_WORLD_SOURCE_ROW_SHIFT||op==MNM_WORLD_DESTINATION_ROWS)&&encoded<40)||encoded>MNM_WORLD_MAX_FRAME||indexed>1||op>MNM_WORLD_DESTINATION_ROWS||size>std::uint32_t(b.size()-at)||word(b,at+52)>16)throw std::invalid_argument("Invalid World raster record");
+        const bool rowEffect=op==MNM_WORLD_SOURCE_ROW_SHIFT||op==MNM_WORLD_DESTINATION_ROWS;
+        const auto rowCount=rowEffect?word(b,at+MNM_WORLD_RECORD+8):0u;
+        if(rowCount>2048||(rowEffect&&word(b,at+60)!=rowCount))throw std::invalid_argument("Invalid World row-effect extent");
+        const auto expectedPayload=op==MNM_WORLD_ADDITIVE_RECT?20u:op==MNM_WORLD_WAVE?64u:op==MNM_WORLD_TINT_OUTLINE?524u:
+            rowEffect?rowCount*4+(op==MNM_WORLD_SOURCE_ROW_SHIFT?512u:0u):indexed?512u:0u;
+        if((op!=MNM_WORLD_COLOUR_RECT&&payload!=expectedPayload)||(op!=MNM_WORLD_WAVE&&!rowEffect&&word(b,at+60)))throw std::invalid_argument("Invalid World raster payload");
         WorldDraw d;d.x=signedWord(word(b,at+8));d.y=signedWord(word(b,at+12));d.clip={signedWord(word(b,at+16)),signedWord(word(b,at+20)),signedWord(word(b,at+24)),signedWord(word(b,at+28))};d.backend=word(b,at+52);
         if(d.clip.left<0||d.clip.top<0||d.clip.right<=d.clip.left||d.clip.bottom<=d.clip.top||d.clip.right>int(frame.width)||d.clip.bottom>int(frame.height))throw std::invalid_argument("World clip outside viewport");
         if(op==MNM_WORLD_COLOUR_RECT){
@@ -43,11 +50,42 @@ WorldFrame decodeWorldFrame(const QByteArray& b){
             for(unsigned j=0;j<3;++j){const auto v=word(b,at+72+j*4);if(v>65535)throw std::invalid_argument("Additive channel extent");rectangle.channels[j]=std::uint16_t(v);}
             d.additive=rectangle;frame.draws.push_back(std::move(d));at+=size;continue;
         }
-        if(d.backend>=11)throw std::invalid_argument("Additive backend requires rectangle operation");
+        if(op==MNM_WORLD_ADDITIVE_SPRITE){
+            if(d.backend!=13||indexed!=1)throw std::invalid_argument("Additive sprite requires indexed backend13");
+        }else if(op==MNM_WORLD_RUN_OUTLINE){
+            if(d.backend!=14||indexed!=1)throw std::invalid_argument("Run outline requires indexed backend14");
+        }else if(op==MNM_WORLD_TINT_OUTLINE){
+            if(d.backend!=15||indexed!=1||frame.stride!=frame.width||word(b,at+48)||word(b,at+56))throw std::invalid_argument("Tint outline requires indexed backend15 and palette0");
+        }else if(rowEffect){
+            if(frame.stride!=frame.width||d.backend!=(op==MNM_WORLD_SOURCE_ROW_SHIFT?16u:7u)||
+               (op==MNM_WORLD_SOURCE_ROW_SHIFT&&indexed!=1))throw std::invalid_argument("Invalid owned row-effect backend/storage");
+        }else if(d.backend>=11)throw std::invalid_argument("Primitive backend does not match sprite operation");
         d.frame={bool(indexed),b.mid(at+MNM_WORLD_RECORD,encoded)};if(word(d.frame.encoded,28))throw std::invalid_argument("World frame retains a legacy pointer");frameIdentity(d.frame.encoded,d.frame.indexed);
-        d.composite.mode=render::CompositeMode(op);
+        d.composite.mode=rowEffect?render::CompositeMode::copy:op==MNM_WORLD_ADDITIVE_SPRITE?render::CompositeMode::additive:render::CompositeMode(op);
+        if(op==MNM_WORLD_RUN_OUTLINE||op==MNM_WORLD_TINT_OUTLINE){
+            const auto left=std::int64_t(d.x)-signedWord(word(d.frame.encoded,12));
+            d.composite.mode=left<d.clip.left||left+word(d.frame.encoded,4)>d.clip.right?
+                render::CompositeMode::half:op==MNM_WORLD_TINT_OUTLINE?render::CompositeMode::tintOutline:render::CompositeMode::runOutline;
+        }
         if(op==MNM_WORLD_WAVE){d.composite.rowPeriod=word(b,at+60);if(!d.composite.rowPeriod||d.composite.rowPeriod>16)throw std::invalid_argument("World displacement period outside bounds");for(unsigned j=0;j<16;++j){d.composite.rowOffsets[j]=signedWord(word(b,at+MNM_WORLD_RECORD+encoded+j*4));if(d.composite.rowOffsets[j]<0||d.composite.rowOffsets[j]>16)throw std::invalid_argument("World displacement offset outside bounds");}}
-        else if(indexed){render::SpriteColourTable colours{};for(unsigned j=0;j<256;++j){const auto offset=at+MNM_WORLD_RECORD+encoded+j*2;const auto* p=reinterpret_cast<const unsigned char*>(b.constData()+offset);colours[j]=std::uint16_t(p[0]|p[1]<<8);}d.colours=colours;}
+        else if(indexed&&op!=MNM_WORLD_DESTINATION_ROWS){render::SpriteColourTable colours{};for(unsigned j=0;j<256;++j){const auto offset=at+MNM_WORLD_RECORD+encoded+j*2;const auto* p=reinterpret_cast<const unsigned char*>(b.constData()+offset);colours[j]=std::uint16_t(p[0]|p[1]<<8);}d.colours=colours;}
+        if(rowEffect){
+            const auto left=std::int64_t(d.x)-signedWord(word(d.frame.encoded,12)),top=std::int64_t(d.y)-signedWord(word(d.frame.encoded,16));
+            for(const auto coordinate:{left,top})if(coordinate<std::numeric_limits<std::int32_t>::min()||coordinate>std::numeric_limits<std::int32_t>::max())
+                throw std::invalid_argument("Overflowing legacy row-effect placement is unsupported");
+            render::SpriteRowEffect effect;effect.kind=op==MNM_WORLD_SOURCE_ROW_SHIFT?render::RowEffectKind::placeSource:render::RowEffectKind::sampleDestination;
+            effect.wholeRunClip=op==MNM_WORLD_DESTINATION_ROWS;
+            for(unsigned row=0;row<rowCount;++row){const auto offset=signedWord(word(b,at+MNM_WORLD_RECORD+encoded+(op==MNM_WORLD_SOURCE_ROW_SHIFT?512:0)+row*4));
+                if(offset<0||offset>32)throw std::invalid_argument("World row-effect shift outside bounds");
+                effect.offsets.push_back(offset);
+            }
+            d.rowEffect=std::move(effect);
+        }
+        if(op==MNM_WORLD_TINT_OUTLINE){
+            const auto tint=render::tintColour565(word(b,at+MNM_WORLD_RECORD+encoded+512),
+                word(b,at+MNM_WORLD_RECORD+encoded+516),word(b,at+MNM_WORLD_RECORD+encoded+520),signedWord(word(b,at+44)));
+            if(d.composite.mode==render::CompositeMode::tintOutline)d.colours->fill(tint);
+        }
         frame.draws.push_back(std::move(d));at+=size;
     }
     if(at!=b.size())throw std::invalid_argument("Trailing World raster inputs");
@@ -57,8 +95,14 @@ render::SceneDraw worldPrimitiveDraw(const WorldDraw& d){
     if(!d.additive&&!d.colourRectangle)throw std::invalid_argument("No primitive World inputs");
     render::SceneDraw draw;draw.anchorX=d.x;draw.anchorY=d.y;draw.viewport=d.clip;draw.additive=d.additive;draw.colourRectangle=d.colourRectangle;draw.composite=d.composite;return draw;
 }
+render::SceneDraw worldSpriteDraw(const WorldDraw& d,const BoundFrame& bound){
+    render::SceneDraw draw{bound.resource,bound.frame,d.x,d.y,true,true,d.colours,d.clip,d.composite};
+    draw.wholeOpaqueRunClipping=d.backend==7&&d.composite.mode==render::CompositeMode::displace;
+    draw.rowEffect=d.rowEffect;return draw;
+}
 std::vector<render::SceneDraw> worldDisplay(const WorldFrame& frame,const SnapshotResources& resources){
     std::vector<render::SceneDraw> draws;draws.reserve(frame.draws.size());
-    for(const auto& d:frame.draws){if(d.additive||d.colourRectangle){draws.push_back(worldPrimitiveDraw(d));continue;}const auto bound=resources.resolve(d.frame,true);render::SceneDraw draw{bound.resource,bound.frame,d.x,d.y,true,true,d.colours,d.clip,d.composite};draw.wholeOpaqueRunClipping=d.backend==7&&d.composite.mode==render::CompositeMode::displace;draws.push_back(std::move(draw));}return draws;
+    for(const auto& d:frame.draws){if(d.additive||d.colourRectangle){draws.push_back(worldPrimitiveDraw(d));continue;}
+        draws.push_back(worldSpriteDraw(d,resources.resolve(d.frame,true)));}return draws;
 }
 }

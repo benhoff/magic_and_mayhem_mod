@@ -8,9 +8,10 @@ API u32 WIN GetTickCount(void);
 static u32 bypass_limit,bypass_queue,bypass_completed;
 static u32 raster_first,raster_last,raster_preparations,raster_world_open;
 #include "world_raster_callers.h"
+#include "kind8_sprite_admission.h"
 #include "../../reconstruction/rendering/generic_producer_caller.h"
 #ifdef MNM_SCENE_SELFTEST
-static u32 generic_bypass_fixture;
+static u32 generic_bypass_fixture,kind8_sprite_guard_fixture;
 #endif
 static int generic_bypass_caller(u32 caller,u32 tag){
 #ifdef MNM_SCENE_SELFTEST
@@ -30,12 +31,14 @@ static int bypass_init(u32 queues){
  if(!bypass_limit||bypass_limit>MNM_WORLD_BYPASS_MAX)return 0;bypass_queue=queues;return 1;
 }
 static int bypass_equal(const void* a,const void* b,u32 n){const u8* x=a;const u8* y=b;while(n--)if(*x++!=*y++)return 0;return 1;}
-static int raster_caller(u32 caller,u32 tag){
+static int raster_caller(u32 caller,u32 tag,const u32* stack){
 #ifdef MNM_SCENE_SELFTEST
- (void)caller;(void)tag;return 1;
-#else
- for(u32 i=0;i<sizeof(raster_callers)/sizeof(raster_callers[0]);++i)if(caller==raster_callers[i].address&&(tag<64 && (raster_callers[i].tags&(1ull<<tag)))){if(!readable(caller,10))return 0;return bypass_equal((void*)caller,raster_callers[i].bytes,10);}return 0;
+ if(!kind8_sprite_guard_fixture){(void)caller;(void)tag;(void)stack;return 1;}
 #endif
+ if(readable(caller,10)&&mnm_world_raster_caller(caller,tag,(const u8*)caller))return 1;
+ if(tag!=57||!mnm_world_trail_site(caller)||!readable(caller,10)||!readable(0x4df840,7)||!readable((u32)stack,48))return 0;
+ const u32 outer=mnm_world_trail_parent(caller,tag,(const u8*)0x4df840,stack,48);
+ return outer&&readable(outer,10)&&mnm_world_trail_raster_caller(caller,tag,(const u8*)caller,outer,(const u8*)outer);
 }
 
 static u32 bypass_hash(const u8* b,u32 n){u32 h=2166136261u;while(n--)h=(h^*b++)*16777619u;return h;}
@@ -68,3 +71,8 @@ static int bypass_reply(u32* r,struct Surface* surface,u32 entry){
  HeapFree(GetProcessHeap(),0,pixels);return 0;
 }
 #include "world_raster_batch.c"
+/* Sprite extension is limited to protected batch delivery; legacy per-draw
+ * pixel replies keep the original caller policy. */
+static int raster_batch_caller(u32 caller,u32 tag,const u32* stack){
+ return raster_caller(caller,tag,stack)||(batch_guard_open&&GetCurrentThreadId()==batch_owner&&kind8_sprite_caller(caller,tag,stack));
+}

@@ -26,6 +26,7 @@ def sha(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--claims', type=Path, required=True)
+    parser.add_argument('--width', type=int, choices=(640,800), default=800, help='Bounded tight RGB565 fixture extent')
     parser.add_argument('--case', choices=['baseline','tracker','reentrant','timeout'], default='baseline')
     parser.add_argument('--wine-prefix',type=Path,help='Reuse a stopped, owned private test prefix')
     parser.add_argument('--expect-refusal', action='store_true', help='Retain the pre-fix negative control')
@@ -55,7 +56,7 @@ def main():
                   publication_probe=args.publication_probe, expected_inline_publication=args.expect_inline_publication,
                   scope='Synthetic actual PE32 exported resident binding, delayed copy/tracker ownership, original Lock/Unlock results and LastError, poisoned borrowed pixels and ordered owned V5 bytes. No original game, GPU execution, public cadence or pixel equivalence.')
     env = {k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
-    env.update(WINEPREFIX=str(args.wine_prefix.resolve() if args.wine_prefix else out/'wineprefix'), WINEDEBUG='-all', MNM_BIND_CASE=args.case)
+    env.update(MNM_BIND_WIDTH=str(args.width), WINEPREFIX=str(args.wine_prefix.resolve() if args.wine_prefix else out/'wineprefix'), WINEDEBUG='-all', MNM_BIND_CASE=args.case)
     child = None
     try:
         spec = importlib.util.spec_from_file_location('bind_build', ROOT/'tools/build-render-bridge.py')
@@ -135,7 +136,7 @@ def main():
         if world:
             assert struct.unpack('<5I', world[0]) == (1, 1, 0, 17, 34)
         assert [op for op,_ in records] == ([1, 6, 7, 8] if expect_no_world else [1, 19, 6, 7, 8])
-        assert len(records[0][1]) == 28+800*600*2 and not any(records[0][1][28:])
+        assert len(records[0][1]) == 28+args.width*(480 if args.width==640 else 600)*2 and not any(records[0][1][28:])
         elapsed = result[6] | result[7] << 32
         frequency = result[8] | result[9] << 32
         unlock_elapsed = result[11] | result[12] << 32
@@ -146,7 +147,7 @@ def main():
         if args.publication_probe and not args.expect_inline_publication:
             trace=struct.unpack('<5I',(out/'publication-trace.bin').read_bytes())
             assert trace[0] and trace[0]!=trace[4] and trace[1]>0 and trace[2:4]==(0,0),trace
-        report.update(case=args.case, expected_no_world=expect_no_world, publication_trace=list(trace) if trace else None, success=not negative_control, negative_control_verified=negative_control,
+        report.update(width=args.width,height=480 if args.width==640 else 600,invalid_extent_controls=4,case=args.case, expected_no_world=expect_no_world, publication_trace=list(trace) if trace else None, success=not negative_control, negative_control_verified=negative_control,
                       original_locks=result[2], original_unlocks=result[3],
                       last_error=result[1], bind_succeeded=bool(result[0]), complete_shutdown=True,
                       bind_ms=elapsed*1000/frequency, opcodes=[op for op,_ in records],

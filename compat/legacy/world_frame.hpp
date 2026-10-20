@@ -13,6 +13,7 @@ struct WorldDraw {
     std::uint32_t backend=0;
     std::optional<render::AdditiveRectangle> additive;
     std::optional<render::ColourRectangle> colourRectangle;
+    std::optional<render::SpriteRowEffect> rowEffect;
 };
 struct WorldFrame {
     std::uint32_t sequence=0,width=0,height=0,stride=0;
@@ -20,6 +21,7 @@ struct WorldFrame {
 };
 WorldFrame decodeWorldFrame(const QByteArray&);
 render::SceneDraw worldPrimitiveDraw(const WorldDraw&);
+render::SceneDraw worldSpriteDraw(const WorldDraw&,const BoundFrame&);
 // Strict, all-or-nothing asset binding. Neither oracle canvas is an input.
 std::vector<render::SceneDraw> worldDisplay(const WorldFrame&,const SnapshotResources&);
 }

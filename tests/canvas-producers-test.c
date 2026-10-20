@@ -137,7 +137,11 @@ static void tail(u8* p,u32 tag){
  const u8* bytes=0;u32 n=0;
  static const u8 release[]={0x5f,0x5e,0x5b},lock[]={0x83,0xc4,8,0xb8,0,0,0x70,0},fill[]={0x5e,0x83,0xc4,0x6c},copies[]={0x5d,0x5b,0x83,0xc4,0x30},jpeg[]={0x5f,0x5e},font[]={0x83,0xc4,0x28},slow[]={0x5d,0x5b,0x83,0xc4,0x14},normal[]={0x5b,0x5f,0x5e,0x5d},clipped[]={0x83,0xc4,0x18,0x5d},half[]={0x5e,0x5d,0x5b,0x83,0xc4,0x1c},quarter[]={0x5e,0x5d,0x5b,0x83,0xc4,0x24},wave[]={0x83,0xc4,0x20},shadow[]={0x83,0xc4,0x18};
 #define T(name) bytes=name;n=sizeof(name)
- if(tag==56){static const u8 source_dib[]={0x5e,0x59};T(source_dib);}
+ if(tag==57){static const u8 effect_add[]={0x5d,0x5b,0x83,0xc4,0x30};T(effect_add);}
+ else if(tag==58){static const u8 effect_outline[]={0x5f,0x5e,0x5d,0x5b,0x83,0xc4,0x20};T(effect_outline);}
+ else if(tag==59){static const u8 effect_tint[]={0x5e,0x5d,0x5b,0x83,0xc4,0x18};T(effect_tint);}
+ else if(tag==60){static const u8 effect_source[]={0x83,0xc4,0x28};T(effect_source);}
+ else if(tag==56){static const u8 source_dib[]={0x5e,0x59};T(source_dib);}
  else if(tag==1){T(release);}else if(tag==2){T(lock);}else if(tag==5||tag==6){T(fill);}else if(tag==7||tag==8){T(copies);}else if(tag==9){T(jpeg);}else if(tag==10){T(font);}else if(tag==11){T(slow);}else if(tag==17){T(clipped);}else if(tag==18){T(half);}else if(tag==19||tag==20){T(quarter);}else if(tag==21){T(wave);}else if(tag==25){T(shadow);}else if(tag==30){static const u8 pcx[]={0x5f,0x5b,0x83,0xc4,0x18};T(pcx);}else if(tag==31){static const u8 dib[]={0x5e,0x59};T(dib);}else if(tag==32||tag==33){u8 close[]={0x5b,0x83,0xc4,tag==32?0x18:0x20};for(u32 i=0;i<4;++i)*p++=close[i];}else if(tag==34){static const u8 word[]={0x83,0xc4,0x1c};T(word);}else if(tag==35){static const u8 bmp[]={0x83,0xc4,8};T(bmp);}else if(tag==36){T(normal);}else if(tag==37||tag==38){static const u8 partial[]={0x83,0xc4,0x20};T(partial);}else if(tag==39){static const u8 keyed[]={0x5b,0x83,0xc4,0x18};T(keyed);}else if(tag==40){static const u8 bmp0[]={0x83,0xc4,8};T(bmp0);}else if(tag==41){static const u8 key[]={0x83,0xc4,0x10};T(key);}else if(tag==52){static const u8 colour[]={0x83,0xc4,0x24};T(colour);}else if(tag==53){static const u8 generator[]={0x5b,0x83,0xc4,8};T(generator);}else if(tag==54){}else if(tag==55){static const u8 resize[]={0x5b};T(resize);}else if(tag>=49){static const u8 rotated[]={0x5e,0x5d,0x5b,0x83,0xc4,0x28};T(rotated);}else if(tag==46){static const u8 outline[]={0x5f,0x5e,0x5d,0x5b,0x83,0xc4,0x28};T(outline);}else if(tag==47){static const u8 mark[]={0x5b};T(mark);}else if(tag==48){static const u8 units[]={0x5d,0x5b,0x83,0xc4,8};T(units);}else if(tag==45){static const u8 map[]={0x5e,0x83,0xc4,0x20};T(map);}else if(tag==44){static const u8 fade[]={0x5e,0x5d,0x59};T(fade);}else if(tag>=42){static const u8 rect[]={0x5b,0x83,0xc4,0x20};T(rect);}else if(tag>=27){u8 close[]={0x83,0xc4,tag==27?0x40:tag==28?0x38:0x24};for(u32 i=0;i<3;++i)*p++=close[i];}else if(tag==26){static const u8 add[]={0x83,0xc4,0x1c};T(add);}else if(tag>=12){T(normal);}
  for(u32 i=0;i<n;++i)*p++=bytes[i];if(hooks[tag].pop){*p++=0xc2;*p++=(u8)hooks[tag].pop;*p=0;}else *p=0xc3;
 }
@@ -202,6 +206,32 @@ static void source_point_fixture(void){
  copy(surfaces,saved_surfaces,sizeof(saved_surfaces));copy(frames,&saved_frame,sizeof(saved_frame));copy(producer_trace_threads,saved_threads,sizeof(saved_threads));
  enabled=saved_enabled;stopped=saved_stopped;producer_trace_mode=saved_mode;failures=saved_failures;
 }
+#include "world-effect-hook-fixture.h"
+static void extent640_fixture(void){
+ struct Surface saved=surfaces[0];HANDLE saved_file=file;const u32 saved_limit=limit,saved_sequence=sequence,saved_bytes=bytes,saved_failures=failures,saved_stop=stopped,saved_enabled=enabled;
+ if(!journal_flush())ExitProcess(176);char name[260];path(name,"world-extent640-fixture-",0,".bin");file=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(file==(HANDLE)-1)ExitProcess(177);
+ u32 header[16]={0};copy(header,MNM_PRODUCER_V3_MAGIC,8);header[2]=3;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=MNM_PRODUCER_V3_MAX_RECORDS;header[6]=32;if(!write(file,header,64))ExitProcess(178);
+ bytes=64;sequence=0;limit=32;stopped=0;enabled=1;depth=0;zero(source_packets,sizeof(source_packets));source_packet_count=source_packet_bytes=0;
+ struct Surface* dst=surfaces;dst->object=0x700100;dst->id=99;dst->width=dst->stride=640;dst->height=480;dst->pixels=(u32)VirtualAlloc(0,614400,0x3000,4);if(!dst->pixels)ExitProcess(179);const u32 pixels=dst->pixels;
+ for(u32 i=0;i<307200;++i)((u16*)pixels)[i]=0x4321;
+ put((void*)0x658174,pixels);put((void*)0x6e0008,0);put((void*)0x6cbb6c,0);put((void*)0x6a49b8,640);put((void*)0x656618,480);put((void*)0x6e1f88,0);
+ queue=raster_first=raster_last=1;raster_world_open=1;batch_enabled=1;batch_guard_open=0;bypass_completed=0;
+ const u32 invalid[4][3]={{640,600,640},{800,480,800},{641,480,641},{640,480,642}};
+ for(u32 i=0;i<4;++i){dst->width=invalid[i][0];dst->height=invalid[i][1];dst->stride=invalid[i][2];if(batch_start(dst)||batch_guard_open)ExitProcess(180);}
+ dst->width=dst->stride=640;dst->height=480;continuous_map=(u8*)1;continuous_resident=0;if(batch_start(dst)||batch_guard_open)ExitProcess(180);continuous_map=0;
+ dst->width=dst->stride=640;dst->height=480;if(!batch_start(dst)||!batch_identity(dst)||batch_pixel_bytes!=614400)ExitProcess(181);
+ u32 region[7];if(VirtualQuery((void*)pixels,region,28)!=28||region[5]!=1)ExitProcess(182);
+ const u32 args[6]={1,0,0,0,0,0},counter=get((void*)0x700804);SetLastError(1234);world_effect_test_call((u32)hooks[57].entry,0x700200,1,12,after,args);
+ if(GetLastError()!=1234||get(after+28)||get(after+32)!=0x247||get((void*)0x700804)!=counter||batch_count!=1||bypass_completed!=1)ExitProcess(183);
+ ++dst->width;if(batch_identity(dst))ExitProcess(184);--dst->width;++dst->height;if(batch_identity(dst))ExitProcess(184);--dst->height;++dst->stride;if(batch_identity(dst))ExitProcess(184);--dst->stride;dst->pixels+=2;if(batch_identity(dst))ExitProcess(184);dst->pixels=pixels;
+ struct Surface other=*dst;if(batch_identity(&other))ExitProcess(184);
+ u32 request[16];batch_header(request,dst);if(request[8]!=640||request[9]!=480||request[10]!=640||!batch_identity(dst)||!batch_restore())ExitProcess(185);
+ for(u32 i=0;i<307200;++i)if(((u16*)pixels)[i]!=0x4321)ExitProcess(186);
+ if(!journal_flush()||!CloseHandle(file))ExitProcess(187); /* Test allocation retires with ExitProcess. */
+ surfaces[0]=saved;file=saved_file;limit=saved_limit;sequence=saved_sequence;bytes=saved_bytes;failures=saved_failures;stopped=saved_stop;enabled=saved_enabled;batch_enabled=0;raster_first=raster_last=0;
+ put((void*)0x658174,saved.pixels);put((void*)0x6a49b8,saved.width);put((void*)0x656618,saved.height);
+}
+#include "kind8-sprite-hook-fixture.h"
 void start(void){
  oracle_config_fixture();
  reserve[sizeof(reserve)-1]=1;u32 old;
@@ -225,6 +255,9 @@ void start(void){
  uniform_colour_source_fixture();
  vertical_bar_source_fixture();
  source_point_fixture();
+ effect_hook_fixture();
+ extent640_fixture();
+ sprite_hook_fixture();
  canvas_producers_close();
  for(u32 i=0;i<HOOKS;++i)canvas_test_call(hooks[i].address,i==3?0x700000:0x700100,4,hooks[i].pop,after);
  char name[260];path(name,"producer-fixture-pass-",0,".bin");

@@ -11,12 +11,25 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from campaign_camera_dialogue import CameraDialogueGuard,validate_camera_dialogue,validate_camera_mini
+from campaign_camera_dialogue import CameraDialogueGuard,dialogue_crop,validate_camera_dialogue,validate_camera_mini
 from campaign_pixel_routes import camera_scenarios,validate_camera_progress
 
 
 def item(native, original):
     return dict(name='test',visible=dict(native=native,original=original),dismissed=False)
+
+
+class CameraCrop(unittest.TestCase):
+    def test_crop_retains_heading_at_both_admitted_extents(self):
+        self.assertEqual(dialogue_crop(800,600),(225,90,600,270))
+        self.assertEqual(dialogue_crop(640,480),(180,72,480,216))
+        # The observed640heading begins above row90and needs its complete H.
+        self.assertLess(dialogue_crop(640,480)[1],86)
+
+    def test_other_extents_refuse_before_quiet_classification(self):
+        for size in [(640,600),(800,480),(641,480),(0,0),(1280,960)]:
+            with self.subTest(size=size),self.assertRaisesRegex(ValueError,'extent'):
+                dialogue_crop(*size)
 
 
 class CameraReadiness(unittest.TestCase):

@@ -1,3 +1,5 @@
+#include "../../protocols/include/mnm/world_effect_raster_v1.h"
+#include "../../reconstruction/rendering/effect_raster_return.hpp"
 #include "world_raster_batch.hpp"
 #include "../../protocols/include/mnm/world_continuous_checksum.h"
 #include "../../protocols/include/mnm/world_raster_batch_v3.h"
@@ -17,7 +19,7 @@ bool admitted(unsigned entry, unsigned backend) {
   constexpr std::pair<unsigned, unsigned> entries[] = {
       {0x595677, 0}, {0x5947b2, 1}, {0x59521a, 1}, {0x595b47, 2}, {0x59603e, 2},
       {0x57de00, 3}, {0x57ec90, 4}, {0x57f0f0, 5}, {0x57f5f0, 6}, {0x5806f0, 7},
-      {0x597086, 8}, {0x596cb8, 8}, {0x596490, 9}, {0x5968a4, 9}, {0x57e540, 10}};
+      {0x597086, 8}, {0x596cb8, 8}, {0x596490, 9}, {0x5968a4, 9}, {0x57e540, 10}, {0x580a90,13}, {0x57fe10,14}, {0x581200,15}, {0x580260,16}};
   return std::any_of(std::begin(entries), std::end(entries), [&](auto p) {
     return p.first == entry && p.second == backend;
   });
@@ -45,6 +47,11 @@ unsigned worldRasterAX(const CanvasProducer &c) {
       r[0] != 96 + p.size() || r[23])
     throw std::invalid_argument("Unclosed batch raster");
   const auto width = word(p, 4), height = word(p, 8);
+  if(r[14]>=8){
+    if(!mnm_world_effect_raster(r[14],r[15],r[17],height,r[20]))
+      throw std::invalid_argument("Unclosed effect return domain");
+    return mnm::reconstruction::effectRasterReturn(r[15]);
+  }
   const auto left =
       std::int64_t(std::int32_t(r[8])) - std::int32_t(word(p, 12));
   return (r[15] == 0 || r[15] == 9) && width && height &&
@@ -65,7 +72,7 @@ WorldRasterBatch validateWorldRasterBatch(
   if (h[2] != (policy == WorldBatchSourcePolicy::ownedV5 ? 5u : 3u) ||
       h[3] != 64 || h[4] != ordinal || h[5] != queue || h[6] != sequence ||
       h[7] != canvas || h[8] != width || h[9] != height || h[10] != width ||
-      width != 800 || height != 600 || h[13] != 1 || !h[14] ||
+      !mnm_world_batch_extent(width, height, h[10]) || h[13] != 1 || !h[14] ||
       h[14] > MNM_WORLD_BATCH_MAX || h[14] != rasters.size() ||
       h[15] != priorRasters + h[14] || h[11] != h[14] * 16 ||
       request.size() != 64 + h[11])

@@ -415,3 +415,14 @@ separately from the 32 remaining Critical partial contracts. The six original
 contracts retain three recovery tasks and three wider acceptance tasks. A changed
 source or assessment moves the planning entry to review; it does not renew engine
 validation or erase the historical scope decision.
+
+
+The World dispatch/kind8/queue/trail follow-up adds five bounded rendering
+contracts; later rendering work adds further catalog entries. The two aggregate
+World dispatch/kind8 contracts now have partial native implementations; they
+remain critical alongside the retained
+33-task tranche plan. No task is silently inserted into that historical plan.
+Their scoped routing/method/state/trail suppliers retain separate comparison
+and live replacement boundaries; planning weights grant no execution credit.
+
+The Low batch keeps its reviewed23-contract selection cohort across merges. Newly added Low contracts appear as unplanned work; historical batch tasks and results stay attached to their reviewed identities.
