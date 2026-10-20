@@ -14,5 +14,13 @@ int main()try{
  }
  bool rejected=false;try{bindTerrainCamera(c,0,40,9);}catch(const std::invalid_argument&){rejected=true;}check(rejected);
  c.view=0;auto before=c;rejected=false;try{scrollTerrainCamera(c,40,28,std::numeric_limits<int>::max(),std::numeric_limits<int>::max());}catch(const std::overflow_error&){rejected=true;}check(rejected && c.column==before.column && c.f45==before.f45);
+ c.column=45;c.row=-5;c.f45=17;c.f49=23;clampTerrainCamera(c,40,28);
+ check(c.column==45 && c.f45==0 && c.row==-5 && c.f49==23);
+ c.column=44;c.row=-6;c.f45=17;c.f49=23;clampTerrainCamera(c,40,28);
+ check(c.column==44 && c.f45==17 && c.row==-5 && c.f49==0);
+ c.column=std::numeric_limits<int>::max();c.row=0;c.f45=19;c.f49=7;
+ moveTerrainCameraCells(c,40,28,1,-1);check(c.column==-5 && c.f45==0 && c.row==-1 && c.f49==7);
+ before=c;rejected=false;try{moveTerrainCameraCells(c,0,28,1,1);}catch(const std::invalid_argument&){rejected=true;}
+ check(rejected && c.column==before.column && c.row==before.row && c.f45==before.f45);
  std::cout<<"Camera setter boundaries passed\n";
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

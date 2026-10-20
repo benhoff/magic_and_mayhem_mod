@@ -19499,3 +19499,14 @@ surface acceptance stays false. No original artifacts or new game/Wine session
 are consumed. Hardware and whole-game caller/format/lifetime/loss/live evidence
 remain separate. The frozen twenty now have16 scoped implementations and four
 broader acceptance targets; historical evidence fingerprints are unchanged.
+
+### Remaining rendering implementation packet — 2026-10-20
+
+All mode-zero preference counts 2..256 and clamped whole-cell camera movement
+are implemented on owned state. The isolated pinned-original comparison
+`REMAIN.boundaries-original-20261020` matches 510 palettes / 16,776,192 words and
+3,267 camera cases. Odd counts >=5 expose an original 508-byte underallocation;
+native storage safely owns all produced words. Count3 skips the bright wing.
+The six broader work groups in `remaining-rendering-implementations-20261020.md`
+remain partial. Existing evidence whose source hashes changed stays historical;
+this packet does not claim full effect, lifecycle, scene or live acceptance.

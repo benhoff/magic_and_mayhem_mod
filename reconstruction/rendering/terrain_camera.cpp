@@ -1,5 +1,6 @@
 #include "terrain_camera.hpp"
 #include <algorithm>
+#include <cstring>
 #include <limits>
 #include <stdexcept>
 namespace mnm::reconstruction {
@@ -43,5 +44,23 @@ void scrollTerrainCamera(TerrainCamera& c,std::uint32_t w,std::uint32_t h,std::i
  case 2:a=-std::int64_t(x)-y;b=std::int64_t(x)-y;break;
  case 3:a=std::int64_t(y)-x;b=-std::int64_t(x)-y;break;}
  auto next=c;axis(next.column,next.f45,w,checked(a));axis(next.row,next.f49,h,checked(b));c=next;
+}
+void clampTerrainCamera(TerrainCamera& c,std::uint32_t w,std::uint32_t h){
+ dimensions(w,h);
+ const auto clamp=[](std::int32_t& cell,std::int32_t& fraction,std::uint32_t extent){
+  if(cell>=std::int32_t(extent+5)){cell=std::int32_t(extent+5);fraction=0;}
+  if(cell < -5){cell=-5;fraction=0;}
+ };
+ clamp(c.column,c.f45,w);clamp(c.row,c.f49,h);
+}
+void moveTerrainCameraCells(TerrainCamera& c,std::uint32_t w,std::uint32_t h,
+ std::int32_t x,std::int32_t y){
+ dimensions(w,h);auto next=c;
+ const auto add=[](std::int32_t a,std::int32_t b){
+  const auto bits=std::uint32_t(a)+std::uint32_t(b);std::int32_t value;
+  std::memcpy(&value,&bits,sizeof(value));return value;
+ };
+ next.column=add(next.column,x);next.row=add(next.row,y);
+ clampTerrainCamera(next,w,h);c=next;
 }
 }

@@ -58,12 +58,12 @@ def main():
   (root/'missing-key.cfg').write_text('[OTHER]\nTerrainLightLevels=32\n')
   (root/'low.cfg').write_text('[VIDEO]\nTerrainLightLevels=-99\n');(root/'high.cfg').write_text('[VIDEO]\nTerrainLightLevels=999\n')
   for build,binary in enumerate(binaries):
-   for name,count in [('missing-key',16),('low',2),('high',256)]:
+   for name,count in [('missing-key',16),('low',2),('high',256),('nonpower',17)]:
     prefix=out/f'fallback-{build}-{name}';run([binary,'--root',root,'--palette-shading','--preferences',name+'.cfg','--output',prefix],f'fallback-{build}-{name}',env);assert json.loads(prefix.with_suffix('.json').read_text())['map']['palette_count']==count
-   for options in [['--preferences','CFG/prefs.cfg'],*(['--palette-shading','--preferences',name+'.cfg'] for name in ['absent','nonpower','malformed','empty'])]:
+   for options in [['--preferences','CFG/prefs.cfg'],*(['--palette-shading','--preferences',name+'.cfg'] for name in ['absent','malformed','empty'])]:
     prefix=out/f'refused-{build}-{len(refusals)}';r=subprocess.run(list(map(str,[binary,'--root',root,*options,'--output',prefix])),capture_output=True,text=True,env=env,timeout=30);assert r.returncode==1 and 'Sanitizer' not in r.stderr and not any(prefix.with_suffix(s).exists() for s in ['.565','.png','.json']);refusals.append(r.stderr.splitlines()[-1])
   assert all(sha(path)==digest for path,digest in inputs.items())
-  report=dict(all_match=True,live_validated=False,executable_sha256=HASH,admission_dispatch_fixtures=len(values)*8,native_frames=2*len(frames),frames=frames,successful_fallbacks=6,refusals=refusals,source_and_input_sha256={str(path.relative_to(ROOT)):digest for path,digest in inputs.items()},helper_sha256={path.name:sha(path) for path in [preference,palette]},boundary='Selected original VIDEO admission and terrain mode-0 loader argument dispatch; private profile callback, loader observation stub and checked returns; supported powers of two; controlled uniform light; no spatial light generation, effect chains or live replacement')
+  report=dict(all_match=True,live_validated=False,executable_sha256=HASH,admission_dispatch_fixtures=len(values)*8,native_frames=2*len(frames),frames=frames,successful_fallbacks=8,refusals=refusals,source_and_input_sha256={str(path.relative_to(ROOT)):digest for path,digest in inputs.items()},helper_sha256={path.name:sha(path) for path in [preference,palette]},boundary='Selected original VIDEO admission and terrain mode-0 loader argument dispatch; private profile callback, loader observation stub and checked returns; supported powers of two; controlled uniform light; no spatial light generation, effect chains or live replacement')
   (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(dict(all_match=True,native_frames=report['native_frames']),flush=True)
  finally:verify('after')
 if __name__=='__main__':main()
