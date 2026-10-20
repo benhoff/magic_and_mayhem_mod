@@ -41,6 +41,20 @@ Bookmark `#view=simulation`. A native preview does not imply original
 engine equivalence or live replacement. UI checks validate presentation only.
 
 The **Native rendering** page separates **Implementation** from **Validation**.
+Its **Critical partial contracts: what remains** panel assigns each current
+Critical partial contract one primary need: missing implementation, original
+behavior/ownership recovery, scope reconciliation or extension, validation, or
+supported-session acceptance. Expand a group for exact required steps and the
+closure condition. Other kinds of work can appear in the same contract's steps;
+the primary counts deduplicate contracts and do not estimate effort. A scope
+decision preserves the supplied bounded mechanism rather than automatically
+requiring excluded features. Explicit planning assessments live in
+`critical-needs.json`, bound to behavior contracts, reviewed sources and the
+referenced task assessment. Changed inputs and newly Critical partial contracts
+appear under **Assessment needs review**, retaining previous actions as historical
+context. These planning labels never promote engine stages or refresh evidence.
+Restart a running server after updating the Python snapshot producer, then use
+**Refresh audit**.
 Implementation counts all registered rendering/animation behaviors, provides
 expandable lists of partially implemented and not implemented contracts, and
 names a separate implementation follow-up. Validation counts the curated
@@ -388,3 +402,11 @@ original/live/hardware acceptance. Historical registered partial counts remain
 visible. The recorded component PASS does not clear retained performance or
 pixel-instability failures. See
 [the Low20 findings and next steps](../../research/runtime/rendering-low20-20261020.md).
+
+The Critical needs panel records all nine reconciled scope decisions with their
+bounded suppliers, execution evidence and named remaining cases and owners.
+Three scoped native contracts appear under **Implemented bounded contracts**,
+separately from the 32 remaining Critical partial contracts. The six original
+contracts retain three recovery tasks and three wider acceptance tasks. A changed
+source or assessment moves the planning entry to review; it does not renew engine
+validation or erase the historical scope decision.

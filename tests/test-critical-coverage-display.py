@@ -62,6 +62,14 @@ class Display(unittest.TestCase):
             with self.assertRaises(ValueError):self.view()
             self.work=before
 
+    def test_recorded_bounded_validation_requires_named_registered_results(self):
+        self.work['validation_state'] = 'recorded'
+        with self.assertRaises(ValueError): self.view()
+        self.work['validation_evidence'] = ['TEST.profiles']
+        self.assertEqual(self.view()['validation_state'], 'recorded')
+        self.work['validation_evidence'] = ['UNREGISTERED.result']
+        with self.assertRaises(ValueError): self.view()
+
     def test_unknown_required_scope_cannot_be_labelled_implemented(self):
         self.unresolved();self.work['implementation']='implemented_within_scope'
         with self.assertRaises(ValueError):self.view()

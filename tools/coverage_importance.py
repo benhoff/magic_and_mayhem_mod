@@ -31,7 +31,7 @@ def task_work_review(review, labels, behavior, root):
             (implementation in {'partially_implemented', 'not_implemented'}) != bool(gaps)):
         raise ValueError('Missing implementation needs a concrete code or recovery gap')
     if (not review.get('current_state', '').strip() or
-            review.get('validation_state') not in {'pending', 'historical'} or
+            review.get('validation_state') not in {'pending', 'historical', 'recorded'} or
             not review.get('validation_summary', '').strip() or
             not review.get('acceptance_summary', '').strip() or
             review.get('acceptance') not in {'pending', 'acceptance_failure'}):
@@ -41,6 +41,10 @@ def task_work_review(review, labels, behavior, root):
             (review['acceptance'] == 'acceptance_failure' and not review.get('failure_evidence')) or
             not set(review.get('failure_evidence', [])).issubset(evidence)):
         raise ValueError('Work review needs registered evidence and an explicit failure attribution')
+    if review['validation_state'] == 'recorded' and (
+            not review.get('validation_evidence') or
+            not set(review['validation_evidence']).issubset(evidence)):
+        raise ValueError('Recorded bounded validation needs explicit registered execution links')
     steps = review.get('next_steps', [])
     if (not steps or any(step.get('kind') not in {'implementation', 'validation', 'scope_review', 'diagnosis'}
                          or not step.get('action', '').strip() for step in steps) or
@@ -170,7 +174,7 @@ def tranche_view(plan, register, rated, root=ROOT, *, priority=5, size=11, count
             if bid in seen or bid not in rated:
                 raise ValueError('Duplicate, unknown or unrated tranche behavior: ' + bid)
             seen.add(bid); b = by_id[bid]; rating = rated[bid]
-            reviewed_statuses = {'partial', 'scoped'} if priority == 2 else {'partial', 'none'} if priority == 4 else {'partial'}
+            reviewed_statuses = {'partial', 'scoped'} if priority in {2, 5} else {'partial', 'none'}
             if (task.get('reviewed_implementation') not in reviewed_statuses or
                     not all(task.get(k, '').strip() for k in (
                         'mode', 'next_action', 'implementation_boundary', 'validation',

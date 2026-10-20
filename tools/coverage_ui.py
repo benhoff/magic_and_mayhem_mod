@@ -18,6 +18,7 @@ from coverage_audit import audit, STAGES
 from coverage_claims import stage_kinds
 from rendering_reconciliation import load_reviews
 from coverage_importance import importance_view
+from coverage_critical_needs import CATALOG as CRITICAL_NEEDS, critical_needs_view
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTER = 'research/runtime/coverage/register.json'
@@ -273,6 +274,8 @@ def build_snapshot(root=ROOT):
     snapshot['tracks'] = track_view(json.loads((root / TRACKS).read_text()), behaviors, snapshot['evidence'])
     importance = importance_view(json.loads((root / IMPORTANCE).read_text()), register, snapshot['tracks'], root=root)
     snapshot['importance'] = importance
+    snapshot['critical_needs'] = critical_needs_view(
+        json.loads((root / CRITICAL_NEEDS).read_text()), register, importance, root)
     rated = {entry['behavior']: entry for entry in importance['entries']}
     planned = {task['behavior']: {**task, 'tranche': tranche['id'], 'plan_priority': priority,
                                 'tranche_order': tranche['order'], 'tranche_title': tranche['title']}
@@ -284,7 +287,7 @@ def build_snapshot(root=ROOT):
             behavior['importance'] = rated[behavior['id']]
         if behavior['id'] in planned:
             behavior['tranche_task'] = planned[behavior['id']]
-    allowed = {REGISTER, TRACKS, IMPORTANCE}
+    allowed = {REGISTER, TRACKS, IMPORTANCE, CRITICAL_NEEDS}
     for b in behaviors:
         for role in ('documents', 'implementation', 'tests'): allowed.update(b[role])
     allowed.update(e['record'] for e in register['evidence'])
