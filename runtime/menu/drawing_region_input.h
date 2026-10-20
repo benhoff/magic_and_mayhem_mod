@@ -73,6 +73,9 @@ static u32 THIS region_input_callback(void* object,u32 mask,RegionMouseRecord mo
 #endif
   }
  }
+#ifdef MNM_CAMPAIGN_INPUT_ADMISSION_OBSERVER
+ admission_sample(2,mask,mouse.words);
+#endif
  region_input_fp_restore(fp);SetLastError(error);
  u32 result=region_input_original(object,mask,mouse);error=GetLastError();region_input_fp_save(fp);
  if(at!=0xffffffff){region_input_snapshot(region_input_rows[at+1],object,mask,mouse,result,error);
@@ -80,6 +83,9 @@ static u32 THIS region_input_callback(void* object,u32 mask,RegionMouseRecord mo
   latch_sample(2,region_input_rows[at+1][1],region_input_rows[at+1][3]);
 #endif
   --region_input_pending;}
+#ifdef MNM_CAMPAIGN_INPUT_ADMISSION_OBSERVER
+ admission_sample(3,mask,mouse.words);
+#endif
  region_input_fp_restore(fp);SetLastError(error);return result;
 }
 static int region_input_open(void){

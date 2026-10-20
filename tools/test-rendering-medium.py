@@ -11,6 +11,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGETS = [
+    'native-frame-cadence-test',
     'palette-row-cache-test', 'native-frame-recipe-test',
     'masked-displacement-test', 'native-prepared-world-test',
     'native-retained-world-test', 'world-gpu-resident-test',
@@ -38,6 +39,7 @@ def require(condition, message):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--build-dir',type=Path,help='New disposable build directory under working/ or /tmp; keeps large builds off the checkout drive')
     parser.add_argument('--jobs', type=int, default=4)
     parser.add_argument('--pe', type=Path, help='Pinned unchanged No-CD image for isolated leaf comparisons')
     parser.add_argument('--displacement-input', type=Path, help='Captured SPR frame plus row offsets; requires --pe')
@@ -57,8 +59,13 @@ def main():
         parser.error('Snapshot controls require both owned inputs and --pe for manifest bookends')
     if args.bottom_edge_input and not args.pe:
         parser.error('Bottom-edge comparison requires --pe')
+    if args.prepared and args.build_dir:
+        parser.error('Choose a prepared build or a new build directory')
+    build=args.build_dir.resolve() if args.build_dir else out/'build'
+    if args.build_dir and (build.exists() or not (build.is_relative_to(ROOT/'working') or build.is_relative_to(Path('/tmp')))):
+        parser.error('Require a new owned working/ or /tmp build directory')
     out.mkdir(parents=True)
-    frozen, build = out / 'source', out / 'build'
+    frozen = out / 'source'
     frozen.mkdir()
     report = dict(schema=1, success=False, scope=__doc__, controls=[],
                   original_artifacts_consumed=False, live_gameplay_executed=False,
@@ -103,12 +110,23 @@ def main():
         spec = importlib.util.spec_from_file_location('medium_claims', ROOT / 'tools/draft-coverage-claims.py')
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        behaviors = ['NR.masked-displacement-admission', 'NR.displacement-finite-edge']
+        behaviors = [b['id'] for b in register['behaviors']
+                     if b['id'] in medium and b['status']['implementation']=='partial'
+                     and b['id'] != 'NP.native-gpu-copy-plan']
+        behaviors += ['NR.displacement-finite-edge','HOST.native-display-deadlines',
+                      'HOST.native-campaign-dialogue-readiness','HOST.native-campaign-spell-cases']
+        if not args.pe:
+            behaviors=[b for b in behaviors if b not in {'RS.displacement-linear-stride','RS.raster-clipped-word-grayscale'}]
+        if not args.snapshot_source:
+            behaviors.remove('NR.world-owned-snapshot-delivery')
         if args.pe:
-            behaviors += ['RS.displacement-linear-stride', 'RS.raster-clipped-word-grayscale']
+            behaviors=list(dict.fromkeys(behaviors+['RS.displacement-linear-stride','RS.raster-clipped-word-grayscale']))
         if args.snapshot_source:
-            behaviors += ['NR.world-owned-snapshot-delivery']
-        declaration = module.declaration(ROOT, register, behaviors, [])
+            behaviors=list(dict.fromkeys(behaviors+['NR.world-owned-snapshot-delivery']))
+        scenarios = [s['id'] for s in register['scenarios'] if s['id'] in {
+            'NR.world-gpu-resident-frame.authored-controls-20261020',
+            'NR.masked-update-scratch-reuse.fixture'} and set(s['behaviors']) & set(behaviors)]
+        declaration = module.declaration(ROOT, register, behaviors, scenarios)
         report.update(claims=declaration['claims'], sources=declaration['sources'])
         # Freeze declaration-only research inputs as well; compiled inputs below
         # must independently be present in the recorded source closure.
@@ -144,6 +162,7 @@ def main():
             ('configure', ['cmake', '-S', frozen / 'apps/qt-shell', '-B', build,
                            '-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=ON']),
             ('build', ['cmake', '--build', build, '--target', *TARGETS,
+                       'mnm-render-commands', 'live-render-channel-test',
                        *(['displacement-linear-test'] if args.pe else []),
                        *(['world-snapshot-queue-test'] if args.snapshot_source else []),
                        '--parallel', args.jobs])]):
@@ -184,7 +203,7 @@ def main():
             require(len(binaries) == 1, target)
             binary = binaries[0]
             cpu_only = target in {'world-continuous-memory-test', 'world-gpu-ack-test',
-                                  'world-continuous-channel-test', 'world-continuous-hash-test'}
+                                  'world-continuous-channel-test', 'world-continuous-hash-test', 'native-frame-cadence-test'}
             code = run(target, [binary] if cpu_only else ['xvfb-run', '-a', binary])
             report['controls'].append(dict(target=target, exit_code=code,
                                            executable_sha256=sha(binary)))
@@ -195,6 +214,7 @@ def main():
         expected_ctests.update('native-' + name for name in (
             'world-continuous-memory', 'world-gpu-ack', 'world-continuous-channel',
             'world-continuous-hash'))
+        expected_ctests.add('native-frame-cadence')
         inventory = subprocess.check_output(['ctest', '--test-dir', str(build),
                                               '--show-only=json-v1'], env=env)
         names = {test['name'] for test in json.loads(inventory)['tests']}
@@ -215,6 +235,12 @@ def main():
             code = run('status-' + mode, [binary])
             report['controls'].append(dict(target='native-draw-status-' + mode,
                                            exit_code=code, executable_sha256=sha(binary)))
+        for label, name in [('campaign-input-admission','test-campaign-input-admission.py'),
+                            ('campaign-input-observation','test-campaign-input-observation.py'),
+                            ('campaign-evidence-validation','test-native-campaign.py'),
+                            ('owned-snapshot-cli','test-world-owned-snapshots-cli.py')]:
+            code = run(label, ['python3', '-B', frozen / 'tests' / name])
+            report['controls'].append(dict(target=label, exit_code=code))
         if args.pe:
             pe, supplied = args.pe.resolve(), args.displacement_input.resolve()
             require(sha(pe) == '40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168', 'Original PE hash')

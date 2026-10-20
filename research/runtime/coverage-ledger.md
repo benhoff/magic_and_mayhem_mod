@@ -19139,3 +19139,72 @@ the new native admission policy alone has scoped implementation execution credit
 contracts and the remaining boundaries. Canvas broad-snapshot freshness becomes
 historical after these animation edits; original hashes and execution records
 are not rewritten.
+
+
+## Remaining Medium rendering follow-up — 2026-10-20
+
+Retained the54planning priorities (38scoped/16partial); these are not54confirmed
+defects. Fixed native display deadline phase drift, bounded physical hover/quiet/
+spell/integer admission, delayed accepted-summon attribution and portable owned
+snapshot invocation. Read-only V2 observations distinguish Qt publication from
+actual original Region return and later World picking. Ground pursuit validates
+living type/owner matches; no allocation-generation, AI or balance claim follows.
+Independent functional diagnostics now run before the identical final sourceFPS
+gate; ownership/readback/count failures still stop immediately.
+
+Current33native/status/Python controls,68Python tests,12CTest controls and selected
+original960000linear/960064backed-edge/530432grayscale words pass. The renewed
+owned queue passes12failures,512legacyV4leases and actual80-byte PE32ACK mutations.
+The23GPUcopy-plan and deferred-status fixtures remain source/scope current.
+Retained-prefix replay confirms an accepted Zombie born13178ms after its physical
+press and13melee hits; this is new helper execution over old original observations.
+MEDIUM07 records new results without rebinding earlier hashes or statuses.
+
+Hardware009completed its raw input/flow/normal-Quit journey but failed the
+unchanged19FPSsource gate at7.604087FPS. Hardware010confirmed summon,Fireball,
+melee and lethal enemy, then the original wizard died before retreat; sources,
+original verification and private cleanup were stable. Its source7.691299/native
+44.349112FPS are unsuccessful performance evidence. Full current-source journey
+reliability, other routes/failures, physical loss/Restore, broader original caller/
+allocation recovery, full equivalence/replacement and sustained60FPS remain
+pending. The opt-in worker status cadence remains opt-in.
+
+User-authorized cleanup hardlinked eleven identical immutable generated caches,
+recovering about3.55GiB while preserving every path, byte, pin and raw evidence;
+originals and the cold archive were untouched. The90GiBreserve remains active.
+Shared dependency links and static-review ownership are reconciled independently
+of execution. Incoming3578ab10..ed556c8d and concurrented556c8d..63a6da3c history
+receipts were inspected; the concurrent animation work is not integrated into
+this isolated branch. See [the findings and evidence](remaining-medium-20261020/input-admission.md)
+and [all54priorities](remaining-medium-20261020/medium-findings-review.json).
+
+
+## Remaining Medium integration into master — 2026-10-20
+
+Merged250ba337with current master63a6da3c. Native rendering/admission changes and
+the independent owned animation work are both retained. Combined focused review
+ownership follows master; new direct dependencies are explicit pending inputs
+in fresh incremental review copies. Original evidence definitions and parent
+milestones are preserved exactly. Merge accounting does not renew full original,
+public gameplay/Quit or performance evidence. The previously recorded19FPSand
+60FPStarget failures remain open. Current Python admission/decoder/fixture and
+review/importance controls pass; no original artifact or game is consumed by the
+merge checks. Exact incoming-history review also retrospectively pins48research
+research artifacts outside the normal active-source/Markdown/JSON gate, without
+claiming a past gate pass or current equivalence. Existing uncommitted main work
+is backed up separately and is not included in the merge commit.
+
+
+## Concurrent scene-closeout master integration — 2026-10-20
+
+Master advanced to87105990while the first remaining-Medium merge was being
+validated. The publication guard refused the outdated tip before changing or
+stashing any main files. This follow-up combines87105990with040e4d86, retaining
+scene lifecycle/closure and animation work alongside the bounded Medium fixes.
+Active static ownership follows the newer master; incremental review copies add
+pending direct dependency paths without rebinding historical evidence. Menu
+staging provenance checks and the96capture budget are retained with V2 input
+readiness and the exact original press/accepted-summon observations. All113Python
+checks pass on the combined tree. This merge consumes no original artifacts and
+does not renew full live/Quit, physical-loss, original-equivalence or19/60FPS
+acceptance. Existing main edits are preserved separately from the committed tree.
