@@ -19231,3 +19231,26 @@ World pixel readbacks. It fails the unchanged20FPS gate at8.023software-GL FPS;
 299explicit typed CPU materializations are tracked separately. This is retained
 as failed performance acceptance, with the new extent integration still headless.
 No release or full replacement status is promoted.
+
+## Selected kind8 Flies/Cure sprite method models (2026-10-20)
+
+K8SPR recovers selected5c74e4/5492b0and5c74fc/549730control/data flow with
+owned player/bank/frame tokens and explicit external random/raster callbacks.
+72000unchanged-original cases match13248random calls,3936word calls,3552generic
+calls and1184clipped fallbacks;64512cases have no raster. Both methods retain
+objects and clearAX. Eight native controls pass. The original RNG and raster
+implementations, native positive4096frame bound, constructors/writers/lifetime,
+negative original counts/malformed pointers, highEAX and natural queue reachability
+remain separate. Class/caller runtime admission stays refused pending its own
+versioned owned-source and active-entry proof. Broad World/kind8remain partial.
+
+The late hardware extent attempt run-lizqdk07uses verified NVIDIA/zink with
+192balanced World returns/imports and no World readback. Physical Mini/readiness
+automation fails, so it remains a failed campaign, separately retained after
+the4aaac46aextent commit. No complete live replacement promotion follows.
+
+Current K8SPR3 proof includes reproducible constructor/slot/bank/resource byte
+checks inside manifest bookends and full method-range hashes/entry anchors.
+Explicit5492b0..549375and549730..549815range exceptions preserve the missing
+Ghidra function-body gap. Earlier source-bound comparisons remain historical
+after driver/provenance extensions; their bytes/hashes are retained.

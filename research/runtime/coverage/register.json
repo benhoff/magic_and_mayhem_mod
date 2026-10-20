@@ -128036,6 +128036,64 @@
         "review": "WEXT.source-review-20261020",
         "entry": "NP.world-raster-surface-extents"
       }
+    },
+    {
+      "id": "RS.world-kind8-sprite-methods",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Selected Flies/Cure kind8 sprite wrapper methods",
+      "scope": "Pinned5c74e4/5492b0and5c74fc/549730slot wrappers with owned bank/player/frame tokens and external random/raster callbacks. Recover bank/player/owner gating, masked modulo frame choice, Cure chance>50, exact-word versus generic/AX1clipped fallback, lowAXzero and object preservation. Positive counts1..4096are a bounded native policy. Synthetic callbacks exclude RNG implementation, raster pixels, malformed original pointers/negative counts, constructors/writers/lifetime, highEAX, natural queue reachability and live native admission.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5542576,
+          "scope": "Selected sprite wrapper control/data flow under synthetic random/raster callbacks only.",
+          "recovered_range": "kind8-sprite-wrapper-5492b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5543728,
+          "scope": "Selected sprite wrapper control/data flow under synthetic random/raster callbacks only.",
+          "recovered_range": "kind8-sprite-wrapper-549730"
+        }
+      ],
+      "documents": [
+        "research/runtime/native-world-kind8-sprite-methods.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/kind8_sprite_method.hpp"
+      ],
+      "tests": [
+        "tests/kind8-sprite-method-test.cpp",
+        "tools/test-kind8-sprite-methods.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/world_dispatch.hpp",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "K8SPR.native-20261020",
+        "K8SPR.original-20261020",
+        "K8SPR2.native-20261020",
+        "K8SPR2.original-20261020",
+        "K8SPR2.discovery-20261020",
+        "K8SPR3.native-20261020",
+        "K8SPR3.original-20261020",
+        "K8SPR3.discovery-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "K8SPR3.source-review-20261020",
+        "entry": "RS.world-kind8-sprite-methods"
+      }
     }
   ],
   "evidence": [
@@ -288105,6 +288163,330 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "K8SPR.native-20261020",
+      "kind": "native_integration",
+      "record": "research/runtime/native-world-kind8-sprite-methods-validation-20261020.json",
+      "sha256": "7716299ad7ad02c80cd70c8a8f9c5584198a491566a2c0e3c3415732646aa2c1",
+      "scope": "72000selected unchanged5492b0/549730wrapper cases with synthetic RNG/raster callbacks; native player/bank/frame token routing, Cure threshold, selected source token/coordinates/zero offsets, AX1fallback, lowAX0and object preservation.8native controls. No actual pixels/RNG implementation/lifetime, highEAX or live admission.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_wrapper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_traces_match",
+          "equals": true
+        },
+        {
+          "pointer": "/object_preservation_compared",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 72000
+        },
+        {
+          "pointer": "/native_controls",
+          "equals": 8
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "K8SPR.original-20261020",
+      "kind": "isolated_original",
+      "record": "research/runtime/native-world-kind8-sprite-methods-validation-20261020.json",
+      "sha256": "7716299ad7ad02c80cd70c8a8f9c5584198a491566a2c0e3c3415732646aa2c1",
+      "scope": "72000selected unchanged5492b0/549730wrapper cases with synthetic RNG/raster callbacks; native player/bank/frame token routing, Cure threshold, selected source token/coordinates/zero offsets, AX1fallback, lowAX0and object preservation.8native controls. No actual pixels/RNG implementation/lifetime, highEAX or live admission.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_wrapper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_traces_match",
+          "equals": true
+        },
+        {
+          "pointer": "/object_preservation_compared",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 72000
+        },
+        {
+          "pointer": "/native_controls",
+          "equals": 8
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "K8SPR2.native-20261020",
+      "kind": "native_integration",
+      "record": "research/runtime/native-world-kind8-sprite-methods-validation-v2-20261020.json",
+      "sha256": "54158ac9d456ff89084aa6d51ce123c1846cd718157710e68c85376b049e28c5",
+      "scope": "72000selected unchanged5492b0/549730wrapper cases with synthetic RNG/raster callbacks; native player/bank/frame token routing, Cure threshold, selected source token/coordinates/zero offsets, AX1fallback, lowAX0and object preservation.8native controls. No actual pixels/RNG implementation/lifetime, highEAX or live admission.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_wrapper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_traces_match",
+          "equals": true
+        },
+        {
+          "pointer": "/object_preservation_compared",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 72000
+        },
+        {
+          "pointer": "/native_controls",
+          "equals": 8
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/class_bindings_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "K8SPR2.original-20261020",
+      "kind": "isolated_original",
+      "record": "research/runtime/native-world-kind8-sprite-methods-validation-v2-20261020.json",
+      "sha256": "54158ac9d456ff89084aa6d51ce123c1846cd718157710e68c85376b049e28c5",
+      "scope": "72000selected unchanged5492b0/549730wrapper cases with synthetic RNG/raster callbacks; native player/bank/frame token routing, Cure threshold, selected source token/coordinates/zero offsets, AX1fallback, lowAX0and object preservation.8native controls. No actual pixels/RNG implementation/lifetime, highEAX or live admission.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_wrapper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_traces_match",
+          "equals": true
+        },
+        {
+          "pointer": "/object_preservation_compared",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 72000
+        },
+        {
+          "pointer": "/native_controls",
+          "equals": 8
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/class_bindings_verified",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "K8SPR2.discovery-20261020",
+      "kind": "static",
+      "record": "research/runtime/native-world-kind8-sprite-methods-validation-v2-20261020.json",
+      "sha256": "54158ac9d456ff89084aa6d51ce123c1846cd718157710e68c85376b049e28c5",
+      "scope": "Pinned constructor assignments, bank loads, resource-string pushes and virtual slots verified by the reproducible method driver inside original manifest bookends. This is static identity evidence, separate from constructor semantics or natural class reachability.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/class_bindings_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/discovery/0/method",
+          "equals": 5542576
+        },
+        {
+          "pointer": "/discovery/1/method",
+          "equals": 5543728
+        }
+      ]
+    },
+    {
+      "id": "K8SPR3.native-20261020",
+      "kind": "native_integration",
+      "record": "research/runtime/native-world-kind8-sprite-methods-validation-v3-20261020.json",
+      "sha256": "c35ec3623a33a44810e5ce51a904af297b14ae75f641ed5b11bc8f205e0f58a3",
+      "scope": "72000selected unchanged5492b0/549730wrapper cases with synthetic RNG/raster callbacks; native player/bank/frame token routing, Cure threshold, selected source token/coordinates/zero offsets, AX1fallback, lowAX0and object preservation.8native controls. No actual pixels/RNG implementation/lifetime, highEAX or live admission.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_wrapper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_traces_match",
+          "equals": true
+        },
+        {
+          "pointer": "/object_preservation_compared",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 72000
+        },
+        {
+          "pointer": "/native_controls",
+          "equals": 8
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/class_bindings_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "K8SPR3.original-20261020",
+      "kind": "isolated_original",
+      "record": "research/runtime/native-world-kind8-sprite-methods-validation-v3-20261020.json",
+      "sha256": "c35ec3623a33a44810e5ce51a904af297b14ae75f641ed5b11bc8f205e0f58a3",
+      "scope": "72000selected unchanged5492b0/549730wrapper cases with synthetic RNG/raster callbacks; native player/bank/frame token routing, Cure threshold, selected source token/coordinates/zero offsets, AX1fallback, lowAX0and object preservation.8native controls. No actual pixels/RNG implementation/lifetime, highEAX or live admission.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_wrapper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_traces_match",
+          "equals": true
+        },
+        {
+          "pointer": "/object_preservation_compared",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 72000
+        },
+        {
+          "pointer": "/native_controls",
+          "equals": 8
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/class_bindings_verified",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "K8SPR3.discovery-20261020",
+      "kind": "static",
+      "record": "research/runtime/native-world-kind8-sprite-methods-validation-v3-20261020.json",
+      "sha256": "c35ec3623a33a44810e5ce51a904af297b14ae75f641ed5b11bc8f205e0f58a3",
+      "scope": "Pinned constructor assignments, bank loads, resource-string pushes and virtual slots verified by the reproducible method driver inside original manifest bookends. This is static identity evidence, separate from constructor semantics or natural class reachability.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/class_bindings_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/discovery/0/method",
+          "equals": 5542576
+        },
+        {
+          "pointer": "/discovery/1/method",
+          "equals": 5543728
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -308943,6 +309325,27 @@
       "evidence": [
         "WEXT.campaign-negative-20261020"
       ]
+    },
+    {
+      "id": "native-kind8-sprite-methods",
+      "title": "Selected kind8 sprite wrapper original comparison",
+      "level": "headless",
+      "scope": "Owned native callback traces against unchanged5492b0/549730with synthetic RNG/raster bindings. No actual pixels or live admission.",
+      "behaviors": [
+        "RS.world-kind8-sprite-methods"
+      ],
+      "tests": [
+        "tests/kind8-sprite-method-test.cpp",
+        "tools/test-kind8-sprite-methods.py"
+      ],
+      "evidence": [
+        "K8SPR.native-20261020",
+        "K8SPR.original-20261020",
+        "K8SPR2.native-20261020",
+        "K8SPR2.original-20261020",
+        "K8SPR3.native-20261020",
+        "K8SPR3.original-20261020"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -309503,6 +309906,24 @@
       "document": "research/runtime/native-world-kind8-empty.md",
       "evidence": "WEMPTY.original-20261020",
       "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "kind8-sprite-wrapper-5492b0",
+      "build": "nocd-40209ca7",
+      "start": 5542576,
+      "end": 5542773,
+      "document": "research/runtime/native-world-kind8-sprite-methods.md",
+      "evidence": "K8SPR3.original-20261020",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "kind8-sprite-wrapper-549730",
+      "build": "nocd-40209ca7",
+      "start": 5543728,
+      "end": 5543957,
+      "document": "research/runtime/native-world-kind8-sprite-methods.md",
+      "evidence": "K8SPR3.original-20261020",
+      "anchors_pointer": "/anchors"
     }
   ],
   "register_imports": [
@@ -309613,8 +310034,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-surface-extents-20261020.json",
-    "sha256": "d4b6dc4d66fd9eeab7512a47caaf82818baa950cde516b302359b941d4194696"
+    "path": "research/runtime/coverage/source-index-kind8-sprite-methods-v3-20261020.json",
+    "sha256": "825b19d2862a0a6e9c6f98770b61398dba15e383b77fc6ef4ec1c281e6404302"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -309669,6 +310090,11 @@
       "id": "WEXT.source-review-20261020",
       "path": "research/runtime/coverage/world-surface-extents-source-review-20261020.json",
       "sha256": "1eb3a3d77bdf8eba23dd4c367b7cbeeece25bb7355eabc713aadd3a156569b31"
+    },
+    {
+      "id": "K8SPR3.source-review-20261020",
+      "path": "research/runtime/coverage/kind8-sprite-methods-source-review-v3-20261020.json",
+      "sha256": "6ac5f49a0ffb526ce244b608074ce5c503355b9830543da744addd84a4c8c713"
     }
   ]
 }
