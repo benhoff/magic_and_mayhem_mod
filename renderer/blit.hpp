@@ -37,7 +37,8 @@ struct Driver {std::string vendor, renderer, version;};
 struct GpuTiming {std::uint64_t sequence=0;double timelineMs=0;};
 using SurfaceId=std::uint64_t;
 struct PixelFormat {unsigned bits=0;std::array<std::uint32_t,3> masks{};};
-enum class CompositeMode {copy,half,quarterSource,displace,quarterDestination,projectedShadow};
+// Value6 is reserved for the private additive-rectangle shader branch.
+enum class CompositeMode {copy,half,quarterSource,displace,quarterDestination,projectedShadow,additive=7};
 struct SpriteComposite {
     CompositeMode mode=CompositeMode::copy;
     // Nonnegative horizontal displacement, sampling untouched pixels to the right.

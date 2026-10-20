@@ -82,7 +82,7 @@ class ImportanceTest(unittest.TestCase):
         catalog = json.loads((ROOT / 'apps/coverage-ui/importance.json').read_text())
         result = importance_view(catalog, register, tracks)
         self.assertEqual(register, before)
-        self.assertEqual(len(result['entries']), 351)
+        self.assertEqual(len(result['entries']), 352)
         self.assertEqual(result['unrated'], [])
         behaviors = {b['id']: b for b in register['behaviors']}
         builds = {b['id']: b for b in register['builds']}
@@ -344,6 +344,7 @@ class TrancheTest(unittest.TestCase):
                 importance_view(c, self.register, self.tracks)
 
     def test_changed_review_source_marks_task_stale_without_revoking_historical_stages(self):
+        baseline = importance_view(self.catalog, self.register, self.tracks)['tranche_plan']['tranches'][2]['tasks'][0]
         c = copy.deepcopy(self.catalog); task = c['tranche_plan']['tranches'][2]['tasks'][0]
         name = next(iter(task['work_review']['source_sha256']))
         task['work_review']['source_sha256'][name] = '0' * 64
@@ -351,7 +352,8 @@ class TrancheTest(unittest.TestCase):
         result = importance_view(c, self.register, self.tracks)['tranche_plan']['tranches'][2]['tasks'][0]
         self.assertEqual(result['review_state'], 'needs_review')
         self.assertEqual(result['work_review']['freshness'], 'historical')
-        self.assertEqual(result['work_review']['changed_sources'], [name])
+        self.assertEqual(set(result['work_review']['changed_sources']),
+                         set(baseline['work_review']['changed_sources']) | {name})
         self.assertEqual(result['implementation'], 'partial')
         self.assertEqual(self.register, before)
 
@@ -388,7 +390,7 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual(plan['unplanned_high'], [])
         self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 0)
         self.assertEqual(sum(e['weight'] == 4 and e['implementation'] == 'scoped'
-                             for e in result['entries']), 53)
+                             for e in result['entries']), 54)
         for task in tasks:
             execution = task.get('execution_result')
             if execution:

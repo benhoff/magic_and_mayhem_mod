@@ -79,8 +79,8 @@ class ActualReviewTest(unittest.TestCase):
         reviews=[row for row in load_reviews(root,r) if row['track']=='rendering']
         entries=[entry for review in reviews for entry in review['entries']]
         from collections import Counter
-        self.assertEqual(len(entries),208)
-        self.assertEqual(dict(Counter(e['disposition'] for e in entries)),{'bounded_code':76,'diagnostic_tooling':111,'original_scope':10,'umbrella_scope':4,'acceptance_scope':7})
+        self.assertEqual(len(entries),209)
+        self.assertEqual(dict(Counter(e['disposition'] for e in entries)),{'bounded_code':77,'diagnostic_tooling':111,'original_scope':10,'umbrella_scope':4,'acceptance_scope':7})
         rows={row['behavior']:row for row in entries}
         self.assertEqual(len(rows),len(entries))
         self.assertEqual(rows['RS.world-queue-state']['disposition'],'bounded_code')

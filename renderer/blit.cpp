@@ -125,7 +125,13 @@ void main(){
     if(indexedSource)s=spritePalette[s];
     uint d=texelFetch(oldPixels,destination-oldOrigin,0).r;
     uint m=0x7befu;
-    if(mode==1)nativePixel=((s>>1u)&m)+((d>>1u)&m);
+    if(mode==7){
+        uvec3 source=uvec3(s>>11u,(s>>5u)&63u,s&31u);
+        uvec3 destination=uvec3(d>>11u,(d>>5u)&63u,d&31u);
+        uvec3 sum=min(source+destination,uvec3(31u,63u,31u));
+        nativePixel=(sum.x<<11u)|(sum.y<<5u)|sum.z;
+    }
+    else if(mode==1)nativePixel=((s>>1u)&m)+((d>>1u)&m);
     else if(mode==2){uint halfway=(d>>1u)&m;nativePixel=halfway+((halfway>>1u)&m)+((s>>2u)&(m>>1u)&m);}
     else if(mode==4){uint halfway=(s>>1u)&m;nativePixel=halfway+((halfway>>1u)&m)+((d>>2u)&(m>>1u)&m);}
     else {
@@ -979,7 +985,7 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
     if(source==destination||mask==destination||src.format.bits!=rgb565.bits||src.format.masks!=rgb565.masks||dst.format.bits!=rgb565.bits||dst.format.masks!=rgb565.masks||coverage.format.bits!=8||coverage.width!=src.width||coverage.height!=src.height)
         throw std::invalid_argument("Sprite composition requires distinct RGB565 source/destination and matching coverage");
     if(r.left<0||r.top<0||r.right<=r.left||r.bottom<=r.top||r.right>src.width||r.bottom>src.height||x<0||y<0||x>dst.width-(r.right-r.left)||y>dst.height-(r.bottom-r.top))throw std::invalid_argument("Composition rectangle outside storage");
-    if(c.mode!=CompositeMode::copy&&c.mode!=CompositeMode::half&&c.mode!=CompositeMode::quarterSource&&c.mode!=CompositeMode::quarterDestination&&c.mode!=CompositeMode::displace)throw std::invalid_argument("Unsupported sprite composite mode");
+    if(c.mode!=CompositeMode::copy&&c.mode!=CompositeMode::half&&c.mode!=CompositeMode::quarterSource&&c.mode!=CompositeMode::quarterDestination&&c.mode!=CompositeMode::displace&&c.mode!=CompositeMode::additive)throw std::invalid_argument("Unsupported sprite composite mode");
     int reach=0;
     if(c.mode==CompositeMode::displace){
         if(!c.rowPeriod||c.rowPeriod>16)throw std::invalid_argument("Displacement row period outside bounds");

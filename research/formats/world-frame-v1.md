@@ -57,6 +57,7 @@ unshaded ambiguity refusal remains its default.
 | 5 projected shadow | Same table layout; recovered alternating-row coverage and destination darkening |
 | 6 additive rectangle | No encoded frame, indexed flag zero; five DWORDs: width, height, red, green, blue increments |
 | 7 colour rectangle | No encoded frame, indexed flag zero; width/height/mode DWORDs then width*height RGB565 WORDs |
+| 8 additive sprite | Backend13 exclusively; indexed frame plus256 selected RGB565 WORDs; saturate source/destination channels |
 
 Non-displacement periods must be zero. Native displacement admits offsets
 0..16 and refuses sampling outside its owned canvas. Blend and shadow arithmetic
@@ -111,3 +112,12 @@ The exact payload is12+2*width*height bytes. X/Y are top-left anchors. It has
 no asset binding, coverage gaps or source/host pointers. Every owned WORD is
 opaque, including zero. Admission rejects SPR bytes, indexed flags, other
 backend combinations, geometry/mode/size mismatches or trailing bytes.
+
+Operation8 is a tagged extension retaining the v1 header and record layout.
+It requires backend13, indexed flag1, a normalized encoded SPR frame and exactly
+512palette bytes. It uses the existing signed anchors, per-record clip and asset
+identity checks; period must be zero. Shade and palette ordinal remain diagnostics
+because the payload already owns the selected table. Channel sums clamp to31/63/31;
+there is no rectangle increment wrap. Transparent runs retain the preceding
+destination. Older readers refuse operation8. This tag alone grants no live
+queue admission or original producer bypass.

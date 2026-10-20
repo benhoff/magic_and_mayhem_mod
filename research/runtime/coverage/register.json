@@ -126477,6 +126477,65 @@
         "Selected system-memory COM aliases and native-owned allocation lifetime only; original physical aliases, unobserved writers and arbitrary driver intervals remain outside this proof.",
         "An early caller-device release while aliases remain is excluded: the retained Wine diagnostic faults at the next alias Lock. This does not prove original-game physical ownership or a missing native implementation."
       ]
+    },
+    {
+      "id": "RS.world-additive-sprite",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Indexed saturated additive sprite raster",
+      "scope": "Pinned No-CD580a90 indexed RGB565 sprite raster with owned encoded RLE frame and selected256-WORD palette: saturating each5/6/5-bit source/destination channel, opaque index zero, transparent runs, signed anchors, exclusive per-draw clips and ordered overlap. Native tagged World v1 operation8/backend13 decodes to scene composition through pinned asset binding and CPU preparation. Compare all65536 destination words across64 source colors covering every individual channel pair, plus two56-stamp clipped/overlapping sparse-run corpora; independent original palette chains cover ordinal0..2 and signed shades-127/-1/0/1/127. No original AX/status return, RGB555/other masks, live observation/admission, physical source ownership or original pixel bypass claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5769872,
+          "scope": "Selected indexed RGB565580a90 clipped/unclipped RLE pixel paths and effective original palette-chain selection; excludes returned status and other global masks."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-world-additive-sprite.md",
+        "research/formats/world-frame-v1.md"
+      ],
+      "implementation": [
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "protocols/include/mnm/world_frame_v1.h",
+        "compat/legacy/world_frame.cpp"
+      ],
+      "tests": [
+        "tests/additive-sprite-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-additive-sprite.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/resource-fixtures.hpp",
+        "tools/coverage_claims.py",
+        "compat/legacy/CMakeLists.txt",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_preparation.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/isolated_dispatch.inc"
+      ],
+      "evidence": [
+        "WADD.original-20261020",
+        "WADD.native-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WADD.source-review-20261020",
+        "entry": "RS.world-additive-sprite"
+      }
     }
   ],
   "evidence": [
@@ -284094,6 +284153,78 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "WADD.original-20261020",
+      "kind": "isolated_original",
+      "scope": "Pinned No-CD580a90 indexed RGB565 sprite raster with owned encoded RLE frame and selected256-WORD palette: saturating each5/6/5-bit source/destination channel, opaque index zero, transparent runs, signed anchors, exclusive per-draw clips and ordered overlap. Native tagged World v1 operation8/backend13 decodes to scene composition through pinned asset binding and CPU preparation. Compare all65536 destination words across64 source colors covering every individual channel pair, plus two56-stamp clipped/overlapping sparse-run corpora; independent original palette chains cover ordinal0..2 and signed shades-127/-1/0/1/127. No original AX/status return, RGB555/other masks, live observation/admission, physical source ownership or original pixel bypass claim.",
+      "record": "research/runtime/native-world-additive-sprite-validation-20261020.json",
+      "sha256": "a8b6e67740fa2a87d9d62260864627929eb7e84fe3d5480c1600f131847b02c1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_pixels_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wire_and_worker_passed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "WADD.native-20261020",
+      "kind": "native_integration",
+      "scope": "Pinned No-CD580a90 indexed RGB565 sprite raster with owned encoded RLE frame and selected256-WORD palette: saturating each5/6/5-bit source/destination channel, opaque index zero, transparent runs, signed anchors, exclusive per-draw clips and ordered overlap. Native tagged World v1 operation8/backend13 decodes to scene composition through pinned asset binding and CPU preparation. Compare all65536 destination words across64 source colors covering every individual channel pair, plus two56-stamp clipped/overlapping sparse-run corpora; independent original palette chains cover ordinal0..2 and signed shades-127/-1/0/1/127. No original AX/status return, RGB555/other masks, live observation/admission, physical source ownership or original pixel bypass claim.",
+      "record": "research/runtime/native-world-additive-sprite-validation-20261020.json",
+      "sha256": "a8b6e67740fa2a87d9d62260864627929eb7e84fe3d5480c1600f131847b02c1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_pixels_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wire_and_worker_passed",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -286328,7 +286459,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-additive-sprite"
           ]
         },
         {
@@ -286677,7 +286809,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-additive-sprite"
           ]
         },
         {
@@ -287020,7 +287153,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-additive-sprite"
           ]
         },
         {
@@ -304649,6 +304783,23 @@
         "CRIT08.retained-aliases-current-20261019",
         "CRIT10.aliases-compiler-closure-20261020"
       ]
+    },
+    {
+      "id": "native-additive-sprite",
+      "scope": "Owned operation8 decoding/pinned resource binding/preparation and native GPU rendering against unchanged original580a90: all destination words/channel pairs, sparse clipped/overlapping stamps, atomic malformed refusal and GPU lifetime. No live producer/physical source admission.",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-additive-sprite"
+      ],
+      "tests": [
+        "tests/additive-sprite-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-additive-sprite.py"
+      ],
+      "evidence": [
+        "WADD.original-20261020",
+        "WADD.native-20261020"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -305301,8 +305452,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-renderer-merge-20261020.json",
-    "sha256": "27cc1f0fcc93409d28fbab8d0cc48b7aef72575b5507947206c0729abe040d90"
+    "path": "research/runtime/coverage/source-index-additive-sprite-20261020.json",
+    "sha256": "34a3c318a3aa24c25a3b5fe9615af1087087784d07112ca75e4f0cbe878237e4"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -305332,6 +305483,11 @@
       "id": "WTRAIL2.source-review-20261019",
       "path": "research/runtime/coverage/world-trail-queue-source-review-20261019.json",
       "sha256": "7b213ecb26bd2e8c021d6af17d761d9fb2447aab13c423b2228c152b1212b2d9"
+    },
+    {
+      "id": "WADD.source-review-20261020",
+      "path": "research/runtime/coverage/additive-sprite-source-review-20261020.json",
+      "sha256": "fef174a7e2d894bc2f0a3493bb7427a8b4beb1e85cac29f6a523c79ee706db54"
     }
   ]
 }

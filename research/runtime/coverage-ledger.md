@@ -18942,3 +18942,21 @@ branches, broader original allocation/caller recovery and sustained60FPS remain
 pending; no raw stage, pacing, budget, deadline or acceptance threshold is
 relaxed. Hardware attempts and their limitations are retained separately. See
 `rendering-medium-fixes-20261019.md` and the54-entry findings inventory.
+
+
+### Native indexed additive sprite pixels — 2026-10-20
+
+The580a90 leaf used by kind10 and kind9 trails is saturated palette addition.
+Native RGB565 masked composition, owned World v1 operation8/backend13, pinned
+asset binding and preparation now implement that selected pixel contract.
+WADD.original/native-20261020 prospectively pins the source closure and compares
+4,195,710 new additive pixels plus1,048,960 existing kind8 regression pixels
+against unchanged original code:83 fixtures, zero differences. Every RGB565
+destination word and every red/green/blue channel pair is covered, alongside
+sparse clipping/overlap and independent palette-chain/shade selection. Original
+manifest bookends pass. Native drawing has no normal pixel readback.
+
+Original returned status, other masks, actual frame/palette writers and physical
+ownership, live observation/admission and original pixel bypass remain pending.
+The broad live replacement entry is unchanged. See
+[native additive sprite research](native-world-additive-sprite.md).

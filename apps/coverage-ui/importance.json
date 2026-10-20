@@ -2468,6 +2468,13 @@
       "work_type": "capability",
       "reason": "Retained COM aliases protect critical native graphics storage lifetime across creator-surface release; the test deliberately excludes early caller-device release and global physical ownership.",
       "contract_sha256": "a1ad58823e880afe685c5ca468c18aeeda46a62f1c91c62069a13f3312f8f2d6"
+    },
+    {
+      "behavior": "RS.world-additive-sprite",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Additive indexed sprites supply kind10 and kind9 trail pixels; source ownership, producer discovery and full-session replacement remain independent.",
+      "contract_sha256": "e725306da3a3dbc0ca7d05c8a6d0411ea140cdfe50a2d8dd11c1e62454bb2fd6"
     }
   ],
   "tranche_plan": {

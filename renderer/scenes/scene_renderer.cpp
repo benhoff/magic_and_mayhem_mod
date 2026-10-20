@@ -88,7 +88,7 @@ void SceneRenderer::validate(const SceneDraw& draw){
         throw std::runtime_error("Scene frame exceeds renderer/cache extent");
     if(draw.colours && !indexed)throw std::invalid_argument("Scene colour table requires indexed input");
     if(draw.viewport){const auto r=*draw.viewport;if(!draw.clip||r.left<0||r.top<0||r.right<=r.left||r.bottom<=r.top||r.right>viewport_.right||r.bottom>viewport_.bottom)throw std::invalid_argument("Scene draw viewport outside canvas");}
-    if(draw.composite.mode!=CompositeMode::copy&&draw.composite.mode!=CompositeMode::half&&draw.composite.mode!=CompositeMode::quarterSource&&draw.composite.mode!=CompositeMode::quarterDestination&&draw.composite.mode!=CompositeMode::displace&&draw.composite.mode!=CompositeMode::projectedShadow)throw std::invalid_argument("Unsupported scene composite");
+    if(draw.composite.mode!=CompositeMode::copy&&draw.composite.mode!=CompositeMode::half&&draw.composite.mode!=CompositeMode::quarterSource&&draw.composite.mode!=CompositeMode::quarterDestination&&draw.composite.mode!=CompositeMode::displace&&draw.composite.mode!=CompositeMode::projectedShadow&&draw.composite.mode!=CompositeMode::additive)throw std::invalid_argument("Unsupported scene composite");
     if(draw.composite.mode==CompositeMode::projectedShadow){
         const auto* sprite=std::get_if<assets::Sprite>(&resource.image);if(!sprite||!draw.clip)throw std::invalid_argument("Projected shadow requires clipped SPR input");
         const auto r=draw.viewport.value_or(viewport_);const auto top=y+height/2;
