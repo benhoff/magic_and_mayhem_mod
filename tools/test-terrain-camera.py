@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+from terrain_validation_inputs import terrain_executable
 import subprocess
 import tempfile
 
@@ -35,7 +36,7 @@ def main():
         result.check_returncode()
     verify('before')
     try:
-        pe = ROOT / 'working/game-nocd/Chaos.exe'
+        pe = terrain_executable(ROOT)
         if sha(pe) != HASH:
             raise ValueError('Unsupported executable')
         include = args.source_root / 'reconstruction/rendering'

@@ -241,7 +241,9 @@ def main():
     env.pop('MNM_RENDER_CAPTURE_DIR',None);env.pop('MNM_RENDER_HISTORY',None)
     if args.capture_history:env['MNM_RENDER_HISTORY']='1'
     if args.capture_draws:env['MNM_RENDER_CAPTURE_DIR']='Z:'+str(capture).replace('/','\\')
-    result=subprocess.run([str(REPO/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',str(prefix),'--runner',str(REPO/'tools/render-game-runner.py')],env=env,check=False)
+    command=[str(REPO/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',str(prefix),'--runner',str(REPO/'tools/render-game-runner.py')]
+    if args.source_game:command.extend(['--source-game',str(source)])
+    result=subprocess.run(command,env=env,check=False)
     binaries=[('Chaos.exe','staged_sha256'),('MnmRender.dll','dll_sha256')]
     if draw_dll:binaries.append(('MnmDraw.dll','native_draw_sha256'))
     if word_dll:binaries.append(('MnmWord.dll','word_dll_sha256'))

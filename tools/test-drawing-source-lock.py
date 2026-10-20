@@ -14,6 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--shared-fixture-prefix',type=Path)
     for name in ('prefix-template','claims','report'):p.add_argument('--'+name,type=Path,required=True)
     a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
@@ -26,7 +27,7 @@ def main():
     flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-Wno-unused-function']
     subprocess.run(flags+['-c',str(ROOT/'tests/drawing-source-lock-test.c'),'-o',str(run/'fixture.obj')],check=True)
     binary=run/'fixture.exe';subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(binary),str(run/'fixture.obj'),str(dll.parent/'packet.obj'),str(dll.parent/'kernel32.lib')],check=True)
-    prefix,lock=prepare(ROOT,run,a.prefix_template,None);env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all')
+    prefix,lock=prepare(ROOT,run,a.prefix_template,a.shared_fixture_prefix);env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all')
     results=[]
     try:
         with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)

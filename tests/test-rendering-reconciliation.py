@@ -42,10 +42,11 @@ class ReviewTest(unittest.TestCase):
         self.b['scope']='Broader scope';self.assertFalse(load_reviews(self.root,self.r)[0]['entries'][0]['contract_current'])
         self.b['scope']='Selected owned renderer.';self.b['status']['implementation']='scoped'
         self.assertEqual(load_reviews(self.root,self.r)[0]['freshness'],'historical')
-    def test_pending_source_review_is_historical(self):
+    def test_pending_source_review_cannot_grant_current_static_credit(self):
         self.doc['entries'][0]['pending_source_review']=['code.cpp'];self.write()
         self.assertEqual(load_reviews(self.root,self.r)[0]['freshness'],'historical')
-
+        self.doc['entries'][0]['pending_source_review']=['unbound.cpp'];self.write()
+        with self.assertRaisesRegex(ValueError,'explicitly pinned'):load_reviews(self.root,self.r)
     def test_report_hash_witness_and_count_corruption_refuse(self):
         (self.root/'review.json').write_text('{}')
         with self.assertRaisesRegex(ValueError,'hash mismatch'):load_reviews(self.root,self.r)
@@ -79,8 +80,15 @@ class ActualReviewTest(unittest.TestCase):
         reviews=[row for row in load_reviews(root,r) if row['track']=='rendering']
         entries=[entry for review in reviews for entry in review['entries']]
         from collections import Counter
-        self.assertEqual(sum(review['reviewed_count'] for review in reviews),207)
-        self.assertEqual(Counter(entry['disposition'] for entry in entries),{'bounded_code': 75, 'acceptance_scope': 7, 'diagnostic_tooling': 111, 'umbrella_scope': 4, 'original_scope': 10})
+        review_ids={review['id'] for review in reviews}
+        expected={b['id'] for b in r['behaviors']
+                  if b.get('implementation_review',{}).get('review') in review_ids}
+        # Every registered review link must have exactly one decision. Fixed
+        # totals become stale when another reviewed contract is added.
+        self.assertEqual(Counter(entry['behavior'] for entry in entries),Counter(expected))
+        self.assertEqual(sum(review['reviewed_count'] for review in reviews),len(expected))
+        self.assertLessEqual({entry['disposition'] for entry in entries},
+                            {'bounded_code','diagnostic_tooling','original_scope','umbrella_scope','acceptance_scope'})
         rows={row['behavior']:row for row in entries}
         self.assertEqual(rows['AN.world-facing']['recorded_implementation'],'partial')
         self.assertIn('native_providers.cpp',rows['AN.world-facing']['code_witness']['path'])

@@ -108,6 +108,12 @@ def ppm(capture, pixels, source=False):
         value = int.from_bytes(pixels[offset:offset+size], 'little')
         if size == 1:
             out.extend(palette[value*4:value*4+3])
+        elif size == 2 and capture['masks'] == (0xf800, 0x7e0, 0x1f):
+            # Canonical RGB565 uses the documented native bit-replication
+            # presentation policy. Original/native WORD equality is separate.
+            r, g, b = value >> 11, (value >> 5) & 63, value & 31
+            out.extend(((r << 3) | (r >> 2), (g << 2) | (g >> 4),
+                        (b << 3) | (b >> 2)))
         else:
             out.extend(((value//low)&maximum)*255//maximum for low, maximum in channels)
     return out

@@ -21,7 +21,7 @@ def build(output,selftest=False):
     sources=[ROOT/'runtime/scene-production'/n for n in ('observer.c','entry.S')]
     for p in sources:subprocess.run([*flags,'-c',str(p),'-o',str(output/(p.name+'.obj'))],check=True)
     dll=output/'MnmSceneProduction.dll';exports=['/export:SceneProductionAnchor']
-    if selftest:exports.extend(['/export:SceneProductionInstallForTest=_SceneProductionInstallForTest@4','/export:SceneProductionStatusForTest=_SceneProductionStatusForTest@4','/export:SceneProductionBudgetArmForTest=_SceneProductionBudgetArmForTest@4','/export:SceneProductionBudgetMetricsForTest=_SceneProductionBudgetMetricsForTest@0'])
+    if selftest:exports.extend(['/export:SceneProductionInstallForTest=_SceneProductionInstallForTest@4','/export:SceneProductionStatusForTest=_SceneProductionStatusForTest@4','/export:SceneProductionBudgetArmForTest=_SceneProductionBudgetArmForTest@4','/export:SceneProductionBudgetMetricsForTest=_SceneProductionBudgetMetricsForTest@0','/export:SceneProductionRefusedTimingForTest=_SceneProductionRefusedTimingForTest@0','/export:SceneProductionNextForTest=_SceneProductionNextForTest@0'])
     subprocess.run(['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0',
                     f'/out:{dll}',*exports,*[str(output/(p.name+'.obj')) for p in sources],str(output/'kernel32.lib')],check=True)
     sources += [ROOT/'runtime/scene-production/state_audit.h',ROOT/'runtime/scene-production/draw_budget.h',ROOT/'runtime/shadow/win32_min.h',ROOT/'tools/build-menu-observer.py',Path(__file__).resolve()]

@@ -25,6 +25,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--claims',type=Path,required=True)
     p.add_argument('--build',type=Path,default=ROOT/'working/build/render-tests')
+    p.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default installation')
     a=p.parse_args();decl=json.loads(a.claims.read_text())
     for path,digest in decl['sources'].items():
         assert not Path(path).is_absolute() and (ROOT/path).resolve().is_relative_to(ROOT)
@@ -66,6 +67,11 @@ def main():
         with (out/'launch.log').open('w') as log:
             command=['python3',str(ROOT/'tools/run-opengl-game.py'),'--stream',str(frame),'--command-channel',str(out/'commands.bin'),
                      '--render-control',str(out/'commands.bin.control'),'--skip-movies','--prefix',env['WINEPREFIX']]
+            if a.source_game:
+                source=a.source_game.resolve()
+                if not source.is_relative_to(ROOT/'working') or not source.is_dir():raise ValueError('Source game must be under working/')
+                command.extend(['--source-game',str(source)])
+                report['source_game']=str(source)
             game=subprocess.Popen(command,cwd=ROOT,env=env,stdout=log,stderr=log,start_new_session=True)
         deadline=time.monotonic()+120;experiment=None
         while experiment is None:

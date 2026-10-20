@@ -16,6 +16,8 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--claims',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--shared-fixture-prefix',type=Path)
+    parser.add_argument('--wine-arch',choices=('win32','win64','wow64'))
     args=parser.parse_args()
     args.output.mkdir(parents=True,exist_ok=False);out=args.output.resolve()
     declaration=json.loads(args.claims.read_text());sources=declaration['sources']
@@ -23,8 +25,14 @@ def main():
     if not stable():raise ValueError('Prospective inputs changed')
     report=dict(schema=1,success=False,claims=declaration['claims'],sources=sources,
                 scope=__doc__,original_game_executed=False,complete_replacement=False,cases=[])
+    lock=None
+    prefix=out/'prefix'
+    if args.shared_fixture_prefix:
+        from drawing_fixture_prefix import prepare
+        prefix,lock=prepare(ROOT,out,args.shared_fixture_prefix,args.shared_fixture_prefix)
     env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE'))}
-    env.update(TMPDIR=str(out),PYTHONDONTWRITEBYTECODE='1',WINEPREFIX=str(out/'prefix'),WINEDEBUG='-all',DISPLAY='')
+    env.update(TMPDIR=str(out),PYTHONDONTWRITEBYTECODE='1',WINEPREFIX=str(prefix),WINEDEBUG='-all',DISPLAY='')
+    if args.wine_arch:env['WINEARCH']=args.wine_arch
     def run(label,argv,cwd=out,extra=None,expected=0,timeout=90):
         with (out/(label+'.log')).open('x') as log:
             result=subprocess.run([str(x) for x in argv],cwd=cwd,env=env|dict(extra or {}),stdout=log,stderr=subprocess.STDOUT,timeout=timeout)
@@ -77,6 +85,7 @@ def main():
         report['error']=str(error)
     finally:
         subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
+        if lock is not None:lock.close()
         report['sources_stable']=stable();report['success']=report['success'] and report['sources_stable']
         with (out/'report.json').open('x') as file:json.dump(report,file,indent=2);file.write('\n')
     print(json.dumps({key:report.get(key) for key in ('success','sources_stable','error')}))

@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+from terrain_validation_inputs import terrain_executable
 import subprocess
 import tempfile
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,7 +29,7 @@ def main():
         return result.stdout
     run([ROOT / 'tools/original-manifest.sh', 'verify'], 'original-before')
     try:
-        pe = ROOT / 'working/game-nocd/Chaos.exe'
+        pe = terrain_executable(ROOT)
         if sha(pe) != HASH:
             raise ValueError('Executable hash mismatch')
         inputs = [pe, Path(__file__), *[source / p for p in [

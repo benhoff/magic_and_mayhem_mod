@@ -7,11 +7,12 @@ from pathlib import Path
 import subprocess
 import tempfile
 from drawing_api_session import sha
+from drawing_fixture_prefix import prepare
 ROOT=Path(__file__).resolve().parents[1]
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--shared-fixture-prefix',type=Path);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_text());sources=dict(claims['sources'])
     for name in ('tools/test-drawing-storage-transitions.py','tests/drawing-storage-transitions-test.c','runtime/scene/producer_trace_guard.h','runtime/scene/drawing_storage_transitions.h','runtime/scene/drawing_storage_caller.h','runtime/scene/drawing_storage_candidates.h','tools/drawing_storage_transitions.py','tools/drawing_storage_point.py','tests/test-drawing-storage-transitions.py','runtime/shadow/win32_min.h','protocols/include/mnm/drawing_storage_transitions_v5.h','tools/drawing_storage_query_returns.py','tests/test-drawing-storage-query-returns.py'):sources[name]=sha((ROOT/name).read_bytes())
@@ -23,9 +24,9 @@ def main():
     flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror']
     subprocess.run(flags+['-c',str(ROOT/'tests/drawing-storage-transitions-test.c'),'-o',str(run/'fixture.obj')],check=True)
     binary=run/'fixture.exe';subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(binary),str(run/'fixture.obj'),str(run/'kernel32.lib')],check=True)
-    subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(run/'wineprefix')],check=True)
+    prefix,lock=prepare(ROOT,run,a.prefix_template,a.shared_fixture_prefix)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};capture=run/'capture';capture.mkdir()
-    env.update(WINEPREFIX=str(run/'wineprefix'),WINEDEBUG='-all',MNM_DRAW_STORAGE_TRANSITIONS='1',MNM_SCENE_DIR='Z:'+str(capture).replace('/','\\'))
+    env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all',MNM_DRAW_STORAGE_TRANSITIONS='1',MNM_SCENE_DIR='Z:'+str(capture).replace('/','\\'))
     results=[]
     try:
         with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
@@ -43,6 +44,8 @@ def main():
         if any(sha((ROOT/name).read_bytes())!=digest for name,digest in sources.items()):raise ValueError('Fixture sources changed during execution')
         report=dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),cases=results,query_returns=query_returns,pointer_free_observation=True,original_hook_abi_executed=False,original_game_executed=False,source_storage_owned=False,scope='Actual PE32 V5 transition journal recording with owned mock wrappers, same pointer across repeated Lock returns, null return, wrapper recreation with reused storage address, pending numerical input ID joined to its later exact Lock return, and null query input. No original engine, real COM/allocation lifetime, source ownership or hook ABI execution.')
         a.report.parent.mkdir(parents=True,exist_ok=True);a.report.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(dict(success=True,calls=observation['calls'],epochs=observation['observed_lock_return_epochs'])))
-    finally:subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
+    finally:
+        subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
+        if lock is not None:lock.close()
 
 if __name__=='__main__':main()

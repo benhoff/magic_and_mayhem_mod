@@ -1,5 +1,14 @@
 # Native movement scene
 
+The window now uses an explicit [native session lifecycle owner](../../research/runtime/native-scene-lifecycle.md).
+It admits the checkpoint/frozen navigation before exposing simulation, owns
+selection and playback, and retires ticks/releases the world on application
+shutdown. Widget callbacks are withdrawn before their borrowed state is released.
+Restart uses a fresh owner; this does not load a complete original gameplay world.
+The generated-input automated workflow is `python3 tools/test-scene-lifecycle.py`
+under the repository storage guard. It requires no manual playtesting or game
+installation.
+
 A bounded Qt/OpenGL inspection app for the NS06 terrain-motion simulation.
 It restores a native checkpoint and frozen navigation, reads the checkpoint's
 owned ANI controller display, and interleaves terrain and creature draws using

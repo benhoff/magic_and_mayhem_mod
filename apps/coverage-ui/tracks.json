@@ -38,7 +38,7 @@
           "id": "owned-state",
           "title": "Owned world state & checkpoints",
           "scope": "Native identity, generation checks and versioned staged restoration; native policies retain their own scope.",
-          "remaining": "Complete the registered owned-world foundation; do not infer original lifetime or scheduler equivalence.",
+          "remaining": "Native ownership/v1 foundation controls pass. Extended checkpoint/preview freshness and original scheduler/lifetime equivalence remain separate.",
           "requirements": [
             {
               "behaviors": [
@@ -180,7 +180,8 @@
           "requirements": [
             {
               "behaviors": [
-                "NP.map-campaign-window"
+                "NP.map-campaign-window",
+                "NP.campaign-graph-window"
               ],
               "status": {
                 "implementation": "scoped",
@@ -521,8 +522,8 @@
         {
           "id": "owned-world",
           "title": "Own a complete scene lifecycle",
-          "scope": "Native world ownership and sandbox lifecycle beyond the current bounded preview.",
-          "remaining": "Complete world construction, lifecycle and simulation handoff within an explicit native scene contract.",
+          "scope": "Native scene session owns validated world/frozen-navigation construction, semantic command and timer handoff, native save/fresh-window continuation and terminal teardown. This is an explicit native preview contract, independent of original-world gameplay composition.",
+          "remaining": "The owned native scene lifecycle passes generated-input Qt/OpenGL, failure/retirement, checkpoint continuation and sanitizer controls. Original world construction/input/timing, arbitrary profiles, hardware recovery and live simulation replacement remain separate.",
           "requirements": [
             {
               "behaviors": [
@@ -1161,7 +1162,7 @@
           "id": "output",
           "title": "Scoped mixing & playback",
           "scope": "Native voice state, mixer and output backend exercised together.",
-          "remaining": "Finish voice/mixer/output behavior and validate the integrated playback path.",
+          "remaining": "Native PCM, mixer and bounded Qt push-output controls pass. Physical playback/timing, original-driver equivalence and complete audio-manager semantics remain separate.",
           "requirements": [
             {
               "behaviors": [
@@ -1249,7 +1250,7 @@
           "id": "files",
           "title": "Scoped file access & profiles",
           "scope": "Bounded native file access, profile loading and persistence.",
-          "remaining": "Finish path, missing-file, profile and persistence boundaries and record scoped tests.",
+          "remaining": "Supported native file/profile and persistence-envelope controls pass. General Windows API equivalence and complete saved-world interpretation remain separate.",
           "requirements": [
             {
               "behaviors": [
@@ -1273,7 +1274,7 @@
           "id": "maps",
           "title": "Scoped map & region loading",
           "scope": "Native maps, terrain catalogs and region recipes.",
-          "remaining": "Finish map/catalog/recipe formats and unsupported cases, then validate the complete loading path.",
+          "remaining": "Version-6 MAP, version-4 TTD record and native recipe controls pass. Older MAP conversion, all terrain semantics, world generation and entity construction remain separate.",
           "requirements": [
             {
               "behaviors": [
@@ -1297,7 +1298,7 @@
           "id": "graphics",
           "title": "Scoped graphics asset loading",
           "scope": "Native sprite, animation, cursor and PCX readers.",
-          "remaining": "Complete the supported graphics formats and failure handling, then record integrated loading.",
+          "remaining": "Supported SPR v2/v4, ANI v3/v4/v5, CUR 1/8-bpp and PCX 8-bit one-plane controls pass. Other encodings and original-equivalent drawing/runtime allocation remain separate.",
           "requirements": [
             {
               "behaviors": [

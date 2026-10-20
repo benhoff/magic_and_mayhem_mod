@@ -106,6 +106,12 @@ class Driver final:public QObject {
                 const auto path=output_+'/'+label(a)+".mnms";check(!QFile::exists(path),"Window Save would overwrite a file");
                 QTimer::singleShot(0,this,[this,path] {acceptSave(path);});click("saveCheckpoint");
                 check(QFile::exists(path) && !playback_.playing(),"Window Save did not complete while paused");
+            } else if(op=="close") {
+                check(index_==actions_.size(),"Close must be the final window action");
+                if(a.value("play").toBool() && !playback_.playing()) click("playSimulation");
+                write(output_+"/window-report.json",QJsonDocument(QJsonObject{
+                    {"all_match",true},{"captures",captures_},{"closing_while_playing",playback_.playing()}}).toJson());
+                finished_=true;observer_={};check(window_.close(),"Native window refused close");return;
             } else throw std::runtime_error("Unknown window action");
             schedule();
         });

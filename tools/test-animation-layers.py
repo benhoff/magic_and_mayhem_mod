@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Original ANI selection plus independent multi-asset placement/pixel oracle."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -12,8 +13,12 @@ HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def digest(data):return hashlib.sha256(data).hexdigest()
 def main():
-    if '--display-owned' not in sys.argv:
-        subprocess.run(['xvfb-run','-a','env','QT_QPA_PLATFORM=xcb','LIBGL_ALWAYS_SOFTWARE=1','python3',str(Path(__file__).resolve()),'--display-owned'],check=True);return
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--preview',type=Path,default=REPO/'working/build/sprite-scene/mnm-sprite-scene-preview')
+    parser.add_argument('--display-owned',action='store_true',help=argparse.SUPPRESS)
+    args=parser.parse_args()
+    if not args.display_owned:
+        subprocess.run(['xvfb-run','-a','env','QT_QPA_PLATFORM=xcb','LIBGL_ALWAYS_SOFTWARE=1','python3',str(Path(__file__).resolve()),*sys.argv[1:],'--display-owned'],check=True);return
     parent=REPO/'working/tests/animation-layers';parent.mkdir(parents=True,exist_ok=True)
     out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
     def verify(phase):
@@ -21,9 +26,9 @@ def main():
         (out/f'original-{phase}.log').write_text(p.stdout+p.stderr);p.check_returncode()
     verify('before')
     try:
-        root=REPO/'working/game-clean';exe=REPO/'working/game-nocd/Chaos.exe'
+        root=REPO/'working/game-clean';exe=REPO/'original/Arcane_Nocd/Chaos.exe'
         if sha(exe)!=HASH:raise ValueError('Unsupported executable')
-        preview=REPO/'working/build/sprite-scene/mnm-sprite-scene-preview'
+        preview=args.preview.resolve()
         sources=['apps/sprite-scene/main.cpp','apps/sprite-scene/scene.cpp','apps/sprite-scene/scene.hpp',
                  'reconstruction/animation/no_cd.cpp','reconstruction/animation/no_cd.hpp','reconstruction/animation/placement.cpp','reconstruction/animation/placement.hpp','reconstruction/animation/attachment.cpp','reconstruction/animation/attachment.hpp',
                  'tests/animation-binary-reference.cpp','tools/test-animation-layers.py']

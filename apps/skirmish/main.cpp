@@ -18,6 +18,7 @@ int main(int argc, char **argv) try {
     p.addHelpOption();
     p.addOption({"installation", "Use installed Crocodile rules in native battles and rebind matching campaigns", "directory"});
     p.addOption({"asset-root", "Installed game data directory for map campaigns", "directory"});
+    p.addOption({"crossroads-campaign", "Start the branching native Crossroads chapter"});
     p.addOption({"mission-campaign", "Start the staged Plains mission and Cure reward campaign"});
     p.addOption({"map-campaign", "Start a native campaign on an installed Plains crop"});
     p.addOption({"campaign", "Start a new native campaign"});
@@ -30,8 +31,10 @@ int main(int argc, char **argv) try {
     p.process(app);
     auto creatureDriver = p.isSet("installation") ? mnm::skirmish::installedCreatureRuntime(p.value("installation").toStdString()) : nullptr;
     mnm::skirmish::Controller c(p.isSet("asset-root")?p.value("asset-root").toStdString():p.value("installation").toStdString(), creatureDriver);
-    if (int(p.isSet("load")) + int(p.isSet("campaign")) + int(p.isSet("load-campaign")) + int(p.isSet("map-campaign")) + int(p.isSet("mission-campaign")) > 1)
+    if (int(p.isSet("load")) + int(p.isSet("campaign")) + int(p.isSet("load-campaign")) + int(p.isSet("map-campaign")) + int(p.isSet("mission-campaign")) + int(p.isSet("crossroads-campaign")) > 1)
         throw std::invalid_argument("Choose one startup mode");
+    if (p.isSet("crossroads-campaign"))
+        c.newCrossroadsCampaign();
     if (p.isSet("mission-campaign"))
         c.newMapCampaign({},true);
     if (p.isSet("map-campaign"))

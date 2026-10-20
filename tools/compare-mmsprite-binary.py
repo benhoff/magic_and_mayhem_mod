@@ -213,7 +213,7 @@ def main():
     lock = json.loads(helpers['LOCK'].read_text())
     if upstream != lock['tracked_file_sha256']:
         raise ValueError('MMSprite source lock mismatch')
-    executable = REPO / 'working/game-nocd/Chaos.exe'
+    executable = REPO / 'original/Arcane_Nocd/Chaos.exe'
     binary = executable.read_bytes()
     if sha(binary) != HASH:
         raise ValueError('Unsupported binary hash')
