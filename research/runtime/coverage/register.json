@@ -9913,13 +9913,14 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Binary inventory, source census and traceability audit",
-      "scope": "Reproducible discovery and accounting tools; semantic mappings require contributor review. Synthetic guard tests do not establish original engine behavior. Per-invocation validated-path and fingerprint reuse plus indexed half-open function-body lookup preserve overlap ownership order; caches are discarded between calls.",
+      "scope": "Reproducible discovery and accounting tools; semantic mappings require contributor review. Synthetic guard tests do not establish original engine behavior. Per-invocation validated-path and fingerprint reuse plus indexed half-open function-body lookup preserve overlap ownership order; caches are discarded between calls. Source-link inversion preserves behavior/role order and duplicate membership. A bounded two-report JSON cache and extracted-provenance handoff are local to one audit; later audits independently reread inputs.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/coverage/README.md",
         "research/runtime/render-drawing-inventory.md",
-        "research/runtime/coverage/audit-performance-20261008.json"
+        "research/runtime/coverage/audit-performance-20261008.json",
+        "research/runtime/coverage/submission-performance-20261019.json"
       ],
       "implementation": [
         "tools/inventory-binary.py",
@@ -10518,7 +10519,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Deterministic coverage change gate and review receipts",
-      "scope": "Content-bound local/Git-base accounting, retained historical debt, exact affected contracts, append-only reviews and guarded validation decisions. This is accounting enforcement; semantic adequacy and original behavior completeness remain separate research. Evidence-ID collisions may be imported only from independent actual co-parents of a committed/pending Git merge, preserving the entire historical record except its namespaced ID, complete provenance keys and append-only mappings; unrelated branches/ancestors and modified records refuse without validation/status credit. Evidence-ID import contexts include committed merge ancestry reachable from verified actual pending merge tips, without admitting unrelated branch references. Staged reviews and local/bootstrap baselines are captured from the index before its temporary tree is released; Git-base materialization follows sequentially, keeping one full tree on scratch storage at a time without changing accounting policy. Review journals may store ordered, SHA-256-pinned archive shards; filesystem, staged and Git-history readers preserve every original receipt value and append-only enforcement. Sharding changes storage only and does not renew historical validation.",
+      "scope": "Content-bound local/Git-base accounting, retained historical debt, exact affected contracts, append-only reviews and guarded validation decisions. This is accounting enforcement; semantic adequacy and original behavior completeness remain separate research. Evidence-ID collisions may be imported only from independent actual co-parents of a committed/pending Git merge, preserving the entire historical record except its namespaced ID, complete provenance keys and append-only mappings; unrelated branches/ancestors and modified records refuse without validation/status credit. Evidence-ID import contexts include committed merge ancestry reachable from verified actual pending merge tips, without admitting unrelated branch references. Staged reviews and local/bootstrap baselines are captured from the index before its temporary tree is released; Git-base materialization follows sequentially, keeping one full tree on scratch storage at a time without changing accounting policy. Review journals may store ordered, SHA-256-pinned archive shards; filesystem, staged and Git-history readers preserve every original receipt value and append-only enforcement. Sharding changes storage only and does not renew historical validation. Submission performance: snapshot-local file fingerprint reuse and audited raw provenance retain complete source, binding and recorded-input keys. Git archives and file members stream through bounded buffers with failed-export and unsafe-member refusal. Optional CLI phase timings are diagnostic only. No persistent pass cache or skipped accounting stage.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -10526,7 +10527,8 @@
         "docs/architecture.md",
         "AGENTS.md",
         "tests/README.md",
-        "research/runtime/coverage/audit-performance-20261008.json"
+        "research/runtime/coverage/audit-performance-20261008.json",
+        "research/runtime/coverage/submission-performance-20261019.json"
       ],
       "implementation": [
         "tools/coverage_gate.py",
@@ -19710,12 +19712,13 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Exact execution claims and composable coverage accounting",
-      "scope": "Offline build/address/source accounting, immutable scope and scenario identities, complete declared implementation/dependency fingerprints, historical/current validation separation, exact receipt composition and root build census. Synthetic guard fixtures and read-only UI validation only; scientific adequacy, inferred transitive dependencies, original execution, full-player-session corpus and engine equivalence are outside this toolkit contract. Evidence-ID collisions may be imported only from independent actual co-parents of a committed/pending Git merge, preserving the entire historical record except its namespaced ID, complete provenance keys and append-only mappings; unrelated branches/ancestors and modified records refuse without validation/status credit. Evidence-ID import contexts include committed merge ancestry reachable from verified actual pending merge tips, without admitting unrelated branch references. Staged reviews and local/bootstrap baselines are captured from the index before its temporary tree is released; Git-base materialization follows sequentially, keeping one full tree on scratch storage at a time without changing accounting policy. Review journals may store ordered, SHA-256-pinned archive shards; filesystem, staged and Git-history readers preserve every original receipt value and append-only enforcement. Sharding changes storage only and does not renew historical validation.",
+      "scope": "Offline build/address/source accounting, immutable scope and scenario identities, complete declared implementation/dependency fingerprints, historical/current validation separation, exact receipt composition and root build census. Synthetic guard fixtures and read-only UI validation only; scientific adequacy, inferred transitive dependencies, original execution, full-player-session corpus and engine equivalence are outside this toolkit contract. Evidence-ID collisions may be imported only from independent actual co-parents of a committed/pending Git merge, preserving the entire historical record except its namespaced ID, complete provenance keys and append-only mappings; unrelated branches/ancestors and modified records refuse without validation/status credit. Evidence-ID import contexts include committed merge ancestry reachable from verified actual pending merge tips, without admitting unrelated branch references. Staged reviews and local/bootstrap baselines are captured from the index before its temporary tree is released; Git-base materialization follows sequentially, keeping one full tree on scratch storage at a time without changing accounting policy. Review journals may store ordered, SHA-256-pinned archive shards; filesystem, staged and Git-history readers preserve every original receipt value and append-only enforcement. Sharding changes storage only and does not renew historical validation. Submission performance: snapshot-local file fingerprint reuse and audited raw provenance retain complete source, binding and recorded-input keys. Git archives and file members stream through bounded buffers with failed-export and unsafe-member refusal. Optional CLI phase timings are diagnostic only. No persistent pass cache or skipped accounting stage.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/coverage/README.md",
-        "research/runtime/coverage-ledger.md"
+        "research/runtime/coverage-ledger.md",
+        "research/runtime/coverage/submission-performance-20261019.json"
       ],
       "implementation": [
         "tools/coverage_claims.py",
@@ -281810,8 +281813,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-directdraw-retirement-commit-20261019.json",
-    "sha256": "f87fee67c419d2578735177a12d2cf4d7aa2e2f041a55dded507ce36ed5d2f10"
+    "path": "research/runtime/coverage/source-index-submission-performance-commit-20261019.json",
+    "sha256": "4f07de3fc7eac51783c02b1250a5a8df2a9e68324d852218c7b3a99689a93b30"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

@@ -24,6 +24,22 @@ python3 -B tests/test-coverage-gate.py
 python3 tools/check-re-coverage.py
 ```
 
+Use `--timings` to print elapsed times for the current snapshot, Git-base
+snapshot, merge-history review and receipt check. With `--json`, the same
+durations appear in `timings_seconds`; timing does not change approval rules.
+For example:
+
+```sh
+python3 tools/check-re-coverage.py --base HEAD --timings \
+  --json working/tests/coverage-timed-next.json
+```
+
+The gate reuses file fingerprints and audited evidence provenance only within
+one snapshot. A later call, staged tree or Git base is read independently. Source
+links are inverted once while retaining their original order and membership.
+Git exports stream through bounded buffers into the temporary tree; historical
+code is never executed. No persistent cached pass can approve a changed tree.
+
 The default command compares against the reviewed `gate-baseline.json` snapshot.
 Once the gate has been committed, use `--base HEAD` for local changes or an
 explicit reviewed commit for a branch comparison. CI compares the actual PR

@@ -29,11 +29,21 @@ def source_paths(root):
                    if p.is_file() and in_scope(p.relative_to(root))})
 
 
+def source_references(behaviors):
+    """Invert links once, retaining behavior/role order and membership semantics."""
+    references = {}
+    for behavior in behaviors:
+        for role in ('implementation', 'tests', 'validation_dependencies'):
+            for path in dict.fromkeys(behavior.get(role, [])):
+                references.setdefault(path, []).append({'behavior': behavior['id'], 'role': role})
+    return references
+
+
 def index(root, register):
     rows = []
+    linked = source_references(register['behaviors'])
     for path in source_paths(root):
-        references = [{'behavior': b['id'], 'role': role} for b in register['behaviors']
-                      for role in ('implementation', 'tests', 'validation_dependencies') if path in b.get(role, [])]
+        references = linked.get(path, [])
         prefix = '/'.join(Path(path).parts[:2]) if path.startswith(('apps/', 'runtime/', 'reconstruction/', 'compat/')) else Path(path).parts[0]
         role = 'build' if Path(path).name in BUILD_NAMES or Path(path).suffix in BUILD_SUFFIXES else ('test' if path.startswith('tests/') else
                'tool' if path.startswith('tools/') else 'protocol' if path.startswith('protocols/') else 'code')

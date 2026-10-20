@@ -140,6 +140,27 @@ class CoverageTests(unittest.TestCase):
                 self.assertEqual(paths.count(self.root/'code.cpp'), invocation + 1)
                 self.assertEqual(paths.count(self.root/'record.json'), invocation + 1)
 
+    def test_shared_report_is_decoded_once_and_provenance_preserves_recorded_keys(self):
+        self.record['sources']['fixture.bin'] = 'b' * 64
+        for evidence in self.register['evidence']:
+            evidence['recorded_inputs'] = ['fixture.bin']
+        self.refresh_record()
+        reads = []
+        original = Path.read_text
+
+        def read(path, *args, **kwargs):
+            reads.append(path)
+            return original(path, *args, **kwargs)
+
+        provenance = {}
+        with patch.object(Path, 'read_text', read):
+            result = audit(self.root, self.register, recorded_sources=provenance)
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(reads.count(self.root/'record.json'), 1)
+        self.assertEqual(provenance['original'], self.record['sources'])
+        self.assertIn('fixture.bin', provenance['native'])
+        self.assertEqual(result, self.report())
+
     def test_audit_rechecks_symlinks_between_invocations(self):
         source = self.root/'code.cpp'
         alias = self.root/'alias.cpp'
@@ -281,6 +302,17 @@ class CoverageTests(unittest.TestCase):
     def pin_source_index(self):
         self.write_json('source-index.json', source_tool.index(self.root, self.register))
         self.register['code_index'] = {'path': 'source-index.json', 'sha256': self.digest('source-index.json')}
+
+    def test_inverted_source_links_preserve_original_order_and_duplicate_membership(self):
+        behaviors = [dict(id='second', implementation=['shared.cpp', 'shared.cpp'],
+                          tests=['shared.cpp'], validation_dependencies=['helper.hpp']),
+                     dict(id='first', implementation=['helper.hpp', 'shared.cpp'], tests=[])]
+        actual = source_tool.source_references(behaviors)
+        for path in ['shared.cpp', 'helper.hpp', 'absent.cpp']:
+            expected = [{'behavior': b['id'], 'role': role} for b in behaviors
+                        for role in ('implementation', 'tests', 'validation_dependencies')
+                        if path in b.get(role, [])]
+            self.assertEqual(actual.get(path, []), expected)
 
     def test_legacy_root_census_cannot_hide_new_host_adapter(self):
         catalog = source_tool.index(self.root, self.register)

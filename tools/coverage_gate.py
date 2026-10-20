@@ -2,11 +2,12 @@
 import hashlib
 import copy
 from collections import deque
+from functools import cache
 import importlib.util
 import json
 from pathlib import Path
 
-from coverage_audit import audit, pointer, source_hashes
+from coverage_audit import audit
 from coverage_reviews import load_journal
 
 spec = importlib.util.spec_from_file_location('gate_source_index', Path(__file__).with_name('index-coverage-sources.py'))
@@ -67,7 +68,8 @@ def gap_items(report):
 def snapshot(root, register=None):
     root = Path(root).resolve()
     register = register if register is not None else load_json(root, REGISTER)
-    report = audit(root, register)
+    recorded_sources = {}
+    report = audit(root, register, recorded_sources=recorded_sources)
     if report['errors']:
         raise ValueError('Coverage audit failed: ' + '; '.join(report['errors']))
     if 'code_index' not in register:
@@ -80,25 +82,28 @@ def snapshot(root, register=None):
         if not resolved.is_relative_to(root) or resolved.relative_to(root).parts[0] in {'original', 'working'}:
             raise ValueError(f'Unsafe source-census target: {path}')
     journal, review_paths = load_journal(root) if (root/REVIEWS).is_file() else ({'reviews': []}, {REVIEWS})
+    # Discard the cache after this snapshot. Staged, Git-base and later working
+    # snapshots must independently fingerprint their actual bytes.
+    fingerprint = cache(file_digest)
     sources = {item['path']: item for item in source_index.index(root, register)['files']}
     for name in ('research', 'docs'):
         for path in sorted((root/name).rglob('*')):
             relative = path.relative_to(root).as_posix()
             if path.is_file() and path.suffix in {'.md', '.json'} and relative not in {BASELINE} | review_paths:
-                sources[relative] = {'path': relative, 'sha256': file_digest(path), 'role': 'research', 'references': []}
+                sources[relative] = {'path': relative, 'sha256': fingerprint(path), 'role': 'research', 'references': []}
     for path in CONTROL_FILES:
         if (root/path).is_file():
-            sources[path] = {'path': path, 'sha256': file_digest(root/path), 'role': 'control', 'references': []}
+            sources[path] = {'path': path, 'sha256': fingerprint(root/path), 'role': 'control', 'references': []}
     for behavior in register['behaviors']:
         for path in behavior['documents']:
             if path not in sources:
-                sources[path] = {'path': path, 'sha256': file_digest(root/path), 'role': 'research', 'references': []}
+                sources[path] = {'path': path, 'sha256': fingerprint(root/path), 'role': 'research', 'references': []}
             sources[path]['references'].append({'behavior': behavior['id'], 'role': 'documents'})
     evidence = {e['id']: e for e in register['evidence']}
     evidence_sources = {}
     evidence_keys = {}
     for eid, ev in sorted(evidence.items()):
-        recorded = source_hashes(pointer(load_json(root, ev['record']), ev['sources_pointer']))
+        recorded = recorded_sources[eid]
         bindings = ev.get('source_bindings', {p: p for p in recorded})
         inputs = set(ev.get('recorded_inputs', []))
         evidence_keys[eid] = sorted(set(bindings) | inputs)
@@ -108,7 +113,7 @@ def snapshot(root, register=None):
     for behavior in register['behaviors']:
         bid = behavior['id']
         contract = {'behavior': behavior,
-                    'sources': {p: file_digest(root/p) for role in ('implementation', 'tests', 'documents', 'validation_dependencies')
+                    'sources': {p: fingerprint(root/p) for role in ('implementation', 'tests', 'documents', 'validation_dependencies')
                                 for p in behavior.get(role, [])},
                     'builds': [builds[k] for k in sorted({ref['build'] for ref in behavior['original']})],
                     'evidence': sorted((evidence[e] for e in behavior['evidence']), key=lambda e: e['id']),
@@ -119,7 +124,7 @@ def snapshot(root, register=None):
             'evidence_keys': evidence_keys, 'evidence_sources': evidence_sources,
             'evidence_id_imports': register.get('evidence_id_imports', []),
             'inventories': {b['inventory']: b['inventory_sha256'] for b in register['builds']},
-            'research_artifacts': {p.relative_to(root).as_posix(): file_digest(p)
+            'research_artifacts': {p.relative_to(root).as_posix(): fingerprint(p)
                                    for p in sorted((root/'research').rglob('*.json'))
                                    if p.relative_to(root).as_posix() not in {BASELINE} | review_paths},
             'builds': {b['id']: b['source_sha256'] for b in register['builds']},

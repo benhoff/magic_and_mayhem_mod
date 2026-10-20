@@ -18825,3 +18825,10 @@ for all required callers/writers/aliases, physical context loss, whole-game pixe
 equivalence and sustained performance. The separate unmodified storage-reference
 252-pixel failure remains FAIL. Original manifest bookends verify all 2,927 files;
 the user-approved 90 GiB guard remains enforced, with no cleanup or archiving.
+
+
+### Coverage submission performance — 2026-10-19
+
+Snapshot-local fingerprint reuse, audited raw-provenance reuse, ordered source-link inversion and bounded Git archive streaming reduce submission overhead without changing accounting decisions. On the same frozen `2c90c3f2` tree, profiled snapshot time fell from 134.263 s to 58.526 s; complete canonical snapshot and audit hashes match. These are single-run timings with filesystem-cache and concurrent-load limits, not a measured whole-commit speedup. All 152 audit/gate/merge/evidence-import guard methods pass, including source changes across calls and archive failures. `check-re-coverage.py --timings` exposes the remaining phase costs.
+
+The [performance record](coverage/submission-performance-20261019.json) retains source pins and six local commit-turn timing samples. Raw profiles and local-session-derived command summaries remain under `working/retention/submission-performance-20261019/`. Historical execution evidence and all engine statuses remain unchanged; broad current-code validation stays pending where source or scope changed. No original artifacts were consumed.

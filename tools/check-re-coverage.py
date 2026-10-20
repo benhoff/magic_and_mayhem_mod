@@ -2,12 +2,14 @@
 """Gate coverage changes against a reviewed snapshot or an actual Git revision."""
 import argparse
 from contextlib import contextmanager, ExitStack
-import io
 import json
 from pathlib import Path
+import shutil
 import subprocess
+import sys
 import tarfile
 import tempfile
+import time
 
 from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, draft, load_json, snapshot
 from coverage_merge_history import inherited_history
@@ -24,22 +26,38 @@ def git(root, *args):
 def git_snapshot(root, revision):
     """Read a base tree without switching branches or executing its code."""
     commit = git(root, 'rev-parse', '--verify', '--end-of-options', revision + '^{commit}').decode().strip()
-    archive = git(root, 'archive', '--format=tar', commit)
     with tempfile.TemporaryDirectory(prefix='coverage-git-base-') as temporary:
         target = Path(temporary)
-        with tarfile.open(fileobj=io.BytesIO(archive)) as tree:
-            for member in tree:
-                path = Path(member.name)
-                if path.is_absolute() or '..' in path.parts:
-                    raise ValueError('Unsafe path in Git archive')
-                if path.parts[0] in {'original', 'working', '.git'}:
-                    continue
-                if member.issym() or member.islnk():
-                    raise ValueError(f'Git base contains unsupported symlink: {member.name}')
-                if member.isfile():
-                    output = target/path
-                    output.parent.mkdir(parents=True, exist_ok=True)
-                    output.write_bytes(tree.extractfile(member).read())
+        # Stream the archive instead of buffering several GiB before extraction.
+        # Keep stderr off a pipe so an export failure cannot deadlock the reader.
+        command = ['git', '-C', str(root), 'archive', '--format=tar', commit]
+        with tempfile.TemporaryFile() as errors:
+            export = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=errors)
+            try:
+                with tarfile.open(fileobj=export.stdout, mode='r|') as tree:
+                    for member in tree:
+                        path = Path(member.name)
+                        if path.is_absolute() or '..' in path.parts:
+                            raise ValueError('Unsafe path in Git archive')
+                        if path.parts[0] in {'original', 'working', '.git'}:
+                            continue
+                        if member.issym() or member.islnk():
+                            raise ValueError(f'Git base contains unsupported symlink: {member.name}')
+                        if member.isfile():
+                            output = target/path
+                            output.parent.mkdir(parents=True, exist_ok=True)
+                            with output.open('wb') as destination:
+                                # File members can also be large; bound the copy.
+                                shutil.copyfileobj(tree.extractfile(member), destination, 1024 * 1024)
+                export.stdout.close()
+                if export.wait():
+                    errors.seek(0)
+                    raise subprocess.CalledProcessError(export.returncode, command, stderr=errors.read())
+            finally:
+                export.stdout.close()
+                if export.poll() is None:
+                    export.terminate()
+                export.wait()
         if not (target/BASELINE).is_file():
             raise ValueError('Base revision predates the gate baseline; use --bootstrap only for initial adoption')
         value, _ = snapshot(target)
@@ -90,12 +108,24 @@ def main():
     parser.add_argument('--reviews', type=Path)
     parser.add_argument('--json', type=Path, help='Write a new full gate report')
     parser.add_argument('--draft-review', type=Path, help='Write a hash-bound draft requiring reasons before acceptance')
+    parser.add_argument('--timings', action='store_true', help='Print phase durations to stderr and include them in the JSON report')
     args = parser.parse_args()
     with ExitStack() as stack:
         return run(args, stack)
 
 
 def run(args, stack):
+    timings = {}
+
+    def measure(name, operation):
+        started = time.perf_counter()
+        try:
+            return operation()
+        finally:
+            timings[name] = time.perf_counter() - started
+            if args.timings:
+                print(f'Coverage timing: {name}: {timings[name]:.3f}s', file=sys.stderr, flush=True)
+
     try:
         for path in (args.freeze_baseline, args.json, args.draft_review):
             if path and path.exists():
@@ -104,8 +134,8 @@ def run(args, stack):
             raise ValueError('--bootstrap requires --base')
         if args.staged and (args.freeze_baseline or args.baseline or args.reviews):
             raise ValueError('--staged uses only staged baseline/reviews and cannot freeze a baseline')
-        current_root = stack.enter_context(staged_tree(ROOT)) if args.staged else ROOT
-        current, audit_report = snapshot(current_root)
+        current_root = measure('staged_tree', lambda: stack.enter_context(staged_tree(ROOT))) if args.staged else ROOT
+        current, audit_report = measure('current_snapshot', lambda: snapshot(current_root))
         # Freeze all index-owned metadata before releasing its materialization.
         # Only one full tree is needed at a time, even for a Git-base check.
         reviews = None
@@ -135,10 +165,12 @@ def run(args, stack):
                 before = staged_baseline
                 base_label = commit + ' (initial adoption)'
             else:
-                before, base_label = git_snapshot(ROOT, args.base)
-        history = inherited_history(ROOT, base_label, current, reviews, args.staged) if args.base and not args.bootstrap else None
-        report = check(before, current, reviews, audit_report, history)
+                before, base_label = measure('git_base_snapshot', lambda: git_snapshot(ROOT, args.base))
+        history = measure('merge_history', lambda: inherited_history(ROOT, base_label, current, reviews, args.staged)) if args.base and not args.bootstrap else None
+        report = measure('review_check', lambda: check(before, current, reviews, audit_report, history))
         report['base'] = base_label
+        if args.timings:
+            report['timings_seconds'] = timings
         if args.json:
             write_new(args.json, report)
         if args.draft_review:

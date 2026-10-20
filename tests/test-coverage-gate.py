@@ -10,12 +10,13 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import tarfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
-from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, digest, draft, snapshot, source_index
+from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, digest, draft, snapshot, source_index, file_digest
 from coverage_claims import behavior_contract
 from coverage_reviews import ARCHIVES, load_journal, read_journal, split_journal
 
@@ -108,6 +109,30 @@ class GateTests(unittest.TestCase):
     def test_output_is_deterministic(self):
         self.assertEqual(self.result(), self.result())
         self.assertEqual(snapshot(self.root)[0], snapshot(self.root)[0])
+
+    def test_snapshot_fingerprints_shared_paths_once_without_cross_call_reuse(self):
+        with patch('coverage_gate.file_digest', wraps=file_digest) as fingerprints:
+            first, _ = snapshot(self.root)
+        paths = [call.args[0] for call in fingerprints.call_args_list]
+        self.assertEqual(paths.count(self.root/'assets/model.cpp'), 1)
+        # Research participates both in source and immutable-artifact accounting.
+        self.assertEqual(paths.count(self.root/'research/record.json'), 1)
+        self.write('assets/model.cpp', 'changed after snapshot\n')
+        second, report = self.current()
+        self.assertNotEqual(first['behaviors'], second['behaviors'])
+        self.assertTrue(report['findings']['stale_evidence'])
+
+    def test_snapshot_reuses_audited_provenance_with_bound_and_input_keys(self):
+        self.record['sources'] = {'old-model.cpp': self.sha('assets/model.cpp'), 'input.bin': 'b'*64}
+        self.json('research/record.json', self.record)
+        evidence = self.register['evidence'][0]
+        evidence.update(sha256=self.sha('research/record.json'),
+                        source_bindings={'old-model.cpp':'assets/model.cpp', 'input.bin':'input.bin'},
+                        recorded_inputs=['input.bin'])
+        result, _ = self.current()
+        self.assertEqual(result['evidence_keys']['old-original'], ['input.bin', 'old-model.cpp'])
+        self.assertEqual(result['evidence_sources']['old-original'],
+                         {'assets/model.cpp':self.sha('assets/model.cpp')})
 
     def test_index_refresh_cannot_hide_changed_code(self):
         self.write('assets/model.cpp', 'different\n')
@@ -546,6 +571,53 @@ class GateTests(unittest.TestCase):
         self.assertEqual(commit, revision)
         self.assertEqual(git_before['sources']['assets/model.cpp']['sha256'], self.before['sources']['assets/model.cpp']['sha256'])
         self.assert_error(check(git_before, after, {'schema': 1, 'reviews': []}, report), 'Unreviewed source change')
+
+    def test_git_archive_stream_preserves_the_complete_snapshot(self):
+        revision = self.init_git()
+        expected, _ = snapshot(self.root)
+        with patch.object(cli, 'git', wraps=cli.git) as calls:
+            actual, commit = cli.git_snapshot(self.root, revision)
+        self.assertEqual(actual, expected)
+        self.assertEqual(commit, revision)
+        self.assertFalse(any('archive' in call.args for call in calls.call_args_list))
+
+    def test_complete_tar_does_not_hide_a_failed_git_export(self):
+        archive = io.BytesIO()
+        with tarfile.open(fileobj=archive, mode='w'):
+            pass
+        export = Mock(stdout=io.BytesIO(archive.getvalue()), returncode=7)
+        export.wait.return_value = 7
+        export.poll.return_value = 7
+        with patch.object(cli, 'git', return_value=b'a'*40+b'\n'), patch.object(
+                cli.subprocess, 'Popen', return_value=export):
+            with self.assertRaises(subprocess.CalledProcessError) as failure:
+                cli.git_snapshot(self.root, 'HEAD')
+        self.assertEqual(failure.exception.returncode, 7)
+        self.assertTrue(export.stdout.closed)
+
+    def test_malformed_archive_stops_the_exporter(self):
+        export = Mock(stdout=io.BytesIO(b'invalid tar'))
+        export.poll.return_value = None
+        with patch.object(cli, 'git', return_value=b'a'*40+b'\n'), patch.object(
+                cli.subprocess, 'Popen', return_value=export):
+            with self.assertRaises(tarfile.ReadError):
+                cli.git_snapshot(self.root, 'HEAD')
+        export.terminate.assert_called_once_with()
+        export.wait.assert_called_once_with()
+        self.assertTrue(export.stdout.closed)
+
+    def test_cli_optional_phase_timings_are_recorded_without_changing_checks(self):
+        self.json(REVIEWS, {'schema': 1, 'reviews': []})
+        revision = self.init_git()
+        output = self.root/'timed-report.json'
+        with redirect_stdout(io.StringIO()), patch.object(cli, 'ROOT', self.root), patch.object(
+                sys, 'argv', ['gate', '--base', revision, '--timings', '--json', str(output)]):
+            self.assertEqual(cli.main(), 0)
+        report = json.loads(output.read_text())
+        self.assertEqual(report['errors'], [])
+        self.assertEqual(set(report['timings_seconds']),
+                         {'current_snapshot', 'git_base_snapshot', 'merge_history', 'review_check'})
+        self.assertTrue(all(seconds >= 0 for seconds in report['timings_seconds'].values()))
 
     def test_cli_refuses_overwrite_and_bootstrap_after_adoption(self):
         revision = self.init_git()

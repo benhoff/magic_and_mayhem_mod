@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import re
 from bisect import bisect_right
-from functools import cache
+from functools import cache, lru_cache
 from coverage_claims import validation_support
 
 STAGES = {
@@ -84,7 +84,7 @@ class FunctionRangeIndex:
         return [entry for _, entry in sorted(found)]
 
 
-def audit(root, register):
+def audit(root, register, *, recorded_sources=None):
     root = Path(root).resolve()
     errors, warnings = [], []
     findings = {'unclassified_functions': [], 'unassigned_executable_ranges': [],
@@ -102,6 +102,12 @@ def audit(root, register):
     # across audits: working files, staged trees and Git bases are independent.
     files = {}
     cached_sha = cache(sha)
+
+    @lru_cache(maxsize=2)
+    def record_json(path):
+        # A small invocation-local cache bounds retained report bodies while
+        # avoiding repeated decoding of evidence sharing the same report.
+        return json.loads(path.read_text())
 
     def require(condition, message):
         if not condition:
@@ -195,7 +201,7 @@ def audit(root, register):
                 require(ev.get('build') == build_id, f'{rid}: recovered range/evidence build mismatch')
                 require(ev['kind'] in {'isolated_original', 'live_equivalence', 'live_replacement'},
                         f'{rid}: range exception requires pinned original execution evidence')
-                record = json.loads(file(ev['record']).read_text())
+                record = record_json(file(ev['record']))
                 anchors = pointer(record, recovered['anchors_pointer'])
                 require(any(int(a, 16) == recovered['start'] for a in anchors), f'{rid}: range start lacks pinned original entry bytes')
                 require(all(isinstance(value, str) and bool(re.fullmatch(r'(?:[0-9a-fA-F]{2})+', value)) for value in anchors.values()),
@@ -236,7 +242,7 @@ def audit(root, register):
             require(bool(ev['assertions']), f'{eid}: evidence requires explicit success assertions')
             record_file = file(ev['record'])
             require(cached_sha(record_file) == ev['sha256'], f'{eid}: evidence record hash mismatch')
-            record = json.loads(record_file.read_text())
+            record = record_json(record_file)
             for assertion in ev['assertions']:
                 require(pointer(record, assertion['pointer']) == assertion['equals'], f'{eid}: failed evidence assertion {assertion["pointer"]}')
             if ev['kind'] in {'isolated_original', 'live_equivalence', 'live_replacement'}:
@@ -249,6 +255,10 @@ def audit(root, register):
             if ev['kind'] == 'live_replacement':
                 require(pointer(record, ev['bypass_pointer']) is True, f'{eid}: original work bypass not established')
             sources = source_hashes(pointer(record, ev['sources_pointer']))
+            if recorded_sources is not None:
+                # Share only extracted provenance with this invocation's gate.
+                # It still needs original keys, including bound/input keys.
+                recorded_sources[eid] = sources
             recorded_inputs = ev.get('recorded_inputs', [])
             require(isinstance(recorded_inputs, list) and len(recorded_inputs) == len(set(recorded_inputs)),
                     f'{eid}: malformed/duplicate recorded input keys')
@@ -495,6 +505,7 @@ def audit(root, register):
             findings['removed_indexed_sources'] = sorted(indexed_paths-current_paths)
             findings['changed_indexed_sources'] = []
             findings['sources_without_behavior_links'] = []
+            references = source_tool.source_references(behaviors.values())
             for item in catalog['files']:
                 path = item['path']
                 parts = Path(path).parts
@@ -502,8 +513,7 @@ def audit(root, register):
                         and source_tool.in_scope(path),
                         f'{path}: source index path outside census scope')
                 require(bool(re.fullmatch(r'[0-9a-f]{64}', item['sha256'])), f'{path}: malformed source index digest')
-                expected = [{'behavior': b['id'], 'role': role} for b in behaviors.values()
-                            for role in ('implementation', 'tests', 'validation_dependencies') if path in b.get(role, [])]
+                expected = references.get(path, [])
                 require(item['references'] == expected, f'{path}: source index/register link drift')
                 if not expected:
                     findings['sources_without_behavior_links'].append(path)
