@@ -1,5 +1,18 @@
 # Engine modernization coverage ledger
 
+## High tranche 3 reservation evidence admission — 2026-10-19
+
+The reservation analyzer now independently decodes the complete raw reservation,
+source-version and GPU-completion journals, verifies cached reports against the
+raw hashes/fields, and joins the exact worker thread. Controlled synthetic input
+reproduces24 false admissions in the former analyzer; all24 now refuse, both
+valid signaled fence results pass, and50 adjacent Python regression methods pass
+with stable declared sources. See
+[high-tranche3-reservation-admission-20261019.json](high-tranche3-reservation-admission-20261019.json).
+This repairs analyzer implementation. PE32 enforcement, original/GPU journeys,
+unknown aliases/writers, all-context completion and full replacement retain their
+independent historical/pending boundaries. No raw coverage status is promoted.
+
 ## Critical rendering tranche commit validation — 2026-10-19
 
 The three critical eleven-behavior tranches, their implementation/validation

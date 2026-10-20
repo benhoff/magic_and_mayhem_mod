@@ -1,5 +1,25 @@
 # Observed-path COPY source read reservations
 
+## Raw evidence admission repair — 2026-10-19
+
+Controlled synthetic journals reproduced 24 false admissions in the former
+reservation analyzer. It selected GPU rows without validating the completion
+header/terminal or checking the cached report against raw bytes; it also omitted
+the worker thread from that join and trusted the source-version report without
+re-decoding its raw journal. Damaged envelopes, invalid fence/context fields,
+changed reports and a valid fence from another thread could therefore be admitted.
+Confidence: confirmed for these bounded analyzer counterexamples.
+
+The analyzer now independently decodes the complete reservation, source-version
+and GPU-completion journals. Every decoded dependency field and journal hash must
+match the supplied report. The source-version worker thread and GPU fence thread
+must match the reservation's observed worker-entry thread, alongside the exact
+submission, command and worker. Existing report fields and wire versions are
+preserved. This implements evidence admission; original runtime exclusion,
+physical aliases, all-context completion and live replacement retain their
+separate validation boundaries. The controlled counterexamples do not establish
+corruption in any retained historical capture.
+
 The opt-in guard now excludes observed mutations before they forward, from the
 extra synchronous READ map through the exact emitted command's worker and a
 signaled fence in that worker's current GL context. The older source-version

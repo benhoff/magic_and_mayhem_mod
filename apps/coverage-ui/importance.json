@@ -9093,7 +9093,7 @@
           {
             "behavior": "NR.drawing-source-read-reservations",
             "mode": "Implemented within bounded scope; renew validation",
-            "next_action": "Renew observed-path read reservations and conflicting-writer refusal.",
+            "next_action": "Renew the actual19-case PE32 observed-writer guard and current-context fence cohort before a new original/GPU ownership journey; keep the now-fixed raw evidence admission regression mandatory.",
             "implementation_boundary": "Opt-in diagnostic reservations by public resource identity and texture generation, acquired before extra READ map and retained through exact command worker and signaled current-context fence; reject observed writes and imported texture decref before forwarding. Separate resource backing aliases and unhooked writers remain unsupported and unproved.",
             "validation": "Check acquisition/release/failure boundaries; do not claim all private writers or source lifetimes are serialized.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
@@ -9111,23 +9111,24 @@
             "remaining_at_review": "Private mutators, aliases and every source lifetime remain outside the admitted diagnostic domain.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "wine_source_reservations.h implements observed-path resource read reservations and write refusal.",
+              "current_state": "wine_source_reservations.h implements observed-path resource read reservations and write refusal. Raw evidence admission now independently validates all three complete journals, report fingerprints and exact source-version/reservation/GPU worker-thread identity.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Check acquisition/release/failure boundaries; do not claim all private writers or source lifetimes are serialized. Existing execution records retain their original source/input pins; this review supplies no new execution.",
+              "validation_state": "pending",
+              "validation_summary": "Fresh host-side synthetic admission controls reject24 former false positives; all50 reservation/source-version/GPU/physical/handoff Python methods pass. The runtime19-case PE32 guard and original/GPU cohorts are not renewed by these controls.",
               "acceptance": "pending",
               "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Private mutators, aliases and every source lifetime remain outside the admitted diagnostic domain.",
               "evidence": [
                 "NATIVE.source-reservations.fixture-20261017",
                 "NATIVE.source-reservations.original120-20261017",
                 "NATIVE.source-reservations.controls-20261017",
-                "HIGH01.rendering-work-review-20261019"
+                "HIGH01.rendering-work-review-20261019",
+                "HIGH03.reservation-raw-admission-20261019"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
                   "kind": "validation",
-                  "action": "Renew observed-path read reservations and conflicting-writer refusal."
+                  "action": "Renew the actual19-case PE32 observed-writer guard and current-context fence cohort before a new original/GPU ownership journey; keep the now-fixed raw evidence admission regression mandatory."
                 },
                 {
                   "kind": "scope_review",
@@ -9142,14 +9143,24 @@
                 }
               ],
               "source_sha256": {
-                "research/formats/drawing-source-reservations-v1.md": "893d8a9e3a884b9ea6b144609d1e82dea7c8df1b21b39f5af4bd64339fee856b",
-                "research/runtime/drawing-source-read-reservations.md": "ba7aeb3f6e8bd36a27ef78a24c896340f5e4d42ca9190a8cae69eecfa2164208",
+                "research/formats/drawing-source-reservations-v1.md": "bb757a4d2cf2eb76d788d9a8cbb30eb7f71f2b8440ac662b78e9ac2a293b4a0a",
+                "research/runtime/drawing-source-read-reservations.md": "faeb067eb4290cc911c9c8274606ed465939fe13a0aac7caed67fe708f316758",
                 "runtime/drawing/wine_source_reservations.h": "63c16855df7b3f24c8038241160c8b29a8c75471bb2ccab62fdf023965bc15bf",
                 "tests/drawing-source-reservations-test.c": "be5db15ad97167f423de5f27699a58906add1947be5b76dfc0d27fb2c52066ff",
-                "tests/test-drawing-source-reservations.py": "9ffc7bd0c6a4bdb33962219e3a8bfaa2af978dc64a0d095c9a8509deb6624c55",
-                "tools/drawing_source_reservations.py": "dcca7235b0443a0f36f4cfe6ed9939c74fc9ae7200e8be63181c8748a3e82a51",
-                "tools/test-drawing-source-reservations.py": "8be23951ae52b4dc9fe831bbe6fa89ed7c2b2b2d367913e44d48c591c06abcf7"
+                "tests/test-drawing-source-reservations.py": "a302249f7fb50c4d1398a066a4385f73f4b39f287978d2c405c43505b9916bb6",
+                "tools/drawing_source_reservations.py": "f42a96a0b818d3fdf99d991c68f3303f616627f43c4152acff0c4ce5d9e0d219",
+                "tools/test-drawing-source-reservations.py": "8be23951ae52b4dc9fe831bbe6fa89ed7c2b2b2d367913e44d48c591c06abcf7",
+                "tools/drawing_source_version.py": "b2dbfa094aebf8573c83ed19de4cc934586b597e6edfc0cb181294408ad7fc7f",
+                "tools/drawing_gpu_completion.py": "6bd829550554658f06060faa066e494624e246da5f232cdfb95649d66a237e24",
+                "tools/drawing_api_session.py": "d9b927eebf99cc1144a60e1217c92dbfc17c5b8b33ab0e1b3a913844caf9753f",
+                "research/runtime/high-tranche3-reservation-admission-20261019.json": "c07266b3d2730e41b688ef7d3f0deca0dfa18daed7ac8fe5ebadc3befed4f2ad"
               }
+            },
+            "execution_result": {
+              "outcome": "PASS",
+              "report": "research/runtime/high-tranche3-reservation-admission-20261019.json",
+              "note": "Implementation fix: independently decode raw reservation/source-version/GPU journals, bind report hashes and exact worker threads.24 former false admissions now refuse;50 Python regression methods pass with stable sources.",
+              "remaining": "New proof covers analyzer admission. Runtime PE32 guard, original/GPU journeys, physical aliases, arbitrary schedules and complete replacement remain separate."
             }
           },
           {

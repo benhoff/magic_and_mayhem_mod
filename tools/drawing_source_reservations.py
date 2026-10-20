@@ -67,9 +67,20 @@ def decode(data):
 
 
 def analyze(directory, report):
-    result = decode((directory/'wine-source-reservations.bin').read_bytes())
-    versions = report['wine_source_version_observation']
-    fences = report['wine_gpu_completion_observation']
+    from drawing_source_version import decode as decode_versions
+    from drawing_gpu_completion import decode as decode_fences
+    raw = (directory/'wine-source-reservations.bin').read_bytes()
+    result = decode(raw)
+    # Independently validate both complete raw journals. A cached report or
+    # plausible inner row cannot substitute for their headers and terminals.
+    versions = decode_versions((directory/'wine-source-version.bin').read_bytes())
+    fences = decode_fences((directory/'wine-gpu-completion.bin').read_bytes())
+    for name, decoded in (('wine_source_version_observation', versions),
+                          ('wine_gpu_completion_observation', fences)):
+        if any(report[name].get(key) != value for key, value in decoded.items()):
+            raise ValueError('Reservation dependency report/raw journal changed: '+name)
+    worker_threads = {r[13]: r[2] for r in struct.iter_unpack('<32I', raw[64:])
+                      if r[1] == 4}
     by_submission = {b['submission']: b for b in versions['bindings']}
     if set(by_submission) != {b['submission'] for b in result['bindings']}:
         raise ValueError('Reservation/source-version denominator')
@@ -77,15 +88,17 @@ def analyze(directory, report):
         original = by_submission[link['submission']]
         if any(link[k] != original[k] for k in ('api_entry','source_texture','source_generation','resource','subresource','epoch','payload_ordinal','command','worker')):
             raise ValueError('Reservation/source-version identity')
-    # Independently validate raw completion rows, including the exact command,
-    # submission and worker. Aggregate fence counts cannot substitute for this.
-    raw = (directory/'wine-gpu-completion.bin').read_bytes()
+        if original['worker_thread'] != worker_threads[link['worker']]:
+            raise ValueError('Reservation/source-version worker thread changed')
+    # Join the exact command, submission, worker and observed worker thread.
+    # Aggregate fence counts cannot substitute for current-context identity.
     observed = {}
-    for r in struct.iter_unpack('<32I', raw[64:-128]):
-        if r[1] != 1 or r[8] != 2 or r[4] in observed:
+    for call in fences['calls']:
+        if call['status'] != 2 or call['submission'] in observed:
             raise ValueError('Reservation signaled completion identity')
-        observed[r[4]] = (r[3], r[2])
-    expected = {b['submission']: (b['command'], b['worker']) for b in result['bindings']}
+        observed[call['submission']] = (call['command'], call['worker'], call['thread'])
+    expected = {b['submission']: (b['command'], b['worker'], worker_threads[b['worker']])
+                for b in result['bindings']}
     if observed != expected:
         raise ValueError('Reservation/fence denominator')
     result.update(source_version_journal_sha256=versions['journal_sha256'], gpu_journal_sha256=fences['journal_sha256'])

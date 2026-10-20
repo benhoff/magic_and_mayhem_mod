@@ -44,3 +44,12 @@ while an unresolved or aliasing texture retirement is in flight, and close
 refuses outstanding retirement bodies.
 
 Evidence and limitations: [implementation](../runtime/drawing-source-read-reservations.md).
+
+
+Consumer-side admission independently decodes the complete raw source-version
+and GPU-completion journals, including headers, reserved fields and terminals.
+Their decoded fields and SHA-256 must match the supplied reports. Reservation
+phase4 records establish the worker thread; both the source-version consumer and
+the signaled GPU completion must name that same thread as well as the exact
+submission, command and worker. This is a same-context observed-path join and
+does not prove physical alias exclusion or all-context completion.

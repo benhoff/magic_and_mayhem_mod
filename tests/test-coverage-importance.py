@@ -387,8 +387,30 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 0)
         self.assertEqual(sum(e['weight'] == 4 and e['implementation'] == 'scoped'
                              for e in result['entries']), 47)
-        self.assertFalse(any(t.get('execution_result') for t in tasks))
+        for task in tasks:
+            execution = task.get('execution_result')
+            if execution:
+                self.assertIn(execution['outcome'], {'PASS', 'FAIL'})
+                self.assertTrue((ROOT / execution['report']).is_file())
+                self.assertTrue(execution['remaining'])
+                self.assertEqual(task['work_review']['acceptance'], 'pending')
         self.assertEqual((self.register, self.catalog), before)
+
+    def test_high_third_tranche_analyzer_fix_keeps_runtime_acceptance_pending(self):
+        plan = importance_view(self.catalog, self.register, self.tracks)['high_tranche_plan']
+        task = next(t for t in plan['tranches'][2]['tasks']
+                    if t['behavior'] == 'NR.drawing-source-read-reservations')
+        self.assertEqual(task['execution_result']['outcome'], 'PASS')
+        self.assertEqual(task['work_review']['implementation'], 'implemented_within_scope')
+        self.assertFalse(task['work_review']['implementation_gaps'])
+        self.assertEqual(task['work_review']['validation_state'], 'pending')
+        self.assertEqual(task['work_review']['acceptance'], 'pending')
+        record = json.loads((ROOT / task['execution_result']['report']).read_text())
+        self.assertEqual(record['counts']['reproduced_false_admissions'], 24)
+        self.assertEqual(record['counts']['remaining_false_admissions'], 0)
+        self.assertFalse(record['status_promotions'])
+        self.assertFalse(record['game_executed'])
+        self.assertFalse(record['gpu_executed'])
 
     def test_high_source_assessments_record_read_model_and_surface_crosswalk(self):
         plan = importance_view(self.catalog, self.register, self.tracks)['high_tranche_plan']

@@ -86,6 +86,16 @@ Review observation/ownership bounds before continuous source, retained storage, 
 
 Use current relevant Critical prerequisites before any new live cohort; separate diagnostic containment, source continuity, physical identity, pixel parity and ordinary performance. Preserve the unchanged storage baseline negative and all historical refusals.
 
+
+Implementation follow-up: `NR.drawing-source-read-reservations` now independently
+validates the complete raw reservation/source-version/GPU journals and their
+report/thread joins. The former analyzer admitted24 controlled corrupt or
+inconsistent inputs; the repaired analyzer refuses all24 and passes50 Python
+regression methods. This is new analyzer code and bounded execution, recorded in
+[high-tranche3-reservation-admission-20261019.json](high-tranche3-reservation-admission-20261019.json).
+The16 supplied bounded implementations and resident-World scope crosswalk retain
+their separate runtime/original/GPU and broader acceptance boundaries.
+
 ## Execution boundaries
 
 - Review the selected task scope, exact source fingerprints, linked tests and original research before renewing validation. The linked files are existing entrypoints, not unverified one-click command templates.

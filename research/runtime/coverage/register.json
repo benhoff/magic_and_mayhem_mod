@@ -90110,7 +90110,8 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "HIGH01.rendering-work-review-20261019"
+        "HIGH01.rendering-work-review-20261019",
+        "HIGH03.reservation-raw-admission-20261019"
       ],
       "status": {
         "understanding": "partial",
@@ -90122,7 +90123,8 @@
       "remaining_gaps": [
         "Observed-path source reservations and19PE32/six decoder controls pass. Original120closes2734reservations through exact workers/current-context fences. Every pending cursor wrapper in this capture has explicit reserved consumers; public object IDs do not establish physical backing generations.",
         "A deliberately unhooked CPU write changes consumed bytes while the guard accepts. Distinct-resource backing aliases, unobserved CPU/GPU writers/opcodes, all-context completion, broader hook quiescence, full source-boundary/route ownership and native replacement remain open.",
-        "Fresh source-boundary final original120uses timestamp-spanning prepare/commit/cancel admission. All120queues close with zero pending callback frames and zero primary source-point gaps;2054input calls/312matching primary witnesses/2584fenced source reservations are retained. The unchanged complete-interval checker refuses only globalpresentationroutes and alloriginalbackingaliaswriters. No original timing, all-source ownership or native parity promotion."
+        "Fresh source-boundary final original120uses timestamp-spanning prepare/commit/cancel admission. All120queues close with zero pending callback frames and zero primary source-point gaps;2054input calls/312matching primary witnesses/2584fenced source reservations are retained. The unchanged complete-interval checker refuses only globalpresentationroutes and alloriginalbackingaliaswriters. No original timing, all-source ownership or native parity promotion.",
+        "HIGH03 fixes24 reproduced raw-journal/report/thread false admissions with50 synthetic Python regression methods. Runtime PE32 guard/original/GPU and wider ownership validation remain historical and separate; no raw milestone promotion."
       ],
       "implementation_review": {
         "review": "HIGH02.rendering-implementation-review-20261019",
@@ -260402,6 +260404,49 @@
           "equals": []
         }
       ]
+    },
+    {
+      "id": "HIGH03.reservation-raw-admission-20261019",
+      "kind": "native_integration",
+      "scope": "High tranche3 observed reservation analyzer: independent complete raw-journal admission and exact worker-thread binding. Synthetic host-side controls only; no new runtime writer/physical alias, original comparison, GPU, live integration or replacement validation.",
+      "record": "research/runtime/high-tranche3-reservation-admission-20261019.json",
+      "sha256": "c07266b3d2730e41b688ef7d3f0deca0dfa18daed7ac8fe5ebadc3befed4f2ad",
+      "sources_pointer": "/positive/sources",
+      "claims_pointer": "/positive/claims",
+      "assertions": [
+        {
+          "pointer": "/positive/success",
+          "equals": true
+        },
+        {
+          "pointer": "/positive/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/reproduced_false_admissions",
+          "equals": 24
+        },
+        {
+          "pointer": "/counts/remaining_false_admissions",
+          "equals": 0
+        },
+        {
+          "pointer": "/counts/total_test_methods",
+          "equals": 50
+        },
+        {
+          "pointer": "/status_promotions",
+          "equals": false
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/gpu_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -280594,6 +280639,20 @@
       "evidence": [
         "CAMERA.capture.normal-journeys-20261019"
       ]
+    },
+    {
+      "id": "NR.drawing-source-read-reservations.raw-admission-20261019",
+      "scope": "Synthetic complete raw reservation/source-version/GPU-completion journals; reject damaged headers/terminals, invalid fence/context data, report/raw drift and foreign worker threads. Two valid signaled wait results and unchanged ownership exclusions. No original execution or runtime writer/physical alias proof.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-source-read-reservations"
+      ],
+      "tests": [
+        "tests/test-drawing-source-reservations.py"
+      ],
+      "evidence": [
+        "HIGH03.reservation-raw-admission-20261019"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -281237,8 +281296,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-high-tranche2-commit-20261019.json",
-    "sha256": "7d7a049dc287047c2a80f75e7467d8feb3a03378e5ad73c5c2285bda0bbec384"
+    "path": "research/runtime/coverage/source-index-high-tranche3-reservation-commit-final-20261019.json",
+    "sha256": "8d1ad26b0fbaf0de74e5428c9b4737bd68e5f39fdb2a6ba9441db4af2b161899"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
