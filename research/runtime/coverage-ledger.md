@@ -19613,3 +19613,27 @@ Final palette ownership review also fixed copied-chain capacity charges and
 reserved ordinal metadata before future appends. The copy/64-append regression,
 unchanged-original chain comparison and both headless application matrices pass
 in new capacity-suffixed records; earlier reports remain historical unchanged.
+
+### 2026-10-20 — camera lifecycle and actual view consumers
+
+Bounded camera initialization/viewport registry, standalone/queued rotations,
+creature/effect direction/animation requests and actual owned native controller /
+minimap application are implemented. Whole original helpers and the selected
+post-frame tail match4,096 initialization,8,192 rotation/tail and6,416 registry
+cases with64,425 refresh requests. Additional request/direction comparisons cover
+1,408 creatures,8,129 effects and4,096 eight-direction calculations;1,167 unsafe
+original-domain cases are independently classified native refusals. Native64 /
+sanitized units are separate executions, not a whole native64 original matrix.
+Pinned table/float extraction and manifest bookends are retained.
+
+Headless native application checks independently cover phase-preserving switches,
+special catalog restarts, linked creator direction, explicit receiver clocks,
+queued priority, generation/revision failure atomicity and minimap invalidation.
+No QWidget, original pointer or implicit second motion clock enters these
+services. Empty frames avoid copying state; retained command charges update only
+changed tracks. See [packet details](remaining-rendering-implementations-20261020.md)
+and the new camera/scene view records. Production entity/map/session resource
+population and frame orchestration remain implementation work; installed full
+scene, physical GPU and live replacement acceptance remain separate validation.
+Prior evidence/source hashes remain immutable. Reviewed actual committed range
+4fb2cb76..e6e4f863:39 exact file receipts, zero gaps, retained under working/tests.

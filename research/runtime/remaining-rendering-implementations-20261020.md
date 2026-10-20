@@ -175,3 +175,78 @@ A mode8 copy regression checks its shortened allocation, followed by64 staged
 copy/append operations and a limit refusal. Fresh capacity-suffixed chain,
 scene and terrain records repeat all corresponding comparisons/frames/CLI
 controls. Earlier reports and source hashes remain immutable and historical.
+
+## Camera lifecycle, rotation and owned animation consumers
+
+`RE.camera-viewport-lifecycle` supplies bounded004f7860 initialization and the
+400-entry004a4e20/004a4f70 registry contract. Initialization clears pending turns
+on registration refusal and otherwise preserves XY/fractions while setting map,
+viewport, view/requested-view and layer fields. Dense removal adjusts selection.
+Native registry identities replace receiver pointers; duplicate/invalid ownership
+and malformed dimensions/viewport are refused. Bounded no-hit lookup and explicit
+retirement/clear are native policies, separate from unsafe original aliases.
+
+`RE.camera-view-rotation` supplies whole004fd780..004fd833 and
+004fd840..004fd8ec, plus selected unchanged queued tail004fd604..004fd778.
+Requested view follows view, rendered clears, and redraw count becomes3. Active
+creatures refresh in pool order, then effects, then minimap. Consumers use the
+primary camera's view even when another receiver turns. A queued clockwise
+request wins and clears only itself; an opposite request remains for the next
+frame. New recovered-range exceptions preserve the original discovery gap.
+The original presentation/render body preceding this tail is not claimed.
+
+`RE.camera-animation-consumers` supplies00508a10,004945f0,00494a50 and the
+004eacc0 direction math. Creature refresh covers reverse facing, the shared
+special catalog/restart, linked type52 effect refresh, secondary sequence+8 and
+main directional sequence. Effect **type** is+28 and **kind** is+4c; these are
+distinct fields. Normal types0/4/7 restart selected animations; kinds93/95/98
+use sixteen directions. Type20 uses all36 orientation variants in four views;
+type63 uses all four variants. Types81/51 produce eight-direction target
+sequences from their distinct wrapped delta directions; type81 mode4 uses fine
+initial/destination coordinates. The linked type52 helper reads its creator's
+updated direction and ignores the passed direction argument. Cached ownership
+is explicit, including the no-target sentinel's retain-cache branch.
+
+The fixed orientation tables and original float angle constants are exported
+reproducibly by tools/export-effect-view-tables.py. The immutable export record
+is effect-view-tables-export-20261020.json. No conventional pi replacement or
+inferred table is used. Native bounds refuse invalid metadata, nonfinite
+velocity, incompatible target ownership and original null/OOB dereferences
+before mutation. The original comparison independently classifies every refused
+case rather than skipping arbitrary native exceptions.
+
+`NR.scene-animation-views` and `NR.scene-camera-views` apply these requests to
+actual owned NoCdAnimationController state and semantic resident resource
+revisions. Catalog/start and phase-preserving switches remain distinct. The
+simulation explicitly chooses which receivers advance; no additional timer or
+second creature motion clock is installed. Camera, creature/effect directions,
+linked/cached generation tokens, animation states and minimap invalidation commit
+together. A stale resource/generation, incompatible phase or budget failure
+preserves the old scene. Controllers expose retained record capacities for
+bounded native accounting. Empty frame requests do not copy the world, and
+command budget accounting updates only the touched track. Native application
+services remain separate from widgets, recovered models and renderer storage.
+
+Fresh unchanged-original/native32 comparison records
+terrain-camera-lifecycle-original-20261020.json and
+camera-animation-consumers-original-20261020.json establish4,096 initializations,
+4,096 standalone turns,4,096 queued tails,6,416 registry checks and64,425 refresh
+requests; then1,408 creature cases,8,129 effect cases (including24 linked checks)
+and4,096 eight-direction checks. The1,167 native refusals are outside the
+original safe domain. Native64 and ASan/UBSan units run separately; this is not
+an assertion of a full native64 original matrix. Private animation adapters
+record requests while original selection/wrap/angle math stays unchanged.
+Original manifest bookends pass. CMake camera/view targets also pass.
+
+The new scene-animation-views-native-20261020.json and
+scene-camera-views-native-20261020.json independently record actual headless CPU
+application/controller execution on owned synthetic ANI/SPR resources, including
+phase, explicit clocks, special catalog, generation/revision atomicity, queued
+priority and minimap invalidation. They do not establish a complete installed
+world, physical GPU output or live replacement. Production map/session resource
+acquisition and frame queues remain implementation work in the scene group.
+Older shared build/header evidence remains historical; no old hash is refreshed.
+
+Reviewed committed4fb2cb76..e6e4f863:39 exact parent/current file receipts, zero
+gaps, retained in working/tests/camera-views-history-review-20261020.json.
+Historical accounting is separate from new source and execution credit.

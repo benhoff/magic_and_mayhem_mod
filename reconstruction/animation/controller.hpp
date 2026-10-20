@@ -24,6 +24,7 @@ public:
   void requestBreak(){forward_.requestBreak();}
   void switchSequence(std::vector<assets::AnimationRecord>);
   AnimationControllerState state() const;
+  std::uint64_t retainedRecordBytes() const{return std::uint64_t(records_.capacity())*sizeof(assets::AnimationRecord)+forward_.retainedRecordBytes();}
   void restore(const AnimationControllerState &);
   std::optional<std::uint32_t> sprite() const{return forward_.sprite();}
 };
