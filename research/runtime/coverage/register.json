@@ -126537,6 +126537,60 @@
         "review": "WADD.source-review-20261020",
         "entry": "RS.world-additive-sprite"
       }
+    },
+    {
+      "id": "NP.world-inherited-kind8-caller",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Inherited kind8 native raster caller admission",
+      "scope": "Pinned native resident World additive caller admission: accept54aaa0 shape+0x34 continuation54aab2 for producer tag26 with exact ten-byte RET8/padding signature, alongside all prior whitelist entries. Share the production caller/tag/byte predicate with native controls; preserve readable-memory, owner-thread, protected World canvas and owned additive record checks in the surrounding producer. The generator verifies the5c73f0 virtual slot and complete54aaa0 method before retaining this static extension, independent of one finite observed stream; exercise regeneration with an authored empty-queue fixture, explicitly separate from natural observations. Original54aaa0 low16 return matches the existing native zero policy in8316 authored RGB56537x19 cases: widths1/2/17/64, heights1/3/21, eleven X and nine Y positions and seven low16 increments, covering clipped and empty intersections. No pixel/full-register equivalence, larger return domain, natural-live execution, object writers/ownership or complete replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5548704,
+          "recovered_range": "kind8-inherited-wrapper-54aaa0",
+          "scope": "Exact inherited wrapper/static continuation binding only; existing selected primitive contracts own pixel semantics."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-world-kind8-caller-admission.md"
+      ],
+      "implementation": [
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_producer_bypass.c",
+        "tools/inspect-world-raster-callers.py"
+      ],
+      "tests": [
+        "tests/world-raster-callers-test.cpp",
+        "tools/test-world-raster-callers.py",
+        "tests/inherited-kind8-return-reference.cpp"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_producers.S",
+        "runtime/shadow/win32_min.h",
+        "tools/build-scene-observer.py",
+        "tools/coverage_claims.py",
+        "tools/inspect-canvas-producers.py",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "K8CALL.native-20261020",
+        "K8CALL2.native-20261020",
+        "K8CALL2.original-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "K8CALL2.source-review-20261020",
+        "entry": "NP.world-inherited-kind8-caller"
+      }
     }
   ],
   "evidence": [
@@ -284255,6 +284309,153 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "K8CALL.native-20261020",
+      "kind": "native_integration",
+      "scope": "Pinned native resident World additive caller admission: accept54aaa0 shape+0x34 continuation54aab2 for producer tag26 with exact ten-byte RET8/padding signature, alongside all prior whitelist entries. Share the production caller/tag/byte predicate with native controls; preserve readable-memory, owner-thread, protected World canvas and owned additive record checks in the surrounding producer. The generator verifies the5c73f0 virtual slot and complete54aaa0 method before retaining this static extension, independent of one finite observed stream; exercise regeneration with an authored empty-queue fixture, explicitly separate from natural observations. No new original AX/pixel equivalence, natural-live execution, object writers/ownership or complete replacement claim.",
+      "record": "research/runtime/native-world-kind8-caller-validation-20261020.json",
+      "sha256": "13018a0482403dd15d3fd3917f8ff17e3330ed62291f72042610666d1237c856",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inherited_kind8_admitted",
+          "equals": true
+        },
+        {
+          "pointer": "/production_and_selftest_hooks_compile",
+          "equals": true
+        },
+        {
+          "pointer": "/generator_retains_unobserved_static_extension",
+          "equals": true
+        },
+        {
+          "pointer": "/generator_input_is_authored_empty_queue",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_instructions_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "K8CALL2.native-20261020",
+      "kind": "native_integration",
+      "scope": "Pinned native resident World additive caller admission: accept54aaa0 shape+0x34 continuation54aab2 for producer tag26 with exact ten-byte RET8/padding signature, alongside all prior whitelist entries. Share the production caller/tag/byte predicate with native controls; preserve readable-memory, owner-thread, protected World canvas and owned additive record checks in the surrounding producer. The generator verifies the5c73f0 virtual slot and complete54aaa0 method before retaining this static extension, independent of one finite observed stream; exercise regeneration with an authored empty-queue fixture, explicitly separate from natural observations. Original54aaa0 low16 return matches the existing native zero policy in8316 authored RGB56537x19 cases: widths1/2/17/64, heights1/3/21, eleven X and nine Y positions and seven low16 increments, covering clipped and empty intersections. No pixel/full-register equivalence, larger return domain, natural-live execution, object writers/ownership or complete replacement claim.",
+      "record": "research/runtime/native-world-kind8-caller-return-validation-20261020.json",
+      "sha256": "5a8db1e4c54b3ac7561730b3e4164bef94bc6ef2978fd4acc1facce29e2f1b0e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inherited_kind8_admitted",
+          "equals": true
+        },
+        {
+          "pointer": "/production_and_selftest_hooks_compile",
+          "equals": true
+        },
+        {
+          "pointer": "/generator_retains_unobserved_static_extension",
+          "equals": true
+        },
+        {
+          "pointer": "/generator_input_is_authored_empty_queue",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_instructions_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_low16_return_matches_native_zero",
+          "equals": true
+        },
+        {
+          "pointer": "/original_return_cases",
+          "equals": 8316
+        }
+      ]
+    },
+    {
+      "id": "K8CALL2.original-20261020",
+      "kind": "isolated_original",
+      "scope": "Pinned native resident World additive caller admission: accept54aaa0 shape+0x34 continuation54aab2 for producer tag26 with exact ten-byte RET8/padding signature, alongside all prior whitelist entries. Share the production caller/tag/byte predicate with native controls; preserve readable-memory, owner-thread, protected World canvas and owned additive record checks in the surrounding producer. The generator verifies the5c73f0 virtual slot and complete54aaa0 method before retaining this static extension, independent of one finite observed stream; exercise regeneration with an authored empty-queue fixture, explicitly separate from natural observations. Original54aaa0 low16 return matches the existing native zero policy in8316 authored RGB56537x19 cases: widths1/2/17/64, heights1/3/21, eleven X and nine Y positions and seven low16 increments, covering clipped and empty intersections. No pixel/full-register equivalence, larger return domain, natural-live execution, object writers/ownership or complete replacement claim.",
+      "record": "research/runtime/native-world-kind8-caller-return-validation-20261020.json",
+      "sha256": "5a8db1e4c54b3ac7561730b3e4164bef94bc6ef2978fd4acc1facce29e2f1b0e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inherited_kind8_admitted",
+          "equals": true
+        },
+        {
+          "pointer": "/production_and_selftest_hooks_compile",
+          "equals": true
+        },
+        {
+          "pointer": "/generator_retains_unobserved_static_extension",
+          "equals": true
+        },
+        {
+          "pointer": "/generator_input_is_authored_empty_queue",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_instructions_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_low16_return_matches_native_zero",
+          "equals": true
+        },
+        {
+          "pointer": "/original_return_cases",
+          "equals": 8316
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -305482,8 +305683,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-distortion-word-completion-20261020.json",
-    "sha256": "0449a4f8547903ef7f0bcfb7c37d538726437f96f33a1ff181e1e4e7e0f2299d"
+    "path": "research/runtime/coverage/source-index-inherited-native-caller-20261020.json",
+    "sha256": "ac39b28807d2974f7612565fac6e0976148c015dd61203ab24ba5e8817ff6fb5"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -305523,6 +305724,11 @@
       "id": "DWORD.source-review-20261020",
       "path": "research/runtime/coverage/distortion-word-source-review-20261020.json",
       "sha256": "24f5b0e15f8deb065806ebdea69d1f6e60b19bda04c0779a9df462f55fa8bb95"
+    },
+    {
+      "id": "K8CALL2.source-review-20261020",
+      "path": "research/runtime/coverage/inherited-native-caller-return-source-review-20261020.json",
+      "sha256": "37bf5b30142674e1df78040dcc236187633f0f0c6f76638f2a1394396eafae7b"
     }
   ]
 }

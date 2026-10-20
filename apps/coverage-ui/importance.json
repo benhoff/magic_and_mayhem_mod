@@ -2475,6 +2475,13 @@
       "work_type": "capability",
       "reason": "Additive indexed sprites supply kind10 and kind9 trail pixels; source ownership, producer discovery and full-session replacement remain independent.",
       "contract_sha256": "e725306da3a3dbc0ca7d05c8a6d0411ea140cdfe50a2d8dd11c1e62454bb2fd6"
+    },
+    {
+      "behavior": "NP.world-inherited-kind8-caller",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Exact caller/tag/signature admission enables the known inherited native object path while retaining unsupported-call refusal; full-session and physical ownership proof remain separate.",
+      "contract_sha256": "272c174b1ca734ab2373ca6ed1906040010178695732464a28fcca5f863b70fa"
     }
   ],
   "tranche_plan": {

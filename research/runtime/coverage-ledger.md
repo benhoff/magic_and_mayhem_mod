@@ -18974,3 +18974,27 @@ retained separately; the successful host comparison supplies the proof.
 This completes the named final-WORD DWORD-read model. Actual live fault
 attribution, coordinate producers, other leaves and physical ownership remain
 separate. It does not widen native sampling or original pixel bypass.
+
+
+### Inherited kind8 resident caller repair — 2026-10-20
+
+The native resident whitelist omitted the54aaa0 continuation54aab2 even after
+the separate read-only class correction. It now accepts the pinned RET8
+continuation for additive producer tag26 through the tested shared predicate.
+K8CALL.native-20261020 checks32 continuations/39 caller-tag pairs and2534
+refusals, static method/vtable binding, generated-policy preservation with an
+authored empty queue, and both hook builds. Original manifest bookends pass.
+
+This is native caller-policy implementation and compilation evidence. No
+original instructions run in that test; existing primitive contracts retain
+their separate pixel/state proof. Natural live encounter, physical ownership,
+new original return equivalence and full-session replacement remain pending.
+See [caller admission research](native-world-kind8-caller-admission.md).
+
+
+The K8CALL2 follow-up preserves that initial report and additionally compares
+8316 unchanged54aaa0 low16 returns over the declared37x19 clipped/empty
+intersection domain. Every return is zero, matching the existing native policy.
+Both native predicate/generator controls and production/selftest builds repeat
+with prospective source claims. Full register/pixel equivalence, larger return
+domains, natural live reachability and replacement acceptance remain separate.

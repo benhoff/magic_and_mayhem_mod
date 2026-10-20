@@ -34,7 +34,7 @@ static int raster_caller(u32 caller,u32 tag){
 #ifdef MNM_SCENE_SELFTEST
  (void)caller;(void)tag;return 1;
 #else
- for(u32 i=0;i<sizeof(raster_callers)/sizeof(raster_callers[0]);++i)if(caller==raster_callers[i].address&&(tag<64 && (raster_callers[i].tags&(1ull<<tag)))){if(!readable(caller,10))return 0;return bypass_equal((void*)caller,raster_callers[i].bytes,10);}return 0;
+ return readable(caller,10)&&mnm_world_raster_caller(caller,tag,(const u8*)caller);
 #endif
 }
 
