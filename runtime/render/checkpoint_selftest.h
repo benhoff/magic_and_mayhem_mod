@@ -33,10 +33,21 @@ static void test_checkpoint(const char* mode){
     }
     if(rs_mode(mode,"capacity"))for(u32 i=0;i<31;++i){cs_setup(cs_extra+i,4,4,16,0);cs_update(cs_extra+i,0x1234+i);}
     if(rs_mode(mode,"budget")){mu_front.primary=0;mu_cycle(&mu_front,0,5,0);cs_setup(&cs_big,2048,2048,32,1);cs_update(&cs_big,0x00123456);cs_setup(&cs_small,2048,2048,32,0);cs_update(&cs_small,0x00654321);}
-    if(rs_mode(mode,"uncertain")){RenderCaptureGuardForTest(1);u32 desc[31]={124};SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[22])(&mu_front,desc)!=23 || GetLastError()!=0x88)ExitProcess(455);RenderCaptureGuardForTest(0);}
+    if(rs_mode(mode,"uncertain")){
+        /* A skipped read-only description intentionally preserves history.
+         * Miss an actual metadata mutation to exercise uncertain-state refusal. */
+        RenderCaptureGuardForTest(1);SetLastError(0x77);
+        if(((i32 (WIN *)(void*,u32,void*))table[29])(&mu_back,8,key)!=23 || GetLastError()!=0x88)ExitProcess(455);
+        RenderCaptureGuardForTest(0);
+    }
+    if(rs_mode(mode,"readonly")){
+        RenderCaptureGuardForTest(1);u32 desc[31]={124};SetLastError(0x77);
+        if(((i32 (WIN *)(void*,void*))table[22])(&mu_front,desc)!=23 || GetLastError()!=0x88)ExitProcess(455);
+        RenderCaptureGuardForTest(0);
+    }
     if(pressure || mixed){cs_setup(cs_extra,pressure?256:4,pressure?256:4,32,0);cs_update(cs_extra,0x123456);}
     if(mixed){cs_setup(cs_extra+1,4,4,16,0);cs_update(cs_extra+1,0x1234);}
-    u32 held=rs_mode(mode,"held"),dc=rs_mode(mode,"dc"),valid=!fault && (rs_mode(mode,"rgb") || rs_mode(mode,"rgb16") || rs_mode(mode,"rgb24") || pressure || mixed || capacity || rs_mode(mode,"stale-ack") || (indexed && !rs_mode(mode,"palette-incomplete")));
+    u32 held=rs_mode(mode,"held"),dc=rs_mode(mode,"dc"),valid=!fault && (rs_mode(mode,"rgb") || rs_mode(mode,"readonly") || rs_mode(mode,"rgb16") || rs_mode(mode,"rgb24") || pressure || mixed || capacity || rs_mode(mode,"stale-ack") || (indexed && !rs_mode(mode,"palette-incomplete")));
     if(held){u32 desc[31]={124};SetLastError(0x77);if(((i32 (WIN *)(void*,void*,void*,u32,HANDLE))table[25])(&mu_front,0,desc,1,0)!=13 || GetLastError()!=0x88)ExitProcess(449);}
     if(dc){u32 info[13]={40,6,(u32)-4,(32u<<16)|1,3,0,0,0,0,0,0xff0000,0xff00,0xff};
         mu_dc=CreateCompatibleDC(0);mu_bitmap=CreateDIBSection(mu_dc,info,0,(void**)&mu_dib,0,0);mu_old=SelectObject(mu_dc,mu_bitmap);

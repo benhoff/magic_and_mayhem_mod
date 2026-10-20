@@ -1,0 +1,105 @@
+#pragma once
+#include <array>
+#include <cstdint>
+#include <optional>
+#include <stdexcept>
+
+namespace mnm::reconstruction {
+// No-CD 40209ca7 consumer 5002a0. Inputs are owned values, never PE pointers.
+// Clip setup, queue traversal and raster implementations belong to callers.
+enum class QueueTable { primary, auxiliary, software };
+enum class QueueBackend {
+    copy, terrain, clippedCopy, wordCopy, shadow, opaque, quarter, half,
+    threeQuarter, displacement, alternateShadow, distortion, alternateBlend,
+    tint, wave, virtualObject, objectHelper
+};
+struct QueueRow {
+    std::int32_t kind{};
+    std::uint32_t source{}, x{}, y{};
+    std::int16_t offsetX{}, offsetY{};
+    bool indexed{};
+    std::array<std::uint32_t, 4> objectWords{};
+};
+// Parameters are logical argument values, including an opaque source token.
+// A backend resolves tokens to owned resources; it must not cast them to pointers.
+struct QueueCall {
+    QueueBackend backend;
+    std::array<std::uint32_t, 7> values{};
+    unsigned count{};
+};
+
+template<class Backend>
+std::optional<std::uint16_t> dispatchQueueRow(QueueTable table, const QueueRow& row,
+        Backend&& backend) {
+    if (table != QueueTable::primary && table != QueueTable::auxiliary &&
+            table != QueueTable::software)
+        throw std::invalid_argument("Unknown World queue dispatch table");
+    const auto kind = row.kind;
+    if (kind < 0 || kind > 34) return {}; // Original unsigned default preserves metadata.
+    const bool primary = table == QueueTable::primary;
+    const bool auxiliary = table == QueueTable::auxiliary;
+    if (auxiliary && (kind == 1 || (kind >= 6 && kind <= 9))) return {};
+    if (!primary && !auxiliary && (kind == 7 || kind == 32)) return {};
+    auto call = [&](QueueBackend target, std::initializer_list<std::uint32_t> values) {
+        QueueCall request{target, {}, unsigned(values.size())};
+        unsigned at = 0;
+        for (auto value : values) request.values[at++] = value;
+        return std::uint16_t(backend(request));
+    };
+    const auto x = row.x, y = row.y, source = row.source;
+    const auto ox = std::uint32_t(std::int32_t(row.offsetX));
+    const auto oy = std::uint32_t(std::int32_t(row.offsetY));
+    if (kind == 0 || kind == 31 || kind == 33) {
+        if (!row.indexed) return call(QueueBackend::wordCopy, {source, x, y});
+        const auto vertical = primary ? oy + (kind == 33 ? 2u : 0u) : auxiliary ? 1u : oy;
+        const auto horizontal = primary || auxiliary ? ox : 0u;
+        const bool fast = (primary || auxiliary) && row.offsetX == -127;
+        std::uint16_t result;
+        if (fast) {
+            result = call(QueueBackend::copy, {source, x, y});
+            // The normal/31 branches normalize AX before their fallback test.
+            // Terrain tests AX directly and preserves a non-1 result.
+            if (kind != 33) result = result == 1;
+        } else {
+            result = call(kind == 33 && (primary || auxiliary) ?
+                QueueBackend::terrain : QueueBackend::copy,
+                {source, x, y, horizontal, vertical});
+        }
+        if (result == 1)
+            result = call(QueueBackend::clippedCopy,
+                {source, x, y, horizontal, primary && kind == 33 ? oy : vertical});
+        return result;
+    }
+    if (kind == 32 || kind == 34) return call(QueueBackend::wordCopy, {source, x, y});
+    if (kind == 1) return call(QueueBackend::shadow, {source, x, y});
+    if (kind == 6) return call(QueueBackend::displacement, {source, x, y});
+    if (kind == 8) return call(QueueBackend::virtualObject, {source, x, y});
+    if (kind == 9) {
+        call(QueueBackend::objectHelper, {row.objectWords[0], row.objectWords[1],
+            row.objectWords[2], row.objectWords[3], x, primary ? ox : 0u, oy});
+        return 0; // This helper's return value is deliberately ignored.
+    }
+    if (kind >= 15 && kind <= 30)
+        return call(QueueBackend::wave, {source, x, y, std::uint32_t(kind - 14)});
+    if (kind >= 12 && kind <= 14) {
+        constexpr std::uint32_t colours[3][3]{{244, 198, 13}, {10, 10, 255}, {214, 95, 172}};
+        const auto& colour = colours[kind - 12];
+        return call(QueueBackend::tint, {source, x, y, primary || auxiliary ? ox : 0u,
+            colour[0], colour[1], colour[2]});
+    }
+    QueueBackend target;
+    switch (kind) {
+    case 2: target = QueueBackend::opaque; break;
+    case 3: target = QueueBackend::quarter; break;
+    case 4: target = QueueBackend::half; break;
+    case 5: target = QueueBackend::threeQuarter; break;
+    case 7: target = QueueBackend::alternateShadow; break;
+    case 10: target = QueueBackend::distortion; break;
+    case 11: target = QueueBackend::alternateBlend; break;
+    default: throw std::logic_error("Unclassified World queue branch");
+    }
+    // Auxiliary kinds10/11 retain row.offsetY, unlike kinds2..5.
+    return call(target, {source, x, y, primary || auxiliary ? ox : 0u,
+        auxiliary && kind >= 2 && kind <= 5 ? 1u : oy});
+}
+}

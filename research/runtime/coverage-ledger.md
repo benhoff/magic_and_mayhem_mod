@@ -18880,3 +18880,65 @@ Four native controls reject malformed calls and excessive/overflow work before
 output. This supplies headless integration for the selected trail contract;
 580a90 pixels, physical source ownership, writers and live installation remain
 pending. Initial WTRAIL reports/source hashes and static review remain intact.
+## Critical top-20 rendering fixes — 2026-10-19
+
+Reproduced and fixed native-only receipt/generation transitions and strict
+terminal validation; repaired final ring-prefix collection, stale checkpoint
+uncertainty and SFT budget controls. The 21-case checkpoint matrix matches330
+frames; new linked mutation/read-only and deferred-drain controls pass. Native
+surface modes0/3, six-family guard, finite history and pressure controls pass
+their bounded scopes. The unchanged238-frame storage replay retains252
+GPU/physical mismatches at ordinal170 with zero source/default witness
+mismatches. NVIDIA presentation remains unavailable in this headless session.
+No raw stage is promoted; complete DirectDraw and whole-session acceptance
+remain separate. [Review](critical-top20-rendering-fixes-20261019.md);
+[immutable execution index](coverage/critical-top20-execution-20261019.json).
+
+## Critical rendering correct-output acceptance and bounded canvas reconciliation (2026-10-19)
+
+The user selected correct output with the explicit corrected Wine upload profile;
+the original resize artifact remains a diagnostic regression. Fresh llvmpipe and
+NVIDIA cohorts pass all 222 corrected-storage and 323 Quick Battle frames with
+zero mismatches, complete paint/physical admission and corrected source/default
+witnesses. Both unchanged 238-frame legacy cohorts retain their exact ordinal170
+126+126-pixel expected difference. No frame, oracle, threshold or original source
+hash was changed. The software runner now clears incompatible inherited GPU
+selectors before requesting llvmpipe.
+
+Fresh source-only history matches 1,061 checkpoints, 16 independent original
+World completions and the 480,000-word initial canvas. Three already bounded
+canvas contracts are assessed implemented within scope; raw recovered stages,
+physical allocation/all-writer coverage and other sessions remain independent.
+Full DirectDraw retirement retains explicit caller/alias/writer, physical-loss/
+Restore and whole-journey/performance closure cases. See
+[the closeout and retained results](critical-rendering-closeout-20261019.md).
+No whole-renderer or live-replacement promotion is claimed.
+
+The selected retained Surface2/3/4 alias comparison also passes nine interface
+pairs and 5,265 pixel words with zero native owners. The caller device remains
+alive until alias retirement; the earlier early-device-release Wine fault is a
+retained diagnostic, not a newly proven original ownership rule. The new scoped
+native policy has its own prospective claim and raw result; full retirement and
+all original aliases/writers remain pending.
+
+
+## Medium native rendering fixes — 2026-10-19
+
+Reviewed all54Medium planning entries (16partial,38scoped); priorities are not
+54confirmed code defects. Fixed the native finite-edge shader's stale high-water
+scratch bound using logical canvas height. Added18independent edge checks,
+corrected the obsolete near-edge refusal fixture, and enabled/discovered11CTest
+controls. Completed28native/status controls,12snapshot refusal/lifetime cases,
+23GPUcopy plans and selected original leaf comparisons (960000linear,960064
+authored-backed edge,530432grayscale words), with source/original bookends.
+
+MEDIUM01/MEDIUM02 results retain separate immutable scopes and setup failures.
+The final bound result repeats every check after correcting the old displacement
+scope wording. Source/CMake/compiler closures and exact original hashes remain
+explicit. Original backing padding is never imported as native edge input.
+
+Full live acceptance, prior intermittent pixel instability, unobserved GPU copy
+branches, broader original allocation/caller recovery and sustained60FPS remain
+pending; no raw stage, pacing, budget, deadline or acceptance threshold is
+relaxed. Hardware attempts and their limitations are retained separately. See
+`rendering-medium-fixes-20261019.md` and the54-entry findings inventory.

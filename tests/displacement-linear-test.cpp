@@ -21,6 +21,7 @@ int main(int argc,char** argv)try{
     render::SpriteComposite composite;composite.mode=render::CompositeMode::displace;composite.rowPeriod=16;
     for(unsigned i=0;i<16;++i)composite.rowOffsets[i]=qFromLittleEndian<quint32>(bytes.constData()+n+i*4);
     render::CanvasSequence cpu;cpu.create(1,800,600);cpu.update(1,0,0,base);cpu.raster(1,frame,764,456,{0,0,800,600},3,9,{},composite.rowOffsets,16);const auto expected=cpu.read(1);
+    cpu.update(1,0,0,base);cpu.raster(1,frame,764,584,{0,0,800,600},3,9,{},composite.rowOffsets,16);const auto nearEdge=cpu.read(1);
     render::GlBlitter renderer;
     for(const bool atlas:{false,true}){
         render::SceneLimits limits;limits.cache.indexedAtlas=atlas;render::SceneRenderer scene(renderer,resources,base,limits);
@@ -28,7 +29,10 @@ int main(int argc,char** argv)try{
         const auto before=renderer.stats();scene.draw({draw});const auto after=renderer.stats();
         require(before.nativeReadbacks==after.nativeReadbacks&&before.rgbaReadbacks==after.rgbaReadbacks,"Linear distortion delivery readback");
         require(scene.read().pixels==expected.pixels,"Native/CPU linear canvas samples differ");
-        draw.anchorY=584;rejected([&]{scene.draw({draw});});require(scene.read().pixels==expected.pixels,"Past-allocation sample changed completed scene");
+        // At584 only the conservative nominal envelope crosses the allocation;
+        // every covered sample fits. At600 an actual covered tap is word480000.
+        draw.anchorY=584;scene.draw({draw});require(scene.read().pixels==nearEdge.pixels,"Covered in-range edge sample was refused or changed");
+        draw.anchorY=600;rejected([&]{scene.draw({draw});});require(scene.read().pixels==nearEdge.pixels,"Past-allocation sample changed completed scene");
     }
     // A late genuine allocation/validity failure must preserve earlier rows.
     assets::SpriteFrame solid;solid.width=4;solid.height=2;solid.opaqueMask.assign(8,1);solid.pixels=std::vector<std::uint16_t>(8,0);
@@ -39,6 +43,6 @@ int main(int argc,char** argv)try{
     require(!renderer.stats().surfaces,"Linear fixture leaked surfaces");
     QFile output(argv[2]);require(output.open(QIODevice::WriteOnly|QIODevice::NewOnly),"New native output");
     for(auto value:expected.pixels){const auto word=qToLittleEndian<quint16>(value);require(output.write(reinterpret_cast<const char*>(&word),2)==2,"Native output write");}
-    std::cout<<"{\"success\":true,\"native_backends\":2,\"canvas_words_compared\":960000,\"atomic_scene_refusals\":2,\"atomic_cpu_refusals\":1,\"delivery_readbacks\":0,\"remaining_surfaces\":0}\n";
+    std::cout<<"{\"success\":true,\"native_backends\":2,\"canvas_words_compared\":960000,\"covered_edge_admissions\":2,\"atomic_scene_refusals\":2,\"atomic_cpu_refusals\":1,\"delivery_readbacks\":0,\"remaining_surfaces\":0}\n";
     return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

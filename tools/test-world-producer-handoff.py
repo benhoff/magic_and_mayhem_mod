@@ -35,18 +35,19 @@ def world_bytes(queue,width,height,records):
     raw=b''.join(records);h=[0]*20;h[:2]=struct.unpack('<2I',b'MNMWRLD1');h[2:9]=[1,80,80+len(raw),queue,width,height,width];h[9]=len(records);h[11]=0x40209ca7
     return struct.pack('<20I',*h)+raw
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--capture-report',type=Path,required=True);parser.add_argument('--claims',type=Path);parser.add_argument('--executable',type=Path,default=ROOT/'original/Arcane_Nocd/Chaos.exe');parser.add_argument('--complete-raster-queues',action='store_true');parser.add_argument('--prepare-raster-queue',type=int,choices=range(1,17));args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--capture-report',type=Path,required=True);parser.add_argument('--claims',type=Path);parser.add_argument('--executable',type=Path,default=ROOT/'original/Arcane_Nocd/Chaos.exe');parser.add_argument('--complete-raster-queues',action='store_true');parser.add_argument('--prepare-raster-queue',type=int,choices=range(1,17));parser.add_argument('--output-parent',type=Path,help='Parent for a fresh retained run, including an explicitly chosen second-drive directory');args=parser.parse_args()
     claims=json.loads(args.claims.read_text()) if args.claims else None
     sources={n:sha(ROOT/n) for n in source_paths()}
     if claims:
         for n,h in claims['sources'].items():
             if sha(ROOT/n)!=h:raise ValueError('Prospective source changed: '+n)
             sources[n]=h
-    parent=ROOT/'working/tests/world-producer-handoff';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
+    parent=args.output_parent.resolve() if args.output_parent else ROOT/'working/tests/world-producer-handoff';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
     report={'success':False,'sources':sources,'scope':'Frozen source-only native producer/GPU World handoff with every completion externally compared. Private unmodified original raster replay uses only reconstructed native entry state and owned requests, including every selected bypass prefix.','original_pixels_used_as_native_inputs':False,'original_oracles_read_by_native':False,'live_replacement':False}
     if claims:report['claims']=claims['claims']
     inputs={}
-    def pin(p):inputs[str(p.resolve().relative_to(ROOT))]=sha(p)
+    def pin(p):
+        resolved=p.resolve();inputs[str(resolved.relative_to(ROOT) if resolved.is_relative_to(ROOT) else resolved)]=sha(p)
     def run(name,command,timeout=300):
         with (out/(name+'.log')).open('x') as log:subprocess.run([str(x) for x in command],cwd=ROOT,env={**os.environ,'QT_QPA_PLATFORM':'xcb','LIBGL_ALWAYS_SOFTWARE':'1'},stdout=log,stderr=subprocess.STDOUT,check=True,timeout=timeout)
     run('original-before',[ROOT/'tools/original-manifest.sh','verify'])

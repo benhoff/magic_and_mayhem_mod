@@ -32,6 +32,7 @@ int main() try {
     const auto& f=font.glyphs.frames[0];require(f.sourceOffset==828 && f.originX==-2 && f.originY==2);
     require(f.name[2]==255 && f.opaqueMask==std::vector<std::uint8_t>({1,1,1}));
     require(std::get<std::vector<std::uint8_t>>(f.pixels)==std::vector<std::uint8_t>({0,127,255}));
+    require(f.opaqueRuns.size()==1 && f.opaqueRuns[0].row==0 && f.opaqueRuns[0].left==0 && f.opaqueRuns[0].right==3);
     require(sftGlyphIndex(font,33)==0 && !sftGlyphIndex(font,32) && !sftGlyphIndex(font,34));
     font.glyphs.frames.resize(223);require(sftGlyphIndex(font,255)==222);
     const auto direct=std::get<SftFont>(decodeSft(fixture(true)));
@@ -49,8 +50,9 @@ int main() try {
         bytes.assign(good.begin(),good.begin()+static_cast<std::ptrdiff_t>(n));require(std::holds_alternative<SftError>(decodeSft(bytes)));
     }
     SftLimits limits;limits.metricsBytes=15;rejects(good,SpriteErrorCode::limitExceeded,limits);
-    limits={};limits.glyphs.decodedBytes=21;rejects(good,SpriteErrorCode::limitExceeded,limits);
-    limits={};limits.glyphs.decodedBytes=22;require(std::holds_alternative<SftFont>(decodeSft(good,limits)));
+    // Two metric pairs (16), indexed pixels/mask (6), one owned run (12).
+    limits={};limits.glyphs.decodedBytes=33;rejects(good,SpriteErrorCode::limitExceeded,limits);
+    limits={};limits.glyphs.decodedBytes=34;require(std::holds_alternative<SftFont>(decodeSft(good,limits)));
     limits={};limits.glyphs.inputBytes=good.size()-1;rejects(good,SpriteErrorCode::limitExceeded,limits);
     std::vector<std::uint8_t> empty(40,0);put(empty,0,0x00544653);put(empty,4,40);put(empty,8,3);
     require(std::get<SftFont>(decodeSft(empty)).glyphs.frames.empty());

@@ -73,6 +73,9 @@ def load_reviews(root,register):
             if not required.issubset(set(e['reviewed_paths'])) or not set(e['reviewed_paths']).issubset(sources):
                 raise ValueError('Incomplete reviewed source paths: '+bid)
             changed=[p for p in e['reviewed_paths'] if hashes[p]!=sources[p]]
+            pending=e.get('pending_source_review',[])
+            if not isinstance(pending,list) or not set(pending).issubset(e['reviewed_paths']):
+                raise ValueError('Pending reconciliation paths must be explicitly pinned')
             contract_current=behavior_contract(b,builds)==e['contract_sha256']
             for relation in e['related_behaviors']:
                 if relation not in by_id or relation==bid:raise ValueError('Invalid narrower behavior link')
@@ -92,7 +95,7 @@ def load_reviews(root,register):
                         raise ValueError('Reconciliation witness differs from reviewed source')
             status_current=b['status']['implementation']==e['recorded_implementation']
             enriched.append({**e,'label':LABELS[e['disposition']],
-                             'freshness':'current' if contract_current and status_current and not changed else 'historical',
+                             'freshness':'current' if contract_current and status_current and not changed and not pending else 'historical',
                              'changed_sources':changed,'contract_current':contract_current})
         counts=dict(Counter(e['disposition'] for e in enriched))
         if doc['counts']!=counts:raise ValueError('Curated review counts disagree with entries')

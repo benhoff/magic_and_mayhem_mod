@@ -30,6 +30,7 @@ def main():
     parser.add_argument('--wine-prefix',type=Path,help='Reuse a stopped, owned private test prefix')
     parser.add_argument('--expect-refusal', action='store_true', help='Retain the pre-fix negative control')
     parser.add_argument('--publication-probe', action='store_true', help='Simulate100ms delay only if hooked Unlock pumps on its calling thread')
+    parser.add_argument('--consume-after-exit', action='store_true', help='Defer consumption until the finite fixture exits, exercising final-prefix draining')
     parser.add_argument('--expect-inline-publication', action='store_true', help='Retain the pre-isolation publication negative control')
     args = parser.parse_args()
     if args.wine_prefix and (not args.wine_prefix.is_dir() or not args.wine_prefix.resolve().is_relative_to(ROOT/'working/tests')):
@@ -50,6 +51,7 @@ def main():
     # the resident bind wait applies to copy admission, never widens this guard.
     expect_no_world = args.expect_refusal or args.case in ('tracker','reentrant','timeout')
     report = dict(success=False, sources=sources, claims=declaration['claims'], expected_refusal=args.expect_refusal,
+                  consume_after_exit=args.consume_after_exit,
                   publication_probe=args.publication_probe, expected_inline_publication=args.expect_inline_publication,
                   scope='Synthetic actual PE32 exported resident binding, delayed copy/tracker ownership, original Lock/Unlock results and LastError, poisoned borrowed pixels and ordered owned V5 bytes. No original game, GPU execution, public cadence or pixel equivalence.')
     env = {k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
@@ -88,8 +90,15 @@ def main():
         with channel.open('r+b') as file, mmap.mmap(file.fileno(), 0) as mapping, (out/'wine.log').open('x') as log:
             child = subprocess.Popen(['wine', str(out/'probe.exe')], cwd=out, env=env, stdout=log, stderr=log)
             deadline = time.monotonic()+45
-            while child.poll() is None:
-                if time.monotonic() >= deadline:
+            if args.consume_after_exit:
+                # This fixture's complete stream fits inside the finite ring.
+                # No acknowledgement is needed to publish that bounded prefix.
+                child.wait(timeout=45)
+            while True:
+                # Sample exit before publication: if the child finishes between
+                # these reads, the next iteration must drain its final bytes.
+                exited = child.poll() is not None
+                if not exited and time.monotonic() >= deadline:
                     raise RuntimeError('Resident admission fixture deadline expired')
                 published = struct.unpack_from('<I', mapping, 20)[0]
                 if published < consumed or published-consumed > ring.CAPACITY:
@@ -101,6 +110,8 @@ def main():
                 collected.extend(mapping[64:64+count-first])
                 consumed = published
                 struct.pack_into('<I', mapping, 36, consumed)
+                if exited:
+                    break
                 time.sleep(.002)
             if child.returncode:
                 raise RuntimeError('PE32 fixture failed: '+str(child.returncode))

@@ -82,7 +82,7 @@ class ImportanceTest(unittest.TestCase):
         catalog = json.loads((ROOT / 'apps/coverage-ui/importance.json').read_text())
         result = importance_view(catalog, register, tracks)
         self.assertEqual(register, before)
-        self.assertEqual(len(result['entries']), 349)
+        self.assertEqual(len(result['entries']), 351)
         self.assertEqual(result['unrated'], [])
         behaviors = {b['id']: b for b in register['behaviors']}
         builds = {b['id']: b for b in register['builds']}
@@ -248,9 +248,11 @@ class TrancheTest(unittest.TestCase):
         for work in tasks.values():
             self.assertEqual(work['freshness'], 'historical' if work['changed_sources'] else 'current')
         failures = {bid for bid, w in tasks.items() if w['acceptance'] == 'acceptance_failure'}
-        self.assertEqual(failures, {'NR.drawing-storage-session-comparison', 'NR.recorded-hardware-session-parity'})
+        self.assertEqual(failures, set())
+        for bid in ('NR.drawing-storage-session-comparison', 'NR.recorded-hardware-session-parity'):
+            self.assertEqual(len(tasks[bid]['acceptance_profiles']),4)
         self.assertTrue(all(tasks[bid]['implementation'] == 'implemented_within_scope' for bid in failures))
-        self.assertTrue(all(w['validation_state'] == 'historical' for w in tasks.values()))
+        self.assertTrue(all(w['validation_state'] in {'historical','pending'} for w in tasks.values()))
         self.assertEqual(self.register, before)
 
     def test_second_tranche_reviews_supplied_mechanisms_and_unresolved_history(self):
@@ -260,10 +262,10 @@ class TrancheTest(unittest.TestCase):
         self.assertTrue(tranche['work_review_required'])
         tasks = {t['behavior']: t for t in tranche['tasks']}
         self.assertEqual(sum(t['work_review']['implementation'] == 'implemented_within_scope'
-                             for t in tasks.values()), 8)
+                             for t in tasks.values()), 11)
         self.assertEqual({bid for bid,t in tasks.items()
                           if t['work_review']['implementation'] == 'unresolved_aggregate'},
-                         {'RS.canvas-preworld-reuse','RS.canvas-producer-sequence','RS.world-initial-state'})
+                         set())
         self.assertEqual({bid for bid,t in tasks.items()
                           if t['work_review']['acceptance'] == 'acceptance_failure'},
                          set())

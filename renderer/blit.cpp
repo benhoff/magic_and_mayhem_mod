@@ -109,6 +109,7 @@ uniform uvec3 additiveChannels;
 uniform int rowOffsets[16];
 uniform int rowPeriod;
 uniform int destinationStride;
+uniform int destinationHeight;
 layout(location=0) out uint nativePixel;
 void main(){
     ivec2 destination=ivec2(gl_FragCoord.xy);
@@ -132,7 +133,9 @@ void main(){
         ivec2 sampleAt=ivec2(linearX%destinationStride,destination.y+linearX/destinationStride);
         // Admission permits this only for the explicit finite-canvas policy.
         // Never fetch undefined texels, including unused transparent padding.
-        if(sampleAt.y>=textureSize(oldPixels,0).y+oldOrigin.y)discard;
+        // Scratch storage keeps its high-water allocation across draws. Its
+        // texture extent is not the current canvas's logical readable extent.
+        if(sampleAt.y>=destinationHeight)discard;
         nativePixel=texelFetch(oldPixels,sampleAt-oldOrigin,0).r;
     }
 })";
@@ -271,7 +274,7 @@ struct GlBlitter::Impl {
         return row;
     }
     struct PresentationUniforms {GLint indexed,rgb565,masks,lowBits,maxima;} presentationUniforms{};
-    struct CompositeUniforms {GLint sourceOrigin,destinationOrigin,mode,rowOffsets,rowPeriod,indexed,palette,additive,oldOrigin,stride;} compositeUniforms{};
+    struct CompositeUniforms {GLint sourceOrigin,destinationOrigin,mode,rowOffsets,rowPeriod,indexed,palette,additive,oldOrigin,stride,height;} compositeUniforms{};
     std::optional<std::array<std::uint16_t,256>> copyPalette,compositePalette;
     GLint maxTexture=0;
     Driver info;
@@ -339,7 +342,7 @@ struct GlBlitter::Impl {
         gl.glUniform1i(location(*program,"sourcePixels"),0);gl.glUniform1i(location(*program,"sourceMask"),1);
         useProgram(presentation->programId());
         gl.glUniform1i(location(*presentation,"nativePixels"),0);gl.glUniform1i(location(*presentation,"palette"),1);
-        compositeUniforms={location(*compositing,"sourceOrigin"),location(*compositing,"destinationOrigin"),location(*compositing,"mode"),location(*compositing,"rowOffsets"),location(*compositing,"rowPeriod"),location(*compositing,"indexedSource"),location(*compositing,"spritePalette[0]"),location(*compositing,"additiveChannels"),location(*compositing,"oldOrigin"),location(*compositing,"destinationStride")};
+        compositeUniforms={location(*compositing,"sourceOrigin"),location(*compositing,"destinationOrigin"),location(*compositing,"mode"),location(*compositing,"rowOffsets"),location(*compositing,"rowPeriod"),location(*compositing,"indexedSource"),location(*compositing,"spritePalette[0]"),location(*compositing,"additiveChannels"),location(*compositing,"oldOrigin"),location(*compositing,"destinationStride"),location(*compositing,"destinationHeight")};
         useProgram(compositing->programId());gl.glUniform1i(location(*compositing,"sourcePixels"),0);gl.glUniform1i(location(*compositing,"sourceMask"),1);gl.glUniform1i(location(*compositing,"oldPixels"),2);
         gl.glGenVertexArrays(1,&vao);gl.glGenFramebuffers(1,&fbo);gl.glGetIntegerv(GL_MAX_TEXTURE_SIZE,&maxTexture);
         // This context is private to the renderer; caller/viewport state lives
@@ -1001,6 +1004,7 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
     p.setScissor(true);g.glScissor(x,y,r.right-r.left,r.bottom-r.top);
     g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,src.native);g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,coverage.native);g.glActiveTexture(GL_TEXTURE2);g.glBindTexture(GL_TEXTURE_2D,frozen);
     p.useProgram(p.compositing->programId());p.selectPalette(p.compositeUniforms.indexed,p.compositeUniforms.palette,p.compositePalette,palette);g.glUniform2i(p.compositeUniforms.sourceOrigin,r.left,r.top);g.glUniform2i(p.compositeUniforms.destinationOrigin,x,y);g.glUniform2i(p.compositeUniforms.oldOrigin,freeze.left,freeze.top);g.glUniform1i(p.compositeUniforms.stride,dst.width);g.glUniform1i(p.compositeUniforms.mode,int(c.mode));g.glUniform1iv(p.compositeUniforms.rowOffsets,16,c.rowOffsets.data());g.glUniform1i(p.compositeUniforms.rowPeriod,int(c.rowPeriod));
+    g.glUniform1i(p.compositeUniforms.height,dst.height);
     p.draw(3);p.check();++p.counters.copies;
 }
 void GlBlitter::colourRect(SurfaceId destination,const Image& pixels,Rect source,int x,int y,const SpriteComposite& mode){

@@ -37,6 +37,21 @@ int main(int argc,char** argv)try{
  g.composite(src,dst,{0,0,2,1},2,1,mask,c);require(g.read(dst).pixels==expected.pixels,"Finite edge policy changed valid sample or failed to retain invalid tap");
  g.copy(cloned,mask,{0,0,2,1},0,0);g.composite(src,dst,{0,0,2,1},2,1,mask,c);
  g.update(dst,0,0,base);c.rowOffsets[0]=1;g.composite(src,dst,{0,0,2,1},2,0,mask,c);auto wrapped=base;wrapped.pixels[2]=4;require(g.read(dst).pixels==wrapped.pixels,"Finite edge policy lost valid row wrapping");
+ // A prior wider/taller snapshot leaves reusable storage beyond the current
+ // logical freeze. Invalid taps must not sample that stale scratch allocation.
+ auto large=g.create({8,8,std::vector<std::uint32_t>(64,0xbeef)},rgb);
+ g.additiveRect(large,{0,0,8,8},{0,0,0});
+ g.update(mask,0,0,{2,1,{1,1}});g.update(dst,0,0,base);
+ g.composite(src,dst,{0,0,2,1},2,1,mask,c);
+ require(g.read(dst).pixels==expected.pixels,"Finite edge sampled stale high-water scratch outside logical canvas");
+ for(int shift=0;shift<=16;++shift){
+  c.rowPeriod=1;c.rowOffsets[0]=shift;g.update(dst,0,0,base);
+  auto edge=base;
+  for(unsigned at=6;at<8;++at)if(at+shift<base.pixels.size())edge.pixels[at]=base.pixels[at+shift];
+  g.composite(src,dst,{0,0,2,1},2,1,mask,c);
+  require(g.read(dst).pixels==edge.pixels,"High-water finite edge offset differs from logical word oracle");
+ }
+ g.destroy(large);
  for(auto id:{dst,src,mask,cloned,other})g.destroy(id);
  unsigned cases=0,oldRefusals=0,edgeRetains=0;
  if(argc==3||argc==4){
@@ -55,5 +70,5 @@ int main(int argc,char** argv)try{
   require(oldRefusals>0&&cases>0,"Failed public geometry not exercised");
   if(argc==4)require(edgeRetains>0,"Captured bottom-edge failure not exercised");
  }
- require(g.stats().surfaces==0,"Displacement controls leaked surfaces");std::cout<<QJsonDocument(QJsonObject{{"success",true},{"mask_controls",14},{"captured_pixel_cases",int(cases)},{"baseline_envelope_refusals",int(oldRefusals)},{"edge_pixels_retained",int(edgeRetains)},{"words_per_captured_case",480000},{"ordinary_readbacks",0},{"remaining_surfaces",0}}).toJson(QJsonDocument::Compact).constData()<<'\n';return 0;
+ require(g.stats().surfaces==0,"Displacement controls leaked surfaces");std::cout<<QJsonDocument(QJsonObject{{"success",true},{"mask_controls",14},{"high_water_edge_checks",18},{"captured_pixel_cases",int(cases)},{"baseline_envelope_refusals",int(oldRefusals)},{"edge_pixels_retained",int(edgeRetains)},{"words_per_captured_case",480000},{"ordinary_readbacks",0},{"remaining_surfaces",0}}).toJson(QJsonDocument::Compact).constData()<<'\n';return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
