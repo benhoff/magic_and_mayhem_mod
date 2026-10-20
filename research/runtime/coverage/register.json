@@ -126524,7 +126524,9 @@
       ],
       "evidence": [
         "WADD.original-20261020",
-        "WADD.native-20261020"
+        "WADD.native-20261020",
+        "WOUT.original-20261020",
+        "WOUT.native-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -126534,7 +126536,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "WADD.source-review-20261020",
+        "review": "WOUT.source-review-20261020",
         "entry": "RS.world-additive-sprite"
       }
     },
@@ -126590,6 +126592,70 @@
       "implementation_review": {
         "review": "K8CALL2.source-review-20261020",
         "entry": "NP.world-inherited-kind8-caller"
+      }
+    },
+    {
+      "id": "RS.world-run-outline",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Indexed encoded-run outline and clipped half-blend raster",
+      "scope": "Pinned No-CD57fe10 indexed RGB565 sprite raster over owned encoded RLE frames and selected palettes: horizontally unclipped draws copy each encoded opaque run first/last pixel, preserving interiors; horizontal clipping selects ordinary per-channel integer half blend over all surviving opaque pixels. Vertical clipping alone retains endpoint copying. Preserve adjacent zero-skip run boundaries, opaque palette zero, signed anchors, exclusive clips and ordered overlap. Owned World v1 operation9/backend14 selects the native branch from geometry. Excludes original return/register state, other masks, tint581200, source writers/lifetime, live producer admission and replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5766672,
+          "scope": "Selected indexed RGB565 endpoint/half-blend pixel paths; full consumer return and other masks excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-world-run-outline.md",
+        "research/formats/world-frame-v1.md"
+      ],
+      "implementation": [
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/world_frame.cpp",
+        "protocols/include/mnm/world_frame_v1.h"
+      ],
+      "tests": [
+        "tests/run-outline-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-run-outline.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/resource-fixtures.hpp",
+        "tools/coverage_claims.py",
+        "compat/legacy/CMakeLists.txt",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_preparation.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/isolated_dispatch.inc",
+        "tests/additive-sprite-test.cpp"
+      ],
+      "evidence": [
+        "WOUT.original-20261020",
+        "WOUT.native-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WOUT.source-review-20261020",
+        "entry": "RS.world-run-outline"
       }
     }
   ],
@@ -284456,6 +284522,86 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "WOUT.original-20261020",
+      "kind": "isolated_original",
+      "scope": "Selected57fe10 endpoint/horizontally-clipped-half branches and580a90 regression:  indexed RGB565 raster: all65536 destination words across64 source colors cover every red/green/blue channel pair; clipped RLE runs/holes, zero palette entries, signed anchors, ordered overlap, tagged owned wire, worker and atlas/non-atlas GPU paths. No pointer ownership, live queue admission, other modes or replacement claim.",
+      "record": "research/runtime/native-world-run-outline-validation-20261020.json",
+      "sha256": "c233f047d9c933b1cc80189d45aab41d344e9e60aa39b9ba481040896babe9e8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_pixels_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wire_and_worker_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/isolated_render_process_passed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "WOUT.native-20261020",
+      "kind": "native_integration",
+      "scope": "Selected57fe10 endpoint/horizontally-clipped-half branches and580a90 regression:  indexed RGB565 raster: all65536 destination words across64 source colors cover every red/green/blue channel pair; clipped RLE runs/holes, zero palette entries, signed anchors, ordered overlap, tagged owned wire, worker and atlas/non-atlas GPU paths. No pointer ownership, live queue admission, other modes or replacement claim.",
+      "record": "research/runtime/native-world-run-outline-validation-20261020.json",
+      "sha256": "c233f047d9c933b1cc80189d45aab41d344e9e60aa39b9ba481040896babe9e8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_pixels_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wire_and_worker_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/isolated_render_process_passed",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -286660,7 +286806,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-run-outline"
           ]
         },
         {
@@ -305029,7 +305176,26 @@
       ],
       "evidence": [
         "WADD.original-20261020",
-        "WADD.native-20261020"
+        "WADD.native-20261020",
+        "WOUT.original-20261020",
+        "WOUT.native-20261020"
+      ]
+    },
+    {
+      "id": "native-run-outline",
+      "scope": "Owned tagged input decoding, exact SPR run binding, worker preparation and native GPU endpoint/half-blend pixels against unchanged57fe10. Authored channel, sparse/order/clip, adjacent-run and atlas controls; no live admission.",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-run-outline"
+      ],
+      "tests": [
+        "tests/run-outline-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-run-outline.py"
+      ],
+      "evidence": [
+        "WOUT.original-20261020",
+        "WOUT.native-20261020"
       ]
     }
   ],
@@ -305683,8 +305849,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-inherited-native-caller-20261020.json",
-    "sha256": "ac39b28807d2974f7612565fac6e0976148c015dd61203ab24ba5e8817ff6fb5"
+    "path": "research/runtime/coverage/source-index-run-outline-20261020.json",
+    "sha256": "a0f56e17ed7b74a4f751de81dcacea4e1c718dd2ee868783e63e1f46993c448c"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -305716,11 +305882,6 @@
       "sha256": "7b213ecb26bd2e8c021d6af17d761d9fb2447aab13c423b2228c152b1212b2d9"
     },
     {
-      "id": "WADD.source-review-20261020",
-      "path": "research/runtime/coverage/additive-sprite-source-review-20261020.json",
-      "sha256": "fef174a7e2d894bc2f0a3493bb7427a8b4beb1e85cac29f6a523c79ee706db54"
-    },
-    {
       "id": "DWORD.source-review-20261020",
       "path": "research/runtime/coverage/distortion-word-source-review-20261020.json",
       "sha256": "24f5b0e15f8deb065806ebdea69d1f6e60b19bda04c0779a9df462f55fa8bb95"
@@ -305729,6 +305890,11 @@
       "id": "K8CALL2.source-review-20261020",
       "path": "research/runtime/coverage/inherited-native-caller-return-source-review-20261020.json",
       "sha256": "37bf5b30142674e1df78040dcc236187633f0f0c6f76638f2a1394396eafae7b"
+    },
+    {
+      "id": "WOUT.source-review-20261020",
+      "path": "research/runtime/coverage/run-outline-source-review-20261020.json",
+      "sha256": "61bef6cf74d01aa0649e39823ee11b6399c44959ead5b4fe70a426f1451c1b14"
     }
   ]
 }

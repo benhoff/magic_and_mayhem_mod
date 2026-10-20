@@ -87,8 +87,8 @@ bool SpriteAtlas::advance(const ResourceUploadRequest& r,std::size_t& bytes){
     const auto rowBytes=std::size_t(plane.width)*sizeof(std::uint32_t);
     const auto rows=int(std::min(bytes/rowBytes,std::size_t(plane.height-e.row)));if(!rows)return false;
     const auto first=plane.pixels.begin()+std::size_t(e.row)*plane.width;
-    const auto maximum=e.plane?1u:r.indexed?255u:65535u;
-    if(std::any_of(first,first+std::size_t(rows)*plane.width,[maximum](auto value){return value>maximum;}))throw std::runtime_error("Atlas pixel exceeds plane format");
+    const auto maximum=e.plane?3u:r.indexed?255u:65535u;
+    if(std::any_of(first,first+std::size_t(rows)*plane.width,[maximum,&e](auto value){return value>maximum||(e.plane&&value==2);}))throw std::runtime_error("Atlas pixel exceeds plane format");
     renderer_.updateRegionRows(e.plane?e.page->mask:e.page->pixels,e.region.left,e.region.top,plane,e.row,rows);
     bytes-=std::size_t(rows)*rowBytes;e.row+=rows;
     if(e.row==plane.height){e.row=0;++e.plane;}

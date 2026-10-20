@@ -30,6 +30,16 @@ PreparedSpriteFrame prepareSpriteFrame(const assets::Sprite& sprite,std::size_t 
             pixels.pixels[i]=retainIndices?(*indices)[i]:colours?(*colours)[(*indices)[i]]:(std::uint32_t(c.red>>3)<<11)|(std::uint32_t(c.green>>2)<<5)|(c.blue>>3);
         }else pixels.pixels[i]=(*words)[i];
     }
+    // Keep encoded run endpoints separate from adjacent opaque pixels. A zero
+    // transparent skip can separate two opaque runs with distinct endpoints.
+    for(const auto& run:f.opaqueRuns){
+        if(run.row>=f.height||run.left>=run.right||run.right>f.width)
+            throw std::runtime_error("Sprite opaque run outside frame");
+        const auto base=std::size_t(run.row)*f.width;
+        if(!f.opaqueMask[base+run.left]||!f.opaqueMask[base+run.right-1])
+            throw std::runtime_error("Sprite run endpoint is transparent");
+        mask.pixels[base+run.left]=mask.pixels[base+run.right-1]=3;
+    }
     PreparedSpriteFrame result{std::move(pixels),std::move(mask),f.originX,f.originY,{}};
     if(retainIndices){
         if(!indices)throw std::invalid_argument("Indexed preparation requires indices");
@@ -61,7 +71,7 @@ bool UploadedSpriteFrame::advanceUpload(std::size_t& availableBytes){
     const auto rows=int(std::min(availableBytes/rowBytes,std::size_t(height_-uploadRow_)));
     if(!rows)return false;
     if(uploadPlane_){const auto begin=pending_->mask.pixels.begin()+std::size_t(uploadRow_)*width_;
-        if(std::any_of(begin,begin+std::size_t(rows)*width_,[](auto value){return value>1;}))throw std::runtime_error("Sprite mask must contain zero or one");}
+        if(std::any_of(begin,begin+std::size_t(rows)*width_,[](auto value){return value>3||value==2;}))throw std::runtime_error("Sprite coverage must contain zero, one or three");}
     renderer_.updateRows(uploadPlane_?mask_:pixels_,uploadPlane_?pending_->mask:pending_->pixels,uploadRow_,rows);
     availableBytes-=std::size_t(rows)*rowBytes;uploadRow_+=rows;
     if(uploadRow_==height_){uploadRow_=0;++uploadPlane_;}

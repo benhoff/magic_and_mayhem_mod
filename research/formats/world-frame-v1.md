@@ -121,3 +121,16 @@ because the payload already owns the selected table. Channel sums clamp to31/63/
 there is no rectangle increment wrap. Transparent runs retain the preceding
 destination. Older readers refuse operation8. This tag alone grants no live
 queue admission or original producer bypass.
+
+
+## Encoded-run outline extension
+
+Operation9/backend14 carries an indexed normalized frame plus the512-byte
+selected RGB565 palette. It follows the sprite record layout, has no pointers,
+and requires zero displacement period. The signed anchor minus frame origin
+and original frame width select the native operation: horizontal clipping
+uses integer half blend; otherwise only encoded opaque-run endpoints copy.
+Vertical clipping alone retains endpoint copying. Adjacent opaque runs with a
+zero transparent skip remain separate. Old readers refuse the unknown tag;
+backend14 on another operation and operation9 on another backend refuse.
+This format supports owned offline inputs; the live producer does not emit it.

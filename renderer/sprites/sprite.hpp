@@ -6,7 +6,7 @@
 namespace mnm::render {
 using SpriteColourTable=std::array<std::uint16_t,256>;
 struct PreparedSpriteFrame {
-    Image pixels,mask;
+    Image pixels,mask; // coverage:0 transparent,1 interior,3 encoded-run endpoint
     std::int32_t originX=0,originY=0;
     std::optional<SpriteColourTable> palette={}; // indices when present, RGB565 otherwise
 };

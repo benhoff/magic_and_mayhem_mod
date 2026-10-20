@@ -18998,3 +18998,28 @@ intersection domain. Every return is zero, matching the existing native policy.
 Both native predicate/generator controls and production/selftest builds repeat
 with prospective source claims. Full register/pixel equivalence, larger return
 domains, natural live reachability and replacement acceptance remain separate.
+
+
+### World encoded-run outline pixels — 2026-10-20
+
+The previously unimplemented57fe10/kind7 pixel leaf now has owned native
+World tag9/backend14 support. Native SPR preparation preserves encoded run
+endpoints in the existing coverage texture. Unclipped horizontal geometry copies
+endpoints; horizontal clipping half-blends all surviving opaque pixels. Signed
+anchors, vertical-only clips, adjacent zero-skip runs, palette zero and ordered
+overlap are preserved. Visual rebinding includes run segmentation.
+
+WOUT.original/native-20261020 prospectively pins the complete native/test
+closure.219 fixtures compare13,898,234 unchanged-original RGB565 words exactly,
+including136 new outline cases and the83 additive/kind8 regression cases.
+The136 outline cases also match through the separate renderer process. Worker,
+atlas/non-atlas, malformed tag/backend refusal and covered displacement bounds
+pass. Original manifest bookends pass. Existing WADD evidence remains immutable;
+WOUT records its current-code regression result under new IDs. The new protocol
+source makes the separate K8CALL2 closure historical; no natural-live claim is
+inferred from either result.
+
+Original return/register state, other masks,581200 tint,580260 source-write
+shifts, real source/object ownership, live producer admission and complete-session
+release gates remain pending. Broad World dispatch and live replacement stages
+remain partial/none. See [run-outline research](native-world-run-outline.md).

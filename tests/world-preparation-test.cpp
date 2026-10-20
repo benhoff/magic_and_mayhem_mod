@@ -41,7 +41,7 @@ int main(int argc,char** argv)try{
         mnm::render::SceneUploadNeed need{0,{draw.resource,manager.resident(draw.resource).revision,draw.frame,draw.colours,{}}};
         worker.upload(need);rejected([&]{worker.upload(need);});
         auto upload=std::get<PreparedWorldUpload>(await(worker));
-        require(upload.frame==prepared.frame&&upload.need.request==need.request&&upload.planes.mask.pixels==std::vector<std::uint32_t>({1,1,0})&&upload.planes.pixels.pixels[0]==0&&upload.planes.pixels.pixels[1]==1,"Owned worker upload differs");
+        require(upload.frame==prepared.frame&&upload.need.request==need.request&&upload.planes.mask.pixels==std::vector<std::uint32_t>({3,3,0})&&upload.planes.pixels.pixels[0]==0&&upload.planes.pixels.pixels[1]==1,"Owned worker upload differs");
         require(worker.stats().uploadsPrepared==1&&worker.stats().retainedDecodedBytes>0,"Upload preparation counters differ");
         worker.plan(input(spriteBytes));await(worker);worker.prepare({},0,0);
         auto warm=std::get<PreparedWorld>(await(worker));require(warm.resources.empty()&&warm.draws.size()==1&&worker.stats().resourcesPrepared==1,"Warm frame repeated file decoding");

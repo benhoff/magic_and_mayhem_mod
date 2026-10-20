@@ -20,7 +20,7 @@ QByteArray hash(const QByteArray& b){
 }
 }
 QByteArray spriteVisualIdentity(const assets::Sprite& sprite,const assets::SpriteFrame& f){
-    QByteArray out;out.resize(qsizetype(16+f.opaqueMask.size()*3));
+    QByteArray out;out.resize(qsizetype(16+f.opaqueMask.size()*3+f.opaqueRuns.size()*12));
     auto* bytes=out.data();std::size_t at=0;
     for(auto word:{f.width,f.height,std::uint32_t(f.originX),std::uint32_t(f.originY)})
         for(unsigned i=0;i<4;++i)bytes[at++]=char(word>>(i*8));
@@ -30,6 +30,8 @@ QByteArray spriteVisualIdentity(const assets::Sprite& sprite,const assets::Sprit
             pixel=std::uint16_t((c.red>>3)<<11|(c.green>>2)<<5|(c.blue>>3));}
         bytes[at++]=char(f.opaqueMask[i]);bytes[at++]=char(pixel);bytes[at++]=char(pixel>>8);
     }
+    for(const auto& run:f.opaqueRuns)for(auto value:{run.row,run.left,run.right})
+        for(unsigned byte=0;byte<4;++byte)bytes[at++]=char(value>>(byte*8));
     return hash(out);
 }
 QByteArray frameIdentity(const QByteArray& raw,bool indexed){

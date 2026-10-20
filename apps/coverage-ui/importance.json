@@ -2482,6 +2482,13 @@
       "work_type": "capability",
       "reason": "Exact caller/tag/signature admission enables the known inherited native object path while retaining unsupported-call refusal; full-session and physical ownership proof remain separate.",
       "contract_sha256": "272c174b1ca734ab2373ca6ed1906040010178695732464a28fcca5f863b70fa"
+    },
+    {
+      "behavior": "RS.world-run-outline",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "The kind7 indexed outline branch changes raster semantics with horizontal clipping and preserves RLE segmentation; this supplies a missing World pixel leaf while live ownership and complete replacement remain independent.",
+      "contract_sha256": "192fe8c66d711dc79d883b0d68c74f42509f0e4f5fd53e239c6aa4670d571bc0"
     }
   ],
   "tranche_plan": {

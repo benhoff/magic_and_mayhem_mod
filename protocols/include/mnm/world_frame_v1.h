@@ -24,3 +24,6 @@
 /* Tagged extension: backend13, indexed frame and selected RGB565 palette.
  * Older v1 decoders reject this tag rather than treating it as copy. */
 #define MNM_WORLD_ADDITIVE_SPRITE 8u
+/* Tagged extension: indexed backend14/57fe10. Geometry selects unclipped
+ * encoded-run endpoint copying or the horizontally clipped half blend. */
+#define MNM_WORLD_RUN_OUTLINE 9u

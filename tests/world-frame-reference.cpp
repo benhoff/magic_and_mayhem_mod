@@ -16,7 +16,7 @@ int main(int argc,char** argv)try{
     std::size_t at=80;
     for(unsigned i=0;i<u32(input,36);++i){
         const auto size=u32(input,at),op=u32(input,at+4),n=u32(input,at+32),indexed=u32(input,at+36),payload=u32(input,at+40);
-        if(size!=64+n+payload||((op<6||op==8)&&n<40)||at+size>input.size()||op>8)throw std::runtime_error("World raster record");
+        if(size!=64+n+payload||((op<6||op==8||op==9)&&n<40)||at+size>input.size()||op>9)throw std::runtime_error("World raster record");
         if(op==7){
             if(n||indexed||payload<14||u32(input,at+52)!=12)throw std::runtime_error("Colour rectangle record");
             const auto w=u32(input,at+64),h=u32(input,at+68),mode=u32(input,at+72);
@@ -57,7 +57,7 @@ int main(int argc,char** argv)try{
             at+=size;continue;
         }
         Bytes frame(input.begin()+at+64,input.begin()+at+64+n);std::vector<std::uint32_t> palette(3+128,0);
-        if(op==8){
+        if(op==8||op==9){
             const auto ordinal=u32(input,at+56);const auto shade=std::int32_t(u32(input,at+44));
             if(indexed!=1||payload!=512||ordinal>18||shade< -127||shade>127)throw std::runtime_error("Additive sprite palette inputs");
             // Independent original selection through real linked nodes and
@@ -83,13 +83,13 @@ int main(int argc,char** argv)try{
             global(0x6c4830,clipped?u32(input,at+48):0);
             using Wave=unsigned (__attribute__((fastcall)) *)(void*,int,int,int);reinterpret_cast<Wave>(0x5806f0)(frame.data(),x,y,amplitude);
         }else if(!indexed){using Direct=unsigned (*)(void*,int,int);reinterpret_cast<Direct>(0x597086)(frame.data(),x,y);}
-        else if(op==8){
-            if(u32(input,at+52)!=13)throw std::runtime_error("Additive sprite backend");
+        else if(op==8||op==9){
+            if(u32(input,at+52)!=(op==8?13u:14u))throw std::runtime_error("Additive sprite backend");
             // Three WORD masks, not overlapping DWORD globals.
             *reinterpret_cast<std::uint16_t*>(0x6e1f7c)=0xf800;
             *reinterpret_cast<std::uint16_t*>(0x6e1f7e)=0x07e0;
             *reinterpret_cast<std::uint16_t*>(0x6e1f80)=0x001f;
-            reinterpret_cast<Draw>(0x580a90)(frame.data(),x,y,std::int32_t(u32(input,at+44)),int(u32(input,at+56)));
+            reinterpret_cast<Draw>(op==8?0x580a90:0x57fe10)(frame.data(),x,y,std::int32_t(u32(input,at+44)),int(u32(input,at+56)));
         }else reinterpret_cast<Draw>(op==0?0x57e1b0:op==1?0x57ec90:op==2?0x57f5f0:0x57f0f0)(frame.data(),x,y,0,0);
         at+=size;
     }
