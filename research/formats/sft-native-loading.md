@@ -64,7 +64,11 @@ as a synthetic native policy, without installed evidence.
 
 Defaults inherit SPR limits (including 4,096 glyphs, 2,048-pixel dimensions,
 input/pixel/scan budgets) and add an 8 MiB profile budget. Profile storage also
-counts toward the aggregate decoded-byte budget. File errors retain backend
+counts toward the aggregate decoded-byte budget, together with pixel/mask and
+owned encoded-run storage inherited from SPR. The synthetic one-row indexed
+fixture needs 34 bytes: 16 for two metric pairs, six for three pixels and their
+mask, and 12 for one retained run. A 33-byte budget refuses it. This is native
+allocation accounting, not an original allocator claim. File errors retain backend
 information; decoder errors retain source offset and glyph ordinal where known.
 
 ## Reproduction and validation

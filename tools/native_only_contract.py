@@ -186,20 +186,24 @@ def outcome(root):
     if admission.get('native_only', {}).get('policy') != POLICY or admission.get('session') != str(root.resolve()):
         raise ValueError('Missing native-only startup admission')
     shell = json.loads((root/'native-only-session.json').read_text())
-    if shell.get('policy')!=POLICY or shell.get('session')!=str(root.resolve()):
+    if (type(shell.get('schema')) is not int or shell['schema'] != 1 or
+            shell.get('policy')!=POLICY or shell.get('session')!=str(root.resolve())):
         raise ValueError('Native-only shell retirement belongs to another session')
     if shell.get('state')=='restarted':
         return restart_outcome(root,admission,shell)
     if (shell.get('policy') != POLICY or shell.get('session') != str(root.resolve())
             or shell.get('state') != 'completed' or shell.get('normal_quit') is not True
             or shell.get('fallback') is not False or shell.get('error') != ''
-            or shell.get('launcher_exit') != 0):
+            or type(shell.get('launcher_exit')) is not int or shell['launcher_exit'] != 0
+            or shell.get('renderer_retired') is not True
+            or shell.get('restart_requested') is not False
+            or shell.get('force_stop_verified') is not False):
         raise ValueError('Native-only shell did not complete without fallback')
     for name in REFUSALS:
         if (root/'game'/name).exists():
             raise ValueError('Native-only rendering refused: '+name)
     original = json.loads((root/'original-process-result.json').read_text())
-    if original.get('original_exit_code') != 0:
+    if type(original.get('original_exit_code')) is not int or original['original_exit_code'] != 0:
         raise ValueError('Original simulation did not quit normally')
     counters = read_counters(root/'game')
     if counters['forwarded'] or counters['history_refused'] or counters.get('forward_guard_refusal'):

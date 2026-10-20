@@ -1,5 +1,6 @@
 #pragma once
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -15,10 +16,16 @@ public:
         if((!state_.isEmpty() && state_!="restarted") || directory.isEmpty())return false;
         const auto root=QFileInfo(directory).absoluteFilePath();
         const auto path=QDir(root).filePath("native-only-session.json");
-        if(QFileInfo::exists(path))return false;
+        // Claim the receipt exclusively, including dangling symlinks. A second
+        // owner must not replace evidence between an exists check and save().
+        QFile receipt(path);
+        if(!receipt.open(QIODevice::WriteOnly|QIODevice::NewOnly))return false;
+        receipt.close();
         root_=root;path_=path;
         error_.clear();normalQuit_=fallback_=restartRequested_=stopVerified_=rendererRetired_=false;launcherExit_=-1;
-        state_="starting";return save();
+        state_="starting";
+        if(save())return true;
+        state_="failed";error_="Cannot record native-only session admission";return false;
     }
     bool fail(const QString& reason){
         // A subsequent staging failure must not rewrite the retired generation.
@@ -27,16 +34,24 @@ public:
         return path_.isEmpty() || save();
     }
     bool finish(bool normalQuit,int launcherExit,bool rendererFinished,bool fallback){
-        normalQuit_=normalQuit;launcherExit_=launcherExit;fallback_=fallback;
+        // Old completion signals cannot rewrite a retired or stopping session.
+        if(state_.isEmpty() || state_=="restarted" || restartRequested_)return false;
+        normalQuit_=normalQuit;launcherExit_=launcherExit;fallback_=fallback;rendererRetired_=rendererFinished;
         if(state_=="failed")return save();
         if(!normalQuit || launcherExit || !rendererFinished || fallback)
             return fail("Native-only shutdown requires normal Quit, renderer retirement and zero fallback");
-        state_="completed";return save();
+        state_="completed";
+        if(save())return true;
+        state_="failed";error_="Cannot record native-only terminal outcome";return false;
     }
     bool requestRestart(){
         if(path_.isEmpty())return true; // Staging has not created a generation.
         if(state_=="completed" || state_=="restarted" || restartRequested_)return false;
-        restartRequested_=true;return save();
+        restartRequested_=true;
+        if(save())return true;
+        restartRequested_=false;state_="failed";
+        if(error_.isEmpty())error_="Cannot record native-only restart request";
+        return false;
     }
     bool retireForRestart(bool stopped,bool rendererRetired){
         if(path_.isEmpty()){
@@ -44,7 +59,11 @@ public:
             state_="restarted";return true;
         }
         if(!restartRequested_ || !stopped || !rendererRetired)return fail("Hard restart did not retire its process and renderer");
-        stopVerified_=true;rendererRetired_=true;state_="restarted";return save();
+        stopVerified_=true;rendererRetired_=true;state_="restarted";
+        if(save())return true;
+        restartRequested_=false;state_="failed";
+        if(error_.isEmpty())error_="Cannot record native-only generation retirement";
+        return false;
     }
     bool completed() const{return state_=="completed";}
     QString error() const{return error_;}

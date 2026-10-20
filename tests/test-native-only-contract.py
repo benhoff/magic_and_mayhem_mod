@@ -39,7 +39,7 @@ class Contract(unittest.TestCase):
 
     def shutdown(self):
         self.write('native-output-admission.json',dict(session=str(self.root),native_only=dict(policy=contract.POLICY)))
-        self.write('native-only-session.json',dict(policy=contract.POLICY,session=str(self.root),state='completed',normal_quit=True,fallback=False,error='',launcher_exit=0))
+        self.write('native-only-session.json',dict(schema=1,policy=contract.POLICY,session=str(self.root),state='completed',normal_quit=True,fallback=False,error='',launcher_exit=0,renderer_retired=True,restart_requested=False,force_stop_verified=False))
         self.write('original-process-result.json',dict(original_exit_code=0))
         self.write('resident-world-report.json',dict(completed=3,imports=3,verified_returns=3,pending=0,error='',normal_quit_retired=True))
         (self.root/'native-draw-retirement.bin').write_bytes(struct.pack('<16I',
@@ -144,13 +144,29 @@ class Contract(unittest.TestCase):
         p=self.root/'game/native-pixel-producers.bin';raw=bytearray(p.read_bytes());struct.pack_into('<I',raw,24,1);p.write_bytes(raw)
         with self.assertRaises(ValueError):contract.outcome(self.root)
 
+    def test_completion_requires_typed_current_schema_and_renderer_retirement(self):
+        self.shutdown()
+        path=self.root/'native-only-session.json';original=json.loads(path.read_text())
+        for key,values in {'schema':[None,True,1.0,2],
+                           'launcher_exit':[False,0.0,'0'],
+                           'renderer_retired':[None,False,1],
+                           'restart_requested':[None,True,0],
+                           'force_stop_verified':[None,True,0]}.items():
+            for value in values:
+                self.write(path.name,dict(original,**{key:value}))
+                with self.subTest(key=key,value=value),self.assertRaises(ValueError):contract.outcome(self.root)
+        self.write(path.name,original)
+        for value in [False,0.0,'0']:
+            self.write('original-process-result.json',dict(original_exit_code=value))
+            with self.subTest(original_exit=value),self.assertRaises(ValueError):contract.outcome(self.root)
+
     def test_restart_requires_dead_matching_runner_and_positive_retirement(self):
         import subprocess
         self.shutdown()
         child=subprocess.Popen(['sleep','10'])
         identity=contract.process_identity(child.pid)
         self.write('native-output-admission.json',dict(session=str(self.root),native_only=dict(policy=contract.POLICY),runner_identity=identity))
-        shell=dict(policy=contract.POLICY,session=str(self.root),state='restarted',normal_quit=False,
+        shell=dict(schema=1,policy=contract.POLICY,session=str(self.root),state='restarted',normal_quit=False,
                    fallback=False,error='old failure',restart_requested=True,force_stop_verified=True,renderer_retired=True)
         self.write('native-only-session.json',shell)
         try:

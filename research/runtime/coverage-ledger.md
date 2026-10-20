@@ -18832,3 +18832,17 @@ the user-approved 90 GiB guard remains enforced, with no cleanup or archiving.
 Snapshot-local fingerprint reuse, audited raw-provenance reuse, ordered source-link inversion and bounded Git archive streaming reduce submission overhead without changing accounting decisions. On the same frozen `2c90c3f2` tree, profiled snapshot time fell from 134.263 s to 58.526 s; complete canonical snapshot and audit hashes match. These are single-run timings with filesystem-cache and concurrent-load limits, not a measured whole-commit speedup. All 152 audit/gate/merge/evidence-import guard methods pass, including source changes across calls and archive failures. `check-re-coverage.py --timings` exposes the remaining phase costs.
 
 The [performance record](coverage/submission-performance-20261019.json) retains source pins and six local commit-turn timing samples. Raw profiles and local-session-derived command summaries remain under `working/retention/submission-performance-20261019/`. Historical execution evidence and all engine statuses remain unchanged; broad current-code validation stays pending where source or scope changed. No original artifacts were consumed.
+
+## Critical top-20 rendering fixes — 2026-10-19
+
+Reproduced and fixed native-only receipt/generation transitions and strict
+terminal validation; repaired final ring-prefix collection, stale checkpoint
+uncertainty and SFT budget controls. The 21-case checkpoint matrix matches330
+frames; new linked mutation/read-only and deferred-drain controls pass. Native
+surface modes0/3, six-family guard, finite history and pressure controls pass
+their bounded scopes. The unchanged238-frame storage replay retains252
+GPU/physical mismatches at ordinal170 with zero source/default witness
+mismatches. NVIDIA presentation remains unavailable in this headless session.
+No raw stage is promoted; complete DirectDraw and whole-session acceptance
+remain separate. [Review](critical-top20-rendering-fixes-20261019.md);
+[immutable execution index](coverage/critical-top20-execution-20261019.json).
