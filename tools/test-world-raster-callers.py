@@ -77,7 +77,7 @@ def main():
                           '--stream',out/'authored-empty-queue.bin','--header',out/'generated.h',
                           '--report',out/'generated.json'])
         generated = json.loads((out/'generated.json').read_text())
-        if generated['caller_count'] != 1 or generated['callers'][0]['origin'] != 'checked_inherited_wrapper':
+        if generated['caller_count'] != 12 or sum(c['origin']=='checked_inherited_wrapper' for c in generated['callers']) != 1 or sum(c['origin']=='checked_effect_return' for c in generated['callers']) != 11:
             raise ValueError('Generator dropped or mislabeled the static inherited extension')
         (out/'generated-test.cpp').write_text(
             'using u32=unsigned;using u8=unsigned char;\n#include "generated.h"\n'

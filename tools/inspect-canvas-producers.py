@@ -12,6 +12,16 @@ NAMES = {1:'create',2:'release',3:'bind',4:'clip',5:'fill',6:'copy',7:'jpeg',8:'
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
+def effect_raster(r, payload):
+    op,backend,indexed,height,state=r[14],r[15],r[17],struct.unpack_from('<I',payload,8)[0],r[20]
+    if indexed>1:return False
+    if op in (8,9,10):return indexed==1 and backend==op+5 and state==(524 if op==10 else 512)
+    if not 1<=height<=2048:return False
+    return (op==11 and backend==16 and indexed==1 and state==512+height*4) or (op==12 and backend==7 and state==height*4)
+
+def effect_source(indexed,height,state):
+    return indexed<=1 and (state in (0,64,512) or indexed==1 and state==524 or 1<=height<=2048 and (state==height*4 or indexed==1 and state==512+height*4))
+
 def decode(raw, complete=True):
     if len(raw)<64 or raw[:8] not in (b'MNMPRO01',b'MNMPRO02',b'MNMPRO03',b'MNMPRO04',b'MNMPRO05') or len(raw)>(512 if raw[:8] in (b'MNMPRO02',b'MNMPRO04',b'MNMPRO05') else 128)*1024*1024:
         raise ValueError('Invalid producer stream envelope')
@@ -40,13 +50,13 @@ def decode(raw, complete=True):
             if r[18] or source is None or source[0][14]!=r[2] or source[0][17]!=r[17] or source[0][19:21]!=r[19:21]:raise ValueError('Invalid owned-source reference')
             payload=source[1];r=list(r);r[4]=0;r[18]=len(payload);r[0]=96+len(payload);r=tuple(r)
         if r[2]==25:
-            if r[14] not in (8,9) or not 40<=r[19]<=1048576 or r[18]!=r[19]+r[20] or struct.unpack_from('<I',payload,0)[0]!=r[19] or any(payload[28:32]) or (r[20]!=272 if r[14]==8 else r[17]>1 or r[20] not in (0,64,512)) or len(owned_sources)>=(4096 if whole or session else 2048) or len(payload)>16*1024*1024-owned_bytes:raise ValueError('Invalid owned-source definition')
+            if r[14] not in (8,9) or not 40<=r[19]<=1048576 or r[18]!=r[19]+r[20] or struct.unpack_from('<I',payload,0)[0]!=r[19] or any(payload[28:32]) or (r[20]!=272 if r[14]==8 else r[17]>1 or not effect_source(r[17],struct.unpack_from('<I',payload,8)[0],r[20])) or len(owned_sources)>=(4096 if whole or session else 2048) or len(payload)>16*1024*1024-owned_bytes:raise ValueError('Invalid owned-source definition')
             owned_sources[r[1]]=r,payload;owned_bytes+=len(payload)
         elif r[2] in (8,9):
             if not 40<=r[19]<=1048576 or r[18]!=r[19]+r[20] or struct.unpack_from('<I',payload,0)[0]!=r[19] or any(payload[28:32]):
                 raise ValueError('Unclosed producer frame')
             if r[2]==8 and r[20]!=272:raise ValueError('Invalid font coverage input')
-            if r[2]==9 and (r[14]>5 or r[15]>11 or r[17]>1 or r[20]!=(64 if r[14]==3 else 512 if r[17] else 0)):raise ValueError('Invalid raster input')
+            if r[2]==9 and not (extended and effect_raster(r,payload)) and (r[14]>5 or r[15]>11 or r[17]>1 or r[20]!=(64 if r[14]==3 else 512 if r[17] else 0)):raise ValueError('Invalid raster input')
         elif r[2] in (7,20):
             if not 1<=r[18]<=1024 or payload[-1:]!=b'\0' or b'\0' in payload[:-1]:raise ValueError('Invalid JPEG filename')
         elif r[2]==24:

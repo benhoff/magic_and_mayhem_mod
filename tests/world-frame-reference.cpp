@@ -5,7 +5,13 @@
 #include "sprite-binary-reference.cpp"
 #undef main
 #include "../protocols/include/mnm/world_frame_v1.h"
-int main(int argc,char** argv)try{
+#ifndef MNM_WORLD_RASTER_RESULT
+#define MNM_WORLD_RASTER_RESULT(op, call) ((void)(call))
+#endif
+#ifndef MNM_WORLD_REFERENCE_MAIN
+#define MNM_WORLD_REFERENCE_MAIN main
+#endif
+int MNM_WORLD_REFERENCE_MAIN(int argc,char** argv)try{
     if(argc!=4&&argc!=5)throw std::runtime_error("Expected pinned PE, World inputs, new output, optional diagnostic before-canvas");
     map_image(read(argv[1]));auto input=read(argv[2]);
     if(input.size()<80||std::memcmp(input.data(),MNM_WORLD_MAGIC,8)||u32(input,40)||u32(input,72)||u32(input,16)!=input.size())throw std::runtime_error("World input admission");
@@ -88,13 +94,13 @@ int main(int argc,char** argv)try{
                 global(0x5e15f8,amplitude);
                 for(unsigned j=0;j<32;++j)global(0x5f1450+j*4,u32(states,state+4+j*4));
                 if(u32(states,state+4)==32000)throw std::runtime_error("Private fixture requires a frozen source-shift table");
-                reinterpret_cast<Draw>(0x580260)(frame.data(),x,y,std::int32_t(u32(input,at+44)),int(u32(input,at+56)));
+                MNM_WORLD_RASTER_RESULT(op, reinterpret_cast<Draw>(0x580260)(frame.data(),x,y,std::int32_t(u32(input,at+44)),int(u32(input,at+56))));
             }else{
                 if(u32(input,at+52)!=7)throw std::runtime_error("Destination row backend");
                 global(0x5f14d0,0);
                 for(unsigned j=0;j<32;++j)global(0x5f14d0+(amplitude*16+j)*4,u32(states,state+4+j*4));
                 using Wave=unsigned (__attribute__((fastcall)) *)(void*,int,int,int);
-                reinterpret_cast<Wave>(0x5806f0)(frame.data(),x,y,amplitude);
+                MNM_WORLD_RASTER_RESULT(op, reinterpret_cast<Wave>(0x5806f0)(frame.data(),x,y,amplitude));
             }
         }
         else if(op==3){
@@ -116,13 +122,13 @@ int main(int argc,char** argv)try{
             global(0x5f14d0,0);for(unsigned j=0;j<16;++j)global(0x5f14d0+(amplitude*16+j)*4,u32(input,at+64+n+j*4));
             const auto left=x-std::int32_t(u32(frame,12));const bool clipped=left<std::int32_t(u32(input,at+16))||left+int(u32(frame,4))>std::int32_t(u32(input,at+24));
             global(0x6c4830,clipped?u32(input,at+48):0);
-            using Wave=unsigned (__attribute__((fastcall)) *)(void*,int,int,int);reinterpret_cast<Wave>(0x5806f0)(frame.data(),x,y,amplitude);
+            using Wave=unsigned (__attribute__((fastcall)) *)(void*,int,int,int);MNM_WORLD_RASTER_RESULT(op, reinterpret_cast<Wave>(0x5806f0)(frame.data(),x,y,amplitude));
         }else if(!indexed){using Direct=unsigned (*)(void*,int,int);reinterpret_cast<Direct>(0x597086)(frame.data(),x,y);}
         else if(op==10){
             if(u32(input,at+52)!=15||u32(input,at+56)||u32(input,at+48))throw std::runtime_error("Tint outline inputs");
             using Tint=unsigned (__attribute__((fastcall)) *)(void*,int,int,int,int,int,int);
-            reinterpret_cast<Tint>(0x581200)(frame.data(),x,y,std::int32_t(u32(input,at+44)),
-                int(u32(input,at+64+n+512)),int(u32(input,at+64+n+516)),int(u32(input,at+64+n+520)));
+            MNM_WORLD_RASTER_RESULT(op, reinterpret_cast<Tint>(0x581200)(frame.data(),x,y,std::int32_t(u32(input,at+44)),
+                int(u32(input,at+64+n+512)),int(u32(input,at+64+n+516)),int(u32(input,at+64+n+520))));
         }
         else if(op==8||op==9){
             if(u32(input,at+52)!=(op==8?13u:14u))throw std::runtime_error("Additive sprite backend");
@@ -130,7 +136,7 @@ int main(int argc,char** argv)try{
             *reinterpret_cast<std::uint16_t*>(0x6e1f7c)=0xf800;
             *reinterpret_cast<std::uint16_t*>(0x6e1f7e)=0x07e0;
             *reinterpret_cast<std::uint16_t*>(0x6e1f80)=0x001f;
-            reinterpret_cast<Draw>(op==8?0x580a90:0x57fe10)(frame.data(),x,y,std::int32_t(u32(input,at+44)),int(u32(input,at+56)));
+            MNM_WORLD_RASTER_RESULT(op, reinterpret_cast<Draw>(op==8?0x580a90:0x57fe10)(frame.data(),x,y,std::int32_t(u32(input,at+44)),int(u32(input,at+56))));
         }else reinterpret_cast<Draw>(op==0?0x57e1b0:op==1?0x57ec90:op==2?0x57f5f0:0x57f0f0)(frame.data(),x,y,0,0);
         at+=size;
     }

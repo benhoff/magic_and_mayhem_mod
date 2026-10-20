@@ -31,8 +31,10 @@ _producer_enter_\tag:
     popfl
 .if \tag == 10
     ret $16
-.elseif \tag == 11 || \tag == 18 || \tag == 19 || \tag == 20
+.elseif \tag == 11 || \tag == 18 || \tag == 19 || \tag == 20 || \tag == 57 || \tag == 58 || \tag == 60
     ret $12
+.elseif \tag == 59
+    ret $20
 .elseif \tag == 21 || \tag == 26 || \tag == 52
     ret $8
 .elseif \tag == 25
@@ -116,3 +118,8 @@ _producer_leave:
     popal
     popfl
     ret
+
+observe 57
+observe 58
+observe 59
+observe 60

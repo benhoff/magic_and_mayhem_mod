@@ -125,7 +125,7 @@ def main():
     if not os.environ.get('DISPLAY'):
         parser.error('Run under xvfb-run -a -s "-screen 0 1280x1024x24"')
     sources=[*sorted((ROOT/'runtime/scene').glob('*.[chS]')),ROOT/'protocols/include/mnm/scene_snapshot_v1.h',
-             ROOT/'runtime/shadow/win32_min.h',ROOT/'reconstruction/rendering/kind8_class.h',ROOT/'tools/build-scene-observer.py',ROOT/'tools/prepare-scene-observer.py',ROOT/'tools/capture-scene-game.py',ROOT/'tools/scene-game-runner.py',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',ROOT/'protocols/include/mnm/world_channel_v2.h',ROOT/'tools/world_channel.py']
+             ROOT/'runtime/shadow/win32_min.h',ROOT/'reconstruction/rendering/kind8_class.h',ROOT/'protocols/include/mnm/world_effect_raster_v1.h',ROOT/'tools/build-scene-observer.py',ROOT/'tools/prepare-scene-observer.py',ROOT/'tools/capture-scene-game.py',ROOT/'tools/scene-game-runner.py',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',ROOT/'protocols/include/mnm/world_channel_v2.h',ROOT/'tools/world_channel.py']
     if args.admitted_prefix_template:sources += [ROOT/'tools/native_prefix_template.py',ROOT/'tools/directplay_dx6_launch.py']
     if args.drawing_publication:sources.append(ROOT/'tools/drawing_publication.py')
     if args.drawing_physical_peer:sources += [ROOT/p for p in ['tools/drawing_physical.py','tools/drawing_presented_session.py','apps/drawing-session/observe.cpp','apps/drawing-session/CMakeLists.txt','apps/qt-shell/window_host.cpp','apps/qt-shell/window_host.hpp']]

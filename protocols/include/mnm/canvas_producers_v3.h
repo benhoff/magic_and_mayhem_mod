@@ -24,3 +24,5 @@
 #define MNM_PRODUCER_NATIVE_COPY_RECT_HRESULT 0x88760096u
 #define MNM_PRODUCER_V3_SOURCES 2048u
 #define MNM_PRODUCER_V3_SOURCE_BYTES (16u*1024u*1024u)
+
+// Tagged owned effect rasters: see world_effect_raster_v1.h.

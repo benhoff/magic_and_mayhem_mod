@@ -10,7 +10,7 @@ def main():
  spec=importlib.util.spec_from_file_location('inspector',ROOT/'tools/inspect-canvas-producers.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
  paths=['runtime/scene/canvas_producers.c','runtime/scene/canvas_producers.S','tests/canvas-producers-test.c','tests/canvas-startup-call.S','tools/test-canvas-producers.py','tools/inspect-canvas-producers.py','runtime/shadow/win32_min.h','protocols/include/mnm/canvas_producers_v1.h','tools/build-scene-observer.py','runtime/scene/world_producer_bypass.c','protocols/include/mnm/world_producer_bypass_v1.h','tests/world-producer-bypass-call.S','runtime/scene/world_raster_callers.h']
  paths += ['protocols/include/mnm/canvas_producers_v3.h','protocols/include/mnm/canvas_producers_v2.h','runtime/scene/world_raster_batch.c','protocols/include/mnm/world_raster_batch_v3.h']
- paths.append('reconstruction/rendering/generic_producer_caller.h')
+ paths += ['reconstruction/rendering/generic_producer_caller.h','tests/world-effect-entry-call.S','tests/world-effect-hook-fixture.h','protocols/include/mnm/world_effect_raster_v1.h']
  claims=json.loads(a.claims.read_text()) if a.claims else None
  sources={name:sha(ROOT/name) for name in paths}
  if claims:
@@ -29,12 +29,22 @@ def main():
   with (out/(name+'.log')).open('x') as log:subprocess.run([str(x) for x in command],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=180)
  run('bridge-build',['python3',ROOT/'tools/build-scene-observer.py','--selftest']);build=ROOT/'working/build/scene-observer-selftest'
  objects=[]
- for name in ['tests/canvas-producers-test.c','tests/canvas-startup-call.S','runtime/scene/canvas_producers.S','tests/world-producer-bypass-call.S']:
+ for name in ['tests/canvas-producers-test.c','tests/canvas-startup-call.S','runtime/scene/canvas_producers.S','tests/world-producer-bypass-call.S','tests/world-effect-entry-call.S']:
   obj=out/(Path(name).name+'.obj');objects.append(obj);run('compile-'+Path(name).name,['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-c',ROOT/name,'-o',obj])
  run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,*[build/(name+'.obj') for name in ('drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S')],build/'kernel32.lib'])
  run('forwarding',['xvfb-run','-a','wine',out/'fixture.exe'])
  marker=(capture/'producer-fixture-pass-0000.bin').read_bytes()
- if len(marker)!=32 or marker[:8]!=b'MNMPFP01' or struct.unpack('<6I',marker[8:])!=(1,57,1,1,1,1):raise ValueError('Fixture completion marker missing or changed')
+ if len(marker)!=32 or marker[:8]!=b'MNMPFP01' or struct.unpack('<6I',marker[8:])!=(1,61,1,1,1,1):raise ValueError('Fixture completion marker missing or changed')
+ _,effect_ops=m.decode((capture/'world-effect-fixture-0000.bin').read_bytes(),complete=False)
+ effect_rows=[(r,p) for r,p in effect_ops if r[2]==9]
+ if [r[14] for r,p in effect_rows]!=[8,9,10,11,12] or [r[15] for r,p in effect_rows]!=[13,14,15,16,7]:raise ValueError('Effect hook wire operation/backend changed')
+ # Resolve the source definitions before checking the normalized payload.
+ definitions={r[1]:payload for r,payload in effect_ops if r[2]==25}
+ for r,payload in effect_rows:
+  if r[4]:payload=definitions[r[4]]
+  if struct.unpack_from('<I',payload,28)[0] or r[19]!=64 or r[20]!={8:512,9:512,10:524,11:520,12:8}[r[14]]:raise ValueError('Effect hook source ownership/extent changed')
+  if r[14]==10 and struct.unpack_from('<3I',payload,64+512)!=(244,198,13):raise ValueError('Tint arguments changed')
+  if r[14]>=11 and struct.unpack_from('<2I',payload,64+(512 if r[14]==11 else 0))!=(1,2):raise ValueError('Effective source/sampling rows changed')
  budget_negative=[]
  for budget in ('0','3073','99999999',''):
   trial=out/('budget-'+(budget or 'empty'));trial.mkdir();trial_env={**env,'MNM_CANVAS_ORACLE_MIB':budget,'MNM_SCENE_DIR':'Z:'+str(trial).replace('/','\\')}
@@ -81,8 +91,9 @@ def main():
   except ValueError:refused+=1
   else:raise AssertionError('Malformed producer stream accepted')
  assert sources=={name:sha(ROOT/name) for name in sources}
- report={'success':True,'sources':sources,'sources_stable':True,'forwarded_entries':57,'native_bypass_entries':1,'complete_raster_bypass_entries':13,'complete_raster_ax_and_cleanup_preserved':True,'outside_world_raster_forwarded':True,'native_bypass_state_preserved_except_recovered_eax':True,'malformed_bypass_refusals':2,'nested_jpeg_lock_forwarded':True,'register_flags_float_error_preserved':True,'signature_refusal_before_mutation':True,'malformed_refusals':refused,'original_renderer_executed':False,'scope':'Actual PE32 entry/return/relocated JPEG-call forwarding against synthetic compatible prologues,57compatible entry sites with53default hooks. Incoming state is retained except recovered zero EAX on admitted generic bypass; flags/x87/SSE/LastError and atomic signature refusal checked. No original pixel equivalence.'}
- report.update(vertical_bar_generation_cache=True,vertical_bar_original_pixels_read=False,vertical_bar_clipped_points=True,vertical_bar_pending_and_changed_storage_refused=True,uniform_colour_source_clipping=True,source_point_atomic_recorder_pair=True,source_point_interface_pairing=True,source_point_unknown_ambiguous_stopped_explicit=True,source_point_pending_depth_identity=True,source_point_bad_outputs_refused=True,source_point_last_error_preserved=True,exact_fixture_completion_marker=True,colour_rect_entry_forwarded=True,actual_producer_hook_sites=53,compatible_entry_sites=57)
+ report={'success':True,'sources':sources,'sources_stable':True,'forwarded_entries':61,'native_bypass_entries':1,'complete_raster_bypass_entries':13,'complete_raster_ax_and_cleanup_preserved':True,'outside_world_raster_forwarded':True,'native_bypass_state_preserved_except_recovered_eax':True,'malformed_bypass_refusals':2,'nested_jpeg_lock_forwarded':True,'register_flags_float_error_preserved':True,'signature_refusal_before_mutation':True,'malformed_refusals':refused,'original_renderer_executed':False,'scope':'Actual PE32 entry/return/relocated JPEG-call forwarding against synthetic compatible prologues,61compatible entry sites with53default hooks. Incoming state is retained except recovered zero EAX on admitted generic bypass; flags/x87/SSE/LastError and atomic signature refusal checked. No original pixel equivalence.'}
+ report.update(effect_entries_native_bypassed=5,effect_wire_normalized=True,effect_guarded_original_canvas_unchanged=True,effect_malformed_refusals=7)
+ report.update(vertical_bar_generation_cache=True,vertical_bar_original_pixels_read=False,vertical_bar_clipped_points=True,vertical_bar_pending_and_changed_storage_refused=True,uniform_colour_source_clipping=True,source_point_atomic_recorder_pair=True,source_point_interface_pairing=True,source_point_unknown_ambiguous_stopped_explicit=True,source_point_pending_depth_identity=True,source_point_bad_outputs_refused=True,source_point_last_error_preserved=True,exact_fixture_completion_marker=True,colour_rect_entry_forwarded=True,actual_producer_hook_sites=53,compatible_entry_sites=61)
  report.update(buffered_journal_byte_equality=True,buffered_journal_capacity=65536,buffered_journal_flush_failure_refused=True)
  report.update(batch_body_skips=13,batch_canvas_writebacks=1,batch_prescribed_ax_cleanup=True,batch_guard_refusals=negative,malformed_batch_reply_refusals=3,batch_original_canvas_unwritten_before_return=True,batch_hud_forwarded_after_return=True)
  report.update(generic_caller_refusals=generic_negative,generic_completed_eax_zero=True)

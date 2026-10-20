@@ -19150,3 +19150,40 @@ upperEAX/flags and full replacement/release gates remain open. See
 static source hashes remain unchanged; new shared-header dependency accounting
 keeps unrelated validation pending. The review journal was losslessly sharded
 with identical flattened receipt values/order, not an engine validation step.
+
+
+### 2026-10-20: owned effect producers and exact low16 completion
+
+The resident producer now has checked580a90/57fe10/581200/580260entries and
+large-period5806f0owned rows. V3/V4/V5 carry tagged operations8..12and backend
+13/14/15/16/7 with selected palette/tint/effective rows, using canonical native
+World decoding. Eleven exact direct continuations are retained independently of
+observed reachability; unknown/helper callers refuse. Default V1 keeps53sites.
+
+WFX.returns-original-20261020 executes67421effect calls over966authored canvases
+with low16zero. WFX.native/hook-native-20261020 compare948GPU canvases and
+14169546original WORDs through producer/source references, plus five actual PE32
+entry paths with exact cleanup/flags/x87/SSE/LastError, seven malformed refusals
+and an unchanged protected original canvas. Caller controls cover43addresses/
+50pairs/3381refusals; inherited8316return cases remain valid in a fresh result.
+
+Original empty-frame preparation with unreadable canvas/palette inputs checks
+source amplitudes1..16, wave256DWORDs/groups0..15 and17cached calls. Native
+inputs copy actual effective offsets, rather than generating an ideal sine.
+Wavegroup16and following storage are not written by this initializer; effective
+values still need the explicit0..32bound. No larger writer/lifetime claim follows.
+
+These are scoped original/headless/synthetic-entry results. Natural effect-route
+reachability, kind9/helper caller admission, class/source lifetime, other modes,
+native prior history, player journeys, performance and full release gates remain
+open. Broad World/kind8stay partial and complete live replacement stays none.
+See [effect producer proof](native-world-effect-producers.md) and
+[low16 model](native-world-effect-returns.md). Historical evidence/source hashes
+remain unchanged; compiled-header reconciliation does not refresh unrelated work.
+
+The effect producer direct-continuation scope is primary/auxiliary. Its earlier
+primary/software wording was a table-label error; the software table is not
+admitted by these eleven continuations. WFX2 repeats the complete948-canvas,
+67421-draw producer/entry/table suite under the corrected prospective contract.
+WFX V4 remains historical after that scope correction; original source hashes
+and reports are preserved. No broader table-mode or live replacement claim follows.
