@@ -19510,3 +19510,24 @@ native storage safely owns all produced words. Count3 skips the bright wing.
 The six broader work groups in `remaining-rendering-implementations-20261020.md`
 remain partial. Existing evidence whose source hashes changed stays historical;
 this packet does not claim full effect, lifecycle, scene or live acceptance.
+
+### Explicit external backing providers — 2026-10-20
+
+The registered provider path now supports cooperative shared/file/imported/GPU
+backing through explicit read leases and producer fences, as selected by the
+user. It pins callback modules and object lifetimes, refuses replayed tokens and
+stale/active generation changes, seals a private immutable value, verifies the
+actual private binding before consumption, and retains the provider lease until
+original-binding restoration. Unknown providers remain refused.
+
+`BACKING.providers-20261020` records 49 actual PE32 observer controls across all
+four kinds with real aliased section mappings and a controlled GPU producer.
+`BACKING.private-regression-20261020` records the existing private allocation,
+raw fault, lifecycle, dispatch, completion and strict-admission controls on the
+same current implementation. The provider callback/fence dependencies are
+controlled; installed external producer enforcement, actual GPU driver fences,
+full original-session comparison and live replacement remain independent.
+See `external-backing-providers-20261020.md` and the v2 journal format. The broader
+six implementation groups remain partial. The prior commit range
+825a1fee..ac852c67 was reviewed against exact receipts with zero file gaps;
+the retained historical report is `working/tests/backing-history-review-20261020.json`.

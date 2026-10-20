@@ -184,8 +184,15 @@ void start(void){
  }
  if(wine_handoff_enabled){dc_call(0);dc_call(1);check(dc_forwards==2);}
  initial_client=*(u32*)(*(u32*)(source+0x120)+0x30);old_pixels=(u8*)(initial_client?initial_client:*(u32*)(source+0x58));
+#ifdef MNM_BACKING_PROVIDER_FIXTURE
+ provider_fixture_setup();
+#endif
  SetLastError(0x1234);__asm__ volatile("fninit; fldz":::"memory");snapshot_fp(expected_fp);
- check(wine_submission_blt((void*)9,destination,0,0,source,0,0,0,0,1)==0);check(forwards==1);if(wine_handoff_enabled){check(!wine_handoff_find(1));if(!initial_client)check(*(u32*)(source+0x58)==(u32)old_pixels);else check(*(u32*)(*(u32*)(source+0x120)+0x30)==initial_client);if(trial==35)check(old_pixels[0]==2);if(trial==2)check(old_pixels[0]==7);}
+ check(wine_submission_blt((void*)9,destination,0,0,source,0,0,0,0,1)==0);check(forwards==1);
+#ifdef MNM_BACKING_PROVIDER_FIXTURE
+ provider_fixture_check();
+#endif
+ if(wine_handoff_enabled){check(!wine_handoff_find(1));if(!initial_client)check(*(u32*)(source+0x58)==(u32)old_pixels);else check(*(u32*)(*(u32*)(source+0x120)+0x30)==initial_client);if(trial==35)check(old_pixels[0]==2);if(trial==2)check(old_pixels[0]==7);}
  check(GetLastError()==0x4321);check_fp(trial==40?async_result_fp:result_fp);
  if(retire_case==6)check(wine_lifetime_texture_decref(source)==1);
  if(ownership_case=='7'||ownership_case=='8'){finish(1);

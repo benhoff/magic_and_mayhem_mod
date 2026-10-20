@@ -62,7 +62,7 @@ static u32 wine_phys_word(void* p,u32 offset){if(!p||!readable((u8*)p+offset,4))
  * A private GPU texture's views retain its resource; shared resources refuse. */
 static void wine_phys_writer(void* resource,u32 kind){
  if(!wine_phys_enabled)return;wine_handoff_resource_guard(resource,kind);if(!wine_phys_any())return;
- if(!resource||wine_phys_word(resource,0x14)!=3||(wine_phys_word(resource,0x30)&7))wine_phys_refuse(0,0,kind,2);
+ if(!resource||wine_phys_word(resource,0x14)!=3||((wine_phys_word(resource,0x30)&7)&&!wine_handoff_transfer_writer(resource,kind)))wine_phys_refuse(0,0,kind,2);
  u32 heap=wine_phys_word(resource,0x58),layers=wine_phys_word(resource,0xb0),levels=wine_phys_word(resource,0xb4),subs=wine_phys_word(resource,0x120);
  if(!layers||!levels||layers>64||levels>64||levels*layers>256||!readable((void*)subs,layers*levels*0x34))wine_phys_refuse(0,0,kind,2);
  for(u32 i=0;i<2048;++i){struct WinePhysicalOwner* o=wine_phys_owners+i;if(!o->refs&&!wine_handoff_stage_writer(o->id,resource,kind))continue;
