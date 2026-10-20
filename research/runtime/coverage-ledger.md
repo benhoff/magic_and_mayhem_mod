@@ -19280,3 +19280,25 @@ live drawing or release performance. Broad World/kind8remain partial and full
 live replacement remains none. Shared historical effect/trail/extent evidence
 is preserved after dependency changes; their full current-code pixel/campaign
 validation remains pending despite the common entry fixture regression.
+
+##640Hermes crop and hardware release journey (2026-10-20)
+
+CAMCROP fixes the fixed800heading crop used on640native captures. All four
+retained failed hardware images read “rlermes” with the old crop and “Hermes”
+with the correctly scaled rectangle. Production capture/OCR replay and four
+authored speaker/staleCPUcontrols pass, with four unsupported extents refused
+before quiet classification. Eleven readiness/transition unit methods pass.
+Exact old failed context/journal/eight PNG inputs are retained reproducibly.
+
+The new NVIDIA/zink run-ys11j89bcompletes internal native NewGame/Enter,
+two36second camera phases with all three selected bodies/four fresh turns,
+Mini Cancel, QuitNo/resume, QuitYes/report/Main exit and normal retirement.
+877Worldreturns/imports remain balanced and ordinary World/native/RGBA readbacks
+are zero. No positive camera-helper Hermes dismissal occurs in that interval;
+headless old-image recognition and live positive reachability stay separate.
+The unchanged20FPSgate fails at9.3659engineFPS, so overall success and
+flow_completed remain false. Source bookends/Wine shutdown pass. Broad camera
+readiness retains historical status/current proof pending; full native drawing
+replacement and release acceptance remain none. The next measured blocker is
+native World throughput, while unknown World/kind8modes/classes/writers remain
+separate unresolved original behavior.
