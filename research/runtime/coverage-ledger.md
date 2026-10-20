@@ -19570,3 +19570,18 @@ and failed/intermediate snapshots are preserved. The committed range
 working/tests/direct-backing-history-review-20261020.json. Gate exports use owned
 scratch on the second NVMe (/var/tmp/mnm-native-rendering-remaining-20261020-coverage),
 preserving the 90 GiB main-drive reserve without altering the cold archive.
+
+### Actor-focus camera helpers — 2026-10-20
+
+CAMERA.follow-original-20261020 supports the bounded
+RE.terrain-camera-follow-position component: complete unchanged original
+004f7a00/004f7ae0, 4,096 signed focus cases,4,096 null-preservation cases and845
+raw cell shifts agree with owned native state, plus native/sanitized unit checks
+and original manifest bookends. Positive XY normalization and raw unsigned cell
+shift/Z semantics remain distinct. Global and receiver map dimensions match in
+this scope. Original function inventory links already exist, so no recovered
+range exception or inventory refresh is required. Camera resource/lifecycle,
+rotation consumers and full native-scene/live acceptance remain separate.
+
+The committed history34bc0397..269d1c5c has zero exact receipt gaps; see
+working/tests/camera-follow-history-review-20261020.json.

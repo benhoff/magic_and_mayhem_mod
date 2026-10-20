@@ -22,5 +22,12 @@ int main()try{
  moveTerrainCameraCells(c,40,28,1,-1);check(c.column==-5 && c.f45==0 && c.row==-1 && c.f49==7);
  before=c;rejected=false;try{moveTerrainCameraCells(c,0,28,1,1);}catch(const std::invalid_argument&){rejected=true;}
  check(rejected && c.column==before.column && c.row==before.row && c.f45==before.f45);
+ c=TerrainCamera{};setTerrainCameraCellPosition(c,40,28,9,-1,29,-1);
+ check(c.column==std::uint32_t(0x7ffffff)%40 && c.row==1 && c.f41==8 && c.f4d==0);
+ followTerrainCamera(c,40,28,9,TerrainCameraFocus{-1,-897,-1});
+ check(c.column==39 && c.row==27 && c.f45==31 && c.f49==31 && c.f41==8 && c.f4d==15);
+ before=c;followTerrainCamera(c,0,0,0,{});check(c.column==before.column && c.f45==before.f45);
+ rejected=false;try{followTerrainCamera(c,0,28,9,TerrainCameraFocus{});}catch(const std::invalid_argument&){rejected=true;}
+ check(rejected && c.column==before.column && c.row==before.row && c.f45==before.f45);
  std::cout<<"Camera setter boundaries passed\n";
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

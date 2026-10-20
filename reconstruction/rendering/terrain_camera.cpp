@@ -35,6 +35,21 @@ void setTerrainCameraPosition(TerrainCamera& c,std::uint32_t w,std::uint32_t h,s
  dimensions(w,h,l);c.column=(x>>5)%w;c.row=(y>>5)%h;c.f41=std::min(z>>4,l-1);
  c.f45=x&31;c.f49=y&31;c.f4d=z&15;
 }
+void setTerrainCameraCellPosition(TerrainCamera& c,std::uint32_t w,std::uint32_t h,std::uint32_t l,
+ std::int32_t x,std::int32_t y,std::int32_t z){
+ setTerrainCameraPosition(c,w,h,l,std::uint32_t(x)<<5,std::uint32_t(y)<<5,std::uint32_t(z)<<4);
+}
+void followTerrainCamera(TerrainCamera& c,std::uint32_t w,std::uint32_t h,std::uint32_t l,
+ std::optional<TerrainCameraFocus> focus){
+ if(!focus)return;
+ dimensions(w,h,l);
+ const auto wrap=[](std::int32_t coordinate,std::uint32_t extent){
+  const auto period=std::int32_t(extent*32);auto result=coordinate%period;
+  if(result<0)result+=period;
+  return std::uint32_t(result);
+ };
+ setTerrainCameraPosition(c,w,h,l,wrap(focus->x,w),wrap(focus->y,h),std::uint32_t(focus->z));
+}
 void scrollTerrainCamera(TerrainCamera& c,std::uint32_t w,std::uint32_t h,std::int32_t x,std::int32_t y){
  dimensions(w,h);if(c.view>3)throw std::invalid_argument("Camera orientation");
  if(!x && !y)return;

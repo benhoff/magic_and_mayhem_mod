@@ -88,3 +88,23 @@ this distinct ownership mode; private-only profile1 remains available. The
 producer must enforce its promise across its own aliases/device writers. An
 unclassified resource still cannot be admitted. Installed producer adapters and
 real driver acceptance remain independent of the generic implementation.
+
+## Camera follow and cell positioning
+
+`RE.terrain-camera-follow-position` implements the whole optional actor-focus
+helper (004f7ae0) and cell-to-fine wrapper (004f7a00). A null focus leaves every
+field untouched, including with no bound map. Signed actor XY coordinates
+normalize into positive fine coordinates using the matching global/receiver map
+extents. Z preserves the original unsigned shift/cap and low fractional bits.
+The cell wrapper shifts raw 32-bit words with defined wrap before the existing
+fine-position setter; negative cells therefore differ from signed actor follow.
+Native invalid dimensions are refused before mutation for non-null focus.
+
+`terrain-camera-follow-original-20261020.json` records 4,096 actor follows,
+4,096 null-preservation cases and 845 raw cell cases, using unchanged PE32
+instructions and guarded private receiver/actor storage, plus native64 and
+ASan/UBSan unit checks. The existing reference's renamed unused main now has an
+explicit return, preserving its executable behavior and avoiding an included
+fixture compiler warning. Original manifest bookends pass. Resource acquisition,
+view/rotation and its creature/effect/minimap consumers remain broader work;
+this comparison makes no full-scene or live replacement claim.
