@@ -126532,7 +126532,9 @@
         "WOUT.original-20261020",
         "WOUT.native-20261020",
         "WTINT.original-20261020",
-        "WTINT.native-20261020"
+        "WTINT.native-20261020",
+        "WROWS.regression-original-20261020",
+        "WROWS.regression-native-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -126542,7 +126544,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "WTINT.source-review-20261020",
+        "review": "WROWS.source-review-20261020",
         "entry": "RS.world-additive-sprite"
       }
     },
@@ -126652,7 +126654,9 @@
         "WOUT.original-20261020",
         "WOUT.native-20261020",
         "WTINT.original-20261020",
-        "WTINT.native-20261020"
+        "WTINT.native-20261020",
+        "WROWS.regression-original-20261020",
+        "WROWS.regression-native-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -126662,7 +126666,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "WTINT.source-review-20261020",
+        "review": "WROWS.source-review-20261020",
         "entry": "RS.world-run-outline"
       }
     },
@@ -126722,7 +126726,9 @@
       ],
       "evidence": [
         "WTINT.original-20261020",
-        "WTINT.native-20261020"
+        "WTINT.native-20261020",
+        "WROWS.regression-original-20261020",
+        "WROWS.regression-native-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -126732,7 +126738,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "WTINT.source-review-20261020",
+        "review": "WROWS.source-review-20261020",
         "entry": "RS.world-tint-outline"
       }
     },
@@ -126764,7 +126770,9 @@
         "tools/coverage_claims.py"
       ],
       "evidence": [
-        "WTINT.native-20261020"
+        "WTINT.native-20261020",
+        "WROWS.regression-original-20261020",
+        "WROWS.regression-native-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -126774,8 +126782,193 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "WTINT.source-review-20261020",
+        "review": "WROWS.source-review-20261020",
         "entry": "NP.tint-owned-canvas-writes"
+      }
+    },
+    {
+      "id": "RS.world-source-row-shift",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Indexed source-write row displacement raster",
+      "scope": "Selected No-CD580260indexed RGB565 source-write placement over owned RLE frames, selected palette and explicit per-source-row offsets0..32. Clip source coverage before shifting writes in the linear tight canvas, preserving row/clip crossings and order. Compare authored amplitude1..16cached-table/phase cases with unchanged original instructions. The native input contains effective row shifts; original lazy initializer/table production, returned status/register state, source writers/ownership, alternate masks and live admission remain separate. Wrapped/overflowing legacy anchor-minus-origin arithmetic is outside admission.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5767776,
+          "scope": "Selected RGB565 row placement/sampling pixel body with effective owned row offsets; input table production and original returned status excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-world-row-effects.md",
+        "research/formats/world-frame-v1.md"
+      ],
+      "implementation": [
+        "renderer/sprites/row_effect.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "protocols/include/mnm/world_frame_v1.h"
+      ],
+      "tests": [
+        "tests/row-effect-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-row-effects.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/resource-fixtures.hpp",
+        "tools/coverage_claims.py",
+        "compat/legacy/CMakeLists.txt",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_preparation.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/isolated_dispatch.inc",
+        "tests/additive-sprite-test.cpp",
+        "assets/sprite_run_clipping.hpp"
+      ],
+      "evidence": [
+        "WROWS.native-20261020",
+        "WROWS.original-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WROWS.source-review-20261020",
+        "entry": "RS.world-source-row-shift"
+      }
+    },
+    {
+      "id": "RS.world-wave-large-period",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Owned large-period destination displacement stencil",
+      "scope": "Selected No-CD5806f0RGB565 RLE destination-sampling pixels for amplitude9..16with explicit per-source-row offsets0..32. Preserve captured run boundaries, clipped branch rules, tight linear canvas sampling and frozen per-draw GPU history. Authored cached-table/phase inputs only; no ideal sine prediction, lazy initializer/table writer, original status/register, arbitrary physical alias or live replacement claim. Wrapped/overflowing legacy anchor-minus-origin arithmetic is outside admission.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5768944,
+          "scope": "Selected RGB565 row placement/sampling pixel body with effective owned row offsets; input table production and original returned status excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-world-row-effects.md",
+        "research/formats/world-frame-v1.md"
+      ],
+      "implementation": [
+        "renderer/sprites/row_effect.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "protocols/include/mnm/world_frame_v1.h"
+      ],
+      "tests": [
+        "tests/row-effect-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-row-effects.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/resource-fixtures.hpp",
+        "tools/coverage_claims.py",
+        "compat/legacy/CMakeLists.txt",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_preparation.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/isolated_dispatch.inc",
+        "tests/additive-sprite-test.cpp",
+        "assets/sprite_run_clipping.hpp"
+      ],
+      "evidence": [
+        "WROWS.native-20261020",
+        "WROWS.original-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WROWS.source-review-20261020",
+        "entry": "RS.world-wave-large-period"
+      }
+    },
+    {
+      "id": "NP.row-effect-owned-ranges",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned covered row-effect read/write ranges",
+      "scope": "Intentional native row-effect admission: derive all covered source-placement writes or destination-sampling reads before mutation, using owned validated RLE runs and one offset per source row. Require tight canvas rows, offsets0..32, supported sprite/clip geometry and in-range linear WORDs. Permit row/clip crossings inside owned storage, refuse out-of-span reads/writes atomically, and freeze native GPU history per destination-sampling draw. No original arbitrary-pointer/alias equivalence or asynchronous ownership claim. Wrapped/overflowing legacy anchor-minus-origin arithmetic is outside admission.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-row-effects.md"
+      ],
+      "implementation": [
+        "renderer/sprites/row_effect.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "protocols/include/mnm/world_frame_v1.h"
+      ],
+      "tests": [
+        "tests/row-effect-test.cpp",
+        "tools/test-row-effects.py"
+      ],
+      "validation_dependencies": [
+        "tests/additive-sprite-test.cpp",
+        "tests/resource-fixtures.hpp",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "WROWS.native-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WROWS.source-review-20261020",
+        "entry": "NP.row-effect-owned-ranges"
       }
     }
   ],
@@ -284865,6 +285058,182 @@
         }
       ],
       "sources_pointer": "/failed_report_sources"
+    },
+    {
+      "id": "WROWS.original-20261020",
+      "kind": "isolated_original",
+      "scope": "Explicit effective row offsets0..32: indexed source placement580260 amplitudes1..16 and destination sampling5806f0 amplitudes9..16, frozen authored original tables, unsigned phase wrap, source clipping, encoded whole-run clipping, owned linear row crossings and ordered GPU snapshots. Tagged owned wire, worker and atlas/non-atlas paths. Excludes table initialization/writers, return/register behavior, physical aliases, original pointer ownership and live admission.",
+      "record": "research/runtime/native-world-row-effects-validation-20261020.json",
+      "sha256": "dee847a41491821493469eedd7686ae08fbd008d4589056041a57c6039f0e3c3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_pixels_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wire_and_worker_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/isolated_render_process_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 1251666
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "WROWS.native-20261020",
+      "kind": "native_integration",
+      "scope": "Explicit effective row offsets0..32: indexed source placement580260 amplitudes1..16 and destination sampling5806f0 amplitudes9..16, frozen authored original tables, unsigned phase wrap, source clipping, encoded whole-run clipping, owned linear row crossings and ordered GPU snapshots. Tagged owned wire, worker and atlas/non-atlas paths. Excludes table initialization/writers, return/register behavior, physical aliases, original pointer ownership and live admission.",
+      "record": "research/runtime/native-world-row-effects-validation-20261020.json",
+      "sha256": "dee847a41491821493469eedd7686ae08fbd008d4589056041a57c6039f0e3c3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_pixels_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wire_and_worker_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/isolated_render_process_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 1251666
+        }
+      ]
+    },
+    {
+      "id": "WROWS.regression-original-20261020",
+      "kind": "isolated_original",
+      "scope": "Selected581200 tinted start-1/start and end-2/end-1 pairs, owned-span refusal, row/clip crossing and palette-half branches across all255 bounded shades and every low-byte RGB input; Selected57fe10 endpoint/horizontally-clipped-half branches and580a90 regression:  indexed RGB565 raster: all65536 destination words across64 source colors cover every red/green/blue channel pair; clipped RLE runs/holes, zero palette entries, signed anchors, ordered overlap, tagged owned wire, worker and atlas/non-atlas GPU paths. No pointer ownership, live queue admission, other modes or replacement claim.",
+      "record": "research/runtime/native-world-row-effects-regression-20261020.json",
+      "sha256": "4ab175b7caebc97dd8447176516c072459243bfb9276c69261ec2a3f4fd86ed7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_pixels_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wire_and_worker_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/isolated_render_process_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 13967543
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "WROWS.regression-native-20261020",
+      "kind": "native_integration",
+      "scope": "Selected581200 tinted start-1/start and end-2/end-1 pairs, owned-span refusal, row/clip crossing and palette-half branches across all255 bounded shades and every low-byte RGB input; Selected57fe10 endpoint/horizontally-clipped-half branches and580a90 regression:  indexed RGB565 raster: all65536 destination words across64 source colors cover every red/green/blue channel pair; clipped RLE runs/holes, zero palette entries, signed anchors, ordered overlap, tagged owned wire, worker and atlas/non-atlas GPU paths. No pointer ownership, live queue admission, other modes or replacement claim.",
+      "record": "research/runtime/native-world-row-effects-regression-20261020.json",
+      "sha256": "4ab175b7caebc97dd8447176516c072459243bfb9276c69261ec2a3f4fd86ed7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_pixels_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wire_and_worker_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/isolated_render_process_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 13967543
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -305452,7 +305821,9 @@
         "WOUT.original-20261020",
         "WOUT.native-20261020",
         "WTINT.original-20261020",
-        "WTINT.native-20261020"
+        "WTINT.native-20261020",
+        "WROWS.regression-original-20261020",
+        "WROWS.regression-native-20261020"
       ]
     },
     {
@@ -305471,7 +305842,9 @@
         "WOUT.original-20261020",
         "WOUT.native-20261020",
         "WTINT.original-20261020",
-        "WTINT.native-20261020"
+        "WTINT.native-20261020",
+        "WROWS.regression-original-20261020",
+        "WROWS.regression-native-20261020"
       ]
     },
     {
@@ -305488,7 +305861,9 @@
       ],
       "evidence": [
         "WTINT.original-20261020",
-        "WTINT.native-20261020"
+        "WTINT.native-20261020",
+        "WROWS.regression-original-20261020",
+        "WROWS.regression-native-20261020"
       ]
     },
     {
@@ -305503,7 +305878,9 @@
         "tools/test-tint-outline.py"
       ],
       "evidence": [
-        "WTINT.native-20261020"
+        "WTINT.native-20261020",
+        "WROWS.regression-original-20261020",
+        "WROWS.regression-native-20261020"
       ]
     },
     {
@@ -305522,6 +305899,54 @@
       "evidence": [
         "K8OBS.live-20261020",
         "K8OBS.replay-gap-review-20261020"
+      ]
+    },
+    {
+      "id": "native-rs-world-source-row-shift",
+      "scope": "Owned row-effect decoding, source binding/preparation, GPU pixels and whole-span admission over authored cached-table/phase and clipping fixtures; no live producer acceptance.",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-source-row-shift"
+      ],
+      "tests": [
+        "tests/row-effect-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-row-effects.py"
+      ],
+      "evidence": [
+        "WROWS.native-20261020"
+      ]
+    },
+    {
+      "id": "native-rs-world-wave-large-period",
+      "scope": "Owned row-effect decoding, source binding/preparation, GPU pixels and whole-span admission over authored cached-table/phase and clipping fixtures; no live producer acceptance.",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-wave-large-period"
+      ],
+      "tests": [
+        "tests/row-effect-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-row-effects.py"
+      ],
+      "evidence": [
+        "WROWS.native-20261020"
+      ]
+    },
+    {
+      "id": "native-np-row-effect-owned-ranges",
+      "scope": "Owned row-effect decoding, source binding/preparation, GPU pixels and whole-span admission over authored cached-table/phase and clipping fixtures; no live producer acceptance.",
+      "level": "headless",
+      "behaviors": [
+        "NP.row-effect-owned-ranges"
+      ],
+      "tests": [
+        "tests/row-effect-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-row-effects.py"
+      ],
+      "evidence": [
+        "WROWS.native-20261020"
       ]
     }
   ],
@@ -306175,8 +306600,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-tint-pair-20261020.json",
-    "sha256": "18f3ce03ce21672c8ab763db414c2de2a1e706631dac07182ae89cc6f52dc1db"
+    "path": "research/runtime/coverage/source-index-row-effects-v2-20261020.json",
+    "sha256": "cfb2a4f4cf5174f8b58bd6426dd276bfe11178a2be495e5468e5f14f509bbaae"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -306218,9 +306643,9 @@
       "sha256": "37bf5b30142674e1df78040dcc236187633f0f0c6f76638f2a1394396eafae7b"
     },
     {
-      "id": "WTINT.source-review-20261020",
-      "path": "research/runtime/coverage/tint-pair-source-review-20261020.json",
-      "sha256": "bbb138be0f76ce14fb57a744f2baab590447432fc6c1429f31b1951dbc2eae44"
+      "id": "WROWS.source-review-20261020",
+      "path": "research/runtime/coverage/row-effects-source-review-20261020.json",
+      "sha256": "21be0161e8b191cffa340f4fc7657dafa18fe055a1df6a15cdf648a56f6723b6"
     }
   ]
 }

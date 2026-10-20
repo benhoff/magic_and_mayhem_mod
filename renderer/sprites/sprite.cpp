@@ -103,4 +103,11 @@ void UploadedSpriteFrame::drawClipped(SurfaceId destination,int anchorX,int anch
     renderer_.composite(pixels_,destination,{int(left-x),int(top-y),int(right-x),int(bottom-y)},int(left),int(top),mask_,composite);
 }
 
+void UploadedSpriteFrame::drawRegion(SurfaceId destination,Rect source,int x,int y,const SpriteComposite& composite){
+    if(!ready())throw std::runtime_error("Sprite upload is incomplete");
+    if(source.left<0||source.top<0||source.right<=source.left||source.bottom<=source.top||source.right>width_||source.bottom>height_)
+        throw std::invalid_argument("Sprite region outside source");
+    renderer_.composite(pixels_,destination,source,x,y,mask_,composite);
+}
+
 }

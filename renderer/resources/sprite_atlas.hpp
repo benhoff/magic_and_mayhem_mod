@@ -15,6 +15,7 @@ public:
     void supply(const ResourceUploadRequest&,PreparedSpriteFrame);
     bool advance(const ResourceUploadRequest&,std::size_t&);
     void draw(const ResourceUploadRequest&,SurfaceId,int,int,std::optional<Rect>,const SpriteComposite&);
+    void drawRegion(const ResourceUploadRequest&,SurfaceId,Rect,int,int,const SpriteComposite&);
     void release(const assets::ResourceId&);
     void clear();
     ResourceCacheStats stats() const {return stats_;}

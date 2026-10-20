@@ -147,7 +147,7 @@ void WorldPreparation::run(const std::shared_ptr<State>& state){
             }
             result.draws.reserve(plan->frame->draws.size());
             for(const auto& draw:plan->frame->draws){check();if((draw.additive||draw.colourRectangle)){result.draws.push_back(worldPrimitiveDraw(draw));continue;}const auto bound=resolve(draw.frame,indexes);
-                result.draws.push_back({bound.resource,bound.frame,draw.x,draw.y,true,true,draw.colours,draw.clip,draw.composite});}
+                result.draws.push_back(worldSpriteDraw(draw,bound));}
             {std::lock_guard<std::mutex> lock(state->mutex);state->stats.prepareMs+=milliseconds(prepareStart);state->stats.resourcesPrepared+=result.resources.size();state->stats.retainedDecodedBytes=retainedBytes;}
             uploadFrame=result.frame;uploadDraws=result.draws;check();publish(std::move(result));plan.reset();
         }

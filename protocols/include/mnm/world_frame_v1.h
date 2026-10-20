@@ -30,3 +30,8 @@
 /* Indexed581200 extension: backend15, selected palette followed by three
  * raw RGB DWORDs (low8 bits each). Signed shade is restricted to-127..127. */
 #define MNM_WORLD_TINT_OUTLINE 10u
+/* Per-source-row owned offsets, one DWORD per encoded frame row. Backend16
+ * source placement adds an indexed palette; backend7 destination sampling has
+ * offsets only. Tight canvas rows required; old readers reject these tags. */
+#define MNM_WORLD_SOURCE_ROW_SHIFT 11u
+#define MNM_WORLD_DESTINATION_ROWS 12u

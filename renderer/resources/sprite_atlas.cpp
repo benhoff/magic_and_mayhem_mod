@@ -109,6 +109,16 @@ void SpriteAtlas::draw(const ResourceUploadRequest& r,SurfaceId destination,int 
     const auto* palette=e.palette?(r.colours?&*r.colours:&*e.palette):nullptr;
     renderer_.composite(e.page->pixels,destination,source,int(left),int(top),e.page->mask,composite,palette);
 }
+void SpriteAtlas::drawRegion(const ResourceUploadRequest& request,SurfaceId destination,Rect source,int x,int y,const SpriteComposite& composite){
+    const auto it=entries_.find(key(request));if(it==entries_.end()||it->second.pending)throw std::runtime_error("Atlas frame not ready");
+    auto& entry=it->second;const auto width=entry.region.right-entry.region.left,height=entry.region.bottom-entry.region.top;
+    if(!entry.page||source.left<0||source.top<0||source.right<=source.left||source.bottom<=source.top||source.right>width||source.bottom>height)
+        throw std::invalid_argument("Atlas region outside source");
+    ++stats_.hits;entry.used=++clock_;entry.page->used=entry.used;
+    source={source.left+entry.region.left,source.top+entry.region.top,source.right+entry.region.left,source.bottom+entry.region.top};
+    const auto* palette=entry.palette?(request.colours?&*request.colours:&*entry.palette):nullptr;
+    renderer_.composite(entry.page->pixels,destination,source,x,y,entry.page->mask,composite,palette);
+}
 void SpriteAtlas::release(const assets::ResourceId& id){
     for(auto it=entries_.begin();it!=entries_.end();)if(std::get<0>(it->first)==int(id.kind)&&std::get<1>(it->first)==id.name){
         if(it->second.page)--it->second.page->entries;

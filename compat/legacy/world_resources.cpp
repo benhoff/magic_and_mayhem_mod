@@ -207,8 +207,7 @@ WorldResources::display(const WorldFrame &frame) {
       continue;
     }
     const auto bound = bindings_.resolve(identities.at(i++), true);
-    draws.push_back({bound.resource, bound.frame, draw.x, draw.y, true, true,
-                     draw.colours, draw.clip, draw.composite});
+    draws.push_back(worldSpriteDraw(draw,bound));
   }
   if(profileEnabled_){profile_.identitiesMs=ms(start,identified);profile_.catalogueMs=ms(identified,catalogued);profile_.resourcesMs=ms(catalogued,prepared);profile_.resolveMs=ms(prepared,Clock::now());}
   return draws;

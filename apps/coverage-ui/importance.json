@@ -69,6 +69,13 @@
       "contract_sha256": "87e87ba8d334cd5c5595213f9f4f6adfb6ffce98d02c26d5be56d9006560a917"
     },
     {
+      "behavior": "NP.correct-output-recorded-acceptance",
+      "weight": 5,
+      "work_type": "acceptance",
+      "reason": "Complete paired software/NVIDIA frame admission protects the critical native rendering acceptance decision; a profile pass grants no global renderer credit.",
+      "contract_sha256": "90ec85fcdf2618bb82b41dc1611099ffeaf5e66fbe036f368f1c7b02de6b1dbb"
+    },
+    {
       "behavior": "NP.native-clipped-image-copy",
       "weight": 4,
       "work_type": "capability",
@@ -95,6 +102,27 @@
       "work_type": "capability",
       "reason": "Ordered CPU instruction resumption under an owned Lock: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
       "contract_sha256": "83eded1d55ff7bfb61c2af1aee31791efc9b22d35c4da17d9019113353d17a21"
+    },
+    {
+      "behavior": "NP.native-draw-clean-shutdown",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Scoped native DirectDraw retirement supplier: implementation and current owned controls are supplied; broader compatibility, original comparison and live acceptance remain independent.",
+      "contract_sha256": "e19321656f20361e97c18f9b3b7d7e642d4865d529f64764825f1aab954a43c9"
+    },
+    {
+      "behavior": "NP.native-draw-page-hints",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Scoped native DirectDraw retirement supplier: implementation and current owned controls are supplied; broader compatibility, original comparison and live acceptance remain independent.",
+      "contract_sha256": "2f1b252687345cfd5f224c4ea84c31bfa545431c0517c4eb71e18a212ddc1ba5"
+    },
+    {
+      "behavior": "NP.native-draw-startup-probe-retirement",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Scoped native DirectDraw retirement supplier: implementation and current owned controls are supplied; broader compatibility, original comparison and live acceptance remain independent.",
+      "contract_sha256": "e0bbae1255527e922545882e33e388a7c034026b875a71daded05b5b94350986"
     },
     {
       "behavior": "NP.native-extended-2d",
@@ -160,11 +188,46 @@
       "contract_sha256": "cef058ba56d5f693ca0313ed7747d4af91f6b3b6a5291e7c2e439a7250a87321"
     },
     {
+      "behavior": "NP.retained-native-surface-aliases",
+      "weight": 5,
+      "work_type": "capability",
+      "reason": "Retained COM aliases protect critical native graphics storage lifetime across creator-surface release; the test deliberately excludes early caller-device release and global physical ownership.",
+      "contract_sha256": "a1ad58823e880afe685c5ca468c18aeeda46a62f1c91c62069a13f3312f8f2d6"
+    },
+    {
+      "behavior": "NP.row-effect-owned-ranges",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Visible World row-effect fidelity or complete owned-span admission matters for native scene correctness. The bounded pixel implementation does not close original table production, ownership or live replacement.",
+      "contract_sha256": "6ce82c7e3c74dc76977a60d690e994a1964b4d1e0647bf1aa33b887013828773"
+    },
+    {
       "behavior": "NP.surface-final-word-read",
       "weight": 5,
       "work_type": "capability",
       "reason": "Native surface readable final-pixel DWORD tail: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
       "contract_sha256": "4c8b361d721f687d6be512d44d8a90d670bcc4a3a084b698f4d4e177bf245d58"
+    },
+    {
+      "behavior": "NP.tint-owned-canvas-writes",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Selected tinted World raster and its owned pair-write admission supply missing kinds12..14 pixels; physical source ownership, other leaves and full-session acceptance remain independent.",
+      "contract_sha256": "d1903be1beb228e2e1959e80447254e4eb687622fc716ad777572665f52e5247"
+    },
+    {
+      "behavior": "NP.world-inherited-kind8-caller",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Exact caller/tag/signature admission enables the known inherited native object path while retaining unsupported-call refusal; full-session and physical ownership proof remain separate.",
+      "contract_sha256": "272c174b1ca734ab2373ca6ed1906040010178695732464a28fcca5f863b70fa"
+    },
+    {
+      "behavior": "NP.world-trail-admission",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native work/overflow guard prevents partial output for rejected owned trails; it is not current whole-session ownership or original clipping evidence.",
+      "contract_sha256": "f1979e932a3a54c43b03f83b2f0e0df75bf15697549a373f920b17e161d52c67"
     },
     {
       "behavior": "NR.application-shutdown",
@@ -2295,11 +2358,25 @@
       "contract_sha256": "b31ca0d5a6c5b28904ca5b32baef2f6484d8e35e63b47833aeef3bb1160f2cb8"
     },
     {
+      "behavior": "RS.world-additive-sprite",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Additive indexed sprites supply kind10 and kind9 trail pixels; source ownership, producer discovery and full-session replacement remain independent.",
+      "contract_sha256": "e725306da3a3dbc0ca7d05c8a6d0411ea140cdfe50a2d8dd11c1e62454bb2fd6"
+    },
+    {
       "behavior": "RS.world-composition",
       "weight": 4,
       "work_type": "capability",
       "reason": "Selected native integer World raster composition: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
       "contract_sha256": "4159f515b442f45e277c91f02fc4a08c60d9cb9d8c3af48b20aa39ac15970561"
+    },
+    {
+      "behavior": "RS.world-dispatch-routing",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Owned dispatch of all three tables is a core rendering foundation; downstream raster and live installation remain separate.",
+      "contract_sha256": "0c48e0066aecf7eb456a33f2504d9341ed585d2b63062a047a48179675b34ba9"
     },
     {
       "behavior": "RS.world-dispatch-targets",
@@ -2337,6 +2414,13 @@
       "contract_sha256": "549a634a7e4b92075a2b614efa941e471dfc953c73f48c07b138253021c808e1"
     },
     {
+      "behavior": "RS.world-kind8-methods",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Owned virtual-method owner gates, flags and return semantics protect selected native object drawing; writers and lifetime remain separate.",
+      "contract_sha256": "950054c5bb7f0cfa9a73a5efb053904b1b144dd0abc0c0792a8fba978df486a2"
+    },
+    {
       "behavior": "RS.world-kind8-noop",
       "weight": 3,
       "work_type": "capability",
@@ -2351,11 +2435,25 @@
       "contract_sha256": "698beb783b80ede38d05ed5ac57291d3a4313e3fa6cad13e387185538e276276"
     },
     {
+      "behavior": "RS.world-kind9-trail",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded sprite trail placement feature with original call/return comparison, independent of downstream raster pixels and live source ownership.",
+      "contract_sha256": "7a5e1e0ce9f9110696c272c6299b9564bc68f7e4a1d25797d5e83467cc2c464a"
+    },
+    {
       "behavior": "RS.world-producer-bypass",
       "weight": 5,
       "work_type": "capability",
       "reason": "Bounded closed generic World raster entry bypass and native writeback: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
       "contract_sha256": "f873234b8c72da77d379c323ea32c110adfab34042a75171fd6dbcfb2abfe704"
+    },
+    {
+      "behavior": "RS.world-queue-state",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Ordered clipping, queue metadata and postlude effects are required for a faithful consumer; arbitrary live state and raster effects remain outside this bounded comparison.",
+      "contract_sha256": "f78a73fdd9c6e9d2708864e8dbf52c3c6952a758dd3f6fe48f89acf8141be473"
     },
     {
       "behavior": "RS.world-raster-batch-return",
@@ -2370,6 +2468,20 @@
       "work_type": "capability",
       "reason": "Bounded complete World raster queue replacement with recovered AX fallback: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
       "contract_sha256": "a509247c681d25fb98cd20946fb4eee39dea8c9f1b2731c92ed943b40d27eeae"
+    },
+    {
+      "behavior": "RS.world-run-outline",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "The kind7 indexed outline branch changes raster semantics with horizontal clipping and preserves RLE segmentation; this supplies a missing World pixel leaf while live ownership and complete replacement remain independent.",
+      "contract_sha256": "192fe8c66d711dc79d883b0d68c74f42509f0e4f5fd53e239c6aa4670d571bc0"
+    },
+    {
+      "behavior": "RS.world-source-row-shift",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Visible World row-effect fidelity or complete owned-span admission matters for native scene correctness. The bounded pixel implementation does not close original table production, ownership or live replacement.",
+      "contract_sha256": "cdad5d116e764610da5266a54f2ed43fa5636d56695917496313d8243ddf8765"
     },
     {
       "behavior": "RS.world-startup-palette",
@@ -2393,104 +2505,6 @@
       "contract_sha256": "931bc195af62f50d08f9973941e0f659e7343f044856c69dc55e8352a287b9ba"
     },
     {
-      "behavior": "TOOL.native-campaign-artifact-check",
-      "weight": 2,
-      "work_type": "diagnostic",
-      "reason": "Postcheck captured gameplay without clearing performance failures: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "7c01c1c423a75a95e3a95007f0718e42d160172caab2d378e06eaa747ee77a79"
-    },
-    {
-      "behavior": "NP.native-draw-page-hints",
-      "weight": 4,
-      "work_type": "capability",
-      "reason": "Scoped native DirectDraw retirement supplier: implementation and current owned controls are supplied; broader compatibility, original comparison and live acceptance remain independent.",
-      "contract_sha256": "2f1b252687345cfd5f224c4ea84c31bfa545431c0517c4eb71e18a212ddc1ba5"
-    },
-    {
-      "behavior": "NP.native-draw-startup-probe-retirement",
-      "weight": 4,
-      "work_type": "capability",
-      "reason": "Scoped native DirectDraw retirement supplier: implementation and current owned controls are supplied; broader compatibility, original comparison and live acceptance remain independent.",
-      "contract_sha256": "e0bbae1255527e922545882e33e388a7c034026b875a71daded05b5b94350986"
-    },
-    {
-      "behavior": "NP.native-draw-clean-shutdown",
-      "weight": 4,
-      "work_type": "capability",
-      "reason": "Scoped native DirectDraw retirement supplier: implementation and current owned controls are supplied; broader compatibility, original comparison and live acceptance remain independent.",
-      "contract_sha256": "e19321656f20361e97c18f9b3b7d7e642d4865d529f64764825f1aab954a43c9"
-    },
-    {
-      "behavior": "RS.world-dispatch-routing",
-      "weight": 4,
-      "work_type": "capability",
-      "reason": "Owned dispatch of all three tables is a core rendering foundation; downstream raster and live installation remain separate.",
-      "contract_sha256": "0c48e0066aecf7eb456a33f2504d9341ed585d2b63062a047a48179675b34ba9"
-    },
-    {
-      "behavior": "RS.world-kind8-methods",
-      "weight": 4,
-      "work_type": "capability",
-      "reason": "Owned virtual-method owner gates, flags and return semantics protect selected native object drawing; writers and lifetime remain separate.",
-      "contract_sha256": "950054c5bb7f0cfa9a73a5efb053904b1b144dd0abc0c0792a8fba978df486a2"
-    },
-    {
-      "behavior": "RS.world-queue-state",
-      "weight": 4,
-      "work_type": "capability",
-      "reason": "Ordered clipping, queue metadata and postlude effects are required for a faithful consumer; arbitrary live state and raster effects remain outside this bounded comparison.",
-      "contract_sha256": "f78a73fdd9c6e9d2708864e8dbf52c3c6952a758dd3f6fe48f89acf8141be473"
-    },
-    {
-      "behavior": "RS.world-kind9-trail",
-      "weight": 3,
-      "work_type": "capability",
-      "reason": "A bounded sprite trail placement feature with original call/return comparison, independent of downstream raster pixels and live source ownership.",
-      "contract_sha256": "7a5e1e0ce9f9110696c272c6299b9564bc68f7e4a1d25797d5e83467cc2c464a"
-    },
-    {
-      "behavior": "NP.world-trail-admission",
-      "weight": 3,
-      "work_type": "capability",
-      "reason": "A bounded native work/overflow guard prevents partial output for rejected owned trails; it is not current whole-session ownership or original clipping evidence.",
-      "contract_sha256": "f1979e932a3a54c43b03f83b2f0e0df75bf15697549a373f920b17e161d52c67"
-    },
-    {
-      "behavior": "NP.correct-output-recorded-acceptance",
-      "weight": 5,
-      "work_type": "acceptance",
-      "reason": "Complete paired software/NVIDIA frame admission protects the critical native rendering acceptance decision; a profile pass grants no global renderer credit.",
-      "contract_sha256": "90ec85fcdf2618bb82b41dc1611099ffeaf5e66fbe036f368f1c7b02de6b1dbb"
-    },
-    {
-      "behavior": "NP.retained-native-surface-aliases",
-      "weight": 5,
-      "work_type": "capability",
-      "reason": "Retained COM aliases protect critical native graphics storage lifetime across creator-surface release; the test deliberately excludes early caller-device release and global physical ownership.",
-      "contract_sha256": "a1ad58823e880afe685c5ca468c18aeeda46a62f1c91c62069a13f3312f8f2d6"
-    },
-    {
-      "behavior": "RS.world-additive-sprite",
-      "weight": 4,
-      "work_type": "capability",
-      "reason": "Additive indexed sprites supply kind10 and kind9 trail pixels; source ownership, producer discovery and full-session replacement remain independent.",
-      "contract_sha256": "e725306da3a3dbc0ca7d05c8a6d0411ea140cdfe50a2d8dd11c1e62454bb2fd6"
-    },
-    {
-      "behavior": "NP.world-inherited-kind8-caller",
-      "weight": 4,
-      "work_type": "capability",
-      "reason": "Exact caller/tag/signature admission enables the known inherited native object path while retaining unsupported-call refusal; full-session and physical ownership proof remain separate.",
-      "contract_sha256": "272c174b1ca734ab2373ca6ed1906040010178695732464a28fcca5f863b70fa"
-    },
-    {
-      "behavior": "RS.world-run-outline",
-      "weight": 4,
-      "work_type": "capability",
-      "reason": "The kind7 indexed outline branch changes raster semantics with horizontal clipping and preserves RLE segmentation; this supplies a missing World pixel leaf while live ownership and complete replacement remain independent.",
-      "contract_sha256": "192fe8c66d711dc79d883b0d68c74f42509f0e4f5fd53e239c6aa4670d571bc0"
-    },
-    {
       "behavior": "RS.world-tint-outline",
       "weight": 4,
       "work_type": "capability",
@@ -2498,11 +2512,18 @@
       "contract_sha256": "0653d90d50632bb5f07aba11dd0f287d846387977499b81a683a6e7163b5fa90"
     },
     {
-      "behavior": "NP.tint-owned-canvas-writes",
+      "behavior": "RS.world-wave-large-period",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Selected tinted World raster and its owned pair-write admission supply missing kinds12..14 pixels; physical source ownership, other leaves and full-session acceptance remain independent.",
-      "contract_sha256": "d1903be1beb228e2e1959e80447254e4eb687622fc716ad777572665f52e5247"
+      "reason": "Visible World row-effect fidelity or complete owned-span admission matters for native scene correctness. The bounded pixel implementation does not close original table production, ownership or live replacement.",
+      "contract_sha256": "fc4d07250d64f0d38d1b0b65a5e223f75559dd80d6606338ff676d36efe94d96"
+    },
+    {
+      "behavior": "TOOL.native-campaign-artifact-check",
+      "weight": 2,
+      "work_type": "diagnostic",
+      "reason": "Postcheck captured gameplay without clearing performance failures: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
+      "contract_sha256": "7c01c1c423a75a95e3a95007f0718e42d160172caab2d378e06eaa747ee77a79"
     }
   ],
   "tranche_plan": {

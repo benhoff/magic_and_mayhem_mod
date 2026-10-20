@@ -1,5 +1,6 @@
 #pragma once
 #include "resource_cache.hpp"
+#include "../sprites/row_effect.hpp"
 #include <chrono>
 
 namespace mnm::render {
@@ -18,6 +19,7 @@ struct SceneDraw {
     std::optional<AdditiveRectangle> additive{};
     std::optional<ColourRectangle> colourRectangle{};
     bool wholeOpaqueRunClipping=false;
+    std::optional<SpriteRowEffect> rowEffect{};
 };
 struct SceneLimits {
     std::size_t draws=12320;

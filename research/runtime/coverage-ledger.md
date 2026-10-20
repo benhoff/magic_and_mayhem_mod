@@ -19068,3 +19068,32 @@ The read-only success and failed replay are separate registered records; their
 raw captures, helpers and probes are retained in the verified archive under
 working/tests/kind8-live-diagnostics-20261020. Broad kind8, World and complete live
 replacement statuses are unchanged.
+
+
+### 2026-10-20: owned source/sampling row effects
+
+The remaining580260source-write and5806f0amplitude9..16pixel paths now have
+bounded native implementations over explicit effective per-source-row shifts.
+WROWS records486 unchanged-original/native canvases and1251666 exact RGB565
+WORDs with zero differences; all486 repeat through the separate render process.
+World decoding, resource binding, worker descriptors, atlas/non-atlas GPU paths,
+linear row/clip crossings, unsigned phase wrap and per-draw history pass.
+Native range policy validates every covered read/write before mutation, refusing
+past-end requests while preserving the completed frame. A shared World sprite
+conversion repairs the worker's dropped descriptor and preserves whole-run flags
+across all assembly paths. See[native row-effect evidence](native-world-row-effects.md).
+
+The original references consume authored frozen tables/amplitude/phase; native
+inputs carry effective row shifts. Lazy table initialization and overlapping
+cache writers, returned status/registers, original source lifetime/physical alias
+proof and live producer admission remain pending. Operations11/12 are owned
+wire extensions; no live producer emits them yet. Broad World/kind8 scopes stay
+partial and complete live drawing replacement stays unimplemented. The88cyan
+live replay difference remains open and is independent of these pixel results.
+
+WROWS.regression-original/native-20261020 refreshes the earlier additive, outline
+and tinted-pair contracts after these shared changes:480original canvases,
+13967543 exact WORDs and397isolated render-process canvases still match. Prior
+reports retain their original fingerprints and become historical where sources
+changed. The new row scopes add three reviewed bounded implementations; the
+importance catalog has359entries and the static review has216entries.

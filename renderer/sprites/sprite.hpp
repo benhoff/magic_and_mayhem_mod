@@ -33,6 +33,8 @@ public:
     void draw(SurfaceId destination,int anchorX,int anchorY,const SpriteComposite& composite={});
     // Native destination clipping policy; viewport must lie within destination.
     void drawClipped(SurfaceId destination,int anchorX,int anchorY,Rect viewport,const SpriteComposite& composite={});
+    // Native source coordinates avoid re-encoding signed legacy origins.
+    void drawRegion(SurfaceId,Rect source,int x,int y,const SpriteComposite& composite={});
     bool empty() const {return width_==0;}
 private:
     std::optional<PreparedSpriteFrame> pending_;

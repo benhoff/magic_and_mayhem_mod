@@ -150,3 +150,23 @@ its owned canvas. Vertical clipping alone retains pair writes. Padded physical
 storage and wider shade arithmetic are refused/outside this input contract.
 This tagged extension is separate from ordinary operation9endpoints. Old
 readers refuse the unknown tag. The live producer does not emit it yet.
+
+
+## Explicit owned row-effect extensions
+
+Operation11/backend16 requires an indexed normalized frame and a selected
+512-byte RGB565 palette, followed by one signed DWORD shift per source row.
+Operation12/backend7 carries only the row shifts and uses the normalized frame
+as an opaque-run stencil; indexed source colours are not read. Record+60 equals
+the frame height for both operations. The exact payload is512+4*height or
+4*height respectively. Rows must be tight, shifts must be0..32 and signed
+anchor-minus-origin arithmetic must fit signed32. Phase, shade and palette
+ordinal are diagnostics: the payload already owns the effective input state.
+
+Operation11 clips source coverage before shifting the resulting linear writes.
+Operation12 preserves the original whole-run horizontal clipping rule and
+samples a frozen native canvas per draw. Both permit linear row/clip crossings
+inside owned storage. Admission derives and checks every covered write/read
+before mutation and refuses the whole frame on an out-of-range span. Original
+cached table addresses, object pointers and the private test sidecar are absent
+from this wire contract. These extensions grant no live producer admission.

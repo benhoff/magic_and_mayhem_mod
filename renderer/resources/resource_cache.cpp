@@ -157,6 +157,17 @@ void ResourceCache::drawUpload(const ResourceUploadRequest& r,SurfaceId destinat
     auto& uploaded=upload(r);
     if(viewport)uploaded.drawClipped(destination,x,y,*viewport,composite);else uploaded.draw(destination,x,y,composite);
 }
+void ResourceCache::drawRegion(const assets::ResourceId& id,std::size_t frame,SurfaceId destination,Rect source,int x,int y,const SpriteColourTable* colours,const SpriteComposite& composite){
+    checkThread();const auto requestKey=request(id,frame,colours);
+    if(atlas_){
+        if(!atlas_->ready(requestKey)){
+            if(limits_.preparedOnly)throw std::runtime_error("Missing prepared atlas region upload");
+            supply(requestKey,prepareResourceUpload(resources_.resident(requestKey.id),requestKey));
+            auto bytes=std::numeric_limits<std::size_t>::max();while(!atlas_->advance(requestKey,bytes)){}
+        }
+        atlas_->drawRegion(requestKey,destination,source,x,y,composite);
+    }else upload(requestKey).drawRegion(destination,source,x,y,composite);
+}
 void ResourceCache::release(const assets::ResourceId& id){
     checkThread();resources_.recipe(id); // reject invalid/unknown IDs before mutation
     if(atlas_){atlas_->release(id);return;}

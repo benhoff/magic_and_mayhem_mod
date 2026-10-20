@@ -16,7 +16,7 @@ int main(int argc,char** argv)try{
     std::size_t at=80;
     for(unsigned i=0;i<u32(input,36);++i){
         const auto size=u32(input,at),op=u32(input,at+4),n=u32(input,at+32),indexed=u32(input,at+36),payload=u32(input,at+40);
-        if(size!=64+n+payload||((op<6||op==8||op==9||op==10)&&n<40)||at+size>input.size()||op>10)throw std::runtime_error("World raster record");
+        if(size!=64+n+payload||((op<6||op>=8)&&n<40)||at+size>input.size()||op>MNM_WORLD_DESTINATION_ROWS)throw std::runtime_error("World raster record");
         if(op==7){
             if(n||indexed||payload<14||u32(input,at+52)!=12)throw std::runtime_error("Colour rectangle record");
             const auto w=u32(input,at+64),h=u32(input,at+68),mode=u32(input,at+72);
@@ -57,9 +57,9 @@ int main(int argc,char** argv)try{
             at+=size;continue;
         }
         Bytes frame(input.begin()+at+64,input.begin()+at+64+n);std::vector<std::uint32_t> palette(3+128,0);
-        if(op==8||op==9||op==10){
+        if(op==8||op==9||op==10||op==MNM_WORLD_SOURCE_ROW_SHIFT){
             const auto ordinal=u32(input,at+56);const auto shade=std::int32_t(u32(input,at+44));
-            if(indexed!=1||payload!=(op==10?524u:512u)||ordinal>18||shade< -127||shade>127)throw std::runtime_error("Additive sprite palette inputs");
+            if(indexed!=1||payload!=(op==10?524u:op==MNM_WORLD_SOURCE_ROW_SHIFT?512u+u32(frame,8)*4:512u)||ordinal>18||shade< -127||shade>127)throw std::runtime_error("Additive sprite palette inputs");
             // Independent original selection through real linked nodes and
             // shade tables. All other tables contain a deliberately wrong color.
             const unsigned stride=3+128*128;palette.assign((ordinal+1)*stride,0xdeadbeef);
@@ -68,12 +68,35 @@ int main(int argc,char** argv)try{
             int shifted=shade>>2;if(shifted<0)++shifted;
             std::memcpy(palette.data()+ordinal*stride+3+(64+shifted)*128,input.data()+at+64+n,512);
             const auto pointer=std::uint32_t(reinterpret_cast<std::uintptr_t>(palette.data()));std::memcpy(frame.data()+28,&pointer,4);
-        }else if(indexed&&op!=3){if(payload!=512)throw std::runtime_error("Palette extent");std::memcpy(palette.data()+3,input.data()+at+64+n,512);const auto pointer=std::uint32_t(reinterpret_cast<std::uintptr_t>(palette.data()));std::memcpy(frame.data()+28,&pointer,4);}
+        }else if(indexed&&op!=3&&op!=MNM_WORLD_DESTINATION_ROWS){if(payload!=512)throw std::runtime_error("Palette extent");std::memcpy(palette.data()+3,input.data()+at+64+n,512);const auto pointer=std::uint32_t(reinterpret_cast<std::uintptr_t>(palette.data()));std::memcpy(frame.data()+28,&pointer,4);}
         else if(!indexed){std::uint32_t marker=UINT32_MAX;std::memcpy(frame.data()+28,&marker,4);}
         for(const auto& pair:std::vector<std::pair<std::uintptr_t,unsigned>>{{0x6e0008,16},{0x6cbb6c,20},{0x6a49b8,24},{0x656618,28}})global(pair.first,u32(input,at+pair.second));
         using Draw=unsigned (__attribute__((fastcall)) *)(void*,int,int,int,int);
         const int x=std::int32_t(u32(input,at+8)),y=std::int32_t(u32(input,at+12));
         if(op==5){using Shadow=unsigned (__attribute__((fastcall)) *)(void*,int,int);reinterpret_cast<Shadow>(0x57e540)(frame.data(),x,y);}
+        else if(op==MNM_WORLD_SOURCE_ROW_SHIFT||op==MNM_WORLD_DESTINATION_ROWS){
+            const auto states=read((std::string(argv[2])+".rows").c_str());
+            if(states.size()!=12+u32(input,36)*132||std::memcmp(states.data(),"MNMSHFT1",8)||u32(states,8)!=u32(input,36))
+                throw std::runtime_error("Private original row-state descriptor");
+            const auto state=12+i*132,amplitude=u32(states,state);
+            if(!amplitude||amplitude>16||u32(input,at+60)!=u32(frame,8)||
+               payload!=(op==MNM_WORLD_SOURCE_ROW_SHIFT?512u:0u)+u32(frame,8)*4)
+                throw std::runtime_error("Original row-effect geometry/state");
+            global(0x6c4830,u32(input,at+48));
+            if(op==MNM_WORLD_SOURCE_ROW_SHIFT){
+                if(!indexed||u32(input,at+52)!=16)throw std::runtime_error("Source placement backend");
+                global(0x5e15f8,amplitude);
+                for(unsigned j=0;j<32;++j)global(0x5f1450+j*4,u32(states,state+4+j*4));
+                if(u32(states,state+4)==32000)throw std::runtime_error("Private fixture requires a frozen source-shift table");
+                reinterpret_cast<Draw>(0x580260)(frame.data(),x,y,std::int32_t(u32(input,at+44)),int(u32(input,at+56)));
+            }else{
+                if(u32(input,at+52)!=7)throw std::runtime_error("Destination row backend");
+                global(0x5f14d0,0);
+                for(unsigned j=0;j<32;++j)global(0x5f14d0+(amplitude*16+j)*4,u32(states,state+4+j*4));
+                using Wave=unsigned (__attribute__((fastcall)) *)(void*,int,int,int);
+                reinterpret_cast<Wave>(0x5806f0)(frame.data(),x,y,amplitude);
+            }
+        }
         else if(op==3){
             const auto period=u32(input,at+60),amplitude=period/2;if(!period||period>16||payload!=64)throw std::runtime_error("Wave extent");
             const auto backend=u32(input,at+52);

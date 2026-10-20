@@ -50,6 +50,8 @@ public:
     void draw(const assets::ResourceId&,std::size_t frame,SurfaceId destination,
               int anchorX,int anchorY,std::optional<Rect> viewport=std::nullopt,
               const SpriteColourTable* colours=nullptr,const SpriteComposite& composite={});
+    void drawRegion(const assets::ResourceId&,std::size_t,SurfaceId,Rect,int,int,
+                    const SpriteColourTable* colours=nullptr,const SpriteComposite& composite={});
     // Constant-size cache query; no pixel expansion or file loading in prepared mode.
     ResourceUploadRequest request(const assets::ResourceId&,std::size_t,const SpriteColourTable*,std::optional<ShadowRows> = {});
     bool ready(const ResourceUploadRequest&) const;
