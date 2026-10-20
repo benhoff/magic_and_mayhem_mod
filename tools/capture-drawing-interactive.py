@@ -678,5 +678,6 @@ def main():
     a.report.parent.mkdir(parents=True,exist_ok=True)
     with a.report.open('x') as f:json.dump(report,f,indent=2);f.write('\n')
     if failure:raise failure
+    if not report.get('success'):raise ValueError(report.get('error','Capture final validation refused'))
     print(json.dumps({'success':True,'primary_planes':len(observation['frames']),'consumed_input_calls':len(observation['inputs']),'gameplay':effects}))
 if __name__=='__main__':main()

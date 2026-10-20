@@ -38,6 +38,24 @@ class Cases(unittest.TestCase):
     def test_unsupported_copy_is_a_barrier(self):
         raw,records,points,original=fixture();original['wine_blit_worker_observation']['calls'][0]['flags']=123
         result,proof=normalize(raw,records,points,original,[]);self.assertEqual(result,raw);self.assertEqual(proof['moved_copies'],[])
+    def test_multiple_driver_workers_preserve_the_recorded_first_command_policy(self):
+        raw,records,points,original=fixture()
+        original['wine_blit_worker_observation']['calls'].append(dict(original['wine_blit_worker_observation']['calls'][0],call=3))
+        original['wine_source_map_observation']['samples'].append(dict(submission=3,api_entry=1))
+        original['wine_blit_packet_observation']['bindings'].append(dict(worker=3,submission=3))
+        result,proof=normalize(raw,records,points,original,[])
+        self.assertEqual(result,normalize(*fixture(),[])[0])
+        self.assertEqual(len(proof['moved_copies']),2)
+    def test_explicit_read_worker_cannot_disagree_with_its_api(self):
+        with self.assertRaises(ValueError):
+            normalize(*fixture(),[dict(sequence=1,canvas=3,api_entry=1,worker=2)])
+        query=dict(sequence=1,canvas=3,api_entry=1,worker=1)
+        normalize(*fixture(),[query]);self.assertEqual(query['sequence'],0)
+    def test_failed_normalization_keeps_original_snapshot_prefixes(self):
+        query=dict(sequence=1,canvas=3,api_entry=1)
+        with self.assertRaises(ValueError):
+            normalize(*fixture(),[query,dict(sequence=1,canvas=1)])
+        self.assertEqual(query,dict(sequence=1,canvas=3,api_entry=1))
     def test_no_original_pixels_can_select_order(self):
         args=list(fixture());args[3]['expected_pixels']=b'arbitrary diagnostic bytes'
         self.assertEqual(normalize(*args,[])[0],normalize(*fixture(),[])[0])

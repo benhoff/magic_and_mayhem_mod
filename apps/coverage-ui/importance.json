@@ -409,7 +409,7 @@
       "weight": 4,
       "work_type": "diagnostic",
       "reason": "Observed Lock lifecycle of unlocated cached canvases: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature.",
-      "contract_sha256": "b2da0e0509d7ab5bffd7db52ce0aa72f3526700ef5b9816f90c024c3b80127f5"
+      "contract_sha256": "0d841fa0e020b0f307490a60c6921c23340cddcebf30b944dc23b54e423206d2"
     },
     {
       "behavior": "NR.drawing-campaign-guidance-handshake",
@@ -423,7 +423,7 @@
       "weight": 4,
       "work_type": "diagnostic",
       "reason": "Observed original wrapper storage transition journal: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature.",
-      "contract_sha256": "2398ec2e2af323bb0fd7f2380f10174d09ffd4332289d989f546dbcadf26304f"
+      "contract_sha256": "d50926a4e78f4730e20f08afeadad76a79f36364dab0d700673613c25e566abf"
     },
     {
       "behavior": "NR.drawing-comparison-corpus",
@@ -451,7 +451,7 @@
       "weight": 4,
       "work_type": "diagnostic",
       "reason": "Preserve primary acquisition failures alongside copy journal refusal: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature.",
-      "contract_sha256": "b5bbc82f08632321619af7f2e83de536aa649268d3d4c6b0da3b7ff007fe3327"
+      "contract_sha256": "a7dd6576374aeb464369d2fc402e11b2fef2232dac8964fd8e281fa6470e5072"
     },
     {
       "behavior": "NR.drawing-copy-order-observation",
@@ -955,7 +955,7 @@
       "weight": 4,
       "work_type": "diagnostic",
       "reason": "Numerical map-query identity within a unique wrapper Lock interval: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature.",
-      "contract_sha256": "4cf7ad1094cd55fac43356e0b60215a6f2a0a4b8cb26aac726bb61ffde6b4f66"
+      "contract_sha256": "700fae301a178739be7218efb07e3d9719b969af60df4d4ea8ab29e28314b0a0"
     },
     {
       "behavior": "NR.drawing-storage-session-comparison",
@@ -1620,7 +1620,7 @@
       "weight": 4,
       "work_type": "acceptance",
       "reason": "Portable action-bound storage/rebuild EGL session: Sustained speed and complete representative input coverage affect practical use. Measure the acceptance target independently from individual algorithm implementation.",
-      "contract_sha256": "f77123b2aba6a2063779c55f22d5f7a6ec98426ed2561e74defc9ff37b9d12f8"
+      "contract_sha256": "444674f51943b405130867e16d6030382e12d0c3b973ed958ddcc71243c85780"
     },
     {
       "behavior": "NR.surface-access",
@@ -14644,12 +14644,15 @@
                 "tools/capture-drawing-interactive.py": "338a2257af5aedc4f6c6b361cae834af56263215e7795ee11d15714b0baac246",
                 "tools/drawing_storage_transitions.py": "7422badc92e419c06568b576eac425feb95061f5429c8f692d0d51495a69d6b6",
                 "tools/test-drawing-storage-point.py": "29076b23727f6e964b9e251074cf210fa016e7f40f89b476d545cc7d7ca278f9",
-                "tools/test-drawing-storage-transitions.py": "f2f0c641520dfb65f4f453e88a2f74ece0385d67bab3c1e8d95fcae35ed632af"
+                "tools/test-drawing-storage-transitions.py": "f2f0c641520dfb65f4f453e88a2f74ece0385d67bab3c1e8d95fcae35ed632af",
+                "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
+                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "pending_source_review": []
+              "pending_source_review": [],
+              "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
             },
             "work_review_history": [
               {
@@ -14701,6 +14704,59 @@
                   "tools/test-drawing-storage-point.py": "0a7a2207cb2d06024b35e8654af9428b2019529a4278d7ee81f26772143e93c3",
                   "tools/test-drawing-storage-transitions.py": "0b79b8e47576dec8a67fa20b29f594145d7ef0acb8b4346302a09a4d16366727"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "storage_transitions.h emits original wrapper storage transitions and exact query intervals.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Observed query/Lock identity is not allocator, alias or submitted source ownership.",
+                "evidence": [
+                  "DRAW02.storage-transitions-fixture-20261012",
+                  "DRAW02.storage-transitions-original-20261012",
+                  "DRAW02.storage-caller-fixture-20261012",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.ownership-storage-20261020",
+                  "HIGH03.ownership-storage-point-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Observed query/Lock identity is not allocator, alias or submitted source ownership."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/scene/drawing_storage_transitions.h",
+                    "line": 10,
+                    "text": "static u32 storage_address_id(u32 address){"
+                  }
+                ],
+                "source_sha256": {
+                  "protocols/include/mnm/drawing_storage_point_v2.h": "e7c17a78e2c14a840f0d8465333afd7ec0c819b050fa13cab304b5d3468331b8",
+                  "protocols/include/mnm/drawing_storage_transitions_v5.h": "e3988526940d945b78ea78ca8658aedfbfe85de1dfea95eab39df76cbfc06713",
+                  "research/formats/drawing-storage-transitions.md": "0e859cbebd83303b04d5c0ff6aa76a3ddb65c22f08fa437bd054203c70277d6f",
+                  "research/runtime/draw02-canvas-storage-generations.md": "f291f013bc7fe7a4ad0c1eb728581775de6ccfec57adf1960f75b0dd7af7cfa6",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "runtime/scene/drawing_storage_caller.h": "916a59c30c3ac9cf1da39e532a643896aae754759bf5f14e84342cb307454d3f",
+                  "runtime/scene/drawing_storage_point.h": "a34da1e400ee16607ed3d26c13c7324846ce9ce7cd97fc24ef658bfcc996035e",
+                  "runtime/scene/drawing_storage_transitions.h": "9cc151a9e7c6d005d150b6e3ec790895bd04e29d8c301b49d728854e87208a67",
+                  "tests/drawing-storage-point-test.c": "7a0dadd71f4caf79ec4d125a2973d6d4e6fc615f1b1b385c6cd276c0e7e2a3c9",
+                  "tests/drawing-storage-transitions-test.c": "58feb912c40d97c98c1263e7af12fd062965d2befbb9ed23a9de72aee409b14d",
+                  "tests/test-drawing-storage-transitions.py": "f15513e367fbcbfcf20332582515e8d596669e6d2351523664a95657cd39194e",
+                  "tools/analyze-drawing-storage-transitions.py": "f5d1c2ca0cf676b6293f84c659bd7143749d588bea241c351ed4599cefc5180f",
+                  "tools/capture-drawing-interactive.py": "338a2257af5aedc4f6c6b361cae834af56263215e7795ee11d15714b0baac246",
+                  "tools/drawing_storage_transitions.py": "7422badc92e419c06568b576eac425feb95061f5429c8f692d0d51495a69d6b6",
+                  "tools/test-drawing-storage-point.py": "29076b23727f6e964b9e251074cf210fa016e7f40f89b476d545cc7d7ca278f9",
+                  "tools/test-drawing-storage-transitions.py": "f2f0c641520dfb65f4f453e88a2f74ece0385d67bab3c1e8d95fcae35ed632af"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": []
               }
             ],
             "planning_history": [
@@ -14767,12 +14823,15 @@
                 "tests/test-drawing-storage-query-returns.py": "75ad8c1ee0e59acbef3ee9ca89b49b7e60dd0f2b6eae16cb5aa3a8d52fbf3d46",
                 "tools/analyze-drawing-storage-query-returns.py": "cfb887513ea5ef3b86a83974b1a741a02b28f18ae1789838adb4ed04b45b905a",
                 "tools/drawing_storage_query_returns.py": "0caf7f9583ce5d60746a8ba96d9e76108d4b994318d4306eb42d87074d763541",
-                "tools/test-drawing-storage-transitions.py": "f2f0c641520dfb65f4f453e88a2f74ece0385d67bab3c1e8d95fcae35ed632af"
+                "tools/test-drawing-storage-transitions.py": "f2f0c641520dfb65f4f453e88a2f74ece0385d67bab3c1e8d95fcae35ed632af",
+                "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
+                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "pending_source_review": []
+              "pending_source_review": [],
+              "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
             },
             "work_review_history": [
               {
@@ -14815,6 +14874,49 @@
                   "tools/drawing_storage_query_returns.py": "0caf7f9583ce5d60746a8ba96d9e76108d4b994318d4306eb42d87074d763541",
                   "tools/test-drawing-storage-transitions.py": "0b79b8e47576dec8a67fa20b29f594145d7ef0acb8b4346302a09a4d16366727"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "drawing_storage_query_returns.bind checks query identities within unique original Lock intervals.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Numerical interval identity does not establish physical allocation or all alias ownership.",
+                "evidence": [
+                  "DRAW02.draw02-storage-v5-fixture-01-20261013",
+                  "DRAW02.draw02-storage-query-return-guards-01-20261013",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.ownership-storage-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Numerical interval identity does not establish physical allocation or all alias ownership."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/drawing_storage_query_returns.py",
+                    "line": 4,
+                    "text": "def bind(observation):"
+                  }
+                ],
+                "source_sha256": {
+                  "research/formats/drawing-storage-transitions.md": "0e859cbebd83303b04d5c0ff6aa76a3ddb65c22f08fa437bd054203c70277d6f",
+                  "research/runtime/draw02-canvas-storage-generations.md": "f291f013bc7fe7a4ad0c1eb728581775de6ccfec57adf1960f75b0dd7af7cfa6",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/drawing-storage-transitions-test.c": "58feb912c40d97c98c1263e7af12fd062965d2befbb9ed23a9de72aee409b14d",
+                  "tests/test-drawing-storage-query-returns.py": "75ad8c1ee0e59acbef3ee9ca89b49b7e60dd0f2b6eae16cb5aa3a8d52fbf3d46",
+                  "tools/analyze-drawing-storage-query-returns.py": "cfb887513ea5ef3b86a83974b1a741a02b28f18ae1789838adb4ed04b45b905a",
+                  "tools/drawing_storage_query_returns.py": "0caf7f9583ce5d60746a8ba96d9e76108d4b994318d4306eb42d87074d763541",
+                  "tools/test-drawing-storage-transitions.py": "f2f0c641520dfb65f4f453e88a2f74ece0385d67bab3c1e8d95fcae35ed632af"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": []
               }
             ],
             "planning_history": [
@@ -14876,12 +14978,15 @@
                 "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
                 "tests/test-drawing-backing-provenance.py": "34e523146d1c03da662d0fb6d8d95af2903d24dc397c5ab503247d95288262b3",
                 "tools/analyze-drawing-backing-provenance.py": "9e87423a1b005d08fc7558f1209f15371714f9c52087b4f22e6b8bc8b3b3040c",
-                "tools/drawing_backing_provenance.py": "6a78ebc215f4277bfe4124648fcadcbe99702e850a5a8ed2fe05570fa612fd29"
+                "tools/drawing_backing_provenance.py": "6a78ebc215f4277bfe4124648fcadcbe99702e850a5a8ed2fe05570fa612fd29",
+                "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
+                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "pending_source_review": []
+              "pending_source_review": [],
+              "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
             },
             "work_review_history": [
               {
@@ -14922,6 +15027,47 @@
                   "tools/analyze-drawing-backing-provenance.py": "9e87423a1b005d08fc7558f1209f15371714f9c52087b4f22e6b8bc8b3b3040c",
                   "tools/drawing_backing_provenance.py": "6a78ebc215f4277bfe4124648fcadcbe99702e850a5a8ed2fe05570fa612fd29"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "drawing_backing_provenance.classify reports observed lifecycle of otherwise unlocated cached canvases.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. The missing physical location/alias ownership remains unknown rather than supplied by a classifier.",
+                "evidence": [
+                  "DRAW02.backing-provenance-analysis-01-20261013",
+                  "DRAW02.backing-provenance-analysis-02-20261013",
+                  "DRAW02.step2-integration-python-02-20261014",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.host-diagnostics-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "The missing physical location/alias ownership remains unknown rather than supplied by a classifier."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/drawing_backing_provenance.py",
+                    "line": 5,
+                    "text": "def classify(traces, observation):"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/draw02-gpu-backing-provenance.md": "853e3f6435601887e593c3e065cc98ff57d144db60682b43d7aad8d5f2936e37",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/test-drawing-backing-provenance.py": "34e523146d1c03da662d0fb6d8d95af2903d24dc397c5ab503247d95288262b3",
+                  "tools/analyze-drawing-backing-provenance.py": "9e87423a1b005d08fc7558f1209f15371714f9c52087b4f22e6b8bc8b3b3040c",
+                  "tools/drawing_backing_provenance.py": "6a78ebc215f4277bfe4124648fcadcbe99702e850a5a8ed2fe05570fa612fd29"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": []
               }
             ],
             "planning_history": [
@@ -15713,12 +15859,15 @@
                 "research/runtime/draw02-copy-order.md": "5441667ddeadadf01fc828386fb9851322853215b05a898fc166f31a8320fc78",
                 "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
                 "tests/test-drawing-copy-failure-provenance.py": "c54496fda6a17cfc9f893a2a3bad811f9211a87f01006be03e8794098922ce17",
-                "tools/capture-drawing-interactive.py": "338a2257af5aedc4f6c6b361cae834af56263215e7795ee11d15714b0baac246"
+                "tools/capture-drawing-interactive.py": "338a2257af5aedc4f6c6b361cae834af56263215e7795ee11d15714b0baac246",
+                "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
+                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "pending_source_review": []
+              "pending_source_review": [],
+              "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
             },
             "work_review_history": [
               {
@@ -15758,6 +15907,46 @@
                   "tests/test-drawing-copy-failure-provenance.py": "c54496fda6a17cfc9f893a2a3bad811f9211a87f01006be03e8794098922ce17",
                   "tools/capture-drawing-interactive.py": "338a2257af5aedc4f6c6b361cae834af56263215e7795ee11d15714b0baac246"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The acquisition runner preserves primary failures alongside copy-journal refusal.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Preserving a failure is implemented diagnostics; the failed acquisition/ownership domain remains open.",
+                "evidence": [
+                  "DRAW02.draw02-copy-failure-guards-01-20261013",
+                  "DRAW02.draw02-copy-storage-original32-04-20261013",
+                  "DRAW02.draw02-resource-postclose-original32-negative-01-20261013",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.host-diagnostics-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Preserving a failure is implemented diagnostics; the failed acquisition/ownership domain remains open."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/capture-drawing-interactive.py",
+                    "line": 11,
+                    "text": "def strict_route_library_manifest(library_path,library):"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/draw02-copy-order.md": "5441667ddeadadf01fc828386fb9851322853215b05a898fc166f31a8320fc78",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/test-drawing-copy-failure-provenance.py": "c54496fda6a17cfc9f893a2a3bad811f9211a87f01006be03e8794098922ce17",
+                  "tools/capture-drawing-interactive.py": "338a2257af5aedc4f6c6b361cae834af56263215e7795ee11d15714b0baac246"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": []
               }
             ],
             "planning_history": [
@@ -16170,12 +16359,15 @@
                 "tools/drawing_recorded_session.py": "43948bbe036089960c1fd0f4828b17708e1366e0ddce0633f8b9e0a4c0e284de",
                 "tools/recorded_drawing_plan.py": "1238fd81552b0a8009bce6c2fc7122634a07045d24cd5bb289fd1c45bb91b480",
                 "tools/retain-recorded-drawing-session.py": "89c8b9720caa013e1e25d88da69095fac857258fed12c826c5f7fe3f46e2eafe",
-                "tools/test-recorded-drawing-composition.py": "6ba72965f84e7794839cc02557fb8e4cffd6f4f09f0fb6fa5f818e8cf9a53471"
+                "tools/test-recorded-drawing-composition.py": "6ba72965f84e7794839cc02557fb8e4cffd6f4f09f0fb6fa5f818e8cf9a53471",
+                "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
+                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "pending_source_review": []
+              "pending_source_review": [],
+              "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
             },
             "work_review_history": [
               {
@@ -16232,6 +16424,63 @@
                   "tools/retain-recorded-drawing-session.py": "89c8b9720caa013e1e25d88da69095fac857258fed12c826c5f7fe3f46e2eafe",
                   "tools/test-recorded-drawing-composition.py": "6ba72965f84e7794839cc02557fb8e4cffd6f4f09f0fb6fa5f818e8cf9a53471"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The recorded-session adapter retains a portable bounded storage/rebuild interval.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "222 corrected-reference storage/rebuild frames,207590400 pixels and zero mismatches through current native GPU/X11 replay. Legacy238-frame/252-pixel mismatch is retained separately.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Broader action-bound reference/native parity and all required journeys remain independent acceptance targets.",
+                "evidence": [
+                  "DRAW02.storage-session.portable-20261016",
+                  "DRAW02.storage-session.journey-20261016",
+                  "DRAW02.cursor.storage-portable-20261016",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.storage-corrected-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Broader action-bound reference/native parity and all required journeys remain independent acceptance targets."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/drawing_recorded_session.py",
+                    "line": 16,
+                    "text": "def retention_id(catalog):"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/drawing-session/main.cpp": "86f825b4e5358247dc0966b0fb8f94aa00ac81860a064dd195bebfef7883a224",
+                  "apps/drawing-session/recorded_composition.hpp": "0dc69f1c948bc4f8da1e2e81c069baa803e73180258d8b892d80d467f04e3f50",
+                  "research/formats/recorded-drawing-composition-v1.md": "9b1ed4ed380f433b6277fab07a570ff54c7eb622f72d4560c099132acd40eada",
+                  "research/runtime/action-bound-storage-session.md": "9348d668b3914a766b1d9e188d011ab8cfc13bf2dc21b67b5305a3f916d4cf6c",
+                  "research/runtime/drawing-copy-driver-order.md": "c05b92365b745300f759ec76b6347250d50eb4bf174e4ee86d7c8946106edee9",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/fixtures/drawing-journeys/storage-corrected-suite.json": "96bbc6035dba68e4416d1fe11bb33e9684575f92be09ca7a890ff66ed18503f3",
+                  "tests/fixtures/drawing-journeys/storage-suite.json": "9f615c32aa100b685e18bd2a0ecd91e120c5d0786033ff001a2e1d08d816ca86",
+                  "tests/fixtures/drawing-journeys/suite.json": "3091153e8757c4bc66731ea634e0e5a424397853d4567f1f097054e853c36045",
+                  "tests/fixtures/drawing-storage-corrected-session/session.json": "55ea6c4623a2916bdc4a42c3681f75b68aedce85792686ab2b29a234ea6195fc",
+                  "tests/fixtures/drawing-storage-session/session.json": "8fb6fadc81b6c225f325bb6810a22ed81141d128c472971eb1b5615465877ce3",
+                  "tests/test-drawing-copy-order.py": "fe7d37d173ee73173ffa532d2177f439e960b46675ee9d8939cb6bbabe9acf94",
+                  "tests/test-drawing-journeys.py": "316a23d3d4e669339ca39fd502be34d76e25862ed7b86ed85f1e8c12408f3ca3",
+                  "tests/test-drawing-storage-retention.py": "ceb43a3b14fd72c4ac3961a0181ce3ddffc15c1ed7eaeda35004f65534588be6",
+                  "tools/check-drawing-journeys.py": "05cc6ecf1d815df70e96cfa13641308538352d4ece527506430cd9067c271fb4",
+                  "tools/check-recorded-drawing-session.py": "ac66d0653fbcf2027c49d562d6ea1e9c95dfc8699dd10e5363370b6ed1cc854a",
+                  "tools/drawing_copy_order.py": "176f55a39d4d80d8792b4b067c2216cf06a21f4e33939b7de364d3ab40c13644",
+                  "tools/drawing_recorded_session.py": "43948bbe036089960c1fd0f4828b17708e1366e0ddce0633f8b9e0a4c0e284de",
+                  "tools/recorded_drawing_plan.py": "1238fd81552b0a8009bce6c2fc7122634a07045d24cd5bb289fd1c45bb91b480",
+                  "tools/retain-recorded-drawing-session.py": "89c8b9720caa013e1e25d88da69095fac857258fed12c826c5f7fe3f46e2eafe",
+                  "tools/test-recorded-drawing-composition.py": "6ba72965f84e7794839cc02557fb8e4cffd6f4f09f0fb6fa5f818e8cf9a53471"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": []
               }
             ],
             "planning_history": [

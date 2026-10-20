@@ -19160,3 +19160,13 @@ hashes. Wider text/session/driver acceptance and the existing pixel/timing
 failures remain pending independently of this pass.
 
 The storage-interrupted glyph attempt remains separately retained as INCOMPLETE_STORAGE_GUARD and grants no milestone credit. The follow-up commit reviews merged HEAD87105990: all841 source hashes in the successful glyph record match that tree. No historical fingerprint or engine stage is rewritten.
+
+## Third twenty partial contracts, offline group — 2026-10-20
+
+Fixed late capture validation exiting/printing success, conflicting explicit
+COPY read-worker identity and partial source-prefix mutation on rejected
+normalization.59offline controls pass; corrected222frame metadata/1,228COPYs
+retain the historical normalized journal hash. Reviewed backing classification,
+V1..V5storage epochs/callers and same-thread numerical Lock bindings without
+physical ownership or fresh original/live promotion. The [batch progress](third20-implementation-progress-20261020.md)
+keeps the frozen twenty selection and independent remaining boundaries.

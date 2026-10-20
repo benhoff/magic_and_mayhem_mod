@@ -51,7 +51,7 @@ def normalize(raw, records, point_raw, original, snapshots):
     for _ in records:
         offsets.append(cursor);cursor+=struct.unpack_from('<I',raw,cursor)[0]
     if cursor!=len(raw):raise ValueError('COPY wire extent changed')
-    output=bytearray(raw);changes=[];reads=[]
+    output=bytearray(raw);changes=[];reads=[];snapshot_updates=[]
     queries=[(snapshot,snapshot['sequence']) for snapshot in snapshots]
     def reorder(run,end):
         if not run:return
@@ -59,12 +59,19 @@ def normalize(raw, records, point_raw, original, snapshots):
         for snapshot,prefix in queries:
             if not run[0]-1<=prefix<=end:continue
             candidates=workers.get(snapshot.get('api_entry'),[])
-            read_worker=min(w['call'] for w in candidates) if candidates else snapshot.get('worker')
-            if type(read_worker) is not int:raise ValueError('COPY snapshot lacks an exact driver read')
+            explicit=snapshot.get('worker')
+            if candidates:
+                if explicit is not None and (type(explicit) is not int or sum(w['call']==explicit for w in candidates)!=1):
+                    raise ValueError('COPY snapshot worker disagrees with its API')
+                read_worker=min(w['call'] for w in candidates) if explicit is None else explicit
+            else:
+                read_worker=explicit
+            if type(read_worker) is not int or not any(w['call']==read_worker for values in workers.values() for w in values):
+                raise ValueError('COPY snapshot lacks an exact driver read')
             completed=[slot for slot,source in zip(run,ordered) if bound[source]['worker']<read_worker]
             native_prefix=max(completed,default=run[0]-1)
             if native_prefix!=prefix:
-                snapshot['original_sequence']=prefix;snapshot['sequence']=native_prefix
+                snapshot_updates.append((snapshot,prefix,native_prefix))
                 reads.append(dict(original_sequence=prefix,native_sequence=native_prefix,canvas=snapshot['canvas'],read_worker=read_worker))
         for target,source in zip(run,ordered):
             if target==source:continue
@@ -78,6 +85,9 @@ def normalize(raw, records, point_raw, original, snapshots):
         if operation==6 and sequence in bound:run.append(sequence)
         elif operation!=10:reorder(run,sequence-1);run=[]
     reorder(run,len(records))
+    # Publish source-prefix changes only after every run/read has validated.
+    for snapshot,prefix,native_prefix in snapshot_updates:
+        snapshot['original_sequence']=prefix;snapshot['sequence']=native_prefix
     return bytes(output),dict(schema=1,input_sha256=sha256(raw).hexdigest(),normalized_sha256=sha256(output).hexdigest(),bound_driver_copies=len(bound),moved_copies=changes,rebound_reads=reads,
         original_pixels_used_as_native_inputs=False,scope='Exact driver-ordered COPY runs and command-bound source reads only; CPU/other producers remain barriers. No global ordering or source ownership claim.')
 """Strict bounded copy request entry/return journal, independent of driver order."""
