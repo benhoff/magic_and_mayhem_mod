@@ -27,6 +27,9 @@ int main()try{
             "Switch restarted or changed delay/display phase");
     rejected([&]{player.switchSequence({{0,99,{}},{6,-1,{}}});});
     require(player.sprite()==28 && player.state().pc==retained.pc,"Rejected switch mutated player");
+    auto negativeTarget=target;negativeTarget[2].argument=-1;
+    rejected([&]{player.switchSequence(negativeTarget);});
+    require(player.sprite()==28 && player.state().pc==retained.pc,"Negative switch published an invalid display");
     player.tick();player.tick();require(player.tick()==1 && !player.sprite() && !player.state().active,"Stop did not hide sprite");
     require(player.tick()==0,"Inactive player advanced");
     rejected([&]{player.switchSequence(target);});
@@ -35,7 +38,13 @@ int main()try{
     rejected([]{NoCdAnimationPlayer p({{0,0,{}}});});
     rejected([]{NoCdAnimationPlayer p({{4,-1,{}},{6,-1,{}}});p.start();});
     rejected([]{NoCdAnimationPlayer p({{4,0,{}},{6,-1,{}}});p.start();});
-    NoCdAnimationPlayer bad({{0,-1,{}},{6,-1,{}}});bad.start();rejected([&]{bad.sprite();});
+    NoCdAnimationPlayer bad({{0,-1,{}},{6,-1,{}}});
+    rejected([&]{bad.start();});require(!bad.displayedRecord(),"Start published a negative sprite record");
+    NoCdAnimationPlayer initialControl({{1,2,{}},{0,-1,{}},{6,-1,{}}});
+    rejected([&]{initialControl.start();});require(!initialControl.displayedRecord(),"Initial control dispatch published a negative sprite");
+    NoCdAnimationPlayer later({{0,5,{}},{0,-1,{}},{6,-1,{}}});later.start();later.tick();
+    rejected([&]{later.tick();});
+    require(later.sprite()==5 && later.displayedRecord()->argument==5,"Tick published a negative sprite record");
     NoCdAnimationPlayer restart({{0,5,{}},{6,-1,{}}});restart.start();restart.tick();restart.tick();restart.start();require(restart.sprite()==5,"Restart lost selected sequence");
     std::cout<<"Forward tick boundaries, events, stop/restart and bounded control failures pass\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

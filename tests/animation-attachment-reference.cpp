@@ -35,7 +35,10 @@ int main(int argc,char** argv)try{
     const auto first=u32(b,44+4*selection.sequence),end=u32(b,48+4*selection.sequence);
     if(first>=end || end>count)throw std::runtime_error("Selected sequence extent");
     std::vector<mnm::assets::AnimationRecord> records(end-first);std::memcpy(records.data(),b.data()+base+first*44,records.size()*44);
-    mnm::reconstruction::NoCdAnimationPlayer native(records);
+    mnm::reconstruction::ModeOneAttachment native;unsigned resolutions=0;
+    mnm::reconstruction::ModeOneSequenceSource resolve=[&](unsigned asset,unsigned sequence){
+        require(asset==selection.assetIndex && sequence==selection.sequence);++resolutions;return records;
+    };
     Bytes creature(0xe4b),config(37*16),assets(13*0x114);
     pointer(assets,index*0x114,b.data());pointer(assets,index*0x114+4,b.data()+44);pointer(assets,index*0x114+8,b.data()+base);
     auto word=[](Bytes& bytes,unsigned at,std::uint32_t value){std::memcpy(bytes.data()+at,&value,4);};
@@ -46,24 +49,24 @@ int main(int argc,char** argv)try{
     using Change=unsigned(__attribute__((thiscall)) *)(void*,unsigned,unsigned);
     using Tick=std::int32_t(__attribute__((thiscall)) *)(void*);
     const auto change=reinterpret_cast<Change>(0x51ff00);
-    require(change(creature.data(),1,0)==1);native.start();require(u32(creature,0x7f1)==reinterpret_cast<std::uintptr_t>(assets.data()+selection.assetIndex*0x114));
+    require(change(creature.data(),1,0)==1 && native.change(1,baseSequence,index,facing,resolve));require(u32(creature,0x7f1)==reinterpret_cast<std::uintptr_t>(assets.data()+selection.assetIndex*0x114));
     const auto beginning=reinterpret_cast<std::uintptr_t>(b.data()+base+first*44);
     std::cout<<"{\"asset_index\":"<<selection.assetIndex<<",\"sequence\":"<<selection.sequence<<",\"rows\":[";
     for(unsigned tick=0;tick<=ticks;++tick){
         auto event=0;
         if(tick){event=reinterpret_cast<Tick>(0x464ec0)(creature.data()+0x7d5);require(event==native.tick());}
         const auto display=u32(creature,0x7d9);const auto sprite=display?*reinterpret_cast<std::int32_t*>(display+4):-1;
-        const auto& n=native.state();require(u32(creature,0x7cd)==1 && u32(creature,0x7d5)==selection.sequence);
+        const auto& n=native.controller()->state();require(u32(creature,0x7cd)==native.mode() && u32(creature,0x7d5)==native.selection()->sequence);
         require(bool(u32(creature,0x7dd))==n.active && u32(creature,0x7e1)==n.delay && u32(creature,0x7e5)==n.elapsed && u32(creature,0x7e9)==n.repeats && u32(creature,0x7f5)==n.breakFlag);
         require((u32(creature,0x7ed)-beginning)/44==n.pc);
-        require(sprite==(native.sprite()?std::int32_t(*native.sprite()):-1));
+        require(sprite==(native.controller()->sprite()?std::int32_t(*native.controller()->sprite()):-1));
         if(tick)std::cout<<',';
         std::cout<<'['<<tick<<','<<event<<','<<sprite<<','<<(display?std::int64_t((display-beginning)/44):-1)<<','<<n.active<<']';
-        auto before=creature;require(change(creature.data(),1,0)==0 && before==creature);
+        auto before=creature;require(change(creature.data(),1,0)==0 && before==creature && !native.change(1,0xffffffff,0xffffffff,99,{}));
     }
-    require(change(creature.data(),0,0)==1);native.stop();
+    require(change(creature.data(),0,0)==1 && native.change(0,0,0,0,{}));
     for(unsigned at:{4u,8u,12u,16u,20u,24u,32u})require(u32(creature,0x7d5+at)==0);
-    require(!native.sprite() && !native.state().active && !native.state().displayedRecord);
-    require(change(creature.data(),1,0)==1);native.start();require(native.sprite().value()==*reinterpret_cast<std::uint32_t*>(u32(creature,0x7d9)+4));
+    require(!native.controller()->sprite() && !native.controller()->state().active && !native.controller()->state().displayedRecord);
+    require(change(creature.data(),1,0)==1 && native.change(1,baseSequence,index,facing,resolve));require(native.controller()->sprite().value()==*reinterpret_cast<std::uint32_t*>(u32(creature,0x7d9)+4) && resolutions==2);
     std::cout<<"],\"same_mode_noop\":true,\"remove_and_reenter\":true,\"all_match\":true}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

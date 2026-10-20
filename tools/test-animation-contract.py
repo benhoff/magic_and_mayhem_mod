@@ -23,14 +23,14 @@ def main():
         (out/f'original-{phase}.log').write_text(p.stdout+p.stderr);print(p.stdout,end='',flush=True);p.check_returncode()
     verify('before')
     try:
-        exe=REPO/'working/game-nocd/Chaos.exe'
+        exe=REPO/'original/Arcane_Nocd/Chaos.exe'
         if sha(exe.read_bytes())!=HASH:raise ValueError('Unsupported executable')
         sources=['assets/animation.cpp','assets/animation.hpp','assets/animation_inspect_main.cpp',
                  'reconstruction/animation/no_cd.cpp','reconstruction/animation/no_cd.hpp',
                  'tests/animation-binary-reference.cpp','tools/test-animation-contract.py']
         hashes={path:sha((REPO/path).read_bytes()) for path in sources}
         helper=out/'reference'
-        command=['g++','-m32','-std=c++17','-Wall','-Wextra','-Werror','-I'+str(REPO/'reconstruction/animation'),
+        command=['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-I'+str(REPO/'reconstruction/animation'),
                  '-I'+str(REPO/'assets'),str(REPO/'tests/animation-binary-reference.cpp'),
                  str(REPO/'reconstruction/animation/no_cd.cpp'),'-o',str(helper)]
         subprocess.run(command,check=True,capture_output=True,text=True,timeout=60)

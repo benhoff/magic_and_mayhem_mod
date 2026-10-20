@@ -18919,3 +18919,18 @@ native HUD history. Pre-World reuse/initial-state evidence remains historical;
 all-writer, physical ownership, full startup/live replacement are not promoted.
 [Progress](next20-implementation-progress-20261020.md) and the three new immutable
 execution records keep those domains independent.
+
+## Next twenty partial contracts, group 3 — 2026-10-20
+
+Supplied owned body null-display startup288+facing/inclusive SPR-bound descriptors
+and mode-one attachment binding/removal/reentry, and rejected negative selected
+SPR records before publishing native display snapshots. Four native/sanitized
+controls pass. Original matches cover4,608body cases,347forward traces,
+2,140phase traces,6,097,440placement checks and520attachment states;168production
+facing cases are native-only. Existing full forward/reverse controller comparison
+also passes. Broad original/full-entity/live milestones are retained separately;
+the new native admission policy alone has scoped implementation execution credit.
+[Progress](next20-implementation-progress-20261020.md) records all twenty selected
+contracts and the remaining boundaries. Canvas broad-snapshot freshness becomes
+historical after these animation edits; original hashes and execution records
+are not rewritten.

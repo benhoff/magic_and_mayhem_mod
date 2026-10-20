@@ -13,7 +13,7 @@ def main():
         (out/f'original-{phase}.log').write_text(p.stdout+p.stderr);p.check_returncode()
     verify('before')
     try:
-        exe=REPO/'working/game-nocd/Chaos.exe';cfg=REPO/'working/game-clean/CFG/Encrypted/effectani.cfg'
+        exe=REPO/'original/Arcane_Nocd/Chaos.exe';cfg=REPO/'working/game-clean/CFG/Encrypted/effectani.cfg'
         if sha(exe)!=HASH:raise ValueError('Unsupported executable')
         spec=importlib.util.spec_from_file_location('cfg',REPO/'tools/decode-cfg.py');module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
         _,clear=module.decode(cfg.read_bytes());sections={};section=None
@@ -27,7 +27,7 @@ def main():
         index=int(ref[7:]);ani=next(p for p in (REPO/'working/game-clean/Sprites').iterdir() if p.name.lower()==ref.lower()+'.ani')
         sources=['tests/animation-attachment-reference.cpp','reconstruction/animation/attachment.cpp','reconstruction/animation/attachment.hpp','reconstruction/animation/no_cd.cpp','reconstruction/animation/no_cd.hpp','tools/test-animation-attachment.py','tools/decode-cfg.py']
         inputs={p:sha(p) for p in [exe,cfg,ani]+[REPO/s for s in sources]}
-        helper=out/'reference';command=['g++','-m32','-std=c++17','-Wall','-Wextra','-Werror','-I'+str(REPO/'assets'),'-I'+str(REPO/'reconstruction/animation'),str(REPO/sources[0]),str(REPO/sources[1]),str(REPO/sources[3]),'-o',str(helper)]
+        helper=out/'reference';command=['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-I'+str(REPO/'assets'),'-I'+str(REPO/'reconstruction/animation'),str(REPO/sources[0]),str(REPO/sources[1]),str(REPO/sources[3]),'-o',str(helper)]
         p=subprocess.run(command,capture_output=True,text=True,timeout=60);(out/'compile.log').write_text(p.stdout+p.stderr);p.check_returncode()
         ranges={'mode_change':(0x51ff00,0x5200f1),'mode_getter':(0x51fef0,0x51fef7),'draw':(0x4fa9c2,0x4fab41),'tick_gate':(0x50e670,0x50e697),'recipe_reset':(0x513f50,0x513f9d),'effect_loader':(0x49c540,0x49cc3e),'controller_reset':(0x464c80,0x464ca0)}
         for name,(lo,hi) in ranges.items():

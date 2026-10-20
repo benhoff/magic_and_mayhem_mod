@@ -101,3 +101,11 @@ Confidence is high for selected transition arithmetic/reset and controller
 states. Health/mode drawing admission and coordinate composition are static
 caller findings supported by separate helper and native pixel evidence;
 complete original drawing, gameplay identity and lifecycle are not claimed.
+
+The native `ModeOneAttachment` component now owns the selected transition state,
+configured selection and copied child controller. It supplies same-mode no-op,
+entry, removal with retained binding and explicit reentry; source failures are
+atomic native admission policy. It keeps health/visibility independent from child
+ticks and does not automatically restart a stopped child. The next-twenty runner
+compares the complete selected transitions using this component directly, rather
+than manually coordinating separate selection/start/stop calls.

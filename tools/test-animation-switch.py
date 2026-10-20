@@ -18,13 +18,13 @@ def main():
         (out/f'original-{phase}.log').write_text(p.stdout+p.stderr); p.check_returncode()
     verify('before')
     try:
-        exe = REPO/'working/game-nocd/Chaos.exe'
+        exe = REPO/'original/Arcane_Nocd/Chaos.exe'
         if sha(exe) != HASH: raise ValueError('Unsupported executable')
         sources = [REPO/p for p in ('reconstruction/animation/no_cd.cpp', 'reconstruction/animation/no_cd.hpp',
                    'tests/animation-binary-reference.cpp', 'tools/test-animation-switch.py')]
         inputs = {p: sha(p) for p in sources+[exe]}
         helper = out/'reference'
-        command = ['g++', '-m32', '-std=c++17', '-Wall', '-Wextra', '-Werror', '-I'+str(REPO/'assets'),
+        command = ['g++', '-m32', '-std=c++17', '-O2', '-Wall', '-Wextra', '-Werror', '-I'+str(REPO/'assets'),
                    '-I'+str(REPO/'reconstruction/animation'), str(sources[2]), str(sources[0]), '-o', str(helper)]
         subprocess.run(command, check=True, capture_output=True, timeout=60)
         # Retain static evidence supporting numeric eight-facing groups. No
