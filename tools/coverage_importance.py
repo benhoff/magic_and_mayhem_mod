@@ -60,11 +60,48 @@ def task_work_review(review, labels, behavior, root):
             raise ValueError('Scope resolution needs a source-bound review record')
         for domain in domains:
             if (not domain.get('name', '').strip() or
-                    domain.get('disposition') not in {'supplied', 'guarded_refusal', 'outside_contract'} or
+                    domain.get('disposition') not in {'supplied', 'guarded_refusal', 'outside_contract', 'unresolved'} or
                     not domain.get('finding', '').strip() or not domain.get('validation', '').strip() or
                     not domain.get('suppliers') or not domain.get('paths') or
                     not set(domain['paths']).issubset(sources)):
                 raise ValueError('Scope domains need supplied/refused/excluded findings and separate validation')
+            if domain['disposition'] == 'unresolved' and (
+                    implementation != 'unresolved_aggregate' or
+                    not domain.get('required_case', '').strip() or
+                    not domain.get('closure_condition', '').strip()):
+                raise ValueError('Unresolved scope needs its exact required case and closure condition')
+    profile_record = review.get('acceptance_profile_record')
+    profiles, diagnostics = [], {}
+    if profile_record:
+        if profile_record not in sources or review.get('acceptance_profile_evidence') not in evidence:
+            raise ValueError('Acceptance profiles need a source-bound registered execution record')
+        profile_path = (root/profile_record).resolve()
+        if (Path(profile_record).is_absolute() or not profile_path.is_relative_to(root.resolve()) or
+                Path(profile_record).parts[:2] != ('research', 'runtime') or
+                hashlib.sha256(profile_path.read_bytes()).hexdigest() != sources[profile_record]):
+            raise ValueError('Acceptance profile execution record changed or escaped research')
+        import json
+        execution = json.loads(profile_path.read_text())
+        if (execution.get('success') is not True or
+                execution.get('sources_stable') is not True or execution.get('inputs_stable') is not True or
+                execution.get('policy') != 'critical-rendering-correct-output-v1' or
+                execution.get('whole_renderer_accepted') is not False or
+                execution.get('all_critical_behaviors_accepted') is not False or
+                set(execution.get('accepted_profiles', {})) != {'software', 'hardware'}):
+            raise ValueError('Acceptance record must retain its explicit policy and wider boundaries')
+        for backend, cohort in execution['accepted_profiles'].items():
+            if set(cohort) != {'corrected_storage', 'quick_battle'}:
+                raise ValueError('Acceptance profile cohort incomplete')
+            for name, count in (('corrected_storage', 222), ('quick_battle', 323)):
+                item = cohort[name]
+                if item.get('outcome') != 'PASS' or item.get('frames') != count or item.get('mismatches') != 0:
+                    raise ValueError('Acceptance profile result is not a complete passing cohort')
+                profiles.append(dict(backend=backend, name=name, **item))
+        diagnostics = execution.get('legacy_diagnostics', {})
+        if (set(diagnostics) != {'software', 'hardware'} or
+                any(item.get('outcome') != 'EXPECTED_DIFFERENCE' or item.get('blocking') is not False
+                    for item in diagnostics.values())):
+            raise ValueError('Acceptance profiles must preserve the legacy diagnostics separately')
     pending = review.get('pending_source_review', [])
     if not isinstance(pending, list) or not set(pending).issubset(sources):
         raise ValueError('Pending review inputs must have explicit source links')
@@ -95,7 +132,8 @@ def task_work_review(review, labels, behavior, root):
             lines = (root / name).read_text().splitlines()
             if line > len(lines) or lines[line - 1] != text:
                 raise ValueError('Research witness differs from reviewed source')
-    return {**review, 'label': labels[implementation]['label'],
+    return {**review, 'acceptance_profiles': profiles, 'legacy_diagnostics': diagnostics,
+            'label': labels[implementation]['label'],
             'freshness': 'historical' if changed or pending else 'current', 'changed_sources': changed}
 
 

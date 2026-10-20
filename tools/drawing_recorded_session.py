@@ -135,7 +135,15 @@ def backend_environment(*,hardware=False,headless=False,inherited=None):
  if hardware:
   if not env.get('DISPLAY'):raise ValueError('Hardware replay requires an existing owned X11 display')
   env.pop('LIBGL_ALWAYS_SOFTWARE',None)
- else:env['LIBGL_ALWAYS_SOFTWARE']='1'
+ else:
+  # A preceding explicit hardware run may leave Zink/NVIDIA selectors in the
+  # parent. LIBGL_ALWAYS_SOFTWARE alone then requests a nonexistent CPU Zink
+  # device instead of the declared llvmpipe backend. Keep that hardware profile
+  # isolated from the default software context without mutating the parent.
+  for key in ('MESA_LOADER_DRIVER_OVERRIDE','GALLIUM_DRIVER','__GLX_VENDOR_LIBRARY_NAME',
+              '__EGL_VENDOR_LIBRARY_FILENAMES','QT_XCB_GL_INTEGRATION','MNM_PROFILE_EGL_VENDOR'):
+   env.pop(key,None)
+  env['LIBGL_ALWAYS_SOFTWARE']='1'
  return env
 
 

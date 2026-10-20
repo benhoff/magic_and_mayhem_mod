@@ -18846,3 +18846,30 @@ mismatches. NVIDIA presentation remains unavailable in this headless session.
 No raw stage is promoted; complete DirectDraw and whole-session acceptance
 remain separate. [Review](critical-top20-rendering-fixes-20261019.md);
 [immutable execution index](coverage/critical-top20-execution-20261019.json).
+
+## Critical rendering correct-output acceptance and bounded canvas reconciliation (2026-10-19)
+
+The user selected correct output with the explicit corrected Wine upload profile;
+the original resize artifact remains a diagnostic regression. Fresh llvmpipe and
+NVIDIA cohorts pass all 222 corrected-storage and 323 Quick Battle frames with
+zero mismatches, complete paint/physical admission and corrected source/default
+witnesses. Both unchanged 238-frame legacy cohorts retain their exact ordinal170
+126+126-pixel expected difference. No frame, oracle, threshold or original source
+hash was changed. The software runner now clears incompatible inherited GPU
+selectors before requesting llvmpipe.
+
+Fresh source-only history matches 1,061 checkpoints, 16 independent original
+World completions and the 480,000-word initial canvas. Three already bounded
+canvas contracts are assessed implemented within scope; raw recovered stages,
+physical allocation/all-writer coverage and other sessions remain independent.
+Full DirectDraw retirement retains explicit caller/alias/writer, physical-loss/
+Restore and whole-journey/performance closure cases. See
+[the closeout and retained results](critical-rendering-closeout-20261019.md).
+No whole-renderer or live-replacement promotion is claimed.
+
+The selected retained Surface2/3/4 alias comparison also passes nine interface
+pairs and 5,265 pixel words with zero native owners. The caller device remains
+alive until alias retirement; the earlier early-device-release Wine fault is a
+retained diagnostic, not a newly proven original ownership rule. The new scoped
+native policy has its own prospective claim and raw result; full retirement and
+all original aliases/writers remain pending.

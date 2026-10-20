@@ -42,6 +42,10 @@ class ReviewTest(unittest.TestCase):
         self.b['scope']='Broader scope';self.assertFalse(load_reviews(self.root,self.r)[0]['entries'][0]['contract_current'])
         self.b['scope']='Selected owned renderer.';self.b['status']['implementation']='scoped'
         self.assertEqual(load_reviews(self.root,self.r)[0]['freshness'],'historical')
+    def test_pending_source_review_is_historical(self):
+        self.doc['entries'][0]['pending_source_review']=['code.cpp'];self.write()
+        self.assertEqual(load_reviews(self.root,self.r)[0]['freshness'],'historical')
+
     def test_report_hash_witness_and_count_corruption_refuse(self):
         (self.root/'review.json').write_text('{}')
         with self.assertRaisesRegex(ValueError,'hash mismatch'):load_reviews(self.root,self.r)
