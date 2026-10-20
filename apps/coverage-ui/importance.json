@@ -31,28 +31,28 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Mode-one attachment binding: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "88aee703112dbadbe002f0c284f2e37ae33c99859384e78f9ed53a1eef016f64"
+      "contract_sha256": "7ccdf04563a602edaf7f0a69e50fb0c521db296b5aeec234fb2543ed80c81ab8"
     },
     {
       "behavior": "AN.direction",
       "weight": 4,
       "work_type": "capability",
       "reason": "Forward phase-preserving sequence switch: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "a7fa1d58eefd865fa7c400813e00d4b555a5d35f059ce7f3adb228775c3bf869"
+      "contract_sha256": "b1a5453cbd47d779e4fbea9fbc45f92f4b2c5c4ac2c8aa66a74e69d00b82cb9a"
     },
     {
       "behavior": "AN.forward",
       "weight": 4,
       "work_type": "capability",
       "reason": "Forward animation controller: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "2cbfe22939e7595cf37bff78cf5bd3b29a92bac86d26c73a732b181b838ef81d"
+      "contract_sha256": "83ab857aa1b88f5566d44fe874f69d41741c510e6ec4a88e7044f4fd62edd01f"
     },
     {
       "behavior": "AN.placement",
       "weight": 4,
       "work_type": "capability",
       "reason": "Body and attachment placement: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "fe0b84860900f6985fcf3970c26efa4840b8139662c1cfddb26f1b399b6d23fe"
+      "contract_sha256": "1bedb2933a517cd9e263f876c666b5164413baa2a27932770283c74e24729fe4"
     },
     {
       "behavior": "AN.reverse-controller",
@@ -2421,20 +2421,6 @@
       "contract_sha256": "e19321656f20361e97c18f9b3b7d7e642d4865d529f64764825f1aab954a43c9"
     },
     {
-      "behavior": "RS.world-dispatch-routing",
-      "weight": 4,
-      "work_type": "capability",
-      "reason": "Bounded owned queue/class dispatch supplies native rendering foundations; original comparison is separate from live integration and broader object/consumer recovery.",
-      "contract_sha256": "0c48e0066aecf7eb456a33f2504d9341ed585d2b63062a047a48179675b34ba9"
-    },
-    {
-      "behavior": "RS.world-kind8-methods",
-      "weight": 4,
-      "work_type": "capability",
-      "reason": "Bounded owned queue/class dispatch supplies native rendering foundations; original comparison is separate from live integration and broader object/consumer recovery.",
-      "contract_sha256": "950054c5bb7f0cfa9a73a5efb053904b1b144dd0abc0c0792a8fba978df486a2"
-    },
-    {
       "behavior": "NP.correct-output-recorded-acceptance",
       "weight": 5,
       "work_type": "acceptance",
@@ -2447,6 +2433,20 @@
       "work_type": "capability",
       "reason": "Retained COM aliases protect critical native graphics storage lifetime across creator-surface release; the test deliberately excludes early caller-device release and global physical ownership.",
       "contract_sha256": "a1ad58823e880afe685c5ca468c18aeeda46a62f1c91c62069a13f3312f8f2d6"
+    },
+    {
+      "behavior": "RS.world-dispatch-routing",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Bounded owned queue/class dispatch supplies native rendering foundations; original comparison is separate from live integration and broader object/consumer recovery.",
+      "contract_sha256": "0c48e0066aecf7eb456a33f2504d9341ed585d2b63062a047a48179675b34ba9"
+    },
+    {
+      "behavior": "RS.world-kind8-methods",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Bounded owned queue/class dispatch supplies native rendering foundations; original comparison is separate from live integration and broader object/consumer recovery.",
+      "contract_sha256": "950054c5bb7f0cfa9a73a5efb053904b1b144dd0abc0c0792a8fba978df486a2"
     },
     {
       "behavior": "NP.animation-owned-selection-admission",
@@ -2945,6 +2945,13 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
+              ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
             "work_review_history": [
@@ -5053,6 +5060,13 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
+              ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
             "execution_result": {
@@ -5224,6 +5238,13 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
+              ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
             "execution_result": {
@@ -5392,6 +5413,13 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
+              ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
             "execution_result": {
@@ -5656,6 +5684,12 @@
                     "tools/drawing_storage_transitions.py"
                   ]
                 }
+              ],
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
               ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
@@ -6056,6 +6090,13 @@
                   ]
                 }
               ],
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
+              ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
             "execution_result": {
@@ -6341,6 +6382,13 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
+              ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
             "execution_result": {
@@ -6518,7 +6566,12 @@
                 "assets/sprite_run_clipping.hpp",
                 "compat/legacy/world_frame.cpp",
                 "renderer/canvas_sequence.cpp",
-                "renderer/scenes/scene_renderer.cpp"
+                "renderer/scenes/scene_renderer.cpp",
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
               ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
@@ -6848,6 +6901,12 @@
                     "tools/drawing_storage_transitions.py"
                   ]
                 }
+              ],
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
               ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
@@ -7361,6 +7420,13 @@
                   "reason": "Source-review newly linked full original/CPU/GPU wave word-comparison runner, input/source pinning, exact 768-case admission and separate table/CPU/GPU equality checks. This additive fixture review preserves all earlier hashes and classifications and grants no execution or current engine validation."
                 }
               ],
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
+              ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
             "execution_result": {
@@ -7549,6 +7615,13 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
+              ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
             "execution_result": {
@@ -8163,6 +8236,13 @@
                   ],
                   "reason": "Source-review newly linked full original/CPU/GPU wave word-comparison runner, input/source pinning, exact 768-case admission and separate table/CPU/GPU equality checks. This additive fixture review preserves all earlier hashes and classifications and grants no execution or current engine validation."
                 }
+              ],
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
               ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
@@ -9919,6 +9999,13 @@
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
                 "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
               },
+              "pending_source_review": [
+                "research/runtime/next20-implementation-progress-20261020.md",
+                "tools/test-next20-canvas-controls.py"
+              ],
+              "incremental_review_notes": [
+                "Committed dependency links retained in the isolated commit; these added source links have not renewed this historical task execution."
+              ],
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
             },
             "work_review_history": [
