@@ -380,3 +380,11 @@ The script refuses to overwrite its output directory, exercises the real
 controls, compares displayed percentages to the current register, and retains
 desktop/mobile screenshots and a machine-readable result. No original game
 execution or source-status promotion is implied by UI verification.
+
+The rendering page also shows **Low work: first20**, selected by importance2,
+native-rendering subsystem and behavior ID. Its source assessments distinguish
+implemented diagnostic mechanisms from component test results and complete
+original/live/hardware acceptance. Historical registered partial counts remain
+visible. The recorded component PASS does not clear retained performance or
+pixel-instability failures. See
+[the Low20 findings and next steps](../../research/runtime/rendering-low20-20261020.md).

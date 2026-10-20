@@ -106,6 +106,33 @@ class TrancheTest(unittest.TestCase):
                                  [{**e, 'freshness': 'historical'} for e in self.register['evidence']])
         self.catalog = json.loads((ROOT / 'apps/coverage-ui/importance.json').read_text())
 
+    def test_low_batch_keeps_first20_order_and_independent_acceptance(self):
+        before = copy.deepcopy(self.register)
+        result = importance_view(self.catalog, self.register, self.tracks)
+        tasks = result['low_tranche_plan']['tranches'][0]['tasks']
+        native = {b['id'] for b in self.register['behaviors'] if b['subsystem']=='native_rendering'}
+        expected = sorted(e['behavior'] for e in result['entries'] if e['weight']==2 and e['behavior'] in native)[:20]
+        self.assertEqual([t['behavior'] for t in tasks], expected)
+        self.assertEqual(len(tasks),20)
+        self.assertEqual({t['reviewed_implementation'] for t in tasks},{'scoped','partial'})
+        for task in tasks:
+            work = task['work_review']
+            self.assertEqual(work['implementation'],'implemented_within_scope')
+            self.assertFalse(work['implementation_gaps'])
+            self.assertTrue(work['next_steps'])
+            self.assertIn(work['acceptance'],{'pending','acceptance_failure'})
+        self.assertEqual(self.register,before)
+
+    def test_low_batch_cannot_skip_reorder_or_duplicate_a_contract(self):
+        for change in ('reverse','duplicate','skip'):
+            c = copy.deepcopy(self.catalog)
+            tasks = c['low_tranche_plan']['tranches'][0]['tasks']
+            if change=='reverse':tasks.reverse()
+            elif change=='duplicate':tasks[-1]=copy.deepcopy(tasks[0])
+            else:tasks.pop()
+            with self.subTest(change=change),self.assertRaises(ValueError):
+                importance_view(c,self.register,self.tracks)
+
     def test_three_tranches_cover_all_critical_partials_once_without_execution_credit(self):
         before = copy.deepcopy((self.catalog, self.register))
         result = importance_view(self.catalog, self.register, self.tracks)
@@ -390,7 +417,7 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual(plan['unplanned_high'], [])
         self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 0)
         self.assertEqual(sum(e['weight'] == 4 and e['implementation'] == 'scoped'
-                             for e in result['entries']), 52)
+                             for e in result['entries']), 53)
         for task in tasks:
             execution = task.get('execution_result')
             if execution:

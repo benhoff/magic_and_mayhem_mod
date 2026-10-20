@@ -4,6 +4,8 @@ API u32 WIN SceneProductionInstallForTest(u32);
 API u32 WIN SceneProductionStatusForTest(u32);
 API void WIN SceneProductionBudgetArmForTest(u32);
 API u32 WIN SceneProductionBudgetMetricsForTest(void);
+API u32 WIN SceneProductionRefusedTimingForTest(void);
+API void WIN SceneProductionNextForTest(void);
 #include "../runtime/scene-production/draw_budget.h"
 extern void fixture_invoke(void*,u32,void*),fixture_draw(void);
 extern void fixture_history(void*);
@@ -59,7 +61,7 @@ void start(void){
  const u8 q1[]={0xe8,0xf0,0x2d,0,0},q2[]={0xe8,0x47,0x2d,0,0};bytes(0x4fd4ab,q1,5);bytes(0x4fd554,q2,5);const u8 qend1[]={0xb9,0xe0,0x49,0x6a,0},qend2[]={0xa1,0x2c,0x48,0x6c,0};bytes(0x4fd4b0,qend1,5);bytes(0x4fd559,qend2,5);*(u8*)0x4fd4b5=0xc3;*(u8*)0x4fd55e=0xc3;*(u8*)0x5002a0=0xc3;
  const u8 history_args[]={0x6a,0,0x6a,0,0x90,0x90,0x90,0x90},history_call[]={0xe8,0x6c,0x55,0x02,0},history_body[]={0xff,0x81,0x60,0x07,0,0,0xc2,8,0};
  bytes(0x4fa4e7,history_args,8);bytes(0x4fa4ef,history_call,5);*(u8*)0x4fa4f4=0xc3;bytes(0x51fa60,history_body,9);
- char option[3];u32 n=GetEnvironmentVariableA("MNM_PRODUCTION_TEST_CASE",option,3);require(n==2&&((option[0]>='0'&&option[0]<='9')||(option[0]>='A'&&option[0]<='F'))&&option[1]>='1'&&option[1]<='5',2);
+ char option[3];u32 n=GetEnvironmentVariableA("MNM_PRODUCTION_TEST_CASE",option,3);require(n==2&&((option[0]>='0'&&option[0]<='9')||(option[0]>='A'&&option[0]<='G'))&&option[1]>='1'&&option[1]<='5',2);
  test_case=option[0]>='A'?10u+option[0]-'A':option[0]-'0';u32 candidate=option[1]-'0';reset();
  SetLastError(0x77);fixture_invoke((void*)0x4fd280,0x689930,baseline);require(GetLastError()==0xabc123&&draws==1,3);reset();
  /* Every anchor byte mutation must refuse before any hook is installed. */
@@ -75,6 +77,15 @@ void start(void){
  require(same(baseline,observed,12)&&same(baseline+16,observed+16,20),71);
  require(*(u32*)(observed+12)==*(u32*)(observed+36),72);
  require(same(baseline+48,observed+48,512),73);
+ if(test_case==16){
+  require(SceneProductionStatusForTest(0)==1&&SceneProductionStatusForTest(8)==1&&draws==2,28);
+  SceneProductionNextForTest();put(0x6def58,0xffffffff);
+  SetLastError(0x77);fixture_invoke((void*)0x4fd280,0x689930,observed);
+  require(GetLastError()==0xabc123&&draws==3&&SceneProductionStatusForTest(0)==2&&SceneProductionStatusForTest(2),29);
+  require(SceneProductionRefusedTimingForTest(),30);
+  require(same(baseline,observed,12)&&same(baseline+16,observed+16,20)&&same(baseline+48,observed+48,512),31);
+  ExitProcess(0);
+ }
  if(test_case>=11&&test_case<=14){
   u32 extra=test_case==11?2:test_case==13?1:0;
   require(SceneProductionStatusForTest(0)==16+extra&&draws==1+extra&&!SceneProductionStatusForTest(1)&&!SceneProductionStatusForTest(2),21);

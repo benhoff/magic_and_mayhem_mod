@@ -21,9 +21,12 @@ function client(key, unplanned) {
   importance.unrated = [];
   importance.tranche_plan.tranches = [];
   importance.tranche_plan.unplanned_critical = [];
+  if(key !== 'low_tranche_plan' && importance.low_tranche_plan){
+    importance.low_tranche_plan.tranches=[];importance.low_tranche_plan.unplanned_low=[];
+  }
   if (unplanned !== undefined) {
     importance[key].tranches = [];
-    importance[key][key === 'high_tranche_plan' ? 'unplanned_high' : 'unplanned_critical'] = unplanned;
+    importance[key][key === 'low_tranche_plan' ? 'unplanned_low' : key === 'high_tranche_plan' ? 'unplanned_high' : 'unplanned_critical'] = unplanned;
   } else if (key === 'tranche_plan') {
     delete importance.tranche_plan.unplanned_critical;
   }
@@ -65,8 +68,15 @@ test('refreshed metadata restores the complete plan in the same client', () => {
 });
 
 test('valid plans retain the count of newly unassigned behaviors', () => {
-  for (const key of ['tranche_plan', 'high_tranche_plan']) {
+  for (const key of ['tranche_plan', 'high_tranche_plan', 'low_tranche_plan']) {
     const html = client(key, ['new-one', 'new-two']).render();
-    assert.match(html, new RegExp('2 new '+(key === 'tranche_plan' ? 'Critical' : 'High')+' unfinished behaviors'));
+    assert.match(html, new RegExp('2 new '+(key === 'tranche_plan' ? 'Critical' : key === 'low_tranche_plan' ? 'Low' : 'High')+' unfinished behaviors'));
   }
+});
+
+test('older server raw Low plan preserves the rendering page and names its refresh', () => {
+  const html=client('low_tranche_plan').render();
+  assert.match(html,/data-plan-refresh="low"/);
+  assert.match(html,/Low work: first 20/);
+  assert.match(html,/data-progress-section="validation"/);
 });

@@ -1,5 +1,7 @@
 """Stopped sparse journal fixtures; no original artifacts or rendering required."""
 import importlib.util
+import contextlib
+import io
 import json
 from pathlib import Path
 import struct
@@ -113,6 +115,20 @@ class DiagnosticsTest(unittest.TestCase):
     def test_other_failure_not_mislabeled(self):
         (self.root/'native-world.json').write_text(json.dumps({'producer_reason': 7}))
         self.assertIsNone(world_refusal.diagnose(self.root))
+
+    def test_malformed_native_report_does_not_mask_launch_failure(self):
+        for native in (None, [], 'bad', {}, {'producer_reason': True},
+                       {'producer_reason': 8},
+                       *({'producer_reason': 8, 'presentations': count}
+                         for count in (None, True, -1, '1', 1.5, 13))):
+            with self.subTest(native=native):
+                (self.root/'native-world.json').write_text(json.dumps(native))
+                with self.assertRaises(ValueError):
+                    world_refusal.diagnose(self.root)
+                output = io.StringIO()
+                with contextlib.redirect_stderr(output):
+                    world_refusal.log_refusal(self.root)
+                self.assertIn('diagnostic unavailable', output.getvalue())
 
 
 class StagingTest(unittest.TestCase):

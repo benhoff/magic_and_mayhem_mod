@@ -117,3 +117,10 @@ budget failure. ASan/UBSan pass with leak checking disabled.
 Confidence is high for these selected forward states. It does not establish
 all sequences/ticks, the older conversion paths, reverse switching,
 gameplay event handling, all record metadata or live scheduling equivalence.
+
+Native selected negative SPR indices now refuse at start/dispatch before
+`displayedRecord` can publish them; previously only `sprite()` rejected that
+value. This remains a native safety policy, not a new original malformed-input
+claim. Owned body fallback and attachment candidate failures preserve their
+previous accepted controller; a direct raw-player dispatch exception retains
+the existing documented stop/restart/discard requirement.

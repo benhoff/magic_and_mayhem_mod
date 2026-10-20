@@ -284,6 +284,11 @@ __declspec(dllexport) void SceneProductionAnchor(void){}
 #ifdef MNM_SCENE_PRODUCTION_SELFTEST
 __declspec(dllexport) u32 WIN SceneProductionInstallForTest(u32 candidate){u32 e=GetLastError(),ok=install(candidate);primary_calls=511;SetLastError(e);return ok;}
 __declspec(dllexport) u32 WIN SceneProductionStatusForTest(u32 index){return index==0?count:index==1?failed:index==2?refused:index==3?queue_calls:index==4?rows[0][11]:index==5?rows[0][16]:index==6?history_skipped:index==8?rows[0][39]:index==9?budget_words[14]:index==10?budget_words[12]:index==11?budget_words[15]:history_forward;}
+__declspec(dllexport) u32 WIN SceneProductionRefusedTimingForTest(void){
+ if(count!=2||!rows[1][7])return 0;
+ return !rows[1][14]&&!rows[1][15]&&!rows[1][37]&&!rows[1][38]&&!rows[1][39]&&!rows[1][16];
+}
+__declspec(dllexport) void WIN SceneProductionNextForTest(void){primary_calls=639;}
 __declspec(dllexport) void WIN SceneProductionBudgetArmForTest(u32 elapsed){
  count=DRAW_BUDGET_WARM;budget_estimate=1;put((void*)0x6e8100,budget_tick()-elapsed);budget_start(budget_tick());
 }

@@ -80,8 +80,15 @@ class ActualReviewTest(unittest.TestCase):
         reviews=[row for row in load_reviews(root,r) if row['track']=='rendering']
         entries=[entry for review in reviews for entry in review['entries']]
         from collections import Counter
-        self.assertEqual(sum(review['reviewed_count'] for review in reviews),205)
-        self.assertEqual(Counter(entry['disposition'] for entry in entries),{'bounded_code':73,'diagnostic_tooling':111,'original_scope':10,'umbrella_scope':4,'acceptance_scope':7})
+        review_ids={review['id'] for review in reviews}
+        expected={b['id'] for b in r['behaviors']
+                  if b.get('implementation_review',{}).get('review') in review_ids}
+        # Every registered review link must have exactly one decision. Fixed
+        # totals become stale when another reviewed contract is added.
+        self.assertEqual(Counter(entry['behavior'] for entry in entries),Counter(expected))
+        self.assertEqual(sum(review['reviewed_count'] for review in reviews),len(expected))
+        self.assertLessEqual({entry['disposition'] for entry in entries},
+                            {'bounded_code','diagnostic_tooling','original_scope','umbrella_scope','acceptance_scope'})
         rows={row['behavior']:row for row in entries}
         self.assertEqual(rows['AN.world-facing']['recorded_implementation'],'partial')
         self.assertIn('native_providers.cpp',rows['AN.world-facing']['code_witness']['path'])

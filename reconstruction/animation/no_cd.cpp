@@ -6,6 +6,8 @@ NoCdAnimationPlayer::NoCdAnimationPlayer(std::vector<assets::AnimationRecord> se
     if(records_.empty() || records_.size()>65536 || records_.back().opcode!=6)throw std::runtime_error("Invalid bounded animation sequence");
 }
 void NoCdAnimationPlayer::start(){
+    if(records_[0].opcode==0 && records_[0].argument<0)
+        throw std::runtime_error("Negative sprite index in animation");
     state_={};state_.active=true;
     if(records_[0].opcode==0)state_.displayedRecord=0;
     else dispatch(true);
@@ -33,7 +35,9 @@ std::int32_t NoCdAnimationPlayer::dispatch(bool initial){
         const auto at=state_.pc;const auto& r=records_[at];const auto word=static_cast<std::uint32_t>(r.argument);
         bool stop=false,jump=false;
         switch(r.opcode){
-        case 0:state_.displayedRecord=at;stop=true;break;
+        case 0:
+            if(r.argument<0)throw std::runtime_error("Negative sprite index in animation");
+            state_.displayedRecord=at;stop=true;break;
         case 1:state_.delay=word;break;
         case 2:state_.repeats=word;break;
         case 3:if(state_.repeats){--state_.repeats;jump=true;}break;

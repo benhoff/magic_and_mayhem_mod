@@ -22,8 +22,11 @@ The first attachment point is read by `0x00507250`; the second by
 `0x005072c0`. Body descriptor helper `0x00507190` reads displayed record at
 creature `+0xb4` and emits `(SPR-frame pointer, x, y)`. If the displayed pointer
 is null, it starts sequence `288 + facing` before reading it; that fallback
-selection is static evidence and is **not executed or implemented** in this
-milestone. Overlay descriptor helper `0x00507330` reads record `+0x829`
+selection is now implemented by the owned `bodyPlacement` service: absent display
+starts `288 + facing`, while an existing display retains its controller phase.
+The descriptor also reproduces the inclusive SPR header bound and frame-zero
+fallback. Its caller supplies owned sequence resolution and sprite-bound values;
+complete original storage identity and live drawing remain separate. Overlay descriptor helper `0x00507330` reads record `+0x829`
 (controller at `+0x825`) and emits the same descriptor.
 
 All four helpers apply one adjustment based on type-record DWORD `+8`, reached

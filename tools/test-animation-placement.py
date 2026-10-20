@@ -21,7 +21,7 @@ def main():
         if sha(exe)!=HASH:raise ValueError('Unsupported executable')
         sources=[REPO/p for p in ('reconstruction/animation/placement.cpp','reconstruction/animation/placement.hpp','assets/animation.hpp','tests/animation-placement-reference.cpp','tools/test-animation-placement.py')]
         inputs={p:sha(p) for p in sources+[exe]};helper=out/'reference'
-        command=['g++','-m32','-std=c++17','-Wall','-Wextra','-Werror','-I'+str(REPO/'assets'),'-I'+str(REPO/'reconstruction/animation'),str(sources[3]),str(sources[0]),'-o',str(helper)]
+        command=['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-I'+str(REPO/'assets'),'-I'+str(REPO/'reconstruction/animation'),str(sources[3]),str(sources[0]),'-o',str(helper)]
         p=subprocess.run(command,capture_output=True,text=True,timeout=60);(out/'compile.log').write_text(p.stdout+p.stderr);p.check_returncode()
         ranges={'body':(0x507190,0x507250),'attachment_one':(0x507250,0x5072b1),'attachment_two':(0x5072c0,0x507321),
                 'overlay':(0x507330,0x5073c1),'creature_draw':(0x4fa190,0x4fb5b0),'queue':(0x4ffd30,0x4fff60),'sprite_origin':(0x57e1b0,0x57e250),'tile_size_config':(0x502df0,0x502e63)}

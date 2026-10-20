@@ -137,8 +137,8 @@ def task_work_review(review, labels, behavior, root):
             'freshness': 'historical' if changed or pending else 'current', 'changed_sources': changed}
 
 
-def tranche_view(plan, register, rated, root=ROOT, *, priority=5, size=11):
-    """Validate an explicit three-tranche plan without claiming execution."""
+def tranche_view(plan, register, rated, root=ROOT, *, priority=5, size=11, count=3):
+    """Validate ordered work batches without claiming execution."""
     if plan.get('state') != 'planned' or not plan.get('completion_rule', '').strip():
         raise ValueError('Tranche metadata must describe a plan, not execution')
     tranches = plan['tranches']
@@ -150,8 +150,8 @@ def tranche_view(plan, register, rated, root=ROOT, *, priority=5, size=11):
                 not path.is_relative_to((Path(root) / 'research/runtime').resolve()) or
                 not path.is_file()):
             raise ValueError('Plan review document must be existing local runtime research')
-    if len(tranches) != 3 or [t['order'] for t in tranches] != [1, 2, 3]:
-        raise ValueError('Expected three ordered tranches')
+    if len(tranches) != count or [t['order'] for t in tranches] != list(range(1,count+1)):
+        raise ValueError('Expected ordered tranches: '+str(count))
     by_id = {b['id']: b for b in register['behaviors']}
     seen = set(); earlier = set(); result = []
     for tranche in tranches:
@@ -170,7 +170,7 @@ def tranche_view(plan, register, rated, root=ROOT, *, priority=5, size=11):
             if bid in seen or bid not in rated:
                 raise ValueError('Duplicate, unknown or unrated tranche behavior: ' + bid)
             seen.add(bid); b = by_id[bid]; rating = rated[bid]
-            reviewed_statuses = {'partial', 'none'} if priority == 4 else {'partial'}
+            reviewed_statuses = {'partial', 'scoped'} if priority == 2 else {'partial', 'none'} if priority == 4 else {'partial'}
             if (task.get('reviewed_implementation') not in reviewed_statuses or
                     not all(task.get(k, '').strip() for k in (
                         'mode', 'next_action', 'implementation_boundary', 'validation',
@@ -223,7 +223,7 @@ def tranche_view(plan, register, rated, root=ROOT, *, priority=5, size=11):
                   if e['weight'] == priority and e['implementation'] in
                   ({'partial', 'none'} if priority == 4 else {'partial'})}
     return {**plan, 'tranches': result, 'selected_count': len(seen),
-            ('unplanned_high' if priority == 4 else 'unplanned_critical'): sorted(unfinished - seen)}
+            ('unplanned_low' if priority == 2 else 'unplanned_high' if priority == 4 else 'unplanned_critical'): sorted(unfinished - seen)}
 
 
 def importance_view(catalog, register, tracks, root=ROOT):
@@ -275,4 +275,13 @@ def importance_view(catalog, register, tracks, root=ROOT):
                     for task in tranche['tasks']}
         if critical_ids & high_ids:
             raise ValueError('A behavior cannot be assigned to both priority plans')
+    if 'low_tranche_plan' in catalog:
+        result['low_tranche_plan'] = tranche_view(catalog['low_tranche_plan'], register,
+                                                 {e['behavior']:e for e in entries},root,
+                                                 priority=2,size=20,count=1)
+        selected = [t['behavior'] for tr in result['low_tranche_plan']['tranches'] for t in tr['tasks']]
+        native = {b['id'] for b in register['behaviors'] if b.get('subsystem') == 'native_rendering'}
+        expected = sorted(e['behavior'] for e in entries if e['weight']==2 and e['behavior'] in native)[:20]
+        if selected != expected:
+            raise ValueError('Low batch must select the first20 native rendering behaviors in UI order')
     return result

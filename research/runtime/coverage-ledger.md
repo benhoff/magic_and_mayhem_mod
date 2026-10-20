@@ -19053,6 +19053,65 @@ Broader queue state, object lifetime, pixel/live replacement and remaining
 selected contracts stay independent. [Progress](next20-implementation-progress-20261020.md)
 and [new execution](next20-world-dispatch-20261020.json) preserve the bounds.
 
+### 2026-10-20: first20 Low rendering diagnostics
+
+Reviewed the first20 importance2 native-rendering entries in dashboard ID order
+(12 registered scoped,8 registered partial). All20 have the declared diagnostic
+mechanism implemented; the UI now gives each an **Implemented within scope**
+source assessment and a separate validation/acceptance next step. Raw engine
+stages, historical evidence and the remaining3 Low entries are preserved.
+
+`LOW20.component-controls-20261020` records104 Python tests,65 scene PE32 controls,
+API/shutdown/owned-lock forwarding and native software/NVIDIA TITAN RTX controls.
+The stopped-World diagnostic now validates malformed report identities/counts
+without masking the launch failure; the lock fixture owns its Wine prefix.
+Five same-process success-then-refusal controls close the pending scene timing
+reset check. The64-World owner-profile toggle comparison preserves pixels,
+per-opcode counters and zero ordinary readback; GPU timestamp bounds/retirement
+also pass. This is component evidence, not complete original/live/hardware
+acceptance. Only the stopped-journal diagnostic fixture has a stage binding;
+other prospective parent declarations grant no whole-contract credit.
+
+The minimap runner now accepts an explicit pinned source installation after its
+staged default executable correctly refused before patching. Its subsequent
+source-only CLI change leaves the component result's recorded hashes intact;
+new original motion execution is accounted separately. Existing public-backend
+pixel instability, resident/extra-production performance failures and25FPS/20.5
+aggregate misses remain open. No gameplay pacing, engine milestone, original
+comparison or live replacement is promoted. See
+[the Low20 review](rendering-low20-20261020.md) and
+[component record](rendering-low20-controls-20261020.json).
+
+`LOW20.minimap-motion-live-20261020` additionally renews the bounded original
+16-return motion scenario: four orientations, seven observed centers, actual
+same-orientation panning and1062 checkpoints/474236912 pixels compare exactly.
+The unchanged No-CD hash and original-manifest bookends pass; source-only native
+inputs and250ms fixture pacing remain explicit. No unobserved camera/visibility
+generation, normal-session input timing, border/alias/driver or replacement
+coverage is inferred. The unsupported-default-input attempt remains retained.
+
+## Native scene and outstanding accounting closeout — 2026-10-20
+
+The isolated source tree renews `WORLD.owned`, `WORLD.sandbox`, supported native
+audio/assets/profile foundations and the Crossroads window through automatic
+source-bound execution. The scene and foundations use generated inputs;
+Crossroads uses read-only installed assets with original-manifest bookends.
+Evidence is retained under new `SCENE.lifecycle-renewal-20261020`,
+`FOUNDATIONS.*-renewal-20261020` and `CAMPAIGN.crossroads-renewal-20261020` IDs.
+Focused `RE.terrain-traversal-closeout-20261020` and
+`RS.world-dispatch-closeout-20261020` retain new original comparisons.
+`NR.production-refusal-closeout-20261020` is authored native fixture support,
+not fresh original/live observation.
+
+The source/scope review preserves stale historical closures and original stages
+independently from current execution. The old terrain and multi-domain recorded
+receipts retain historical versions; exact pending reviews cover current shared
+source effects. No source fingerprints are refreshed in old reports.
+`TOOL.next20-canvas-controls` is seeded as partial tooling without new execution
+credit. All affected sources and committed incoming versions are reviewed and
+indexed with exact receipts. See `native-scene-accounting-closeout-20261020.md`
+for counts, failures, retained boundaries and the source-frozen reproduction.
+
 ## Next twenty partial contracts, group 2 — 2026-10-20
 
 Fixed final publication admission before the final World return and refused
@@ -19103,3 +19162,29 @@ the wider casting/combat/throughput contract and extended spell/portrait cases
 are not promoted. The ed556c8d..38fe6e3f history audit covers 412 parent/current
 file versions with no missing exact receipt chains, independently of this new
 uncommitted source change and without asserting a historical gate pass.
+
+## Next twenty partial contracts, group 3 — 2026-10-20
+
+Supplied owned body null-display startup288+facing/inclusive SPR-bound descriptors
+and mode-one attachment binding/removal/reentry, and rejected negative selected
+SPR records before publishing native display snapshots. Four native/sanitized
+controls pass. Original matches cover4,608body cases,347forward traces,
+2,140phase traces,6,097,440placement checks and520attachment states;168production
+facing cases are native-only. Existing full forward/reverse controller comparison
+also passes. Broad original/full-entity/live milestones are retained separately;
+the new native admission policy alone has scoped implementation execution credit.
+[Progress](next20-implementation-progress-20261020.md) records all twenty selected
+contracts and the remaining boundaries. Canvas broad-snapshot freshness becomes
+historical after these animation edits; original hashes and execution records
+are not rewritten.
+
+### Master integration of rendering and physical combat input — 2026-10-20
+
+The combined tree preserves the rendering/physical-input commits and master
+through native scene closeout 87105990, including owned animation and Low
+diagnostic work. Original evidence fingerprints and exact historical receipts
+remain append-only. Selected static review imports preserve their parent pins;
+combined links and changed sources remain pending where prior execution does
+not cover this tree. The default summon/combat driver retains its validated
+source fingerprints. Integration accounting and focused regression controls
+do not renew original comparison, broader acceptance or live replacement.

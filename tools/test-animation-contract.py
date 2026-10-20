@@ -30,7 +30,7 @@ def main():
                  'tests/animation-binary-reference.cpp','tools/test-animation-contract.py']
         hashes={path:sha((REPO/path).read_bytes()) for path in sources}
         helper=out/'reference'
-        command=['g++','-m32','-std=c++17','-Wall','-Wextra','-Werror','-I'+str(REPO/'reconstruction/animation'),
+        command=['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-I'+str(REPO/'reconstruction/animation'),
                  '-I'+str(REPO/'assets'),str(REPO/'tests/animation-binary-reference.cpp'),
                  str(REPO/'reconstruction/animation/no_cd.cpp'),'-o',str(helper)]
         subprocess.run(command,check=True,capture_output=True,text=True,timeout=60)
