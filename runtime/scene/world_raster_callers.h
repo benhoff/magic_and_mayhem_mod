@@ -61,3 +61,40 @@ static inline int mnm_world_raster_caller(u32 caller,u32 tag,const u8* bytes){
   }
  return 0;
 }
+
+/* Pinned trail leaf continuations require the enclosing queue return too. */
+static const struct TrailRasterSite {u32 address;u8 bytes[10];} trail_raster_sites[]={
+ {0x4df8b3,{0x8b,0x4c,0x24,0x10,0x8b,0x44,0x24,0x24,0x3,0xf9}},
+ {0x4df8e8,{0x8b,0x4c,0x24,0x14,0x8b,0x44,0x24,0x20,0x3,0xf1}},
+ {0x4df920,{0x8b,0x4c,0x24,0x24,0x8b,0x54,0x24,0x14,0x3,0xe9}},
+ {0x4df95f,{0x3,0xeb,0x8b,0x44,0x24,0x10,0x3,0xf8,0x8b,0x44}},
+ {0x4df995,{0x5f,0x5e,0x5d,0x5b,0x83,0xc4,0xc,0xc2,0x14,0x0}},
+};
+static const struct TrailQueueReturn {u32 address;u8 bytes[10];} trail_queue_returns[]={
+ {0x5006e0,{0xe9,0x67,0x1,0x0,0x0,0x8b,0x56,0xc,0x8b,0x4e}},
+ {0x500f51,{0xe9,0xd0,0x1,0x0,0x0,0xf,0xbf,0x46,0x6,0x8b}},
+};
+static inline int mnm_world_trail_site(u32 caller){
+ for(u32 i=0;i<sizeof(trail_raster_sites)/sizeof(trail_raster_sites[0]);++i)if(caller==trail_raster_sites[i].address)return 1;
+ return 0;
+}
+static inline int mnm_world_trail_raster_caller(u32 caller,u32 tag,const u8* bytes,u32 outer,const u8* outer_bytes){
+ if(tag!=57||!bytes||!outer_bytes)return 0;
+ int leaf=0,parent=0;
+ for(u32 i=0;i<sizeof(trail_raster_sites)/sizeof(trail_raster_sites[0]);++i)if(caller==trail_raster_sites[i].address){
+  for(u32 j=0;j<10;++j)if(bytes[j]!=trail_raster_sites[i].bytes[j])return 0;
+  leaf=1;break;
+ }
+ if(!leaf)return 0;
+ for(u32 i=0;i<sizeof(trail_queue_returns)/sizeof(trail_queue_returns[0]);++i)if(outer==trail_queue_returns[i].address){
+  for(u32 j=0;j<10;++j)if(outer_bytes[j]!=trail_queue_returns[i].bytes[j])return 0;
+  parent=1;break;
+ }
+ return parent;
+}
+static inline u32 mnm_world_trail_parent(u32 caller,u32 tag,const u8* prologue,const u32* stack,u32 stack_bytes){
+ const u8 signature[7]={0x83,0xec,0x0c,0x53,0x55,0x56,0x57};
+ if(tag!=57||!mnm_world_trail_site(caller)||!prologue||!stack||stack_bytes<48)return 0;
+ for(u32 i=0;i<7;++i)if(prologue[i]!=signature[i])return 0;
+ return stack[11];
+}

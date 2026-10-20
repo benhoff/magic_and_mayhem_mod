@@ -227,7 +227,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Effect pixels and exact returned queue metadata are visible correctness requirements. Scoped owned producer integration does not close source lifetime, natural route coverage or complete live rendering/release.",
-      "contract_sha256": "3fddde77a474426c8679fd8a66aeafe198bdcadc50a1f3350c602183f4e9cf43"
+      "contract_sha256": "8e3fce97d7de582a2d9473261bc5d0a59f466e3c15fb067848cdc96bdd6c2c5b"
     },
     {
       "behavior": "NP.world-inherited-kind8-caller",
@@ -242,6 +242,13 @@
       "work_type": "capability",
       "reason": "A bounded native work/overflow guard prevents partial output for rejected owned trails; it is not current whole-session ownership or original clipping evidence.",
       "contract_sha256": "f1979e932a3a54c43b03f83b2f0e0df75bf15697549a373f920b17e161d52c67"
+    },
+    {
+      "behavior": "NP.world-trail-caller-admission",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Guarded trail raster caller admission closes an explicit native drawing route while retaining owned input and independent release requirements.",
+      "contract_sha256": "60a59bb2110cf7aec281afa441bdcf62d6a17dfa9ea62df4d45943697c232399"
     },
     {
       "behavior": "NP.world-word-entry-observation",

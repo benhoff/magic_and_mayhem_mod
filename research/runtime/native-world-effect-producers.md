@@ -20,7 +20,8 @@ Eleven checked direct continuations cover the primary/auxiliary additive, source
 row and tint routes plus the primary outline route. The generator checks each
 E8 target and retains these bindings independently of an observed stream. The
 production predicate now has43addresses/50pairs and3381 refusal controls. Kind9
-helper callers and any other unreviewed continuation remain refused. The software table has separate continuations and remains refused here. Static
+helper callers have separate checked stack-context admission; other unreviewed
+continuations remain refused. The software table has separate continuations and remains refused here. Static
 bindings are not evidence of natural reachability or of a later table mode.
 
 The final combined producer run independently compares948GPU canvases,

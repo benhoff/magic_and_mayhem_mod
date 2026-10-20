@@ -4,6 +4,7 @@ import argparse,hashlib,importlib.util,json,struct,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
+TRAIL_CONTEXT = '/* Pinned trail leaf continuations require the enclosing queue return too. */\nstatic const struct TrailRasterSite {u32 address;u8 bytes[10];} trail_raster_sites[]={\n {0x4df8b3,{0x8b,0x4c,0x24,0x10,0x8b,0x44,0x24,0x24,0x3,0xf9}},\n {0x4df8e8,{0x8b,0x4c,0x24,0x14,0x8b,0x44,0x24,0x20,0x3,0xf1}},\n {0x4df920,{0x8b,0x4c,0x24,0x24,0x8b,0x54,0x24,0x14,0x3,0xe9}},\n {0x4df95f,{0x3,0xeb,0x8b,0x44,0x24,0x10,0x3,0xf8,0x8b,0x44}},\n {0x4df995,{0x5f,0x5e,0x5d,0x5b,0x83,0xc4,0xc,0xc2,0x14,0x0}},\n};\nstatic const struct TrailQueueReturn {u32 address;u8 bytes[10];} trail_queue_returns[]={\n {0x5006e0,{0xe9,0x67,0x1,0x0,0x0,0x8b,0x56,0xc,0x8b,0x4e}},\n {0x500f51,{0xe9,0xd0,0x1,0x0,0x0,0xf,0xbf,0x46,0x6,0x8b}},\n};\nstatic inline int mnm_world_trail_site(u32 caller){\n for(u32 i=0;i<sizeof(trail_raster_sites)/sizeof(trail_raster_sites[0]);++i)if(caller==trail_raster_sites[i].address)return 1;\n return 0;\n}\nstatic inline int mnm_world_trail_raster_caller(u32 caller,u32 tag,const u8* bytes,u32 outer,const u8* outer_bytes){\n if(tag!=57||!bytes||!outer_bytes)return 0;\n int leaf=0,parent=0;\n for(u32 i=0;i<sizeof(trail_raster_sites)/sizeof(trail_raster_sites[0]);++i)if(caller==trail_raster_sites[i].address){\n  for(u32 j=0;j<10;++j)if(bytes[j]!=trail_raster_sites[i].bytes[j])return 0;\n  leaf=1;break;\n }\n if(!leaf)return 0;\n for(u32 i=0;i<sizeof(trail_queue_returns)/sizeof(trail_queue_returns[0]);++i)if(outer==trail_queue_returns[i].address){\n  for(u32 j=0;j<10;++j)if(outer_bytes[j]!=trail_queue_returns[i].bytes[j])return 0;\n  parent=1;break;\n }\n return parent;\n}\nstatic inline u32 mnm_world_trail_parent(u32 caller,u32 tag,const u8* prologue,const u32* stack,u32 stack_bytes){\n const u8 signature[7]={0x83,0xec,0x0c,0x53,0x55,0x56,0x57};\n if(tag!=57||!mnm_world_trail_site(caller)||!prologue||!stack||stack_bytes<48)return 0;\n for(u32 i=0;i<7;++i)if(prologue[i]!=signature[i])return 0;\n return stack[11];\n}\n'
 def main():
  p=argparse.ArgumentParser();p.add_argument('--stream',type=Path,required=True);p.add_argument('--header',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
  subprocess.run([ROOT/'tools/original-manifest.sh','verify'],check=True)
@@ -57,6 +58,20 @@ static inline int mnm_world_raster_caller(u32 caller,u32 tag,const u8* bytes){
   }
  return 0;
 }'''];a.header.open('x').write('\n'.join(header)+'\n')
-  report={'success':True,'source_executable_sha256':HASH,'caller_count':len(rows),'callers':rows,'sources':{str(Path(__file__).relative_to(ROOT)):hashlib.sha256(Path(__file__).read_bytes()).hexdigest()},'input_stream':{'path':str(a.stream),'sha256':hashlib.sha256(a.stream.read_bytes()).hexdigest()},'generated_header_sha256':hashlib.sha256(a.header.read_bytes()).hexdigest(),'scope':'Static observed-caller whitelist and bytes; not pixel equivalence or whole-function recovery.'};a.report.open('x').write(json.dumps(report,indent=2)+'\n')
+  trail_sites=[0x4df8b3,0x4df8e8,0x4df920,0x4df95f,0x4df995];trail_parents=[0x5006e0,0x500f51]
+  if at(0x4df840,7)!=bytes.fromhex('83ec0c53555657'):raise ValueError('Trail stack prologue changed')
+  trail_rows=[]
+  for addresses,target,kind in [(trail_sites,0x580a90,'leaf'),(trail_parents,0x4df840,'parent')]:
+   for va in addresses:
+    call=at(va-5,5)
+    if call[0]!=0xe8 or va+struct.unpack('<i',call[1:])[0]!=target:raise ValueError('Trail direct binding changed')
+    trail_rows.append(dict(address=hex(va),kind=kind,return_signature=at(va,10).hex()))
+  # This reviewed guard is part of the generator, independently of observations.
+  trailer=TRAIL_CONTEXT
+  for row in trail_rows:
+   literal=' {0x%x,{%s}},'%(int(row['address'],16),','.join(hex(x) for x in bytes.fromhex(row['return_signature'])))
+   if literal not in trailer:raise ValueError('Trail guard template does not match original bytes')
+  with a.header.open('a') as output:output.write('\n'+trailer)
+  report={'success':True,'source_executable_sha256':HASH,'caller_count':len(rows),'callers':rows,'trail_context':trail_rows,'sources':{str(Path(__file__).relative_to(ROOT)):hashlib.sha256(Path(__file__).read_bytes()).hexdigest()},'input_stream':{'path':str(a.stream),'sha256':hashlib.sha256(a.stream.read_bytes()).hexdigest()},'generated_header_sha256':hashlib.sha256(a.header.read_bytes()).hexdigest(),'scope':'Static observed-caller whitelist and bytes; not pixel equivalence or whole-function recovery.'};a.report.open('x').write(json.dumps(report,indent=2)+'\n')
  finally:subprocess.run([ROOT/'tools/original-manifest.sh','verify'],check=True)
 if __name__=='__main__':main()

@@ -477,7 +477,7 @@ int producer_enter_observe(u32* registers,u32 tag,u8* fx){
       source==batch_surface || (copy_tag&&!source)){fail(45,tag);ExitProcess(95);}
   }else if(batch_guard_open&&hooks[tag].raster<0&&tag!=4 && !(continuous_public_bind && (tag==26 || tag==52))){fail(45,tag);ExitProcess(95);}
   if(continuous_public_bind && batch_guard_open && (tag==26 || tag==52)){
-   if(GetCurrentThreadId()!=batch_owner || !raster_caller((registers+9)[0],tag)){fail(43,tag);ExitProcess(95);}
+   if(GetCurrentThreadId()!=batch_owner || !raster_caller((registers+9)[0],tag,registers+9)){fail(43,tag);ExitProcess(95);}
    struct Frame f={0};f.tag=tag;f.caller=(registers+9)[0];f.ecx=registers[6];f.edx=registers[5];
    for(u32 i=0;i<6;++i)f.args[i]=(registers+9)[i+1];
    u8* data=request(&f);if(!data && tag==52 && readable(f.ecx,22) && (get((void*)f.ecx)>3 || (i32)get((void*)(f.ecx+4))<=0 || (i32)get((void*)(f.ecx+8))<=0)){registers[7]=0;SetLastError(error);return 1;}if(!data || ((u32*)data)[2]!=(tag==26?MNM_PRODUCER_RGB_ADD:MNM_PRODUCER_COLOUR_RECT) || ((u32*)data)[3]!=batch_surface->id){fail(40,tag);ExitProcess(95);}
@@ -486,7 +486,7 @@ int producer_enter_observe(u32* registers,u32 tag,u8* fx){
   }
   if(!*producer_trace_depth(producer_trace_mode?GetCurrentThreadId():0)&&((bypass_limit&&queue==bypass_queue&&bypass_completed<bypass_limit&&(tag==13||tag==14))||(raster_active()&&hooks[tag].raster>=0))){
    if(!raster_active()&&!generic_bypass_caller((registers+9)[0],tag)){fail(43,tag);ExitProcess(95);}
-   if(raster_active()&&(!raster_caller((registers+9)[0],tag)||bypass_completed>=MNM_WORLD_RASTER_MAX)){u32 refusal[24]={0};refusal[2]=MNM_PRODUCER_FAILURE;refusal[14]=43;refusal[15]=tag;refusal[22]=(registers+9)[0];++failures;emit(refusal,0,0);ExitProcess(95);}
+   if(raster_active()&&(!raster_caller((registers+9)[0],tag,registers+9)||bypass_completed>=MNM_WORLD_RASTER_MAX)){u32 refusal[24]={0};refusal[2]=MNM_PRODUCER_FAILURE;refusal[14]=43;refusal[15]=tag;refusal[22]=(registers+9)[0];++failures;emit(refusal,0,0);ExitProcess(95);}
    if(raster_active()&&tag==21&&get((void*)0x5f14d0)==0x7d00){
     /* Preserve original non-drawing lazy table preparation, on a zero-size frame. */
     u32 empty[11]={44,0,0};typedef u32 (__attribute__((fastcall)) *Wave)(void*,u32,u32,u32);((Wave)producer_trampolines[21])(empty,0,0,1);++raster_preparations;

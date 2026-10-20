@@ -30,11 +30,14 @@ static int bypass_init(u32 queues){
  if(!bypass_limit||bypass_limit>MNM_WORLD_BYPASS_MAX)return 0;bypass_queue=queues;return 1;
 }
 static int bypass_equal(const void* a,const void* b,u32 n){const u8* x=a;const u8* y=b;while(n--)if(*x++!=*y++)return 0;return 1;}
-static int raster_caller(u32 caller,u32 tag){
+static int raster_caller(u32 caller,u32 tag,const u32* stack){
 #ifdef MNM_SCENE_SELFTEST
- (void)caller;(void)tag;return 1;
+ (void)caller;(void)tag;(void)stack;return 1;
 #else
- return readable(caller,10)&&mnm_world_raster_caller(caller,tag,(const u8*)caller);
+ if(readable(caller,10)&&mnm_world_raster_caller(caller,tag,(const u8*)caller))return 1;
+ if(tag!=57||!mnm_world_trail_site(caller)||!readable(caller,10)||!readable(0x4df840,7)||!readable((u32)stack,48))return 0;
+ const u32 outer=mnm_world_trail_parent(caller,tag,(const u8*)0x4df840,stack,48);
+ return outer&&readable(outer,10)&&mnm_world_trail_raster_caller(caller,tag,(const u8*)caller,outer,(const u8*)outer);
 #endif
 }
 

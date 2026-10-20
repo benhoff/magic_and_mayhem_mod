@@ -126926,7 +126926,9 @@
         "K8CALL2.native-20261020",
         "K8CALL2.original-20261020",
         "WFX.callers-original-20261020",
-        "WFX.callers-native-20261020"
+        "WFX.callers-native-20261020",
+        "WTRCTX.callers-original-20261020",
+        "WTRCTX.callers-native-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -126936,7 +126938,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "WFX.source-review-20261020",
+        "review": "WTRCTX.source-review-20261020",
         "entry": "NP.world-inherited-kind8-caller"
       }
     },
@@ -127548,7 +127550,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "WFX.source-review-20261020",
+        "review": "WTRCTX.source-review-20261020",
         "entry": "RS.world-effect-raster-returns"
       }
     },
@@ -127557,7 +127559,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owned World effect producer admission",
-      "scope": "Pinned RGB565580a90/57fe10/581200/580260 plus5806f0 amplitude9..16 serialize additive/outline/tint and explicit source/sampling row inputs in owned V3/V4/V5 producer records. Admit eleven exact primary/auxiliary direct continuations alongside existing wave continuations. Canonical World decoding checks mode/backend/indexed/payload combinations, low16zero completion, tight row storage and offsets0..32 before native drawing. Preserve original non-drawing lazy table preparation on empty frames. Synthetic original/hook/producer comparisons precede scoped live admission. Unknown/helper callers, malformed sources, unowned reads/writes, constructor/source-lifetime recovery, arbitrary aliases, natural route reachability and complete live rendering/release remain excluded.",
+      "scope": "Pinned RGB565580a90/57fe10/581200/580260 plus5806f0 amplitude9..16 serialize additive/outline/tint and explicit source/sampling row inputs in owned V3/V4/V5 producer records. Admit eleven exact primary/auxiliary direct continuations alongside existing wave continuations. Canonical World decoding checks mode/backend/indexed/payload combinations, low16zero completion, tight row storage and offsets0..32 before native drawing. Preserve original non-drawing lazy table preparation on empty frames. Synthetic original/hook/producer comparisons precede scoped live admission. Unknown/unreviewed helper callers, malformed sources, unowned reads/writes, constructor/source-lifetime recovery, arbitrary aliases, natural route reachability and complete live rendering/release remain excluded.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -127609,7 +127611,10 @@
         "WFX.tables-original-20261020",
         "WFX2.native-20261020",
         "WFX2.hook-native-20261020",
-        "WFX2.tables-original-20261020"
+        "WFX2.tables-original-20261020",
+        "WFX3.native-20261020",
+        "WFX3.hook-native-20261020",
+        "WFX3.tables-original-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -127619,8 +127624,62 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "WFX.source-review-20261020",
+        "review": "WTRCTX.source-review-20261020",
         "entry": "NP.world-effect-producer-admission"
+      }
+    },
+    {
+      "id": "NP.world-trail-caller-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Context-bound kind9 raster caller admission",
+      "scope": "Pinned580a90 tag57 admission from five4df840 internal continuations only when the original leaf stack has48 readable bytes, the exact seven-byte helper prologue and word11 enclosing return5006e0 or500f51 with checked ten-byte signatures. Preserve the existing ordinary caller predicate and regenerate the static helper context bindings independently of observations. Compare actual primary/software queue/helper stacks across127449 bounded synthetic-raster cases plus native malformed/short/protected span controls using the extracted production guard. Excludes real raster pixels, Windows memory-query equivalence, natural route reachability, malformed original helper geometry, source/writer/lifetime ownership and complete live replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-trail-caller-admission.md"
+      ],
+      "implementation": [
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/canvas_producers.c",
+        "tools/inspect-world-raster-callers.py"
+      ],
+      "tests": [
+        "tests/world-trail-context-test.cpp",
+        "tests/world-trail-context-reference.cpp",
+        "tools/test-world-trail-context.py"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-scene-observer.py",
+        "tools/test-world-raster-callers.py",
+        "tests/world-raster-callers-test.cpp",
+        "tests/inherited-kind8-return-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/world_trail.hpp",
+        "reconstruction/rendering/world_dispatch.hpp",
+        "tools/coverage_claims.py",
+        "tools/inspect-canvas-producers.py",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/world_effect_raster_v1.h"
+      ],
+      "evidence": [
+        "WTRCTX.native-20261020",
+        "WTRCTX.original-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WTRCTX.source-review-20261020",
+        "entry": "NP.world-trail-caller-admission"
       }
     }
   ],
@@ -286864,6 +286923,341 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "WTRCTX.native-20261020",
+      "kind": "native_integration",
+      "record": "research/runtime/native-world-trail-context-validation-20261020.json",
+      "sha256": "7fd74e498c21f003bed30da933f10a263416f7b528cb320f07c1b85d8faf05c7",
+      "scope": "Production C caller guard, exact helper stack parent and five leaf/two outer paths:127449 original cases/902601 calls; native10context pairs/2014controls. Synthetic raster and memory-query facade; no natural route, actual raster pixels or live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/production_guard_extracted",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_leaf_stack_parent_matches",
+          "equals": true
+        },
+        {
+          "pointer": "/original_queue_helper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 127449
+        },
+        {
+          "pointer": "/original/calls",
+          "equals": 902601
+        },
+        {
+          "pointer": "/native/controls",
+          "equals": 2014
+        },
+        {
+          "pointer": "/native/protected_short_stack_refused",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WTRCTX.original-20261020",
+      "kind": "isolated_original",
+      "record": "research/runtime/native-world-trail-context-validation-20261020.json",
+      "sha256": "7fd74e498c21f003bed30da933f10a263416f7b528cb320f07c1b85d8faf05c7",
+      "scope": "Production C caller guard, exact helper stack parent and five leaf/two outer paths:127449 original cases/902601 calls; native10context pairs/2014controls. Synthetic raster and memory-query facade; no natural route, actual raster pixels or live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/production_guard_extracted",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_leaf_stack_parent_matches",
+          "equals": true
+        },
+        {
+          "pointer": "/original_queue_helper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 127449
+        },
+        {
+          "pointer": "/original/calls",
+          "equals": 902601
+        },
+        {
+          "pointer": "/native/controls",
+          "equals": 2014
+        },
+        {
+          "pointer": "/native/protected_short_stack_refused",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "WTRCTX.callers-original-20261020",
+      "kind": "isolated_original",
+      "scope": "Pinned native resident World additive caller admission: accept54aaa0 shape+0x34 continuation54aab2 for producer tag26 with exact ten-byte RET8/padding signature, alongside all prior whitelist entries. Share the production caller/tag/byte predicate with native controls; preserve readable-memory, owner-thread, protected World canvas and owned additive record checks in the surrounding producer. The generator verifies the5c73f0 virtual slot and complete54aaa0 method before retaining this static extension, independent of one finite observed stream; exercise regeneration with an authored empty-queue fixture, explicitly separate from natural observations. Original54aaa0 low16 return matches the existing native zero policy in8316 authored RGB56537x19 cases: widths1/2/17/64, heights1/3/21, eleven X and nine Y positions and seven low16 increments, covering clipped and empty intersections. No pixel/full-register equivalence, larger return domain, natural-live execution, object writers/ownership or complete replacement claim.",
+      "record": "research/runtime/native-world-trail-caller-regression-20261020.json",
+      "sha256": "7c365a89f9d1a3fc79a2c1a1c687bd49093fca161eb87e4a0f824596a807b2ba",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inherited_kind8_admitted",
+          "equals": true
+        },
+        {
+          "pointer": "/production_and_selftest_hooks_compile",
+          "equals": true
+        },
+        {
+          "pointer": "/generator_retains_unobserved_static_extension",
+          "equals": true
+        },
+        {
+          "pointer": "/generator_input_is_authored_empty_queue",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_instructions_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_low16_return_matches_native_zero",
+          "equals": true
+        },
+        {
+          "pointer": "/original_return_cases",
+          "equals": 8316
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "WTRCTX.callers-native-20261020",
+      "kind": "native_integration",
+      "scope": "Pinned native resident World additive caller admission: accept54aaa0 shape+0x34 continuation54aab2 for producer tag26 with exact ten-byte RET8/padding signature, alongside all prior whitelist entries. Share the production caller/tag/byte predicate with native controls; preserve readable-memory, owner-thread, protected World canvas and owned additive record checks in the surrounding producer. The generator verifies the5c73f0 virtual slot and complete54aaa0 method before retaining this static extension, independent of one finite observed stream; exercise regeneration with an authored empty-queue fixture, explicitly separate from natural observations. Original54aaa0 low16 return matches the existing native zero policy in8316 authored RGB56537x19 cases: widths1/2/17/64, heights1/3/21, eleven X and nine Y positions and seven low16 increments, covering clipped and empty intersections. No pixel/full-register equivalence, larger return domain, natural-live execution, object writers/ownership or complete replacement claim.",
+      "record": "research/runtime/native-world-trail-caller-regression-20261020.json",
+      "sha256": "7c365a89f9d1a3fc79a2c1a1c687bd49093fca161eb87e4a0f824596a807b2ba",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inherited_kind8_admitted",
+          "equals": true
+        },
+        {
+          "pointer": "/production_and_selftest_hooks_compile",
+          "equals": true
+        },
+        {
+          "pointer": "/generator_retains_unobserved_static_extension",
+          "equals": true
+        },
+        {
+          "pointer": "/generator_input_is_authored_empty_queue",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_instructions_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_low16_return_matches_native_zero",
+          "equals": true
+        },
+        {
+          "pointer": "/original_return_cases",
+          "equals": 8316
+        }
+      ]
+    },
+    {
+      "id": "WFX3.native-20261020",
+      "kind": "native_integration",
+      "record": "research/runtime/native-world-effect-producer-trail-regression-20261020.json",
+      "sha256": "c809525f721f452da0549d34540eae4845458f23df5281040e3dde62f164cebf",
+      "scope": "Combined scoped owned effect producer wire/source-reference, GPU, actual synthetic PE32 entry, caller-signature and non-drawing original table preparation proof.948 canvases/67421 draws/14169546 exact original WORDs. No natural player-session/scanout/replacement claim. Fresh prospective primary/auxiliary scope after correcting a software-table label; code and test inputs unchanged. Regression after the separate context-bound kind9 guard; this effect contract still owns direct effect inputs rather than the helper ancestry proof.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_gpu_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_result/fixtures",
+          "equals": 948
+        },
+        {
+          "pointer": "/native_result/draws",
+          "equals": 67421
+        },
+        {
+          "pointer": "/native_result/pixels",
+          "equals": 14169546
+        },
+        {
+          "pointer": "/pe32_synthetic_entry_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/regressions_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WFX3.hook-native-20261020",
+      "kind": "native_integration",
+      "record": "research/runtime/native-world-effect-hook-trail-regression-20261020.json",
+      "sha256": "fd8f74bc5cfb5cddbc962f3bdc5073648eb6f85042006ee99d32e6fc8bdc4b0c",
+      "scope": "Five actual PE32 effect-entry paths with synthetic original prologues, protected unchanged original canvas, normalized owned wire, low16zero, RET cleanup and flags/x87/SSE/LastError controls; seven malformed refusals. No original renderer pixels or natural-live claim. Fresh prospective primary/auxiliary scope after correcting a software-table label; code and test inputs unchanged. Regression after the separate context-bound kind9 guard; this effect contract still owns direct effect inputs rather than the helper ancestry proof.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/effect_entries_native_bypassed",
+          "equals": 5
+        },
+        {
+          "pointer": "/effect_wire_normalized",
+          "equals": true
+        },
+        {
+          "pointer": "/effect_guarded_original_canvas_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/effect_malformed_refusals",
+          "equals": 7
+        },
+        {
+          "pointer": "/register_flags_float_error_preserved",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WFX3.tables-original-20261020",
+      "kind": "isolated_original",
+      "record": "research/runtime/native-world-effect-table-trail-regression-20261020.json",
+      "sha256": "919f16051918298fc88755913b3c3cb72da8e43f26c10a6599f5843fa99e9292",
+      "scope": "Original zero-size-frame cold/cached preparation only: source amplitudes1..16, wave groups0..15; unreadable pixel/palette pointers, preserved frame and neighbours. Effective inputs remain explicit; no wider table-writer model. Fresh prospective primary/auxiliary scope after correcting a software-table label; code and test inputs unchanged. Regression after the separate context-bound kind9 guard; this effect contract still owns direct effect inputs rather than the helper ancestry proof.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/empty_frame_non_drawing",
+          "equals": true
+        },
+        {
+          "pointer": "/result/cached_calls_unchanged",
+          "equals": 17
+        },
+        {
+          "pointer": "/result/wave_writes_only_groups0_to15",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -307642,7 +308036,27 @@
         "WFX.native-20261020",
         "WFX.hook-native-20261020",
         "WFX2.native-20261020",
-        "WFX2.hook-native-20261020"
+        "WFX2.hook-native-20261020",
+        "WFX3.native-20261020",
+        "WFX3.hook-native-20261020"
+      ]
+    },
+    {
+      "id": "native-world-trail-context",
+      "title": "Original queue/helper ancestry and production native admission",
+      "level": "headless",
+      "scope": "Five internal leaf paths/two queue parents under original direct/primary/software authored cases with synthetic raster; native span/signature/tag refusals and preserved ordinary callers. No natural player-session or raster-pixel equivalence.",
+      "behaviors": [
+        "NP.world-trail-caller-admission"
+      ],
+      "tests": [
+        "tests/world-trail-context-test.cpp",
+        "tests/world-trail-context-reference.cpp",
+        "tools/test-world-trail-context.py"
+      ],
+      "evidence": [
+        "WTRCTX.native-20261020",
+        "WTRCTX.original-20261020"
       ]
     }
   ],
@@ -308314,8 +308728,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-effects-v2-20261020.json",
-    "sha256": "03c8267bac50c4d6d7b8b8f8a4be68554045de35e52c3b46c365efa7ebd24381"
+    "path": "research/runtime/coverage/source-index-world-trail-context-20261020.json",
+    "sha256": "3de3a4f7104dc7decddcd80af5830c5567d5651485c509dc10c761dc2f1da950"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -308367,9 +308781,9 @@
       "sha256": "d7b182978b6fdd3b131b2702fe0f0b8e453907939af0397b9278fcca6c4b202c"
     },
     {
-      "id": "WFX.source-review-20261020",
-      "path": "research/runtime/coverage/world-effect-source-review-20261020.json",
-      "sha256": "e416ebcbeb974e12d3ba58dd53659873ac1f9d8eb999b633ef5caa9890b799b4"
+      "id": "WTRCTX.source-review-20261020",
+      "path": "research/runtime/coverage/world-trail-context-source-review-20261020.json",
+      "sha256": "c35493c7d9312f9a869ba4ad585f4410c9a2ac6bab37bc7da31954479479548d"
     }
   ]
 }

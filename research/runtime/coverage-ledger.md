@@ -19187,3 +19187,16 @@ admitted by these eleven continuations. WFX2 repeats the complete948-canvas,
 67421-draw producer/entry/table suite under the corrected prospective contract.
 WFX V4 remains historical after that scope correction; original source hashes
 and reports are preserved. No broader table-mode or live replacement claim follows.
+
+## Context-bound kind9 raster continuation (2026-10-20)
+
+WTRCTX admits five exact580a90 internal returns only with the checked4df840
+stack/prologue and primary/software enclosing queue return.127449 original
+queue/helper cases cover902601 synthetic raster calls and all five paths; native
+10context pairs/2014controls include protected short frames and preserve ordinary
+callers. Generator regeneration retains all seven context bindings. WFX3 repeats
+the948-canvas/14169546-WORD effect producer/entry/table regressions with current
+shared sources. This is scoped headless caller admission; actual helper pixels,
+Windows query equivalence, natural reachability, source lifetime, other table
+callers and complete live release gates remain separate. Umbrella World/kind8
+remain partial and complete live replacement remains none.
