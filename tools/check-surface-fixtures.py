@@ -8,6 +8,10 @@ import io
 import json
 from pathlib import Path
 import tempfile
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import surface_fixture_corpus
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT = ROOT / 'tests/fixtures/surfaces/corpus.json'
@@ -60,8 +64,12 @@ def read_case(root, case):
     return data, capture
 
 
-def check(corpus_path, backend='cpu', executable=None, headless=False):
+def check(corpus_path, backend='cpu', executable=None, headless=False, build=None):
     corpus = json.loads(corpus_path.read_text())
+    if corpus.get('schema') == 2:
+        if backend != 'opengl':
+            raise ValueError('Operation corpus requires the opengl backend; CPU is not a substitute')
+        return surface_fixture_corpus.check(corpus_path, build, headless)
     if corpus.get('schema') != 1 or not corpus.get('cases'):
         raise ValueError('Unsupported or empty fixture corpus')
     matrix_path = ROOT / 'research/runtime/native-surface-operation-matrix.json'
@@ -110,9 +118,12 @@ def check(corpus_path, backend='cpu', executable=None, headless=False):
             backend == 'cpu' or row['opengl_comparison']['matching'] and
             row['opengl_vs_cpu']['matching'] and row['presentation_comparison']['matching'])
         rows.append(row)
-        covered.update(case['matrix_ids'])
+        if row['success']:
+            covered.update(case['matrix_ids'])
     required = {key for key, row in operations.items() if row['requirement'] == 'required'}
     sources = ['tools/check-surface-fixtures.py', 'tools/replay-render-capture.py',
+               'tools/surface_fixture_corpus.py', 'tools/terrain_validation_display.py',
+               'tools/coverage_claims.py',
                'tests/test-surface-fixtures.py',
                'research/runtime/native-surface-operation-matrix.json',
                'renderer/blit.cpp', 'renderer/blit.hpp', 'renderer/capture.cpp',
@@ -125,7 +136,7 @@ def check(corpus_path, backend='cpu', executable=None, headless=False):
             'original_sha256': BUILD_HASH, 'cases': rows,
             'scope': 'Five retained game-driver RGB565 opaque BltFast captures at return PC 0x0058c5be; offline comparison only.',
             'covered_matrix_ids': sorted(covered), 'missing_required_matrix_ids': sorted(required-covered),
-            'milestone_complete': required <= covered,
+            'milestone_complete': all(row['success'] for row in rows) and required <= covered,
             'sources': {path: sha((ROOT/path).read_bytes()) for path in sorted(set(sources))}}
 
 
@@ -134,13 +145,14 @@ def main():
     parser.add_argument('--corpus', type=Path, default=DEFAULT)
     parser.add_argument('--backend', choices=('cpu', 'opengl'), default='cpu')
     parser.add_argument('--gl-executable', type=Path)
+    parser.add_argument('--build', type=Path, help='Native renderer build for schema 2 operation cohorts')
     parser.add_argument('--headless', action='store_true')
     parser.add_argument('--report', type=Path, required=True, help='New JSON report; refuses overwrite')
     args = parser.parse_args()
     if args.report.exists():
         parser.exit(2, 'Refusing to overwrite report\n')
     try:
-        result = check(args.corpus.resolve(), args.backend, args.gl_executable, args.headless)
+        result = check(args.corpus.resolve(), args.backend, args.gl_executable, args.headless, args.build)
         args.report.parent.mkdir(parents=True, exist_ok=True)
         with args.report.open('x') as out:
             json.dump(result, out, indent=2)

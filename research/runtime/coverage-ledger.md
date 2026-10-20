@@ -19479,3 +19479,23 @@ remain independent pending boundaries. Unsupported backing refuses.
 Incoming master source and exact receipts are preserved. Active review entries
 reconcile 199 superseded register pointers, with a retained repair report and no
 historical evidence hash refresh or retrospective gate-pass claim.
+
+### Portable operation-corpus implementation (2026-10-20)
+
+`NR.surface-fixture-corpus` now admits the separately retained operation formats
+through schema2 in the common surface fixture checker.26 hash-bound artifacts
+feed four fixed native adapters; catalogs cannot select executables, arguments,
+oracles or arbitrary operation claims. Missing/changed artifacts, partial/empty
+reports, wrong binary identities and changed source closures refuse. Failed
+cohorts receive no coverage and retain their diagnostics. Legacy schema1 game
+captures stay separate and unchanged.
+
+Fresh software OpenGL replay passes5114combined drawing results/538272pixel
+checks,1400independent driver draws/2800owned signed-row variants,4480recovered
+retry traces/1536bounded stops,11flip results and408clipping stream cases. The
+eleven new admission/accounting controls and existing five corpus/five cohort
+controls pass. All12 operation families have measured portable fixtures; full
+surface acceptance stays false. No original artifacts or new game/Wine session
+are consumed. Hardware and whole-game caller/format/lifetime/loss/live evidence
+remain separate. The frozen twenty now have16 scoped implementations and four
+broader acceptance targets; historical evidence fingerprints are unchanged.

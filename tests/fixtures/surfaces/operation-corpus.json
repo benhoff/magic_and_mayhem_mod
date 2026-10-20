@@ -1,0 +1,95 @@
+{
+  "schema": 2,
+  "scope": "Portable operation-specific replay of independent retained original-wrapper and standalone-driver cohorts. Historical game RGB565 copies remain in corpus.json; represented fixture families do not complete full game acceptance.",
+  "cohorts": [
+    {
+      "id": "backend",
+      "matrix_ids": [
+        "SURF.clip.rectangles",
+        "SURF.clip.regions",
+        "SURF.copy.opaque",
+        "SURF.copy.self_overlap",
+        "SURF.fill",
+        "SURF.format.rgb565",
+        "SURF.key.exact_source"
+      ],
+      "oracle": "isolated_original_wrapper_and_standalone_driver",
+      "scope": "Retained fill/key/opaque and keyed overlap, clip lists, borrowed draws and access/DC sequences; strict recorded HRESULT and defined-pixel comparisons.",
+      "artifacts": {
+        "research/runtime/surface-access-capture-20261006.json": "4646e929641cae1360ede4b44de770d2da03ca7b9f94ed030aec40f2cdf9d70c",
+        "research/runtime/surface-borrowed-draw-capture-20261006.json": "d5fd1fd18e344b917a5f10314b65ec073fbc833ea98ce1cf9e3cb9bed3609e66",
+        "research/runtime/surface-dc-reuse-capture-20261006.json": "86500f7d25fde556cc8903cdef676f0ddd063f0181739a11233ef1330cf8ffc8",
+        "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json": "f903c01cae3d08486bd24d4f619af4ad96d6ee21dd55394420fe1d7bf6633cbe",
+        "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz": "c6ae4c39de508610c2fc765c3acc4eff65e0f253e89a8457ea153b3f21522e7c",
+        "tests/fixtures/surfaces/original-rgb565-fills-corpus.json": "dcc9f0bebe92ee1e4dc8328c13cdfd5651296be5ba38f2b837b00dccee1f5633",
+        "tests/fixtures/surfaces/original-rgb565-fills.json.gz": "3de62db2c49674adad4d48960e4485c2ffebe523d9e3b174d0f6b6222cdbd7c6",
+        "tests/fixtures/surfaces/original-rgb565-keyed-corpus.json": "3f8f6cf2e41f97af88e2359a04d59ffc0257329e55b901f3da48b67e92748e69",
+        "tests/fixtures/surfaces/original-rgb565-keyed-overlap-corpus.json": "f531b4880cbd016a0baa4f89c7e5654107875a3d20be66ce2d66784150951990",
+        "tests/fixtures/surfaces/original-rgb565-keyed-overlap.json.gz": "dc197aeb330d8a8b2e21147442b319956816f9b230effcafe671849dc7b0766f",
+        "tests/fixtures/surfaces/original-rgb565-keyed.json.gz": "3ff187072a520bf787811b9a73a0aa02e75e88048329194d6bac52e16982dc33",
+        "tests/fixtures/surfaces/original-rgb565-overlap-corpus.json": "dbb088e45a19a3d354c8cb530f92046ade325c0dddaeb38b4d9e35958ab88fe2",
+        "tests/fixtures/surfaces/original-rgb565-overlap.json.gz": "a1750be482070deea5bb4ab100bc3b2887db9e1e63d5f0aed4ca0761bc124f37",
+        "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+        "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52",
+        "tests/fixtures/surfaces/surface-access.json.gz": "b80055aef41fffe9b3a3b6c9fed7f8f0ab4aa06b669ac4ad3f4d553e6e670def",
+        "tests/fixtures/surfaces/surface-borrowed-draw.json.gz": "94a85e506856609174a669d5983abd03f0bf22138ba6012cb6d764ec419e53c2",
+        "tests/fixtures/surfaces/surface-dc-reuse.json.gz": "9fb8d221edfb87c8e24333598ef2afd50c664b62fbb09133a8bfbabf4f6443aa"
+      }
+    },
+    {
+      "id": "formats",
+      "matrix_ids": [
+        "SURF.clip.rectangles",
+        "SURF.copy.opaque",
+        "SURF.copy.self_overlap",
+        "SURF.fill",
+        "SURF.format.other",
+        "SURF.key.exact_source"
+      ],
+      "oracle": "standalone_directdraw2_surface2_driver",
+      "scope": "Five canonical same-format layouts with original storage/descriptor/HRESULTs and native signed-row imports. Game format reachability and native import policy remain separate.",
+      "artifacts": {
+        "research/runtime/surface-formats-final-capture-20261006.json": "16500e6d9fde369085313fcde3d4f309259c0c1560bb7bbeafc36eddf7a0290c",
+        "tests/fixtures/surfaces/surface-formats-final.json.gz": "d955207662df6b62c1c57b7abc6a4777df2807d52298940cd19d318cf1ed00eb"
+      }
+    },
+    {
+      "id": "ownership",
+      "matrix_ids": [
+        "SURF.flip",
+        "SURF.lifetime_updates",
+        "SURF.palette",
+        "SURF.restore"
+      ],
+      "oracle": "standalone_driver_and_recovered_original_scheduler",
+      "scope": "Shared palettes/owned aliases, paired two-buffer flips, retained driver recovery states and separate original retry schedules. No arbitrary COM lifetime or real game loss proof.",
+      "artifacts": {
+        "research/runtime/surface-ownership-final-capture-20261006.json": "c01144134bc00e4a6aeaf53a514082d7d627141d0fd376576d6c57895ab252dd",
+        "research/runtime/surface-palette-restore-capture-20261006.json": "c4a71a0033b934217905484473234161b0b9c82aa078d7effbea7a597154202b",
+        "tests/fixtures/surfaces/original-retry-corpus.json": "ad58af4ddb3c5d09a8c1d6a58ebc958fd37711d45d24047abbec81e72f550e9c",
+        "tests/fixtures/surfaces/original-retry.json.gz": "c111fde6a0364d564d1c059fc6eed5e406518e7799997d62435a4e93553ebad5",
+        "tests/fixtures/surfaces/surface-ownership-final.json.gz": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839",
+        "tests/fixtures/surfaces/surface-palette-restore.json.gz": "9e6d00cb9c360702cd00b9cc43930985887131bfe741bf87c262b88d537fa52b"
+      }
+    },
+    {
+      "id": "clipping",
+      "matrix_ids": [
+        "SURF.clip.rectangles",
+        "SURF.clip.regions"
+      ],
+      "oracle": "standalone_surface2_driver",
+      "scope": "Wire V3 RGB565 clipped copies with complete native pixel/HRESULT comparisons and partial-write failures.",
+      "artifacts": {
+        "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json": "f903c01cae3d08486bd24d4f619af4ad96d6ee21dd55394420fe1d7bf6633cbe",
+        "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz": "c6ae4c39de508610c2fc765c3acc4eff65e0f253e89a8457ea153b3f21522e7c"
+      }
+    }
+  ],
+  "remaining_contracts": [
+    "Full original-game caller/format/flag reachability and arbitrary masks",
+    "Unobserved physical aliases, arbitrary COM/DC/lock lifetimes and longer flip chains",
+    "Real-game loss/Restore/retry compositions beyond the retained controlled driver and scheduler cases",
+    "Windows driver, physical scanout, complete scenes and live replacement"
+  ]
+}

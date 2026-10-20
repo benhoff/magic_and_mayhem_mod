@@ -4977,7 +4977,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.surfaces"
       }
     },
@@ -5171,7 +5171,7 @@
         "tools/compare-mmsprite-binary.py"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.sprites"
       }
     },
@@ -5243,7 +5243,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.sprite_scene"
       }
     },
@@ -13339,7 +13339,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "TOOL.coverage-ui"
       }
     },
@@ -15806,7 +15806,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Required surface operation matrix and portable independent-output corpus",
-      "scope": "Explicit required/conditional operation matrix and strict hash-bound original RGB565 opaque BltFast corpus, lossless retained captures/manifests, native versus expected separation, complete-destination comparisons and incomplete-milestone reporting. New captures, other operation admission and original collector provenance remain pending.",
+      "scope": "Explicit required/conditional operation matrix, strict hash-bound schema1 original-game RGB565 opaque BltFast captures, and schema2 portable operation-specific admission of retained fill/key/overlap/clipping, five-format, ownership/palette/flip/recovery cohorts. Exact artifact sets, oracle separation, comparison extents, native binary/library/source fingerprints, failed-cohort refusal and incomplete-milestone reporting. Measured standalone-driver and isolated-wrapper coverage is separate from full original-game caller/format/lifetime/loss, physical hardware and live replacement acceptance; historical collector provenance remains limited.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -15819,7 +15819,8 @@
       ],
       "implementation": [
         "tools/check-surface-fixtures.py",
-        "tools/check-rendering-high-surfaces.py"
+        "tools/check-rendering-high-surfaces.py",
+        "tools/surface_fixture_corpus.py"
       ],
       "tests": [
         "tests/test-surface-fixtures.py",
@@ -15837,7 +15838,9 @@
         "tests/test-rendering-high-surfaces.py",
         "tests/fixtures/surfaces/high-validation-suite.json",
         "tests/test-render-capture.py",
-        "tools/test-third20-native.py"
+        "tools/test-third20-native.py",
+        "tests/test-surface-operation-corpus.py",
+        "tests/fixtures/surfaces/operation-corpus.json"
       ],
       "evidence": [
         "NR.surface-fixture-corpus.offline-20261006",
@@ -15856,23 +15859,113 @@
         "T20.native-controls-20261020",
         "HIGH04.staged-source-support-review-20261020",
         "COMPLETE.native-20261020",
-        "OWNERSHIP.native-20261020"
+        "OWNERSHIP.native-20261020",
+        "SURFCORPUS.operations-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.surface-fixture-corpus"
       },
       "validation_dependencies": [
+        "protocols/generate.py",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/python/mnm_protocols/render_stream_v3.py",
+        "protocols/schemas/render_stream-v3.json",
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
         "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/original-surface-keyed-overlap-capture-20261006.json",
+        "research/runtime/original-surface-keyed-overlap-offline-20261006.json",
+        "research/runtime/surface-access-capture-20261006.json",
+        "research/runtime/surface-borrowed-draw-capture-20261006.json",
+        "research/runtime/surface-borrowed-draw-offline-20261006.json",
+        "research/runtime/surface-dc-reuse-capture-20261006.json",
+        "research/runtime/surface-formats-final-capture-20261006.json",
+        "research/runtime/surface-ownership-final-capture-20261006.json",
+        "research/runtime/surface-palette-restore-capture-20261006.json",
+        "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+        "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz",
+        "tests/fixtures/surfaces/original-retry-corpus.json",
+        "tests/fixtures/surfaces/original-retry.json.gz",
+        "tests/fixtures/surfaces/original-rgb565-fills-corpus.json",
+        "tests/fixtures/surfaces/original-rgb565-fills.json.gz",
+        "tests/fixtures/surfaces/original-rgb565-keyed-corpus.json",
+        "tests/fixtures/surfaces/original-rgb565-keyed-overlap-corpus.json",
+        "tests/fixtures/surfaces/original-rgb565-keyed-overlap.json.gz",
+        "tests/fixtures/surfaces/original-rgb565-keyed.json.gz",
+        "tests/fixtures/surfaces/original-rgb565-overlap-corpus.json",
+        "tests/fixtures/surfaces/original-rgb565-overlap.json.gz",
+        "tests/fixtures/surfaces/original-sentinel-corpus.json",
+        "tests/fixtures/surfaces/original-sentinel.json.gz",
+        "tests/fixtures/surfaces/surface-access.json.gz",
+        "tests/fixtures/surfaces/surface-borrowed-draw.json.gz",
+        "tests/fixtures/surfaces/surface-dc-reuse.json.gz",
+        "tests/fixtures/surfaces/surface-formats-final.json.gz",
+        "tests/fixtures/surfaces/surface-ownership-final.json.gz",
+        "tests/fixtures/surfaces/surface-palette-restore.json.gz",
+        "tests/render-clipping-stream-test.cpp",
+        "tests/render-surface-backend-test.cpp",
+        "tests/render-surface-formats-test.cpp",
+        "tests/render-surface-ownership-test.cpp",
+        "tests/surface-retry-model.cpp",
+        "tests/test-original-surface-keyed-overlap.py",
+        "tests/test-surface-borrowed-draw.py",
+        "tests/test-surface-formats.py",
+        "tests/test-surface-ownership.py",
+        "tools/capture-original-surface-keyed-overlap.py",
+        "tools/capture-surface-access.py",
+        "tools/capture-surface-borrowed-draw.py",
+        "tools/check-native-clipping-stream.py",
+        "tools/check-native-surface-backend.py",
+        "tools/check-native-surface-clipping.py",
+        "tools/check-native-surface-formats.py",
+        "tools/check-native-surface-ownership.py",
+        "tools/check-original-surface-fills.py",
+        "tools/check-original-surface-keyed-overlap.py",
+        "tools/check-original-surface-keys.py",
+        "tools/check-original-surface-overlap.py",
+        "tools/check-original-surface-retry.py",
+        "tools/check-surface-access.py",
+        "tools/check-surface-borrowed-draw.py",
+        "tools/check-surface-dc-palette.py",
+        "tools/check-surface-dc-reuse.py",
+        "tools/check-surface-dib-ddraw.py",
+        "tools/check-surface-dib-gdi.py",
+        "tools/check-surface-formats.py",
+        "tools/check-surface-ownership.py",
+        "tools/check-surface-palette-restore.py",
         "tools/coverage_claims.py",
         "tools/terrain_validation_display.py"
+      ],
+      "remaining_gaps": [
+        "All twelve required operation families have portable measured cohorts; full original-game caller/format/flag reachability, arbitrary aliases/COM/DC/lock lifetimes, full game loss/Restore and hardware/live replacement acceptance remain separate. Historical collector fingerprints are not renewed by replay."
       ]
     },
     {
@@ -20292,7 +20385,7 @@
         ".github/workflows/re-coverage.yml"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "TOOL.coverage-accounting"
       }
     },
@@ -39120,7 +39213,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.directdraw-public-native-menu"
       }
     },
@@ -39941,7 +40034,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.directdraw-native-opengl-launch"
       }
     },
@@ -40276,7 +40369,7 @@
         "Offline temporal mutator surface relationships add source changes to lifetime analyzer/tests; pre-change lifetime01remains historical. Fresh02passes24synthetic guards and preserves all earlier lifetime fields, but classifies only observed local-generation/QueryInterface relationships. No fresh PE32 forwarding, original reexecution, native pixel parity, driver ordering or full ownership validation is asserted."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-session-api"
       }
     },
@@ -40425,7 +40518,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-interactive-acquisition"
       }
     },
@@ -40695,7 +40788,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.public-resident-world"
       }
     },
@@ -66484,7 +66577,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-producer-source-points"
       }
     },
@@ -66749,7 +66842,7 @@
         "Final fixture04passes all nine wrapped real X11 calls/control errno/results/server pixels and five parser guard methods. Original01records446closed calls on two Unix processes:11XPutImage,413XFlush,2XFillRectangle,19XSync,1XShmPutImage versus588API physical witnesses. Dynamic GL/other unwrapped imports remain unobserved. Time proximity cannot bind source/producer causality or explain the initial black plane; native prediction remains separately recorded."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-x11-delivery-observation"
       }
     },
@@ -66817,7 +66910,7 @@
         "Actual fixture07passes five direct/resolved GLX routes and control source/front output,errno/missing symbol;six journal guards pass. Independent alias fixture01checks16exact providers and both seventeenth-alias refusals. Original01/02reach zero ordinary GLX swaps despite observer present in Chaos.exe. Process Main/World snapshots show EGL modules; actual EGL dispatch is the next unproved route. RTLD_NEXT selected lookups,alternate swaps,loader error-state baseline,function-pointer identity,module lifetimes and complete source/physical causality remain open."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-glx-delivery-observation"
       }
     },
@@ -66878,7 +66971,7 @@
         "Fresh actual EGL fixture02passes four lookup/swap routes,control source pixels,Boolean/errno/EGL error/missing symbol; seven decoder methods pass. Original01records737successful EGL swaps on one Unix worker thread versus559API physical witnesses,with no pending selected calls. Reached EGL is observed,but exact physical sample times/source submission mapping,handle generations,module/caller state,alternate swaps,all routes and complete journeys remain pending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-egl-delivery-observation"
       }
     },
@@ -67003,7 +67096,7 @@
         "Actual original01retains495closed post-successful-EGL full root planes/237600000pixels,zero transients and496separate API witnesses. Synthetic exact/wrong/oversize/missing/mode ACK cases preserve control output/error and refuse malformed; three envelope and five full-plane/identity/scope/clock/ACK/close guards pass. All104native source predictions occur exactly among post-EGL plane hashes,including first Main image,without temporal assignment. Exact submitted-source identity,all routes/writers/handle lifetimes,scanout,unobtrusive control and full47/21acceptance remain pending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-egl-physical-witness"
       }
     },
@@ -67075,7 +67168,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.producer-trace32-acquisition"
       }
     },
@@ -67147,7 +67240,7 @@
         "Post-observation source-only fix preserves FP around lazy import installation before DirectDrawCreate/CreateEx; build passes but fresh original/fixture execution for this final source version remains pending. Historical observed source hashes retained."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-submission-observation"
       }
     },
@@ -67209,7 +67302,7 @@
         "Original02admits82generations/11remainingobjects/0unknownreleases underselectedimports;exactsubmissiongenerationpoint/internalWinepaths/asyncEGL/storageownership andsemanticjourneys remainpending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-object-lifetimes"
       }
     },
@@ -67268,7 +67361,7 @@
         "Original01admits1534submissions/1197knownboth/337unknownfirstallopaqueobject14/0unknownsources,337API/336EGLwitnesses,32returns189466records. Pending unknownbufferorigin/internal lifetime/immutablebytes/asyncEGLassignment/allroutes/semanticjourneys."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-submission-generations"
       }
     },
@@ -67325,7 +67418,7 @@
         "Original01admits333frontgetterreturns:swapchain4/generation4\u2192texture14/generation0. Backgetterunreached;textureinternalcreation/release/storageownership/asyncEGLassignment remainpending;originisnotinventedgeneration."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-buffer-origins"
       }
     },
@@ -67378,7 +67471,7 @@
         "Original01admits1630submissionswith0unknownfirst/sourcegenerations,377frontgetterreturnswith0unknowntextures,closed32returns. Internalentryscope coversselectedcreate/decrefexecutions,notallWinealiases/otherstoragewrites/sourceimmutability/asyncEGLassignment/semanticjourneys."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-texture-entry-observation"
       }
     },
@@ -67434,7 +67527,7 @@
         "Original01admits1511opcode42workercalls/1threads/0unknowndestination/0unknownsourcegenerations;sourcequeueidentity/EGLassignment/immutablebytes remainpending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-blit-command-discovery"
       }
     },
@@ -67496,7 +67589,7 @@
         "Original01admits1610exactemission/workerentry/returnbindingswith0unknown/pending/unbound. Commandidentityisnotimmutabletexture-sourceownership/asyncEGLassignment;otheremitpaths/queuedcopies andfullroutes/semanticjourneysremainpending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-blit-packet-binding"
       }
     },
@@ -67567,7 +67660,7 @@
         "Original01admits458EGLpairedsnapshots/331stableactive/0missingunstable;offline331exactworker/command/submissionlinks/330physicalwitnesses,127unassigned. Winthread432/Unix765577associationisnotthread-equivalence;byteownership/scanout/allroutes/semanticjourneysremainpending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-egl-worker-context"
       }
     },
@@ -67644,7 +67737,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-api-source-byte-witness"
       }
     },
@@ -67718,7 +67811,7 @@
         "Fresh owned regression verifies restoration, wrong/nested identities and legacy default-off write refusal after metadata publication moved before protection. Writer fixture adds arming-window and alias faults; original02 confirms139 selected stable leased pairs. Other virtual mappings, page-halo ownership, original allocation lifetime and GPU access remain outside the guard."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-source-readonly-lease"
       }
     },
@@ -67782,7 +67875,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-source-worker-lease"
       }
     },
@@ -67854,7 +67947,7 @@
         "Opt-in diagnostic held V2 pending-admission joins require fresh source/recorder/decoder/original execution; historical V1 evidence remains immutable and no all-route ownership or status promotion follows."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-source-held-snapshot"
       }
     },
@@ -67919,7 +68012,7 @@
         "Original03 V2 observes130consecutive advancing windows and identifies the original transition-byte branch on117/118without selected queues.120source queues span122advancing windows. QPC/source callback journals are retained;32callbacks with pending frames and all original routes/ownership remain open."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-engine-update-windows"
       }
     },
@@ -67984,7 +68077,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-producer-update-binding"
       }
     },
@@ -68079,7 +68172,7 @@
         "The private COPY ownership acquisition recipe leaves World active until the exact120-source marker before driving Results; this is a new scoped capture schedule, not a promotion of historical whole-capture equivalence or global alias/presentation ownership."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-whole-update-source-capture"
       }
     },
@@ -68168,7 +68261,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-whole120-acquisition"
       }
     },
@@ -68329,7 +68422,7 @@
         "Fresh owned retirement guards and original combined32actualexit0pass; previous owned/originalexit99failures remain retained. Original6973resource calls/1727maps close with0open/unknown unmaps, but all1727map points are unknown:15live unknown,895live transition-pending unknown(flags131),817stopped.985storage calls/910lock-return epochs/119local address IDs do not establish map-buffer/current-cache or allocation ownership. Public copy boundary has0calls; no transfers/async ownership or general replay repair proved. Full IAT/module/timer quiescence and47/21closure remain open."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-resource-mapping"
       }
     },
@@ -68390,7 +68483,7 @@
         "All guard branches beyond fixture coverage, source/map/upload ownership and storage reuse, whole source/COM/texture lifetimes, other routes and semantic actions, diagnostic cadence controls and full DRAW-02 47/21 acceptance remain pending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-source-held-refusal"
       }
     },
@@ -68485,7 +68578,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-map-storage-point"
       }
     },
@@ -68579,7 +68672,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-client-memory-binding"
       }
     },
@@ -68663,7 +68756,7 @@
         "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-retained-map-source"
       }
     },
@@ -68731,7 +68824,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-source-pending-frame-refusal"
       }
     },
@@ -68838,7 +68931,7 @@
         "Control05from the intact current original05prefix completes834windows and normalQuit after control03/04pre-game boot timeouts. Comparison02uses exact shared main schedule/600ms Results policy/settings/input/counter and raw traces for120queued updates. Combined timing does not isolate map work, match randomized workload or establish unobtrusive gameplay; source/worker/frame/action/routes remain pending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-diagnostic-cadence-control"
       }
     },
@@ -68965,7 +69058,7 @@
         "tools/inspect-canvas-producers.py"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-canvas-storage-transitions"
       }
     },
@@ -69028,7 +69121,7 @@
         "tools/drawing_storage_point.py"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-storage-query-candidates"
       }
     },
@@ -69093,7 +69186,7 @@
         "tools/inspect-drawing-wine-resource-copy.py"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-resource-copy"
       }
     },
@@ -69271,7 +69364,7 @@
         "runtime/menu/campaign_input_admission_observe.h"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-semantic-state-observation"
       }
     },
@@ -69412,7 +69505,7 @@
         "runtime/menu/campaign_input_admission_observe.h"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-hud-state-observation"
       }
     },
@@ -69463,7 +69556,7 @@
         "tools/drawing-session-runner.py"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-campaign-guidance-handshake"
       }
     },
@@ -69519,7 +69612,7 @@
         "tools/build-drawing-session.py"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-original-cursor-point"
       }
     },
@@ -69590,7 +69683,7 @@
         "runtime/menu/campaign_input_admission_observe.h"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-hud-cursor-binding"
       }
     },
@@ -69851,7 +69944,7 @@
         "Current original documented input probe02 records raw +68/count/mode select-clear-reselect and independent pointer-away states after settled coordinates. Probe01 retains stale hit at immediate modifier button-down; ordinary ground clicks retain selection. Numeric observed identity still lacks allocation/generation and synchronized frame/native proof."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-region-mouse-observation"
       }
     },
@@ -70195,7 +70288,7 @@
         "Actual original constructor/wait/release/close lifetime/order and raw call classification pending. Named/external handle aliases, concurrent close/use, real ownership/abandoned semantics and safe diagnostic source synchronization remain unproved. Recorder loss/pending/identity overflow and missing points stay visible; full pixel/source/native parity remains independent."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-cursor-mutex-observation"
       }
     },
@@ -70327,7 +70420,7 @@
         "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-source-pending-copy-policy"
       }
     },
@@ -70392,7 +70485,7 @@
         "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-source-descriptor"
       }
     },
@@ -70462,7 +70555,7 @@
         "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-source-map"
       }
     },
@@ -70602,7 +70695,7 @@
         "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-wine-source-map-bounded"
       }
     },
@@ -70907,7 +71000,7 @@
         "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-source-version-guard"
       }
     },
@@ -70978,7 +71071,7 @@
         "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-source-write-trace"
       }
     },
@@ -71057,7 +71150,7 @@
         "Current owned regression02 passes12 PE32 cases and6 decoder methods: recorder disabled before close, later workers forward once without extra GL/journal calls, and close during an in-flight fence remains strictly incomplete. Two original acquisition failures are preserved (wrong EGL library; normal journals followed by exit99). Fresh combined original32pilot03 exits0 after2108signaled fences and144restored source leases; this bounded rerun supports the teardown correction while the earlier exit99 remains preserved; no whole-hook quiescence or all-context/backing ownership proof."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-gpu-completion"
       }
     },
@@ -71128,7 +71221,7 @@
         "Current offline original32pilot03 writer-trace/lifecycle replay and4classifier tests:2179unlocated entries across49identities,2169no observed Lock return and10later returns. No physical allocation or alternate-view provenance. Historical fingerprints/statuses retained; fresh offline agreement does not promote original comparison, integration or replacement."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-backing-provenance"
       }
     },
@@ -71251,7 +71344,7 @@
         "Pending fresh complete bounded original session capture and native comparison; legacy capture scopes remain historical."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-session-producer-capture"
       }
     },
@@ -71310,7 +71403,7 @@
         "Pending fresh original normal-Quit validation after late resource helper fix; existing scoped observer evidence remains historical."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-observer-shutdown"
       }
     },
@@ -80885,7 +80978,7 @@
         "Observed EGL remains distinct from all global presented frames. Callback epochs do not prove input causality or source immutability; optional protected-page diagnostic interference remains unresolved. Native Qt menu policy, hardware and live replacement remain separate."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "TOOL.drawing-storage-action-session"
       }
     },
@@ -81055,7 +81148,7 @@
         "Original source DIB/x/y are observed in the storage session; native whole-plane comparison fixes confirmation backgrounds. Arbitrary DIB encodings/default palette/DC state, original HRESULT/ABI replacement and global route completeness remain separate."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "RS.canvas-positioned-dib"
       }
     },
@@ -81154,7 +81247,7 @@
         "Portable corrected222frame driver-policy fixture is separate from historical238frame unmodified uploads. Shared replay changes require new execution evidence; historical validation fingerprints remain unchanged. Retention alone is not new original execution, generic journey acceptance or renderer replacement."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.storage-session-corpus"
       }
     },
@@ -81673,7 +81766,7 @@
         "Fresh final diagnostic acquisition and default-off EGL forwarding controls are recorded separately. Completion does not eliminate the first-downsize physical shift. Query/error-state neutrality, complete lookup/window lifetime routes, source ownership, global presentations and hardware remain unproved."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "TOOL.egl-swap-completion"
       }
     },
@@ -81726,7 +81819,7 @@
         "Bounded diagnostic source readbacks are comparator-only; native source agreement does not close physical parity. Error-state neutrality, immutable ownership/aliases, all GL routes and general driver behavior remain unproved."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "TOOL.egl-present-source-gpu-witness"
       }
     },
@@ -81775,7 +81868,7 @@
         "Seven owned resize controls preserve exact source/physical output and viewport restoration. Fresh232frame original policy experiment does not fix the first-downsize physical failure, despite232exact source-GPU matches. Retained for explicit reproduction only; normal profile remains disabled. No unrestricted forwarding/error-state or driver equivalence claim."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "TOOL.egl-present-viewport-policy"
       }
     },
@@ -81838,7 +81931,7 @@
         "Nominal pre-swap source/destination/native pixels match; unmodified software upload still shifts the first resized physical frame. Explicit crop profile closes222frames. Underlying allocation dimensions, source ownership, error neutrality and all routes/hardware remain unproved."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "TOOL.egl-present-destination-gpu-witness"
       }
     },
@@ -81898,7 +81991,7 @@
         "Same-current235frame and release/restore227frame original experiments retain one physical first-shrink failure while source/destination remain correct. Owned controls preserve queried state; modes remain disabled experimental negatives. No unrestricted lifecycle/error-state or driver equivalence claim."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "TOOL.egl-drawable-rebind-policy"
       }
     },
@@ -81959,7 +82052,7 @@
         "Actual original/control trace observes unchecked SHM uploads. Other checked/direct PutImage frontend branches and connection/SHM lifetime completeness remain outside the live reference."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "TOOL.egl-xcb-image-witness"
       }
     },
@@ -82019,7 +82112,7 @@
         "Observed pinned software crop profile matches all222source/native/destination/physical frames. Intentional opt-in origin policy is not universal: oversized storage with an already-updated origin is outside scope. Complete SHM ownership/lifetimes, all routes, error neutrality, hardware and live native renderer replacement remain unproved. Historical238frame physical reference remains failed and unchanged."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "TOOL.egl-stale-software-upload-policy"
       }
     },
@@ -87828,7 +87921,7 @@
         "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-source-cursor-gate-binding"
       }
     },
@@ -87927,7 +88020,7 @@
         "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-quit-dispatch-observation"
       }
     },
@@ -88029,7 +88122,7 @@
         "Final-contract owned X11 fixture02passes all six transport/refusal/cancellation cases after reviewed ground schedule link. No original semantic/frame/native parity is inferred from owned execution; original scopes stay separately bounded."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-documented-input-actions"
       }
     },
@@ -88236,7 +88329,7 @@
         "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-source-physical-interval-close"
       }
     },
@@ -88364,7 +88457,7 @@
         "Fresh explicit diagnostic trace2282copy requests bind exactcommand identities;161extraAPIentries/261adjacent return reversals retained. Readback extra calls do not become application COPYs or source ownership. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-copy-request-trace"
       }
     },
@@ -88603,7 +88696,7 @@
         "Four native guards and fresh explicit800x600x24 original32capture pass after the host error-path fix. Prior failures and primary-error masking remain preserved under their original hashes. Same observer binaries in the default-display failed and explicit-size successful narrow profiles; observed800x600x16SetDisplayMode failure0x80004001does not establish all startup/environment causes. Source/physical ownership and all47journey/21operation closure pending."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-copy-failure-provenance"
       }
     },
@@ -88685,7 +88778,7 @@
         "Conservative numerical storage association:1567bound/3652unbound of5219queries. No allocation/view/upload ownership. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-storage-query-lock-return"
       }
     },
@@ -88761,7 +88854,7 @@
         "Static worker prefixes:2604stable/493other-record/88touched commands;233workers outside COPYscope retained. Logical ID/return attribution is not immutable bytes or backing ownership. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-worker-producer-prefix"
       }
     },
@@ -89375,7 +89468,7 @@
         "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-results-redraw-repeat-stimulus"
       }
     },
@@ -89694,7 +89787,7 @@
         "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-worker-prefix-observation-control"
       }
     },
@@ -89754,7 +89847,7 @@
         "Fresh current source defaultoff original120 succeeds with aux_save_readbackfalse and no auxiliary sidecar. Defaultoff does not establish unobtrusive gameplay or noninterference of the extra readback profile."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-aux-save-readback"
       }
     },
@@ -90288,7 +90381,7 @@
         "Fresh source-boundary final original120uses timestamp-spanning prepare/commit/cancel admission. All120queues close with zero pending callback frames and zero primary source-point gaps;2054input calls/312matching primary witnesses/2584fenced source reservations are retained. The unchanged complete-interval checker refuses only globalpresentationroutes and alloriginalbackingaliaswriters. No original timing, all-source ownership or native parity promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-update-interval-accounting"
       }
     },
@@ -91345,7 +91438,7 @@
         "Actual original120-03 identifies all39pending copies and20late API acknowledgements among21cross-prefix witnesses, with one overlapping keyed API call;42first120updates retain pending boundaries. COPY request envelopes own only parameter headers, not source pixel bytes. Every immutable-source/global-route/backing-writer admission gate remains open; hardware/scanout, semantics and native parity are separate."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-primitive-lifetimes"
       }
     },
@@ -91428,7 +91521,7 @@
         "Exact primitive/API/worker identities do not own COPY backing bytes. All four full120interval ownership gates, alias/writer/global route closure and47/21journey/operation requirements remain open. Diagnostic trace overhead is not production cadence."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-primitive-api-binding"
       }
     },
@@ -91848,7 +91941,7 @@
         "HIGH03 fixes24 reproduced raw-journal/report/thread false admissions with50 synthetic Python regression methods. Runtime PE32 guard/original/GPU and wider ownership validation remain historical and separate; no raw milestone promotion."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-source-read-reservations"
       }
     },
@@ -115805,7 +115898,7 @@
         "Physical backing allocations/alternate mappings, unhooked CPU/GPU writers, asynchronous work beyond observed frames, global presentation routes/all contexts, scanout, complete47/21journeys/operations and native replacement remain open. The unchanged interval checker still refuses the two global ownership gates."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.source-boundary-quiescence"
       }
     },
@@ -117982,7 +118075,7 @@
         "Native rendering commit excludes the independent skirmish campaign-window build from validation dependencies: neither PE32 producer hooks nor the Qt shell compile it. Prior broad whole-checkout evidence and source maps remain immutable, and no current validation/status promotion is asserted."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NP.pixel-route-27-followup"
       }
     },
@@ -118237,7 +118330,7 @@
         "Raw CPU stores, private Wine writers/opcodes and distinct-resource physical backing aliases are not intercepted by public entry coverage. Existing raw-write counterexample still passes the observed-path guard. The all-original-backing-alias-writers gate remains false."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.drawing-mutator-entry-closure"
       }
     },
@@ -118333,7 +118426,7 @@
         "Launcher capability hardening now requires a matching current EGL/GLX policy build manifest and pins its digest for child admission. Six real build-manifest positive/refusal cases and a fresh complete original120run pass. The earlier source-stable run predates this launcher hardening and remains historical."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.presentation-resolver-refusal"
       }
     },
@@ -120038,7 +120131,7 @@
         "Native rendering commit excludes the independent skirmish campaign-window build from validation dependencies: neither PE32 producer hooks nor the Qt shell compile it. Prior broad whole-checkout evidence and source maps remain immutable, and no current validation/status promotion is asserted."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NP.finite-cpu-displacement"
       }
     },
@@ -120757,7 +120850,7 @@
         "Controlled private allocation and borrowed-page leases pass. Long heap-page protection is not admitted for live original execution because heap metadata can share pages; live COPY uses NR.private-copy-source-handoff. Unknown/shared/imported/BO backing and arbitrary host/driver aliases remain outside admission; no global source or presentation closure."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.wine-private-backing-ownership"
       }
     },
@@ -120886,7 +120979,7 @@
         "Current native-policy private COPY ownership passes2444handoffs and a completed original120source interval, including normal original Quit, restoration before API return and exact worker/fence retirement. The optional primitive-lifetime journal exhausted its bounded budget in retained retries and was disabled in the final ownership capture; no new primitive-lifetime evidence is claimed. Shared/imported/BO/unknown backing and arbitrary host/driver or other-context writers remain outside admission. This does not close all writers to original backing, global presentation routes, original scheduling/allocator equivalence or native replacement."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.private-copy-source-handoff"
       }
     },
@@ -122440,7 +122533,7 @@
         "tools/campaign_input_observation.py"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NP.native-copy-transforms"
       }
     },
@@ -124000,7 +124093,7 @@
         "tools/campaign_input_observation.py"
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NP.native-image-row-copy"
       }
     },
@@ -129061,7 +129154,7 @@
         "Physical original-game admission, real installed COPY/worker/fence/restoration and full-journey/hardware acceptance remain pending. Unknown shared/imported/drawable/BO/DC backing refuses. Arbitrary host/kernel/direct-syscall or raw object-metadata interference, external direct GPU dispatch, unknown aliases and original allocator/scheduler equivalence remain excluded; this finite policy supplies no global presentation or live replacement claim."
       ],
       "implementation_review": {
-        "review": "OWNERSHIP.source-review-20261020",
+        "review": "SURFCORPUS.source-review-20261020",
         "entry": "NR.source-read-ownership"
       }
     },
@@ -291226,6 +291319,37 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "SURFCORPUS.operations-20261020",
+      "kind": "native_integration",
+      "scope": "Strict operation-specific portable admission and current software OpenGL replay of separately retained independent wrapper/standalone-driver cohorts across twelve measured surface families; no original game execution, full surface acceptance, hardware or live replacement.",
+      "record": "research/runtime/native-surface-operation-corpus-20261020.json",
+      "sha256": "1c96b8ecb03744ca17f1d3d4c0cd4566da16f0040ff3f64ad86f02f717303473",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/binaries_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/required_fixture_cells_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/milestone_complete",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -311830,6 +311954,23 @@
         "CINPUT.admission-composition-controls-20261020"
       ],
       "scope": "Headless caster/selector ordering, state-read ordering, waypoint/refusal and readiness/receipt/reader fixtures only; original execution is excluded."
+    },
+    {
+      "id": "SURFCORPUS.operations.headless",
+      "level": "headless",
+      "scope": "Strict schema2 operation-specific portable admission and native replay of four independently retained surface cohorts covering twelve measured operation families; no new original execution, hardware or full surface/live acceptance.",
+      "behaviors": [
+        "NR.surface-fixture-corpus"
+      ],
+      "evidence": [
+        "SURFCORPUS.operations-20261020"
+      ],
+      "tests": [
+        "tools/check-surface-fixtures.py",
+        "tools/surface_fixture_corpus.py",
+        "tests/test-surface-operation-corpus.py",
+        "tests/fixtures/surfaces/operation-corpus.json"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -312482,8 +312623,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ownership-profile-20261020.json",
-    "sha256": "86c369c30f57dd4cd0fdae8b79055fd2804c51dd140f831721ff4fdedc90c967"
+    "path": "research/runtime/coverage/source-index-surface-operations-20261020.json",
+    "sha256": "d3e927b66b1e29dadf4aef37631a58f599188352b0713b0dbcb4f412344ebce6"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -312525,9 +312666,9 @@
       "sha256": "5080e51211ec3ec50e2ca18ebafc23dd21a6f9f17adf321cc7500516cbe067e7"
     },
     {
-      "id": "OWNERSHIP.source-review-20261020",
-      "path": "research/runtime/coverage/ownership-source-review-20261020.json",
-      "sha256": "b2d7bec2e4fcea445f61dee83a9b7f780c6cefa85670f48ed57afd6351abe86d"
+      "id": "SURFCORPUS.source-review-20261020",
+      "path": "research/runtime/coverage/surface-operation-source-review-20261020.json",
+      "sha256": "0ae7ee8761f10bc5b904754df789f7192e272e5fee2588f4048c1e6b3513dd8c"
     }
   ]
 }

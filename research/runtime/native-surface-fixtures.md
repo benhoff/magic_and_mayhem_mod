@@ -101,8 +101,9 @@ eligible same-format opaque/exact-key copies. Hash-check original inputs and
 verify the immutable manifest before and after original-artifact experiments.
 Record game build, staged executable, collector identity, graphics environment,
 scenario and original API result; preserve the completed capture and manifest.
-Extend this strict corpus admission and meaningful refusal tests before adding
-another operation. It currently admits only these RGB565 opaque BltFast cases.
+The historical schema1 catalog admits only these RGB565 opaque BltFast cases.
+The operation-specific schema2 catalog below admits the separately retained
+wrapper/standalone-driver formats without relabeling them as game captures.
 
 Current MNMBLT01 cannot express fills, clippers, self-copy, failed operations or
 Restore sequences. Those require an independently captured state/result format
@@ -116,6 +117,52 @@ evidence when shared code changes. Later fixtures must preserve both successful
 and failed operation state, and specify which restored pixels are valid. This
 chunk establishes the matrix and a bounded original corpus; new collection for
 the remaining rows is explicit pending work.
+
+## Operation-specific portable admission (2026-10-20)
+
+`tests/fixtures/surfaces/operation-corpus.json` now supplies a second admitted
+format to the same `check-surface-fixtures.py` entry point. It pins26 existing
+capture/provenance artifacts and dispatches four reviewed adapters: combined
+fill/key/overlap/borrowed storage, five-format storage, ownership/recovery, and
+clipping wire replay. Together they represent all12 required operation families.
+The original five game captures remain byte-for-byte in the schema1 catalog;
+isolated original wrappers, standalone driver outputs, scripted retry schedules
+and intentional native import/recovery policies retain distinct provenance.
+
+The catalog cannot choose an executable, command options or another oracle.
+Each adapter has an exact admitted artifact set, operation mapping and comparison
+extent. All artifacts are checked before launching native work. Reports must
+bind the admitted artifacts, native executable/library and current source hashes;
+empty/partial/guard-only reports and a zero exit without comparisons refuse.
+Failed cohorts contribute no operation coverage. Source and binary stability
+are checked again after execution, and failures retain logs and reports. The
+reviewed register supplies the prospective replay source closure and headless
+scenario claim. Historical collector hashes remain historical.
+
+Reproduce with the six native targets built from `renderer/`:
+
+```sh
+python3 tools/working-retention.py run --reserve-gib 0.5 -- \
+  python3 -B tools/check-surface-fixtures.py \
+  --corpus tests/fixtures/surfaces/operation-corpus.json --backend opengl \
+  --build <renderer-build> --headless --report <new-working-report.json>
+python3 -B tests/test-surface-operation-corpus.py
+```
+
+Required targets are `mnm-render-replay`, `mnm-render-commands`,
+`render-surface-backend-test`, `render-surface-formats-test`,
+`render-surface-ownership-test` and `render-clipping-stream-test`. The first is
+for the separate schema1 regression. Schema2 requires OpenGL; it never substitutes
+a CPU model for native execution. No game, Wine process or original artifact is
+needed for retained replay.
+
+`required_fixture_cells_complete` means each operation family has an admitted
+passing measured cohort. `milestone_complete` and
+`full_surface_acceptance_complete` remain false: full original-game caller,
+format/flag/lifetime/loss coverage, physical hardware and live replacement need
+separate evidence. Missing independent original-game captures are validation
+work; unsupported future formats require a new reviewed adapter. The known
+missing admission implementation for the retained operation formats is closed.
 
 ## Recorded result
 
