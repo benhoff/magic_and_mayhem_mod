@@ -13,7 +13,7 @@ def module(name,path):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
+    p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--shared-fixture-prefix',type=Path);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_text());sources=claims['sources']
     def stable():
@@ -26,7 +26,7 @@ def main():
         flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-Wno-unused-function']
         subprocess.run(flags+['-c',str(ROOT/'tests/drawing-mutator-entry-test.c'),'-o',str(run/'fixture.obj')],check=True)
         binary=run/'fixture.exe';subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(binary),str(run/'fixture.obj'),str(dll.parent/'packet.obj'),str(dll.parent/'kernel32.lib')],check=True)
-        prefix,lock=prepare(ROOT,run,a.prefix_template)
+        prefix,lock=prepare(ROOT,run,a.prefix_template,a.shared_fixture_prefix)
         wine_env=dict(env,WINEPREFIX=str(prefix),WINEDEBUG='-all',MNM_DRAW_SESSION_MODE='physical',MNM_DRAW_WINE_SUBMISSION='1',MNM_DRAW_WINE_TEXTURE_ENTRY='1',MNM_DRAW_WINE_RESOURCE_MAP='1',MNM_DRAW_WINE_RESOURCE_COPY='1',MNM_DRAW_WINE_SOURCE_DESCRIPTOR='1',MNM_DRAW_WINE_SOURCE_MAP='2',MNM_DRAW_WINE_BLIT_WORKER='1',MNM_DRAW_WINE_BLIT_PACKET='1',MNM_DRAW_WINE_SOURCE_VERSION='1',MNM_DRAW_WINE_GPU_COMPLETION='1',MNM_DRAW_WINE_SOURCE_RESERVATIONS='1')
         with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-u'],env=wine_env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
         pe_cases=[]

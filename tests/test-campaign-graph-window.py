@@ -80,15 +80,24 @@ def main():
             delivered=cli(prefix+'-headless-earned','resume',refs/(prefix+'-earned-pending.mnmc'),48);equal(prefix+' earned delivery',cast/'delivered.mnmc',delivered)
             report['routes'].append(dict(route=index,completed=True,restarted=True,retried=True,reward=reward))
         # Typed version-4 objectives and legacy profiles remain loadable in the same application.
-        old=ROOT/'working/tests/mission-objectives-bound-20261017-v3/boundaries/boundary-0.mnmc'
+        # Version-4 compatibility needs the current installed content identity.
+        # Retain historical checkpoints; create a separate typed fixture through
+        # the production CLI instead of depending on an old working directory.
+        legacy_created=a.output/'legacy-objectives-created.mnmc'
+        run('legacy-objectives-create',[a.build/'mnm-map-campaign-cli',a.assets,'create-objectives',legacy_created])
+        old=cli('legacy-objectives-start','start',legacy_created)
         legacy=window('legacy-objectives',[expect(battle=True,terrain=True,text='Keep alive throughout'),save('old')],old);equal('version-4 typed window',legacy/'old.mnmc',old)
         report['ctest']=run('ctest',['ctest','--test-dir',a.build,'--output-on-failure'])
         # Header/source/build closure of the actual configured application and test binaries.
-        dependencies=set()
+        dependencies=set();generated={}
         for dep in a.build.rglob('*.o.d'):
             for token in dep.read_text().replace('\\\n',' ').split()[1:]:
                 path=Path(token);path=(path if path.is_absolute() else a.build/path).resolve()
-                if path.is_file() and path.is_relative_to(ROOT):dependencies.add(path.relative_to(ROOT).as_posix())
+                if not path.is_file():continue
+                if path.is_relative_to(a.build) or path.is_relative_to(a.sanitized):
+                    generated[str(path)]=sha(path)
+                elif path.is_relative_to(ROOT):dependencies.add(path.relative_to(ROOT).as_posix())
+        report['generated_build_inputs']=generated
         report['compiler_dependencies']=sorted(dependencies);report['undeclared_dependencies']=sorted(dependencies-set(sources));assert not report['undeclared_dependencies'],report['undeclared_dependencies']
         report['sources_unchanged']=all(sha(ROOT/k)==v for k,v in sources.items());report['inputs_unchanged']=all(sha(a.assets/k)==v for k,v in report['installed'].items());assert report['sources_unchanged'] and report['inputs_unchanged']
         report['success']=True

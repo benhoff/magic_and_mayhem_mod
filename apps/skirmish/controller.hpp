@@ -11,6 +11,8 @@ class Controller {
     std::unique_ptr<game::CampaignSession> campaign_;
     std::filesystem::path mapRoot_;
     std::shared_ptr<const MissionPresentation> mapPresentation_;
+    std::shared_ptr<const MapCampaignResources> mapResources_;
+    void startMapCampaign(std::filesystem::path, bool staged, bool crossroads);
     scene::Playback playback_;
     std::optional<game::Handle> selected_;
     CursorMode mode_ = CursorMode::select;
@@ -25,6 +27,8 @@ class Controller {
     explicit Controller(std::filesystem::path mapRoot = {}, std::shared_ptr<const game::CombatDriver> = {});
     bool hasMapRoot() const {return !mapRoot_.empty();}
     void newMapCampaign(std::filesystem::path root = {}, bool stagedMission = false);
+    void newCrossroadsCampaign(std::filesystem::path root = {});
+    void selectCampaignMission(const QString &realm, const QString &region);
     const game::SkirmishSession &session() const;
     const game::CampaignSession *campaign() const { return campaign_.get(); }
     bool hasBattle() const { return !campaign_ || campaign_->battle(); }

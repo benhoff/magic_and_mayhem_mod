@@ -67,6 +67,9 @@ Selected native-only capabilities do not establish completion of the broader
 rendering track. Research, release gates and existing `#view=rendering` bookmarks
 remain available. **Refresh audit** updates counts; a running server must be
 restarted after changes to the Python snapshot producer.
+If a running server returns a plan without its computed review metadata, that
+plan shows a restart notice while the rest of Native rendering stays available.
+Restart the server and select **Refresh audit** to load the complete plan.
 
 For API/producer denominators rather than equally counted dashboard milestones,
 use `python3 tools/report-rendering-coverage.py`. The
@@ -214,28 +217,37 @@ The importance filter also offers **Partially implemented (reviewed missing code
 and **Acceptance failure**.
 No missing-code conclusion is inferred from stale evidence or an excluded domain.
 
-The **High work: 3 tranches** panel covers all 51 unfinished High contracts
-(50 registered partial and one registered not implemented), in three groups of 17:
+The **High work: 3 tranches** panel initially selected 51 unfinished High contracts
+(50 then registered partial and one then not implemented), in three groups of 17:
 
 1. Terrain generation, palette and lighting.
 2. Animation, sprites and native drawing.
 3. Ownership diagnostics and continuous journeys.
 
 The [High source review](../../research/runtime/rendering-high-tranches-review-20261019.md)
-finds 48 implementations within their bounded scopes needing validation, two
+initially recorded 48 implementations within their bounded scopes needing validation, two
 unresolved aggregates (`NR.surfaces` and `NR.public-resident-world`) needing a
-scope crosswalk, and one unimplemented original model
-(`RS.displacement-final-word-read`) needing operand/caller recovery before sizing
-implementation. Its native padding and finite-edge policies already exist;
-this is not a request to reproduce unsafe reads. The 47 already scoped High
-contracts retain their ranking but are excluded from this unfinished-work plan.
+scope crosswalk, and one original model without a linked implementation at that review
+(`RS.displacement-final-word-read`). These initial findings remain historical;
+subsequent task reviews and execution results can supersede them. The 47 High
+contracts already scoped at selection retained their ranking and were excluded
+from that unfinished-work plan.
 
 Each task separates its implementation assessment, historical or pending
 validation, concrete next action, completion condition and wider boundary.
 The **Not implemented (reviewed)** filter identifies the missing model separately
-from aggregate uncertainty and implemented code awaiting validation. These are
-source reviews and plans, not new execution results or registered stage promotions.
+from aggregate uncertainty and implemented code awaiting validation. Source assessments
+remain separate from the bounded execution results and registered stages.
 Source, scope, status or priority drift flags the task for another review.
+
+[High tranche 1 execution](../../research/runtime/rendering-high-terrain-execution-20261019.md)
+now records bounded PASS results for all 17 terrain/palette/light contracts.
+The current-source matrix includes exact original/native state and WORD-plane
+comparisons, distinct existing native presentation policies and retained
+refusals. Each task shows its PASS and concrete broader next work. Two builds
+each pass 20 terrain/palette CTests, with six additional harness/display checks.
+Only the four-view traversal gains its missing original-comparison dimension;
+implementation, integration and replacement stages remain unchanged.
 
 The newer bounded tranche-1 normal acceptance and tranche-2 task passes supersede
 the earlier blanket output-ownership blocker for the finite handoff. Earlier
@@ -252,8 +264,9 @@ to the targeted compatibility repair while broader session acceptance remains
 held. Region query success is also distinct from permission-cache admission:
 an inadmissible descriptor can be returned successfully while remaining uncached.
 
-The plan is **planned work**, not an experiment runner or an execution result.
-Review each tranche's 11 outcomes and unresolved findings before moving on;
+The dashboard presents **planned work and retained execution results**; it does
+not start experiments. Review each Critical tranche's 11 outcomes or High
+tranche's 17 outcomes and unresolved findings before moving on;
 completing its bounded tasks does not automatically mark all contracts
 implemented or validated. Scope, status or importance changes flag the task for
 review, and newly Critical partial contracts are shown as unassigned. Execution

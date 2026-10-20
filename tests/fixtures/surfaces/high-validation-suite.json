@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "scope": "Portable retained surface cohorts representing every required operation family within explicit measured domains. This extends coverage without rewriting or widening the original five-capture catalog.",
+  "components": [
+    {
+      "id": "copies",
+      "matrix_ids": [
+        "SURF.copy.opaque",
+        "SURF.format.rgb565"
+      ],
+      "oracle": "original_driver_post_call_lock",
+      "scope": "Five retained original-game RGB565 BltFast rectangles; complete destination/presentation checks. Collector source provenance remains historical."
+    },
+    {
+      "id": "backend",
+      "matrix_ids": [
+        "SURF.clip.rectangles",
+        "SURF.clip.regions",
+        "SURF.copy.opaque",
+        "SURF.copy.self_overlap",
+        "SURF.fill",
+        "SURF.format.rgb565",
+        "SURF.key.exact_source"
+      ],
+      "oracle": "isolated_original_wrapper_and_standalone_driver",
+      "scope": "Retained fill/key/opaque and keyed overlap, clip lists, borrowed draws and access/DC sequences; strict recorded HRESULT and defined-pixel comparisons."
+    },
+    {
+      "id": "formats",
+      "matrix_ids": [
+        "SURF.clip.rectangles",
+        "SURF.copy.opaque",
+        "SURF.copy.self_overlap",
+        "SURF.fill",
+        "SURF.format.other",
+        "SURF.key.exact_source"
+      ],
+      "oracle": "standalone_directdraw2_surface2_driver",
+      "scope": "Five canonical same-format layouts with original storage/descriptor/HRESULTs and native signed-row imports. Game format reachability and native import policy remain separate."
+    },
+    {
+      "id": "ownership",
+      "matrix_ids": [
+        "SURF.flip",
+        "SURF.lifetime_updates",
+        "SURF.palette",
+        "SURF.restore"
+      ],
+      "oracle": "standalone_driver_and_recovered_original_scheduler",
+      "scope": "Shared palettes/owned aliases, paired two-buffer flips, retained driver recovery states and separate original retry schedules. No arbitrary COM lifetime or real game loss proof."
+    },
+    {
+      "id": "clipping",
+      "matrix_ids": [
+        "SURF.clip.rectangles",
+        "SURF.clip.regions"
+      ],
+      "oracle": "standalone_surface2_driver",
+      "scope": "Wire V3 RGB565 clipped copies with complete native pixel/HRESULT comparisons and partial-write failures."
+    }
+  ],
+  "remaining_contracts": [
+    "Full original-game caller/format/flag reachability and arbitrary masks",
+    "Unobserved physical aliases, arbitrary COM/DC/lock lifetimes and longer flip chains",
+    "Real-game loss/Restore/retry compositions beyond the retained controlled driver and scheduler cases",
+    "Windows driver, physical scanout, complete scenes and live replacement"
+  ]
+}

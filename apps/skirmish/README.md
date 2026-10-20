@@ -274,3 +274,15 @@ the exclusive route. Last Stand earns Cure, Watchpost earns Magic Sphere, and bo
 rejoin the existing arena finale. `inspect` lists available missions and saved
 choices. See [campaign graph semantics](../../research/runtime/native-campaign-graph.md)
 and [the version-5 format](../../research/formats/native-campaign-graph.md).
+
+## Crossroads campaign window
+
+Use **New Crossroads campaign…** or `mnm-skirmish --asset-root GAME_DIRECTORY
+--crossroads-campaign`. The chapter starts paused. After the opening, select Last
+Stand (Cure) or Watchpost (Magic Sphere) in the mission list, then Continue.
+Starting a route commits it through defeat/retry. Both routes rejoin the arena
+finale. Objectives show timers and continuous protection; Save/Load campaign
+retains route choice, rewards and active mission state. Completed chapters disable
+Continue. The control column and objective panel scroll when needed.
+
+[Window semantics and automated acceptance](../../research/runtime/native-crossroads-window.md).

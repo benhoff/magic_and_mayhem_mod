@@ -2,6 +2,10 @@
 #include <QFileDialog>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QListWidget>
+#include <QScrollArea>
+#include <QScrollBar>
+#include <QSignalBlocker>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QPushButton>
@@ -171,11 +175,25 @@ Window::Window(Controller &c) {
     missionStatus->setWordWrap(true);
     missionStatus->setFixedWidth(560);
     missionStatus->hide();
-    sceneColumn->addWidget(missionStatus);
+    missionStatus->setTextFormat(Qt::PlainText);
+    auto *missionScroll=new QScrollArea;
+    missionScroll->setWidget(missionStatus);
+    missionScroll->setWidgetResizable(true);
+    missionScroll->setFixedWidth(580);
+    missionScroll->setMaximumHeight(230);
+    missionScroll->setFrameShape(QFrame::NoFrame);
+    sceneColumn->addWidget(missionScroll);
     sceneColumn->addWidget(canvas,0,Qt::AlignTop);
     sceneColumn->addStretch();
-    auto *side = new QVBoxLayout;
-    layout->addLayout(side);
+    auto *sideWidget=new QWidget;
+    sideWidget->setMinimumWidth(365);
+    auto *side = new QVBoxLayout(sideWidget);
+    auto *sideScroll=new QScrollArea;
+    sideScroll->setObjectName("campaignControlsScroll");
+    sideScroll->setWidget(sideWidget);
+    sideScroll->setWidgetResizable(true);
+    sideScroll->setMinimumWidth(395);
+    layout->addWidget(sideScroll);
     auto *title = new QLabel("NATIVE SKIRMISH");
     side->addWidget(title);
     auto *player = new QLabel;
@@ -223,6 +241,13 @@ Window::Window(Controller &c) {
     auto *newCampaign = button("New campaign", "newCampaignButton", newRow);
     auto *mapCampaign = button("New map campaign…", "newMapCampaignButton");
     auto *missionCampaign = button("New Plains mission…", "newMissionCampaignButton");
+    auto *crossroadsCampaign = button("New Crossroads campaign…", "newCrossroadsCampaignButton");
+    auto *missionChoices=new QListWidget;
+    missionChoices->setObjectName("campaignMissionList");
+    missionChoices->setAccessibleName("Campaign missions and rewards");
+    missionChoices->setWordWrap(true);
+    missionChoices->setFixedHeight(190);
+    side->addWidget(missionChoices);
     auto *campaignFiles = new QHBoxLayout;
     side->addLayout(campaignFiles);
     auto *saveCampaign = button("Save campaign…", "saveCampaignButton", campaignFiles);
@@ -240,13 +265,36 @@ Window::Window(Controller &c) {
     side->addWidget(status);
     side->addStretch();
     auto refresh = [&c, canvas, player, enemy, selection, status, summon, bolt, sphere, cure, stop, play, pause,
-                    step, save, campaignStatus, saveCampaign, continueCampaign, help, missionStatus] {
+                    step, save, campaignStatus, saveCampaign, continueCampaign, help, missionStatus, missionScroll, missionChoices] {
         auto v = c.view();
         canvas->present(v);
         const auto missionText=(v.objective+"\n\n"+v.briefing+"\n\n"+v.reward).trimmed();
         missionStatus->setText(missionText);
         missionStatus->setVisible(!missionText.isEmpty());
+        missionScroll->setVisible(!missionText.isEmpty());
         missionStatus->setMinimumHeight(missionText.isEmpty()?0:missionStatus->heightForWidth(560));
+        {
+            QSignalBlocker block(missionChoices);
+            bool rebuild=missionChoices->count()!=int(v.choices.size());
+            for(int i=0;!rebuild && i<missionChoices->count();++i) {
+                const auto *item=missionChoices->item(i);const auto &choice=v.choices.at(i);
+                rebuild=item->text()!=choice.text || bool(item->flags()&Qt::ItemIsEnabled)!=choice.enabled;
+            }
+            const auto scroll=missionChoices->verticalScrollBar()->value();
+            if(rebuild) {
+                missionChoices->clear();
+                for(const auto &choice:v.choices) {
+                    auto *item=new QListWidgetItem(choice.text,missionChoices);
+                    item->setData(Qt::UserRole,choice.realm);item->setData(Qt::UserRole+1,choice.region);
+                    item->setToolTip(choice.detail);
+                    item->setSizeHint(QSize(320,42));
+                    if(!choice.enabled) item->setFlags(item->flags()&~Qt::ItemIsEnabled);
+                }
+            }
+            for(std::size_t i=0;i<v.choices.size();++i) if(v.choices[i].selected) missionChoices->setCurrentRow(int(i));
+            missionChoices->verticalScrollBar()->setValue(scroll);
+            missionChoices->setVisible(!v.choices.empty());
+        }
         help->setText(QString("Select your wizard to cast.\nSummon: nearby empty cell.\nArc Bolt: click an enemy.\n%1: right-click to move/attack.\nSpace: Play/Pause.").arg(v.creatureName));
         player->setVisible(c.hasBattle());
         enemy->setVisible(c.hasBattle());
@@ -273,8 +321,8 @@ Window::Window(Controller &c) {
             campaignStatus->setText(QString("CAMPAIGN · %1\n%2")
                                         .arg(QString::fromStdString(progress.region),
                                              progress.completed ? "Complete"
-                                             : c.hasBattle()    ? "Duel in progress"
-                                                                : "Between duels"));
+                                             : c.hasBattle()    ? "Mission in progress"
+                                                                : "Between missions"));
             const bool retry = progress.lastResult &&
                                progress.lastResult->outcome != game::CampaignOutcome::victory;
             continueCampaign->setText(retry ? "Retry" : "Continue");
@@ -342,6 +390,15 @@ Window::Window(Controller &c) {
         if(c.hasMapRoot()) c.newMapCampaign({},true);
         else {c.pause();const auto root=QFileDialog::getExistingDirectory(this,"Choose installed Magic & Mayhem game data");if(!root.isEmpty()) c.newMapCampaign(root.toStdString(),true);}
     }));
+    QObject::connect(crossroadsCampaign, &QPushButton::clicked, this, guarded([&c,this] {
+        if(c.hasMapRoot()) c.newCrossroadsCampaign();
+        else {c.pause();const auto root=QFileDialog::getExistingDirectory(this,"Choose installed Magic & Mayhem game data");if(!root.isEmpty()) c.newCrossroadsCampaign(root.toStdString());}
+    }));
+    QObject::connect(missionChoices, &QListWidget::currentRowChanged, this, [&c,missionChoices,status](int row) {
+        auto *item=missionChoices->item(row);if(!item || !(item->flags()&Qt::ItemIsEnabled)) return;
+        try {c.selectCampaignMission(item->data(Qt::UserRole).toString(),item->data(Qt::UserRole+1).toString());}
+        catch(const std::exception &e) {status->setText(QString::fromStdString(e.what()));}
+    });
     QObject::connect(newCampaign, &QPushButton::clicked, this, guarded([&c] { c.newCampaign(); }));
     QObject::connect(continueCampaign, &QPushButton::clicked, this,
                      guarded([&c] { c.continueCampaign(); }));
@@ -367,5 +424,6 @@ Window::Window(Controller &c) {
             c.play();
     });
     refresh();
+    resize(1030,900);
 }
 } // namespace mnm::skirmish

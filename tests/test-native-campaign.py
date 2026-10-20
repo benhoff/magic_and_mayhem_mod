@@ -16,6 +16,20 @@ spec.loader.exec_module(smoke)
 
 
 class EvidenceTests(unittest.TestCase):
+    def test_staging_failure_is_not_misattributed_to_absent_menu_evidence(self):
+        with self.assertRaisesRegex(ValueError, 'staging failed'):
+            smoke.validate_menu_resources({'success':False,'error':'Menu staging failed'},[],Path('/owned/game'))
+
+    def test_success_requires_exact_unique_prelaunch_menu_provenance(self):
+        good={'before_producer':True,'root':'/owned/game'}
+        for rows in ([],[good,good],[dict(good,root='/other/game')],[dict(good,before_producer=False)]):
+            with self.assertRaisesRegex(ValueError, 'not prepared'):
+                smoke.validate_menu_resources({'success':True},rows,Path('/owned/game'))
+        self.assertEqual(smoke.validate_menu_resources({'success':True},[good],Path('/owned/game')),good)
+        # Explicit census mode retains its partial-flow policy and still needs
+        # actual prelaunch provenance; it never supplies whole-session success.
+        self.assertEqual(smoke.validate_menu_resources({'success':False},[good],Path('/owned/game'),True),good)
+
     def flow(self):
         return {'success': True, 'native_command_fallback': False, 'native_command_frames': 6,
                 'steps': [{'step': s, 'screenshot_saved': True} for s in smoke.STEPS]}

@@ -76,3 +76,57 @@ storage from an original canvas. No raw milestone is promoted in this group.
 
 All fifteen selected Critical contracts have now received a bounded code and
 validation review. The five selected animation contracts remain queued.
+
+## Group 3: owned body/attachment operations and animation admission
+
+Implemented the previously documented body null-display branch as `bodyPlacement`:
+start sequence288+facing only when no frame is displayed, preserve an existing
+controller's phase, apply the inclusive supplied SPR header bound with frame-zero
+fallback, and retain recovered footprint/view offset arithmetic. The service
+returns owned value descriptors. Source failure or an absent/negative fallback
+frame refuses before replacing the previous accepted player.
+
+Implemented `ModeOneAttachment` as an owned native component. It binds configured
+asset/base/facing values through a source service, handles same-mode no-op before
+source access, performs selected0-to-1 and1-to-0 transitions, retains its binding
+on removal, and resolves/restarts on explicit reentry. Health gates visibility
+but not the selected child tick; stopped children do not automatically restart.
+Other modes and complete effect/entity ownership remain outside this component.
+
+Fixed negative selected SPR records being published by forward start/tick through
+`displayedRecord`, before the existing `sprite()` validation. Rejection now occurs
+at selection. This is the separately registered native admission policy; it does
+not claim original equivalence for negative SPR arguments or source failures.
+The regression failed against the earlier native player.
+
+The [native result](next20-animation-native-20261020.json) passes four CTests,
+four ASan/UBSan controls and168production-facing cases. The independent
+[original result](next20-animation-original-20261020.json) matches:
+
+- 4,608 body descriptor cases:2,304null-display starts and2,304existing displays;
+- 347forward traces /22,555states across136ANI assets (including loader-only
+  checks for three older-version files);
+- 2,140phase-switch traces /70,620states across118installed assets;
+- 6,097,440placement helper comparisons;
+- 520attachment controller states and same-mode no-ops, plus eight
+  removal/reentry pairs using the new owned component directly.
+
+The separate [full controller result](next20-animation-controller-20261020.json)
+checks the existing forward/reverse/rewind/phase supplier against unchanged
+original bodies and sanitized native execution. Fixture helpers now compile with
+-O2 and read the pinned immutable image directly. A missing isolated legacy input
+and an interrupted slow unoptimized run are retained as setup/performance
+attempts, not engine failures. Original manifests verify before and after.
+
+All twenty selected contracts have now been reviewed. This task delivered four
+concrete defect fixes and supplied owned queue/class routing, body fallback and
+mode-one lifecycle operations. Broad raw partial milestones remain independent:
+physical ownership/all-writer recovery, complete startup/consumer state,
+unknown object classes, full effect/targeting/lifetime composition and live
+replacement are still not established by these bounded comparisons.
+
+The canvas execution records captured a broad source snapshot. Subsequent
+animation edits make those whole-record freshness flags historical, although the
+specific publication/cache and wave implementation bytes still match their tested
+versions. Their original fingerprints are preserved; no evidence is refreshed to
+hide this accounting boundary.

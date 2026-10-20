@@ -2,6 +2,8 @@
 """Bounded original preference/dispatch checks and configured offline scenes."""
 import argparse,hashlib,json,os,struct,subprocess,tempfile,sys,shutil
 from pathlib import Path
+from terrain_validation_inputs import terrain_executable
+from terrain_validation_pixels import rgb565_rgba
 ROOT=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -15,7 +17,7 @@ def main():
  def verify(phase):run([ROOT/'tools/original-manifest.sh','verify'],'original-'+phase)
  verify('before')
  try:
-  pe=ROOT/'working/game-nocd/Chaos.exe';installed=ROOT/'working/game-clean';binaries=[a.preview.resolve(),a.sanitized_preview.resolve()]
+  pe=terrain_executable(ROOT);installed=ROOT/'working/game-clean';binaries=[a.preview.resolve(),a.sanitized_preview.resolve()]
   if sha(pe)!=HASH:raise ValueError('Executable hash mismatch')
   inputs={path:sha(path) for path in [pe,*binaries,Path(__file__)]}
   for folder in ['assets','renderer','renderer/sprites','reconstruction/rendering','apps/terrain-preview']:
@@ -48,7 +50,7 @@ def main():
     native=json.loads(prefix.with_suffix('.json').read_text());assert native['map']['palette_count']==count and native['map']['preferences']==prefs and native['remaining_surfaces']==0
     queue=out/f'queue-{i}-{build}';queue.write_bytes(b''.join(struct.pack('<Iiii',d['frame'],d['x'],d['y'],d['shade']) for d in native['queue'] if d['kind']!=-2));sprite=root/(native['map']['recipe']['sprite_path'].replace('\\','/')+'/Terrain.spr')
     original=out/f'original-{i}-{build}.565';run([palette,pe,sprite,count,queue,original,50,50,2.2,2.2],f'original-{i}-{build}');assert original.read_bytes()==prefix.with_suffix('.565').read_bytes()
-    rgba=b''.join(bytes((((v>>11)&31)*255//31,((v>>5)&63)*255//63,(v&31)*255//31,255)) for (v,) in struct.iter_unpack('<H',original.read_bytes()));assert hashlib.sha256(rgba).hexdigest()==native['rgba_sha256'];matches.append(sha(original))
+    rgba=rgb565_rgba(v for (v,) in struct.iter_unpack('<H',original.read_bytes()));assert hashlib.sha256(rgba).hexdigest()==native['rgba_sha256'];matches.append(sha(original))
    assert matches[0]==matches[1];frames.append(dict(realm=realm,view=view,shade=shade,count=count,preferences=prefs,pixels_sha256=matches[0]))
    if i%24==0:print('matched',i+1,'scene fixtures',flush=True)
   refusals=[]

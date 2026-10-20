@@ -20,7 +20,7 @@ def main():
         for directory in ('apps','assets','audio','compat','reconstruction','renderer','runtime','protocols'):
             for source in (ROOT/directory).rglob('*'):
                 if source.is_file() and (source.suffix in ('.cpp','.hpp','.h','.c','.S','.py') or source.name=='CMakeLists.txt'):report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
-        exe=ROOT/'working/game-nocd/Chaos.exe';expected='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
+        exe=ROOT/'original/Arcane_Nocd/Chaos.exe';expected='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
         if sha(exe)!=expected:raise ValueError('Original executable hash')
         report['inputs']={str(exe.resolve()):expected,str(args.input.resolve()):sha(args.input)}
         binary=out/'reference';run(['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-fno-pie','-no-pie','tests/shadow-linear-reference.cpp','-o',str(binary)])

@@ -6,6 +6,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+from terrain_validation_inputs import terrain_executable
 import struct
 import subprocess
 import tempfile
@@ -29,7 +30,7 @@ def main():
     def track(path):inputs[str(path)]=sha(path)
     run([str(ROOT/'tools/original-manifest.sh'),'verify'],'original-before')
     try:
-        pe=ROOT/'working/game-nocd/Chaos.exe'
+        pe=terrain_executable(ROOT)
         if sha(pe)!=HASH:raise RuntimeError('Unsupported executable')
         names=['tests/terrain-constraints-reference.cpp','tests/terrain-constraints-test.cpp',
                'reconstruction/rendering/terrain_constraints.hpp','reconstruction/rendering/terrain_constraints.cpp',

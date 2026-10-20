@@ -18827,11 +18827,112 @@ equivalence and sustained performance. The separate unmodified storage-reference
 the user-approved 90 GiB guard remains enforced, with no cleanup or archiving.
 
 
+
+### High terrain tranche 1 execution — 2026-10-19
+
+All 17 bounded terrain/palette/light tasks pass with prospectively bound source contracts, retained original/native state and pixel comparisons, stable frozen/current code and verified immutable inputs. See [execution review](rendering-high-terrain-execution-20261019.md) and `coverage/high-terrain-execution-20261019.json` (`HTERR1.*`). Normal and ASan/UBSan builds each pass 20 selected CTests; four harness and two private-display controls also pass.
+
+Repairs supply isolated verified executable selection, independent existing RGB565 bit-replication expectations and private Xvfb ownership. No recovered engine algorithm, renderer color policy or balance changed. Earlier unsupported-build, sandbox syscall, compiler, stale expectation, missing-test-discovery, build-metadata and display-cleanup failures remain recorded. Reconciliation of one unrelated CMake test target preserved both preview binaries byte-for-byte before final execution.
+
+The four-view traversal gains its missing recorded original-comparison dimension; native generated-plan composition keeps comparison N/A. All understanding, implementation, integration and replacement stages remain unchanged. The UI task cards distinguish bounded PASS from unresolved original allocation/file errors, entities/lifetimes, whole-world/hardware and live replacement. Existing historical hashes and unrelated accounting debt are preserved.
+
+
 ### Coverage submission performance — 2026-10-19
 
 Snapshot-local fingerprint reuse, audited raw-provenance reuse, ordered source-link inversion and bounded Git archive streaming reduce submission overhead without changing accounting decisions. On the same frozen `2c90c3f2` tree, profiled snapshot time fell from 134.263 s to 58.526 s; complete canonical snapshot and audit hashes match. These are single-run timings with filesystem-cache and concurrent-load limits, not a measured whole-commit speedup. All 152 audit/gate/merge/evidence-import guard methods pass, including source changes across calls and archive failures. `check-re-coverage.py --timings` exposes the remaining phase costs.
 
 The [performance record](coverage/submission-performance-20261019.json) retains source pins and six local commit-turn timing samples. Raw profiles and local-session-derived command summaries remain under `working/retention/submission-performance-20261019/`. Historical execution evidence and all engine statuses remain unchanged; broad current-code validation stays pending where source or scope changed. No original artifacts were consumed.
+
+
+### Native queue dispatch and observed kind8 class repair (2026-10-19)
+
+The earlier kind8 class narrative incorrectly paired `5c73f0` with `546540`.
+The preserved frozen discovery and unchanged static vtable instead identify
+`5c73f0/54aaa0`. Runtime admission now accepts that exact inherited-additive
+pair and refuses the old mismatched pair. This method uses shape+0x34 without
+owner gates or flag writes; `5c7408/546540` gates the same shape offset and
+`5c7420/54ab00` sets flag+0x44 before drawing shape+0x30. Original methods,
+simulation and unknown-class refusal remain active.
+
+`RS.world-dispatch-routing` supplies owned primary/auxiliary/software row
+routing with signed arguments, wave/tint literals, AX fallback/normalization
+and metadata. `RS.world-kind8-methods` supplies owned selected class/gate/flag
+wrapper decisions. Their [fresh original comparison](native-world-dispatch-helper-validation-20261019.json)
+passes 2,432 queue cases/2,692 logical calls, 960 class/owner/player/flag cases,
+active PE32 admission/register/FPU/LastError controls and two native CTests.
+The broader `RS.world-dispatch-targets` and `RS.world-kind8-virtual` entries now
+have partial native implementations; helper/clip/traversal and object/writer
+recovery remain explicitly open.
+
+The [fresh raster result](native-world-kind8-repair-validation-20261019.json)
+compares 17 synthetic cases/1,048,960 GPU pixels with independent original
+execution, including inherited-wrapper pixels and whole-object preservation.
+This renews the selected additive/colour/flag-only synthetic headless scope,
+without a new captured-queue, live initialization or bypass claim. The
+[distortion rerun](native-world-distortion-validation-20261019.json) passes
+18 original/model tail/interior cases and 13 native controls; the selected safe
+DWORD-read model already exists and is separate from the uncaptured live crash.
+
+Complete `NR.live-drawing-replacement` remains an open release target. Existing
+native-only/journey/session guards pass 39 controls, which do not supply the
+missing independent 14-journey/21-operation corpus, broad route/alias/fault
+closure or sustained hardware performance acceptance. No complete-replacement
+status is promoted. Native dispatch models remain offline; the class admission
+repair is the runtime code change. See [scope and boundaries](native-world-dispatch-methods-20261019.md).
+
+Successful raw runs are retained at `working/tests/native-world-dispatch-helper-closure-20261019`,
+with the earlier source-bound result at `working/tests/native-world-dispatch-final-20261019`,
+`working/tests/kind8/raster-f8_p7fnb` and
+`working/tests/native-rendering-four-distortion-20261019`; failed attempts remain
+separate. Original manifests passed before and after original consumption.
+The large native pixel build uses `/tmp/mnm-native-kind8-four-20261019` to retain
+the main drive reserve. Historical evidence/source hashes remain unchanged.
+The hash-bound [history review](coverage/world-dispatch-history-20261019.json)
+reviews committed `34730ab8..0a7410fd` separately from uncommitted work and finds
+12 receipted transitions, no unmatched source transitions or rewritten evidence.
+
+
+## Medium native rendering fixes — 2026-10-19
+
+Reviewed all54Medium planning entries (16partial,38scoped); priorities are not
+54confirmed code defects. Fixed the native finite-edge shader's stale high-water
+scratch bound using logical canvas height. Added18independent edge checks,
+corrected the obsolete near-edge refusal fixture, and enabled/discovered11CTest
+controls. Completed28native/status controls,12snapshot refusal/lifetime cases,
+23GPUcopy plans and selected original leaf comparisons (960000linear,960064
+authored-backed edge,530432grayscale words), with source/original bookends.
+
+MEDIUM01/MEDIUM02 results retain separate immutable scopes and setup failures.
+The final bound result repeats every check after correcting the old displacement
+scope wording. Source/CMake/compiler closures and exact original hashes remain
+explicit. Original backing padding is never imported as native edge input.
+
+Full live acceptance, prior intermittent pixel instability, unobserved GPU copy
+branches, broader original allocation/caller recovery and sustained60FPS remain
+pending; no raw stage, pacing, budget, deadline or acceptance threshold is
+relaxed. Hardware attempts and their limitations are retained separately. See
+`rendering-medium-fixes-20261019.md` and the54-entry findings inventory.
+
+### World, audio and asset foundation closeouts (2026-10-19)
+
+The [bounded closeout review](engine-foundations-closeout-20261019.md) finds that
+native ownership, Qt PCM output and supported file/profile/map/graphics readers
+were already implemented behind older partial registrations. Private Debug builds
+pass two world, six audio and fifteen asset CTests plus a native profile assertion
+fixture. Prospective claims, compiler dependency admission and before/after source
+hashes are retained in the [execution record](engine-foundations-native-controls-20261019.json).
+No original artifacts, Wine, game, display server or audio device were consumed.
+
+Three new evidence IDs (`FOUNDATIONS.world-native-20261019`,
+`FOUNDATIONS.audio-native-20261019`, `FOUNDATIONS.assets-native-20261019`) support
+fourteen native policies. Twelve old partial entries become scoped/headless;
+existing voices/mixer gain fresh scoped support. All five selected dashboard
+milestone requirement lists are satisfied. The broader existing `NP.checkpoints`
+contract remains scoped but retains its own historical v1-v8/preview freshness;
+this native-v1 foundation run does not retrospectively renew it. Complete saved
+world restoration, scene-preview lifecycle, physical audio/original-manager
+validation and original-engine/live replacement remain open. Historical evidence,
+original hashes, other contributors' work and gameplay balance are preserved.
 
 ## Critical top-20 rendering fixes — 2026-10-19
 
@@ -18874,27 +18975,72 @@ retained diagnostic, not a newly proven original ownership rule. The new scoped
 native policy has its own prospective claim and raw result; full retirement and
 all original aliases/writers remain pending.
 
+### Native scene lifecycle and controls milestone closure (2026-10-20 UTC)
 
-## Medium native rendering fixes — 2026-10-19
+The [owned native scene session](native-scene-lifecycle.md) separates Qt widget
+presentation from world/navigation ownership and playback lifetime. Snapshot
+construction completes before exposure; native semantic controls advance the
+owned simulation. Terminal close retires direct/timer tick admission, clears
+transient selection and releases the provider/world, deferring release until an
+in-flight step returns. The production window withdraws presentation callbacks
+before application shutdown. Fresh windows restore native pending commands,
+without inheriting UI selection or playback state. Original engine behavior and
+native gameplay balance are unchanged.
 
-Reviewed all54Medium planning entries (16partial,38scoped); priorities are not
-54confirmed code defects. Fixed the native finite-edge shader's stale high-water
-scratch bound using logical canvas height. Added18independent edge checks,
-corrected the obsolete near-edge refusal fixture, and enabled/discovered11CTest
-controls. Completed28native/status controls,12snapshot refusal/lifetime cases,
-23GPUcopy plans and selected original leaf comparisons (960000linear,960064
-authored-backed edge,530432grayscale words), with source/original bookends.
+Fresh `SCENE.lifecycle-preview-20261020` evidence records nine passing CTests,
+eight real production-entry-point native windows, four exact fresh-window
+continuations, 28 independent complete RGB565-plane comparisons, three startup
+refusals, and normal plus ASan/UBSan owner/fresh-process continuation. All 485
+prospectively declared sources and generated inputs remain stable. LeakSanitizer
+is disabled under tracing; no leak-sanitizer result is claimed. The first sandbox
+display failures remain preserved separately. No original artifact, installed
+input, Wine session or manual playtesting is consumed.
 
-MEDIUM01/MEDIUM02 results retain separate immutable scopes and setup failures.
-The final bound result repeats every check after correcting the old displacement
-scope wording. Source/CMake/compiler closures and exact original hashes remain
-explicit. Original backing padding is never imported as native edge input.
+`WORLD.owned` and `WORLD.sandbox` now have scoped implementation and preview
+integration. All five declared Native scene & controls milestones are
+demonstrated. Earlier scene scopes and their historical original/installed
+fingerprints remain unchanged; current validation for their broader installed
+input domains remains pending after shared-source edits. The source-only
+`NP.scene-playback` retirement/display links retain that limitation explicitly.
+Complete original-world construction, full saved-world restoration, original
+input/cadence, arbitrary profiles, hardware recovery and live replacement remain
+separate. Overlapping protocol/hosting implementation gaps are not erased.
 
-Full live acceptance, prior intermittent pixel instability, unobserved GPU copy
-branches, broader original allocation/caller recovery and sustained60FPS remain
-pending; no raw stage, pacing, budget, deadline or acceptance threshold is
-relaxed. Hardware attempts and their limitations are retained separately. See
-`rendering-medium-fixes-20261019.md` and the54-entry findings inventory.
+
+## 2026-10-20 — High rendering tranche 2 validation and tranche 3 suppliers
+
+[Current work record](rendering-high-validation-ownership-20261020.md) and the
+[exact resident supplier/glue crosswalk](coverage/high-resident-supplier-crosswalk-current-20261020.json)
+separate located implementations from execution and acceptance. The last High
+aggregate source ambiguity has concrete World, command/HUD, requested CPU reply
+and binding/retirement suppliers. This does not establish arbitrary original
+writers, physical aliases, complete COM lifetime or full live replacement.
+
+New HIGH03 records renew the finite animation/sprite/drawing cohorts, including
+512 original/native/sanitized controller cases, 2,140 installed ANI phase traces,
+91 installed sprite frames, the row ABI/150 transform cases, all twelve required
+surface fixture cells, scoped PE32 owner/reservation/lock/handoff/refusal suites,
+real EGL context controls, four resident-bind cases and 222 corrected storage
+replay frames with zero mismatches. Historical oracles/hashes and failed attempts
+remain unchanged. The unmodified-upload legacy storage mismatch stays separate.
+
+The complete isolated 4,096-queue hardware normal-delivery cohort passes every
+unchanged budget: 4,033 warm samples, median42ms, p9551ms and maximum72ms, with
+balanced returns, all presentations, no coalescing and bounded memory/caches.
+The earlier overlapping-run maximum1489ms failure remains retained, not excused
+or removed. The public menu/World/normal-Quit flow completed without fallback or
+readback but its measured supply was about10World/s against the19FPS gate. An explicit
+existing Fast20FPS preference in the disposable fixture did not fix it; the
+preference omission is a rejected cause. Current retained flow analysis separately
+confirms same-thread callbacks,DirectDraw absence and1,598 balanced completions/
+imports/returns with normal-Quit retirement, while ordinary_session_accepted stays
+false. A default resident diagnostic confirms a50ms target, no suppressed World
+queues and one queue per advancing update. Public accepted-update/World production
+profiling remains a concrete follow-up; it is not an absent implementation. A failed combat precondition and changed helper pin do not constitute
+ordinary-session or combat acceptance. Full-domain original ownership and broader
+World/surface acceptance remain separate milestones.
+
+The final intended-native-defaults retry (`HIGH03.public-native-defaults-cast-negative-20261020`) stopped at the initial Zombie summon before any final throughput assertion; current sources were unchanged. Renew that input/scenario precondition before repeating the complete public combat journey. The private-copy handoff has current owned PE32 implementation controls, while its actual-original live observation remains pending.
 
 ## Next twenty partial contracts, group 1 — 2026-10-20
 
@@ -18919,3 +19065,21 @@ native HUD history. Pre-World reuse/initial-state evidence remains historical;
 all-writer, physical ownership, full startup/live replacement are not promoted.
 [Progress](next20-implementation-progress-20261020.md) and the three new immutable
 execution records keep those domains independent.
+
+### Rendering commit validation follow-up — 2026-10-20
+
+The renewed terrain cohort passes all seventeen original/native comparisons
+across the initial and serial retry reports, retaining three initial timeouts.
+Twenty normal and twenty sanitizer terrain/palette controls pass. The campaign
+window passes eighteen actual-widget journeys, twenty-nine checkpoint comparisons,
+119 CTests and sanitizer opening against its declared source pins. Its harness now
+creates the current objectives checkpoint through the production CLI and records
+generated compiler headers separately from repository sources. HIGH04 evidence
+retains the earlier failed attempts and original manifest bookends.
+
+Incoming publication/cache commits change shared dependencies of some historical
+High tranche 2/3 proofs. A source-only reconciliation preserves those original
+hashes and milestones without claiming current execution for the changed scope.
+Public World throughput, the physical summon/combat input precondition and original
+private-copy handoff remain acceptance gaps. No ordinary-session acceptance or
+global renderer equivalence is asserted by this commit.

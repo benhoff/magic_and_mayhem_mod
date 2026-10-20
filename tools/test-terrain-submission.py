@@ -3,6 +3,7 @@
 import hashlib
 import json
 from pathlib import Path
+from terrain_validation_inputs import terrain_executable
 import struct
 import subprocess
 import tempfile
@@ -17,7 +18,7 @@ def main():
         (out/f'original-{phase}.log').write_text(p.stdout+p.stderr);p.check_returncode()
     verify('before')
     try:
-        exe=REPO/'working/game-nocd/Chaos.exe'
+        exe=terrain_executable(REPO)
         if sha(exe)!=HASH:raise ValueError('Unsupported executable')
         sources=[REPO/p for p in ('reconstruction/rendering/terrain_submission.cpp','reconstruction/rendering/terrain_submission.hpp','tests/terrain-submission-reference.cpp','tools/test-terrain-submission.py')]
         catalog=REPO/'working/game-clean/Realms/Celtic/Forest/Terrain.ttd'

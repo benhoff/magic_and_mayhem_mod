@@ -4,7 +4,7 @@
 #include <cstdlib>
 namespace mnm::tests {
 namespace g=mnm::game;
-inline void campaignPilot(g::CampaignSession& s) {
+template<class Session> inline void campaignPilot(Session& s) {
   if(!s.battle()) return;
   const auto& b=*s.battle();const auto m=b.state();const auto wizard=m.wizards[0];
   const auto fighters=b.combat().combat().fighters;

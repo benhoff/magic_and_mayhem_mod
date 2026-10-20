@@ -7,6 +7,8 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+from terrain_validation_inputs import terrain_executable
+from terrain_validation_pixels import rgb565_rgba
 import struct
 import subprocess
 import tempfile
@@ -88,7 +90,7 @@ def main():
         run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], 'original-'+phase)
     verify('before')
     try:
-        pe = ROOT / 'working/game-nocd/Chaos.exe'
+        pe = terrain_executable(ROOT)
         assert sha(pe) == HASH
         root = ROOT / 'working/game-clean'
         files = sorted(x for x in root.rglob('*') if x.suffix.lower() == '.map')
@@ -178,7 +180,7 @@ def main():
                                     if 0 <= x < 512 and 0 <= y < 256:
                                         pixels[y*512+x] = value
                             words = struct.pack('<'+'H'*len(pixels), *pixels)
-                            rgba = b''.join(bytes((((v>>11)&31)*255//31, ((v>>5)&63)*255//63, (v&31)*255//31, 255)) for v in pixels)
+                            rgba = rgb565_rgba(pixels)
                             for build, binary in enumerate(builds):
                                 prefix = out / f'frame-{index}-{build}'
                                 command = [str(binary), '--root', str(root), '--map', 'Realms/Celtic/Forest/'+name, '--world', '--initialize-terrain', '--view', str(view), '--output', str(prefix)]

@@ -228,6 +228,17 @@ def sha(path):
     return digest.hexdigest()
 
 
+def validate_menu_resources(flow, preloads, game, allow_incomplete=False):
+    # Preserve the actual staging/driver failure before checking evidence that
+    # could only have been produced by a successful launch.
+    if not allow_incomplete and flow.get('success') is not True:
+        raise ValueError(flow.get('error') or 'Campaign driver did not complete')
+    if (len(preloads)!=1 or not preloads[0].get('before_producer') or
+            preloads[0].get('root')!=str(game)):
+        raise ValueError('Native menu resources were not prepared from the admitted staged game before launch')
+    return preloads[0]
+
+
 def validate_flow(flow, cycles=1, stress_seconds=0, min_fps=20, normal_quit=False):
     if flow.get('success') is not True:
         raise ValueError(flow.get('error') or 'Campaign driver did not complete')
@@ -877,9 +888,8 @@ def main():
             flow = json.loads((out / 'flow.json').read_text())
             report['flow'] = flow
             preloads=[json.loads(line.split(' ',1)[1]) for line in (out/'shell.log').read_text().splitlines() if line.startswith('NATIVE_MENU_ASSETS ')]
-            if len(preloads)!=1 or not preloads[0].get('before_producer') or preloads[0]['root']!=str(roots[0]/'game'):
-                raise ValueError('Native menu resources were not prepared from the admitted staged game before launch')
-            report['native_menu_resources']=preloads[0]
+            report['native_menu_resources']=validate_menu_resources(
+                flow,preloads,roots[0]/'game' if len(roots)==1 else '',args.cpu_census_only)
             if args.resident_world and len(roots)==1 and roots[0].is_relative_to(ROOT/'working/experiments/menu-observer'):
                 resident_path=roots[0]/'resident-world-report.json'
                 if resident_path.exists():

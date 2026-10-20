@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--handoff',action='store_true');p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--handoff',action='store_true');p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--shared-fixture-prefix',type=Path);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_text());sources=claims['sources']
     def stable():
@@ -19,7 +19,7 @@ def main():
     subprocess.run(flags+['-c',str(ROOT/'tests/drawing-physical-owners-test.c'),'-o',str(run/'fixture.obj')],check=True)
     binary=run/'fixture.exe';subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(binary),str(run/'fixture.obj'),str(dll.parent/'packet.obj'),str(dll.parent/'kernel32.lib')],check=True)
     from drawing_fixture_prefix import prepare
-    prefix,lock=prepare(ROOT,run,a.prefix_template,None)
+    prefix,lock=prepare(ROOT,run,a.prefix_template,a.shared_fixture_prefix)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all',MNM_DRAW_SESSION_MODE='physical',MNM_DRAW_WINE_SUBMISSION='1',MNM_DRAW_WINE_TEXTURE_ENTRY='1',MNM_DRAW_WINE_RESOURCE_MAP='1',MNM_DRAW_WINE_RESOURCE_COPY='1',MNM_DRAW_WINE_SOURCE_DESCRIPTOR='1',MNM_DRAW_WINE_SOURCE_MAP='2',MNM_DRAW_WINE_BLIT_WORKER='1',MNM_DRAW_WINE_BLIT_PACKET='1',MNM_DRAW_WINE_SOURCE_VERSION='1',MNM_DRAW_WINE_GPU_COMPLETION='1',MNM_DRAW_WINE_SOURCE_RESERVATIONS='1',MNM_DRAW_WINE_PHYSICAL_OWNERS='1')
     cases=[('0',0,None),('1',99,'fault'),('2',99,3),('3',99,12),('4',99,12),('5',99,6),('6',99,3),('7',99,14),('8',99,4),('9',0,None),('a',99,7),('b',0,None),('c',99,8),('d',0,None),('e',0,None),('f',99,7),('g',99,7),('h',0,'preflight'),('i',0,'preflight'),('j',0,'off'),('k',0,None),('l',0,None),('m',99,'fault'),('n',99,18),('o',99,18),('p',99,18),('q',99,12),('r',99,12),('s',99,12),('t',99,12),('u',99,19),('v',0,None),('w',99,3),('x',0,None),('y',99,18),('[',0,None)]
     if a.handoff:

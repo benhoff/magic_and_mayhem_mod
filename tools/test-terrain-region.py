@@ -2,6 +2,8 @@
 """Authored region recipes, original block placement, and native scene validation."""
 import argparse, configparser, hashlib, importlib.util, json, os, re, struct, subprocess, tempfile
 from pathlib import Path
+from terrain_validation_inputs import terrain_executable
+from terrain_validation_pixels import rgb565_rgba
 ROOT=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
@@ -58,7 +60,7 @@ def main():
     def verify(phase):run([str(ROOT/'tools/original-manifest.sh'),'verify'],'original-'+phase)
     verify('before')
     try:
-        pe=ROOT/'working/game-nocd/Chaos.exe';assert sha(pe)==HASH
+        pe=terrain_executable(ROOT);assert sha(pe)==HASH
         codec=module('region_codec',source/'tools/decode-cfg.py');geometry=module('region_geometry',source/'tools/test-terrain-map.py');sprites=module('region_sprites',source/'tools/test-terrain-preview.py')
         configs=[root/f'Realms/{r}/{r}.cfg' for r in ['Celtic','Greek','Medieval']]
         recipes={};inputs={};track=lambda f:inputs.setdefault(f,sha(f))
@@ -99,7 +101,7 @@ def main():
                         for dx,dy,value in values:
                             x,y=d['x']-ox+dx,d['y']-oy+dy
                             if 0<=x<512 and 0<=y<256:pixels[y*512+x]=value
-                    words=struct.pack('<'+'H'*len(pixels),*pixels);rgba=b''.join(bytes((((v>>11)&31)*255//31,((v>>5)&63)*255//63,(v&31)*255//31,255)) for v in pixels)
+                    words=struct.pack('<'+'H'*len(pixels),*pixels);rgba=rgb565_rgba(pixels)
                     for build,binary in enumerate(builds):
                         prefix=out/f'frame-{index}-{build}';cmd=[str(binary),'--root',str(root),'--region-config','realms\\CELTIC\\celtic.CFG','--region-id',str(recipe['id']),'--world','--initialize-terrain','--view',str(view),'--output',str(prefix)]
                         if visibility:cmd+=['--visibility']
