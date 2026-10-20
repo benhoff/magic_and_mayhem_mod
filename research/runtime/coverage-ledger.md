@@ -18844,3 +18844,16 @@ preservation alongside the other selected kind8 paths.54ab00alone writes the
 its documented contract; constructors, writers, other classes/formats and full
 live drawing replacement remain separate work. New execution is recorded under
 K8FIX.original/native-20261019; historical reports are preserved.
+
+
+### Owned World dispatch and queue state — 2026-10-19
+
+New native models implement all three35-entry row tables, six checked kind8
+method/owner/flag wrappers and queue clip/traversal/metadata/postlude composition
+using owned values and injected backends. WQUEUE.original-20261019 records2432
+routing cells,960 method cases and50772 sampled queue-state cells matching
+unchanged original code, plus active kind8 hook checks and3 native CTests. The
+broad dispatch and virtual-object entries now link these partial implementations;
+concrete raster/helper effects, object writers/lifetime, other state domains and
+complete live drawing takeover remain pending. The first commit independently
+records the corrected class admission and selected native raster pixel parity.

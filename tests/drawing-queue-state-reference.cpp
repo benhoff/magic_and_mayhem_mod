@@ -35,7 +35,8 @@ static std::uint32_t state_global(std::uintptr_t p){std::uint32_t v;std::memcpy(
 static void state_check(bool value,const char* text){if(!value)throw std::runtime_error(text);}
 
 int main(int argc,char** argv)try{
-    state_check(argc==2,"Expected pinned original PE");map_image(read(argv[1]));
+    state_check(argc==2||(argc==3&&std::string(argv[2])=="--sample"),"Expected pinned original PE and optional --sample");
+    const bool sample=argc==3;map_image(read(argv[1]));
     const auto* consumer=reinterpret_cast<const unsigned char*>(0x5002a0);
     const Bytes before(consumer,consumer+(0x501181-0x5002a0));
     for(auto item:std::vector<std::pair<std::uintptr_t,unsigned>>{
@@ -46,13 +47,14 @@ int main(int argc,char** argv)try{
     std::uint32_t vtable[4]={0,0,0,state_pointer(state_stub(0x8000000c,8))};
     std::uint32_t object[20]={state_pointer(vtable),16,16,3,4};
     using Consumer=void (__attribute__((thiscall)) *)(void*);
-    unsigned cases=0;
+    unsigned cases=0,ordinal=0;
     for(unsigned indexed:{0u,1u})for(int offset:{-127,3})
     for(unsigned video:{0u,1u})for(unsigned count:{0u,1u,2u})for(unsigned post:{0u,1u})
     for(int kind=-2;kind<=35;++kind)for(int y:{-20,-12,0,1,100,468,480,588,600})
     for(std::uint16_t first:{std::uint16_t(0x8ad0),std::uint16_t(-13),std::uint16_t(-12),std::uint16_t(-11),std::uint16_t(0),std::uint16_t(5)})
     for(std::uint16_t prior:{std::uint16_t(0x8ad0),std::uint16_t(0),std::uint16_t(1),std::uint16_t(0x1234),std::uint16_t(0xffff)})
     for(unsigned height_flag:{0u,1u})for(unsigned value:{0u,1u,0x12340001u,0x12345678u,0xffffffffu}){
+        if(sample&&ordinal++ % 97)continue;
         object[7]=indexed?0:UINT32_MAX;
         std::array<std::uint32_t,18> rows{};
         for(unsigned i=0;i<2;++i){auto* row=rows.data()+i*9;
@@ -136,5 +138,5 @@ int main(int argc,char** argv)try{
             std::cout<<"]}";
         }std::cout<<"]}\n";++cases;
     }
-    state_check(cases==4924800,"Case count");return 0;
+    state_check(cases==(sample?50772u:4924800u),"Case count");return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
