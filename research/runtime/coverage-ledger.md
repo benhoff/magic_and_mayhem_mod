@@ -18873,3 +18873,25 @@ alive until alias retirement; the earlier early-device-release Wine fault is a
 retained diagnostic, not a newly proven original ownership rule. The new scoped
 native policy has its own prospective claim and raw result; full retirement and
 all original aliases/writers remain pending.
+
+
+## Medium native rendering fixes — 2026-10-19
+
+Reviewed all54Medium planning entries (16partial,38scoped); priorities are not
+54confirmed code defects. Fixed the native finite-edge shader's stale high-water
+scratch bound using logical canvas height. Added18independent edge checks,
+corrected the obsolete near-edge refusal fixture, and enabled/discovered11CTest
+controls. Completed28native/status controls,12snapshot refusal/lifetime cases,
+23GPUcopy plans and selected original leaf comparisons (960000linear,960064
+authored-backed edge,530432grayscale words), with source/original bookends.
+
+MEDIUM01/MEDIUM02 results retain separate immutable scopes and setup failures.
+The final bound result repeats every check after correcting the old displacement
+scope wording. Source/CMake/compiler closures and exact original hashes remain
+explicit. Original backing padding is never imported as native edge input.
+
+Full live acceptance, prior intermittent pixel instability, unobserved GPU copy
+branches, broader original allocation/caller recovery and sustained60FPS remain
+pending; no raw stage, pacing, budget, deadline or acceptance threshold is
+relaxed. Hardware attempts and their limitations are retained separately. See
+`rendering-medium-fixes-20261019.md` and the54-entry findings inventory.

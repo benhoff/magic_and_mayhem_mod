@@ -115,7 +115,7 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Owned clipped GPU copies with immutable aliased sources: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "729713112ced9fc46e3dccafbea07c019d23ca4ef831945215af432a726d1f1d"
+      "contract_sha256": "b797bed88697ca912d00a232117705c43f9d9ff28fb7534eb3e6549a33de709e"
     },
     {
       "behavior": "NP.native-image-row-copy",
@@ -353,7 +353,7 @@
       "weight": 5,
       "work_type": "capability",
       "reason": "Defined native World displacement at the finite canvas edge: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "bb197c617202b9c29adbf5465473557d50063ced7e7fcdddc07da001ed5ae32b"
+      "contract_sha256": "454d442ce95e12d52511a21e69e5ce6d1b53cc8cadc28446f97d79a5ef2cc287"
     },
     {
       "behavior": "NR.draw-startup-order",
@@ -1242,7 +1242,7 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Admit displacement by actual covered in-bounds samples: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport.",
-      "contract_sha256": "34b6f3920487ee767cabeb320e5eae2124097bd2922ced923aae93ad740685c3"
+      "contract_sha256": "7f7a9f818a476fe1c16315638054143cc8bacea812f53943e70804c40626fa68"
     },
     {
       "behavior": "NR.masked-update-scratch-reuse",
@@ -1466,7 +1466,7 @@
       "weight": 4,
       "work_type": "aggregate",
       "reason": "Resident World import into public command composition: This broad contract connects multiple delivered services. Reconcile its residual domains against narrower contracts before writing code; its weight is not additional independent feature effort.",
-      "contract_sha256": "2ca1fe415ff1bca48b645360c48cd23c0bb0f000c10f1d8dd96ff9733c558ffc"
+      "contract_sha256": "695650fc6ec3ec1acecb727b105a3c05a7c9fac9377e632964693cc0132cc9fd"
     },
     {
       "behavior": "NR.qt-quick-battle-app-journey",
@@ -1893,7 +1893,7 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Owned World snapshot delivery before GPU execution: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "bc37cf1452964cb92e68963ac6e88f020a600075f54a3602e5fe7f09258267ea"
+      "contract_sha256": "65be00b4afcfb5fa8217819fb72a3e25c88dc0d7d80a7dc9ed49276848bc4108"
     },
     {
       "behavior": "NR.world-preparation",
@@ -2166,7 +2166,7 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Selected distortion physical-stride source sampling: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport.",
-      "contract_sha256": "463c22ad7484caf57bf2977eec94105e8269378e2733b3c3a53818852a150d7f"
+      "contract_sha256": "2829e9808df6d8ea5d4f36702854b623b0776723fcbf29b502c3d7b7419dd24c"
     },
     {
       "behavior": "RS.drawing-publication",
@@ -2229,7 +2229,7 @@
       "weight": 3,
       "work_type": "capability",
       "reason": "Clipped direct-word sprite RGB565 grayscale conversion: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport.",
-      "contract_sha256": "76fc315575a3d5b4f2717a077c4fb44d13fa2b643ab79c6048f40ea3c16985f7"
+      "contract_sha256": "6452da7337e00b8350b9e13640dc8c91c4bae54148f6d59497dccb050a63b49f"
     },
     {
       "behavior": "RS.shadow-linear-stride",
@@ -4197,9 +4197,15 @@
                 "tests/displacement-linear-reference.cpp": "3a8de81f4feae4e9f3063373893e18558a9f143e722518e461e6a16d208c581f",
                 "tests/masked-displacement-test.cpp": "61673f6a1c8ad4e926749b10fe0339d16a5b71ab2b192a096f6fc7d2f0b66457",
                 "tools/test-displacement-finite-edge.py": "0914162222036a854098251841d79992bd4c4ae8ae6d2e74002edaf261d3ebe6",
-                "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e"
+                "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e",
+                "research/runtime/rendering-medium-fixes-20261019.md": "a000004631e676c92cdf584e5ce0e4bf0bdb1e538ed5a0b4dd586079a71420b0",
+                "tools/test-rendering-medium.py": "f6b7302039f5faa99a8ec609dab540fb2d231d6a8da5d2884056d5c3210b6559"
               },
-              "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed."
+              "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed.",
+              "pending_source_review": [
+                "research/runtime/rendering-medium-fixes-20261019.md",
+                "tools/test-rendering-medium.py"
+              ]
             },
             "work_review_history": [
               {
