@@ -83,6 +83,7 @@ static struct Surface {u32 object,id,pixels,width,height,stride,dirty,sampled;} 
 static struct Frame {u32 sp,tag,caller,ecx,edx,args[6],primitive,scratch,owner,bar[6],storage_call,storage_canvas,copy_order_id,lifetime_id,lifetime_parent;u8* record;} frames[MAX_FRAMES];
 static HANDLE file;
 static u8* continuous_map;
+static u32 continuous_resident;
 
 static int continuous_init(void);
 static int continuous_equal(const u8*,const u8*,u32);

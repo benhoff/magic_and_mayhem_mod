@@ -207,6 +207,30 @@ static void source_point_fixture(void){
  enabled=saved_enabled;stopped=saved_stopped;producer_trace_mode=saved_mode;failures=saved_failures;
 }
 #include "world-effect-hook-fixture.h"
+static void extent640_fixture(void){
+ struct Surface saved=surfaces[0];HANDLE saved_file=file;const u32 saved_limit=limit,saved_sequence=sequence,saved_bytes=bytes,saved_failures=failures,saved_stop=stopped,saved_enabled=enabled;
+ if(!journal_flush())ExitProcess(176);char name[260];path(name,"world-extent640-fixture-",0,".bin");file=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(file==(HANDLE)-1)ExitProcess(177);
+ u32 header[16]={0};copy(header,MNM_PRODUCER_V3_MAGIC,8);header[2]=3;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=MNM_PRODUCER_V3_MAX_RECORDS;header[6]=32;if(!write(file,header,64))ExitProcess(178);
+ bytes=64;sequence=0;limit=32;stopped=0;enabled=1;depth=0;zero(source_packets,sizeof(source_packets));source_packet_count=source_packet_bytes=0;
+ struct Surface* dst=surfaces;dst->object=0x700100;dst->id=99;dst->width=dst->stride=640;dst->height=480;dst->pixels=(u32)VirtualAlloc(0,614400,0x3000,4);if(!dst->pixels)ExitProcess(179);const u32 pixels=dst->pixels;
+ for(u32 i=0;i<307200;++i)((u16*)pixels)[i]=0x4321;
+ put((void*)0x658174,pixels);put((void*)0x6e0008,0);put((void*)0x6cbb6c,0);put((void*)0x6a49b8,640);put((void*)0x656618,480);put((void*)0x6e1f88,0);
+ queue=raster_first=raster_last=1;raster_world_open=1;batch_enabled=1;batch_guard_open=0;bypass_completed=0;
+ const u32 invalid[4][3]={{640,600,640},{800,480,800},{641,480,641},{640,480,642}};
+ for(u32 i=0;i<4;++i){dst->width=invalid[i][0];dst->height=invalid[i][1];dst->stride=invalid[i][2];if(batch_start(dst)||batch_guard_open)ExitProcess(180);}
+ dst->width=dst->stride=640;dst->height=480;continuous_map=(u8*)1;continuous_resident=0;if(batch_start(dst)||batch_guard_open)ExitProcess(180);continuous_map=0;
+ dst->width=dst->stride=640;dst->height=480;if(!batch_start(dst)||!batch_identity(dst)||batch_pixel_bytes!=614400)ExitProcess(181);
+ u32 region[7];if(VirtualQuery((void*)pixels,region,28)!=28||region[5]!=1)ExitProcess(182);
+ const u32 args[6]={1,0,0,0,0,0},counter=get((void*)0x700804);SetLastError(1234);world_effect_test_call((u32)hooks[57].entry,0x700200,1,12,after,args);
+ if(GetLastError()!=1234||get(after+28)||get(after+32)!=0x247||get((void*)0x700804)!=counter||batch_count!=1||bypass_completed!=1)ExitProcess(183);
+ ++dst->width;if(batch_identity(dst))ExitProcess(184);--dst->width;++dst->height;if(batch_identity(dst))ExitProcess(184);--dst->height;++dst->stride;if(batch_identity(dst))ExitProcess(184);--dst->stride;dst->pixels+=2;if(batch_identity(dst))ExitProcess(184);dst->pixels=pixels;
+ struct Surface other=*dst;if(batch_identity(&other))ExitProcess(184);
+ u32 request[16];batch_header(request,dst);if(request[8]!=640||request[9]!=480||request[10]!=640||!batch_identity(dst)||!batch_restore())ExitProcess(185);
+ for(u32 i=0;i<307200;++i)if(((u16*)pixels)[i]!=0x4321)ExitProcess(186);
+ if(!journal_flush()||!CloseHandle(file))ExitProcess(187); /* Test allocation retires with ExitProcess. */
+ surfaces[0]=saved;file=saved_file;limit=saved_limit;sequence=saved_sequence;bytes=saved_bytes;failures=saved_failures;stopped=saved_stop;enabled=saved_enabled;batch_enabled=0;raster_first=raster_last=0;
+ put((void*)0x658174,saved.pixels);put((void*)0x6a49b8,saved.width);put((void*)0x656618,saved.height);
+}
 void start(void){
  oracle_config_fixture();
  reserve[sizeof(reserve)-1]=1;u32 old;
@@ -231,6 +255,7 @@ void start(void){
  vertical_bar_source_fixture();
  source_point_fixture();
  effect_hook_fixture();
+ extent640_fixture();
  canvas_producers_close();
  for(u32 i=0;i<HOOKS;++i)canvas_test_call(hooks[i].address,i==3?0x700000:0x700100,4,hooks[i].pop,after);
  char name[260];path(name,"producer-fixture-pass-",0,".bin");

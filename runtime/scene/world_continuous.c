@@ -6,7 +6,7 @@ API void *WIN MapViewOfFile(HANDLE, u32, u32, u32, u32);
 API i32 WIN UnmapViewOfFile(void *);
 static HANDLE continuous_file, continuous_mapping;
 static u32 continuous_prefixes, continuous_source_low=1, continuous_source_high;
-static u32 continuous_snapshot, continuous_resident, continuous_nonce_low, continuous_nonce_high;
+static u32 continuous_snapshot, continuous_nonce_low, continuous_nonce_high;
 API void* WIN GetProcAddress(HANDLE,const char*);
 API u32 WIN GetCurrentThreadId(void);
 typedef int (WIN *ResidentWorldBind)(u32,u32,u32,u32,u32,u32,u32,u32);

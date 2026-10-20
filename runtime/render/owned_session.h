@@ -1,3 +1,4 @@
+#include "../../protocols/include/mnm/world_raster_batch_v3.h"
 #include "../../protocols/include/mnm/render_stream_v5.h"
 #include "dirty_region.h"
 #include "gpu_copy_commands.h"
@@ -209,7 +210,7 @@ static i32 (WIN *game_native_gpu_plan)(void*,const i32*,void*,const i32*,u32,str
 __declspec(dllexport) int WIN RenderResidentWorldV1(u32 pixels,u32 width,u32 height,u32 stride,
     u32 generation_low,u32 generation_high,u32 nonce_low,u32 nonce_high){
     u32 error=GetLastError();int ok=0;
-    if(!game_resident_world || width!=800 || height!=600 || stride!=800 ||
+    if(!game_resident_world || !mnm_world_batch_extent(width,height,stride) ||
        (!generation_low&&!generation_high) || (!nonce_low&&!nonce_high))return 0;
     /* The scene callback participates in the same admission domain as surface
      * callbacks. A short cursor commit must not consume the tracker-only8ms

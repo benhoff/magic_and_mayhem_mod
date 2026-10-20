@@ -142,8 +142,8 @@
       "behavior": "NP.native-gpu-copy-plan",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Owned clipped GPU copies with immutable aliased sources: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "b797bed88697ca912d00a232117705c43f9d9ff28fb7534eb3e6549a33de709e"
+      "reason": "Owned clipped GPU copies with immutable aliased sources: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "7db18ea79d2d8ba4341b03950eb364b52aa6ac9db6d2da626abe0041c8e8e78d"
     },
     {
       "behavior": "NP.native-image-row-copy",
@@ -219,22 +219,29 @@
       "behavior": "NP.world-colour-observation",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Read-only colour checkpoints narrow a live drawing interval without identifying unobserved writers or supplying native pixels. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "c507f0ca0a7b1c827ab8670c00eb3f071c603ba67ca95f70eec57252ffb0b62f"
+      "reason": "Read-only colour checkpoints narrow a live drawing interval without identifying unobserved writers or supplying native pixels. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "e9caf907249a220095f1494f533efdb973e8ab9397f9eac2b54572748d584504"
     },
     {
       "behavior": "NP.world-effect-producer-admission",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Effect pixels and exact returned queue metadata are visible correctness requirements. Scoped owned producer integration does not close source lifetime, natural route coverage or complete live rendering/release.",
-      "contract_sha256": "8e3fce97d7de582a2d9473261bc5d0a59f466e3c15fb067848cdc96bdd6c2c5b"
+      "reason": "Effect pixels and exact returned queue metadata are visible correctness requirements. Scoped owned producer integration does not close source lifetime, natural route coverage or complete live rendering/release. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "22793cb6927d00d7e4d7c3561ed066c9566471ccaa7b795dc4a94b9deb2111f1"
     },
     {
       "behavior": "NP.world-inherited-kind8-caller",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Exact caller/tag/signature admission enables the known inherited native object path while retaining unsupported-call refusal; full-session and physical ownership proof remain separate. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "9d4fa2efe2a65c309c385dc4658d9defebf68289a6b6449dfe4c80a7bf2c10b1"
+      "reason": "Exact caller/tag/signature admission enables the known inherited native object path while retaining unsupported-call refusal; full-session and physical ownership proof remain separate. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "5e952d47cb5f492edf676ccc303e0448559eb47d6cff13fa2dceb3fa39336530"
+    },
+    {
+      "behavior": "NP.world-raster-surface-extents",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Native rendering must admit both original exposed640and800resident World extents without dropping ownership/format/identity guards.",
+      "contract_sha256": "776b5943cc028f91b8dd98ee258ad754dd3839316c2e115c502541e5d345c7f7"
     },
     {
       "behavior": "NP.world-trail-admission",
@@ -247,29 +254,29 @@
       "behavior": "NP.world-trail-caller-admission",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Guarded trail raster caller admission closes an explicit native drawing route while retaining owned input and independent release requirements.",
-      "contract_sha256": "60a59bb2110cf7aec281afa441bdcf62d6a17dfa9ea62df4d45943697c232399"
+      "reason": "Guarded trail raster caller admission closes an explicit native drawing route while retaining owned input and independent release requirements. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "55d540d114f667a5cf4f5ee937d05a61f666ca662db349025c26ed2b90ad1d1d"
     },
     {
       "behavior": "NP.world-word-entry-observation",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Missing direct-word inputs visibly omit World markers; exact pixel proof is bounded and full replacement remains open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "6e5c19a772e1f9a8a0d447ec4ab0e099db4f9b7465ba48f8342e60e554bf3f3f"
+      "reason": "Missing direct-word inputs visibly omit World markers; exact pixel proof is bounded and full replacement remains open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "d424394f0c1e26b1dd81c486db9d33cfa04164e4b1a25beb9835deacd25e0671"
     },
     {
       "behavior": "NR.application-shutdown",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Terminal application ownership of render admission, two workers and independent storage: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "834619f730a9488f2264ef61862f05c77e4e7f48fa0819ab8e85f59a5f2ea8ed"
+      "reason": "Terminal application ownership of render admission, two workers and independent storage: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "cbfaebb55e768d5b3be26d323c1ced9f3c084ad175e3a8f2dcb3b9136278d86f"
     },
     {
       "behavior": "NR.bounded-copy-order",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Opt-in bounded scheduling across hooked original copies: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "da7c6a1a1173a7f5bcb82f2ca71f769e5d19d3a9c46340684f252668f71a7f69"
+      "reason": "Opt-in bounded scheduling across hooked original copies: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "13358496bad985dbd301df397a92f9e9c3f548429942ba890e0c770e0098b2ae"
     },
     {
       "behavior": "NR.callback-publication-isolation",
@@ -289,8 +296,8 @@
       "behavior": "NR.canvas-producer-replay",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Native producer canvas history from closed inputs and checkpoint comparisons: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "54dc87e1e1c0d731fc3b3c2e0f65b5d9a435755a97a5d73084e9d6cbf4b210aa"
+      "reason": "Native producer canvas history from closed inputs and checkpoint comparisons: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "e912d03a8410b1f1a565afa400f8bc940c21dc5ddc0a57392d3d1625f84c1241"
     },
     {
       "behavior": "NR.command-backpressure",
@@ -303,113 +310,113 @@
       "behavior": "NR.command-checkpoint-attachment",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Critical ownership/state contract with implemented bounded native services. The per-domain crosswalk resolves earlier aggregate ambiguity; remaining work is validation and acceptance, with no concrete missing code identified.",
-      "contract_sha256": "2cc094673aefc4cb6d21c442fdd1ce0200277d21a1c86d92e9437a653ccb71f9"
+      "reason": "Critical ownership/state contract with implemented bounded native services. The per-domain crosswalk resolves earlier aggregate ambiguity; remaining work is validation and acceptance, with no concrete missing code identified. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "3be0d7edf23bcbcbcb1da30af0f2eeb77190a20ebfbad86a96043edba9d23163"
     },
     {
       "behavior": "NR.command-context-batching",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Bounded renderer context ownership and private OpenGL state cache: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "73b844e05a9e3da84470115c491da62bfd73c45ef2fc54f0c21b36610af1885a"
+      "reason": "Bounded renderer context ownership and private OpenGL state cache: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "244b0a5ce8d81c4a9ec3ddaf86a8ba77923119ced178b763ad8e09364371f1c1"
     },
     {
       "behavior": "NR.command-host-recovery",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Qt fresh-session recovery over a versioned producer control channel: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "649f47919dae6dc80890f637b2c38283efb1066c93ec81c0f64c42f8dffd6fb0"
+      "reason": "Qt fresh-session recovery over a versioned producer control channel: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "87977a07b761e180b0cbb10d41aaa93d1b14f11a41327c4dadb83d80014c3bdd"
     },
     {
       "behavior": "NR.command-idle-lifecycle",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Idle producer retries and explicit transport shutdown: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "2cf49343b2e6320bbcca2bb58eb90c313761ff5a0547185a0aa6d4086545f321"
+      "reason": "Idle producer retries and explicit transport shutdown: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "e8d6277455851b999945eef1b80b60b8d1f1bfb9ed75225a609362d2a2b2dc89"
     },
     {
       "behavior": "NR.command-orchestration",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Continuous producer startup and orderly process-exit orchestration: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "363e3ae42e73abfcc3a25275311b83d922d93d671a623a14ee079b2a4f04ffa8"
+      "reason": "Continuous producer startup and orderly process-exit orchestration: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "b3ec38ef085751fe13dc47699e4000973520ed0e39aba9245ffb2b93fb6b5316"
     },
     {
       "behavior": "NR.command-recovery",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Explicit recovery into a fresh continuous producer session: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "13bd5d7cca026ba78a0fe803098efe1b76546ee15eb2910f803f4e8d46efa475"
+      "reason": "Explicit recovery into a fresh continuous producer session: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "4a34af3a8eaeadb9d32236f0c089455f5c3824997cd11de701bacbd9ed0fd21b"
     },
     {
       "behavior": "NR.command-ring",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Acknowledged bounded reusable command-byte transport: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "7f42f6470961a147d710cf83e256a7dcec5d49e6f087d809dce903cf5e9ab1f0"
+      "reason": "Acknowledged bounded reusable command-byte transport: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "7f60a134844dafb389a1213ad32810bb372596f8092fdd8922dc44326898e50c"
     },
     {
       "behavior": "NR.command-ring-adapter",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Mapped native ring reader and cooperative owned producer queue: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
-      "contract_sha256": "9b0d8149b2a89004161869a34735d57a9d2f318813f1cddba931bad2094036d9"
+      "reason": "Mapped native ring reader and cooperative owned producer queue: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "f818a46d5c40794b3a996811264ecb0ac0667a5fa635e9e00faa88f4ce8d4e38"
     },
     {
       "behavior": "NR.command-streaming",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded-memory sustained native command decoding: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
-      "contract_sha256": "9e7982970b8cb08deacc6465927970e9d994c152f5cdd791e178e09745802f6d"
+      "reason": "Bounded-memory sustained native command decoding: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "33c87298ff7242f36d1341b0a205c26deca0aba1df43fea4e2387216a946546d"
     },
     {
       "behavior": "NR.continuous-mutations",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Continuous mixed resource mutations and committed full-layout replacement: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "406ac0e3f41b56758eed1d26259a87362de7d3b7a24d715f38563ae18587e324"
+      "reason": "Continuous mixed resource mutations and committed full-layout replacement: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "9f085c10b164ea342de0513fb12b6ce9310f3a906de9de4c2dbb8f32c64900ad"
     },
     {
       "behavior": "NR.continuous-producer",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Continuous owned publication independent of bounded command archives: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "50dfaf8a1820f1e05fa52fb64dee4413f24887d3cc1154b5ef6b9810426181f2"
+      "reason": "Continuous owned publication independent of bounded command archives: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "2f3a4ee94e2f7ec6dafe10e717eb7b9ea1a654e22e301726d0be2e1e36b84b9b"
     },
     {
       "behavior": "NR.continuous-resource-lifetime",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Continuous resource identity and confirmed final-release retirement: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "cdc277fa6d58389cd3e4c78a36b4bb031d6fb5c9dd1c0ec38baa8005a0906cdf"
+      "reason": "Continuous resource identity and confirmed final-release retirement: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "7579c7209a40ba3b546183fc71482e42be8c0e56288a9c13980aac797bd8d6f0"
     },
     {
       "behavior": "NR.continuous-resource-working-set",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Finite consumer residency separate from complete owned producer checkpoints: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "89cb8a643f1c26c84056a5dbadd9756f347f29057c46b77a179c59db1c1c1d96"
+      "reason": "Finite consumer residency separate from complete owned producer checkpoints: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "f8a43a7951032b7ed32ef47065b34f6afb3d234f4b8bcdc6d9af5616b03b147c"
     },
     {
       "behavior": "NR.continuous-update-partition",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Bounded cost-selected full Unlock partitions reduce measured live wire redundancy: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
-      "contract_sha256": "1dff2350acc1e3485c8b4ac1a1eb6fc57ede218cd3958ffc831b405fec1724ca"
+      "reason": "Bounded cost-selected full Unlock partitions reduce measured live wire redundancy: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "2ea1c0314a2f6c1ae03baa9c2a950de2e4e59302a6a8b942003630cb676c1ba2"
     },
     {
       "behavior": "NR.cpu-handoff-order",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Opt-in CPU handoff ordering and bounded tracker provenance: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "4f648574f1b3d88335c4911d45ddb22832d598705c8c6d9e85e88333f7c40a30"
+      "reason": "Opt-in CPU handoff ordering and bounded tracker provenance: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "6f7425e22ff033e67c8d34ed004eac189bd783206c648dd63e5bc5942abedc79"
     },
     {
       "behavior": "NR.dc-flip-order",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Opt-in DC handoff and flip ordering with compound timeout invalidation: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "6bff8a53ca00167cbb95b17ec022768bbcf4921b29dea52ebe5afa7a1014e3b2"
+      "reason": "Opt-in DC handoff and flip ordering with compound timeout invalidation: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "f51af15bf331dfcea60784c3bf3c753f268200b95209a1cc9b53aeeafb5880e4"
     },
     {
       "behavior": "NR.directdraw-import-retirement",
@@ -450,15 +457,15 @@
       "behavior": "NR.draw-startup-order",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded DirectDraw startup factory admission and complete initial pixels: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "fbb5d83fac932e049c08785ee9eeef8424d684a75c5897e7a25dc130bbe10de1"
+      "reason": "Bounded DirectDraw startup factory admission and complete initial pixels: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "94189f1d7ff66d53284d3482bc24b4e7593d5a6f3a22dc182a291cb617f08c19"
     },
     {
       "behavior": "NR.drawing-actions",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Applied original menu adapter dispatch phase observation: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "72f821b424260177d49e505cf532b22320562ac24bbc0319de4f1499c86ace8a"
+      "reason": "Applied original menu adapter dispatch phase observation: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "234c8ee65c95763d555fd5df862441ac832cce3f945f0f66dff4bb349c6bf82b"
     },
     {
       "behavior": "NR.drawing-actor-latch-binding",
@@ -485,8 +492,8 @@
       "behavior": "NR.drawing-aux-readback-native-comparison",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Original diagnostic auxiliary mapped-view to unchanged native saved-buffer comparison: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "f233a5bb349b72dcbc3fb2a85f7d200ea6389332bf498a532c448ad851589203"
+      "reason": "Original diagnostic auxiliary mapped-view to unchanged native saved-buffer comparison: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "f9f6a50fdaee0a37803e3f00bd6b80eca33027b2303b1b85c11d8dcac98dbd44"
     },
     {
       "behavior": "NR.drawing-aux-save-readback",
@@ -513,8 +520,8 @@
       "behavior": "NR.drawing-canvas-storage-transitions",
       "weight": 4,
       "work_type": "diagnostic",
-      "reason": "Observed original wrapper storage transition journal: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "ff25e192922c070ceca0f5d542fab8f0c19c488d3c6360320c547d9fd1725df1"
+      "reason": "Observed original wrapper storage transition journal: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "9a4b0b09485176281762b1807d2bc458d6509d41a5d6de08e869cc4a8501eb8f"
     },
     {
       "behavior": "NR.drawing-comparison-corpus",
@@ -534,8 +541,8 @@
       "behavior": "NR.drawing-copy-checkpoint-comparison",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Independent complete source checkpoint comparison for copy-order investigation: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "09e943af23d3686b77d72d65d004ef29b2b0d2139d9da0324ca41d0619179224"
+      "reason": "Independent complete source checkpoint comparison for copy-order investigation: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "ac3166ab2add161bbcc7339b3667b401e7fed293fea1dde7fe8bd50b9825015c"
     },
     {
       "behavior": "NR.drawing-copy-failure-provenance",
@@ -555,29 +562,29 @@
       "behavior": "NR.drawing-copy-order-value-diagnostics",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Native-only value snapshots around diagnosed full-copy/background-save return inversions: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "4234eb2aaca2d2e0beb448898a42342708dac14270bc74a490a29d49105cd071"
+      "reason": "Native-only value snapshots around diagnosed full-copy/background-save return inversions: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "fd0abec386c3f5bd7e5e998fb7468db1d6c64edd13a4eeece6018cc32a19c9b4"
     },
     {
       "behavior": "NR.drawing-copy-phase-hash-comparison",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Compact all-checkpoint hash comparison for explicit offline COPY phase policy: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "5edc0220655fdc514bfe755e6f6990ccdbd8b2febe9fbcfe694f12473d3c1a19"
+      "reason": "Compact all-checkpoint hash comparison for explicit offline COPY phase policy: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "37824ccca2da2dccedd948f03e1c22b59c0411303a51f52f5ebc114dce8ea6e5"
     },
     {
       "behavior": "NR.drawing-copy-phase-transposition",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Bounded experimental offline restore/full/save worker phase transposition: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "9d42af0c973ee605962b19c6e9584d04bd8938163b23f0d8b9aa1d0f00df52df"
+      "reason": "Bounded experimental offline restore/full/save worker phase transposition: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "ed45373feb0ba3d112c3023474a5e0d8ace756921b3e4337c7b8576e63b7025d"
     },
     {
       "behavior": "NR.drawing-copy-request-trace",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Opt-in pointer-free original copy request entry/return identities: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "e38e8fbf1828ce87e35edcded37e6c96269e2ec9ff045ef9ea5706445306e7b6"
+      "reason": "Opt-in pointer-free original copy request entry/return identities: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "9df9eb2c968a89fdfcae066c9dbe71685db275d4cbbf5f7af11b1202d35e4096"
     },
     {
       "behavior": "NR.drawing-cursor-gate-forwarding",
@@ -674,15 +681,15 @@
       "behavior": "NR.drawing-egl-source-domain-accounting",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Exact observed EGL/source refusal and closed-interval domain accounting: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "162b0945bd562aa7788e778ea89efd22fec79a10eebb0a78885671b653dcf169"
+      "reason": "Exact observed EGL/source refusal and closed-interval domain accounting: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "59298b562a0eabd8fbea8e23ba726e95a4dc8c20fa289650adb5166a0e677207"
     },
     {
       "behavior": "NR.drawing-engine-update-windows",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Original drawing acquisition with actual counter-advancing update windows: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "45f9fd2695aef1d54bada95d314df4c02062edeb421000613425be5fb79fa0f6"
+      "reason": "Original drawing acquisition with actual counter-advancing update windows: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "1088494b20ef0dc944cd2f9eb272cfb5ae651076e6895060cd9bd679fa89014d"
     },
     {
       "behavior": "NR.drawing-fenced-acquisition",
@@ -730,8 +737,8 @@
       "behavior": "NR.drawing-interactive-acquisition",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Original-active Quick Battle XTest acquisition with strict API admission: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "499d950a188836b018d75d1d43c0e422acdfc94765465a87fb7a408fae929f51"
+      "reason": "Original-active Quick Battle XTest acquisition with strict API admission: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "7e8af72d5e5207063dbd11feaeb37d3f0bc2858b3e445345fc75b09775032381"
     },
     {
       "behavior": "NR.drawing-journey",
@@ -793,29 +800,29 @@
       "behavior": "NR.drawing-primitive-api-binding",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Exact active primitive through surface API and observed Wine worker: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "38234869953f0e79e49ac204815f7971b410b61b7b041c7e2e1c731b5bf25c25"
+      "reason": "Exact active primitive through surface API and observed Wine worker: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "7903f568aeb95eb06bcb9d3f67ecd404a7197fa48bf03c1579911eb3cbd7bae9"
     },
     {
       "behavior": "NR.drawing-primitive-lifetimes",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Original-active primitive snapshot and return lifetime observations: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "b02b05a22f71b4feadf4be4fb503c84113242a689b647f5d43c4aacec02209f1"
+      "reason": "Original-active primitive snapshot and return lifetime observations: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "1c22309cf42ee8e742b3db3d070c791c1389b4347686a538154d307bbc6c9e7c"
     },
     {
       "behavior": "NR.drawing-producer-source-points",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Portable recorder source-point metadata at original drawing API boundaries: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "82b4fea30cfe6d28cfef4c9fe881a071faab3fef3d31c95640f3f15f22ca03a2"
+      "reason": "Portable recorder source-point metadata at original drawing API boundaries: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "8b703467b25291f6c5d762b11223a5b34e0f1a752aa2b7b4cefad461b6ecddca"
     },
     {
       "behavior": "NR.drawing-producer-update-binding",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Exact observed cadence queue to source producer binding: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "26a40c17283bd7ec3a90f43f339a5ee428729965f5e0ace9fce1835a04e36d3c"
+      "reason": "Exact observed cadence queue to source producer binding: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "c8dff6bff1b7223e631585b31aa63ef5d1ffcd0c87e59818902463aafc6ef843"
     },
     {
       "behavior": "NR.drawing-publication",
@@ -849,8 +856,8 @@
       "behavior": "NR.drawing-recovery",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded direct recovery callback exclusion and independent bypassed borrow ownership: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "05fd0c721df28ddb787f3fdcc0c6edfb16ad41a754fa9462761bc21e75188702"
+      "reason": "Bounded direct recovery callback exclusion and independent bypassed borrow ownership: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "162523cf5a2b099cf8a97514513b9d6a48e95182d5de4e3e2a859059bb96f424"
     },
     {
       "behavior": "NR.drawing-region-click-latch-observation",
@@ -926,8 +933,8 @@
       "behavior": "NR.drawing-session-producer-capture",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Drawing source capture across one bounded Quick Battle session: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "be5d710282acfebf984980d757ecf77760898d0e04c5427c69c775a20fe0f6cd"
+      "reason": "Drawing source capture across one bounded Quick Battle session: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "320fe8e6c9965e591845f7ee85716d23224f36de5a7e6e60be77a518d1691e46"
     },
     {
       "behavior": "NR.drawing-source-cursor-gate-binding",
@@ -961,15 +968,15 @@
       "behavior": "NR.drawing-source-pending-copy-policy",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Diagnostic readonly-source exact pending-copy admission: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "c8ec2759a854be62cba011504afd0058ec0b9b592bd9fc65627a4256dc8e47c1"
+      "reason": "Diagnostic readonly-source exact pending-copy admission: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "5de38db97f05cb0625f2de3feb27f31cfc19b8bf83c818bae35928ee0f864a87"
     },
     {
       "behavior": "NR.drawing-source-pending-frame-refusal",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Protected source-byte pending-frame refusal snapshot: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "2a326d78e58763947cc959c4d8944db9fe189bb705ec943dcce60b60386916e9"
+      "reason": "Protected source-byte pending-frame refusal snapshot: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "058d9c2c1903dfe1559147798c36b0dc7440d66a952cef12c0d7db4505145c19"
     },
     {
       "behavior": "NR.drawing-source-physical-interval-close",
@@ -982,8 +989,8 @@
       "behavior": "NR.drawing-source-point-native-prediction",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Source-only composed canvas prediction for bounded API-point physical witnesses: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "011111461ae777c864f5405029b8e8dcd9cb333f03c57c57ab90abad2fffb599"
+      "reason": "Source-only composed canvas prediction for bounded API-point physical witnesses: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "5df8cca2dba1a15c2079f551957b8de997db4bc44b2d9ea1aec0e872476935a7"
     },
     {
       "behavior": "NR.drawing-source-read-reservations",
@@ -1031,15 +1038,15 @@
       "behavior": "NR.drawing-source-write-trace",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Writer attribution and recorded canvas overlap for diagnostic protected sources: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "69ace09fa45245414321d1597802c8031612620e69c26088cea0ee8c0e0edd48"
+      "reason": "Writer attribution and recorded canvas overlap for diagnostic protected sources: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "13bb8ecc26a7fb3003028b42cd7ea24b43eb154448a244044d9e2e5662809b10"
     },
     {
       "behavior": "NR.drawing-storage-query-candidates",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Bounded unknown storage address relationship diagnostics: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "b441babd59b95b9065ec44a4cd362728ee3bbf6d549ec8007c0e37bf269070b9"
+      "reason": "Bounded unknown storage address relationship diagnostics: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "a8b7ccbd6041a6699c2377412df89e2b6d2fdfe0a7bb0751f1d95874d7460b18"
     },
     {
       "behavior": "NR.drawing-storage-query-lock-return",
@@ -1066,22 +1073,22 @@
       "behavior": "NR.drawing-update-interval-accounting",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Observed accepted-update draw branches and call interval accounting: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "7be154c27701bdf22198b05f3ac3a323eb5a2fdd7c3c907e902b728fd2d75fa9"
+      "reason": "Observed accepted-update draw branches and call interval accounting: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "c9b5bffc27e51bf71f466209dfc1f702808416773910189c6a1c4c0659012e81"
     },
     {
       "behavior": "NR.drawing-whole-update-source-capture",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Bounded source capture through whole accepted-update boundary: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "37cc7e65147e2a769fc663687362a3c9d0dceadaa3766759061f85cdaac32b6a"
+      "reason": "Bounded source capture through whole accepted-update boundary: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "a33889ff1463978cd8be99f7d3d7785fb751228e4dbf4a60f55e4645ccd16871"
     },
     {
       "behavior": "NR.drawing-whole120-acquisition",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Explicit bounded120whole-update original source acquisition: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "a0255a92494db8f569422f30633fc065e76bdf8226e9dc67573b579d13e0664d"
+      "reason": "Explicit bounded120whole-update original source acquisition: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "de37c09254df5c10d85caac2cee757fc2c3cd046e2fca8acd60ee05e55cf7ff8"
     },
     {
       "behavior": "NR.drawing-wine-blit-command-discovery",
@@ -1108,8 +1115,8 @@
       "behavior": "NR.drawing-wine-client-memory-binding",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Public Wine client memory binding and submitted source cache point: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "39e3e22e527b7c893e4627f1b54ca6996a66e1b72a0377c7462833942c283bde"
+      "reason": "Public Wine client memory binding and submitted source cache point: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "d463fd656b444a79b5c875bc8383e394b9c87602ce1bbb6d43775b983c6a1ffe"
     },
     {
       "behavior": "NR.drawing-wine-egl-worker-context",
@@ -1122,8 +1129,8 @@
       "behavior": "NR.drawing-wine-map-storage-point",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Public Wine map-buffer association to known original canvas storage: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "e9d8764b8d65f7ca233e81a1b8130c7ccb4e5e50ee0d447080001792c1be2b67"
+      "reason": "Public Wine map-buffer association to known original canvas storage: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "782387a11917d25d89cc214511358095d2c9d864ecec29e00cfd7a0f7f3c87a9"
     },
     {
       "behavior": "NR.drawing-wine-object-lifetimes",
@@ -1213,8 +1220,8 @@
       "behavior": "NR.drawing-worker-producer-prefix",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Optional source-prefix bounds around original driver worker execution: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "24209f59bf41d78eea9499fc3b5962389ed3d5097aee191d65986405fec717e8"
+      "reason": "Optional source-prefix bounds around original driver worker execution: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "c0a898e8931a10df16e378cbf4e04def37b75d097c32377e003308e33dc1c95a"
     },
     {
       "behavior": "NR.drawing-x11-delivery-observation",
@@ -1269,57 +1276,57 @@
       "behavior": "NR.glyph-default-launch",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Public Qt launcher defaults guarded glyph takeover: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "4f2809227aa51c3dab4787b58174479d454eda950e60e3b1d09c97c6913ae43d"
+      "reason": "Public Qt launcher defaults guarded glyph takeover: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "5132dd69cc90d7a02ee6a922554af0345233399f428ade2bcc71790d26a1afff"
     },
     {
       "behavior": "NR.glyph-live-admission",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded live glyph process-memory admission and launch policy: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "6a6b41e1c1abe9eea45917a66d92f32dcec148be1cfc6bbc36b0827a4cf9210e"
+      "reason": "Bounded live glyph process-memory admission and launch policy: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "d1f3f8e9c0c6db54bcd30a314e72ffd9fb7e75943de98acbf61f95f92ca9bf93"
     },
     {
       "behavior": "NR.gpu-presentation",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Direct shared-texture command replay presentation: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "5ad444643707867f2668121f8728454ddaa758dec41a9d822653739d1d9efed7"
+      "reason": "Direct shared-texture command replay presentation: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "d85560411a138f9edc57c2ee57822a0dde641d92499bfe8876a125176ccbebcf"
     },
     {
       "behavior": "NR.headless-command-profile",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Headless EGL native-command performance baseline: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "d70cf870dce1b8000231ad7ccb1119f7ad57ad5122463e04eb5d434014519341"
+      "reason": "Headless EGL native-command performance baseline: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "3eb50b72703a624bc9de48d8bc2366b3a0f7804ad04549c6795fa2de6ffdb1b8"
     },
     {
       "behavior": "NR.incremental-command-consumer",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Persistent bounded surface command execution: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "9122ae7223260d3bdb66338332b43c9888244f6fb1a2a5dacb71c176d0f6ed3c"
+      "reason": "Persistent bounded surface command execution: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "d9c0a9b426ae4f2904e0ee527bb43d4a8412480c6c24fbcbc5037398778f94f8"
     },
     {
       "behavior": "NR.lifecycle-races",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Full startup/shutdown transition ownership and bounded callback quiescence: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "7b57b120c485ef756df41f7c857dcd9b14c68b2a1a3e6f570bc038a0be15572f"
+      "reason": "Full startup/shutdown transition ownership and bounded callback quiescence: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "6b5cd7c057da757bc9653af6bc3577833c78693e1d53ed2e4884c2adfdb6db7e"
     },
     {
       "behavior": "NR.lifetime-order",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded resource lifetime callback admission: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "02f4dff24af77177069f8f8c6de9112f717691eab6d697f505ebd98a6957ae7d"
+      "reason": "Bounded resource lifetime callback admission: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "5f27bc9b794b956b74e93bb43fea80ad1479b46ba121f0b0cb79a44c9247b0c6"
     },
     {
       "behavior": "NR.live-command-transport",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded mapped live native command transport: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
-      "contract_sha256": "ecd8243ea82e14e75a7083a53252bc93629d4513ebc9cf88d6b44358d0a7fb48"
+      "reason": "Bounded mapped live native command transport: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "c49d511e751fe9275f0ae49fc4d40167b5856f3700b1a2a4b12943e33d7223aa"
     },
     {
       "behavior": "NR.live-drawing-replacement",
@@ -1339,22 +1346,22 @@
       "behavior": "NR.masked-update-scratch-reuse",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Reuse bounded native masked-upload GPU scratch: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "1d63e5d19aa45a1863d9a9146cf35a424efa3da1d8840563f3c03e493274ebfe"
+      "reason": "Reuse bounded native masked-upload GPU scratch: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "95508442bc8f53fc446e1875c927fc2d3b2671fd61182ceec6524976e3c974fa"
     },
     {
       "behavior": "NR.metadata-order",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded surface metadata and unsupported mutation callback admission: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "215309f4aa0bffb8d3a373f2d550c0fa96957387530c6cca91b9f6e0c915c982"
+      "reason": "Bounded surface metadata and unsupported mutation callback admission: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "78f4de8bb355dc6bb2d857592742b515bdb8a0ff32d0f3fa87c2945391bd9e71"
     },
     {
       "behavior": "NR.minimap-continuous-read-window",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Per-admission checked fog-state readability window: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "cabc7f449c7bf5e054665aa3f79ddb557f90dfa05e5057a8e5e990bb3aa424b4"
+      "reason": "Per-admission checked fog-state readability window: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "97b77058c1d3813cf74a6feac393343062d1533a6ba0741db5502525c1aa0a50"
     },
     {
       "behavior": "NR.minimap-input-fixture",
@@ -1402,8 +1409,8 @@
       "behavior": "NR.native-draw-status-session-file",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Native graphics diagnostic file lifetime outside drawing callbacks: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "22f001a5241dd7fba6ffc5963ee13492110cb6b297bf6b93d93a6cf4619f30a6"
+      "reason": "Native graphics diagnostic file lifetime outside drawing callbacks: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "34f2c6cc6ac6b4e0f33fa19f91af058ce2214ed7a86db173586633de4636d59a"
     },
     {
       "behavior": "NR.native-palette-row-cache",
@@ -1416,8 +1423,8 @@
       "behavior": "NR.native-prepared-command-frame",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Prepare native HUD and World composition for independent rendering: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "fc880061476d44b7ea222c6508cc82dc3fc2ab44ea22daade9155e6f0949579d"
+      "reason": "Prepare native HUD and World composition for independent rendering: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "fbd54cda1ed564760c431199e4b4b059108fc7f32651d9c02c6761c29e044f88"
     },
     {
       "behavior": "NR.native-prepared-world-replay",
@@ -1430,15 +1437,15 @@
       "behavior": "NR.native-retained-world-image",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Reuse completed native World images between source updates: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "1ab205dbbbaa85fde37f8976a9cbac9930192bd92801ed08f16609503ce54431"
+      "reason": "Reuse completed native World images between source updates: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "79ac96461cfda143444ca65f37dc250d3216acc139f6a622894655f52d162639"
     },
     {
       "behavior": "NR.native-status-outside-drawing",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Publish native facade diagnostics outside drawing ownership: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "30a85c2cea016b08a484066074b63948d3331ef6ddf083a8ebab299f1e255763"
+      "reason": "Publish native facade diagnostics outside drawing ownership: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "6b39227b13dc832d349299445b0d88392b59d7488ac56c40e2da274dcf9bce95"
     },
     {
       "behavior": "NR.native-world-owner-costs",
@@ -1451,15 +1458,15 @@
       "behavior": "NR.observed-metadata-idempotence",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Identical metadata observations preserve native mutation generations: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "17e32d385d17d5b3a202c7e0c0523980148419c290965a22f4d993a47e723526"
+      "reason": "Identical metadata observations preserve native mutation generations: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "7218957f96bcc216b2021d857117e43bb959fc57fcfefeff68a46218634c563f"
     },
     {
       "behavior": "NR.observer-lock-avoidance",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Application-held capture avoids observer DirectDraw ownership: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "5ab87dd82eadfc1ad4ca6ca9acbaef45e6e1a0bf7f1cf901b9618dff091a837c"
+      "reason": "Application-held capture avoids observer DirectDraw ownership: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "b4d426cdb624b1fa7c8079584d4c6ae8efd653595b5c506464599da1fb6f6386"
     },
     {
       "behavior": "NR.offline-render-soak",
@@ -1472,57 +1479,57 @@
       "behavior": "NR.owned-session-dc",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Ordered application DC checkpoint handoff: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "6931f4a3bd6db99c431677225f9a1c6e0f734f44b11de4aa78e83072c6895006"
+      "reason": "Ordered application DC checkpoint handoff: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "50c3edb052c2beb12ee82f71c49346a224cc6a85240007e004fff2fb1170e700"
     },
     {
       "behavior": "NR.owned-session-fill",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Owned constant fills routed as native UPDATE commands: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "36de699d066513b4b8c239ae809bab4ab7ffa8f1da3cc67c54368f94a373bd89"
+      "reason": "Owned constant fills routed as native UPDATE commands: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "88b7f1a25a3857bdbab4d15729b5edaffdf2e836b03fb64ea2423d186795b0d3"
     },
     {
       "behavior": "NR.owned-session-sequence",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Bounded successive native primary presentations: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "244980221ab49fd9de334d704a64f745f511e9f25a3d44825657c672861f6858"
+      "reason": "Bounded successive native primary presentations: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "75f5239e0990245efa3d6c55143c857ea9fd6f5a53ec3062f8fbf75dcd39adf4"
     },
     {
       "behavior": "NR.owned-session-startup",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Bounded ordered startup through first primary presentation: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "0e38b0b379d74930be3f82688d49a3554f89e80a236abe4df9faa010c4003ff8"
+      "reason": "Bounded ordered startup through first primary presentation: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "e27edec06f5be72e63d24a169a968f060f1c3df0cc2e809f919cf2145e885df7"
     },
     {
       "behavior": "NR.owned-session-unlock-packed",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Packed ordered unlock rectangle updates: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "e039e0e8b120d63f2d685c855ece73b6ac1b1dd45f5c08be58f122f44810e74e"
+      "reason": "Packed ordered unlock rectangle updates: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "18e2f2d69cb96fba6e303cf56ea9c7ff2d4fa501560fbb9e3d813f3ad123d256"
     },
     {
       "behavior": "NR.palette-property-order",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded palette and property callback admission: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "66b353e5fcb2a3cf64dbf0337370ed0235b25cc6b9ae8f8fa2c12f1e5c5342f1"
+      "reason": "Bounded palette and property callback admission: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "a84cbd3a21df3dc4b967c8d3c38cdc6ae5d18914b07a2657d6f161ba3bc74555"
     },
     {
       "behavior": "NR.palette-resources",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Critical ownership/state contract with implemented bounded native services. The per-domain crosswalk resolves earlier aggregate ambiguity; remaining work is validation and acceptance, with no concrete missing code identified.",
-      "contract_sha256": "50ecb82b4013f3abbd1359173d542bc901f38bf7905a8f35d889b08a119e9022"
+      "reason": "Critical ownership/state contract with implemented bounded native services. The per-domain crosswalk resolves earlier aggregate ambiguity; remaining work is validation and acceptance, with no concrete missing code identified. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "bcfba5fcd25c13f5320e9e716381d48cf5b76f1646c6c403cedd4bd2c7a44b99"
     },
     {
       "behavior": "NR.presentation-damage",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Bounded incremental presentation of HUD and portrait updates: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "85a41e187b067b54ff65e07313e1e6937d191fef0c0a26e999650f15394de696"
+      "reason": "Bounded incremental presentation of HUD and portrait updates: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "9debec9fbacf8f4913c1e0e45f3ccf0d0e6167a558d04496ddf2b287843020ab"
     },
     {
       "behavior": "NR.presentation-resolver-refusal",
@@ -1542,22 +1549,22 @@
       "behavior": "NR.producer-recorder-thread-policy",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Opt-in original-active producer recorder serialization and thread nesting: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "60780d82ef8c3eb38ca99cfd9b54aa83ba51cd4a1e018fe57e5bcae19021f9fd"
+      "reason": "Opt-in original-active producer recorder serialization and thread nesting: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "8977d1c20bf3dbc4374dc2364f82f9d508fcb2d1b372af3c7f9d79dcb7bb8bef"
     },
     {
       "behavior": "NR.producer-trace32-acquisition",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Original-active32World-return source observation: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "2bd54f074e1dc1ea7007efde86328adf08d161dc12050a6f56b5e8473bd1d159"
+      "reason": "Original-active32World-return source observation: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "e19be108bcf5c9ee7c45bf62c911d460af5a5e174bf7116504ad82dfb4ddc84a"
     },
     {
       "behavior": "NR.public-resident-world",
       "weight": 4,
       "work_type": "aggregate",
-      "reason": "Resident World import into public command composition: This broad contract connects multiple delivered services. Reconcile its residual domains against narrower contracts before writing code; its weight is not additional independent feature effort. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "63f07bd68c2bc7825059259c7a31207a3f542aee63982b288b65e4b8284e97a9"
+      "reason": "Resident World import into public command composition: This broad contract connects multiple delivered services. Reconcile its residual domains against narrower contracts before writing code; its weight is not additional independent feature effort. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "bbd4f1a12bc381bdb69a3544a2dd31ceabeecd98c5dd13a96533a985a7f01fc2"
     },
     {
       "behavior": "NR.qt-quick-battle-app-journey",
@@ -1570,8 +1577,8 @@
       "behavior": "NR.readonly-description-continuity",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Skipped read-only surface descriptions preserve native drawing history: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "4c43807a0f00a1a7600a4ef62fcad82bc9456d598a2654b93a73f63fb3502144"
+      "reason": "Skipped read-only surface descriptions preserve native drawing history: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "31f4fd19708a7319541945dcbc6f077dc84d21849959b67deb1ccfb9f8ac7e3b"
     },
     {
       "behavior": "NR.real-game-command-shadow",
@@ -1605,8 +1612,8 @@
       "behavior": "NR.recovery-lifecycle-races",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Scoped recovery lifecycle ownership and overlapping-transition refusal: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "f195fca565f3789a179d7b721d0bde9504c804009c1acc5a6e22eca7e1ae19ee"
+      "reason": "Scoped recovery lifecycle ownership and overlapping-transition refusal: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "3bd486e2ddcd5acef6ad9342a2113aa0ac1589ffec01c0187d701fed1ec48763"
     },
     {
       "behavior": "NR.resident-bind-admission",
@@ -1619,15 +1626,15 @@
       "behavior": "NR.resident-command-pressure",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Resident drawing admission under command queue pressure: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "160df63266e9f8674020cf7e87b52d5afe1e0f038528aead0822b18f6012dadb"
+      "reason": "Resident drawing admission under command queue pressure: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "4717589ef79daaf98e91aedecda47a872c619c2f9b4c5c046fbbc45501c1d3c3"
     },
     {
       "behavior": "NR.resident-prepared-shared-budget",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Partition shared native residency for independent frame preparation: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "793e2cb9b2592eeb23a84a0fbbc4beab9f26f671ce530081f4c6202f415da49b"
+      "reason": "Partition shared native residency for independent frame preparation: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "a00882f1035c1b5197e909a41c45c844ce549d51b573f162be54c722d009bda1"
     },
     {
       "behavior": "NR.resident-stage-profiling",
@@ -1675,22 +1682,22 @@
       "behavior": "NR.scene-snapshot",
       "weight": 3,
       "work_type": "acceptance",
-      "reason": "Bounded original display queue observation and native asset rebinding: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
-      "contract_sha256": "9a625fe0dbe657f4dbdf1e0ab4199edf83b447847088e53505f9d6f008bb2e08"
+      "reason": "Bounded original display queue observation and native asset rebinding: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "aca264951065d5fc1dc8c079d32e71116cfad022f0a24dc8d0acabaff05164b4"
     },
     {
       "behavior": "NR.source-boundary-quiescence",
       "weight": 4,
       "work_type": "diagnostic",
-      "reason": "Quiescent observed primitive callback boundaries: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "ba8ba4a3ecbcb5915574d2f3fdd164c82df76b97ce4b3eea126aa948b53ffb1e"
+      "reason": "Quiescent observed primitive callback boundaries: This investigation addresses source ownership, unsafe reads, refusal or physical-frame admission needed to trust replacement. It can unblock correctness work, but is still diagnostic rather than a delivered rendering feature. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "30b1981d2c2d3d3106b25104ff8ce4118085b8c79f13855beb6a3515e0672129"
     },
     {
       "behavior": "NR.sprite-atlas",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Bounded sprite atlas pages and value-owned shader palettes: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "d73342e0fa8223cf7638bf73d096711ea6412d88db63b31657262ad913e5bdd9"
+      "reason": "Bounded sprite atlas pages and value-owned shader palettes: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "f4f01816a0288c7b986e6dc4e73f4c0ca7183b75fa2548ffa8a821edf085d8da"
     },
     {
       "behavior": "NR.sprite_scene",
@@ -1703,8 +1710,8 @@
       "behavior": "NR.sprites",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Native sprite decoding and drawing: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "8fbaf10692ac5f0d6a3c1ad60a84ecf8eebe6d7fd8d9a1f13c6b834279789260"
+      "reason": "Native sprite decoding and drawing: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "c9f1f255aa50147ffa083c7b3300c97939fd04f9b1ed976688abe0ca2ffbd171"
     },
     {
       "behavior": "NR.storage-session-corpus",
@@ -1724,22 +1731,22 @@
       "behavior": "NR.surface-backend.formats-pitch",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Canonical native format draws and owned signed byte-row storage: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "8952d457b2d1b9f814569ba3f83b716145e595e017f24f6ec427e70ed4b7ff54"
+      "reason": "Canonical native format draws and owned signed byte-row storage: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "fb90d6b503468c0a4f4422f060cc70862fafb9b6241e9632422dde63f2c494dd"
     },
     {
       "behavior": "NR.surface-backend.owned",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Integrated owned surface operations and independent offline replay: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "f48f6938e66970224ad2656ca252d628698d26cb917ff98b58798b748cb97362"
+      "reason": "Integrated owned surface operations and independent offline replay: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "6f2bafe6a31c3902ff250d23ee3d4639a9753ca69fd2240f2b2e44dacc381ef2"
     },
     {
       "behavior": "NR.surface-backend.ownership-recovery",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Owned shared identities, two-buffer storage leases and explicit recovery: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "912189034f0670eb41320b1329f9d5099ed6e02c5ead929a991759ca555f0cab"
+      "reason": "Owned shared identities, two-buffer storage leases and explicit recovery: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "5f56053625835ad2e315c0a85f6c7e46f8429c797e4d78f5a6a77bc42604816b"
     },
     {
       "behavior": "NR.surface-colors.rgb565-dc",
@@ -1766,8 +1773,8 @@
       "behavior": "NR.surface-copy.clipping-stream",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Version3 clip state and non-atomic Surface2 result replay: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "51e83e657a5a2ef05839eacac546957632c915e3377c31716020cc2a71433475"
+      "reason": "Version3 clip state and non-atomic Surface2 result replay: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "a16b58cdf2c55c8446d1a9711b8543b2023773bb7d5f959c23e2d1c6e9b4cbf1"
     },
     {
       "behavior": "NR.surface-driver-fixtures",
@@ -1815,8 +1822,8 @@
       "behavior": "NR.surfaces",
       "weight": 4,
       "work_type": "aggregate",
-      "reason": "OpenGL surfaces, blits and command replay: This broad contract connects multiple delivered services. Reconcile its residual domains against narrower contracts before writing code; its weight is not additional independent feature effort.",
-      "contract_sha256": "e0b19d0bef90e7463cef952fd8dc6c14bdef224859550454773fbe82fde4c090"
+      "reason": "OpenGL surfaces, blits and command replay: This broad contract connects multiple delivered services. Reconcile its residual domains against narrower contracts before writing code; its weight is not additional independent feature effort. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "ea9cadad8d29893e020033f26bc906d334df12605550fc167d2a03389dcfd010"
     },
     {
       "behavior": "NR.terrain_scene",
@@ -1829,8 +1836,8 @@
       "behavior": "NR.upload-preparation",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Worker-owned sprite planes and resumable GPU upload admission: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "d0bfbe2a7f4fb883d7550ac811aca3a2c353128b8e98333e181210da3af047d9"
+      "reason": "Worker-owned sprite planes and resumable GPU upload admission: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "9798fb70955371c5b54ae818e526663ceaae1f487089ff42e1432831ff23b7f6"
     },
     {
       "behavior": "NR.wine-private-backing-ownership",
@@ -1850,8 +1857,8 @@
       "behavior": "NR.word-clipped-takeover-admission",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Atomic guarded clipped takeover and conservative x87 admission: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "25411ed0256f3027854dec8dc35522a2cf758173a55343d4ac18ad90f277fbcb"
+      "reason": "Atomic guarded clipped takeover and conservative x87 admission: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "5ae25619b79e6c39f7c397d1e227eb3339dea5dbcc2d4c1d841419b044fb6189"
     },
     {
       "behavior": "NR.word-clipping-plane-bounds",
@@ -1899,8 +1906,8 @@
       "behavior": "NR.world-channel",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Bounded continuous owned World delivery: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "024667e874d1f720cdb38c970cebd6e772350cdd5be069635f86f6536ca70740"
+      "reason": "Bounded continuous owned World delivery: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "a0f1ad3e4e974619f2260f4f24a3cee0fabb41f34144bb72c6a5347901fdc7ca"
     },
     {
       "behavior": "NR.world-continuous-normal-performance",
@@ -1941,15 +1948,15 @@
       "behavior": "NR.world-gpu-resident-frame",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Source-only GPU-resident frame history without World pixel export: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "170fcfb576600c70c26ea06fbb5b2ee158eb9347b9e2176339bd53ace18f394a"
+      "reason": "Source-only GPU-resident frame history without World pixel export: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "9404b449d89ea25c3da5234dc6dec8f4cc134c90a36189e33e1ff290de67f0a5"
     },
     {
       "behavior": "NR.world-history-channel",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Finite ordered World startup journal: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "21366649af1604a46599cf5d926185527e067f44b76f2094e4a66427382623f7"
+      "reason": "Finite ordered World startup journal: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "b22d4aca5ecd0fe3be887c3493c7ce24392759d1f30f78d08598765730e576df"
     },
     {
       "behavior": "NR.world-interactive-batch-launcher",
@@ -1962,15 +1969,15 @@
       "behavior": "NR.world-kind-diagnostic",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Stopped live history refusal with exact raw queue kinds: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "149a5f1d4e66d43dc5e80f880e0cb5d69da0a13b8d54f67e0617fc1e73fe4858"
+      "reason": "Stopped live history refusal with exact raw queue kinds: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "a14c2a95daab4868fa3cc39b4af80aa000056b463665ba159cf550407de987dd"
     },
     {
       "behavior": "NR.world-live-history",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Async native presentation of contiguous startup canvases: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "46ad8d5f0feca49e9379e5eccbd397cb18e8f144d7ca5c22ac3ccac1df2c7cd7"
+      "reason": "Async native presentation of contiguous startup canvases: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "455f8ab8e124f312ab26f6f9fb56be388c27c213eee0213944e1a793f602b216"
     },
     {
       "behavior": "NR.world-live-view",
@@ -1983,15 +1990,15 @@
       "behavior": "NR.world-owned-snapshot-delivery",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Owned World snapshot delivery before GPU execution: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "60e84cf70c0f45f71582865fd3c1dbdae333eca7075089a9fb57f5eceaff96b6"
+      "reason": "Owned World snapshot delivery before GPU execution: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "0650dc1e8db28419a7df4f2093a3ad0fc3d50ddda3d6fc43189d81e37bf94696"
     },
     {
       "behavior": "NR.world-preparation",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Nonblocking World CPU preparation with owned GUI adoption: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "517762cf3f39d3dd7a6fdb4d9ba0c3837f978950f314b04e16946cd5d4937b99"
+      "reason": "Nonblocking World CPU preparation with owned GUI adoption: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "7db73d19f909b49b409ddd3b252baa677ee12e1f7b83e21110e578c809827da8"
     },
     {
       "behavior": "NR.world-prepared-admission",
@@ -2004,8 +2011,8 @@
       "behavior": "NR.world-producer-handoff",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Reconstructed producer history handed to native GPU World drawing: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "73d136ac51c038ed0c3fa822ab9a80dee56c01ba234fd6e9a6dabaf103846222"
+      "reason": "Reconstructed producer history handed to native GPU World drawing: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "98bb4075340ad58d2a484459c26f30d37d7ad6616f2c5bfe21c8f41bd7793474"
     },
     {
       "behavior": "NR.world-raster-batch-transport",
@@ -2046,15 +2053,15 @@
       "behavior": "NR.world-shadow-refusal",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Normal World shadow capability refusal without ending the game: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
-      "contract_sha256": "cfb3855b63edf46a9fd19021e57645258f74d17b8a8887756d8baf714815c125"
+      "reason": "Normal World shadow capability refusal without ending the game: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "fbfc903c4ace886ab0b185a403d9479d72254ff2d3af84b6bf616ce6b2630f8c"
     },
     {
       "behavior": "NR.world-source-region-epoch",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Guarded World owner permission-query epoch: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "945d5b28f9491a7461f26e38dd906ee323538cc3d63c5152a66a7b06db9cf0ab"
+      "reason": "Guarded World owner permission-query epoch: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "81ab28461a76b30efb41016e227bf6a8e4d4fdd27efc5cd2ff253e2b4ee0a1ec"
     },
     {
       "behavior": "NR.world-startup-launcher",
@@ -2214,36 +2221,36 @@
       "behavior": "RS.canvas-bind-clip",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Canvas pointer/stride/height binding and separate clip state: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "61062b1a09bf9ff77ac08759cca03b2afa0e2d2521e32d2309bd2f52eeead85b"
+      "reason": "Canvas pointer/stride/height binding and separate clip state: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "93463519a5c4c078acf8e3af0b2d8a1a58ea20dd3974876ea08b66042cddf7b3"
     },
     {
       "behavior": "RS.canvas-create-lock",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Selected surface creation, release and returned canvas storage: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "81e49b701ce26058b107f7bfe18ef49a50c3c2e829139af6dc45cf93b7a68a10"
+      "reason": "Selected surface creation, release and returned canvas storage: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "c5b3179fb599305760db36f5cd96cc927b467390bff7f7b84435cfcf1b0cc509"
     },
     {
       "behavior": "RS.canvas-preworld-reuse",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Menu/loading canvas reuse through first World draw: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "8c35f6afe09d15b1c6579e741a0b69bcdd0c2e43bfc7162ba733339b3073cebd"
+      "reason": "Menu/loading canvas reuse through first World draw: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "b673716541a097d7e053a14e3b0e0659eec9129d4371b6596e93db7e2a73eff9"
     },
     {
       "behavior": "RS.canvas-producer-sequence",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Owned pre-World/menu/loading/HUD producer requests and completion checkpoints: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "169f85a2a5ef38b78e53d4dfd52b6a1b76ca74d5f53e6dbedc6179d52881a1c8"
+      "reason": "Owned pre-World/menu/loading/HUD producer requests and completion checkpoints: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "70751464086f6ef62b87e8e4bc33f641b65b22c31793c4e45119ed1c4cadf958"
     },
     {
       "behavior": "RS.canvas-startup-clear",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Selected startup zero-fill request before first World: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "07c89501ec60878d21145be61ec319479ec024deb94eedfadb9a931bb709267c"
+      "reason": "Selected startup zero-fill request before first World: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "2a1689440b6cc9f5506deeb9608a9513b247fdd4e7fa9f3d9b49a006bb0982ec"
     },
     {
       "behavior": "RS.displacement-final-word-read",
@@ -2263,8 +2270,8 @@
       "behavior": "RS.drawing-publication",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Guarded original opaque-copy publication COM results and independent primary readbacks: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "e14c738b6cd753c5bd846e1c7e4df66f1b9813eb042138d51f578d64e223401b"
+      "reason": "Guarded original opaque-copy publication COM results and independent primary readbacks: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "bc8fb0d0fc37f5b58ab437798238d783e4fdd55dc8315e2243de0edd48bfda0f"
     },
     {
       "behavior": "RS.glyph-backend",
@@ -2284,8 +2291,8 @@
       "behavior": "RS.glyph-live-route",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Bounded live glyph caller/pixel route: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "2360244b3a24fe87d8f976c5d0f56be1590c1c8e4135c5796f9e2a7dae3db6b2"
+      "reason": "Bounded live glyph caller/pixel route: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "e70343cde5ccd81976252a14eed75826665eaf00c4652e7b6e1ad2a1b495a3a4"
     },
     {
       "behavior": "RS.minimap-camera-corners",
@@ -2354,15 +2361,15 @@
       "behavior": "RS.word-clip-takeover",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Guarded opt-in native clipped main-word backend takeover: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "94d32686e4af52cc22598e67eebc35996f2b58c36025150139fdbbaa5c9d1093"
+      "reason": "Guarded opt-in native clipped main-word backend takeover: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "d73632a6efb987df5921331ad199d3582be5c970a3a435e300211b8b61630486"
     },
     {
       "behavior": "RS.word-clipping",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Selected direct-word backend clipped pixel output: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "f08a4b26033e87773f4c453d4fd6c0bbca3cebfa472eeb80c549c1e40fdad53e"
+      "reason": "Selected direct-word backend clipped pixel output: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "6b95711a9f20cb4900ed1d2ec6809c4e33277c41946ee6abfb2518693b09c5cc"
     },
     {
       "behavior": "RS.word-cpu-clipping",
@@ -2424,29 +2431,29 @@
       "behavior": "RS.world-frame",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Owned effective World raster inputs and complete native canvas comparison: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "399c50a6b2670be0d5c98e0c85f26d024f043035e4a37449960379c6b73943c5"
+      "reason": "Owned effective World raster inputs and complete native canvas comparison: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "4be32b8fb7eb190162fe8d52358a6aabd5e6cea81aef8adcf6751df49b2aec93"
     },
     {
       "behavior": "RS.world-initial-state",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Retained pre-consumer World canvas pixels and unresolved initialization: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "834789b8d032c381b7d6b1d17bb2fdc8f54fd7300029aeed51d581782570d2eb"
+      "reason": "Retained pre-consumer World canvas pixels and unresolved initialization: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "37fac52da7b789a74417aa086bffbf4b8eb986b99e63b2248deedb0057cf8f43"
     },
     {
       "behavior": "RS.world-kind8-additive",
       "weight": 3,
       "work_type": "capability",
-      "reason": "The observed inherited class is corrected to54aaa0 with fresh original/native pixels and active hook proof. Selected owned RGB565 primitive fidelity remains a high rendering capability; broader object writers and replacement remain separate. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "7f3ef42777d9de7ded9fd5f29c98e95521207d1642326d38aec19f6c84533572"
+      "reason": "The observed inherited class is corrected to54aaa0 with fresh original/native pixels and active hook proof. Selected owned RGB565 primitive fidelity remains a high rendering capability; broader object writers and replacement remain separate. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "884734a09f411f3a6729d66ca4bc8cf8be111015769d040ff4ee2f8f5aaf9760"
     },
     {
       "behavior": "RS.world-kind8-colour",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Selected kind8 owned RGB channel rectangle raster: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "8c0ef350d8e89c6a0d0ab76e562c9771426619a2b19b34aa95f526887e41624a"
+      "reason": "Selected kind8 owned RGB channel rectangle raster: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "db9243c96e8f0c3bdb1d8e8fe369897e1cad0136acab0351c67fa9d451022f33"
     },
     {
       "behavior": "RS.world-kind8-empty-methods",
@@ -2459,22 +2466,22 @@
       "behavior": "RS.world-kind8-methods",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Owned virtual-method owner gates, flags and return semantics protect selected native object drawing; writers and lifetime remain separate. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "a0948e0d8322abf7c1620d337ad516f9eb957a91b2832bf60a4ca113aabd5473"
+      "reason": "Owned virtual-method owner gates, flags and return semantics protect selected native object drawing; writers and lifetime remain separate. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "e7e66b9a1a7012bf259679e9c9b675dfb3c59672b1f6341717900fc8871658a1"
     },
     {
       "behavior": "RS.world-kind8-noop",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Selected kind8 flag-only virtual draw: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "808aa98e019f33f7e2519a549481c4efdbbee5d5d77b5382976f11158a377748"
+      "reason": "Selected kind8 flag-only virtual draw: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "ec0c8f59ab686a04723f3a9dae6872e8c1ee9cc7af83dc762a3f9230da11981a"
     },
     {
       "behavior": "RS.world-kind8-virtual",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Six checked method models and the corrected native primitive whitelist are supplied. Unknown classes, constructor/writer inputs and broader live object/pixel acceptance remain critical for complete rendering. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "a26f2369f84153dd1a1fe99a16e437f4760706e78035f589309f1a64a5d381cf"
+      "reason": "Six checked method models and the corrected native primitive whitelist are supplied. Unknown classes, constructor/writer inputs and broader live object/pixel acceptance remain critical for complete rendering. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "3152b3e8fc8daca20b1fa5b42f13cab11ca902d9c0d685b09f833f7b4dea3f1e"
     },
     {
       "behavior": "RS.world-kind9-trail",
@@ -2487,8 +2494,8 @@
       "behavior": "RS.world-producer-bypass",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded closed generic World raster entry bypass and native writeback: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "7fde70eb972751661ed798185a3ca18de8f55cf19da27457c57af993c8ebfcc6"
+      "reason": "Bounded closed generic World raster entry bypass and native writeback: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "789566c1d26f0679111aa02ad19d9edf0c86e34d2d6f216d7b9885591f46a464"
     },
     {
       "behavior": "RS.world-queue-state",
@@ -2508,8 +2515,8 @@
       "behavior": "RS.world-raster-queue-replacement",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Bounded complete World raster queue replacement with recovered AX fallback: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "7891bf84fb9429e5b10e268cec1386b3f61b37b6f54e349be2e0892decde32b0"
+      "reason": "Bounded complete World raster queue replacement with recovered AX fallback: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "4d9c8f2310b5ed2010ae756fd268e37e16f49cfd5583136ae2d8b39317c871f7"
     },
     {
       "behavior": "RS.world-run-outline",
@@ -2529,22 +2536,22 @@
       "behavior": "RS.world-startup-palette",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Real shade-minus127 palette on clipped fallback and blend primitives: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "870452529267fffccec6ddf0d9411ac5ec29f92c3464590b0a48a194aa735933"
+      "reason": "Real shade-minus127 palette on clipped fallback and blend primitives: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "5c26f495e0e91d7c1cedee8c8c54fc9403cab44311fa21e7b00e4e74adcf586b"
     },
     {
       "behavior": "RS.world-startup-queues",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Contiguous startup consumer queues and actual unsupported draw kinds: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained.",
-      "contract_sha256": "5a9d73974204c94c018a77d3d48db492f144cd2f6c2874c7de2c764846f0c28b"
+      "reason": "Contiguous startup consumer queues and actual unsupported draw kinds: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "82e2ec3772c67e4e23f240b93bbe41e25efd0dda9f806647afab7c81f8aca4f6"
     },
     {
       "behavior": "RS.world-startup-wave",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Startup wave dispatch and post-initializer owned displacement inputs: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate.",
-      "contract_sha256": "9488a1fc117a6a2d44eea5c231100493203908f0296ca038e42939770400d051"
+      "reason": "Startup wave dispatch and post-initializer owned displacement inputs: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open. Shared kind8 class dependency and selected nine-class scope reviewed; this renews planning identity only, with historical execution boundaries retained. Compiled tagged-effect dependency reviewed; this renews planning identity while historical execution and release boundaries remain separate. Compiled World batch extent dependency reviewed; historical execution remains separate from current validation.",
+      "contract_sha256": "88c5c0f25e747b6221b23458141dcf953e567e0a3095229b37688220e3cd1fc2"
     },
     {
       "behavior": "RS.world-tint-outline",

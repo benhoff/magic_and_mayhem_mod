@@ -15,3 +15,8 @@
 #define MNM_WORLD_BATCH_HEADER 64u
 #define MNM_WORLD_BATCH_DESCRIPTOR 16u
 #define MNM_WORLD_BATCH_MAX 12320u
+
+/* Native admission subset; header layout and field meanings are unchanged. */
+static inline int mnm_world_batch_extent(unsigned width,unsigned height,unsigned stride){
+ return stride==width&&((width==640&&height==480)||(width==800&&height==600));
+}

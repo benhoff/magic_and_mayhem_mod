@@ -19200,3 +19200,34 @@ shared sources. This is scoped headless caller admission; actual helper pixels,
 Windows query equivalence, natural reachability, source lifetime, other table
 callers and complete live release gates remain separate. Umbrella World/kind8
 remain partial and complete live replacement remains none.
+
+## Bounded640/800resident World admission (2026-10-20)
+
+A verified private clean No-CD installation exposes three fixed800x600guards
+in producer batch admission, exported owned-Lock binding and frontend World
+import. Each now admits exactly tight RGB565640x480and800x600with the same
+predicate. Queue identity captures width/height/stride; existing format, owner,
+source, nonce/generation and protection controls remain. Legacy continuous
+pixel replies retain800x600and refuse640before accessing their fixed slot.
+
+WEXT passes host batch/reply,27bad manifests per extent, actual protected640
+PE32entry/four bad extents/five midqueue changes, public binds at both extents,
+and exact GPU World/HUD/copy composition with no ordinary World readback.
+WFX4 repeats948canvases/67421draws/14169546original WORDs and five entry paths;
+WTRCTX2 repeats127449unchanged-original cases/902601synthetic leaf calls and
+2014native caller controls. Original manifest bookends pass.
+
+The first complete640smoke reaches13verified World returns/imports and normal
+Quit with zero World readback; it fails the ordinary64World minimum. The next
+reaches192Worlds but the known SelectZombieSpell tutorial blocks Mini, outside
+the Hermes-only automation. Neither is a passing campaign. Apprentice retry
+outcome is retained separately. Bulk evidence/builds use an isolated RAM
+workspace/private temporary namespace after/tmpquota/Xvfb failures.
+Umbrella World/kind8remain partial; full live replacement remains none.
+
+The Apprentice retry run-_nhbzgvo completes328balanced verified World returns,
+imports, native menu/resume and normal Quit with zero optional forwards and no
+World pixel readbacks. It fails the unchanged20FPS gate at8.023software-GL FPS;
+299explicit typed CPU materializations are tracked separately. This is retained
+as failed performance acceptance, with the new extent integration still headless.
+No release or full replacement status is promoted.

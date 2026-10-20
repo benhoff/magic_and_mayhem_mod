@@ -72,7 +72,7 @@ WorldRasterBatch validateWorldRasterBatch(
   if (h[2] != (policy == WorldBatchSourcePolicy::ownedV5 ? 5u : 3u) ||
       h[3] != 64 || h[4] != ordinal || h[5] != queue || h[6] != sequence ||
       h[7] != canvas || h[8] != width || h[9] != height || h[10] != width ||
-      width != 800 || height != 600 || h[13] != 1 || !h[14] ||
+      !mnm_world_batch_extent(width, height, h[10]) || h[13] != 1 || !h[14] ||
       h[14] > MNM_WORLD_BATCH_MAX || h[14] != rasters.size() ||
       h[15] != priorRasters + h[14] || h[11] != h[14] * 16 ||
       request.size() != 64 + h[11])
