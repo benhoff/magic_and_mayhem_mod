@@ -18,7 +18,7 @@ struct TerrainStaticLightState {
 class TerrainStaticLightCycle {
 public:
  // Bounded 004f2ad0: scan count cannot exceed owned capacity (the original
- // recount lacks a capacity check). Kernel indices 2..33 and 0 (no light).
+ // recount lacks a capacity check). Kernel indices 1..33 and 0 (no light).
  // published is the creature updater's +642e flag, not a static output flag.
  void step(TerrainLightField&,const std::vector<TerrainLightObject>&,
            unsigned scanCount,TerrainLightView,bool published,int changed=0,bool enabled=true);

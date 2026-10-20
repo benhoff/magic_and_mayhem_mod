@@ -49,3 +49,30 @@ The allocation dependency is byte-checked and redirected only in private mapped
 memory to padded fixture storage. Original files pass manifest bookends.
 The broader six work groups remain partial; this result makes no mode1..9,
 rotation/follow, full scene, external-backing or live replacement claim.
+
+## Spectator and single-cell lighting packet
+
+`RE.terrain-spectator-camera-light` implements the complete bounded player=-1
+branch. It admits no creatures. Recount resets the cursor, while a mid-cycle
+switch without recount preserves quota/cursor/remaining rather than visiting
+creatures. Phase/publication still advances when enabled. The camera stamp uses
+(column,row,layers/2,index33) after publication and also when creature refresh is
+disabled. Static active/requested flags continue to control publication.
+
+`RE.terrain-single-cell-light` implements index1 with its inherited signed kernel
+byte. Original initialization sets its pointer/size but never writes the byte;
+all 256 inherited values were compared. Native owned storage explicitly defaults
+to zero and accepts an explicit inherited byte in TerrainLightingConfig; it does
+not read uninitialized host storage. Both maximum and additive stamps work on
+single-cell fields. Fixture v2 supplies explicit spectator anchors; v1 continues
+to work and now admits static index1. Normal active owner=-1 remains a guarded
+refusal because the original non-spectator branch dereferences a null relation
+base. This refusal is an intentional native safety policy, not fabricated
+neutral-owner semantics.
+
+The pinned-original, native64 and ASan/UBSan outputs agree: 2,304 creature ticks,
+all 256 single-cell values/1,536 stamps, 32,768 static admission cases, 4,224 static
+stamps and the existing static/combined cycles, plus eight native/sanitized unit
+checks. See terrain-light-boundaries-original-20261020.json. Original manifest
+bookends pass. Installed entity/static-type input production and full scene/live
+acceptance remain separate; the broader lighting group is still partial.

@@ -70,3 +70,14 @@ selected tick, parsed tick count, consumed changed flag and both cycle states,
 as well as all five buffer SHA-256 values for each applied tick. Tiles sample
 only the final published field; pending prior/target bytes never leak into
 presentation. The preview owns no original pointers or Wine state.
+
+## Version 2 camera anchors and single-cell sources
+
+`MNM_LIGHTING 2` retains the version1 grammar and adds `camera column row`
+immediately after each tick's view column/row/extent. It accepts player=-1 and
+owner=-1 in the authored snapshot. A spectator admits no creature records; a
+normal active/enabled owner=-1 is still refused by the owned updater. Camera
+anchors are checked against the actual field before mutation. Version1 retains
+its player/owner0..7 admission. Both versions now admit static index1, whose
+native owned kernel byte defaults to zero; the constructor API can supply an
+explicit inherited signed byte. This supersedes the earlier index1 refusal.

@@ -10,15 +10,13 @@ std::vector<Rect> split(Rect r,unsigned width,unsigned height){
  if(unsigned(r.x1)>width){r.x0-=int(width);r.x1-=int(width);}
  if(unsigned(r.y1)>height){r.y0-=int(height);r.y1-=int(height);}
  const int w=int(width),h=int(height);
- std::vector<Rect> result;
  if(r.y0<0){
   if(r.x0<0){
-   result={{0,0,r.x1,r.y1},{r.x0+w,r.y0+h,w,h},
+   return {{0,0,r.x1,r.y1},{r.x0+w,r.y0+h,w,h},
            {0,r.y0+h,r.x1,h},{r.x0+w,0,w,r.y1}};
-  }else result={{r.x0,0,r.x1,r.y1},{r.x0,r.y0+h,r.x1,h}};
- }else if(r.x0<0)result={{0,r.y0,r.x1,r.y1},{r.x0+w,r.y0,w,r.y1}};
- else result={r};
- return result;
+  }else return {{r.x0,0,r.x1,r.y1},{r.x0,r.y0+h,r.x1,h}};
+ }else if(r.x0<0)return {{0,r.y0,r.x1,r.y1},{r.x0+w,r.y0,w,r.y1}};
+ return {r};
 }
 void validateView(unsigned width,unsigned height,TerrainLightView v){
  if(!width || !height || width>128 || height>128 || v.column>=width || v.row>=height || v.extent>std::min(width,height))
@@ -48,7 +46,7 @@ void TerrainStaticLightCycle::step(TerrainLightField& field,const std::vector<Te
  validateView(field.width_,field.height_,view);
  for(unsigned i=0;i<scanCount;++i){const auto& o=objects[i];if(!o.active || !o.lightIndex)continue;
   const auto size=o.lightIndex/2+1;
-  if(o.lightIndex<2 || o.lightIndex>33 || o.column>=field.width_ || o.row>=field.height_ || o.layer>=field.mapLayers_ || o.admissionColumn>=field.width_ || o.admissionRow>=field.height_ || field.width_<size || field.height_<size)
+  if(o.lightIndex<1 || o.lightIndex>33 || o.column>=field.width_ || o.row>=field.height_ || o.layer>=field.mapLayers_ || o.admissionColumn>=field.width_ || o.admissionRow>=field.height_ || field.width_<size || field.height_<size)
    throw std::invalid_argument("Static light object outside bounded contract");
  }
  const auto admitted=[&](const TerrainLightObject& o,bool recount){return o.active && o.lightIndex &&

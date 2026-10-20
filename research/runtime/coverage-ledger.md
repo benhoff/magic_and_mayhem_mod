@@ -19531,3 +19531,18 @@ See `external-backing-providers-20261020.md` and the v2 journal format. The broa
 six implementation groups remain partial. The prior commit range
 825a1fee..ac852c67 was reviewed against exact receipts with zero file gaps;
 the retained historical report is `working/tests/backing-history-review-20261020.json`.
+
+### Spectator and inherited single-cell lighting — 2026-10-20
+
+The bounded spectator-camera and index-one stamp components are implemented and
+compared independently under `RE.terrain-spectator-camera-light` and
+`RE.terrain-single-cell-light`. `LIGHT.boundaries-original-20261020` compares
+unchanged original instructions, native64 and ASan/UBSan, including publication
+order, disabled refresh and mid-cycle spectator transitions, all256 inherited
+kernel bytes, static/combined regression and eight native/sanitized unit checks.
+Native storage defaults the otherwise inherited byte to zero as an explicit
+owned policy. Fixture v2 carries spectator anchors; existing v1 remains usable.
+Installed entity/type production and full scene/live acceptance remain pending.
+Historical changed-source evidence is preserved. The reviewed committed range
+ac852c67..242572f9 has zero exact receipt gaps; the historical report is retained
+at working/tests/lighting-history-review-20261020.json.

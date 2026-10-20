@@ -17,15 +17,18 @@ struct TerrainCreatureLightState {
  unsigned phase=0,remaining=0,quota=0,cursor=0;
  bool published=false;
 };
+struct TerrainSpectatorLight {unsigned column=0,row=0;};
 struct TerrainCreatureLightControls {
  bool enabled=true,transitionActive=false,transitionRequested=false;
  // Nonzero restarts enumeration; exactly 1 forces completion if lights exist.
  int changed=0;
+ std::optional<TerrainSpectatorLight> spectator{};
 };
 class TerrainCreatureLightCycle {
 public:
  // Capacity is creatures.size(); scanLimit is the distinct original loop bound.
- // Player/active owners must be 0..7. Spectator/sentinel owners are excluded.
+ // Player -1 uses an explicit camera anchor and admits no creature records.
+ // Other players and active, enabled owners must be 0..7.
  // Caller owns/clears changed after all updaters, as in original 004f27a0.
  void step(TerrainLightField&,const std::vector<TerrainLightCreature>&,
            unsigned scanLimit,int player,const TerrainLightRelations&,
