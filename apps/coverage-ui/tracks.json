@@ -521,8 +521,8 @@
         {
           "id": "owned-world",
           "title": "Own a complete scene lifecycle",
-          "scope": "Native world ownership and sandbox lifecycle beyond the current bounded preview.",
-          "remaining": "Complete world construction, lifecycle and simulation handoff within an explicit native scene contract.",
+          "scope": "Native scene session owns validated world/frozen-navigation construction, semantic command and timer handoff, native save/fresh-window continuation and terminal teardown. This is an explicit native preview contract, independent of original-world gameplay composition.",
+          "remaining": "The owned native scene lifecycle passes generated-input Qt/OpenGL, failure/retirement, checkpoint continuation and sanitizer controls. Original world construction/input/timing, arbitrary profiles, hardware recovery and live simulation replacement remain separate.",
           "requirements": [
             {
               "behaviors": [

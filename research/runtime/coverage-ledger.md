@@ -18895,3 +18895,34 @@ branches, broader original allocation/caller recovery and sustained60FPS remain
 pending; no raw stage, pacing, budget, deadline or acceptance threshold is
 relaxed. Hardware attempts and their limitations are retained separately. See
 `rendering-medium-fixes-20261019.md` and the54-entry findings inventory.
+
+### Native scene lifecycle and controls milestone closure (2026-10-20 UTC)
+
+The [owned native scene session](native-scene-lifecycle.md) separates Qt widget
+presentation from world/navigation ownership and playback lifetime. Snapshot
+construction completes before exposure; native semantic controls advance the
+owned simulation. Terminal close retires direct/timer tick admission, clears
+transient selection and releases the provider/world, deferring release until an
+in-flight step returns. The production window withdraws presentation callbacks
+before application shutdown. Fresh windows restore native pending commands,
+without inheriting UI selection or playback state. Original engine behavior and
+native gameplay balance are unchanged.
+
+Fresh `SCENE.lifecycle-preview-20261020` evidence records nine passing CTests,
+eight real production-entry-point native windows, four exact fresh-window
+continuations, 28 independent complete RGB565-plane comparisons, three startup
+refusals, and normal plus ASan/UBSan owner/fresh-process continuation. All 485
+prospectively declared sources and generated inputs remain stable. LeakSanitizer
+is disabled under tracing; no leak-sanitizer result is claimed. The first sandbox
+display failures remain preserved separately. No original artifact, installed
+input, Wine session or manual playtesting is consumed.
+
+`WORLD.owned` and `WORLD.sandbox` now have scoped implementation and preview
+integration. All five declared Native scene & controls milestones are
+demonstrated. Earlier scene scopes and their historical original/installed
+fingerprints remain unchanged; current validation for their broader installed
+input domains remains pending after shared-source edits. The source-only
+`NP.scene-playback` retirement/display links retain that limitation explicitly.
+Complete original-world construction, full saved-world restoration, original
+input/cadence, arbitrary profiles, hardware recovery and live replacement remain
+separate. Overlapping protocol/hosting implementation gaps are not erased.

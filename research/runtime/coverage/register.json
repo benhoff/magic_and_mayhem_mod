@@ -2832,7 +2832,8 @@
         "assets/profile.hpp"
       ],
       "tests": [
-        "tests/profile-api/native.cpp"
+        "tests/profile-api/native.cpp",
+        "tests/profile-native-test.cpp"
       ],
       "evidence": [
         "REVIEW.AS.profile"
@@ -6281,13 +6282,14 @@
       "subsystem": "native_world",
       "kind": "native_policy",
       "title": "Owned world records and persistence",
-      "scope": "Native identity/generation and checkpoint policy; original world creation and scheduler semantics remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "scope": "Native bounded entity slots with generation handles, cleanup/release and incoming-reference repair; staged tick rollback, queued commands, owned subsystem blobs and native-v1 checkpoint decoding/encoding and POSIX atomic publication. Independent native-v1 bytes, malformed-state refusal and fresh-process idle continuation are exercised. Original world construction, scheduler/lifetime equivalence, legacy saved-world restoration, physical crash durability and live simulation replacement remain separate. Native Qt scene integration additionally exercises paused ownership admission, queued controls/checkpoint handoff and terminal release of the owned world; original gameplay composition remains excluded.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "game/README.md",
         "research/runtime/native-world-foundation.md",
-        "research/formats/native-world-snapshot.md"
+        "research/formats/native-world-snapshot.md",
+        "research/runtime/native-scene-lifecycle.md"
       ],
       "implementation": [
         "game/simulation/world.cpp",
@@ -6297,48 +6299,121 @@
         "game/persistence/store_posix.cpp"
       ],
       "tests": [
-        "tests/native-world-test.cpp"
+        "tests/native-world-test.cpp",
+        "tools/test-engine-foundations.py",
+        "tests/test-native-world.py",
+        "tests/world-session-lifecycle-test.cpp",
+        "tests/test-scene-lifecycle.py",
+        "tools/test-scene-lifecycle.py"
       ],
       "evidence": [
-        "REVIEW.WORLD.owned"
+        "REVIEW.WORLD.owned",
+        "SCENE.lifecycle-preview-20261020"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "preview",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/CMakeLists.txt",
+        "apps/world-scene/main.cpp",
+        "apps/world-scene/movement_controls.cpp",
+        "apps/world-scene/movement_controls.hpp",
+        "apps/world-scene/orders.cpp",
+        "apps/world-scene/orders.hpp",
+        "apps/world-scene/playback.cpp",
+        "apps/world-scene/playback.hpp",
+        "apps/world-scene/playback_controls.cpp",
+        "apps/world-scene/playback_controls.hpp",
+        "apps/world-scene/session.cpp",
+        "apps/world-scene/session.hpp",
+        "game/CMakeLists.txt",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "tests/scene-window-driver.cpp",
+        "tests/scene-window-driver.hpp",
+        "tools/coverage_claims.py",
+        "tools/create-movement-fixture.py",
+        "tools/draft-coverage-claims.py"
+      ]
     },
     {
       "id": "WORLD.sandbox",
       "subsystem": "native_world",
       "kind": "native_policy",
-      "title": "Headless world fixture and frozen navigation",
-      "scope": "Native executable fixture/session orchestration on frozen snapshots. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "title": "Owned native scene session and frozen navigation lifecycle",
+      "scope": "Native owned session lifetime for bounded frozen navigation and native snapshots: validate construction before exposing a world; retain navigation, simulation, transient selection and playback under one application owner; admit semantic Qt controls and save/fresh-process continuation; terminal close retires timer/direct tick admission, clears selection and releases resources, deferring release until an in-flight step returns. Failed construction leaves independent scenes intact and failed ticks retain committed state. Production native window shutdown and fresh-window continuation use generated SPR/TTD/ANI/frozen inputs. Thread-confined, one lifetime per window, no in-place scene replacement. Complete original-world construction, all native CLI commands, arbitrary gameplay/entity profiles, original inputs/timing, hardware faults and live replacement remain separate.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/native-world-foundation.md"
+        "research/runtime/native-world-foundation.md",
+        "research/runtime/native-scene-lifecycle.md"
       ],
       "implementation": [
         "apps/world-sandbox/frozen_navigation.cpp",
         "apps/world-sandbox/main.cpp",
-        "apps/world-sandbox/frozen_navigation.hpp"
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-scene/session.cpp",
+        "apps/world-scene/session.hpp",
+        "apps/world-scene/main.cpp",
+        "apps/world-scene/playback.cpp",
+        "apps/world-scene/playback.hpp",
+        "apps/world-scene/orders.cpp",
+        "apps/world-scene/orders.hpp"
       ],
       "tests": [
-        "tests/test-native-world.py"
+        "tests/test-native-world.py",
+        "tests/world-session-lifecycle-test.cpp",
+        "tests/test-scene-lifecycle.py",
+        "tools/test-scene-lifecycle.py"
       ],
       "evidence": [
-        "REVIEW.WORLD.sandbox"
+        "REVIEW.WORLD.sandbox",
+        "SCENE.lifecycle-preview-20261020"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "preview",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "apps/world-scene/CMakeLists.txt",
+        "apps/world-scene/main.cpp",
+        "apps/world-scene/movement_controls.cpp",
+        "apps/world-scene/movement_controls.hpp",
+        "apps/world-scene/orders.cpp",
+        "apps/world-scene/orders.hpp",
+        "apps/world-scene/playback.cpp",
+        "apps/world-scene/playback.hpp",
+        "apps/world-scene/playback_controls.cpp",
+        "apps/world-scene/playback_controls.hpp",
+        "apps/world-scene/session.cpp",
+        "apps/world-scene/session.hpp",
+        "game/CMakeLists.txt",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "tests/scene-window-driver.cpp",
+        "tests/scene-window-driver.hpp",
+        "tools/coverage_claims.py",
+        "tools/create-movement-fixture.py",
+        "tools/draft-coverage-claims.py"
+      ]
     },
     {
       "id": "GP.tick",
@@ -12816,7 +12891,14 @@
         "comparison": "none",
         "integration": "preview",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "tools/run-scene-display.py",
+        "tools/terrain_validation_display.py",
+        "tests/test-scene-lifecycle.py",
+        "tests/world-session-lifecycle-test.cpp",
+        "tools/test-scene-lifecycle.py"
+      ]
     },
     {
       "id": "NR.owned-session-fill",
@@ -21887,9 +21969,12 @@
         "research/runtime/native-world-kind-diagnostics.md"
       ],
       "implementation": [
-        "tools/inspect-world-dispatch.py"
+        "tools/inspect-world-dispatch.py",
+        "reconstruction/rendering/world_dispatch.hpp"
       ],
-      "tests": [],
+      "tests": [
+        "tests/world-dispatch-test.cpp"
+      ],
       "evidence": [
         "RS.world-dispatch-targets.static-20261008",
         "RREC02.rendering-contract-reconciliation-20261019",
@@ -21900,7 +21985,7 @@
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -21908,7 +21993,10 @@
       "implementation_review": {
         "review": "MEDIUM01.rendering-implementation-review-20261019",
         "entry": "RS.world-dispatch-targets"
-      }
+      },
+      "validation_dependencies": [
+        "reconstruction/rendering/world-dispatch/CMakeLists.txt"
+      ]
     },
     {
       "id": "RS.world-kind8-virtual",
@@ -21932,12 +22020,14 @@
         "tools/inspect-world-dispatch.py",
         "tools/inspect-startup-queues.py",
         "runtime/scene/kind8_observer.c",
-        "tools/inspect-kind8.py"
+        "tools/inspect-kind8.py",
+        "reconstruction/rendering/kind8_method.hpp"
       ],
       "tests": [
         "tools/capture-scene-game.py",
         "tests/kind8-observer-test.c",
-        "tools/test-kind8.py"
+        "tools/test-kind8.py",
+        "tests/kind8-method-test.cpp"
       ],
       "validation_dependencies": [
         "runtime/scene/startup_queue.c",
@@ -21946,7 +22036,8 @@
         "runtime/shadow/win32_min.h",
         "tools/build-scene-observer.py",
         "tools/native_prefix_template.py",
-        "tools/directplay_dx6_launch.py"
+        "tools/directplay_dx6_launch.py",
+        "reconstruction/rendering/world-dispatch/CMakeLists.txt"
       ],
       "evidence": [
         "RS.world-dispatch-targets.static-20261008",
@@ -21962,7 +22053,7 @@
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -283441,6 +283532,53 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "SCENE.lifecycle-preview-20261020",
+      "kind": "native_integration",
+      "scope": "Native scene lifetime/Qt controls and production-window startup, shutdown and fresh-window continuation on generated frozen/SPR/TTD/ANI inputs. No original game, installed assets, original comparison or live replacement.",
+      "record": "research/runtime/native-scene-lifecycle-controls-20261020.json",
+      "sha256": "a3f5eea6e1b3abc5c1b3989a18d345dfd7516be6c52ca04f746edb65825aa7ef",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizers_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_window_continuations",
+          "equals": 4
+        },
+        {
+          "pointer": "/pixel_comparisons",
+          "equals": 28
+        },
+        {
+          "pointer": "/original_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/game_assets_read",
+          "equals": false
+        },
+        {
+          "pointer": "/playtesting",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -303758,6 +303896,27 @@
         "CRIT08.retained-aliases-current-20261019",
         "CRIT10.aliases-compiler-closure-20261020"
       ]
+    },
+    {
+      "id": "scene.owned-lifecycle-preview",
+      "level": "preview",
+      "scope": "Generated native frozen/ANI/sprite/terrain fixtures; production Qt scene entry point, semantic controls, timer ticks, pending save/fresh-window continuation, construction and tick failures, in-flight close and terminal application shutdown. Native ownership/preview policy only; no original assets/game, original engine comparison or live replacement.",
+      "behaviors": [
+        "WORLD.owned",
+        "WORLD.sandbox"
+      ],
+      "evidence": [
+        "SCENE.lifecycle-preview-20261020"
+      ],
+      "tests": [
+        "tests/world-session-lifecycle-test.cpp",
+        "tests/test-scene-lifecycle.py",
+        "tools/test-scene-lifecycle.py",
+        "tests/scene-window-driver.cpp",
+        "tests/scene-window-driver.hpp",
+        "tests/native-world-test.cpp",
+        "tests/test-native-world.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -304401,8 +304560,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-rendering-medium-commit-ready-20261019.json",
-    "sha256": "3093e720422a7c598bce31e276ab928210b53b47cd819ae2ad2a8f380560982c"
+    "path": "research/runtime/coverage/source-index-scene-commit-20261020.json",
+    "sha256": "55ad58e93ea28aa8215fd6255051bec8b06c5ff9b60fd18409ec804b0d3d4d23"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
