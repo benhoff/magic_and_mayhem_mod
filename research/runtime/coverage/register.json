@@ -127580,6 +127580,46 @@
         "Selected system-memory COM aliases and native-owned allocation lifetime only; original physical aliases, unobserved writers and arbitrary driver intervals remain outside this proof.",
         "An early caller-device release while aliases remain is excluded: the retained Wine diagnostic faults at the next alias Lock. This does not prove original-game physical ownership or a missing native implementation."
       ]
+    },
+    {
+      "id": "HOST.campaign-physical-combat-driver",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Physical campaign summon selection and combat navigation",
+      "scope": "Bounded first-campaign physical driver policy: select and center the player wizard before the initial positive Zombie cast in the default non-spell-cases route, clear modal dialogue, and project fresh actor/enemy tile deltas through the existing isometric ground model with bounded screen steps. Observed independent movement probes remain movement evidence and never calibrate the camera. Successful live observation requires a newly living owned Zombie, native control count 0/15 to 1/15, original caster mana debit, original Zombie melee and same-engaged-enemy party lethal with a living wizard. This is driver policy and read-only original outcome observation; original projection/path equivalence, extended spell/portrait cases, renderer/native-backend equivalence, throughput acceptance and gameplay changes are excluded.",
+      "original": [],
+      "documents": [
+        "research/runtime/native-campaign-combat-input-20261020.md"
+      ],
+      "implementation": [
+        "tools/campaign-combat-input.py"
+      ],
+      "tests": [
+        "tests/test-campaign-combat-input.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_gameplay.py",
+        "tools/campaign_spell.py",
+        "tools/campaign_movement.py",
+        "tools/campaign_render_oracle.py",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_spell_observe.h"
+      ],
+      "evidence": [
+        "CINPUT.controls-20261020",
+        "CINPUT.default-live-20261020",
+        "CINPUT.prelaunch-1-20261020",
+        "CINPUT.prelaunch-2-20261020",
+        "CINPUT.prelaunch-3-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
     }
   ],
   "evidence": [
@@ -287400,6 +287440,112 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "CINPUT.controls-20261020",
+      "kind": "native_integration",
+      "scope": "Headless physical-driver readiness/projection controls plus existing campaign reader controls; no original execution.",
+      "record": "research/runtime/native-campaign-combat-input-controls-20261020.json",
+      "sha256": "ec0a532f63895de9631d9362b70c31fbbb5fe560ba3f38638833d3933a7e4f59",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CINPUT.default-live-20261020",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Prospectively declared default-route physical-driver policy and passive original outcomes only. Parent native campaign failure and unchanged FPS gate remain separate; no backend, original projection, extended spell/portrait or full-session equivalence.",
+      "record": "research/runtime/native-campaign-combat-input-live-20261020.json",
+      "sha256": "8c817105bda4e8ca6848a9417bf1f17b57c7ad4dee5ecfa3cab3963353ee98b4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/parent/success",
+          "equals": false
+        },
+        {
+          "pointer": "/parent/ordinary_campaign_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CINPUT.prelaunch-1-20261020",
+      "kind": "static",
+      "scope": "Retained prelaunch failure metadata only; repaired physical driver did not execute in this attempt. No execution or milestone credit.",
+      "record": "research/runtime/native-campaign-combat-input-live-20261020.json",
+      "sha256": "8c817105bda4e8ca6848a9417bf1f17b57c7ad4dee5ecfa3cab3963353ee98b4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/attempts/0/success",
+          "equals": false
+        },
+        {
+          "pointer": "/attempts/0/input_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CINPUT.prelaunch-2-20261020",
+      "kind": "static",
+      "scope": "Retained prelaunch failure metadata only; repaired physical driver did not execute in this attempt. No execution or milestone credit.",
+      "record": "research/runtime/native-campaign-combat-input-live-20261020.json",
+      "sha256": "8c817105bda4e8ca6848a9417bf1f17b57c7ad4dee5ecfa3cab3963353ee98b4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/attempts/1/success",
+          "equals": false
+        },
+        {
+          "pointer": "/attempts/1/input_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CINPUT.prelaunch-3-20261020",
+      "kind": "static",
+      "scope": "Retained prelaunch failure metadata only; repaired physical driver did not execute in this attempt. No execution or milestone credit.",
+      "record": "research/runtime/native-campaign-combat-input-live-20261020.json",
+      "sha256": "8c817105bda4e8ca6848a9417bf1f17b57c7ad4dee5ecfa3cab3963353ee98b4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/attempts/2/success",
+          "equals": false
+        },
+        {
+          "pointer": "/attempts/2/input_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -307861,6 +308007,34 @@
         "tools/check-native-surface-ownership.py",
         "tools/check-native-clipping-stream.py"
       ]
+    },
+    {
+      "id": "HOST.campaign-physical-combat-driver.controls",
+      "level": "headless",
+      "behaviors": [
+        "HOST.campaign-physical-combat-driver"
+      ],
+      "tests": [
+        "tests/test-campaign-combat-input.py"
+      ],
+      "evidence": [
+        "CINPUT.controls-20261020"
+      ],
+      "scope": "Callback-driven readiness controls for default/extended selection, delayed dialogue, and bounded isometric projection including the retained wrong-direction regression; no game execution."
+    },
+    {
+      "id": "HOST.campaign-physical-combat-driver.live",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.campaign-physical-combat-driver"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "CINPUT.default-live-20261020"
+      ],
+      "scope": "Default non-spell-cases original campaign input and passive outcome cohort. The complete parent native campaign retains its unchanged 19 FPS/normal-Quit gates independently; this scenario grants no parent acceptance."
     }
   ],
   "recovered_ranges": [
@@ -308513,8 +308687,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-rendering-commit-final-20261020.json",
-    "sha256": "69fd67e79450cea33d582601cf329acdc23b8ecfe8a7c1fb53c5aa1eb4e6b59b"
+    "path": "research/runtime/coverage/source-index-campaign-combat-input-20261020.json",
+    "sha256": "0e7b76bb2dd5d31eef6a152f45e57667d651f863070bc97bfe2c97210e876376"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

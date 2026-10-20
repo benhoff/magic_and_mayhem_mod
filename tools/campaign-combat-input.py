@@ -15,6 +15,30 @@ from campaign_spell import read_spell_rows, player_fireball_damage, player_engag
 from campaign_render_oracle import oracle, validate_summon_capture
 
 
+def prepare_summon(click, center, settle_dialogue, blocked_cast, *, owner,
+                   wizard_slot, spell_cases, wait=time.sleep):
+    """Select the caster before either route admits its single positive cast."""
+    center()
+    settle_dialogue('after-center')
+    if spell_cases:
+        blocked_cast('invalid-target', owner, wizard_slot)
+    for selection in range(3):
+        click(523,575)
+        wait(.5)
+        # Retry only HUD selection consumed by a modal, never a positive cast.
+        if not settle_dialogue('summon-selection-'+str(selection),2):
+            return
+    raise RuntimeError('Spell selection repeatedly consumed by dialogue')
+
+
+def ground_step(actor, target):
+    """Bound the existing isometric ground projection, independent of path progress."""
+    dx,dy,dz=(target[k]-actor[k] for k in ('x','y','z'))
+    sx,sy=32*(dx-dy),16*(dx+dy-dz)
+    scale=max(1,abs(sx)/170,abs(sy)/110)
+    return sx/scale,sy/scale
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--rect', nargs=4, type=int, required=True)
@@ -129,15 +153,8 @@ def main():
         settle_dialogue('dialogue-check',12)
         before=capture('before-summon',True)
         validate_summon_capture(before,out,'0/15',resident_dialogue)
-        if args.spell_cases:
-            center();settle_dialogue('after-center');blocked_cast('invalid-target',owner,wizard['slot'])
-        for selection in range(3):
-            click(523,575);time.sleep(.5)
-            # Selection can itself meet a newly queued modal. Re-admit only
-            # selection after clearing it; the positive cast below remains one
-            # physical order and is never retried after consumption.
-            if not settle_dialogue('summon-selection-'+str(selection),2):break
-        else:raise RuntimeError('Spell selection repeatedly consumed by dialogue')
+        prepare_summon(click,center,settle_dialogue,blocked_cast,owner=owner,
+                       wizard_slot=wizard['slot'],spell_cases=args.spell_cases)
         capture('selected-before-summon',True)
         cast_before=read_rows(trace)[-1][0];cast_prior=state()
         click(440,310,3);record('summon-order',before_sequence=cast_before)
@@ -159,8 +176,8 @@ def main():
             if hits:
                 result['combat']=dict(first_hit=list(hits[0]),hit_count=len(hits));capture('combat-damage');break
             time.sleep(1)
-        # Public wizard selection/centering and ground movement, calibrated from
-        # actual observed tile movement. No writes to positions, AI or health.
+        # Public wizard selection/centering and independently observed ground
+        # movement. Path progress cannot calibrate the camera projection.
         calibration=[]; probes=[]
         if 'combat' not in result:center()
         # Ground can be occupied or unreachable; two idle clicks are not an
@@ -177,10 +194,12 @@ def main():
                 elif calibration[0][0][0]*delta[1]-calibration[0][0][1]*delta[0]:
                     calibration.append((delta,(dx,dy)));break
         result['movement_probes']=probes
-        record('movement-calibration',basis=calibration)
+        record('movement-independence',basis=calibration)
         capture('navigation-start')
         combat_deadline=time.monotonic()+180; extra_slots=[summoned[0]['slot']]
         while 'combat' not in result and time.monotonic()<combat_deadline:
+            # Center before reading positions: actors may move during centering.
+            center()
             rows=read_rows(trace);hits=damage_rows(rows,owner,extra_slots,cast_before)
             if hits:
                 result['combat']=dict(first_hit=list(hits[0]),hit_count=len(hits));capture('combat-damage');break
@@ -191,13 +210,9 @@ def main():
             enemy=min(enemies,key=lambda a:math.hypot(a['x']-actor['x'],a['y']-actor['y']))
             dx,dy=enemy['x']-actor['x'],enemy['y']-actor['y']
             if len(calibration)!=2:raise RuntimeError('No independent movement after bounded ground probes')
-            ((ax,ay),(asx,asy)),((bx,by),(bsx,bsy))=calibration;det=ax*by-ay*bx
-            if not det:raise RuntimeError('Wizard movement calibration did not move in two directions')
-            u=(by*dx-bx*dy)/det;v=(ax*dy-ay*dx)/det
-            sx=asx*u+bsx*v;sy=asy*u+bsy*v
-            scale=max(1,abs(sx)/170,abs(sy)/110);sx/=scale;sy/=scale
+            sx,sy=ground_step(actor,enemy)
             record('approach-enemy',wizard=actor,enemy=enemy,screen_delta=[sx,sy])
-            center();click(400+sx,280+sy,3);time.sleep(3)
+            click(400+sx,300+sy,3);time.sleep(3)
             center()
             if math.hypot(dx,dy)<7:
                 if args.spell_cases and not result.get('ranged'):

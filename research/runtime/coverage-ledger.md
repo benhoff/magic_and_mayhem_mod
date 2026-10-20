@@ -19083,3 +19083,23 @@ hashes and milestones without claiming current execution for the changed scope.
 Public World throughput, the physical summon/combat input precondition and original
 private-copy handoff remain acceptance gaps. No ordinary-session acceptance or
 global renderer equivalence is asserted by this commit.
+
+### Default physical summon/combat input repair — 2026-10-20
+
+The repaired default helper selects/centers the wizard before spell selection,
+and computes bounded isometric approach steps from fresh positions after
+centering. Short obstacle-limited path progress is retained as movement evidence
+and is no longer fitted as a camera transform. Six new controls and 23 existing
+campaign controls pass. New CINPUT evidence records an actual owned summon,
+native 0/15 -> 1/15 count, original 4,352-unit mana debit, two independent movement
+probes, 16 Zombie melee events and the same enemy's lethal 2 -> 0 transition.
+The wizard remains alive with 86 health. No game-state or balance writes occur.
+
+The full parent flow completes and quits normally without fallback/recovery,
+but fails the unchanged 19 FPS engine gate at 8.671475 FPS. Its failed report and
+three earlier isolated prelaunch failures remain retained. The new narrow
+HOST.campaign-physical-combat-driver policy has current default-route observation;
+the wider casting/combat/throughput contract and extended spell/portrait cases
+are not promoted. The ed556c8d..38fe6e3f history audit covers 412 parent/current
+file versions with no missing exact receipt chains, independently of this new
+uncommitted source change and without asserting a historical gate pass.
