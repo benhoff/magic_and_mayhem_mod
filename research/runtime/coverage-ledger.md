@@ -18832,3 +18832,15 @@ the user-approved 90 GiB guard remains enforced, with no cleanup or archiving.
 Snapshot-local fingerprint reuse, audited raw-provenance reuse, ordered source-link inversion and bounded Git archive streaming reduce submission overhead without changing accounting decisions. On the same frozen `2c90c3f2` tree, profiled snapshot time fell from 134.263 s to 58.526 s; complete canonical snapshot and audit hashes match. These are single-run timings with filesystem-cache and concurrent-load limits, not a measured whole-commit speedup. All 152 audit/gate/merge/evidence-import guard methods pass, including source changes across calls and archive failures. `check-re-coverage.py --timings` exposes the remaining phase costs.
 
 The [performance record](coverage/submission-performance-20261019.json) retains source pins and six local commit-turn timing samples. Raw profiles and local-session-derived command summaries remain under `working/retention/submission-performance-20261019/`. Historical execution evidence and all engine statuses remain unchanged; broad current-code validation stays pending where source or scope changed. No original artifacts were consumed.
+
+
+### Kind8 inherited class correction — 2026-10-19
+
+The observed5c73f0 class dispatches54aaa0, not the owner-gated546540. The
+active hook now admits that exact pair and refuses the erroneous pair. The
+original reference checks inherited shape+0x34 additive pixels and whole-object
+preservation alongside the other selected kind8 paths.54ab00alone writes the
++0x44 flag; both34-offset wrappers preserve flags. This corrects admission and
+its documented contract; constructors, writers, other classes/formats and full
+live drawing replacement remain separate work. New execution is recorded under
+K8FIX.original/native-20261019; historical reports are preserved.

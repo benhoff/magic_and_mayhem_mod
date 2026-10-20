@@ -61,12 +61,20 @@ later classes as observations, separate from that sampled queue.
 | Vtable | Method | Selected pixel producer |
 | --- | --- | --- |
 | 0x5c7420 | 0x54ab00 | Additive rectangle at0x545c10; flag+0x44 |
-| 0x5c73f0 /0x5c7408 | 0x546540 | Conditional additive rectangle at0x545c10 |
+| 0x5c73f0 | 0x54aaa0 | Unconditional additive rectangle at0x545c10, shape+0x34, no flag |
+| 0x5c7408 | 0x546540 | Conditional additive rectangle at0x545c10, shape+0x34, no flag |
 | 0x5c7494 /0x5c74b0 | 0x54ab60 | Owned RGB channel rectangle at0x547d80 |
 | 0x5c74cc | 0x54ac00 | No pixels; sets flag+0x40 |
 
 The conditional additive wrapper reads object+0x60 and selected player state;
 its original gate still runs. Only reached545c10calls become native records.
+The earlier whitelist incorrectly paired5c73f0with546540, although the frozen
+discovery report records5c73f0/54aaa0. The2026-10-19 fix admits that exact
+observed pair and refuses the old mismatched pair. Both34-offset wrappers
+leave the drawn flags unchanged; only54ab00sets byte+0x44. Historical evidence
+and its source hashes remain unchanged. The original pixel reference now exercises54aaa0with the same ordered
+rectangles and checks that the entire object remains unchanged.
+This does not reconstruct object constructors, writers or simulation.
 The colour wrapper advances to object+0x1c, then invokes547d80. Shape fields
 are mode,width,height DWORDs,+0xc/+0xe/+0x10 RGB channel WORDs, and an
 unaligned optional plane pointer at+0x12. Plane sources contain three WORDs

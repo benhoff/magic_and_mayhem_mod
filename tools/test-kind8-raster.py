@@ -17,17 +17,17 @@ def declaration():
         paths.update(str(p.relative_to(ROOT)) for p in (ROOT/directory).rglob('*') if p.is_file() and (p.suffix in ('.cpp','.hpp','.h','.c','.S') or p.name=='CMakeLists.txt'))
     return claims,{p:sha(ROOT/p) for p in sorted(paths)}
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--capture',type=Path,help='Closed finite capture directory containing complete kind8 World inputs');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--capture',type=Path,help='Closed finite capture directory containing complete kind8 World inputs');parser.add_argument('--executable',type=Path,default=ROOT/'original/Arcane_Nocd/Chaos.exe',help='Pinned unchanged No-CD image');parser.add_argument('--build-dir',type=Path,help='Native build directory (may be on separate temporary storage)');args=parser.parse_args()
     parent=ROOT/'working/tests/kind8';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='raster-',dir=parent));print(out,flush=True)
-    claims,sources=declaration();report={'success':False,'claims':claims,'sources':sources,'source_executable_sha256':BUILD_HASH,'scope':'Selected RGB565 class wrapper54ab00 and raster545c10: synthetic exhaustive destination words, low16 wrap/saturation, ordered clipped rectangles, asset-free worker and strict wire rejection. No live object simulation, alternate mode or original bypass.'}
+    claims,sources=declaration();report={'success':False,'claims':claims,'sources':sources,'source_executable_sha256':BUILD_HASH,'scope':'Selected RGB565 additive wrappers54ab00/54aaa0/546540 and raster545c10: synthetic exhaustive destination words, low16 wrap/saturation, ordered clipped rectangles, asset-free worker and strict wire rejection. No live object simulation, alternate mode or original bypass.'}
     (out/'prospective.json').write_text(json.dumps({'claims':claims,'sources':sources},indent=2)+'\n')
     def run(name,cmd,timeout=600):
         with (out/(name+'.log')).open('x') as f:subprocess.run([str(x) for x in cmd],cwd=ROOT,stdout=f,stderr=subprocess.STDOUT,timeout=timeout,check=True,env={**os.environ,'QT_QPA_PLATFORM':'xcb','LIBGL_ALWAYS_SOFTWARE':'1'})
     run('original-before',[ROOT/'tools/original-manifest.sh','verify'])
     try:
-        exe=ROOT/'working/game-nocd/Chaos.exe';assert sha(exe)==BUILD_HASH
+        exe=args.executable.resolve();assert sha(exe)==BUILD_HASH
         raw=exe.read_bytes();pe=struct.unpack_from('<I',raw,60)[0];count=struct.unpack_from('<H',raw,pe+6)[0];optional=struct.unpack_from('<H',raw,pe+20)[0];anchors={}
-        for address,expected in [(0x54ac00,'c64140016633c0c20800'),(0x54ab60,'8b4424088b542404505283c11ce80ed2ffffc20800'),(0x546540,'8b416085c074238b'),(0x547d80,'83ec24a1881f6e00'),(0x54ab00,'8b4424088b542404c6414401505283c130e8fab0ffffc20800'),(0x545c10,'83ec1ca1881f6e00')]:
+        for address,expected in [(0x54aaa0,'8b4424088b542404505283c134e85eb1ffffc20800'),(0x54ac00,'c64140016633c0c20800'),(0x54ab60,'8b4424088b542404505283c11ce80ed2ffffc20800'),(0x546540,'8b416085c074238b'),(0x547d80,'83ec24a1881f6e00'),(0x54ab00,'8b4424088b542404c6414401505283c130e8fab0ffffc20800'),(0x545c10,'83ec1ca1881f6e00')]:
             for i in range(count):
                 size,va,stored,offset=struct.unpack_from('<4I',raw,pe+24+optional+i*40+8)
                 rva=address-0x400000
@@ -35,7 +35,7 @@ def main():
                     actual=raw[offset+rva-va:offset+rva-va+len(expected)//2].hex();assert actual==expected;anchors[hex(address)]=actual;break
             else:raise ValueError('Original entry not file-backed')
         report['anchors']=anchors
-        build=ROOT/'working/build/world-frame';run('configure',['cmake','-S',ROOT/'compat/legacy','-B',build,'-DCMAKE_BUILD_TYPE=Debug'])
+        build=(args.build_dir or ROOT/'working/build/world-frame').resolve();report['native_build']=str(build);run('configure',['cmake','-S',ROOT/'compat/legacy','-B',build,'-DCMAKE_BUILD_TYPE=Debug'])
         run('build',['cmake','--build',build,'--target','kind8-raster-test','mnm-world-live','mnm-world-frame-preview','-j4'])
         run('reference-build',['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-fno-pie','-no-pie',ROOT/'tests/world-frame-reference.cpp','-o',out/'reference'])
         run('observer-build',['python3',ROOT/'tools/build-scene-observer.py','--selftest'])
@@ -81,7 +81,7 @@ def main():
             report.update(captured=captured,capture_inputs=inputs,captured_ordered_queue_match=True)
         assert sha(exe)==BUILD_HASH
         assert declaration()==(claims,sources),'Sources/contracts changed during execution'
-        report.update(success=True,sources_stable=True,fixtures=fixtures,pixels_compared=sum(f['pixels'] for f in fixtures),independent_original_pixels_match=True,original_pixels_used_as_native_inputs=False,original_work_bypassed=False,native_integration=True)
+        report.update(success=True,sources_stable=True,fixtures=fixtures,pixels_compared=sum(f['pixels'] for f in fixtures),independent_original_pixels_match=True,inherited_additive_wrapper_pixels_match=True,original_pixels_used_as_native_inputs=False,original_work_bypassed=False,native_integration=True)
     finally:
         run('original-after',[ROOT/'tools/original-manifest.sh','verify']);report['original_manifest_verified_before_after']=True
         (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(out/'report.json',flush=True)

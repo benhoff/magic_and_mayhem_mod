@@ -22008,7 +22008,7 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Selected kind8 saturated additive rectangle raster",
-      "scope": "Pinned vtable5c7420/method54ab00 and gated vtables5c73f0/5c7408 method546540 sets its drawn byte then calls545c10 on object+0x30. Selected RGB565 first dispatcher route with inactive auxiliary markers (row+28=8ad08ad0) and bounded width/height, low16 channel increments, signed destination clip and ordered saturating destination addition. Capture effective primitive inputs only, preserve original method/flag execution; reject unknown virtual classes/alternate formats. Native implementation and isolated original pixel comparison require fresh proof; no object simulation/writer reconstruction or original bypass claim.",
+      "scope": "Pinned vtable5c7420/method54ab00 sets byte+0x44 then calls545c10 on shape+0x30. Inherited5c73f0/54aaa0 draws shape+0x34 without flags; owner-gated5c7408/546540 uses shape+0x34, preserves flags and returns low16 zero. Selected RGB565 first dispatcher route with inactive auxiliary markers (row+28=8ad08ad0), bounded width/height, low16 channel increments, signed destination clip and ordered saturating destination addition. Capture effective primitive inputs only, preserve original method/flag execution; reject mismatched or unknown virtual classes/alternate formats. No object simulation/writer reconstruction or original bypass claim.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -22027,6 +22027,12 @@
           "address": 5530944,
           "scope": "Selected conditional wrapper: leave gate and object execution original; trace only reached545c10 raster.",
           "recovered_range": "kind8-owner-wrapper-546540"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5548704,
+          "scope": "Unconditional inherited shape+0x34 additive wrapper; no object field mutation.",
+          "recovered_range": "kind8-inherited-wrapper-54aaa0"
         }
       ],
       "documents": [
@@ -22079,7 +22085,9 @@
         "RS.world-kind8.native-20261008",
         "RS.world-kind8.discovery-20261008",
         "RS.world-kind8.original-final-20261008",
-        "RS.world-kind8.native-final-20261008"
+        "RS.world-kind8.native-final-20261008",
+        "K8FIX.original-20261019",
+        "K8FIX.native-20261019"
       ],
       "status": {
         "understanding": "scoped",
@@ -22417,7 +22425,9 @@
         "RS.world-kind8.native-20261008",
         "RS.world-kind8.discovery-20261008",
         "RS.world-kind8.original-final-20261008",
-        "RS.world-kind8.native-final-20261008"
+        "RS.world-kind8.native-final-20261008",
+        "K8FIX.original-20261019",
+        "K8FIX.native-20261019"
       ],
       "status": {
         "understanding": "scoped",
@@ -22491,7 +22501,9 @@
         "RS.world-kind8.original-20261008",
         "RS.world-kind8.native-20261008",
         "RS.world-kind8.original-final-20261008",
-        "RS.world-kind8.native-final-20261008"
+        "RS.world-kind8.native-final-20261008",
+        "K8FIX.original-20261019",
+        "K8FIX.native-20261019"
       ],
       "status": {
         "understanding": "scoped",
@@ -260887,6 +260899,87 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "K8FIX.original-20261019",
+      "kind": "isolated_original",
+      "scope": "Corrected exact class/method whitelist, inherited54aaa0 shape+0x34 object preservation and pixel parity;17 synthetic RGB565 fixtures with1048960 destination pixels, active PE32 hook ABI/refusal checks and headless native primitive-only CLI. Original wrappers remain active; no current live captured queue or full replacement claim.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "equivalence_pointer": "/independent_original_pixels_match",
+      "record": "research/runtime/native-world-kind8-corrected-class-validation-20261019.json",
+      "sha256": "6dd79adfe1dd4800f5b04ea58613a0e48be5a42e9025169b6653d9900879557b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/active_hook_abi_and_class_gates_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/inherited_additive_wrapper_pixels_match",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "K8FIX.native-20261019",
+      "kind": "native_integration",
+      "scope": "Corrected exact class/method whitelist, inherited54aaa0 shape+0x34 object preservation and pixel parity;17 synthetic RGB565 fixtures with1048960 destination pixels, active PE32 hook ABI/refusal checks and headless native primitive-only CLI. Original wrappers remain active; no current live captured queue or full replacement claim.",
+      "record": "research/runtime/native-world-kind8-corrected-class-validation-20261019.json",
+      "sha256": "6dd79adfe1dd4800f5b04ea58613a0e48be5a42e9025169b6653d9900879557b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/active_hook_abi_and_class_gates_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/inherited_additive_wrapper_pixels_match",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -270206,7 +270299,8 @@
       ],
       "evidence": [
         "RS.world-kind8.native-20261008",
-        "RS.world-kind8.native-final-20261008"
+        "RS.world-kind8.native-final-20261008",
+        "K8FIX.native-20261019"
       ]
     },
     {
@@ -281703,6 +281797,15 @@
       "document": "research/runtime/owner-native-skirmish.md",
       "evidence": "NS86.owner-count-driver-original",
       "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "kind8-inherited-wrapper-54aaa0",
+      "build": "nocd-40209ca7",
+      "start": 5548704,
+      "end": 5548725,
+      "document": "research/runtime/native-world-kind8.md",
+      "evidence": "K8FIX.original-20261019",
+      "anchors_pointer": "/anchors"
     }
   ],
   "register_imports": [
@@ -281813,8 +281916,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-submission-performance-commit-20261019.json",
-    "sha256": "4f07de3fc7eac51783c02b1250a5a8df2a9e68324d852218c7b3a99689a93b30"
+    "path": "research/runtime/coverage/source-index-kind8-class-fix-20261019.json",
+    "sha256": "c03d0997607bfd23394bbfdc10c0d68d06e400578f5d239b0a7363de42f14ced"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

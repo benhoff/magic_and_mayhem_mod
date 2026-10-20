@@ -46,6 +46,14 @@ int main(int argc,char** argv)try{
             gated[24]=reinterpret_cast<std::uintptr_t>(owner);owner[57]=1;
             for(int player:{-1,0,8}){global(0x644520,player);pixels=prior;reinterpret_cast<Gated>(0x546540)(gated,x,y);if(pixels!=prior)throw std::runtime_error("Disabled owner/player additive gate drew pixels");}
             global(0x644520,0);owner[9]=1;pixels=prior;reinterpret_cast<Gated>(0x546540)(gated,x,y);if(pixels!=expected)throw std::runtime_error("Active owner/player additive wrapper differs");
+            // Observed5c73f0 dispatches54aaa0, not the owner-gated546540.
+            // It uses shape+0x34 and leaves every object field unchanged.
+            std::uint32_t inherited[26]={};for(unsigned j=0;j<5;++j)inherited[13+j]=object[12+j];
+            const auto* inheritedBytes=reinterpret_cast<const unsigned char*>(inherited);
+            const Bytes inheritedBefore(inheritedBytes,inheritedBytes+sizeof(inherited));
+            pixels=prior;reinterpret_cast<Gated>(0x54aaa0)(inherited,x,y);
+            if(pixels!=expected||Bytes(inheritedBytes,inheritedBytes+sizeof(inherited))!=inheritedBefore)
+                throw std::runtime_error("Inherited additive wrapper pixels/object preservation differ");
             at+=size;continue;
         }
         Bytes frame(input.begin()+at+64,input.begin()+at+64+n);std::vector<std::uint32_t> palette(3+128,0);
