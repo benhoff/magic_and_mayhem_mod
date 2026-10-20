@@ -89,7 +89,7 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        self.assertEqual(result['partial_counts'], {1: 91, 2: 9, 3: 16, 4: 50, 5: 33})
+        self.assertEqual(result['partial_counts'], {1: 91, 2: 9, 3: 16, 4: 51, 5: 33})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -384,25 +384,30 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual({t['behavior'] for t in tasks}, expected)
         self.assertEqual(len(tasks), 51)
         self.assertEqual(plan['unplanned_high'], [])
-        self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 1)
+        self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 0)
         self.assertEqual(sum(e['weight'] == 4 and e['implementation'] == 'scoped'
                              for e in result['entries']), 47)
         self.assertFalse(any(t.get('execution_result') for t in tasks))
         self.assertEqual((self.register, self.catalog), before)
 
-    def test_high_source_assessments_keep_missing_model_and_umbrellas_separate(self):
+    def test_high_source_assessments_record_read_model_and_surface_crosswalk(self):
         plan = importance_view(self.catalog, self.register, self.tracks)['high_tranche_plan']
         tasks = {t['behavior']: t for tranche in plan['tranches'] for t in tranche['tasks']}
         self.assertEqual(sum(t['work_review']['implementation'] == 'implemented_within_scope'
-                             for t in tasks.values()), 48)
+                             for t in tasks.values()), 50)
         self.assertEqual({bid for bid, t in tasks.items()
                           if t['work_review']['implementation'] == 'unresolved_aggregate'},
-                         {'NR.surfaces', 'NR.public-resident-world'})
+                         {'NR.public-resident-world'})
         gap = tasks['RS.displacement-final-word-read']['work_review']
-        self.assertEqual(gap['implementation'], 'not_implemented')
-        self.assertTrue(gap['implementation_gaps'])
-        self.assertFalse(gap['code_witnesses'])
+        self.assertEqual(gap['implementation'], 'implemented_within_scope')
+        self.assertFalse(gap['implementation_gaps'])
+        self.assertTrue(gap['code_witnesses'])
         self.assertTrue(gap['research_witnesses'])
+        self.assertIn('18', gap['validation_summary'])
+        surface = tasks['NR.surfaces']['work_review']
+        self.assertTrue(surface['scope_domains'])
+        self.assertTrue(all(d['disposition'] == 'supplied' for d in surface['scope_domains']))
+        self.assertIn('two of twelve', surface['validation_summary'])
         self.assertIn('padding', tasks['RS.displacement-final-word-read']['validation'])
         self.assertIn('already located', tasks['AN.direction']['validation'])
         for task in tasks.values():
@@ -453,6 +458,11 @@ class TrancheTest(unittest.TestCase):
             task = next(t for tr in c['high_tranche_plan']['tranches'] for t in tr['tasks']
                         if t['behavior'] == 'RS.displacement-final-word-read')
             w = task['work_review']
+            # Exercise the absent-model schema even after the real selected
+            # contract acquired its bounded implementation and code witness.
+            w['implementation'] = 'not_implemented'
+            w['implementation_gaps'] = ['Synthetic missing recovered-original model']
+            w['code_witnesses'] = []
             if case == 'witness': w['research_witnesses'][0]['text'] = 'invented observation'
             if case == 'fake_code': w['implementation'] = 'implemented_within_scope'; w['implementation_gaps'] = []
             if case == 'missing_gap': w['implementation_gaps'] = []

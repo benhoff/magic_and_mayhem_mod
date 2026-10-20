@@ -2159,7 +2159,7 @@
       "weight": 4,
       "work_type": "original_recovery",
       "reason": "Original distortion final-pixel DWORD read: Unknown original effect domains can cause incorrect pixels or unsafe reads. The gap is important, with narrower native policies already covering selected cases.",
-      "contract_sha256": "dffc3f88188e9d8dbaec287577ad55063556e4c67246ff27d640636f534f22a3"
+      "contract_sha256": "a47b5054dcf9c32f524876eeefa0bccdaca74dce1bf8d8b0f1510f916dbbba80"
     },
     {
       "behavior": "RS.displacement-linear-stride",
@@ -6397,7 +6397,7 @@
     "goal": "Organize every currently unfinished High rendering contract into three ordered tranches of 17 with implementation and validation assessed independently.",
     "selection": "51 unfinished High contracts: 50 registered partial plus 1 registered none. All are selected once; 47 High contracts already registered scoped stay in the importance list and are outside this unfinished plan. Ordering is a review/validation workflow, not a recovered engine dependency graph.",
     "completion_rule": "Each task retains separate source assessment, original recovery, historical execution and current validation/acceptance. Implemented within scope means the named bounded mechanism is present, not full engine completion. Missing code requires a concrete required gap; broader aggregates need a supplier crosswalk first. No experiments or new runtime acceptance are granted by this plan.",
-    "review_document": "research/runtime/rendering-high-tranches-review-20261019.md",
+    "review_document": "research/runtime/high-tranche2-implementation-20261019.md",
     "work_labels": {
       "implemented_within_scope": {
         "label": "Implemented within scope",
@@ -7395,8 +7395,8 @@
         "depends_on": [
           "high-terrain"
         ],
-        "goal": "Separate supplied native primitives/controllers/previews from the original read-model gap and the broad surface umbrella.",
-        "exit_gate": "Keep the one absent recovered-original model explicit and crosswalk the surface umbrella. Supplied native remedies and bounded scene comparisons cannot close every original caller or full renderer domain.",
+        "goal": "Close the selected recovered read-model gap and reconcile delivered surface services while preserving independent validation boundaries.",
+        "exit_gate": "All seventeen bounded mechanisms are supplied. Retain incomplete corpus coverage, unknown original callers and integrated/live acceptance as separate work.",
         "tasks": [
           {
             "behavior": "NP.native-image-row-copy",
@@ -7451,15 +7451,66 @@
                 "research/runtime/native-render-functional-closure.md": "b11a7c6c5e788a993f755eab8b16b517f4f06cf54fbaec5ea1febb49524b8547",
                 "runtime/native-draw/cpu_copy_boundary.h": "a5a434fb252d7534a3c07e8c1d7a2df427ce91a01029909bfd0de0d14c32cb34",
                 "runtime/native-draw/cpu_guard.h": "04114b8ebc10ce481310ddcb68a63402188b6ab7fab8daf94638ae1c341015fc",
-                "runtime/native-draw/factory.c": "9e6760cabdd0feaf6b06726255e1ef38e948bad57c30549721ecb4bea1f3b5a1",
+                "runtime/native-draw/factory.c": "bbb71c437c2bfb679d189a490925a8f6e61d223b5ba517206fa07ca575778c92",
                 "runtime/native-draw/history.h": "ce8ea75597f5f7f2152befc5c4cdfc91e56764e0ec2a97567ec01a475b3eade5",
                 "runtime/native-draw/ownership_admission.h": "fbda44e79c112b4eaf05e49a9e9117f31ca24d94e4a6424816e8e888498f815a",
-                "runtime/native-draw/surfaces.h": "753b228c619be7f48e778839424fdf7ff7bca4e4988d4e68586b7c9313e44bdf",
+                "runtime/native-draw/surfaces.h": "f2087f3730912f1d9fe2504300b0905868be4cdfbb59e5d31482cd5695abed64",
                 "tests/native-owned-backing-probe.c": "b44a7b397491afc639462e5251b0f5078e17a8e71bdf476b0f4c2969a07d26fe",
-                "tools/build-native-draw.py": "6b9d3fae8978c2519acc8cef8e26486a74054b556ca3ad243863f59824725bf9",
+                "tools/build-native-draw.py": "d6caec8f153a8ada280da29a482fd274d4803cb5c67258b0cf9c4f69143a04d3",
                 "tools/test-native-functional-closure.py": "a2d2766753143db88e7820ed4a36c2f5874a35b3d99813b934308c3dd17f6b09"
+              },
+              "pending_source_review": [],
+              "incremental_review_notes": [
+                "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted."
+              ]
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "cpu_copy_boundary.h installs the checked native image-row copy, and the later whole-entry copy covers outer clipping separately.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Keep the twenty-byte row contract separate from outer clipping, whole-entry replacement and arbitrary image callers. Existing execution records retain their original source/input pins; this review supplies no new execution.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Do not reimplement the row body; broader image callers and whole-entry ABI/equivalence retain their independent bounds.",
+                "evidence": [
+                  "NATIVE.native-functional-closure.controls-20261018",
+                  "NATIVE.native-functional-closure.final-controls-20261018",
+                  "NATIVE.native-functional-closure.stress-20261018",
+                  "HIGH01.rendering-work-review-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Renew the actual checked row-body ABI, overlap granularity and invalid span/direction controls."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Do not reimplement the row body; broader image callers and whole-entry ABI/equivalence retain their independent bounds."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/native-draw/cpu_copy_boundary.h",
+                    "line": 6,
+                    "text": "__attribute__((used,noinline)) static void ns_image_copy_prepare(u32* r){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/native-render-functional-closure.md": "b11a7c6c5e788a993f755eab8b16b517f4f06cf54fbaec5ea1febb49524b8547",
+                  "runtime/native-draw/cpu_copy_boundary.h": "a5a434fb252d7534a3c07e8c1d7a2df427ce91a01029909bfd0de0d14c32cb34",
+                  "runtime/native-draw/cpu_guard.h": "04114b8ebc10ce481310ddcb68a63402188b6ab7fab8daf94638ae1c341015fc",
+                  "runtime/native-draw/factory.c": "9e6760cabdd0feaf6b06726255e1ef38e948bad57c30549721ecb4bea1f3b5a1",
+                  "runtime/native-draw/history.h": "ce8ea75597f5f7f2152befc5c4cdfc91e56764e0ec2a97567ec01a475b3eade5",
+                  "runtime/native-draw/ownership_admission.h": "fbda44e79c112b4eaf05e49a9e9117f31ca24d94e4a6424816e8e888498f815a",
+                  "runtime/native-draw/surfaces.h": "753b228c619be7f48e778839424fdf7ff7bca4e4988d4e68586b7c9313e44bdf",
+                  "tests/native-owned-backing-probe.c": "b44a7b397491afc639462e5251b0f5078e17a8e71bdf476b0f4c2969a07d26fe",
+                  "tools/build-native-draw.py": "6b9d3fae8978c2519acc8cef8e26486a74054b556ca3ad243863f59824725bf9",
+                  "tools/test-native-functional-closure.py": "a2d2766753143db88e7820ed4a36c2f5874a35b3d99813b934308c3dd17f6b09"
+                }
               }
-            }
+            ]
           },
           {
             "behavior": "NP.native-copy-transforms",
@@ -7516,11 +7567,11 @@
               "source_sha256": {
                 "research/runtime/native-render-functional-closure.md": "b11a7c6c5e788a993f755eab8b16b517f4f06cf54fbaec5ea1febb49524b8547",
                 "runtime/native-draw/cpu_guard.h": "04114b8ebc10ce481310ddcb68a63402188b6ab7fab8daf94638ae1c341015fc",
-                "runtime/native-draw/factory.c": "9e6760cabdd0feaf6b06726255e1ef38e948bad57c30549721ecb4bea1f3b5a1",
+                "runtime/native-draw/factory.c": "bbb71c437c2bfb679d189a490925a8f6e61d223b5ba517206fa07ca575778c92",
                 "runtime/native-draw/history.h": "ce8ea75597f5f7f2152befc5c4cdfc91e56764e0ec2a97567ec01a475b3eade5",
                 "runtime/native-draw/palette.h": "ed384fd69918ac45c6690a0ca1c0b693a70de83047267550d3d95ccbcd24d289",
                 "runtime/native-draw/pixel_conversion.h": "b0a1fb026370cdb02b9990574430bcc59800affec8826a7651c074868bf9441b",
-                "runtime/native-draw/surfaces.h": "753b228c619be7f48e778839424fdf7ff7bca4e4988d4e68586b7c9313e44bdf",
+                "runtime/native-draw/surfaces.h": "f2087f3730912f1d9fe2504300b0905868be4cdfbb59e5d31482cd5695abed64",
                 "runtime/render/bridge.c": "c281d05686e784013cb3f8a2244be8cbfa3a7a34acb5fe22f8a3c1b5c228f183",
                 "runtime/render/lock_lifecycle.h": "b8ea7a58bdacac385bb9eb03b138f70668627d71370d0b2d80e68a02c6ea35b3",
                 "runtime/render/lock_surfaces.h": "660f948fc334d0df41dca193caa08d58f3a7d97edcdc14edbbd9ee40555b6729",
@@ -7528,11 +7579,69 @@
                 "tests/native-active-reader-probe.c": "df90afa5d7599ae436dee0a390fb4baf3ddf28bbc953bebfc98c3ae83e28328a",
                 "tests/native-copy-transform-probe.c": "d66e25d4ab5e6c15bf784b8b2fa65d09cd88e49181b92edd36771ce09a1ad99a",
                 "tests/native-draw-resource-probe.c": "6ddda194684dc7674ff485ba8ac07bf708232e9fd9655916afffd9c899c30e62",
-                "tools/build-native-draw.py": "6b9d3fae8978c2519acc8cef8e26486a74054b556ca3ad243863f59824725bf9",
+                "tools/build-native-draw.py": "d6caec8f153a8ada280da29a482fd274d4803cb5c67258b0cf9c4f69143a04d3",
                 "tools/test-native-active-reader.py": "60022af30c2575ad6f62f42ef1a3129ed18e38baa988fc51eb60e67550742c4b",
                 "tools/test-native-functional-closure.py": "a2d2766753143db88e7820ed4a36c2f5874a35b3d99813b934308c3dd17f6b09"
+              },
+              "pending_source_review": [],
+              "incremental_review_notes": [
+                "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted."
+              ]
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "surfaces.h/pixel conversion and owned history paths implement canonical five-format copies, source keys and nearest-neighbour scaling.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Compare owned CPU results, partial-clipped writes before errors and post-Unlock authority; original-driver color/stretch parity is a separate experiment. Existing execution records retain their original source/input pins; this review supplies no new execution.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Native policy is implemented; original-driver colour/stretch equivalence, unobserved callers and fresh combined-source execution remain separate.",
+                "evidence": [
+                  "NATIVE.native-functional-closure.controls-20261018",
+                  "NATIVE.native-functional-closure.readers-20261018",
+                  "NATIVE.native-functional-closure.final-controls-20261018",
+                  "HIGH01.rendering-work-review-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Renew five-format conversion, source keys, nearest-neighbour scaling and publication/history repair."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Native policy is implemented; original-driver colour/stretch equivalence, unobserved callers and fresh combined-source execution remain separate."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/native-draw/pixel_conversion.h",
+                    "line": 12,
+                    "text": "static u32 ns_convert(const struct NsState* d,const struct NsState* s,u32 value){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/native-render-functional-closure.md": "b11a7c6c5e788a993f755eab8b16b517f4f06cf54fbaec5ea1febb49524b8547",
+                  "runtime/native-draw/cpu_guard.h": "04114b8ebc10ce481310ddcb68a63402188b6ab7fab8daf94638ae1c341015fc",
+                  "runtime/native-draw/factory.c": "9e6760cabdd0feaf6b06726255e1ef38e948bad57c30549721ecb4bea1f3b5a1",
+                  "runtime/native-draw/history.h": "ce8ea75597f5f7f2152befc5c4cdfc91e56764e0ec2a97567ec01a475b3eade5",
+                  "runtime/native-draw/palette.h": "ed384fd69918ac45c6690a0ca1c0b693a70de83047267550d3d95ccbcd24d289",
+                  "runtime/native-draw/pixel_conversion.h": "b0a1fb026370cdb02b9990574430bcc59800affec8826a7651c074868bf9441b",
+                  "runtime/native-draw/surfaces.h": "753b228c619be7f48e778839424fdf7ff7bca4e4988d4e68586b7c9313e44bdf",
+                  "runtime/render/bridge.c": "c281d05686e784013cb3f8a2244be8cbfa3a7a34acb5fe22f8a3c1b5c228f183",
+                  "runtime/render/lock_lifecycle.h": "b8ea7a58bdacac385bb9eb03b138f70668627d71370d0b2d80e68a02c6ea35b3",
+                  "runtime/render/lock_surfaces.h": "660f948fc334d0df41dca193caa08d58f3a7d97edcdc14edbbd9ee40555b6729",
+                  "runtime/render/owned_session.h": "21f94c6770a2c141765b1d7df62f414894fc137bfd399b4c6f7354a83737c982",
+                  "tests/native-active-reader-probe.c": "df90afa5d7599ae436dee0a390fb4baf3ddf28bbc953bebfc98c3ae83e28328a",
+                  "tests/native-copy-transform-probe.c": "d66e25d4ab5e6c15bf784b8b2fa65d09cd88e49181b92edd36771ce09a1ad99a",
+                  "tests/native-draw-resource-probe.c": "6ddda194684dc7674ff485ba8ac07bf708232e9fd9655916afffd9c899c30e62",
+                  "tools/build-native-draw.py": "6b9d3fae8978c2519acc8cef8e26486a74054b556ca3ad243863f59824725bf9",
+                  "tools/test-native-active-reader.py": "60022af30c2575ad6f62f42ef1a3129ed18e38baa988fc51eb60e67550742c4b",
+                  "tools/test-native-functional-closure.py": "a2d2766753143db88e7820ed4a36c2f5874a35b3d99813b934308c3dd17f6b09"
+                }
               }
-            }
+            ]
           },
           {
             "behavior": "RS.shadow-linear-stride",
@@ -7614,49 +7723,62 @@
           },
           {
             "behavior": "RS.displacement-final-word-read",
-            "mode": "Original recovery before any model decision",
-            "next_action": "Recover the exact live operand/allocation/caller and additional required leaves before deciding on a recovered-original model.",
+            "mode": "Implemented within bounded scope; preserve independent validation",
+            "next_action": "Retain the 18-case original/model boundary comparison; recover other leaves and the uncaptured live operand separately.",
             "implementation_boundary": "Selected original 0x596490 one-pixel distortion: sampling the last valid RGB565 WORD performs a DWORD read at 0x5965f7. A protected following page faults; readable tail returns the expected low WORD. Exact crashed live request, other offsets/leaves and complete distortion semantics remain unestablished.",
             "validation": "Retain tight-page fault versus readable-tail original probes. Keep the existing native two-byte padding and finite-edge policy separate; do not widen logical pixel coordinates or reproduce unsafe reads in native storage.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
-              "tests/sprite-binary-reference.cpp"
+              "tests/sprite-binary-reference.cpp",
+              "tests/distortion-word-read-test.cpp",
+              "tests/distortion-word-read-reference.cpp",
+              "tools/test-distortion-word-read.py"
             ],
             "documents": [
               "research/runtime/surface-final-word-read.md"
             ],
-            "contract_sha256": "dffc3f88188e9d8dbaec287577ad55063556e4c67246ff27d640636f534f22a3",
-            "reviewed_implementation": "none",
-            "remaining_at_review": "Recover other leaves, allocation bounds and the exact crashed caller. Native padding and finite-edge policy are distinct implemented remedies.",
+            "contract_sha256": "a47b5054dcf9c32f524876eeefa0bccdaca74dce1bf8d8b0f1510f916dbbba80",
+            "reviewed_implementation": "partial",
+            "remaining_at_review": "The selected load/store model is supplied and compared. Exact crashed live request, offset production, other leaves and allocation/alias ownership remain unestablished.",
             "work_review": {
-              "implementation": "not_implemented",
-              "current_state": "A selected original distortion leaf has a recorded final-WORD DWORD read; no general native original-read model is linked.",
-              "implementation_gaps": [
-                "No recovered-original read implementation is linked. The original fixture observes one DWORD load; native padding and finite-edge remedies are separate supplied contracts."
-              ],
+              "implementation": "implemented_within_scope",
+              "current_state": "distortionWordRead safely models the selected 5965f7 DWORD load and low-WORD store with explicit readable spans; inaccessible tails return a fault description without an unsafe read.",
+              "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Retain tight-page fault versus readable-tail original probes. Keep the existing native two-byte padding and finite-edge policy separate; do not widen logical pixel coordinates or reproduce unsafe reads in native storage. Existing execution records retain their original source/input pins; this review supplies no new execution.",
+              "validation_summary": "Fresh unchanged-original comparison matches all 18 tail/interior cases at two sizes; 13 native controls pass. No live crash attribution or full distortion equivalence.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Recover other leaves, allocation bounds and the exact crashed caller. Native padding and finite-edge policy are distinct implemented remedies.",
+              "acceptance_summary": "The selected load/store model is supplied and compared. Exact crashed live request, offset production, other leaves and allocation/alias ownership remain unestablished.",
               "evidence": [
                 "RS.displacement-final-word-read.original-20261012",
-                "HIGH01.rendering-work-review-20261019"
+                "HIGH01.rendering-work-review-20261019",
+                "HIGH02.distortion-word-read.comparison-20261019"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "scope_review",
-                  "action": "Recover the exact live operand/allocation/caller and additional required leaves before deciding on a recovered-original model."
+                  "kind": "validation",
+                  "action": "Retain the 18-case original/model boundary comparison; recover other leaves and the uncaptured live operand separately."
                 },
                 {
                   "kind": "scope_review",
-                  "action": "Recover other leaves, allocation bounds and the exact crashed caller. Native padding and finite-edge policy are distinct implemented remedies."
+                  "action": "The selected load/store model is supplied and compared. Exact crashed live request, offset production, other leaves and allocation/alias ownership remain unestablished."
                 }
               ],
-              "code_witnesses": [],
+              "code_witnesses": [
+                {
+                  "path": "reconstruction/rendering/distortion_word_read.hpp",
+                  "line": 22,
+                  "text": "inline DistortionWordRead distortionWordRead(const std::uint8_t* bytes,"
+                }
+              ],
               "source_sha256": {
-                "research/runtime/surface-final-word-read.md": "67d511bc6f90314144877be3088390da33d42fde377ee25e417b6e361bd2b3d5",
-                "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19"
+                "reconstruction/rendering/CMakeLists.txt": "d3d5d22cabf3be4d259083dc0bfc87e7a22dba448610364fa9640e823d4be223",
+                "reconstruction/rendering/distortion_word_read.hpp": "df1df05d7dc99d0cfc966ceed42a5df296642bff7689e3877bc0f6fe4926fdc3",
+                "research/runtime/surface-final-word-read.md": "12b7d1ce586d1fc4034fb209060db06fba12f7d13c10712405a333f77e5c7d1e",
+                "tests/distortion-word-read-reference.cpp": "fc6571f576736c5acd7a9051618c84f889f9e40723eb8b86fad2850469496632",
+                "tests/distortion-word-read-test.cpp": "4b1c767553f23d5c374ec58f4896f96c9dd07ed1aa06ffd22ba5aa197ea9f9e1",
+                "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+                "tools/test-distortion-word-read.py": "a4802337584d79143510b49c63aae9187d3687c56db9d014ad63b73de2d0c2d9"
               },
               "research_witnesses": [
                 {
@@ -8415,8 +8537,8 @@
           },
           {
             "behavior": "NR.surfaces",
-            "mode": "Reconcile supplied services, then validate",
-            "next_action": "Crosswalk this umbrella to existing surface, command and renderer services before assigning implementation work.",
+            "mode": "Implemented within bounded scope; preserve independent validation",
+            "next_action": "Renew the scoped surface/command comparisons and expand the independent portable corpus; the supplier crosswalk identifies no missing required code.",
             "implementation_boundary": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Review operation/state/failure domains against narrower suppliers; renew required comparisons without implementing a second renderer or treating the umbrella as complete.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
@@ -8428,32 +8550,34 @@
             "documents": [
               "renderer/README.md",
               "research/runtime/opengl-surface-command-replay.md",
-              "research/runtime/surface-dib-ddraw.md"
+              "research/runtime/surface-dib-ddraw.md",
+              "research/runtime/high-tranche2-implementation-20261019.md"
             ],
             "contract_sha256": "e0b19d0bef90e7463cef952fd8dc6c14bdef224859550454773fbe82fde4c090",
             "reviewed_implementation": "partial",
-            "remaining_at_review": "Reconcile its aggregate surface coverage against the scoped services; do not implement a second renderer or claim every operation/scene is covered.",
+            "remaining_at_review": "The twelve required operation families have scoped suppliers. Four conditional discovery domains, corpus completeness, original physical leases and integrated live acceptance remain separate.",
             "work_review": {
-              "implementation": "unresolved_aggregate",
-              "current_state": "Native surface storage, drawing and command replay exist; this broad legacy entry predates narrower scoped surface/command contracts.",
+              "implementation": "implemented_within_scope",
+              "current_state": "The surface umbrella is crosswalked to existing format/pitch, copy/key/clip/fill/overlap, palette/flip, restore/validity, lock/DC and ordered-replay services; no second renderer is required.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Review operation/state/failure domains against narrower suppliers; renew required comparisons without implementing a second renderer or treating the umbrella as complete. Existing execution records retain their original source/input pins; this review supplies no new execution.",
+              "validation_summary": "Static supplier reconciliation only; historical execution hashes are unchanged. The portable corpus covers two of twelve required operation families, so full corpus acceptance remains incomplete.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Reconcile its aggregate surface coverage against the scoped services; do not implement a second renderer or claim every operation/scene is covered.",
+              "acceptance_summary": "The twelve required operation families have scoped suppliers. Four conditional discovery domains, corpus completeness, original physical leases and integrated live acceptance remain separate.",
               "evidence": [
                 "NR.surface-colors.rgb565-dc.regressions-20261006",
-                "HIGH01.rendering-work-review-20261019"
+                "HIGH01.rendering-work-review-20261019",
+                "HIGH02.surface-scope-review-20261019"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "scope_review",
-                  "action": "Crosswalk this umbrella to existing surface, command and renderer services before assigning implementation work."
+                  "kind": "validation",
+                  "action": "Renew the scoped surface/command comparisons and expand the independent portable corpus; the supplier crosswalk identifies no missing required code."
                 },
                 {
                   "kind": "scope_review",
-                  "action": "Reconcile its aggregate surface coverage against the scoped services; do not implement a second renderer or claim every operation/scene is covered."
+                  "action": "The twelve required operation families have scoped suppliers. Four conditional discovery domains, corpus completeness, original physical leases and integrated live acceptance remain separate."
                 }
               ],
               "code_witnesses": [
@@ -8465,6 +8589,7 @@
               ],
               "source_sha256": {
                 "renderer/README.md": "960b7b05d3e77dfce41334aa00e98d88273756a8e9711c72e0fc307627edd76a",
+                "renderer/bitmap_dc.hpp": "c8fadb0fc0f4217960e08f067283b504a8dc918ef425de160df262798876fe29",
                 "renderer/blit.cpp": "1b06053ffbbd31a5c8e59daff6edc0c8171851526708ae0c98e21becd8d47b25",
                 "renderer/blit.hpp": "3d657b922652328eab32631e8d884e531b45e5ee2ff2664b12383fc3523306bf",
                 "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
@@ -8474,13 +8599,159 @@
                 "renderer/commands.cpp": "f7c6caef1334893dac1b3a4f2997fe742a63713bf36deb2295cf23ee7c756769",
                 "renderer/commands.hpp": "aab8b05f193a9e7da476ad7434185e53c7f2579345ffd5edbb9101a18d1b4fc4",
                 "renderer/commands_main.cpp": "91a5119315d2435ae3028da6393f104763f9da55c3862de56b8687bc57a3aacd",
+                "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+                "renderer/known_pixels.hpp": "ac863730923ac588136d4226d99a05e635c76aad98d0d588773180e80329fbf0",
+                "renderer/pixel_rows.cpp": "ffa72fac123001700e435112c7b09f39fc90ca4cb3308b1e4e4e31ef93027bfd",
                 "renderer/replay_main.cpp": "c558bb1fcd387274e1727f97fb4f8ad4cb5eb349aab9839d0bb6e368fe7a37a2",
+                "renderer/surface_access.hpp": "95166e8226849e7302dffa9762b737ed5dd1381ffc8b392283763b1fc77854ad",
+                "renderer/surface_backend.cpp": "c5cb22ea00315d78d2bcb8b4c6a252f34b32fab087f045187816a954d6113bff",
+                "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+                "research/runtime/coverage/high-tranche2-surface-crosswalk-20261019.json": "ca398a6475d5c7233fce906e4172674a214aec09d65ebcc6acce385dec68e2fa",
+                "research/runtime/high-tranche2-implementation-20261019.md": "cf14a4d1d57e455925c8f7a9965424676c2c54bf53096fb4282001c70e934f26",
                 "research/runtime/opengl-surface-command-replay.md": "db05538944adc511d9fc9fcbc9444b0a0c13f168180bc241675b81022f619715",
                 "research/runtime/surface-dib-ddraw.md": "5d83e299681c7cc945e9c8b69cacad1a8a97807e1ebd711208f25cbf4fe5f21d",
                 "tests/render-blit-test.cpp": "1cbd3b85a3270f8ef52d8a5cb086d53531a8973853d8ca931ebb0bfdcc887f35",
                 "tests/render-surfaces-test.cpp": "62c9962b8e4aa28e42fdc99a2a1a96e55dab4a9a6800710e6e276a8cfc88efc9",
                 "tests/test-render-commands.py": "ba42952b3cd657f9389c043c3652454710bfc41947dec82b67845a26f3407734"
-              }
+              },
+              "scope_domains": [
+                {
+                  "name": "Canonical formats and signed pitch",
+                  "disposition": "supplied",
+                  "suppliers": [
+                    "NR.surface-backend.formats-pitch"
+                  ],
+                  "paths": [
+                    "renderer/surface_backend.cpp",
+                    "renderer/pixel_rows.cpp",
+                    "renderer/blit.cpp"
+                  ],
+                  "finding": "Canonical indexed8/RGB555/RGB565/RGB24/RGB32 owned formats and signed rows are supplied.",
+                  "validation": "Arbitrary masks and all original format callers remain outside the measured domain."
+                },
+                {
+                  "name": "Opaque and keyed copies",
+                  "disposition": "supplied",
+                  "suppliers": [
+                    "NR.surface-backend.owned",
+                    "NR.surface-backend.formats-pitch"
+                  ],
+                  "paths": [
+                    "renderer/surface_backend.cpp",
+                    "renderer/surface_copy.cpp",
+                    "renderer/blit.cpp"
+                  ],
+                  "finding": "Same-format opaque copies and exact source keys are supplied.",
+                  "validation": "Native transform policy is separate from original-driver parity."
+                },
+                {
+                  "name": "Rectangle and region clipping",
+                  "disposition": "supplied",
+                  "suppliers": [
+                    "NR.surface-copy.clipping",
+                    "NR.surface-copy.clipping-stream"
+                  ],
+                  "paths": [
+                    "renderer/surface_copy.cpp",
+                    "renderer/commands.cpp",
+                    "renderer/command_consumer.cpp"
+                  ],
+                  "finding": "Selected RGB565 rectangle/region plans and partial-write result replay are supplied.",
+                  "validation": "Live clipper observation, other flags and formats are separate."
+                },
+                {
+                  "name": "Fills",
+                  "disposition": "supplied",
+                  "suppliers": [
+                    "NR.surface-backend.owned",
+                    "NR.surface-backend.formats-pitch"
+                  ],
+                  "paths": [
+                    "renderer/surface_backend.cpp",
+                    "renderer/blit.cpp"
+                  ],
+                  "finding": "Active-mask native fill and sampled driver result domains are supplied.",
+                  "validation": "Full original caller reachability remains unvalidated."
+                },
+                {
+                  "name": "Self overlap",
+                  "disposition": "supplied",
+                  "suppliers": [
+                    "NR.surface-backend.owned"
+                  ],
+                  "paths": [
+                    "renderer/blit.cpp",
+                    "renderer/surface_backend.cpp"
+                  ],
+                  "finding": "Opaque per-piece GPU snapshots and bounded forward keyed overlap are supplied.",
+                  "validation": "Unobserved physical aliases and arbitrary keyed overlap domains are separate."
+                },
+                {
+                  "name": "Palettes and two-buffer flips",
+                  "disposition": "supplied",
+                  "suppliers": [
+                    "NR.palette-resources",
+                    "NR.surface-backend.ownership-recovery"
+                  ],
+                  "paths": [
+                    "renderer/surface_backend.cpp",
+                    "renderer/command_consumer.cpp"
+                  ],
+                  "finding": "Shared owned palettes and two-buffer lease/flip mechanisms are supplied.",
+                  "validation": "Longer chains, physical aliases and all driver lifetime semantics remain unresolved."
+                },
+                {
+                  "name": "Restore and explicit reload validity",
+                  "disposition": "supplied",
+                  "suppliers": [
+                    "NR.surface-contents.validity",
+                    "NR.surface-reload.dib-rgb",
+                    "NR.surface-reload.dib-indexed",
+                    "NR.surface-reload.bitmap-dc",
+                    "NR.surface-backend.ownership-recovery"
+                  ],
+                  "paths": [
+                    "renderer/known_pixels.hpp",
+                    "renderer/dib.cpp",
+                    "renderer/bitmap_dc.hpp",
+                    "renderer/surface_backend.cpp"
+                  ],
+                  "finding": "Restoration, DIB/DC reload and undefined-content tracking are supplied.",
+                  "validation": "Unknown restored bytes stay undefined; real-loss/Windows/live integration is separate."
+                },
+                {
+                  "name": "Lifetime and lock/DC admission",
+                  "disposition": "supplied",
+                  "suppliers": [
+                    "NR.surface-access",
+                    "NR.surface-backend.owned",
+                    "NR.continuous-resource-lifetime",
+                    "NR.continuous-mutations"
+                  ],
+                  "paths": [
+                    "renderer/surface_access.hpp",
+                    "renderer/surface_backend.cpp",
+                    "renderer/command_consumer.cpp"
+                  ],
+                  "finding": "Owned identity, lock/DC state and ordered resource updates are supplied.",
+                  "validation": "All original leases, cross-thread and physical identity are not proven."
+                },
+                {
+                  "name": "Ordered replay and presentation",
+                  "disposition": "supplied",
+                  "suppliers": [
+                    "NR.surfaces"
+                  ],
+                  "paths": [
+                    "renderer/commands.cpp",
+                    "renderer/command_consumer.cpp",
+                    "renderer/blit.cpp"
+                  ],
+                  "finding": "Versioned framing, surface/palette generations, native words and GPU presentation are supplied.",
+                  "validation": "Only admitted version/format/state domains; no whole renderer or live-replacement acceptance."
+                }
+              ],
+              "scope_resolution_record": "research/runtime/coverage/high-tranche2-surface-crosswalk-20261019.json"
             }
           }
         ],

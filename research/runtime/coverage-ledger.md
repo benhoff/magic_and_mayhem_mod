@@ -18754,3 +18754,27 @@ interfaces and the menu runner leave affected static source assessments
 historical; the task cards flag review rather than refreshing the `HIGH01`
 fingerprints. Browser and final accounting reports retain their own scope and
 outcomes. Repository-wide accounting backlog is independent of this plan.
+
+
+### High tranche 2: bounded implementation gaps closed (2026-10-19)
+
+The [implementation review](high-tranche2-implementation-20261019.md) and
+[results](high-tranche2-results-20261019.md) cover the seventeen High
+animation/sprite/native-drawing tasks. The selected original distortion DWORD
+read now has a safe explicit-span model and reproducible guarded original
+reference. `HIGH02.distortion-word-read.comparison-20261019` matches eighteen
+original/model cases and thirteen native controls with stable declarations and
+manifest bookends. Only its selected comparison is newly recorded; the broader
+live crash operand, other leaves and physical ownership remain unresolved.
+
+`HIGH02.surface-scope-review-20261019` crosswalks all twelve required surface
+operation families to delivered scoped suppliers. No concrete missing required
+code remains in that umbrella, and no aggregate renderer stage is promoted.
+The portable five-case corpus still lacks ten required operation cells. Sixteen
+native component CTests, five corpus guard tests and seven reconciliation tests
+pass; two of thirty-one full planning checks remain affected by concurrent
+retirement metadata/source drift. New source accounting does not refresh old
+execution fingerprints. The four concurrent incomplete DirectDraw-retirement
+scenario records block the whole-tree coverage gate; its refusal and exact
+pending limitations are retained. No game journey, live replacement, balance
+change, deletion, archive or commit is asserted by this work.

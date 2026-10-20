@@ -72,3 +72,31 @@ the resulting binary with `working/game-nocd/Chaos.exe tight` (expected exit
 42, EIP `005965f7`) and `padded` (expected exit zero and `pixel_matches=1`).
 Verify the original manifest afterward. Use the storage retention wrapper;
 the Linux harness needs 32-bit execution support and does not patch game files.
+
+## Bounded read reconstruction (2026-10-19)
+
+`reconstruction/rendering/distortion_word_read.hpp` models the selected
+`5965f7` DWORD operand and low-WORD store using an explicit contiguous readable
+span and an already resolved logical source WORD. It returns an unreadable-byte
+offset without touching inaccessible memory or producing a store. A final
+logical WORD needs two additional readable bytes; one byte is insufficient.
+Tail bytes contribute to the high WORD of the operand, not the stored pixel.
+Invalid logical extents and out-of-logical-range samples refuse before reading.
+These input checks are native diagnostic policy, not recovered original guards.
+
+The standalone original reference is now a repository source,
+`tests/distortion-word-read-reference.cpp`, derived from the retained fixture.
+Its matrix selects the last three source WORDs on 640x480 and 800x640 canvases,
+with exactly zero, one or two readable tail bytes before a protected page. The
+one-byte case deliberately has an unaligned base. Instruction bytes and the
+whole executable hash are checked. On faults it reports the instruction,
+effective source operand address and inaccessible address; successful calls
+report the copied pixel. `tools/test-distortion-word-read.py` compares those
+observations with the safe model under prospective claims and manifest
+bookends. It retains failed attempts and refuses reused output directories.
+
+This reconstruction closes the missing model for the selected load/store
+contract. It does not recover coordinate/offset production, other leaves, the
+exact crashed live request, physical allocation/aliases or whole distortion
+semantics. It is separate from the implemented native allocation padding and
+finite-edge policies, and is not installed as a live replacement.
