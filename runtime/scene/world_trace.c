@@ -2,6 +2,7 @@
 #include "../../protocols/include/mnm/world_frame_v1.h"
 #include "world_kinds.h"
 #include "world_colour.h"
+#include "../../reconstruction/rendering/kind8_class.h"
 extern void world_leave(void);
 extern void world_wave_leave(void);
 extern u8* world_stream_begin(u32*);
@@ -83,13 +84,11 @@ static int kind8_supported(u32 row){
     u32 object=get((void*)(row+4));
     /* Only the observed first-table route with inactive auxiliary markers.
        Other modes/auxiliary drawing remain a separate reconstruction. */
-    if(!get((void*)0x5e1404)||get((void*)(row+28))!=0x8ad08ad0||get((void*)0x6e1f88)||!readable(object,72))return 0;
+    if(!get((void*)0x5e1404)||get((void*)(row+28))!=0x8ad08ad0||get((void*)0x6e1f88)||!readable(object,4))return 0;
     u32 table=get((void*)object);
     if(!readable(table,16))return 0;u32 method=get((void*)(table+12));
-    return (table==0x5c7420&&method==0x54ab00)||
-        (table==0x5c73f0&&method==0x54aaa0)||
-        (table==0x5c7408&&method==0x546540&&readable(object,100))||
-        ((table==0x5c7494||table==0x5c74b0)&&method==0x54ab60)||(table==0x5c74cc&&method==0x54ac00);
+    const struct MnmKind8Class type=mnm_kind8_class(table,method);
+    return type.method!=MNM_K8_UNKNOWN&&readable(object,type.readable_bytes);
 }
 void world_begin(u32* registers,u32 sample){
     if(active||!GetEnvironmentVariableA("MNM_SCENE_WORLD",directory,2))return;
@@ -256,6 +255,29 @@ int world_additive_test_check(void){
     return !failed&&count==1&&at==164&&get(test_additive+80)==84&&get(test_additive+84)==6&&
         get(test_additive+88)==4&&get(test_additive+92)==5&&get(test_additive+132)==11&&
         get(test_additive+144)==2&&get(test_additive+148)==3&&get(test_additive+152)==12&&get(test_additive+156)==65535&&get(test_additive+160)==6;
+}
+int world_kind8_empty_test(void){
+    u8* pages=VirtualAlloc(0,8192,0x3000,4);u32 old;
+    if(!pages||!VirtualProtect(pages+4096,4096,1,&old))return 0;
+    const u32 object=(u32)(pages+4092),row=0x630000;
+    zero((void*)row,36);put((void*)(row+4),object);put((void*)(row+28),0x8ad08ad0);
+    put((void*)0x5e1404,1);put((void*)0x6e1f88,0);
+    const u32 pairs[3][2]={{0x5c7438,0x54ac30},{0x5c7450,0x54ac40},{0x5c7470,0x54ac40}};
+    for(u32 i=0;i<3;++i){
+        put((void*)object,pairs[i][0]);put((void*)(pairs[i][0]+12),pairs[i][1]);
+        if(!kind8_supported(row))return 0;
+        put((void*)(pairs[i][0]+12),pairs[i][1]+1);if(kind8_supported(row))return 0;
+        put((void*)(pairs[i][0]+12),pairs[i][1]);
+    }
+    /* Pixel classes keep their previous object extent, including across a
+       protected next page. Empty methods have no shape/owner/object reads. */
+    put((void*)object,0x5c7420);put((void*)0x5c742c,0x54ab00);if(kind8_supported(row))return 0;
+    put((void*)object,0x5c7438);
+    put((void*)0x5e1404,0);if(kind8_supported(row))return 0;put((void*)0x5e1404,1);
+    put((void*)0x6e1f88,1);if(kind8_supported(row))return 0;put((void*)0x6e1f88,0);
+    put((void*)(row+28),0);if(kind8_supported(row))return 0;put((void*)(row+28),0x8ad08ad0);
+    put((void*)(row+4),1);if(kind8_supported(row))return 0;
+    return 1;
 }
 int world_word_entry_test(void){
     const u32 frame=0x600000;u32 args[4]={0,frame,4,5},regs[8]={0};

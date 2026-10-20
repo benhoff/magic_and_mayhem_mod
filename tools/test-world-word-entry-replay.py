@@ -31,7 +31,7 @@ def main():
     try:
         if not metadata.get('success') or metadata.get('source_executable_sha256')!=BUILD:raise ValueError('Unsupported/incomplete capture')
         # Require source-current observer bodies, independent of the harness that launched them.
-        for p in ('runtime/scene/world_trace.c','runtime/scene/world_entry.S','runtime/scene/world_colour.h'):
+        for p in ('runtime/scene/world_trace.c','runtime/scene/world_entry.S','runtime/scene/world_colour.h','reconstruction/rendering/kind8_class.h'):
             if metadata['sources'].get(p)!=sources[p]:raise ValueError('Captured observer body differs: '+p)
         run('replay',['python3',ROOT/'tools/test-kind8-raster.py','--capture',capture,'--build-dir','/tmp/mnm-tint-outline-build-20261020'])
         paths=[Path(l) for l in (out/'replay.log').read_text().splitlines() if l.startswith(str(ROOT/'working/tests/kind8/raster-'))]

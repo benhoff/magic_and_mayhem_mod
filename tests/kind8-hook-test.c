@@ -1,7 +1,7 @@
 #include "../runtime/shadow/win32_min.h"
 extern void canvas_test_call(u32,u32,u32,u32,void*);
 extern void world_primitive_11(void),world_primitive_12(void),world_primitive_13(void);
-extern int world_additive_test_setup(void),world_additive_test_check(void),world_colour_test_setup(void),world_colour_test_check(void),world_word_entry_test(void);
+extern int world_additive_test_setup(void),world_additive_test_check(void),world_colour_test_setup(void),world_colour_test_check(void),world_word_entry_test(void),world_kind8_empty_test(void);
 extern u32 world_trampolines[14];
 u8* world_stream_begin(u32* sample){(void)sample;return 0;}
 void world_stream_publish(u32 a,u32 b,u32 c,u32 d,u32 e,u32 f){(void)a;(void)b;(void)c;(void)d;(void)e;(void)f;}
@@ -29,5 +29,6 @@ void start(void){
     SetLastError(1234);canvas_test_call((u32)world_primitive_13,0x600000,0xabcdef00,8,after);
     if(GetLastError()!=1234)ExitProcess(9);
     for(u32 i=0;i<560;++i)if(before[i]!=after[i])ExitProcess(10);
+    if(!world_kind8_empty_test())ExitProcess(11);
     ExitProcess(0);
 }

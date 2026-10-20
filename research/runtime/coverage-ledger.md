@@ -19127,3 +19127,26 @@ contracts. Historical evidence hashes/statuses are preserved; only the new
 observation/word-entry scopes receive current execution claims. Older static
 reviews may remain historical after those dependency changes. Source census
 review and renewed importance hashes do not assert new execution for them.
+
+
+### 2026-10-20: three empty kind8 virtual methods
+
+Nine exact class/method pairs now share one build-specific matcher. The three
+new pairs5c7438/54ac30and5c7450+5c7470/54ac40 clearAX/RET8 without object
+loads/writes or raster calls. WEMPTY.original/native-20261020 compare1440method
+cases, including480empty cases, with three native CTests and active PE32 ABI
+checks. Production admission accepts an exact empty-class four-byte object
+bordering a protected page; existing pixel-class guards remain72/100bytes.
+The original complete queue was not run with this protected-page object.
+
+K8EMPTY regressions independently compare17primitive fixtures/1048960WORDs and
+a new1361draw World/480000WORD canvas. Nativezero, privateoriginalzero and
+liveafter agree; removing9word records produces531differences. Historical1505
+draw repair still separates exact zero-base parity from original-prior/live
+parity and does not close native history. Live samples do not establish natural
+empty-class reachability. Construction/lifetime, other classes/modes, original
+upperEAX/flags and full replacement/release gates remain open. See
+[narrow method proof](native-world-kind8-empty.md). Historical evidence and
+static source hashes remain unchanged; new shared-header dependency accounting
+keeps unrelated validation pending. The review journal was losslessly sharded
+with identical flattened receipt values/order, not an engine validation step.
