@@ -19111,7 +19111,8 @@
         "research/runtime/coverage/committed-history-world-refusal-20261008.json",
         "research/runtime/native-world-canvas-startup.md",
         "research/formats/canvas-startup-diagnostics.md",
-        "research/runtime/critical-rendering-closeout-20261019.md"
+        "research/runtime/critical-rendering-closeout-20261019.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "implementation": [
         "runtime/scene/world_trace.c",
@@ -19323,7 +19324,8 @@
       "documents": [
         "research/runtime/native-world-canvas-startup.md",
         "research/formats/canvas-startup-diagnostics.md",
-        "research/runtime/draw02-canvas-storage-generations.md"
+        "research/runtime/draw02-canvas-storage-generations.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "implementation": [
         "runtime/scene/canvas_startup.c",
@@ -19342,7 +19344,8 @@
         "tools/test-rendering-tranche2-reference.py",
         "tools/test-drawing-lock-recovery.py",
         "tests/drawing-lock-recovery-reference.cpp",
-        "tests/surface-retry-reference.cpp"
+        "tests/surface-retry-reference.cpp",
+        "tools/test-next20-canvas-controls.py"
       ],
       "evidence": [
         "RS.canvas-startup.static-20261008",
@@ -19365,7 +19368,9 @@
         "TR2.startup-forwarding-20261019",
         "TR2.storage-controls-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "TR2.bounded-acceptance-review-20261019"
+        "TR2.bounded-acceptance-review-20261019",
+        "N20.canvas.native-20261020",
+        "N20.canvas.original-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -19440,7 +19445,8 @@
       ],
       "documents": [
         "research/runtime/native-world-canvas-startup.md",
-        "research/formats/canvas-startup-diagnostics.md"
+        "research/formats/canvas-startup-diagnostics.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "implementation": [
         "runtime/scene/canvas_startup.c",
@@ -19457,7 +19463,8 @@
         "tools/capture-scene-game.py",
         "tests/rendering-tranche2-native.cpp",
         "tests/rendering-tranche2-reference.cpp",
-        "tools/test-rendering-tranche2-reference.py"
+        "tools/test-rendering-tranche2-reference.py",
+        "tools/test-next20-canvas-controls.py"
       ],
       "evidence": [
         "RS.canvas-startup.static-20261008",
@@ -19474,7 +19481,9 @@
         "TR2.original-branches-20261019",
         "TR2.startup-forwarding-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "TR2.bounded-acceptance-review-20261019"
+        "TR2.bounded-acceptance-review-20261019",
+        "N20.canvas.native-20261020",
+        "N20.canvas.original-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -19541,7 +19550,8 @@
       ],
       "documents": [
         "research/runtime/native-world-canvas-startup.md",
-        "research/formats/canvas-startup-diagnostics.md"
+        "research/formats/canvas-startup-diagnostics.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "implementation": [
         "runtime/scene/canvas_startup.c",
@@ -19557,7 +19567,8 @@
         "tools/capture-scene-game.py",
         "tests/rendering-tranche2-native.cpp",
         "tests/rendering-tranche2-reference.cpp",
-        "tools/test-rendering-tranche2-reference.py"
+        "tools/test-rendering-tranche2-reference.py",
+        "tools/test-next20-canvas-controls.py"
       ],
       "evidence": [
         "RS.canvas-startup.static-20261008",
@@ -19574,7 +19585,9 @@
         "TR2.original-branches-20261019",
         "TR2.startup-forwarding-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "TR2.bounded-acceptance-review-20261019"
+        "TR2.bounded-acceptance-review-20261019",
+        "N20.canvas.native-20261020",
+        "N20.canvas.original-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -19647,7 +19660,8 @@
       "documents": [
         "research/runtime/native-world-canvas-startup.md",
         "research/formats/canvas-startup-diagnostics.md",
-        "research/runtime/critical-rendering-closeout-20261019.md"
+        "research/runtime/critical-rendering-closeout-20261019.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "implementation": [
         "runtime/scene/canvas_startup.c",
@@ -20199,7 +20213,8 @@
         }
       ],
       "documents": [
-        "research/runtime/native-startup-sequence.md"
+        "research/runtime/native-startup-sequence.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "implementation": [
         "assets/sprite_loader.cpp",
@@ -20222,7 +20237,8 @@
         "tests/world-startup-wave-abi.c",
         "tools/test-native-startup-sequence.py",
         "tools/test-rendering-tranche2-reference.py",
-        "tools/test-rendering-tranche2-wave.py"
+        "tools/test-rendering-tranche2-wave.py",
+        "tools/test-next20-canvas-controls.py"
       ],
       "evidence": [
         "RS.startup-sequence.live-20261008",
@@ -20238,7 +20254,10 @@
         "TR2.wave-cpu-gpu-20261019",
         "TR2.world-sequence-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "TR2.bounded-acceptance-review-20261019"
+        "TR2.bounded-acceptance-review-20261019",
+        "N20.canvas.native-20261020",
+        "N20.canvas.original-20261020",
+        "N20.wave.original-cpu-gpu-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -20300,7 +20319,8 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/native-startup-sequence.md"
+        "research/runtime/native-startup-sequence.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "implementation": [
         "compat/legacy/world_history_main.cpp",
@@ -20322,7 +20342,8 @@
         "tests/world-startup-wave-abi.c",
         "tools/test-native-startup-sequence.py",
         "tools/test-rendering-tranche2-reference.py",
-        "tools/test-rendering-tranche2-wave.py"
+        "tools/test-rendering-tranche2-wave.py",
+        "tools/test-next20-canvas-controls.py"
       ],
       "evidence": [
         "NR.world-startup-sequence.native-20261008",
@@ -20335,7 +20356,9 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "TR2.world-sequence-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "TR2.bounded-acceptance-review-20261019"
+        "TR2.bounded-acceptance-review-20261019",
+        "N20.canvas.native-20261020",
+        "N20.wave.original-cpu-gpu-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -20597,7 +20620,8 @@
         }
       ],
       "documents": [
-        "research/runtime/native-startup-sequence.md"
+        "research/runtime/native-startup-sequence.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "implementation": [
         "runtime/scene/world_trace.c"
@@ -20608,7 +20632,8 @@
         "tools/test-native-startup-sequence.py",
         "tests/rendering-tranche2-native.cpp",
         "tests/rendering-tranche2-reference.cpp",
-        "tools/test-rendering-tranche2-reference.py"
+        "tools/test-rendering-tranche2-reference.py",
+        "tools/test-next20-canvas-controls.py"
       ],
       "evidence": [
         "RS.startup-sequence.live-20261008",
@@ -20623,7 +20648,9 @@
         "TR2.original-branches-20261019",
         "TR2.world-sequence-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "TR2.bounded-acceptance-review-20261019"
+        "TR2.bounded-acceptance-review-20261019",
+        "N20.canvas.native-20261020",
+        "N20.canvas.original-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -21117,7 +21144,8 @@
         "research/runtime/native-world-producer-handoff.md",
         "research/runtime/draw02-producer-recorder.md",
         "research/runtime/draw02-canvas-storage-generations.md",
-        "research/runtime/critical-rendering-closeout-20261019.md"
+        "research/runtime/critical-rendering-closeout-20261019.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "implementation": [
         "runtime/scene/canvas_producers.c",
@@ -21135,7 +21163,8 @@
         "tools/test-drawing-producer-trace.py",
         "tests/rendering-tranche2-native.cpp",
         "tests/rendering-tranche2-reference.cpp",
-        "tools/test-rendering-tranche2-reference.py"
+        "tools/test-rendering-tranche2-reference.py",
+        "tools/test-next20-canvas-controls.py"
       ],
       "evidence": [
         "RS.canvas-producers.forwarding-20261008",
@@ -21185,7 +21214,8 @@
         "CRIT02.producer-history-20261019",
         "CRIT04.startup-reference-20261019",
         "CRIT05.scope-resolution-20261019",
-        "CRIT07.scope-final-20261019"
+        "CRIT07.scope-final-20261019",
+        "N20.canvas.native-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -21372,7 +21402,8 @@
       "subsystem": "native_rendering",
       "confidence": "provisional",
       "documents": [
-        "research/runtime/native-world-producer-handoff.md"
+        "research/runtime/native-world-producer-handoff.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "evidence": [
         "NR.world-producer-handoff.live-20261008",
@@ -21399,7 +21430,9 @@
         "TR2.live-bypass-comparison-20261019",
         "TR2.live-bypass-combined-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "T3I.handoff-20261019"
+        "T3I.handoff-20261019",
+        "N20.canvas.native-20261020",
+        "N20.wave.original-cpu-gpu-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -21431,7 +21464,8 @@
         "tests/world-producer-reference.cpp",
         "tools/test-rendering-tranche2-reference.py",
         "tools/test-rendering-tranche2-wave.py",
-        "tools/test-world-producer-handoff.py"
+        "tools/test-world-producer-handoff.py",
+        "tools/test-next20-canvas-controls.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/canvas_producer_main.cpp",
@@ -21577,7 +21611,8 @@
       "subsystem": "native_rendering",
       "confidence": "provisional",
       "documents": [
-        "research/runtime/native-world-producer-handoff.md"
+        "research/runtime/native-world-producer-handoff.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "evidence": [
         "RS.world-producer-bypass.abi-20261008",
@@ -21603,7 +21638,9 @@
         "TR2.live-bypass-comparison-20261019",
         "TR2.live-bypass-combined-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "TR2.bounded-acceptance-review-20261019"
+        "TR2.bounded-acceptance-review-20261019",
+        "N20.canvas.native-20261020",
+        "N20.canvas.original-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -21642,7 +21679,8 @@
         "tools/test-world-producer-handoff.py",
         "tests/rendering-tranche2-native.cpp",
         "tests/rendering-tranche2-reference.cpp",
-        "tools/test-rendering-tranche2-reference.py"
+        "tools/test-rendering-tranche2-reference.py",
+        "tools/test-next20-canvas-controls.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/canvas_producer_main.cpp",
@@ -33836,7 +33874,8 @@
       "documents": [
         "research/runtime/draw02-publication.md",
         "research/formats/drawing-publication-v1.md",
-        "research/runtime/draw02-canvas-storage-generations.md"
+        "research/runtime/draw02-canvas-storage-generations.md",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "original": [
         {
@@ -33854,7 +33893,8 @@
         "tools/drawing_publication.py"
       ],
       "tests": [
-        "tests/test-drawing-publication.py"
+        "tests/test-drawing-publication.py",
+        "tools/test-next20-canvas-controls.py"
       ],
       "evidence": [
         "RS.drawing-publication.original-20261011",
@@ -33866,7 +33906,8 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "N20.canvas.native-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -33917,7 +33958,8 @@
         "runtime/scene/source_pending_policy.h",
         "reconstruction/rendering/generic_producer_caller.h",
         "tools/native_prefix_template.py",
-        "tools/directplay_dx6_launch.py"
+        "tools/directplay_dx6_launch.py",
+        "tools/inspect-canvas-producers.py"
       ],
       "validation_domain": "Finite original-active map2/zero-item startup, observed opaque Blt/BltFast primary publications through a requested prefix of1..16 World returns, including the V2 action-phase trace; only positive-pitch RGB565. Readback loss is diagnostic refusal, not current equivalence. Synthetic parser failures do not establish original engine failure/ABI branches.",
       "remaining_gaps": [
@@ -39788,7 +39830,8 @@
         "tests/world-source-regions-test.cpp",
         "tools/test-public-resident-fixtures.py",
         "tools/test-native-campaign.py",
-        "tools/test-rendering-tranche-fixtures.py"
+        "tools/test-rendering-tranche-fixtures.py",
+        "tools/test-next20-canvas-controls.py"
       ],
       "documents": [
         "research/runtime/public-resident-world.md",
@@ -39797,7 +39840,8 @@
         "research/runtime/public-resident-region-epoch-provenance-refusal-20261011.json",
         "research/runtime/public-resident-campaign-complete-20261011.json",
         "research/runtime/public-resident-master-final-campaign-20261011.json",
-        "research/runtime/rendering-tranche1-execution-20261019.json"
+        "research/runtime/rendering-tranche1-execution-20261019.json",
+        "research/runtime/next20-implementation-progress-20261020.md"
       ],
       "validation_dependencies": [
         "runtime/scene/readable_extent.h",
@@ -39818,7 +39862,8 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "N20.canvas.native-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -283869,6 +283914,115 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "N20.canvas.native-20261020",
+      "kind": "native_integration",
+      "scope": "Fresh bounded next-twenty canvas controls. Native publication chronology and permission policy, synthetic PE32 startup/producer forwarding, scripted original create/bind/clear/palette/caller branches, and separate complete wave CPU/GPU comparisons retain their individual report domains. No all-writer/physical ownership, full initial-state recovery or live replacement claim.",
+      "record": "research/runtime/next20-canvas-native-20261020.json",
+      "sha256": "20bbc5a5b6ba1827e619b08c13047383af042bbaa700c4397de906bb596c9e47",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/publication_tests",
+          "equals": 23
+        },
+        {
+          "pointer": "/readable_protection_modes",
+          "equals": 6
+        },
+        {
+          "pointer": "/unknown_protection_modes",
+          "equals": 3
+        },
+        {
+          "pointer": "/native_regions_sanitized",
+          "equals": true
+        },
+        {
+          "pointer": "/handoff_passed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "N20.canvas.original-20261020",
+      "kind": "isolated_original",
+      "scope": "Fresh bounded next-twenty canvas controls. Native publication chronology and permission policy, synthetic PE32 startup/producer forwarding, scripted original create/bind/clear/palette/caller branches, and separate complete wave CPU/GPU comparisons retain their individual report domains. No all-writer/physical ownership, full initial-state recovery or live replacement claim.",
+      "record": "research/runtime/next20-canvas-original-20261020.json",
+      "sha256": "7b9c985555bf61b5512652cc48c56917217337eba7020c73c8089ed1811c46e3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "N20.wave.original-cpu-gpu-20261020",
+      "kind": "isolated_original",
+      "scope": "Fresh bounded next-twenty canvas controls. Native publication chronology and permission policy, synthetic PE32 startup/producer forwarding, scripted original create/bind/clear/palette/caller branches, and separate complete wave CPU/GPU comparisons retain their individual report domains. No all-writer/physical ownership, full initial-state recovery or live replacement claim.",
+      "record": "research/runtime/next20-wave-original-cpu-gpu-20261020.json",
+      "sha256": "8ce596e82f25ce84050e1066307abfade2fbe30c2b0bf384f12c277f38eede84",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/wave/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/wave/cpu_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/wave/gpu_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/wave/table_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -304838,8 +304992,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-next20-dispatch-20261020.json",
-    "sha256": "e234d518c796b0ff0fa090a70dba3d9ac7a806654b177ccb14c2c7b8b8952731"
+    "path": "research/runtime/coverage/source-index-next20-canvas-20261020.json",
+    "sha256": "95773bd28e2fc47cda6b81ba1f05918f52a51448443c1e1090742dcd5b8a8d8f"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

@@ -18906,3 +18906,16 @@ compared separately from the original low-AX fallback and metadata semantics.
 Broader queue state, object lifetime, pixel/live replacement and remaining
 selected contracts stay independent. [Progress](next20-implementation-progress-20261020.md)
 and [new execution](next20-world-dispatch-20261020.json) preserve the bounds.
+
+## Next twenty partial contracts, group 2 — 2026-10-20
+
+Fixed final publication admission before the final World return and refused
+unknown base protection combinations in the guarded permission cache. The new
+negatives failed first; all 23 publication/action tests, six readable/three
+unknown permission modes and native/sanitized region controls pass. PE32 startup
+and 57-site producer forwarding/refusal pass; independent original branch
+comparisons and 768 full original/CPU/GPU wave canvases match. GPU handoff keeps
+native HUD history. Pre-World reuse/initial-state evidence remains historical;
+all-writer, physical ownership, full startup/live replacement are not promoted.
+[Progress](next20-implementation-progress-20261020.md) and the three new immutable
+execution records keep those domains independent.

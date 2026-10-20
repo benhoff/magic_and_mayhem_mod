@@ -1914,7 +1914,7 @@
       "weight": 5,
       "work_type": "capability",
       "reason": "Reconstructed producer history handed to native GPU World drawing: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "99fa100642d8107b057ac2167be69878c22359671e2ff53144b72ef81a5b8366"
+      "contract_sha256": "3f9fc3fc05c434e60836c41d781ea901310eb3541bd053003ae91b780537c02f"
     },
     {
       "behavior": "NR.world-raster-batch-transport",
@@ -1963,7 +1963,7 @@
       "weight": 5,
       "work_type": "capability",
       "reason": "Guarded World owner permission-query epoch: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "e5fcbf4e34238a52c7de2b095b27cec1533260fa5726d38c8476ab632114e283"
+      "contract_sha256": "b5eb47dbf6e81768c779d8cfb30f6a15aa71c4ccda42d28d1d44974777fe0b48"
     },
     {
       "behavior": "NR.world-startup-launcher",
@@ -1977,7 +1977,7 @@
       "weight": 5,
       "work_type": "capability",
       "reason": "Complete native startup queue chain and per-canvas original comparison: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "6313ff1499fd8f53f1df1fc76d40711a87478a79374030b25fce79e4e7becc29"
+      "contract_sha256": "eb58b5c70f09590ffad5a3810910e8c7e0811a39ff915f1b8302c44bb8f1acc0"
     },
     {
       "behavior": "NR.world_scene",
@@ -2124,14 +2124,14 @@
       "weight": 5,
       "work_type": "original_recovery",
       "reason": "Canvas pointer/stride/height binding and separate clip state: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "61062b1a09bf9ff77ac08759cca03b2afa0e2d2521e32d2309bd2f52eeead85b"
+      "contract_sha256": "e3636d8da24da38c1343fbb6ce1547543c6ed94842d3999c50903b5f250f703f"
     },
     {
       "behavior": "RS.canvas-create-lock",
       "weight": 5,
       "work_type": "original_recovery",
       "reason": "Selected surface creation, release and returned canvas storage: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "81e49b701ce26058b107f7bfe18ef49a50c3c2e829139af6dc45cf93b7a68a10"
+      "contract_sha256": "deb3086b864188804b91f501b6a2a362fe31017df77d78a6e4f137005f3f9487"
     },
     {
       "behavior": "RS.canvas-preworld-reuse",
@@ -2145,14 +2145,14 @@
       "weight": 5,
       "work_type": "original_recovery",
       "reason": "Owned pre-World/menu/loading/HUD producer requests and completion checkpoints: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "0b22b37c247639351e8b06c27186fef199888654b2708239211af920b16502cb"
+      "contract_sha256": "26621ca69cc0d4920b8cac18cd5a87ff22bae2652c04655375a80abd32e164c0"
     },
     {
       "behavior": "RS.canvas-startup-clear",
       "weight": 5,
       "work_type": "original_recovery",
       "reason": "Selected startup zero-fill request before first World: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "07c89501ec60878d21145be61ec319479ec024deb94eedfadb9a931bb709267c"
+      "contract_sha256": "5f8ef29dd6799217bee22f79d10eb5604222dab4b8a75cb2ae0cba595da1fe1e"
     },
     {
       "behavior": "RS.displacement-final-word-read",
@@ -2173,7 +2173,7 @@
       "weight": 5,
       "work_type": "original_recovery",
       "reason": "Guarded original opaque-copy publication COM results and independent primary readbacks: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "d5dc4e8ba23d8adf93149060c970e23528a284f1cee0f3bc3072972ed8456780"
+      "contract_sha256": "11b31ba6d691d826fb776fa81b81192fa28b983601dd2b2d2baf1fccadb61252"
     },
     {
       "behavior": "RS.glyph-backend",
@@ -2355,7 +2355,7 @@
       "weight": 5,
       "work_type": "capability",
       "reason": "Bounded closed generic World raster entry bypass and native writeback: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "f873234b8c72da77d379c323ea32c110adfab34042a75171fd6dbcfb2abfe704"
+      "contract_sha256": "142e898d86a06694997bc0db3fb3d88785419fbb75f4ba3238f77860e4128c25"
     },
     {
       "behavior": "RS.world-raster-batch-return",
@@ -2376,7 +2376,7 @@
       "weight": 5,
       "work_type": "original_recovery",
       "reason": "Real shade-minus127 palette on clipped fallback and blend primitives: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "dfac7d177eee6a677f54e800e2ea073d8f07c021729976df9f345e57080d29c5"
+      "contract_sha256": "ac3666a4dc9dd505469e47564bf1a4b70afa6fa0f3c1801688ca6a7f68e07363"
     },
     {
       "behavior": "RS.world-startup-queues",
@@ -2390,7 +2390,7 @@
       "weight": 5,
       "work_type": "original_recovery",
       "reason": "Startup wave dispatch and post-initializer owned displacement inputs: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "931bc195af62f50d08f9973941e0f659e7343f044856c69dc55e8352a287b9ba"
+      "contract_sha256": "5b535c45351ddb052e54efb75ddf971e638d0d49fb705203ceb066418287f932"
     },
     {
       "behavior": "TOOL.native-campaign-artifact-check",

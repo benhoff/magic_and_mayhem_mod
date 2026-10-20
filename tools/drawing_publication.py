@@ -56,7 +56,9 @@ def analyze(directory):
                       'source_sequence':r[4],'queue':r[5],'source_canvas':r[6],'destination_canvas':r[7],
                       'primary':bool(r[8]),'flags':r[9],'observer_lock_hresult':r[10],'observer_unlock_hresult':r[11],
                       'readback_ordinal':r[19],'thread':r[22],'action_record':r[23]})
-    if not calls[-1]['primary'] or calls[-1]['hresult']<0 or calls[-1]['queue']!=header[6]:
+    last_world_return=max((r[1] for r,_ in records if r[2]==12),default=0)
+    if (not calls[-1]['primary'] or calls[-1]['hresult']<0 or calls[-1]['queue']!=header[6] or
+            calls[-1]['source_sequence']<last_world_return):
         raise ValueError('Missing final successful publication after requested World return')
     producers={'path':source.name,'sha256':sha(source),'records':len(records),'queues':header[6],
                'operations':dict(Counter(tool.NAMES[r[2]] for r,_ in records)),'failures':failures,'checkpoints':checkpoints,
