@@ -27,3 +27,6 @@
 /* Tagged extension: indexed backend14/57fe10. Geometry selects unclipped
  * encoded-run endpoint copying or the horizontally clipped half blend. */
 #define MNM_WORLD_RUN_OUTLINE 9u
+/* Indexed581200 extension: backend15, selected palette followed by three
+ * raw RGB DWORDs (low8 bits each). Signed shade is restricted to-127..127. */
+#define MNM_WORLD_TINT_OUTLINE 10u

@@ -19023,3 +19023,48 @@ Original return/register state, other masks,581200 tint,580260 source-write
 shifts, real source/object ownership, live producer admission and complete-session
 release gates remain pending. Broad World dispatch and live replacement stages
 remain partial/none. See [run-outline research](native-world-run-outline.md).
+
+
+### Tinted World run-pair pixels and owned writes — 2026-10-20
+
+The581200leaf used by kinds12..14 now has native owned tag10/backend15 input
+and cached two-pixel rectangle rendering. It writes(start-1,start) and, for
+runs longer than one pixel,(end-2,end-1). Horizontal clipping instead uses the
+selected palette half blend. The bounded low-byte RGB/shade conversion and
+linear row/clip crossings are recovered separately from NP.tint-owned-canvas-writes,
+which deliberately refuses negative/past-end pairs and non-tight wire rows
+before mutation. Original arbitrary physical writes are not admitted.
+
+WTINT.original/native-20261020 prospectively pins all four selected contracts
+and the complete compiler/test closure.480original canvases compare13,967,543
+RGB565 WORDs exactly;397outline/tint/distortion cases also match through the
+separate renderer process. Tests cover255bounded shades, every low-byte RGB
+value, sparse ordered clips, atlas/worker paths and atomic span/wire refusals.
+The original oracle now uses596490for backend9 with clipped-top normalization,
+including indexed masks; a new original/native regression exercises that path.
+Older failed endpoint/compile attempts and successful intermediate comparisons
+remain preserved with their original hashes in a verified archive under
+working/tests/tint-pair-retained-20261020. No old execution report is refreshed.
+Returned registers/status, wider shades, padded physical storage, other leaves,
+actual writers/object lifetime and live admission/replacement remain pending.
+See [tinted pair research](native-world-tint-outline.md).
+
+### Fresh kind8 observation and an open World replay — 2026-10-20
+
+K8OBS.live-20261020 observes four known class/method pairs in a fresh
+original-active map1/item15run:27921rows across138queues, with one sampled
+owned World queue and no observer refusal. It does not witness54aaa0, infer
+first-table mode at that entry, or identify the old journal-free manual queue13.
+A preceding160queue passive run found no kind8 samples. The attempted drag
+helper failed at window retirement, so no action attribution/acceptance follows.
+
+The new captured queue matches native/private-original pixels from zero.
+Replaying the recorded prior canvas still differs from the actual after-canvas
+at88cyan WORDs. Precise copy-entry and direct-distortion reference probes leave
+that count unchanged. The visible marker-shaped pixels do not identify their
+writer or establish a physical alias/cadence cause. Preserve the open all-writer
+and source-ownership boundary; this is not a new complete/live equivalence result.
+The read-only success and failed replay are separate registered records; their
+raw captures, helpers and probes are retained in the verified archive under
+working/tests/kind8-live-diagnostics-20261020. Broad kind8, World and complete live
+replacement statuses are unchanged.

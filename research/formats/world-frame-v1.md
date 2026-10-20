@@ -134,3 +134,19 @@ Vertical clipping alone retains endpoint copying. Adjacent opaque runs with a
 zero transparent skip remain separate. Old readers refuse the unknown tag;
 backend14 on another operation and operation9 on another backend refuse.
 This format supports owned offline inputs; the live producer does not emit it.
+
+
+## Tinted run-pair extension
+
+Operation10/backend15 requires an indexed normalized frame, zero palette
+ordinal/phase, signed shade-127..127, and tight canvas rows(stride==width).
+The524-byte payload contains the selected256-WORD palette followed by three
+raw little-endian RGB DWORDs. Low bytes are scaled by(shade+127)/127, clamped
+to255 and converted toRGB565. Horizontal clipping selects palette half blend.
+Otherwise each encoded run writes the tinted pairs(start-1,start) and, for a
+run longer than one pixel,(end-2,end-1). These linear pairs may cross a row or
+clip edge; native admission refuses the entire frame if any pair is outside
+its owned canvas. Vertical clipping alone retains pair writes. Padded physical
+storage and wider shade arithmetic are refused/outside this input contract.
+This tagged extension is separate from ordinary operation9endpoints. Old
+readers refuse the unknown tag. The live producer does not emit it yet.

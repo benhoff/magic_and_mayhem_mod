@@ -16,7 +16,7 @@ int main(int argc,char** argv)try{
     std::size_t at=80;
     for(unsigned i=0;i<u32(input,36);++i){
         const auto size=u32(input,at),op=u32(input,at+4),n=u32(input,at+32),indexed=u32(input,at+36),payload=u32(input,at+40);
-        if(size!=64+n+payload||((op<6||op==8||op==9)&&n<40)||at+size>input.size()||op>9)throw std::runtime_error("World raster record");
+        if(size!=64+n+payload||((op<6||op==8||op==9||op==10)&&n<40)||at+size>input.size()||op>10)throw std::runtime_error("World raster record");
         if(op==7){
             if(n||indexed||payload<14||u32(input,at+52)!=12)throw std::runtime_error("Colour rectangle record");
             const auto w=u32(input,at+64),h=u32(input,at+68),mode=u32(input,at+72);
@@ -57,9 +57,9 @@ int main(int argc,char** argv)try{
             at+=size;continue;
         }
         Bytes frame(input.begin()+at+64,input.begin()+at+64+n);std::vector<std::uint32_t> palette(3+128,0);
-        if(op==8||op==9){
+        if(op==8||op==9||op==10){
             const auto ordinal=u32(input,at+56);const auto shade=std::int32_t(u32(input,at+44));
-            if(indexed!=1||payload!=512||ordinal>18||shade< -127||shade>127)throw std::runtime_error("Additive sprite palette inputs");
+            if(indexed!=1||payload!=(op==10?524u:512u)||ordinal>18||shade< -127||shade>127)throw std::runtime_error("Additive sprite palette inputs");
             // Independent original selection through real linked nodes and
             // shade tables. All other tables contain a deliberately wrong color.
             const unsigned stride=3+128*128;palette.assign((ordinal+1)*stride,0xdeadbeef);
@@ -76,6 +76,18 @@ int main(int argc,char** argv)try{
         if(op==5){using Shadow=unsigned (__attribute__((fastcall)) *)(void*,int,int);reinterpret_cast<Shadow>(0x57e540)(frame.data(),x,y);}
         else if(op==3){
             const auto period=u32(input,at+60),amplitude=period/2;if(!period||period>16||payload!=64)throw std::runtime_error("Wave extent");
+            const auto backend=u32(input,at+52);
+            if(backend==9){
+                if(period!=16)throw std::runtime_error("Direct distortion requires owned mask/period16");
+                const auto top=std::int64_t(y)-std::int32_t(u32(frame,16));
+                const auto skip=std::max<std::int64_t>(0,std::int32_t(u32(input,at+20))-top);
+                global(0x6c4830,std::uint32_t(skip-1));
+                for(unsigned j=0;j<16;++j)global(0x656640+j*4,u32(input,at+64+n+j*4));
+                using DirectDistortion=unsigned (*)(void*,int,int);
+                reinterpret_cast<DirectDistortion>(0x596490)(frame.data(),x,y);
+                at+=size;continue;
+            }
+            if(backend!=7)throw std::runtime_error("Unknown displacement backend");
             // Keep the original initializer inactive; the observed owned table
             // already contains this request's effective phase.
             global(0x5f14d0,0);for(unsigned j=0;j<16;++j)global(0x5f14d0+(amplitude*16+j)*4,u32(input,at+64+n+j*4));
@@ -83,6 +95,12 @@ int main(int argc,char** argv)try{
             global(0x6c4830,clipped?u32(input,at+48):0);
             using Wave=unsigned (__attribute__((fastcall)) *)(void*,int,int,int);reinterpret_cast<Wave>(0x5806f0)(frame.data(),x,y,amplitude);
         }else if(!indexed){using Direct=unsigned (*)(void*,int,int);reinterpret_cast<Direct>(0x597086)(frame.data(),x,y);}
+        else if(op==10){
+            if(u32(input,at+52)!=15||u32(input,at+56)||u32(input,at+48))throw std::runtime_error("Tint outline inputs");
+            using Tint=unsigned (__attribute__((fastcall)) *)(void*,int,int,int,int,int,int);
+            reinterpret_cast<Tint>(0x581200)(frame.data(),x,y,std::int32_t(u32(input,at+44)),
+                int(u32(input,at+64+n+512)),int(u32(input,at+64+n+516)),int(u32(input,at+64+n+520)));
+        }
         else if(op==8||op==9){
             if(u32(input,at+52)!=(op==8?13u:14u))throw std::runtime_error("Additive sprite backend");
             // Three WORD masks, not overlapping DWORD globals.

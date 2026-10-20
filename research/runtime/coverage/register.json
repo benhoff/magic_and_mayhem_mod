@@ -18421,7 +18421,8 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "K8OBS.replay-gap-review-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -18730,7 +18731,8 @@
         "NR.world-commit.regressions-20261007",
         "RS.world-commit.history-original-20261007",
         "NR.world-commit.history-native-20261007",
-        "NR.world-shadow.recovery-regressions-20261008"
+        "NR.world-shadow.recovery-regressions-20261008",
+        "K8OBS.replay-gap-review-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -21983,7 +21985,9 @@
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "WQUEUE.original-20261019"
+        "WQUEUE.original-20261019",
+        "K8OBS.live-20261020",
+        "K8OBS.replay-gap-review-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -126526,7 +126530,9 @@
         "WADD.original-20261020",
         "WADD.native-20261020",
         "WOUT.original-20261020",
-        "WOUT.native-20261020"
+        "WOUT.native-20261020",
+        "WTINT.original-20261020",
+        "WTINT.native-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -126536,7 +126542,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "WOUT.source-review-20261020",
+        "review": "WTINT.source-review-20261020",
         "entry": "RS.world-additive-sprite"
       }
     },
@@ -126644,7 +126650,9 @@
       ],
       "evidence": [
         "WOUT.original-20261020",
-        "WOUT.native-20261020"
+        "WOUT.native-20261020",
+        "WTINT.original-20261020",
+        "WTINT.native-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -126654,8 +126662,120 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "WOUT.source-review-20261020",
+        "review": "WTINT.source-review-20261020",
         "entry": "RS.world-run-outline"
+      }
+    },
+    {
+      "id": "RS.world-tint-outline",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Indexed tinted run-pair and clipped half-blend raster",
+      "scope": "Pinned No-CD581200 indexed RGB565 pixels over owned RLE frames, selected palette and raw RGB DWORDs, with signed shade-127..127. Unclipped horizontal geometry writes tinted pairs(start-1,start) and, for lengths>1,(end-2,end-1), retaining linear row/clip-edge crossing within the owned canvas. Tint uses low-byte RGB scaled by(shade+127)/127, clamped255 and quantized5/6/5. Horizontal clipping instead half-blends palette source pixels; vertical-only clipping retains tint pairs. Owned tag10/backend15 preserves the inputs with palette ordinal0 and tight canvas rows(stride==width). NP.tint-owned-canvas-writes separately refuses any complete pair outside the owned extent. Excludes wider shade arithmetic, arbitrary physical/aliased writes, returned status/register state, other masks, live source writers/ownership, capture/admission and replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5771776,
+          "scope": "Selected indexed RGB565 bounded shade/tint endpoint and horizontally-clipped half-blend pixels; no original return/register claim."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-world-tint-outline.md",
+        "research/formats/world-frame-v1.md"
+      ],
+      "implementation": [
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/world_frame.cpp",
+        "protocols/include/mnm/world_frame_v1.h",
+        "renderer/sprites/tint_colour.hpp",
+        "renderer/sprites/tint_outline.hpp"
+      ],
+      "tests": [
+        "tests/tint-outline-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-tint-outline.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/resource-fixtures.hpp",
+        "tools/coverage_claims.py",
+        "compat/legacy/CMakeLists.txt",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_preparation.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/isolated_dispatch.inc",
+        "tests/additive-sprite-test.cpp",
+        "tests/run-outline-test.cpp",
+        "tools/test-run-outline.py",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/blit.hpp"
+      ],
+      "evidence": [
+        "WTINT.original-20261020",
+        "WTINT.native-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WTINT.source-review-20261020",
+        "entry": "RS.world-tint-outline"
+      }
+    },
+    {
+      "id": "NP.tint-owned-canvas-writes",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned-span admission for tinted run-pair writes",
+      "scope": "Intentional native admission for RGB565 tinted run-pair writes: derive the entire linear write set from owned validated SPR runs and tight canvas dimensions(stride==width) before rendering. Permit pairs crossing row/clip edges only when both WORDs remain inside the owned canvas; refuse negative or past-end pairs atomically, preserving the previous complete scene. This differs from arbitrary original pointer writes. No physical object lifetime, asynchronous mutation, alias or live replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-tint-outline.md"
+      ],
+      "implementation": [
+        "renderer/sprites/tint_outline.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "compat/legacy/world_frame.cpp"
+      ],
+      "tests": [
+        "tests/tint-outline-test.cpp",
+        "tools/test-tint-outline.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprites/tint_colour.hpp",
+        "renderer/blit.hpp",
+        "tests/additive-sprite-test.cpp",
+        "tests/resource-fixtures.hpp",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "WTINT.native-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "WTINT.source-review-20261020",
+        "entry": "NP.tint-owned-canvas-writes"
       }
     }
   ],
@@ -284602,6 +284722,149 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "WTINT.original-20261020",
+      "kind": "isolated_original",
+      "scope": "Selected581200 tinted start-1/start and end-2/end-1 pairs, owned-span refusal, row/clip crossing and palette-half branches across all255 bounded shades and every low-byte RGB input; Selected57fe10 endpoint/horizontally-clipped-half branches and580a90 regression:  indexed RGB565 raster: all65536 destination words across64 source colors cover every red/green/blue channel pair; clipped RLE runs/holes, zero palette entries, signed anchors, ordered overlap, tagged owned wire, worker and atlas/non-atlas GPU paths. No pointer ownership, live queue admission, other modes or replacement claim.",
+      "record": "research/runtime/native-world-tint-pair-validation-20261020.json",
+      "sha256": "09aace1814eeaf013437de1e39b5d2e57052b68c13df35e8df2e8a49003e4245",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_pixels_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wire_and_worker_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/isolated_render_process_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 13967543
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "WTINT.native-20261020",
+      "kind": "native_integration",
+      "scope": "Selected581200 tinted start-1/start and end-2/end-1 pairs, owned-span refusal, row/clip crossing and palette-half branches across all255 bounded shades and every low-byte RGB input; Selected57fe10 endpoint/horizontally-clipped-half branches and580a90 regression:  indexed RGB565 raster: all65536 destination words across64 source colors cover every red/green/blue channel pair; clipped RLE runs/holes, zero palette entries, signed anchors, ordered overlap, tagged owned wire, worker and atlas/non-atlas GPU paths. No pointer ownership, live queue admission, other modes or replacement claim.",
+      "record": "research/runtime/native-world-tint-pair-validation-20261020.json",
+      "sha256": "09aace1814eeaf013437de1e39b5d2e57052b68c13df35e8df2e8a49003e4245",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_pixels_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wire_and_worker_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/isolated_render_process_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 13967543
+        }
+      ]
+    },
+    {
+      "id": "K8OBS.live-20261020",
+      "kind": "live_observation",
+      "scope": "Bounded original-active map1/item15 observation:four known class/method pairs across27921kind8 rows in138queues and one admitted owned World input. The observer had no World refusal. This is numeric class/selected-input observation only; the incomplete XTest helper supplies no action attribution, first-table proof, natural54aaa0 witness, physical lifetime or live pixel equivalence.",
+      "record": "research/runtime/native-world-kind8-observation-20261020.json",
+      "sha256": "7d9fcae87736ea9240016bb38ba61e89c64770b6399c67c7d146864c2ebe0942",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/complete_native_admission",
+          "equals": true
+        },
+        {
+          "pointer": "/kind8_objects/rows",
+          "equals": 27921
+        }
+      ]
+    },
+    {
+      "id": "K8OBS.replay-gap-review-20261020",
+      "kind": "static",
+      "scope": "Retained failed captured-queue replay, separate from accepted read-only class observation and fresh synthetic tint/outline pixel comparison. No current-code equivalence or live replacement claim.",
+      "record": "research/runtime/native-world-kind8-replay-gap-20261020.json",
+      "sha256": "30e2ae7ce2d7250560e36d9448ad3f3eaee1d2402f6fb11cce80a7ee622743dd",
+      "assertions": [
+        {
+          "pointer": "/review_only",
+          "equals": true
+        },
+        {
+          "pointer": "/live_before_replay_matches_after",
+          "equals": false
+        },
+        {
+          "pointer": "/mismatched_pixels",
+          "equals": 88
+        }
+      ],
+      "sources_pointer": "/failed_report_sources"
     }
   ],
   "classifications": [],
@@ -286856,7 +287119,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-tint-outline"
           ]
         },
         {
@@ -286865,7 +287129,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-tint-outline"
           ]
         },
         {
@@ -286874,7 +287139,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-tint-outline"
           ]
         },
         {
@@ -287206,7 +287472,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-tint-outline"
           ]
         },
         {
@@ -287215,7 +287482,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-tint-outline"
           ]
         },
         {
@@ -287224,7 +287492,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-tint-outline"
           ]
         },
         {
@@ -287550,7 +287819,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-tint-outline"
           ]
         },
         {
@@ -287559,7 +287829,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-tint-outline"
           ]
         },
         {
@@ -287568,7 +287839,8 @@
             "DRAW.queue-dispatch",
             "DRAW.queue-client-state",
             "RS.world-dispatch-routing",
-            "RS.world-queue-state"
+            "RS.world-queue-state",
+            "RS.world-tint-outline"
           ]
         },
         {
@@ -305178,7 +305450,9 @@
         "WADD.original-20261020",
         "WADD.native-20261020",
         "WOUT.original-20261020",
-        "WOUT.native-20261020"
+        "WOUT.native-20261020",
+        "WTINT.original-20261020",
+        "WTINT.native-20261020"
       ]
     },
     {
@@ -305195,7 +305469,59 @@
       ],
       "evidence": [
         "WOUT.original-20261020",
-        "WOUT.native-20261020"
+        "WOUT.native-20261020",
+        "WTINT.original-20261020",
+        "WTINT.native-20261020"
+      ]
+    },
+    {
+      "id": "native-tint-outline",
+      "scope": "Owned tag10 decoding, shade/RGB arithmetic and branch selection, source binding, native GPU rendering and worker/atlas paths against unchanged581200. Authored full bounded shade/low-byte RGB domain and sparse clips/order; no live admission.",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-tint-outline"
+      ],
+      "tests": [
+        "tests/tint-outline-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-tint-outline.py"
+      ],
+      "evidence": [
+        "WTINT.original-20261020",
+        "WTINT.native-20261020"
+      ]
+    },
+    {
+      "id": "native-tint-span-admission",
+      "scope": "Owned native scene admission tests: refuse a negative first pair, permit a pair crossing a row/clip boundary, and refuse again without changing the completed canvas. Authored fixtures only; no live ownership/alias acceptance.",
+      "level": "headless",
+      "behaviors": [
+        "NP.tint-owned-canvas-writes"
+      ],
+      "tests": [
+        "tests/tint-outline-test.cpp",
+        "tools/test-tint-outline.py"
+      ],
+      "evidence": [
+        "WTINT.native-20261020"
+      ]
+    },
+    {
+      "id": "world-kind8-capture-unclosed-20261020",
+      "scope": "Retained original-active class/input observation with incomplete XTest helper and failed live-before replay:88cyan WORDs remain unattributed. No complete action schedule, new first-table inference, natural inherited wrapper or native/live equivalence acceptance.",
+      "level": "live_observation",
+      "behaviors": [
+        "RS.world-kind8-virtual",
+        "RS.world-frame",
+        "NR.live-drawing-replacement"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py",
+        "tools/test-kind8-raster.py"
+      ],
+      "evidence": [
+        "K8OBS.live-20261020",
+        "K8OBS.replay-gap-review-20261020"
       ]
     }
   ],
@@ -305849,8 +306175,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-run-outline-20261020.json",
-    "sha256": "a0f56e17ed7b74a4f751de81dcacea4e1c718dd2ee868783e63e1f46993c448c"
+    "path": "research/runtime/coverage/source-index-tint-pair-20261020.json",
+    "sha256": "18f3ce03ce21672c8ab763db414c2de2a1e706631dac07182ae89cc6f52dc1db"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -305892,9 +306218,9 @@
       "sha256": "37bf5b30142674e1df78040dcc236187633f0f0c6f76638f2a1394396eafae7b"
     },
     {
-      "id": "WOUT.source-review-20261020",
-      "path": "research/runtime/coverage/run-outline-source-review-20261020.json",
-      "sha256": "61bef6cf74d01aa0649e39823ee11b6399c44959ead5b4fe70a426f1451c1b14"
+      "id": "WTINT.source-review-20261020",
+      "path": "research/runtime/coverage/tint-pair-source-review-20261020.json",
+      "sha256": "bbb138be0f76ce14fb57a744f2baab590447432fc6c1429f31b1951dbc2eae44"
     }
   ]
 }

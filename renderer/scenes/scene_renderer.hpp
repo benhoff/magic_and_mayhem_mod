@@ -84,7 +84,7 @@ private:
     SurfaceId colourAtlas_=0,colourMask_=0;
     std::uint64_t colourAge_=0;
     ColourRectangleCacheStats colourStats_;
-    void drawColourRectangle(const Image&,Rect,int,int,const SpriteComposite&);
+    void drawColourRectangle(const Image&,Rect,int,int,const SpriteComposite&,bool forceCache=false);
     void validate(const SceneDraw&);
     std::optional<ResourceUploadRequest> request(const SceneDraw&);
 };

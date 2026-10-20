@@ -1,6 +1,7 @@
 #include "world_frame.hpp"
 #include "../../protocols/include/mnm/world_frame_v1.h"
 #include <cstring>
+#include "../../renderer/sprites/tint_colour.hpp"
 #include <stdexcept>
 namespace mnm::legacy {
 namespace {
@@ -24,8 +25,8 @@ WorldFrame decodeWorldFrame(const QByteArray& b){
     qsizetype at=MNM_WORLD_HEADER;
     for(std::uint32_t i=0;i<count;++i){
         const auto size=word(b,at),op=word(b,at+4),encoded=word(b,at+32),indexed=word(b,at+36),payload=word(b,at+40);
-        if(size!=MNM_WORLD_RECORD+encoded+payload||((op<6||op==MNM_WORLD_ADDITIVE_SPRITE||op==MNM_WORLD_RUN_OUTLINE)&&encoded<40)||encoded>MNM_WORLD_MAX_FRAME||indexed>1||op>MNM_WORLD_RUN_OUTLINE||size>std::uint32_t(b.size()-at)||word(b,at+52)>14)throw std::invalid_argument("Invalid World raster record");
-        if((op!=MNM_WORLD_COLOUR_RECT&&payload!=(op==MNM_WORLD_ADDITIVE_RECT?20u:op==MNM_WORLD_WAVE?64u:indexed?512u:0u))||(op!=MNM_WORLD_WAVE&&word(b,at+60)))throw std::invalid_argument("Invalid World raster payload");
+        if(size!=MNM_WORLD_RECORD+encoded+payload||((op<6||op==MNM_WORLD_ADDITIVE_SPRITE||op==MNM_WORLD_RUN_OUTLINE||op==MNM_WORLD_TINT_OUTLINE)&&encoded<40)||encoded>MNM_WORLD_MAX_FRAME||indexed>1||op>MNM_WORLD_TINT_OUTLINE||size>std::uint32_t(b.size()-at)||word(b,at+52)>15)throw std::invalid_argument("Invalid World raster record");
+        if((op!=MNM_WORLD_COLOUR_RECT&&payload!=(op==MNM_WORLD_ADDITIVE_RECT?20u:op==MNM_WORLD_WAVE?64u:op==MNM_WORLD_TINT_OUTLINE?524u:indexed?512u:0u))||(op!=MNM_WORLD_WAVE&&word(b,at+60)))throw std::invalid_argument("Invalid World raster payload");
         WorldDraw d;d.x=signedWord(word(b,at+8));d.y=signedWord(word(b,at+12));d.clip={signedWord(word(b,at+16)),signedWord(word(b,at+20)),signedWord(word(b,at+24)),signedWord(word(b,at+28))};d.backend=word(b,at+52);
         if(d.clip.left<0||d.clip.top<0||d.clip.right<=d.clip.left||d.clip.bottom<=d.clip.top||d.clip.right>int(frame.width)||d.clip.bottom>int(frame.height))throw std::invalid_argument("World clip outside viewport");
         if(op==MNM_WORLD_COLOUR_RECT){
@@ -47,16 +48,23 @@ WorldFrame decodeWorldFrame(const QByteArray& b){
             if(d.backend!=13||indexed!=1)throw std::invalid_argument("Additive sprite requires indexed backend13");
         }else if(op==MNM_WORLD_RUN_OUTLINE){
             if(d.backend!=14||indexed!=1)throw std::invalid_argument("Run outline requires indexed backend14");
+        }else if(op==MNM_WORLD_TINT_OUTLINE){
+            if(d.backend!=15||indexed!=1||frame.stride!=frame.width||word(b,at+48)||word(b,at+56))throw std::invalid_argument("Tint outline requires indexed backend15 and palette0");
         }else if(d.backend>=11)throw std::invalid_argument("Primitive backend does not match sprite operation");
         d.frame={bool(indexed),b.mid(at+MNM_WORLD_RECORD,encoded)};if(word(d.frame.encoded,28))throw std::invalid_argument("World frame retains a legacy pointer");frameIdentity(d.frame.encoded,d.frame.indexed);
         d.composite.mode=op==MNM_WORLD_ADDITIVE_SPRITE?render::CompositeMode::additive:render::CompositeMode(op);
-        if(op==MNM_WORLD_RUN_OUTLINE){
+        if(op==MNM_WORLD_RUN_OUTLINE||op==MNM_WORLD_TINT_OUTLINE){
             const auto left=std::int64_t(d.x)-signedWord(word(d.frame.encoded,12));
             d.composite.mode=left<d.clip.left||left+word(d.frame.encoded,4)>d.clip.right?
-                render::CompositeMode::half:render::CompositeMode::runOutline;
+                render::CompositeMode::half:op==MNM_WORLD_TINT_OUTLINE?render::CompositeMode::tintOutline:render::CompositeMode::runOutline;
         }
         if(op==MNM_WORLD_WAVE){d.composite.rowPeriod=word(b,at+60);if(!d.composite.rowPeriod||d.composite.rowPeriod>16)throw std::invalid_argument("World displacement period outside bounds");for(unsigned j=0;j<16;++j){d.composite.rowOffsets[j]=signedWord(word(b,at+MNM_WORLD_RECORD+encoded+j*4));if(d.composite.rowOffsets[j]<0||d.composite.rowOffsets[j]>16)throw std::invalid_argument("World displacement offset outside bounds");}}
         else if(indexed){render::SpriteColourTable colours{};for(unsigned j=0;j<256;++j){const auto offset=at+MNM_WORLD_RECORD+encoded+j*2;const auto* p=reinterpret_cast<const unsigned char*>(b.constData()+offset);colours[j]=std::uint16_t(p[0]|p[1]<<8);}d.colours=colours;}
+        if(op==MNM_WORLD_TINT_OUTLINE){
+            const auto tint=render::tintColour565(word(b,at+MNM_WORLD_RECORD+encoded+512),
+                word(b,at+MNM_WORLD_RECORD+encoded+516),word(b,at+MNM_WORLD_RECORD+encoded+520),signedWord(word(b,at+44)));
+            if(d.composite.mode==render::CompositeMode::tintOutline)d.colours->fill(tint);
+        }
         frame.draws.push_back(std::move(d));at+=size;
     }
     if(at!=b.size())throw std::invalid_argument("Trailing World raster inputs");
