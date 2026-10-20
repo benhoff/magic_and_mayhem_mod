@@ -17,7 +17,7 @@ from unittest.mock import Mock, patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
 from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, digest, draft, snapshot, source_index, file_digest
-from coverage_claims import behavior_contract
+from coverage_claims import behavior_contract, scenario_contract
 from coverage_reviews import ARCHIVES, load_journal, read_journal, split_journal
 
 spec = importlib.util.spec_from_file_location('gate_cli', ROOT/'tools/check-re-coverage.py')
@@ -345,6 +345,80 @@ class GateTests(unittest.TestCase):
     def test_pending_review_cannot_promote_validation_status(self):
         self.register['behaviors'][0]['status']['implementation'] = 'scoped'
         self.assert_error(self.result(self.receipt()), 'Status promotion requires fresh recorded validation')
+
+    def stage_native_receipt(self, stages):
+        self.write('assets/model.cpp', 'new native implementation\n')
+        behavior = self.register['behaviors'][0]
+        behavior['status']['implementation'] = 'scoped'
+        record = dict(self.record, sources={'assets/model.cpp': self.sha('assets/model.cpp'),
+                                           'tests/model.py': self.sha('tests/model.py')})
+        self.json('research/stage-native.json', record)
+        evidence = dict(self.register['evidence'][0], id='stage-native', kind='native_integration',
+                        record='research/stage-native.json', sha256=self.sha('research/stage-native.json'))
+        self.register['evidence'].append(evidence)
+        behavior['evidence'].append(evidence['id'])
+        receipt = self.receipt()
+        receipt['reviews'][0]['validation'].update(status='recorded', evidence=[evidence['id']])
+        if stages is not None:
+            receipt['reviews'][0]['validation']['stages'] = stages
+        return receipt
+
+    def test_implementation_receipt_does_not_require_renewing_historical_comparison(self):
+        receipt = self.stage_native_receipt(['implementation'])
+        self.assertEqual(self.result(receipt)['errors'], [])
+        _, audit = self.current()
+        validation = audit['behaviors'][0]['current_validation']
+        self.assertEqual(validation['implementation']['state'], 'current')
+        self.assertEqual(validation['comparison']['state'], 'pending')
+
+    def test_default_recorded_receipt_still_requires_all_declared_milestones(self):
+        self.assert_error(self.result(self.stage_native_receipt(None)),
+                          'fresh evidence kind does not support current validation levels')
+
+    def test_implementation_receipt_cannot_promote_integration(self):
+        receipt = self.stage_native_receipt(['implementation'])
+        self.register['behaviors'][0]['status']['integration'] = 'headless'
+        self.register['scenarios'].append({'id': 'native-case', 'scope': 'Bounded headless case',
+                                          'level': 'headless', 'behaviors': ['MV.test'],
+                                          'tests': ['tests/model.py'], 'evidence': ['stage-native']})
+        scenario = self.register['scenarios'][-1]
+        record = json.loads((self.root/'research/stage-native.json').read_text())
+        record['scenarios'] = [{'scenario': scenario['id'], 'contract_sha256': scenario_contract(scenario)}]
+        self.json('research/stage-native.json', record)
+        self.register['evidence'][-1].update(sha256=self.sha('research/stage-native.json'),
+                                             scenarios_pointer='/scenarios')
+        # Refresh the exact delta, preserving the deliberately insufficient stage credit.
+        receipt = self.receipt()
+        receipt['reviews'][0]['validation'].update(status='recorded', stages=['implementation'],
+                                                   evidence=['stage-native'])
+        self.assert_error(self.result(receipt), 'Status promotion requires fresh recorded validation')
+
+    def test_implementation_receipt_cannot_promote_original_comparison(self):
+        self.register['behaviors'][0]['status']['comparison'] = 'none'
+        baseline, _ = self.current()
+        self.stage_native_receipt(['implementation'])
+        self.register['behaviors'][0]['status']['comparison'] = 'recorded'
+        receipt = self.receipt(before=baseline)
+        receipt['reviews'][0]['validation'].update(status='recorded', stages=['implementation'],
+                                                   evidence=['stage-native'])
+        self.assert_error(self.result(receipt, before=baseline),
+                          'Status promotion requires fresh recorded validation')
+
+    def test_explicit_comparison_validation_still_needs_original_evidence(self):
+        self.assert_error(self.result(self.stage_native_receipt(['implementation', 'comparison'])),
+                          'fresh evidence kind does not support current validation levels')
+
+    def test_invalid_validation_stages_refuse(self):
+        receipt = self.stage_native_receipt(['implementation'])
+        for stages in ([], ['implementation', 'implementation'], ['understanding'], 'implementation', [None]):
+            with self.subTest(stages=stages):
+                receipt['reviews'][0]['validation']['stages'] = stages
+                self.assert_error(self.result(receipt), 'stages requires a nonempty unique list')
+
+    def test_pending_receipt_cannot_claim_stage_credit(self):
+        receipt = self.receipt()
+        receipt['reviews'][0]['validation']['stages'] = ['implementation']
+        self.assert_error(self.result(receipt), 'stages requires a nonempty unique list')
 
     def test_not_required_cannot_exempt_engine_changes(self):
         self.write('assets/model.cpp', 'changed\n')

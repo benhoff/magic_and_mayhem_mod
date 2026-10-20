@@ -11982,14 +11982,15 @@
                 "tools/build-native-draw.py": "d6caec8f153a8ada280da29a482fd274d4803cb5c67258b0cf9c4f69143a04d3",
                 "tools/test-native-functional-closure.py": "7215ba93c3d641c91d9912f14086b51284bb2064292499de241a519dbe54af13",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -12134,6 +12135,58 @@
                   "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "cpu_copy_boundary.h installs the checked native image-row copy, and the later whole-entry copy covers outer clipping separately.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed actual PE32 checked row ABI, trapped original body, GPR/ESP/EFLAGS/FXSAVE preservation and invalid-span controls.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Do not reimplement the row body; broader image callers and whole-entry ABI/equivalence retain their independent bounds.",
+                "evidence": [
+                  "NATIVE.native-functional-closure.controls-20261018",
+                  "NATIVE.native-functional-closure.final-controls-20261018",
+                  "NATIVE.native-functional-closure.stress-20261018",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.row-transforms-20261020",
+                  "HIGH03.row-transforms-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Do not reimplement the row body; broader image callers and whole-entry ABI/equivalence retain their independent bounds."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/native-draw/cpu_copy_boundary.h",
+                    "line": 6,
+                    "text": "__attribute__((used,noinline)) static void ns_image_copy_prepare(u32* r){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/native-render-functional-closure.md": "b11a7c6c5e788a993f755eab8b16b517f4f06cf54fbaec5ea1febb49524b8547",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "runtime/native-draw/cpu_copy_boundary.h": "a5a434fb252d7534a3c07e8c1d7a2df427ce91a01029909bfd0de0d14c32cb34",
+                  "runtime/native-draw/cpu_guard.h": "04114b8ebc10ce481310ddcb68a63402188b6ab7fab8daf94638ae1c341015fc",
+                  "runtime/native-draw/factory.c": "bbb71c437c2bfb679d189a490925a8f6e61d223b5ba517206fa07ca575778c92",
+                  "runtime/native-draw/history.h": "ce8ea75597f5f7f2152befc5c4cdfc91e56764e0ec2a97567ec01a475b3eade5",
+                  "runtime/native-draw/ownership_admission.h": "fbda44e79c112b4eaf05e49a9e9117f31ca24d94e4a6424816e8e888498f815a",
+                  "runtime/native-draw/surfaces.h": "f2087f3730912f1d9fe2504300b0905868be4cdfbb59e5d31482cd5695abed64",
+                  "tests/native-owned-backing-probe.c": "b44a7b397491afc639462e5251b0f5078e17a8e71bdf476b0f4c2969a07d26fe",
+                  "tools/build-native-draw.py": "d6caec8f153a8ada280da29a482fd274d4803cb5c67258b0cf9c4f69143a04d3",
+                  "tools/test-native-functional-closure.py": "7215ba93c3d641c91d9912f14086b51284bb2064292499de241a519dbe54af13",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -12215,14 +12268,15 @@
                 "tools/test-native-active-reader.py": "60022af30c2575ad6f62f42ef1a3129ed18e38baa988fc51eb60e67550742c4b",
                 "tools/test-native-functional-closure.py": "7215ba93c3d641c91d9912f14086b51284bb2064292499de241a519dbe54af13",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -12388,6 +12442,65 @@
                   "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "surfaces.h/pixel conversion and owned history paths implement canonical five-format copies, source keys and nearest-neighbour scaling.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed 150 five-format/key/scale cases and17550 pixels plus publication/history/restart controls; original-driver stretch remains separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Native policy is implemented; original-driver colour/stretch equivalence, unobserved callers and fresh combined-source execution remain separate.",
+                "evidence": [
+                  "NATIVE.native-functional-closure.controls-20261018",
+                  "NATIVE.native-functional-closure.readers-20261018",
+                  "NATIVE.native-functional-closure.final-controls-20261018",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.row-transforms-20261020",
+                  "HIGH03.row-transforms-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Native policy is implemented; original-driver colour/stretch equivalence, unobserved callers and fresh combined-source execution remain separate."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/native-draw/pixel_conversion.h",
+                    "line": 12,
+                    "text": "static u32 ns_convert(const struct NsState* d,const struct NsState* s,u32 value){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/native-render-functional-closure.md": "b11a7c6c5e788a993f755eab8b16b517f4f06cf54fbaec5ea1febb49524b8547",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "runtime/native-draw/cpu_guard.h": "04114b8ebc10ce481310ddcb68a63402188b6ab7fab8daf94638ae1c341015fc",
+                  "runtime/native-draw/factory.c": "bbb71c437c2bfb679d189a490925a8f6e61d223b5ba517206fa07ca575778c92",
+                  "runtime/native-draw/history.h": "ce8ea75597f5f7f2152befc5c4cdfc91e56764e0ec2a97567ec01a475b3eade5",
+                  "runtime/native-draw/palette.h": "ed384fd69918ac45c6690a0ca1c0b693a70de83047267550d3d95ccbcd24d289",
+                  "runtime/native-draw/pixel_conversion.h": "b0a1fb026370cdb02b9990574430bcc59800affec8826a7651c074868bf9441b",
+                  "runtime/native-draw/surfaces.h": "f2087f3730912f1d9fe2504300b0905868be4cdfbb59e5d31482cd5695abed64",
+                  "runtime/render/bridge.c": "c281d05686e784013cb3f8a2244be8cbfa3a7a34acb5fe22f8a3c1b5c228f183",
+                  "runtime/render/lock_lifecycle.h": "b8ea7a58bdacac385bb9eb03b138f70668627d71370d0b2d80e68a02c6ea35b3",
+                  "runtime/render/lock_surfaces.h": "660f948fc334d0df41dca193caa08d58f3a7d97edcdc14edbbd9ee40555b6729",
+                  "runtime/render/owned_session.h": "21f94c6770a2c141765b1d7df62f414894fc137bfd399b4c6f7354a83737c982",
+                  "tests/native-active-reader-probe.c": "df90afa5d7599ae436dee0a390fb4baf3ddf28bbc953bebfc98c3ae83e28328a",
+                  "tests/native-copy-transform-probe.c": "d66e25d4ab5e6c15bf784b8b2fa65d09cd88e49181b92edd36771ce09a1ad99a",
+                  "tests/native-draw-resource-probe.c": "6ddda194684dc7674ff485ba8ac07bf708232e9fd9655916afffd9c899c30e62",
+                  "tools/build-native-draw.py": "d6caec8f153a8ada280da29a482fd274d4803cb5c67258b0cf9c4f69143a04d3",
+                  "tools/test-native-active-reader.py": "60022af30c2575ad6f62f42ef1a3129ed18e38baa988fc51eb60e67550742c4b",
+                  "tools/test-native-functional-closure.py": "7215ba93c3d641c91d9912f14086b51284bb2064292499de241a519dbe54af13",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -13708,14 +13821,15 @@
                 "tools/compare-mmsprite-binary.py": "53a014012dbd9e578f5c96505c82e4fbc1af2736088801a9838f45c16c61b1d8",
                 "tools/test-sprite-render.py": "95b5a35e2cd331d1225fa7987af7e21615c0707518076f8666e0fd3b0ebb047a",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -13812,6 +13926,55 @@
                   "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "prepareSpriteFrame and UploadedSpriteFrame implement decoded native sprite upload and drawing.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "91 installed frames match original WORDs and expected RGBA presentation:14 indexed,77 direct,2 empty; zero terminal GPU surfaces.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Installed-frame comparison is bounded; full sprite producers, all encoded inputs and live caller/state equivalence remain independent.",
+                "evidence": [
+                  "NR.surface-colors.rgb565-dc.regressions-20261006",
+                  "NR.sprites.installed-bitrep-20261010",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.sprites-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Installed-frame comparison is bounded; full sprite producers, all encoded inputs and live caller/state equivalence remain independent."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "renderer/sprites/sprite.cpp",
+                    "line": 7,
+                    "text": "PreparedSpriteFrame prepareSpriteFrame(const assets::Sprite& sprite,std::size_t index,const SpriteColourTable* colours,const std::function<void()>& checkpoint,bool retainIndices){"
+                  }
+                ],
+                "source_sha256": {
+                  "renderer/sprites/preview_main.cpp": "e4948d5e8e997c16fe9a08f04dbad086648b376a96b3302a066aff64228e4a23",
+                  "renderer/sprites/sprite.cpp": "7fce79798a163cfdbb50e28c460d13400e6f815cb794abc80dc69194698c275f",
+                  "renderer/sprites/sprite.hpp": "1ca2c4cc8e9c456f5ef111035724bdf34c931701fef07b270f5164348e8d55c2",
+                  "research/runtime/native-sprite-rendering.md": "f6deb5c800141a30fbc2f7d8e563b6c698f21dcf75dc00599e45a58d8b3b8f11",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "research/runtime/surface-dib-ddraw.md": "5d83e299681c7cc945e9c8b69cacad1a8a97807e1ebd711208f25cbf4fe5f21d",
+                  "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+                  "tests/sprite-render-test.cpp": "93e9c6d0ea228e8cb03b29824152a52aad0862c355fdabe341cb8e9fb9ada5ca",
+                  "tools/compare-mmsprite-binary.py": "53a014012dbd9e578f5c96505c82e4fbc1af2736088801a9838f45c16c61b1d8",
+                  "tools/test-sprite-render.py": "95b5a35e2cd331d1225fa7987af7e21615c0707518076f8666e0fd3b0ebb047a",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -13897,13 +14060,14 @@
                 "tools/test-sprite-scene.py": "6bad58bf96cc5f79a8b6bb244857b384a82815c777551d939398ec5ebd00b2d6",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
                 "tests/sprite-scene-resource-lifetime-test.cpp": "807d4d46a7ca8c5cfcf7a86df6fe16cb9b358534391849f032d7f83b3961b20b",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -14010,6 +14174,65 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "SpriteScene advances/selects actors and delegates ordered resource drawing to the shared scene service.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Current native controls and actual preview CLI pass195sprite frames/390actor states plus198layered frames/792layer states, with independent selection/pixel oracles and prospective preview scenario binding.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Complete original scene production, general picking and live world ownership are outside this preview.",
+                "evidence": [
+                  "NATIVE.native-animation-scene",
+                  "NR.surface-colors.rgb565-dc.regressions-20261006",
+                  "NR.scene-service.synthetic-20261006",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.scene-controls-20261020",
+                  "HIGH03.preview-sprite-20261020",
+                  "HIGH03.preview-layers-20261020",
+                  "HIGH03.scene-controls-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Complete original scene production, general picking and live world ownership are outside this preview."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "apps/sprite-scene/scene.cpp",
+                    "line": 99,
+                    "text": "void SpriteScene::advance(){"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/sprite-scene/CMakeLists.txt": "17b05aaac64946d62fb0e79bec2ae855d42629ce61a20a8fcaac53cac3da0fe8",
+                  "apps/sprite-scene/README.md": "c0c6a8aeabef457d5e76ca12e885bede3ab0177a2e6584db7563bddd8ee5b1e1",
+                  "apps/sprite-scene/attachment_recipe.cpp": "434bd4d96864b9c417e5c41d1ff70a9ff748e560f97e6ea74de2eeaa7665b327",
+                  "apps/sprite-scene/attachment_recipe.hpp": "ee73b656def1f6d667690ecd2397d03a1c1e46fd046d33bfa8392e3f240e892a",
+                  "apps/sprite-scene/main.cpp": "f0dfa119916c15a1f131a9b75f454baa36c49269359fbfe249165b9658382c74",
+                  "apps/sprite-scene/scene.cpp": "b85a0b18c6f708b52bb0dc9d4408e0eea2a4bc3968263ec0d973a4d48f9f5447",
+                  "apps/sprite-scene/scene.hpp": "2693af7924c36daa55a10ec7d958dcadae4beef7d29ab5625edbecd65b0d2d2f",
+                  "research/runtime/native-shared-scene-renderer.md": "d7f865acfcb7514c71d5b547a03776d7bb52fd14946af3de5b690705c66eb094",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "research/runtime/surface-dib-ddraw.md": "5d83e299681c7cc945e9c8b69cacad1a8a97807e1ebd711208f25cbf4fe5f21d",
+                  "tests/scene-resource-fixtures.hpp": "5ced8ef0997b85f1298f7239154c43c6af940dd5fcc38712c9894956d29882ea",
+                  "tests/sprite-scene-queue-test.cpp": "da3c5a3fdaca9fdca6227858543347332f83c436540e79a4543c73806aab6948",
+                  "tests/sprite-scene-test.cpp": "b6d346bed4cd964c2184620315130aa37b05198e3a2115432342d1671d641a24",
+                  "tools/test-animation-layers.py": "2c792778f9552ca4ef2ce2e98a17b17779c820a1fd06e5be5979f11b078a5a66",
+                  "tools/test-native-scene-service.py": "37e1fac472738c95b03b917dfb2b1dbdc1d012faad38324c2e058364223986b1",
+                  "tools/test-sprite-scene.py": "6bad58bf96cc5f79a8b6bb244857b384a82815c777551d939398ec5ebd00b2d6",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tests/sprite-scene-resource-lifetime-test.cpp": "807d4d46a7ca8c5cfcf7a86df6fe16cb9b358534391849f032d7f83b3961b20b",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -14357,14 +14580,15 @@
                 "tools/check-rendering-high-surfaces.py": "9a9692c4e4316da22a9d64a2d0660eca461068d1bb9c0efbbf74486ddbec89de",
                 "tools/check-surface-fixtures.py": "039819f747816e52ff0e7053e04686794ba3c4e4264742081999f29471cbca10",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -14489,6 +14713,68 @@
                   "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "A strict matrix/corpus validator and independent original opaque-copy fixtures exist.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "All five independent validators pass all twelve required fixture cells; the historical two-of-twelve capture corpus is preserved. Full surface acceptance remains false.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Populate additional required operation/reference domains; corpus completeness is not a missing raster function.",
+                "evidence": [
+                  "NR.surface-fixture-corpus.offline-20261006",
+                  "NR.surface-fixture-corpus.post-driver-20261006",
+                  "NR.surface-fixture-corpus.clipping-backend-20261006",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.surface-cohorts-20261020",
+                  "HIGH03.surface-cohorts-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Populate additional required operation/reference domains; corpus completeness is not a missing raster function."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/check-surface-fixtures.py",
+                    "line": 24,
+                    "text": "def local(root, name):"
+                  }
+                ],
+                "source_sha256": {
+                  "docs/live-drawing-replacement.md": "8c48ffb9e5f4dbc18f9daa37bd03eab587c63c5137b68707189531f5b997246a",
+                  "research/runtime/native-surface-fixtures.md": "a19328cf2d7572c380f8cc28de0ea954632c560b59b162dee74f0b4e16aad830",
+                  "research/runtime/native-surface-operation-matrix.json": "fc8325951f294e3d53f06f6cdb0b4a79eb6624d4206ff3fea267705ce8977840",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/fixtures/surfaces/corpus.json": "e3d97844617a3f3ecdf2ca15787cbc442ce0f5e375fd783caf3e90ed5496cdb6",
+                  "tests/fixtures/surfaces/g34xhs0b.bin.gz": "f39c6c8de24ded931d1a60cc8e2913fd16d501b27dbd6f812caf7f4a2b574434",
+                  "tests/fixtures/surfaces/g34xhs0b.manifest.json": "6d86cfbdd6e4a6a05b993aafd6d6cc338b2745da3c868432d0f693eae403c648",
+                  "tests/fixtures/surfaces/high-validation-suite.json": "50ba4c93a1541a0b0a497f1a58eed81448d76ce6c09956c796859600c403b59a",
+                  "tests/fixtures/surfaces/p66k189j.bin.gz": "ae5cafbf5ee32504bf0601f0538ff300faee1af31a9dbe1644bba6aee244e14b",
+                  "tests/fixtures/surfaces/p66k189j.manifest.json": "51165958fbfdf56a26912efb2dd0dd152ff3dc08779e3ca83b6e26473cf13b22",
+                  "tests/fixtures/surfaces/ugdn7zhm.bin.gz": "dd43729020bb0864a2c22a45aa709039b6211859f8959b034817834f62bffa10",
+                  "tests/fixtures/surfaces/ugdn7zhm.manifest.json": "d0b351908c11390f2812a689f7a4b11a426a3e55d518c6e7b2966a1bd6f2d102",
+                  "tests/fixtures/surfaces/yu55vq8i.bin.gz": "4a6a8b3aa699e5f48db8764704e5431841c56bc5644b51193483436f01d0e672",
+                  "tests/fixtures/surfaces/yu55vq8i.manifest.json": "14ffd0bdc20f1340e8fd055f4fb082c2468551c492c71612af7bb195393af9f5",
+                  "tests/fixtures/surfaces/zpfft1bo.bin.gz": "4bc3c1a77ef9d166b27b3a4d4e3dcf1624052e6edbf9eff8b07ee572b961065b",
+                  "tests/fixtures/surfaces/zpfft1bo.manifest.json": "4c955008fdfd7b1f60b1b7de8e13fbd65e0ba4d5c2b27e2358e7022c6f3f6090",
+                  "tests/test-render-capture.py": "2d951f4c1e6a70105c91f256bbe14265f94ef6e5e07003eea661ad62d0f4aba7",
+                  "tests/test-rendering-high-surfaces.py": "5c7bd1e765d545464fdcc95dcc1fff3c4ae9dac4d43e35e45577b63cedd6bf10",
+                  "tests/test-surface-fixtures.py": "e833ad80cdfdcf430b67668683f0f849b695fd2d0965fff435072b4e260da015",
+                  "tools/check-rendering-high-surfaces.py": "9a9692c4e4316da22a9d64a2d0660eca461068d1bb9c0efbbf74486ddbec89de",
+                  "tools/check-surface-fixtures.py": "039819f747816e52ff0e7053e04686794ba3c4e4264742081999f29471cbca10",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -14578,7 +14864,8 @@
                 "tests/render-surfaces-test.cpp": "62c9962b8e4aa28e42fdc99a2a1a96e55dab4a9a6800710e6e276a8cfc88efc9",
                 "tests/test-render-commands.py": "ba42952b3cd657f9389c043c3652454710bfc41947dec82b67845a26f3407734",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "scope_domains": [
                 {
@@ -14722,7 +15009,7 @@
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -15121,6 +15408,209 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The surface umbrella is crosswalked to existing format/pitch, copy/key/clip/fill/overlap, palette/flip, restore/validity, lock/DC and ordered-replay services; no second renderer is required.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "All twelve required fixture cells now pass within five separate measured cohorts; broader COM/driver/live surface acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "The twelve required operation families have scoped suppliers. Four conditional discovery domains, corpus completeness, original physical leases and integrated live acceptance remain separate.",
+                "evidence": [
+                  "NR.surface-colors.rgb565-dc.regressions-20261006",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH02.surface-scope-review-20261019",
+                  "HIGH03.surface-cohorts-20261020",
+                  "HIGH03.surface-cohorts-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "The twelve required operation families have scoped suppliers. Four conditional discovery domains, corpus completeness, original physical leases and integrated live acceptance remain separate."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "renderer/blit.cpp",
+                    "line": 766,
+                    "text": "SurfaceId GlBlitter::create(const Image& image,PixelFormat format){"
+                  }
+                ],
+                "source_sha256": {
+                  "renderer/README.md": "960b7b05d3e77dfce41334aa00e98d88273756a8e9711c72e0fc307627edd76a",
+                  "renderer/bitmap_dc.hpp": "c8fadb0fc0f4217960e08f067283b504a8dc918ef425de160df262798876fe29",
+                  "renderer/blit.cpp": "9cc4a156e7b4d43c55aa4357f0ffd39b3f98804b4993d3523607c2c4e1c2632c",
+                  "renderer/blit.hpp": "3d657b922652328eab32631e8d884e531b45e5ee2ff2664b12383fc3523306bf",
+                  "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+                  "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+                  "renderer/command_consumer.cpp": "921f6cde6e3661e3cb27e788e3798e885ff4772c1a1935bf513ef19b81816dcf",
+                  "renderer/command_state.hpp": "b6fe10d3c6d1ffa17f05a4c37828a1a6d926d1b275f1e070ba0895678d45e515",
+                  "renderer/commands.cpp": "f7c6caef1334893dac1b3a4f2997fe742a63713bf36deb2295cf23ee7c756769",
+                  "renderer/commands.hpp": "aab8b05f193a9e7da476ad7434185e53c7f2579345ffd5edbb9101a18d1b4fc4",
+                  "renderer/commands_main.cpp": "91a5119315d2435ae3028da6393f104763f9da55c3862de56b8687bc57a3aacd",
+                  "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+                  "renderer/known_pixels.hpp": "ac863730923ac588136d4226d99a05e635c76aad98d0d588773180e80329fbf0",
+                  "renderer/pixel_rows.cpp": "ffa72fac123001700e435112c7b09f39fc90ca4cb3308b1e4e4e31ef93027bfd",
+                  "renderer/replay_main.cpp": "c558bb1fcd387274e1727f97fb4f8ad4cb5eb349aab9839d0bb6e368fe7a37a2",
+                  "renderer/surface_access.hpp": "95166e8226849e7302dffa9762b737ed5dd1381ffc8b392283763b1fc77854ad",
+                  "renderer/surface_backend.cpp": "c5cb22ea00315d78d2bcb8b4c6a252f34b32fab087f045187816a954d6113bff",
+                  "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+                  "research/runtime/coverage/high-tranche2-surface-crosswalk-20261019.json": "ca398a6475d5c7233fce906e4172674a214aec09d65ebcc6acce385dec68e2fa",
+                  "research/runtime/high-tranche2-implementation-20261019.md": "cf14a4d1d57e455925c8f7a9965424676c2c54bf53096fb4282001c70e934f26",
+                  "research/runtime/opengl-surface-command-replay.md": "db05538944adc511d9fc9fcbc9444b0a0c13f168180bc241675b81022f619715",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "research/runtime/surface-dib-ddraw.md": "5d83e299681c7cc945e9c8b69cacad1a8a97807e1ebd711208f25cbf4fe5f21d",
+                  "tests/render-blit-test.cpp": "1cbd3b85a3270f8ef52d8a5cb086d53531a8973853d8ca931ebb0bfdcc887f35",
+                  "tests/render-surfaces-test.cpp": "62c9962b8e4aa28e42fdc99a2a1a96e55dab4a9a6800710e6e276a8cfc88efc9",
+                  "tests/test-render-commands.py": "ba42952b3cd657f9389c043c3652454710bfc41947dec82b67845a26f3407734",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "scope_domains": [
+                  {
+                    "name": "Canonical formats and signed pitch",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NR.surface-backend.formats-pitch"
+                    ],
+                    "paths": [
+                      "renderer/surface_backend.cpp",
+                      "renderer/pixel_rows.cpp",
+                      "renderer/blit.cpp"
+                    ],
+                    "finding": "Canonical indexed8/RGB555/RGB565/RGB24/RGB32 owned formats and signed rows are supplied.",
+                    "validation": "Arbitrary masks and all original format callers remain outside the measured domain."
+                  },
+                  {
+                    "name": "Opaque and keyed copies",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NR.surface-backend.owned",
+                      "NR.surface-backend.formats-pitch"
+                    ],
+                    "paths": [
+                      "renderer/surface_backend.cpp",
+                      "renderer/surface_copy.cpp",
+                      "renderer/blit.cpp"
+                    ],
+                    "finding": "Same-format opaque copies and exact source keys are supplied.",
+                    "validation": "Native transform policy is separate from original-driver parity."
+                  },
+                  {
+                    "name": "Rectangle and region clipping",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NR.surface-copy.clipping",
+                      "NR.surface-copy.clipping-stream"
+                    ],
+                    "paths": [
+                      "renderer/surface_copy.cpp",
+                      "renderer/commands.cpp",
+                      "renderer/command_consumer.cpp"
+                    ],
+                    "finding": "Selected RGB565 rectangle/region plans and partial-write result replay are supplied.",
+                    "validation": "Live clipper observation, other flags and formats are separate."
+                  },
+                  {
+                    "name": "Fills",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NR.surface-backend.owned",
+                      "NR.surface-backend.formats-pitch"
+                    ],
+                    "paths": [
+                      "renderer/surface_backend.cpp",
+                      "renderer/blit.cpp"
+                    ],
+                    "finding": "Active-mask native fill and sampled driver result domains are supplied.",
+                    "validation": "Full original caller reachability remains unvalidated."
+                  },
+                  {
+                    "name": "Self overlap",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NR.surface-backend.owned"
+                    ],
+                    "paths": [
+                      "renderer/blit.cpp",
+                      "renderer/surface_backend.cpp"
+                    ],
+                    "finding": "Opaque per-piece GPU snapshots and bounded forward keyed overlap are supplied.",
+                    "validation": "Unobserved physical aliases and arbitrary keyed overlap domains are separate."
+                  },
+                  {
+                    "name": "Palettes and two-buffer flips",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NR.palette-resources",
+                      "NR.surface-backend.ownership-recovery"
+                    ],
+                    "paths": [
+                      "renderer/surface_backend.cpp",
+                      "renderer/command_consumer.cpp"
+                    ],
+                    "finding": "Shared owned palettes and two-buffer lease/flip mechanisms are supplied.",
+                    "validation": "Longer chains, physical aliases and all driver lifetime semantics remain unresolved."
+                  },
+                  {
+                    "name": "Restore and explicit reload validity",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NR.surface-contents.validity",
+                      "NR.surface-reload.dib-rgb",
+                      "NR.surface-reload.dib-indexed",
+                      "NR.surface-reload.bitmap-dc",
+                      "NR.surface-backend.ownership-recovery"
+                    ],
+                    "paths": [
+                      "renderer/known_pixels.hpp",
+                      "renderer/dib.cpp",
+                      "renderer/bitmap_dc.hpp",
+                      "renderer/surface_backend.cpp"
+                    ],
+                    "finding": "Restoration, DIB/DC reload and undefined-content tracking are supplied.",
+                    "validation": "Unknown restored bytes stay undefined; real-loss/Windows/live integration is separate."
+                  },
+                  {
+                    "name": "Lifetime and lock/DC admission",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NR.surface-access",
+                      "NR.surface-backend.owned",
+                      "NR.continuous-resource-lifetime",
+                      "NR.continuous-mutations"
+                    ],
+                    "paths": [
+                      "renderer/surface_access.hpp",
+                      "renderer/surface_backend.cpp",
+                      "renderer/command_consumer.cpp"
+                    ],
+                    "finding": "Owned identity, lock/DC state and ordered resource updates are supplied.",
+                    "validation": "All original leases, cross-thread and physical identity are not proven."
+                  },
+                  {
+                    "name": "Ordered replay and presentation",
+                    "disposition": "supplied",
+                    "suppliers": [
+                      "NR.surfaces"
+                    ],
+                    "paths": [
+                      "renderer/commands.cpp",
+                      "renderer/command_consumer.cpp",
+                      "renderer/blit.cpp"
+                    ],
+                    "finding": "Versioned framing, surface/palette generations, native words and GPU presentation are supplied.",
+                    "validation": "Only admitted version/format/state domains; no whole renderer or live-replacement acceptance."
+                  }
+                ],
+                "scope_resolution_record": "research/runtime/coverage/high-tranche2-surface-crosswalk-20261019.json",
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -15217,13 +15707,14 @@
                 "tools/test-drawing-storage-point.py": "29076b23727f6e964b9e251074cf210fa016e7f40f89b476d545cc7d7ca278f9",
                 "tools/test-drawing-storage-transitions.py": "f2f0c641520dfb65f4f453e88a2f74ece0385d67bab3c1e8d95fcae35ed632af",
                 "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
-                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
+                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -15328,6 +15819,62 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "storage_transitions.h emits original wrapper storage transitions and exact query intervals.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Observed query/Lock identity is not allocator, alias or submitted source ownership.",
+                "evidence": [
+                  "DRAW02.storage-transitions-fixture-20261012",
+                  "DRAW02.storage-transitions-original-20261012",
+                  "DRAW02.storage-caller-fixture-20261012",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.ownership-storage-20261020",
+                  "HIGH03.ownership-storage-point-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Observed query/Lock identity is not allocator, alias or submitted source ownership."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/scene/drawing_storage_transitions.h",
+                    "line": 10,
+                    "text": "static u32 storage_address_id(u32 address){"
+                  }
+                ],
+                "source_sha256": {
+                  "protocols/include/mnm/drawing_storage_point_v2.h": "e7c17a78e2c14a840f0d8465333afd7ec0c819b050fa13cab304b5d3468331b8",
+                  "protocols/include/mnm/drawing_storage_transitions_v5.h": "e3988526940d945b78ea78ca8658aedfbfe85de1dfea95eab39df76cbfc06713",
+                  "research/formats/drawing-storage-transitions.md": "0e859cbebd83303b04d5c0ff6aa76a3ddb65c22f08fa437bd054203c70277d6f",
+                  "research/runtime/draw02-canvas-storage-generations.md": "f291f013bc7fe7a4ad0c1eb728581775de6ccfec57adf1960f75b0dd7af7cfa6",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "runtime/scene/drawing_storage_caller.h": "916a59c30c3ac9cf1da39e532a643896aae754759bf5f14e84342cb307454d3f",
+                  "runtime/scene/drawing_storage_point.h": "a34da1e400ee16607ed3d26c13c7324846ce9ce7cd97fc24ef658bfcc996035e",
+                  "runtime/scene/drawing_storage_transitions.h": "9cc151a9e7c6d005d150b6e3ec790895bd04e29d8c301b49d728854e87208a67",
+                  "tests/drawing-storage-point-test.c": "7a0dadd71f4caf79ec4d125a2973d6d4e6fc615f1b1b385c6cd276c0e7e2a3c9",
+                  "tests/drawing-storage-transitions-test.c": "58feb912c40d97c98c1263e7af12fd062965d2befbb9ed23a9de72aee409b14d",
+                  "tests/test-drawing-storage-transitions.py": "f15513e367fbcbfcf20332582515e8d596669e6d2351523664a95657cd39194e",
+                  "tools/analyze-drawing-storage-transitions.py": "f5d1c2ca0cf676b6293f84c659bd7143749d588bea241c351ed4599cefc5180f",
+                  "tools/capture-drawing-interactive.py": "338a2257af5aedc4f6c6b361cae834af56263215e7795ee11d15714b0baac246",
+                  "tools/drawing_storage_transitions.py": "7422badc92e419c06568b576eac425feb95061f5429c8f692d0d51495a69d6b6",
+                  "tools/test-drawing-storage-point.py": "29076b23727f6e964b9e251074cf210fa016e7f40f89b476d545cc7d7ca278f9",
+                  "tools/test-drawing-storage-transitions.py": "f2f0c641520dfb65f4f453e88a2f74ece0385d67bab3c1e8d95fcae35ed632af",
+                  "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
+                  "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -15396,13 +15943,14 @@
                 "tools/drawing_storage_query_returns.py": "0caf7f9583ce5d60746a8ba96d9e76108d4b994318d4306eb42d87074d763541",
                 "tools/test-drawing-storage-transitions.py": "f2f0c641520dfb65f4f453e88a2f74ece0385d67bab3c1e8d95fcae35ed632af",
                 "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
-                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
+                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -15488,6 +16036,52 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "drawing_storage_query_returns.bind checks query identities within unique original Lock intervals.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Numerical interval identity does not establish physical allocation or all alias ownership.",
+                "evidence": [
+                  "DRAW02.draw02-storage-v5-fixture-01-20261013",
+                  "DRAW02.draw02-storage-query-return-guards-01-20261013",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.ownership-storage-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Numerical interval identity does not establish physical allocation or all alias ownership."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/drawing_storage_query_returns.py",
+                    "line": 4,
+                    "text": "def bind(observation):"
+                  }
+                ],
+                "source_sha256": {
+                  "research/formats/drawing-storage-transitions.md": "0e859cbebd83303b04d5c0ff6aa76a3ddb65c22f08fa437bd054203c70277d6f",
+                  "research/runtime/draw02-canvas-storage-generations.md": "f291f013bc7fe7a4ad0c1eb728581775de6ccfec57adf1960f75b0dd7af7cfa6",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/drawing-storage-transitions-test.c": "58feb912c40d97c98c1263e7af12fd062965d2befbb9ed23a9de72aee409b14d",
+                  "tests/test-drawing-storage-query-returns.py": "75ad8c1ee0e59acbef3ee9ca89b49b7e60dd0f2b6eae16cb5aa3a8d52fbf3d46",
+                  "tools/analyze-drawing-storage-query-returns.py": "cfb887513ea5ef3b86a83974b1a741a02b28f18ae1789838adb4ed04b45b905a",
+                  "tools/drawing_storage_query_returns.py": "0caf7f9583ce5d60746a8ba96d9e76108d4b994318d4306eb42d87074d763541",
+                  "tools/test-drawing-storage-transitions.py": "f2f0c641520dfb65f4f453e88a2f74ece0385d67bab3c1e8d95fcae35ed632af",
+                  "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
+                  "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -15551,13 +16145,14 @@
                 "tools/analyze-drawing-backing-provenance.py": "9e87423a1b005d08fc7558f1209f15371714f9c52087b4f22e6b8bc8b3b3040c",
                 "tools/drawing_backing_provenance.py": "6a78ebc215f4277bfe4124648fcadcbe99702e850a5a8ed2fe05570fa612fd29",
                 "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
-                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
+                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -15639,6 +16234,50 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "drawing_backing_provenance.classify reports observed lifecycle of otherwise unlocated cached canvases.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. The missing physical location/alias ownership remains unknown rather than supplied by a classifier.",
+                "evidence": [
+                  "DRAW02.backing-provenance-analysis-01-20261013",
+                  "DRAW02.backing-provenance-analysis-02-20261013",
+                  "DRAW02.step2-integration-python-02-20261014",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.host-diagnostics-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "The missing physical location/alias ownership remains unknown rather than supplied by a classifier."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/drawing_backing_provenance.py",
+                    "line": 5,
+                    "text": "def classify(traces, observation):"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/draw02-gpu-backing-provenance.md": "853e3f6435601887e593c3e065cc98ff57d144db60682b43d7aad8d5f2936e37",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/test-drawing-backing-provenance.py": "34e523146d1c03da662d0fb6d8d95af2903d24dc397c5ab503247d95288262b3",
+                  "tools/analyze-drawing-backing-provenance.py": "9e87423a1b005d08fc7558f1209f15371714f9c52087b4f22e6b8bc8b3b3040c",
+                  "tools/drawing_backing_provenance.py": "6a78ebc215f4277bfe4124648fcadcbe99702e850a5a8ed2fe05570fa612fd29",
+                  "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
+                  "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -15836,13 +16475,14 @@
                 "tools/drawing_source_version.py": "b2dbfa094aebf8573c83ed19de4cc934586b597e6edfc0cb181294408ad7fc7f",
                 "tools/test-drawing-source-version.py": "2c1bf67e79fd2a1b9a07ffe47da01c6e09b6b1f360f2e594b280a9e40e24d8c0",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -15932,6 +16572,54 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "wine_source_version.h tracks observed write epochs and refuses changed/pending exact worker reads.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Unobserved mutators and physical aliases remain outside the epoch proof; do not treat an observer as global ownership.",
+                "evidence": [
+                  "DRAW02.source-version-fixture-03-20261013",
+                  "DRAW02.source-version-fixture-04-20261013",
+                  "DRAW02.source-version-fixture-05-20261013",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.ownership-source-version-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Unobserved mutators and physical aliases remain outside the epoch proof; do not treat an observer as global ownership."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/drawing/wine_source_version.h",
+                    "line": 73,
+                    "text": "static void wine_source_version_worker(const u32* packet,u32 submission,u32 command,u32 worker,u32 phase){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/formats/drawing-source-version-guard.md": "6148b11b34f55d7ed733a12fa2fdbdf9aa33c0ff66a2563f55cbfc61b24a6de1",
+                  "research/runtime/draw02-source-version-guard.md": "4595923c5022ad4bce2ab952d6da9d924e7ba9473ba39a1ae0a08a73b05dda20",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "runtime/drawing/wine_source_version.h": "a0f2aa28c0506cedfdbf72226626243eaf81f2fb861ae8346861e9c5bdacef0d",
+                  "tests/drawing-source-version-test.c": "bac39265c1d82ab48132b35e33118eab551c1a04c830791d72921eaac8cebf7c",
+                  "tests/test-drawing-source-version.py": "236748f515649de4ed88f833b70a06687ac3050c5201ec6e0760d0ee724eb5ae",
+                  "tools/capture-drawing-interactive.py": "338a2257af5aedc4f6c6b361cae834af56263215e7795ee11d15714b0baac246",
+                  "tools/drawing_source_version.py": "b2dbfa094aebf8573c83ed19de4cc934586b597e6edfc0cb181294408ad7fc7f",
+                  "tools/test-drawing-source-version.py": "2c1bf67e79fd2a1b9a07ffe47da01c6e09b6b1f360f2e594b280a9e40e24d8c0",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -16007,13 +16695,14 @@
                 "tools/drawing_source_version.py": "b2dbfa094aebf8573c83ed19de4cc934586b597e6edfc0cb181294408ad7fc7f",
                 "tools/test-drawing-source-reservations.py": "8be23951ae52b4dc9fe831bbe6fa89ed7c2b2b2d367913e44d48c591c06abcf7",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "execution_result": {
               "outcome": "PASS",
@@ -16118,6 +16807,59 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "wine_source_reservations.h implements observed-path resource read reservations and write refusal. Raw evidence admission now independently validates all three complete journals, report fingerprints and exact source-version/reservation/GPU worker-thread identity.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Private mutators, aliases and every source lifetime remain outside the admitted diagnostic domain.",
+                "evidence": [
+                  "NATIVE.source-reservations.fixture-20261017",
+                  "NATIVE.source-reservations.original120-20261017",
+                  "NATIVE.source-reservations.controls-20261017",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.reservation-raw-admission-20261019",
+                  "HIGH03.ownership-reservations-20261020",
+                  "HIGH03.ownership-reservations-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Private mutators, aliases and every source lifetime remain outside the admitted diagnostic domain."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/drawing/wine_source_reservations.h",
+                    "line": 14,
+                    "text": "static void wine_reserve_emit(const struct WineReadReservation* s,u32 phase,u32 reason,u32 kind){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/formats/drawing-source-reservations-v1.md": "bb757a4d2cf2eb76d788d9a8cbb30eb7f71f2b8440ac662b78e9ac2a293b4a0a",
+                  "research/runtime/drawing-source-read-reservations.md": "faeb067eb4290cc911c9c8274606ed465939fe13a0aac7caed67fe708f316758",
+                  "research/runtime/high-tranche3-reservation-admission-20261019.json": "c07266b3d2730e41b688ef7d3f0deca0dfa18daed7ac8fe5ebadc3befed4f2ad",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "runtime/drawing/wine_source_reservations.h": "63c16855df7b3f24c8038241160c8b29a8c75471bb2ccab62fdf023965bc15bf",
+                  "tests/drawing-source-reservations-test.c": "be5db15ad97167f423de5f27699a58906add1947be5b76dfc0d27fb2c52066ff",
+                  "tests/test-drawing-source-reservations.py": "a302249f7fb50c4d1398a066a4385f73f4b39f287978d2c405c43505b9916bb6",
+                  "tools/drawing_api_session.py": "d9b927eebf99cc1144a60e1217c92dbfc17c5b8b33ab0e1b3a913844caf9753f",
+                  "tools/drawing_gpu_completion.py": "6bd829550554658f06060faa066e494624e246da5f232cdfb95649d66a237e24",
+                  "tools/drawing_source_reservations.py": "f42a96a0b818d3fdf99d991c68f3303f616627f43c4152acff0c4ce5d9e0d219",
+                  "tools/drawing_source_version.py": "b2dbfa094aebf8573c83ed19de4cc934586b597e6edfc0cb181294408ad7fc7f",
+                  "tools/test-drawing-source-reservations.py": "8be23951ae52b4dc9fe831bbe6fa89ed7c2b2b2d367913e44d48c591c06abcf7",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -16183,13 +16925,14 @@
                 "tests/drawing-mutator-entry-test.c": "e2e59874e7a2ea751dd1f7b52eedcfaefefc3c8067a6c9a933d7b61fa722d9ca",
                 "tools/test-drawing-ownership-bypasses.py": "eb9cf542e547cae3c4d9a095dc090fc799bb436a9e26eb835c0b40e717b490fc",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -16272,6 +17015,51 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "wine_mutator_entry.h installs checked public map/unmap/copy/rebind entry detours.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Raw stores, private writers, physical aliases and other contexts remain outside these four public entry points.",
+                "evidence": [
+                  "NATIVE.ownership-bypass.controls-20261017",
+                  "NATIVE.ownership-bypass.controls-superseded-20261017",
+                  "NATIVE.ownership-bypass.original120-20261017",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.ownership-ownership-bypasses-20261020",
+                  "HIGH03.ownership-ownership-bypasses-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Raw stores, private writers, physical aliases and other contexts remain outside these four public entry points."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/drawing/wine_mutator_entry.h",
+                    "line": 5,
+                    "text": "static int wine_mutator_entry_patch(void* module){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/drawing-ownership-bypass-closure.md": "bb0cab659bcfcb7af4476182f0ee3275ca7b52ce8ca15ad0376d894f6596a9ab",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "runtime/drawing/wine_mutator_entry.h": "10cbb998804b99c4ee1e90b8e792fffa1734e4ee528d705dc62c813c16dd74a2",
+                  "tests/drawing-mutator-entry-test.c": "e2e59874e7a2ea751dd1f7b52eedcfaefefc3c8067a6c9a933d7b61fa722d9ca",
+                  "tools/test-drawing-ownership-bypasses.py": "eb9cf542e547cae3c4d9a095dc090fc799bb436a9e26eb835c0b40e717b490fc",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -16352,13 +17140,14 @@
                 "tools/test-drawing-physical-owners.py": "efab0384493171f5611051af1e6e08059964f6eaa2c5025b4c19d791350d67d4",
                 "tools/test-drawing-source-lock.py": "68b8c11ebaf9f6cde4c10126203d1b4ed6e90d73fc627c6704bd169a1f7cb352",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -16459,6 +17248,62 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "wine_source_handoff.h/state implement a private per-submit reference COPY source handoff.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. This reference-acquisition policy does not close all backing aliases, required writer routes or game-native parity.",
+                "evidence": [
+                  "NATIVE.physical-alias.handoff-controls-20261018",
+                  "NATIVE.physical-alias.lock-controls-20261018",
+                  "NATIVE.physical-alias.original120-20261018",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.ownership-source-lock-20261020",
+                  "HIGH03.ownership-handoff-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Repeat the pinned original private-copy handoff observation after the now-passing owned PE32 guard/lock/owner fixtures; retain source generation,worker identity,raw copy/fence and alias/refusal provenance. Synthetic fixtures do not renew the existing live-observation milestone."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "This reference-acquisition policy does not close all backing aliases, required writer routes or game-native parity."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/drawing/wine_source_handoff.h",
+                    "line": 6,
+                    "text": "static void wine_handoff_emit(struct WineSourceHandoff* s,u32 phase,u32 reason){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/drawing-physical-alias-ownership.md": "f8da52bd50e5cd21f1906a09fa30ccea98e56fc82b3e92fdd1b7efdd138c772e",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "runtime/drawing/wine_source_handoff.h": "1380f7b8a8f3d3ab79b0eaee3182cf4a7232c8f6b5a33555f648091948fe473d",
+                  "runtime/drawing/wine_source_handoff_state.h": "bb4e9160cff1018e39468f28ca88ff2a320ae4cab0d35314c210646d7de7da03",
+                  "runtime/drawing/wine_source_map.h": "617055a15e4edf5f74cf98f3adcb0591a0537b5a41b27ee6d15aa026927deab0",
+                  "runtime/drawing/wine_submission.h": "45900bb9e8cbb2afd03f5ac3ff5c16905d614945c675fb03221cbc7ac44637be",
+                  "tests/drawing-physical-owners-test.c": "094a85630bcb8ed334bda2a37ecb96917b8259dfa9fd0c04a6bfba36ff3b53a3",
+                  "tests/drawing-source-lock-test.c": "b1020ed0250e19efd7c948c3d1ef5e5ffd46303af29beba6a37d7e999c01bfbb",
+                  "tests/test-drawing-physical-owners.py": "afa5c6a151feab4ea592eda8b58548904ab39cea5a866fafe26dca50f7b9aac8",
+                  "tests/test-drawing-source-handoff.py": "d6793418dae54ae13d69b724b355b98b737d37cb3e5b5f6569536efed5e6817e",
+                  "tools/test-drawing-physical-owners.py": "efab0384493171f5611051af1e6e08059964f6eaa2c5025b4c19d791350d67d4",
+                  "tools/test-drawing-source-lock.py": "68b8c11ebaf9f6cde4c10126203d1b4ed6e90d73fc627c6704bd169a1f7cb352",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -16526,13 +17371,14 @@
                 "tests/drawing-whole-update-boundary-test.c": "7f391bd765d470948d7a46a605887d4d9faa9acdf80995ba4765ab6b9c9fad04",
                 "tools/test-drawing-whole-update-boundary.py": "a5e16941d60e5eeea160588547e62eeb4930b71122fbc452974664099e5d67e0",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -16619,6 +17465,53 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "whole_update_capture.h implements selected quiescent primitive/source boundary admission.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Observed quiescence is not proof of all threads, aliases, writers or global presentation ownership.",
+                "evidence": [
+                  "NATIVE.source-boundary.fixture-20261017",
+                  "NATIVE.source-boundary.original120-20261017",
+                  "NATIVE.source-boundary.ownership-20261017",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.ownership-quiescence-20261020",
+                  "HIGH03.ownership-quiescence-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Observed quiescence is not proof of all threads, aliases, writers or global presentation ownership."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/scene/whole_update_capture.h",
+                    "line": 4,
+                    "text": "static int source_windows_open(void){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/drawing-source-boundary-quiescence.md": "70713d0ca8630d7014f3c7e30959db47be93140f85484de8f2fbb41ee7b77f0a",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "runtime/engine-cadence/observer.c": "43f1f4d8fb91ede4a94ea2402cfffb50e96a9478b959f731e69b24049558dd26",
+                  "runtime/engine-cadence/update_boundary.h": "ddc7d53472f779ce86cc7a5dbe4c93175e2309a40786bae47ef2abbbb4b3cde5",
+                  "runtime/scene/whole_update_capture.h": "bc603951e7b8a9c065130f720eb52dbc676222d3dbbd0b21cb2bb80584bd6b42",
+                  "tests/drawing-whole-update-boundary-test.c": "7f391bd765d470948d7a46a605887d4d9faa9acdf80995ba4765ab6b9c9fad04",
+                  "tools/test-drawing-whole-update-boundary.py": "a5e16941d60e5eeea160588547e62eeb4930b71122fbc452974664099e5d67e0",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -16681,13 +17574,14 @@
                 "tests/test-drawing-copy-failure-provenance.py": "c54496fda6a17cfc9f893a2a3bad811f9211a87f01006be03e8794098922ce17",
                 "tools/capture-drawing-interactive.py": "338a2257af5aedc4f6c6b361cae834af56263215e7795ee11d15714b0baac246",
                 "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
-                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
+                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -16767,6 +17661,49 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The acquisition runner preserves primary failures alongside copy-journal refusal.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Preserving a failure is implemented diagnostics; the failed acquisition/ownership domain remains open.",
+                "evidence": [
+                  "DRAW02.draw02-copy-failure-guards-01-20261013",
+                  "DRAW02.draw02-copy-storage-original32-04-20261013",
+                  "DRAW02.draw02-resource-postclose-original32-negative-01-20261013",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.host-diagnostics-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Preserving a failure is implemented diagnostics; the failed acquisition/ownership domain remains open."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/capture-drawing-interactive.py",
+                    "line": 11,
+                    "text": "def strict_route_library_manifest(library_path,library):"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/draw02-copy-order.md": "5441667ddeadadf01fc828386fb9851322853215b05a898fc166f31a8320fc78",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/test-drawing-copy-failure-provenance.py": "c54496fda6a17cfc9f893a2a3bad811f9211a87f01006be03e8794098922ce17",
+                  "tools/capture-drawing-interactive.py": "338a2257af5aedc4f6c6b361cae834af56263215e7795ee11d15714b0baac246",
+                  "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
+                  "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -16836,13 +17773,14 @@
                 "tests/drawing-route-next-provider.c": "25638bb5d0980d81ff578cc0043e19e936c35a08583785be6887080bf65aafad",
                 "tools/test-drawing-ownership-bypasses.py": "eb9cf542e547cae3c4d9a095dc090fc799bb436a9e26eb835c0b40e717b490fc",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -16931,6 +17869,54 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "presentation_route_guard.h refuses selected resolver escapes under an explicit diagnostic flag.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Direct alternate calls, other namespaces, raw display/driver paths and scanout remain unclosed.",
+                "evidence": [
+                  "NATIVE.ownership-bypass.controls-20261017",
+                  "NATIVE.ownership-bypass.controls-superseded-20261017",
+                  "NATIVE.ownership-bypass.original120-20261017",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.ownership-ownership-bypasses-20261020",
+                  "HIGH03.ownership-ownership-bypasses-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Direct alternate calls, other namespaces, raw display/driver paths and scanout remain unclosed."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/display/presentation_route_guard.h",
+                    "line": 21,
+                    "text": "static void presentation_route_lookup(const char* name,int next){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/drawing-ownership-bypass-closure.md": "bb0cab659bcfcb7af4476182f0ee3275ca7b52ce8ca15ad0376d894f6596a9ab",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "runtime/display/egl_delivery.c": "3e7917380a84be122a3d74a575dc433093455a24a1eceaa18fd5d4a26f0a886e",
+                  "runtime/display/glx_delivery.c": "241250edba6c29ef93d7a550beab543214b261d3b31e5c118d0f6445cf66c617",
+                  "runtime/display/presentation_route_guard.h": "78a13e6195189f28c94f26f1e634b0895ec2ee6b2753c16d8ebcf13329bd4d89",
+                  "tests/drawing-presentation-route-test.c": "ac99c8ef60450b622b007c044dd745b3c92bd9fd793b7481e7592df93125a42d",
+                  "tests/drawing-route-next-provider.c": "25638bb5d0980d81ff578cc0043e19e936c35a08583785be6887080bf65aafad",
+                  "tools/test-drawing-ownership-bypasses.py": "eb9cf542e547cae3c4d9a095dc090fc799bb436a9e26eb835c0b40e717b490fc",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -17229,13 +18215,14 @@
                 "tools/retain-recorded-drawing-session.py": "89c8b9720caa013e1e25d88da69095fac857258fed12c826c5f7fe3f46e2eafe",
                 "tools/test-recorded-drawing-composition.py": "6ba72965f84e7794839cc02557fb8e4cffd6f4f09f0fb6fa5f818e8cf9a53471",
                 "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
-                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
+                "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -17349,6 +18336,66 @@
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ],
                 "pending_source_review": []
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The recorded-session adapter retains a portable bounded storage/rebuild interval.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "222 corrected-reference storage/rebuild frames,207590400 pixels and zero mismatches through current native GPU/X11 replay. Legacy238-frame/252-pixel mismatch is retained separately.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Broader action-bound reference/native parity and all required journeys remain independent acceptance targets.",
+                "evidence": [
+                  "DRAW02.storage-session.portable-20261016",
+                  "DRAW02.storage-session.journey-20261016",
+                  "DRAW02.cursor.storage-portable-20261016",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.storage-corrected-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Broader action-bound reference/native parity and all required journeys remain independent acceptance targets."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/drawing_recorded_session.py",
+                    "line": 16,
+                    "text": "def retention_id(catalog):"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/drawing-session/main.cpp": "86f825b4e5358247dc0966b0fb8f94aa00ac81860a064dd195bebfef7883a224",
+                  "apps/drawing-session/recorded_composition.hpp": "0dc69f1c948bc4f8da1e2e81c069baa803e73180258d8b892d80d467f04e3f50",
+                  "research/formats/recorded-drawing-composition-v1.md": "9b1ed4ed380f433b6277fab07a570ff54c7eb622f72d4560c099132acd40eada",
+                  "research/runtime/action-bound-storage-session.md": "9348d668b3914a766b1d9e188d011ab8cfc13bf2dc21b67b5305a3f916d4cf6c",
+                  "research/runtime/drawing-copy-driver-order.md": "c05b92365b745300f759ec76b6347250d50eb4bf174e4ee86d7c8946106edee9",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/fixtures/drawing-journeys/storage-corrected-suite.json": "96bbc6035dba68e4416d1fe11bb33e9684575f92be09ca7a890ff66ed18503f3",
+                  "tests/fixtures/drawing-journeys/storage-suite.json": "9f615c32aa100b685e18bd2a0ecd91e120c5d0786033ff001a2e1d08d816ca86",
+                  "tests/fixtures/drawing-journeys/suite.json": "3091153e8757c4bc66731ea634e0e5a424397853d4567f1f097054e853c36045",
+                  "tests/fixtures/drawing-storage-corrected-session/session.json": "55ea6c4623a2916bdc4a42c3681f75b68aedce85792686ab2b29a234ea6195fc",
+                  "tests/fixtures/drawing-storage-session/session.json": "8fb6fadc81b6c225f325bb6810a22ed81141d128c472971eb1b5615465877ce3",
+                  "tests/test-drawing-copy-order.py": "fe7d37d173ee73173ffa532d2177f439e960b46675ee9d8939cb6bbabe9acf94",
+                  "tests/test-drawing-journeys.py": "316a23d3d4e669339ca39fd502be34d76e25862ed7b86ed85f1e8c12408f3ca3",
+                  "tests/test-drawing-storage-retention.py": "ceb43a3b14fd72c4ac3961a0181ce3ddffc15c1ed7eaeda35004f65534588be6",
+                  "tools/check-drawing-journeys.py": "05cc6ecf1d815df70e96cfa13641308538352d4ece527506430cd9067c271fb4",
+                  "tools/check-recorded-drawing-session.py": "ac66d0653fbcf2027c49d562d6ea1e9c95dfc8699dd10e5363370b6ed1cc854a",
+                  "tools/drawing_copy_order.py": "176f55a39d4d80d8792b4b067c2216cf06a21f4e33939b7de364d3ab40c13644",
+                  "tools/drawing_recorded_session.py": "43948bbe036089960c1fd0f4828b17708e1366e0ddce0633f8b9e0a4c0e284de",
+                  "tools/recorded_drawing_plan.py": "1238fd81552b0a8009bce6c2fc7122634a07045d24cd5bb289fd1c45bb91b480",
+                  "tools/retain-recorded-drawing-session.py": "89c8b9720caa013e1e25d88da69095fac857258fed12c826c5f7fe3f46e2eafe",
+                  "tools/test-recorded-drawing-composition.py": "6ba72965f84e7794839cc02557fb8e4cffd6f4f09f0fb6fa5f818e8cf9a53471",
+                  "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
+                  "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "third20-offline-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -17440,14 +18487,15 @@
                 "tools/run-opengl-game.py": "f3133e31efdc4666b7f30ad09f1b9452aec0437ba01eaaacc5cdab674dded04f",
                 "tools/test-native-opengl-launch.py": "dc2d07969b74cb3b7da043f22c470ab044e549c0e96cf90dfcb318e97d873d84",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -17617,6 +18665,67 @@
                   "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The standalone OpenGL launcher selects owned graphics and guarded staged dependencies.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Final current standalone TITAN/Zink startup scenario passes:20+ native frames,disabled/absent DirectDraw,zero ordinary readbacks/uploads/recoveries and zero consumer teardown resources; earlier required-helper drift stays historical.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Whole-game equivalence and hardware performance remain validation boundaries for this launch route.",
+                "evidence": [
+                  "NR.directdraw-native-opengl-launch.startup-20261011",
+                  "NR.directdraw-native-opengl-launch.status-startup-20261011",
+                  "NR.directdraw-native-opengl-launch.mapped-startup-20261011",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.standalone-launch-20261020",
+                  "HIGH03.standalone-launch-current-20261020",
+                  "HIGH03.standalone-startup-scenario-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Whole-game equivalence and hardware performance remain validation boundaries for this launch route."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/run-opengl-game.py",
+                    "line": 30,
+                    "text": "def patch_staged_preferences(game,section_name,settings):"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/native-draw-device-surfaces.md": "c0c2390f62e190326ff0193ca977638b9af3a0e274b7b4105643e77d285f5f35",
+                  "research/runtime/native-draw-status-final-artifacts-20261011.json": "b3af7ec8e434f2a9e3a766fbf6d9e471c8fe4dc7f4e94e43f659ad5ee88a4657",
+                  "research/runtime/native-master-integration-current-standalone-pass-20261011.json": "ffed6c7a27dbf6f08d94c9e439670284f36180c52de8344c24843b6a9d5302ff",
+                  "research/runtime/native-master-integration-latest-master-standalone-pass-20261011.json": "4f47ba3261e1822b352efc0b254ae7b5cf163f79dea38aa29171751138b87c75",
+                  "research/runtime/native-opengl-mapped-status-startup-pass-20261011.json": "57b48b3bd48bec5b890097d05d6b9fbf59a745aa9f8a65eb1c5b8a7a3fca967b",
+                  "research/runtime/native-opengl-owned-startup-artifacts-20261011.json": "59b3f78812ce225c7c23bf3148fdb0cfc949df50587b49a3a67c1d817c6db3f2",
+                  "research/runtime/native-opengl-owned-startup-closure-failure-20261011.json": "ca18893e3d69f593bde3cab7d157cadbffcd7051f6093fdbf0debe2eaee0ccec",
+                  "research/runtime/native-opengl-owned-startup-declaration-failure-20261011.json": "917f0659cc005d3e3f033582a1c66131b2a8350ccb7eda90b3e2593251f6519d",
+                  "research/runtime/native-opengl-owned-startup-pass-20261011.json": "6742f7168c5e50f00d22e383ec4ff15d881b35e9bb436b3e48e5a7d322ae027c",
+                  "research/runtime/native-opengl-owned-startup-protocol-closure-failure-20261011.json": "2fe7d52fab7cc72850f7f0ae6d9d812f93c1f3510c85d46aaa6c020a890ea940",
+                  "research/runtime/native-opengl-owned-startup-timing-failure-20261011.json": "027aae749b138d92f2fbfde98052211b886c4d208beccd567e360ca39b4d9311",
+                  "research/runtime/native-opengl-status-startup-pass-20261011.json": "cbf5b0565987b2e247bac92410ba242b86b53e88ed005cc0f5787c20e8d3e465",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/live-render-route-probe.cpp": "9730b37007658ab8be867498b12c0e1cd0a5d6710f7adf26bbc3ab9662335c12",
+                  "tools/build-native-draw.py": "d6caec8f153a8ada280da29a482fd274d4803cb5c67258b0cf9c4f69143a04d3",
+                  "tools/prepare-native-draw.py": "dec74232cf80af9dc007e3a0f1c7b443be1e8f5af59f40cf3a54f509087b8e98",
+                  "tools/render-game-runner.py": "96145efcabdece1684396f500abc9c5a4e20c019790590aa49e5516082c67e71",
+                  "tools/run-opengl-game.py": "f3133e31efdc4666b7f30ad09f1b9452aec0437ba01eaaacc5cdab674dded04f",
+                  "tools/test-native-opengl-launch.py": "dc2d07969b74cb3b7da043f22c470ab044e549c0e96cf90dfcb318e97d873d84",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -17755,14 +18864,15 @@
                 "tools/scene-game-runner.py": "d62c2bb8e9dbff679cce4f604b8ab18c053af882764244da0412646677f5d679",
                 "tools/test-native-campaign.py": "7b73601422d0db7cccbc0a37179166bb815369e9338ceaf6968d0c908e7e21ad",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -18011,6 +19121,100 @@
                   "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
                   "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
                 ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "LiveMenuSession composes owned native graphics with the public Qt menus and explicit legacy control.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Current scoped live flow and same-thread callback/native-backend checks pass:Main/Region/World,three Mini/Cancel cycles,1598balanced World imports/returns and normal Quit,zero ordinary renderer/World readbacks. Whole-session19FPS acceptance fails (9.6679FPS).",
+                "acceptance": "acceptance_failure",
+                "acceptance_summary": "The unchanged full-session throughput/combat or worst-frame gate failed; implementation remains located. Preserve exact negative records and diagnose the declared cohort before acceptance.",
+                "evidence": [
+                  "NR.directdraw-public-native-menu.bound-flow-20261011",
+                  "NR.directdraw-public-native-menu.gameplay-20261011",
+                  "NR.directdraw-public-native-menu.nvidia-gameplay-20261011",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.public-rendering-fps-negative-20261020",
+                  "HIGH03.public-combat-negative-20261020",
+                  "HIGH03.public-flow-observation-20261020",
+                  "HIGH03.public-current-fps-negative-20261020",
+                  "HIGH03.public-default-cadence-20261020"
+                ],
+                "failure_evidence": [
+                  "HIGH03.public-rendering-fps-negative-20261020",
+                  "HIGH03.public-combat-negative-20261020",
+                  "HIGH03.public-current-fps-negative-20261020"
+                ],
+                "next_steps": [
+                  {
+                    "kind": "diagnosis",
+                    "action": "Diagnose the measured9.6679FPS World supply rate in the retained successful menu/normal-Quit flow; preserve the19FPS gate and distinguish original returns from repeated native frames."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Broader gameplay pixels, semantic teardown and performance require separate integrated acceptance."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "apps/qt-shell/live_menu_session.cpp",
+                    "line": 37,
+                    "text": "                QFile manifest(QDir(root_).filePath(\"manifest.json\"));"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/qt-shell/live_menu_session.cpp": "016a83f99f769fdae2db7e1a5b2a2dba179eeb2ff3eb9a5ec7feb16418f78a00",
+                  "research/runtime/native-copy-address-wait-live-failure-20261011.json": "37c104807712d9fc20158a40e3c1aa22cf0f3ec0f4e5d4a8d9099bc06201d39e",
+                  "research/runtime/native-draw-device-surfaces.md": "c0c2390f62e190326ff0193ca977638b9af3a0e274b7b4105643e77d285f5f35",
+                  "research/runtime/native-draw-mapped-status-full-nvidia-pass-20261011.json": "669de3f8211c6c3d2f12fc57af66c0369f8a26ab036691ce2c4e01bacd7fb6b0",
+                  "research/runtime/native-draw-public-default-contention-failure-20261011.json": "a98826a33a07ebba8abd04d52e0212f18172c2cbb3adcf4fcebebc543bb3b07c",
+                  "research/runtime/native-draw-public-default-full-bound-nvidia-pass-20261011.json": "a1521e0c6a3675c3855391a1428f56e517581685a082056915dca0f4a6dbb663",
+                  "research/runtime/native-draw-public-default-full-nvidia-artifacts-20261011.json": "0543d70c787b16a3c789ff72463a48b0738ca3ef5714a216cc007333103e833e",
+                  "research/runtime/native-draw-public-default-full-nvidia-pass-20261011.json": "599adedde6b198db4d93efb797e38bd44fa80c7595b0ff50f720ad49afc45f13",
+                  "research/runtime/native-draw-public-default-gameplay-defeat-20261011.json": "b83c1c28c9ab1dad71822d1a544a343582599989e9398cf92da0daab229040ef",
+                  "research/runtime/native-draw-public-default-repeated-contention-failure-20261011.json": "6b0ca51c62cf8adf06e65c51923534c2824d873c6a52fc2f05e5b6a02543758e",
+                  "research/runtime/native-draw-public-gameplay-artifacts-20261011.json": "98e372b6c6d0fe121e5f27bb6aecea89577801a2be18a23c913e08a949172322",
+                  "research/runtime/native-draw-public-hardware-legacy-control-failure-20261011.json": "4281cdad6eb784fa1ba79e84f28971e1193d9bcfddcabeaa8c5ab8fe1dd20d96",
+                  "research/runtime/native-draw-public-hardware-negative-artifacts-20261011.json": "fefaf60f3ffdb1c3b4da744a898ee905a786481eb63979002db1ae4b985a5447",
+                  "research/runtime/native-draw-public-hardware-ordering-failure-20261011.json": "4676878955cd0ba558bb860e7a0365f5ddd089f1d78704d933b3dd5ac0588ea6",
+                  "research/runtime/native-draw-public-hardware-summon-failure-20261011.json": "95a856c8cc4c0a2a63f5165d0b6dc06cc43d9fbbdb9ce466516a323e07b7f768",
+                  "research/runtime/native-draw-public-lock-holder-failure-20261011.json": "bd73834bfc0fcdb5aee339a177e26eca694cab58714c3e21ce34ce1b1ebe94c8",
+                  "research/runtime/native-draw-public-lock-stage-full-nvidia-pass-20261011.json": "fff41c85a1a36089f1d808b6e9d34a9ef738bc4e5d51c317dc92641cf7ff072c",
+                  "research/runtime/native-draw-public-lock-stage-repeated-failure-20261011.json": "22d876ca13c1db5910c7bd9802bc4fb33ba06c42e4b694b2be0898ba83772dca",
+                  "research/runtime/native-draw-public-nvidia-gameplay-artifacts-20261011.json": "d5c6eac8570792b9f1c8be47f200dacafad89986628b63463eac30eeca0ba163",
+                  "research/runtime/native-draw-public-status-close-failure-20261011.json": "5f5395fc05a3cf00c6c7249882a16d6d7035dc767149c4af20935c5ac976d092",
+                  "research/runtime/native-draw-public-status-file-full-nvidia-pass-20261011.json": "51fe3eb357150bf2510268c337ac0516c9dd62a3fcfa1fba1c22b0826b8c6e4d",
+                  "research/runtime/native-draw-public-status-file-repeat-pass-20261011.json": "a51824ab61933c6154593ca16bc8f660876e7f5e02d3255a33639622196562e5",
+                  "research/runtime/native-draw-status-artifacts-20261011.json": "280c352eb13bd40d2172360f41c907c8f0e525c8091835362282bb1482405dd0",
+                  "research/runtime/native-master-integration-current-public-pass-20261011.json": "679c968097c6a72255a7b1777248c8ee3e4ff2f24575033fd488ea085e526abe",
+                  "research/runtime/native-master-integration-latest-master-public-pass-20261011.json": "ee8556a3cb917922c13417b4ce5e1b7f943d3172955d8193eb5af71c84803dc4",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "research/runtime/surface-final-word-read.md": "12b7d1ce586d1fc4034fb209060db06fba12f7d13c10712405a333f77e5c7d1e",
+                  "runtime/native-draw/clipper.h": "58313e5bd17d43ca9ace5213b347e96aefb56f8af256bb851e3cff4ab084cea7",
+                  "runtime/native-draw/dc.h": "9eaa4c2b23c85048ced371effd6d1ae619fceb7d5517396fc0bb4747f71d611b",
+                  "runtime/native-draw/factory.c": "bbb71c437c2bfb679d189a490925a8f6e61d223b5ba517206fa07ca575778c92",
+                  "runtime/native-draw/refusal.h": "d0b443d5357d19822c368a3a4e1de7b5b74566a12dd51ef611516f6ce5a9ebed",
+                  "runtime/native-draw/status.h": "bf38d5b22745b46c16999efb3381d3a1f3d42df866b6beae722fc3fcbd2e0cc7",
+                  "runtime/native-draw/surfaces.h": "f2087f3730912f1d9fe2504300b0905868be4cdfbb59e5d31482cd5695abed64",
+                  "tests/native-campaign-smoke.md": "8fd092fe235c09b9a40b14a364021950efcfc1246b0b4acee3adbbf69dab5824",
+                  "tests/test-native-campaign.py": "d785b57fd45c52720c667c1debc7b393af8bf865ad5274ca36404a0f769d8572",
+                  "tools/build-native-draw.py": "d6caec8f153a8ada280da29a482fd274d4803cb5c67258b0cf9c4f69143a04d3",
+                  "tools/menu-game-runner.py": "15cb203b04367f3d704e9e6ca58c80e9c3e4ce3d7e3a899aed02453cf404a6bd",
+                  "tools/prepare-menu-observer.py": "dad11ce8c37ec8d25d9b488bdf210693a323fd94372360e351dd7358f805dc7c",
+                  "tools/prepare-scene-observer.py": "81bd4e6c11e68c662aa9cadf4506d12a61661e39fa226e3b790e3568eb5e957e",
+                  "tools/run-menu-observer.py": "dbaec5320de2a31eacf3e8e29fa27f910daaecc2ac530049ac04ddb1d2e91937",
+                  "tools/scene-game-runner.py": "d62c2bb8e9dbff679cce4f604b8ab18c053af882764244da0412646677f5d679",
+                  "tools/test-native-campaign.py": "7b73601422d0db7cccbc0a37179166bb815369e9338ceaf6968d0c908e7e21ad",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [
@@ -18234,7 +19438,8 @@
                 "tests/world-continuous-normal-test.cpp": "a08602ecdbaa4d1ffa737c8668f6fd7adb7c2e01e5a7ff1ddf8b43609bfad668",
                 "tests/world-gpu-resident-test.cpp": "60b07d8772c2e908162b268936f140c86a5df85134a3118308d9b1c8a9756031",
                 "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
-                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
@@ -18308,7 +19513,7 @@
                   ]
                 }
               ],
-              "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
+              "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
             },
             "work_review_history": [
               {
@@ -18661,6 +19866,228 @@
                     ]
                   }
                 ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "World/commands-HUD/requested CPU replies/bindings-retirement have registered suppliers plus explicit aggregate session glue, with exact witnesses in the HIGH03 crosswalk.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Four-domain supplier/glue crosswalk resolves missing-code ambiguity; scoped PE32/native/GPU/replay and current live flow/1598balanced retirements pass. Whole-session19FPS acceptance and original combat/private handoff renewal remain separate open gates. A quiet native audio/media-default cohort failed its initial living-Zombie summon prerequisite before final throughput validation; it supplies no default-profile FPS conclusion.",
+                "acceptance": "acceptance_failure",
+                "acceptance_summary": "The unchanged full-session throughput/combat or worst-frame gate failed; implementation remains located. Preserve exact negative records and diagnose the declared cohort before acceptance.",
+                "evidence": [
+                  "NR.public-resident-world.import-fixture-20261011",
+                  "NR.public-resident-world.owned-fixtures-20261011",
+                  "NR.public-resident-world.campaign-stall-20261011",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.public-rendering-fps-negative-20261020",
+                  "HIGH03.public-combat-negative-20261020",
+                  "HIGH03.resident-supplier-crosswalk-20261020",
+                  "HIGH03.resident-supplier-crosswalk-current-20261020",
+                  "HIGH03.public-flow-observation-20261020",
+                  "HIGH03.public-current-fps-negative-20261020",
+                  "HIGH03.public-default-cadence-20261020",
+                  "HIGH03.public-native-defaults-cast-negative-20261020"
+                ],
+                "failure_evidence": [
+                  "HIGH03.public-rendering-fps-negative-20261020",
+                  "HIGH03.public-combat-negative-20261020",
+                  "HIGH03.public-current-fps-negative-20261020",
+                  "HIGH03.public-native-defaults-cast-negative-20261020"
+                ],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Stabilize the initial summon/casting/navigation precondition on the intended native-default profile, then repeat the unchanged19FPS public journey without overlapping heavy validation. Preserve legacy-profile throughput failures and exact captured input/source states separately."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Retain arbitrary original writer/physical alias, COM and full live replacement boundaries outside this supplier/glue source mapping."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "renderer/blit.cpp",
+                    "line": 22,
+                    "text": "void validate(const Blit& c){"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/qt-shell/campaign_smoke_test.cpp": "9e3f9b3088e084293dac68ee8e098213f0b7a1157b23fed7ff8d4092a01c3587",
+                  "apps/qt-shell/cpu_reply_file.hpp": "301b654804b0477e4a0ff93c2c127d5213ff3ee2b11a51120c612e70090f6c53",
+                  "apps/qt-shell/live_command_renderer.cpp": "53365ad1a660cf69930c02b45b2f54655b1c4dcbcb0290477334503d8409ff8e",
+                  "apps/qt-shell/live_command_renderer.hpp": "6cd344d4812952f95d6238cf8c2137e0f501468dc466b89a678b0b8c6c720e5a",
+                  "apps/qt-shell/live_command_session.cpp": "38cd97f8999d22521d677aa4183c807248ebbdab3164af94ef28033aff5ff71b",
+                  "apps/qt-shell/live_command_session.hpp": "050b59b7db1aa9ee6ee241dca5a633a62df5a5483bb1b85d9669c86fe12dbd26",
+                  "apps/qt-shell/live_menu_session.cpp": "016a83f99f769fdae2db7e1a5b2a2dba179eeb2ff3eb9a5ec7feb16418f78a00",
+                  "apps/qt-shell/main.cpp": "9a21444c2a9936a857ae0563a83cd1f64a6ee81d0032602489166cb4d4491b08",
+                  "apps/qt-shell/resident_world_session.cpp": "1768d0c6a90c123668180ad9147bffc4bfc718850ae039f4f400bba655f7d6f0",
+                  "apps/qt-shell/resident_world_session.hpp": "584681b0f6af973788bac647fef6fe7dfb64db3cf6673e2ce7dd4862095163fe",
+                  "compat/legacy/canvas_producers.cpp": "78fa96df9e164d486ec05f6f3b7c33096192ffd6c9df8199b00acad5da0ebf97",
+                  "compat/legacy/canvas_world.cpp": "3f0542abe6cb66e370169de10e8eadb7ce450d5743188f64422cadadee510049",
+                  "compat/legacy/world_raster_batch.cpp": "d33c0c8b7a8f5bcd2cc9b7c6086e6928adbd3e7653414fdbabc7626ab5ad58e7",
+                  "compat/legacy/world_rolling_packet.cpp": "a24477993dee85aaafea3f6cc4e465d9da9f9dfe3232894ea1d68f91ca9cdd77",
+                  "protocols/include/mnm/canvas_producers_v3.h": "253e0e4f99273660312650b7d9bcb57c0e53a97483b75f8af6451a05e7a20632",
+                  "protocols/include/mnm/render_stream_v4.h": "203d1f98637c5ebbf4b8f6a840850964899a185c66fae73b9dc1c4598e771a03",
+                  "renderer/blit.cpp": "9cc4a156e7b4d43c55aa4357f0ffd39b3f98804b4993d3523607c2c4e1c2632c",
+                  "renderer/blit.hpp": "3d657b922652328eab32631e8d884e531b45e5ee2ff2664b12383fc3523306bf",
+                  "renderer/canvas_sequence.cpp": "6cd633c3e7e09c126234f2f17cd1efb69fc570c8249b8406789a1f63563438e0",
+                  "renderer/canvas_sequence.hpp": "d29ef07ace020366ab172e2f57e44ba4981d62e200d5a5c5b1443ab1ef0aea06",
+                  "renderer/command_consumer.cpp": "921f6cde6e3661e3cb27e788e3798e885ff4772c1a1935bf513ef19b81816dcf",
+                  "renderer/command_state.hpp": "b6fe10d3c6d1ffa17f05a4c37828a1a6d926d1b275f1e070ba0895678d45e515",
+                  "renderer/commands.cpp": "f7c6caef1334893dac1b3a4f2997fe742a63713bf36deb2295cf23ee7c756769",
+                  "renderer/commands.hpp": "aab8b05f193a9e7da476ad7434185e53c7f2579345ffd5edbb9101a18d1b4fc4",
+                  "research/runtime/coverage/high-resident-supplier-crosswalk-20261020.json": "afd83fcb13b062280203edd254c6bd60d0a4e52b6d9032d6682e59a5227648b2",
+                  "research/runtime/coverage/high-resident-supplier-crosswalk-current-20261020.json": "6d5e10f35e7c0546260f574b36174a7a3c893f4114d04275a8d4f91bd58e82df",
+                  "research/runtime/engine-cadence-titan-campaign-20261011.json": "a8b16fb1d2feb5ee5469186a78b7af424e24de172d043eaccf7e4ae7dbe38f8c",
+                  "research/runtime/public-resident-batch-background-copy-failure-20261011.json": "91e08c24e8a375da19548d28527ff6de6b80bea5718e505a9b7349c364cf21ad",
+                  "research/runtime/public-resident-batch-fixtures-20261011.json": "c8d9602f99982d243f4243929b492d54589c9de9c7957ba8a87d8a018e0c9a26",
+                  "research/runtime/public-resident-campaign-complete-20261011.json": "58a60ed6151184374a01dbed57aa8e70334b22ca9871b1d3fee4029598e2da85",
+                  "research/runtime/public-resident-casting-retreat-input-20261011.json": "30345c11314d6481a8dbe964e83548d1a1ef7a192d23100377fc5a1ed2f6ce3f",
+                  "research/runtime/public-resident-casting-retreat-negative-20261011.json": "054401b839a6ef744e4a81ed0bf041c3c40bd9b304169d9f9a4879a5a5aa56cd",
+                  "research/runtime/public-resident-combat-placement-negative-20261011.json": "8cd0a5736700d64888dd1d16ac131c470ee60655a028c6378188457801f5299f",
+                  "research/runtime/public-resident-complete-window-negative-20261011.json": "ca97ffff5b8ef6d035e2c5b1a847c33f270ce5ac615fd289f7dad9310b2eac28",
+                  "research/runtime/public-resident-cpu-profile-20261011.json": "c2419c03f3166aa5a153b82b8cc4b87af76e51d562bb90066b7d261fa496ab39",
+                  "research/runtime/public-resident-cursor-queue-fixtures-20261011.json": "e284222ab0d0e91a47597408c50aff55da7ff26aa74d16696c5f9984e18e6eb6",
+                  "research/runtime/public-resident-cursor-queue-live-failure-20261011.json": "d15f5ba3dd98a852921bf29af89b473a8c48c7d161b85c87010034328e251ad3",
+                  "research/runtime/public-resident-linear-full-fixtures-20261011.json": "205cf378750cd1338918ba12c3fbf6447b3e4fad1299d72cfb52738b6ddb9037",
+                  "research/runtime/public-resident-linear-pass-shadow-write-failure-20261011.json": "4428a334a6d7799f8797278de4f477bab4d1a342a7ff65823da7ec53f2c84752",
+                  "research/runtime/public-resident-linked-provenance-fixtures-20261011.json": "dbffa76f9f01cbdc71e0ce7800c771a52a69a6fcba3be690387cf883328ec22a",
+                  "research/runtime/public-resident-master-combat-deadline-negative-20261011.json": "e63ed11aca4f3ea8930749adc3c42670193e72c386661c72d7ff77755b0b4a23",
+                  "research/runtime/public-resident-master-combat-diversion-negative-20261011.json": "8d48079e0d7207b92b09fe9f2976956044f21f0ed8f009650cde5598009a9cca",
+                  "research/runtime/public-resident-master-final-campaign-20261011.json": "0c5fcb1d82336ce42f33fee17a88dc8f8637cd93cbbfb4abdd7b0b59ca9cca93",
+                  "research/runtime/public-resident-master-final-fixtures-20261011.json": "1e598b7f073dabd02d951bf7072dc59ff267ed7904c2e78f1fb5f581bddeb444",
+                  "research/runtime/public-resident-master-integration-fixtures-20261011.json": "5911bedb738f8907dfe94d8ad3363611892533ca8fb7394fa9e75416173735df",
+                  "research/runtime/public-resident-master-window-negative-20261011.json": "bb7d37c9d35b948f5b5710fe31ecaab814cf4f81d4e318aefc192c10ae37b93d",
+                  "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json": "4bbdce487aff316962fb4c9db9aa6b5977d7416143673e3184ccd175abc94381",
+                  "research/runtime/public-resident-profile-gap-negative-20261011.json": "c5fa4f90803cbe71aaaf1e5e7c5861da2f07a0fa49b94f373292c513e7a3195d",
+                  "research/runtime/public-resident-profile-quit-negative-20261011.json": "9115415e4994924cde3a011bd89be15900d62c6091715b114ea9ccff94299882",
+                  "research/runtime/public-resident-region-epoch-fixtures-20261011.json": "d2f2109eb739464364373267a0b7d5fc34d2f14cc950234fbcfe1c19f1fe6a9d",
+                  "research/runtime/public-resident-region-epoch-tutorial-failure-20261011.json": "298835ec9e4f3c5a660dd97c634af262f262df2d90e85c014668f0ddfaabb89a",
+                  "research/runtime/public-resident-render-provenance-negative-20261011.json": "84c1718a8c97d5e52c1078a77e0fb01d20440f5c46202ccb9dc3498c22ca0f8b",
+                  "research/runtime/public-resident-retreat-edge-input-20261011.json": "b8e788537d64d8b29b0aa44e398273c8349ace119d7f4a3feadc9b1d1e081123",
+                  "research/runtime/public-resident-retreat-edge-negative-20261011.json": "2c7e74d6e934b0b2cbc0f7f26bad5c52d9678417b5bab40e96b7ca2cb410b8c0",
+                  "research/runtime/public-resident-shadow-envelope-dialogue-negative-20261011.json": "238dc0d3f2f91a48ce032cdcc41f687f791aa0fecf04c53dddf51e1a2d80310d",
+                  "research/runtime/public-resident-shadow-envelope-fixtures-20261011.json": "6ea6fec08a5d93fb6e432ef5d98cce7d56e421e0715b05ab82769164d74da5fc",
+                  "research/runtime/public-resident-shadow-fixtures-20261011.json": "b2407aef4423f9e24080fdc3e148333747c5f5511735dff38268236d38908348",
+                  "research/runtime/public-resident-shadow-pass-displacement-failure-20261011.json": "6b027e6b91e48f03b1aad1312e5af387cb777bfdd4cf166783f385b2f9150ac3",
+                  "research/runtime/public-resident-surface-refusal-20261011.json": "9383b8a7793000447874594a4c71ec34d23ddce04b806fbe5dfe281198b25053",
+                  "research/runtime/public-resident-world.md": "6df583f6fe86bad6fc42f270427a8fd245001812e0bfe7817191e1ccc00bb5da",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "research/runtime/resident-drawing-history-gap.md": "dd4e54645fc7bc72cf372e03cdb34aa51cae4a181c1d877ba8d9c828317e6d4f",
+                  "research/runtime/scene-production-full-campaign-20261011.json": "5bebd37919f87bebc5d7905cfda93aa429f021160e46c3541f7ae00ee391194c",
+                  "research/runtime/scene-production-prepared-campaign-20261012.json": "d33c3044dab74e671839a058beb320e3f12b78bc1b593fc9414786622f0e47ec",
+                  "research/runtime/scene-production-slice-campaign-20261011.json": "5a9b185d1fdc3a6a9bda87418c8721b4e07a28fad0fdd245119c74555e8c39a3",
+                  "runtime/render/lock_lifecycle.h": "b8ea7a58bdacac385bb9eb03b138f70668627d71370d0b2d80e68a02c6ea35b3",
+                  "runtime/render/owned_session.h": "21f94c6770a2c141765b1d7df62f414894fc137bfd399b4c6f7354a83737c982",
+                  "runtime/scene/canvas_producers.S": "d565108a43b56c46cccb5c0e55c9d001b7514e5bb16391312482b5fb6668fa4c",
+                  "runtime/scene/canvas_producers.c": "7c320b307325418c66f598dee710e192f54e5c67ba926816c79b46c5b8a81fa3",
+                  "runtime/scene/world_continuous.c": "b21564f83b7cba127318f343384efb127aee217a272350c14599abba10440b76",
+                  "runtime/scene/world_deferred.h": "86fddb9c4400e4500c6d1e3d0b70f948db2ee49995f1d10b127fc15b7ab2d1e4",
+                  "runtime/scene/world_producer_bypass.c": "0fa8a6914e726ca8ff0f55708f6ae5da0a525b494f597bdfe0cf063d5c53dad7",
+                  "runtime/scene/world_raster_batch.c": "451118a97af53719bec458c5b4b7e9fb940aabac9feda0fd0b2edfd50ecb77a0",
+                  "runtime/scene/world_raster_callers.h": "7b1dc71f105a199ceb448b6473d36ff5f62f3286459ec77181cac3c0ced466be",
+                  "tests/menu-resident-quit-test.cpp": "c3459f56bbc6e5f050bc8f2fc422c87af62d4079602118a47aab3c64199c50fa",
+                  "tests/minimap-candidates-test.cpp": "7b0c9145d9a8468e3e8b40e0f02aec2fed77af492e67e29a35aaa9d01108c5a1",
+                  "tests/minimap-producer-test.cpp": "abc136cb5d79448844ac3057047b8428878c865abc6c4c6e3f8ff39909d6accd",
+                  "tests/native-shell-provenance-test.py": "ded15c2e7cbfeda50e3dda456322aa6f2428269f7dd497da83c73b11bc5dc02d",
+                  "tests/render-resident-world-test.cpp": "ad8ea5c52e4815a4601de8f029df33f1a9757a5475a4b889f193efa827ed636f",
+                  "tests/resident-leaf-abi.S": "15f7ce952fb39bce88e45fada155b750b4fc2ee72ee7d2d54c0fa290cbdab7f1",
+                  "tests/resident-leaf-abi.c": "3d5d5a47b77ece7871533f7d10043849944947c41b85169d7f340c138b71cbe9",
+                  "tests/resident-public-block-replay.cpp": "a91f49af8bfbac1269c6552baff292be842de971fa487d41d664408ff15d2ea2",
+                  "tests/scene-renderer-test.cpp": "a4441be3137cf5324a21a55317cce7e69d8787502cf8f591bdc930ac6e377e7e",
+                  "tests/test-rendering-high-closure.py": "7e6ba6befe2a65f9ff7357eaa619e159053e5d9bfb6038dbbc7745d145fa9657",
+                  "tests/world-deferred-test.cpp": "a668ac31155df0a59f9b5a3ba42eae753af09a80b636c3b0f9d97781c1ef67b3",
+                  "tests/world-raster-batch-test.cpp": "23d4920ae33526b30c640e161d9a7a56684a62c866731e36ef35b8fa2b9dc5a3",
+                  "tools/check-rendering-high-closure.py": "dca1c3d8c4377c6631eeb727df5af81b1648cd3965407e22323d7d029f764bad",
+                  "tools/inspect-canvas-producers.py": "58ccca26889da4fbf067eb0e95b4afddcd7ca0919a54263bcf4ebb3b90f2e231",
+                  "tools/test-native-campaign.py": "7b73601422d0db7cccbc0a37179166bb815369e9338ceaf6968d0c908e7e21ad",
+                  "tools/test-public-resident-fixtures.py": "3998effedfe514403ad5016f15959c1b0a2ba91a8976e234c74c202ff0014b21",
+                  "tools/test-resident-leaf-abi.py": "9c08904e83b51f295de8c317a2fea0f59f7312d9b686c73ac8083aebefee1dd0",
+                  "compat/legacy/world_continuous.cpp": "d96651764ec9697a322c052b8e5adc364c1fb103da9a57f7e3c744ba32762276",
+                  "tests/native-cpu-materialization-test.cpp": "8e125e14aa800c70d70278e2e3a78e719dbd1ffe399bf6fc6f95de659882583f",
+                  "tests/native-cpu-reply-publication-test.cpp": "ffbcd3bcaa73d7ea857c7410f7892ce474e01d24c40d9f318e62e571e400d31a",
+                  "tests/render-command-consumer-test.cpp": "2f076ff4f5b4b5beb5357f11e91ec2acfcf26c8f8b964aac4827a3f127fad6d0",
+                  "tests/resident-bind-admission.c": "2fa0eb54f9deed960ce2786e7dfabe43dadd3d7c2ac2a8ca1c5c2d9943b77201",
+                  "tests/resident-canvas-transition-test.cpp": "64ca53f5be48308d23f7c9c4f7bf2b0a8823e7578361f18fc910d2aa2c759c9a",
+                  "tests/world-continuous-normal-test.cpp": "a08602ecdbaa4d1ffa737c8668f6fd7adb7c2e01e5a7ff1ddf8b43609bfad668",
+                  "tests/world-gpu-resident-test.cpp": "60b07d8772c2e908162b268936f140c86a5df85134a3118308d9b1c8a9756031",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "scope_resolution_record": "research/runtime/coverage/high-resident-supplier-crosswalk-current-20261020.json",
+                "scope_domains": [
+                  {
+                    "name": "world",
+                    "disposition": "supplied",
+                    "finding": "Versioned owned source/queue transport and native retained GPU history, joined by ResidentWorldSession polling and exact original return verification.",
+                    "validation": "All original producers, arbitrary source/physical aliases and full original pixel equivalence remain outside these bounded contracts.",
+                    "suppliers": [
+                      "NR.world-continuous-source",
+                      "NR.world-gpu-resident-frame",
+                      "NR.world-producer-handoff"
+                    ],
+                    "paths": [
+                      "apps/qt-shell/resident_world_session.cpp",
+                      "compat/legacy/world_continuous.cpp",
+                      "renderer/command_consumer.cpp"
+                    ]
+                  },
+                  {
+                    "name": "commands_hud",
+                    "disposition": "supplied",
+                    "finding": "Ordered V4 native World import followed by masked owned CPU HUD updates and ordered native copies/presentation. Unknown history remains a terminal refusal.",
+                    "validation": "Encountered admitted reader families do not prove every HUD/picking route, all writer ownership or scene equivalence.",
+                    "suppliers": [
+                      "NR.surfaces",
+                      "NR.continuous-mutations",
+                      "NP.native-history-reader-routing",
+                      "NP.explicit-native-cpu-materialization"
+                    ],
+                    "paths": [
+                      "apps/qt-shell/live_command_renderer.cpp",
+                      "renderer/command_consumer.cpp"
+                    ]
+                  },
+                  {
+                    "name": "cpu_reply",
+                    "disposition": "supplied",
+                    "finding": "Explicit V5 CPU_READ uses counted native readback and exact session/ticket/surface/extent/history validation, followed by complete atomic volatile-file publication.",
+                    "validation": "This explicit requested CPU snapshot is separate from zero-pixel World acknowledgements and does not authorize arbitrary stale CPU reads.",
+                    "suppliers": [
+                      "NP.explicit-native-cpu-materialization",
+                      "NP.cpu-history-admission"
+                    ],
+                    "paths": [
+                      "apps/qt-shell/cpu_reply_file.hpp",
+                      "apps/qt-shell/live_command_renderer.cpp",
+                      "renderer/command_consumer.cpp",
+                      "runtime/render/owned_session.h"
+                    ]
+                  },
+                  {
+                    "name": "bindings_retirement",
+                    "disposition": "supplied",
+                    "finding": "Bounded copy/tracker admission, generation/nonce-bound GPU leases, complete-queue canvas changes and acknowledged normal Quit retirement. Aggregate glue owns the retained frame values and cancels/joins its workers.",
+                    "validation": "Cross-object physical aliases, arbitrary COM reference semantics, unsampled threads/routes and full live-session acceptance remain separate.",
+                    "suppliers": [
+                      "NR.continuous-resource-lifetime",
+                      "NR.resident-bind-admission",
+                      "NR.resident-normal-shutdown",
+                      "NR.resident-world-canvas-transition"
+                    ],
+                    "paths": [
+                      "apps/qt-shell/resident_world_session.cpp",
+                      "runtime/render/owned_session.h"
+                    ]
+                  }
+                ],
+                "additive_source_review": "third20-native-final: reviewed newly linked controls/research without changing older source hashes, classification, acceptance or historical execution."
               }
             ],
             "planning_history": [

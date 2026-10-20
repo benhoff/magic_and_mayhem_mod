@@ -19363,3 +19363,20 @@ summon/combat integration d30425f9. Evidence and receipt history are retained.
 The default driver source fingerprints remain unchanged; combined static
 review imports preserve their parent pins and explicit pending boundaries.
 No broader execution or replacement milestone follows from this merge.
+
+### Implementation completion review (2026-10-20)
+
+The frozen twenty now have explicit domain, required positive/refusal cases and
+next milestones in `coverage/native-implementation-completion-20261020.json`.
+Fifteen declared implementations are scoped, supported by fresh owned controls;
+five broader startup/menu/world/storage/corpus targets remain partial. All
+comparison, integration and replacement statuses remain independent. Wider
+source ownership has its own seeded `NR.source-read-ownership` contract.
+
+Fresh controls: 73 coverage-gate tests, 59 offline tests, 222 corrected retained
+frames/1,228 COPY bindings, 11 native and two sanitizer CTests, 150 transform
+cases/17,550 pixels, 91 SPR and 195 scene frames, six ownership suites, actual
+V5 storage/point fixtures and combined owned surface backend comparison.
+ASan leak detection excludes Qt/Mesa process globals; explicit GPU cleanup is
+asserted. Software OpenGL/owned fixtures do not renew full game/hardware or
+original lifetime equivalence. Historical evidence hashes remain unchanged.

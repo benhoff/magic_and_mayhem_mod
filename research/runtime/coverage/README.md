@@ -389,6 +389,19 @@ evidence and cannot authorize original comparison, integration or replacement.
 | Integration | `none`, `headless`, `preview`, `live_observation`, `live_equivalence` |
 | Replacement | `none`, `scoped_live` |
 
+A recorded change review may name `validation.stages`, a nonempty unique list
+drawn from `implementation`, `comparison`, `integration`, and `replacement`.
+For example, `"stages": ["implementation"]` requires fresh source-bound execution
+for the implementation while preserving an unchanged historical live milestone
+as independently pending. It grants no comparison, integration or replacement
+promotion credit. Each promoted dimension must have its own matching recorded
+stage credit; listing an inactive dimension or malformed/duplicate stages refuses.
+Omitting `stages` retains the original requirement to validate every currently
+declared milestone. File hashes, evidence freshness/kinds, behavior contracts,
+scenario requirements for selected stages, and explicit pending-gap accounting
+remain mandatory. This separates implementation closure from wider acceptance;
+it does not make changed source equivalent to historical original/live results.
+
 `kind: native_policy` identifies intentional native semantics. It cannot claim
 original comparison equivalence. A recorded original comparison must link
 matching-build evidence that fingerprints linked implementation files.

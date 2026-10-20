@@ -212,6 +212,18 @@ def immutable_errors(before, after, merge_history=None):
     return errors
 
 
+VALIDATION_STAGES = ('implementation', 'comparison', 'integration', 'replacement')
+
+
+def review_stages(review, behavior):
+    """Explicit stage credit never renews an undeclared historical milestone."""
+    selected = review.get('validation', {}).get('stages')
+    if selected is not None:
+        return selected
+    return ['implementation'] + [stage for stage in VALIDATION_STAGES[1:]
+                                 if behavior['status'][stage] != 'none']
+
+
 def review_errors(review, delta, before, after, audit_report, historical=False):
     errors = []
     label = review.get('id', '(missing ID)')
@@ -223,6 +235,12 @@ def review_errors(review, delta, before, after, audit_report, historical=False):
     status = validation.get('status')
     if status not in {'pending', 'recorded', 'not_required'} or not isinstance(validation.get('reason'), str) or not validation['reason'].strip():
         errors.append(f'{label}: explicit validation status/reason required')
+    selected = validation.get('stages')
+    if selected is not None and (status != 'recorded' or not isinstance(selected, list)
+                                or not selected or any(stage not in VALIDATION_STAGES for stage in selected)
+                                or len(set(selected)) != len(selected)):
+        errors.append(f'{label}: stages requires a nonempty unique list of recorded validation dimensions')
+        return errors, [], []
     for field, key in (('files', 'path'), ('behaviors', 'id')):
         seen = set()
         for item in review.get(field, []):
@@ -275,23 +293,24 @@ def review_errors(review, delta, before, after, audit_report, historical=False):
             if b and not set(b['evidence']) & set(fresh):
                 errors.append(f'{label}: fresh validation does not link affected behavior {bid}')
             if b:
+                stages = review_stages(review, b)
+                if any(b['status'][stage] == 'none' for stage in stages):
+                    errors.append(f'{label}: selected validation stage has no declared milestone for {bid}')
                 linked = {after['evidence'][eid]['kind'] for eid in fresh if eid in b['evidence']}
                 required = []
-                if b['status']['comparison'] == 'recorded':
+                if 'comparison' in stages and b['status']['comparison'] == 'recorded':
                     required.append({'isolated_original', 'live_equivalence', 'live_replacement'})
                 level = b['status']['integration']
-                if level in {'headless', 'preview'}:
+                if 'integration' in stages and level in {'headless', 'preview'}:
                     required.append({'native_integration'})
-                elif level in {'live_observation', 'live_equivalence'}:
+                elif 'integration' in stages and level in {'live_observation', 'live_equivalence'}:
                     required.append({level} | ({'live_replacement'} if level == 'live_equivalence' else set()))
-                if b['status']['replacement'] != 'none':
+                if 'replacement' in stages and b['status']['replacement'] != 'none':
                     required.append({'live_replacement'})
                 if any(not kinds & linked for kinds in required):
                     errors.append(f'{label}: fresh evidence kind does not support current validation levels for {bid}')
                 support = next((row['current_validation'] for row in audit_report.get('behaviors', [])
                                 if row['id'] == bid), {})
-                stages = ['implementation'] + [stage for stage in ('comparison', 'integration', 'replacement')
-                                               if b['status'][stage] != 'none']
                 for stage in stages if after.get('claim_bindings_required', True) else []:
                     if not set(support.get(stage, {}).get('evidence', [])) & set(fresh):
                         errors.append(f'{label}: {bid}/{stage} requires scope-bound execution evidence with complete sources and scenario links')
@@ -370,7 +389,8 @@ def check(before, after, reviews, audit_report, merge_history=None):
     delta = changes(before, after)
     errors = immutable_errors(before, after, merge_history)
     errors.extend((merge_history or {}).get('errors', []))
-    covered_files, covered_behaviors, covered_gaps, validated_behaviors = set(), set(), set(), set()
+    covered_files, covered_behaviors, covered_gaps = set(), set(), set()
+    validated_stages = {}
     if reviews.get('schema') != SCHEMA:
         raise ValueError('Unsupported change-review schema')
     merge_history = merge_history or {'statuses': {}, 'reviews': [], 'parents': []}
@@ -420,7 +440,9 @@ def check(before, after, reviews, audit_report, merge_history=None):
         covered_files.update(f['path'] for f in files)
         covered_behaviors.update(behaviors)
         if review['validation']['status'] == 'recorded':
-            validated_behaviors.update(behaviors)
+            for bid in behaviors:
+                record = after['behaviors'][bid]['record']
+                validated_stages.setdefault(bid, set()).update(review_stages(review, record))
         # Gap acknowledgements count only in a receipt matching this change.
         if files or behaviors:
             covered_gaps.update(review.get('pending_gaps', []))
@@ -440,9 +462,11 @@ def check(before, after, reviews, audit_report, merge_history=None):
                  'comparison': {'none': 0, 'recorded': 1},
                  'integration': {'none': 0, 'headless': 1, 'preview': 2, 'live_observation': 3, 'live_equivalence': 4},
                  'replacement': {'none': 0, 'scoped_live': 1}}
-        promoted = any(ranks[stage].get(new.get(stage), 0) > ranks[stage].get(old.get(stage), 0)
-                       and (stage != 'implementation' or new.get(stage) == 'scoped') for stage in ranks)
-        if promoted and b['id'] not in validated_behaviors and b['id'] not in merge_history['statuses']:
+        promoted = {stage for stage in ranks
+                    if ranks[stage].get(new.get(stage), 0) > ranks[stage].get(old.get(stage), 0)
+                    and (stage != 'implementation' or new.get(stage) == 'scoped')}
+        if (promoted - validated_stages.get(b['id'], set())
+                and b['id'] not in merge_history['statuses']):
             errors.append(f'Status promotion requires fresh recorded validation: {b["id"]}')
     for key in delta['new_gaps']:
         if key not in covered_gaps:

@@ -4958,7 +4958,8 @@
         "research/runtime/surface-dib-ddraw.md",
         "research/runtime/high-tranche2-implementation-20261019.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -4992,17 +4993,19 @@
         "HIGH03.surface-cohorts-current-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020",
+        "COMPLETE.supplement-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.surfaces"
       }
     },
@@ -5018,7 +5021,8 @@
         "research/runtime/native-sprite-rendering.md",
         "research/runtime/surface-dib-ddraw.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "renderer/sprites/preview_main.cpp",
@@ -5047,11 +5051,12 @@
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
         "T20.original-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -5193,7 +5198,7 @@
         "tools/compare-mmsprite-binary.py"
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.sprites"
       }
     },
@@ -5210,7 +5215,8 @@
         "research/runtime/surface-dib-ddraw.md",
         "research/runtime/native-shared-scene-renderer.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "apps/sprite-scene/attachment_recipe.cpp",
@@ -5252,17 +5258,18 @@
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
         "T20.original-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.sprite_scene"
       }
     },
@@ -15825,7 +15832,8 @@
         "research/runtime/native-surface-operation-matrix.json",
         "docs/live-drawing-replacement.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "tools/check-surface-fixtures.py",
@@ -15864,7 +15872,8 @@
         "HIGH03.surface-cohorts-current-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -15874,7 +15883,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.surface-fixture-corpus"
       },
       "validation_dependencies": [
@@ -20222,13 +20231,14 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Exact execution claims and composable coverage accounting",
-      "scope": "Offline build/address/source accounting, immutable scope and scenario identities, complete declared implementation/dependency fingerprints, historical/current validation separation, exact receipt composition and root build census. Synthetic guard fixtures and read-only UI validation only; scientific adequacy, inferred transitive dependencies, original execution, full-player-session corpus and engine equivalence are outside this toolkit contract. Evidence-ID collisions may be imported only from independent actual co-parents of a committed/pending Git merge, preserving the entire historical record except its namespaced ID, complete provenance keys and append-only mappings; unrelated branches/ancestors and modified records refuse without validation/status credit. Evidence-ID import contexts include committed merge ancestry reachable from verified actual pending merge tips, without admitting unrelated branch references. Staged reviews and local/bootstrap baselines are captured from the index before its temporary tree is released; Git-base materialization follows sequentially, keeping one full tree on scratch storage at a time without changing accounting policy. Review journals may store ordered, SHA-256-pinned archive shards; filesystem, staged and Git-history readers preserve every original receipt value and append-only enforcement. Sharding changes storage only and does not renew historical validation. Submission performance: snapshot-local file fingerprint reuse and audited raw provenance retain complete source, binding and recorded-input keys. Git archives and file members stream through bounded buffers with failed-export and unsafe-member refusal. Optional CLI phase timings are diagnostic only. No persistent pass cache or skipped accounting stage.",
+      "scope": "Offline build/address/source accounting, immutable scope and scenario identities, complete declared implementation/dependency fingerprints, historical/current validation separation, exact receipt composition and root build census. Synthetic guard fixtures and read-only UI validation only; scientific adequacy, inferred transitive dependencies, original execution, full-player-session corpus and engine equivalence are outside this toolkit contract. Evidence-ID collisions may be imported only from independent actual co-parents of a committed/pending Git merge, preserving the entire historical record except its namespaced ID, complete provenance keys and append-only mappings; unrelated branches/ancestors and modified records refuse without validation/status credit. Evidence-ID import contexts include committed merge ancestry reachable from verified actual pending merge tips, without admitting unrelated branch references. Staged reviews and local/bootstrap baselines are captured from the index before its temporary tree is released; Git-base materialization follows sequentially, keeping one full tree on scratch storage at a time without changing accounting policy. Review journals may store ordered, SHA-256-pinned archive shards; filesystem, staged and Git-history readers preserve every original receipt value and append-only enforcement. Sharding changes storage only and does not renew historical validation. Submission performance: snapshot-local file fingerprint reuse and audited raw provenance retain complete source, binding and recorded-input keys. Git archives and file members stream through bounded buffers with failed-export and unsafe-member refusal. Optional CLI phase timings are diagnostic only. No persistent pass cache or skipped accounting stage. Explicit recorded validation.stages grants credit only to named dimensions; omitted stages retain full current-milestone validation. Implementation-only evidence cannot authorize higher comparison/integration/replacement promotions.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/coverage/README.md",
         "research/runtime/coverage-ledger.md",
-        "research/runtime/coverage/submission-performance-20261019.json"
+        "research/runtime/coverage/submission-performance-20261019.json",
+        "research/runtime/coverage/ownership-completion-history-20261020.json"
       ],
       "implementation": [
         "tools/coverage_claims.py",
@@ -20252,7 +20262,8 @@
         "TOOL.unified-merge-imports-20261016",
         "TOOL.creature-consolidation.guards-20261016",
         "TOOL.creature-consolidation.incoming-ancestry-20261016",
-        "TOOL.latest-campaign.staged-lifetime-20261016"
+        "TOOL.latest-campaign.staged-lifetime-20261016",
+        "COMPLETE.gate-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -20263,7 +20274,11 @@
       },
       "validation_dependencies": [
         ".github/workflows/re-coverage.yml"
-      ]
+      ],
+      "implementation_review": {
+        "review": "COMPLETE.source-review-20261020",
+        "entry": "TOOL.coverage-accounting"
+      }
     },
     {
       "id": "AS.resource-preparation",
@@ -30723,7 +30738,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.retained-1-20261020",
         "entry": "NR.font-glyph-live-shadow"
       }
     },
@@ -38227,7 +38242,8 @@
         "research/runtime/native-master-integration-latest-master-public-pass-20261011.json",
         "research/runtime/surface-final-word-read.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -39003,7 +39019,8 @@
         "HIGH03.public-default-cadence-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -39016,7 +39033,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.directdraw-public-native-menu"
       }
     },
@@ -39058,7 +39075,8 @@
         "research/runtime/native-master-integration-current-standalone-pass-20261011.json",
         "research/runtime/native-master-integration-latest-master-standalone-pass-20261011.json",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "tools/run-opengl-game.py",
@@ -39821,7 +39839,8 @@
         "HIGH03.standalone-startup-scenario-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -39834,7 +39853,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.directdraw-native-opengl-launch"
       }
     },
@@ -40466,7 +40485,8 @@
         "research/runtime/coverage/high-resident-supplier-crosswalk-20261020.json",
         "research/runtime/coverage/high-resident-supplier-crosswalk-current-20261020.json",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -40568,7 +40588,8 @@
         "HIGH03.public-native-defaults-cast-negative-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "scoped",
@@ -40585,7 +40606,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.public-resident-world"
       }
     },
@@ -68744,7 +68765,8 @@
         "research/runtime/draw02-canvas-storage-generations.md",
         "research/formats/drawing-storage-transitions.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "runtime/scene/drawing_storage_transitions.h",
@@ -68808,11 +68830,13 @@
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.offline-controls-20261020",
         "T20.offline-controls-merged-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.offline-20261020",
+        "COMPLETE.supplement-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -68850,7 +68874,7 @@
         "tools/inspect-canvas-producers.py"
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.drawing-canvas-storage-transitions"
       }
     },
@@ -70706,7 +70730,8 @@
         "research/runtime/draw02-source-version-guard.md",
         "research/formats/drawing-source-version-guard.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "runtime/drawing/wine_source_version.h",
@@ -70773,11 +70798,12 @@
         "HIGH03.ownership-source-version-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -70789,7 +70815,7 @@
         "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.drawing-source-version-guard"
       }
     },
@@ -70954,7 +70980,8 @@
       "documents": [
         "research/runtime/draw02-gpu-backing-provenance.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "tools/drawing_backing_provenance.py",
@@ -70990,11 +71017,12 @@
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.offline-controls-20261020",
         "T20.offline-controls-merged-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.offline-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -71007,7 +71035,7 @@
         "Current offline original32pilot03 writer-trace/lifecycle replay and4classifier tests:2179unlocated entries across49identities,2169no observed Lock return and10later returns. No physical allocation or alternate-view provenance. Historical fingerprints/statuses retained; fresh offline agreement does not promote original comparison, integration or replacement."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.drawing-backing-provenance"
       }
     },
@@ -80943,7 +80971,8 @@
         "research/formats/recorded-drawing-composition-v1.md",
         "research/runtime/drawing-copy-driver-order.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "tools/drawing_recorded_session.py",
@@ -81008,7 +81037,8 @@
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.offline-controls-20261020",
         "T20.offline-controls-merged-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.offline-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -81022,7 +81052,7 @@
         "Portable corrected222frame driver-policy fixture is separate from historical238frame unmodified uploads. Shared replay changes require new execution evidence; historical validation fingerprints remain unchanged. Retention alone is not new original execution, generic journey acceptance or renderer replacement."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.storage-session-corpus"
       }
     },
@@ -88395,7 +88425,8 @@
       "documents": [
         "research/runtime/draw02-copy-order.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "tools/capture-drawing-interactive.py"
@@ -88427,11 +88458,12 @@
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.offline-controls-20261020",
         "T20.offline-controls-merged-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.offline-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -88440,7 +88472,7 @@
         "Four native guards and fresh explicit800x600x24 original32capture pass after the host error-path fix. Prior failures and primary-error masking remain preserved under their original hashes. Same observer binaries in the default-display failed and explicit-size successful narrow profiles; observed800x600x16SetDisplayMode failure0x80004001does not establish all startup/environment causes. Source/physical ownership and all47journey/21operation closure pending."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.drawing-copy-failure-provenance"
       }
     },
@@ -88456,7 +88488,8 @@
         "research/runtime/draw02-canvas-storage-generations.md",
         "research/formats/drawing-storage-transitions.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "tools/drawing_storage_query_returns.py",
@@ -88501,11 +88534,13 @@
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.offline-controls-20261020",
         "T20.offline-controls-merged-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.offline-20261020",
+        "COMPLETE.supplement-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -88517,7 +88552,7 @@
         "Conservative numerical storage association:1567bound/3652unbound of5219queries. No allocation/view/upload ownership. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.drawing-storage-query-lock-return"
       }
     },
@@ -91563,7 +91598,8 @@
         "research/runtime/drawing-source-read-reservations.md",
         "research/formats/drawing-source-reservations-v1.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "runtime/drawing/wine_source_reservations.h",
@@ -91661,11 +91697,12 @@
         "HIGH03.ownership-reservations-current-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
@@ -91677,7 +91714,7 @@
         "HIGH03 fixes24 reproduced raw-journal/report/thread false admissions with50 synthetic Python regression methods. Runtime PE32 guard/original/GPU and wider ownership validation remain historical and separate; no raw milestone promotion."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.drawing-source-read-reservations"
       }
     },
@@ -115574,7 +115611,8 @@
       "documents": [
         "research/runtime/drawing-source-boundary-quiescence.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "runtime/scene/whole_update_capture.h",
@@ -115618,11 +115656,12 @@
         "HIGH03.ownership-quiescence-current-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
@@ -115632,7 +115671,7 @@
         "Physical backing allocations/alternate mappings, unhooked CPU/GPU writers, asynchronous work beyond observed frames, global presentation routes/all contexts, scanout, complete47/21journeys/operations and native replacement remain open. The unchanged interval checker still refuses the two global ownership gates."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.source-boundary-quiescence"
       }
     },
@@ -117952,7 +117991,8 @@
       "documents": [
         "research/runtime/drawing-ownership-bypass-closure.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "runtime/drawing/wine_mutator_entry.h"
@@ -118043,11 +118083,12 @@
         "HIGH03.ownership-ownership-bypasses-current-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
@@ -118057,7 +118098,7 @@
         "Raw CPU stores, private Wine writers/opcodes and distinct-resource physical backing aliases are not intercepted by public entry coverage. Existing raw-write counterexample still passes the observed-path guard. The all-original-backing-alias-writers gate remains false."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.drawing-mutator-entry-closure"
       }
     },
@@ -118072,7 +118113,8 @@
       "documents": [
         "research/runtime/drawing-ownership-bypass-closure.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "runtime/display/presentation_route_guard.h",
@@ -118134,11 +118176,12 @@
         "HIGH03.ownership-ownership-bypasses-current-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
@@ -118150,7 +118193,7 @@
         "Launcher capability hardening now requires a matching current EGL/GLX policy build manifest and pins its digest for child admission. Six real build-manifest positive/refusal cases and a fresh complete original120run pass. The earlier source-stable run predates this launcher hardening and remains historical."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.presentation-resolver-refusal"
       }
     },
@@ -120585,7 +120628,8 @@
       "documents": [
         "research/runtime/drawing-physical-alias-ownership.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "runtime/drawing/wine_source_handoff.h",
@@ -120683,11 +120727,12 @@
         "HIGH03.ownership-source-lock-20261020",
         "HIGH03.ownership-handoff-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
@@ -120696,7 +120741,7 @@
         "Current native-policy private COPY ownership passes2444handoffs and a completed original120source interval, including normal original Quit, restoration before API return and exact worker/fence retirement. The optional primitive-lifetime journal exhausted its bounded budget in retained retries and was disabled in the final ownership capture; no new primitive-lifetime evidence is claimed. Shared/imported/BO/unknown backing and arbitrary host/driver or other-context writers remain outside admission. This does not close all writers to original backing, global presentation routes, original scheduling/allocator equivalence or native replacement."
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NR.private-copy-source-handoff"
       }
     },
@@ -121479,7 +121524,8 @@
       "documents": [
         "research/runtime/native-render-functional-closure.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "runtime/native-draw/cpu_guard.h",
@@ -121519,11 +121565,12 @@
         "HIGH03.row-transforms-current-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -122247,7 +122294,7 @@
         "tools/campaign_input_observation.py"
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NP.native-copy-transforms"
       }
     },
@@ -123045,7 +123092,8 @@
       "documents": [
         "research/runtime/native-render-functional-closure.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/third20-implementation-progress-20261020.md"
+        "research/runtime/third20-implementation-progress-20261020.md",
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
@@ -123076,11 +123124,12 @@
         "HIGH03.row-transforms-current-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "T20.native-controls-20261020",
-        "HIGH04.staged-source-support-review-20261020"
+        "HIGH04.staged-source-support-review-20261020",
+        "COMPLETE.native-20261020"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -123804,7 +123853,7 @@
         "tools/campaign_input_observation.py"
       ],
       "implementation_review": {
-        "review": "MASTER.delivery-4e397ba2-static-5-20261020",
+        "review": "COMPLETE.source-review-20261020",
         "entry": "NP.native-image-row-copy"
       }
     },
@@ -128811,6 +128860,44 @@
           "full acceptance",
           "live replacement"
         ]
+      }
+    },
+    {
+      "id": "NR.source-read-ownership",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Fail-closed private COPY source ownership admission",
+      "scope": "Opt-in source-read ownership profile requires the pinned installed physical-owner hooks, observed reservation/version/packet/fence controls and private single-subresource RGB565 handoff. Freeze admitted private source pages across a callout-free snapshot, consume an unexposed owned staging generation through exact packet/worker/current-context completion, and retain retirement exclusion until original binding restoration before API return. Shared/imported/drawable/DC/unknown backing and incomplete installations refuse. This finite pinned Wine/private-memory boundary excludes arbitrary host/kernel/direct-syscall interference, external direct GPU dispatch, unknown driver aliases, global presentation and original scheduling/allocator equivalence.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/coverage/native-implementation-completion-20261020.json"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_source_handoff.h",
+        "runtime/drawing/wine_source_handoff_state.h",
+        "runtime/drawing/wine_source_reservations.h",
+        "runtime/drawing/wine_physical_owners.h"
+      ],
+      "tests": [
+        "tests/drawing-physical-owners-test.c",
+        "tools/test-drawing-physical-owners.py"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Explicit strict profile admission and complete retirement exclusion through binding restore are pending implementation and negative-first execution. Existing diagnostic-only guards retain their demonstrated unhooked-write escape; they do not supply this profile."
+      ],
+      "implementation_review": {
+        "review": "COMPLETE.source-review-20261020",
+        "entry": "NR.source-read-ownership"
       }
     }
   ],
@@ -290129,6 +290216,82 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "COMPLETE.gate-20261020",
+      "kind": "native_integration",
+      "scope": "73 coverage gate controls, including explicit implementation-stage credit, preserved default full-stage validation, malformed-stage refusal and rejection of undeclared comparison/integration promotions. No original/native engine execution claim.",
+      "record": "research/runtime/implementation-completion-gate-20261020.json",
+      "sha256": "c1bd8b50b4f5488229fadc7e602cefdc1c78482d444d6a6557bf97bfc0ae5bd1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "COMPLETE.offline-20261020",
+      "kind": "native_integration",
+      "scope": "Offline parser/exit/barrier controls and retained corrected storage normalization. No renewed original execution, all-writer/physical ownership or full journey acceptance.",
+      "record": "research/runtime/implementation-completion-offline-20261020.json",
+      "sha256": "36da6b9e3cd5a853ba4925262bc4b66727a19e971537ef0ca399e7fc8e57bcfd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "COMPLETE.native-20261020",
+      "kind": "native_integration",
+      "scope": "Bounded owned graphics/ABI/renderer and observed guard controls on private PE32 fixtures and software OpenGL. Native resource generation refusal is separate from selected unchanged-original ANI/SPR helpers. Hardware launch/gameplay/FPS, all original writers/aliases and broad live replacement remain pending.",
+      "record": "research/runtime/implementation-completion-native-20261020.json",
+      "sha256": "bfd23561efdb1ebbae50074158b9420cd0a6bc0c9f5f94a64ed7c5ce0f38916c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "COMPLETE.supplement-20261020",
+      "kind": "native_integration",
+      "scope": "Actual PE32 V5 recorder, cache-only query association and unified owned GL SurfaceBackend against retained original results. No current original/live/hardware run.",
+      "record": "research/runtime/implementation-completion-supplement-20261020.json",
+      "sha256": "539d9b23d08fc6bebaedaa117f0265be04a7cf9cc698232b0c5b8c23be7b0a8d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -311349,8 +311512,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-master-input-delivery-4e397ba2-20261020.json",
-    "sha256": "d4a8bfcc2628ec117ca653d8d43fed921578c785b40684a6961b49464b7d9f4c"
+    "path": "research/runtime/coverage/source-index-completion-20261020.json",
+    "sha256": "b1ea3cca51b2d521746b0417e8a72f8be3c8888e5a8ee1543011046b9e9ac1c6"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -311387,9 +311550,14 @@
       "sha256": "60532efffe6bc274a04dfde56e4a29871a9d9241f48ec90ccb407c21ffdf37b3"
     },
     {
-      "id": "MASTER.delivery-4e397ba2-static-5-20261020",
-      "path": "research/runtime/coverage/master-combat-delivery-4e397ba2-static-5-20261020.json",
-      "sha256": "4f7c3fb8f6f0709d816062ff35db1c34f5b0d18323a439e690fb1d9ab4864df8"
+      "id": "COMPLETE.retained-1-20261020",
+      "path": "research/runtime/coverage/completion-retained-1-20261020.json",
+      "sha256": "6f85e9a747f9e54fe71d465f711c38cda1758d28b5594f6c59ee2fb0740271de"
+    },
+    {
+      "id": "COMPLETE.source-review-20261020",
+      "path": "research/runtime/coverage/completion-source-review-20261020.json",
+      "sha256": "8a22b3724438ea45f464006b3171d37d31afaa318f88eb28857eb21b1c467db5"
     }
   ]
 }
