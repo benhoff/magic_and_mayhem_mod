@@ -19585,3 +19585,31 @@ rotation consumers and full native-scene/live acceptance remain separate.
 
 The committed history34bc0397..269d1c5c has zero exact receipt gaps; see
 working/tests/camera-follow-history-review-20261020.json.
+
+### 2026-10-20 — bounded palette modes, chains and application delivery
+
+All ten palette builders and owned append/ordinal selection are implemented;
+the application produces nine profile keys, binds each current resource revision
+and frame palette, and delivers selected tables through native SceneDraw and
+terrain preview. Original quirks include odd count storage, dark-only DWORD
+modes, fixed noise, metal byte wrapping/midpoint pointer stall and post-metal
+source carry. Safe full storage, finite scalar domains and atomic chain/budget
+failure are explicit native policies. The numerical and chain components each
+have fresh unchanged-original/native64/ASan-UBSan comparisons, respectively
+63,416,320 and5,263,360 exact values. New original records retain manifest
+bookends and immutable old evidence.
+
+Native application/preview records independently establish21 and14 Mesa headless
+GPU frames, plus15 terrain CLI controls. No physical GPU, installed full-scene
+or live replacement milestone follows. Camera lifecycle/rotation consumers,
+entity-linked map ownership, installed light producers and production scene
+orchestration remain implementation work. See
+[packet details](remaining-rendering-implementations-20261020.md). Reviewed actual
+committed range269d1c5c..4fb2cb76:16 exact hash-bound files, zero gaps, retained
+working/tests/palette-history-review-20261020.json; historical accounting is
+separate from new execution.
+
+Final palette ownership review also fixed copied-chain capacity charges and
+reserved ordinal metadata before future appends. The copy/64-append regression,
+unchanged-original chain comparison and both headless application matrices pass
+in new capacity-suffixed records; earlier reports remain historical unchanged.

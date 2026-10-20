@@ -108,3 +108,70 @@ explicit return, preserving its executable behavior and avoiding an included
 fixture compiler warning. Original manifest bookends pass. Resource acquisition,
 view/rotation and its creature/effect/minimap consumers remain broader work;
 this comparison makes no full-scene or live replacement claim.
+
+## Complete bounded palette builders and delivery
+
+The palette group now has all ten numerical modes, owned per-palette append
+chains, explicit ordinal/shade selection, profile production and native scene /
+terrain application delivery. Component IDs are `RE.palette-effect-modes`,
+`RE.palette-effect-chains`, `NR.scene-palette-effects` and
+`NR.terrain-palette-effects-preview`. The broad parent stays partial because its
+historical milestones do not automatically inherit component execution credit.
+No named numerical mode or chain-selection implementation remains missing.
+
+Pinned NoCD functions 00582440,00582a80,00583330,00583bb0,00586660,005870d0,
+00585d80,00587e70,00588730,00588bf0 supply modes0..9; 0057d690 is the append
+dispatcher. Confidence is high within the finite compared domains. Modes0/8
+admit counts2..256; other modes require powers of two. Modes8/9 store DWORD
+entries whose values are zero-extended packed RGB555/565 words, and expose only
+the dark and neutral wing. Native owned tables retain the whole produced output
+and charge allocated capacity. Safe storage replaces original underallocation;
+this does not reproduce heap corruption. Shade selection refuses inaccessible
+entries rather than reading beyond a table.
+
+Stone and metal reproduce the fixed-seed original noise stream. Metal contrast
+is a percentage, with original byte wrapping. Its exact-midpoint branch does
+not advance the source RGB pointer; all later loop iterations revisit that
+triple and leave the remaining palette tail unchanged. The owned source copy
+preserves this behavior and feeds later appended effects. Original shared asset
+palettes remain immutable. This unusual pointer branch was confirmed by whole
+unchanged original execution, not inferred from a conventional contrast formula.
+
+The chain permits0..4 palettes and unknown-mode/empty-palette successful no-ops.
+Each append stages every source/table before publishing an ordinal. Failure is
+atomic under native allocation/budget limits; original partial-chain allocation
+failure is a separate unsafe baseline branch, not claimed equivalent. The plain
+owned profile adapter reads the nine original keys (including `SpecalValue`),
+defaults and decimal prefixes. Explicit finite [-1000,1000] scalar bounds are
+native policy. Windows profile IO/locale equivalence is not claimed.
+
+The application service binds chains to resident ResourceId/revision identities,
+resolves each selected frame's palette, copies table values into SceneDraw and
+checks owner-thread lifetime. Reloads require explicit rebind. Terrain preview
+supports repeatable `--palette-effect`, `--effect-ordinal`, `--effect-config` and
+removes its stale blanket power-only count refusal. Existing ordinary drawing
+and lighting algorithms remain suppliers.
+
+Fresh records: palette-effects-original-20261020.json compares3,468 palettes,
+63,416,320 words,384 source mutations,24 refusals and506 original underallocated
+outputs. palette-chains-original-20261020.json compares40 sessions,352 appends,
+128 no-ops,32 refusals and5,263,360 words. Original/native64/ASan-UBSan outputs
+agree and native/sanitized units pass, with original manifest bookends. The
+private allocator/IAT/SEH adapters are byte/hash checked; original files remain
+unchanged. Earlier failed/intermediate reports remain retained without hash
+refreshes. scene-palette-native-20261020.json records21 Mesa llvmpipe GPU frames,
+revision/budget/thread/retirement controls. terrain-palette-native-20261020.json
+records14 GPU frames and15 CLI controls. These headless results do not establish
+physical NVIDIA, installed full-game or live replacement acceptance.
+
+Committed-history accounting reviewed269d1c5c..4fb2cb76:16 changed files have
+exact parent/current SHA-256 receipts with zero unresolved gaps. The retained
+report is working/tests/palette-history-review-20261020.json. This is separate
+from current palette execution and makes no claim about a past gate pass.
+
+A final ownership review corrected copy capacity accounting: deep copies reserve
+ordinal storage before appending and charge their own nested vector capacities.
+A mode8 copy regression checks its shortened allocation, followed by64 staged
+copy/append operations and a limit refusal. Fresh capacity-suffixed chain,
+scene and terrain records repeat all corresponding comparisons/frames/CLI
+controls. Earlier reports and source hashes remain immutable and historical.
