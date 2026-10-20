@@ -4,7 +4,7 @@
 #include "../runtime/drawing/session.c"
 API void* WIN LoadLibraryA(const char*);
 API HANDLE WIN CreateThread(void*,u32,u32(WIN*)(void*),void*,u32,u32*);
-static u32 trial,forwards,packet[25];
+static u32 trial,forwards,packet[25],retire_case,ownership_case;
 static u8 *source,*destination,*alias,*module;
 static void* cached_protect;
 static void* cached_free;
@@ -57,12 +57,23 @@ static void init_texture(u8* texture){
  u32* sub=VirtualAlloc(0,0x1000,0x3000,4);check(sub!=0);*(u32*)(texture+0x14)=3;*(u32*)(texture+0x4c)=3200;*(u32*)(texture+0xb0)=*(u32*)(texture+0xb4)=1;*(u32*)(texture+0x120)=(u32)sub;sub[3]=3200;sub[5]=0x80000000u;
  check(((u32(__attribute__((cdecl))*)(void*))(module+0x204a60))(texture)==1);
 }
-static void* __attribute__((cdecl)) resource_get(void* t){return t;}
+static u32 __attribute__((cdecl)) retire_body(void* texture){
+ (void)texture;if(retire_case!=4&&retire_case!=6)ExitProcess(211);return 1;
+}
+static void* __attribute__((cdecl)) resource_get(void* t){
+ if(t==alias&&retire_case==2)return source;
+ if(t==alias&&retire_case==3)return 0;
+ return t;
+}
 static u32 __attribute__((cdecl)) descriptor(void* t,u32 sub,u32* out){check(t==source&&!sub);memset(out,0,40);out[0]=116;out[5]=13;out[6]=out[7]=40;out[8]=1;out[9]=3200;return 0;}
 static u32 __attribute__((cdecl)) map_body(void* t,u32 sub,u32* out,const u32* box,u32 flags){check(t==source&&!sub&&!box&&flags==0x80000000u);out[0]=80;out[1]=3200;out[2]=*(u32*)(*(u32*)(source+0x120)+0x30);if(!out[2])out[2]=*(u32*)(source+0x58);return 0;}
 static u32 __attribute__((cdecl)) unmap_body(void* t,u32 sub){check(t==source&&!sub);return 0;}
 static u32 __attribute__((cdecl)) handoff_rebind(void* texture,u32 sub,void* memory,u32 pitch){
  check(texture==source&&!sub&&pitch==80);
+ if(retire_case==8){struct WineSourceHandoff* h=wine_handoff_find(1);if(h&&h->state==6)((volatile u8*)h->stage_base)[16]=9;}
+ if(retire_case==5){struct WineSourceHandoff* h=wine_handoff_find(1);
+  if(h&&h->state==6){wine_lifetime_texture_decref(source);ExitProcess(211);}}
+
  u32 old=*(u32*)(source+0x54);*(u32*)(source+0x58)=0;
  if(old){((void(__attribute__((cdecl))*)(void*))*(void**)(module+0x3396b0))((void*)old);*(u32*)(source+0x54)=0;}
  *(u32*)(*(u32*)(source+0x120)+0x30)=(u32)memory;
@@ -114,12 +125,34 @@ static u32 __attribute__((cdecl)) blit(void* cs,void* dst,u32 di,const void* db,
  if(wine_handoff_enabled&&trial==36){__asm__ volatile("fninit; fld1":::"memory");snapshot_fp(result_fp);SetLastError(0x4321);return 0;}
  SetLastError(0x1234);restore_fp(expected_fp);((void(__attribute__((cdecl))*)(void*,const void*))*(void**)(module+0x24d420+42*4))(cs,packet);
  if(trial==9){EnterCriticalSection(journal_lock);wine_phys_release(901);LeaveCriticalSection(journal_lock);}
+ if(retire_case==12||retire_case==13){struct WineSourceHandoff* h=wine_handoff_find(1);check(h&&h->state==4&&!wine_reserve_find(1));
+  if(retire_case==12)wine_phys_free((void*)h->stage_base);
+  else {u32 n;((u32(WIN*)(void*,void*,const void*,u32,u32*))GetProcAddress(GetModuleHandleA("ntdll.dll"),"NtWriteVirtualMemory"))((void*)-1,(void*)(h->stage_base+16),old_pixels,1,&n);}
+ }
+ if(retire_case==10||retire_case==11){struct WineSourceHandoff* h=wine_handoff_find(1);check(h&&h->state==4&&!wine_reserve_find(1));
+  if(retire_case==10)wine_phys_binding((void*)(h->stage_base+16));
+  else {*(u32*)(*(u32*)(alias+0x120)+0x30)=h->stage_base+16;wine_phys_writer(alias,43);}
+ }
+ if(retire_case==7||retire_case==9){struct WineSourceHandoff* h=wine_handoff_find(1);check(h&&h->state==4&&!wine_reserve_find(1));
+  if(retire_case==7)((volatile u8*)h->stage_base)[16]=9;
+  else {u32 old;check(VirtualProtect((void*)h->stage_base,4096,4,&old));}
+ }
+ if(retire_case&&retire_case<=4){
+  check(wine_handoff_find(1)&&wine_handoff_find(1)->state==4&&!wine_reserve_find(1));
+  check(wine_lifetime_texture_decref(retire_case==1?source:retire_case==4?destination:alias)==1);
+ }
+
  return 0;
 }
 void start(void){
- char value[4];check(initialize());if(GetEnvironmentVariableA("MNM_TEST_PHYSICAL",value,4)==1)trial=value[0]>='a'?value[0]-'a'+10:value[0]-'0';
+ char value[4];if(GetEnvironmentVariableA("MNM_TEST_OWNERSHIP",value,4)==1)ownership_case=value[0];
+ if(ownership_case=='I'){check(!initialize());ExitProcess(0);}check(initialize());
+ if(ownership_case=='5'){wine_source_ownership_require();ExitProcess(211);}
+ if(GetEnvironmentVariableA("MNM_TEST_PHYSICAL",value,4)==1)trial=value[0]>='a'?value[0]-'a'+10:value[0]-'0';
  if(trial==39){registry_collisions();registry_retirement_races();finish(1);ExitProcess(0);}
  if(trial==19){check(!wine_phys_enabled&&wine_phys_install(0));finish(1);ExitProcess(0);}
+ if(GetEnvironmentVariableA("MNM_TEST_RETIRE",value,4)==1)retire_case=value[0]-'0';
+ wine_lifetime_original[1]=(void*)&retire_body;
  module=VirtualAlloc(0,0x340000,0x3000,0x40);check(module!=0);
  const u32 rv[51]={0x1cf2c0,0x1cf2f0,0x1ce7b0,0x1cea70,0x1ceb00,0x1cf070,0x1d0510,0x1d0da0,0x1d0820,0x1d0590,0x1cfe60,0x1d0d70,0x1d0a60,0x1d0a00,0x1d0060,0x1cfcf0,0x1d0af0,0x1d0960,0x1d0ca0,0x1d07a0,0x1d08a0,0x1cfa60,0x1cfe00,0x1d0530,0x1cfdc0,0x1d0560,0x1d0c50,0x1cfb00,0x1d00c0,0x1d0480,0x1d0010,0x1cffc0,0x1d0040,0x1cf800,0x1cf9a0,0x1ce790,0x1cf8e0,0x1cf2d0,0x1d0e20,0x1cf1d0,0x1d0e40,0x1cf220,0x1ce280,0x1d0e70,0x1ce130,0x1ce820,0x1ce870,0x1ce920,0x1cf130,0x1ce9c0,0x1ced00};
  for(u32 i=0;i<51;++i)*(void**)(module+0x24d420+i*4)=i==42?(void*)&wine_blit_worker:module+rv[i];
@@ -131,6 +164,10 @@ void start(void){
  source=VirtualAlloc(0,4096,0x3000,4);destination=VirtualAlloc(0,4096,0x3000,4);alias=VirtualAlloc(0,4096,0x3000,4);check(source&&destination&&alias);init_texture(source);init_texture(destination);init_texture(alias);
  memset((void*)*(u32*)(source+0x58),3,3200);u32* alias_sub=(u32*)*(u32*)(alias+0x120);alias_sub[12]=*(u32*)(source+0x58);
  wine_resource_original[0]=(void*)&resource_get;wine_resource_original[1]=(void*)&map_body;wine_resource_original[2]=(void*)&unmap_body;wine_source_descriptor_get=&descriptor;wine_submission_original[0]=(void*)&blit;wine_blit_worker_original=(void*)&worker;wine_gpu_current=(void*)&current_context;wine_gpu_proc=&get_proc;wine_source_version_rebind_original=(void*)&handoff_rebind;old_pixels=(u8*)*(u32*)(source+0x58);
+ if(wine_source_ownership_required){check(wine_source_ownership_install());
+  if(ownership_case=='6')wine_mutator_entry_installed=0;
+  if(ownership_case=='9')wine_handoff_enabled=0;
+ }
  wine_lifetime_create(source,1);wine_lifetime_create(destination,1);wine_lifetime_create(alias,1);
  if(trial==10)*(u32*)(source+0x30)=1;
  if(trial==11)*(u32*)(*(u32*)(source+0x120)+0x30)=*(u32*)(source+0x58);
@@ -150,6 +187,13 @@ void start(void){
  SetLastError(0x1234);__asm__ volatile("fninit; fldz":::"memory");snapshot_fp(expected_fp);
  check(wine_submission_blt((void*)9,destination,0,0,source,0,0,0,0,1)==0);check(forwards==1);if(wine_handoff_enabled){check(!wine_handoff_find(1));if(!initial_client)check(*(u32*)(source+0x58)==(u32)old_pixels);else check(*(u32*)(*(u32*)(source+0x120)+0x30)==initial_client);if(trial==35)check(old_pixels[0]==2);if(trial==2)check(old_pixels[0]==7);}
  check(GetLastError()==0x4321);check_fp(trial==40?async_result_fp:result_fp);
+ if(retire_case==6)check(wine_lifetime_texture_decref(source)==1);
+ if(ownership_case=='7'||ownership_case=='8'){finish(1);
+  if(ownership_case=='7')wine_submission_blt((void*)9,destination,0,0,source,0,0,0,0,1);
+  else wine_blit_worker((void*)9,packet);ExitProcess(211);
+ }
+
+
  if(trial==20){u32 old;check(VirtualProtect((void*)*(u32*)(source+0x54),4096,4,&old));}
  {u32 current=*(u32*)(*(u32*)(source+0x120)+0x30);if(!current)current=*(u32*)(source+0x58);((u8*)current)[0]=4;}
  if(trial==43){

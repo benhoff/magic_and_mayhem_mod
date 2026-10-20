@@ -90,6 +90,11 @@ if metadata.get('wine_physical_owners'):
     (root/'physical-owner-ntdll.json').write_text(json.dumps(nt_pin,indent=2)+'\n')
     os.environ['MNM_DRAW_WINE_PHYSICAL_OWNERS']='1'
 else:os.environ.pop('MNM_DRAW_WINE_PHYSICAL_OWNERS',None)
+if metadata.get('wine_source_ownership'):
+    from drawing_source_ownership import validate_manifest
+    validate_manifest(metadata)
+    os.environ['MNM_DRAW_WINE_SOURCE_OWNERSHIP']='1'
+else:os.environ.pop('MNM_DRAW_WINE_SOURCE_OWNERSHIP',None)
 if metadata.get('wine_source_handoff'):os.environ['MNM_DRAW_WINE_SOURCE_HANDOFF']='1'
 else:os.environ.pop('MNM_DRAW_WINE_SOURCE_HANDOFF',None)
 if metadata.get('wine_source_version'):os.environ['MNM_DRAW_WINE_SOURCE_VERSION']='1'

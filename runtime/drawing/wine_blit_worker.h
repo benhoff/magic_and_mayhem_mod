@@ -9,6 +9,7 @@ static void* wine_blit_worker_original;
 static void wine_blit_worker_emit(u32* r){r[0]=++wine_blit_worker_records;if(wine_blit_worker_records>131072||!write(wine_blit_worker_file,r,192))ExitProcess(99);}
 static void __attribute__((cdecl)) wine_blit_worker(void* context,const u32* packet){
  u32 error=GetLastError(),observed=0,r[48]={0};u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);
+ wine_source_ownership_require();
  EnterCriticalSection(journal_lock);if(wine_submission_enabled){observed=1;if(!readable(packet,100)||packet[0]!=42)ExitProcess(99);r[1]=1;++wine_blit_worker_pending;r[2]=++wine_blit_worker_calls;r[3]=42;r[4]=GetCurrentThreadId();r[5]=GetTickCount();r[7]=wine_lifetime_records;
   r[8]=wine_submission_identity((void*)packet[1],1);r[9]=wine_lifetime_find((void*)packet[1],1);r[10]=wine_submission_identity((void*)packet[9],1);r[11]=wine_lifetime_find((void*)packet[9],1);
   r[12]=packet[2];r[13]=packet[10];copy(r+14,packet+3,24);copy(r+20,packet+11,24);r[26]=packet[17];copy(r+27,packet+18,24);r[33]=packet[24];wine_blit_packet_worker(packet,r[2],2);wine_worker_context_publish(packet,r[2],2);wine_blit_worker_emit(r);}LeaveCriticalSection(journal_lock);

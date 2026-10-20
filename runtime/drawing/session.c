@@ -213,10 +213,10 @@ u32 WIN DrawingInstallCursorForTest(void* callback){original_cursor=callback;ret
 i32 WIN DrawingObserveCursorForTest(i32* point){return cursor(point);}
 #endif
 static int initialize(void){
- InitializeCriticalSection(journal_lock);
+ InitializeCriticalSection(journal_lock);if(!wine_source_ownership_configure())return 0;
  char mode[16];u32 mode_length=GetEnvironmentVariableA("MNM_DRAW_SESSION_MODE",mode,sizeof(mode));int inputs_only=mode_length==6&&equal(mode,"inputs",6);(void)inputs_only;physical_enabled=mode_length==8&&equal(mode,"physical",8);readbacks_enabled=!(mode_length==8&&equal(mode,"metadata",8));
  if(!physical_budget()||!input_point_open())return 0;
- u32 n=GetEnvironmentVariableA("MNM_DRAW_SESSION_DIRECTORY",directory,sizeof(directory));if(!n)return 1;if(n>=sizeof(directory))return 0;if(!action_state_open())return 0;
+ u32 n=GetEnvironmentVariableA("MNM_DRAW_SESSION_DIRECTORY",directory,sizeof(directory));if(!n)return !wine_source_ownership_required;if(n>=sizeof(directory))return 0;if(!action_state_open())return 0;
  char ownership_flag[2];if(GetEnvironmentVariableA("MNM_DRAW_WINE_PHYSICAL_OWNERS",ownership_flag,2)==1&&ownership_flag[0]=='1'){char fault_name[600];path(fault_name,"drawing-fatal.bin");drawing_fatal_file=CreateFileA(fault_name,0x40000000,3,0,1,0x80,0);if(drawing_fatal_file==(HANDLE)-1)return 0;}
  char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=physical_enabled?physical_byte_limit:1024u*1024u*1024u;header[8]=physical_enabled?3:inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64)||(physical_enabled&&!interval_open())||!update_timing_open()||!producer_points_open()||!primitive_api_open()||!aux_save_open()||!wine_submission_open()||!source_bytes_open()||!source_lease_open()||!drawing_cursor_gate_open())return 0;enabled=1;
 #ifndef MNM_DRAWING_SELFTEST

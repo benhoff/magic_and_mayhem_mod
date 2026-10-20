@@ -89,7 +89,7 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        self.assertEqual(result['partial_counts'], {1: 91, 2: 9, 3: 16, 4: 51, 5: 35})
+        self.assertEqual(result['partial_counts'], {1: 91, 2: 9, 3: 16, 4: 36, 5: 32})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -143,8 +143,10 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual([len(t['tasks']) for t in plan['tranches']], [11, 11, 11])
         tasks = [task for t in plan['tranches'] for task in t['tasks']]
         critical = {e['behavior'] for e in result['entries'] if e['weight'] == 5 and e['implementation'] == 'partial'}
-        self.assertEqual({task['behavior'] for task in tasks} | set(plan['unplanned_critical']), critical)
-        self.assertTrue(all(t['implementation'] == 'partial' for t in tasks))
+        completed = {task['behavior'] for task in tasks if task['implementation'] == 'scoped'}
+        self.assertEqual(completed, {'NR.canvas-producer-replay', 'NR.world-startup-sequence', 'NR.world-producer-handoff'})
+        self.assertEqual({task['behavior'] for task in tasks} | set(plan['unplanned_critical']), critical | completed)
+        self.assertTrue(all(t['implementation'] in {'partial', 'scoped'} for t in tasks))
         self.assertTrue(all(t['review_state'] in {'current','needs_review'} for t in tasks))
         for task in tasks:
             if task.get('work_review',{}).get('freshness') == 'historical':
@@ -281,7 +283,7 @@ class TrancheTest(unittest.TestCase):
             self.assertTrue(all(p['outcome'] == 'PASS' and p['mismatches'] == 0 for p in tasks[bid]['acceptance_profiles']))
             self.assertFalse(tasks[bid]['legacy_diagnostics']['hardware']['blocking'])
         self.assertTrue(all(tasks[bid]['implementation'] == 'implemented_within_scope' for bid in failures))
-        self.assertTrue(all(w['validation_state'] == ('pending' if bid in {'NR.drawing-storage-session-comparison', 'NR.recorded-hardware-session-parity'} else 'historical') for bid,w in tasks.items()))
+        self.assertTrue(all(w['validation_state'] == ('pending' if bid in {'NR.drawing-storage-session-comparison', 'NR.recorded-hardware-session-parity'} else 'recorded' if bid == 'NR.world-producer-handoff' else 'historical') for bid,w in tasks.items()))
         self.assertEqual(self.register, before)
 
     def test_second_tranche_reviews_supplied_mechanisms_and_unresolved_history(self):
@@ -301,7 +303,8 @@ class TrancheTest(unittest.TestCase):
         for task in tasks.values():
             self.assertFalse(task['work_review']['implementation_gaps'])
             self.assertTrue(task['execution_brief']['supplied_controls'])
-            self.assertEqual(task['implementation'], 'partial')
+            self.assertEqual(task['implementation'], 'scoped' if task['behavior'] in
+                             {'NR.canvas-producer-replay','NR.world-startup-sequence'} else 'partial')
             original = next(t for t in self.catalog['tranche_plan']['tranches'][1]['tasks']
                             if t['behavior'] == task['behavior'])
             self.assertEqual(task.get('execution_result'), original.get('execution_result'))
@@ -404,7 +407,7 @@ class TrancheTest(unittest.TestCase):
                 importance_view(c, self.register, self.tracks)
 
 
-    def test_high_tranches_cover_all_unfinished_high_contracts_once(self):
+    def test_high_tranches_retain_completed_reviewed_contracts_and_cover_unfinished_once(self):
         before = copy.deepcopy((self.register, self.catalog))
         result = importance_view(self.catalog, self.register, self.tracks)
         plan = result['high_tranche_plan']
@@ -412,12 +415,17 @@ class TrancheTest(unittest.TestCase):
         tasks = [task for tranche in plan['tranches'] for task in tranche['tasks']]
         expected = {e['behavior'] for e in result['entries']
                     if e['weight'] == 4 and e['implementation'] in {'partial', 'none'}}
-        self.assertEqual({t['behavior'] for t in tasks}, expected)
+        completed = {e['behavior'] for e in json.loads((ROOT /
+            'research/runtime/coverage/native-implementation-completion-20261020.json').read_text())['entries']
+            if e['decision'] == 'scoped_implementation_complete'}
+        self.assertEqual({t['behavior'] for t in tasks}, expected | completed)
+        self.assertEqual({t['behavior'] for t in tasks if t['implementation'] == 'scoped'}, completed)
+        self.assertTrue(all(t['reviewed_implementation'] in {'partial', 'none'} for t in tasks))
         self.assertEqual(len(tasks), 51)
         self.assertEqual(plan['unplanned_high'], [])
         self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 0)
         self.assertEqual(sum(e['weight'] == 4 and e['implementation'] == 'scoped'
-                             for e in result['entries']), 53)
+                             for e in result['entries']), 53 + len(completed))
         for task in tasks:
             execution = task.get('execution_result')
             if execution:

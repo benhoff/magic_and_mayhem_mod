@@ -19090,28 +19090,6 @@ inputs and250ms fixture pacing remain explicit. No unobserved camera/visibility
 generation, normal-session input timing, border/alias/driver or replacement
 coverage is inferred. The unsupported-default-input attempt remains retained.
 
-## Native scene and outstanding accounting closeout — 2026-10-20
-
-The isolated source tree renews `WORLD.owned`, `WORLD.sandbox`, supported native
-audio/assets/profile foundations and the Crossroads window through automatic
-source-bound execution. The scene and foundations use generated inputs;
-Crossroads uses read-only installed assets with original-manifest bookends.
-Evidence is retained under new `SCENE.lifecycle-renewal-20261020`,
-`FOUNDATIONS.*-renewal-20261020` and `CAMPAIGN.crossroads-renewal-20261020` IDs.
-Focused `RE.terrain-traversal-closeout-20261020` and
-`RS.world-dispatch-closeout-20261020` retain new original comparisons.
-`NR.production-refusal-closeout-20261020` is authored native fixture support,
-not fresh original/live observation.
-
-The source/scope review preserves stale historical closures and original stages
-independently from current execution. The old terrain and multi-domain recorded
-receipts retain historical versions; exact pending reviews cover current shared
-source effects. No source fingerprints are refreshed in old reports.
-`TOOL.next20-canvas-controls` is seeded as partial tooling without new execution
-credit. All affected sources and committed incoming versions are reviewed and
-indexed with exact receipts. See `native-scene-accounting-closeout-20261020.md`
-for counts, failures, retained boundaries and the source-frozen reproduction.
-
 ## Next twenty partial contracts, group 2 — 2026-10-20
 
 Fixed final publication admission before the final World return and refused
@@ -19125,6 +19103,11 @@ all-writer, physical ownership, full startup/live replacement are not promoted.
 [Progress](next20-implementation-progress-20261020.md) and the three new immutable
 execution records keep those domains independent.
 
+`LOW20.glyph-live-incomplete-storage-20261020` retains the additional live glyph
+renewal interrupted by the100GiB guard at99.86GiB free. Original-manifest
+verification after interruption and owned Wine retirement pass; original child
+exit and a complete new glyph comparison are unverified. This result is unbound
+for current milestone credit. Prior component/live evidence is preserved.
 ### Rendering commit validation follow-up — 2026-10-20
 
 The renewed terrain cohort passes all seventeen original/native comparisons
@@ -19198,6 +19181,46 @@ hashes. Wider text/session/driver acceptance and the existing pixel/timing
 failures remain pending independently of this pass.
 
 The storage-interrupted glyph attempt remains separately retained as INCOMPLETE_STORAGE_GUARD and grants no milestone credit. The follow-up commit reviews merged HEAD87105990: all841 source hashes in the successful glyph record match that tree. No historical fingerprint or engine stage is rewritten.
+
+### Default physical summon/combat input repair — 2026-10-20
+
+The repaired default helper selects/centers the wizard before spell selection,
+and computes bounded isometric approach steps from fresh positions after
+centering. Short obstacle-limited path progress is retained as movement evidence
+and is no longer fitted as a camera transform. Six new controls and 23 existing
+campaign controls pass. New CINPUT evidence records an actual owned summon,
+native 0/15 -> 1/15 count, original 4,352-unit mana debit, two independent movement
+probes, 16 Zombie melee events and the same enemy's lethal 2 -> 0 transition.
+The wizard remains alive with 86 health. No game-state or balance writes occur.
+
+The full parent flow completes and quits normally without fallback/recovery,
+but fails the unchanged 19 FPS engine gate at 8.671475 FPS. Its failed report and
+three earlier isolated prelaunch failures remain retained. The new narrow
+HOST.campaign-physical-combat-driver policy has current default-route observation;
+the wider casting/combat/throughput contract and extended spell/portrait cases
+are not promoted. The isolated rendering branch ed556c8d..38fe6e3f history audit covers 412 parent/current
+file versions with no missing exact receipt chains, independently of this new
+uncommitted source change and without asserting a historical gate pass.
+
+### Critical rendering partials: primary work needs (2026-10-20)
+
+The coverage atlas now separates all 35 currently Critical partial rendering
+contracts into one primary next-work bucket each: 18 validation, nine bounded
+scope reconciliation/extension decisions, five supported-session acceptance
+contracts, and three original-behavior/ownership recovery contracts. No reviewed
+entry identifies missing implementation as its primary task; this does not
+certify that no defects or broader unknown mechanisms remain. Each entry retains
+its required steps and explicit closure condition. Counts deduplicate contracts;
+steps can span several kinds of work. Bounded scope extension is not an automatic
+requirement for an already supplied mechanism.
+
+The planning review in `apps/coverage-ui/critical-needs.json` binds each decision
+to its current behavior contract, source/test/research bytes and, where present,
+the authored tranche assessment. Changed inputs and newly Critical partials move
+to an explicit assessment-review bucket. This presentation update changes no
+engine stage, execution evidence, historical fingerprint or acceptance claim.
+UI/validator regression checks establish presentation and drift handling only;
+current engine validation and whole-renderer acceptance remain separate.
 
 ## Third twenty partial contracts, offline group — 2026-10-20
 
@@ -19335,6 +19358,29 @@ physical backing, full game/hardware/FPS and live replacement remain separate;
 all twenty findings and remaining partial milestones are recorded in
 `research/runtime/third20-implementation-progress-20261020.md`.
 
+### Critical scope reconciliation and bounded extension (2026-10-20)
+
+All nine Critical scope decisions are reconciled in
+[the recorded review](critical-scope-reconciliation-20261020.md) and
+[the explicit case/owner register](coverage/critical-scope-final-resolutions-20261020.json).
+The valid palette selector domain extends to ordinals 0–7: 14,280 original cases
+and 3,655,680 compared words. Prospective isolated native/PE32 controls, all 1,061
+source-only producer and GPU-handoff checkpoints, all 16 startup and independent
+World completions, and 768 complete CPU/GPU wave canvases pass. The compiler input
+manifest and final reports preserve exact source, contract, scenario and input
+identities; first-run evidence and a failed Wine connection attempt remain
+unchanged under distinct historical IDs.
+
+Only NR.canvas-producer-replay, NR.world-startup-sequence and
+NR.world-producer-handoff gain scoped implementation and headless integration
+within their declared native policies. Their broader supported-session acceptance
+remains separate. The six recovered-original contracts retain partial
+implementation: create/bind/clear have named recovery work; palette/wave/bypass
+have named wider acceptance work. Original-comparison and live-replacement
+statuses are unchanged. No new live capture or whole-renderer completion is
+claimed. Critical partials decrease from 35 to 32; completed native contracts
+remain visible separately, and all nine decisions retain explicit remaining
+cases, owners and closure conditions.
 ### Master integration of rendering and physical combat input — 2026-10-20
 
 The combined tree preserves the rendering/physical-input commits and master
@@ -19364,6 +19410,37 @@ The default driver source fingerprints remain unchanged; combined static
 review imports preserve their parent pins and explicit pending boundaries.
 No broader execution or replacement milestone follows from this merge.
 
+
+## Consolidate preserved and current work onto master — 2026-10-20
+
+The user requested all previously held source, tests and research on master. The
+review combines the preserved f0c4e03a working state and the current 4e397ba2
+working snapshot, then adopts concurrent campaign commit a4dfd815. The complete
+COPY, native scene lifetime, Medium admission/pacing, campaign composition,
+Critical needs dashboard and nine Critical scope decisions are retained together.
+The campaign implementation and its eleven driver controls follow a4dfd815; its
+historical physical outcome and current headless composition remain separate.
+A temporary seven-control integration experiment is superseded and retained
+under working/tests, with no registered execution credit.
+
+The new dashboard shows required cases/owners and separates implemented bounded
+contracts from remaining recovery and supported-session acceptance. The palette
+fixture covers the already executed eight-ordinal domain. Existing final CSCOPE9
+records still supply exact current scoped implementation and headless integration
+for producer replay, startup and GPU handoff; this consolidation executes no new
+original artifact, live cohort or FPS acceptance. All committed evidence, behavior
+IDs and journal receipts remain preserved. New static review copies retain current
+ownership and existing source pins. The newer dynamic review-membership test is
+retained rather than restoring the saved hard-coded older checklist totals.
+
+Exact committed-history review covers fc8a3493..a4dfd815 (two commits, 89
+first-parent file transitions, no missing receipt chains). The consolidation
+report identifies snapshot contributions, superseded versions and overlap
+resolutions. Environment settings, a disposable CPU-guard trace and local API
+reference notes remain local. Original media and retained raw evidence remain
+unchanged; full live/Quit, physical ownership, whole-engine equivalence and
+19/60 FPS acceptance keep their independent pending boundaries.
+
 ### Implementation completion review (2026-10-20)
 
 The frozen twenty now have explicit domain, required positive/refusal cases and
@@ -19380,3 +19457,25 @@ V5 storage/point fixtures and combined owned surface backend comparison.
 ASan leak detection excludes Qt/Mesa process globals; explicit GPU cleanup is
 asserted. Software OpenGL/owned fixtures do not renew full game/hardware or
 original lifetime equivalence. Historical evidence hashes remain unchanged.
+
+### Private source-read ownership profile (2026-10-20)
+
+`NR.source-read-ownership` now implements strict optional prerequisite and
+installed-hook admission, a sealed private RGB565 staging generation through
+exact packet/worker/current-context completion and binding restoration, and
+retirement exclusion before the extra resource getter. Direct/aliased/unresolved
+retirement, raw staging writes, protection/VM changes, rebinding and staging free
+refuse until restoration; disjoint and post-restoration controls pass. Cached
+COPY/worker calls after shutdown remain refused. The V1 admission journal joins
+existing physical proof and cannot establish ownership from flags alone.
+
+Fresh owned controls pass 44 strict/window/admission cases, 36 physical cases and
+11 parser/manifest tests; native, sanitizer, sprite/scene, ABI/transform, six guard
+suites and offline/storage/surface controls pass separately. Historical negative
+results retain their original hashes. Current physical original-game integration,
+unknown external backing/dispatch, whole-game/hardware and live replacement
+remain independent pending boundaries. Unsupported backing refuses.
+
+Incoming master source and exact receipts are preserved. Active review entries
+reconcile 199 superseded register pointers, with a retained repair report and no
+historical evidence hash refresh or retrospective gate-pass claim.

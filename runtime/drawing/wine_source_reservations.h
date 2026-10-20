@@ -56,7 +56,7 @@ static u32 wine_reserve_retire(void* texture){
  // resolved resource until the ORIGINAL decref and generation journal return.
  // Acquisitions refuse unresolved/aliasing retirements; no original body runs
  // under journal_lock. A null early-install getter stays a wildcard lease.
- EnterCriticalSection(journal_lock);u32 slot=2048;
+ EnterCriticalSection(journal_lock);wine_handoff_retire(texture,0,0);u32 slot=2048;
  for(u32 i=0;i<2048;++i){
   if(wine_reservations[i].submission&&wine_reservations[i].texture==texture)wine_reserve_refuse(wine_reservations+i,9,0);
   if(slot==2048&&!wine_reserve_retiring[i].texture)slot=i;
@@ -64,7 +64,7 @@ static u32 wine_reserve_retire(void* texture){
  if(!texture||slot==2048)wine_reserve_refuse(0,4,5);
  wine_reserve_retiring[slot].texture=texture;LeaveCriticalSection(journal_lock);
  void* resource=wine_resource_original[0]?((void*(__attribute__((cdecl))*)(void*))wine_resource_original[0])(texture):0;
- EnterCriticalSection(journal_lock);
+ EnterCriticalSection(journal_lock);wine_handoff_retire(texture,resource,1);
  for(u32 i=0;i<2048;++i)if(wine_reservations[i].submission&&(!resource||wine_reservations[i].texture==texture||wine_reservations[i].resource==resource))wine_reserve_refuse(wine_reservations+i,9,0);
  wine_reserve_retiring[slot].resource=resource;LeaveCriticalSection(journal_lock);return slot+1;
 }

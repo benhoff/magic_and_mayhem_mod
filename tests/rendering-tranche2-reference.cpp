@@ -100,14 +100,15 @@ static void palette(){
   unsigned cases=0;std::uint64_t words=0;
   for(unsigned shift:{1u,2u,3u,4u,5u,6u,7u}){
     const unsigned count=256u>>shift,neutral=(count-1)/2;
-    std::array<std::vector<U>,3> nodes;
-    for(unsigned n=0;n<3;++n){nodes[n].resize(3+(count-1)*128);nodes[n][1]=shift;nodes[n][2]=neutral;
+    std::array<std::vector<U>,8> nodes;
+    for(unsigned n=0;n<nodes.size();++n){nodes[n].resize(3+(count-1)*128);nodes[n][1]=shift;nodes[n][2]=neutral;
       auto* colours=reinterpret_cast<std::uint16_t*>(nodes[n].data()+3);
       for(unsigned t=0;t<count-1;++t)for(unsigned i=0;i<256;++i)colours[t*256+i]=std::uint16_t(n*8192+t*256+i);
     }
-    nodes[0][0]=ptr(nodes[1].data());nodes[1][0]=ptr(nodes[2].data());U pointer=ptr(nodes[0].data());std::memcpy(frame.data()+28,&pointer,4);
+    for(unsigned n=0;n+1<nodes.size();++n)nodes[n][0]=ptr(nodes[n+1].data());
+    U pointer=ptr(nodes[0].data());std::memcpy(frame.data()+28,&pointer,4);
     mnm::reconstruction::ShadedPalette model;model.shift=shift;model.neutral=neutral;model.tables.resize(count-1);
-    for(int shade=-127;shade<=127;++shade)for(unsigned ordinal:{0u,1u,2u}){
+    for(int shade=-127;shade<=127;++shade)for(unsigned ordinal=0;ordinal<nodes.size();++ordinal){
       const auto table=model.tableIndex(shade);bindCanvas(pixels,260,3);std::fill(pixels.begin(),pixels.end(),0x9abc);
       reinterpret_cast<Draw>(0x57de00)(frame.data(),2,1,shade,ordinal);
       for(unsigned i=0;i<256;++i)check(pixels[260+2+i]==std::uint16_t(ordinal*8192+table*256+i),"Palette shade/ordinal table selection");
@@ -116,7 +117,7 @@ static void palette(){
   }
   // Invalid native selector shapes are refused before any original unsafe read.
   unsigned refused=0;for(unsigned shift:{8u,32u}){mnm::reconstruction::ShadedPalette p;p.shift=shift;p.tables.resize(1);try{p.tableIndex(0);}catch(const std::exception&){++refused;}}
-  std::cout<<"{\"case\":\"palette-selection\",\"cases\":"<<cases<<",\"palette_words_compared\":"<<words<<",\"invalid_native_shapes_refused\":"<<refused<<"}\n";
+  std::cout<<"{\"case\":\"palette-selection\",\"cases\":"<<cases<<",\"palette_words_compared\":"<<words<<",\"palette_ordinals\":8,\"palette_shifts\":7,\"shade_min\":-127,\"shade_max\":127,\"invalid_native_shapes_refused\":"<<refused<<"}\n";
 }
 
 static std::array<U,40> factoryTable{},surfaceTable{},factory{},surface1{},surface2{};

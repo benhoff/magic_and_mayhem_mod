@@ -185,6 +185,7 @@ but fails the unchanged 19 FPS engine gate at 8.671475 FPS. Its failed report an
 three earlier isolated prelaunch failures remain retained. The new narrow
 HOST.campaign-physical-combat-driver policy has current default-route observation;
 the wider casting/combat/throughput contract and extended spell/portrait cases
+are not promoted. The isolated rendering branch ed556c8d..38fe6e3f history audit covers 412 parent/current
 are not promoted. The ed556c8d..38fe6e3f history audit covers 412 parent/current
 file versions with no missing exact receipt chains, independently of this new
 uncommitted source change and without asserting a historical gate pass.

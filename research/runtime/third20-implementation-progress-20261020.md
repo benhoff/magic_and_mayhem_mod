@@ -27,6 +27,8 @@ versions/caller/epoch binding and unique same-thread Lock association. Their
 numerical identities and observed ordering do not establish physical allocation,
 all aliases/writers, original timing or native/live replacement. Fresh bounded
 execution results will be linked after the controls complete. The remaining fifteen contracts are reviewed below; no broad milestone is promoted here.
+execution results will be linked after the controls complete. Remaining fifteen
+contracts are queued for this batch; no broad milestone is promoted here.
 
 The [fresh result](third20-offline-controls-20261020.json) passes59controls and
 replays the corrected222frame storage metadata through1,228bound COPYs. Its

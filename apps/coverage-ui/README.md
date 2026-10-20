@@ -41,6 +41,20 @@ Bookmark `#view=simulation`. A native preview does not imply original
 engine equivalence or live replacement. UI checks validate presentation only.
 
 The **Native rendering** page separates **Implementation** from **Validation**.
+Its **Critical partial contracts: what remains** panel assigns each current
+Critical partial contract one primary need: missing implementation, original
+behavior/ownership recovery, scope reconciliation or extension, validation, or
+supported-session acceptance. Expand a group for exact required steps and the
+closure condition. Other kinds of work can appear in the same contract's steps;
+the primary counts deduplicate contracts and do not estimate effort. A scope
+decision preserves the supplied bounded mechanism rather than automatically
+requiring excluded features. Explicit planning assessments live in
+`critical-needs.json`, bound to behavior contracts, reviewed sources and the
+referenced task assessment. Changed inputs and newly Critical partial contracts
+appear under **Assessment needs review**, retaining previous actions as historical
+context. These planning labels never promote engine stages or refresh evidence.
+Restart a running server after updating the Python snapshot producer, then use
+**Refresh audit**.
 Implementation counts all registered rendering/animation behaviors, provides
 expandable lists of partially implemented and not implemented contracts, and
 names a separate implementation follow-up. Validation counts the curated
@@ -102,11 +116,11 @@ remain visible. Filters are retained in the URL for bookmarks.
 ## Reading the percentages
 
 The Native rendering page also ranks **planning importance** from 1/5
-(Supporting) to 5/5 (Critical). All 341 current rendering contracts have an
-explicit weight and reason in [importance.json](importance.json). The default
-queue includes all 199 partially implemented contracts, ordered by descending
-importance with stable behavior-ID ties: 33 Critical, 50 High, 16 Medium, nine
-Low and 91 Supporting. Filters select status, kind of work and importance.
+(Supporting) to 5/5 (Critical). Registered rendering contracts have an explicit
+weight and reason in [importance.json](importance.json). The default queue uses
+current partial implementation statuses, ordered by descending importance with
+stable behavior-ID ties. Its original selection included 199 partial contracts;
+current counts come from the register. Filters select status, work and importance.
 Weights also appear in behavior details, the behavior register, work remaining
 and reconciled rendering lists. Other tracks remain visibly unrated.
 
@@ -232,6 +246,11 @@ scope crosswalk, and one original model without a linked implementation at that 
 subsequent task reviews and execution results can supersede them. The 47 High
 contracts already scoped at selection retained their ranking and were excluded
 from that unfinished-work plan.
+
+The frozen High plan retains fifteen contracts whose declared implementations
+were completed in the [completion review](../../research/runtime/coverage/native-implementation-completion-20261020.json).
+Their wider validation and acceptance work remains recorded separately. The
+strict private source ownership policy has its own Critical capability entry.
 
 Each task separates its implementation assessment, historical or pending
 validation, concrete next action, completion condition and wider boundary.
@@ -388,3 +407,11 @@ original/live/hardware acceptance. Historical registered partial counts remain
 visible. The recorded component PASS does not clear retained performance or
 pixel-instability failures. See
 [the Low20 findings and next steps](../../research/runtime/rendering-low20-20261020.md).
+
+The Critical needs panel records all nine reconciled scope decisions with their
+bounded suppliers, execution evidence and named remaining cases and owners.
+Three scoped native contracts appear under **Implemented bounded contracts**,
+separately from the 32 remaining Critical partial contracts. The six original
+contracts retain three recovery tasks and three wider acceptance tasks. A changed
+source or assessment moves the planning entry to review; it does not renew engine
+validation or erase the historical scope decision.

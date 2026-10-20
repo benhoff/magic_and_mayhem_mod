@@ -18,3 +18,16 @@ static int wine_handoff_source_available(void*);
 static int wine_handoff_source_active(void);
 static int wine_handoff_fault_wait(u32);
 static int wine_handoff_cs_allowed(u32,const u32*);
+
+static void wine_handoff_retire(void*,void*,u32);
+
+static u32 wine_source_ownership_required,wine_source_ownership_ready,wine_source_ownership_copies,wine_source_ownership_records;
+static HANDLE wine_source_ownership_file;
+static int wine_source_ownership_configure(void);
+static int wine_source_ownership_open(void);
+static int wine_source_ownership_install(void);
+static void wine_source_ownership_require(void);
+static void wine_source_ownership_close(void);
+
+static int wine_handoff_stage_owned(u32);
+static int wine_handoff_stage_writer(u32,void*,u32);

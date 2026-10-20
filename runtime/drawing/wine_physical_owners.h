@@ -65,13 +65,13 @@ static void wine_phys_writer(void* resource,u32 kind){
  if(!resource||wine_phys_word(resource,0x14)!=3||(wine_phys_word(resource,0x30)&7))wine_phys_refuse(0,0,kind,2);
  u32 heap=wine_phys_word(resource,0x58),layers=wine_phys_word(resource,0xb0),levels=wine_phys_word(resource,0xb4),subs=wine_phys_word(resource,0x120);
  if(!layers||!levels||layers>64||levels>64||levels*layers>256||!readable((void*)subs,layers*levels*0x34))wine_phys_refuse(0,0,kind,2);
- for(u32 i=0;i<2048;++i){struct WinePhysicalOwner* o=wine_phys_owners+i;if(!o->refs)continue;
+ for(u32 i=0;i<2048;++i){struct WinePhysicalOwner* o=wine_phys_owners+i;if(!o->refs&&!wine_handoff_stage_writer(o->id,resource,kind))continue;
   if(o->resource==resource||wine_phys_overlap(heap,wine_phys_word(resource,0x4c),o->base,o->bytes))wine_phys_refuse(o->id,0,kind,3);
   for(u32 j=0;j<layers*levels;++j){u32* sub=(u32*)(subs+j*0x34);if(wine_phys_overlap(sub[12],sub[3],o->base,o->bytes))wine_phys_refuse(o->id,0,kind,3);}
  }
 }
 static void wine_phys_binding(void* memory){
- if(!wine_phys_enabled||!memory)return;struct WinePhysicalOwner* o=wine_phys_owner((u32)memory);if(o&&o->refs)wine_phys_refuse(o->id,0,4,4);
+ if(!wine_phys_enabled||!memory)return;struct WinePhysicalOwner* o=wine_phys_owner((u32)memory);if(o&&(o->refs||wine_handoff_stage_owned(o->id)))wine_phys_refuse(o->id,0,4,4);
 }
 static u32 __attribute__((cdecl)) wine_phys_prepare(void* resource){
  u32 error=GetLastError();u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);

@@ -20,7 +20,14 @@ static void wine_handoff_wait_snapshot(void){
  }
 }
 static int wine_handoff_fault_wait(u32 address){
- if(!wine_handoff_enabled||!wine_handoff_snapshot)return 0;
+ if(!wine_handoff_enabled)return 0;
+ /* Stage pages stay immutable until the original binding has been restored,
+  * including the interval after the read lease/fence has closed. */
+ for(u32 i=0;i<2048;++i){struct WineSourceHandoff* h=wine_handoffs+i;
+  u32 bytes=(h->size+16+4095u)&~4095u;
+  if(h->submission&&h->state>=3&&address>=h->stage_base&&address-h->stage_base<bytes){u32 r[16]={0};copy(r,"MNMPFLT1",8);r[2]=h->stage_owner;r[3]=address-h->stage_base;r[4]=GetCurrentThreadId();r[5]=1;if(wine_phys_fault_file)write(wine_phys_fault_file,r,64);ExitProcess(99);}
+ }
+ if(!wine_handoff_snapshot)return 0;
  struct WineSourceHandoff* s=wine_handoffs+wine_handoff_snapshot-1;
  if(address<s->original_base||address-s->original_base>=s->original_bytes)return 0;
  /* A write into actual pixels is a failed source boundary, even if another
@@ -44,9 +51,28 @@ static int wine_handoff_source_available(void* resource){
  for(u32 i=0;i<2048;++i)if(wine_handoffs[i].submission&&wine_handoffs[i].resource==resource)wine_handoff_refuse(wine_handoffs+i,3);
  LeaveCriticalSection(journal_lock);return 1;
 }
+/* A source remains bound until restoration, even after its read fence and
+ * reservation close. Publish unresolved retirement before the extra getter. */
+static void wine_handoff_retire(void* texture,void* resource,u32 resolved){
+ if(!wine_handoff_enabled)return;
+ for(u32 i=0;i<2048;++i){struct WineSourceHandoff* s=wine_handoffs+i;
+  if(s->submission&&((!resolved&&s->texture==texture)||(resolved&&(!resource||s->resource==resource))))wine_handoff_refuse(s,3);
+ }
+}
+static int wine_handoff_stage_owned(u32 owner){
+ if(!wine_handoff_enabled)return 0;
+ for(u32 i=0;i<2048;++i)if(wine_handoffs[i].submission&&wine_handoffs[i].stage_owner==owner)return 1;
+ return 0;
+}
+static int wine_handoff_stage_writer(u32 owner,void* resource,u32 kind){
+ if(!wine_handoff_enabled)return 0;
+ for(u32 i=0;i<2048;++i){struct WineSourceHandoff* s=wine_handoffs+i;
+  if(s->submission&&s->stage_owner==owner)return !(s->resource==resource&&kind==38&&(s->state==3||s->state==6)&&s->thread==GetCurrentThreadId());
+ }return 0;
+}
 static void wine_handoff_resource_guard(void* resource,u32 kind){
  if(!wine_handoff_enabled)return;
- for(u32 i=0;i<2048;++i){struct WineSourceHandoff* s=wine_handoffs+i;if(s->submission&&s->resource==resource){if(kind==38&&(s->state==3||s->state==6))return;wine_handoff_refuse(s,4);}}
+ for(u32 i=0;i<2048;++i){struct WineSourceHandoff* s=wine_handoffs+i;if(s->submission&&s->resource==resource){if(kind==38&&(s->state==3||s->state==6)&&s->thread==GetCurrentThreadId())return;wine_handoff_refuse(s,4);}}
 }
 static int wine_handoff_cs_allowed(u32 opcode,const u32* packet){
  if(!wine_handoff_enabled)return 1;
@@ -62,16 +88,21 @@ static void wine_handoff_heap_check(void* heap,void* pointer,u32 generation,u32 
  }
 }
 static void wine_handoff_vm_check(void* process,void** base,u32* size,u32 kind){
- if(!wine_handoff_enabled||kind!=2||!wine_handoff_source_active())return;
+ if(!wine_handoff_enabled||!wine_handoff_source_active())return;
  if(process!=(void*)-1&&process!=GetCurrentProcess())wine_handoff_refuse(0,6);
  if(!readable(base,4)||!readable(size,4))wine_handoff_refuse(0,6);
  u32 at=(u32)*base,bytes=*size;
  for(u32 i=0;i<2048;++i){struct WineSourceHandoff* s=wine_handoffs+i;if(!s->submission)continue;
-  if((!bytes&&at==s->original_allocation)||wine_phys_overlap(at,bytes,s->original_base,s->original_bytes))wine_handoff_refuse(s,6);
+  u32 stage_bytes=(s->size+16+4095u)&~4095u;
+  if(s->stage_base&&((!bytes&&at==s->stage_base)||wine_phys_overlap(at,bytes,s->stage_base,stage_bytes)))wine_handoff_refuse(s,6);
+  if(kind==2&&((!bytes&&at==s->original_allocation)||wine_phys_overlap(at,bytes,s->original_base,s->original_bytes)))wine_handoff_refuse(s,6);
  }
 }
 static int wine_handoff_defer_free(u32 owner){
  if(!wine_handoff_enabled)return 0;
+ for(u32 i=0;i<2048;++i){struct WineSourceHandoff* s=wine_handoffs+i;
+  if(s->submission&&s->stage_owner==owner){if(s->state==7&&s->thread==GetCurrentThreadId())return 0;wine_handoff_refuse(s,7);}
+ }
  for(u32 i=0;i<2048;++i){struct WineSourceHandoff* s=wine_handoffs+i;if(s->submission&&s->old_owner==owner&&!s->old_client&&s->state==3&&s->thread==GetCurrentThreadId()){s->detached=1;return 1;}}
  for(u32 i=0;i<2048;++i)if(wine_handoffs[i].submission&&wine_handoffs[i].old_owner==owner)wine_handoff_refuse(wine_handoffs+i,7);
  return 0;
@@ -115,6 +146,9 @@ static int wine_handoff_capture(const u32* sample,void* texture,void* resource,u
  u32 old;wine_phys_internal=GetCurrentThreadId();if(!VirtualProtect((void*)s->original_base,s->original_bytes,2,&old)||old!=s->prior)wine_handoff_refuse(s,13);wine_phys_internal=0;
  /* There are no heap, Wine, journal or other original calls in this interval. */
  for(u32 y=0;y<height;++y){copy((u8*)packed+y*width*2,(const u8*)s->old_data+y*s->pitch,width*2);copy((u8*)base+16+y*s->pitch,(const u8*)s->old_data+y*s->pitch,width*2);}
+ /* Seal the private value before exposing it to the Wine rebind callout.
+  * Its lease restores READONLY, so fence completion cannot thaw it early. */
+ wine_phys_internal=GetCurrentThreadId();if(!VirtualProtect(base,bytes,2,&old)||old!=4)wine_handoff_refuse(s,13);wine_phys_internal=0;
  wine_phys_internal=GetCurrentThreadId();if(!VirtualProtect((void*)s->original_base,s->original_bytes,s->prior,&old)||old!=2)wine_handoff_refuse(s,13);wine_phys_internal=0;wine_handoff_snapshot=0;
  s->crc=wine_source_map_crc(packed,width*height*2);s->state=3;wine_handoff_emit(s,3,0);LeaveCriticalSection(journal_lock);return 1;
 }

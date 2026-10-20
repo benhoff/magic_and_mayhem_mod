@@ -22,6 +22,7 @@ static void wine_source_map_record(u32* r,void* texture){
  LeaveCriticalSection(journal_lock);
 }
 static void wine_source_map(const u32* submission,void* texture){
+ wine_source_ownership_require();
  if(!wine_source_map_enabled)return;
  u32 r[64]={0};r[1]=1;r[2]=submission[2];r[3]=submission[5];r[4]=GetCurrentThreadId();r[5]=GetTickCount();r[6]=submission[11];r[7]=submission[28];r[8]=submission[13];
  EnterCriticalSection(journal_lock);r[16]=wine_lifetime_records;u32 live=texture&&r[7]&&wine_lifetime_find(texture,1)==r[7];LeaveCriticalSection(journal_lock);

@@ -2,6 +2,7 @@
  * These whole-instruction prefixes have no relocation operands. This does not
  * intercept raw stores, private workers, or prove distinct-resource disjointness.
  * Install before forwarding the first DirectDraw create; failure aborts launch. */
+static u32 wine_mutator_entry_installed;
 static int wine_mutator_entry_patch(void* module){
  if(!wine_reserve_enabled)return 1;
  const u32 count=wine_handoff_enabled?6:4;
@@ -35,5 +36,5 @@ static int wine_mutator_entry_patch(void* module){
   int okay=FlushInstructionCache(GetCurrentProcess(),site,size[i]);
   if(!VirtualProtect(site,size[i],old,&unused)||!okay)return 0;
  }
- return 1;
+ wine_mutator_entry_installed=count;return 1;
 }
