@@ -79,8 +79,8 @@
       "behavior": "NP.native-clipped-image-copy",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Whole native clipped image-copy entry: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "98f8e87573e196980b5e9d6cc42a3714fb612849b46d28195e954db1195d1fb4"
+      "reason": "Whole native clipped image-copy entry: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "4f646836af199290eb1c698f1fd36177d6aaefc3a17cd171724b25f006ef2ef2"
     },
     {
       "behavior": "NP.native-copy-route-census",
@@ -93,15 +93,15 @@
       "behavior": "NP.native-copy-transforms",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Native canonical copy conversion and scaling: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "cb59b2104ac491c4207bf4f813b8311892db827debfc0d8878a00e6c233c25f4"
+      "reason": "Native canonical copy conversion and scaling: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "1c334df1d6d2ef6b75260e5ff52d06dbff1be19c339e8c295bdc48f3fe19aa60"
     },
     {
       "behavior": "NP.native-cpu-instruction-resume",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Ordered CPU instruction resumption under an owned Lock: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "83eded1d55ff7bfb61c2af1aee31791efc9b22d35c4da17d9019113353d17a21"
+      "reason": "Ordered CPU instruction resumption under an owned Lock: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "b699aa16aa34c4069c0979cbf4eebdbb6b84e4b3c5bbba7c2518e5c7ffda4285"
     },
     {
       "behavior": "NP.native-draw-clean-shutdown",
@@ -128,15 +128,15 @@
       "behavior": "NP.native-extended-2d",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Owned extended 2D effects, palette classes and display depths: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "39b4646c5276b3020d7730a2c261312564f906217a94d8f45f10b2382f6ca5e8"
+      "reason": "Owned extended 2D effects, palette classes and display depths: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "00be11e8fe2158ee63c217bb2778e5d2a7ffabdda2fcf37b771e14590df6b81c"
     },
     {
       "behavior": "NP.native-gpu-copy-live-validation",
       "weight": 3,
       "work_type": "acceptance",
-      "reason": "Caller-bound live GPU-copy observations and independent destinations: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code.",
-      "contract_sha256": "7d2aeed9db08f2f7ffd5a058454fb2a15b7587e0829a926f1a22ab1933fd9004"
+      "reason": "Caller-bound live GPU-copy observations and independent destinations: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "096c90317e92b8e994c332f97b28b9ca1c1f19d90abc675a7d4b7803ef0334eb"
     },
     {
       "behavior": "NP.native-gpu-copy-plan",
@@ -149,29 +149,29 @@
       "behavior": "NP.native-image-row-copy",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Native checked image-row copy body: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "635404204a17f8d851f1f9d3b7ac1acc8c6a5cbe1e68ff17123c41cf1e9554b2"
+      "reason": "Native checked image-row copy body: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "2ab42ef8e534743a1adf89e1a250e5a456fe0b3f6b0e41a0add339c950a31b3e"
     },
     {
       "behavior": "NP.native-isolated-render-recovery",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Isolated native renderer operation retry and raster session continuity: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "6bf42089015cd4bd07063800dd6362aea5c62a6b9dfba22253febb294c4c255e"
+      "reason": "Isolated native renderer operation retry and raster session continuity: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "d16e2a693b9ac361ac22352c007dbb8552903e9f8ba53b00eaa7015d49fc43dd"
     },
     {
       "behavior": "NP.native-only-generation-restart",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Native-only fresh generation restart: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "365542c3c85f323b61ade89a0de8d34be09057cf3533ae25407b93aa8e229d16"
+      "reason": "Native-only fresh generation restart: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "db55cf163927287f84b9d87ac9254c811d3536bdf230662586b8655b819c963e"
     },
     {
       "behavior": "NP.native-only-launch-contract",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Unified native-only launch admission and terminal session outcome: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "5d2f7200f026c92b02180486c1285a54abb868ccf79337c090e8278cb19b3ee7"
+      "reason": "Unified native-only launch admission and terminal session outcome: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "06f8535a0ddf9749f52570602c54f7682923f13eb28b2203b17adea8fd59ae2f"
     },
     {
       "behavior": "NP.native-output-ownership",
@@ -324,15 +324,15 @@
       "behavior": "NR.command-ring-adapter",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Mapped native ring reader and cooperative owned producer queue: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "f8fdac15952b115bd651991430f444ff311e81eb1095138739beb5124c01b74f"
+      "reason": "Mapped native ring reader and cooperative owned producer queue: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "9b0d8149b2a89004161869a34735d57a9d2f318813f1cddba931bad2094036d9"
     },
     {
       "behavior": "NR.command-streaming",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded-memory sustained native command decoding: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "4c68a98dbcee0313d5b1b5dbea9f974bf80b423e95120d9fd90d8205a81fe150"
+      "reason": "Bounded-memory sustained native command decoding: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "9e7982970b8cb08deacc6465927970e9d994c152f5cdd791e178e09745802f6d"
     },
     {
       "behavior": "NR.continuous-mutations",
@@ -366,8 +366,8 @@
       "behavior": "NR.continuous-update-partition",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Bounded cost-selected full Unlock partitions reduce measured live wire redundancy: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "54fcd18edc59644380f35ce629c8907aeb50d354e20c67ab02f583df243d2f94"
+      "reason": "Bounded cost-selected full Unlock partitions reduce measured live wire redundancy: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "1dff2350acc1e3485c8b4ac1a1eb6fc57ede218cd3958ffc831b405fec1724ca"
     },
     {
       "behavior": "NR.cpu-handoff-order",
@@ -387,29 +387,29 @@
       "behavior": "NR.directdraw-import-retirement",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Guarded pinned graphics import redirection: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "ce2cafbf6359e93563deca6f9169b8aa89897041b8fff04df49b955dd9aae0a4"
+      "reason": "Guarded pinned graphics import redirection: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "0fa08dcf09d05d245c43ef85d2dbcfffd331a8ada95a657d9398bb10dd981483"
     },
     {
       "behavior": "NR.directdraw-native-opengl-launch",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Owned graphics in the standalone native OpenGL launcher: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "322c9ad2116588b65d7f0733ab1e1a31a1e50dde45d0f82aa251cda4a5aff088"
+      "reason": "Owned graphics in the standalone native OpenGL launcher: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "b6833a7ff6af2ed59f195eccf1cdf9414570d1b2e6d02fc197f41e948af552b4"
     },
     {
       "behavior": "NR.directdraw-public-native-menu",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Owned graphics in the public native menus and command presentation route: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "2b57cd0b231cca6af8a49bc4a241f5bbac48852e93219d6803d161dba36819db"
+      "reason": "Owned graphics in the public native menus and command presentation route: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "a354e62286239634883aa3a30257019fea6327cd05da30e5f5316148535d8c1b"
     },
     {
       "behavior": "NR.directdraw-retirement",
       "weight": 5,
       "work_type": "aggregate",
-      "reason": "Native graphics compatibility and real DirectDraw retirement: This aggregate retains lifecycle, palette or complete-state admission boundaries that can invalidate a session. Review residual ownership/failure domains against existing narrower implementations.",
-      "contract_sha256": "c4c2049bb6822d721950b4b1a642454bbe201b36eb44cae71439df0bbfb09736"
+      "reason": "Native graphics compatibility and real DirectDraw retirement: This aggregate retains lifecycle, palette or complete-state admission boundaries that can invalidate a session. Review residual ownership/failure domains against existing narrower implementations. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "4404e85a1c86c2030e471926d2830996070406c9da1b0d88bd2dfd8a91769165"
     },
     {
       "behavior": "NR.displacement-finite-edge",
@@ -429,8 +429,8 @@
       "behavior": "NR.drawing-actions",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Applied original menu adapter dispatch phase observation: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "452ad2465891e213cbc3d007b7337534a6f821bb991774754cdc315605c5a019"
+      "reason": "Applied original menu adapter dispatch phase observation: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "c165b4b8a49db7a072373ed09937c8ebab2093c12b9e1856d225ae1ea0280ef9"
     },
     {
       "behavior": "NR.drawing-actor-latch-binding",
@@ -660,8 +660,8 @@
       "behavior": "NR.drawing-fenced-acquisition",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Guarded original post-copy physical frame witnesses: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "42c4044a16266aac5e0dcd43b4784ae2f5eeac3eca938108eae9ee5ced23dc57"
+      "reason": "Guarded original post-copy physical frame witnesses: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "f99d61a8dffb07cc8723bbba2162f811df62d1f0648f5eebef669804bf4803df"
     },
     {
       "behavior": "NR.drawing-glx-delivery-observation",
@@ -849,8 +849,8 @@
       "behavior": "NR.drawing-results-redraw-repeat-stimulus",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Bounded repeated Results redraw acquisition stimulus: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "28f8c3e5be20c8add8fb6b73252110a902e9380a1b315ec3e9a6f75338ea31e2"
+      "reason": "Bounded repeated Results redraw acquisition stimulus: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "b5f464eac96a4ae5724dbf6a69b8eff464ffb6ad979afb206643cd0d063f138b"
     },
     {
       "behavior": "NR.drawing-scene",
@@ -1178,8 +1178,8 @@
       "behavior": "NR.drawing-worker-prefix-observation-control",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Repeated Results acquisition with optional worker-prefix sidecar disabled: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "611c2655a41e70b1187d24422c97f3b1aa4bef36714c980e3765ead4a76b9e43"
+      "reason": "Repeated Results acquisition with optional worker-prefix sidecar disabled: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "1aca84e17c629304ab49ecea98609ba170e73a48f650737c617f903ef065fcf4"
     },
     {
       "behavior": "NR.drawing-worker-producer-prefix",
@@ -1220,8 +1220,8 @@
       "behavior": "NR.font-glyph-live-shadow",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Bounded live glyph-bearing native canvas shadow admission: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "f06a2083a8d48ee1fae74f145a1c63f3bcd43236967cdae651add9ad770f87ec"
+      "reason": "Bounded live glyph-bearing native canvas shadow admission: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "45c2afea72f9379a8b4e4c3b3aa5739469e1f1442a62028b1d22000483771123"
     },
     {
       "behavior": "NR.glyph-backend-admission",
@@ -1241,15 +1241,15 @@
       "behavior": "NR.glyph-default-launch",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Public Qt launcher defaults guarded glyph takeover: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "37a32104bc1847630f7183430f36ee7440c3bead5c098cd050d5acf53dc794f8"
+      "reason": "Public Qt launcher defaults guarded glyph takeover: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "27ee0918d61aac4484134455b4fe78c9b54ecb4d76eb23df3c07679dd9ddd6dc"
     },
     {
       "behavior": "NR.glyph-live-admission",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded live glyph process-memory admission and launch policy: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "8032837f8f87d1ce422a759fe31f387ed4b0a242219f3080e1cb306b24707ea4"
+      "reason": "Bounded live glyph process-memory admission and launch policy: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "ef16afb745e904596eaae138256f74a56e47faed158ab887fd1817cf21554f92"
     },
     {
       "behavior": "NR.gpu-presentation",
@@ -1290,8 +1290,8 @@
       "behavior": "NR.live-command-transport",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded mapped live native command transport: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "f3546105785846dd8a077fd3022a4ab7b3f03f3b6a0f4df043e42e4fc067e6c5"
+      "reason": "Bounded mapped live native command transport: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "ecd8243ea82e14e75a7083a53252bc93629d4513ebc9cf88d6b44358d0a7fb48"
     },
     {
       "behavior": "NR.live-drawing-replacement",
@@ -1332,22 +1332,22 @@
       "behavior": "NR.minimap-input-fixture",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Bounded isolated minimap rotation/pan input fixture: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "dcc04eed03ed3af265c3ce4d8f84170567f39c1d1c2cabe9c56f9d4259f980ee"
+      "reason": "Bounded isolated minimap rotation/pan input fixture: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "39c0de6d7392dd573145745a88ac92ddef71ad4dfdc8eb676a5241ef44d00db5"
     },
     {
       "behavior": "NR.minimap-interactive-presentation",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Bounded V2 minimap presentation in the public startup launcher: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport.",
-      "contract_sha256": "4322bdf7f84e7c550171ff54ff474b8ac101b849600d2af613548cb24907634f"
+      "reason": "Bounded V2 minimap presentation in the public startup launcher: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "90de2f4df2cd264f74731faaad0dafdc563940cfa2d811a41b7ab703b60e35cc"
     },
     {
       "behavior": "NR.minimap-owned-observation",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Owned original-active four-view minimap journal and replay: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "a3fefe7762528fcb05b35b14fa47285e2102dc719f12fccf3f4ea004b73ae31c"
+      "reason": "Owned original-active four-view minimap journal and replay: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "085027df773b32c3af3100fae04b2d5c5e039cdb803f56c674e597fb3dd0a904"
     },
     {
       "behavior": "NR.minimap-write-candidates",
@@ -1437,8 +1437,8 @@
       "behavior": "NR.offline-render-soak",
       "weight": 3,
       "work_type": "acceptance",
-      "reason": "Offline retained-renderer soak and adversarial pixel admission: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code.",
-      "contract_sha256": "51811cb4a373715cf2f8a29beaec8617f382aab89f20b8286dd0535e310ab665"
+      "reason": "Offline retained-renderer soak and adversarial pixel admission: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "fd9eebf5ef57fbcd1ff4bc0f50bac7e75320b7895494606a3f89509d028839fb"
     },
     {
       "behavior": "NR.owned-session-dc",
@@ -1535,8 +1535,8 @@
       "behavior": "NR.qt-quick-battle-app-journey",
       "weight": 3,
       "work_type": "acceptance",
-      "reason": "Actual native Qt Quick Battle input, results and normal Quit journey: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code.",
-      "contract_sha256": "d298f83f793728b38d37ade05bac0d4b0e3706b9e2cef4d546d31e799c59043c"
+      "reason": "Actual native Qt Quick Battle input, results and normal Quit journey: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "672f50fe93c9e6baafef5f5ee0943177ca3909e24f9ddb9bd42a960fc1b09970"
     },
     {
       "behavior": "NR.readonly-description-continuity",
@@ -1647,8 +1647,8 @@
       "behavior": "NR.scene-snapshot",
       "weight": 3,
       "work_type": "acceptance",
-      "reason": "Bounded original display queue observation and native asset rebinding: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code.",
-      "contract_sha256": "4efe47afed14fea195e4f1c7d628bc6499b0ff8c41283d1203731ea4d0de9e3a"
+      "reason": "Bounded original display queue observation and native asset rebinding: Independent comparison, fixtures or a bounded journey detects regressions in the documented domain. Its weight describes assurance value, not missing native renderer code. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "9a625fe0dbe657f4dbdf1e0ab4199edf83b447847088e53505f9d6f008bb2e08"
     },
     {
       "behavior": "NR.source-boundary-quiescence",
@@ -1822,15 +1822,15 @@
       "behavior": "NR.word-clipped-takeover-admission",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Atomic guarded clipped takeover and conservative x87 admission: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "95a548f2507a1f43815bbc728549cd348db6338ba625ea2ca609222953a176d5"
+      "reason": "Atomic guarded clipped takeover and conservative x87 admission: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "36b36eca3419548672e509ae5050a7ebcebb2b9c63ddcf2e9bdd4ed4ea555cfd"
     },
     {
       "behavior": "NR.word-clipping-plane-bounds",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Atomic main-word preflight bounded by opaque auxiliary offsets: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "1130963f535e7310c53fc409bb087c927b5d9b4e553c912256e403d9049740d1"
+      "reason": "Atomic main-word preflight bounded by opaque auxiliary offsets: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "1cbdf08c78ef9588de1f78cbd521094f4cc8bc49c00852922b7a9cd338f2b1d0"
     },
     {
       "behavior": "NR.word-cpu-clipping-admission",
@@ -1850,43 +1850,43 @@
       "behavior": "NR.world-batch-extended-prefix",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Versioned bounded World takeover beyond sixteen queues: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "1d9640bde593868a8407a5e74467cb70f668c478171e35304e0e4dfabf5df028"
+      "reason": "Versioned bounded World takeover beyond sixteen queues: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "d483a79af69d807d2b0777d0de42ddd86c94b57f19596388eed5a4e0271d6698"
     },
     {
       "behavior": "NR.world-batch-profiling",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Consumer timings for guarded World batches: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "782b0caed89af19b9ee91d213b6fbee6ab558bdb2a9a03392c5b2d310648364e"
+      "reason": "Consumer timings for guarded World batches: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "0ce25378f0a760c79d59563af7148f0b18d941ed2512b6f87044c189c4be9417"
     },
     {
       "behavior": "NR.world-batch-throughput",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Bounded guarded World transport and scratch throughput: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "adefcd63907171ff8bee9071ec27450e6b88d382aa0bfd5ec18beed8184b6f5b"
+      "reason": "Bounded guarded World transport and scratch throughput: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "8d870d83d7a590263dca4d19b79dd6a17577c632c073be350023151f933e715c"
     },
     {
       "behavior": "NR.world-channel",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Bounded continuous owned World delivery: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "f0844816219d97ab5edcea533bf695468dde75fa3d30434ee032237f2b848440"
+      "reason": "Bounded continuous owned World delivery: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "fa7cc200eb6b610214d8b230a2c3bca87d73f69b1c38a3f4401134baa5413dda"
     },
     {
       "behavior": "NR.world-continuous-normal-performance",
       "weight": 4,
       "work_type": "acceptance",
-      "reason": "Normal continuous native World full-path performance: Sustained speed and complete representative input coverage affect practical use. Measure the acceptance target independently from individual algorithm implementation.",
-      "contract_sha256": "3c4214c5ef1edaee0aea14a5241e00bc2a66475ef1f65ac7a1804e12d834a5a7"
+      "reason": "Normal continuous native World full-path performance: Sustained speed and complete representative input coverage affect practical use. Measure the acceptance target independently from individual algorithm implementation. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "a399d104c6b01bdfa60ce11b1c1371dede370a7c5a7c64049a6aace3d34ed823"
     },
     {
       "behavior": "NR.world-continuous-source",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Bounded original-to-native continuous World source delivery: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "ab7df387307c698e4675ea8b5feaec07fabf8d63a26486dbee0afd49ae541c56"
+      "reason": "Bounded original-to-native continuous World source delivery: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "675aecedac53b578c4c84f080d07f74d16bcda930a5efb50b3518991f8986fe6"
     },
     {
       "behavior": "NR.world-cpu-composition-reuse",
@@ -1906,8 +1906,8 @@
       "behavior": "NR.world-gpu-ack-delivery",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Versioned live GPU acknowledgement without pixel replies: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "994e791e46a56c0667d88aaee77df189a5e16e6ea49bf37c4e05dc3fb8acd12e"
+      "reason": "Versioned live GPU acknowledgement without pixel replies: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "7177c0f7bf73fc6cf8f507c186be8ae51c2faa59d5c6e8f759a3b65dfb8a53ec"
     },
     {
       "behavior": "NR.world-gpu-resident-frame",
@@ -1920,36 +1920,36 @@
       "behavior": "NR.world-history-channel",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Finite ordered World startup journal: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "5c2b802cda7e008d50b57fba9f8a4059dabe7d21fb681902eed029490a6f2460"
+      "reason": "Finite ordered World startup journal: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "dbbd4ab225c7e8ceadfa4bf03e02b84e484a6b5f27f7e29009898a69ed2bed63"
     },
     {
       "behavior": "NR.world-interactive-batch-launcher",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Opt-in bounded interactive World batch launcher: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "5449d2195403f0d0e6eab6124209f762a819ce6166e35c9ffcc72121184cfdf1"
+      "reason": "Opt-in bounded interactive World batch launcher: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "34663f9ef3f96fe337e95cbb4ff83d25b9585500a2ee49a5537cae1dd839053a"
     },
     {
       "behavior": "NR.world-kind-diagnostic",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Stopped live history refusal with exact raw queue kinds: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "27aacce54f56e8216de86618425ba6ef8acccf5bd7729b797e4fd2ba376ad43e"
+      "reason": "Stopped live history refusal with exact raw queue kinds: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "615f44872d998854224bd0379d1cb3d90f3d6da286b7874f4ba4ad96955a281f"
     },
     {
       "behavior": "NR.world-live-history",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Async native presentation of contiguous startup canvases: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "ef6ce9216434c314c4ea172c51d8933138425076eb011ae4088a4f244596e216"
+      "reason": "Async native presentation of contiguous startup canvases: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "c21cfef76d0aa7a52a092e8c54e49d2346b6a1471542a95b1e1a21ae32f82d35"
     },
     {
       "behavior": "NR.world-live-view",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Continuous native World Qt presentation: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "d7aebb30bac1855c3bca35e1f25f1f800416dc9d23555d2f526201d9ceee42c2"
+      "reason": "Continuous native World Qt presentation: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "1d780f2abeddc94c3b66ae6eed1d6f10997a6a97c2ae3b68529da41c49ef9c71"
     },
     {
       "behavior": "NR.world-owned-snapshot-delivery",
@@ -1976,22 +1976,22 @@
       "behavior": "NR.world-producer-handoff",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Reconstructed producer history handed to native GPU World drawing: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "99fa100642d8107b057ac2167be69878c22359671e2ff53144b72ef81a5b8366"
+      "reason": "Reconstructed producer history handed to native GPU World drawing: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "02fe53585fad74b6c634067ce28c6ca58a77d5779b50bfacebf4c5fa3c061c75"
     },
     {
       "behavior": "NR.world-raster-batch-transport",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Owned World raster queue batches with one canvas completion: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "949a8b95004f6afec296b193b1648e50dfa585326fc4874d22ccde5049f1ae92"
+      "reason": "Owned World raster queue batches with one canvas completion: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "a10e20fa153f7d0b36d537087a19afc295473646ff842f5af91f23f1319b819c"
     },
     {
       "behavior": "NR.world-resource-reuse",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Revision-bound World visual checks and retained atlas submission: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost.",
-      "contract_sha256": "1766d8e6035afa7cbf1f1971bbe79e46bb610cb010dcae53c5003a5a533b63a7"
+      "reason": "Revision-bound World visual checks and retained atlas submission: This improves throughput, caching or bounded workloads. Correctness and safe ownership take precedence; the importance does not estimate the remaining work or measured runtime cost. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "e1fcc150fc7992f331a7e47715984f8f7985bc37ba6b75086d11e93eb50f5add"
     },
     {
       "behavior": "NR.world-rolling-delivery",
@@ -2011,15 +2011,15 @@
       "behavior": "NR.world-rolling-live-handoff",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Guarded original source handoff to ordered native rolling delivery: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "71b7a8d1debb5684c93c7eb3c806c5ac6e3194a7ddc45de19bff1b387e6b50eb"
+      "reason": "Guarded original source handoff to ordered native rolling delivery: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "f822b7a45f341209c4a769c1714444b7487fc8582bbe703cde67ba3ab1d23987"
     },
     {
       "behavior": "NR.world-shadow-refusal",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Normal World shadow capability refusal without ending the game: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "ad7212802a00f812f08186df4cd8bb391417f095da5b3f05630974b0cd3d7c91"
+      "reason": "Normal World shadow capability refusal without ending the game: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "cfb3855b63edf46a9fd19021e57645258f74d17b8a8887756d8baf714815c125"
     },
     {
       "behavior": "NR.world-source-region-epoch",
@@ -2032,8 +2032,8 @@
       "behavior": "NR.world-startup-launcher",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Public finite source-only startup producer launcher: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "9db7c96f8fe4adbc11cb518debd562d35cdf8fe6a61d3d629e1d49f952655f8c"
+      "reason": "Public finite source-only startup producer launcher: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "6bebea485fd0e5d4ed1f0304fbc3a67b252c450a97af238438b2f5ea3be71282"
     },
     {
       "behavior": "NR.world-startup-sequence",
@@ -2235,8 +2235,8 @@
       "behavior": "RS.drawing-publication",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Guarded original opaque-copy publication COM results and independent primary readbacks: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "d5dc4e8ba23d8adf93149060c970e23528a284f1cee0f3bc3072972ed8456780"
+      "reason": "Guarded original opaque-copy publication COM results and independent primary readbacks: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "13d905f79544062351cca2a2810681a7ff22f00a010d5dd54806d1453f2f3760"
     },
     {
       "behavior": "RS.glyph-backend",
@@ -2256,8 +2256,8 @@
       "behavior": "RS.glyph-live-route",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Bounded live glyph caller/pixel route: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "2b82be44601fbf8824799470aeff0d1021be5d3e0f2d0dcb36f80065c1a5cf9a"
+      "reason": "Bounded live glyph caller/pixel route: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "847eca0f11f3328ce15147cf43149f7f9547f23e222e3dcc675e40d6f2c90da0"
     },
     {
       "behavior": "RS.minimap-camera-corners",
@@ -2312,22 +2312,22 @@
       "behavior": "RS.word-clip-aux-shadow",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Clipped main-word shadow admission with opaque auxiliary planes and diverse clipped capture: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "00a8e17c61e0e1c3d3f1dd2a9e19667953f614ea2496d25cb521c85c98a011ea"
+      "reason": "Clipped main-word shadow admission with opaque auxiliary planes and diverse clipped capture: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "8347d5c3e28f609bbc73ef9cd640f073f4560fe611c28f81ea8cd2602f9df216"
     },
     {
       "behavior": "RS.word-clip-shadow",
       "weight": 2,
       "work_type": "diagnostic",
-      "reason": "Opt-in guarded direct-word clipping shadow comparison: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
-      "contract_sha256": "e8de374c08c27e0635a83af714a7b326c7354051ff7f40fdf2ffa567c1a8a65d"
+      "reason": "Opt-in guarded direct-word clipping shadow comparison: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "370e5a039a83f6401d0b804beddc1cddd6d66356d5cd7256290dfdc2fcd9c6ea"
     },
     {
       "behavior": "RS.word-clip-takeover",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Guarded opt-in native clipped main-word backend takeover: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "7bf305e682db30902d6fe4805e6eddd83de2115a6665460ef8fac91afedb16d1"
+      "reason": "Guarded opt-in native clipped main-word backend takeover: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "6b4aa1df5281b7cfacc2b460d260a0990c7edff75b72b0c4ac27af797b15873c"
     },
     {
       "behavior": "RS.word-clipping",
@@ -2354,8 +2354,8 @@
       "behavior": "RS.word-route",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Scoped direct-word sprite backend bypass: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "b31ca0d5a6c5b28904ca5b32baef2f6484d8e35e63b47833aeef3bb1160f2cb8"
+      "reason": "Scoped direct-word sprite backend bypass: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "14bdab786f2404e095c089dd413c03788ed5f8ec5f0960a8040f905bc23507d1"
     },
     {
       "behavior": "RS.world-additive-sprite",
@@ -2389,50 +2389,50 @@
       "behavior": "RS.world-frame",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Owned effective World raster inputs and complete native canvas comparison: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "4d52e28378440315315314f6450189a74a35578ae51bd08f977ab89d9c6af0bb"
+      "reason": "Owned effective World raster inputs and complete native canvas comparison: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "e482f9e0c05a3eb44a39cace088d0fd571d2d9dc17b308fdd36191b67fc81636"
     },
     {
       "behavior": "RS.world-initial-state",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Retained pre-consumer World canvas pixels and unresolved initialization: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "f0700534f38bc8bab5c55fcbc739f7d3caf743a0ef332f6cab5ce2bf9597565f"
+      "reason": "Retained pre-consumer World canvas pixels and unresolved initialization: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "171bb3fd1327aa10ebe6d0b46e0db8ad0a989fa79605f85512d685089cd0b215"
     },
     {
       "behavior": "RS.world-kind8-additive",
       "weight": 3,
       "work_type": "capability",
-      "reason": "The observed inherited class is corrected to54aaa0 with fresh original/native pixels and active hook proof. Selected owned RGB565 primitive fidelity remains a high rendering capability; broader object writers and replacement remain separate.",
-      "contract_sha256": "fdf83662c948d0d363509aa43dbc61904cad425c07cfb03941ed4ada417667a1"
+      "reason": "The observed inherited class is corrected to54aaa0 with fresh original/native pixels and active hook proof. Selected owned RGB565 primitive fidelity remains a high rendering capability; broader object writers and replacement remain separate. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "b3c147defc7ebc9d31905a04394d15ff1ef4df623d3a3b6a3f8fc8c7b0fb5422"
     },
     {
       "behavior": "RS.world-kind8-colour",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Selected kind8 owned RGB channel rectangle raster: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport.",
-      "contract_sha256": "549a634a7e4b92075a2b614efa941e471dfc953c73f48c07b138253021c808e1"
+      "reason": "Selected kind8 owned RGB channel rectangle raster: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "9f5795f5fd5fb66a968a93926cd0e8e1cdd716e89e2720de7581ff15ef955007"
     },
     {
       "behavior": "RS.world-kind8-methods",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Owned virtual-method owner gates, flags and return semantics protect selected native object drawing; writers and lifetime remain separate.",
-      "contract_sha256": "950054c5bb7f0cfa9a73a5efb053904b1b144dd0abc0c0792a8fba978df486a2"
+      "reason": "Owned virtual-method owner gates, flags and return semantics protect selected native object drawing; writers and lifetime remain separate. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "2eed9547a1eddab52c2750e9f5fb8571ba6fa513a4ad01d96dd24b449e3ba770"
     },
     {
       "behavior": "RS.world-kind8-noop",
       "weight": 3,
       "work_type": "capability",
-      "reason": "Selected kind8 flag-only virtual draw: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport.",
-      "contract_sha256": "44491a5d0c3d68d6130e84a646b0f89c8056a75b0cec1bc6612bc11199b9635f"
+      "reason": "Selected kind8 flag-only virtual draw: This is a bounded visual feature or producer variant. It matters for supported scenes but has less broad reach than frame ownership, baseline scene assembly or transport. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "b44cd340482f486fe54e1f8b2f8fba4207d201a0ece8306df0bf01c891a23d93"
     },
     {
       "behavior": "RS.world-kind8-virtual",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Six checked method models and the corrected native primitive whitelist are supplied. Unknown classes, constructor/writer inputs and broader live object/pixel acceptance remain critical for complete rendering.",
-      "contract_sha256": "698beb783b80ede38d05ed5ac57291d3a4313e3fa6cad13e387185538e276276"
+      "reason": "Six checked method models and the corrected native primitive whitelist are supplied. Unknown classes, constructor/writer inputs and broader live object/pixel acceptance remain critical for complete rendering. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "a2be335e412a85d7f50db1bf54be102ab13ec7ab67b856c09447f677381ca173"
     },
     {
       "behavior": "RS.world-kind9-trail",
@@ -2445,8 +2445,8 @@
       "behavior": "RS.world-producer-bypass",
       "weight": 5,
       "work_type": "capability",
-      "reason": "Bounded closed generic World raster entry bypass and native writeback: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session.",
-      "contract_sha256": "f873234b8c72da77d379c323ea32c110adfab34042a75171fd6dbcfb2abfe704"
+      "reason": "Bounded closed generic World raster entry bypass and native writeback: Ownership, source history, recovery or memory admission protects rendering correctness and continued execution. Uncovered paths can invalidate otherwise correct rendering or terminate a session. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "b0331c5fb742be9f6770bf5dc8a08f508c96458a2c20bf349ce86126507bbf7b"
     },
     {
       "behavior": "RS.world-queue-state",
@@ -2459,15 +2459,15 @@
       "behavior": "RS.world-raster-batch-return",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Protected World queue return boundary and immediate raster fallback: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "cb86b5791bd52f985ec62a7b29d7f9477ae2960ece90292b95b3c767e07b69f9"
+      "reason": "Protected World queue return boundary and immediate raster fallback: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "aab6cf330b89e86dc907602930d9aa988099c9fd03ef777436c4128a89bb536a"
     },
     {
       "behavior": "RS.world-raster-queue-replacement",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Bounded complete World raster queue replacement with recovered AX fallback: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits.",
-      "contract_sha256": "a509247c681d25fb98cd20946fb4eee39dea8c9f1b2731c92ed943b40d27eeae"
+      "reason": "Bounded complete World raster queue replacement with recovered AX fallback: This contract supplies scene content, transport or presentation used by native rendering. Gaps can visibly break the native scene; preserve its documented admission limits. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "0a8fb254868ec7c0712a56154b9ab1c4cea4c10fe367fced8d06598638f2c63c"
     },
     {
       "behavior": "RS.world-run-outline",
@@ -2487,22 +2487,22 @@
       "behavior": "RS.world-startup-palette",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Real shade-minus127 palette on clipped fallback and blend primitives: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "dfac7d177eee6a677f54e800e2ea073d8f07c021729976df9f345e57080d29c5"
+      "reason": "Real shade-minus127 palette on clipped fallback and blend primitives: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "4d9f7e7acfbe549f834d5b1d6dd028ee72e73b0f81193b351318d48adfe73cc0"
     },
     {
       "behavior": "RS.world-startup-queues",
       "weight": 1,
       "work_type": "diagnostic",
-      "reason": "Contiguous startup consumer queues and actual unsupported draw kinds: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it.",
-      "contract_sha256": "8e4d81dd8b5c5d49bea1bfc3507b7f5e57eb90c1a809d265e097d2a14a843516"
+      "reason": "Contiguous startup consumer queues and actual unsupported draw kinds: This observer, acquisition or research tool supports investigation. A partial tooling contract is not a missing player-visible renderer feature; raise it when a concrete investigation depends on it. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "9ca93e8debde256fc7a66d882471c9930046e1fd5fce58311e74f4538d48f028"
     },
     {
       "behavior": "RS.world-startup-wave",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Startup wave dispatch and post-initializer owned displacement inputs: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure.",
-      "contract_sha256": "931bc195af62f50d08f9973941e0f659e7343f044856c69dc55e8352a287b9ba"
+      "reason": "Startup wave dispatch and post-initializer owned displacement inputs: Unresolved original initialization, producers, storage or publication prevents a defensible full rendering replacement. Recovery must establish the boundary before claiming implementation closure. Reviewed the new shared observer-header dependency; historical execution hashes/statuses stay historical and physical/source/live acceptance limits remain open.",
+      "contract_sha256": "942ea015b6ab303178d5ef6d71fa61f9cc654e6e5fe67043c4b941efeba60447"
     },
     {
       "behavior": "RS.world-tint-outline",
@@ -2524,6 +2524,20 @@
       "work_type": "diagnostic",
       "reason": "Postcheck captured gameplay without clearing performance failures: This bounded observation or measurement supports current rendering investigation. It remains support work, with less direct player impact than closing rendering capability gaps.",
       "contract_sha256": "7c01c1c423a75a95e3a95007f0718e42d160172caab2d378e06eaa747ee77a79"
+    },
+    {
+      "behavior": "NP.world-colour-observation",
+      "weight": 2,
+      "work_type": "diagnostic",
+      "reason": "Read-only colour checkpoints narrow a live drawing interval without identifying unobserved writers or supplying native pixels.",
+      "contract_sha256": "667a26fc1fb70875d2ad7e7d4e69da066ae1b65bb355312eba9e80d54f463bbe"
+    },
+    {
+      "behavior": "NP.world-word-entry-observation",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Missing direct-word inputs visibly omit World markers; exact pixel proof is bounded and full replacement remains open.",
+      "contract_sha256": "5c507ce2a4ebcfa96a14933635155cad91a13c12984f412b49af782c23c78ef1"
     }
   ],
   "tranche_plan": {

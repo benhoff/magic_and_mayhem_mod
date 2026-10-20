@@ -19097,3 +19097,33 @@ and tinted-pair contracts after these shared changes:480original canvases,
 reports retain their original fingerprints and become historical where sources
 changed. The new row scopes add three reviewed bounded implementations; the
 importance catalog has359entries and the static review has216entries.
+
+
+### 2026-10-20: missing clipped direct-word observation repaired
+
+The World observer now traces both independent597086and596cb8direct-word
+bodies, with separate checked trampolines and owned copy/backend8inputs. The
+new diagnostic run selected596cb8at6903dc; unknown selector values refuse.
+WCOLOR.live-20261020 retains bounded selected-colour checkpoints and a completed
+private-Xvfb input journal, without semantic action/class attribution.
+WWORD.original/native-20261020 compare all480000WORDs of a1318draw captured
+World: native zero base, private original zero base and live after all agree.
+Omitting just its two direct-word records causes88mismatches. ABI, malformed
+source/selector and read-only scan/stream controls pass.
+
+The older run-d8agynel snapshot already contains the two omitted kind31word
+rows. Strict unique-neighbour reconstruction inserts these owned inputs without
+changing any historical capture. WWORD.frozen-original-20261020 compares480000
+exact native/private-original zero-base WORDs and480000original-prior/live WORDs.
+It resolves the previous88-pixel queue-contribution gap:48cyan and40other
+marker colours. Its native zero base still differs from the complete live
+canvas, so native prior-history closure remains independent. Original before/
+after pixels are never native inputs. Historical selector identity and the
+journal-free manual queue13kind remain unknown. Broad World/kind8scopes stay
+partial and complete live replacement stays none.
+
+The new private observer header is an explicit compiled dependency of affected
+contracts. Historical evidence hashes/statuses are preserved; only the new
+observation/word-entry scopes receive current execution claims. Older static
+reviews may remain historical after those dependency changes. Source census
+review and renewed importance hashes do not assert new execution for them.

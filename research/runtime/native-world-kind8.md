@@ -108,3 +108,17 @@ from the live before-initialized canvas; no live equivalence or replacement
 status is promoted. The initial1497-request capture used the earlier
 four-class admission; later diagnostic classes and aliases have isolated
 original/active-hook checks in the final source-bound comparison.
+
+##2026-10-20 direct-word observation correction
+
+The separate World observer omitted596cb8 while the selected direct-word route
+could use it. Both known direct-word entries now emit owned backend8inputs.
+The new1318draw sample compares480000exact native/private-original/live WORDs;
+removing two direct-word records reintroduces88differences. Strict reconstruction
+from the retained old scene snapshot supplies two missing word rows and closes
+its original-before/live replay gap. The older native zero base still lacks
+prior history; no original output is used as native input. See
+[the observation and frozen repair](native-world-colour-observation.md).
+These marker pixels do not identify a kind8method or the journal-free manual
+queue13kind. Historical source hashes/statuses remain historical; broad class,
+writer/ownership, mode and live replacement work is still pending.
