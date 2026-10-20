@@ -89,7 +89,7 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        self.assertEqual(result['partial_counts'], {1: 91, 2: 9, 3: 16, 4: 51, 5: 35})
+        self.assertEqual(result['partial_counts'], {1: 91, 2: 9, 3: 16, 4: 50, 5: 35})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -385,12 +385,12 @@ class TrancheTest(unittest.TestCase):
         tasks = [task for tranche in plan['tranches'] for task in tranche['tasks']]
         expected = {e['behavior'] for e in result['entries']
                     if e['weight'] == 4 and e['implementation'] in {'partial', 'none'}}
-        self.assertEqual({t['behavior'] for t in tasks}, expected)
+        self.assertEqual({t['behavior'] for t in tasks}, expected | {'RS.displacement-final-word-read'})
         self.assertEqual(len(tasks), 51)
         self.assertEqual(plan['unplanned_high'], [])
         self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 0)
         self.assertEqual(sum(e['weight'] == 4 and e['implementation'] == 'scoped'
-                             for e in result['entries']), 54)
+                             for e in result['entries']), 55)
         for task in tasks:
             execution = task.get('execution_result')
             if execution:

@@ -18960,3 +18960,17 @@ Original returned status, other masks, actual frame/palette writers and physical
 ownership, live observation/admission and original pixel bypass remain pending.
 The broad live replacement entry is unchanged. See
 [native additive sprite research](native-world-additive-sprite.md).
+
+
+### Selected distortion DWORD load/store completion — 2026-10-20
+
+Fresh DWORD.original-20261020 compares all18 original protected-page cases and
+13 native controls with the already implemented owned-span load/store model.
+The implementation stage is now scoped for this exact existing contract;
+comparison remains recorded and integration/replacement remain none. The first
+sandbox attempt stopped atSIGSYS before its original address witness and is
+retained separately; the successful host comparison supplies the proof.
+
+This completes the named final-WORD DWORD-read model. Actual live fault
+attribution, coordinate producers, other leaves and physical ownership remain
+separate. It does not widen native sampling or original pixel bypass.
