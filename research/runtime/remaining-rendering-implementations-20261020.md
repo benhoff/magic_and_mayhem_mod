@@ -76,3 +76,15 @@ stamps and the existing static/combined cycles, plus eight native/sanitized unit
 checks. See terrain-light-boundaries-original-20261020.json. Original manifest
 bookends pass. Installed entity/static-type input production and full scene/live
 acceptance remain separate; the broader lighting group is still partial.
+
+## Explicit external source ownership
+
+Version1 providers implement shared/file/imported/GPU read ownership plus
+private binding transfer/restoration (242572f9). Version2 adds direct consumption
+for producer-owned nonmappable resources using the user-selected explicit lease/
+fence contract. The original binding stays held through exact consumer
+completion and verification. Profile2 and pointer-free versioned journals expose
+this distinct ownership mode; private-only profile1 remains available. The
+producer must enforce its promise across its own aliases/device writers. An
+unclassified resource still cannot be admitted. Installed producer adapters and
+real driver acceptance remain independent of the generic implementation.

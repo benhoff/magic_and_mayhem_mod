@@ -17,7 +17,7 @@ def rows(client=False,crc=0x12345678):
 
 
 def journal(records,version=1):
-    h=[0]*16;h[2:7]=[version,256,0x40209ca7,131072,2048];raw=bytearray(struct.pack('<16I',*h));raw[:8]=b'MNMSHF01' if version==1 else b'MNMSHF02'
+    h=[0]*16;h[2:7]=[version,256,0x40209ca7,131072,2048];raw=bytearray(struct.pack('<16I',*h));raw[:8]=f'MNMSHF{version:02d}'.encode()
     for i,r in enumerate(records,1):r=list(r);r[0]=i;raw+=struct.pack('<64I',*r)
     return raw
 
@@ -45,6 +45,20 @@ class Handoff(unittest.TestCase):
                 for row in forged[:-1]:row[field]=0
                 with self.assertRaises(ValueError):decode(journal(forged,2))
             for row in r[:-1]:row[28]=8
+            with self.assertRaises(ValueError):decode(journal(r,2))
+
+    def test_direct_provider_binding_lease(self):
+        for kind in range(1,5):
+            r=rows()
+            for row in r[:-1]:
+                row[7]=kind+2;row[19]=0;row[21:32]=[100,0x1234,7,3,1,9,1,9,1,7,2]
+            got=decode(journal(r,3));self.assertEqual(got['direct_provider_leases'],1)
+            self.assertTrue(got['original_aliases_retained_as_consumer_inputs'])
+            self.assertTrue(got['source_binding_valid_before_api_return'])
+            self.assertFalse(got['source_binding_restored_before_api_return'])
+            for field in (21,24,25,30,31):
+                forged=[list(row) for row in r];forged[3][field]^=1
+                with self.assertRaises(ValueError):decode(journal(forged,3))
             with self.assertRaises(ValueError):decode(journal(r,2))
 
     def test_external_replay_and_generation_regression(self):

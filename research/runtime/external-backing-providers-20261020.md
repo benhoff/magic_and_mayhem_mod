@@ -61,3 +61,35 @@ incomplete/zero GPU fences, incomplete guarantees, stale tokens, mismatched
 kind/generation/pitch, unknown-provider refusal, and bind/restore failures.
 Controlled producer/GPU dependencies do not constitute a hardware-driver or
 full original-session comparison. Broader production acceptance stays partial.
+
+## Direct provider read leases (version 2)
+
+Version1 requires an existing Wine READ map and transfers the binding to a
+private value allocation. It cannot admit a BO-only nonmappable resource.
+`backing_lease_v2.h` adds `DrawingRegisterBackingV2`: acquire, verify_unchanged
+and release callbacks, with three retained callback module references. The
+request has version2, mapped=null and pitch=0. A successful read has version2,
+exactly the stable-read/writer-exclusion/lifetime guarantees (7), and the same
+object/generation/token/fence rules. No binding-transfer callback is required.
+
+The explicit `--wine-external-source-leases` capture option expands all strict
+physical prerequisites and selects MNM_DRAW_WINE_SOURCE_OWNERSHIP=2. Profile1
+continues to reject version2 registration. Profile2 still admits ordinary
+private sources and version1 providers. For a recognized version2 source it
+acquires ownership before reading, copies comparison rows from the stable
+readback without calling Wine Map/Unmap, and keeps the original resource bound.
+The exact original worker/context/consumer fence releases the physical read
+reservation. Before returning from COPY, the adapter asks the provider to verify
+its still-held object/generation/binding and read ownership, checks the readback
+CRC, retires the metadata owner and releases the provider. Known binding and
+resource writers remain refused throughout this interval. Provider enforcement
+must cover aliases and devices beyond the observer's process-local hooks.
+
+These are source read ownership proofs under the registered producer contract.
+They are not private-copy ownership proofs. The decoders expose both facts,
+including original bindings retained as consumer inputs and binding validity
+before API return. Original oracle pixels still never become native app inputs.
+Profile2 wire versions and their joins are documented in source-leases-v2.md.
+Unknown producers and incomplete fences are refused. Real installed producer
+adapters, driver execution and full-game/hardware acceptance need separate
+reviewed evidence; controlled producer fixtures cannot supply those results.

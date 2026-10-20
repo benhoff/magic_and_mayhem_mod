@@ -8,17 +8,17 @@ static u32 wine_source_ownership_capabilities(void){
 }
 static int wine_source_ownership_configure(void){
  char flag[2];u32 n=GetEnvironmentVariableA("MNM_DRAW_WINE_SOURCE_OWNERSHIP",flag,2);
- if(!n)return 1;if(n!=1||flag[0]!='1')return 0;wine_source_ownership_required=1;return 1;
+ if(!n)return 1;if(n!=1||(flag[0]!='1'&&flag[0]!='2'))return 0;wine_source_ownership_required=flag[0]-'0';return 1;
 }
 static void wine_source_ownership_emit(u32 phase){
- u32 r[16]={0};r[0]=++wine_source_ownership_records;r[1]=phase;r[2]=GetCurrentThreadId();r[3]=wine_source_ownership_capabilities();r[4]=wine_source_ownership_copies;r[5]=wine_handoff_count;
+ u32 r[16]={0};r[0]=++wine_source_ownership_records;r[1]=phase;r[2]=GetCurrentThreadId();r[3]=wine_source_ownership_capabilities();r[4]=wine_source_ownership_copies;r[5]=wine_handoff_count;if(wine_source_ownership_required==2)r[6]=wine_handoff_direct_count;
  if(!wine_source_ownership_file||!write(wine_source_ownership_file,r,64))ExitProcess(99);
 }
 static int wine_source_ownership_open(void){
  if(!wine_source_ownership_required)return 1;
  if(!physical_enabled||(wine_source_ownership_capabilities()&255u)!=255u)return 0;
  char name[600];path(name,"wine-source-ownership.bin");wine_source_ownership_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_source_ownership_file==(HANDLE)-1)return 0;
- u32 h[16]={0};copy(h,"MNMSOW01",8);h[2]=1;h[3]=64;h[4]=0x40209ca7;h[5]=1023;h[6]=2048;return write(wine_source_ownership_file,h,64);
+ u32 h[16]={0};copy(h,"MNMSOW01",8);h[2]=1;h[3]=64;h[4]=0x40209ca7;h[5]=1023;h[6]=2048;if(wine_source_ownership_required==2){copy(h,"MNMSOW02",8);h[2]=2;h[7]=2;}return write(wine_source_ownership_file,h,64);
 }
 static int wine_source_ownership_install(void){
  if(!wine_source_ownership_required)return 1;

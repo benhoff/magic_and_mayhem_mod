@@ -19546,3 +19546,27 @@ Installed entity/type production and full scene/live acceptance remain pending.
 Historical changed-source evidence is preserved. The reviewed committed range
 ac852c67..242572f9 has zero exact receipt gaps; the historical report is retained
 at working/tests/lighting-history-review-20261020.json.
+
+### Direct foreign source leases — 2026-10-20
+
+NR.direct-provider-readback adds producer-v2 acquisition and unchanged-binding
+verification through exact consumer GPU/context completion, without a Wine READ
+map or private binding transfer. Shared/file/imported/GPU kinds require explicit
+stable object/generation/token and writer-exclusion/lifetime leases; GPU producer
+fences must be complete and nonzero. Private-only profile1 refuses v2 registration.
+Profile2 journals distinguish original-binding read ownership from private-copy
+value ownership. No original comparison pixels become native application inputs.
+
+DIRECT.providers-20261020 records 53 actual PE32 observer controls, all four
+nonmappable source classes, guarded writers, malformed provenance, replay,
+incomplete fences, verification failures and mutation detection, plus four parser
+suites and the profile1 refusal. The controlled GPU producer is not a real foreign
+driver result. DIRECT.private-regression-20261020 records the current private-only
+16-case regression, 13 lifetime windows and 15 admission controls. Installed
+producer adapters and real hardware/full-session acceptance remain independent;
+DIRECT.transfer-regression-20261020 records all49 version1 producer controls on current sources; the broad NR.external-backing-ownership scope stays partial. Historical evidence
+and failed/intermediate snapshots are preserved. The committed range
+242572f9..34bc0397 has zero exact receipt gaps, reported under
+working/tests/direct-backing-history-review-20261020.json. Gate exports use owned
+scratch on the second NVMe (/var/tmp/mnm-native-rendering-remaining-20261020-coverage),
+preserving the 90 GiB main-drive reserve without altering the cold archive.

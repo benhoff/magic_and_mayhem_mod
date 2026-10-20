@@ -7,12 +7,13 @@ from drawing_api_session import sha
 def decode(data):
     if len(data)<320 or (len(data)-64)%256 or len(data)>64+131072*256:raise ValueError('Source handoff envelope')
     h=struct.unpack_from('<16I',data)
-    version=1 if data[:8]==b'MNMSHF01' else 2 if data[:8]==b'MNMSHF02' else 0
+    version=1 if data[:8]==b'MNMSHF01' else 2 if data[:8]==b'MNMSHF02' else 3 if data[:8]==b'MNMSHF03' else 0
     if not version or h[2:7]!=(version,256,0x40209ca7,131072,2048) or any(h[7:]):raise ValueError('Source handoff header')
     rows=list(struct.iter_unpack('<64I',data[64:]));pending={};seen=set();owners=set();bindings=[];prefix=0;count=0;provider_tokens={};provider_kinds={};object_generations={}
     for ordinal,r in enumerate(rows,1):
-        if r[0]!=ordinal or not r[2] or any(r[21 if version==1 else 31:]) or r[15]<prefix:raise ValueError('Source handoff identity/reserved/prefix')
-        prefix=r[15];phase=r[1]
+        if r[0]!=ordinal or not r[2] or any(r[21 if version==1 else 31 if version==2 else 32:]) or r[15]<prefix:raise ValueError('Source handoff identity/reserved/prefix')
+        prefix=r[15];phase=r[1];mode=r[31] if version==3 else int(r[7]>2)
+        if mode not in (0,1,2) or (r[7]<=2 and mode) or (r[7]>2 and not mode):raise ValueError('Source handoff storage mode')
         if phase==8:
             if ordinal!=len(rows) or pending or r[16] not in (1,2) or r[14]!=count or any(r[3:14]) or any(r[17:]):raise ValueError('Source handoff terminal')
             break
@@ -21,11 +22,11 @@ def decode(data):
         if r[7]<=2:
             if any(r[21:]):raise ValueError('Private handoff has foreign provenance')
         else:
-            if any(r[17:20]) or not r[21] or not (r[22] or r[23]) or not r[24] or not r[25] or r[30]!=15:
+            if any(r[17:20]) or not r[21] or not (r[22] or r[23]) or not r[24] or not r[25] or r[30]!=(7 if mode==2 else 15):
                 raise ValueError('External handoff requires exact enforcing provider lease')
             fence=r[26] | (r[27]<<32);completed=r[28] | (r[29]<<32)
             if completed<fence or (r[7]==6 and not fence):raise ValueError('External producer fence incomplete')
-        identity=(r[2],r[3:12],r[13:15],r[17:20],r[21:31])
+        identity=(r[2],r[3:12],r[13:15],r[17:20],r[21:32])
         if phase==1:
             count+=1
             if r[7]>2:
@@ -33,7 +34,7 @@ def decode(data):
                 if r[25]<=prior or provider_kinds.get(pid,r[7])!=r[7] or r[24]<object_generations.get(object_key,0):raise ValueError('External provider token/generation replay')
                 provider_tokens[pid]=r[25];provider_kinds[pid]=r[7];object_generations[object_key]=r[24]
             if r[3] in seen or r[13] in owners or r[14]!=count or r[12]:raise ValueError('Source handoff duplicate/epoch')
-            seen.add(r[3]);owners.add(r[13]);pending[r[3]]=dict(identity=identity,state=1,prefixes={1:r[15]},kind=r[7],owner=r[13],submission=r[3],texture=r[4],generation=r[5],resource=r[6],width=r[8],height=r[9],pitch=r[10],bytes=r[11],heap_generation=r[17],heap_offset=r[18],original_owner=r[19])
+            seen.add(r[3]);owners.add(r[13]);pending[r[3]]=dict(identity=identity,state=1,prefixes={1:r[15]},kind=r[7],source_mode=mode,owner=r[13],submission=r[3],texture=r[4],generation=r[5],resource=r[6],width=r[8],height=r[9],pitch=r[10],bytes=r[11],heap_generation=r[17],heap_offset=r[18],original_owner=r[19])
             if r[7]>2:
                 pending[r[3]]['provider']={'id':r[21],'kind':r[7]-2,'object':r[22] | (r[23]<<32),'generation':r[24],'token':r[25],'fence':fence,'completed':completed}
         else:
@@ -48,7 +49,7 @@ def decode(data):
             if phase==7:
                 bindings.append({k:v for k,v in s.items() if k not in ('identity','state')});del pending[r[3]]
     else:raise ValueError('Source handoff missing terminal')
-    return dict(schema=version,success=True,external_provider_leases=sum(x['kind']>2 for x in bindings),journal_sha256=sha(data),handoffs=count,bindings=bindings,original_aliases_retained_as_consumer_inputs=False,source_binding_restored_before_api_return=True,original_pixels_used_as_native_inputs=False,global_host_driver_alias_ownership=False,native_replacement=False)
+    return dict(schema=version,success=True,external_provider_leases=sum(x['kind']>2 for x in bindings),journal_sha256=sha(data),handoffs=count,bindings=bindings,direct_provider_leases=sum(x['source_mode']==2 for x in bindings),original_aliases_retained_as_consumer_inputs=any(x['source_mode']==2 for x in bindings),source_binding_restored_before_api_return=all(x['source_mode']!=2 for x in bindings),source_binding_valid_before_api_return=True,original_pixels_used_as_native_inputs=False,global_host_driver_alias_ownership=False,native_replacement=False)
 
 
 def analyze(directory,report):
@@ -61,11 +62,13 @@ def analyze(directory,report):
     physical_rows=list(struct.iter_unpack('<32I',(directory/'wine-physical-owners.bin').read_bytes()[64:]));free={r[3]:r[0] for r in physical_rows if r[1]==4}
     for h in result['bindings']:
         link=by_submission[h['submission']];sample=samples[h['submission']]
-        if link['owner']!=h['owner'] or link['kind']!=1 or link['source_texture']!=h['texture'] or link['source_generation']!=h['generation'] or link['resource']!=h['resource']:raise ValueError('Source handoff private consumer identity')
+        if link['owner']!=h['owner'] or link['kind']!=(h['kind'] if h['source_mode']==2 else 1) or link['source_texture']!=h['texture'] or link['source_generation']!=h['generation'] or link['resource']!=h['resource']:raise ValueError('Source handoff private consumer identity')
+        if h['source_mode']==2 and link.get('provider')!=h.get('provider'):raise ValueError('Source handoff external provenance changed')
+        if sample.get('provider_direct',False)!=(h['source_mode']==2):raise ValueError('Source handoff direct readback mismatch')
         p=h['prefixes']
         if not p[3]<link['acquire_record']<=p[4]<=link['release_record']<=p[5]<=p[6]<free.get(h['owner'],0)<=p[7]:raise ValueError('Source handoff transfer/fence/restore/free order')
         payload=payloads[sample['payload_ordinal']];raw=(directory/payload['path']).read_bytes()
         if zlib.crc32(raw)!=h['crc32'] or (payload['width'],payload['height'],len(raw))!=(h['width'],h['height'],h['bytes']):raise ValueError('Source handoff reference bytes changed')
         h.update(command=link['command'],worker=link['worker'],release_thread=link['release_thread'],payload_ordinal=sample['payload_ordinal'],payload_sha256=payload['sha256'])
-    result.update(physical_journal_sha256=owned['journal_sha256'],source_map_journal_sha256=snapshots['journal_sha256'],gpu_journal_sha256=owned['gpu_journal_sha256'],private_copy_value_ownership_closed=True)
+    result.update(physical_journal_sha256=owned['journal_sha256'],source_map_journal_sha256=snapshots['journal_sha256'],gpu_journal_sha256=owned['gpu_journal_sha256'],private_copy_value_ownership_closed=not result['direct_provider_leases'],source_read_ownership_closed_under_provider_contracts=True)
     return result
