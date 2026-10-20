@@ -19637,3 +19637,26 @@ population and frame orchestration remain implementation work; installed full
 scene, physical GPU and live replacement acceptance remain separate validation.
 Prior evidence/source hashes remain immutable. Reviewed actual committed range
 4fb2cb76..e6e4f863:39 exact file receipts, zero gaps, retained under working/tests.
+
+### 2026-10-20 — linked map owner and typed light production
+
+New components RE.terrain-linked-rotation and RE.terrain-linked-frame-update
+compare12,288 original rotations,45,056 frame writes,4,096 local refreshes and
+3,014,880 complete cells, with actual original5345f0 occupancy execution. The
+reset body remains a checked request adapter in the rotation fixture. Native64
+and sanitizer units are separate executions; manifest bookends pass. Fresh
+records: terrain-linked-rotation-original-20261020.json and
+terrain-linked-frame-update-original-20261020.json.
+
+NR.scene-entity-map supplies owned linked controllers, sequence/frame separation,
+generation-safe references, artifact footprints, reset/retirement and explicit
+MPS activation. NR.scene-entity-lighting reads typed current health and FXA
+profiles, retains separate admission history and produces camera/spectator inputs
+for the actual recovered cycle. Each has independent native and sanitized CPU
+integration records. These do not assert installed full-game, physical GPU,
+original whole-map/navigation-graph equivalence or live replacement. Production
+full-scene orchestration is still implementation work. See the remaining-rendering
+implementation document for recovered evidence, native policies and exact limits.
+The shared build/movement probe source changes leave older comparisons historical;
+no previous source hashes were refreshed. Reviewed e6e4f863..45dcd57c:40 committed
+files, zero unresolved exact receipt gaps, separate from new execution evidence.

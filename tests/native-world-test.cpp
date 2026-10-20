@@ -71,7 +71,7 @@ int main() try {
     auto before=bytes(bounded);rejected([&]{bounded.enqueue({Operation::release,one,{}});});check(bytes(bounded)==before);
     rejected([&]{bounded.step({},[&](Phase,const State&,std::vector<Command>& out){out.push_back({Operation::release,one,{}});});});check(bytes(bounded)==before);
     // File commit/refusal/error paths and staged load preserve previously valid state.
-    char directory[]="/tmp/mnm-world-test-XXXXXX";check(::mkdtemp(directory)!=nullptr);
+    auto directory=(std::filesystem::temp_directory_path()/"mnm-world-test-XXXXXX").string();check(::mkdtemp(directory.data())!=nullptr);
     struct Cleanup {std::filesystem::path path;~Cleanup(){std::filesystem::remove_all(path);}} cleanup{directory};
     auto path=cleanup.path/"world.mnw";check(writeSnapshot(path,world.state()).durable);
     rejected([&]{writeSnapshot(path,bounded.state());});check(encodeSnapshot(readSnapshot(path))==checkpoint);

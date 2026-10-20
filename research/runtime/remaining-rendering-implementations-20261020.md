@@ -250,3 +250,84 @@ Older shared build/header evidence remains historical; no old hash is refreshed.
 Reviewed committed4fb2cb76..e6e4f863:39 exact parent/current file receipts, zero
 gaps, retained in working/tests/camera-views-history-review-20261020.json.
 Historical accounting is separate from new source and execution credit.
+
+## Linked terrain ownership and world light producers
+
+`RE.terrain-linked-rotation` implements004efb90 selection and its00464bd0
+first-display scan. `RE.terrain-linked-frame-update` implements004eb710 and
+004ed440, including the actual5345f0 occupancy predicate. Their fresh original
+records compare12,288 rotations,45,056 frame requests,4,096 local refreshes and
+3,014,880 complete cells. Native64 and ASan/UBSan units run separately. The
+rotation fixture records reset requests at a byte-checked private adapter;
+**the original004eb8a0 reset body is not executed**. Manifest bookends pass.
+
+Cell references are WORDs at+2(effect),+4(creature),+6(artifact). The nonzero
+frame barrier in004eb710 checks the creature reference. Local004ed440 touches
+wrapped3x3 neighborhoods in layers z-1/z below the highest layer. It updates
+surface/empty bits, not the full loader's boundary/culling pass. Its+66ca result
+uses the final visited neighbor's linked flag. The004fd280 consumer identifies
+this as redraw invalidation, not navigation invalidation. Actual5345f0 reads an
+owned six-byte XY record: count at0 and signed layer endpoints at2/3; only those
+two endpoints count as occupied. Confidence: confirmed within compared domains.
+
+`NR.scene-entity-map` now owns immutable MAP/TTD/ANI/MPS source values and mutable
+runtime cells, real NoCdAnimationController instances and generation-safe World
+entities. Loader004ee8d0 uses the asset definition as an ANI sequence, then
+004eb710 writes a TTD display frame. The native owner retains both separately,
+converts all initial displays before full surface derivation, and keeps linked
+controllers outside artifact membership. Source WORD references remain visible
+in the immutable source and never become live native identities. Native effect/
+artifact chains and single creature occupancy have explicit generation sidebands;
+retirement and relocation rebuild heads/empty flags and artifact footprints.
+Budgets cover linked records and membership storage, and operations stage before
+publication. Duplicate ticks, stale generations, unsupported references and
+invalid placement indices refuse atomically. MPS records are retained; simulation
+explicitly activates resolved placements. This does not invent original chance,
+random artifact generation or gameplay balance.
+
+Native reset retires its linked controller and World handle, clears recovered
+cell fields, refreshes local geometry, and invalidates redraw/navigation revisions.
+Navigation clients must rebuild against the new revision. This is owned native
+invalidation, **not a claim to implement the original540430/540140 graph mutation**.
+Explicit selected ticks advance controllers without adding a second timer;
+terminal animations retire through reset. This terminal policy is native; the
+original linked-list tick caller is not yet mapped.004ecda0 is an empty placement
+iteration and must not be mislabeled as that caller.
+
+`NR.scene-entity-lighting` feeds the actual recovered TerrainLightingCycle from
+World slots and typed CombatState/CreatureEncounter health. Creature+e4 is living
+health:50669e initializes it,507b31 clamps healing,514b6d subtracts damage and
+507089 clears it during cleanup;5075f0 supplies maximum health. These retained
+NoCD disassemblies support the field meaning with high confidence; this packet
+does not execute those health writers or assert their gameplay equivalence.
+The native producer uses health!=0 for the existing light admission input.
+Effects use the89-entry FXA profile fields; explicit static-type recipes map
+artifact types to those light profiles. Neither relation table is relabeled as
+an inferred diplomacy rule. Recount admission positions are retained separately
+from current cells, reset on generation replacement and explicitly readmitted.
+Cleanup/death/new emitter changes request recount. Camera XY wraps into the light
+region and supplies spectator anchors. Logical cell positions remain authoritative;
+display interpolation does not advance a second terrain-light clock.
+
+Fresh scene-entity-map-native/sanitized and scene-entity-lighting-native/sanitized
+records execute real controllers, World lifetime, geometry, typed health, profile
+selection, admission history and published light buffers on owned synthetic CPU
+inputs. No installed/full-game or GPU result is inferred from these tests.
+The new dependency build exposed GCC16 optional-copy diagnostics in two existing
+movement validation probes. Checked optional access preserves the guaranteed
+engaged continuation while allowing the optimized build; broader movement
+comparison remains pending after this source-only adjustment.
+
+Production installed resource acquisition, attachment/visibility/depth frame
+orchestration and installed full-scene execution remain implementation work in
+the scene group. Exact original navigation mutation and mapping its linked tick
+caller remain recovered-baseline work, separate from native ownership policies.
+Physical driver/full-game/live acceptance remains validation, not absent code.
+Committed e6e4f863..45dcd57c has40 exact parent/current file receipts and zero
+unresolved history gaps; retained report:
+working/tests/entity-map-history-review-20261020.json.
+
+Optimized existing World/movement tests also pass. Their temporary directories now
+respect std::filesystem::temp_directory_path()/TMPDIR rather than hardcoding the
+quota-exhausted /tmp filesystem; checkpoint and publication checks are unchanged.
+Retained run: working/tests/entity-movement-smoke-tmpdir-20261020.log.

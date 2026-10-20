@@ -142,7 +142,7 @@ void MovementSession::validateBinding(const State& state,const Navigation& navig
             else if(e.motion->action==Action::moving) (void)navigation.prepareFineMotion(e,e.motion->route.at(e.motion->next));
         }
         auto probe=e;
-        if(probe.motion->continuousMotion) {probe.motion->previous.reset();probe.motion->fine.reset();probe.motion->segmentTicks=0;}
+        if(probe.motion.value().continuousMotion) {probe.motion->previous.reset();probe.motion->fine.reset();probe.motion->segmentTicks=0;}
         // Validate every saved edge, including already consumed edges, on rebound inputs.
         probe.x=e.motion->origin.x;probe.y=e.motion->origin.y;probe.z=e.motion->origin.z;
         for(const auto& waypoint:e.motion->route) {
@@ -258,7 +258,7 @@ TickReport MovementSession::step(TickInput input) {
                 if(motion.action==Action::searchLimited || motion.action==Action::blocked || motion.action==Action::planning) motion.route.clear();
                 if(motion.sampleMotion && motion.action==Action::moving) {
                     auto probe=e;
-                    if(probe.motion->continuousMotion) {probe.motion->previous.reset();probe.motion->fine.reset();probe.motion->segmentTicks=0;}
+                    if(probe.motion.value().continuousMotion) {probe.motion->previous.reset();probe.motion->fine.reset();probe.motion->segmentTicks=0;}
                     for(const auto& point:motion.route) {
                         (void)navigation_->prepareFineMotion(probe,point);
                         probe.x=point.position.x;probe.y=point.position.y;probe.z=point.position.z;
