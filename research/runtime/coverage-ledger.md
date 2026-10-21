@@ -19981,3 +19981,21 @@ The creature-only commit tree separately repeats all controls with fresh
 Unrelated main-checkout driver observation and unfinished closeout metadata
 are excluded from this commit; their existing work and historical reports are
 preserved. Integration/replacement remain none.
+
+
+## ALIFE1 — native actor visual lifecycle (2026-10-20)
+
+Native packed pool construction/reset/destruction, non-reserving admission,
+activation/baseline, cleanup, logical release with same-type resource cascade,
+and capacity-wide presentation retirement are supplied in
+[the actor lifecycle implementation](native-actor-lifecycle-20261020.md).
+The opt-in scene/capture adapter replaces thirteen entry bodies. Original
+map/gameplay/audio/platform services remain explicit boundaries; this does not
+promote actual-game integration or live replacement.
+
+Original/native/runtime owned comparisons, full guard controls and reproducible
+PE32/import staging are recorded under `ALIFE1.lifecycle-original-20261020`.
+Raw actor/queue/particle aliases remain storage identities, and reset preserves
+the observed original histogram retention. Allocation-failure/exception paths,
+unknown external writers, terrain loading and complete external ownership remain
+independent. Earlier shared launch-tool evidence stays historical when stale.

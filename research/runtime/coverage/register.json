@@ -131894,6 +131894,314 @@
       "remaining_gaps": [
         "Native helper and bounded producer-facing adapter implementation is supplied. Full original scene generation, camera/cache/animation post-work, external writer/object ownership, actual-game hook admission and full live replacement remain separate; isolated fixture results do not promote integration or replacement."
       ]
+    },
+    {
+      "id": "RS.actor-pool-storage",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Creature array construction, reset, admission and destruction",
+      "scope": "Complete 473100/4bfef0 pool preparation/construction, 505db0 packed constructor, 5060a0 reset, 52a5c0 reset-all, 52a640 non-reserving first-free lookup, 505f70 destructor and 4c00d0 reverse array destruction with count prefix and manager list cleanup. Preserve constructor-untouched bytes, nullable callback, byte list allocator tag, stable slot addresses, separate active/e4 gates, high-water bound retention and original reset histogram orphaning. External allocator and callback dynamic deletion remain explicit services; allocation-failure execution, arbitrary corrupt lists and exception unwinding remain outside compared domain.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4665600,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4980464,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4980944,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5266864,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267312,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5416384,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5416512,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267616,
+          "scope": "Owned subobject/reset stores in the composed pool lifecycle; caller and whole external manager semantics are not implied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426016,
+          "scope": "Owned subobject/reset stores in the composed pool lifecycle; caller and whole external manager semantics are not implied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5830384,
+          "scope": "Owned subobject/reset stores in the composed pool lifecycle; caller and whole external manager semantics are not implied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5830448,
+          "scope": "Owned subobject/reset stores in the composed pool lifecycle; caller and whole external manager semantics are not implied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5560944,
+          "scope": "Owned subobject/reset stores in the composed pool lifecycle; caller and whole external manager semantics are not implied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607056,
+          "scope": "Owned subobject/reset stores in the composed pool lifecycle; caller and whole external manager semantics are not implied."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_lifecycle.hpp"
+      ],
+      "tests": [
+        "tests/actor-lifecycle-composition.cpp",
+        "tests/actor-lifecycle-services.S",
+        "tests/actor-lifecycle-services.inc",
+        "tools/test-actor-lifecycle.py"
+      ],
+      "documents": [
+        "research/runtime/entity-lifetimes.md",
+        "research/runtime/native-actor-lifecycle-20261020.md"
+      ],
+      "evidence": [
+        "ALIFE1.lifecycle-original-20261020",
+        "ALIFE1.lifecycle-mapped-original-20261020"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/original-linux-seh.hpp",
+        "runtime/actor-lifecycle/adapter.cpp",
+        "runtime/actor-lifecycle/entry.S",
+        "runtime/actor-lifecycle/entries.inc",
+        "runtime/actor-lifecycle/original_bytes.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-actor-lifecycle.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py",
+        "tools/update-actor-lifecycle-guards.py"
+      ],
+      "remaining_gaps": [
+        "External service bodies, original allocation failures/exception unwinding, unknown raw alias writers and actual-game/live replacement remain independent. Native lifecycle entry implementations are supplied."
+      ]
+    },
+    {
+      "id": "RS.actor-activation",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Creature activation and baseline visual state",
+      "scope": "Complete 506290 activation and 5065e0 baseline orchestration, native packed stores, map attachment ordering, active/high-water publication, leader facing, history reset, attached-list erasure, histogram initialization, type/army/animation registration and special type13 state. External map, animation, gameplay, visibility and histogram services retain explicit original address/argument contracts. Comparison uses bounded owned providers; their complete original callees, scenario admission and live game remain independent. Zero map divisors terminate natively instead of reproducing original infinite loops.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5268112,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5268960,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_lifecycle.hpp"
+      ],
+      "tests": [
+        "tests/actor-lifecycle-composition.cpp",
+        "tests/actor-lifecycle-services.S",
+        "tests/actor-lifecycle-services.inc",
+        "tools/test-actor-lifecycle.py"
+      ],
+      "documents": [
+        "research/runtime/entity-lifetimes.md",
+        "research/runtime/native-actor-lifecycle-20261020.md"
+      ],
+      "evidence": [
+        "ALIFE1.lifecycle-original-20261020",
+        "ALIFE1.lifecycle-mapped-original-20261020"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/original-linux-seh.hpp",
+        "runtime/actor-lifecycle/adapter.cpp",
+        "runtime/actor-lifecycle/entry.S",
+        "runtime/actor-lifecycle/entries.inc",
+        "runtime/actor-lifecycle/original_bytes.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-actor-lifecycle.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py",
+        "tools/update-actor-lifecycle-guards.py"
+      ],
+      "remaining_gaps": [
+        "External service bodies, original allocation failures/exception unwinding, unknown raw alias writers and actual-game/live replacement remain independent. Native lifecycle entry implementations are supplied."
+      ]
+    },
+    {
+      "id": "RS.actor-release-cascade",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Creature cleanup, logical release and same-type cascade",
+      "scope": "Complete 506d30 logical release and 51f5e0 cleanup orchestration, peer invalidation ordering, current/saved map detachment, selection counters, high-water tail scan, owner/session bookkeeping, shared type-array/sprite reclamation before recursive same-type release then cleanup, attached secondary release, voice stops, and 52baf0 capacity-wide presentation retirement including DirectSound-style virtual boundaries. Pool storage and raw external aliases survive logical release; queues borrow rather than own actors. External gameplay/map/audio/COM services remain separate; comparison covers owned instrumented boundaries, not whole-callee or actual-game replacement. Undefined original wizard resource-index default is explicitly refused.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5270832,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5371360,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5421808,
+          "scope": "Entry control flow and owned stores; called gameplay and platform services remain separate contracts."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_lifecycle.hpp"
+      ],
+      "tests": [
+        "tests/actor-lifecycle-composition.cpp",
+        "tests/actor-lifecycle-services.S",
+        "tests/actor-lifecycle-services.inc",
+        "tools/test-actor-lifecycle.py"
+      ],
+      "documents": [
+        "research/runtime/entity-lifetimes.md",
+        "research/runtime/native-actor-lifecycle-20261020.md"
+      ],
+      "evidence": [
+        "ALIFE1.lifecycle-original-20261020",
+        "ALIFE1.lifecycle-mapped-original-20261020"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/original-linux-seh.hpp",
+        "runtime/actor-lifecycle/adapter.cpp",
+        "runtime/actor-lifecycle/entry.S",
+        "runtime/actor-lifecycle/entries.inc",
+        "runtime/actor-lifecycle/original_bytes.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-actor-lifecycle.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py",
+        "tools/update-actor-lifecycle-guards.py"
+      ],
+      "remaining_gaps": [
+        "External service bodies, original allocation failures/exception unwinding, unknown raw alias writers and actual-game/live replacement remain independent. Native lifecycle entry implementations are supplied."
+      ]
+    },
+    {
+      "id": "NP.native-actor-lifecycle-adapter",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Guarded native actor lifecycle runtime adapter",
+      "scope": "Opt-in import-staged PE32 native replacements at thirteen actor pool/construction/reset/baseline/activation/cleanup/release/presentation entries. Compare all7138 original body bytes before any patch, preflight all page protections, then publish jumps and flush caches. Bounded memory access and preserved LastError; invalid ownership, zero activation divisors and undefined wizard resource index terminate without fallback. External original gameplay/map/audio/allocator/COM services retain existing entry boundaries. Linux API providers and import staging are compared in isolation; actual-game admission, physical Windows providers and full live replacement remain pending.",
+      "original": [],
+      "implementation": [
+        "reconstruction/rendering/actor_lifecycle.hpp",
+        "runtime/actor-lifecycle/adapter.cpp",
+        "runtime/actor-lifecycle/entry.S",
+        "runtime/actor-lifecycle/entries.inc",
+        "runtime/actor-lifecycle/original_bytes.h",
+        "tools/build-actor-lifecycle.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py",
+        "tools/update-actor-lifecycle-guards.py"
+      ],
+      "tests": [
+        "tests/actor-lifecycle-composition.cpp",
+        "tests/actor-lifecycle-services.S",
+        "tests/actor-lifecycle-services.inc",
+        "tools/test-actor-lifecycle.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/original-linux-seh.hpp",
+        "runtime/actor-lifecycle/adapter.cpp",
+        "runtime/actor-lifecycle/entry.S",
+        "runtime/actor-lifecycle/entries.inc",
+        "runtime/actor-lifecycle/original_bytes.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-actor-lifecycle.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py",
+        "tools/update-actor-lifecycle-guards.py"
+      ],
+      "documents": [
+        "research/runtime/native-actor-lifecycle-20261020.md"
+      ],
+      "evidence": [
+        "ALIFE1.lifecycle-original-20261020",
+        "ALIFE1.lifecycle-mapped-original-20261020"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual-game lifecycle admission and native implementations of external gameplay/platform services remain independent; no live replacement promotion."
+      ]
     }
   ],
   "evidence": [
@@ -297600,6 +297908,88 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "ALIFE1.lifecycle-original-20261020",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "192 composed original/native/runtime lifecycles with complete owned state and ordered external service/allocation/free traces; original lifecycle bodies poisoned for native execution. Six types, sixteen provider scenarios, both cleanup modes, two-node baseline/destruction lists, stable address reuse and recursive shared resource release. 7138 byte mutation controls and thirteen protection/ownership refusals, PE32 build and original-section-preserving import staging. External services are explicit instrumented owned boundaries; no actual-game/Windows/live replacement claim.",
+      "record": "research/runtime/native-actor-lifecycle-results-20261020.json",
+      "sha256": "f5f89d718e5532fb0bdd6a843e4c8132ac0f1eeaa1348b1fca512134c9cedc95",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/guards/body_mutations",
+          "equals": 7138
+        },
+        {
+          "pointer": "/original_lifecycle_bodies_poisoned_for_native",
+          "equals": true
+        },
+        {
+          "pointer": "/import_staging_pass",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ALIFE1.lifecycle-mapped-original-20261020",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "192 composed original/native/runtime lifecycles with complete owned state and ordered external service/allocation/free traces; original lifecycle bodies poisoned for native execution. Six types, sixteen provider scenarios, both cleanup modes, two-node baseline/destruction lists, stable address reuse and recursive shared resource release. 7138 byte mutation controls and thirteen protection/ownership refusals, PE32 build and original-section-preserving import staging. External services are explicit instrumented owned boundaries; no actual-game/Windows/live replacement claim. Fresh repetition binds the explicit original reset and owned-subobject function mappings.",
+      "record": "research/runtime/native-actor-lifecycle-mapped-results-20261020.json",
+      "sha256": "f1a06d87b00800d42f9a1f470a8b777491d282619fcf39c3f7d39e13d52b1098",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/guards/body_mutations",
+          "equals": 7138
+        },
+        {
+          "pointer": "/original_lifecycle_bodies_poisoned_for_native",
+          "equals": true
+        },
+        {
+          "pointer": "/import_staging_pass",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -319487,8 +319877,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-creature-drawing-commit-20261020.json",
-    "sha256": "e1b4600f3dd286f9064bf1a8864318fc94b8e9c75aba90568411a871b5ddaadb"
+    "path": "research/runtime/coverage/source-index-actor-lifecycle-20261020.json",
+    "sha256": "12c64e61ab4850964e0a68247ba61e81593b519573060c76887c025056744146"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
