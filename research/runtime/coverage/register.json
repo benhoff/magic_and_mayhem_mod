@@ -10937,14 +10937,17 @@
         "tools/install-coverage-hook.py",
         ".githooks/pre-commit",
         "tools/coverage_merge_history.py",
-        "tools/coverage_reviews.py"
+        "tools/coverage_reviews.py",
+        "tools/coverage_bookkeeping.py",
+        "tools/coverage-bookkeeping.py"
       ],
       "tests": [
         "tests/test-coverage-gate.py",
         "tests/test-re-coverage.py",
         "tests/test-tooling.sh",
         "tests/test-coverage-merge-history.py",
-        "tests/test-coverage-evidence-imports.py"
+        "tests/test-coverage-evidence-imports.py",
+        "tests/test-coverage-bookkeeping.py"
       ],
       "evidence": [
         "TOOL.traceability.scene-root-20261006",
@@ -45520,7 +45523,8 @@
       "evidence": [
         "NR.scene-production-repetition.history-adapter-static-20261011",
         "CREATURE-DRAW.lifecycle-original-20261020",
-        "CREATURE-DRAW.lifecycle-commit-original-20261020"
+        "CREATURE-DRAW.lifecycle-commit-original-20261020",
+        "CREATURE-DRAW.sqlite-history-refresh-original-20261021"
       ],
       "remaining_gaps": [
         "Native helper and bounded producer-facing adapter implementation is supplied. Full original scene generation, camera/cache/animation post-work, external writer/object ownership, actual-game hook admission and full live replacement remain separate; isolated fixture results do not promote integration or replacement."
@@ -45581,7 +45585,8 @@
       "evidence": [
         "NR.scene-production-repetition.queue-cleanup-static-20261012",
         "CREATURE-DRAW.lifecycle-original-20261020",
-        "CREATURE-DRAW.lifecycle-commit-original-20261020"
+        "CREATURE-DRAW.lifecycle-commit-original-20261020",
+        "CREATURE-DRAW.sqlite-history-refresh-original-20261021"
       ],
       "remaining_gaps": [
         "Native helper and bounded producer-facing adapter implementation is supplied. Full original scene generation, camera/cache/animation post-work, external writer/object ownership, actual-game hook admission and full live replacement remain separate; isolated fixture results do not promote integration or replacement."
@@ -45647,7 +45652,8 @@
       "evidence": [
         "NR.scene-production-repetition.queue-cleanup-static-20261012",
         "CREATURE-DRAW.lifecycle-original-20261020",
-        "CREATURE-DRAW.lifecycle-commit-original-20261020"
+        "CREATURE-DRAW.lifecycle-commit-original-20261020",
+        "CREATURE-DRAW.sqlite-history-refresh-original-20261021"
       ],
       "remaining_gaps": [
         "Native helper and bounded producer-facing adapter implementation is supplied. Full original scene generation, camera/cache/animation post-work, external writer/object ownership, actual-game hook admission and full live replacement remain separate; isolated fixture results do not promote integration or replacement."
@@ -132035,7 +132041,8 @@
       ],
       "evidence": [
         "CREATURE-DRAW.lifecycle-original-20261020",
-        "CREATURE-DRAW.lifecycle-commit-original-20261020"
+        "CREATURE-DRAW.lifecycle-commit-original-20261020",
+        "CREATURE-DRAW.sqlite-history-refresh-original-20261021"
       ],
       "status": {
         "understanding": "scoped",
@@ -132139,7 +132146,8 @@
         "ALIFE1.lifecycle-mapped-original-20261020",
         "ALIFE1.lifecycle-master-original-20261020",
         "ALIFE1.lifecycle-master-compat-original-20261020",
-        "ALIFE1.lifecycle-master-capture-original-20261020"
+        "ALIFE1.lifecycle-master-capture-original-20261020",
+        "ALIFE1.sqlite-history-refresh-original-20261021"
       ],
       "confidence": "high_within_scope",
       "status": {
@@ -132206,7 +132214,8 @@
         "ALIFE1.lifecycle-mapped-original-20261020",
         "ALIFE1.lifecycle-master-original-20261020",
         "ALIFE1.lifecycle-master-compat-original-20261020",
-        "ALIFE1.lifecycle-master-capture-original-20261020"
+        "ALIFE1.lifecycle-master-capture-original-20261020",
+        "ALIFE1.sqlite-history-refresh-original-20261021"
       ],
       "confidence": "high_within_scope",
       "status": {
@@ -132278,7 +132287,8 @@
         "ALIFE1.lifecycle-mapped-original-20261020",
         "ALIFE1.lifecycle-master-original-20261020",
         "ALIFE1.lifecycle-master-compat-original-20261020",
-        "ALIFE1.lifecycle-master-capture-original-20261020"
+        "ALIFE1.lifecycle-master-capture-original-20261020",
+        "ALIFE1.sqlite-history-refresh-original-20261021"
       ],
       "confidence": "high_within_scope",
       "status": {
@@ -132358,7 +132368,8 @@
         "ALIFE1.lifecycle-mapped-original-20261020",
         "ALIFE1.lifecycle-master-original-20261020",
         "ALIFE1.lifecycle-master-compat-original-20261020",
-        "ALIFE1.lifecycle-master-capture-original-20261020"
+        "ALIFE1.lifecycle-master-capture-original-20261020",
+        "ALIFE1.sqlite-history-refresh-original-20261021"
       ],
       "confidence": "high_within_scope",
       "status": {
@@ -134257,6 +134268,133 @@
       "remaining_gaps": [
         "Actual-game admission, complete external service bodies, Windows memory providers and live replacement remain independent. Native entry and staging are supplied; bounded execution comparison is recorded."
       ]
+    },
+    {
+      "id": "TOOL.coverage-review-workspace",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "SQLite review preparation, recording and deterministic Git export",
+      "scope": "Worktree-local SQLite receipt workspace, lossless ordered import of legacy and hash-pinned sharded journals, indexed receipt/file/behavior/gap/evidence links, append-only receipt identity, explicit source-index review and content-addressed census publication, scoped exact Git-base draft preparation, fresh source/contract/HEAD checks on recording, caller-supplied review and validation decisions enforced by the existing gate, deterministic atomic text export, external append preservation and retry after export failure or replacement-before-database-commit crash. Synthetic temporary Git repositories and the retained real journal exercise these paths. The database stores change reviews only; behavior/evidence registers remain text. Semantic mapping, substantive review adequacy, inferred dependencies, initial-adoption/unborn Git bases, atomic multi-file census/register publication, arbitrary noncooperating editor races, original engine execution and live replacement are excluded. Receipt storage can succeed with explicitly reported unrelated gate failures; it never supplies a cached gate pass.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/coverage/README.md",
+        "tests/README.md"
+      ],
+      "implementation": [
+        "tools/coverage_bookkeeping.py",
+        "tools/coverage-bookkeeping.py"
+      ],
+      "tests": [
+        "tests/test-coverage-bookkeeping.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_gate.py",
+        "tools/coverage_reviews.py",
+        "tools/coverage_merge_history.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_audit.py",
+        "tools/check-re-coverage.py",
+        "tools/index-coverage-sources.py",
+        "tests/test-coverage-gate.py",
+        ".github/workflows/re-coverage.yml",
+        ".githooks/pre-commit",
+        "tests/test-tooling.sh"
+      ],
+      "evidence": [
+        "TOOL.sqlite-review-workspace-20261020",
+        "TOOL.sqlite-review-workspace-final-20261020",
+        "TOOL.sqlite-evidence-migration-20261021",
+        "TOOL.sqlite-evidence-migration-final-20261021",
+        "TOOL.sqlite-evidence-migration-publish-ready-20261021",
+        "TOOL.sqlite-evidence-migration-worktree-ready-20261021",
+        "TOOL.sqlite-evidence-store-complete-20261021",
+        "TOOL.sqlite-evidence-store-complete-v2-20261021"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "inputs": [
+          "legacy and sharded exact receipts",
+          "temporary synthetic Git repositories",
+          "existing journal receipts"
+        ],
+        "branches": [
+          "import and indexed query",
+          "full and scoped drafts",
+          "pending and fresh recorded validation",
+          "index review",
+          "automatic and deferred export"
+        ],
+        "failures": [
+          "rewritten/deleted/reordered/duplicate history",
+          "stale sources and HEAD",
+          "invalid validation and empty reasons",
+          "concurrent output modification",
+          "failed export and crash recovery"
+        ],
+        "exclusions": [
+          "semantic review automation",
+          "original execution",
+          "register database migration",
+          "initial-adoption preparation"
+        ]
+      }
+    },
+    {
+      "id": "TOOL.sqlite-evidence-storage",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Immutable SQLite evidence archives and exact Git pointer recovery",
+      "scope": "Storage-only content-addressed SQLite report import, every historical artifact blob version, append-only chunk storage, exact original-byte recovery, corruption and missing-object refusal, pinned compressed release download, local clean-filter pointers, fresh-clone stat refresh preserving staged blob identities, old/new graph lookup and push guards against legacy commits/raw artifacts/unpublished objects. Bounded synthetic Git, filesystem, SQLite and download fixtures validate these paths. Upload-only SSH/Actions publication is operational storage, with retained receipts and independently verified remote downloads; fixture claims do not guarantee future service availability. Original engine behavior and live replacement remain excluded. Shared absolute hooks use current gate tooling against the selected worktree and preserve the configured hook owner.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/coverage/README.md",
+        "tests/README.md",
+        "README.md"
+      ],
+      "implementation": [
+        "tools/coverage_evidence.py",
+        "tools/evidence-store.py",
+        "tools/evidence_publish.py",
+        ".githooks/pre-push",
+        ".gitattributes"
+      ],
+      "tests": [
+        "tests/test-evidence-store.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_audit.py",
+        "tools/coverage_gate.py",
+        "tools/coverage_merge_history.py",
+        "tools/coverage_reviews.py",
+        "tools/coverage_bookkeeping.py",
+        "tools/check-re-coverage.py",
+        "tests/test-coverage-gate.py",
+        ".github/workflows/re-coverage.yml",
+        "tools/install-coverage-hook.py"
+      ],
+      "evidence": [
+        "TOOL.sqlite-evidence-migration-20261021",
+        "TOOL.sqlite-evidence-migration-final-20261021",
+        "TOOL.sqlite-evidence-migration-publish-ready-20261021",
+        "TOOL.sqlite-evidence-migration-worktree-ready-20261021",
+        "TOOL.sqlite-evidence-store-complete-20261021",
+        "TOOL.sqlite-evidence-store-complete-v2-20261021"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -301646,6 +301784,248 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "TOOL.sqlite-review-workspace-20261020",
+      "kind": "native_integration",
+      "scope": "Fifteen synthetic SQLite/Git workflow guards, four existing coverage guard suites, and exact import/order/no-op-export verification of the retained 2062-receipt journal; no original game execution.",
+      "record": "research/runtime/coverage/sqlite-review-workspace-20261020.json",
+      "sha256": "6a721b6ae4e672f39172c4790303b471a626852f4a91e3fd82228046bc15e035",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/success",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/unchanged_export",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/sqlite_integrity",
+          "equals": "ok"
+        }
+      ]
+    },
+    {
+      "id": "TOOL.sqlite-review-workspace-final-20261020",
+      "kind": "native_integration",
+      "scope": "Fresh rerun after a shared documentation appendix: fifteen SQLite/Git guards plus159 existing coverage guards (174total), exact2078-receipt journal import/order and unchanged no-op export, SQLite integrity; no original execution.",
+      "record": "research/runtime/coverage/sqlite-review-workspace-final-20261020.json",
+      "sha256": "f30d05bded782800fc4c21f0ac8cb710daf8cdbac08338309b8f4c5f56c03685",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/success",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/unchanged_export",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/sqlite_integrity",
+          "equals": "ok"
+        }
+      ]
+    },
+    {
+      "id": "TOOL.sqlite-evidence-migration-20261021",
+      "kind": "native_integration",
+      "scope": "Executed synthetic storage/accounting guards and exact retained-journal roundtrip. No original game execution, comparison promotion or live replacement. Historical source-only rewrite independently checks all retained source blobs/modes.",
+      "record": "research/runtime/coverage/sqlite-evidence-migration-20261021.json",
+      "sha256": "95e4c94602f03ec9f475ee0cc8ef09a113cc89e225a295bc67511b4aea8e1326",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/unchanged_export",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/sqlite_integrity",
+          "equals": "ok"
+        }
+      ]
+    },
+    {
+      "id": "TOOL.sqlite-evidence-migration-final-20261021",
+      "kind": "native_integration",
+      "scope": "Fresh post-filter-fix execution of 191 synthetic storage/accounting guards, including required-filter Git archive roundtrip and exact retained-journal no-op export. The first result remains historical. No original game execution or live replacement.",
+      "record": "research/runtime/coverage/sqlite-evidence-migration-final-20261021.json",
+      "sha256": "aa2ffbe9a796f9658a4733bb218364f4d8ff30a4071796d5d6953bd80ef5d30d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/unchanged_export",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/sqlite_integrity",
+          "equals": "ok"
+        }
+      ]
+    },
+    {
+      "id": "TOOL.sqlite-evidence-migration-publish-ready-20261021",
+      "kind": "native_integration",
+      "scope": "Fresh publication-ready execution of 192 synthetic storage/accounting guards, including required-filter Git archive roundtrip and exact retained-journal no-op export. The first result remains historical. No original game execution or live replacement.",
+      "record": "research/runtime/coverage/sqlite-evidence-migration-publish-ready-20261021.json",
+      "sha256": "7f98026f9ca0b7f2abd9a57c9431f1bf29659051ca0b4705a1e2e45889d90347",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/unchanged_export",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/sqlite_integrity",
+          "equals": "ok"
+        }
+      ]
+    },
+    {
+      "id": "TOOL.sqlite-evidence-migration-worktree-ready-20261021",
+      "kind": "native_integration",
+      "scope": "Fresh worktree-ready execution of 193 synthetic storage/accounting guards, including required-filter Git archive roundtrip and exact retained-journal no-op export. The first result remains historical. No original game execution or live replacement.",
+      "record": "research/runtime/coverage/sqlite-evidence-migration-worktree-ready-20261021.json",
+      "sha256": "15c29729c3813a5f44784b2b5a0f099936e5e92dfd9e7067810dd21d16f2fa95",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/unchanged_export",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/sqlite_integrity",
+          "equals": "ok"
+        }
+      ]
+    },
+    {
+      "id": "TOOL.sqlite-evidence-store-complete-20261021",
+      "kind": "native_integration",
+      "scope": "Fresh complete-workflow execution of 193 synthetic storage/accounting guards, including required-filter Git archive roundtrip and exact retained-journal no-op export. The first result remains historical. No original game execution or live replacement.",
+      "record": "research/runtime/coverage/sqlite-evidence-store-complete-20261021.json",
+      "sha256": "811a0c028d838e97268ca4e7c393997b5c0f790ae1e419b5112bd641f933df95",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/unchanged_export",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/sqlite_integrity",
+          "equals": "ok"
+        }
+      ]
+    },
+    {
+      "id": "TOOL.sqlite-evidence-store-complete-v2-20261021",
+      "kind": "native_integration",
+      "scope": "Fresh complete-workflow execution of 194 synthetic storage/accounting guards, including required-filter Git archive roundtrip and exact retained-journal no-op export. The first result remains historical. No original game execution or live replacement.",
+      "record": "research/runtime/coverage/sqlite-evidence-store-complete-v2-20261021.json",
+      "sha256": "937aa0173fe84da009989188539a3055879b26f612fd556e7a06bf3d60a41051",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/unchanged_export",
+          "equals": true
+        },
+        {
+          "pointer": "/real_journal/sqlite_integrity",
+          "equals": "ok"
+        }
+      ]
+    },
+    {
+      "id": "CREATURE-DRAW.sqlite-history-refresh-original-20261021",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Fresh bounded original/native/runtime lifecycle comparison for the existing scoped contracts during evidence-storage migration; original manifest verified before/after, stable explicit compiler/launcher inputs, no live engine replacement or gameplay balance change.",
+      "record": "research/runtime/coverage/creature-lifecycle-storage-refresh-20261021.json",
+      "sha256": "681444cbc72f3884d3e4cc65b68882ed7c3ee89c857015ded205e8df445426d1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ALIFE1.sqlite-history-refresh-original-20261021",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Fresh bounded original/native/runtime lifecycle comparison for the existing scoped contracts during evidence-storage migration; original manifest verified before/after, stable explicit compiler/launcher inputs, no live engine replacement or gameplay balance change.",
+      "record": "research/runtime/coverage/actor-lifecycle-storage-refresh-20261021.json",
+      "sha256": "38de13b7d2aa1bf0612fc8684abc4b5197cc225bafe6836366487437d71281f3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -323038,6 +323418,46 @@
         "NATIVE-MERGE.scene-native-20261020",
         "NATIVE-MERGE.scene-sanitized-20261020"
       ]
+    },
+    {
+      "id": "SC.tooling.sqlite-review-workspace",
+      "scope": "Headless synthetic Git prepare/record/export workflow, exact legacy/shard import, query, stale-draft and invalid-validation refusals, scoped remaining errors, retryable export failures and crash recovery; real retained journal round-trip without modification. No original game execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.coverage-review-workspace"
+      ],
+      "tests": [
+        "tests/test-coverage-bookkeeping.py"
+      ],
+      "evidence": [
+        "TOOL.sqlite-review-workspace-20261020",
+        "TOOL.sqlite-review-workspace-final-20261020",
+        "TOOL.sqlite-evidence-migration-20261021",
+        "TOOL.sqlite-evidence-migration-final-20261021",
+        "TOOL.sqlite-evidence-migration-publish-ready-20261021",
+        "TOOL.sqlite-evidence-migration-worktree-ready-20261021",
+        "TOOL.sqlite-evidence-store-complete-20261021",
+        "TOOL.sqlite-evidence-store-complete-v2-20261021"
+      ]
+    },
+    {
+      "id": "SC.tooling.sqlite-evidence-storage",
+      "scope": "Headless exact multichunk SQLite recovery and refusal, immutable records, real Git history import, clean-filter idempotence and fresh-clone cleanliness, safe pointer stat refresh and published-object/legacy-history push checks. No original game execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.sqlite-evidence-storage"
+      ],
+      "tests": [
+        "tests/test-evidence-store.py"
+      ],
+      "evidence": [
+        "TOOL.sqlite-evidence-migration-20261021",
+        "TOOL.sqlite-evidence-migration-final-20261021",
+        "TOOL.sqlite-evidence-migration-publish-ready-20261021",
+        "TOOL.sqlite-evidence-migration-worktree-ready-20261021",
+        "TOOL.sqlite-evidence-store-complete-20261021",
+        "TOOL.sqlite-evidence-store-complete-v2-20261021"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -323766,8 +324186,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-cell-producer-20261020.json",
-    "sha256": "bfed35a1f112579601bbd09a488d04cb93b6baef03c6b8497bb528512af39abc"
+    "path": "research/runtime/coverage/source-index-c0da47ece7adf5cf08d005782f45b1b91b4fecb6aca7e8eda75e0e696c1f8427.json",
+    "sha256": "c0da47ece7adf5cf08d005782f45b1b91b4fecb6aca7e8eda75e0e696c1f8427"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

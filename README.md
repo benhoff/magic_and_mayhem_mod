@@ -89,3 +89,12 @@ For changed code, tests, research, or coverage metadata, follow the
 [coverage accounting workflow](research/runtime/coverage/README.md), including
 the audit and change gate. Preserve historical evidence and its recorded hashes;
 directory or documentation changes do not establish new behavior validation.
+
+## Evidence storage
+
+After cloning, run `python3 tools/evidence-store.py hydrate` before inspecting
+execution reports. Git stores small evidence pointers and the SHA-256-pinned
+archive manifest; SQLite payloads are downloaded from GitHub Releases, verified,
+and restored to their original paths. The command installs the local clean
+filter so restored reports leave Git clean. Original report bytes and source
+fingerprints remain unchanged. See research/runtime/coverage/README.md.

@@ -17,10 +17,14 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
+      - name: Restore pinned evidence and install its Git filter
+        run: python3 tools/evidence-store.py hydrate
       - name: Test audit and gate guards
         run: |
           python3 -B tests/test-re-coverage.py
           python3 -B tests/test-coverage-gate.py
+          python3 -B tests/test-coverage-bookkeeping.py
+          python3 -B tests/test-evidence-store.py
           python3 -B tests/test-coverage-merge-history.py
           python3 -B tests/test-coverage-evidence-imports.py
           python3 -B tests/test-drawing-inventory.py
@@ -47,6 +51,9 @@ jobs:
           import os
           import subprocess
           from pathlib import Path
+          import sys
+          sys.path.insert(0, 'tools')
+          from coverage_evidence import mapped_commit
 
           event = json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text())
           if 'pull_request' in event:
@@ -55,6 +62,10 @@ jobs:
               base = event['merge_group']['base_sha']
           else:
               base = event.get('before', '')
+          # A force-push event names the pre-rewrite predecessor. Its mapped
+          # tree retains the exact same source, reports and review values.
+          if base:
+              base = mapped_commit(Path('.'), base)
           if not base or set(base) == {'0'}:
               parent = subprocess.run(['git', 'rev-parse', '--verify', 'HEAD^'], capture_output=True, text=True)
               base = parent.stdout.strip() if parent.returncode == 0 else None

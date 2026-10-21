@@ -951,3 +951,12 @@ views. See [native scene spawning](../research/runtime/native-scene-spawning.md)
 ### Campaign Preferences automated live round trip
 
 Run `python3 tools/test-live-qt-campaign-preferences.py --shell <built-shell> --source-root <compiled-tree>`. It creates private Wine/Xvfb/config state and drives native campaign Mini/Preferences three times: preview/Cancel rollback, preview/OK saving, reopened values/Cancel, then original Quit confirmation, report OK and Main Quit. No manual input; bounded execution with exact callback, World-resume, profile/store and source-fingerprint checks. See [UI35 evidence](../research/runtime/campaign-preferences-live-engine-bridge.md).
+
+SQLite review and evidence guards run without game media:
+`python3 -B tests/test-coverage-bookkeeping.py` and
+`python3 -B tests/test-evidence-store.py`. They exercise real temporary Git
+repositories, lossless receipt import/export and crash recovery, exact multichunk
+report restoration, corrupted/missing payload refusal, immutable records,
+checksummed download and SQLite backup, pointer filters, fresh-clone cleanliness,
+and push refusal for legacy history or unpublished evidence. Coverage gate,
+audit, evidence-import and merge-history suites remain required.

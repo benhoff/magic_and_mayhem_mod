@@ -6,6 +6,7 @@ import re
 from bisect import bisect_right
 from functools import cache, lru_cache
 from coverage_claims import validation_support
+from coverage_evidence import hydrate
 
 STAGES = {
     'understanding': {'unknown', 'partial', 'scoped'},
@@ -86,6 +87,7 @@ class FunctionRangeIndex:
 
 def audit(root, register, *, recorded_sources=None):
     root = Path(root).resolve()
+    hydrate(root, refresh=False)
     errors, warnings = [], []
     findings = {'unclassified_functions': [], 'unassigned_executable_ranges': [],
                 'unresolved_indirect_flows': [], 'unmapped_imports': [],

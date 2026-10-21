@@ -84,6 +84,101 @@
           "url": "https://github.com/benhoff/magic_and_mayhem_mod/releases/download/evidence-history-20261021/b88fc31cc1fe64d7bdf7b4701b1d1ea737618953c8968d1cfb2514f61279c392.sqlite3.gz.part0012"
         }
       ]
+    },
+    {
+      "sha256": "b012e028a6399cf12d961e03f42e92acc9e77ffa8a5425bc65dfae1febc33357",
+      "size": 520192,
+      "parts": [
+        {
+          "name": "b012e028a6399cf12d961e03f42e92acc9e77ffa8a5425bc65dfae1febc33357.sqlite3.gz.part0000",
+          "size": 459445,
+          "sha256": "8734053a0303f3656fcf483d6f4236d9eeff7198e78fd8c8f655f819eee07146",
+          "url": "https://github.com/benhoff/magic_and_mayhem_mod/releases/download/evidence-migration-20261021/b012e028a6399cf12d961e03f42e92acc9e77ffa8a5425bc65dfae1febc33357.sqlite3.gz.part0000"
+        }
+      ]
+    },
+    {
+      "sha256": "5dae647b96a6603d539960c3b4ecc24a1a7a88767cc5dff58e88f0689bc9e408",
+      "size": 1929216,
+      "parts": [
+        {
+          "name": "5dae647b96a6603d539960c3b4ecc24a1a7a88767cc5dff58e88f0689bc9e408.sqlite3.gz.part0000",
+          "size": 1820041,
+          "sha256": "00ebf21aa87de57a336a5ef1b88f7c83f15cb8282592705336d53b2747a2a15c",
+          "url": "https://github.com/benhoff/magic_and_mayhem_mod/releases/download/evidence-migration-ready-20261021/5dae647b96a6603d539960c3b4ecc24a1a7a88767cc5dff58e88f0689bc9e408.sqlite3.gz.part0000"
+        }
+      ]
+    },
+    {
+      "sha256": "edec43716c651f09ff8e0605976490bfc226ca42964b4ebaa873a1cca46ed79e",
+      "size": 2875392,
+      "parts": [
+        {
+          "name": "edec43716c651f09ff8e0605976490bfc226ca42964b4ebaa873a1cca46ed79e.sqlite3.gz.part0000",
+          "size": 2727549,
+          "sha256": "8a67b08bfae942b839f2d5c6879032b2a03dcefaccb35dc506d5e8c8b70578ec",
+          "url": "https://github.com/benhoff/magic_and_mayhem_mod/releases/download/evidence-store-final-20261021/edec43716c651f09ff8e0605976490bfc226ca42964b4ebaa873a1cca46ed79e.sqlite3.gz.part0000"
+        }
+      ]
+    },
+    {
+      "sha256": "96df175fed18bcdd0f8d1da0e73497fd8e2eb2aa74bbec4d6796d751eb7e13b6",
+      "size": 2879488,
+      "parts": [
+        {
+          "name": "96df175fed18bcdd0f8d1da0e73497fd8e2eb2aa74bbec4d6796d751eb7e13b6.sqlite3.gz.part0000",
+          "size": 2731681,
+          "sha256": "dc067467fa32b8726fad60865b0ae2a95bc5e2759d2d01fdade493ad3baf1eb9",
+          "url": "https://github.com/benhoff/magic_and_mayhem_mod/releases/download/evidence-lifecycle-refresh-20261021/96df175fed18bcdd0f8d1da0e73497fd8e2eb2aa74bbec4d6796d751eb7e13b6.sqlite3.gz.part0000"
+        }
+      ]
+    }
+  ],
+  "rollback": {
+    "manifest_url": "https://github.com/benhoff/magic_and_mayhem_mod/releases/download/evidence-legacy-20261021/legacy-manifest.json",
+    "manifest_sha256": "7500fc78dc68b08f36c776eb7bb2db8d43be37fbe5e9878239e64d71cd970018",
+    "encrypted_sha256": "6069cbeb579cdba78f1389f868f999ef34b9769e1e4e86959ca366febaa5df82",
+    "plaintext_sha256": "827345904b957bce58d627587c0cd8533a60821e7c390c7484279c9228ab5b61",
+    "inventoried_commits": 1067,
+    "format": {
+      "cipher": "AES-256-GCM",
+      "header": "MM-LEGACY-AES256GCM-v1\n",
+      "nonce_bytes": 12,
+      "tag_bytes": 16,
+      "key_bytes": 32,
+      "key_encoding": "hex; retained separately and never uploaded"
+    }
+  },
+  "committed_history_review": {
+    "url": "https://github.com/benhoff/magic_and_mayhem_mod/releases/download/evidence-store-final-20261021/committed-history-review-corrected-f3a5a974a0314c642bcc0aeca9fa23284e5f7c23694ed9ece012b8edb0ebe41b.json.gz",
+    "sha256": "9f8cfd1a7958a57f66d93b15eb71d6c5f4325e94c730a5f8eb57b89ebdbf707d",
+    "size": 370722,
+    "uncompressed_sha256": "f3a5a974a0314c642bcc0aeca9fa23284e5f7c23694ed9ece012b8edb0ebe41b",
+    "uncompressed_size": 1924362,
+    "base": "0dc91365aed634b16c61f31cc8f34b2746eee62a",
+    "head": "65f2ac6490f0c1d9658ace16cbb148fa757231df",
+    "commits": 65,
+    "additional_corrected_pending_receipts": 8,
+    "unresolved_historical_inputs": 0,
+    "contract_verification": {
+      "actual_git_base_contracts": 1203,
+      "touched_head_contracts_match": true
+    },
+    "scope": "Retrospective file/version/explicit-contract accounting for original committed history only. Existing exact receipt chains are read from the preserved current journal, not asserted to have existed in old trees. No past gate pass, semantic completeness or new engine execution is claimed. Uncommitted work remains separate."
+  },
+  "prior_committed_history_reviews": [
+    {
+      "url": "https://github.com/benhoff/magic_and_mayhem_mod/releases/download/evidence-store-final-20261021/committed-history-review-76bc3095f0c305f02e75192611eac47ab4e3a460c9e84411f9411ca27b05b204.json.gz",
+      "sha256": "deb12091a345e4ea97169d0c7a9afc3c0186214f4f4d002cdd50edb59fe76757",
+      "size": 951464,
+      "uncompressed_sha256": "76bc3095f0c305f02e75192611eac47ab4e3a460c9e84411f9411ca27b05b204",
+      "uncompressed_size": 17298096,
+      "base": "0dc91365aed634b16c61f31cc8f34b2746eee62a",
+      "head": "65f2ac6490f0c1d9658ace16cbb148fa757231df",
+      "commits": 65,
+      "retrospective_pending_receipts": 56,
+      "scope": "Retrospective file/version/explicit-contract accounting for original committed history only. Existing exact receipt chains are read from the preserved current journal, not asserted to have existed in old trees. No past gate pass, semantic completeness or new engine execution is claimed. Uncommitted work remains separate.",
+      "classification": "Superseded contract/missing-input classification: first pass did not normalize in-repository ../ dependency paths. Raw file transitions remain valid; the original attempt is retained."
     }
   ]
 }

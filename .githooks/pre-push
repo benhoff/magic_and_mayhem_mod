@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+repo=$(git rev-parse --show-toplevel)
+cd "$repo"
+script=$(cd "$(dirname "$0")/../tools" && pwd)/evidence-store.py
+python3 -B "$script" --root "$repo" verify-push

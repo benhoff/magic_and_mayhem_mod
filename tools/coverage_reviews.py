@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+from coverage_evidence import decode_bytes
 
 REVIEWS = 'research/runtime/coverage/change-reviews.json'
 ARCHIVES = 'research/runtime/coverage/review-archives/'
@@ -38,7 +39,7 @@ def load_journal(root, path=REVIEWS):
         target = (root/name).resolve()
         if Path(name).is_absolute() or not target.is_relative_to(root):
             raise ValueError('Escaping review path: ' + name)
-        return target.read_bytes()
+        return decode_bytes(root, target.read_bytes())
     return read_journal(read, path)
 
 

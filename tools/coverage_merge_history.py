@@ -9,6 +9,7 @@ import subprocess
 
 from coverage_claims import behavior_contract
 from coverage_reviews import read_journal
+from coverage_evidence import decode_bytes, mapped_commit
 
 REGISTER = 'research/runtime/coverage/register.json'
 REVIEWS = 'research/runtime/coverage/change-reviews.json'
@@ -60,7 +61,7 @@ def inherited_history(root, base, current, reviews, staged=False):
         for item in imports:
             try:
                 if set(item)!={'commit','historical_id','imported_id'}:raise ValueError('unexpected fields')
-                commit,eid,alias=item['commit'],item['historical_id'],item['imported_id']
+                commit,eid,alias=mapped_commit(root,item['commit']),item['historical_id'],item['imported_id']
                 if commit not in contexts or eid==alias or (commit,eid) in seen:raise ValueError('not an actual distinct merge-parent import')
                 seen.add((commit,eid));old=records(commit).get(eid)
                 if old is None or alias in records(commit) or current['evidence'].get(alias)!=dict(old,id=alias):raise ValueError('import does not preserve exact historical record')
@@ -74,7 +75,7 @@ def inherited_history(root, base, current, reviews, staged=False):
     if not parents:
         return result
     current_reviews = {r['id']: r for r in reviews['reviews']}
-    baseline_reviews, _ = read_journal(lambda path: git(root, 'show', base + ':' + path))
+    baseline_reviews, _ = read_journal(lambda path: decode_bytes(root, git(root, 'show', base + ':' + path)))
     old_ids = {r['id'] for r in baseline_reviews['reviews']}
     historical = set()
     for parent in sorted(parents):
@@ -106,7 +107,7 @@ def inherited_history(root, base, current, reviews, staged=False):
             result['statuses'][b['id']] = {
                 'commit': parent, 'status': b['status'],
                 'contract_sha256': behavior_contract(b, builds), 'evidence': b['evidence']}
-        journal, _ = read_journal(lambda path: git(root, 'show', parent + ':' + path))
+        journal, _ = read_journal(lambda path: decode_bytes(root, git(root, 'show', parent + ':' + path)))
         for r in journal['reviews']:
             if r['id'] not in old_ids and current_reviews.get(r['id']) == r:
                 historical.add(r['id'])

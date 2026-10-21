@@ -781,7 +781,7 @@ class GateTests(unittest.TestCase):
         self.assertEqual(json.loads(target.read_text())['sources'], self.before['sources'])
 
     def prepare_hook(self):
-        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_claims.py', 'coverage_merge_history.py', 'coverage_reviews.py', 'index-coverage-sources.py'):
+        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_claims.py', 'coverage_evidence.py', 'coverage_merge_history.py', 'coverage_reviews.py', 'index-coverage-sources.py'):
             self.write('tools/' + name, (ROOT/'tools'/name).read_text())
         self.write('.githooks/pre-commit', (ROOT/'.githooks/pre-commit').read_text())
         (self.root/'.githooks/pre-commit').chmod(0o755)
@@ -818,6 +818,15 @@ class GateTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Existing core.hooksPath'):
             hook_install.install(self.root)
         self.assertEqual(cli.git(self.root, 'config', '--local', '--get', 'core.hooksPath').strip(), b'custom-hooks')
+
+    def test_shared_absolute_hooks_keep_current_tooling_and_other_root(self):
+        self.prepare_hook()
+        path = str((self.root/'.githooks').resolve())
+        cli.git(self.root, 'config', '--local', 'core.hooksPath', path)
+        hook_install.install(self.root)
+        self.assertEqual(cli.git(self.root, 'config', '--local', '--get', 'core.hooksPath').decode().strip(),path)
+        with redirect_stdout(io.StringIO()) as out, patch.object(cli,'ROOT',ROOT), patch.object(sys,'argv',['gate','--root',str(self.root),'--base','HEAD']):
+            self.assertEqual(cli.main(),0,out.getvalue())
 
     def test_hook_install_preserves_active_default_hook(self):
         self.prepare_hook()

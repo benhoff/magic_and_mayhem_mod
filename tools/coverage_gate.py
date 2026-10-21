@@ -21,7 +21,8 @@ SCHEMA = 1
 # Changes to enforcement/instructions also need accounting. Ordinary prose is
 # linked through behavior documents; these files control the workflow itself.
 CONTROL_FILES = ('AGENTS.md', 'docs/architecture.md', '.github/workflows/re-coverage.yml',
-                 '.githooks/pre-commit', 'research/runtime/coverage/README.md')
+                 '.githooks/pre-commit', '.githooks/pre-push', '.gitattributes',
+                 '.evidence-store.json', '.evidence-commits.json', 'research/runtime/coverage/README.md')
 DRIFT = {'new_sources_without_index', 'removed_indexed_sources', 'changed_indexed_sources',
          'changed_focused_registers'}
 

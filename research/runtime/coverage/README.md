@@ -493,3 +493,58 @@ to the active `reviews` array; retain every referenced archive. This does not
 change evidence reports, source fingerprints, historical claims or validation.
 A deletion at the tip cannot remove an oversized blob from an earlier commit;
 repair unpushed history before retrying a rejected push.
+
+## SQLite evidence and automated bookkeeping
+
+On a fresh clone, run `python3 tools/evidence-store.py hydrate`, then
+`python3 tools/install-coverage-hook.py`. CI restores pinned evidence before its
+checks. The audit also restores pointer files when necessary. Large reports,
+generated summaries, binary captures and old receipt shards are exact SQLite
+objects outside the Git object history; source, handwritten research, live
+registers, the active review journal and small pinned manifests remain in Git.
+The clean filter stores a pointer containing the original SHA-256 and byte count.
+Restoration validates compressed downloads, the database and the original bytes.
+A missing or corrupt object fails closed; local pending data cannot establish
+remote availability. Archived findings retain their original hashes and claims.
+
+Use `python3 tools/coverage-bookkeeping.py prepare --base HEAD` and `record` with
+concrete `--reason` and `--validation-reason` values. Recording recomputes source,
+contract and HEAD fingerprints, appends the exact SQLite receipt and exports the
+text journal automatically. `--index-review-reason` explicitly reviews and pins
+a new source census. Inspect `gate_errors`; a partial receipt is not a gate pass.
+Registers and exported receipts remain reviewable text, and no cached result
+approves a later tree.
+
+Before committing newly generated evidence or a new source census, stage those
+paths to capture their exact payloads through the filter. Publish the pending
+SQLite objects with:
+
+```sh
+python3 tools/evidence-store.py publish \
+  --output working/evidence-publications/<new-id> --tag evidence-<new-id>
+```
+
+Publication uses SSH to push an upload-only temporary Actions branch. The job
+verifies and uploads bounded assets to an immutable-by-policy release, then
+deletes its transport branch. The publisher downloads and verifies the archive
+before updating `.evidence-store.json`. Existing asset names are never silently
+overwritten. A failed attempt retains its files and receipt for investigation.
+Then prepare/record the final exact review, stage its source, register, census,
+manifest and receipt together, and run the staged gate. Publication changes the
+manifest, so regenerate a draft prepared before publication. If prepare creates
+a new census, stage and publish that census before preparing the final draft.
+The pre-push guard rejects unavailable payloads, raw evidence blobs and commits
+from the old graph. Release payloads have local verified backups; availability
+and remote storage are dependencies of a fresh checkout.
+
+`.evidence-commits.json` maps old commit IDs to their storage-only rewritten IDs.
+Historical Git-base and merge-journal reads restore pointer bytes using current
+tooling, without executing historical code. Merge import IDs retain their old
+recorded values and are translated only for graph lookup. Force-push CI maps its
+predecessor through the same table. The original graph remains in a separately
+encrypted rollback release; keep the private recovery key on both local drives.
+Historical branches need current tooling, or the current tool with `--root`, to
+restore their pointers. This migration supplies no new original-engine comparison
+or live replacement evidence.
+
+Shared local hooks may use the main checkout's absolute .githooks path. They run current gate tooling with `--root` against the selected worktree; staged content and older branch source stay local. The installer preserves an existing absolute path belonging to this checkout.

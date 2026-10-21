@@ -204,3 +204,16 @@ Once the working installation and launcher have been created, use:
 ```bash
 ./tools/run-game.sh
 ```
+
+## SQLite evidence storage
+
+Run `python3 tools/evidence-store.py hydrate` in a fresh checkout and install the
+coverage hook. Evidence pointers in Git preserve exact original report bytes in
+SHA-256-pinned SQLite release archives; never refresh historical hashes to
+satisfy current checks. Stage and publish new evidence/census payloads before
+preparing the final receipt, then stage their pinned manifest and exact review
+together. `evidence-store.py publish` verifies remote restoration before updating
+the manifest. The pre-push guard refuses old graph commits, raw artifacts and
+unpublished pointers. Preserve failed publication receipts and immutable assets.
+The review workspace remains local and its exact text exports remain Git/CI
+authority; archive relocation does not assert engine validation.

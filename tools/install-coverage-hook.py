@@ -12,12 +12,13 @@ def install(root, uninstall=False):
         return subprocess.run(['git', '-C', str(root), *args], capture_output=True, text=True)
     value = git('config', '--local', '--get', 'core.hooksPath')
     effective = git('config', '--get', 'core.hooksPath')
+    ours = {'.githooks', str((root/'.githooks').resolve())}
     if uninstall:
-        if value.returncode or value.stdout.strip() != '.githooks':
+        if value.returncode or value.stdout.strip() not in ours:
             raise ValueError('Coverage hook is not installed locally; nothing changed')
         result = git('config', '--local', '--unset', 'core.hooksPath')
     else:
-        if effective.returncode == 0 and effective.stdout.strip() != '.githooks':
+        if effective.returncode == 0 and effective.stdout.strip() not in ours:
             raise ValueError('Existing core.hooksPath must be integrated manually; nothing changed')
         hook = root/'.githooks/pre-commit'
         if not hook.is_file() or not hook.stat().st_mode & 0o111:
@@ -33,7 +34,8 @@ def install(root, uninstall=False):
                       not p.name.endswith('.sample') and p.stat().st_mode & 0o111]
             if active:
                 raise ValueError('Existing active hooks must be integrated manually: ' + ', '.join(sorted(active)))
-        result = git('config', '--local', 'core.hooksPath', '.githooks')
+        chosen = effective.stdout.strip() if effective.returncode == 0 else '.githooks'
+        result = git('config', '--local', 'core.hooksPath', chosen)
     if result.returncode:
         raise OSError(result.stderr.strip())
 

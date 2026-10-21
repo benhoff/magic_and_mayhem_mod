@@ -98,7 +98,10 @@ def write_new(path, value):
 
 
 def main():
+    global ROOT
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--root', type=Path, default=ROOT,
+                        help='Repository/worktree checked using this current tooling')
     source = parser.add_mutually_exclusive_group()
     source.add_argument('--base', help='Actual Git base commit; same-change baseline edits cannot reset the comparison')
     source.add_argument('--baseline', type=Path, help='Reviewed local baseline (default: coverage/gate-baseline.json)')
@@ -110,6 +113,7 @@ def main():
     parser.add_argument('--draft-review', type=Path, help='Write a hash-bound draft requiring reasons before acceptance')
     parser.add_argument('--timings', action='store_true', help='Print phase durations to stderr and include them in the JSON report')
     args = parser.parse_args()
+    ROOT = args.root.resolve()
     with ExitStack() as stack:
         return run(args, stack)
 

@@ -20320,3 +20320,15 @@ anchors receive an explicit native scene-anchor policy outside the compared
 original domain. See `native-world-cell-producer-20261020.md` for ABI findings,
 reproduction, evidence retention and exact boundaries. Earlier shared capture
 fingerprints remain historical when this option changes their source closure.
+
+2026-10-21 bookkeeping storage migration: exact change reviews use a local
+SQLite workspace with automatic text export. Historical report payloads and
+generated summaries use checksummed SQLite release archives and small Git
+pointers, with verified restore and explicit old/new commit identity mapping.
+Source blobs, historical evidence bytes and source fingerprints are preserved.
+Synthetic storage/workflow guards and source-tree verification are tooling
+evidence; original comparison, integration and replacement milestones remain
+independent. Local dirty source work and retained worktrees require preservation
+during the migration and are not implicitly published or validated.
+
+2026-10-21 storage-migration closeout validation: reran the existing bounded creature drawing lifecycle comparison (2240 cases) and actor lifecycle comparison (192 cases in original/native/runtime modes, including 7138 mutation controls). Original manifests verified before and after each run, explicit sources remained stable and comparison traces agreed. New evidence IDs preserve the eight existing lifecycle milestones against the final committed source; prior records remain unchanged. No live engine replacement or gameplay balance change is claimed. Raw outputs and failed accounting attempts remain retained.
