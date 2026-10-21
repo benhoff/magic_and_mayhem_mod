@@ -20290,3 +20290,33 @@ including its native scene/terrain/palette implementations and incoming receipts
 range separately. The lifecycle execution inputs and four claim bindings remain
 byte-exact after importing the newer parent. The capture-aware execution result
 also checks that declared capture sources include every actual DLL compiler input.
+
+### Complete native world cell producer (2026-10-20)
+
+The remaining `0x4f8960` entry branches are implemented in
+`reconstruction/rendering/world_cell_producer.hpp`: terrain/water and picking,
+effect and artifact chains/special map objects, complete creature layer and
+selection production, visibility/occupancy/history stores and extra-actor work.
+The same native core publishes packed rows directly with the original
+`0x4ffd30` capacity, shade, depth and physical-tail behavior. Its runtime adapter
+and `--native-world-cell-producer` staging/capture option provide an actual entry
+replacement with no original-producer/row-builder fallback.
+
+`RS.world-cell-{terrain,effect,artifact,creature}-production`,
+`RS.world-cell-queue-publication` and `NP.native-world-cell-producer-adapter`
+record the supplied implementations. `WCELL1.producer-provenance-original-20261020`
+compares 3,040 composed original/native/runtime cases with identical complete
+162,103,152-byte traces, plus 13,472 byte mutation controls, one protection/four
+ownership refusals, PE32 build, capture compiler-input binding and unchanged
+original-section import staging. The earlier ABI result remains immutable.
+Original manifest bookends pass. Imported commit history has an independent exact
+receipt report; no past gate pass or new imported execution is inferred.
+
+This supplies the missing cell-producer implementation. Animation-result queries,
+external gameplay/visibility/iteration, picking, RNG/math, rectangle services,
+resource allocation/lifetimes, outer world traversal and actual-game/live
+replacement remain separate contracts. Original undefined artifact picking stack
+anchors receive an explicit native scene-anchor policy outside the compared
+original domain. See `native-world-cell-producer-20261020.md` for ABI findings,
+reproduction, evidence retention and exact boundaries. Earlier shared capture
+fingerprints remain historical when this option changes their source closure.

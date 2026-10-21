@@ -32,12 +32,12 @@ def copy_installation(source, game):
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable game copy aliases its source')
-    for name in ['Chaos.exe','MnmScene.dll','MnmMenu.dll','MnmWord.dll','MnmDraw.dll','MnmCreatureDrawing.dll','MnmActorLifecycle.dll','CFG/prefs.cfg']:
+    for name in ['Chaos.exe','MnmScene.dll','MnmMenu.dll','MnmWord.dll','MnmDraw.dll','MnmCreatureDrawing.dll','MnmActorLifecycle.dll','MnmWorldCellProducer.dll','CFG/prefs.cfg']:
         if not (game/name).resolve().is_relative_to(game.resolve()):
             raise ValueError('Disposable write target escapes the game copy: '+name)
 
 
-def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None,glyph_mode=None,native_draw=False,native_creature_drawing=False,native_actor_lifecycle=False):
+def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None,glyph_mode=None,native_draw=False,native_creature_drawing=False,native_actor_lifecycle=False,native_world_cell_producer=False):
     if world_live and not world_frames:raise ValueError('Continuous World needs the World input observer')
     if world_frames and word_mode:raise ValueError('World observation and word takeover use separate experiments')
     if word_mode not in (None,'shadow','takeover','clip-shadow','clip-takeover'):raise ValueError('Unsupported word-sprite mode')
@@ -94,6 +94,12 @@ def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source
         shutil.copy2(actor_dll,game/actor_dll.name)
         manifest.update(native_actor_lifecycle=True,native_actor_lifecycle_sha256=sha(actor_dll))
         manifest['scope']+='; native actor storage/activation/cleanup/release under guarded external services'
+    if native_world_cell_producer:
+        cell_dll=load('scene_world_cell_build','tools/build-world-cell-producer.py').build(output/'world-cell-build')
+        staged=patch(staged,'MnmWorldCellProducer.dll','WorldCellProducerAnchor',b'.mnwcell')
+        shutil.copy2(cell_dll,game/cell_dll.name)
+        manifest.update(native_world_cell_producer=True,native_world_cell_producer_sha256=sha(cell_dll))
+        manifest['scope']+='; native complete world cell production and queue publication under named external services'
     from glyph_backend_launch import stage as stage_glyph
     staged,glyph_metadata=stage_glyph(output,data,staged,glyph_mode,scene_imported=True)
     manifest.update(glyph_metadata)
@@ -131,9 +137,10 @@ if __name__=='__main__':
     parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow','clip-takeover'],help='Explicit partial direct-word raster experiment')
     parser.add_argument('--native-creature-drawing',action='store_true',help='Use guarded native creature drawing lifecycle helpers')
     parser.add_argument('--native-actor-lifecycle',action='store_true',help='Use guarded native actor allocation, activation, cleanup and release')
+    parser.add_argument('--native-world-cell-producer',action='store_true',help='Use native terrain/water/effect/artifact/creature world row production')
     args=parser.parse_args()
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
-        print(prepare(args.menu_driver,args.word_sprites,native_creature_drawing=args.native_creature_drawing,native_actor_lifecycle=args.native_actor_lifecycle))
+        print(prepare(args.menu_driver,args.word_sprites,native_creature_drawing=args.native_creature_drawing,native_actor_lifecycle=args.native_actor_lifecycle,native_world_cell_producer=args.native_world_cell_producer))
     finally:
         subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)

@@ -133904,6 +133904,359 @@
         "game/simulation/combat.hpp",
         "game/simulation/creature_encounter.hpp"
       ]
+    },
+    {
+      "id": "RS.world-cell-terrain-production",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Terrain, water and tile picking production",
+      "scope": "Ordinary tile admission, absent-layer mutations, resource frame lookup, water rows and original tile picking publications within 0x4f8960. External called services and full-world traversal/caller orchestration remain independent contracts.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5212512,
+          "scope": "Ordinary tile admission, absent-layer mutations, resource frame lookup, water rows and original tile picking publications within 0x4f8960."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/world_cell_producer.hpp"
+      ],
+      "tests": [
+        "tests/world-cell-composition.cpp",
+        "tests/world-cell-services.S",
+        "tests/world-cell-services.inc",
+        "tools/test-world-cell-producer.py"
+      ],
+      "documents": [
+        "research/runtime/native-world-cell-producer-20261020.md"
+      ],
+      "evidence": [
+        "WCELL1.producer-original-20261020",
+        "WCELL1.producer-provenance-original-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Valid view0..3, owned pool/resource references and finite world coordinates. Animation-result queries, picking, actor iteration/visibility, RNG/math and rectangle updates are explicit service boundaries; actual service bodies, corrupt/undefined caller contexts, allocation ownership, full-world traversal and live replacement remain independent. Native producer branches and row/state stores are supplied; comparison is recorded on the declared owned service domain."
+      ],
+      "validation_dependencies": [
+        "runtime/world-cell-producer/adapter.cpp",
+        "runtime/world-cell-producer/entry.S",
+        "runtime/world-cell-producer/original_bytes.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-world-cell-producer.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/capture-scene-game.py",
+        "tools/prepare-scene-observer.py",
+        "tools/update-world-cell-producer-guards.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/original-files.tsv"
+      ]
+    },
+    {
+      "id": "RS.world-cell-effect-production",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "World effect chain draw production",
+      "scope": "Effect-chain admission/removal, local projection, type counters, type8 cell-boundary depth policy and resource-row production within 0x4f8960. External called services and full-world traversal/caller orchestration remain independent contracts.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5212512,
+          "scope": "Effect-chain admission/removal, local projection, type counters, type8 cell-boundary depth policy and resource-row production within 0x4f8960."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/world_cell_producer.hpp"
+      ],
+      "tests": [
+        "tests/world-cell-composition.cpp",
+        "tests/world-cell-services.S",
+        "tests/world-cell-services.inc",
+        "tools/test-world-cell-producer.py"
+      ],
+      "documents": [
+        "research/runtime/native-world-cell-producer-20261020.md"
+      ],
+      "evidence": [
+        "WCELL1.producer-original-20261020",
+        "WCELL1.producer-provenance-original-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Valid view0..3, owned pool/resource references and finite world coordinates. Animation-result queries, picking, actor iteration/visibility, RNG/math and rectangle updates are explicit service boundaries; actual service bodies, corrupt/undefined caller contexts, allocation ownership, full-world traversal and live replacement remain independent. Native producer branches and row/state stores are supplied; comparison is recorded on the declared owned service domain."
+      ],
+      "validation_dependencies": [
+        "runtime/world-cell-producer/adapter.cpp",
+        "runtime/world-cell-producer/entry.S",
+        "runtime/world-cell-producer/original_bytes.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-world-cell-producer.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/capture-scene-game.py",
+        "tools/prepare-scene-observer.py",
+        "tools/update-world-cell-producer-guards.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/original-files.tsv"
+      ]
+    },
+    {
+      "id": "RS.world-cell-artifact-production",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Artifact and special map object draw production",
+      "scope": "Special map-object and artifact-chain resource lookup, visibility gates, depth rows and picking publications within 0x4f8960. External called services and full-world traversal/caller orchestration remain independent contracts.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5212512,
+          "scope": "Special map-object and artifact-chain resource lookup, visibility gates, depth rows and picking publications within 0x4f8960."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/world_cell_producer.hpp"
+      ],
+      "tests": [
+        "tests/world-cell-composition.cpp",
+        "tests/world-cell-services.S",
+        "tests/world-cell-services.inc",
+        "tools/test-world-cell-producer.py"
+      ],
+      "documents": [
+        "research/runtime/native-world-cell-producer-20261020.md"
+      ],
+      "evidence": [
+        "WCELL1.producer-original-20261020",
+        "WCELL1.producer-provenance-original-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Valid view0..3, owned pool/resource references and finite world coordinates. Animation-result queries, picking, actor iteration/visibility, RNG/math and rectangle updates are explicit service boundaries; actual service bodies, corrupt/undefined caller contexts, allocation ownership, full-world traversal and live replacement remain independent. Native producer branches and row/state stores are supplied; comparison is recorded on the declared owned service domain."
+      ],
+      "validation_dependencies": [
+        "runtime/world-cell-producer/adapter.cpp",
+        "runtime/world-cell-producer/entry.S",
+        "runtime/world-cell-producer/original_bytes.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-world-cell-producer.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/capture-scene-game.py",
+        "tools/prepare-scene-observer.py",
+        "tools/update-world-cell-producer-guards.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/original-files.tsv"
+      ]
+    },
+    {
+      "id": "RS.world-cell-creature-production",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Complete creature world draw production",
+      "scope": "Pool/visibility mutations, eight-direction wrapped projection, body palettes and shadow, three auxiliary layers, status/owner/selection rows and extra tile actor iteration within 0x4f8960. External called services and full-world traversal/caller orchestration remain independent contracts. Preserve original view1 x-edge priority adjustment using map height, including rectangular maps; extra actor priorities accumulate the original wrap correction.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5212512,
+          "scope": "Pool/visibility mutations, eight-direction wrapped projection, body palettes and shadow, three auxiliary layers, status/owner/selection rows and extra tile actor iteration within 0x4f8960."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5372512,
+          "scope": "Owned draw-history shift and descriptor-read ordering in the complete producer. Other helper behavior remains separate."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/world_cell_producer.hpp"
+      ],
+      "tests": [
+        "tests/world-cell-composition.cpp",
+        "tests/world-cell-services.S",
+        "tests/world-cell-services.inc",
+        "tools/test-world-cell-producer.py"
+      ],
+      "documents": [
+        "research/runtime/native-world-cell-producer-20261020.md"
+      ],
+      "evidence": [
+        "WCELL1.producer-original-20261020",
+        "WCELL1.producer-provenance-original-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Valid view0..3, owned pool/resource references and finite world coordinates. Animation-result queries, picking, actor iteration/visibility, RNG/math and rectangle updates are explicit service boundaries; actual service bodies, corrupt/undefined caller contexts, allocation ownership, full-world traversal and live replacement remain independent. Native producer branches and row/state stores are supplied; comparison is recorded on the declared owned service domain."
+      ],
+      "validation_dependencies": [
+        "runtime/world-cell-producer/adapter.cpp",
+        "runtime/world-cell-producer/entry.S",
+        "runtime/world-cell-producer/original_bytes.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-world-cell-producer.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/capture-scene-game.py",
+        "tools/prepare-scene-observer.py",
+        "tools/update-world-cell-producer-guards.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/original-files.tsv"
+      ]
+    },
+    {
+      "id": "RS.world-cell-queue-publication",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Packed World row publication from native producers",
+      "scope": "Complete 4ffd30 row stores, submission counter, capacity refusal/last-index return, signed WORD shade quantization, palette and clip WORDs, borrowed owner, kind9 payload behavior, untouched physical tail and four orientation depth branches. Preserve all-view x+y depth for heights>=500 and the provided low-height lookup table. Valid owned queue spans and nonzero shade quantum; allocation, sorting, row consumption and raster output remain independent.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5242160,
+          "scope": "Complete native packed row publication; queue allocation and consumers are separate contracts."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/world_cell_producer.hpp"
+      ],
+      "tests": [
+        "tests/world-cell-composition.cpp",
+        "tests/world-cell-services.S",
+        "tests/world-cell-services.inc",
+        "tools/test-world-cell-producer.py"
+      ],
+      "validation_dependencies": [
+        "runtime/world-cell-producer/adapter.cpp",
+        "runtime/world-cell-producer/entry.S",
+        "runtime/world-cell-producer/original_bytes.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-world-cell-producer.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/capture-scene-game.py",
+        "tools/prepare-scene-observer.py",
+        "tools/update-world-cell-producer-guards.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/original-files.tsv"
+      ],
+      "documents": [
+        "research/runtime/native-world-cell-producer-20261020.md"
+      ],
+      "evidence": [
+        "WCELL1.producer-original-20261020",
+        "WCELL1.producer-provenance-original-20261020"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Execution comparison is recorded on the declared owned service domain; native row implementation is supplied. Original allocations/consumers and actual-game/live replacement remain separate."
+      ]
+    },
+    {
+      "id": "NP.native-world-cell-producer-adapter",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Guarded native complete world cell producer entry",
+      "scope": "Opt-in PE32 replacement at4f8960 with full13472-byte body/adjacent-switch-table matching before mutation, page ownership/protection refusal, native row publication, bounded memory access and preserved LastError. Zero shade divisors, invalid view and invalid pool references terminate without original-producer fallback. Named original animation/gameplay/picking/RNG/math services remain explicit backend contracts. Import staging, Linux API providers and entry execution are bounded comparisons, not actual-game/physical-Windows/live replacement milestones.",
+      "original": [],
+      "implementation": [
+        "runtime/world-cell-producer/adapter.cpp",
+        "runtime/world-cell-producer/entry.S",
+        "runtime/world-cell-producer/original_bytes.h",
+        "tools/build-world-cell-producer.py",
+        "tools/capture-scene-game.py",
+        "tools/prepare-scene-observer.py"
+      ],
+      "tests": [
+        "tests/world-cell-composition.cpp",
+        "tests/world-cell-services.S",
+        "tests/world-cell-services.inc",
+        "tools/test-world-cell-producer.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/world_cell_producer.hpp",
+        "runtime/world-cell-producer/adapter.cpp",
+        "runtime/world-cell-producer/entry.S",
+        "runtime/world-cell-producer/original_bytes.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-world-cell-producer.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/capture-scene-game.py",
+        "tools/prepare-scene-observer.py",
+        "tools/update-world-cell-producer-guards.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/original-files.tsv"
+      ],
+      "documents": [
+        "research/runtime/native-world-cell-producer-20261020.md"
+      ],
+      "evidence": [
+        "WCELL1.producer-original-20261020",
+        "WCELL1.producer-provenance-original-20261020"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual-game admission, complete external service bodies, Windows memory providers and live replacement remain independent. Native entry and staging are supplied; bounded execution comparison is recorded."
+      ]
     }
   ],
   "evidence": [
@@ -301203,6 +301556,96 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "WCELL1.producer-original-20261020",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "3040 composed original/native/runtime cell producers with complete owned final state, ordered external service/receiver/argument traces and callback checkpoints; original producer plus row-builder bodies poisoned for native execution. Terrain/water, all34 effect types, artifacts/special map objects, eight-direction creatures, wide/history/wrap/clip/picking/palette/status/selection/extra actors, signed shade quantum, pressure and callback mutation profiles. All13472 original body/adjacent-table byte mutations, four ownership and one protection refusal, PE32 build, exact capture compiler inputs and unchanged-section import staging pass. External service providers are explicit boundaries; actual-game/Windows/live replacement are not claimed.",
+      "record": "research/runtime/native-world-cell-producer-results-20261020.json",
+      "sha256": "9fa1ab4d15034e095172b786856960a335be2fcb2039538f1dac139cd041b0de",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 3040
+        },
+        {
+          "pointer": "/guards/body_and_table_mutations",
+          "equals": 13472
+        },
+        {
+          "pointer": "/original_producer_and_queue_poisoned_for_native",
+          "equals": true
+        },
+        {
+          "pointer": "/capture_compiler_sources_match",
+          "equals": true
+        },
+        {
+          "pointer": "/import_staging_pass",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WCELL1.producer-provenance-original-20261020",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "3040 composed original/native/runtime cell producers with complete owned final state, ordered external service/receiver/argument traces and callback checkpoints; original producer plus row-builder bodies poisoned for native execution. Terrain/water, all34 effect types, artifacts/special map objects, eight-direction creatures, wide/history/wrap/clip/picking/palette/status/selection/extra actors, signed shade quantum, pressure and callback mutation profiles. All13472 original body/adjacent-table byte mutations, four ownership and one protection refusal, PE32 build, exact capture compiler inputs and unchanged-section import staging pass. External service providers are explicit boundaries; actual-game/Windows/live replacement are not claimed. Fresh execution additionally pins the original verifier script and immutable-input TSV manifest as explicit validation dependencies.",
+      "record": "research/runtime/native-world-cell-producer-provenance-results-20261020.json",
+      "sha256": "fb09680f90ca5603d99e30642ee6b4b8892c60723f237282368b754f5d056745",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 3040
+        },
+        {
+          "pointer": "/guards/body_and_table_mutations",
+          "equals": 13472
+        },
+        {
+          "pointer": "/original_producer_and_queue_poisoned_for_native",
+          "equals": true
+        },
+        {
+          "pointer": "/capture_compiler_sources_match",
+          "equals": true
+        },
+        {
+          "pointer": "/import_staging_pass",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -323323,8 +323766,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-actor-latest-master-20261020.json",
-    "sha256": "ca3d8cc9048ba6ca7a3d79f14e12363083d9e12e4268ccdb464bb02208c7fd5c"
+    "path": "research/runtime/coverage/source-index-world-cell-producer-20261020.json",
+    "sha256": "bfed35a1f112579601bbd09a488d04cb93b6baef03c6b8497bb528512af39abc"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
