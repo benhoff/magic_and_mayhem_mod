@@ -45476,13 +45476,13 @@
       "subsystem": "rendering",
       "kind": "recovered",
       "title": "Original creature projected position-history copy and update",
-      "scope": "Pinned0051fa60 uses overlapping24-byte copy from creature+754 to+760, stores two stack arguments at+754/+758 and a word from the object selected by creature+b4 at+75c, returning RET8. One direct call004fa4ef lies in scene construction. Static partial recovery only: deeper copy-helper, pointer/coordinate roles, indirect callers, original execution equivalence and all consumers remain unclassified; do not equate this with pure scene generation.",
-      "confidence": "provisional",
+      "scope": "Complete pinned0051fa60..0051faa0 helper on owned objects: overlap-safe24byte move+754to+760, two raw caller DWORD stores at+754/+758, then late +b4 descriptor/+4 DWORD read and+75c store; descriptor aliasing observes prior writes. Native core and producer-facing RET8 adapter preserve this operation order. Full pointer ownership, coordinate interpretation, downstream consumers and arbitrary external writers remain separate.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5372512,
-          "scope": "Partial three-record creature draw history writer"
+          "scope": "Complete0051fa60..0051faa0 history stores and original0059cb60 overlap semantics; no downstream coordinate consumer closure."
         },
         {
           "build": "nocd-40209ca7",
@@ -45492,22 +45492,44 @@
       ],
       "documents": [
         "research/runtime/scene-production-repetition.md",
-        "research/runtime/scene-production-history-fields-static-20261011.json"
+        "research/runtime/scene-production-history-fields-static-20261011.json",
+        "research/runtime/native-creature-drawing-20261020.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/rendering/creature_drawing.h",
+        "runtime/creature-drawing/adapter.c",
+        "runtime/creature-drawing/entry.S",
+        "runtime/creature-drawing/original_bytes.h"
+      ],
+      "tests": [
+        "tests/creature-drawing-composition.cpp",
+        "tests/creature-drawing-call.S",
+        "tools/test-creature-drawing.py"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "evidence": [
-        "NR.scene-production-repetition.history-adapter-static-20261011"
+        "NR.scene-production-repetition.history-adapter-static-20261011",
+        "CREATURE-DRAW.lifecycle-original-20261020",
+        "CREATURE-DRAW.lifecycle-commit-original-20261020"
       ],
       "remaining_gaps": [
-        "Static helper only; no isolated original helper comparison, complete pointer/copy/consumer semantics or native replacement. Native extra-only suppression is accounted separately in NR.scene-production-repetition."
+        "Native helper and bounded producer-facing adapter implementation is supplied. Full original scene generation, camera/cache/animation post-work, external writer/object ownership, actual-game hook admission and full live replacement remain separate; isolated fixture results do not promote integration or replacement."
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "runtime/shadow/win32_min.h",
+        "tools/build-creature-drawing.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py"
       ]
     },
     {
@@ -45515,13 +45537,13 @@
       "subsystem": "rendering",
       "kind": "recovered",
       "title": "Original scene queue consumption postconditions",
-      "scope": "Pinned ordinary004fd5ad..004fd5c1 zeros renderer+231 queue count and resets+22d writepointer from+229 base before cache/creature/camera post-work. Original scene construction relies on those postconditions; old injected slice ending5ad retained populated queue pointers/count. Partial static recovery and observed old snapshot boundaries, not complete queue allocator/driver/alternate branch semantics or isolated original equivalence. New native probe delegates this cleanup to original instructions rather than rolling back saved state.",
-      "confidence": "provisional",
+      "scope": "Complete ordinary004fd5ad..004fd5c1 consumption postcondition on owned renderer storage: read+229 base, zero+231 count, reset+22d cursor, leave capacity/rows/other bytes unchanged. Native producer-facing adapter reproduces EBX0/EDXbase and meaningful XOR flag outputs before4fd5c1. Queue allocation, scene generation, concurrent reclamation, alternate branches and post-cleanup camera/cache work remain separate.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5232045,
-          "scope": "Original ordinary queue count/writepointer cleanup span"
+          "scope": "Complete20byte ordinary count/cursor cleanup span with register/flag postconditions."
         },
         {
           "build": "nocd-40209ca7",
@@ -45531,22 +45553,44 @@
       ],
       "documents": [
         "research/runtime/scene-production-repetition.md",
-        "research/runtime/scene-production-queue-cleanup-static-20261012.json"
+        "research/runtime/scene-production-queue-cleanup-static-20261012.json",
+        "research/runtime/native-creature-drawing-20261020.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/rendering/creature_drawing.h",
+        "runtime/creature-drawing/adapter.c",
+        "runtime/creature-drawing/entry.S",
+        "runtime/creature-drawing/original_bytes.h"
+      ],
+      "tests": [
+        "tests/creature-drawing-composition.cpp",
+        "tests/creature-drawing-call.S",
+        "tools/test-creature-drawing.py"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "evidence": [
-        "NR.scene-production-repetition.queue-cleanup-static-20261012"
+        "NR.scene-production-repetition.queue-cleanup-static-20261012",
+        "CREATURE-DRAW.lifecycle-original-20261020",
+        "CREATURE-DRAW.lifecycle-commit-original-20261020"
       ],
       "remaining_gaps": [
-        "Complete queue allocator/pointer lifetime/consumer/driver/alternate branch and original execution comparison pending. Crash causality from old slice missing cleanup remains unproved; actual corrected probe integration is separate native policy evidence."
+        "Native helper and bounded producer-facing adapter implementation is supplied. Full original scene generation, camera/cache/animation post-work, external writer/object ownership, actual-game hook admission and full live replacement remain separate; isolated fixture results do not promote integration or replacement."
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "runtime/shadow/win32_min.h",
+        "tools/build-creature-drawing.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py"
       ]
     },
     {
@@ -45554,8 +45598,8 @@
       "subsystem": "rendering",
       "kind": "recovered",
       "title": "Original temporary creature preparation around scene generation",
-      "scope": "Pinned outer004fd280 clears creature+74 and calls0051e260 before scene building; selected action/type/target conditions in0051e260 increment target creature+6e4. After drawing,0052ab80 clears+6e4 for active creatures. Partial static phase/field recovery only, not complete predicate/target/pointer/consumer semantics or proof that lost preparation explains four absent rows in an after-return repeat.",
-      "confidence": "provisional",
+      "scope": "Pinned0051e260 action3/9/10 and action11 subtype1/5 gates, byte723/type18/+108/unsigned definition+34 path, +68/target64c/capacity/target+e4 gates and wrapping target+6e4 increment; pinned0052ab80 clears+6e4 only for active+4 slots below mutable high-water envelope+228 while retaining entry backing. Valid owned packed e4b-stride slots; native access/invalid-reference refusal is a separate policy. Existing original selected-creature traversal and +74 clear remain orchestration. No scene construction, camera post-work, arbitrary reclamation or broader target/coordinate semantics claim.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -45575,22 +45619,44 @@
       ],
       "documents": [
         "research/runtime/scene-production-repetition.md",
-        "research/runtime/scene-production-queue-cleanup-static-20261012.json"
+        "research/runtime/scene-production-queue-cleanup-static-20261012.json",
+        "research/runtime/native-creature-drawing-20261020.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/rendering/creature_drawing.h",
+        "runtime/creature-drawing/adapter.c",
+        "runtime/creature-drawing/entry.S",
+        "runtime/creature-drawing/original_bytes.h"
+      ],
+      "tests": [
+        "tests/creature-drawing-composition.cpp",
+        "tests/creature-drawing-call.S",
+        "tools/test-creature-drawing.py"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "evidence": [
-        "NR.scene-production-repetition.queue-cleanup-static-20261012"
+        "NR.scene-production-repetition.queue-cleanup-static-20261012",
+        "CREATURE-DRAW.lifecycle-original-20261020",
+        "CREATURE-DRAW.lifecycle-commit-original-20261020"
       ],
       "remaining_gaps": [
-        "Complete target/pointer/predicate/consumer semantics and isolated original comparison unproved. Native prepared-phase repetition is a separate policy experiment; missing-row causality remains a hypothesis."
+        "Native helper and bounded producer-facing adapter implementation is supplied. Full original scene generation, camera/cache/animation post-work, external writer/object ownership, actual-game hook admission and full live replacement remain separate; isolated fixture results do not promote integration or replacement."
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "runtime/shadow/win32_min.h",
+        "tools/build-creature-drawing.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py"
       ]
     },
     {
@@ -131778,6 +131844,56 @@
         "review": "CAMCROP.source-review-20261020",
         "entry": "NP.camera-hermes-crop-extents"
       }
+    },
+    {
+      "id": "NP.native-creature-drawing-adapter",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Guarded native creature drawing lifecycle adapter",
+      "scope": "Opt-in import-staged PE32 native creature preparation/history/finish and scene queue retirement at four pinned entry/span sites. Check all305original bytes before any instruction change; prepare all page protections then publish eight-byte jumps and flush caches. Bounded borrowed-byte access, preserved LastError/x87 and thiscall/RET8/callee-saved state; invalid pointer/overflow/inaccessible ownership terminates explicitly without original fallback or rollback. Existing original selected-creature/scene/raster orchestration remains. Actual-game admission, physical Windows provider and full live replacement are separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-creature-drawing-20261020.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/creature_drawing.h",
+        "runtime/creature-drawing/adapter.c",
+        "runtime/creature-drawing/entry.S",
+        "runtime/creature-drawing/original_bytes.h",
+        "tools/build-creature-drawing.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py"
+      ],
+      "tests": [
+        "tests/creature-drawing-composition.cpp",
+        "tests/creature-drawing-call.S",
+        "tools/test-creature-drawing.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "runtime/shadow/win32_min.h",
+        "tools/build-creature-drawing.py",
+        "tools/build-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py"
+      ],
+      "evidence": [
+        "CREATURE-DRAW.lifecycle-original-20261020",
+        "CREATURE-DRAW.lifecycle-commit-original-20261020"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native helper and bounded producer-facing adapter implementation is supplied. Full original scene generation, camera/cache/animation post-work, external writer/object ownership, actual-game hook admission and full live replacement remain separate; isolated fixture results do not promote integration or replacement."
+      ]
     }
   ],
   "evidence": [
@@ -297402,6 +297518,88 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "CREATURE-DRAW.lifecycle-original-20261020",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "2240 owned four-creature lifecycle sequences, three history frames and six complete20KiB owner snapshots per sequence compare unchanged original helpers, native core and installed native PE32-facing entry stubs. Two count/backing alias cases,305guard mutations,fourprotection preflight refusals,fourownership refusals; runtime original helper tails and memmove entry poisoned. Production PE32 build and original-section-preserving import staging pass. Linux Windows-API stubs are explicit; no actual-game/Windows-provider/live replacement claim.",
+      "record": "research/runtime/native-creature-drawing-results-20261020.json",
+      "sha256": "59b47cec6c722e9e5cc498230e882cd11431c106d7378d5fbb3dd776a0850766",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/result/cases",
+          "equals": 2240
+        },
+        {
+          "pointer": "/result/guard_mutations",
+          "equals": 305
+        },
+        {
+          "pointer": "/result/original_tails_poisoned",
+          "equals": true
+        },
+        {
+          "pointer": "/import_staging_pass",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CREATURE-DRAW.lifecycle-commit-original-20261020",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "2240 owned four-creature lifecycle sequences, three history frames and six complete20KiB owner snapshots per sequence compare unchanged original helpers, native core and installed native PE32-facing entry stubs. Two count/backing alias cases,305guard mutations,fourprotection preflight refusals,fourownership refusals; runtime original helper tails and memmove entry poisoned. Production PE32 build and original-section-preserving import staging pass. Linux Windows-API stubs are explicit; no actual-game/Windows-provider/live replacement claim. Fresh repetition binds the exact creature-only commit sources, excluding unrelated dirty capture/driver changes.",
+      "record": "research/runtime/native-creature-drawing-commit-results-20261020.json",
+      "sha256": "c485f449d98fea5bd2c37fb48d0a36a2026a1bb01aeb8af2956b0b1465483d2b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/result/cases",
+          "equals": 2240
+        },
+        {
+          "pointer": "/result/guard_mutations",
+          "equals": 305
+        },
+        {
+          "pointer": "/result/original_tails_poisoned",
+          "equals": true
+        },
+        {
+          "pointer": "/import_staging_pass",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -319289,8 +319487,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-rendering-master-final-20261020.json",
-    "sha256": "615b1cdb20bd5f3c53c6ebe87460f997649fd3b3338630cfd84e01bb1a992aab"
+    "path": "research/runtime/coverage/source-index-creature-drawing-commit-20261020.json",
+    "sha256": "e1b4600f3dd286f9064bf1a8864318fc94b8e9c75aba90568411a871b5ddaadb"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

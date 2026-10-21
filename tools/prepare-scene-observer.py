@@ -32,12 +32,12 @@ def copy_installation(source, game):
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable game copy aliases its source')
-    for name in ['Chaos.exe','MnmScene.dll','MnmMenu.dll','MnmWord.dll','MnmDraw.dll','CFG/prefs.cfg']:
+    for name in ['Chaos.exe','MnmScene.dll','MnmMenu.dll','MnmWord.dll','MnmDraw.dll','MnmCreatureDrawing.dll','CFG/prefs.cfg']:
         if not (game/name).resolve().is_relative_to(game.resolve()):
             raise ValueError('Disposable write target escapes the game copy: '+name)
 
 
-def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None,glyph_mode=None,native_draw=False):
+def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None,glyph_mode=None,native_draw=False,native_creature_drawing=False):
     if world_live and not world_frames:raise ValueError('Continuous World needs the World input observer')
     if world_frames and word_mode:raise ValueError('World observation and word takeover use separate experiments')
     if word_mode not in (None,'shadow','takeover','clip-shadow','clip-takeover'):raise ValueError('Unsupported word-sprite mode')
@@ -82,6 +82,12 @@ def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source
         staged=patch(staged,'MnmMenu.dll','MenuAnchor',b'.mnmenu')
         shutil.copy2(menu_dll,game/menu_dll.name)
         manifest['menu_dll_sha256']=sha(menu_dll)
+    if native_creature_drawing:
+        creature_dll=load('scene_creature_build','tools/build-creature-drawing.py').build(output/'creature-drawing-build')
+        staged=patch(staged,'MnmCreatureDrawing.dll','CreatureDrawingAnchor',b'.mncreat')
+        shutil.copy2(creature_dll,game/creature_dll.name)
+        manifest.update(native_creature_drawing=True,native_creature_drawing_sha256=sha(creature_dll))
+        manifest['scope']+='; native creature preparation/history/queue retirement/post-draw cleanup under guarded original orchestration'
     from glyph_backend_launch import stage as stage_glyph
     staged,glyph_metadata=stage_glyph(output,data,staged,glyph_mode,scene_imported=True)
     manifest.update(glyph_metadata)
@@ -117,9 +123,10 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--menu-driver',action='store_true',help='Include the established opt-in menu adapter for bounded automatic battle startup')
     parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow','clip-takeover'],help='Explicit partial direct-word raster experiment')
+    parser.add_argument('--native-creature-drawing',action='store_true',help='Use guarded native creature drawing lifecycle helpers')
     args=parser.parse_args()
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
-        print(prepare(args.menu_driver,args.word_sprites))
+        print(prepare(args.menu_driver,args.word_sprites,native_creature_drawing=args.native_creature_drawing))
     finally:
         subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)

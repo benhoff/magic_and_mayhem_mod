@@ -30,6 +30,7 @@ def sha(path):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--native-draw',action='store_true',help='Guarded native graphics services with real ddraw disabled; V4 continuous test only')
+    parser.add_argument('--native-creature-drawing',action='store_true',help='Use native creature preparation/history/queue retirement/post-draw cleanup')
     parser.add_argument('--source-game',type=Path,help='Pinned read-only source installation for an isolated capture')
     parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64')
     parser.add_argument('--admitted-prefix-template',action='store_true',help='Clone a stopped hash-admitted DirectPlay prefix without a redundant Wineboot update')
@@ -155,6 +156,7 @@ def main():
     if args.word_sprites:sources += [ROOT/p for p in ['renderer/sprites/word_raster.h','renderer/sprites/word_raster.c','runtime/shadow/win32_min.h','tools/build-word-sprites.py','tools/build-shadow-bridge.py','renderer/sprites/word_clipped.c','renderer/sprites/word_clipped.h','reconstruction/rendering/word_backend_state.c','reconstruction/rendering/word_backend_state.h']]
     if args.glyph_backend:sources += [ROOT/p for p in ['tools/glyph_live_capture.py','tools/glyph_backend_launch.py','tools/build-shadow-bridge.py','reconstruction/rendering/glyph_backend.c','reconstruction/rendering/glyph_backend.h','reconstruction/rendering/glyph_backend_state.c','reconstruction/rendering/glyph_backend_state.h','reconstruction/rendering/glyph_backend_x87.S']]
     if args.native_draw:sources += [ROOT/p for p in ['runtime/native-draw/factory.c','runtime/native-draw/surfaces.h','runtime/native-draw/dc.h','runtime/native-draw/clipper.h','runtime/native-draw/palette.h','reconstruction/rendering/pixel_kernel.c','reconstruction/rendering/pixel_kernel.h','runtime/native-draw/refusal.h','runtime/native-draw/status.h','tools/build-native-draw.py','tools/prepare-native-draw.py']]
+    if args.native_creature_drawing:sources += [ROOT/p for p in ['reconstruction/rendering/creature_drawing.h','runtime/creature-drawing/adapter.c','runtime/creature-drawing/entry.S','runtime/creature-drawing/original_bytes.h','tools/build-creature-drawing.py','tools/build-menu-observer.py']]
     fingerprints={str(p.relative_to(ROOT)):sha(p) for p in sources}
     physical_peer_hash=sha(args.drawing_physical_peer) if args.drawing_physical_peer else None
     spec=importlib.util.spec_from_file_location('scene_prepare',ROOT/'tools/prepare-scene-observer.py')
@@ -171,7 +173,12 @@ def main():
         process=None
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
-        root=staging.prepare(menu=True,word_mode=args.word_sprites,world_frames=args.world_frames,world_live=bool(args.world_live),source_game=args.source_game,glyph_mode=args.glyph_backend,native_draw=args.native_draw);print(root,flush=True)
+        root=staging.prepare(menu=True,word_mode=args.word_sprites,world_frames=args.world_frames,world_live=bool(args.world_live),source_game=args.source_game,glyph_mode=args.glyph_backend,native_draw=args.native_draw,native_creature_drawing=args.native_creature_drawing);print(root,flush=True)
+        if args.native_creature_drawing:
+            creature_build=json.loads((root/'creature-drawing-build/manifest.json').read_text())
+            declared=claims['sources'] if claims else fingerprints
+            if set(creature_build['sources'])-set(declared):raise RuntimeError('Undeclared native creature drawing compiler/builder inputs')
+            if any(sha(ROOT/n)!=h or declared[n]!=h for n,h in creature_build['sources'].items()):raise RuntimeError('Native creature drawing compiled source differs from prospective claim')
         if args.native_draw:
             build=json.loads((root/'native-draw-build/manifest.json').read_text())
             declared=claims['sources'] if claims else fingerprints
@@ -387,6 +394,10 @@ def main():
                 'scope':'Original Single Player battle setup and ordered queue consumer entry. Original simulation/drawing remain active; bounded immutable snapshots, no whole-scene visual equivalence.',
                 'sources':fingerprints,'sources_stable':True,'source_executable_sha256':metadata['source_sha256'],
                 'samples':args.samples,'map_selection':None if args.manual_input else args.map,'manual_input':args.manual_input,'magic_items':None if args.manual_input else args.magic_items,'menu_trace':trace,'snapshots':{str(p.relative_to(root)):sha(p) for p in paths},'experiment':str(root)}
+        if args.native_creature_drawing:
+            if sha(root/'game/MnmCreatureDrawing.dll')!=metadata['native_creature_drawing_sha256']:raise RuntimeError('Native creature drawing DLL changed')
+            report['native_creature_drawing']={'staged':True,'dll_sha256':metadata['native_creature_drawing_sha256'],'scope':'Native helper substitution under retained original scene orchestration; no whole-session replacement claim.'}
+            report['scope']+=' Creature drawing lifecycle helpers are explicitly native.'
         if args.glyph_backend:
             from glyph_live_capture import inspect
             report['glyph_backend']=inspect(root/'glyph-backend',args.glyph_backend)

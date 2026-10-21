@@ -19940,3 +19940,44 @@ live integration and sustained performance proof remain independently pending.
 Broad World/kind8 contracts remain partial and full live drawing replacement
 remains none; the retained877-World hardware journey still fails the20FPSgate.
 The unrelated dirty master work is excluded from the merge commit and preserved.
+
+
+### Native creature drawing lifecycle implementation — 2026-10-20
+
+The formerly unimplemented `RS.creature-draw-preparation`,
+`RS.creature-draw-position-history` and `RS.scene-queue-retirement` now have
+shared integer-only native implementations and an opt-in PE32 runtime adapter.
+Original selected-creature/scene/raster orchestration calls native preparation,
+history, queue retirement and active-slot post-draw cleanup at four guarded
+entry/span sites. Both staging and capture expose `--native-creature-drawing`.
+No gameplay balance, simulation cadence or default launch policy changes.
+
+[Source-bound execution](native-creature-drawing-results-20261020.json) compares
+2,240 four-creature sequences over three history frames, with six complete
+20-KiB ownership snapshots per sequence, plus two mutable count/backing alias
+cases, 305 original-byte mutations, four protection refusals and four ownership
+refusals. Native core and installed entry stubs match unchanged original helper
+execution; the installed pass poisons original tails and the original overlap
+copy entry. Queue EBX/EDX/meaningful flags, live x87 state and LastError survive.
+Production PE32 build and original-section-preserving import staging pass. All
+2,927 original files verify before/after every acquisition. Two failed attempts
+are preserved: a fixture-only stack-range overflow and an overlong PE section
+name, both corrected before the successful source-bound result.
+
+Only the declared recovered helper implementation/comparison dimensions advance.
+`NP.native-creature-drawing-adapter` separately owns bounded memory access and
+terminal invalid-reference refusal. Integration and live replacement remain none;
+original scene generation, camera/cache/animation work, external writers and
+actual-game/Windows-provider admission retain their independent boundaries.
+See [contracts, ordering and reproducible command](native-creature-drawing-20261020.md).
+Raw prospective claims, logs, binaries and staged PE remain at
+`working/tests/creature-drawing-sourcebound-complete-20261020/`; the registered
+report and source guards are durable evidence, compiler/build outputs temporary.
+No commits landed after the prior reviewed `5fc819d5` history boundary.
+
+The creature-only commit tree separately repeats all controls with fresh
+`CREATURE-DRAW.lifecycle-commit-original-20261020` evidence and
+[native-creature-drawing-commit-results-20261020.json](native-creature-drawing-commit-results-20261020.json).
+Unrelated main-checkout driver observation and unfinished closeout metadata
+are excluded from this commit; their existing work and historical reports are
+preserved. Integration/replacement remain none.
