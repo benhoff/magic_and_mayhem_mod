@@ -1,10 +1,15 @@
 #include "animation_binding.hpp"
 #include <set>
+#include <limits>
 #include <stdexcept>
 namespace mnm::scene {
 SceneAnimationBindings::SceneAnimationBindings(assets::ResourceManager& resources,SceneAnimationLimits limits):resources_(resources),limits_(limits),thread_(std::this_thread::get_id()){
  if(!limits.receivers||limits.receivers>4096||!limits.bytes||limits.bytes>1024ULL*1024*1024)throw std::invalid_argument("Scene animation bounds");
 }
+SceneAnimationBindings::SceneAnimationBindings(const SceneAnimationBindings& other,StageTag):resources_(other.resources_),tracks_(other.tracks_),limits_(other.limits_),thread_(other.thread_),origin_(other.identity_),baseVersion_(other.version_){}
+void SceneAnimationBindings::changed(){if(version_==std::numeric_limits<std::uint64_t>::max())throw std::overflow_error("Scene animation version exhausted");++version_;}
+SceneAnimationBindings SceneAnimationBindings::stage() const {checkThread();return SceneAnimationBindings(*this,StageTag{});}
+void SceneAnimationBindings::publish(SceneAnimationBindings&& staged){checkThread();staged.checkThread();if(staged.origin_.lock()!=identity_||staged.baseVersion_!=version_||&staged.resources_!=&resources_)throw std::invalid_argument("Stale or foreign scene animation transaction");budget(staged.tracks_);for(const auto& pair:staged.tracks_)current(pair.second);changed();tracks_.swap(staged.tracks_);staged.origin_.reset();}
 void SceneAnimationBindings::checkThread() const {if(thread_!=std::this_thread::get_id())throw std::runtime_error("Scene animation owner thread");}
 const assets::VisualResource& SceneAnimationBindings::current(const Track& track) const {
  const auto& resource=resources_.resident(track.resource);
@@ -55,7 +60,7 @@ void SceneAnimationBindings::apply(const std::vector<SceneAnimationCommand>& com
   bytes=bytes-prior+trackCharge(staged.at(command.receiver));
   if(staged.size()>limits_.receivers||bytes>limits_.bytes)throw std::length_error("Scene animation retained budget");
  }
- tracks_.swap(staged);
+ changed();tracks_.swap(staged);
 }
 SceneAnimationSnapshot SceneAnimationBindings::snapshot(AnimationReceiverId id) const {
  checkThread();const auto& track=tracks_.at(id);current(track);if(!track.controller)throw std::invalid_argument("Animation display requires started receiver");
@@ -64,11 +69,13 @@ SceneAnimationSnapshot SceneAnimationBindings::snapshot(AnimationReceiverId id) 
 std::vector<std::pair<AnimationReceiverId,std::int32_t>> SceneAnimationBindings::advance(const std::vector<AnimationReceiverId>& ids){
  checkThread();if(ids.empty())return {};if(ids.size()>limits_.receivers)throw std::length_error("Animation advancement count");std::set<AnimationReceiverId> unique;auto staged=tracks_;std::vector<std::pair<AnimationReceiverId,std::int32_t>> events;events.reserve(ids.size());
  for(const auto& id:ids){if(!unique.insert(id).second)throw std::invalid_argument("Duplicate animation advancement");auto& track=staged.at(id);current(track);if(!track.controller)throw std::invalid_argument("Animation advancement requires started receiver");events.push_back({id,track.controller->tick()});}
- budget(staged);tracks_.swap(staged);return events;
+ budget(staged);changed();tracks_.swap(staged);return events;
 }
 void SceneAnimationBindings::restore(AnimationReceiverId id,const reconstruction::AnimationControllerState& state){
- checkThread();auto staged=tracks_;auto& track=staged.at(id);current(track);if(!track.controller)throw std::invalid_argument("Animation restore requires started receiver");track.controller->restore(state);budget(staged);tracks_.swap(staged);
+ checkThread();auto staged=tracks_;auto& track=staged.at(id);current(track);if(!track.controller)throw std::invalid_argument("Animation restore requires started receiver");track.controller->restore(state);budget(staged);changed();tracks_.swap(staged);
 }
-void SceneAnimationBindings::retireOwner(std::uint64_t owner){checkThread();for(auto it=tracks_.begin();it!=tracks_.end();)if(it->first.owner==owner)it=tracks_.erase(it);else ++it;}
-void SceneAnimationBindings::clear(){checkThread();tracks_.clear();}
+void SceneAnimationBindings::restore(const std::vector<std::pair<AnimationReceiverId,reconstruction::AnimationControllerState>>& states){checkThread();if(states.empty())return;if(states.size()>limits_.receivers)throw std::length_error("Scene animation restore count");auto staged=tracks_;std::set<AnimationReceiverId> unique;for(const auto& entry:states){if(!unique.insert(entry.first).second)throw std::invalid_argument("Duplicate scene animation restore");auto& track=staged.at(entry.first);current(track);if(!track.controller)throw std::invalid_argument("Animation restore requires started receiver");track.controller->restore(entry.second);}budget(staged);changed();tracks_.swap(staged);}
+void SceneAnimationBindings::retireOwner(std::uint64_t owner){checkThread();bool found=false;for(const auto& pair:tracks_)found|=pair.first.owner==owner;if(!found)return;changed();for(auto it=tracks_.begin();it!=tracks_.end();)if(it->first.owner==owner)it=tracks_.erase(it);else ++it;}
+void SceneAnimationBindings::retireReceiver(AnimationReceiverId receiver){checkThread();auto it=tracks_.find(receiver);if(it==tracks_.end())return;changed();tracks_.erase(it);}
+void SceneAnimationBindings::clear(){checkThread();if(tracks_.empty())return;changed();tracks_.clear();}
 }

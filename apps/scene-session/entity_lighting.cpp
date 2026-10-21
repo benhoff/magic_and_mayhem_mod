@@ -74,6 +74,9 @@ void EntityLighting::step(
         !readmit.insert(handle.slot).second)
       throw std::invalid_argument("Entity light readmission identity");
   }
+  if(controls.admission.size()>world.slots.size())throw std::length_error("Entity light admission count");
+  std::map<unsigned,game::Point> supplied;
+  for(const auto& entry:controls.admission){const auto& entity=actor(world,entry.first);const auto p=entry.second;if(entity.family==game::Family::creature||p.x<0||unsigned(p.x)>=width_||p.y<0||unsigned(p.y)>=height_||p.z<0||unsigned(p.z)>=layers_||!supplied.emplace(entry.first.slot,p).second)throw std::invalid_argument("Entity light admission provider");}
   auto admissions = admission_;
   reconstruction::TerrainLightingSnapshot input;
   input.player = controls.player;
@@ -138,6 +141,7 @@ void EntityLighting::step(
     if (previous == admissions.end() || !(previous->second.handle == handle) ||
         readmit.count(unsigned(i)))
       admissions[unsigned(i)] = {handle, position};
+    if(auto declared=supplied.find(unsigned(i));declared!=supplied.end())admissions[unsigned(i)]={handle,declared->second};
     const auto admission = admissions.at(unsigned(i)).position;
     input.objects[i] =
         types_.source(*type, {true, 0, unsigned(position.x),

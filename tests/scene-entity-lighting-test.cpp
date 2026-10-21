@@ -75,6 +75,13 @@ int main() try {
   encounter.actors.push_back(actor);
   lights.step(world.state(), encounter, controls);
   check(lights.snapshot().creatures[c.slot].lightEnabled);
+  controls.admission={{e,{4,5,1}}};
+  lights.stepSources(world.state(),{{c,11}},controls);
+  check(lights.snapshot().objects[e.slot].admissionColumn==4 && lights.snapshot().objects[e.slot].admissionRow==5);
+  const auto admissionTick=lights.cycle().ticks();controls.admission.push_back({e,{6,7,1}});
+  refused([&]{lights.stepSources(world.state(),{{c,11}},controls);});check(lights.cycle().ticks()==admissionTick);
+  controls.admission={{c,{4,5,1}}};refused([&]{lights.stepSources(world.state(),{{c,11}},controls);});
+  controls.admission={{e,{32,5,1}}};refused([&]{lights.stepSources(world.state(),{{c,11}},controls);});controls.admission.clear();
   const auto before = lights.cycle().ticks();
   auto stale = health;
   stale.fighters[0].actor.generation++;

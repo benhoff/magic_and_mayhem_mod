@@ -85,9 +85,11 @@ void Reader::creature() {
         skip(48);animation();skip(28);fixed("42-creature-entries",42*24);
         skip(469);if(c.u8()) animation();const auto kind=word();skip(4);if(kind!=0 && kind!=2) {skip(4);animation();}
         skip(25);if(word()) animation();if(word()) animation();if(word()) animation();
-        skip(56);const auto commands=count();for(std::uint32_t i=0;i<commands;++i) block("creature-command",[&]{
-            skip(36);
-        });if(commands) skip(4);
+        skip(56);const auto commands=count();
+        for(std::uint32_t i=0;i<commands;++i) {
+            block("creature-command",[&]{skip(36);});
+        }
+        if(commands) skip(4);
         skip(737);
         block("creature-word-lists",[&]{skip(8);auto n=count(30);skip(std::uint64_t(n)*4);n=count(30);skip(std::uint64_t(n)*4);skip(4);});
         skip(4);if(word()) skip(204);skip(129);

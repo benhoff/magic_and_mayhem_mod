@@ -19,6 +19,7 @@ struct EntityLightControls {
   // Explicit recount admission relocation, separate from animated draw
   // position.
   std::vector<game::Handle> readmit;
+  std::vector<std::pair<game::Handle,game::Point>> admission;
 };
 // Typed world/profile producer for the existing recovered light cycle. Living
 // health supplies +e4's nonzero test; there is no independent light-enable bit.
@@ -46,6 +47,8 @@ public:
             EntityLightControls = {});
   void step(const game::State &, const game::CreatureEncounter &,
             EntityLightControls = {});
+  // Owned living-health projection from an identified native producer.
+  void stepSources(const game::State& world,const std::vector<std::pair<game::Handle,std::uint32_t>>& health,EntityLightControls controls={}){step(world,health,std::move(controls));}
   const reconstruction::TerrainLightingCycle &cycle() const { return cycle_; }
   const reconstruction::TerrainLightingSnapshot &snapshot() const {
     return last_;

@@ -408,3 +408,63 @@ fingerprints are retained independently from earlier development and failed runs
 Production installed resource acquisition and full scene frame orchestration are
 still the next implementation packet; driver/full-game/live acceptance remains
 validation work.
+
+## Production scene owner and identified sources
+
+NR.runtime-scene-composition now has an application owner and native executable
+in apps/scene-session. It acquires installed MAP/MPS, SPR/TTD, separate terrain
+ANI, ordinary sprite ANI, packed FXA/GLOBAL fields and plain palette preferences.
+Terrain ANI selects TTD definitions; it must not pass through the SPR animation
+recipe. Source MPS records remain owned and do not authorize random activation.
+Default camera cut/span bind to the map; explicit cuts/views remain explicit.
+
+NR.scene-native-sources copies current World/MovementSession/Combat/Encounter
+and native command continuation values into generation-identified scene data.
+Current/previous display cursors, fine positions and typed living health are
+actual source values. Native profiles supply resource identities; special and
+secondary channels require identified roles. Maintenance auxiliaries do not
+become guessed overlays. Native action-object generations and branch-specific
+effect camera fields have explicit typed producer interfaces; absent metadata
+refuses. These are normalized source contracts, not a claim that every old native
+checkpoint stores every original effect field. Original producer discovery and
+future source-format expansion remain distinct from the implemented consumers.
+
+The session stages animation controllers, entity-light admission history and
+linked terrain before publishing a frame. Invalid late source/camera input
+preserves the accepted presentation state. Source ticks admit zero or one-step
+increments; missing intermediate source states cannot be reconstructed by
+repeating the final pose. Imported controller states receive no second clock.
+Only explicitly selected scene-owned receivers advance. Recomposition changes
+views without ticking lighting or simulation. The initial autofocus occurs
+before spectator lighting. Fresh epochs reset presentation and immutable linked
+map phases. Retirement releases decoded resources and GPU cache entries.
+
+Actual traversal/admission, ANI sprite/attachment offsets, per-resource palette
+selection, typed lighting, exact unstable depth sorting and retained SPR
+visibility planes produce one heterogeneous queue. Bounded prepared uploads feed
+the persistent native GPU canvas. Plans are owner/epoch/serial/map/resource
+revision bound; stale/foreign plans refuse. GPU presentation, CPU word export
+and QImage presentation are separate explicit operations. No original destination
+snapshot initializes the frame.
+
+The source/light/animation tests exercise ownership, stale identities, explicit
+producer roles, batch rollback, frame-stage publication and per-channel retirement.
+The scene test compares six software OpenGL frames with independent CPU pixel
+composition across all four camera views, then checks clocks, rejected updates,
+retirement/restart, terrain ANI-to-TTD advancement/reset and initial spectator
+focus. Installed execution uses the shipped 40x40x19 Forest section, retains77
+MPS placements and queues766 draws. The checkpoint executable must produce the
+same image as the application owner. Original manifest bookends and installed
+input hashes are retained by the runner. Development/failed outputs remain under
+working/tests; only current successful reviewed results receive fresh evidence.
+
+Clang's full application build also exposed misleading indentation in the
+existing saved-world command loop. Explicit braces preserve its loop and the
+single post-loop skip; its existing ownership/range/truncation/budget/envelope
+suite runs in the same native/sanitizer packet. This compilation clarification
+renews no original save comparison or restoration claim.
+
+The actual committed f571c5b4..1f4613d6 range was checked against exact
+parent/current receipts:36 files and no missing receipts. The retained report is
+working/tests/production-scene-history-review-20261020.json. This historical
+accounting is independent from current source validation and status promotions.

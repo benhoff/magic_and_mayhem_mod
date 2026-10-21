@@ -19682,3 +19682,33 @@ original claims receive no new validation merely from that edit. Full-scene
 orchestration remains implementation work, independently from installed/full-game,
 physical GPU and live replacement acceptance. The remaining-rendering document
 records recovered addresses, native policies, evidence and exact boundaries.
+
+### 2026-10-20: production native scene ownership
+
+The remaining-rendering worktree adds NR.scene-native-sources and completes the
+owned NR.runtime-scene-composition application path: installed MAP/MPS, distinct
+terrain ANI/TTD and sprite ANI/SPR, installed palette/effect/light fields,
+generation-identified current source cursors/health/positions, explicit typed
+producer metadata, staged controller/light/map lifetime, full heterogeneous
+terrain/entity/attachment/visibility/depth queues and bounded prepared native
+GPU delivery. Source zero/one-step clocks and explicit visual ownership prevent
+recomposition from running simulation or advancing authoritative animation.
+Autofocus precedes spectator lighting; epochs reset linked source phases; retired
+CPU/GPU resources cannot resurrect old plans. AS.save_world receives only explicit
+loop braces for Clang compilation, with its existing synthetic grammar suite.
+
+The finite native scene suite includes four views/six exact CPU-versus-software
+GPU frames, stale/foreign/budget/clock/rollback controls, real terrain ANI-to-TTD
+progression/reset and initial spectator focus. Installed Forest40x40x19 acquires
+77 owned MPS placements and766 draws; the native checkpoint executable agrees
+with the application image. Installed files remain read-only and original
+manifest bookends are required. Execution records are new source-bound results;
+shared build/source edits leave older original comparisons historical.
+
+These are owned application/source contracts. Unclassified original producers
+must supply identified special/secondary/link/effect-camera/object-generation
+metadata; the native boundary refuses missing fields. Discovery of those
+original producer identities, full original scene comparison, physical NVIDIA
+acceptance and live replacement are not inferred from these component or
+installed headless tests. No gameplay balance or live replacement was introduced.
+See remaining-rendering-implementations-20261020.md and apps/scene-session/README.md.
