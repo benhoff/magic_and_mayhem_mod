@@ -19940,3 +19940,35 @@ live integration and sustained performance proof remain independently pending.
 Broad World/kind8 contracts remain partial and full live drawing replacement
 remains none; the retained877-World hardware journey still fails the20FPSgate.
 The unrelated dirty master work is excluded from the merge commit and preserved.
+
+## Alternate canvas initialization and new x87 copy — 2026-10-20
+
+[Alternate-canvas recovery](alternate-canvas-recovery-20261020.md) separates the
+rendering-base pointer `006e1f68`, copy-source `006e1f6c` and configuration flag
+`006e1f78`. The globals start in the PE zero-fill tail; this establishes no pixel
+allocation or initial clear. Full original `4e40d0`, `58bc10` and `58d540` execute
+in 288 owned callback cases, comparing 576 complete descriptors and the zero-fill
+COM request/call sequence. Configuration overwrites padding with 96/0 and widens
+the ordinary offscreen request once. Alternate pointers and authored storage
+survive unchanged; real driver allocation, clear pixels and failures remain
+separate.
+
+Raw source-address search discovers the previously unregistered 144-byte
+`59455c` x87/integer copy. The reviewed inventory adds only that disjoint body
+and preserves prior flows/unknowns. Independent native reconstruction matches
+10,584 complete 2,048-WORD planes (21,676,032 physical WORD comparisons), including
+overlapping writes, seven signed paddings, signaling-NaN quieting and
+invalid/denormal flags. Original masked control `037f` and an empty stack are
+explicit; eight native extent/dimension/row-step refusals are atomic. The initial
+successful run remains retained with its older source hashes.
+
+`ACR1.original-20261020`, `ACR1.provenance.static-20261020` and
+`ACR1.inventory.static-20261020` support only the new scoped children. Actual
+alternate allocation, pointer publication/relationship, initial pixel content,
+upstream/external writers, retirement and reachability remain unresolved, as does
+an original incoming caller for `59455c`. The 2,948 indirect edges are retained.
+`RS.canvas-bind-clip` stays partial; no live integration, replacement, gameplay or
+broad-parent completion is asserted. Raw outputs, binaries, logs and prospective
+claims are pinned in `working/tests/alternate-canvas-20261020/run-2`; the prior
+run and focused read-only export are retained. No installation or Wine prefix
+was created.

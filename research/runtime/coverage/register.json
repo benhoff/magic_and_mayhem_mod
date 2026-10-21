@@ -5,8 +5,8 @@
     {
       "id": "nocd-40209ca7",
       "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
-      "inventory": "research/runtime/coverage/binary-nocd-wizard-ai-20261017.json",
-      "inventory_sha256": "59aff7d05479cd392c1417ad2db23ffa8c2490d11751e4997542473eb818d759"
+      "inventory": "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json",
+      "inventory_sha256": "0eaa41de1a420e0a7b58db47af0c6ecd113e6529e78d6d91d2bce8ff47f08c73"
     }
   ],
   "behaviors": [
@@ -20187,7 +20187,8 @@
       "documents": [
         "research/runtime/native-world-canvas-startup.md",
         "research/formats/canvas-startup-diagnostics.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/alternate-canvas-recovery-20261020.md"
       ],
       "implementation": [
         "runtime/scene/canvas_startup.c",
@@ -20230,7 +20231,10 @@
         "CSCOPE9.scope-review.20261020",
         "CSCOPE9.final-controls-native.20261020",
         "CSCOPE9.final-branches-original.20261020",
-        "CSCOPE9.final-scope-review.20261020"
+        "CSCOPE9.final-scope-review.20261020",
+        "ACR1.original-20261020",
+        "ACR1.provenance.static-20261020",
+        "ACR1.inventory.static-20261020"
       ],
       "status": {
         "understanding": "partial",
@@ -131777,6 +131781,151 @@
       "implementation_review": {
         "review": "CAMCROP.source-review-20261020",
         "entry": "NP.camera-hermes-crop-extents"
+      }
+    },
+    {
+      "id": "RS.alternate-canvas-initializer",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Original graphics initializer: offscreen requests and alternate-state retention",
+      "scope": "Full unchanged4e40d0 with owned mode/create boundaries and unchanged58bc10/58d540 against owned successful COM callbacks.288 combinations of both video/mode settings,zero/nonzero configuration flag,three initial horizontal/two vertical paddings,zero/nonzero alternate enable/source; compare complete108byte primary/offscreen descriptors,zero color-fill request and call order. Configuration6e1f78 overwrites padding96/0; no enable/source publication or alternate storage writes in this declared boundary. Physical allocation/clear pixels, real providers, failures, whole startup and actual alternate reachability excluded.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5128400,
+          "scope": "Complete initializer with owned mode/create callbacks; original clear/format wrappers execute."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Successful zero color-fill request through owned COM; no real clear pixels."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821760,
+          "scope": "Pixel-format query through owned COM."
+        }
+      ],
+      "implementation": [
+        "tools/test-original-alternate-canvas.py"
+      ],
+      "tests": [
+        "tests/alternate-canvas-initializer.cpp"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/original_x86.py"
+      ],
+      "documents": [
+        "research/runtime/alternate-canvas-recovery-20261020.md"
+      ],
+      "evidence": [
+        "ACR1.original-20261020"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.alternate-canvas-x87-copy",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Original 32-WORD x87 alternate copy and floating-point pixel effects",
+      "scope": "10584 complete2048WORD physical buffer cases compare unchanged59455c with independent native ordered integer/bit model. Width32/64/96,height1/2/5,signed padding-32/-4/-1/0/1/4/32,twelve overlap/separation offsets and fourteen binary64/mixed patterns. Masked x87 control037f,empty stack; signaling NaN quieting,denormal/invalid status flags and preserved TOP/control checked. Source advances width+twice padding WORDs; destination contiguous. Eight native invalid requests refuse atomically. Unmasked exceptions,nonempty/overflowing stacks,original caller/publication/allocation/reachability excluded.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5850460,
+          "scope": "Complete144byte disjoint newly discovered x87/integer copy body; no caller established."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/alternate_canvas_x87.hpp"
+      ],
+      "tests": [
+        "tests/alternate-canvas-x87.cpp",
+        "tools/test-original-alternate-canvas.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/original_x86.py"
+      ],
+      "documents": [
+        "research/runtime/alternate-canvas-recovery-20261020.md"
+      ],
+      "evidence": [
+        "ACR1.original-20261020"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.alternate-canvas-provenance",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Alternate enable/source initialization and unresolved writer frontier",
+      "scope": "Pinned original PE zero-fill for6e1f68/6c/70/74/78; exhaustive raw literal occurrences and byte-checked operand attribution against retained recursive frontier plus focused59455c/4e40d0 bodies. Nearby address constructions remain candidates. Separate config6e1f78 reader/writer and alternate6e1f68/source6e1f6c; preserve unresolved indirect flows. No recovered original alternate allocation,initial pixel clear,publisher,all-writer inventory or actual reachability/unreachability claim.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5231672,
+          "scope": "Dispatcher enable reader; alternate route conditional, not live evidence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5850376,
+          "scope": "Previously recovered source reader."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5850460,
+          "scope": "New second source reader; incoming route unknown."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5128538,
+          "scope": "Configuration padding flag reader, distinct from alternate enable/source."
+        }
+      ],
+      "implementation": [
+        "tools/test-original-alternate-canvas.py",
+        "tools/review-alternate-canvas-inventory.py"
+      ],
+      "tests": [],
+      "validation_dependencies": [
+        "tools/original_x86.py",
+        "tools/inventory-binary.py",
+        "tools/coverage_claims.py",
+        "research/runtime/all-original-recovery-results-20261020/flow-review-final.json"
+      ],
+      "documents": [
+        "research/runtime/alternate-canvas-recovery-20261020.md"
+      ],
+      "evidence": [
+        "ACR1.original-20261020",
+        "ACR1.provenance.static-20261020",
+        "ACR1.inventory.static-20261020"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
       }
     }
   ],
@@ -297402,6 +297551,103 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "ACR1.original-20261020",
+      "kind": "isolated_original",
+      "scope": "10584 complete owned x87 copy comparisons plus288 full initializer descriptor/call-sequence experiments; no actual alternate allocation or reachability.",
+      "record": "research/runtime/alternate-canvas-results-20261020/comparison.json",
+      "sha256": "1a48bf8d2a390bf8f6ff141a6446b54259eaa8a9a1560e9a76176350b4691355",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/x87/cases",
+          "equals": 10584
+        },
+        {
+          "pointer": "/x87/native_atomic_refusals",
+          "equals": 8
+        },
+        {
+          "pointer": "/initializer/cases",
+          "equals": 288
+        },
+        {
+          "pointer": "/actual_reachability_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/alternate_allocation_proved",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "ACR1.provenance.static-20261020",
+      "kind": "static",
+      "scope": "PE zero-fill, exhaustive alternate literal sites and focused byte-checked function bodies; preserve2948unresolved indirects. No all-writer/allocation/reachability closure.",
+      "record": "research/runtime/alternate-canvas-results-20261020/provenance.json",
+      "sha256": "07296b98e29bbfd63bfc273e5b1415d16b35a1239309a5c17201851bb8a1f9e9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/static_only",
+          "equals": true
+        },
+        {
+          "pointer": "/all_writer_ownership_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/live_alternate_route_proved",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ACR1.inventory.static-20261020",
+      "kind": "static",
+      "scope": "Reviewed disjoint144byte59455c body; preserve historical inventory/unknowns and retain incoming-caller gap.",
+      "record": "research/runtime/alternate-canvas-results-20261020/inventory-review.json",
+      "sha256": "32b106029023f1454cdee328bc4039dc0842189727e626b49361efad9809acd2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/semantic_closure_proved",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -319289,8 +319535,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-rendering-master-final-20261020.json",
-    "sha256": "615b1cdb20bd5f3c53c6ebe87460f997649fd3b3338630cfd84e01bb1a992aab"
+    "path": "research/runtime/coverage/source-index-alternate-canvas-commit-20261020.json",
+    "sha256": "f6890e83d228685349d4e43259ffeaa755834d6b6e430936772dbed02801c4ab"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
