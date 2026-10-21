@@ -20332,3 +20332,15 @@ independent. Local dirty source work and retained worktrees require preservation
 during the migration and are not implicitly published or validated.
 
 2026-10-21 storage-migration closeout validation: reran the existing bounded creature drawing lifecycle comparison (2240 cases) and actor lifecycle comparison (192 cases in original/native/runtime modes, including 7138 mutation controls). Original manifests verified before and after each run, explicit sources remained stable and comparison traces agreed. New evidence IDs preserve the eight existing lifecycle milestones against the final committed source; prior records remain unchanged. No live engine replacement or gameplay balance change is claimed. Raw outputs and failed accounting attempts remain retained.
+
+
+### Native canvas initializer commit — 2026-10-21
+
+Committed the previously local owned ordinary canvas startup model and comparison
+fixture as `RS.canvas-startup-initializer`, with a dedicated runner and fresh
+original/native64/ASan-UBSan evidence: 46,656 cases and18,475,776 bytes per cohort
+agree; source hashes and both original-manifest bookends pass. See
+[native initializer](native-canvas-initializer-20261021.md). Existing partial
+alternate-canvas research keeps its historical evidence and boundaries. Original
+alternate allocation/publication, initial pixels, external ownership and physical
+provider failures remain open; no live or whole-session promotion is made.

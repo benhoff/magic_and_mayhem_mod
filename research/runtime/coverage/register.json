@@ -134395,6 +134395,54 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "RS.canvas-startup-initializer",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Complete original ordinary canvas startup sequencing and alternate-state preservation",
+      "scope": "Complete unchanged 4e40d0 and actual58d540 pixel-format query over explicit owned mode/window/create/fill and COM GetPixelFormat providers that return normally. Both video dimensions, arbitrary nonzero mode flags, depth words, retained or overridden signed-wrap padding, complete108-byte primary/offscreen descriptors, source/line/receiver arguments, fill/query order, low16 format-field publication and RGB555 indicator. Full36-byte neighboring global region confirms alternate enable/source remain unchanged, including nonzero sentinels. No original alternate allocation/enablement inference, physical driver success/failure equivalence, original mode/create/fill body admission or live replacement.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5128400,
+          "scope": "Complete ordinary initializer and format query with declared owned normal-return providers; not legacy display-driver equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821760,
+          "scope": "Complete ordinary initializer and format query with declared owned normal-return providers; not legacy display-driver equivalence."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/canvas_initializer.hpp"
+      ],
+      "tests": [
+        "tests/canvas-initializer-reference.cpp",
+        "tools/test-canvas-initializer.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/native-canvas-initializer-20261021.md"
+      ],
+      "evidence": [
+        "CANVAS-INIT.original-native-sanitized-20261021"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual alternate-buffer allocation, pointer publication, initial pixels, external writers and physical provider failure/loss outcomes remain unrecovered. No original alternate reachability or live replacement claim."
+      ]
     }
   ],
   "evidence": [
@@ -302026,6 +302074,43 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "CANVAS-INIT.original-native-sanitized-20261021",
+      "kind": "isolated_original",
+      "scope": "Complete unchanged 4e40d0 and actual58d540 pixel-format query over explicit owned mode/window/create/fill and COM GetPixelFormat providers that return normally. Both video dimensions, arbitrary nonzero mode flags, depth words, retained or overridden signed-wrap padding, complete108-byte primary/offscreen descriptors, source/line/receiver arguments, fill/query order, low16 format-field publication and RGB555 indicator. Full36-byte neighboring global region confirms alternate enable/source remain unchanged, including nonzero sentinels. No original alternate allocation/enablement inference, physical driver success/failure equivalence, original mode/create/fill body admission or live replacement.",
+      "record": "research/runtime/native-canvas-initializer-result-20261021.json",
+      "sha256": "68e4e7bd646cfa061c1d9be8040e8114216f2c7fb7e5f279e451659867531794",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 46656
+        },
+        {
+          "pointer": "/bytes_compared",
+          "equals": 18475776
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -324186,8 +324271,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-c0da47ece7adf5cf08d005782f45b1b91b4fecb6aca7e8eda75e0e696c1f8427.json",
-    "sha256": "c0da47ece7adf5cf08d005782f45b1b91b4fecb6aca7e8eda75e0e696c1f8427"
+    "path": "research/runtime/coverage/source-index-canvas-initializer-20261021.json",
+    "sha256": "71802a822ffbae6c1b3aa4afc807d32e7b2dfe8afbffdc1e6679e309ec5cca9a"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
