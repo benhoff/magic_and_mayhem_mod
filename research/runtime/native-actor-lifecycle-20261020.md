@@ -5,7 +5,7 @@ Original instruction addresses and packed stores have high confidence within the
 scope below. These are native entry implementations with explicit external service
 boundaries, not a complete native simulation or replacement of every called manager.
 
-`reconstruction/rendering/actor_lifecycle.hpp` owns the recovered lifecycle flow.
+`reconstruction/rendering/actor_visual_lifecycle.hpp` owns the recovered lifecycle flow.
 Its backend supplies PE32 address-valued memory, allocation, and typed calls to
 existing services. The runtime backend is independent of Qt and renderer widgets.
 
@@ -71,7 +71,7 @@ patched in place. Reproduce guards with `tools/update-actor-lifecycle-guards.py`
 
 The comparison runner is `tools/test-actor-lifecycle.py`. Run it through the main
 checkout's storage guard, with a new output under this checkout's `working/tests`.
-The latest durable result is `native-actor-lifecycle-mapped-results-20261020.json`;
+The latest durable result is `native-actor-lifecycle-master-capture-results-20261020.json`;
 the initial `native-actor-lifecycle-results-20261020.json` remains unchanged.
 Compressed
 full traces, compiler output and failed diagnostic attempts remain under `working/`.
@@ -89,3 +89,12 @@ live replacement milestone. Stable behavior IDs are `RS.actor-pool-storage`,
 `RS.actor-activation`, `RS.actor-release-cascade` and
 `NP.native-actor-lifecycle-adapter`. Earlier creature evidence remains historical
 when shared launch-tool fingerprints change.
+
+Master integration retains both earlier results unchanged. The distinct visual
+header avoids replacing the separately developed ownership model and its API.
+The combined run repeats all 192 cases and 7,138 guard mutation controls.
+The original include path remains as a forwarding compatibility header, preserving
+historical evidence path readability. The fixture compiles both include paths.
+Capture declares the renamed visual header. The comparison runner evaluates the
+actual capture source declaration and compares it with the generated PE32 builder
+manifest, rejecting any omitted compiler input or prospective hash mismatch.

@@ -24,6 +24,7 @@ public:
     std::int32_t tick(); // raw event argument, 0 normally, 1 when stopped
     void requestBreak(){state_.breakFlag=1;}
     const AnimationState& state() const{return state_;}
+    std::uint64_t retainedRecordBytes() const{return std::uint64_t(records_.capacity())*sizeof(assets::AnimationRecord);}
     std::optional<std::uint32_t> sprite() const;
     // Owned snapshot, valid after switching/restarting or destroying the player.
     std::optional<assets::AnimationRecord> displayedRecord() const;

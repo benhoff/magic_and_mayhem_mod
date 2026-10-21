@@ -85,6 +85,14 @@ class MappedSources(unittest.TestCase):
             if field==40:struct.pack_into('<I',bad,64+39*4,0)
             with self.assertRaises(ValueError):decode(bytes(bad),self.directory)
 
+    def test_version_five_direct_provider_readback(self):
+        p=wire(self.directory);p[0][2:]=[5,256,0x40209ca7,16384,8,1,4,0x80000000,116,4194304,800,600,0,0]
+        p[1][12:16]=[0]*4;p[1][24]=2;p[1][30]=3360;p[1][34]=2;p[1][37]=0;p[1][39:44]=[123,1,456,1,1];p[2][6]=3200
+        raw=bytearray(encode(p));raw[:8]=b'MNMWMS05';got=decode(raw,self.directory);self.assertTrue(got['samples'][0]['provider_direct'])
+        for field,value in [(10,2),(12,1),(29,79),(30,0),(31,0),(34,4),(37,0x80000000),(43,0),(44,1)]:
+            bad=bytearray(raw);struct.pack_into('<I',bad,64+field*4,value)
+            with self.assertRaises(ValueError):decode(bad,self.directory)
+
     def test_owned_payload_cannot_be_a_symlink(self):
         p=wire(self.directory);payload=self.directory/'wine-source-map-000001.565';target=self.directory/'outside.565';payload.rename(target);payload.symlink_to(target)
         with self.assertRaises(ValueError):decode(encode(p),self.directory)

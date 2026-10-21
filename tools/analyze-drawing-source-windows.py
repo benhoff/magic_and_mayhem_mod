@@ -18,7 +18,7 @@ def main():
     raw=a.original.read_bytes();original=json.loads(raw)
     if original.get('source_sha256')!=BUILD or not all(original.get(k) is True for k in ('success','sources_stable','original_drawing_active','original_manifest_verified_before_after','normal_original_quit_verified','original_sections_unchanged')):raise ValueError('Completed original acquisition required')
     directory=Path(original['experiment'])/'capture';observed=maps(directory)
-    if observed!=original['wine_source_map_observation'] or observed['wire_version']!=4:raise ValueError('Raw source maps changed or source clock missing')
+    if observed!=original['wine_source_map_observation'] or observed['wire_version'] not in (4,5):raise ValueError('Raw source maps changed or source clock missing')
     path=directory/'engine-cadence.bin';counter=windows(path)
     if counter!=original['engine_update_observation']:raise ValueError('Raw accepted update trace changed')
     frequency,rows=decode(path);last=[r for r in rows if r[1]==2][-1]

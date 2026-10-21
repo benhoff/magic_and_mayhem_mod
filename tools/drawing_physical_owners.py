@@ -6,21 +6,28 @@ from drawing_api_session import sha
 def decode(data):
     if len(data)<192 or (len(data)-64)%128 or len(data)>64+262144*128:raise ValueError('Physical owner envelope')
     h=struct.unpack_from('<16I',data)
-    if data[:8]!=b'MNMPOW02' or h[2:8]!=(2,128,0x40209ca7,262144,2048,51) or any(h[8:]):raise ValueError('Physical owner header')
+    version=2 if data[:8]==b'MNMPOW02' else 3 if data[:8]==b'MNMPOW03' else 0
+    if not version or h[2:8]!=(version,128,0x40209ca7,262144,2048,51) or any(h[8:]):raise ValueError('Physical owner header')
     owners={};seen=set();leases={};bindings=[];stacks={};active=0;calls=0
     rows=list(struct.iter_unpack('<32I',data[64:]))
     for ordinal,r in enumerate(rows,1):
         _,phase,thread,owner,submission,kind,value,reason=r[:8]
-        if r[0]!=ordinal or not thread or reason or any(r[8:]):raise ValueError('Physical owner identity/refusal/reserved')
+        if r[0]!=ordinal or not thread or reason or any(r[16:] if phase==10 and version==3 else r[8:]):raise ValueError('Physical owner identity/refusal/reserved')
         if phase==1:
-            if not owner or owner in seen or submission or kind not in (1,2) or not 1<=value<=0x40000000:raise ValueError('Physical owner generation')
+            if not owner or owner in seen or submission or kind not in range(1,3 if version==2 else 7) or not 1<=value<=0x40000000:raise ValueError('Physical owner generation')
             owners[owner]=dict(size=value,refs=0,kind=kind);seen.add(owner)
         elif phase==2:
             if owner not in owners or not submission or submission in leases or kind or value!=owners[owner]['refs']+1 or active or (owners[owner]['kind']==2 and 'heap_generation' not in owners[owner]):raise ValueError('Physical owner acquisition')
+            if owners[owner]['kind']>=3 and owners[owner].get('provider_submission')!=submission:raise ValueError('Physical external lease provenance')
             owners[owner]['refs']=value;leases[submission]=dict(owner=owner,acquire_thread=thread,acquire_record=ordinal)
         elif phase==3:
             if leases.get(submission,{}).get('owner')!=owner or owner not in owners or kind or value!=owners[owner]['refs']-1:raise ValueError('Physical owner retirement')
-            owners[owner]['refs']=value;bindings.append(dict(submission=submission,owner=owner,bytes=owners[owner]['size'],kind=owners[owner]['kind'],acquire_thread=leases[submission]['acquire_thread'],release_thread=thread,acquire_record=leases[submission]['acquire_record'],release_record=ordinal,heap_generation=owners[owner].get('heap_generation'),heap_offset=owners[owner].get('heap_offset')));del leases[submission]
+            owners[owner]['refs']=value;bindings.append(dict(submission=submission,owner=owner,bytes=owners[owner]['size'],kind=owners[owner]['kind'],acquire_thread=leases[submission]['acquire_thread'],release_thread=thread,acquire_record=leases[submission]['acquire_record'],release_record=ordinal,heap_generation=owners[owner].get('heap_generation'),heap_offset=owners[owner].get('heap_offset'),**({'provider':owners[owner]['provider']} if 'provider' in owners[owner] else {})));del leases[submission]
+        elif phase==10:
+            if version!=3 or owner not in owners or owners[owner]['kind']<3 or owners[owner]['refs'] or 'provider' in owners[owner] or not submission or not kind or not value or not (r[8] or r[9]) or not r[10] or r[15]!=7:raise ValueError('Physical external lease provenance')
+            fence=r[11]|r[12]<<32;completed=r[13]|r[14]<<32
+            if completed<fence or (owners[owner]['kind']==6 and not fence):raise ValueError('Physical external producer fence')
+            owners[owner].update(provider_submission=submission,provider=dict(id=kind,kind=owners[owner]['kind']-2,object=r[8]|r[9]<<32,generation=value,token=r[10],fence=fence,completed=completed))
         elif phase==9:
             if owner not in owners or owners[owner]['kind']!=2 or 'heap_generation' in owners[owner] or owners[owner]['refs'] or submission or not kind:raise ValueError('Physical client heap generation')
             owners[owner]['heap_generation']=kind;owners[owner]['heap_offset']=value
@@ -38,11 +45,11 @@ def decode(data):
                 active-=1
             if value!=active:raise ValueError('Physical owner active worker count')
         elif phase==6:
-            if ordinal!=len(rows) or owner or submission or kind or value not in (1,2) or leases or active or any(x['refs'] for x in owners.values()):raise ValueError('Physical owner terminal')
+            if ordinal!=len(rows) or owner or submission or kind or value not in (1,2) or leases or active or any(x['refs'] or x['kind']>=3 for x in owners.values()):raise ValueError('Physical owner terminal')
             break
         else:raise ValueError('Physical owner refused/unknown transition')
     else:raise ValueError('Physical owner missing terminal')
-    return dict(schema=1,success=True,journal_sha256=sha(data),allocations=len(seen),reservations=len(bindings),worker_calls=calls,bindings=bindings,owned_private_sysmem=True,borrowed_private_client_pages=True,unknown_backing_admitted=False,global_host_driver_alias_ownership=False,native_replacement=False)
+    return dict(schema=1,success=True,journal_sha256=sha(data),allocations=len(seen),reservations=len(bindings),worker_calls=calls,bindings=bindings,owned_private_sysmem=all(x['kind']<=2 for x in bindings),borrowed_private_client_pages=True,external_provider_reservations=sum(x['kind']>=3 for x in bindings),unknown_backing_admitted=False,global_host_driver_alias_ownership=False,native_replacement=False)
 
 
 def join_reservation(binding,reservation):

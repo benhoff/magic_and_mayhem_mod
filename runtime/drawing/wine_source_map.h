@@ -38,7 +38,7 @@ static void wine_source_map(const u32* submission,void* texture){
    if((i32)r[11]>=0){
     r[38]=0;r[10]=2;
     if(r[19]==116&&!r[20]&&!r[21]&&r[27]==1){
-     if(wine_source_map_bounded){if((r[24]&4)&&r[25]&&r[25]<=800&&r[26]&&r[26]<=600&&r[28]>=r[25]*r[26]*2&&r[28]<=r[26]*32768)r[35]=1;}
+     if(wine_source_map_bounded){if(((r[24]&4)||wine_backing_direct_registered())&&r[25]&&r[25]<=800&&r[26]&&r[26]<=600&&r[28]>=r[25]*r[26]*2&&r[28]<=r[26]*32768)r[35]=1;}
      else if((r[24]&5)==5){if(r[25]==40&&r[26]==40)r[35]=1;else if(r[25]==400&&r[26]==280)r[35]=2;}
     }
     if(r[35]){
@@ -54,6 +54,10 @@ static void wine_source_map(const u32* submission,void* texture){
       if(!owned)r[10]=8;
       else{
        wine_reserve_begin(r,texture,resource);
+       version_epoch=wine_source_version_read(resource);
+       if(wine_handoff_direct_capture(r,texture,resource,r[8],r[25],r[26],owned)){
+        struct WineSourceHandoff* h=wine_handoff_find(r[2]);r[43]=1;r[29]=h->pitch;r[30]=h->size;r[10]=0;wine_handoff_bind(r[2]);
+       }else if(r[24]&4){
        u32 mapped[3]={0};r[37]=0x80000000u;
        r[12]=((u32(__attribute__((cdecl))*)(void*,u32,u32*,const u32*,u32))wine_resource_original[1])(resource,r[8],mapped,0,r[37]);r[13]=GetLastError();++r[34];
        r[10]=5;
@@ -71,6 +75,7 @@ static void wine_source_map(const u32* submission,void* texture){
         if((i32)r[14]<0)r[10]=9;
         if(r[10]==0)wine_handoff_bind(r[2]);
        }
+       }else{r[35]=0;r[31]=0;r[10]=2;--wine_source_map_total_attempts;}
       }
      }
     }
@@ -102,7 +107,7 @@ static int wine_source_map_open(void){
  if(wine_source_map_bounded){wine_source_map_counter=GetProcAddress(GetModuleHandleA("kernel32.dll"),"QueryPerformanceCounter");if(!wine_source_map_counter)return 0;}
  char name[600];path(name,"wine-source-map.bin");wine_source_map_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_source_map_file==(HANDLE)-1)return 0;
  u32 h[16]={0};copy(h,"MNMWMS01",8);h[2]=1;h[3]=256;h[4]=0x40209ca7;h[5]=16384;h[6]=16;h[7]=2;h[8]=4;h[9]=0x80000000u;h[10]=116;h[11]=3635200;h[12]=h[13]=40;h[14]=400;h[15]=280;
- if(wine_source_map_bounded){copy(h,"MNMWMS04",8);h[2]=4;h[6]=wine_source_map_attempt_limit;h[7]=1;h[11]=wine_source_map_byte_limit;h[12]=800;h[13]=600;h[14]=h[15]=0;}
+ if(wine_source_map_bounded){copy(h,"MNMWMS04",8);h[2]=4;h[6]=wine_source_map_attempt_limit;h[7]=1;h[11]=wine_source_map_byte_limit;h[12]=800;h[13]=600;h[14]=h[15]=0;if(wine_source_ownership_required==2){copy(h,"MNMWMS05",8);h[2]=5;}}
  if(!write(wine_source_map_file,h,64))return 0;wine_source_map_enabled=1;return 1;
 }
 static int wine_source_map_install(void){return !wine_source_map_enabled||(wine_resource_original[1]&&wine_resource_original[2]&&wine_source_descriptor_get);}

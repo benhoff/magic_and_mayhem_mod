@@ -93,7 +93,7 @@ else:os.environ.pop('MNM_DRAW_WINE_PHYSICAL_OWNERS',None)
 if metadata.get('wine_source_ownership'):
     from drawing_source_ownership import validate_manifest
     validate_manifest(metadata)
-    os.environ['MNM_DRAW_WINE_SOURCE_OWNERSHIP']='1'
+    os.environ['MNM_DRAW_WINE_SOURCE_OWNERSHIP']='2' if metadata.get('wine_external_source_leases') else '1'
 else:os.environ.pop('MNM_DRAW_WINE_SOURCE_OWNERSHIP',None)
 if metadata.get('wine_source_handoff'):os.environ['MNM_DRAW_WINE_SOURCE_HANDOFF']='1'
 else:os.environ.pop('MNM_DRAW_WINE_SOURCE_HANDOFF',None)

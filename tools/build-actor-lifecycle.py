@@ -36,7 +36,7 @@ def build(output):
                     '/safeseh:no', '/timestamp:0', '/export:ActorLifecycleAnchor', f'/out:{dll}',
                     *[str(output/(p.name+'.obj')) for p in sources], str(output/'kernel32.lib')], check=True,env=env)
     sources += [ROOT/'runtime/actor-lifecycle/original_bytes.h', ROOT/'runtime/actor-lifecycle/entries.inc',
-                ROOT/'reconstruction/rendering/actor_lifecycle.hpp',
+                ROOT/'reconstruction/rendering/actor_visual_lifecycle.hpp',
                 ROOT/'runtime/shadow/win32_min.h', ROOT/'tools/build-menu-observer.py', Path(__file__).resolve()]
     (output/'manifest.json').write_text(json.dumps({
         'schema': 1, 'sha256': hashlib.sha256(dll.read_bytes()).hexdigest(),

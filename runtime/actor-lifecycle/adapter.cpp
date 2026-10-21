@@ -3,7 +3,7 @@
 extern "C" {
 #include "../shadow/win32_min.h"
 }
-#include "../../reconstruction/rendering/actor_lifecycle.hpp"
+#include "../../reconstruction/rendering/actor_visual_lifecycle.hpp"
 #include "original_bytes.h"
 extern "C" {
 #define MNM_ACTOR_ENTRY(name,kind,pop) void mnm_actor_##name##_entry();

@@ -58,5 +58,5 @@ int main(int argc,char** argv)try{
    reinterpret_cast<Two>(0x4f7c60)(receiver.data(),dx,dy);mnm::reconstruction::scrollTerrainCamera(c,w,h,dx,dy);compare(receiver.data(),c);++checks;
   }
  }
- std::cout<<"{\"fixtures\":8192,\"state_comparisons\":"<<checks<<",\"all_match\":true}\n";
+ std::cout<<"{\"fixtures\":8192,\"state_comparisons\":"<<checks<<",\"all_match\":true}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

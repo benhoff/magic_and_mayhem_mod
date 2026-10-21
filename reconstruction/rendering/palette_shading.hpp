@@ -21,7 +21,8 @@ struct PaletteLightingOverrides {
 // Missing keys preserve supplied state. Nonfinite inputs are refused.
 PaletteShadingConfig applyPaletteLighting(PaletteShadingConfig,const PaletteLightingOverrides&);
 // Original VIDEO admission clamps to 2..256 and preserves a missing value.
-// Non-power-of-two admissions remain unsupported by buildShadedPalette.
+// All admitted counts are supported. Original odd counts underallocate their
+// table storage; owned native storage retains every produced table safely.
 PaletteShadingConfig applyTerrainPalettePreference(PaletteShadingConfig,std::optional<int>);
 struct ShadedPalette {
  unsigned shift=0,neutral=0;

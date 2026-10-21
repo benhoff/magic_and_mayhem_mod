@@ -1,3 +1,4 @@
+#include "../reconstruction/rendering/actor_visual_lifecycle.hpp"
 #include "../reconstruction/rendering/actor_lifecycle.hpp"
 #define main unused_sprite_reference
 #include "sprite-binary-reference.cpp"

@@ -62,7 +62,7 @@ static u32 wine_phys_word(void* p,u32 offset){if(!p||!readable((u8*)p+offset,4))
  * A private GPU texture's views retain its resource; shared resources refuse. */
 static void wine_phys_writer(void* resource,u32 kind){
  if(!wine_phys_enabled)return;wine_handoff_resource_guard(resource,kind);if(!wine_phys_any())return;
- if(!resource||wine_phys_word(resource,0x14)!=3||(wine_phys_word(resource,0x30)&7))wine_phys_refuse(0,0,kind,2);
+ if(!resource||wine_phys_word(resource,0x14)!=3||((wine_phys_word(resource,0x30)&7)&&!wine_handoff_transfer_writer(resource,kind)))wine_phys_refuse(0,0,kind,2);
  u32 heap=wine_phys_word(resource,0x58),layers=wine_phys_word(resource,0xb0),levels=wine_phys_word(resource,0xb4),subs=wine_phys_word(resource,0x120);
  if(!layers||!levels||layers>64||levels>64||levels*layers>256||!readable((void*)subs,layers*levels*0x34))wine_phys_refuse(0,0,kind,2);
  for(u32 i=0;i<2048;++i){struct WinePhysicalOwner* o=wine_phys_owners+i;if(!o->refs&&!wine_handoff_stage_writer(o->id,resource,kind))continue;
@@ -138,7 +138,7 @@ static void wine_phys_release(u32 submission){
  if(slot==2048)wine_phys_refuse(0,submission,0,11);struct WinePhysicalOwner* o=0;
  for(u32 i=0;i<2048;++i)if(wine_phys_owners[i].id==wine_phys_leases[slot].owner)o=wine_phys_owners+i;
  if(!o||!o->refs)wine_phys_refuse(0,submission,0,11);
- if(!--o->refs){u32 old;wine_phys_internal=GetCurrentThreadId();if(!VirtualProtect((void*)o->base,o->bytes,o->prior,&old)||old!=2)wine_phys_refuse(o->id,submission,0,11);wine_phys_internal=0;}
+ if(!--o->refs&&o->kind<=2){u32 old;wine_phys_internal=GetCurrentThreadId();if(!VirtualProtect((void*)o->base,o->bytes,o->prior,&old)||old!=2)wine_phys_refuse(o->id,submission,0,11);wine_phys_internal=0;}
  wine_phys_emit(3,o->id,submission,0,o->refs,0);memset(wine_phys_leases+slot,0,sizeof(wine_phys_leases[0]));
  if(!o->refs&&o->kind==2){wine_phys_emit(4,o->id,0,2,o->size,0);memset(o,0,sizeof(*o));}
 }
@@ -267,7 +267,7 @@ static void __attribute__((cdecl)) wine_phys_cs(void* cs,const u32* packet){
 static int wine_phys_open(u32 prerequisites){
  char flag[2];u32 n=GetEnvironmentVariableA("MNM_DRAW_WINE_PHYSICAL_OWNERS",flag,2);if(!n)return 1;if(n!=1||flag[0]!='1'||!prerequisites)return 0;
  char name[600];path(name,"wine-physical-owners.bin");wine_phys_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_phys_file==(HANDLE)-1)return 0;
- u32 h[16]={0};copy(h,"MNMPOW02",8);h[2]=2;h[3]=128;h[4]=0x40209ca7;h[5]=262144;h[6]=2048;h[7]=51;if(!write(wine_phys_file,h,64))return 0;path(name,"wine-physical-owner-fault.bin");wine_phys_fault_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_phys_fault_file==(HANDLE)-1)return 0;path(name,"wine-physical-clients.bin");wine_phys_clients_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_phys_clients_file==(HANDLE)-1)return 0;wine_phys_enabled=1;return 1;
+ u32 h[16]={0};copy(h,"MNMPOW02",8);h[2]=2;h[3]=128;h[4]=0x40209ca7;h[5]=262144;h[6]=2048;h[7]=51;if(wine_source_ownership_required==2){copy(h,"MNMPOW03",8);h[2]=3;}if(!write(wine_phys_file,h,64))return 0;path(name,"wine-physical-owner-fault.bin");wine_phys_fault_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_phys_fault_file==(HANDLE)-1)return 0;path(name,"wine-physical-clients.bin");wine_phys_clients_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_phys_clients_file==(HANDLE)-1)return 0;wine_phys_enabled=1;return 1;
 }
 static int wine_phys_detour(u8* site,const u8* prefix,u32 n,void* hook,void** original){
  if(!readable(site,n)||!equal(site,prefix,n))return 0;u8* out=VirtualAlloc(0,n+5,0x3000,0x40);if(!out)return 0;copy(out,site,n);out[n]=0xe9;u32 delta=(u32)site-(u32)out-5;copy(out+n+1,&delta,4);

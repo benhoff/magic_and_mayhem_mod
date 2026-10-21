@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Compare original, native, and installed runtime actor lifecycles in owned storage."""
 import argparse
+import ast
 import hashlib
 import importlib.util
 import json
@@ -61,6 +62,17 @@ def main():
         run('guards',[out/'composition',original,'guards']);guards=json.loads((out/'guards.log').read_text())
         if not guards['success'] or guards['body_mutations']!=7138:raise ValueError('Incomplete guard controls')
         run('pe32-build',['python3',ROOT/'tools/build-actor-lifecycle.py','--output',out/'pe32'])
+        manifest=json.loads((out/'pe32/manifest.json').read_text())
+        capture=ast.parse((ROOT/'tools/capture-scene-game.py').read_text())
+        declarations=[statement.value for node in ast.walk(capture)
+            if isinstance(node,ast.If) and isinstance(node.test,ast.Attribute)
+            and node.test.attr=='native_actor_lifecycle'
+            for statement in node.body if isinstance(statement,ast.AugAssign)
+            and isinstance(statement.target,ast.Name) and statement.target.id=='sources']
+        if len(declarations)!=1:raise ValueError('Ambiguous capture lifecycle source declaration')
+        declared={p.relative_to(ROOT).as_posix() for p in eval(compile(ast.Expression(declarations[0]),'<capture lifecycle source declaration>','eval'),{'ROOT':ROOT})}
+        if set(manifest['sources'])-declared:raise ValueError('Capture omits actor lifecycle compiler inputs')
+        if any(manifest['sources'][n]!=sources[n] for n in manifest['sources']):raise ValueError('Compiled actor lifecycle inputs differ from prospective claim')
         spec=importlib.util.spec_from_file_location('actor_stage',ROOT/'tools/prepare-shadow-experiment.py');stage=importlib.util.module_from_spec(spec);spec.loader.exec_module(stage)
         raw=original.read_bytes();staged=stage.add_import(raw,'MnmActorLifecycle.dll','ActorLifecycleAnchor',b'.mnactor')
         pe=struct.unpack_from('<I',raw,60)[0];sections=pe+24+struct.unpack_from('<H',raw,pe+20)[0]
@@ -73,7 +85,7 @@ def main():
             run(name,['python3','-B',ROOT/('tools/'+name+'.py'),'--help'])
             if '--native-actor-lifecycle' not in (out/(name+'.log')).read_text():raise ValueError('Missing lifecycle CLI option')
         report.update(success=True,cases=192,results=results,guards=guards,import_staging_pass=True,
-            pe32_dll_sha256=sha(out/'pe32/MnmActorLifecycle.dll'),fixture_binary_sha256=sha(out/'composition'),
+            capture_compiler_sources_match=True,pe32_dll_sha256=sha(out/'pe32/MnmActorLifecycle.dll'),fixture_binary_sha256=sha(out/'composition'),
             retained_reset_histogram_generations_per_case=2)
     except (OSError,ValueError,subprocess.SubprocessError) as error:report['error']=str(error)
     finally:
