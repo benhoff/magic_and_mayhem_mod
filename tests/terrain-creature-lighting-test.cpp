@@ -30,9 +30,24 @@ int main(){
  creatures[1].column=1;creatures[1].owner=-1;refused=false;
  try{cycle.step(f,creatures,20,0,r);}catch(const std::invalid_argument&){refused=true;}
  require(refused && f.buffers()==prior);
- refused=false;try{admitsTerrainCreatureLight(c,-1,r);}catch(const std::invalid_argument&){refused=true;}require(refused);
+ require(!admitsTerrainCreatureLight(c,-1,r));
+ TerrainCreatureLightCycle spectator;TerrainLightField camera(32,32,5,{-50,7});
+ const auto initial=camera.buffers();refused=false;
+ try{spectator.step(camera,{},0,-1,r);}catch(const std::invalid_argument&){refused=true;}
+ require(refused && camera.buffers()==initial && spectator.state().phase==0);
+ spectator.step(camera,{{true,true,-1,99,99,99}},1,-1,r,{false,false,false,0,TerrainSpectatorLight{8,9}});
+ require(spectator.state().phase==0 && camera.buffers()!=initial && camera.buffers()[0]==initial[0]);
+ const auto stamped=camera.buffers();refused=false;
+ try{spectator.step(camera,{},0,-1,r,{false,false,false,0,TerrainSpectatorLight{32,0}});}catch(const std::invalid_argument&){refused=true;}
+ require(refused && camera.buffers()==stamped && spectator.state().phase==0);
+ for(unsigned i=0;i<8;++i)spectator.step(camera,{},0,-1,r,{true,false,false,0,TerrainSpectatorLight{8,9}});
+ require(spectator.state().published && spectator.state().phase==0 && camera.at(8,9,2)>-127);
  TerrainCreatureLightCycle empty;TerrainLightField dark(17,17,1,{-50,7});
  empty.step(dark,{},4,0,r,{true,false,false,1});require(empty.state().phase==1 && !empty.state().published);
+ // Switching to spectator mid-cycle skips quota and cursor visitation entirely.
+ auto midSpectator=cycle;auto midField=f;const auto midState=cycle.state();
+ midSpectator.step(midField,creatures,20,-1,r,{true,false,false,0,TerrainSpectatorLight{8,9}});
+ require(midSpectator.state().cursor==midState.cursor && midSpectator.state().quota==midState.quota && midSpectator.state().remaining==midState.remaining);
  // Native ownership: copied cycles and fields can advance independently.
  auto clone=cycle;auto copied=f;creatures[1].owner=0;clone.step(copied,creatures,20,0,r,{true,false,false,1});require(cycle.state().phase==1 && f.buffers()==prior && clone.state().phase==0);
 }

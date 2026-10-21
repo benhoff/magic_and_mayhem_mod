@@ -21,9 +21,12 @@ TerrainLightingConfig applyTerrainLighting(TerrainLightingConfig c,std::optional
  return c;
 }
 TerrainLightField::TerrainLightField(unsigned width,unsigned height,unsigned layers,TerrainLightingConfig c):width_(width),height_(height),mapLayers_(layers),config_(c){
- if(!width || !height || !layers || width>128 || height>128 || layers>32 || c.ambient< -127 || c.ambient>127 || c.ramp< -127 || c.ramp>127)throw std::invalid_argument("Unsupported terrain light field configuration");
+ if(!width || !height || !layers || width>128 || height>128 || layers>32 || c.ambient< -127 || c.ambient>127 || c.ramp< -127 || c.ramp>127 || c.singleCell< -128 || c.singleCell>127)throw std::invalid_argument("Unsupported terrain light field configuration");
  const auto count=std::size_t(width)*height*((layers+1)/2);
  for(auto& buffer:buffers_)buffer.assign(count,-127);
+ // Size-one kernel is inherited storage in the original. Owned native default
+ // is zero; explicit signed-byte input can preserve an observed inherited value.
+ kernels_[1]={std::int8_t(c.singleCell)};
  // The original truncates the first 2D distance before forming the 3D distance.
  for(unsigned n=2;n<=17;++n){auto& kernel=kernels_[n];kernel.resize(n*n*n);
   for(unsigned z=0;z<n;++z)for(unsigned y=0;y<n;++y)for(unsigned x=0;x<n;++x){
@@ -35,7 +38,7 @@ TerrainLightField::TerrainLightField(unsigned width,unsigned height,unsigned lay
  }
 }
 void TerrainLightField::stamp(TerrainLightSource s){
- if(s.column>=width_ || s.row>=height_ || s.layer>=mapLayers_ || s.size<2 || s.size>17 || width_<s.size || height_<s.size)throw std::invalid_argument("Unsupported terrain light source bounds/size");
+ if(s.column>=width_ || s.row>=height_ || s.layer>=mapLayers_ || s.size<1 || s.size>17 || width_<s.size || height_<s.size)throw std::invalid_argument("Unsupported terrain light source bounds/size");
  const auto wrap=[](int v,unsigned limit){if(v<0)v+=int(limit);else if(v>=int(limit))v-=int(limit);return unsigned(v);};
  const auto n=s.size;
  for(unsigned dz=0;dz<n;++dz)for(unsigned dy=0;dy<n;++dy)for(unsigned dx=0;dx<n;++dx){
@@ -51,7 +54,7 @@ void TerrainLightField::stamp(TerrainLightSource s){
  }
 }
 void TerrainLightField::stampStatic(TerrainLightSource s){
- if(s.column>=width_ || s.row>=height_ || s.layer>=mapLayers_ || s.size<2 || s.size>17 || width_<s.size || height_<s.size)throw std::invalid_argument("Unsupported static terrain light source bounds/size");
+ if(s.column>=width_ || s.row>=height_ || s.layer>=mapLayers_ || s.size<1 || s.size>17 || width_<s.size || height_<s.size)throw std::invalid_argument("Unsupported static terrain light source bounds/size");
  const auto wrap=[](int v,unsigned limit){if(v<0)v+=int(limit);else if(v>=int(limit))v-=int(limit);return unsigned(v);};
  const auto n=s.size;
  for(unsigned dz=0;dz<n;++dz)for(unsigned dy=0;dy<n;++dy)for(unsigned dx=0;dx<n;++dx){

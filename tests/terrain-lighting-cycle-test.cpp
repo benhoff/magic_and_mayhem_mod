@@ -14,9 +14,17 @@ int main(){
  try{cycle.step(invalid);}catch(const std::invalid_argument&){refused=true;}
  require(refused && cycle.ticks()==1 && cycle.field().buffers()==old && cycle.creatures().cursor==state.cursor && cycle.objects().cursor==staticState.cursor);
  auto copy=cycle;copy.step(snapshots[0]);require(copy.ticks()==2 && cycle.ticks()==1 && cycle.field().buffers()==old);
- for(const auto& body:{"end trailing", "tick 0 0 1 1 0 0 4 0 1 0 0 end", "tick 0 0 1 1 0 0 4 0 0 0 1 object 1 1 0 0 0 0 0 end", "tick 0 0 1 1 0 0 4 1 0 1 0 creature 1 1 -1 0 0 0 end", "tick 0 0 2 1 0 0 4 0 0 0 0 end", "tick 0 0 1 1 0 0 4 0 0 0 0", "tick 0 0 1 1 0 0 4 0 0 0 0 end extra", "tick 0 0 1 1 0 0 4.0 0 0 0 0 end"}){
+ for(const auto& body:{"end trailing", "tick 0 0 1 1 0 0 4 0 1 0 0 end", "tick 0 0 1 1 0 0 4 1 0 1 0 creature 1 1 -1 0 0 0 end", "tick 0 0 2 1 0 0 4 0 0 0 0 end", "tick 0 0 1 1 0 0 4 0 0 0 0", "tick 0 0 1 1 0 0 4 0 0 0 0 end extra", "tick 0 0 1 1 0 0 4.0 0 0 0 0 end"}){
   refused=false;try{decode(header()+body);}catch(const std::invalid_argument&){refused=true;}require(refused);
  }
+ auto v2=header();v2.replace(13,1,"2");
+ auto camera=decode(v2+"tick -1 0 0 0 8 8 16 camera 8 8 0 0 0 0 end");
+ TerrainLightingCycle spectator(32,32,3,{-50,7});spectator.step(camera[0]);
+ require(spectator.ticks()==1 && spectator.creatures().phase==0 && spectator.field().at(8,8,0)==-127);
+ camera[0].creaturesEnabled=true;camera[0].objectsEnabled=true;for(unsigned i=0;i<8;++i)spectator.step(camera[0]);
+ require(spectator.creatures().published && spectator.field().at(8,8,0)>-127);
+ auto single=decode(header()+"tick 0 1 0 1 0 0 1 0 1 0 1 object 1 1 0 0 0 0 0 end");
+ TerrainLightingCycle tiny(1,1,1);tiny.step(single[0]);require(tiny.field().at(0,0,0)==0);
  snapshots=decode(header()+"tick 0 1 1 0 8 8 16 1 0 1 0 creature 1 1 0 8 8 0 tick 0 0 0 1 8 8 16 0 0 0 0 tick 0 0 0 1 8 8 16 0 0 0 0 end");
  TerrainLightingCycle staged(32,32,3,{-50,7});staged.step(snapshots[0]);require(staged.field().at(8,8,0)==-127 && !staged.creatures().published);
  staged.step(snapshots[1]);require(staged.field().at(8,8,0)==-127);staged.step(snapshots[2]);require(staged.field().at(8,8,0)==-8);

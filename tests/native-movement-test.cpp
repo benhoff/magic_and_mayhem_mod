@@ -55,7 +55,7 @@ int main() try {
     uninterrupted.step();check(uninterrupted.world().find(actor)->x==1 && uninterrupted.world().find(actor)->motion->action==Action::moving);
     uninterrupted.step();check(uninterrupted.world().find(actor)->x==2 && uninterrupted.world().find(actor)->motion->next==1);
     auto halfway=bytes(uninterrupted);
-    char directory[]="/tmp/mnm-movement-XXXXXX";check(::mkdtemp(directory)!=nullptr);
+    auto directory=(std::filesystem::temp_directory_path()/"mnm-movement-XXXXXX").string();check(::mkdtemp(directory.data())!=nullptr);
     struct Cleanup {std::filesystem::path path;~Cleanup(){std::filesystem::remove_all(path);}} cleanup{directory};
     const auto checkpoint=cleanup.path/"halfway.mnw";check(writeSnapshot(checkpoint,uninterrupted.world().state()).durable);
     auto resumed=session(navigation);resumed.restore(checkpoint,[&](const std::string& name){check(name=="fixture/map");return navigation;});

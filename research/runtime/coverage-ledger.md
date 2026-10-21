@@ -19972,3 +19972,243 @@ broad-parent completion is asserted. Raw outputs, binaries, logs and prospective
 claims are pinned in `working/tests/alternate-canvas-20261020/run-2`; the prior
 run and focused read-only export are retained. No installation or Wine prefix
 was created.
+### Remaining rendering implementation packet — 2026-10-20
+
+All mode-zero preference counts 2..256 and clamped whole-cell camera movement
+are implemented on owned state. The isolated pinned-original comparison
+`REMAIN.boundaries-original-20261020` matches 510 palettes / 16,776,192 words and
+3,267 camera cases. Odd counts >=5 expose an original 508-byte underallocation;
+native storage safely owns all produced words. Count3 skips the bright wing.
+The six broader work groups in `remaining-rendering-implementations-20261020.md`
+remain partial. Existing evidence whose source hashes changed stays historical;
+this packet does not claim full effect, lifecycle, scene or live acceptance.
+
+### Explicit external backing providers — 2026-10-20
+
+The registered provider path now supports cooperative shared/file/imported/GPU
+backing through explicit read leases and producer fences, as selected by the
+user. It pins callback modules and object lifetimes, refuses replayed tokens and
+stale/active generation changes, seals a private immutable value, verifies the
+actual private binding before consumption, and retains the provider lease until
+original-binding restoration. Unknown providers remain refused.
+
+`BACKING.providers-20261020` records 49 actual PE32 observer controls across all
+four kinds with real aliased section mappings and a controlled GPU producer.
+`BACKING.private-regression-20261020` records the existing private allocation,
+raw fault, lifecycle, dispatch, completion and strict-admission controls on the
+same current implementation. The provider callback/fence dependencies are
+controlled; installed external producer enforcement, actual GPU driver fences,
+full original-session comparison and live replacement remain independent.
+See `external-backing-providers-20261020.md` and the v2 journal format. The broader
+six implementation groups remain partial. The prior commit range
+825a1fee..ac852c67 was reviewed against exact receipts with zero file gaps;
+the retained historical report is `working/tests/backing-history-review-20261020.json`.
+
+### Spectator and inherited single-cell lighting — 2026-10-20
+
+The bounded spectator-camera and index-one stamp components are implemented and
+compared independently under `RE.terrain-spectator-camera-light` and
+`RE.terrain-single-cell-light`. `LIGHT.boundaries-original-20261020` compares
+unchanged original instructions, native64 and ASan/UBSan, including publication
+order, disabled refresh and mid-cycle spectator transitions, all256 inherited
+kernel bytes, static/combined regression and eight native/sanitized unit checks.
+Native storage defaults the otherwise inherited byte to zero as an explicit
+owned policy. Fixture v2 carries spectator anchors; existing v1 remains usable.
+Installed entity/type production and full scene/live acceptance remain pending.
+Historical changed-source evidence is preserved. The reviewed committed range
+ac852c67..242572f9 has zero exact receipt gaps; the historical report is retained
+at working/tests/lighting-history-review-20261020.json.
+
+### Direct foreign source leases — 2026-10-20
+
+NR.direct-provider-readback adds producer-v2 acquisition and unchanged-binding
+verification through exact consumer GPU/context completion, without a Wine READ
+map or private binding transfer. Shared/file/imported/GPU kinds require explicit
+stable object/generation/token and writer-exclusion/lifetime leases; GPU producer
+fences must be complete and nonzero. Private-only profile1 refuses v2 registration.
+Profile2 journals distinguish original-binding read ownership from private-copy
+value ownership. No original comparison pixels become native application inputs.
+
+DIRECT.providers-20261020 records 53 actual PE32 observer controls, all four
+nonmappable source classes, guarded writers, malformed provenance, replay,
+incomplete fences, verification failures and mutation detection, plus four parser
+suites and the profile1 refusal. The controlled GPU producer is not a real foreign
+driver result. DIRECT.private-regression-20261020 records the current private-only
+16-case regression, 13 lifetime windows and 15 admission controls. Installed
+producer adapters and real hardware/full-session acceptance remain independent;
+DIRECT.transfer-regression-20261020 records all49 version1 producer controls on current sources; the broad NR.external-backing-ownership scope stays partial. Historical evidence
+and failed/intermediate snapshots are preserved. The committed range
+242572f9..34bc0397 has zero exact receipt gaps, reported under
+working/tests/direct-backing-history-review-20261020.json. Gate exports use owned
+scratch on the second NVMe (/var/tmp/mnm-native-rendering-remaining-20261020-coverage),
+preserving the 90 GiB main-drive reserve without altering the cold archive.
+
+### Actor-focus camera helpers — 2026-10-20
+
+CAMERA.follow-original-20261020 supports the bounded
+RE.terrain-camera-follow-position component: complete unchanged original
+004f7a00/004f7ae0, 4,096 signed focus cases,4,096 null-preservation cases and845
+raw cell shifts agree with owned native state, plus native/sanitized unit checks
+and original manifest bookends. Positive XY normalization and raw unsigned cell
+shift/Z semantics remain distinct. Global and receiver map dimensions match in
+this scope. Original function inventory links already exist, so no recovered
+range exception or inventory refresh is required. Camera resource/lifecycle,
+rotation consumers and full native-scene/live acceptance remain separate.
+
+The committed history34bc0397..269d1c5c has zero exact receipt gaps; see
+working/tests/camera-follow-history-review-20261020.json.
+
+### 2026-10-20 — bounded palette modes, chains and application delivery
+
+All ten palette builders and owned append/ordinal selection are implemented;
+the application produces nine profile keys, binds each current resource revision
+and frame palette, and delivers selected tables through native SceneDraw and
+terrain preview. Original quirks include odd count storage, dark-only DWORD
+modes, fixed noise, metal byte wrapping/midpoint pointer stall and post-metal
+source carry. Safe full storage, finite scalar domains and atomic chain/budget
+failure are explicit native policies. The numerical and chain components each
+have fresh unchanged-original/native64/ASan-UBSan comparisons, respectively
+63,416,320 and5,263,360 exact values. New original records retain manifest
+bookends and immutable old evidence.
+
+Native application/preview records independently establish21 and14 Mesa headless
+GPU frames, plus15 terrain CLI controls. No physical GPU, installed full-scene
+or live replacement milestone follows. Camera lifecycle/rotation consumers,
+entity-linked map ownership, installed light producers and production scene
+orchestration remain implementation work. See
+[packet details](remaining-rendering-implementations-20261020.md). Reviewed actual
+committed range269d1c5c..4fb2cb76:16 exact hash-bound files, zero gaps, retained
+working/tests/palette-history-review-20261020.json; historical accounting is
+separate from new execution.
+
+Final palette ownership review also fixed copied-chain capacity charges and
+reserved ordinal metadata before future appends. The copy/64-append regression,
+unchanged-original chain comparison and both headless application matrices pass
+in new capacity-suffixed records; earlier reports remain historical unchanged.
+
+### 2026-10-20 — camera lifecycle and actual view consumers
+
+Bounded camera initialization/viewport registry, standalone/queued rotations,
+creature/effect direction/animation requests and actual owned native controller /
+minimap application are implemented. Whole original helpers and the selected
+post-frame tail match4,096 initialization,8,192 rotation/tail and6,416 registry
+cases with64,425 refresh requests. Additional request/direction comparisons cover
+1,408 creatures,8,129 effects and4,096 eight-direction calculations;1,167 unsafe
+original-domain cases are independently classified native refusals. Native64 /
+sanitized units are separate executions, not a whole native64 original matrix.
+Pinned table/float extraction and manifest bookends are retained.
+
+Headless native application checks independently cover phase-preserving switches,
+special catalog restarts, linked creator direction, explicit receiver clocks,
+queued priority, generation/revision failure atomicity and minimap invalidation.
+No QWidget, original pointer or implicit second motion clock enters these
+services. Empty frames avoid copying state; retained command charges update only
+changed tracks. See [packet details](remaining-rendering-implementations-20261020.md)
+and the new camera/scene view records. Production entity/map/session resource
+population and frame orchestration remain implementation work; installed full
+scene, physical GPU and live replacement acceptance remain separate validation.
+Prior evidence/source hashes remain immutable. Reviewed actual committed range
+4fb2cb76..e6e4f863:39 exact file receipts, zero gaps, retained under working/tests.
+
+### 2026-10-20 — linked map owner and typed light production
+
+New components RE.terrain-linked-rotation and RE.terrain-linked-frame-update
+compare12,288 original rotations,45,056 frame writes,4,096 local refreshes and
+3,014,880 complete cells, with actual original5345f0 occupancy execution. The
+reset body remains a checked request adapter in the rotation fixture. Native64
+and sanitizer units are separate executions; manifest bookends pass. Fresh
+records: terrain-linked-rotation-original-20261020.json and
+terrain-linked-frame-update-original-20261020.json.
+
+NR.scene-entity-map supplies owned linked controllers, sequence/frame separation,
+generation-safe references, artifact footprints, reset/retirement and explicit
+MPS activation. NR.scene-entity-lighting reads typed current health and FXA
+profiles, retains separate admission history and produces camera/spectator inputs
+for the actual recovered cycle. Each has independent native and sanitized CPU
+integration records. These do not assert installed full-game, physical GPU,
+original whole-map/navigation-graph equivalence or live replacement. Production
+full-scene orchestration is still implementation work. See the remaining-rendering
+implementation document for recovered evidence, native policies and exact limits.
+The shared build/movement probe source changes leave older comparisons historical;
+no previous source hashes were refreshed. Reviewed e6e4f863..45dcd57c:40 committed
+files, zero unresolved exact receipt gaps, separate from new execution evidence.
+
+### 2026-10-20 — recovered linked lifecycle and real map navigation consumer
+
+RE.terrain-linked-lifecycle identifies004f2e20 and its distinct004eb820 fast
+writer. Native terminal retirement now preserves004650d0's final frame; it no
+longer applies the earlier native reset-to-zero policy. Original loop execution
+uses actual forward controllers plus checked private frame/free adapters; fast
+writer/local occupancy and bounded forward/reverse terminal scans run separately.
+RE.terrain-linked-section-copy supplies mixed linked/ordinary transforms and native
+assembly; original nonreset copies and native reset/alias/bounds policies remain
+explicitly separate.
+
+NR.scene-map-navigation replaces revision-only invalidation with actual owned
+terrain queries, signature classification, repair ring and resumed connection
+maintenance. Native wall close/reopen tests require real graph changes, and map
+reset publishes geometry and the repair queue atomically. WORD-addressable TTD
+admission includes definition65535; one-past65536 stays refused. Existing regional
+search braces only clarify the same budget/edge order for Clang builds; historical
+original claims receive no new validation merely from that edit. Full-scene
+orchestration remains implementation work, independently from installed/full-game,
+physical GPU and live replacement acceptance. The remaining-rendering document
+records recovered addresses, native policies, evidence and exact boundaries.
+
+### 2026-10-20: production native scene ownership
+
+The remaining-rendering worktree adds NR.scene-native-sources and completes the
+owned NR.runtime-scene-composition application path: installed MAP/MPS, distinct
+terrain ANI/TTD and sprite ANI/SPR, installed palette/effect/light fields,
+generation-identified current source cursors/health/positions, explicit typed
+producer metadata, staged controller/light/map lifetime, full heterogeneous
+terrain/entity/attachment/visibility/depth queues and bounded prepared native
+GPU delivery. Source zero/one-step clocks and explicit visual ownership prevent
+recomposition from running simulation or advancing authoritative animation.
+Autofocus precedes spectator lighting; epochs reset linked source phases; retired
+CPU/GPU resources cannot resurrect old plans. AS.save_world receives only explicit
+loop braces for Clang compilation, with its existing synthetic grammar suite.
+
+The finite native scene suite includes four views/six exact CPU-versus-software
+GPU frames, stale/foreign/budget/clock/rollback controls, real terrain ANI-to-TTD
+progression/reset and initial spectator focus. Installed Forest40x40x19 acquires
+77 owned MPS placements and766 draws; the native checkpoint executable agrees
+with the application image. Installed files remain read-only and original
+manifest bookends are required. Execution records are new source-bound results;
+shared build/source edits leave older original comparisons historical.
+
+These are owned application/source contracts. Unclassified original producers
+must supply identified special/secondary/link/effect-camera/object-generation
+metadata; the native boundary refuses missing fields. Discovery of those
+original producer identities, full original scene comparison, physical NVIDIA
+acceptance and live replacement are not inferred from these component or
+installed headless tests. No gameplay balance or live replacement was introduced.
+See remaining-rendering-implementations-20261020.md and apps/scene-session/README.md.
+
+### 2026-10-20: native rendering integration into master
+
+The ten commits through98d579c9 are joined with committed master48a95a5b,
+starting at825a1fee, in an isolated integration worktree. Source paths merge
+without conflicts. Coverage registry entries are merged by stable ID/field;
+the only competing scalar selections are static implementation-review pointers
+and the regenerated source census. Both parents' exact receipts and immutable
+execution records remain preserved. Static reviews renew only directly reviewed
+changed pins, without refreshing old execution fingerprints. The combined ledger
+retains both sets of findings; the summary is regenerated from the merged state.
+
+Thirty committed ancestors and1,939 actual parent/current file edges were
+reviewed. Thirty-two missing exact intermediate edges receive two explicitly
+pending retrospective receipts; no past gate pass or fresh validation is implied.
+See coverage/native-rendering-master-history-20261020.json. Current uncommitted
+master edits are outside this committed-history audit and must remain local.
+
+NATIVE-MERGE.scene-native-20261020 and
+NATIVE-MERGE.scene-sanitized-20261020 execute the combined source tree with323
+pinned compiler/test inputs. Native64 and Clang ASan/UBSan pass the existing
+saved-world grammar checks, actual native source projection, animation frame
+transactions and light admission, plus six CPU-versus-software-OpenGL frames,
+linked terrain phases, spectator focus and lifetime/clock/refusal controls.
+Installed Forest40x40x19 retains77 placements and queues766 draws; the checkpoint
+executable agrees with the application image, installed hashes remain stable and
+original manifest bookends pass. Original whole-scene, physical NVIDIA and live
+acceptance remain independent. No new baseline or gameplay behavior is invented.

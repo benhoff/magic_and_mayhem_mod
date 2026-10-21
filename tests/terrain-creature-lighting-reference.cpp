@@ -50,15 +50,16 @@ int main(int argc,char** argv)try{
   }
   Bytes records(capacity*0xe4b+32,0xa5);global(0x6def58,reinterpret_cast<std::uintptr_t>(records.data()+16));global(0x6def5c,capacity);global(0x6df180,scanLimit);
 #endif
-  int player=int(next(8));
+  int player=int(trial%9)-1;
   for(unsigned tick=0;tick<24;++tick){
    // Exercise movement and changing admission between enumeration and visitation.
-   if(tick==11)player=int(next(8));
+   if(tick==11)player=int((trial+4)%9)-1;
+   if(tick==18)player=int((trial+7)%9)-1;
    for(auto& c:creatures)if(next(7)==0){c.column=next(w);c.row=next(h);c.layer=next(layers);c.active=next(2);c.lightEnabled=next(2);c.owner=int(next(8));}
-   TerrainCreatureLightControls controls{tick!=3 && tick!=17,trial%3==1,trial%3==2,tick==5?1:tick==13?2:tick==20?-1:0};
+   TerrainCreatureLightControls controls{tick!=3 && tick!=17,trial%3==1,trial%3==2,tick==5?1:tick==13?2:tick==20?-1:0,TerrainSpectatorLight{next(w),next(h)}};
 #ifdef ORIGINAL_REFERENCE
    for(unsigned i=0;i<capacity;++i){const auto& c=creatures[i];const auto at=16+i*0xe4b;put(records,at+4,c.active);put(records,at+0xe4,c.lightEnabled);put(records,at+0x174,c.owner);put(records,at+8,c.column);put(records,at+12,c.row);put(records,at+16,c.layer);}
-   global(0x644520,player);global(0x5e41a8,controls.changed);global(objectAddress+0x808,controls.enabled);global(objectAddress+0x642a,controls.transitionActive);global(objectAddress+0x6426,controls.transitionRequested);
+   global(0x689969,controls.spectator->column);global(0x68996d,controls.spectator->row);global(0x644520,player);global(0x5e41a8,controls.changed);global(objectAddress+0x808,controls.enabled);global(objectAddress+0x642a,controls.transitionActive);global(objectAddress+0x6426,controls.transitionRequested);
    reinterpret_cast<Call>(0x4f27d0)(reinterpret_cast<void*>(objectAddress));
 #endif
    cycle.step(field,creatures,scanLimit,player,relations,controls);const auto& state=cycle.state();

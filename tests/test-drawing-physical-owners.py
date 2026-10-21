@@ -47,6 +47,15 @@ class Ownership(unittest.TestCase):
             self.assertFalse(result['native_replacement'])
             if client:self.assertEqual(result['bindings'][0]['heap_generation'],77)
 
+    def test_version_three_external_owner(self):
+        for kind in range(3,7):
+            r=[[1,10,1,0,kind,3200,0],[10,10,1,1,71,3,0,101,0,1,9,1,9,1,7],[2,10,1,1,0,1,0],[3,20,1,1,0,0,0],[4,20,1,0,kind,3200,0],[6,10,0,0,0,1,0]]
+            raw=journal(r);raw[:8]=b'MNMPOW03';struct.pack_into('<I',raw,8,3)
+            got=decode(raw);self.assertEqual(got['external_provider_reservations'],1);self.assertFalse(got['owned_private_sysmem'])
+            for row,field in [(1,5),(1,6),(1,10),(1,15),(2,4),(4,1)]:
+                bad=bytearray(raw);at=64+row*128+field*4;struct.pack_into('<I',bad,at,0)
+                with self.assertRaises(ValueError):decode(bad)
+
     def test_missing_heap_generation(self):
         r=rows(True);del r[1]
         with self.assertRaises(ValueError):decode(journal(r))

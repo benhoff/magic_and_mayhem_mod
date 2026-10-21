@@ -6,20 +6,28 @@ find_package(Qt6 6.8 REQUIRED COMPONENTS Widgets)
 include(CTest)
 add_subdirectory(../../renderer/sprites "${CMAKE_CURRENT_BINARY_DIR}/sprites")
 add_subdirectory(../../reconstruction/rendering "${CMAKE_CURRENT_BINARY_DIR}/queue")
+if(NOT TARGET mnm-scene-palette)
+    add_subdirectory(../scene-session "${CMAKE_CURRENT_BINARY_DIR}/scene-session")
+endif()
 add_library(mnm-terrain-scene STATIC scene.cpp map_region.cpp region_loader.cpp light_fixture.cpp)
 target_include_directories(mnm-terrain-scene PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
-target_link_libraries(mnm-terrain-scene PUBLIC mnm-sprite-renderer mnm-sprite-queue mnm-terrain-catalog mnm-map-loader mnm-region-recipe-loader)
+target_link_libraries(mnm-terrain-scene PUBLIC mnm-sprite-renderer mnm-sprite-queue mnm-terrain-catalog mnm-map-loader mnm-region-recipe-loader mnm-scene-palette)
 target_compile_options(mnm-terrain-scene PRIVATE -Wall -Wextra -Werror -pedantic)
 add_executable(mnm-terrain-preview main.cpp)
 target_link_libraries(mnm-terrain-preview PRIVATE mnm-terrain-scene Qt6::Widgets)
 target_compile_options(mnm-terrain-preview PRIVATE -Wall -Wextra -Werror -pedantic)
 
-find_program(XVFB_RUN xvfb-run)
-if(BUILD_TESTING AND XVFB_RUN)
+if(BUILD_TESTING)
     add_executable(terrain-shaded-cache-test ../../tests/terrain-shaded-cache-test.cpp)
     target_link_libraries(terrain-shaded-cache-test PRIVATE mnm-terrain-scene Qt6::Widgets)
-    add_test(NAME terrain-shaded-cache COMMAND "${XVFB_RUN}" -a $<TARGET_FILE:terrain-shaded-cache-test>)
-    set_tests_properties(terrain-shaded-cache PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=xcb;LIBGL_ALWAYS_SOFTWARE=1;ASAN_OPTIONS=detect_leaks=0" TIMEOUT 60)
+    target_compile_options(terrain-shaded-cache-test PRIVATE -Wall -Wextra -Werror -pedantic)
+    add_dependencies(terrain-shaded-cache-test mnm_scene_palette_headless)
+    add_test(NAME terrain-shaded-cache COMMAND "${CMAKE_COMMAND}" -E env
+        QT_QPA_PLATFORM=mnm-headless-egl
+        QT_QPA_PLATFORM_PLUGIN_PATH=$<TARGET_FILE_DIR:mnm_scene_palette_headless>
+        MNM_PROFILE_EGL_VENDOR=Mesa LIBGL_ALWAYS_SOFTWARE=1 QT_FORCE_STDERR_LOGGING=1
+        $<TARGET_FILE:terrain-shaded-cache-test>)
+    set_tests_properties(terrain-shaded-cache PROPERTIES TIMEOUT 60)
 endif()
 
 if(BUILD_TESTING)

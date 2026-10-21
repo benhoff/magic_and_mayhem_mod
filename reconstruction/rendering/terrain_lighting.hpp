@@ -4,7 +4,7 @@
 #include <optional>
 #include <vector>
 namespace mnm::reconstruction {
-struct TerrainLightingConfig { int ambient=-108,ramp=-16; };
+struct TerrainLightingConfig { int ambient=-108,ramp=-16,singleCell=0; };
 // GLOBAL_OPTIONS: AmbientLight is clamped then negated; LightRamp is clamped.
 TerrainLightingConfig applyTerrainLighting(TerrainLightingConfig,std::optional<int> ambient,std::optional<int> ramp);
 struct TerrainLightSource {unsigned column=0,row=0,layer=0,size=17;};
@@ -12,7 +12,7 @@ class TerrainLightField {
 public:
  TerrainLightField(unsigned width,unsigned height,unsigned mapLayers,TerrainLightingConfig = {});
  // Selected 004f2140 stamp: wrapped XY, clipped paired Z planes, signed maxima.
- // Sizes 2..17; dimensions must cover the kernel's extent. No entity admission.
+ // Sizes 1..17; dimensions must cover the kernel's extent. No entity admission.
  void stamp(TerrainLightSource);
  // Explicit immediate publication; original smoothing/tick branches are separate.
  void publish();

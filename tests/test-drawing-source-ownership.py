@@ -16,6 +16,14 @@ def journal():
 class ProfileTests(unittest.TestCase):
     def test_positive_and_metadata_boundary(self):
         got=decode(journal());self.assertEqual(got['copies'],1);self.assertFalse(got['global_host_driver_alias_ownership'])
+    def test_external_policy_admission_and_denominator(self):
+        raw=journal();raw[:8]=b'MNMSOW02';struct.pack_into('<I',raw,8,2);struct.pack_into('<I',raw,28,2);struct.pack_into('<I',raw,152,1)
+        self.assertEqual(decode(raw)['direct_provider_leases'],1)
+        struct.pack_into('<I',raw,152,2)
+        with self.assertRaises(ValueError):decode(raw)
+        a=SimpleNamespace(wine_external_source_leases=True,wine_source_ownership=False,observer_mode='physical',control=False,wine_client_memory=False)
+        configure(a);self.assertTrue(a.wine_source_ownership);self.assertTrue(all(getattr(a,k) for k in REQUIRED_OPTIONS))
+
     def test_each_missing_capability(self):
         for row in [1,2]:
             for bit in range(10):

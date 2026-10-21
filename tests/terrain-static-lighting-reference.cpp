@@ -75,7 +75,7 @@ int main(int argc,char** argv)try{
    }
   };
   // Compare additive stamping separately: all extents and aliases, unaffected by gate.
-  for(unsigned index=2;index<=33;++index){const unsigned x=next(w),y=next(h),z=next(layers);
+  for(unsigned index=1;index<=33;++index){const unsigned x=next(w),y=next(h),z=next(layers);
    field.stampStatic({x,y,z,index/2+1});
 #ifdef ORIGINAL_REFERENCE
    reinterpret_cast<Stamp>(0x4f1c60)(reinterpret_cast<void*>(objectAddress),x,y,z,index);

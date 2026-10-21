@@ -10,6 +10,7 @@ struct TerrainLightingSnapshot {
  unsigned creatureScan=0,objectScan=0;
  std::vector<TerrainLightCreature> creatures;
  std::vector<TerrainLightObject> objects;
+ std::optional<TerrainSpectatorLight> spectator{};
 };
 // Owned composition of the selected 004f27a0 creature-then-static updater.
 class TerrainLightingCycle {

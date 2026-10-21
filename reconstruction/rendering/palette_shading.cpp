@@ -28,7 +28,7 @@ std::size_t ShadedPalette::tableIndex(std::int32_t shade) const {
  return std::size_t(index);
 }
 ShadedPalette buildShadedPalette(const PaletteRgb& rgb,PaletteShadingConfig c,bool rgb555){
- if(c.count<2 || c.count>256 || (c.count&(c.count-1)) ||
+ if(c.count<2 || c.count>256 ||
     !std::isfinite(c.intensityPower) || !std::isfinite(c.saturationPower) ||
     c.intensityPower<0 || c.saturationPower<0 || c.intensityPower>1000 || c.saturationPower>1000 ||
     c.intensityLevel<1 || c.intensityLevel>1000 || c.saturationLevel<1 || c.saturationLevel>1000)
@@ -36,8 +36,10 @@ ShadedPalette buildShadedPalette(const PaletteRgb& rgb,PaletteShadingConfig c,bo
  const double intensity=std::pow(c.intensityLevel,c.intensityPower),saturation=std::pow(c.saturationLevel,c.saturationPower);
  if(!std::isfinite(intensity) || !std::isfinite(saturation) || intensity==0 || saturation==0)
   throw std::invalid_argument("Nonfinite palette shading powers");
- ShadedPalette result;result.neutral=(c.count-1)/2;result.tables.resize(c.count-1);
- for(unsigned n=c.count;n<256;n*=2)++result.shift;
+ ShadedPalette result;result.neutral=(c.count-1)/2;result.tables.resize(c.count==3?2:2*result.neutral+1);
+ // The original switch recognizes only powers of two; every other count uses
+ // shift zero. It still produces two neutral-sized wings plus the neutral.
+ if(!(c.count&(c.count-1)))for(unsigned n=c.count;n<256;n*=2)++result.shift;
  const auto pack=[&](int r,int g,int b){r=std::clamp(r,0,255);g=std::clamp(g,0,255);b=std::clamp(b,0,255);
   return std::uint16_t(rgb555?((r&248)<<7)|((g&248)<<2)|(b>>3):((r&248)<<8)|((g&252)<<3)|(b>>3));};
  const auto half=result.neutral;

@@ -1,4 +1,5 @@
 #include "scene.hpp"
+#include "../scene-session/palette_binding.hpp"
 #include "terrain_camera.hpp"
 #include "terrain_map.hpp"
 #include "terrain_sections.hpp"
@@ -40,6 +41,9 @@ int main(int argc,char** argv)try{
  p.addOption({"scroll","Recovered screen-direction scroll x,y; repeat in order","pixels"});
  p.addOption({"view","Raw view 0..3","index","0"});p.addOption({"visibility","Apply recovered visibility pass"});
  p.addOption({"palette-shading","Apply recovered mode 0 palettes with explicit count 16 and levels 1 and powers 2"});
+ p.addOption({"palette-effect","Append a mode0..9 effect after the normal palette; repeat in order","mode"});
+ p.addOption({"effect-ordinal","Select a palette effect ordinal (default last appended)","index"});
+ p.addOption({"effect-config","Plain INI settings for stone, metal and red-tint palettes","path"});
  p.addOption({"preferences","Read terrain palette count from plain installed prefs CFG; requires palette-shading","path"});
  p.addOption({"lighting-config","Read global palette lighting from a packed installed CFG; requires palette-shading","path"});
  p.addOption({"terrain-lighting","Initialize an owned light field from global CFG and publish controlled source stamps; requires world/shading/lighting-config"});
@@ -167,8 +171,12 @@ int main(int argc,char** argv)try{
   auto opened=store.open(p.value("preferences").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&opened))throw std::runtime_error(e->detail);
   auto file=std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(opened));auto loaded=mnm::assets::loadTerrainPalettePreference(*file);if(auto* e=std::get_if<mnm::assets::PersistenceError>(&loaded))throw std::runtime_error(e->detail);
   *shading=mnm::reconstruction::applyTerrainPalettePreference(*shading,std::get<mnm::assets::TerrainPalettePreference>(loaded).lightLevels);
-  if(shading->count&(shading->count-1))throw std::runtime_error("TerrainLightLevels requires a supported power of two after original admission (2..256)");
  }
+ mnm::preview::TerrainPaletteEffects effects;
+ if((p.isSet("palette-effect")||p.isSet("effect-ordinal")||p.isSet("effect-config"))&&!shading)throw std::runtime_error("Palette effects require palette-shading");
+ for(const auto& value:p.values("palette-effect")){const auto mode=value.toUInt(&ok);if(!ok||mode>9)throw std::runtime_error("Palette effect mode must lie in0..9");effects.append.push_back(mode);}
+ if(p.isSet("effect-ordinal")){const auto ordinal=p.value("effect-ordinal").toUInt(&ok);if(!ok||ordinal>effects.append.size())throw std::runtime_error("Effect ordinal outside appended chain");effects.ordinal=ordinal;}
+ if(p.isSet("effect-config")){auto opened=store.open(p.value("effect-config").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&opened))throw std::runtime_error(e->detail);auto file=std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(opened));auto loaded=mnm::assets::loadProfile(*file);if(auto* e=std::get_if<mnm::assets::Error>(&loaded))throw std::runtime_error(e->detail);effects.profile=mnm::scene::paletteEffectProfile(std::get<mnm::assets::ProfileSnapshot>(loaded));}
  if(!shading && p.isSet("light"))throw std::runtime_error("Light requires palette-shading");
  if((p.isSet("light-fixture") && (!p.isSet("terrain-lighting") || p.isSet("light-source"))) || (p.isSet("light-tick") && !p.isSet("light-fixture")))throw std::runtime_error("Light fixture requires terrain-lighting and excludes light-source; light-tick requires fixture");
  if(p.isSet("light-source") && !p.isSet("terrain-lighting"))throw std::runtime_error("Light source requires terrain-lighting");
@@ -196,11 +204,11 @@ int main(int argc,char** argv)try{
   const auto& bytes=field.buffers()[0];mapInfo.insert("terrain_light_field",QJsonObject{{"ambient",config.ambient},{"ramp",config.ramp},{"bytes",qint64(bytes.size())},{"sha256",QString::fromLatin1(QCryptographicHash::hash(QByteArray(reinterpret_cast<const char*>(bytes.data()),bytes.size()),QCryptographicHash::Sha256).toHex())},{"sources",QJsonArray::fromStringList(p.values("light-source"))},{"publication","immediate controlled fixture"}});
   }
  }
- mnm::render::GlBlitter renderer;const auto result=mnm::preview::renderTerrain(renderer,std::get<mnm::assets::TerrainCatalog>(catalog),std::get<mnm::assets::Sprite>(sprite),tiles,{view,world?camera.cutLevel:1},p.isSet("visibility"),world,shading);
+ mnm::render::GlBlitter renderer;const auto result=mnm::preview::renderTerrain(renderer,std::get<mnm::assets::TerrainCatalog>(catalog),std::get<mnm::assets::Sprite>(sprite),tiles,{view,world?camera.cutLevel:1},p.isSet("visibility"),world,shading,effects);
  if(p.isSet("output")){
   QByteArray raw;for(auto word:result.pixels.pixels){raw.append(char(word&255));raw.append(char((word>>8)&255));}
   const auto prefix=p.value("output");writeNew(prefix+".565",raw);QFile png(prefix+".png");if(!png.open(QIODevice::WriteOnly|QIODevice::NewOnly) || !result.image.save(&png,"PNG"))throw std::runtime_error("Cannot save new PNG");
-  mapInfo.insert("palette_shading",bool(shading));if(shading){mapInfo.insert("palette_count",int(shading->count));mapInfo.insert("preferences",p.value("preferences"));if(!p.isSet("terrain-lighting"))mapInfo.insert("controlled_light",p.value("light").toInt());mapInfo.insert("palette_lighting",QJsonObject{{"light_curve",shading->intensityLevel},{"colour_factor",shading->saturationLevel},{"light_power",shading->intensityPower},{"colour_power",shading->saturationPower},{"config",p.value("lighting-config")}});}
+  mapInfo.insert("palette_shading",bool(shading));if(shading){mapInfo.insert("palette_count",int(shading->count));QJsonArray effectModes;effectModes.append(0);for(auto mode:effects.append)effectModes.append(int(mode));mapInfo.insert("palette_effects",effectModes);mapInfo.insert("effect_ordinal",qint64(effects.ordinal.value_or(effects.append.size())));mapInfo.insert("effect_config",p.value("effect-config"));mapInfo.insert("preferences",p.value("preferences"));if(!p.isSet("terrain-lighting"))mapInfo.insert("controlled_light",p.value("light").toInt());mapInfo.insert("palette_lighting",QJsonObject{{"light_curve",shading->intensityLevel},{"colour_factor",shading->saturationLevel},{"light_power",shading->intensityPower},{"colour_power",shading->saturationPower},{"config",p.value("lighting-config")}});}
   QJsonArray queue;for(const auto& item:result.queue){const auto& d=item.draw;queue.append(QJsonObject{{"tile",qint64(item.tile)},{"frame",qint64(d.frame)},{"role",qint64(d.role)},{"key",d.key},{"kind",d.kind},{"x",d.anchorX},{"y",d.anchorY},{"shade",d.shade}});}
   const auto rgba=result.image.convertToFormat(QImage::Format_RGBA8888);const auto rgbaHash=QCryptographicHash::hash(QByteArray(reinterpret_cast<const char*>(rgba.constBits()),rgba.sizeInBytes()),QCryptographicHash::Sha256).toHex();
   QJsonArray owners;for(const auto& owner:result.owners)owners.append(QJsonArray{owner.flags8,owner.flags10});

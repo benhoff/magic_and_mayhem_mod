@@ -8,7 +8,7 @@ void TerrainLightingCycle::step(const TerrainLightingSnapshot& input){
  auto candidate=*this;
  const auto& controls=candidate.objects_.state();
  candidate.creatures_.step(candidate.field_,input.creatures,input.creatureScan,input.player,input.relations,
-                          {input.creaturesEnabled,controls.active,controls.requested,input.changed});
+                          {input.creaturesEnabled,controls.active,controls.requested,input.changed,input.spectator});
  candidate.objects_.step(candidate.field_,input.objects,input.objectScan,input.view,
                         candidate.creatures_.state().published,input.changed,input.objectsEnabled);
  ++candidate.ticks_;

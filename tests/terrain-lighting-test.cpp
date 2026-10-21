@@ -15,8 +15,10 @@ int main(){using namespace mnm;
  reconstruction::TerrainLightField rounding(18,19,5,{-50,9});require(rounding.kernels()[12][(11*12+1)*12+2]==-119);
  const auto prior=field.buffers();field.stamp({0,0,0,2});field.publish();require(field.buffers()==prior);
  const auto invalid=[&](reconstruction::TerrainLightSource s){bool refused=false;try{field.stamp(s);}catch(const std::invalid_argument&){refused=true;}require(refused && field.buffers()==prior);};
- invalid({32,0,0,17});invalid({0,32,0,17});invalid({0,0,5,17});invalid({0,0,0,1});invalid({0,0,0,18});
+ invalid({32,0,0,17});invalid({0,32,0,17});invalid({0,0,5,17});invalid({0,0,0,0});invalid({0,0,0,18});
  bool refused=false;try{field.at(0,0,5);}catch(const std::out_of_range&){refused=true;}require(refused);
  reconstruction::TerrainLightField narrow(1,2,1,{-50,7});const auto narrowBefore=narrow.buffers();refused=false;try{narrow.stamp({0,0,0,2});}catch(const std::invalid_argument&){refused=true;}require(refused && narrow.buffers()==narrowBefore);
+ reconstruction::TerrainLightField single(1,1,1,{-50,7,-17});single.stamp({0,0,0,1});single.publish();require(single.kernels()[1].size()==1 && single.at(0,0,0)==-17 && single.buffers()[4][0]==-50);
+ for(int byte:{-129,128}){refused=false;try{reconstruction::TerrainLightField bad(1,1,1,{-50,7,byte});}catch(const std::invalid_argument&){refused=true;}require(refused);}
  auto copy=field;copy.stamp({16,16,4,17});copy.publish();require(field.buffers()==prior && copy.buffers()!=prior);
 }

@@ -92,12 +92,17 @@ bool searchNavigationRegions(std::vector<NavigationRegion> &g,int start,int end,
     if(front.priority>=record(end).priority){s.dirty=true;break;}
     std::vector<Candidate> admitted;
     const auto prior=neighbor_movement(record(front.node).movement);
-    if(budget>0){for(const auto &edge:region(g,front.node).connections)if(regionConnectionAdmitted(edge,q.movement)){
+    if(budget>0){
+      for(const auto &edge:region(g,front.node).connections){
+        if(regionConnectionAdmitted(edge,q.movement)){
       region(g,edge.destination);int cost=edge.cost;NeighborMovement payload;payload.accumulated_cost=add(prior.accumulated_cost,edge.cost);
       if(q.creature){if(!services.danger)throw std::invalid_argument("regional danger service");const int danger=services.danger(edge.destination);payload.unknown_18=add(prior.unknown_18,danger);if(q.dangerPenalty)cost=mul(cost,unsigned(add(mul(danger,10),1)));}
       if(q.trafficPenalty)cost=mul(mul(cost,g.at(unsigned(front.node)).traffic+1),2);
       admitted.push_back({cost,unsigned(edge.destination),movement_payload(payload)});
-    }--budget;}
+        }
+      }
+      --budget;
+    }
     if(budget<=0)break; // Last expansion is discarded and remains queued.
     auto at=std::find_if(s.open.begin(),s.open.end(),[&](auto v){return v.node==front.node&&v.priority==front.priority;});s.open.erase(at);
     const auto h=heuristic(front.node);

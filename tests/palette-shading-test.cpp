@@ -10,6 +10,11 @@ int main(){
  assert(p.tableIndex(-127)==0 && p.tableIndex(127)==14);
  for(auto c:p.tables.front())assert(c==0);for(auto c:p.tables.back())assert(c==65535);
  for(auto shade:{std::numeric_limits<int>::min(),std::numeric_limits<int>::max()}){bool refused=false;try{p.tableIndex(shade);}catch(const std::out_of_range&){refused=true;}assert(refused);}
- for(unsigned count:{0,1,3,17,512}){bool refused=false;try{buildShadedPalette(rgb,{count,1,1,2,2});}catch(const std::invalid_argument&){refused=true;}assert(refused);}
+ for(unsigned count:{0,1,257,512}){bool refused=false;try{buildShadedPalette(rgb,{count,1,1,2,2});}catch(const std::invalid_argument&){refused=true;}assert(refused);}
+ for(unsigned count=2;count<=256;++count){const auto chain=buildShadedPalette(rgb,{count,1,1,2,2});
+  assert(chain.tables.size()==(count==3?2:2*((count-1)/2)+1) && chain.neutral==(count-1)/2);
+  if(count&(count-1))assert(chain.shift==0);
+  assert(chain.tableIndex(0)==chain.neutral);
+ }
  const auto flat=buildShadedPalette(rgb,{2,1,1,2,2});assert(flat.tableIndex(-127)==0 && flat.tableIndex(127)==0);
 }

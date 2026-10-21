@@ -65,8 +65,16 @@ static void* __attribute__((cdecl)) resource_get(void* t){
  if(t==alias&&retire_case==3)return 0;
  return t;
 }
-static u32 __attribute__((cdecl)) descriptor(void* t,u32 sub,u32* out){check(t==source&&!sub);memset(out,0,40);out[0]=116;out[5]=13;out[6]=out[7]=40;out[8]=1;out[9]=3200;return 0;}
-static u32 __attribute__((cdecl)) map_body(void* t,u32 sub,u32* out,const u32* box,u32 flags){check(t==source&&!sub&&!box&&flags==0x80000000u);out[0]=80;out[1]=3200;out[2]=*(u32*)(*(u32*)(source+0x120)+0x30);if(!out[2])out[2]=*(u32*)(source+0x58);return 0;}
+static u32 __attribute__((cdecl)) descriptor(void* t,u32 sub,u32* out){check(t==source&&!sub);memset(out,0,40);out[0]=116;out[5]=13;out[6]=out[7]=40;out[8]=1;out[9]=3200;
+#ifdef MNM_DIRECT_BACKING_FIXTURE
+ out[5]=2;
+#endif
+ return 0;}
+static u32 __attribute__((cdecl)) map_body(void* t,u32 sub,u32* out,const u32* box,u32 flags){check(t==source&&!sub&&!box&&flags==0x80000000u);
+#ifdef MNM_DIRECT_BACKING_FIXTURE
+ ExitProcess(212);
+#endif
+ out[0]=80;out[1]=3200;out[2]=*(u32*)(*(u32*)(source+0x120)+0x30);if(!out[2])out[2]=*(u32*)(source+0x58);return 0;}
 static u32 __attribute__((cdecl)) unmap_body(void* t,u32 sub){check(t==source&&!sub);return 0;}
 static u32 __attribute__((cdecl)) handoff_rebind(void* texture,u32 sub,void* memory,u32 pitch){
  check(texture==source&&!sub&&pitch==80);
@@ -89,7 +97,11 @@ static void WIN delete_sync(void* s){check(s==(void*)21);}
 static void* WIN get_proc(const char* n){if(equal(n,"glFenceSync",12))return (void*)&fence;if(equal(n,"glClientWaitSync",17))return (void*)&wait_sync;if(equal(n,"glDeleteSync",13))return (void*)&delete_sync;return 0;}
 static void __attribute__((cdecl)) worker(void* cs,const void* p){
  check(cs==(void*)9&&p==packet);check_fp(expected_fp);check(GetLastError()==0x1234);++forwards;
+ #ifdef MNM_DIRECT_BACKING_FIXTURE
+ provider_fixture_worker();
+#else
  u32 user=*(u32*)(*(u32*)(source+0x120)+0x30);check(*(u8*)(user?user:*(u32*)(source+0x58))==3);
+#endif
  __asm__ volatile("fninit; fld1":::"memory");snapshot_fp(result_fp);SetLastError(0x4321);
 }
 static void __attribute__((cdecl)) nop(void* cs,const void* p){(void)cs;(void)p;check_fp(expected_fp);check(GetLastError()==0x1234);__asm__ volatile("fninit; fld1":::"memory");snapshot_fp(result_fp);SetLastError(0x4321);}
@@ -184,8 +196,17 @@ void start(void){
  }
  if(wine_handoff_enabled){dc_call(0);dc_call(1);check(dc_forwards==2);}
  initial_client=*(u32*)(*(u32*)(source+0x120)+0x30);old_pixels=(u8*)(initial_client?initial_client:*(u32*)(source+0x58));
+#ifdef MNM_BACKING_PROVIDER_FIXTURE
+ provider_fixture_setup();
+#endif
  SetLastError(0x1234);__asm__ volatile("fninit; fldz":::"memory");snapshot_fp(expected_fp);
- check(wine_submission_blt((void*)9,destination,0,0,source,0,0,0,0,1)==0);check(forwards==1);if(wine_handoff_enabled){check(!wine_handoff_find(1));if(!initial_client)check(*(u32*)(source+0x58)==(u32)old_pixels);else check(*(u32*)(*(u32*)(source+0x120)+0x30)==initial_client);if(trial==35)check(old_pixels[0]==2);if(trial==2)check(old_pixels[0]==7);}
+ check(wine_submission_blt((void*)9,destination,0,0,source,0,0,0,0,1)==0);check(forwards==1);
+#ifdef MNM_BACKING_PROVIDER_FIXTURE
+ provider_fixture_check();
+#endif
+ #ifndef MNM_DIRECT_BACKING_FIXTURE
+ if(wine_handoff_enabled){check(!wine_handoff_find(1));if(!initial_client)check(*(u32*)(source+0x58)==(u32)old_pixels);else check(*(u32*)(*(u32*)(source+0x120)+0x30)==initial_client);if(trial==35)check(old_pixels[0]==2);if(trial==2)check(old_pixels[0]==7);}
+ #endif
  check(GetLastError()==0x4321);check_fp(trial==40?async_result_fp:result_fp);
  if(retire_case==6)check(wine_lifetime_texture_decref(source)==1);
  if(ownership_case=='7'||ownership_case=='8'){finish(1);
@@ -195,7 +216,9 @@ void start(void){
 
 
  if(trial==20){u32 old;check(VirtualProtect((void*)*(u32*)(source+0x54),4096,4,&old));}
+ #ifndef MNM_DIRECT_BACKING_FIXTURE
  {u32 current=*(u32*)(*(u32*)(source+0x120)+0x30);if(!current)current=*(u32*)(source+0x58);((u8*)current)[0]=4;}
+#endif
  if(trial==43){
   char name[600];path(name,"stop.flag");HANDLE stop=CreateFileA(name,0x40000000,3,0,1,0x80,0);check(stop!=(HANDLE)-1&&CloseHandle(stop));
   wine_phys_active=1;u32 args[6]={0};struct Context c=begin(0,1,args,0,0,3);end(&c,0,0);check(journal&&enabled&&wine_phys_enabled);
