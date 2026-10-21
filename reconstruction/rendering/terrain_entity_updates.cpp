@@ -40,7 +40,7 @@ bool refreshTerrainCellNeighborhood(assets::MapAsset& map,std::size_t cell,const
  const auto result=plan(map,cell,catalog,occupied);publish(map,result);return result.dirty;
 }
 TerrainFrameWrite setTerrainLinkedFrame(assets::MapAsset& map,std::size_t index,const assets::TerrainCatalog& catalog,std::uint32_t frame,const std::vector<std::uint8_t>& occupied){
- dimensions(map,index,occupied);if(frame>catalog.records.size())return {};
+ dimensions(map,index,occupied);if(catalog.records.size()>65536)throw std::length_error("Terrain catalog exceeds WORD definitions");if(frame>catalog.records.size())return {};
  if(frame>=catalog.records.size())throw std::out_of_range("Original terrain frame equals one-past TTD count");
  auto candidate=map.cells[index];const auto oldClass=word(catalog,candidate.definition,0x94),newClass=word(catalog,frame,0x94);
  if(candidate.references[1]!=0xffff&&!(candidate.flags10&0x80)&&frame){

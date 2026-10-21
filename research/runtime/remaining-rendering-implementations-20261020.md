@@ -331,3 +331,80 @@ Optimized existing World/movement tests also pass. Their temporary directories n
 respect std::filesystem::temp_directory_path()/TMPDIR rather than hardcoding the
 quota-exhausted /tmp filesystem; checkpoint and publication checks are unchanged.
 Retained run: working/tests/entity-movement-smoke-tmpdir-20261020.log.
+
+## Linked tick, entity sections and actual navigation repair
+
+The linked tick caller is now identified as004f2e20 (also called by World at
+0046b851), rather than004ecda0. It invokes the actual00464ec0 controller for each
+list member. Event1 clears linked flag8, obtains004650d0's terminal display,
+writes it through004eb820, unlinks/frees the record and decrements the list count.
+Other events write the current display and retain the record. An authored event1
+also takes that branch even while its controller remains active. The native map
+owner now follows this behavior: **terminal retirement preserves the selected
+final frame**, replacing the earlier explicitly native reset-to-zero policy.
+Forward004650d0 scans backward before the controller PC for opcode0; reverse
+mode scans forward until opcode0 or a stop. Raw negative arguments are retained.
+Native bounds refuse original reads outside the owned sequence. The full linked
+loop fixture uses the loader's forward start mode; independent bounded terminal
+scan cases cover both modes. Original unsafe reverse terminal pointers are not
+made safe by inventing adjacent records.
+
+The direct004eb820 writer is distinct from004eb710. It has no creature-reference
+barrier. A new class16 sets bit0 and returns immediately. A nonzero new frame
+otherwise changes definition/classification only. A zero frame outside class16
+clears bits0/1 and refreshes local geometry. It does **not** call navigation
+classification. Confidence: confirmed in unchanged original execution. The
+whole-loop comparison executes actual original controllers and list unlink/count
+logic; private byte-checked frame-request/free adapters isolate those dependencies.
+The complete fast writer and actual local occupancy dependency run separately.
+The component is RE.terrain-linked-lifecycle.
+
+RE.terrain-linked-section-copy supplies square transforms of mixed ordinary and
+linked cells in all four orientations, plus complete mixed-height native region
+assembly. Selected source/definition/field rotation precedes publication; aliases
+and late failures cannot partially modify a destination. Original temporary source
+definition mutation is checked separately; native source assets stay immutable.
+Unsupported linked source sequences can resolve through explicit asset-stage reset
+provenance. Empty asset resets clear flags0/1 as a native policy; the original
+004eb8a0 body is not asserted for foreign asset pointers. Runtime references and
+controllers are created by the owning map after assembly, not copied as pointers.
+The admitted nonreset original matrix covers8,192 copies and434,764 complete cells;
+reset/alias/bounds controls are independent native64/sanitizer units.
+
+NR.scene-map-navigation now binds actual owned MAP/TTD query arrays to the existing
+recovered navigation algorithms. It builds bounded nodes/connections from explicit
+28-type shape metadata, compares actual before/after signatures, classifies with
+540430, enqueues540140 repairs and advances5404a0-style maintenance slices. The
+ring, working descriptors, graph connections and resumable search probes are real
+owned state; no observer callback stands in for the mutation. Callbacks retain
+query backing explicitly. Copying a pending owner cannot borrow the old owner's
+mutable storage. EntityMap publishes its changed cells and repair queue together;
+a failed geometry/query/queue operation preserves the previous map and graph.
+Blocked slices do no work. Tests close/reopen a wall and require actual connection
+changes, drain resumed queues, exercise owned-copy/refusal behavior and open a real
+linked cell through EntityMap reset. These actual native graph consumers supersede
+the earlier revision-only limitation. Original full reset/whole-world comparison,
+original startup boundary placement and live integration remain separate evidence.
+
+Catalog admission now covers all65,536 WORD-addressable definitions, including
+65535 as an ordinary definition/frame. Entity-reference sentinel limits remain
+separate. Frame65536 is one-past that catalog and is refused atomically. This
+corrects an unnecessary initial65,535-record restriction in the map/fast-writer/
+navigation adapters. New native/sanitizer boundary checks cover the last valid
+frame and map definition. The slow writer also refuses catalog storage larger
+than the16-bit domain rather than truncating a valid vector index into a WORD.
+
+Clang's sanitizer build exposed misleading indentation in the existing regional
+search expansion loop. Explicit braces retain the same edge enumeration and
+single budget debit after the loop. This is source/compile clarification, not new
+original regional-search validation; old evidence hashes remain historical.
+The original geometry/maintenance models remain suppliers, with independently
+recorded native composition. No gameplay balance values or clock were added.
+
+The committed45dcd57c..f571c5b4 range was reviewed against exact parent/current
+file receipts with no unresolved gaps; see
+working/tests/linked-map-history-review-20261020.json. New records and source
+fingerprints are retained independently from earlier development and failed runs.
+Production installed resource acquisition and full scene frame orchestration are
+still the next implementation packet; driver/full-game/live acceptance remains
+validation work.

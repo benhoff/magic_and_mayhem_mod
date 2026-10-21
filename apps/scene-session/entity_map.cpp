@@ -1,4 +1,5 @@
 #include "entity_map.hpp"
+#include "../../reconstruction/rendering/terrain_linked_lifecycle.hpp"
 #include "../../reconstruction/rendering/terrain_map.hpp"
 #include <algorithm>
 #include <limits>
@@ -119,7 +120,7 @@ EntityMap::EntityMap(assets::MapAsset source, assets::TerrainCatalog catalog,
       !source_->layers || source_->layers > 32 ||
       source_->cells.size() !=
           std::size_t(source_->width) * source_->height * source_->layers ||
-      catalog_->records.empty() || catalog_->records.size() > 65535 ||
+      catalog_->records.empty() || catalog_->records.size() > 65536 ||
       rotation > 3 || animation_->records.size() > 65536 ||
       animation_->starts.size() > 65537 ||
       placements_.placements.size() > 65536)
@@ -210,7 +211,7 @@ game::Handle EntityMap::activate(game::Entity entity, CellReference reference,
   rebuild(s);
   budget(s);
   changed(s, true);
-  state_ = std::move(s);
+  publish(std::move(s));
   return handle;
 }
 void EntityMap::relocate(game::Handle handle, std::size_t at,
@@ -235,7 +236,7 @@ void EntityMap::relocate(game::Handle handle, std::size_t at,
   rebuild(s);
   budget(s);
   changed(s, true);
-  state_ = std::move(s);
+  publish(std::move(s));
 }
 void EntityMap::retire(game::Handle handle) {
   auto s = state_;
@@ -247,7 +248,7 @@ void EntityMap::retire(game::Handle handle) {
   rebuild(s);
   budget(s);
   changed(s, true);
-  state_ = std::move(s);
+  publish(std::move(s));
 }
 void EntityMap::reset(State &s, std::size_t at) const {
   validCell(s.map, at);
@@ -277,7 +278,7 @@ void EntityMap::reset(State &s, std::size_t at) const {
 void EntityMap::resetCell(std::size_t at) {
   auto s = state_;
   reset(s, at);
-  state_ = std::move(s);
+  publish(std::move(s));
 }
 std::vector<std::pair<std::size_t, std::int32_t>>
 EntityMap::advanceLinked(const std::vector<std::size_t> &cells) {
@@ -294,20 +295,43 @@ EntityMap::advanceLinked(const std::vector<std::size_t> &cells) {
       throw std::invalid_argument("Missing runtime linked controller");
     auto event = it->second.animation.tick();
     events.emplace_back(at, event);
-    auto frame = it->second.animation.sprite();
-    if (!frame) {
-      reset(s, at);
-      continue;
-    }
-    auto written = reconstruction::setTerrainLinkedFrame(s.map, at, *catalog_,
-                                                         *frame, s.occupied);
+    const auto frame =
+        event == 1 ? std::uint32_t(reconstruction::terrainLinkedTerminalFrame(
+                         sequence(it->second.sourceSequence),
+                         it->second.animation.state()))
+                   : it->second.animation.sprite().value();
+    if (event == 1)
+      s.map.cells.at(at).flags10 &= 0xfff7;
+    const auto written = reconstruction::setTerrainAnimationFrame(
+        s.map, at, *catalog_, frame, s.occupied);
     s.redraw |= written.redrawDirty;
-    if (written.accepted)
-      changed(s, true);
+    if (event == 1) {
+      s.world.release(it->second.handle);
+      s.linked.erase(it);
+    }
+    changed(s, true);
   }
   budget(s);
-  state_ = std::move(s);
+  publish(std::move(s));
   return events;
+}
+void EntityMap::publish(State state) {
+  if (state.navigation)
+    state.navigation->update(state.map);
+  state_ = std::move(state);
+}
+void EntityMap::enableNavigation(MapNavigationConfig config) {
+  auto s = state_;
+  s.navigation.emplace(s.map, *catalog_, config);
+  changed(s, false);
+  publish(std::move(s));
+}
+void EntityMap::maintainNavigation(bool blocked) {
+  if (!state_.navigation)
+    throw std::logic_error("Runtime map navigation is not configured");
+  auto candidate = *state_.navigation;
+  candidate.step(blocked);
+  state_.navigation = std::move(candidate);
 }
 void EntityMap::acknowledgeRedraw(std::uint64_t revision) {
   if (revision != state_.revision)

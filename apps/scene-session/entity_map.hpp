@@ -4,6 +4,7 @@
 #include "../../reconstruction/animation/controller.hpp"
 #include "../../reconstruction/rendering/terrain_entity_rotation.hpp"
 #include "../../reconstruction/rendering/terrain_entity_updates.hpp"
+#include "map_navigation.hpp"
 #include <map>
 #include <memory>
 namespace mnm::scene {
@@ -38,6 +39,7 @@ class EntityMap {
     std::vector<std::uint8_t> occupied;
     std::uint64_t revision = 1, navigationRevision = 1;
     bool redraw = true;
+    std::optional<MapNavigationRepair> navigation;
     explicit State(std::uint32_t capacity);
   };
   std::shared_ptr<const assets::MapAsset> source_;
@@ -47,6 +49,7 @@ class EntityMap {
   EntityMapLimits limits_;
   State state_;
   void rebuild(State &) const;
+  void publish(State);
   void reset(State &, std::size_t) const;
   void budget(const State &) const;
   std::vector<assets::AnimationRecord> sequence(std::uint32_t) const;
@@ -83,5 +86,10 @@ public:
   std::vector<std::pair<std::size_t, std::int32_t>>
   advanceLinked(const std::vector<std::size_t> &);
   void resetCell(std::size_t);
+  void enableNavigation(MapNavigationConfig);
+  void maintainNavigation(bool blocked = false);
+  const MapNavigationRepair *navigation() const {
+    return state_.navigation ? &*state_.navigation : nullptr;
+  }
 };
 } // namespace mnm::scene

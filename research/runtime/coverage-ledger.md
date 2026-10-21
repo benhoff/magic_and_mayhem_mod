@@ -19660,3 +19660,25 @@ implementation document for recovered evidence, native policies and exact limits
 The shared build/movement probe source changes leave older comparisons historical;
 no previous source hashes were refreshed. Reviewed e6e4f863..45dcd57c:40 committed
 files, zero unresolved exact receipt gaps, separate from new execution evidence.
+
+### 2026-10-20 — recovered linked lifecycle and real map navigation consumer
+
+RE.terrain-linked-lifecycle identifies004f2e20 and its distinct004eb820 fast
+writer. Native terminal retirement now preserves004650d0's final frame; it no
+longer applies the earlier native reset-to-zero policy. Original loop execution
+uses actual forward controllers plus checked private frame/free adapters; fast
+writer/local occupancy and bounded forward/reverse terminal scans run separately.
+RE.terrain-linked-section-copy supplies mixed linked/ordinary transforms and native
+assembly; original nonreset copies and native reset/alias/bounds policies remain
+explicitly separate.
+
+NR.scene-map-navigation replaces revision-only invalidation with actual owned
+terrain queries, signature classification, repair ring and resumed connection
+maintenance. Native wall close/reopen tests require real graph changes, and map
+reset publishes geometry and the repair queue atomically. WORD-addressable TTD
+admission includes definition65535; one-past65536 stays refused. Existing regional
+search braces only clarify the same budget/edge order for Clang builds; historical
+original claims receive no new validation merely from that edit. Full-scene
+orchestration remains implementation work, independently from installed/full-game,
+physical GPU and live replacement acceptance. The remaining-rendering document
+records recovered addresses, native policies, evidence and exact boundaries.

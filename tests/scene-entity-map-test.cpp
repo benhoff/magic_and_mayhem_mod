@@ -61,7 +61,7 @@ int main() try {
   refused([&] { m.advanceLinked({13, 13}); });
   check(m.revision() == before && m.linked().count(13));
   m.advanceLinked({13});
-  check(m.map().cells[13].definition == 0 && !(m.map().cells[13].flags10 & 8) &&
+  check(m.map().cells[13].definition == 3 && !(m.map().cells[13].flags10 & 8) &&
         m.linked().empty() && !m.world().find(linked));
   game::Entity e;
   e.family = game::Family::creature;
@@ -128,6 +128,15 @@ int main() try {
   check(authored.entities().at(activated.slot).placement == 0);
   refused(
       [&] { authored.activate(e, scene::CellReference::artifact, 2, {}, 1); });
+  assets::MapAsset lastMap;
+  lastMap.width = lastMap.height = lastMap.layers = 1;
+  lastMap.cells.resize(1);
+  lastMap.cells[0].definition = 65535;
+  lastMap.cells[0].references = {0xffff, 0xffff, 0xffff};
+  assets::TerrainCatalog lastCatalog;
+  lastCatalog.records.resize(65536);
+  scene::EntityMap last(std::move(lastMap), std::move(lastCatalog), {});
+  check(last.map().cells[0].definition == 65535);
   std::cout << "{\"success\":true,\"sequence_frame_ownership\":true,\"real_"
                "controller_retirement\":true,\"typed_generation_membership\":"
                "true,\"footprint_and_navigation_invalidation\":true,\"atomic_"
