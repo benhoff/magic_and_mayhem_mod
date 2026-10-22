@@ -68512,17 +68512,21 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-submission-generations.md",
-        "research/formats/drawing-wine-submission-v2.md"
+        "research/formats/drawing-wine-submission-v2.md",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/wine_submission.h",
         "tools/drawing_wine_submission.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing_lifetime_index.py"
       ],
       "tests": [
         "tests/test-drawing-wine-submission.py",
         "tests/drawing-wine-submission-test.c",
-        "tools/test-drawing-wine-submission.py"
+        "tools/test-drawing-wine-submission.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/wine_lifetime.h",
@@ -68543,7 +68547,8 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
@@ -68554,7 +68559,8 @@
       },
       "remaining_gaps": [
         "Pending version2guards,actualPE32reusegenerationfixture andoriginalacquisition. Generation known does not establish source storage immutability orasyncEGLownership.",
-        "Original01admits1534submissions/1197knownboth/337unknownfirstallopaqueobject14/0unknownsources,337API/336EGLwitnesses,32returns189466records. Pending unknownbufferorigin/internal lifetime/immutablebytes/asyncEGLassignment/allroutes/semanticjourneys."
+        "Original01admits1534submissions/1197knownboth/337unknownfirstallopaqueobject14/0unknownsources,337API/336EGLwitnesses,32returns189466records. Pending unknownbufferorigin/internal lifetime/immutablebytes/asyncEGLassignment/allroutes/semanticjourneys.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -68630,11 +68636,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Pinned Wine texture entry lifetime observation",
-      "scope": "Pending separateopt-in loadedWine11.16texturecreate/decref entrytrampolines withpinnedmodulehash/RVA/expected6originalbytes. Reusecdecl lifetimeforwarders through originalprologuetrampolines; selectedddrawtextureIATs stayoriginaltoavoiddouble recording. Includeinternaltexturecallerswithoutprivateobjectlayout/bytes. No allinternalpath/immutableownership/asyncEGLclaim.",
+      "scope": "Pending separateopt-in loadedWine11.16texturecreate/decref entrytrampolines withpinnedmodulehash/RVA/expected6originalbytes. Reusecdecl lifetimeforwarders through originalprologuetrampolines; selectedddrawtextureIATs stayoriginaltoavoiddouble recording. Includeinternaltexturecallerswithoutprivateobjectlayout/bytes. No allinternalpath/immutableownership/asyncEGLclaim. Fifth batch completes the bounded native adapter implementation and refusal controls documented in rendering-fifth-ten-closeouts-20261021.md; original game/driver installation, complete backing ownership and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-wine-texture-entry.md"
+        "research/runtime/draw02-wine-texture-entry.md",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/wine_texture_entry.h"
@@ -68642,7 +68649,9 @@
       "tests": [
         "tests/drawing-wine-texture-entry-test.c",
         "tools/test-drawing-wine-texture-entry.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/wine_lifetime.h",
@@ -68660,18 +68669,20 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Pending exactsignature/relocation/range/ABItrampolinefixturesandactualinternalfrontbuffercreation. Broadunobservedpath/ownership/EGLassignment remainpending.",
-        "Original01admits1630submissionswith0unknownfirst/sourcegenerations,377frontgetterreturnswith0unknowntextures,closed32returns. Internalentryscope coversselectedcreate/decrefexecutions,notallWinealiases/otherstoragewrites/sourceimmutability/asyncEGLassignment/semanticjourneys."
+        "Original01admits1630submissionswith0unknownfirst/sourcegenerations,377frontgetterreturnswith0unknowntextures,closed32returns. Internalentryscope coversselectedcreate/decrefexecutions,notallWinealiases/otherstoragewrites/sourceimmutability/asyncEGLassignment/semanticjourneys.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -69023,11 +69034,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Diagnostic source lease through exact emitted worker completion",
-      "scope": "Separate opt-in diagnostic API read-only source lease retained until all command IDs emitted under its exact observed API entry have checked bound worker entry/return. Preserve early completion, wait at most 5s outside journal mutex, reject missing emission/unknown packet/timeout/write fault, restore on original owner. Checked worker completion does not assert hardware or scanout completion.",
+      "scope": "Separate opt-in diagnostic API read-only source lease retained until all command IDs emitted under its exact observed API entry have checked bound worker entry/return. Preserve early completion, wait at most 5s outside journal mutex, reject missing emission/unknown packet/timeout/write fault, restore on original owner. Checked worker completion does not assert hardware or scanout completion. Fifth batch completes the bounded native adapter implementation and refusal controls documented in rendering-fifth-ten-closeouts-20261021.md; original game/driver installation, complete backing ownership and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-source-worker-lease.md"
+        "research/runtime/draw02-source-worker-lease.md",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/source_worker_lease.h",
@@ -69036,7 +69048,9 @@
       "tests": [
         "tests/drawing-source-worker-lease-test.c",
         "tools/test-drawing-source-worker-lease.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/session.c",
@@ -69063,11 +69077,12 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -69075,7 +69090,8 @@
       "remaining_gaps": [
         "Fixtures pass delayed/early completion and missing/unknown/timeout refusals. Original01 closes 118 accepted leases and 222 checked command returns; no observed protected write. 104 selected native physical witnesses and 208 CPU planes match. CPU copies sit outside the protected interval, so source-version identity during the lease remains pending.",
         "Other command routes, whole texture/storage lifetime, asynchronous hardware/scanout, cadence controls, complete semantic journeys and 120 advancing windows remain pending. No full DRAW02 acceptance or replacement promotion.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -70316,12 +70332,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded unknown storage address relationship diagnostics",
-      "scope": "Prospective bounded same-pitch candidate checks for live unknown V2storage queries. Compare numeric offsets and public VirtualQuery region/allocation metadata inside the process; never read pixels/private driver layouts or admit unknown points. Relative address/region equality is not physical alias or upload proof.",
+      "scope": "Prospective bounded same-pitch candidate checks for live unknown V2storage queries. Compare numeric offsets and public VirtualQuery region/allocation metadata inside the process; never read pixels/private driver layouts or admit unknown points. Relative address/region equality is not physical alias or upload proof. Fifth batch completes the bounded native adapter implementation and refusal controls documented in rendering-fifth-ten-closeouts-20261021.md; original game/driver installation, complete backing ownership and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-canvas-storage-generations.md",
-        "research/formats/drawing-storage-transitions.md"
+        "research/formats/drawing-storage-transitions.md",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/scene/drawing_storage_candidates.h",
@@ -70332,7 +70349,9 @@
         "tests/test-drawing-storage-transitions.py",
         "tools/test-drawing-storage-transitions.py",
         "tools/capture-drawing-interactive.py",
-        "tools/analyze-drawing-storage-transitions.py"
+        "tools/analyze-drawing-storage-transitions.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py"
       ],
       "evidence": [
         "DRAW02.draw02-storage-candidates-fixture-01-20261012",
@@ -70345,11 +70364,12 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -70357,7 +70377,8 @@
       "remaining_gaps": [
         "All104native-matched version3frames have no direct submitted map/client epoch link despite known held CPU source snapshots. Address offsets/mapped aliases or an unobserved transfer path remain hypotheses; diagnose them without changing admission.",
         "Original01normal Quit267candidate rows shows0span overlap247different20equal allocation bases. Relevant client-source address differs1048592bytes from cached canvas2 with a different base. Small-offset hypothesis excluded within this sample; physical alias versus actual transfer remains unresolved. No protected-source/native parity run for this isolated metadata probe; prior104frame parity remains separately historical.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "validation_dependencies": [
         "runtime/scene/canvas_producers.c",
@@ -70383,12 +70404,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Public Wine resource subresource copy observation",
-      "scope": "Prospective pinned cdecl10argument copy_sub_resource_region observer. Preserve exact forwarding/result/error/FP; record pointer-free source/destination resource IDs, observed texture associations/generations, subresources/coordinates/box/flags, API thread/entry/depth and resource/lifetime prefixes. No private layouts, source pixels, async completion or ownership claim.",
+      "scope": "Prospective pinned cdecl10argument copy_sub_resource_region observer. Preserve exact forwarding/result/error/FP; record pointer-free source/destination resource IDs, observed texture associations/generations, subresources/coordinates/box/flags, API thread/entry/depth and resource/lifetime prefixes. No private layouts, source pixels, async completion or ownership claim. Fifth batch completes the bounded native adapter implementation and refusal controls documented in rendering-fifth-ten-closeouts-20261021.md; original game/driver installation, complete backing ownership and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-canvas-storage-generations.md",
-        "research/runtime/draw02-wine-resource-copy.md"
+        "research/runtime/draw02-wine-resource-copy.md",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/wine_resource_copy.h",
@@ -70398,7 +70420,9 @@
         "tests/drawing-wine-resource-copy-test.c",
         "tests/test-drawing-wine-resource-copy.py",
         "tools/test-drawing-wine-resource-copy.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py"
       ],
       "evidence": [
         "DRAW02.resource-copy-imports-20261012",
@@ -70410,18 +70434,20 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Candidate probe excludes a small numeric offset for relevant client/CPU buffers. Actual alias/transfer unresolved; public copy boundary is a tested source lead, not an assumed bridge.",
-        "Original01normal Quit has353API352EGL witnesses but0copy_sub_resource_region calls. This public copy boundary does not explain the observed split client/CPU buffers in the bounded sample. Inspect original58d540source-buffer construction and actual copy routing next; private layouts/physical aliasing/transfer completion remain unassigned."
+        "Original01normal Quit has353API352EGL witnesses but0copy_sub_resource_region calls. This public copy boundary does not explain the observed split client/CPU buffers in the bounded sample. Inspect original58d540source-buffer construction and actual copy routing next; private layouts/physical aliasing/transfer completion remain unassigned.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "validation_dependencies": [
         "runtime/drawing/session.c",
@@ -70542,12 +70568,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original menu/world state sampling for drawing journeys",
-      "scope": "Prospective read-only original menu-thread samples of actual top-screen identity/stack, world mode/counters and selected global ANI controller scalars at bounded intervals. Validate readiness/owner/pointer ranges; unknown fields remain invalid. No input success\u2192semantic outcome inference, gameplay memory writes, timer/pause equivalence or allanimation state claim. The two scalars at6dbe95/6dbe99 are pacing interval/companion, not camera state; corrected interpretation does not assert camera pause.",
+      "scope": "Prospective read-only original menu-thread samples of actual top-screen identity/stack, world mode/counters and selected global ANI controller scalars at bounded intervals. Validate readiness/owner/pointer ranges; unknown fields remain invalid. No input success\u2192semantic outcome inference, gameplay memory writes, timer/pause equivalence or allanimation state claim. The two scalars at6dbe95/6dbe99 are pacing interval/companion, not camera state; corrected interpretation does not assert camera pause. Fifth batch completes the bounded native adapter implementation and refusal controls documented in rendering-fifth-ten-closeouts-20261021.md; original game/driver installation, complete backing ownership and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/world-tick-loop.md",
-        "research/runtime/draw02-end-to-end.md"
+        "research/runtime/draw02-end-to-end.md",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/menu/drawing_semantic_state.h",
@@ -70560,7 +70587,9 @@
         "tools/capture-drawing-interactive.py",
         "tests/fixtures/drawing-journeys/campaign-pause-schedule.json",
         "tools/analyze-drawing-campaign-pause.py",
-        "tests/test-drawing-campaign-pause.py"
+        "tests/test-drawing-campaign-pause.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py"
       ],
       "evidence": [
         "DRAW02.draw02-semantic-state-fixture-05-20261012",
@@ -70590,11 +70619,12 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -70604,7 +70634,8 @@
         "Original campaign bounded Mini/Preferences selected scalar pause and resumed counter advancement observed. GlobalANI fields are selected controller scalars, not every creature/effect/animation/timer; full pause equivalence false. Selection/tooltip, source-owned campaign menu composition, native parity/allphysical changes/routes/full47/21remain pending. Fixture failures preserved and address-conflict cause unassigned.",
         "Historical camera labels refer to pacing globals; corrected raw-journal reanalysis proves their selected timing stability only. Actual camera fields and all camera pause/lifecycle behavior remain independently unverified.",
         "Campaign source-map/worker original01normal Quit exits0before sampled ack. Exact offline normal-exit admission is independently guarded; missing acknowledgements remain explicit. Its982mssecond Mini fails unchanged1000msdwell minimum; capture now waits1500msat observed secondMini and requires a fresh result. No fullpause/animation/camera/native parity promotion.",
-        "Fresh final campaign acquisition03waits4000msafter Preferences close and1500msat secondMini. Scalar reanalysis04passes2514ms/3323msMini and2625msPreferences dwells plus24resumed samples with actual advancement; Quit ack remains unobserved while exact original exit0is verified. Selected fields only, not fullanimation/timer/camera/native equivalence. Capturer/offline-analyzer source changes leave older coupled evidence historical; no fingerprints or engine statuses refreshed."
+        "Fresh final campaign acquisition03waits4000msafter Preferences close and1500msat secondMini. Scalar reanalysis04passes2514ms/3323msMini and2625msPreferences dwells plus24resumed samples with actual advancement; Quit ack remains unobserved while exact original exit0is verified. Selected fields only, not fullanimation/timer/camera/native equivalence. Capturer/offline-analyzer source changes leave older coupled evidence historical; no fingerprints or engine statuses refreshed.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "validation_dependencies": [
         "runtime/menu/observer.c",
@@ -70818,12 +70849,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Exact original cursor journal point for HUD samples",
-      "scope": "Prospective opt-in read-only versioned cursor-point export: cache completed original GetCursorPos result per observed thread under API journal mutex; expose exact API record/entry/frame prefix and cursor values to same-owner HUD sampler without extra cursor polling. Missing/failed cursor, inactive/loss/gap/capacity cases remain explicit and cannot prove semantic selection, click dispatch or actor lifetime.",
+      "scope": "Prospective opt-in read-only versioned cursor-point export: cache completed original GetCursorPos result per observed thread under API journal mutex; expose exact API record/entry/frame prefix and cursor values to same-owner HUD sampler without extra cursor polling. Missing/failed cursor, inactive/loss/gap/capacity cases remain explicit and cannot prove semantic selection, click dispatch or actor lifetime. Fifth batch completes the bounded native adapter implementation and refusal controls documented in rendering-fifth-ten-closeouts-20261021.md; original game/driver installation, complete backing ownership and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-end-to-end.md",
-        "research/formats/drawing-input-point.md"
+        "research/formats/drawing-input-point.md",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/input_point.h",
@@ -70832,7 +70864,9 @@
       "tests": [
         "tests/drawing-input-point-test.c",
         "tests/test-drawing-input-point.py",
-        "tools/test-drawing-input-point.py"
+        "tools/test-drawing-input-point.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py"
       ],
       "evidence": [
         "DRAW02.draw02-input-point-fixture-01-20261012",
@@ -70842,18 +70876,20 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Getter ABI/output/readability/owner isolation/error-FP preservation, current original journal joins and consumer integration pending. Exact cursor/HUD correlation is not recovered click selection/tooltip/persistent actor state.",
-        "First fixture original-FP flag exceeds its direct forwarding assertions; second fixture adds original x87 control checks while query preserves full512FXstate. Whole original input call context/semantic outcomes remain separate."
+        "First fixture original-FP flag exceeds its direct forwarding assertions; second fixture adds original x87 control checks while query preserves full512FXstate. Whole original input call context/semantic outcomes remain separate.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_input_point_v1.h",
@@ -71686,22 +71722,26 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Diagnostic public Wine source descriptor at exact submission",
-      "scope": "Opt-in extra public texture_get_resource/get_sub_resource_desc queries at a known-live source texture submission. Record exact submission/API/thread/source generation/subresource, public format/access/geometry descriptor and query outcomes using opaque IDs; forward the original blit once with original entry and returned LastError/FP state. No private layout or pixel reads, map/unmap, new waits, source byte ownership, all aliases/lifetimes, presentation completeness, unobtrusive gameplay or native parity claim.",
+      "scope": "Opt-in extra public texture_get_resource/get_sub_resource_desc queries at a known-live source texture submission. Record exact submission/API/thread/source generation/subresource, public format/access/geometry descriptor and query outcomes using opaque IDs; forward the original blit once with original entry and returned LastError/FP state. No private layout or pixel reads, map/unmap, new waits, source byte ownership, all aliases/lifetimes, presentation completeness, unobtrusive gameplay or native parity claim. Fifth batch completes the bounded native adapter implementation and refusal controls documented in rendering-fifth-ten-closeouts-20261021.md; original game/driver installation, complete backing ownership and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-source-descriptor.md",
         "research/formats/drawing-wine-source-descriptor.md",
-        "research/runtime/draw02-storage-override-20261012.json"
+        "research/runtime/draw02-storage-override-20261012.json",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/wine_source_descriptor.h",
-        "tools/drawing_wine_source_descriptor.py"
+        "tools/drawing_wine_source_descriptor.py",
+        "tools/drawing_lifetime_index.py"
       ],
       "tests": [
         "tests/drawing-wine-source-descriptor-test.c",
         "tools/test-drawing-wine-source-descriptor.py",
-        "tests/test-drawing-wine-source-descriptor.py"
+        "tests/test-drawing-wine-source-descriptor.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/session.c",
@@ -71728,18 +71768,20 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Fresh fixture05 and original01 establish owned forwarding guards and2546current exact submission/source-generation/subresource/lifetime metadata bindings. Extra public descriptors expose12shape/access tuples, including40x40and400x280sources, but no source pixels or ownership. Original short capture retains466physical API witnesses and174advancing update windows with all-presentations flag false. Fresh counter-only control retains261windows; current comparison is separate. Adversarial cross-journal guards, source pixel acquisition/ownership, all internal aliases/lifetimes, complete frame/action/caller/routes and47/21 closure remain pending. User explicitly overrides GiB limits for continuation; storage authorization confers no engine status.",
-        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
+        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -71751,12 +71793,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded diagnostic read-only Wine source mapping",
-      "scope": "Opt-in diagnostic read-only public map of known-live RGB565 GPU source subresources at Wine blit submission, limited to40x40and400x280shapes and16map attempts per shape. Copy dense rows into independent owned memory while mapping is valid, unmap before retaining payload/forwarding original blit, bind generation/lifecycle/submission identities, and retain explicit unsupported/budget/map/range/generation refusals. Failed unmap or overlapping diagnostic invocation aborts the run before forwarding into an unresolved map. Driver synchronization/residency changes are diagnostic effects. No all-source/alias/lifetime/concurrency ownership, every frame/action/route, unobtrusive gameplay, native parity or replacement claim.",
+      "scope": "Opt-in diagnostic read-only public map of known-live RGB565 GPU source subresources at Wine blit submission, limited to40x40and400x280shapes and16map attempts per shape. Copy dense rows into independent owned memory while mapping is valid, unmap before retaining payload/forwarding original blit, bind generation/lifecycle/submission identities, and retain explicit unsupported/budget/map/range/generation refusals. Failed unmap or overlapping diagnostic invocation aborts the run before forwarding into an unresolved map. Driver synchronization/residency changes are diagnostic effects. No all-source/alias/lifetime/concurrency ownership, every frame/action/route, unobtrusive gameplay, native parity or replacement claim. Fifth batch completes the bounded native adapter implementation and refusal controls documented in rendering-fifth-ten-closeouts-20261021.md; original game/driver installation, complete backing ownership and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-source-map.md",
-        "research/formats/drawing-wine-source-map.md"
+        "research/formats/drawing-wine-source-map.md",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/wine_source_map.h",
@@ -71765,7 +71808,10 @@
       "tests": [
         "tests/drawing-wine-source-map-test.c",
         "tests/test-drawing-wine-source-map.py",
-        "tools/test-drawing-wine-source-map.py"
+        "tools/test-drawing-wine-source-map.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py",
+        "tests/drawing-source-limit-test.c"
       ],
       "validation_dependencies": [
         "runtime/drawing/session.c",
@@ -71797,11 +71843,12 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -71809,7 +71856,8 @@
       "remaining_gaps": [
         "Owned fixture02 passes27 original forwards,17map attempts/16unmaps,11owned snapshots over padded mapped rows, disabled/unsupported/active-map/failed-map/invalid-range/generation/budget refusals and fail-closed unmap/reentry children. Seven decoder guards pass. Original driver read mapping, source payload identity/temporal/presentation proof, exact cross-journal adversarial cases, all aliases/lifetimes/concurrency and whole acquisition remain pending. Failed initial fixture build01 is retained; no original activation precedes the passing owned fixture.",
         "Original02 validates32successful closed read mappings and3635200owned retained bytes at2361exact submission/lifetime identities.1824unsupported descriptors and505quota refusals remain; all-source ownership/every-submission/every-presentation flags are false. Cursor atlas and mutable40pixel backing roles are bounded visual/call-order findings; a separate reference-only model binds13physical ROIs with1startup mismatch and1sampling refusal retained. Fresh control/comparison quantify combined diagnostic overhead only. The archived old template is not reused; current local prefix31 and active raw reference4le are pinned.",
-        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
+        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -71875,12 +71923,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded diagnostic mapping across readable RGB565 sources",
-      "scope": "Opt-in diagnostic public READ mapping of each known-live submitted RGB565 subresource with MAP_R access, no multisampling, depth1 and descriptor size covering dense rows within the32768bytepitchbound, dimensions1..800 by1..600. Generic CPU/GPU-readable sources are admitted; default8192attempt/2GiB retention bounds, explicit per-run lower caps and all unsupported/query/active-map/budget/map/range/generation refusals are recorded in MNMWMS04with two Windows performance-counter stamps; historical version3supports padding without timestamps and version2 retains its exact dense-size restriction. Copy dense rows into independent memory while mapped, close mapping before retention and original forward, preserve API state, fail closed on failed unmap or overlapping invocation. The legacy two-shape mode remains separately decodable. No global alias/concurrency ownership, every physical/worker presentation/action/route, native parity, unobtrusive gameplay or replacement claim.",
+      "scope": "Opt-in diagnostic public READ mapping of each known-live submitted RGB565 subresource with MAP_R access, no multisampling, depth1 and descriptor size covering dense rows within the32768bytepitchbound, dimensions1..800 by1..600. Generic CPU/GPU-readable sources are admitted; default8192attempt/2GiB retention bounds, explicit per-run lower caps and all unsupported/query/active-map/budget/map/range/generation refusals are recorded in MNMWMS04with two Windows performance-counter stamps; historical version3supports padding without timestamps and version2 retains its exact dense-size restriction. Copy dense rows into independent memory while mapped, close mapping before retention and original forward, preserve API state, fail closed on failed unmap or overlapping invocation. The legacy two-shape mode remains separately decodable. No global alias/concurrency ownership, every physical/worker presentation/action/route, native parity, unobtrusive gameplay or replacement claim. Fifth batch completes the bounded native adapter implementation and refusal controls documented in rendering-fifth-ten-closeouts-20261021.md; original game/driver installation, complete backing ownership and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-source-map.md",
-        "research/formats/drawing-wine-source-map.md"
+        "research/formats/drawing-wine-source-map.md",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/wine_source_map.h",
@@ -71889,7 +71938,10 @@
       "tests": [
         "tests/drawing-wine-source-map-test.c",
         "tests/test-drawing-wine-source-map.py",
-        "tools/test-drawing-wine-source-map.py"
+        "tools/test-drawing-wine-source-map.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py",
+        "tests/drawing-source-limit-test.c"
       ],
       "validation_dependencies": [
         "runtime/drawing/session.c",
@@ -71933,11 +71985,12 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -71949,7 +72002,8 @@
         "Original05closes129consecutive advancing windows and2182owned snapshots/1017141856bytes with every observed submission retained,400API/399EGLwitnesses and normalQuit. Raw reference model binds400regions/398matches/112104000pixels with2mismatches. Exact source-to-engine-window/worker attribution, atomic original buffer/alias ownership, caller/actions, unknown display/movie/GDI routes and allphysicalchanges remain pending. FailedWorld04Results timeout and control03/04pre-game wineboot timeouts remain retained; no missing evidence is waived.",
         "Version4adds before/after mapped-read performance counters for independent temporal classification. Fresh owned/native and original execution required; no producer or worker identity is inferred from time.",
         "Timestamped original07closes178advancing windows and2629owned snapshots with every observed source,457API/456EGLwitnesses and normalQuit. Source times classify1975contained/0crossing/654outside; source/physical model matches456of457regions with1mismatch preserved. Original06pre-game boot refusal and analysis01adapter failure remain explicit. No producer/worker/global ownership or whole-frame promotion.",
-        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
+        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -72266,12 +72320,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Writer attribution and recorded canvas overlap for diagnostic protected sources",
-      "scope": "Opt-in metadata trace around the existing selected original-canvas read-only lease. Snapshot every registered canvas cache and report same virtual range, pixel-span and protection-page overlap; fault handler records normalized PE instruction identity and target offset without recorder locks or live cache reads. Preserve fail-stop writes and exact protection restoration. Same-address CPU writes are bounded by the protected lease; cache equality, shared reservation and absence of faults do not prove allocation ownership, other virtual mappings, GPU reads or complete source atomicity.",
+      "scope": "Opt-in metadata trace around the existing selected original-canvas read-only lease. Snapshot every registered canvas cache and report same virtual range, pixel-span and protection-page overlap; fault handler records normalized PE instruction identity and target offset without recorder locks or live cache reads. Preserve fail-stop writes and exact protection restoration. Same-address CPU writes are bounded by the protected lease; cache equality, shared reservation and absence of faults do not prove allocation ownership, other virtual mappings, GPU reads or complete source atomicity. Fifth batch completes the bounded native adapter implementation and refusal controls documented in rendering-fifth-ten-closeouts-20261021.md; original game/driver installation, complete backing ownership and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-source-write-trace.md",
-        "research/formats/drawing-source-write-trace.md"
+        "research/formats/drawing-source-write-trace.md",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/scene/source_write_trace.h",
@@ -72281,7 +72336,9 @@
         "tests/drawing-source-write-trace-test.c",
         "tests/test-drawing-source-write-trace.py",
         "tools/test-drawing-source-write-trace.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/scene/canvas_producers.c",
@@ -72316,11 +72373,12 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -72329,7 +72387,8 @@
         "Current owned fixture01 passes12 actual PE32 cases and10 decoder methods; six traced foreign write faults resolve to exact fixture instructions, including same/partial aliases, both page halos and the arming window. Existing read-only lease regression passes. Build failures and no-display launch failure retain their original source hashes.",
         "Original02 closes139 protected source leases/264 worker commands with stable source pairs across136 complete advancing updates and normal Quit. All six observed source canvases report MEM_PRIVATE and48-byte first-page offsets; known cached pixel ranges and reservations do not overlap during those leases.2154 entries across49 cache IDs have no recorded pixel pointer, and remain unknown.",
         "Owned separate file-mapping views demonstrably change protected source bytes without faulting. Complete original backing provenance, other virtual mappings, GPU reads/completion, current cache identity at fault and unobtrusive acquisition remain open. No native parity, live replacement or complete DRAW-02 promotion.",
-        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
+        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -72341,11 +72400,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Selected worker current-context GL fence completion",
-      "scope": "Opt-in bounded public GL fence after the original opcode42 worker callback and before publishing its return or releasing selected source leases. Resolve extension functions on the current context per call; record no-current-context as unwitnessed and fail-stop missing functions, fence/wait failures and changed contexts. A signaled fence covers earlier commands in that current stream, not all contexts, pixel backing ownership, scanout, original timing or native replacement.",
+      "scope": "Opt-in bounded public GL fence after the original opcode42 worker callback and before publishing its return or releasing selected source leases. Resolve extension functions on the current context per call; record no-current-context as unwitnessed and fail-stop missing functions, fence/wait failures and changed contexts. A signaled fence covers earlier commands in that current stream, not all contexts, pixel backing ownership, scanout, original timing or native replacement. Fifth batch completes the bounded native adapter implementation and refusal controls documented in rendering-fifth-ten-closeouts-20261021.md; original game/driver installation, complete backing ownership and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-gpu-backing-provenance.md"
+        "research/runtime/draw02-gpu-backing-provenance.md",
+        "research/runtime/rendering-fifth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/wine_gpu_completion.h",
@@ -72355,7 +72415,9 @@
         "tests/drawing-gpu-completion-test.c",
         "tests/test-drawing-gpu-completion.py",
         "tools/test-drawing-gpu-completion.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_worker_producer_points_v1.h",
@@ -72394,11 +72456,12 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "HIGH03.gpu-fence-20261020"
+        "HIGH03.gpu-fence-20261020",
+        "NT5.native-adapters-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -72408,7 +72471,8 @@
         "Original01 observes1918 selected worker completions with signaled current-context GL fences and zero unwitnessed contexts. Static identity review joins266 protected commands across140 stable source leases to those witnesses.115 complete advancing updates and normal original Quit are verified; the nominal120-window schedule target was not reached.",
         "The original run forces llvmpipe software rendering. Signaled current-stream fences do not prove hardware completion, the identity of source backing consumed by the driver, alternate mappings, all contexts, unobtrusive acquisition, native parity or complete DRAW-02.",
         "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending.",
-        "Current owned regression02 passes12 PE32 cases and6 decoder methods: recorder disabled before close, later workers forward once without extra GL/journal calls, and close during an in-flight fence remains strictly incomplete. Two original acquisition failures are preserved (wrong EGL library; normal journals followed by exit99). Fresh combined original32pilot03 exits0 after2108signaled fences and144restored source leases; this bounded rerun supports the teardown correction while the earlier exit99 remains preserved; no whole-hook quiescence or all-context/backing ownership proof."
+        "Current owned regression02 passes12 PE32 cases and6 decoder methods: recorder disabled before close, later workers forward once without extra GL/journal calls, and close during an in-flight fence remains strictly incomplete. Two original acquisition failures are preserved (wrong EGL library; normal journals followed by exit99). Fresh combined original32pilot03 exits0 after2108signaled fences and144restored source leases; this bounded rerun supports the teardown correction while the earlier exit99 remains preserved; no whole-hook quiescence or all-context/backing ownership proof.",
+        "Fifth batch bounded helper implementation is exercised with owned PE32 inputs and strict journal controls; original comparison, live integration, all aliases/backing ownership, actual hardware completion and semantic/gameplay parity remain pending. Submission lifetime indexing is a dependency change and does not complete its broader acquisition scope."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -312022,6 +312086,37 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NT5.native-adapters-20261021",
+      "kind": "native_integration",
+      "scope": "Ten bounded native rendering adapter implementations (legacy and bounded map combined), production drawing/scene/menu compilation, actual owned PE32 ABI/refusal fixtures and strict decoder/memory controls. Submission parser remains a partial dependency. No original artifacts/game, actual GL context, alternate backing ownership or live replacement.",
+      "record": "research/runtime/rendering-fifth-ten-results-20261021/controls-03.json",
+      "sha256": "f866c41f6bd62736848bdc9c8d4c7e23ebf29a86f9510215a7f7073755798841",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -334843,6 +334938,33 @@
         "NT4.final-native-ownership-refusals-20261021",
         "NT4.merged-master-ownership-refusals-20261021"
       ]
+    },
+    {
+      "id": "NR.fifth-ten.adapters-20261021",
+      "level": "headless",
+      "scope": "Ten bounded native adapter tasks, combining legacy and bounded mapping; owned PE32 ABI fixtures, strict decoder controls and linear-memory lifetime lookup. Submission parser is a dependency only and retains partial implementation. No original game, live comparison or hardware GL claim.",
+      "behaviors": [
+        "NR.drawing-wine-texture-entry-observation",
+        "NR.drawing-source-worker-lease",
+        "NR.drawing-storage-query-candidates",
+        "NR.drawing-wine-resource-copy",
+        "NR.drawing-original-cursor-point",
+        "NR.drawing-wine-source-descriptor",
+        "NR.drawing-wine-source-map",
+        "NR.drawing-wine-source-map-bounded",
+        "NR.drawing-source-write-trace",
+        "NR.drawing-gpu-completion",
+        "NR.drawing-semantic-state-observation",
+        "NR.drawing-wine-submission-generations"
+      ],
+      "tests": [
+        "tools/test-rendering-fifth-ten.py",
+        "tests/test-rendering-fifth-ten.py",
+        "tests/drawing-source-limit-test.c"
+      ],
+      "evidence": [
+        "NT5.native-adapters-20261021"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -335598,8 +335720,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-be5243552365ae3b96a5b80dd8fc07a0fafd768904ffa417c2cf995753f4698e.json",
-    "sha256": "be5243552365ae3b96a5b80dd8fc07a0fafd768904ffa417c2cf995753f4698e"
+    "path": "research/runtime/coverage/source-index-a661f18e171433cb51d8fb9c836b6068c1e518cf83ac03bddadbef66d64246f5.json",
+    "sha256": "a661f18e171433cb51d8fb9c836b6068c1e518cf83ac03bddadbef66d64246f5"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

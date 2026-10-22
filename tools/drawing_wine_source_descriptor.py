@@ -37,13 +37,8 @@ def analyze(directory):
     raw=(directory/'wine-submission.bin').read_bytes();lifetime=(directory/'wine-lifetime.bin').read_bytes()
     calls={c['call']:c for c in decode_submissions(raw,lifetime=lifetime)['calls'] if c['method']==1}
     entries={r[2]:r for r in struct.iter_unpack('<48I',raw[64:-192]) if r[1]==1 and r[3]==1}
-    states={0:{}};active={}
-    for row in struct.iter_unpack('<24I',lifetime[64:]):
-        if row[1]==2:
-            kind=1 if row[3]<=2 else 3
-            if row[3] in (1,3) and not row[8]&0x80000000 and not row[12]:active[kind,row[10]]=row[11]
-            elif row[3] in (2,4) and row[12]==2:active.pop((kind,row[10]),None)
-        states[row[0]]=dict(active)
+    from drawing_lifetime_index import LifetimeIndex
+    lifetimes=LifetimeIndex(lifetime)
     if {s['submission'] for s in result['samples']}!=set(calls):
         raise ValueError('Source descriptor missing/extra submission samples')
     for s in result['samples']:
@@ -54,10 +49,9 @@ def analyze(directory):
             raise ValueError('Source descriptor lifetime prefix precedes submission')
         if s['subresource']!=entries[s['submission']][13]:
             raise ValueError('Source descriptor subresource differs')
-        before,after=states.get(s['lifetime_before']),states.get(s['lifetime_after'])
-        if before is None or after is None or after.get((1,s['source_texture']),0)!=s['source_generation_after']:
+        if not lifetimes.valid_prefix(s['lifetime_before']) or not lifetimes.valid_prefix(s['lifetime_after']) or lifetimes.generation(s['lifetime_after'],1,s['source_texture'])!=s['source_generation_after']:
             raise ValueError('Source descriptor exact lifetime state differs')
-        if s['status']!=1 and before.get((1,s['source_texture']),0)!=s['source_generation']:
+        if s['status']!=1 and lifetimes.generation(s['lifetime_before'],1,s['source_texture'])!=s['source_generation']:
             raise ValueError('Source descriptor query lacks its live generation')
     result.update(submission_journal_sha256=sha(raw),lifetime_journal_sha256=sha(lifetime),all_sample_submission_identities_bound=True)
     return result

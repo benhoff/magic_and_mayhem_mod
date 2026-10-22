@@ -5,6 +5,7 @@ static void* wine_copy_original;
 static void wine_copy_emit(u32* r){r[0]=++wine_copy_records;if(wine_copy_records>131072||!write(wine_copy_file,r,192))ExitProcess(99);}
 static void wine_copy_resource(u32* r,u32 at,void* resource){
  r[at]=wine_resource_id(resource,1);
+ if(!r[at])return; /* Unknown/null resources cannot inherit an empty slot. */
  for(u32 i=0;i<2048;++i)if(wine_resources[i].id==r[at]){r[at+1]=wine_resources[i].texture;r[at+2]=wine_resources[i].generation;break;}
 }
 static u32 __attribute__((cdecl)) wine_copy_region(void* context,void* dst,u32 dstsub,u32 x,u32 y,u32 z,void* src,u32 srcsub,const u32* box,u32 flags){

@@ -17,7 +17,7 @@ def decode(data, complete=True):
             if ordinal!=len(rows) or r[2] not in (1,2) or r[3]!=len(result) or any(r[4:8]) or any(r[11:18]) or r[8]!=sum(c['status']>2 for c in result) or r[9]!=sum(c['status']==1 for c in result) or r[10]!=sum(c['status']==2 for c in result):
                 raise ValueError('GPU completion terminal')
             terminal=r[2];continue
-        if r[1]!=1 or not r[2] or r[2] in seen or not r[5] or not 1<=r[8]<=8 or r[11]!=(r[7]-r[6])%2**32 or r[12]&~7 or r[13] not in (0,1) or r[14]!=r[13] or r[15] not in (0,1) or r[16:18]!=(1000000000,0):
+        if r[1]!=1 or not r[2] or r[2] in seen or not r[5] or bool(r[3])!=bool(r[4]) or not 1<=r[8]<=8 or r[11]!=(r[7]-r[6])%2**32 or r[12]&~7 or r[13] not in (0,1) or r[14]!=r[13] or r[15] not in (0,1) or r[16:18]!=(1000000000,0):
             raise ValueError('GPU completion identity/status')
         seen.add(r[2]);status=r[8]
         if status==1:

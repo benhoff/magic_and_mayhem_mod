@@ -36,6 +36,8 @@ def snapshot(data):
 
 
 def marker(data, trace, phase):
+    if phase not in (2,3):
+        raise ValueError('Write trace marker phase')
     if len(data) != 32:
         raise ValueError('Write trace marker extent')
     r = struct.unpack('<8I', data)

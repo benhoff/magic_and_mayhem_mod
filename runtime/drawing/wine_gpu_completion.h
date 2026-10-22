@@ -7,7 +7,7 @@ static int wine_gpu_recording(void){return __atomic_load_n(&wine_gpu_enabled,__A
 static void wine_gpu_emit(u32* r){r[0]=++wine_gpu_records;if(wine_gpu_records>131072||!write(wine_gpu_file,r,128))ExitProcess(99);}
 static int wine_gpu_callable(void* p){u32 m[7];return (u32)p>3&&(u32)p!=0xffffffff&&VirtualQuery(p,m,28)==28&&m[4]==0x1000&&!(m[5]&0x101)&&(m[5]&0xf0);}
 static void wine_gpu_complete(const void* packet,u32 worker){
- if(!wine_gpu_recording())return;u32 r[32]={0};r[1]=1;r[2]=worker;r[5]=GetCurrentThreadId();r[6]=GetTickCount();r[16]=1000000000;
+ if(!wine_gpu_recording())return;if(!packet||!worker)ExitProcess(99);u32 r[32]={0};r[1]=1;r[2]=worker;r[5]=GetCurrentThreadId();r[6]=GetTickCount();r[16]=1000000000;
  EnterCriticalSection(journal_lock);if(!wine_gpu_recording()){LeaveCriticalSection(journal_lock);return;}++wine_gpu_calls;
  for(u32 i=0;i<2048;++i)if(wine_blit_packets[i].pointer==packet){if(!equal(wine_blit_packets[i].words,packet,100))ExitProcess(99);r[3]=wine_blit_packets[i].command;r[4]=wine_blit_packets[i].submission;break;}
  LeaveCriticalSection(journal_lock);

@@ -7,6 +7,7 @@
 #define MNM_STATE_EFFECT 0x6e1f00
 #define MNM_STATE_ANI 0x6deffc
 #endif
+API u32 WIN GetCurrentThreadId(void);
 /* Bounded same-menu-thread scalar observation. No gameplay state mutation. */
 static HANDLE semantic_state_file;
 static u32 semantic_state_rows[4096][48],semantic_state_count,semantic_state_dropped,semantic_state_last_tick;
@@ -15,7 +16,7 @@ static int semantic_state_open(void){
  semantic_state_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(semantic_state_file==(HANDLE)-1){semantic_state_file=0;return 0;}return 1;
 }
 static void semantic_state_sample(void){
- if(!semantic_state_file)return;u32 now=GetTickCount();if(semantic_state_count&&now-semantic_state_last_tick<50)return;
+ if(!semantic_state_file||!menu_thread||GetCurrentThreadId()!=menu_thread)return;u32 now=GetTickCount();if(semantic_state_count&&now-semantic_state_last_tick<50)return;
  semantic_state_last_tick=now;if(semantic_state_count>=4096){++semantic_state_dropped;return;}
  u32* r=semantic_state_rows[semantic_state_count++];r[0]=semantic_state_count;r[1]=now;r[2]=menu_thread;r[3]=menu_screen;r[4]=menu_generation;r[5]=menu_request;r[6]=menu_status;r[7]=menu_ready;
  if(readable((void*)MNM_STATE_SCREEN_DEPTH,4)&&readable((void*)MNM_STATE_TOP_SCREEN,4)){

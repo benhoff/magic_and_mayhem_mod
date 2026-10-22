@@ -13,7 +13,7 @@ def decode(data,resources):
     known_resources={c['returned_resource'] if c['method']==1 else c['object'] for c in resources['calls']}
     known_resources.discard(0)
     for ordinal,r in enumerate(rows[:-1],1):
-        if r[0]!=ordinal or r[1] not in (1,2) or not r[2] or not r[3] or r[9] or r[22] not in (0,1,2) or any(r[33:]):
+        if r[0]!=ordinal or r[1] not in (1,2) or not r[2] or not r[3] or r[9] or r[5]>32 or bool(r[4])!=bool(r[5]) or r[22] not in (0,1,2) or any(r[33:]):
             raise ValueError('Resource copy identity/reserved')
         if r[22]!=1 and any(r[23:29]):raise ValueError('Unknown copy box has coordinates')
         if r[1]==1:

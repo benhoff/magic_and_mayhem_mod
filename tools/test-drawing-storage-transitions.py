@@ -34,10 +34,10 @@ def main():
         if process.returncode:raise ValueError('Sourcebyteexportfixture exit:'+str(process.returncode))
         from drawing_storage_transitions import decode
         observation=decode((capture/'canvas-storage-transitions-0000.bin').read_bytes())
-        if not observation['closed'] or observation['calls']!=8 or observation['observed_lock_return_epochs']!=5 or [q['status'] for q in observation['queries']]!=[2,1,3,0,0,0,0]:raise ValueError('Fixture transition journal differs')
+        if not observation['closed'] or observation['calls']!=8 or observation['observed_lock_return_epochs']!=5 or [q['status'] for q in observation['queries']]!=[2,1,3,0,0,0,0,0]:raise ValueError('Fixture transition journal differs')
         from drawing_storage_query_returns import bind
         query_returns=bind(observation)
-        if len(query_returns['bindings'])!=1 or query_returns['bindings'][0]['query']!=6 or query_returns['bindings'][0]['canvas']!=8 or query_returns['bindings'][0]['lock_return_epoch']!=5 or observation['queries'][-1]['input_address']:raise ValueError('Fixture query input/Lock return differs')
+        if len(query_returns['bindings'])!=1 or query_returns['bindings'][0]['query']!=6 or query_returns['bindings'][0]['canvas']!=8 or query_returns['bindings'][0]['lock_return_epoch']!=5 or observation['queries'][-2]['input_address']:raise ValueError('Fixture query input/Lock return differs')
         subprocess.run(['python3',str(ROOT/'tests/test-drawing-storage-transitions.py')],check=True)
         subprocess.run(['python3',str(ROOT/'tests/test-drawing-storage-query-returns.py')],check=True)
         results=[dict(case='observed-transition-state-and-reuse',actual_exit=0,observation=observation)]

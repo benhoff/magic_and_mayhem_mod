@@ -11,7 +11,7 @@ static void storage_candidates(u32 query,u32* point,void* storage,u32 row_pitch)
   u32 address=(u32)storage,n=row_pitch*s->height,r[24]={0};
   r[0]=++storage_transition_records;r[1]=5;r[2]=query;r[3]=s->id;r[4]=count;r[5]=1;
   if(canvas_ok)r[5]|=2;if(input_ok)r[5]|=4;
-  if(canvas_ok&&input_ok&&canvas[1]==input[1])r[5]|=8;
+  if(canvas_ok&&input_ok&&canvas[1]&&canvas[1]==input[1]&&(canvas[4]==0x1000||canvas[4]==0x2000)&&(input[4]==0x1000||input[4]==0x2000))r[5]|=8;
   if(address>=s->pixels&&address-s->pixels<n)r[5]|=16;
   if(s->pixels>=address&&s->pixels-address<n)r[5]|=32;
   r[6]=address>=s->pixels?address-s->pixels:s->pixels-address;r[7]=address>=s->pixels;

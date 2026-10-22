@@ -13,7 +13,7 @@ static int source_worker_lease_mode(void){
  u32 h[16]={0};copy(h,"MNMSWL01",8);h[2]=1;h[3]=64;h[4]=0x40209ca7;h[5]=16384;h[6]=2048;h[7]=5000;if(!write(source_worker_lease_file,h,64))return 0;source_worker_lease_enabled=1;return 1;
 }
 static void source_worker_lease_begin(struct Context* c){
- if(!source_worker_lease_enabled)return;if(source_worker_lease.api)ExitProcess(99);memset(&source_worker_lease,0,sizeof(source_worker_lease));source_worker_lease.api=c->r[29];source_worker_lease.lease=c->source_lease;source_worker_lease.owner=GetCurrentThreadId();source_worker_lease_emit(1,0,0);
+ if(!source_worker_lease_enabled)return;if(source_worker_lease.api||!c->r[29]||!c->source_lease)ExitProcess(99);memset(&source_worker_lease,0,sizeof(source_worker_lease));source_worker_lease.api=c->r[29];source_worker_lease.lease=c->source_lease;source_worker_lease.owner=GetCurrentThreadId();source_worker_lease_emit(1,0,0);
 }
 static void source_worker_lease_packet(u32 phase,u32 command,u32 api,u32 worker){
  if(!source_worker_lease_enabled||!source_worker_lease.api)return;
@@ -32,4 +32,4 @@ static void source_worker_lease_wait(struct Context* c){
   LeaveCriticalSection(journal_lock);if(GetTickCount()-start>=5000)ExitProcess(99);Sleep(1);
  }
 }
-static void source_worker_lease_close(u32 reason){if(!source_worker_lease_file)return;if(source_worker_lease.api)ExitProcess(99);u32 r[16]={0};r[0]=++source_worker_lease_records;r[1]=5;r[2]=reason;if(!write(source_worker_lease_file,r,64)||!CloseHandle(source_worker_lease_file))ExitProcess(99);source_worker_lease_file=0;}
+static void source_worker_lease_close(u32 reason){if(!source_worker_lease_file)return;if(source_worker_lease.api)ExitProcess(99);u32 r[16]={0};r[0]=++source_worker_lease_records;r[1]=5;r[2]=reason;if(source_worker_lease_records>16384||!write(source_worker_lease_file,r,64)||!CloseHandle(source_worker_lease_file))ExitProcess(99);source_worker_lease_file=0;}

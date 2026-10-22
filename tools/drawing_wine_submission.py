@@ -13,18 +13,10 @@ def decode(data, api_calls=None, lifetime=None):
     rows = list(struct.iter_unpack('<48I', data[64:]))
     if rows[-1][1] != 4 or any(r[1] == 4 for r in rows[:-1]):
         raise ValueError('Wine submission terminal')
-    states={0:{}}
     if version==2:
         if lifetime is None:raise ValueError('V2requires lifetime journal')
-        from drawing_wine_lifetime import decode as decode_lifetimes
-        decode_lifetimes(lifetime)
-        active={}
-        for row in struct.iter_unpack('<24I',lifetime[64:]):
-            if row[1]==2:
-                kind=1 if row[3]<=2 else 3
-                if row[3] in (1,3) and not row[8]&0x80000000 and not row[12]:active[kind,row[10]]=row[11]
-                elif row[3] in (2,4) and row[12]==2:active.pop((kind,row[10]))
-            states[row[0]]=dict(active)
+        from drawing_lifetime_index import LifetimeIndex
+        lifetimes=LifetimeIndex(lifetime)
     pending, completed, identities = {}, [], set()
     entered = 0
     for i,r in enumerate(rows[:-1],1):
@@ -37,8 +29,7 @@ def decode(data, api_calls=None, lifetime=None):
         if r[3] == 1 and (not r[11] or r[26]) or r[3] == 2 and any((r[11],r[13],r[24],r[25])):
             raise ValueError('Wine submission method arguments')
         if version==2:
-            state=states.get(r[29])
-            if state is None or (r[27],r[28])!=(state.get((1 if r[3]==1 else 3,r[10]),0),state.get((1,r[11]),0)):
+            if not lifetimes.valid_prefix(r[29]) or (r[27],r[28])!=(lifetimes.generation(r[29],1 if r[3]==1 else 3,r[10]),lifetimes.generation(r[29],1,r[11])):
                 raise ValueError('Wine submission lifetime prefix/generation differs')
         if api_calls is not None and r[5]:
             call = api_calls.get(r[5])

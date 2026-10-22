@@ -15,6 +15,10 @@ static void check(u32 result){
 }
 void start(void){
  if(!initialize())ExitProcess(210);wine_copy_original=(void*)&copier;
+ /* Empty resource slots must never donate stale associations to null IDs. */
+ u32 unknown[3]={0};wine_resources[0].texture=99;wine_resources[0].generation=98;
+ wine_copy_resource(unknown,0,0);if(unknown[0]||unknown[1]||unknown[2])ExitProcess(218);
+ wine_resources[0].texture=wine_resources[0].generation=0;
  u32 box[6]={0,0,800,600,0,1};
  check(wine_copy_region((void*)9,(void*)1,2,3,4,5,(void*)2,6,box,7));
  mode=1;check(wine_copy_region((void*)9,(void*)1,2,3,4,5,(void*)2,6,0,7));
