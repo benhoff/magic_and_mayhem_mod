@@ -15,6 +15,13 @@ boundaries. Seven constructor/canvas/compiler helper bodies also have dedicated
 comparisons. Fourteen indirect call sites retain interface and ABI boundaries.
 Entry coverage does not establish transitive session equivalence.
 
+The2026-10-22 [service composition follow-up](actor-service-composition-20261021.md)
+adds34concrete suppliers and a common149-entry router. Its21caller roots include
+64preloaded activation-to-release/cleanup sequences;10,688current body/caller
+and regression comparisons pass. The initial matrix above remains historical.
+Full source registration, resource/font/scenario/attack providers, arbitrary
+session ownership and live acceptance retain explicit boundaries.
+
 ## Implemented and compared
 
 | Supplier | Direct entries | Original/native cases | Representation and boundary |

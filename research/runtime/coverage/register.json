@@ -137446,7 +137446,7 @@
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Complete actor downstream service ownership and behavior",
-      "scope": "Seventy-two direct actor service/helper entries have bounded suppliers, including71raw PE32 value-address bodies and existing source-controller ownership. The initial83-target further frontier is fully dispositioned:35explicit raw bodies,43existing scoped supplier/composition leads and five CRT runtime boundaries. Seven constructor/canvas/compiler helper bodies have dedicated ownership comparisons. Complete actor/session composition, expanded concrete provider paths, indirect dispatch completeness, OS SEH/throwing cleanup, indeterminate original item contribution and actual external platform/lifetime acceptance remain separate; this umbrella is intentionally partial.",
+      "scope": "Seventy-two direct actor service/helper entries have bounded suppliers. The initial83-target frontier remains historically accounted as35raw suppliers,43existing semantic leads and five CRT boundaries. A common value-address router now composes112prior raw bodies,34concrete animation/raster-state/particle/scenario/widget providers and three lifecycle entries. Selected21-root caller comparisons include preloaded activation to release/cleanup; supplied source registration, resource/font/attack/scenario evaluator/action endpoints, other indirect targets, all43leads through arbitrary sessions, malformed CRT copying, Windows SEH and external lifetime/live acceptance remain explicit. This Critical umbrella remains partial.",
       "confidence": "provisional",
       "original": [
         {
@@ -137813,7 +137813,9 @@
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md",
         "research/runtime/downstream-service-results-20261021/service-matrix.json",
-        "research/runtime/downstream-service-results-20261021/service-matrix-extended.json"
+        "research/runtime/downstream-service-results-20261021/service-matrix-extended.json",
+        "research/runtime/actor-service-composition-20261021.md",
+        "research/runtime/service-composition-results-20261022/frontier.json"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -137828,7 +137830,9 @@
         "reconstruction/rendering/actor_service_popups.hpp",
         "reconstruction/rendering/actor_service_collections.hpp",
         "reconstruction/rendering/actor_service_effects.hpp",
-        "reconstruction/rendering/actor_service_construction.hpp"
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp"
       ],
       "tests": [
         "tools/inspect-actor-downstream.py",
@@ -137839,9 +137843,15 @@
         "tools/test-creature-source-controller.py",
         "tests/creature-source-owned-test.cpp",
         "tools/test-creature-source-owned.py",
-        "tools/reconcile-actor-downstream.py"
+        "tools/reconcile-actor-downstream.py",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc",
+        "tools/reconcile-service-composition.py"
       ],
-      "evidence": [],
+      "evidence": [
+        "SCP1.frontier-20261022",
+        "SCP1.malformed-copy-negative-20261022"
+      ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
@@ -137864,12 +137874,22 @@
         "reconstruction/creature-ai/source_graph.hpp",
         "reconstruction/creature-ai/source_pending.cpp",
         "reconstruction/creature-ai/source_pending.hpp",
-        "tests/sprite-binary-reference.cpp",
-        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_ownership.hpp",
         "reconstruction/rendering/actor_service_collections.hpp",
-        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
         "reconstruction/rendering/actor_service_construction.hpp",
-        "reconstruction/rendering/actor_ownership.hpp"
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py"
       ],
       "implementation_review": {
         "review": "DSVC2.actor-service-source-review-final-20261021",
@@ -138104,19 +138124,24 @@
         "tools/test-actor-services.py"
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp",
-        "tests/original-linux-seh.hpp",
-        "tools/original_x86.py",
-        "reconstruction/rendering/actor_service_controllers.hpp",
-        "reconstruction/rendering/actor_service_world.hpp",
         "reconstruction/rendering/actor_ownership.hpp",
-        "reconstruction/rendering/actor_service_ui.hpp",
-        "reconstruction/rendering/actor_service_dependencies.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp",
-        "tools/coverage_evidence.py",
         "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
         "reconstruction/rendering/actor_service_effects.hpp",
-        "reconstruction/rendering/actor_service_construction.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc",
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
@@ -138124,7 +138149,8 @@
       "evidence": [
         "DSVC1.values.isolated_original-20261021",
         "DSVC2.values.isolated_original-20261021",
-        "COMMIT20261021.actor-values.isolated_original"
+        "COMMIT20261021.actor-values.isolated_original",
+        "SCP1.values.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138217,18 +138243,24 @@
         "tools/test-actor-services.py"
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp",
-        "tests/original-linux-seh.hpp",
-        "tools/original_x86.py",
-        "reconstruction/rendering/actor_service_world.hpp",
         "reconstruction/rendering/actor_ownership.hpp",
-        "reconstruction/rendering/actor_service_ui.hpp",
-        "reconstruction/rendering/actor_service_dependencies.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp",
-        "tools/coverage_evidence.py",
         "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
         "reconstruction/rendering/actor_service_effects.hpp",
-        "reconstruction/rendering/actor_service_construction.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc",
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
@@ -138236,7 +138268,8 @@
       "evidence": [
         "DSVC1.controllers.isolated_original-20261021",
         "DSVC2.controllers.isolated_original-20261021",
-        "COMMIT20261021.actor-controllers.isolated_original"
+        "COMMIT20261021.actor-controllers.isolated_original",
+        "SCP1.controllers.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138366,16 +138399,23 @@
         "tools/test-actor-services.py"
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp",
-        "tests/original-linux-seh.hpp",
-        "tools/original_x86.py",
-        "reconstruction/rendering/actor_service_ui.hpp",
-        "reconstruction/rendering/actor_service_dependencies.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp",
-        "tools/coverage_evidence.py",
         "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
         "reconstruction/rendering/actor_service_effects.hpp",
-        "reconstruction/rendering/actor_service_construction.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc",
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
@@ -138383,7 +138423,8 @@
       "evidence": [
         "DSVC1.world.isolated_original-20261021",
         "DSVC2.world.isolated_original-20261021",
-        "COMMIT20261021.actor-world.isolated_original"
+        "COMMIT20261021.actor-world.isolated_original",
+        "SCP1.world.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138486,18 +138527,24 @@
         "tools/test-actor-services.py"
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp",
-        "tests/original-linux-seh.hpp",
-        "tools/original_x86.py",
-        "reconstruction/rendering/actor_service_controllers.hpp",
-        "reconstruction/rendering/actor_service_world.hpp",
         "reconstruction/rendering/actor_ownership.hpp",
-        "reconstruction/rendering/actor_service_dependencies.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp",
-        "tools/coverage_evidence.py",
         "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
         "reconstruction/rendering/actor_service_effects.hpp",
-        "reconstruction/rendering/actor_service_construction.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc",
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
@@ -138505,7 +138552,8 @@
       "evidence": [
         "DSVC1.ui.isolated_original-20261021",
         "DSVC2.ui.isolated_original-20261021",
-        "COMMIT20261021.actor-ui.isolated_original"
+        "COMMIT20261021.actor-ui.isolated_original",
+        "SCP1.ui.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138629,24 +138677,32 @@
         "tools/test-actor-services.py"
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp",
-        "tests/original-linux-seh.hpp",
-        "tools/original_x86.py",
-        "reconstruction/rendering/actor_service_world.hpp",
         "reconstruction/rendering/actor_ownership.hpp",
-        "reconstruction/rendering/actor_service_ui.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp",
-        "tools/coverage_evidence.py",
         "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
         "reconstruction/rendering/actor_service_effects.hpp",
-        "reconstruction/rendering/actor_service_construction.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc",
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
       ],
       "evidence": [
         "DSVC2.dependencies.isolated_original-20261021",
-        "COMMIT20261021.actor-dependencies.isolated_original"
+        "COMMIT20261021.actor-dependencies.isolated_original",
+        "SCP1.dependencies.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138726,22 +138782,31 @@
         "tools/test-actor-services.py"
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp",
-        "tests/original-linux-seh.hpp",
-        "tools/original_x86.py",
-        "reconstruction/rendering/actor_service_world.hpp",
         "reconstruction/rendering/actor_ownership.hpp",
-        "reconstruction/rendering/actor_service_ui.hpp",
-        "tools/coverage_evidence.py",
         "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
         "reconstruction/rendering/actor_service_effects.hpp",
-        "reconstruction/rendering/actor_service_construction.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc",
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
       ],
       "evidence": [
-        "DSVC2.popups.isolated_original-20261021"
+        "DSVC2.popups.isolated_original-20261021",
+        "SCP1.popups.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138798,20 +138863,30 @@
         "tools/test-actor-services.py"
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp",
-        "tests/original-linux-seh.hpp",
-        "tools/original_x86.py",
-        "tools/coverage_evidence.py",
-        "reconstruction/rendering/actor_service_ui.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
         "reconstruction/rendering/actor_service_effects.hpp",
-        "reconstruction/rendering/actor_service_construction.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc",
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
       ],
       "evidence": [
-        "DSVC2.collections.isolated_original-20261021"
+        "DSVC2.collections.isolated_original-20261021",
+        "SCP1.collections.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138864,19 +138939,30 @@
         "tools/test-actor-services.py"
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp",
-        "tests/original-linux-seh.hpp",
-        "tools/original_x86.py",
-        "tools/coverage_evidence.py",
-        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
         "reconstruction/rendering/actor_service_popups.hpp",
-        "reconstruction/rendering/actor_service_construction.hpp"
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc",
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
       ],
       "evidence": [
-        "DSVC2.effects.isolated_original-20261021"
+        "DSVC2.effects.isolated_original-20261021",
+        "SCP1.effects.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138947,22 +139033,31 @@
         "tests/actor-service-exception-test.cpp"
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp",
-        "tests/original-linux-seh.hpp",
-        "tools/original_x86.py",
-        "reconstruction/rendering/actor_service_world.hpp",
         "reconstruction/rendering/actor_ownership.hpp",
-        "reconstruction/rendering/actor_service_ui.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp",
-        "tools/coverage_evidence.py",
         "reconstruction/rendering/actor_service_collections.hpp",
-        "reconstruction/rendering/actor_service_effects.hpp"
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc",
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
       ],
       "evidence": [
-        "DSVC2.construction.isolated_original-20261021"
+        "DSVC2.construction.isolated_original-20261021",
+        "SCP1.construction.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138974,6 +139069,391 @@
       "implementation_review": {
         "review": "DSVC2.actor-service-source-review-final-20261021",
         "entry": "RS.actor-downstream-construction-services"
+      }
+    },
+    {
+      "id": "RS.actor-concrete-providers",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Concrete actor animation, raster state, particle and scenario providers",
+      "scope": "PE32 value-address animation dispatch/restart and descriptor access; camera rectangle; flight predicate; fastcall raster binding/clip and text flag mutation; particle position/colour/random constructor, concrete XOR stream, virtual priority, deleting destructor and pool admission; owner lookup, scenario eligibility, named-region overlap, repeat/finalization and action dispatch; panel redraw allocation/rectangle submission and mode switching. Owned storage and normal-return explicit heap/platform/virtual and scenario-action providers. Complete scenario evaluator/action subtype bodies, font raster/resource decoding, supported-session and live equivalence remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4606752,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4606768,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607056,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607344,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607680,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4608000,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4614400,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4872848,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5064688,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5075664,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5208432,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5309568,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5526928,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5527184,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5527216,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5527520,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5528288,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5529184,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5529216,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5529232,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5548544,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5548560,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5548672,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5562880,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5655904,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5656960,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5664128,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5683088,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5683792,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5683808,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5683824,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5683840,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5757984,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758048,
+          "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp"
+      ],
+      "tests": [
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tools/test-actor-services.py",
+        "tools/reconcile-service-composition.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/original-linux-seh.hpp",
+        "tools/original_x86.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "tests/actor-composition-seeds.inc"
+      ],
+      "documents": [
+        "research/runtime/actor-service-composition-20261021.md",
+        "research/runtime/service-composition-results-20261022/frontier.json"
+      ],
+      "evidence": [
+        "SCP1.providers.isolated_original-20261022",
+        "SCP1.frontier-20261022"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.actor-service-composition",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Composed actor service ownership with concrete suppliers",
+      "scope": "Twenty-one independently seeded original/native caller chains: marker singleton allocation/vector construction; forward/reverse animation setup followed by zero to four ticks; task/action animation; secondary explosion/200 particle construction and pool admission; popup descriptor population; scroll text raster bind/clip/flags; scenario eligibility and action/finalization dispatch; 64 preloaded actor activation/baseline to release/cleanup sequences plus independent release/cleanup roots, peer repair, occupancy attach/detach, task reset, marker/list/spell/audio retirement and original experience progression. Recovered value/controller/world/UI/dependency/popup/collection/effect/construction and concrete provider bodies share value-address storage. Valid owned vectors; malformed CRT partial-copy fault prefixes are not equivalent. Explicit source-controller registration, heap primitives, resource/font raster, scenario evaluator/actions and virtual/platform endpoints remain declared providers. Bounded headless comparison is separate from complete actor/session integration and live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4603056,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607152,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4784736,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4841840,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5065072,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5085888,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5087024,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5103760,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5268112,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; source-controller registration and external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5270832,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; source-controller registration and external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5278464,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5280304,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5280736,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5286704,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5299040,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5317056,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5317440,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5322704,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5328448,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5371360,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; source-controller registration and external endpoints remain explicit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5656208,
+          "scope": "Selected caller chain, concrete suppliers dispatched through common owned memory; external endpoints remain explicit."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp"
+      ],
+      "tests": [
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tools/test-actor-services.py",
+        "tests/actor-composition-seeds.inc",
+        "tools/reconcile-service-composition.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/original-linux-seh.hpp",
+        "tools/original_x86.py",
+        "tools/coverage_evidence.py"
+      ],
+      "documents": [
+        "research/runtime/actor-service-composition-20261021.md",
+        "research/runtime/service-composition-results-20261022/frontier.json",
+        "research/runtime/service-composition-results-20261022/incoming-history.json",
+        "research/runtime/service-composition-results-20261022/history-review-v2.json",
+        "research/runtime/service-composition-results-20261022/malformed-copy-negative.json"
+      ],
+      "evidence": [
+        "SCP1.composition.isolated_original-20261022",
+        "SCP1.history-review-v2-20261022",
+        "SCP1.frontier-20261022"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
       }
     }
   ],
@@ -312022,6 +312502,573 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "SCP1.values.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "42 complete selected service bodies at their listed original entries, with owned PE32 storage, byte-preserving scalar/animation/owner/pool policies, list mutation, resource/allocator notifications, spell-slot register arguments, gauge allocation and pixels, and actual voice query/retirement composed with scheduler lookup/retirement. The64 variants per root compare complete owned storage, selected globals, ordered callbacks and callback-time state; explicit platform/allocator/secondary/decoder providers stay separate. Normal vector construction is included; actual MSVC exception unwinding, invalid/unbounded caller domains, transitive provider bodies, whole-session integration and live replacement remain pending. Original memory/division faults are observations, not native policy changes.",
+      "record": "research/runtime/service-composition-results-20261022/values.json",
+      "sha256": "943ccc2316431752085819933f7578e12b0166dfeda003f0d7884211898f9512",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2688
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP1.controllers.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Ten complete direct actor service bodies: singleton publication, normal animation start/reverse orchestration, session cleanup, secondary facing, owner-dependent resource selection, spell selection, task reset/action transition/special-state cleanup and owner-count maintenance. Compose the42 independently recovered value/container/audio suppliers through explicit PE32 memory. Each64-variant matrix compares complete owned storage, selected globals, defined returns and callback-time state including failures. Actual50da50 EDX:EAX action-table and594490 profile-address suppliers are included. External decoder/step/constructor/UI/RNG services are explicit providers; actual exception unwind, broader transitive service bodies, arbitrary concurrent publication, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/service-composition-results-20261022/controllers.json",
+      "sha256": "7c5c9b07b3c8b1239b5d0264f33d6807c2164847f22728d16679175b6456eb47",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 640
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP1.world.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Nine complete direct bodies: peer repair, map attachment/detachment, secondary release cascade, world facing, footprint item consumption, terrain effects/hazard scan, task-target descriptor and x87 creature valuation. Compose the42 value and10 actor-controller suppliers, actual pure wrap/difference/weighted-distance/direction helpers, original memmove and x87 truncation.64 owned variants per root compare complete owned memory, selected globals, defined returns, ordered callbacks and callback-time state. Terrain mutation, item handling, debug file notifications and hazard/animation decoder providers are explicit external boundaries; arbitrary malformed cycles/unbounded inputs, transitive engine services, real platform devices, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/service-composition-results-20261022/world.json",
+      "sha256": "582f462ffdf68390344a37bbe0e38aee8a6752c05ff8cbbcc45d978a9968e9c0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP1.ui.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Ten complete direct UI/resource service bodies, including the packed22-byte actor admission descriptor and unchanged coordinate-copy suppliers40e2c0/40e8d0/40eec0: linked/panel health rectangles, secondary descriptor submission, spell popup rebuild, selection removal, message queue/text formatting, sprite/animation bank ownership and actor report retirement.64 owned variants per root compare complete owned bytes, selected globals, defined returns, ordered callbacks and callback-time state. Native local records are compared by content with original stack buffers; scratch addresses are normalized only at named boundaries. Compose recovered value/container/heap-wrapper suppliers, actual memmove and pure509790 descriptor addressing. Drawing/localization/formatting, virtual widgets, loader/cache services, Windows path/message APIs are explicit deterministic providers; actual platform services, malformed/unbounded string domains, transitive loader/UI bodies, exception unwinding, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/service-composition-results-20261022/ui.json",
+      "sha256": "7c35796d7f0ff6af474b804f1b60472b658cec53855c751634f31f3b6530eb43",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 640
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP1.dependencies.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Eighteen further service bodies: animation scan/overlay, owner selection, debug notification, widget invalidation/state/amount wrappers, raw image fill, audio stack removal, localization bounds/fallback, deferred rectangle queue, allocation retry/handler/alignment policy and tagged allocation release.64 owned variants per root compare complete owned state, selected globals, defined returns and ordered callback-time arguments/state; actual recovered value/controller suppliers remain composed where called. Virtual widget callbacks, low-level heap/init/retry/error handlers, CRT output and further UI draw methods are explicit normal-return providers. Arbitrary allocation/header corruption, infinite retry domains, actual platform heaps, exceptional unwind and whole actor/session integration/live replacement remain separate.",
+      "record": "research/runtime/service-composition-results-20261022/dependencies.json",
+      "sha256": "ce082e59de1bda3cfa3df7aa31058692dc1282153c929d4c7e58f3dcb8b0de28",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1152
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP1.popups.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Nine further popup/presentation service bodies: full health redraw and icon rendering, popup widget reset, artifact admission/stack counts/overflow, selected focus retirement, quota disable/enable, resolution border refresh and message scroll presentation.64 owned variants per root compare full owned state/globals, defined returns, complete declared local records and ordered callback-time state. Compose actual widget/image/localization/heap wrappers and actor/value suppliers; virtual widget methods, raster/font/image-loading/format/sound APIs and further UI methods remain normal-return providers. Font record byte0 is compared as the consumed bool; its three uninitialized padding bytes do not grant caller-stack representation equivalence. Actual hardware, arbitrary concurrent UI writers, exceptional unwind, complete session ownership and live replacement remain separate.",
+      "record": "research/runtime/service-composition-results-20261022/popups.json",
+      "sha256": "9887df7e930626ea7013892d5be982c86aa2acb15fc5697650d8c4c4440c2193",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP1.collections.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Complete vector insertion/growth and callback-visible old-storage retirement, secondary slot125+ admission/reclamation, original experience thresholds/health/gauge/animation effects and scenario-event dispatch over explicit owned records and normal-return callbacks.64variants per selected entry compare complete owned state/globals, defined returns and ordered callback state; recovered heap/value/controller/world suppliers are composed. Low-level vector allocation, concrete scenario predicates/actions, secondary subtype replacement, exceptional runtime/heap corruption and supported-session/live replacement remain distinct.",
+      "record": "research/runtime/service-composition-results-20261022/collections.json",
+      "sha256": "0776d10f4ec4f3ea700bc9b4a1f7b7b2e882ac2833edc97cefa3dd9b79be65c7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 256
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP1.effects.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Original468470 item traversal/consumption,469000 fastcall spell removal and490260 terrain/particle/owner cleanup over explicit owned map, descriptors and normal-return callbacks. Value/controller/heap/world/collection suppliers are composed; concrete item effects, contribution accounting, particle construction/pool, scenario predicates, localization/CRT, allocation identity and supported-session/live replacement remain separate. The baseline uninitialized contribution read when no healing branch assigns it is explicitly indeterminate and excluded from deterministic comparison.64 variants per selected body compare persistent bytes/globals, defined returns and ordered callback state.",
+      "record": "research/runtime/service-composition-results-20261022/effects.json",
+      "sha256": "f9ebeb5d5ea31f7f59d58e167120fbbf0f35c4ffdbf1ba557aa7761f6b3e52e7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP1.construction.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Normal-return464350 and4a4df0 initialization,463270 destructor,4a4f70 widget table removal,58b3e0 canvas release and59bf87 reverse vector destruction, plus59c4ab cold-finally selection under an explicit parent frame.64 owned variants per body compare persistent bytes/globals and ordered callback state. Actual OS exception delivery, a destructor throwing during unwind, arbitrary reentry and supported-session/live replacement remain separate; the cold body is exercised directly without claiming a Windows SEH dispatcher. Native vector construction additionally destroys only the completed prefix in reverse order and propagates the original exception (171 failure/completion combinations); this composition test does not emulate OS SEH.",
+      "record": "research/runtime/service-composition-results-20261022/construction.json",
+      "sha256": "d9da1307e594fadf0a1e6961b63f7d3520435125964694c4bfcf7fa69ed6bc72",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 448
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exception_cases",
+          "equals": 171
+        }
+      ]
+    },
+    {
+      "id": "SCP1.providers.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "PE32 value-address animation dispatch/restart and descriptor access; camera rectangle; flight predicate; fastcall raster binding/clip and text flag mutation; particle position/colour/random constructor, concrete XOR stream, virtual priority, deleting destructor and pool admission; owner lookup, scenario eligibility, named-region overlap, repeat/finalization and action dispatch; panel redraw allocation/rectangle submission and mode switching. Owned storage and normal-return explicit heap/platform/virtual and scenario-action providers. Complete scenario evaluator/action subtype bodies, font raster/resource decoding, supported-session and live equivalence remain pending.",
+      "record": "research/runtime/service-composition-results-20261022/providers.json",
+      "sha256": "a3ed4e077a462aed2c98018ed0bba1e7a3424b652c2ac2b1977ac847a73f7856",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2176
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP1.composition.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Twenty-one independently seeded original/native caller chains: marker singleton allocation/vector construction; forward/reverse animation setup followed by zero to four ticks; task/action animation; secondary explosion/200 particle construction and pool admission; popup descriptor population; scroll text raster bind/clip/flags; scenario eligibility and action/finalization dispatch; 64 preloaded actor activation/baseline to release/cleanup sequences plus independent release/cleanup roots, peer repair, occupancy attach/detach, task reset, marker/list/spell/audio retirement and original experience progression. Recovered value/controller/world/UI/dependency/popup/collection/effect/construction and concrete provider bodies share value-address storage. Valid owned vectors; malformed CRT partial-copy fault prefixes are not equivalent. Explicit source-controller registration, heap primitives, resource/font raster, scenario evaluator/actions and virtual/platform endpoints remain declared providers. Bounded headless comparison is separate from complete actor/session integration and live replacement.",
+      "record": "research/runtime/service-composition-results-20261022/composition.json",
+      "sha256": "ec982ec7aff2e4e93ac75ae4c0ad6741c38ed2ba7d3096257cba9833ff350bc4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1344
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/required_normal_returns_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/lifecycle_sequences",
+          "equals": 64
+        },
+        {
+          "pointer": "/native_service_coverage_only",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SCP1.malformed-copy-negative-20261022",
+      "kind": "static",
+      "scope": "Historical negative attempt: original CRT partial-copy state differs from owned extent refusal under invalid vector lengths. Retained sources are historical; this supplies no current-code equivalence.",
+      "record": "research/runtime/service-composition-results-20261022/malformed-copy-negative.json",
+      "sha256": "8c91bbfe60e0b8cce0e66ed44d4ad141fc6b5770220535938bcadc560c98fae2",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "SCP1.history-review-v2-20261022",
+      "kind": "static",
+      "scope": "Exact parent/current receipt review of incoming rendering commits through40cfa666; no retrospective engine validation or past gate assertion.",
+      "record": "research/runtime/service-composition-results-20261022/history-review-v2.json",
+      "sha256": "0e55ec6d3c38e12bd6ab83e59ccbfab84b91172db68eb56d16bf2140e2276273",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "SCP1.frontier-20261022",
+      "kind": "static",
+      "scope": "149 explicit native routes;493 inspected direct call sites and69 indirect sites retain scoped leads and supplied/unresolved endpoints. No transitive or original target completeness.",
+      "record": "research/runtime/service-composition-results-20261022/frontier.json",
+      "sha256": "2b9dca36347f39b845365ce8e81bed1d50a1391721d47697cf08f8d993697ad4",
+      "sources_pointer": "/sources",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/static_review_only",
+          "equals": true
+        },
+        {
+          "pointer": "/whole_session_integration",
+          "equals": false
+        },
+        {
+          "pointer": "/indirect_target_completeness",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -318699,6 +319746,918 @@
         },
         {
           "value": "unresolved-transitive-or-exceptional-services",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "actor-service-concrete-routing",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5268112,
+        "relation": "code",
+        "scope": "Native concrete routing for selected actor services and lifecycle roots; not an original binary vtable census, indirect-target completeness or full session closure."
+      },
+      "document": "research/runtime/actor-service-composition-20261021.md",
+      "complete": false,
+      "scope": "Native concrete routing for selected actor services and lifecycle roots; not an original binary vtable census, indirect-target completeness or full session closure.",
+      "entries": [
+        {
+          "value": 4225936,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4267600,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4278416,
+          "behaviors": [
+            "RS.actor-downstream-ui-services"
+          ]
+        },
+        {
+          "value": 4367168,
+          "behaviors": [
+            "RS.actor-downstream-collection-services"
+          ]
+        },
+        {
+          "value": 4600432,
+          "behaviors": [
+            "RS.actor-downstream-construction-services"
+          ]
+        },
+        {
+          "value": 4601792,
+          "behaviors": [
+            "RS.actor-downstream-ui-services"
+          ]
+        },
+        {
+          "value": 4603056,
+          "behaviors": [
+            "RS.actor-downstream-controller-services"
+          ]
+        },
+        {
+          "value": 4603952,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4604752,
+          "behaviors": [
+            "RS.actor-downstream-construction-services"
+          ]
+        },
+        {
+          "value": 4606672,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4606752,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 4606768,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 4607056,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 4607104,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4607136,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4607152,
+          "behaviors": [
+            "RS.actor-downstream-controller-services"
+          ]
+        },
+        {
+          "value": 4607344,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 4607520,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4607680,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 4608000,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 4608304,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 4609168,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4614080,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 4614256,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4614400,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 4621424,
+          "behaviors": [
+            "RS.actor-downstream-effect-services"
+          ]
+        },
+        {
+          "value": 4624384,
+          "behaviors": [
+            "RS.actor-downstream-effect-services"
+          ]
+        },
+        {
+          "value": 4663088,
+          "behaviors": [
+            "RS.actor-downstream-controller-services"
+          ]
+        },
+        {
+          "value": 4672272,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4672320,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4741904,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 4784736,
+          "behaviors": [
+            "RS.actor-downstream-effect-services"
+          ]
+        },
+        {
+          "value": 4801520,
+          "behaviors": [
+            "RS.actor-downstream-world-services"
+          ]
+        },
+        {
+          "value": 4803152,
+          "behaviors": [
+            "RS.actor-downstream-controller-services"
+          ]
+        },
+        {
+          "value": 4832496,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4834608,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4836784,
+          "behaviors": [
+            "RS.actor-downstream-collection-services"
+          ]
+        },
+        {
+          "value": 4838976,
+          "behaviors": [
+            "RS.actor-downstream-ui-services"
+          ]
+        },
+        {
+          "value": 4841840,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 4869616,
+          "behaviors": [
+            "RS.actor-downstream-construction-services"
+          ]
+        },
+        {
+          "value": 4870000,
+          "behaviors": [
+            "RS.actor-downstream-construction-services"
+          ]
+        },
+        {
+          "value": 4870144,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 4872848,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5028272,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5061040,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5061168,
+          "behaviors": [
+            "RS.actor-downstream-ui-services"
+          ]
+        },
+        {
+          "value": 5061408,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5061440,
+          "behaviors": [
+            "RS.actor-downstream-popup-services"
+          ]
+        },
+        {
+          "value": 5061776,
+          "behaviors": [
+            "RS.actor-downstream-popup-services"
+          ]
+        },
+        {
+          "value": 5062304,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5064688,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5065072,
+          "behaviors": [
+            "RS.actor-downstream-ui-services"
+          ]
+        },
+        {
+          "value": 5068352,
+          "behaviors": [
+            "RS.actor-downstream-popup-services"
+          ]
+        },
+        {
+          "value": 5072416,
+          "behaviors": [
+            "RS.actor-downstream-popup-services"
+          ]
+        },
+        {
+          "value": 5074016,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5074048,
+          "behaviors": [
+            "RS.actor-downstream-popup-services"
+          ]
+        },
+        {
+          "value": 5075664,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5077168,
+          "behaviors": [
+            "RS.actor-downstream-popup-services"
+          ]
+        },
+        {
+          "value": 5077504,
+          "behaviors": [
+            "RS.actor-downstream-popup-services"
+          ]
+        },
+        {
+          "value": 5077648,
+          "behaviors": [
+            "RS.actor-downstream-popup-services"
+          ]
+        },
+        {
+          "value": 5085888,
+          "behaviors": [
+            "RS.actor-downstream-ui-services"
+          ]
+        },
+        {
+          "value": 5087024,
+          "behaviors": [
+            "RS.actor-downstream-popup-services"
+          ]
+        },
+        {
+          "value": 5088912,
+          "behaviors": [
+            "RS.actor-downstream-ui-services"
+          ]
+        },
+        {
+          "value": 5089056,
+          "behaviors": [
+            "RS.actor-downstream-ui-services"
+          ]
+        },
+        {
+          "value": 5103760,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5106176,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5116512,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5208432,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5264800,
+          "behaviors": [
+            "RS.actor-downstream-ui-services"
+          ]
+        },
+        {
+          "value": 5265328,
+          "behaviors": [
+            "RS.actor-downstream-controller-services"
+          ]
+        },
+        {
+          "value": 5267584,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5268112,
+          "behaviors": [
+            "RS.actor-service-composition"
+          ]
+        },
+        {
+          "value": 5270832,
+          "behaviors": [
+            "RS.actor-service-composition"
+          ]
+        },
+        {
+          "value": 5273072,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5276240,
+          "behaviors": [
+            "RS.actor-downstream-world-services"
+          ]
+        },
+        {
+          "value": 5278464,
+          "behaviors": [
+            "RS.actor-downstream-world-services"
+          ]
+        },
+        {
+          "value": 5280304,
+          "behaviors": [
+            "RS.actor-downstream-world-services"
+          ]
+        },
+        {
+          "value": 5280736,
+          "behaviors": [
+            "RS.actor-downstream-world-services"
+          ]
+        },
+        {
+          "value": 5282768,
+          "behaviors": [
+            "RS.actor-downstream-controller-services"
+          ]
+        },
+        {
+          "value": 5286704,
+          "behaviors": [
+            "RS.actor-downstream-controller-services"
+          ]
+        },
+        {
+          "value": 5299040,
+          "behaviors": [
+            "RS.actor-downstream-controller-services"
+          ]
+        },
+        {
+          "value": 5301200,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5303136,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5309568,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5317056,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5317440,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5322704,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5324624,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5328448,
+          "behaviors": [
+            "RS.actor-downstream-collection-services"
+          ]
+        },
+        {
+          "value": 5351552,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5351664,
+          "behaviors": [
+            "RS.actor-downstream-world-services"
+          ]
+        },
+        {
+          "value": 5351984,
+          "behaviors": [
+            "RS.actor-downstream-world-services"
+          ]
+        },
+        {
+          "value": 5371360,
+          "behaviors": [
+            "RS.actor-service-composition"
+          ]
+        },
+        {
+          "value": 5375888,
+          "behaviors": [
+            "RS.actor-downstream-world-services"
+          ]
+        },
+        {
+          "value": 5377648,
+          "behaviors": [
+            "RS.actor-downstream-controller-services"
+          ]
+        },
+        {
+          "value": 5382976,
+          "behaviors": [
+            "RS.actor-downstream-controller-services"
+          ]
+        },
+        {
+          "value": 5391600,
+          "behaviors": [
+            "RS.actor-downstream-world-services"
+          ]
+        },
+        {
+          "value": 5418592,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5427392,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5454016,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5526928,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5527184,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5527216,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5527520,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5528288,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5529184,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5529216,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5529232,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5548544,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5548560,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5548672,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5561040,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5561248,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5561520,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5561568,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5561840,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5562880,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5596016,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5655904,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5656208,
+          "behaviors": [
+            "RS.actor-downstream-collection-services"
+          ]
+        },
+        {
+          "value": 5656960,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5664128,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5683088,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5683792,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5683808,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5683824,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5683840,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5686320,
+          "behaviors": [
+            "RS.actor-downstream-ui-services"
+          ]
+        },
+        {
+          "value": 5709088,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5755088,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5757984,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5758048,
+          "behaviors": [
+            "RS.actor-concrete-providers"
+          ]
+        },
+        {
+          "value": 5809792,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5813216,
+          "behaviors": [
+            "RS.actor-downstream-construction-services"
+          ]
+        },
+        {
+          "value": 5821872,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5830448,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5830480,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5830640,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5830704,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5830800,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5863376,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5863504,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5863536,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5863552,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5863856,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5869424,
+          "behaviors": [
+            "RS.actor-downstream-dependency-services"
+          ]
+        },
+        {
+          "value": 5881735,
+          "behaviors": [
+            "RS.actor-downstream-construction-services"
+          ]
+        },
+        {
+          "value": 5882945,
+          "behaviors": [
+            "RS.actor-downstream-value-services"
+          ]
+        },
+        {
+          "value": 5883051,
+          "behaviors": [
+            "RS.actor-downstream-construction-services"
+          ]
+        },
+        {
+          "value": "unresolved-transitive-and-indirect-services",
           "behaviors": []
         }
       ]
@@ -335598,8 +337557,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-be5243552365ae3b96a5b80dd8fc07a0fafd768904ffa417c2cf995753f4698e.json",
-    "sha256": "be5243552365ae3b96a5b80dd8fc07a0fafd768904ffa417c2cf995753f4698e"
+    "path": "research/runtime/coverage/source-index-874f3d96902b65d39a5878d27442e56bc4d857c362647dc937cf6d1324c1cd7f.json",
+    "sha256": "874f3d96902b65d39a5878d27442e56bc4d857c362647dc937cf6d1324c1cd7f"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

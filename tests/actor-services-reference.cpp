@@ -7,6 +7,7 @@
 #include "../reconstruction/rendering/actor_service_collections.hpp"
 #include "../reconstruction/rendering/actor_service_effects.hpp"
 #include "../reconstruction/rendering/actor_service_construction.hpp"
+#include "../reconstruction/rendering/actor_service_composition.hpp"
 #include <algorithm>
 #include <array>
 #include <cstdio>
@@ -33,13 +34,13 @@ namespace s=mnm::reconstruction::actor_services;
 using U=s::U;
 constexpr U Base=0x10000000,Object=Base,Other=Base+0x2000,Manager=Base+0x4000,
     Pool=Base+0x5000,Catalog=Base+0xa000,Array=Base+0xe000,
-    Nodes=Base+0xf000,Buffer=Base+0x12000,Output=Base+0x14000,Code=Base+0x1e000;
+    Nodes=Base+0xf000,Buffer=Base+0x12000,Output=Base+0x14000,Code=Base+0x20000;
 constexpr U GetStatus=0x1001f000,Stop=0x1001f040,Position=0x1001f080,Constructor=0x1001f100;
-static constexpr std::array<std::array<U,2>,60> Globals{{
+static constexpr std::array<std::array<U,2>,75> Globals{{
     {{0x5e1900,0x40}},{{0x5fbf00,0x40}},{{0x5fcc80,4}},{{0x643a80,0xb00}},
     {{0x65b250,0x1500}},{{0x689920,4}},{{0x6a4646,4}},{{0x6def58,0x240}},
     {{0x6e1f88,4}},{{0x6e9848,12}},{{0x6f2a94,4}},{{0x6f437c,4}},
-    {{0x6fa78c,16}},{{0x6e0000,16}},{{0x5c7144,0x120}},{{0x6dbe9d,1}},{{0x5d9e38,4}},{{0x5e16fc,4}},{{0x6de6d5,8}},{{0x6c482c,4}},{{0x6c4859,1}},{{0x6903e8,16}},{{0x689498,0x450}},{{0x6b1270,0x1000}},{{0x5fed7c,4}},{{0x6c5040,0x110}},{{0x65660c,4}},{{0x6c5494,0x50}},{{0x6cb8be,0x100}},{{0x6cb942,0x100}},{{0x6b1248,8}},{{0x5e5594,0x34}},{{0x6a5fd8,0xa600}},{{0x6bb743,4}},{{0x6e1ee4,4}},{{0x6e2032,1}},{{0x6e1f0c,4}},{{0x6dbf00,0x2700}},{{0x6db967,0x300}},{{0x6f37f8,8}},{{0x6e9808,4}},{{0x5e04cc,4}},{{0x641ab8,0x600}},{{0x641fbc,4}},{{0x5f2094,0x58}},{{0x5f1ec8,4}},{{0x6f6b50,0x2d88}},{{0x6593e0,16}},{{0x6903dc,4}},{{0x6c4e3c,4}},{{0x6a4642,0x40}},{{0x6c4e40,0x200}},{{0x6e1f3c,4}},{{0x6c5c88,4}},{{0x6f3a70,0x30}},{{0x6b1250,8}},{{0x6a42e8,4}},{{0x6f694c,0x204}},{{0x642034,0xc38}},{{0x6e1f1c,4}}
+    {{0x6fa78c,16}},{{0x6e0000,16}},{{0x5c7144,0x120}},{{0x6dbe9d,1}},{{0x5d9e38,4}},{{0x5e16fc,4}},{{0x6de6d5,8}},{{0x6c482c,4}},{{0x6c4859,1}},{{0x6903e8,16}},{{0x689498,0x450}},{{0x6b1270,0x1000}},{{0x5fed7c,4}},{{0x6c5040,0x110}},{{0x65660c,4}},{{0x6c5494,0x50}},{{0x6cb8be,0x100}},{{0x6cb942,0x100}},{{0x6b1248,8}},{{0x5e5594,0x34}},{{0x6a5fd8,0xa600}},{{0x6bb743,4}},{{0x6e1ee4,4}},{{0x6e2032,1}},{{0x6e1f0c,4}},{{0x6dbf00,0x2700}},{{0x6db967,0x300}},{{0x6f37f8,8}},{{0x6e9808,4}},{{0x5e04cc,4}},{{0x641ab8,0x600}},{{0x641fbc,4}},{{0x5f2094,0x58}},{{0x5f1ec8,4}},{{0x6f6b50,0x2d88}},{{0x6593e0,16}},{{0x6903dc,4}},{{0x6c4e3c,4}},{{0x6a4642,0x40}},{{0x6c4e40,0x200}},{{0x6e1f3c,4}},{{0x6c5c88,4}},{{0x6f3a70,0x30}},{{0x6b1250,8}},{{0x6a42e8,4}},{{0x6f694c,0x204}},{{0x642034,0xc38}},{{0x6e1f1c,4}},{{0x658174,4}},{{0x6a2dc8,4}},{{0x6def50,4}},{{0x6cbb6c,4}},{{0x6a49b8,4}},{{0x656618,4}},{{0x5eb480,12}},{{0x6c4830,4}},{{0x6cbb52,8}},{{0x6f3808,60}},{{0x5eb940,1000}},{{0x6574c8,1008}},{{0x5c73f0,4}},{{0x5c7404,4}},{{0x6cbb8a,0x1c08}}
 }};
 struct Memory;
 static Memory* active;
@@ -50,8 +51,8 @@ static bool bodiesUnchanged(){for(const auto& b:ProtectedBodies)if(std::memcmp(r
 #endif
 struct MemoryFault:std::runtime_error{using std::runtime_error::runtime_error;};
 struct Memory {
-    std::vector<unsigned char> globals=std::vector<unsigned char>(0x142000),owned=std::vector<unsigned char>(0x20000);
-    std::vector<U> events;U variant{},calls{},temporaryTop{},heapAttempts{},heapRetries{};
+    std::vector<unsigned char> globals=std::vector<unsigned char>(0x142000),owned=std::vector<unsigned char>(0x24000);
+    std::vector<U> events,completedServices;U variant{},calls{},temporaryTop{},heapAttempts{},heapRetries{},allocationTop{};
     U temporary(U size){U result=Base+0x18000+temporaryTop;temporaryTop+=(size+3)&~3u;if(temporaryTop>0x5000)throw std::runtime_error("fixture temporary extent");return result;}
     unsigned char* pointer(U p,U n){
         if(p>=0x5c0000&&p-0x5c0000<=globals.size()&&n<=globals.size()-(p-0x5c0000)){
@@ -88,7 +89,7 @@ struct Memory {
         return pointer(p,n);
     }
     bool isTemporary(U p){
-        if(p>=Base+0x18000&&p<Code)return true;
+        if(p>=Base+0x18000&&p<Base+0x1d000)return true;
 #ifdef MNM_ORIGINAL_REFERENCE
         U anchor=U(reinterpret_cast<std::uintptr_t>(&p));if(p>=anchor&&p-anchor<65536)return true;
 #endif
@@ -99,6 +100,8 @@ struct Memory {
         std::vector<U> payload;
         auto record=[&](U index,U count,U token){normalized[index]=token;payload.push_back(count);auto* data=localPointer(a[index],count);for(U i=0;i<count;++i)payload.push_back(data[i]);};
         auto stringRecord=[&](U index){U length=0;while(length<255&&localPointer(a[index]+length,1)[0])++length;if(length==255)throw std::runtime_error("fixture string extent");if(isTemporary(a[index]))normalized[index]=0x20000000;payload.push_back(length+1);for(U i=0;i<=length;++i)payload.push_back(localPointer(a[index]+i,1)[0]);};
+        if(id==0x58ad90)record(0,108,0x20000000);
+        if(id==0x58c4a0)record(1,16,0x20000000);
         if(id==0x58c8a0)record(1,16,0x20000000);
         if(id==0x58d5b0)record(2,16,0x20000000);
         if(id==0x4a5a90){normalized[0]=0x20000000;payload.push_back(localPointer(a[0],1)[0]);for(U i=4;i<20;++i)payload.push_back(localPointer(a[0]+i,1)[0]);}
@@ -113,6 +116,11 @@ struct Memory {
         if(id==0x4f49e0)normalized[3]=0x20000000;
         events.insert(events.end(),{id,self,second,U(args.size())});events.insert(events.end(),normalized,normalized+args.size());events.insert(events.end(),payload.begin(),payload.end());digest();++calls;
         switch(id){
+        case 0x416590:break;
+        case 0x1001f440:return get32(self+40);
+        case 0x1001f480:set32(self+44,a[0]);break;
+        case 0x58ad90:set32(self+4,Other);break;
+        case 0x58c4a0:case 0x4dcab0:case 0x56b590:case 0x566e60:case 0x5685a0:case 0x5695c0:case 0x569c80:case 0x56a8d0:case 0x56b1e0:break;
         case 0x1001f380:return variant&4&&++heapRetries<3?1:0;
         case 0x1001f3c0:break;
         case 0x1001f400:set32(self+8,a[0]);break;
@@ -155,7 +163,7 @@ struct Memory {
         case 0x1001f200:set32(self+16,0);if(runningEntry==0x42a340&&(variant&16))set32(Manager+8,get32(Manager+8)-4);break;
         case 0x1001f240:set32(0x5f2094,Other);break;
         case 0x597d40:if(!(variant&2))set32(0x5f2094,Other);return variant&1?0:1;
-        case 0x598a10:++heapAttempts;return heapAttempts>variant%3?Buffer:0;
+        case 0x598a10:++heapAttempts;if(heapAttempts<=(UseComposition&&runningEntry==0x506290?0:variant%3))return 0;if(UseComposition){U result=Buffer+allocationTop;allocationTop+=(a[1]+15)&~15u;if(allocationTop>0x5000)throw std::runtime_error("composed heap extent");return result;}return Buffer;
         case 0x597df0:++heapRetries;if(variant&8)set32(0x5f2094,Other+64);return heapRetries<2?1:0;
         case 0x58c8a0:case 0x58d5b0:case 0x4d3c90:case 0x4d5640:case 0x4d6620:case 0x505220:case 0x5c520c:case 0x1001f140:case 0x1001f180:break;
         case 0x49cdb0:return variant&1?Other+0x1000:0;
@@ -208,11 +216,15 @@ struct Memory {
             return get32(a[0]+12);
         case Position:return get32(a[0]+16);
         case Constructor:set32(self,get32(self)+1);break;
-        default:throw std::runtime_error("unknown downstream provider");
+        default:throw std::runtime_error("unknown downstream provider "+std::to_string(id)+" self "+std::to_string(self));
         }
         return 0;
     }
+    U invokeFast(U id,U self,U second){return fastcall(id,self,second,{});}
     U invoke(U id,U self,std::initializer_list<U> args){
+        if(UseComposition&&id==0x520790&&args.size()==1&&*args.begin()==0x20000000)return invoke(id,self,{temporary(20)});
+        if(UseComposition){if(auto result=s::Composition<Memory>(*this).tryRun(id,self,args)){if(std::find(completedServices.begin(),completedServices.end(),id)==completedServices.end())completedServices.push_back(id);return *result;}}
+        if(UseProviders)for(U entry:ProviderRoots)if(entry==id)return s::Providers<Memory>(*this).run(id,self,args);
         for(U entry:ValueRoots)if(entry==id)return s::Services<Memory>(*this).run(id,self,args);
         for(U entry:ControllerRoots)if(entry==id)return s::Controllers<Memory>(*this).run(id,self,args);
         if(UseWorldServices)for(U entry:WorldRoots)if(entry==id)return s::WorldServices<Memory>(*this).run(id,self,args);
@@ -227,6 +239,8 @@ struct Memory {
         return external(id,self,0,args);
     }
     U fastcall(U id,U self,U second,std::initializer_list<U> args){
+        if(UseComposition){if(auto result=s::Composition<Memory>(*this).tryRun(id,self,args,second)){if(std::find(completedServices.begin(),completedServices.end(),id)==completedServices.end())completedServices.push_back(id);return *result;}}
+        if(UseProviders)for(U entry:ProviderRoots)if(entry==id)return s::Providers<Memory>(*this).run(id,self,args,second);
         for(U entry:ControllerRoots)if(entry==id)return s::Controllers<Memory>(*this).run(id,self,args,second);
         if(UseCollections)for(U entry:CollectionRoots)if(entry==id)return s::CollectionServices<Memory>(*this).run(id,self,args,second);
         if(UseEffects)for(U entry:EffectRoots)if(entry==id)return s::EffectServices<Memory>(*this).run(id,self,args,second);
@@ -243,7 +257,7 @@ struct Memory {
         for(U i=0;i<total;++i){U node=head+i*64;set32(node,head+((i+1)%total)*64);set32(node+4,head+((i+total-1)%total)*64);set32(node+8,2);set32(node+16,Object+i*64);set32(node+20,Output+i*4);}
     }
     void reset(U seed){
-        variant=seed;calls=0;temporaryTop=0;heapAttempts=heapRetries=0;events.clear();
+        variant=seed;calls=0;temporaryTop=0;heapAttempts=heapRetries=allocationTop=0;events.clear();completedServices.clear();
         for(auto range:Globals)std::memset(pointer(range[0],range[1]),0,range[1]);
         for(U i=0;i<0x18000;++i)set8(Base+i,(i*73+seed*17)^(i>>5));
         set32(0x5fbf28,Other);set32(0x6f2a94,Catalog);set32(0x6f437c,Manager);
@@ -259,6 +273,9 @@ struct Memory {
     }
     void snapshot(U id,U seed,U result,U outcome=0){
         auto emit=[](const void* data,std::size_t size){auto* bytes=static_cast<const unsigned char*>(data);while(size){ssize_t n=write(STDOUT_FILENO,bytes,size);if(n<0&&errno==EINTR)continue;if(n<=0)_exit(88);bytes+=n;size-=std::size_t(n);}};
+#ifndef MNM_ORIGINAL_REFERENCE
+        if(UseComposition){std::sort(completedServices.begin(),completedServices.end());std::fprintf(stderr,"completed_services %x %u",id,seed);for(U entry:completedServices)std::fprintf(stderr," %x",entry);std::fprintf(stderr,"\n");}
+#endif
         U header[]={id,seed,result,U(events.size()),outcome};emit(header,sizeof(header));emit(pointer(Base,0x18000),0x18000);
         for(auto range:Globals)emit(pointer(range[0],range[1]),range[1]);
         emit(events.data(),events.size()*4);
@@ -300,6 +317,15 @@ extern "C" __attribute__((force_align_arg_pointer)) U actor_services_provider(U 
     }catch(const std::exception& e){std::fprintf(stderr,"provider %x: %s\n",id,e.what());_exit(86);}
 }
 static void installProviders(){
+    // Preflight the complete layout before installing any code. Fixed COM/
+    // callback tokens and anonymous import stubs occupy disjoint owned arenas.
+    std::vector<std::array<U,2>> regions;U planned=0;
+    for(const auto& spec:ServiceProviders){
+        U address=spec.id>=Base?spec.id:Code+planned*32;++planned;
+        if(address<Base+0x1f000||address+26>Base+0x24000)throw std::runtime_error("provider trampoline extent");
+        for(auto range:regions)if(address<range[1]&&range[0]<address+26)throw std::runtime_error("overlapping provider trampolines");
+        regions.push_back({address,address+26});
+    }
     U index=0;
     for(const auto& spec:ServiceProviders){
         U address=spec.id>=Base?spec.id:Code+index*32;++index;auto* p=reinterpret_cast<unsigned char*>(address);
@@ -314,13 +340,14 @@ static void installProviders(){
     }
 }
 #endif
-static bool returnsValue(U id){for(U entry:{0x464350u,0x4a4df0u,0x469000u,0x49cdb0u,0x4667c0u,0x58a680u,0x5977d0u,0x597880u,0x598f70u,0x414890u,0x5055a0u,0x520790u,0x463cb0u,0x5057b0u,0x411e50u,0x466870u,0x474b40u,0x49bcf0u,0x49c530u,0x4de090u,0x5075f0u,0x597850u})if(id==entry)return true;return false;}
+static bool returnsValue(U id){for(U entry:{0x545e60u,0x545690u,0x54aa10u,0x54aa00u,0x54aa80u,0x54e200u,0x464b20u,0x464b30u,0x465000u,0x464ec0u,0x510480u,0x545e90u,0x5457e0u,0x466900u,0x565180u,0x56b790u,0x56ba50u,0x56ba60u,0x56ba70u,0x56ba80u,0x464350u,0x4a4df0u,0x469000u,0x49cdb0u,0x4667c0u,0x58a680u,0x5977d0u,0x597880u,0x598f70u,0x414890u,0x5055a0u,0x520790u,0x463cb0u,0x5057b0u,0x411e50u,0x466870u,0x474b40u,0x49bcf0u,0x49c530u,0x4de090u,0x5075f0u,0x597850u})if(id==entry)return true;return false;}
 int main(int argc,char** argv)try{
     struct sigaction action{};action.sa_sigaction=fault;action.sa_flags=SA_SIGINFO;sigemptyset(&action.sa_mask);for(int n:{SIGSEGV,SIGILL,SIGFPE,SIGABRT})sigaction(n,&action,nullptr);
 #ifdef MNM_ORIGINAL_REFERENCE
     if(argc!=2)throw std::runtime_error("expected pinned original path");
     map_image(read(argv[1]));OriginalLinuxSeh seh;
-    if(mmap(reinterpret_cast<void*>(Base),0x20000,PROT_READ|PROT_WRITE|PROT_EXEC,MAP_PRIVATE|MAP_ANONYMOUS|MAP_FIXED_NOREPLACE,-1,0)==MAP_FAILED)throw std::runtime_error("owned map");
+    if(UseComposition||UseProviders)for(U i=0;i<250;++i)if(*reinterpret_cast<const U*>(0x5eb940+i*4)!=(i+1)%250)throw std::runtime_error("original R250 index table differs");
+    if(mmap(reinterpret_cast<void*>(Base),0x24000,PROT_READ|PROT_WRITE|PROT_EXEC,MAP_PRIVATE|MAP_ANONYMOUS|MAP_FIXED_NOREPLACE,-1,0)==MAP_FAILED)throw std::runtime_error("owned map");
 #else
     (void)argc;(void)argv;
 #endif
@@ -331,8 +358,8 @@ int main(int argc,char** argv)try{
     for(U entry:ServiceRoots)for(U seed=0;seed<64;++seed){
         runningEntry=entry;runningVariant=seed;memory.reset(seed);U p=Object;[[maybe_unused]] U second=0;std::vector<U> args;
         auto w=[&](U at,U value){memory.set32(at,value);};auto r=[&](U at){return memory.get32(at);};
-        bool isController=false;for(U id:ControllerRoots)isController|=id==entry;
-        if(isController||UseWorldServices||UseDependencies){
+        bool isController=UseComposition&&entry==0x50ab30;for(U id:ControllerRoots)isController|=id==entry;
+        if(isController||(UseWorldServices||(UseComposition&&(entry==0x490260||entry==0x564e90||entry==0x508b00||entry==0x509230||entry==0x5093e0||entry==0x5121c0||entry==0x512340||entry==0x5137d0||entry==0x514e40)))||(UseDependencies||(UseComposition&&(entry==0x490260||entry==0x4d4970||entry==0x4d9ac0||entry==0x4d9f30||entry==0x564e90||entry==0x508b00||entry==0x509230||entry==0x5093e0||entry==0x5121c0||entry==0x512340||entry==0x5137d0||entry==0x514e40)))){
             w(0x644520,1);w(0x6894a0,Other+0x600);w(0x6898d0,Other+0x1000);
             for(U off:{0x160u,0x230u,0x240u}){w(Other+0x1000+off,2);w(Other+0x1004+off,0);}
             for(U i=0;i<4;++i){
@@ -346,7 +373,7 @@ int main(int argc,char** argv)try{
             w(p+0xac,Catalog);w(p+0x174,1);w(p+0x5fc,seed%3==0?2:seed%3==1?15:10);w(p+0x5f0,(seed/4)%9);w(p+0x618,(seed/27)&1);w(p+0x108,(seed/3)&1);w(p+0x7cd,(seed/8)%4);w(p+0x60c,seed%8);w(p+0xf4,seed%3);w(p+0xa0,seed%4);w(p+0x664,(seed/2)&1);w(p+0x64c,seed%5);w(p+0x6a8,(seed/5)%5);w(p+0x10c,seed%4);w(p+0xe4,seed%7!=0);w(p+0x7c,0);w(p+0x56c,5);
             for(U i=0;i<5;++i)w(p+0x570+i*4,i-1);
         }
-        if(UseWorldServices){
+        if((UseWorldServices||(UseComposition&&(entry==0x490260||entry==0x564e90||entry==0x508b00||entry==0x509230||entry==0x5093e0||entry==0x5121c0||entry==0x512340||entry==0x5137d0||entry==0x514e40)))){
             constexpr U Map=Base+0x16000,Terrain=Base+0x3200;
             w(0x6c5494,6);w(0x6c5498,5);w(0x6c54a0,30);w(0x6c54dc,Map);w(0x65660c,Terrain);w(0x6a49c0,0);
             w(0x6cb8be,U(-30));for(U i=0;i<4;++i)w(0x6cb8c2+i*4,i*30);for(U i=0;i<5;++i)w(0x6cb942+i*4,i*6);
@@ -359,19 +386,19 @@ int main(int argc,char** argv)try{
             for(U i=0;i<4;++i){U effect=Other+i*0x22e;w(effect,i);w(effect+4,1);w(effect+40,i==1?14:0);w(effect+0x212,i+7);memory.set16(effect+0x1a0,i==3?0xffff:i+1);}
             w(0x5fed7c,0);
         }
-        if(UseUiServices){
+        if((UseUiServices||(UseComposition&&(entry==0x4d4970||entry==0x4d9ac0)))){
             const char localized[]="localized",owner[]="player",sprite[]="sprite.spr";
             std::memcpy(memory.pointer(Output,sizeof(localized)),localized,sizeof(localized));std::memcpy(memory.pointer(Output+256,sizeof(owner)),owner,sizeof(owner));std::memcpy(memory.pointer(Other+0xa18,sizeof(sprite)),sprite,sizeof(sprite));
             w(0x6e1ee4,seed&1);w(0x6e1f0c,(seed/16)&1);memory.set8(0x6e2032,(seed/8)&1);w(p+0x1ef,Other);w(Other+0x68,seed&2);w(p+0xcb,100);w(p+0xc7,seed%5*25);w(Other+0xac,Catalog);w(Catalog,17);w(Catalog+24,100);w(Catalog+0x198,7);w(Other+0xe4,(seed/5)%5*25);w(Other+0x124,0);w(p+0x89,seed&4?0:Other);w(p+0x8e,seed%5*25);
         }
-        if(UseDependencies){
+        if((UseDependencies||(UseComposition&&(entry==0x490260||entry==0x4d4970||entry==0x4d9ac0||entry==0x4d9f30||entry==0x564e90||entry==0x508b00||entry==0x509230||entry==0x5093e0||entry==0x5121c0||entry==0x512340||entry==0x5137d0||entry==0x514e40)))){
             constexpr U Vtable=Other+0x1d00;
             w(p,Vtable);w(Vtable,0x1001f1c0);w(p+4,seed%3==2?U(-1):seed%2);w(p+8,seed+3);
             w(0x5e04cc,seed%3);w(0x641fbc,seed%3);for(U i=0;i<30;++i)w(0x641ab8+i*4,i+seed*13);
             w(p+0x1ef,seed&1?Other:0);
             w(0x5f2094,seed&4?Other:0);memory.set8(0x5f20e8,seed&8);w(0x5f1ec8,seed&16?0x1001f240:0);
         }
-        if(UsePopups){
+        if((UsePopups||(UseComposition&&(entry==0x4d4970||entry==0x4d9f30)))){
             constexpr U Vtable=Other+0x1d00,Surface=Other+0x1200;
             for(U off:{0x10u,0x14u,0x18u,0x1cu,0x24u})w(Vtable+off,0x1001f140);
             w(Vtable+0x80,0x1001f280);w(Surface,Vtable);w(p+0x18ec,Other);w(Other+0xac,Catalog);w(Catalog,17);w(Other+0xe4,(seed/4)&1);w(Other+0x174,1);w(Other+0x7c,0);w(Other+0x56c,3);w(Other+0x5e8,U(-1));w(Other+0x8f1,2);w(Other+0x8f5,(seed/8)%3);for(U i=0;i<3;++i)w(Other+0x570+i*4,i);
@@ -382,7 +409,7 @@ int main(int argc,char** argv)try{
             for(U i=0;i<4;++i){w(Other+0x1500+i*4,i*64);w(Other+0x1600+i*64+28,(seed+i)&1?U(-1):0);}
             w(0x6de6d9,seed&1);w(0x6de6d5,(seed/2)&1);memory.set8(0x6e2032,(seed/4)&1);w(0x6e1ee4,seed&1);
         }
-        if(UseCollections){
+        if((UseCollections||(UseComposition&&(entry==0x564e90||entry==0x514e40||entry==0x490260)))){
             p=Other;w(p,1);w(p+4,1);w(p+8,2);w(p+12,2);w(p+16,1);w(p+0xac,Catalog);w(p+0xa8,17);w(Catalog,17);w(Catalog+24,100);w(Catalog+40,30);w(Catalog+20,40);w(Catalog+8,1);w(Catalog+12,1);w(p+0x174,1);w(p+0x7c,0);w(p+0xe4,80);w(p+0x124,0);w(p+0x128,0);w(p+0x60c,seed%8);
             constexpr U Definition=Catalog+0x800;w(Definition+4,Array);w(Definition+8,Buffer);
             for(U off:{0xb0u,0x12cu,0x7d5u}){w(p+off,0);w(p+off+4,Buffer);w(p+off+24,Buffer);w(p+off+28,Definition);}
@@ -390,7 +417,7 @@ int main(int argc,char** argv)try{
             w(p+0x6b4,5);w(p+0x6b8,10);w(p+0x6c4,80);w(p+0x6c8,100);w(p+0x6cc,6);w(p+0x6d0,Output+0x400);
             w(Base+0x10008,0x1001f200);memory.set16(Base+0x1000e,0xcad0);w(0x5f2094,Other);w(0x5f1ec8,0);
         }
-        if(UseEffects){
+        if((UseEffects||(UseComposition&&entry==0x490260))){
             constexpr U First=Base+0x9000;w(0x689498,First-125*0x22e);w(0x68949c,126);w(First,125);w(First+4,0);w(First+0x20e,0);w(0x6898dc,1);w(0x6f3a70,Nodes+0x400);w(0x6f3a78,0);w(0x6f3a90,0);w(0x6c5c88,9);w(0x6b1250,Base+0x6000);w(0x6b1254,123);w(0x6a42e8,0);w(0x68991c,seed&2);w(0x5e1904,100);w(0x5e1908,30);
         }
         if(UseConstruction){
@@ -399,6 +426,9 @@ int main(int argc,char** argv)try{
             for(U i=0;i<3;++i)w(Output+0x300+i*32,Table);
             for(U i=0;i<2;++i){U c=p+(i?0x53:0x21);w(c+4,Output+0x300);w(c+8,seed&8?0:Output+0x320);w(c+12,seed&16?Output+0x340:0);w(c+28,i);w(0x6f6950+i*4,c);}for(U i=2;i<128;++i)w(0x6f6950+i*4,0);
             w(0x642c68,4);w(0x5e04cc,seed%6==5?U(-1):seed%5);for(U i=0;i<4;++i){U widget=Nodes+i*64;w(0x642034+i*4,widget);w(widget+4,i);w(widget+8,1);}w(Base+0x10008,0x1001f200);memory.set16(Base+0x1000e,0xcad0);
+        }
+        if(UseProviders){
+#include "actor-provider-seeds.inc"
         }
         switch(entry){
         case 0x4a4df0:case 0x464350:case 0x463270:break;
@@ -547,6 +577,9 @@ int main(int argc,char** argv)try{
         case 0x59c441:p=0;args={Other,17,seed%7==6?U(-1):seed%6,Constructor,0};break;
         default:break;
         }
+        if(UseComposition){
+#include "actor-composition-seeds.inc"
+        }
         std::cout.flush();const pid_t child=fork();if(child<0)throw std::runtime_error("case fork");
         if(child){int status=0;if(waitpid(child,&status,0)!=child||!WIFEXITED(status)||WEXITSTATUS(status))throw std::runtime_error("case process failed");++cases;continue;}
         try {
@@ -556,7 +589,7 @@ int main(int argc,char** argv)try{
         result=entry==0x59c4ab?actor_services_cleanup(p):actor_services_call(entry,p,second,U(args.size()),args.data(),pop);seh.check();if(!bodiesUnchanged())throw std::runtime_error("original body altered during execution");
 #else
         bool controller=false;for(U id:ControllerRoots)controller|=id==entry;
-        auto execute=[&](std::initializer_list<U> values){return UseConstruction?s::ConstructionServices<Memory>(memory).run(entry,p,values):UseEffects?s::EffectServices<Memory>(memory).run(entry,p,values,second):controller?s::Controllers<Memory>(memory).run(entry,p,values,second):UsePopups?s::PopupServices<Memory>(memory).run(entry,p,values):UseCollections?s::CollectionServices<Memory>(memory).run(entry,p,values,second):UseWorldServices?s::WorldServices<Memory>(memory).run(entry,p,values):UseUiServices?s::UiServices<Memory>(memory).run(entry,p,values):UseDependencies?s::Dependencies<Memory>(memory).run(entry,p,values):native.run(entry,p,values);};
+        auto execute=[&](std::initializer_list<U> values){return UseComposition?memory.fastcall(entry,p,second,values):UseProviders?s::Providers<Memory>(memory).run(entry,p,values,second):UseConstruction?s::ConstructionServices<Memory>(memory).run(entry,p,values):UseEffects?s::EffectServices<Memory>(memory).run(entry,p,values,second):controller?s::Controllers<Memory>(memory).run(entry,p,values,second):UsePopups?s::PopupServices<Memory>(memory).run(entry,p,values):UseCollections?s::CollectionServices<Memory>(memory).run(entry,p,values,second):UseWorldServices?s::WorldServices<Memory>(memory).run(entry,p,values):UseUiServices?s::UiServices<Memory>(memory).run(entry,p,values):UseDependencies?s::Dependencies<Memory>(memory).run(entry,p,values):native.run(entry,p,values);};
         if(args.size()==0)result=execute({});
         else if(args.size()==1)result=execute({args[0]});
         else if(args.size()==2)result=execute({args[0],args[1]});
@@ -566,8 +599,26 @@ int main(int argc,char** argv)try{
         else if(args.size()==5)result=execute({args[0],args[1],args[2],args[3],args[4]});
         else throw std::runtime_error("root argument extent");
 #endif
+        if(UseComposition&&entry==0x464cb0){
+            for(U tick=0;tick<seed%5;++tick){
+#ifdef MNM_ORIGINAL_REFERENCE
+                actor_services_call(0x464ec0,p,0,0,nullptr,0);seh.check();
+#else
+                memory.invoke(0x464ec0,p,{});
+#endif
+            }
+        }
+        if(UseComposition&&entry==0x506290){
+#ifdef MNM_ORIGINAL_REFERENCE
+            actor_services_call(0x506d30,p,0,0,nullptr,0);U cleanupArgument=(seed/4)&1;
+            actor_services_call(0x51f5e0,p,0,1,&cleanupArgument,4);seh.check();
+            if(!bodiesUnchanged())throw std::runtime_error("lifecycle body altered during retirement");
+#else
+            memory.invoke(0x506d30,p,{});memory.invoke(0x51f5e0,p,{(seed/4)&1});
+#endif
+        }
         (void)r;memory.snapshot(entry,seed,(entry==0x411e50||entry==0x4667c0)?(result&0xff):(returnsValue(entry)?result:0));
-        }catch(const MemoryFault&){memory.snapshot(entry,seed,0,1);}
+        }catch(const MemoryFault& error){if(UseComposition)std::fprintf(stderr,"owned_fault %x %u %s\n",entry,seed,error.what());memory.snapshot(entry,seed,0,1);}
         catch(const std::domain_error&){memory.snapshot(entry,seed,0,2);}
         std::cout.flush();_exit(0);
     }

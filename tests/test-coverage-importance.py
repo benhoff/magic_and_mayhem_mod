@@ -90,7 +90,8 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        self.assertEqual(result['partial_counts'], {1: 92, 2: 9, 3: 4, 4: 38, 5: 28})
+        # Ten native ownership contracts were already closed in1e663376.
+        self.assertEqual(result['partial_counts'], {1: 82, 2: 9, 3: 4, 4: 38, 5: 28})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -461,6 +462,7 @@ class TrancheTest(unittest.TestCase):
             'RS.actor-downstream-collection-services',
             'RS.actor-downstream-effect-services',
             'RS.actor-downstream-construction-services',
+            'RS.actor-service-composition', 'RS.actor-concrete-providers',
         }
         scoped_high = {e['behavior'] for e in result['entries']
                        if e['weight'] == 4 and e['implementation'] == 'scoped'}

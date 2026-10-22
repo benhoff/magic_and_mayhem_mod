@@ -20841,3 +20841,30 @@ helper execution is repeated against merged source dependencies; no original-gam
 external provider, physical-driver or live replacement milestone is promoted.
 Local hash-verified evidence and retained SQLite backups satisfy local merge
 requirements; external publication is a separate explicitly requested operation.
+# Actor service composition and concrete providers — 2026-10-22
+
+`RS.actor-service-composition` and `RS.actor-concrete-providers` add a shared
+value-address router for112prior service bodies,34concrete suppliers and three
+actor lifecycle entries. The providers recover animation restart/ticks, camera
+and raster/text state, original250-word RNG transitions, particle construction,
+priority/deleting methods and admission, scenario eligibility/region overlap/
+finalization/dispatch and panel backing/mode behavior. Native routing is distinct
+from original binary dispatch-table completeness.
+
+Eleven current independently seeded original/native matrices match10,688cases:
+2,176provider cases,1,344composed caller cases and7,168prior-suite regression
+cases. All64preloaded activation-to-release/cleanup sequences return normally.
+The composed matrix also covers occupancy, progression and marker/list/spell/audio
+retirement; three deliberate audio access-fault prefixes match. Nine new provider
+division faults match. Native vector failure/cleanup checks retain171passing
+combinations. Current `SCP1.*` execution identities preserve all historical DSVC
+results and hashes. Generated reports are SQLite payloads with Git pointers.
+
+The Critical downstream umbrella stays partial: source-controller registration,
+resource/font raster/decoding, attack/task and scenario evaluator/action subtype
+providers, other indirect classes, actual external lifetimes/publication and full
+supported-session/live acceptance remain separate. A retained malformed-vector
+counterexample shows differing CRT partial-copy fault state and is excluded from
+valid owned-vector claims. No Windows SEH or legacy physical-driver promotion.
+See [the bounded composition and remaining boundaries](actor-service-composition-20261021.md).
+
