@@ -52,5 +52,16 @@ class ReturnExecution(unittest.TestCase):
             with self.assertRaises(ValueError): associate_return(*data)
 
 
+    def test_same_worker_cannot_claim_a_different_interval(self):
+        data=list(fixture());data[3]=dict(worker=48,worker_entry_record=42,worker_return_record=45)
+        with self.assertRaises(ValueError):associate_return(*data)
+
+    def test_duplicate_negative_and_boolean_intervals_refuse(self):
+        for mutate in [lambda x:x[2]['commands'].append(dict(x[2]['commands'][0])),
+                       lambda x:x[3].__setitem__('worker_entry_record',-1),
+                       lambda x:x[3].__setitem__('worker',True)]:
+            data=copy.deepcopy(list(fixture()));mutate(data)
+            with self.assertRaises(ValueError):associate_return(*data)
+
 if __name__ == '__main__':
     unittest.main()

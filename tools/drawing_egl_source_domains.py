@@ -3,14 +3,7 @@ from collections import Counter
 import struct
 
 
-def unique(rows, key):
-    result = {}
-    for row in rows:
-        value = row[key]
-        if value in result:
-            raise ValueError('Duplicate observed identity: ' + key)
-        result[value] = row
-    return result
+from drawing_observed_inputs import unique
 
 
 def account(reference, marker):
@@ -18,13 +11,14 @@ def account(reference, marker):
         raise ValueError('Exact physical interval close marker required')
     h = struct.unpack('<8I', marker)
     physical = unique(reference['egl_physical_observation']['frames'], 'entry')
-    if h[2] != 1 or h[6:] != (1, 0) or h[4] != len(physical) or not physical or h[5] != max(physical):
+    if not h[3] or h[2] != 1 or h[6:] != (1, 0) or h[4] != len(physical) or not physical or h[5] != max(physical):
         raise ValueError('Closed physical interval accounting differs')
     if any(f['pid'] != h[3] for f in physical.values()):
         raise ValueError('Physical interval process identity differs')
     calls = unique(reference['observation']['calls'], 'entry')
     submissions = unique(reference['wine_submission_observation']['calls'], 'call')
     packets = unique(reference['wine_blit_packet_observation']['bindings'], 'command')
+    unique(reference['wine_blit_packet_observation']['bindings'], 'worker')
     leases = unique(reference['api_source_lease_observation']['calls'], 'api_entry')
     refused = unique(reference['cursor_source_gate_binding']['refused'], 'api_entry')
     contexts = unique(reference['egl_worker_context_observation']['calls'], 'call')
@@ -32,7 +26,12 @@ def account(reference, marker):
     for call_id, c in contexts.items():
         if c['pid'] != h[3] or not c['stable_active_context']:
             raise ValueError('Selected process/stable worker context required')
-        point = c['points'][0]['context']
+        points = c['points']
+        if len(points)!=2 or any(p['status'] or p['pid']!=c['pid'] for p in points) or points[0]['unix_thread']!=points[1]['unix_thread'] or points[0]['context']!=points[1]['context']:
+            raise ValueError('Unavailable or changed worker context pair')
+        point = points[0]['context']
+        if not point['active'] or point['flags']:
+            raise ValueError('Inactive or unknown worker context')
         packet, sub = packets.get(point['command']), submissions.get(point['submission'])
         if not packet or not sub or (packet['worker'], packet['submission'], packet['worker_thread']) != (point['worker'], point['submission'], point['win_thread']):
             raise ValueError('Missing or changed exact command/submission/worker join')
@@ -51,6 +50,8 @@ def account(reference, marker):
             continue
         if call_id not in physical:
             raise ValueError('Missing physical witness inside declared interval')
+        if physical[call_id]['thread']!=points[0]['unix_thread']:
+            raise ValueError('Physical witness worker thread differs')
         lease, gate = leases.get(api_entry), refused.get(api_entry)
         if lease:
             if lease['lease']:

@@ -1,7 +1,7 @@
 """Reference-only cursor ROI model; source pixels never enter the native app."""
 import struct
-from pathlib import Path
 from drawing_api_session import sha
+from drawing_observed_inputs import bound_bytes, image_size, unique
 
 
 def packed_rgb(word):
@@ -10,23 +10,19 @@ def packed_rgb(word):
 
 
 def read_bound(directory,name,digest,size):
-    relative=Path(name)
-    if relative.is_absolute() or '..' in relative.parts or len(relative.parts)!=1:
-        raise ValueError('Unsafe cursor model input path')
-    path=directory/relative
-    if path.is_symlink():raise ValueError('Cursor model input symlink')
-    raw=path.read_bytes()
+    raw=bound_bytes(directory,name,size)
     if len(raw)!=size or sha(raw)!=digest:raise ValueError('Cursor model input size/hash')
     return raw
 
 
 def evaluate(calls,samples,payloads,frames,directory):
+    unique(calls,'call')
     ids=[c['call'] for c in calls]
     if ids!=sorted(set(ids)):raise ValueError('Cursor call order/identity')
+    unique(samples,'submission')
     sample_by={s['submission']:s for s in samples if s['status']==0}
-    payload_by={p['ordinal']:p for p in payloads}
-    frame_by={f['entry']:f for f in frames}
-    if len(frame_by)!=len(frames):raise ValueError('Duplicate cursor physical frame entry')
+    payload_by=unique(payloads,'ordinal')
+    frame_by=unique(frames,'entry')
     matches=[];refusals=[];selected=0
     for restore in calls:
         background=sample_by.get(restore['call'])
@@ -48,19 +44,24 @@ def evaluate(calls,samples,payloads,frames,directory):
         if draw['thread']!=restore['thread'] or overlay['source_texture']!=draw['second_object'] or overlay['source_generation']!=draw['second_generation'] or background['source_texture']!=restore['second_object'] or background['source_generation']!=restore['second_generation']:
             refuse('sample_generation_or_thread');continue
         presents=[c for c in between if c['method']==1 and c['call']>draw['call'] and c['second_object']==restore['first_object'] and c['second_generation']==restore['first_generation'] and not c['hresult']&0x80000000 and c['api_entry'] in frame_by]
-        if not presents:refuse('missing_physical_present');continue
+        if len(presents)!=1:refuse('missing_or_ambiguous_physical_present');continue
         present=presents[0];frame=frame_by[present['api_entry']]
+        if any(c['method']==1 and draw['call']<c['call']<present['call'] and (c['first_object'],c['first_generation'])==(restore['first_object'],restore['first_generation']) and not c['hresult']&0x80000000 for c in between):
+            refuse('intervening_composed_surface_write');continue
         if present['thread']!=restore['thread'] or frame['thread']!=restore['thread']:
             refuse('physical_thread');continue
         rect=restore['source_rect'];destination=draw['destination_rect'];source=draw['source_rect']
         if rect!=[0,0,40,40] or not source or not destination or len(source)!=4 or len(destination)!=4:
             refuse('unsupported_geometry');continue
         x,y,right,bottom=destination;sx,sy,sright,sbottom=source
-        p=payload_by[overlay['payload_ordinal']];bg=payload_by[background['payload_ordinal']]
+        p=payload_by.get(overlay['payload_ordinal']);bg=payload_by.get(background['payload_ordinal'])
+        if p is None or bg is None:refuse('missing_sampled_payload');continue
+        image_size(p,2);image_size(bg,2);image_size(frame,4)
+        if any(type(v) is not int for v in source+destination):refuse('unsupported_or_clipped_geometry');continue
         if (right-x,bottom-y,sright-sx,sbottom-sy)!=(40,40,40,40) or not 0<=x<right<=frame['width'] or not 0<=y<bottom<=frame['height'] or not 0<=sx<sright<=p['width'] or not 0<=sy<sbottom<=p['height'] or (bg['width'],bg['height'])!=(40,40):
             refuse('unsupported_or_clipped_geometry');continue
-        front=read_bound(directory,frame['path'],frame['sha256'],frame['width']*frame['height']*4)
-        image=read_bound(directory,p['path'],p['sha256'],p['width']*p['height']*2)
+        front=read_bound(directory,frame['path'],frame['sha256'],image_size(frame,4))
+        image=read_bound(directory,p['path'],p['sha256'],image_size(p,2))
         backing=read_bound(directory,bg['path'],bg['sha256'],3200)
         maximum=over_one=0
         for row in range(40):

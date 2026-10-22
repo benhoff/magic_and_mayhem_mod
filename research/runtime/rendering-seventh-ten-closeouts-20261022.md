@@ -1,0 +1,26 @@
+# Seventh rendering batch: offline identity and interval checks (2026-10-22)
+
+These ten partial tasks already declare bounded offline analysis scopes. This batch finishes the missing guards and SQLite report paths within those scopes. Original comparison, integration and replacement dimensions remain independent; generated protocol fixtures never become original-game evidence.
+
+| Task | Completion |
+| --- | --- |
+| Two-stage protected source chain | Reject duplicate submissions, queries, source points, workers, leases and held phases; require nonzero leases, consistent held source identity/owner and complete per-stage worker intervals. Preserve unsupported chains as exclusions. |
+| Cursor/mutex prefix binding | Index each owner's cursor history once, then query the exact prefix. Validate active versus terminal prefixes and inactive pending counts. Preserve foreign/pending/refused calls and raw journal identities. |
+| Cursor mapped composition | Refuse duplicate samples/payloads, missing payloads, ambiguous presentations and intervening writes to the composed surface. Preserve RGB565 blue31 policy, full 40x40 ROI and all physical mismatches. |
+| Source/frame binding | Bound regular-file reads before allocation; refuse symlinks/FIFOs/devices, oversize or changing inputs, invalid identities and noninteger geometry. Validate diagnostic image extents in 1..4096 before reading. |
+| Source/update intervals | Validate exact source/update identities, owner and u64 clock bounds. Preserve valid u32 sequence wrap, crossing/end-boundary/outside/foreign-thread classifications and refused source statuses. |
+| EGL source domains | Revalidate both actual context points, status/process/thread/command stability and physical thread identity, rather than trusting the summary stability flag. Retain after-close contexts separately. |
+| Physical interval closure | Validate and hash a single bounded completion-marker snapshot. Partial regular markers stay pending; malformed, symlink, FIFO and oversized markers refuse. Exclusive close-request creation retains existing request ownership. |
+| COPY/API/worker association | Reject duplicate entry/return/submission/command/worker identities and changed return descriptors before association. Preserve unbound API calls/requests and independent return/worker order. |
+| Worker-prefix analysis | Exercise the complete classifier from owned request/API/command/source journals; check exact packet worker-entry prefix, duplicate joins and interval bounds. A same worker cannot carry two different execution envelopes. Retain every outside-scope worker. |
+| Source/worker/EGL binding | Keep null source rectangles and missing context phases as explicit refusals; revalidate actual boundary contexts and exact u64 timestamps. Region/whole-image agreement and physical/API capture timing remain distinct. |
+
+All affected analysis CLIs use verified semantic SQLite report reads and immutable report writes, including the cursor source-interval companion. The protected-chain tool reads retained journals only and no longer opens the original-media manifest unnecessarily. Original artifacts are not consumed by these changes or their controls.
+
+`tools/test-rendering-seventh-ten.py` prospectively pins the ten behavior/scenario contracts, explicit sources, recursive local Python imports, literal-loaded fixture files and quoted native includes. It records command output, counts, source stability and failures directly in SQLite. Cross-tool fixtures join actual wire-decoded worker points to COPY/API bindings and return classification. Three actual CLI pipelines cover worker prefixes, EGL domain accounting and cursor/mutex prefixes with SQLite reference inputs/outputs and overwrite refusal. Their synthetic acquisition-admission fields are authored test inputs and do not assert a real original acquisition. Disposable CLI pointers are fixture outputs; their SQLite payloads and the combined execution record remain local.
+
+Live original behavior, immutable backing bytes and all aliases/writers, replay ordering repair, complete physical presentation, hardware scanout, gameplay/journey equivalence and replacement remain pending. RGB565 diagnostic models continue to use external pixels only as diagnostic inputs; these are not production native-renderer inputs. Historical evidence and fingerprints are preserved.
+
+The [final combined execution](rendering-seventh-ten-results-20261022/controls-02.json) passes all 16 suites and 96 tests with 245 stable prospectively pinned inputs. `NT7.final-offline-identities-20261022` supplies current execution support for these ten implementation completions. Registered rendering partials decrease from 106 to 96. These counts describe implementation scopes; every original/live/ownership boundary above remains open.
+
+The first successful execution and its audit remain immutable at their original fingerprints. That audit identified a source-provenance error for the SQLite-backed binary inventory: its reference bytes were fingerprinted instead of its verified semantic payload. The final runner uses `evidence_digest` for every input and the new02 evidence ID retains a fresh complete execution. Earlier source hashes are not refreshed.

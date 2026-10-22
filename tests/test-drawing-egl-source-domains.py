@@ -2,6 +2,7 @@
 """Guard explicit physical interval and command joins against false accounting."""
 from pathlib import Path
 import struct
+import copy
 import sys
 import unittest
 
@@ -10,13 +11,13 @@ from drawing_egl_source_domains import account
 
 
 def fixture():
-    r = dict(egl_physical_observation=dict(frames=[dict(entry=i, pid=9) for i in (1, 2, 3)]),
+    r = dict(egl_physical_observation=dict(frames=[dict(entry=i, pid=9, thread=71) for i in (1, 2, 3)]),
              observation=dict(calls=[dict(entry=i, method=7, flags=16) for i in (1, 2, 3, 4)]),
              wine_submission_observation=dict(calls=[dict(call=i, api_entry=i, source_rect=[0, 0, 800, 600], destination_rect=[0, 0, 800, 600]) for i in (1, 2, 3, 4)]),
              wine_blit_packet_observation=dict(bindings=[dict(command=i, submission=i, worker=i, worker_thread=7) for i in (1, 2, 3, 4)]),
              api_source_lease_observation=dict(calls=[dict(api_entry=1, lease=1, before=[0]*16, begin_result=0x80000001), dict(api_entry=2, lease=0, before=[0]*16, begin_result=3)]),
              cursor_source_gate_binding=dict(refused=[dict(api_entry=3, reason=3)]),
-             egl_worker_context_observation=dict(calls=[dict(call=i, pid=9, stable_active_context=True, points=[dict(context=dict(command=i, submission=i, worker=i, win_thread=7))]) for i in (1, 2, 3, 4)]))
+             egl_worker_context_observation=dict(calls=[dict(call=i, pid=9, stable_active_context=True, points=[dict(status=0,pid=9,unix_thread=71,context=dict(active=True,flags=0,command=i, submission=i, worker=i, win_thread=7)) for phase in (1,2)]) for i in (1, 2, 3, 4)]))
     return r, b'MNMEGD01' + struct.pack('<6I', 1, 9, 3, 3, 1, 0)
 
 
@@ -56,6 +57,15 @@ class Guards(unittest.TestCase):
             with self.assertRaises(ValueError):
                 account(r, h)
 
+
+    def test_forged_stability_missing_return_and_physical_thread_refuse(self):
+        for change in ('context','status','thread','missing'):
+            r,h=fixture();points=r['egl_worker_context_observation']['calls'][0]['points']
+            if change=='context':points[1]['context']['command']=99
+            elif change=='status':points[1]['status']=1
+            elif change=='thread':r['egl_physical_observation']['frames'][0]['thread']=72
+            else:points.pop()
+            with self.assertRaises(ValueError):account(r,h)
 
 if __name__ == '__main__':
     unittest.main()

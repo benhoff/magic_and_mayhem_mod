@@ -137,5 +137,22 @@ class SourceWorkerEGL(unittest.TestCase):
             self.run_model()
 
 
+    def test_null_rectangles_and_missing_context_phase_remain_refusals(self):
+        self.calls[0]['source_rect']=None
+        self.assertEqual(self.run_model()['source_refusals'][0]['reason'],'worker_geometry_or_flags')
+        self.calls[0]['source_rect']=[0,0,2,2];self.contexts[0]['points'].pop()
+        self.assertEqual(self.run_model()['compared_regions'],0)
+
+    def test_delivery_boundary_rechecks_actual_context_and_exact_clock(self):
+        egl=self.run_model()['comparisons'][0];api=dict(egl)
+        timing=dict(entry=api['frame_entry'],ordinal=api['frame_ordinal'],sha256=api['physical_sha256'],clock_domain='linux_CLOCK_MONOTONIC',first_capture=dict(begin_ns='10',end_ns='11'),second_capture=dict(begin_ns='12',end_ns='13'))
+        for change in ('command','status','clock'):
+            context=copy.deepcopy(self.contexts[0]);context['points'][0]['time_ns']=20;context['points'][1]['time_ns']=30
+            if change=='command':
+                for point in context['points']:point['context']['command']=99
+            elif change=='status':context['points'][1]['status']=1
+            else:context['points'][0]['time_ns']=True
+            with self.assertRaises(ValueError):delivery_boundary(api,egl,timing,context)
+
 if __name__ == '__main__':
     unittest.main()

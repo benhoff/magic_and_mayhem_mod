@@ -1,4 +1,6 @@
 """Exact two-blit protected source chains; never infer physical allocation ownership."""
+from drawing_observed_inputs import unique
+
 FULL_RECT=[0,0,800,600]
 FULL_BOX=[0,0,800,600,0,1]
 
@@ -6,15 +8,20 @@ FULL_BOX=[0,0,800,600,0,1]
 def bind(reference,prediction):
     if reference.get('success') is not True or prediction.get('success') is not True:
         raise ValueError('Successful independent reference/prediction required')
-    submissions={s['call']:s for s in reference['wine_submission_observation']['calls']}
-    points={p['submission']:p for p in reference['wine_retained_map_source_observation']['points']}
-    queries={q['query']:q for q in reference['canvas_storage_transition_observation']['queries']}
+    submissions=unique(reference['wine_submission_observation']['calls'],'call')
+    points=unique(reference['wine_retained_map_source_observation']['points'],'submission')
+    queries=unique(reference['canvas_storage_transition_observation']['queries'],'query')
+    unique(reference['wine_blit_packet_observation']['bindings'],'command')
+    unique(reference['wine_blit_packet_observation']['bindings'],'worker')
     packets={}
     for p in reference['wine_blit_packet_observation']['bindings']:packets.setdefault(p['submission'],[]).append(p)
-    workers={w['call']:w for w in reference['wine_blit_worker_observation']['calls']}
-    leases={c['api_entry']:c for c in reference['api_source_worker_lease_observation']['calls']}
+    workers=unique(reference['wine_blit_worker_observation']['calls'],'call')
+    leases=unique(reference['api_source_worker_lease_observation']['calls'],'api_entry')
     held={}
-    for h in reference['source_held_snapshot_observation']['frames']:held.setdefault(h['api_entry'],{})[h['phase']]=h
+    for h in reference['source_held_snapshot_observation']['frames']:
+        pair=held.setdefault(h['api_entry'],{})
+        if h['phase'] not in (1,2) or h['phase'] in pair:raise ValueError('Duplicate/invalid held source phase')
+        pair[h['phase']]=h
     accepted=[];excluded=[];seen=set()
     for frame in prediction['comparisons']:
         key=(frame['entry'],frame['submission'],frame['egl_call'])
@@ -28,6 +35,8 @@ def bind(reference,prediction):
             if len(initial)!=1:raise ValueError('Missing/ambiguous initial texture link')
             first=initial[0];point=points[first['call']];m=point['metadata'];query=queries.get(m[15])
             source=pair[1]['before']
+            if not frame['lease'] or any(h['thread']!=lease['owner'] or h['before'][6:12]!=source[6:12] for h in pair.values()):
+                raise ValueError('Changed held source owner/state')
             if not query or not query['epoch_known'] or query['metadata']!=m or point['status']!=1 or not point['matched'] or m[1]!=2 or m[2]!=19:
                 raise ValueError('Unknown initial mapped-source epoch')
             if m[3]!=source[3] or m[6:12]!=source[6:12] or m[14]!=pair[1]['thread'] or source[6]!=frame['boundary']['canvas'] or source[3]!=frame['boundary']['sequence']:
@@ -40,6 +49,8 @@ def bind(reference,prediction):
                 ps=packets.get(s['call'],[])
                 if len(ps)!=1:raise ValueError('Missing/ambiguous stage command')
                 packet=ps[0];worker=workers.get(packet['worker']);returned=lease['commands'].get(str(packet['command']))
+                if not packet['worker_entry_record']<packet['worker_return_record']:
+                    raise ValueError('Incomplete stage worker interval')
                 if not worker or not returned or (returned['worker'],returned['thread'])!=(packet['worker'],packet['worker_thread']) or worker['thread']!=packet['worker_thread']:
                     raise ValueError('Stage command/worker/lease mismatch')
                 if (worker['destination'],worker['destination_generation'],worker['source'],worker['source_generation'])!=(s['first_object'],s['first_generation'],s['second_object'],s['second_generation']):

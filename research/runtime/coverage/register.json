@@ -70568,14 +70568,17 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-canvas-storage-generations.md"
+        "research/runtime/draw02-canvas-storage-generations.md",
+        "research/runtime/rendering-seventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/drawing_two_stage_source.py"
       ],
       "tests": [
         "tests/test-drawing-two-stage-source.py",
-        "tools/analyze-drawing-two-stage-source.py"
+        "tools/analyze-drawing-two-stage-source.py",
+        "tools/test-rendering-seventh-ten.py",
+        "tests/test-rendering-seventh-ten.py"
       ],
       "evidence": [
         "DRAW02.two-stage-source-analysis-20261012",
@@ -70588,11 +70591,13 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT7.offline-identities-20261022",
+        "NT7.final-offline-identities-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -70600,12 +70605,15 @@
       "remaining_gaps": [
         "Direct final-source epoch links remain absent; validate complete two-stage chain without equating API/thread coincidence to storage ownership. Alternate/failed/multiple-stage routes and all47/21closure remain open.",
         "All104retained eligible frames validate initial CPUmapped epoch\u2192intermediate texture\u2192primary two-blit chains with both lease commands and ordered checked workers. Final direct sourceepoch absence remains true and is explained by the intermediate stage. Other225contexts from original comparison remain excluded; no whole allocation/alias/driver/hardware/scanout/allroute/action/47/21closure.",
-        "Current whole120normal Quit binds120queues/1267observed Lockepochs4858queries.139eligible source/native/EGLframes all pass two-stage chain0diff;688contexts remainexcluded. Earlierqueue30foreign tag32source61refusal retained; successful retry not race fix. Whole allocation/aliases/allwriters/unobserved uploads/allroutes/actions/full47/21closure remains pending."
+        "Current whole120normal Quit binds120queues/1267observed Lockepochs4858queries.139eligible source/native/EGLframes all pass two-stage chain0diff;688contexts remainexcluded. Earlierqueue30foreign tag32source61refusal retained; successful retry not race fix. Whole allocation/aliases/allwriters/unobserved uploads/allroutes/actions/full47/21closure remains pending.",
+        "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "validation_dependencies": [
         "tools/drawing_api_session.py",
         "tools/drawing_storage_point.py",
-        "tools/drawing_storage_transitions.py"
+        "tools/drawing_storage_transitions.py",
+        "tools/drawing_observed_inputs.py",
+        "tools/coverage_evidence.py"
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -71653,7 +71661,8 @@
       "original": [],
       "documents": [
         "research/formats/drawing-cursor-mutex.md",
-        "research/runtime/draw02-end-to-end.md"
+        "research/runtime/draw02-end-to-end.md",
+        "research/runtime/rendering-seventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/drawing_cursor_mutex_binding.py"
@@ -71661,13 +71670,17 @@
       "tests": [
         "tests/test-drawing-cursor-mutex-binding.py",
         "tools/analyze-drawing-cursor-mutex.py",
-        "tools/analyze-drawing-cursor-source-intervals.py"
+        "tools/analyze-drawing-cursor-source-intervals.py",
+        "tools/test-rendering-seventh-ten.py",
+        "tests/test-rendering-seventh-ten.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_input_point_v1.h",
         "tools/drawing_api_session.py",
         "tools/drawing_cursor_mutex.py",
-        "tools/drawing_input_point.py"
+        "tools/drawing_input_point.py",
+        "tools/drawing_observed_inputs.py",
+        "tools/coverage_evidence.py"
       ],
       "evidence": [
         "DRAW02.draw02-cursor-mutex-binding-analysis-01-20261012",
@@ -71678,18 +71691,21 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT7.offline-identities-20261022",
+        "NT7.final-offline-identities-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Sampled prefix query occurs before row publication; completed record order differs from entered call order. Refused/inactive points remain explicit. Ownership, handles/aliases, concurrent close/use, source protection and complete original/native equivalence pending.",
-        "Adding source-interval analyzer linkage changes contractfingerprint; prior exactprefixanalysis remains historical. Conservative sourcecall correlation doesnot proveatomicoriginalcriticalregions, sourceoverlap or repairedrace."
+        "Adding source-interval analyzer linkage changes contractfingerprint; prior exactprefixanalysis remains historical. Conservative sourcecall correlation doesnot proveatomicoriginalcriticalregions, sourceoverlap or repairedrace.",
+        "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -71935,14 +71951,17 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-wine-source-map.md"
+        "research/runtime/draw02-wine-source-map.md",
+        "research/runtime/rendering-seventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/drawing_cursor_map_composition.py",
         "tools/analyze-drawing-cursor-map-composition.py"
       ],
       "tests": [
-        "tests/test-drawing-cursor-map-composition.py"
+        "tests/test-drawing-cursor-map-composition.py",
+        "tools/test-rendering-seventh-ten.py",
+        "tests/test-rendering-seventh-ten.py"
       ],
       "validation_dependencies": [
         "tools/drawing_api_physical.py",
@@ -71950,7 +71969,9 @@
         "tools/drawing_wine_lifetime.py",
         "tools/drawing_wine_source_descriptor.py",
         "tools/drawing_wine_source_map.py",
-        "tools/drawing_wine_submission.py"
+        "tools/drawing_wine_submission.py",
+        "tools/drawing_observed_inputs.py",
+        "tools/coverage_evidence.py"
       ],
       "evidence": [
         "DRAW02.cursor-map-composition-fixture-01-20261012",
@@ -71962,18 +71983,21 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT7.offline-identities-20261022",
+        "NT7.final-offline-identities-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Seven guard methods and current analysis pass their execution checks.13ROI associations/20800pixels match within1channel, while one startup-black physical witness mismatches and one selected restore lacks a sampled overlay. Key31 remains an inferred diagnostic-model parameter. Internal writes, true key getters/overrides, clipped cases, complete source/frame/action/routes and production native parity remain pending.",
-        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
+        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending.",
+        "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -72081,14 +72105,17 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-wine-source-map.md"
+        "research/runtime/draw02-wine-source-map.md",
+        "research/runtime/rendering-seventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/drawing_source_frame_binding.py",
         "tools/analyze-drawing-source-frame-binding.py"
       ],
       "tests": [
-        "tests/test-drawing-source-frame-binding.py"
+        "tests/test-drawing-source-frame-binding.py",
+        "tools/test-rendering-seventh-ten.py",
+        "tests/test-rendering-seventh-ten.py"
       ],
       "validation_dependencies": [
         "tools/drawing_api_physical.py",
@@ -72096,7 +72123,9 @@
         "tools/drawing_wine_lifetime.py",
         "tools/drawing_wine_source_descriptor.py",
         "tools/drawing_wine_source_map.py",
-        "tools/drawing_wine_submission.py"
+        "tools/drawing_wine_submission.py",
+        "tools/drawing_observed_inputs.py",
+        "tools/coverage_evidence.py"
       ],
       "evidence": [
         "DRAW02.source-frame-binding-fixture-01-20261012",
@@ -72112,18 +72141,21 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT7.offline-identities-20261022",
+        "NT7.final-offline-identities-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Prospective scoped physical-copy agreement model. Independent owned guards and raw-bound original analysis must precede claims. Keyed/scaled/clipped/unsupported copies, intervening unobserved writes, physical/driver delivery and native parity remain open.",
-        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
+        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending.",
+        "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -72140,14 +72172,17 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-source-map.md",
-        "research/formats/drawing-wine-source-map.md"
+        "research/formats/drawing-wine-source-map.md",
+        "research/runtime/rendering-seventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/drawing_source_windows.py",
         "tools/analyze-drawing-source-windows.py"
       ],
       "tests": [
-        "tests/test-drawing-source-windows.py"
+        "tests/test-drawing-source-windows.py",
+        "tools/test-rendering-seventh-ten.py",
+        "tests/test-rendering-seventh-ten.py"
       ],
       "validation_dependencies": [
         "tools/drawing_api_session.py",
@@ -72156,7 +72191,9 @@
         "tools/drawing_wine_source_descriptor.py",
         "tools/drawing_wine_source_map.py",
         "tools/drawing_wine_submission.py",
-        "tools/engine_cadence.py"
+        "tools/engine_cadence.py",
+        "tools/drawing_observed_inputs.py",
+        "tools/coverage_evidence.py"
       ],
       "evidence": [
         "DRAW02.source-update-intervals-fixture-01-20261012",
@@ -72168,11 +72205,13 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT7.offline-identities-20261022",
+        "NT7.final-offline-identities-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -72180,7 +72219,8 @@
       "remaining_gaps": [
         "Prospective timestamp/temporal classification policy only; fresh owned wire/read/containment guards and original counter/source execution are required. Timestamp containment cannot substitute for producer/worker identity, alias/lifetime ownership or global source/frame/action/routes.",
         "Final owned fixture02passes5methods; analysis02classifies2629source intervals with1975contained/0crossing/654outside and429foreign-thread contained reads.176of178complete accepted updates contain source observations. Outside reads are preserved, not waived. These intervals and adjacent queue records are temporal context only; producer/worker, original-source atomicity/aliases, caller/actions and every physical route remain open.",
-        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
+        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending.",
+        "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -72196,14 +72236,17 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-source-worker-egl-binding.md"
+        "research/runtime/draw02-source-worker-egl-binding.md",
+        "research/runtime/rendering-seventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/drawing_source_worker_egl.py",
         "tools/analyze-drawing-source-worker-egl.py"
       ],
       "tests": [
-        "tests/test-drawing-source-worker-egl.py"
+        "tests/test-drawing-source-worker-egl.py",
+        "tools/test-rendering-seventh-ten.py",
+        "tests/test-rendering-seventh-ten.py"
       ],
       "validation_dependencies": [
         "tests/test-drawing-source-frame-binding.py",
@@ -72217,7 +72260,9 @@
         "tools/drawing_wine_lifetime.py",
         "tools/drawing_wine_source_map.py",
         "tools/drawing_wine_submission.py",
-        "tools/drawing_worker_context.py"
+        "tools/drawing_worker_context.py",
+        "tools/drawing_observed_inputs.py",
+        "tools/coverage_evidence.py"
       ],
       "evidence": [
         "DRAW02.source-worker-egl-fixture-01-20261013",
@@ -72253,11 +72298,13 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT7.offline-identities-20261022",
+        "NT7.final-offline-identities-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -72268,7 +72315,8 @@
         "Final campaign acquisition03and analysis04close1424source-worker links and193full images; together with Quick Battle analysis04there are649matched final whole images/311520000RGBpixels. Earlier campaign captures/failed scalar analyses remain separate immutable evidence. All original aliases/writers, semantic action attribution, alternate routes and unobtrusive acquisition remain open.",
         "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending.",
         "Current offline original32pilot03 raw source/submission/packet/worker/context/API and post-EGL revalidation:2108sources bound,355copy regions/whole source images match170400000whole-image RGBpixels. No all-route/backing ownership, scanout, hardware, native parity or semantic closure. Historical fingerprints/statuses retained; fresh offline agreement does not promote original comparison, integration or replacement.",
-        "Current original120retry02 offline analysis binds2649sources and matches519copy regions/whole images (249120000whole-image RGBpixels); separate source prefix closes120queues. No all routes, actors/semantic outcomes, physical backing/aliases/direct writers/all contexts/hardware/scanout or native parity promotion."
+        "Current original120retry02 offline analysis binds2649sources and matches519copy regions/whole images (249120000whole-image RGBpixels); separate source prefix closes120queues. No all routes, actors/semantic outcomes, physical backing/aliases/direct writers/all contexts/hardware/scanout or native parity promotion.",
+        "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -89771,7 +89819,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-egl-source-domains.md"
+        "research/runtime/draw02-egl-source-domains.md",
+        "research/runtime/rendering-seventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/inspect-drawing-source-lease-clients.py",
@@ -89779,7 +89828,9 @@
         "tools/analyze-drawing-egl-source-domains.py"
       ],
       "tests": [
-        "tests/test-drawing-egl-source-domains.py"
+        "tests/test-drawing-egl-source-domains.py",
+        "tools/test-rendering-seventh-ten.py",
+        "tests/test-rendering-seventh-ten.py"
       ],
       "validation_dependencies": [
         "research/runtime/coverage/binary-nocd.json",
@@ -89791,7 +89842,9 @@
         "protocols/include/mnm/world_effect_raster_v1.h",
         "protocols/include/mnm/world_raster_batch_v3.h",
         "reconstruction/rendering/kind8_sprite_class.h",
-        "runtime/scene/kind8_sprite_admission.h"
+        "runtime/scene/kind8_sprite_admission.h",
+        "tools/drawing_observed_inputs.py",
+        "tools/coverage_evidence.py"
       ],
       "evidence": [
         "DRAW02.draw02-source-lease-client-inspection-02-20261013",
@@ -89803,17 +89856,20 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT7.offline-identities-20261022",
+        "NT7.final-offline-identities-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Static accounting only; pending-frame/byte alias and source ownership, keyed/background composition, cursor-gate refusal, producer/physical interval alignment and full shutdown/reference/native parity remain open. No source admission changes or status promotion."
+        "Static accounting only; pending-frame/byte alias and source ownership, keyed/background composition, cursor-gate refusal, producer/physical interval alignment and full shutdown/reference/native parity remain open. No source admission changes or status promotion.",
+        "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -89829,7 +89885,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-egl-source-domains.md"
+        "research/runtime/draw02-egl-source-domains.md",
+        "research/runtime/rendering-seventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/drawing_source_interval.py",
@@ -89837,12 +89894,16 @@
       ],
       "tests": [
         "tests/test-drawing-source-interval.py",
-        "tests/test-drawing-source-completion.py"
+        "tests/test-drawing-source-completion.py",
+        "tools/test-rendering-seventh-ten.py",
+        "tests/test-rendering-seventh-ten.py"
       ],
       "validation_dependencies": [
         "tools/drawing_api_session.py",
         "tools/drawing_egl_physical.py",
-        "tools/drawing_source_completion.py"
+        "tools/drawing_source_completion.py",
+        "tools/drawing_observed_inputs.py",
+        "tools/coverage_evidence.py"
       ],
       "evidence": [
         "DRAW02.draw02-source-physical-close-original32-01-20261013",
@@ -89856,11 +89917,13 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT7.offline-identities-20261022",
+        "NT7.final-offline-identities-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -89872,7 +89935,8 @@
         "Original-active 120 queues:645189 producer records,2200 checkpoints,812 primary physical planes; source interval closes and actual original exit0. Diagnostic cohort only; all routes, source backing ownership and semantic outcomes remain open. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
         "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
-        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open.",
+        "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -90020,20 +90084,25 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-copy-order.md"
+        "research/runtime/draw02-copy-order.md",
+        "research/runtime/rendering-seventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/drawing_copy_bindings.py",
         "tools/analyze-drawing-copy-bindings.py"
       ],
       "tests": [
-        "tests/test-drawing-copy-bindings.py"
+        "tests/test-drawing-copy-bindings.py",
+        "tools/test-rendering-seventh-ten.py",
+        "tests/test-rendering-seventh-ten.py"
       ],
       "validation_dependencies": [
         "tools/drawing_api_session.py",
         "tools/drawing_copy_order.py",
         "tools/drawing_producer_points.py",
-        "tools/drawing_wine_blit_packet.py"
+        "tools/drawing_wine_blit_packet.py",
+        "tools/drawing_observed_inputs.py",
+        "tools/coverage_evidence.py"
       ],
       "evidence": [
         "DRAW02.copy-api-worker-bindings-01-20261013",
@@ -90046,17 +90115,20 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT7.offline-identities-20261022",
+        "NT7.final-offline-identities-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Static913request/1130command associations and six native guards only.1075additional API calls lie outside admitted live-source intervals.42adjacent reversed returns follow entry order at the worker;3follow return order, so neither entry nor return order is a general replay policy. General producer/noncopy/driver operation ordering, source views/aliases, fresh execution-bound replay repair and whole47journey/21operation closure pending."
+        "Static913request/1130command associations and six native guards only.1075additional API calls lie outside admitted live-source intervals.42adjacent reversed returns follow entry order at the worker;3follow return order, so neither entry nor return order is a general replay policy. General producer/noncopy/driver operation ordering, source views/aliases, fresh execution-bound replay repair and whole47journey/21operation closure pending.",
+        "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -90422,18 +90494,24 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-copy-order.md"
+        "research/runtime/draw02-copy-order.md",
+        "research/runtime/rendering-seventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/analyze-drawing-worker-prefixes.py",
         "tools/drawing_copy_return_execution.py"
       ],
       "tests": [
-        "tests/test-drawing-copy-return-execution.py"
+        "tests/test-drawing-copy-return-execution.py",
+        "tools/test-rendering-seventh-ten.py",
+        "tests/test-rendering-seventh-ten.py",
+        "tests/test-drawing-worker-producer-points.py"
       ],
       "validation_dependencies": [
         "tools/drawing_api_session.py",
-        "tools/drawing_worker_producer_points.py"
+        "tools/drawing_worker_producer_points.py",
+        "tools/drawing_observed_inputs.py",
+        "tools/coverage_evidence.py"
       ],
       "evidence": [
         "DRAW02.draw02-worker-prefix-analysis-01-20261013",
@@ -90443,18 +90521,21 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT7.offline-identities-20261022",
+        "NT7.final-offline-identities-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Static original32 interval attribution only. The sole touching COPY return is request711, whose driver commands completed before request714 workers entered; delayed producer journaling does not prove atomic bytes or general ordering. Retain 1464 outside-scope workers, noncopy/checkpoint execution, byte/backing aliases, source/physical lifetime, replay repair and47/21closure as pending.",
-        "New120has2811boundcommands:2341stable,464otherlogicalrecords,6touchingCOPYreturns. All6drivercommandenvelopes finish before bracketworkerentry;205outsideworkers remain. Backing aliases/noncopy/checkpoint byte execution remain unresolved."
+        "New120has2811boundcommands:2341stable,464otherlogicalrecords,6touchingCOPYreturns. All6drivercommandenvelopes finish before bracketworkerentry;205outsideworkers remain. Backing aliases/noncopy/checkpoint byte execution remain unresolved.",
+        "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -312666,6 +312747,99 @@
       ]
     },
     {
+      "id": "NT5.native-adapters-20261021",
+      "kind": "native_integration",
+      "scope": "Ten bounded native rendering adapter implementations (legacy and bounded map combined), production drawing/scene/menu compilation, actual owned PE32 ABI/refusal fixtures and strict decoder/memory controls. Submission parser remains a partial dependency. No original artifacts/game, actual GL context, alternate backing ownership or live replacement.",
+      "record": "research/runtime/rendering-fifth-ten-results-20261021/controls-03.json",
+      "sha256": "f866c41f6bd62736848bdc9c8d4c7e23ebf29a86f9510215a7f7073755798841",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NT6.native-metadata-20261022",
+      "kind": "native_integration",
+      "scope": "Ten bounded native metadata helper implementations: production drawing/scene/menu builds, actual owned scene/source/primitive/association/packet/context/sampler PE32 fixtures, callback retirement/refusal matrices, full decoder memory control and generated-input software Mesa EGL windows on private Xvfb. No original artifact/game, hardware GL, immutable backing ownership or live replacement claim.",
+      "record": "research/runtime/rendering-sixth-ten-results-20261022/controls-06.json",
+      "sha256": "ada273e87f60b2edb93c5d962b2d3f2bc529f73686886c45af1e3cc719c9ec28",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NT6.final-native-metadata-20261022",
+      "kind": "native_integration",
+      "scope": "Final ten bounded native metadata helper scopes with compiler dependency checks, recursive local Python imports and literal-loaded fixture provenance. All 98 compiled/execution/retirement commands and 66 Python tests pass, including actual owned PE32 scene/API/association/lifecycle/sampler fixtures and generated-input Mesa software EGL. No original artifacts/game, hardware GL, immutable backing ownership or live replacement.",
+      "record": "research/runtime/rendering-sixth-ten-results-20261022/controls-08.json",
+      "sha256": "dc80d5befee9fbf5faea8ecfd4998c9a58a3ed88436c85e6a72161b17b3b1da6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
       "id": "SCP1.values.isolated_original-20261022",
       "kind": "isolated_original",
       "scope": "42 complete selected service bodies at their listed original entries, with owned PE32 storage, byte-preserving scalar/animation/owner/pool policies, list mutation, resource/allocator notifications, spell-slot register arguments, gauge allocation and pixels, and actual voice query/retirement composed with scheduler lookup/retirement. The64 variants per root compare complete owned storage, selected globals, ordered callbacks and callback-time state; explicit platform/allocator/secondary/decoder providers stay separate. Normal vector construction is included; actual MSVC exception unwinding, invalid/unbounded caller domains, transitive provider bodies, whole-session integration and live replacement remain pending. Original memory/division faults are observations, not native policy changes.",
@@ -313809,11 +313983,11 @@
       ]
     },
     {
-      "id": "NT5.native-adapters-20261021",
+      "id": "NT7.offline-identities-20261022",
       "kind": "native_integration",
-      "scope": "Ten bounded native rendering adapter implementations (legacy and bounded map combined), production drawing/scene/menu compilation, actual owned PE32 ABI/refusal fixtures and strict decoder/memory controls. Submission parser remains a partial dependency. No original artifacts/game, actual GL context, alternate backing ownership or live replacement.",
-      "record": "research/runtime/rendering-fifth-ten-results-20261021/controls-03.json",
-      "sha256": "f866c41f6bd62736848bdc9c8d4c7e23ebf29a86f9510215a7f7073755798841",
+      "scope": "Ten bounded offline rendering implementations: 96 synthetic/protocol/file/memory/pixel/interval controls across 16 executed suites, exact cross-tool COPY/API/worker/source joins and actual SQLite-reference CLI success/overwrite refusals. 245 prospectively pinned stable source inputs. No original artifacts/game, original comparison, native-renderer equivalence, backing ownership or live replacement.",
+      "record": "research/runtime/rendering-seventh-ten-results-20261022/controls-01.json",
+      "sha256": "43e3f6e8dd7e519f4f56866b656c1a8d664387c04493051c185934cd01191361",
       "sources_pointer": "/sources",
       "claims_pointer": "/claims",
       "assertions": [
@@ -313840,42 +314014,11 @@
       ]
     },
     {
-      "id": "NT6.native-metadata-20261022",
+      "id": "NT7.final-offline-identities-20261022",
       "kind": "native_integration",
-      "scope": "Ten bounded native metadata helper implementations: production drawing/scene/menu builds, actual owned scene/source/primitive/association/packet/context/sampler PE32 fixtures, callback retirement/refusal matrices, full decoder memory control and generated-input software Mesa EGL windows on private Xvfb. No original artifact/game, hardware GL, immutable backing ownership or live replacement claim.",
-      "record": "research/runtime/rendering-sixth-ten-results-20261022/controls-06.json",
-      "sha256": "ada273e87f60b2edb93c5d962b2d3f2bc529f73686886c45af1e3cc719c9ec28",
-      "sources_pointer": "/sources",
-      "claims_pointer": "/claims",
-      "assertions": [
-        {
-          "pointer": "/success",
-          "equals": true
-        },
-        {
-          "pointer": "/sources_stable",
-          "equals": true
-        },
-        {
-          "pointer": "/original_game_executed",
-          "equals": false
-        },
-        {
-          "pointer": "/original_artifacts_consumed",
-          "equals": false
-        },
-        {
-          "pointer": "/live_replacement",
-          "equals": false
-        }
-      ]
-    },
-    {
-      "id": "NT6.final-native-metadata-20261022",
-      "kind": "native_integration",
-      "scope": "Final ten bounded native metadata helper scopes with compiler dependency checks, recursive local Python imports and literal-loaded fixture provenance. All 98 compiled/execution/retirement commands and 66 Python tests pass, including actual owned PE32 scene/API/association/lifecycle/sampler fixtures and generated-input Mesa software EGL. No original artifacts/game, hardware GL, immutable backing ownership or live replacement.",
-      "record": "research/runtime/rendering-sixth-ten-results-20261022/controls-08.json",
-      "sha256": "dc80d5befee9fbf5faea8ecfd4998c9a58a3ed88436c85e6a72161b17b3b1da6",
+      "scope": "Final semantic-payload fingerprints for all 245 prospectively declared inputs, including the SQLite-backed binary inventory; all 96 tests in 16 suites and three actual SQLite CLI pipelines pass. Ten bounded offline implementation completions only; no original artifacts/game, native-renderer equivalence, backing ownership or live replacement.",
+      "record": "research/runtime/rendering-seventh-ten-results-20261022/controls-02.json",
+      "sha256": "b514999139b3b0a8782cd91deabd17a3c49c3bb5e8af2cef1a54511b646c3191",
       "sources_pointer": "/sources",
       "claims_pointer": "/claims",
       "assertions": [
@@ -337687,6 +337830,31 @@
         "NT6.native-metadata-20261022",
         "NT6.final-native-metadata-20261022"
       ]
+    },
+    {
+      "id": "NR.seventh-ten.offline-identities-20261022",
+      "level": "headless",
+      "scope": "Ten bounded offline rendering identity/interval/composition analyses, owned raw-journal cross-tool joins, bounded read and memory controls, and actual SQLite-reference CLI success/overwrite refusals. Synthetic acquisition-admission fields are protocol test inputs only. No original artifacts/game, original comparison, native renderer equivalence, byte ownership or live replacement.",
+      "behaviors": [
+        "NR.drawing-two-stage-source-chain",
+        "NR.drawing-cursor-mutex-prefix-binding",
+        "NR.drawing-cursor-map-composition",
+        "NR.drawing-source-frame-binding",
+        "NR.drawing-source-update-intervals",
+        "NR.drawing-egl-source-domain-accounting",
+        "NR.drawing-source-physical-interval-close",
+        "NR.drawing-copy-api-worker-association",
+        "NR.drawing-worker-prefix-analysis",
+        "NR.drawing-source-worker-egl-binding"
+      ],
+      "tests": [
+        "tools/test-rendering-seventh-ten.py",
+        "tests/test-rendering-seventh-ten.py"
+      ],
+      "evidence": [
+        "NT7.offline-identities-20261022",
+        "NT7.final-offline-identities-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -338442,8 +338610,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-e703d33af21a7aa1e98eea3c1a32d4f0b45c9374dfbfaa14d64dbb2d65552dd9.json",
-    "sha256": "e703d33af21a7aa1e98eea3c1a32d4f0b45c9374dfbfaa14d64dbb2d65552dd9"
+    "path": "research/runtime/coverage/source-index-d3a07cddbb110d685cded79cce054fe55ffff9efbb0fb109a996522a212f0b33.json",
+    "sha256": "d3a07cddbb110d685cded79cce054fe55ffff9efbb0fb109a996522a212f0b33"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

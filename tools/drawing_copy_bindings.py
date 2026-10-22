@@ -1,11 +1,19 @@
 """Conservative request/API/command associations within recorded producer intervals."""
+from drawing_observed_inputs import unique
 
 
 def associate(observation, calls, points, submissions, packets):
-    entries = {r['request']: r for r in observation['entries']}
-    returns = {r['request']: r for r in observation['returns']}
+    entries = unique(observation['entries'], 'request')
+    returns = unique(observation['returns'], 'request')
+    unique(submissions, 'call')
+    unique(packets, 'command')
+    unique(packets, 'worker')
     if set(entries) != set(returns):
         raise ValueError('Incomplete request identity set')
+    for request, entry in entries.items():
+        returned = returns[request]
+        if any(returned[k] != entry[k] for k in ('owner','destination','source','destination_extent_stride','destination_position','source_rectangle','raw_key')) or not entry['producer_prefix'] < returned['producer_return_sequence']:
+            raise ValueError('Changed request return descriptor or interval')
     matched, excluded = {}, []
     for api, call in calls.items():
         if call[2] != 7:

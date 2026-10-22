@@ -1,5 +1,6 @@
 """Bind sampled mutex prefixes to exact immutable API/cursor journal records."""
 import struct
+from bisect import bisect_right
 from drawing_api_session import decode as decode_api
 from drawing_cursor_mutex import decode as decode_mutex
 
@@ -9,14 +10,15 @@ def analyze(mutex_raw, api_raw):
     api = decode_api(api_raw)
     rows = list(struct.iter_unpack('<32I', api_raw[64:]))
     cursors = {}
-    prefixes = {0: dict(entry=0, planes=0, cursor={})}
+    prefixes = [(0, 0)]
     completed_entry = 0
     maximum_entry = max((r[29] for r in rows[:-1]), default=0)
     for row in rows:
         completed_entry = max(completed_entry, row[29])
         if row[1] == 2 and row[2] == 3:
-            cursors[row[6]] = dict(record=row[0], entry=row[29], tick=row[11], valid=bool(row[31]), xy=list(row[27:29]) if row[31] else None)
-        prefixes[row[0]] = dict(entry=completed_entry, planes=row[30] if row[1] != 4 else row[22], cursor=dict(cursors))
+            cursors.setdefault(row[6], []).append((row[0], dict(record=row[0], entry=row[29], tick=row[11], valid=bool(row[31]), xy=list(row[27:29]) if row[31] else None)))
+        prefixes.append((completed_entry, row[30] if row[1] != 4 else row[22]))
+    cursor_records = {owner: [r[0] for r in records] for owner, records in cursors.items()}
     linked = []
     inactive = refused = 0
     for call in observation['calls']:
@@ -27,14 +29,21 @@ def analyze(mutex_raw, api_raw):
                 refused += 1
                 result['points'].append(dict(phase=sample['phase'], state='query_refused'))
                 continue
-            prefix = prefixes.get(point['record_prefix'])
-            if prefix is None or point['entry_prefix'] < prefix['entry'] or point['after_frame'] != prefix['planes'] or point['drops'] or point['gaps']:
+            index = point['record_prefix']
+            if index >= len(prefixes):raise ValueError('Mutex point prefix outside retained journal')
+            prefix = prefixes[index]
+            if point['entry_prefix'] < prefix[0] or point['after_frame'] != prefix[1] or point['drops'] or point['gaps']:
                 raise ValueError('Mutex point prefix/loss identity differs')
             # Entry count can lead completed records while another call is
             # pending; never require completion order to equal entry order.
             if point['entry_prefix'] > maximum_entry:
                 raise ValueError('Mutex point entry beyond retained journal')
-            cursor = prefix['cursor'].get(sample['thread'])
+            owner_records = cursors.get(sample['thread'], [])
+            at = bisect_right(cursor_records.get(sample['thread'], []), index) - 1
+            cursor = owner_records[at][1] if at >= 0 else None
+            active = bool(point['flags'] & 1)
+            if active == (index == len(rows)) or not active and (point['pending'] or point['entry_prefix'] != maximum_entry):
+                raise ValueError('Mutex point active/terminal identity differs')
             if cursor is None:
                 if point['cursor_record'] or point['cursor_entry'] or point['cursor_tick'] or point['cursor'] is not None:
                     raise ValueError('Unobserved mutex cursor identity')

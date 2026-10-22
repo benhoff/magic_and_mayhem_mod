@@ -2,6 +2,7 @@
 """Bind mapped-source read intervals to raw accepted-update time intervals."""
 import argparse,json
 from pathlib import Path
+from coverage_evidence import read_bytes, write_report
 from drawing_api_session import BUILD,sha
 from drawing_wine_source_map import analyze as maps
 from drawing_engine_windows import analyze as windows
@@ -15,7 +16,7 @@ def main():
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_text());sources=dict(claims['sources'])
     if any(sha((ROOT/n).read_bytes())!=h for n,h in sources.items()):raise ValueError('Prospective sources changed')
-    raw=a.original.read_bytes();original=json.loads(raw)
+    raw=read_bytes(a.original, root=ROOT);original=json.loads(raw)
     if original.get('source_sha256')!=BUILD or not all(original.get(k) is True for k in ('success','sources_stable','original_drawing_active','original_manifest_verified_before_after','normal_original_quit_verified','original_sections_unchanged')):raise ValueError('Completed original acquisition required')
     directory=Path(original['experiment'])/'capture';observed=maps(directory)
     if observed!=original['wine_source_map_observation'] or observed['wire_version'] not in (4,5):raise ValueError('Raw source maps changed or source clock missing')
@@ -26,7 +27,7 @@ def main():
     result=bind(observed['samples'],counter['windows'],last[3]|last[4]<<32,counter['owner_thread'])
     if any(sha((ROOT/n).read_bytes())!=h for n,h in sources.items()):raise ValueError('Analysis sources changed')
     result.update(sources=sources,sources_stable=True,claims=claims['claims'],original_report_sha256=sha(raw),original_report=str(a.original),source_journal_sha256=observed['journal_sha256'],counter_journal_sha256=counter['journal_sha256'],frequency=frequency,original_game_executed=False,scope='Temporal containment of mapped diagnostic source reads in observed accepted-update intervals. Foreign-thread, crossing and outside readings remain explicit; no producer, worker, alias, every-presentation or native parity claim.')
-    a.report.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:result[k] for k in ('source_samples','assigned_samples','crossing_samples','outside_samples')}))
+    write_report(ROOT,a.report,(json.dumps(result,indent=2)+'\n').encode());print(json.dumps({k:result[k] for k in ('source_samples','assigned_samples','crossing_samples','outside_samples')}))
 
 
 if __name__=='__main__':main()

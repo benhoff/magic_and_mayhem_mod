@@ -1,8 +1,14 @@
 """Temporal containment of diagnostic source reads in accepted update intervals."""
 from bisect import bisect_right
+from drawing_observed_inputs import unique
 
 
 def bind(samples,windows,final_qpc,owner):
+    unique(windows,'sequence',allow_zero=True);unique(samples,'submission')
+    if type(owner) is not int or owner<=0 or type(final_qpc) is not int or not 0<final_qpc<2**64:raise ValueError('Invalid source/update owner or final counter')
+    if any(type(w['qpc']) is not int or not 0<w['qpc']<2**64 for w in windows):raise ValueError('Invalid update counter')
+    sequences=[w['sequence'] for w in windows]
+    if any(v>=2**32 for v in sequences) or any(not 0<(b-a)&0xffffffff<2**31 for a,b in zip(sequences,sequences[1:])):raise ValueError('Update sequence order')
     starts=[w['qpc'] for w in windows]
     if not starts or starts!=sorted(set(starts)) or final_qpc<=starts[-1]:
         raise ValueError('Source/update interval boundaries')
@@ -10,6 +16,7 @@ def bind(samples,windows,final_qpc,owner):
     if len(ids)!=len(set(ids)):raise ValueError('Duplicate temporal source identity')
     ends=starts[1:]+[final_qpc];assignments=[];crossings=[];outside=[];counts={w['sequence']:0 for w in windows}
     for s in samples:
+        if type(s['thread']) is not int or s['thread']<=0:raise ValueError('Invalid source owner')
         begin,end=s.get('qpc_before'),s.get('qpc_after')
         if type(begin) is not int or type(end) is not int or not 0<begin<=end<2**64:
             raise ValueError('Missing/invalid source performance-counter interval')

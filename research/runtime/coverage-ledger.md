@@ -20851,6 +20851,10 @@ requirements; external publication is a separate explicitly requested operation.
 ### Sixth ten native metadata helper tasks (2026-10-22)
 
 [The sixth batch](rendering-sixth-ten-closeouts-20261022.md) completes ten bounded helper implementation scopes: paired producer/source points, primitive/API identity, public resource mapping, map/storage points, client-memory association, retained-map association, packet binding, worker context, HUD sampling and actor latches. Owned PE32 identity/refusal/retirement execution, linear-memory decoding and actual software EGL controls remain separate from original comparison, full quiescence, allocation/backing ownership, hardware validation and live replacement. Historical evidence remains immutable and generated results use SQLite.
+
+### Seventh rendering implementation batch (2026-10-22)
+
+Ten bounded offline rendering tasks receive exact identity/interval refusal paths, bounded diagnostic file reads, linear cursor-prefix indexing, full worker-prefix classifier controls and direct SQLite report support. See [task-by-task scope and controls](rendering-seventh-ten-closeouts-20261022.md). Fresh prospective execution `NT7.final-offline-identities-20261022` passes 96 controls in 16 suites with 245 stable inputs and binds these ten implementation scopes; original comparison, live integration/replacement, backing ownership, physical-route and semantic gates remain independent. Historical evidence fingerprints remain unchanged.
 # Actor service composition and concrete providers — 2026-10-22
 
 `RS.actor-service-composition` and `RS.actor-concrete-providers` add a shared

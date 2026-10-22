@@ -1,4 +1,5 @@
 """Distinguish producer return records from exact bound worker intervals."""
+from drawing_observed_inputs import unique
 
 
 def associate_return(record, returned, binding, current):
@@ -13,9 +14,15 @@ def associate_return(record, returned, binding, current):
             binding['owner'] != returned['owner']):
         raise ValueError('Changed copy return/request/API association')
     commands = binding['commands']
+    unique(commands, 'worker')
     if not commands or any(c['worker_entry_record'] >= c['worker_return_record']
                            for c in [*commands, current]):
         raise ValueError('Incomplete worker execution interval')
+    for command in [*commands, current]:
+        if any(type(command[k]) is not int or command[k] <= 0 for k in ('worker', 'worker_entry_record', 'worker_return_record')):
+            raise ValueError('Invalid worker interval identity')
+        if command['worker'] == current['worker'] and any(command[k] != current[k] for k in ('worker_entry_record', 'worker_return_record')):
+            raise ValueError('Same worker has changed execution interval')
     first = min(c['worker_entry_record'] for c in commands)
     last = max(c['worker_return_record'] for c in commands)
     if any(c['worker'] == current['worker'] for c in commands):
