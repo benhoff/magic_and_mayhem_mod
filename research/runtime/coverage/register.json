@@ -138031,7 +138031,7 @@
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Complete actor downstream service ownership and behavior",
-      "scope": "Seventy-two original direct service/helper entries and the initial83-target frontier retain bounded scope. The owned actor/source lifecycle now composes216 routes, including profile animation/movement, palette ownership, seventeen raw font providers and the actual4f3320 support predicate with4f4330 aggregation over caller-owned backing. All43 historical semantic leads retain24 concrete-route and19 embedded-helper dispositions within their stated domains. Bounded normal-return comparisons do not establish original world production or planner cadence, arbitrary installed profiles, remaining task/postprocess/particle/scenario providers or complete indirect targets. Named profile/directory/file/heap/atexit/COM endpoints, unsafe odd-count allocation, malformed CRT, uninitialized original locals, Windows SEH/throwing cleanup, external acceptance and full original-world/live replacement remain explicit. This Critical umbrella remains partial.",
+      "scope": "Seventy-two original direct service/helper entries and the initial83-target frontier retain bounded scope. The owned actor/source lifecycle now composes219 routes, including profile animation/movement, palette ownership, seventeen raw font providers and the actual4f3320 support predicate with4f4330 aggregation over caller-owned backing. All43 historical semantic leads retain24 concrete-route and19 embedded-helper dispositions within their stated domains. The actual493f20 emitter branch now composes recovered546c20 construction,546cb0 deleting cleanup and5458b0 manager clear with bounded allocation/admission/rejection/retirement proof. Emitter update/emission remains separate. Bounded normal-return comparisons do not establish original world production or planner cadence, arbitrary installed profiles, remaining task/postprocess/particle/scenario providers or complete indirect targets. Named profile/directory/file/heap/atexit/COM endpoints, unsafe odd-count allocation, malformed CRT, uninitialized original locals, Windows SEH/throwing cleanup, external acceptance and full original-world/live replacement remain explicit. This Critical umbrella remains partial.",
       "confidence": "provisional",
       "original": [
         {
@@ -138406,7 +138406,8 @@
         "research/runtime/actor-concrete-provider-frontier-20261022.md",
         "research/runtime/actor-profile-palette-providers-20261022.md",
         "research/runtime/actor-font-providers-20261022.md",
-        "research/runtime/actor-support-provider-20261022.md"
+        "research/runtime/actor-support-provider-20261022.md",
+        "research/runtime/actor-particle-provider-20261022.md"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -138436,7 +138437,8 @@
         "reconstruction/rendering/terrain_selection.cpp",
         "reconstruction/rendering/terrain_selection.hpp",
         "reconstruction/rendering/actor_font_providers.hpp",
-        "reconstruction/rendering/actor_support_provider.hpp"
+        "reconstruction/rendering/actor_support_provider.hpp",
+        "reconstruction/rendering/actor_particle_provider.hpp"
       ],
       "tests": [
         "tools/inspect-actor-downstream.py",
@@ -138469,7 +138471,11 @@
         "tests/actor-support-reference.cpp",
         "tests/actor-support-seeds.inc",
         "tools/test-actor-support.py",
-        "tools/reconcile-actor-support.py"
+        "tools/reconcile-actor-support.py",
+        "tests/actor-particle-reference.cpp",
+        "tests/actor-particle-seeds.inc",
+        "tools/test-actor-particle.py",
+        "tools/reconcile-actor-particle.py"
       ],
       "evidence": [
         "SCP1.frontier-20261022",
@@ -138479,7 +138485,8 @@
         "AFP1.reconciliation.static-20261022",
         "PP1.reconciliation.static-20261022",
         "FP1.reconciliation.static-20261022",
-        "SUP1.reconciliation.static-20261022"
+        "SUP1.reconciliation.static-20261022",
+        "AP1.reconciliation.static-20261022"
       ],
       "status": {
         "understanding": "partial",
@@ -141132,6 +141139,158 @@
       },
       "remaining_gaps": [
         "Initialized borrowed cell/terrain/offset/packed-parameter windows, raw support query and actual aggregation only. Actual world production, arbitrary malformed/wrapped pointers, throwing/SEH, original planner/task lifetime and full installed/live acceptance remain separate. Query does not transfer ownership; caller teardown and rebind are explicit."
+      ]
+    },
+    {
+      "id": "RS.actor-particle-emitter-composition",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Actor emitter construction and manager ownership",
+      "scope": "Compose recovered emitter546c20 with actual actor493f20 allocation, initialization, manager admission/rejection and inherited deleting cleanup. Initialized positive world extents and normal returns only. Updater/emission cadence, exceptional Windows SEH, malformed lifetime, actual installed worlds and live replacement remain separate.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4800288,
+          "relation": "code",
+          "scope": "Actual actor/caller and selected emitter constructor/deleting cleanup within initialized normal-return ownership domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5532704,
+          "relation": "code",
+          "scope": "Actual actor/caller and selected emitter constructor/deleting cleanup within initialized normal-return ownership domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5532848,
+          "relation": "code",
+          "scope": "Actual actor/caller and selected emitter constructor/deleting cleanup within initialized normal-return ownership domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5527520,
+          "relation": "code",
+          "scope": "Actual actor/caller and selected emitter constructor/deleting cleanup within initialized normal-return ownership domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5527728,
+          "relation": "code",
+          "scope": "Original manager clear with distinct owned emitters and initialized null slots."
+        }
+      ],
+      "documents": [
+        "research/runtime/actor-particle-provider-20261022.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_frontier_providers.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp",
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp",
+        "reconstruction/rendering/actor_font_providers.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/actor_support_provider.hpp",
+        "reconstruction/rendering/actor_particle_provider.hpp"
+      ],
+      "tests": [
+        "tests/actor-particle-reference.cpp",
+        "tests/actor-particle-seeds.inc",
+        "tools/test-actor-particle.py",
+        "tools/inspect-actor-particle.py",
+        "tools/reconcile-actor-particle.py",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc"
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/map.hpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
+        "reconstruction/pathfinding/route_line.hpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "reconstruction/rendering/kind8_construction.hpp",
+        "reconstruction/rendering/kind8_owned.hpp",
+        "reconstruction/rendering/kind8_random.hpp",
+        "reconstruction/rendering/particle_classes.hpp",
+        "reconstruction/rendering/particle_constructors.hpp",
+        "reconstruction/rendering/particle_motion.hpp",
+        "reconstruction/rendering/particle_terrain.hpp",
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/ghidra/ExportFontProviders.java",
+        "tools/inspect-actor-support.py",
+        "tools/original_x86.py",
+        "tools/test-actor-services.py"
+      ],
+      "evidence": [
+        "AP1.providers.isolated_original-20261022",
+        "AP1.providers.headless-20261022",
+        "AP1.inspection-3.static-20261022",
+        "AP1.attempt-catalog.static-20261022",
+        "AP1.reconciliation.static-20261022",
+        "AP1.ui-regressions.static-20261022"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_domain": {
+        "normal_returns_only": true,
+        "storage": "Initialized 100-byte owned emitter allocations and actual caller/manager normal-return ownership; no installed world or live replacement."
+      },
+      "remaining_gaps": [
+        "Actual emitter update/emission and full sessions, malformed/throwing/SEH/platform acceptance remain separate."
       ]
     }
   ],
@@ -317538,6 +317697,218 @@
           "equals": true
         }
       ]
+    },
+    {
+      "record": "research/runtime/actor-particle-results-20261022/particle-matrix-2.json",
+      "sha256": "7d7afadc5350957e0babfda914cfec881a6c92f0a79fc6eb128c871a4e3d4c89",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 2048
+        },
+        {
+          "pointer": "/ownership_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/allocation_canaries_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/zero_residual_owned_allocations",
+          "equals": true
+        },
+        {
+          "pointer": "/compiler_dependency_closure_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/composed_routes",
+          "equals": 219
+        },
+        {
+          "pointer": "/bytes_compared",
+          "equals": 1124887136
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "AP1.providers.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "1024 authored cases/2048 snapshots compare actual546c20 construction,546cb0 deleting flags,493f20 actor emission allocation/admission/rejection and5458b0 manager clear, including canaries and zero residual owned allocations. Initialized normal returns and sparse manager prefixes only; no updater/emission cadence, installed worlds, SEH or live acceptance.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "record": "research/runtime/actor-particle-results-20261022/particle-matrix-2.json",
+      "sha256": "7d7afadc5350957e0babfda914cfec881a6c92f0a79fc6eb128c871a4e3d4c89",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 2048
+        },
+        {
+          "pointer": "/ownership_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/allocation_canaries_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/zero_residual_owned_allocations",
+          "equals": true
+        },
+        {
+          "pointer": "/compiler_dependency_closure_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/composed_routes",
+          "equals": 219
+        },
+        {
+          "pointer": "/bytes_compared",
+          "equals": 1124887136
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "AP1.providers.headless-20261022",
+      "kind": "native_integration",
+      "scope": "Same1024 cases/2048 snapshots as original comparison, with219-route native actor composition. Constructor, caller, insertion and clearing use concrete recovered routes;112 other named endpoint specifications remain. Not extra cases or whole-session/live acceptance."
+    },
+    {
+      "id": "AP1.inspection-3.static-20261022",
+      "kind": "static",
+      "scope": "Fresh caller/constructor/destructor/manager-clear instructions, complete pinned ranges, direct and indirect call references and readonly decompilation; static only, no inventory mutation.",
+      "record": "research/runtime/actor-particle-results-20261022/inspection-3.json",
+      "sha256": "6b1bc200ed2ded38498d3bbd55227edc076a1bfcc499f3e7153c0cbf4f066683",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AP1.attempt-catalog.static-20261022",
+      "kind": "static",
+      "scope": "Preserve failed/prospective/fixture attempts. Inspection1 selected non-entry545730 and failed without inventory mutation; inspection2 preceded manager clear inspection. Trial1 stopped before execution due missing declared reconciliation source. Matrix1 executed matching sources but inherited the previous support scenario label; it receives no current contract credit. Only matrix2 is registered for current execution.",
+      "record": "research/runtime/actor-particle-results-20261022/attempt-catalog.json",
+      "sha256": "0b733cf78e84ea783211a9134bbdf453cbad9ea587b55f191be6aa65f4515a1d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AP1.reconciliation.static-20261022",
+      "kind": "static",
+      "scope": "219 public routes; replace supplied546c20 and add concrete deleting cleanup/manager clear. All43 historical leads and112 named supplier specifications remain, with incomplete indirect targets. Static only.",
+      "record": "research/runtime/actor-particle-results-20261022/reconciliation.json",
+      "sha256": "bb38bd30fd9663135ec59bbd01456e90f3b3cc470efd93a80aaefe83436e329a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AP1.ui-regressions.static-20261022",
+      "kind": "static",
+      "scope": "Dashboard routing/count/HTTP/client regressions only; no engine or acceptance promotion.",
+      "record": "research/runtime/actor-particle-results-20261022/ui-regressions.json",
+      "sha256": "ec70527390ad13d5c1ae79b90b21d97ed5856c5c0d35544ce484e2dba0cd0738",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -325625,6 +325996,42 @@
         },
         {
           "value": "unresolved-other-provider-and-indirect-targets",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "actor-particle-provider-routing",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4800288,
+        "relation": "code",
+        "scope": "Selected emitter branch, allocation and manager ownership within initialized normal returns."
+      },
+      "document": "research/runtime/actor-particle-provider-20261022.md",
+      "complete": false,
+      "scope": "219 native public routes; selected emitter construction and cleanup composed; updater and remaining providers/indirect targets remain explicit.",
+      "entries": [
+        {
+          "value": 5532704,
+          "behaviors": [
+            "RS.actor-particle-emitter-composition"
+          ]
+        },
+        {
+          "value": 5532848,
+          "behaviors": [
+            "RS.actor-particle-emitter-composition"
+          ]
+        },
+        {
+          "value": 5527728,
+          "behaviors": [
+            "RS.actor-particle-emitter-composition"
+          ]
+        },
+        {
+          "value": "unresolved-emission-other-provider-and-indirect-targets",
           "behaviors": []
         }
       ]
@@ -342075,6 +342482,26 @@
       "evidence": [
         "SUP1.providers.headless-20261022"
       ]
+    },
+    {
+      "id": "actor-particle-owned-20261022",
+      "level": "headless",
+      "scope": "Original emitter construction and actor493f20 allocation, optional owner customization, actual manager admission/rejection, deleting flags and manager clear with explicit retirement and canary checks. Initialized sparse prefixes with distinct owned generations; normal returns only. No emitter update/emission, installed-world or live acceptance.",
+      "behaviors": [
+        "RS.actor-particle-emitter-composition"
+      ],
+      "tests": [
+        "tests/actor-particle-reference.cpp",
+        "tests/actor-particle-seeds.inc",
+        "tools/test-actor-particle.py",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc"
+      ],
+      "evidence": [
+        "AP1.providers.headless-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -342910,8 +343337,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-254bac97af794d26912567d390e4e6ffe5b583fa2f3e338f542d77dfa24a970e.json",
-    "sha256": "254bac97af794d26912567d390e4e6ffe5b583fa2f3e338f542d77dfa24a970e"
+    "path": "research/runtime/coverage/source-index-86da88be8f0eaecbf20a69c7a06f83a5973dd6aacac6c7e6e7487703e017127c.json",
+    "sha256": "86da88be8f0eaecbf20a69c7a06f83a5973dd6aacac6c7e6e7487703e017127c"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

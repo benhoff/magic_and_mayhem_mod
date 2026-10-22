@@ -468,7 +468,7 @@ class TrancheTest(unittest.TestCase):
             'RS.actor-session-source-lifecycle', 'NP.actor-session-source-ownership',
             'RS.actor-concrete-provider-frontier',
             'RS.actor-profile-transform-providers', 'RS.actor-palette-builder-providers',
-            'RS.actor-font-providers', 'RS.actor-support-query-provider',
+            'RS.actor-font-providers', 'RS.actor-support-query-provider', 'RS.actor-particle-emitter-composition',
         }
         scoped_high = {e['behavior'] for e in result['entries']
                        if e['weight'] == 4 and e['implementation'] == 'scoped'}

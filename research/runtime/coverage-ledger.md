@@ -21021,3 +21021,30 @@ parent remains partial for original world/planner/task lifetime, postprocess/
 particle/special/scenario providers, actual external backing/exceptional cleanup
 and installed/live/hardware acceptance. Historical evidence is preserved; the
 incoming dcb606bd..97c3f5b2 history has33 exact transitions with no receipt gaps.
+
+
+## Actor emitter constructor and ownership composition (2026-10-22)
+
+[Actor particle ownership](actor-particle-provider-20261022.md) replaces the
+supplied546c20 endpoint with the unchanged recovered constructor through an
+exact100-byte PE32 adapter. Actual493f20, allocation wrappers and5457e0 insertion
+now compose with546cb0 deleting cleanup and5458b0 manager clear:216→219 routes.
+AP1 original/headless records share1024 authored cases/2048 ownership and
+retirement snapshots, 1124887136 identical bytes per original32/
+native64/ASan+UBSan stream. 81 source/compiler inputs are stable, original
+bodies/manifests unchanged, allocation canaries intact, zero residual live
+allocations through explicit actual manager/deleting cleanup. No fallback frees.
+
+Constructor wrap/clamp/period bits, deleting flags0–3, disabled/failed/successful
+actor allocation, optional valid/null owner customization, capacity boundaries,
+rejection, distinct retained generations and repeated clearing are included.
+Full-prefix fixtures have initialized null holes, not1792 concurrently active
+emitters. Static reconciliation retains43 historical semantic leads and112
+named supplier specifications; counts do not represent missing functions.
+
+The Critical umbrella remains partial for world/planner/task lifetime, actual
+emitter update/emission, other postprocess/special/scenario providers, remaining
+indirect targets, malformed/throwing/SEH/platform and installed/live acceptance.
+Historical isolated particle evidence is unchanged. Early attempts and their
+prospective source/contract identities are preserved without fresh execution
+credit; only matrix2 supports the final named scenario.
