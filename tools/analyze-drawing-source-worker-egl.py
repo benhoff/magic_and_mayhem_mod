@@ -4,6 +4,7 @@ import argparse
 import json
 import struct
 from pathlib import Path
+from coverage_evidence import read_bytes, write_report
 from drawing_api_session import BUILD, sha, inspect
 from drawing_source_worker_egl import bind, delivery_boundary
 from drawing_source_frame_binding import evaluate
@@ -31,7 +32,7 @@ def main():
         if any(sha((ROOT/n).read_bytes()) != h for n, h in sources.items()):
             raise ValueError('Prospective analysis sources changed')
     verify_sources()
-    raw = a.original.read_bytes()
+    raw = read_bytes(a.original, root=ROOT)
     original = json.loads(raw)
     if original.get('source_sha256') != BUILD or not all(original.get(k) is True for k in ('success', 'sources_stable', 'original_drawing_active', 'original_manifest_verified_before_after', 'normal_original_quit_verified', 'original_sections_unchanged')):
         raise ValueError('Completed original run with unchanged originals required')
@@ -52,7 +53,7 @@ def main():
     source = maps(capture)
     context = contexts((capture/'egl-worker-context.bin').read_bytes())
     peer = root/'egl-physical-report.json'
-    if sha(peer.read_bytes()) != original['egl_physical_peer_report_sha256']:
+    if sha(read_bytes(peer, root=ROOT)) != original['egl_physical_peer_report_sha256']:
         raise ValueError('EGL physical peer report changed')
     physical = analyze_egl_physical(capture, peer)
     for name, value in [('wine_submission_observation', sub), ('wine_blit_worker_observation', worker), ('wine_blit_packet_observation', packet), ('wine_source_map_observation', source), ('egl_worker_context_observation', context), ('egl_physical_observation', physical)]:
@@ -66,13 +67,13 @@ def main():
     calls = [dict(c, destination_subresource=extras[c['call']][12], source_subresource=extras[c['call']][13]) for c in sub['calls']]
     result = bind(calls, source['samples'], source['payloads'], packet['bindings'], worker['calls'], context['calls'], physical['frames'], capture, api_observation['calls'])
     api_peer = root/'physical-report.json'
-    if sha(api_peer.read_bytes()) != original['physical_peer_report_sha256']:
+    if sha(api_read_bytes(peer, root=ROOT)) != original['physical_peer_report_sha256']:
         raise ValueError('API physical peer report changed')
     api_physical = analyze_api_physical(capture, api_peer)
     if api_physical != original['physical_api_observation']:
         raise ValueError('Raw API physical observation changed')
     api_frames = {f['entry']: f for f in api_physical['frames']}
-    api_timings = {f['entry']: f for f in json.loads(api_peer.read_bytes())['frames']}
+    api_timings = {f['entry']: f for f in json.loads(api_read_bytes(peer, root=ROOT))['frames']}
     call_by = {c['call']: c for c in calls}
     sample_by = {s['submission']: s for s in source['samples']}
     context_by = {(c['pid'], c['call']): c for c in context['calls']}
@@ -93,7 +94,7 @@ def main():
     verify_sources()
     result.update(sources=sources, sources_stable=True, claims=claim['claims'], original_report=str(a.original), original_report_sha256=sha(raw), original_game_executed=False,
                   scope='Reference-only exact observed command/source/worker/context association and post-EGL physical copy-region agreement. Every refusal and mismatch retained; no original-source atomicity, all alias writers/routes, GPU completion, scanout or native parity.')
-    a.report.write_text(json.dumps(result, indent=2)+'\n')
+    write_report(ROOT,a.report,(json.dumps(result, indent=2)+'\n').encode())
     print(json.dumps({k: result[k] for k in ('source_samples', 'all_observed_sources_worker_bound', 'physical_witnesses', 'matched_regions', 'mismatched_regions', 'all_physical_copy_regions_bound')}))
 
 

@@ -42,10 +42,24 @@ class TwoStage(unittest.TestCase):
             self.assertEqual(bind(r,n)['accepted_frames'],0)
 
     def test_ambiguous_initial_link_and_duplicate_prediction_refuse(self):
-        r,n=fixture();extra=copy.deepcopy(r['wine_submission_observation']['calls'][0]);extra['call']=0;r['wine_submission_observation']['calls'].append(extra)
+        r,n=fixture();extra=copy.deepcopy(r['wine_submission_observation']['calls'][0]);extra['call']=3;r['wine_submission_observation']['calls'][1]['call']=4;n['comparisons'][0]['submission']=4;r['wine_submission_observation']['calls'].append(extra)
         self.assertEqual(bind(r,n)['accepted_frames'],0)
         r,n=fixture();n['comparisons'].append(copy.deepcopy(n['comparisons'][0]))
         with self.assertRaises(ValueError):bind(r,n)
 
+
+    def test_duplicate_tables_and_held_phases_are_not_overwritten(self):
+        for table,key in [('wine_submission_observation','calls'),('wine_retained_map_source_observation','points'),('canvas_storage_transition_observation','queries'),('wine_blit_worker_observation','calls'),('api_source_worker_lease_observation','calls'),('source_held_snapshot_observation','frames')]:
+            r,n=fixture();r[table][key].append(copy.deepcopy(r[table][key][0]))
+            with self.assertRaises(ValueError):bind(r,n)
+
+    def test_zero_lease_changed_held_owner_and_internal_worker_interval(self):
+        for change in ('lease','owner','canvas','interval'):
+            r,n=fixture()
+            if change=='lease':n['comparisons'][0]['lease']=0
+            elif change=='owner':r['source_held_snapshot_observation']['frames'][1]['thread']=99
+            elif change=='canvas':r['source_held_snapshot_observation']['frames'][1]['before']=list(r['source_held_snapshot_observation']['frames'][1]['before']);r['source_held_snapshot_observation']['frames'][1]['before'][6]=99
+            else:r['wine_blit_packet_observation']['bindings'][0]['worker_entry_record']=2
+            self.assertEqual(bind(r,n)['accepted_frames'],0)
 
 if __name__=='__main__':unittest.main()

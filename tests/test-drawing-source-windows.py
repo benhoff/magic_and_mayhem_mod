@@ -29,4 +29,19 @@ class Windows(unittest.TestCase):
         self.samples[0]['status']=5;r=self.run_model();self.assertEqual(r['assignments'][0]['status'],5);self.assertFalse(r['worker_identity_bound'])
 
 
+    def test_duplicate_reordered_and_noninteger_update_identities(self):
+        import copy
+        for field,value in [('sequence',1),('sequence',True),('sequence',2**32),('qpc',True),('qpc',2**64)]:
+            with self.subTest(field=field,value=value):
+                windows=copy.deepcopy(self.windows);windows[1][field]=value
+                with self.assertRaises(ValueError):bind(self.samples,windows,300,7)
+        for final,owner in [(True,7),(300,True),(2**64,7),(300,0)]:
+            with self.assertRaises(ValueError):bind(self.samples,self.windows,final,owner)
+        self.windows[0]['sequence']=3
+        with self.assertRaises(ValueError):self.run_model()
+
+    def test_update_sequence_wrap_does_not_change_clock_containment(self):
+        self.windows[0]['sequence']=0xffffffff;self.windows[1]['sequence']=0
+        self.assertEqual([a['sequence'] for a in self.run_model()['assignments']],[0xffffffff,0])
+
 if __name__=='__main__':unittest.main()

@@ -1,27 +1,17 @@
 """Reference-only agreement between owned source pixels and physical copy regions."""
-from pathlib import Path
 import numpy as np
 from drawing_api_session import sha
+from drawing_observed_inputs import bound_bytes, image_size, unique
 
 
 def bound(directory, item, size):
-    name=Path(item['path'])
-    if name.is_absolute() or len(name.parts)!=1 or name.name in ('.','..'):
-        raise ValueError('Unsafe physical binding input')
-    path=directory/name
-    if path.is_symlink() or not path.is_file():raise ValueError('Binding input must be a regular owned file')
-    raw=path.read_bytes()
+    raw=bound_bytes(directory,item['path'],size)
     if len(raw)!=size or sha(raw)!=item['sha256']:raise ValueError('Binding payload/frame size or hash')
     return raw
 
 
-def unique(items,key):
-    result={x[key]:x for x in items}
-    if len(result)!=len(items):raise ValueError('Ambiguous binding identity')
-    return result
-
-
 def evaluate(calls,samples,payloads,frames,directory):
+    unique(calls,'call')
     ids=[c['call'] for c in calls]
     if ids!=sorted(set(ids)):raise ValueError('Binding call order')
     sample_by=unique(samples,'submission');payload_by=unique(payloads,'ordinal');unique(frames,'entry')
@@ -41,11 +31,13 @@ def evaluate(calls,samples,payloads,frames,directory):
             refuse('source_frame_identity');continue
         source,destination=c['source_rect'],c['destination_rect'];p=payload_by.get(sample['payload_ordinal'])
         if p is None or not source or not destination or len(source)!=4 or len(destination)!=4:refuse('missing_geometry_or_payload');continue
+        if any(type(v) is not int for v in source+destination):refuse('unsupported_scaled_or_clipped_geometry');continue
+        image_size(p,2);image_size(frame,4)
         sx,sy,sr,sb=source;x,y,right,bottom=destination
         if not 0<=sx<sr<=p['width'] or not 0<=sy<sb<=p['height'] or not 0<=x<right<=frame['width'] or not 0<=y<bottom<=frame['height'] or (sr-sx,sb-sy)!=(right-x,bottom-y) or (p['width'],p['height'])!=tuple(sample['descriptor'][6:8]):
             refuse('unsupported_scaled_or_clipped_geometry');continue
-        pixels=np.frombuffer(bound(directory,p,p['width']*p['height']*2),dtype='<u2').reshape(p['height'],p['width'])[sy:sb,sx:sr]
-        rgba=np.frombuffer(bound(directory,frame,frame['width']*frame['height']*4),dtype=np.uint8).reshape(frame['height'],frame['width'],4)[y:bottom,x:right,:3]
+        pixels=np.frombuffer(bound(directory,p,image_size(p,2)),dtype='<u2').reshape(p['height'],p['width'])[sy:sb,sx:sr]
+        rgba=np.frombuffer(bound(directory,frame,image_size(frame,4)),dtype=np.uint8).reshape(frame['height'],frame['width'],4)[y:bottom,x:right,:3]
         red=(pixels>>11)&31;green=(pixels>>5)&63;blue=pixels&31
         expected=np.stack(((red<<3)|(red>>2),(green<<2)|(green>>4),(blue<<3)|(blue>>2)),axis=2).astype(np.int16)
         difference=np.max(np.abs(expected-rgba.astype(np.int16)),axis=2)

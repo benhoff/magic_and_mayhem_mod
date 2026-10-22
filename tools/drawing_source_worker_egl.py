@@ -2,9 +2,11 @@
 import numpy as np
 from drawing_source_frame_binding import evaluate, unique, bound
 from drawing_delivery_timing import capture_span
+from drawing_observed_inputs import image_size
 
 
 def whole_image_agreement(payload, frame, directory):
+    image_size(payload,2);image_size(frame,4)
     if (payload['width'], payload['height']) != (frame['width'], frame['height']):
         return dict(compared=False, reason='source_and_physical_extents_differ')
     width, height = payload['width'], payload['height']
@@ -25,9 +27,15 @@ def delivery_boundary(api, egl, timing, context):
         raise ValueError('Boundary context identity')
     if timing['clock_domain'] != 'linux_CLOCK_MONOTONIC':
         raise ValueError('Boundary clock domain')
+    points=context['points']
+    if len(points)!=2 or any(p['status'] for p in points) or points[0]['context']!=points[1]['context']:
+        raise ValueError('Unavailable or changed boundary context')
+    value=points[0]['context']
+    if not value['active'] or value['flags'] or (value['command'],value['submission'],value['worker'])!=(egl['command'],egl['submission'],egl['worker']):
+        raise ValueError('Boundary command identity')
     first, second = capture_span(timing['first_capture']), capture_span(timing['second_capture'])
     start, end = [p['time_ns'] for p in context['points']]
-    if first[1] > second[0] or start > end:
+    if any(type(v) is not int or not 0<=v<2**64 for v in (start,end)) or first[1] > second[0] or start > end:
         raise ValueError('Boundary capture order')
     before = second[1] < start
     return dict(submission=egl['submission'], api_entry=api['frame_entry'], api_physical_ordinal=api['frame_ordinal'], egl_pid=egl['egl_pid'], egl_call=egl['egl_call'], egl_physical_ordinal=egl['physical_ordinal'],
@@ -74,6 +82,8 @@ def bind(calls, samples, payloads, packets, workers, contexts, frames, directory
             reason = 'worker_texture_generation'
         elif (sample['subresource'], worker['source_subresource'], worker['destination_subresource']) != (call['source_subresource'], call['source_subresource'], call['destination_subresource']):
             reason = 'worker_subresource'
+        elif call['source_rect'] is None or call['destination_rect'] is None:
+            reason = 'worker_geometry_or_flags'
         elif worker['source_box'] != call['source_rect'] + [0, 1] or worker['destination_box'] != call['destination_rect'] + [0, 1] or worker['flags'] != call['flags']:
             reason = 'worker_geometry_or_flags'
         if reason:
@@ -87,7 +97,7 @@ def bind(calls, samples, payloads, packets, workers, contexts, frames, directory
         identity = dict(egl_pid=frame['pid'], egl_call=frame['entry'], physical_ordinal=frame['ordinal'])
         context = by_context.get((frame['pid'], frame['entry']))
         reason = None
-        if context is None or not context['stable_active_context']:
+        if context is None or not context['stable_active_context'] or len(context['points'])!=2:
             reason = 'missing_unstable_or_inactive_worker_context'
         else:
             before, after = context['points']

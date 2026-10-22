@@ -1,17 +1,21 @@
 """Request a bounded EGL interval end only after an exact complete source marker."""
 import time
 from drawing_api_session import sha
-from drawing_source_completion import wait_for_source
+from drawing_source_completion import decode_completion
+from drawing_observed_inputs import regular_bytes
 
 
 def poll_source_close(capture, expected, process, heartbeat):
     marker = capture / 'canvas-producers.done'
-    if not marker.exists() or marker.stat().st_size < 32:
+    try:
+        raw = regular_bytes(marker, 32)
+    except FileNotFoundError:
         return None
-    # Reuse the existing exact marker admission; partial/corrupt/budget results
-    # never create a physical-close request.
-    completion = wait_for_source(marker, expected, process, heartbeat)
-    raw = marker.read_bytes()
+    if len(raw) < 32:
+        return None
+    # Validate and hash the same bounded snapshot. A second read could bind
+    # the close request to bytes different from those actually admitted.
+    completion = decode_completion(raw, expected)
     close = capture / 'egl-physical-close.flag'
     with close.open('xb') as out:
         out.write(b'producer-completion-observed\n')

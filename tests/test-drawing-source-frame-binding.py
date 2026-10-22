@@ -52,4 +52,24 @@ class SourceFrames(unittest.TestCase):
         raw=bytes(4*4*4);(self.directory/'front.rgba').write_bytes(raw);self.frames[0]['sha256']=sha(raw);self.frames.append(dict(self.frames[0],entry=10,ordinal=2));r=self.run_model();self.assertEqual(r['mismatched_regions'],1);self.assertEqual(r['comparisons'][0]['pixels_over_one'],4);self.assertEqual(len(r['refusals']),1);self.assertFalse(r['all_compared_regions_match'])
 
 
+    def test_noninteger_extents_fifo_and_sparse_oversize_are_bounded(self):
+        import os
+        for value in (True,0,4097):
+            old=self.payloads[0]['width'];self.payloads[0]['width']=value
+            with self.assertRaises(ValueError):self.run_model()
+            self.payloads[0]['width']=old
+        source=self.directory/'source.565';source.unlink();os.mkfifo(source)
+        with self.assertRaises(ValueError):self.run_model()
+        source.unlink()
+        with source.open('wb') as out:out.truncate(1024**3)
+        with self.assertRaises(ValueError):self.run_model()
+
+    def test_boolean_or_zero_identity_is_not_an_observed_call(self):
+        for items,key in [(self.calls,'call'),(self.samples,'submission'),(self.payloads,'ordinal'),(self.frames,'entry')]:
+            old=items[0][key]
+            for value in (True,0,-1):
+                items[0][key]=value
+                with self.assertRaises(ValueError):self.run_model()
+            items[0][key]=old
+
 if __name__=='__main__':unittest.main()

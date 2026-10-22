@@ -94,5 +94,14 @@ class Bindings(unittest.TestCase):
         self.assertIsNone(result['adjacent_return_reversals'][0]['worker_order'])
 
 
+    def test_duplicate_input_rows_and_changed_return_are_not_overwritten(self):
+        for index,key in [(0,'entries'),(0,'returns'),(3,None),(4,None)]:
+            data=fixture();rows=data[index][key] if key else data[index]
+            rows.append(copy.deepcopy(rows[0]))
+            with self.assertRaises(ValueError):associate(*data)
+        for field,value in [('owner',99),('source',99),('raw_key',0),('producer_return_sequence',10)]:
+            data=fixture();data[0]['returns'][1][field]=value
+            with self.assertRaises(ValueError):associate(*data)
+
 if __name__ == '__main__':
     unittest.main()

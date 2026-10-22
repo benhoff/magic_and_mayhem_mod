@@ -3,6 +3,7 @@
 import argparse
 import json
 from pathlib import Path
+from coverage_evidence import read_bytes, write_report
 from drawing_api_session import BUILD, sha
 from drawing_egl_source_domains import account
 
@@ -16,7 +17,7 @@ def main():
     a = p.parse_args()
     if a.report.exists():
         p.error('Refusing evidence overwrite')
-    raw = a.reference.read_bytes()
+    raw = read_bytes(a.reference, root=ROOT)
     r = json.loads(raw)
     if not r['success'] or r['source_sha256'] != BUILD or not r['normal_original_quit_verified']:
         raise ValueError('Successful pinned immutable original reference required')
@@ -35,9 +36,7 @@ def main():
                   reference=dict(path=str(a.reference), sha256=sha(raw)), close_marker_sha256=sha(marker),
                   analysis=result, original_game_reexecuted=False,
                   scope='Static immutable original worker/command/API/source-lease and physical interval accounting. Preserve explicit after-close contexts separately and every in-interval source refusal/exclusion; no byte ownership, hardware completion, all-route or native parity promotion.')
-    with a.report.open('x') as out:
-        json.dump(report, out, indent=2)
-        out.write('\n')
+    write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode())
     print(json.dumps(dict(success=True, closed=result['closed_physical_calls'],
                           outside=len(result['outside_closed_interval']), domains=result['domain_counts'],
                           pending_refusals_with_egl=result['live_full_source_pending_refusals_with_egl_context'])))

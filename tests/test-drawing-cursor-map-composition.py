@@ -59,4 +59,23 @@ class CursorBinding(unittest.TestCase):
         with self.assertRaises(ValueError):self.run_model()
 
 
+    def test_duplicate_samples_payloads_and_missing_payload_refuse(self):
+        for index in (1,2):
+            self.data=fixture(self.directory);self.data[index].append(copy.deepcopy(self.data[index][0]))
+            with self.assertRaises(ValueError):self.run_model()
+        self.data=fixture(self.directory);self.data[2].pop()
+        self.assertEqual(self.run_model()['refusals'][0]['reason'],'missing_sampled_payload')
+
+    def test_intervening_destination_write_and_multiple_presents_refuse(self):
+        for duplicate_present in (False,True):
+            self.data=fixture(self.directory);calls=self.data[0]
+            extra=copy.deepcopy(calls[2] if duplicate_present else calls[1])
+            # An unkeyed destination writer would previously escape draw counting.
+            extra.update(call=3,flags=0)
+            if not duplicate_present:extra['source_rect']=[0,0,1,1];extra['destination_rect']=[0,0,1,1]
+            calls[2]['call']=4;calls[3]['call']=5;calls.insert(2,extra)
+            self.data[1][1]['submission']=5
+            r=self.run_model();self.assertEqual(r['matched_cycles'],0)
+            self.assertIn(r['refusals'][0]['reason'],('intervening_composed_surface_write','missing_or_ambiguous_physical_present'))
+
 if __name__=='__main__':unittest.main()

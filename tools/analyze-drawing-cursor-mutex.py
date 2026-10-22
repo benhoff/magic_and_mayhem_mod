@@ -3,6 +3,7 @@
 import argparse
 import json
 from pathlib import Path
+from coverage_evidence import read_bytes, write_report
 from drawing_api_session import sha
 from drawing_cursor_mutex_binding import analyze
 
@@ -21,7 +22,7 @@ def main():
     sources = declaration['sources']
     if any(sha((ROOT / name).read_bytes()) != digest for name, digest in sources.items()):
         raise ValueError('Prospective analysis sources changed')
-    reference_raw = args.original_reference.read_bytes()
+    reference_raw = read_bytes(args.original_reference, root=ROOT)
     reference = json.loads(reference_raw)
     if reference.get('success') is not True or not reference.get('normal_original_quit_verified'):
         raise ValueError('Reference lacks admitted normal original Quit')
@@ -33,12 +34,10 @@ def main():
     if (capture / 'session.done').read_bytes() != api_raw[-128:]:
         raise ValueError('Immutable API terminal differs')
     result = analyze(mutex_raw, api_raw)
-    if args.original_reference.read_bytes() != reference_raw or (capture / 'cursor-mutex.bin').read_bytes() != mutex_raw or (capture / 'session.bin').read_bytes() != api_raw or any(sha((ROOT / name).read_bytes()) != digest for name, digest in sources.items()):
+    if read_bytes(args.original_reference, root=ROOT) != reference_raw or (capture / 'cursor-mutex.bin').read_bytes() != mutex_raw or (capture / 'session.bin').read_bytes() != api_raw or any(sha((ROOT / name).read_bytes()) != digest for name, digest in sources.items()):
         raise ValueError('Sources/reference changed during analysis')
     report = dict(schema=1, success=True, sources=sources, claims=declaration['claims'], sources_stable=True, reference=dict(path=str(args.original_reference), sha256=sha(reference_raw)), mutex_sha256=sha(mutex_raw), api_sha256=sha(api_raw), analysis=result, original_game_executed=False, scope='Current immutable offline analysis of retained original journals; no new game execution, atomic event/frame binding, ownership or safe source synchronization/native parity claim.')
-    with args.report.open('x') as out:
-        json.dump(report, out, indent=2)
-        out.write('\n')
+    write_report(ROOT,args.report,(json.dumps(report,indent=2)+'\n').encode())
     print(json.dumps(dict(success=True, calls=result['calls'], points=result['sampled_points'], inactive=result['inactive_points'], refused=result['query_refusals'])))
 
 

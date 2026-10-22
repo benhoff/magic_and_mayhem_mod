@@ -3,6 +3,7 @@
 import argparse
 import json
 from pathlib import Path
+from coverage_evidence import read_bytes, write_report
 import struct
 from drawing_api_session import sha
 from drawing_copy_order import decode
@@ -20,7 +21,7 @@ def main():
     args = parser.parse_args()
     if args.report.exists():
         parser.error('Refusing evidence overwrite')
-    raw = args.reference.read_bytes()
+    raw = read_bytes(args.reference, root=ROOT)
     reference = json.loads(raw)
     if not reference['success'] or not reference['normal_original_quit_verified']:
         raise ValueError('Completed original capture required')
@@ -56,9 +57,7 @@ def main():
                             'tools/drawing_api_session.py', 'tools/drawing_wine_blit_packet.py']},
                   original_game_reexecuted=False, native_replay_changed=False,
                   scope='Static same-owner/geometry/key/logical-source-and-destination association within explicit request entry/return producer intervals at all three API phases; exact submission/packet/worker IDs. Unbound calls remain outside the admitted source scope. No general replay-order, view/alias/lifetime, native parity or fresh original execution claim.')
-    with args.report.open('x') as output:
-        json.dump(result, output, indent=2)
-        output.write('\n')
+    write_report(ROOT,args.report,(json.dumps(result,indent=2)+'\n').encode())
     print(json.dumps(dict(success=True, bound=len(result['bindings']),
                           unbound_requests=len(result['unbound_requests']),
                           excluded_api_entries=len(result['excluded_api_entries']),
