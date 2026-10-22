@@ -202,7 +202,12 @@ public:
         }
         case 0x597850:return call(0x5977d0,0,{a[0],0,0});
         case 0x597870:case 0x5979b0:if(a[0])call(0x598f70,0,{a[0]});break;
-        case 0x59c441:for(U i=0,address=a[0];signed32(i)<signed32(a[2]);++i,address+=a[1])call(a[3],address);break;
+        case 0x59c441:{
+            U constructed=0,address=a[0];
+            try{for(;signed32(constructed)<signed32(a[2]);++constructed,address+=a[1])call(a[3],address);}
+            catch(...){while(constructed){--constructed;address-=a[1];call(a[4],address);}throw;}
+            break;
+        }
         default:throw std::invalid_argument("Unrecovered actor downstream service");
         }
         return 0;

@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text, shared_cache
 import drawing_scene_corpus as corpus
 
 CATALOG = 'tests/fixtures/drawing-journey/scene.json'
@@ -18,8 +19,8 @@ RETENTION = 'NR.drawing-journey.retention-20261010'
 class JourneyTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.catalog = json.loads((ROOT / CATALOG).read_text())
-        cls.register = json.loads((ROOT / 'research/runtime/coverage/register.json').read_text())
+        cls.catalog = json.loads(evidence_text(ROOT / CATALOG))
+        cls.register = json.loads(evidence_text(ROOT / 'research/runtime/coverage/register.json'))
 
     def admit_structural(self, catalog):
         # Independently pinned original evidence remains real. Substitute only
@@ -72,15 +73,15 @@ class JourneyTest(unittest.TestCase):
                       'research/runtime/native-world-producer-handoff-gpu-current-comparison-20261008.json'):
                 source, target = ROOT / p, root / p
                 target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copytree(source, target) if source.is_dir() else shutil.copyfile(source, target)
+                shutil.copytree(source, target) if source.is_dir() else target.write_bytes(evidence_bytes(source))
             binary = root / 'renderer';binary.write_bytes(b'test-command-isolation-only')
             def execute(command, **kwargs):
-                declaration = json.loads(Path(command[-2]).read_text())
+                declaration = json.loads(evidence_text(Path(command[-2])))
                 inputs = Path(command[-2]).parent
                 self.assertEqual(set(declaration), {'schema', 'boundary', 'assets', 'retain_checkpoints', 'frames'})
                 self.assertFalse(any('oracle' in p.name for p in inputs.rglob('*')))
                 self.assertEqual(declaration['frames'], self.catalog['frames'])
-                source_raw=(inputs/'producers.bin').read_bytes()
+                source_raw=evidence_bytes(inputs/'producers.bin')
                 self.assertTrue(all(r[21]==0 for r,_ in corpus.load_tool('inspect-canvas-producers').decode(source_raw,False)[1] if r[2]==9))
                 output = Path(command[-1]);output.mkdir()
                 checkpoints = []
@@ -102,7 +103,7 @@ class JourneyTest(unittest.TestCase):
                     native_gpu_presentation_ready=True, checkpoints=checkpoints, frames=frames,
                     frames_published=len(frames), scene_sha256=corpus.sha(data))
                 original=corpus.input_bytes(ROOT,self.catalog)
-                historical=json.loads((ROOT / 'research/runtime/native-world-producer-handoff-gpu-current-comparison-20261008.json').read_text())
+                historical=json.loads(evidence_text(ROOT / 'research/runtime/native-world-producer-handoff-gpu-current-comparison-20261008.json'))
                 results=corpus.original_raster_results(original,historical)
                 result_data=''.join('\t'.join(map(str,row))+'\n' for row in results).encode()
                 (output/'raster-results.tsv').write_bytes(result_data)
@@ -110,7 +111,7 @@ class JourneyTest(unittest.TestCase):
                               unknown_raster_results=0,raster_results_sha256=corpus.sha(result_data))
                 (output / 'scene-report.json').write_text(json.dumps(report))
                 return CompletedProcess(command, 0, b'', b'')
-            with patch.object(corpus.subprocess, 'run', side_effect=execute):
+            with shared_cache(ROOT), patch.object(corpus.subprocess, 'run', side_effect=execute):
                 result = corpus.check(root=root, catalog_path=CATALOG, executable=binary, retention=RETENTION)
             self.assertEqual(len(result['frame_comparisons']), 17)
             self.assertTrue(result['declared_canvas_complete'])

@@ -4,6 +4,7 @@ import math
 import statistics
 import struct
 import zlib
+from coverage_evidence import evidence_digest
 
 def normalize_capture(source,destination,*,completed_prefix=None):
     """Bounded V1/V2 read; inflate once outside benchmark timing into new V1."""
@@ -61,10 +62,7 @@ def completed_prefix_worlds(game):
     return count
 
 def sha(path):
-    digest=hashlib.sha256()
-    with path.open('rb') as stream:
-        for block in iter(lambda:stream.read(1024*1024),b''):digest.update(block)
-    return digest.hexdigest()
+    return evidence_digest(path)
 
 def distribution(values):
     if not values:return None

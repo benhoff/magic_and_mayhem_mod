@@ -8,13 +8,14 @@ from pathlib import Path
 import re
 import subprocess
 from original_x86 import PE32, Decoder
+from coverage_evidence import read_json, evidence_digest
 from coverage_claims import behavior_contract, required_sources
 ROOT=Path(__file__).resolve().parents[1]
 PIN='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
-BIDS={'values':'RS.actor-downstream-value-services','controllers':'RS.actor-downstream-controller-services','world':'RS.actor-downstream-world-services','ui':'RS.actor-downstream-ui-services','dependencies':'RS.actor-downstream-dependency-services','popups':'RS.actor-downstream-popup-services'}
-HEADERS={'values':'reconstruction/rendering/actor_services.hpp','controllers':'reconstruction/rendering/actor_service_controllers.hpp','world':'reconstruction/rendering/actor_service_world.hpp','ui':'reconstruction/rendering/actor_service_ui.hpp','dependencies':'reconstruction/rendering/actor_service_dependencies.hpp','popups':'reconstruction/rendering/actor_service_popups.hpp'}
+BIDS={'values':'RS.actor-downstream-value-services','controllers':'RS.actor-downstream-controller-services','world':'RS.actor-downstream-world-services','ui':'RS.actor-downstream-ui-services','dependencies':'RS.actor-downstream-dependency-services','popups':'RS.actor-downstream-popup-services','collections':'RS.actor-downstream-collection-services','effects':'RS.actor-downstream-effect-services','construction':'RS.actor-downstream-construction-services'}
+HEADERS={'values':'reconstruction/rendering/actor_services.hpp','controllers':'reconstruction/rendering/actor_service_controllers.hpp','world':'reconstruction/rendering/actor_service_world.hpp','ui':'reconstruction/rendering/actor_service_ui.hpp','dependencies':'reconstruction/rendering/actor_service_dependencies.hpp','popups':'reconstruction/rendering/actor_service_popups.hpp','collections':'reconstruction/rendering/actor_service_collections.hpp','effects':'reconstruction/rendering/actor_service_effects.hpp','construction':'reconstruction/rendering/actor_service_construction.hpp'}
 # id, stack argc, callee-pop bytes, meaningful ECX, meaningful EDX.
-PROVIDERS=[(0x58b660,0,0,True,False),(0x57dc20,1,4,True,True),(0x57dc60,2,8,True,True),(0x57de00,5,0,False,False),(0x4d72d0,0,0,True,False),(0x4d53d0,2,8,True,False),(0x58bc10,1,4,True,False),(0x58d1a0,1,4,True,False),(0x4d47f0,0,0,True,False),(0x4a5a90,2,8,True,False),(0x4a5ce0,7,28,True,False),(0x56f000,7,28,True,False),(0x1001f280,2,8,False,False),(0x1001f2c0,3,0,False,False),(0x1001f300,5,0,False,False),(0x4d2e50,0,0,True,False),(0x4d6e90,0,0,True,False),(0x4de6c0,0,0,True,False),(0x597d40,0,0,False,False),(0x598a10,3,12,False,False),(0x597df0,2,0,False,False),(0x597b40,0,0,True,True),(0x1001f1c0,11,44,True,False),(0x1001f200,0,0,True,False),(0x1001f240,0,0,False,False),(0x4f4330,4,16,True,False),(0x58c8a0,4,16,True,False),(0x58d5b0,6,24,True,False),(0x4d3c90,0,0,True,False),(0x49cdb0,0,0,True,False),(0x493f20,2,8,True,False),(0x4d5640,0,0,True,False),(0x4d6620,2,8,True,False),(0x4d9f30,1,4,True,False),(0x59c1fd,4,0,False,False),(0x4644d0,2,8,True,False),(0x5050d0,0,0,True,False),(0x57d310,2,8,True,False),(0x57d690,2,8,True,False),(0x505220,1,4,True,False),(0x5c50c0,4,16,False,False),(0x5c520c,4,16,False,False),(0x1001f140,0,0,True,False),(0x1001f180,0,0,True,False),(0x488330,1,4,True,False),(0x59cae2,2,0,False,False),(0x59d50b,7,0,False,False),(0x59c4c3,1,0,False,False),(0x468470,0,0,True,True),(0x4eb820,1,4,True,False),(0x564e90,6,24,True,False),(0x464350,0,0,True,False),(0x464ec0,0,0,True,False),(0x465000,0,0,True,False),(0x465130,0,0,True,False),
+PROVIDERS=[(0x1001f380,1,4,False,False),(0x1001f3c0,2,8,False,False),(0x1001f400,1,4,True,False),(0x469170,8,32,True,True),(0x4694e0,1,4,True,True),(0x509aa0,1,4,True,False),(0x506220,0,0,True,False),(0x51e7d0,1,4,True,False),(0x416d80,4,16,True,True),(0x522770,1,4,True,False),(0x5437f0,0,0,True,False),(0x4681f0,0,0,True,True),(0x5097b0,6,24,True,False),(0x571310,7,28,True,False),(0x543ee0,1,4,True,False),(0x51e500,0,0,True,False),(0x507fa0,2,8,True,False),(0x4db080,1,4,True,False),(0x543c60,0,0,True,False),(0x4680f0,0,0,True,True),(0x467fe0,0,0,True,True),(0x4f49e0,4,16,True,False),(0x4eb710,1,4,True,False),(0x540430,6,24,True,False),(0x540140,4,16,True,False),(0x545e90,3,12,True,False),(0x5457e0,1,4,True,False),(0x1001f340,1,4,True,False),(0x494ab0,1,4,True,False),(0x565180,3,12,True,False),(0x5654e0,7,28,True,False),(0x566d80,2,8,True,False),(0x466900,1,4,True,False),(0x58b660,0,0,True,False),(0x57dc20,1,4,True,True),(0x57dc60,2,8,True,True),(0x57de00,5,0,False,False),(0x4d72d0,0,0,True,False),(0x4d53d0,2,8,True,False),(0x58bc10,1,4,True,False),(0x58d1a0,1,4,True,False),(0x4d47f0,0,0,True,False),(0x4a5a90,2,8,True,False),(0x4a5ce0,7,28,True,False),(0x56f000,7,28,True,False),(0x1001f280,2,8,False,False),(0x1001f2c0,3,0,False,False),(0x1001f300,5,0,False,False),(0x4d2e50,0,0,True,False),(0x4d6e90,0,0,True,False),(0x4de6c0,0,0,True,False),(0x597d40,0,0,False,False),(0x598a10,3,12,False,False),(0x597df0,2,0,False,False),(0x597b40,0,0,True,True),(0x1001f1c0,11,44,True,False),(0x1001f200,0,0,True,False),(0x1001f240,0,0,False,False),(0x4f4330,4,16,True,False),(0x58c8a0,4,16,True,False),(0x58d5b0,6,24,True,False),(0x4d3c90,0,0,True,False),(0x49cdb0,0,0,True,False),(0x493f20,2,8,True,False),(0x4d5640,0,0,True,False),(0x4d6620,2,8,True,False),(0x4d9f30,1,4,True,False),(0x59c1fd,4,0,False,False),(0x4644d0,2,8,True,False),(0x5050d0,0,0,True,False),(0x57d310,2,8,True,False),(0x57d690,2,8,True,False),(0x505220,1,4,True,False),(0x5c50c0,4,16,False,False),(0x5c520c,4,16,False,False),(0x1001f140,0,0,True,False),(0x1001f180,0,0,True,False),(0x488330,1,4,True,False),(0x59cae2,2,0,False,False),(0x59d50b,7,0,False,False),(0x59c4c3,1,0,False,False),(0x468470,0,0,True,True),(0x4eb820,1,4,True,False),(0x564e90,6,24,True,False),(0x464350,0,0,True,False),(0x464ec0,0,0,True,False),(0x465000,0,0,True,False),(0x465130,0,0,True,False),
  (0x4d6c60,0,0,True,False),(0x4d39b0,0,0,True,False),(0x4cb9b0,0,0,True,False),(0x4f7970,1,4,True,False),(0x4d7a90,0,0,True,False),
  (0x54dce0,1,4,True,False),(0x50aa30,1,4,True,False),(0x54e200,0,0,True,False),(0x485b10,2,8,True,False),
  (0x50e400,1,4,True,False),(0x513f50,0,0,True,False),(0x50e3d0,2,8,True,False),(0x510480,0,0,True,False),(0x50d060,3,12,True,False),
@@ -33,7 +34,7 @@ def main():
  (out/'tmp').mkdir(parents=True);env=dict(os.environ,TMPDIR=str(out/'tmp'))
  register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text());b=next(b for b in register['behaviors'] if b['id']==BIDS[a.suite]);builds={b['id']:b for b in register['builds']}
  roots=sorted({int(x,16) for x in re.findall(r'case (0x[0-9a-f]+):',(ROOT/HEADERS[a.suite]).read_text())})
- sources={s:sha(ROOT/s) for s in sorted(required_sources(b)|{'tools/coverage_claims.py','tools/original_x86.py'})}
+ sources={s:sha(ROOT/s) for s in sorted(required_sources(b)|{'tools/coverage_claims.py','tools/original_x86.py','tools/coverage_evidence.py'})}
  for s in sources:
   target=out/'sources'/s;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes((ROOT/s).read_bytes())
  report=dict(schema=1,success=False,roots=roots,cases_per_root=64,sources=sources,original_sha256=PIN,claims=[dict(behavior=BIDS[a.suite],contract_sha256=behavior_contract(b,builds))],scope=b['scope'],original_output_used_as_native_input=False,live_replacement=False,physical_driver_equivalence=False)
@@ -54,8 +55,8 @@ def main():
  try:
   run('original-before',[ROOT/'tools/original-manifest.sh','verify']);verified=True
   image=PE32((ROOT/'original/Arcane_Nocd/Chaos.exe').read_bytes());assert image.sha256==PIN
-  inventory_path=ROOT/builds['nocd-40209ca7']['inventory'];inventory=json.loads(inventory_path.read_text());functions={f['entry']:f for f in inventory['functions']}
-  report['inputs']={str(inventory_path.relative_to(ROOT)):sha(inventory_path)};abi={};decoder=Decoder()
+  inventory_path=ROOT/builds['nocd-40209ca7']['inventory'];inventory=read_json(inventory_path,root=ROOT);functions={f['entry']:f for f in inventory['functions']}
+  report['inputs']={str(inventory_path.relative_to(ROOT)):evidence_digest(inventory_path,root=ROOT)};abi={};decoder=Decoder()
   try:
    def resolve_abi(entry,visiting=frozenset()):
     if hex(entry) in abi:return abi[hex(entry)]
@@ -73,16 +74,18 @@ def main():
     result={'ranges':f['ranges'],'return_pop_bytes':sorted(pops)};abi[hex(entry)]=result;return result
    for entry in roots:resolve_abi(entry)
   finally:decoder.close()
-  assert len(roots)=={'values':42,'controllers':10,'world':9,'ui':10,'dependencies':18,'popups':9}[a.suite]
+  assert len(roots)=={'values':42,'controllers':10,'world':9,'ui':10,'dependencies':18,'popups':9,'collections':4,'effects':3,'construction':7}[a.suite]
   lines=['#pragma once','#include <cstdint>','struct ServiceAbi{unsigned id,pop;};','static constexpr unsigned ServiceRoots[]={'+','.join(hex(v) for v in roots)+'};','static constexpr ServiceAbi ServiceAbis[]={']
   for entry in roots:
    pops=abi[hex(entry)]['return_pop_bytes'];assert len(pops)==1;lines.append('{'+hex(entry)+','+str(pops[0])+'},')
   
   for suite,header in HEADERS.items():
-   supplied=sorted({int(x,16) for x in re.findall(r'case (0x[0-9a-f]+):',(ROOT/header).read_text())});lines+=['};','static constexpr unsigned '+{'values':'ValueRoots','controllers':'ControllerRoots','world':'WorldRoots','ui':'UiRoots','dependencies':'DependencyRoots','popups':'PopupRoots'}[suite]+'[]={'+','.join(hex(v) for v in supplied)]
-  lines+=['};','static constexpr bool UseWorldServices='+str(a.suite=='world').lower()+';','static constexpr bool UseUiServices='+str(a.suite=='ui').lower()+';','static constexpr bool UseDependencies='+str(a.suite in {'dependencies','popups'}).lower()+';','static constexpr bool UsePopups='+str(a.suite=='popups').lower()+';','struct ServiceProvider{unsigned id,arguments,pop;bool receiver,second;unsigned char bytes[8];};','static constexpr ServiceProvider ServiceProviders[]={']
+   supplied=sorted({int(x,16) for x in re.findall(r'case (0x[0-9a-f]+):',(ROOT/header).read_text())});lines+=['};','static constexpr unsigned '+{'values':'ValueRoots','controllers':'ControllerRoots','world':'WorldRoots','ui':'UiRoots','dependencies':'DependencyRoots','popups':'PopupRoots','collections':'CollectionRoots','effects':'EffectRoots','construction':'ConstructionRoots'}[suite]+'[]={'+','.join(hex(v) for v in supplied)]
+  lines+=['};','static constexpr bool UseWorldServices='+str(a.suite in {'world','collections','effects'}).lower()+';','static constexpr bool UseUiServices='+str(a.suite=='ui').lower()+';','static constexpr bool UseDependencies='+str(a.suite in {'dependencies','popups','collections','effects','construction'}).lower()+';','static constexpr bool UsePopups='+str(a.suite=='popups').lower()+';','static constexpr bool UseCollections='+str(a.suite in {'collections','effects'}).lower()+';','static constexpr bool UseEffects='+str(a.suite=='effects').lower()+';','static constexpr bool UseConstruction='+str(a.suite=='construction').lower()+';','struct ServiceProvider{unsigned id,arguments,pop;bool receiver,second;unsigned char bytes[8];};','static constexpr ServiceProvider ServiceProviders[]={']
   composed=set(roots)
-  if a.suite in {'dependencies','popups'}:composed|={int(x,16) for x in re.findall(r'case (0x[0-9a-f]+):',(ROOT/HEADERS['dependencies']).read_text())}
+  if a.suite in {'dependencies','popups','collections','effects','construction'}:composed|={int(x,16) for x in re.findall(r'case (0x[0-9a-f]+):',(ROOT/HEADERS['dependencies']).read_text())}
+  if a.suite in {'collections','effects'}:composed|={int(x,16) for x in re.findall(r'case (0x[0-9a-f]+):',(ROOT/HEADERS['world']).read_text())}
+  if a.suite=='effects':composed|={int(x,16) for x in re.findall(r'case (0x[0-9a-f]+):',(ROOT/HEADERS['collections']).read_text())}
   actual_providers=[]
   for entry,argc,pop,receiver,second in PROVIDERS:
    if entry in composed:continue
@@ -109,6 +112,9 @@ def main():
   (out/'actor-services-generated.hpp').write_text('\n'.join(lines)+'\n')
   report['generated_inputs']={'actor-services-generated.hpp':sha(out/'actor-services-generated.hpp')}
   report['original_body_ranges']={hex(v):[{'first':lo,'end':hi,'sha256':hashlib.sha256(image.read(lo,hi-lo)).hexdigest()} for lo,hi in abi[hex(v)]['ranges']] for v in roots}
+  if a.suite=='construction':
+   run('exception-build',['g++','-std=c++17','-O2','-Wall','-Wextra','-Werror',ROOT/'tests/actor-service-exception-test.cpp','-o',out/'vector-exception-test'])
+   run('exception-execute',[out/'vector-exception-test']);report['native_exception_cases']=171
   for name,flags in [('native',[]),('original',['-m32','-fno-pie','-no-pie','-DMNM_ORIGINAL_REFERENCE'])]:
    run(name+'-build',['g++','-std=c++17','-O2','-Wall','-Wextra','-Werror',*flags,'-I',out,'-MD','-MF',out/(name+'.d'),ROOT/'tests/actor-services-reference.cpp',*([ROOT/'tests/actor-services-call.S'] if name=='original' else []),'-o',out/name])
    for path in (out/(name+'.d')).read_text().replace('\\\n',' ').split()[1:]:

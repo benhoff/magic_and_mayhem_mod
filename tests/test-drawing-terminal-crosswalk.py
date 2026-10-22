@@ -7,6 +7,7 @@ import sys
 import tempfile
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
+from coverage_evidence import read_text as evidence_text
 from drawing_terminal_crosswalk import match, contracts, WRAPPERS
 
 
@@ -92,7 +93,7 @@ class TerminalTests(unittest.TestCase):
 
     def test_pinned_original_contract_and_each_staged_wrapper_byte(self):
         proof=Path(__file__).resolve().parents[1]/'research/runtime/drawing-canvas-release-original-range-20261011.json'
-        record=json.loads(proof.read_text());staged=bytearray();offsets={}
+        record=json.loads(evidence_text(proof));staged=bytearray();offsets={}
         for target in WRAPPERS:
             offsets[target]=len(staged);staged.extend(bytes.fromhex(record['original_entry_anchors'][hex(target)]))
         offset=lambda raw,target,length:offsets[target]

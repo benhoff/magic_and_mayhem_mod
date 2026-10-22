@@ -1,4 +1,5 @@
 """Build-pinned drawing call census; addresses never imply function ownership."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 from collections import Counter
 import hashlib
 import json
@@ -86,10 +87,10 @@ def validate_callers(record, build, known_entries):
 
 
 def export(executable, catalog, inventory_path):
-    raw = executable.read_bytes()
+    raw = evidence_bytes(executable)
     if hashlib.sha256(raw).hexdigest() != BUILD_SHA256:
         raise ValueError('Unsupported original executable; no export')
-    inventory = json.loads(inventory_path.read_text())
+    inventory = json.loads(evidence_text(inventory_path))
     if inventory['source_sha256'] != BUILD_SHA256:
         raise ValueError('Discovery census build mismatch')
     assembly = subprocess.check_output(['objdump', '-d', '-Mintel', str(executable)], text=True)
@@ -97,15 +98,15 @@ def export(executable, catalog, inventory_path):
     entries = {int(s['identity'], 0) if isinstance(s['identity'], str) else s['identity']
                for route in catalog['routes'] for s in route['selectors'] if s['kind'] == 'entry'}
     calls = calls_for(rows, entries, inventory)
-    if hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256:
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest() != BUILD_SHA256:
         raise ValueError('Original input changed during export')
     return {'schema': 1, 'source_sha256': BUILD_SHA256, 'image_base': inventory['image_base'],
             'scope': 'Exact direct CALL sites to registered drawing entries across pinned objdump output. '
                      'Ownership uses containing discovered ranges only. No runtime module-base, indirect-target, '
                      'function-completeness or scenario-closure assertion.',
             'input_unchanged': True, 'entries': sorted(entries), 'callers': calls,
-            'sources': {'tools/drawing_census.py': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-                        str(inventory_path.relative_to(ROOT)): hashlib.sha256(inventory_path.read_bytes()).hexdigest()}}
+            'sources': {'tools/drawing_census.py': hashlib.sha256(evidence_bytes(Path(__file__))).hexdigest(),
+                        str(inventory_path.relative_to(ROOT)): hashlib.sha256(evidence_bytes(inventory_path)).hexdigest()}}
 
 
 def trace(path, manifest, caller_census, inventory):

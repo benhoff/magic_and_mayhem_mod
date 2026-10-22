@@ -456,6 +456,11 @@ class TrancheTest(unittest.TestCase):
             'RS.actor-downstream-controller-services',
             'RS.actor-downstream-world-services',
             'RS.actor-downstream-ui-services',
+            'RS.actor-downstream-dependency-services',
+            'RS.actor-downstream-popup-services',
+            'RS.actor-downstream-collection-services',
+            'RS.actor-downstream-effect-services',
+            'RS.actor-downstream-construction-services',
         }
         scoped_high = {e['behavior'] for e in result['entries']
                        if e['weight'] == 4 and e['implementation'] == 'scoped'}

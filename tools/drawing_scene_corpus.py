@@ -1,4 +1,5 @@
 """Portable complete native canvas replay; original outputs stay in the comparator."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 from collections import Counter
 import json
 import lzma
@@ -96,7 +97,7 @@ def input_bytes(root, catalog):
         path = local(root, entry['path'])
         if path.stat().st_size > 32 * 1024 * 1024:
             raise ValueError('Scene input chunk storage exceeds bound')
-        packed = path.read_bytes()
+        packed = evidence_bytes(path)
         if sha(packed) != entry['sha256']:
             raise ValueError('Scene input chunk hash changed')
         try:
@@ -203,8 +204,8 @@ def admit(root, catalog, register, retention=RETENTION):
 
 def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False, retention=RETENTION):
     path = local(root, catalog_path)
-    catalog = json.loads(path.read_text())
-    register = json.loads((root / 'research/runtime/coverage/register.json').read_text())
+    catalog = json.loads(evidence_text(path))
+    register = json.loads(evidence_text(root / 'research/runtime/coverage/register.json'))
     raw, assets, oracles = admit(root, catalog, register, retention)
     from rendering_coverage import evidence_record
     historical = evidence_record(root, next(e for e in register['evidence'] if e['id'] == catalog['evidence']),
@@ -212,8 +213,8 @@ def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False, retent
     expected_results = original_raster_results(raw, historical)
     source_raw = raster_inputs(raw)
     executable = executable.resolve()
-    binary_hash = sha(executable.read_bytes())
-    inputs = {str(path.relative_to(root)): sha(path.read_bytes())}
+    binary_hash = sha(evidence_bytes(executable))
+    inputs = {str(path.relative_to(root)): sha(evidence_bytes(path))}
     for entry in (*input_entries(catalog), *catalog['assets'], *(c['oracle'] for c, _ in oracles)):
         inputs[entry['path']] = entry['sha256']
     parent = root / 'working/tests/drawing-scene'
@@ -246,13 +247,13 @@ def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False, retent
     (output / 'native.log').write_bytes(execution.stdout + execution.stderr)
     if execution.returncode:
         raise ValueError('Native scene replay refused: ' + str(output / 'native.log'))
-    native = json.loads((output / 'native/scene-report.json').read_text())
+    native = json.loads(evidence_text(output / 'native/scene-report.json'))
     if (not native['success'] or native['boundary'] != catalog['boundary'] or native['remaining_surfaces'] or
             native['original_pixels_used_as_native_inputs'] or native['original_oracles_read'] or
             native['original_raster_results_used_as_native_inputs'] or
             not native['native_gpu_presentation_ready']):
         raise ValueError('Native scene completion/admission mismatch')
-    result_data = (output / 'native/raster-results.tsv').read_bytes()
+    result_data = evidence_bytes(output / 'native/raster-results.tsv')
     state_comparison = compare_raster_results(result_data, expected_results)
     if (native['raster_result_count'] != len(expected_results) or
             native['raster_results_sha256'] != sha(result_data) or
@@ -261,29 +262,29 @@ def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False, retent
     completed = {c['ordinal']: c for c in native['checkpoints']}
     comparisons = []
     for c, expected in oracles:
-        actual = (output / f"native/checkpoint-{c['ordinal']:04}.565").read_bytes()
+        actual = evidence_bytes(output / f"native/checkpoint-{c['ordinal']:04}.565")
         n = completed[c['ordinal']]
         if any(n[k] != c[k] for k in ('sequence', 'canvas', 'width', 'height')) or n['sha256'] != sha(actual):
             raise ValueError('Native scene checkpoint identity mismatch')
         comparisons.append({'ordinal': c['ordinal'], 'sequence': c['sequence'], 'canvas': c['canvas'],
                             **compare(actual, expected, c['width'], c['height'])})
     final = next((c, expected) for c, expected in oracles if c['sequence'] == catalog['boundary']['sequence'])
-    scene = (output / 'native/scene.565').read_bytes()
-    if scene != (output / f"native/checkpoint-{final[0]['ordinal']:04}.565").read_bytes() or sha(scene) != native['scene_sha256']:
+    scene = evidence_bytes(output / 'native/scene.565')
+    if scene != evidence_bytes(output / f"native/checkpoint-{final[0]['ordinal']:04}.565") or sha(scene) != native['scene_sha256']:
         raise ValueError('Published scene differs from its complete final checkpoint')
     frame_comparisons = []
     if catalog['schema'] == 2:
         if len(native['frames']) != len(catalog['frames']) or native['frames_published'] != len(catalog['frames']):
             raise ValueError('Journey omitted a complete declared frame')
         for i, frame in enumerate(catalog['frames'], 1):
-            actual = (output / f"native/frame-{i:04}.565").read_bytes()
+            actual = evidence_bytes(output / f"native/frame-{i:04}.565")
             n = native['frames'][i-1]
             if any(n[k] != frame[k] for k in frame) or n['ordinal'] != i or n['sha256'] != sha(actual):
                 raise ValueError('Journey frame identity mismatch')
             _, expected = next((c, expected) for c, expected in oracles if c['sequence'] == frame['sequence'])
             frame_comparisons.append({'ordinal': i, **frame, **compare(actual, expected, frame['width'], frame['height'])})
-    if (sha(executable.read_bytes()) != binary_hash or
-            any(sha(local(root, name).read_bytes()) != h for name, h in inputs.items())):
+    if (sha(evidence_bytes(executable)) != binary_hash or
+            any(sha(evidence_bytes(local(root, name))) != h for name, h in inputs.items())):
         raise ValueError('Scene inputs/binary changed during comparison')
     return {'success': all(c['matching'] for c in comparisons + frame_comparisons) and state_comparison['matching'], 'scope': catalog['scope'],
             'boundary': catalog['boundary'], 'comparisons': comparisons,

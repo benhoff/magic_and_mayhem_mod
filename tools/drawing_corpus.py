@@ -1,4 +1,5 @@
 """Independent DRAW-02 replay. Original outputs belong only to the comparator."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import gzip
 import hashlib
 import importlib.util
@@ -49,7 +50,7 @@ def artifact(root, entry):
     path = local(root, entry['path'])
     if path.stat().st_size > MAX_BYTES:
         raise ValueError('Oversized corpus artifact')
-    packed = path.read_bytes()
+    packed = evidence_bytes(path)
     if sha(packed) != entry['sha256']:
         raise ValueError('Corpus artifact hash mismatch: ' + entry['path'])
     if entry['encoding'] == 'gzip':
@@ -141,9 +142,9 @@ def admit(root, catalog, register):
     records, cases, seen = {}, [], set()
     surface = load_tool('check-surface-fixtures')
     surface_path = local(root, catalog['surface_corpus']['path'])
-    if sha(surface_path.read_bytes()) != catalog['surface_corpus']['sha256']:
+    if sha(evidence_bytes(surface_path)) != catalog['surface_corpus']['sha256']:
         raise ValueError('Surface corpus identity changed')
-    surfaces = {c['id']: c for c in json.loads(surface_path.read_text())['cases']}
+    surfaces = {c['id']: c for c in json.loads(evidence_text(surface_path))['cases']}
     for c in catalog['cases']:
         if (not re.fullmatch(r'[A-Za-z0-9_-]+', c['id']) or c['id'] in seen or
                 c['scenario'] not in (*SCENARIOS, 'unattributed-surface') or not c['scope'].strip()):
@@ -215,8 +216,8 @@ def run_world(raw, output, executable, headless):
     (output / 'native.log').write_bytes(result.stdout + result.stderr)
     if result.returncode:
         raise ValueError('World native replay failed: ' + str(output / 'native.log'))
-    metadata = json.loads((output / 'native.json').read_text())
-    actual = (output / 'native.565').read_bytes()
+    metadata = json.loads(evidence_text(output / 'native.json'))
+    actual = evidence_bytes(output / 'native.565')
     if (metadata['success'] is not True or metadata['sequence'] != identity['sequence'] or
             metadata['width'] != identity['width'] or metadata['height'] != identity['height'] or
             metadata['records'] != identity['draws'] or metadata['remaining_surfaces'] or
@@ -227,12 +228,12 @@ def run_world(raw, output, executable, headless):
 
 def check(root=ROOT, catalog_path=CATALOG, surface_executable=None, world_executable=None, headless=False):
     root = Path(root).resolve()
-    catalog = json.loads(local(root, catalog_path).read_text())
-    register = json.loads(local(root, 'research/runtime/coverage/register.json').read_text())
+    catalog = json.loads(evidence_text(local(root, catalog_path)))
+    register = json.loads(evidence_text(local(root, 'research/runtime/coverage/register.json')))
     cases = admit(root, catalog, register)
     if not surface_executable or not world_executable:
         raise ValueError('Specify both built native replay executables; no backend substitution')
-    binaries = {str(p.resolve()): sha(p.read_bytes()) for p in (surface_executable, world_executable)}
+    binaries = {str(p.resolve()): sha(evidence_bytes(p)) for p in (surface_executable, world_executable)}
     parent = root / 'working/tests/drawing-corpus'
     parent.mkdir(parents=True, exist_ok=True)
     output = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
@@ -253,9 +254,9 @@ def check(root=ROOT, catalog_path=CATALOG, surface_executable=None, world_execut
                      'identity': identity, 'comparison': compare(actual, expected, identity['width'], identity['height']),
                      'native': metadata})
     # Recheck inputs/provenance after execution, retaining all original hashes.
-    if admit(root, json.loads(local(root, catalog_path).read_text()), register) != cases:
+    if admit(root, json.loads(evidence_text(local(root, catalog_path))), register) != cases:
         raise ValueError('Corpus changed during comparison')
-    if any(sha(Path(p).read_bytes()) != h for p, h in binaries.items()):
+    if any(sha(evidence_bytes(Path(p))) != h for p, h in binaries.items()):
         raise ValueError('Native executable changed during comparison')
     return {'schema': 1, 'success': all(c['comparison']['matching'] for c in rows),
             'source_executable_sha256': BUILD, 'cases': rows,

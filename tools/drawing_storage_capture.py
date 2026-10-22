@@ -3,6 +3,7 @@
 All UI work goes through recovered menu callbacks or ordinary XTest input.
 The controller never writes simulation/serializer memory or assumes input success.
 """
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import hashlib
 import json
 import struct
@@ -43,15 +44,15 @@ def drive(channel,run,capture,process,env,input_binary,wait,send,refresh,state):
                 if child.returncode:raise ValueError('Storage physical input failed: '+label)
             finally:
                 if child.poll() is None:child.terminate();child.wait(timeout=5)
-        observed=json.loads(result.read_text())
+        observed=json.loads(evidence_text(result))
         if observed['success'] is not True or observed['original_memory_written'] is not False:raise ValueError('Unadmitted storage input')
-        actions.append(dict(kind='physical',label=label,path=result.name,sha256=hashlib.sha256(result.read_bytes()).hexdigest()))
+        actions.append(dict(kind='physical',label=label,path=result.name,sha256=hashlib.sha256(evidence_bytes(result)).hexdigest()))
     def source_worlds():
         p=capture/'canvas-producers.bin'
         # The recorder's committed file prefix is flushed at source boundaries.
         # Count validated World-return records through the ordinary decoder.
         if not p.exists():return 0
-        raw=p.read_bytes()
+        raw=evidence_bytes(p)
         if len(raw)<64:return 0
         if raw[:8]!=b'MNMPRO05':raise ValueError('Require session source recorder')
         at=64;count=0;sequence=0
@@ -89,7 +90,7 @@ def drive(channel,run,capture,process,env,input_binary,wait,send,refresh,state):
         wait(12);rows=storage_rows(channel)
         if rows.count(name)!=1:raise ValueError('Original Load list lacks exact new save')
         send(12,31,rows.index(name)+1)
-        saved=run/'game/Save'/(name+'.sav');current=hashlib.sha256(saved.read_bytes()).hexdigest()
+        saved=run/'game/Save'/(name+'.sav');current=hashlib.sha256(evidence_bytes(saved)).hexdigest()
         if current!=save_hash:raise ValueError('Original Load changed save bytes')
     def leave(label):
         mini(label);send(17,15)
@@ -101,7 +102,7 @@ def drive(channel,run,capture,process,env,input_binary,wait,send,refresh,state):
     send(13,31)
     dwell('after-save');saved=run/'game/Save'/(name+'.sav')
     if not saved.is_file() or not saved.stat().st_size:raise ValueError('Original Save did not finish')
-    save_hash=hashlib.sha256(saved.read_bytes()).hexdigest()
+    save_hash=hashlib.sha256(evidence_bytes(saved)).hexdigest()
     mini('load-open');send(17,28);load();dwell('after-load');leave('leave-first')
     rebuilds=[]
     for resolution in (1,0):

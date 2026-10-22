@@ -384,6 +384,29 @@ class HTTPTest(unittest.TestCase):
         for path in ['/files?path=original/game.exe','/files?path=../finding.md','/tools/coverage_ui.py']:
             self.assertEqual(self.request(path)[0],404)
         self.assertEqual(self.request('/api/coverage',headers={'Host':'outside.example'})[0],403)
+
+    def test_registered_sqlite_report_is_served_without_expanding_its_reference(self):
+        import io
+        from coverage_evidence import Store, pointer
+        name = 'research/runtime/endpoint-result.json'
+        path = self.root/name
+        path.parent.mkdir(parents=True)
+        data = b'{"success":false,"scope":"retained negative evidence"}\n'
+        store = Store(self.root/'working/coverage/evidence-pending.sqlite3')
+        try:
+            with store.db:
+                sha = store.put(io.BytesIO(data), len(data))
+        finally:
+            store.close()
+        reference = pointer(sha, len(data))
+        path.write_bytes(reference)
+        with self.server.refresh_lock:
+            self.server.allowed_files.add(name)
+        status, headers, body = self.request('/files?path='+name)
+        self.assertEqual(status, 200)
+        self.assertEqual(body, data)
+        self.assertTrue(headers['Content-Type'].startswith('text/plain'))
+        self.assertEqual(path.read_bytes(), reference)
         self.assertEqual(self.request('/api/refresh','POST',{'Origin':'https://outside.example'})[0],403)
 
     def test_wildcard_bind_accepts_lan_url_and_same_origin_refresh(self):

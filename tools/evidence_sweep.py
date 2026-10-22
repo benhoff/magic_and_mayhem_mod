@@ -108,7 +108,8 @@ def file_identity(path):
 
 def prepare(root, output, database=None):
     root, output = Path(root).resolve(), Path(output).resolve()
-    if output.is_relative_to(root/'research') or output.is_relative_to(root/'original'):
+    if (output.is_relative_to((root/'research').resolve())
+            or output.is_relative_to((root/'original').resolve())):
         raise ValueError('Plan and cold backup must be outside research/ and original/')
     output.mkdir(parents=True, exist_ok=False)
     report = inventory(root)

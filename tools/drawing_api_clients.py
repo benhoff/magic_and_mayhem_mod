@@ -1,4 +1,5 @@
 """Bind reviewed client layouts to exact CALL routes, never offset-only types."""
+from coverage_evidence import read_bytes as evidence_bytes
 import hashlib
 import json
 from pathlib import Path
@@ -53,7 +54,7 @@ def reviewed_clients(root, sources, evidence, builds, build, api_sites):
         target = (root / path).resolve()
         if Path(path).is_absolute() or '..' in Path(path).parts or not target.is_relative_to(root.resolve()) or path.split('/')[0] in {'original', 'working', '.git'}:
             raise ValueError('Unsafe reviewed API layout path')
-        raw = target.read_bytes()
+        raw = evidence_bytes(target)
         digest = hashlib.sha256(raw).hexdigest()
         if record['sources'].get(path) != digest:
             raise ValueError('Reviewed API layout source hash mismatch')

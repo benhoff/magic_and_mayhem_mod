@@ -8,6 +8,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
+from coverage_evidence import read_text as evidence_text
 spec = importlib.util.spec_from_file_location('high_surfaces', ROOT/'tools/check-rendering-high-surfaces.py')
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
@@ -15,8 +16,8 @@ spec.loader.exec_module(module)
 
 class SurfaceValidation(unittest.TestCase):
     def setUp(self):
-        self.catalog = json.loads(module.CATALOG.read_text())
-        matrix = json.loads((ROOT/'research/runtime/native-surface-operation-matrix.json').read_text())
+        self.catalog = json.loads(evidence_text(module.CATALOG))
+        matrix = json.loads(evidence_text(ROOT/'research/runtime/native-surface-operation-matrix.json'))
         self.required = {r['id'] for r in matrix['operations'] if r['requirement'] == 'required'}
         self.rows = [dict(id=k, returncode=0, success=True) for k in module.COMPONENTS]
 

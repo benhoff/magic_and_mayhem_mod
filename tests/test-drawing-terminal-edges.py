@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
+from coverage_evidence import read_text as evidence_text
 from drawing_terminal_edges import match, verified_contracts, WRAPPERS, OUTER, LEAF
 
 
@@ -103,7 +104,7 @@ class TerminalEdgesTest(unittest.TestCase):
 
     def test_exact_original_outer_body_must_match_retained_staged_bytes(self):
         proof = Path(__file__).resolve().parents[1]/'research/runtime/drawing-canvas-release-original-range-20261011.json'
-        record = json.loads(proof.read_text());staged = bytearray(0x200000)
+        record = json.loads(evidence_text(proof));staged = bytearray(0x200000)
         offset = lambda raw,entry,size:entry-0x400000
         for entry in [*WRAPPERS,OUTER]:
             body = bytes.fromhex(record['original_entry_anchors'][hex(entry)])

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Exercise owned effect producer decode and GPU pixels; live hook admission remains separate."""
+from coverage_evidence import read_json as evidence_json
 import argparse
 import hashlib
 import json
@@ -11,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[1]
 BEHAVIOR='NP.world-effect-producer-admission'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def declaration():
-    r=json.load(open(ROOT/'research/runtime/coverage/register.json'));b=next(b for b in r['behaviors'] if b['id']==BEHAVIOR)
+    r=evidence_json(ROOT/'research/runtime/coverage/register.json');b=next(b for b in r['behaviors'] if b['id']==BEHAVIOR)
     scenario=next(s for s in r['scenarios'] if s['id']=='native-world-effect-producers')
     paths=required_sources(b)|{'tests/resource-fixtures.hpp','compat/legacy/canvas-producers/CMakeLists.txt'}
     for directory in ['renderer','assets','compat/legacy','protocols']:
@@ -21,7 +22,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--return-report',type=Path,required=True);p.add_argument('--build-dir',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
     out=a.output.resolve()
     if out.exists() or not out.is_relative_to(ROOT/'working'):p.error('Fresh output below working required')
-    out.mkdir(parents=True);prior=json.load(open(a.return_report))
+    out.mkdir(parents=True);prior=evidence_json(a.return_report)
     if not prior.get('success') or not prior.get('low16_returns_match'):raise ValueError('Require successful original effect result')
     manifest=[];inputs={str(a.return_report.resolve()):sha(a.return_report)}
     for i,f in enumerate(prior['fixtures']):
@@ -44,12 +45,12 @@ def main():
         # the same frozen parent contract/source declaration as the GPU run.
         (out/'hook-claims.json').write_text(json.dumps(dict(claims=claims,sources=sources),indent=2)+'\n')
         run('hooks',['python3',ROOT/'tools/test-canvas-producers.py','--claims',out/'hook-claims.json','--report',out/'hook-report.json'])
-        hook=json.load(open(out/'hook-report.json'))
+        hook=evidence_json(out/'hook-report.json')
         if not hook.get('effect_wire_normalized') or hook.get('effect_entries_native_bypassed')!=5:raise ValueError('Incomplete effect entry proof')
         run('callers',['python3',ROOT/'tools/test-world-raster-callers.py','--output',out/'callers'])
-        caller=json.load(open(out/'callers/report.json'))
+        caller=evidence_json(out/'callers/report.json')
         run('tables',['python3',ROOT/'tools/test-world-effect-tables.py','--output',out/'tables'])
-        table=json.load(open(out/'tables/report.json'))
+        table=evidence_json(out/'tables/report.json')
         if not caller.get('success') or not table.get('empty_frame_non_drawing'):raise ValueError('Incomplete caller/preparation proof')
         run('batch-regression',[a.build_dir/'world-raster-batch-test'])
         run('world-regression',['xvfb-run','-a',a.build_dir/'canvas-world-test'])

@@ -1,4 +1,5 @@
 """Private Wine fixture prefixes, with explicit serial suite reuse to bound storage."""
+from coverage_evidence import read_text as evidence_text
 import fcntl
 import json
 import os
@@ -15,7 +16,7 @@ def prepare(root,run,template,shared=None):
     allowed=(root/'working/tests/drawing-fixture-prefix-suite').resolve()
     if prefix.name!='wineprefix' or not prefix.is_relative_to(allowed) or not prefix.is_dir():
         raise ValueError('Shared prefix must belong to the private fixture suite')
-    marker=json.loads((prefix.parent/'fixture-prefix-owner.json').read_text())
+    marker=json.loads(evidence_text(prefix.parent/'fixture-prefix-owner.json'))
     if marker!={'schema':1,'root':str(root.resolve()),'scope':'serial-owned-fixtures-only'}:
         raise ValueError('Shared prefix owner marker')
     lock=(prefix.parent/'fixture-prefix.lock').open('a+b')

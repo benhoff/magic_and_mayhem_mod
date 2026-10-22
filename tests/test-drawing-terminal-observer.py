@@ -9,6 +9,7 @@ import sys
 import tempfile
 import unittest
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'tools'))
+from coverage_evidence import read_text as evidence_text
 
 
 def load(name,path):
@@ -21,7 +22,7 @@ staging=load('terminal_staging_test','tools/prepare-drawing-terminal-census.py')
 
 class TerminalObserverTests(unittest.TestCase):
     def setUp(self):
-        self.proof=ROOT/builder.PROOF;proof=json.loads(self.proof.read_text());self.raw=bytearray();self.offsets={};self.code={}
+        self.proof=ROOT/builder.PROOF;proof=json.loads(evidence_text(self.proof));self.raw=bytearray();self.offsets={};self.code={}
         for entry in builder.TARGETS:
             self.offsets[entry]=len(self.raw);self.raw.extend(bytes.fromhex(proof['original_entry_anchors'][hex(entry)]))
         self.offset=lambda raw,address,length:self.offsets[address]

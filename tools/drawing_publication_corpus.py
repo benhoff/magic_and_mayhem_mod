@@ -2,6 +2,7 @@
 
 The broader presented-frame and complete-action journey boundary stays separate.
 """
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import json
 import os
 from pathlib import Path
@@ -112,8 +113,8 @@ def admit(root,catalog,register):
 
 
 def check(*,root,catalog_path=CATALOG,executable,headless=False):
-    path=local(root,catalog_path);catalog_bytes=path.read_bytes();catalog=json.loads(catalog_bytes)
-    register_bytes=(root/'research/runtime/coverage/register.json').read_bytes();register=json.loads(register_bytes)
+    path=local(root,catalog_path);catalog_bytes=evidence_bytes(path);catalog=json.loads(catalog_bytes)
+    register_bytes=evidence_bytes(root/'research/runtime/coverage/register.json');register=json.loads(register_bytes)
     raw,assets,boundaries,planes=admit(root,catalog,register)
     parent=root/'working/tests/drawing-publication-corpus';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent))
     owned=run/'owned';owned.mkdir();asset_root=owned/'assets';asset_root.mkdir()
@@ -122,11 +123,11 @@ def check(*,root,catalog_path=CATALOG,executable,headless=False):
     (owned/'inputs.bin').write_bytes(raster_inputs(raw))
     config={'schema':2,'boundary':boundaries[-1],'frames':boundaries,'assets':{name:sha(data) for name,_,data in assets},'retain_checkpoints':[]}
     (owned/'scene.json').write_text(json.dumps(config)+'\n')
-    binary=Path(executable).resolve();binary_hash=sha(binary.read_bytes());command=[str(binary),str(owned/'inputs.bin'),str(asset_root),str(owned/'scene.json'),str(run/'native')];env=dict(os.environ)
+    binary=Path(executable).resolve();binary_hash=sha(evidence_bytes(binary));command=[str(binary),str(owned/'inputs.bin'),str(asset_root),str(owned/'scene.json'),str(run/'native')];env=dict(os.environ)
     if headless:command=['xvfb-run','-a',*command];env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1')
     completed=subprocess.run(command,capture_output=True,env=env,timeout=600);(run/'native.log').write_bytes(completed.stdout+completed.stderr)
     if completed.returncode:raise ValueError('Native publication replay refused; inspect '+str(run/'native.log'))
-    native=json.loads((run/'native/scene-report.json').read_text())
+    native=json.loads(evidence_text(run/'native/scene-report.json'))
     if (native['success'] is not True or type(native['remaining_surfaces']) not in (int,float) or native['remaining_surfaces']!=0 or
         native['original_pixels_used_as_native_inputs'] is not False or native['original_oracles_read'] is not False or
         native['frames_published']!=len(planes) or len(native['frames'])!=len(planes)):
@@ -135,10 +136,10 @@ def check(*,root,catalog_path=CATALOG,executable,headless=False):
     for i,((identity,expected),boundary,frame) in enumerate(zip(planes,boundaries,native['frames']),1):
         if not same_json({k:frame[k] for k in boundary},boundary) or type(frame['ordinal']) is not int or frame['ordinal']!=i:
             raise ValueError('Native publication frame order/identity changed')
-        actual=(run/f'native/frame-{i:04}.565').read_bytes()
+        actual=evidence_bytes(run/f'native/frame-{i:04}.565')
         if sha(actual)!=frame['sha256']:raise ValueError('Native publication output hash changed')
         checks.append({'identity':identity,'comparison':compare(actual,expected,identity['width'],identity['height'])})
-    if sha(binary.read_bytes())!=binary_hash or path.read_bytes()!=catalog_bytes or (root/'research/runtime/coverage/register.json').read_bytes()!=register_bytes:
+    if sha(evidence_bytes(binary))!=binary_hash or evidence_bytes(path)!=catalog_bytes or evidence_bytes(root/'research/runtime/coverage/register.json')!=register_bytes:
         raise ValueError('Publication corpus/register/backend changed')
     admit(root,catalog,register)
     return {'success':all(c['comparison']['matching'] for c in checks),'frames':checks,

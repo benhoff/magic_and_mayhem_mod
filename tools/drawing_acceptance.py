@@ -1,4 +1,5 @@
 """Prospective DRAW-02 acceptance plan; planning never contributes coverage."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import json
 from drawing_corpus import BUILD, ROOT, local, sha
 from drawing_journeys import REQUIREMENTS, OPERATIONS, admit_suite, CATALOG
@@ -34,13 +35,13 @@ def admit(root, plan):
                     any(not isinstance(s, str) or not s.strip() for s in value) or
                     len(value) != len(set(value))):
                 raise ValueError('Empty/duplicate acceptance specification: ' + field)
-    suite = json.loads(local(root, CATALOG).read_text())
+    suite = json.loads(evidence_text(local(root, CATALOG)))
     admit_suite(root, suite)
     return plan
 
 
 def inventory(root=ROOT, path=PLAN):
-    data = local(root, path).read_bytes()
+    data = evidence_bytes(local(root, path))
     plan = admit(root, json.loads(data))
     return {
         'schema': 1, 'plan_sha256': sha(data), 'source_executable_sha256': BUILD,

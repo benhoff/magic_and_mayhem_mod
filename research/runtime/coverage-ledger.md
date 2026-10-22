@@ -20730,14 +20730,31 @@ The broad downstream contract remains partial; body comparisons do not grant
 whole-session, physical legacy provider or live replacement credit. Existing
 historical evidence/hashes and the original media are preserved.
 
-### Shared checkout commit validation, 2026-10-21
+## SQLite JSON reader and compaction sweep (2026-10-21)
 
-The authorized all-changes checkpoint freezes the pending source tree against
-`3abf6e2d4f71dc9969ac01adab47b61d266f4ac4` and re-executes all three ten-item native
-rendering batches plus affected bounded original recovery controls. See
-[commit validation and retained boundaries](all-changes-commit-results-20261021/README.md).
-Successful reports retain prospective scope claims and exact source fingerprints;
-historical reports and failed attempts remain unchanged. The new source census
-records an indexing review only. Exact pending accounting retains unrelated
-staleness and partial actor popup work; no whole-engine, performance or replacement
-milestone is implied by committing the checkout.
+Generated research reports now resolve directly from verified SQLite objects; the audit, gate, coverage UI and migrated collectors no longer require a full JSON expansion. The reviewed main-checkout sweep compacted 6,039 reports (8,171,912,745 original bytes) after a verified cold SQLite backup, an actual restored payload and matching receipts on both drives. Historical payload hashes, failure evidence, paths and claims remain unchanged; Git indices were not staged by compaction. Editable accounting JSON, UI policy, configuration, schemas, fixtures and source locks remain files. New source-census research exports go directly to SQLite; working/ exports remain ordinary JSON.
+
+Reader-adapter integration changes source hashes of affected collector/tool scripts. Their historical engine comparison fingerprints are preserved and may remain stale; storage tests and exact adapter AST review do not constitute a new original-engine comparison, gameplay change or live replacement. Unrelated working changes and their pending validation remain separate. Exact sweep, backup, restore, source-review and test receipts are retained under working/retention/ and the cold JSON sweep archive.
+
+Final compatibility review also migrated fourteen legacy JSON stream loads in four collectors and the resident-profile payload hash helper. The completed adapter review covers 112 modules and 533 Path reads plus those stream loads; a dedicated regression checks original-byte profile hashes without hydration. The final source-bound run passed 239 synthetic storage, audit, gate, bookkeeping and UI guards. Existing drawing-inventory count and concurrent actor importance-rating failures are retained separately; this is not a whole-toolkit or engine-validation claim.
+
+
+## Actor downstream frontier and construction recovery (2026-10-21)
+
+The initial83-target frontier now has an explicit disposition for every entry:
+35raw service bodies,43existing scoped suppliers needing caller-specific composition,
+and five CRT boundaries. This removes the34previously unlinked engine/compiler
+cleanup entries while preserving the initial inventory and historical evidence.
+New dependency, popup, collection, effect and construction matrices extend the
+selected raw body inventory from71to112. Nine current-source matrices compare
+7168original/native cases;171native exception combinations check completed-prefix
+reverse destruction and exception propagation. Cold compiler cleanup executes with
+an explicit parent frame; OS SEH delivery is not inferred. The rectangle destination
+receiver is repaired and the original indeterminate item contribution branch is
+recorded explicitly. See [downstream services](actor-downstream-services-20261021.md).
+
+The broad Critical contract stays partial: full actor/session composition,
+concrete expanded-provider paths, actual external ownership and supported-session/
+live replacement remain distinct. The user has no legacy Windows host. No Windows
+physical-driver credit, gameplay balancing, historical hash refresh or implicit
+master integration is claimed.

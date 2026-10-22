@@ -5,6 +5,7 @@ and validation claims remain unchanged. Archives are pinned by SHA-256 in Git.
 """
 from contextlib import contextmanager
 from contextvars import ContextVar
+from functools import lru_cache
 import gzip
 import hashlib
 import io
@@ -71,7 +72,7 @@ def safe_path(root, name):
     if p.is_absolute() or '..' in p.parts or not p.parts or p.parts[0] != 'research':
         raise ValueError('Unsafe evidence path: ' + name)
     target = root/p
-    if target.is_symlink() or not target.resolve().is_relative_to(root):
+    if target.is_symlink() or not target.resolve().is_relative_to(root/'research'):
         raise ValueError('Escaping evidence path: ' + name)
     return target
 
@@ -200,6 +201,18 @@ def config(root):
     return value
 
 
+def _archive_identity(path):
+    info = Path(path).stat()
+    return (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns)
+
+
+@lru_cache(maxsize=64)
+def _verified_archive(path, sha, observed_identity):
+    # Only immutable archive verification is reused. Source/report bytes and
+    # every decoded object are checked on each read; this never caches an audit.
+    return digest_file(path) == sha and _archive_identity(path) == observed_identity
+
+
 def fetch_archive(root, spec):
     """Download only pinned release assets, then verify the complete SQLite file."""
     sha = spec['sha256']
@@ -209,7 +222,7 @@ def fetch_archive(root, spec):
     cache.mkdir(parents=True, exist_ok=True)
     target = cache/(sha + '.sqlite3')
     # Trust neither a pre-existing cache filename nor its contents.
-    if target.exists() and digest_file(target) == sha:
+    if target.exists() and _verified_archive(str(target), sha, _archive_identity(target)):
         return target
     fd, name = tempfile.mkstemp(prefix=sha + '.', suffix='.partial', dir=cache)
     try:
@@ -434,7 +447,8 @@ def write_report(root, path, data):
     target = Path(path)
     if not target.is_absolute():
         target = root/target
-    if target.is_symlink() or target.resolve().is_relative_to(root/'original'):
+    if (target.is_symlink() or target.absolute().is_relative_to(root/'original')
+            or target.resolve().is_relative_to((root/'original').resolve())):
         raise ValueError('Unsafe report output: '+str(path))
     if target.exists():
         if read_bytes(target, root=root if target.resolve().is_relative_to(root) else None) != data:

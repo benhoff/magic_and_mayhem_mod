@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Measure exact ordered native World inputs and baseline-restored redraws on TITAN."""
+from coverage_evidence import read_json as evidence_json
 from coverage_evidence import read_text as evidence_text
 import argparse,importlib.util,json,os,shutil,subprocess,tempfile
 from pathlib import Path
@@ -29,7 +30,7 @@ def main():
  assert not (a.compare_public and a.baseline) or a.public_paired
  parent=ROOT/'working/tests/native-draw-costs';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
  subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),*[arg for b in (a.behavior or ['NR.native-draw-cost-profiling']) for arg in ['--behavior',b]],'--scenario',a.scenario,'--output',str(out/'claims.json')],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
- d=json.load(open(out/'claims.json'));report=dict(success=False,sources=d['sources'],claims=d['claims'],scope=__doc__,worlds=a.worlds,extra_replays_per_world=2,live_gameplay_executed=False,original_pixels_used_as_native_inputs=False)
+ d=evidence_json(out/'claims.json');report=dict(success=False,sources=d['sources'],claims=d['claims'],scope=__doc__,worlds=a.worlds,extra_replays_per_world=2,live_gameplay_executed=False,original_pixels_used_as_native_inputs=False)
  env={k:v for k,v in os.environ.items() if k not in ('DISPLAY','WAYLAND_DISPLAY','LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','MESA_LOADER_DRIVER_OVERRIDE','GALLIUM_DRIVER','QT_XCB_GL_INTEGRATION','QT_QPA_PLATFORM_PLUGIN_PATH','MNM_PROFILE_CHECKPOINTS','MNM_PROFILE_PUBLIC_BACKEND')}
  env.update(QT_QPA_PLATFORM='mnm-headless-egl',MNM_PROFILE_EGL_VENDOR='NVIDIA',__EGL_VENDOR_LIBRARY_FILENAMES='/usr/share/glvnd/egl_vendor.d/10_nvidia.json')
  inputs={};verified=False;server=None;campaign=None
@@ -37,7 +38,7 @@ def main():
   with (out/(label+'.log')).open('x') as log:subprocess.run([str(x) for x in cmd],cwd=ROOT,env=environment,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=900)
  try:
   run('original-before',[ROOT/'tools/original-manifest.sh','verify']);verified=True
-  historical=json.load(open(a.input_record));assert historical['success'] and historical['inputs_stable']
+  historical=evidence_json(a.input_record);assert historical['success'] and historical['inputs_stable']
   norm=next(Path(n) for n in historical['inputs'] if Path(n).name=='resident-source-v1.bin');assert sha(norm)==historical['inputs'][str(norm)]
   game_files={n:h for n,h in historical['inputs'].items() if '/game/' in n};assert game_files
   assets=Path(next(iter(game_files)).split('/game/')[0])/'game'
@@ -52,7 +53,7 @@ def main():
    dst=frozen/n;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/n,dst)
   build=out/'build'
   if a.prepared:
-   old=json.load(open(a.prepared/'report.json'));assert old['compiled_sources'] and old['sources_stable']
+   old=evidence_json(a.prepared/'report.json');assert old['compiled_sources'] and old['sources_stable']
    for n,h in old['compiled_sources'].items():assert sha(a.prepared/'source'/n)==h==d['sources'].get(n),n
    for n,h in old['sources'].items():
     if Path(n).name=='CMakeLists.txt' or Path(n).suffix=='.cmake':assert sha(a.prepared/'source'/n)==h==d['sources'].get(n),n
@@ -73,7 +74,7 @@ def main():
   binary=build/'mnm-resident-profile';report['binary_sha256']=sha(binary);report['egl_plugin_sha256']=sha(build/'platforms/libmnm_headless_egl.so')
   targets=[('current',binary,build)]
   if a.baseline:
-   previous=json.load(open(a.baseline/'report.json'));assert previous['success'] and previous['worlds']==a.worlds and previous['normalized_corpus']==str(norm) and previous['inputs']==inputs
+   previous=evidence_json(a.baseline/'report.json');assert previous['success'] and previous['worlds']==a.worlds and previous['normalized_corpus']==str(norm) and previous['inputs']==inputs
    oldbuild=Path(previous.get('build_path',str(a.baseline/'build')));oldbinary=oldbuild/'mnm-resident-profile';assert sha(oldbinary)==previous['binary_sha256'];assert sha(oldbuild/'platforms/libmnm_headless_egl.so')==previous['egl_plugin_sha256']
    for n,h in previous['sources'].items():assert sha(a.baseline/'source'/n)==h,n
    report['baseline']=dict(path=str(a.baseline),report_sha256=sha(a.baseline/'report.json'),sources=previous['sources']);targets.insert(0,('baseline',oldbinary,oldbuild))
@@ -92,7 +93,7 @@ def main():
    native[label]={};summaries[label]={};e={**(public_env if label=='public' or a.public_paired else egl_env if label=='public-egl' else env),'QT_QPA_PLATFORM_PLUGIN_PATH':str(plugin/'platforms')}
    for mode in (('checkpoints',) if a.diagnostic_public_only else ('throughput',) if a.public_throughput_only else ('timestamps','throughput','checkpoints')):
     dest=out/(label+'-'+mode+'.json');run(label+'-'+mode,[exe,norm,assets,'timestamps' if mode=='timestamps' else 'throughput',2 if mode=='throughput' else 1,dest,a.worlds,2],{**e,**({'MNM_PROFILE_CHECKPOINTS':'1'} if mode=='checkpoints' else {})})
-    result=json.load(open(dest));assert result['success'] and 'TITAN' in result['renderer'];native[label][mode]=result
+    result=evidence_json(dest);assert result['success'] and 'TITAN' in result['renderer'];native[label][mode]=result
     for trial in result['runs']:assert trial['worlds']==a.worlds and not trial['query_drops'] and not trial['remaining_surfaces'] and not trial['remaining_queries']
     warm=[row for trial in result['runs'] for row in trial['samples'] if int(row['generation'])>=64]
     extras=[x for row in warm for x in row['extra_replays']]

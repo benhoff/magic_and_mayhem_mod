@@ -31,4 +31,13 @@ actor_services_call:
     leave
     ret
 3:  ud2
+# cdecl cleanup(frame). The cold MSVC finally body reads its parent's EBP.
+.globl actor_services_cleanup
+actor_services_cleanup:
+    push %ebp
+    mov 8(%esp),%ebp
+    mov $0x59c4ab,%eax
+    call *%eax
+    pop %ebp
+    ret
 .section .note.GNU-stack,"",@progbits

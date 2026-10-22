@@ -3,6 +3,7 @@
 Original capture evidence is required before a session can contribute coverage.
 No original pixels, expected API results or oracle paths enter the backend input.
 """
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import json
 import os
 from pathlib import Path
@@ -142,10 +143,10 @@ def admit(root,catalog,register):
 
 
 def check(*,root=ROOT,catalog_path,executable,headless=False):
-    root=Path(root).resolve();path=local(root,catalog_path);catalog_bytes=path.read_bytes();catalog=json.loads(catalog_bytes)
-    register_path=local(root,'research/runtime/coverage/register.json');register_bytes=register_path.read_bytes()
+    root=Path(root).resolve();path=local(root,catalog_path);catalog_bytes=evidence_bytes(path);catalog=json.loads(catalog_bytes)
+    register_path=local(root,'research/runtime/coverage/register.json');register_bytes=evidence_bytes(register_path)
     register=json.loads(register_bytes);inputs,frames,effects=admit(root,catalog,register)
-    executable=executable.resolve();binary_hash=sha(executable.read_bytes())
+    executable=executable.resolve();binary_hash=sha(evidence_bytes(executable))
     parent=root/'working/tests/drawing-sessions';parent.mkdir(parents=True,exist_ok=True)
     output=Path(tempfile.mkdtemp(prefix='run-',dir=parent));owned=output/'inputs';owned.mkdir()
     bindings=[]
@@ -163,13 +164,13 @@ def check(*,root=ROOT,catalog_path,executable,headless=False):
     execution=subprocess.run(command,capture_output=True,timeout=600,env=env)
     (output/'native.log').write_bytes(execution.stdout+execution.stderr)
     if execution.returncode==64:
-        if path.read_bytes()!=catalog_bytes or register_path.read_bytes()!=register_bytes or sha(executable.read_bytes())!=binary_hash:
+        if evidence_bytes(path)!=catalog_bytes or evidence_bytes(register_path)!=register_bytes or sha(evidence_bytes(executable))!=binary_hash:
             raise ValueError('Session identities changed during unsupported replay')
         admit(root,catalog,register)
         return {'success':False,'outcome':'unsupported','scope':catalog['scope'],'pixels_compared':0,'mismatches':0,
                 'artifacts':str(output.relative_to(root)),'original_reference_admitted':True}
     if execution.returncode:raise ValueError('Session backend failed: '+str(output/'native.log'))
-    native=json.loads((output/'native/session-report.json').read_text())
+    native=json.loads(evidence_text(output/'native/session-report.json'))
     if (native['success'] is not True or native['session_identity']!=catalog['session_identity'] or
         type(native['remaining_surfaces']) is not int or native['remaining_surfaces']!=0 or native['original_pixels_used_as_native_inputs'] is not False or
         native['original_oracles_read'] is not False or len(native['frames'])!=len(frames)):
@@ -179,7 +180,7 @@ def check(*,root=ROOT,catalog_path,executable,headless=False):
         if not same_json(n['identity'],frame['identity']):raise ValueError('Session backend dropped/reordered frame')
         # Fixed output names prevent backend-supplied path traversal or reading
         # the expected plane via an attacker-selected output path.
-        actual=(output/f'native/frame-{i:06}.bin').read_bytes()
+        actual=evidence_bytes(output/f'native/frame-{i:06}.bin')
         if sha(actual)!=n['sha256']:raise ValueError('Session native output hash mismatch')
         ident=frame['identity'];expected=artifact(root,frame['oracle'])
         comparisons.append({'identity':ident,**plane_compare(actual,expected,ident['width'],ident['height'],ident['pixel_format'])})
@@ -187,7 +188,7 @@ def check(*,root=ROOT,catalog_path,executable,headless=False):
     if [e['id'] for e in observed]!=[e['id'] for e in effects]:
         raise ValueError('Session backend omitted/reordered caller-visible effects')
     effects_match=same_json(observed,effects)
-    if path.read_bytes()!=catalog_bytes or register_path.read_bytes()!=register_bytes or sha(executable.read_bytes())!=binary_hash:
+    if evidence_bytes(path)!=catalog_bytes or evidence_bytes(register_path)!=register_bytes or sha(evidence_bytes(executable))!=binary_hash:
         raise ValueError('Session catalog/register/binary changed during replay')
     admit(root,catalog,register)
     success=all(c['matching'] for c in comparisons) and effects_match

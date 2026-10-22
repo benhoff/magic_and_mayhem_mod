@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Source-bound independent colour arithmetic, caching, eviction and ordering controls."""
+from coverage_evidence import read_json as evidence_json
 import json,os,subprocess,tempfile
 from pathlib import Path
 from profile_native_resident_helpers import sha
@@ -7,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def main():
  parent=ROOT/'working/tests/native-colour-cache';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
  subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.native-colour-rectangle-cache','--scenario','native-colour-cache-fixture-20261012','--output',str(out/'claims.json')],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
- d=json.load(open(out/'claims.json'));r=dict(success=False,sources=d['sources'],claims=d['claims'],scope=__doc__);env=dict(os.environ,TMPDIR=str(ROOT/'working/coverage-hook-tmp'),QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',GALLIUM_DRIVER='llvmpipe',LP_NUM_THREADS='4')
+ d=evidence_json(out/'claims.json');r=dict(success=False,sources=d['sources'],claims=d['claims'],scope=__doc__);env=dict(os.environ,TMPDIR=str(ROOT/'working/coverage-hook-tmp'),QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',GALLIUM_DRIVER='llvmpipe',LP_NUM_THREADS='4')
  for key in ['MESA_LOADER_DRIVER_OVERRIDE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','QT_XCB_GL_INTEGRATION']:env.pop(key,None)
  def run(label,args):
   with (out/(label+'.log')).open('x') as log:subprocess.run([str(x) for x in args],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=600)

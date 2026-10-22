@@ -1,4 +1,5 @@
 """Match reviewed fixed-wrapper tail entries; retain unknown flag inputs."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 from collections import Counter, defaultdict
 import hashlib
 import struct
@@ -13,10 +14,10 @@ PROOF_SHA256 = 'db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181
 
 
 def contracts(proof, staged, image_offset):
-    if hashlib.sha256(proof.read_bytes()).hexdigest()!=PROOF_SHA256:
+    if hashlib.sha256(evidence_bytes(proof)).hexdigest()!=PROOF_SHA256:
         raise ValueError('Terminal original range proof differs from reviewed execution')
     import json
-    record=json.loads(proof.read_text())
+    record=json.loads(evidence_text(proof))
     if record['original_sha256']!=BUILD_SHA256 or not record['success'] or not record['original_wrapper_instructions_unchanged']:
         raise ValueError('Terminal proof lacks unchanged original execution')
     for target,(receiver,bit) in WRAPPERS.items():
