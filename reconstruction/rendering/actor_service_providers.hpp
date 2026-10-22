@@ -157,7 +157,7 @@ public:
             if(!r(p+0x1910)){
                 w(p+0x1575,2);w(p+0x1579,3);w(p+0x157d,U(-1));method(p+0x151c,16);method(p+0x1596,16);
                 for(U i=0;i<r(p+0x1518);++i){U row=p+i*0xc6;w(row+0x135,0);if(r(row+0x139)!=2)w(row+0x104,1);method(row+0xfc,16);}
-                w(p+0x1910,1);if(r(0x68991c)&&r(0x6c4634)){m.set8(0x6c4659,0);call(0x4dcab0,0x6c462c);w(0x6c4634,0);call(0x4a5000,0x6c462c);}
+                w(p+0x1910,1);if(r(0x68991c)&&r(0x6c4634)){m.set8(0x6c4659,0);call(0x4dcab0,0x6c4630);w(0x6c4634,0);call(0x4a5000,0x6c4638);}
             }else{
                 w(p+0x1575,0);w(p+0x1579,1);w(p+0x157d,U(-1));method(p+0x151c,16);
                 for(U i=0;i<r(p+0x1518);++i){U widget=p+0xfc+i*0xc6;w(widget+0x39,3);call(0x4a5000,widget);}w(p+0x1910,0);

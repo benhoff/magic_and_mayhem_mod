@@ -49,7 +49,7 @@ case 0x4d47f0:{
     w(p+0x82,seed&1);w(p+0xb1,seed&2?Other+0x600:0);w(p+0x31,Other);w(Other+32,11);w(Other+36,13);w(p+0x11,20);w(p+0x15,30);w(p+0x19,150);w(p+0x1d,90);w(0x6e1ee4,seed&4);break;
 }
 case 0x4d72d0:{
-    constexpr U Vtable=Other+0x1c00;for(U off:{0u,16u,20u})w(Vtable+off,0x1001f140);w(p+0x1555,seed%3);w(p+0x1910,seed&1);w(p+0x1518,seed%5);w(p+0x151c,Vtable);w(p+0x1596,Vtable);w(p+0x1520,U(-1));w(p+0x159a,U(-1));for(U i=0;i<4;++i){U widget=p+0xfc+i*0xc6;w(widget,Vtable);w(widget+4,U(-1));w(widget+0x3d,i%3);}w(0x68991c,0);break;
+    constexpr U Vtable=Other+0x1c00;for(U off:{0u,16u,20u})w(Vtable+off,0x1001f140);w(p+0x1555,seed%3);w(p+0x1910,seed&1);w(p+0x1518,seed%5);w(p+0x151c,Vtable);w(p+0x1596,Vtable);w(p+0x1520,U(-1));w(p+0x159a,U(-1));for(U i=0;i<4;++i){U widget=p+0xfc+i*0xc6;w(widget,Vtable);w(widget+4,U(-1));w(widget+0x3d,i%3);}w(0x68991c,seed&2);w(0x6c4634,seed&4);w(Other+0x1b00,0x1001f1c0);w(0x6c4638,Other+0x1b00);w(0x6c463c,seed%3==1?U(-1):seed%3);w(0x6c4640,9);memory.set8(0x6c4659,1);break;
 }
 default:throw std::runtime_error("Missing concrete provider seed");
 }

@@ -20857,7 +20857,7 @@ cases. All64preloaded activation-to-release/cleanup sequences return normally.
 The composed matrix also covers occupancy, progression and marker/list/spell/audio
 retirement; three deliberate audio access-fault prefixes match. Nine new provider
 division faults match. Native vector failure/cleanup checks retain171passing
-combinations. Current `SCP1.*` execution identities preserve all historical DSVC
+combinations. Current `SCP2.*` execution identities preserve all historical SCP1and DSVC
 results and hashes. Generated reports are SQLite payloads with Git pointers.
 
 The Critical downstream umbrella stays partial: source-controller registration,

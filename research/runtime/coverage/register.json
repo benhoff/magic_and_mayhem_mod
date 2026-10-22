@@ -137815,7 +137815,8 @@
         "research/runtime/downstream-service-results-20261021/service-matrix.json",
         "research/runtime/downstream-service-results-20261021/service-matrix-extended.json",
         "research/runtime/actor-service-composition-20261021.md",
-        "research/runtime/service-composition-results-20261022/frontier.json"
+        "research/runtime/service-composition-results-20261022/frontier.json",
+        "research/runtime/service-composition-results-20261022/frontier-panel.json"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -137850,7 +137851,8 @@
       ],
       "evidence": [
         "SCP1.frontier-20261022",
-        "SCP1.malformed-copy-negative-20261022"
+        "SCP1.malformed-copy-negative-20261022",
+        "SCP2.frontier-20261022"
       ],
       "status": {
         "understanding": "partial",
@@ -138150,7 +138152,8 @@
         "DSVC1.values.isolated_original-20261021",
         "DSVC2.values.isolated_original-20261021",
         "COMMIT20261021.actor-values.isolated_original",
-        "SCP1.values.isolated_original-20261022"
+        "SCP1.values.isolated_original-20261022",
+        "SCP2.values.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138269,7 +138272,8 @@
         "DSVC1.controllers.isolated_original-20261021",
         "DSVC2.controllers.isolated_original-20261021",
         "COMMIT20261021.actor-controllers.isolated_original",
-        "SCP1.controllers.isolated_original-20261022"
+        "SCP1.controllers.isolated_original-20261022",
+        "SCP2.controllers.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138424,7 +138428,8 @@
         "DSVC1.world.isolated_original-20261021",
         "DSVC2.world.isolated_original-20261021",
         "COMMIT20261021.actor-world.isolated_original",
-        "SCP1.world.isolated_original-20261022"
+        "SCP1.world.isolated_original-20261022",
+        "SCP2.world.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138553,7 +138558,8 @@
         "DSVC1.ui.isolated_original-20261021",
         "DSVC2.ui.isolated_original-20261021",
         "COMMIT20261021.actor-ui.isolated_original",
-        "SCP1.ui.isolated_original-20261022"
+        "SCP1.ui.isolated_original-20261022",
+        "SCP2.ui.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138702,7 +138708,8 @@
       "evidence": [
         "DSVC2.dependencies.isolated_original-20261021",
         "COMMIT20261021.actor-dependencies.isolated_original",
-        "SCP1.dependencies.isolated_original-20261022"
+        "SCP1.dependencies.isolated_original-20261022",
+        "SCP2.dependencies.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138806,7 +138813,8 @@
       ],
       "evidence": [
         "DSVC2.popups.isolated_original-20261021",
-        "SCP1.popups.isolated_original-20261022"
+        "SCP1.popups.isolated_original-20261022",
+        "SCP2.popups.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138886,7 +138894,8 @@
       ],
       "evidence": [
         "DSVC2.collections.isolated_original-20261021",
-        "SCP1.collections.isolated_original-20261022"
+        "SCP1.collections.isolated_original-20261022",
+        "SCP2.collections.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138962,7 +138971,8 @@
       ],
       "evidence": [
         "DSVC2.effects.isolated_original-20261021",
-        "SCP1.effects.isolated_original-20261022"
+        "SCP1.effects.isolated_original-20261022",
+        "SCP2.effects.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -139057,7 +139067,8 @@
       ],
       "evidence": [
         "DSVC2.construction.isolated_original-20261021",
-        "SCP1.construction.isolated_original-20261022"
+        "SCP1.construction.isolated_original-20261022",
+        "SCP2.construction.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -139248,6 +139259,18 @@
           "build": "nocd-40209ca7",
           "address": 5758048,
           "scope": "Concrete selected supplier over owned storage and named remaining providers; complete session equivalence is separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5075851,
+          "relation": "code",
+          "scope": "Confirmed ECX load of BSS receiver0x6c4630 in4d72d0 panel-mode branch. BSS is documented through its actual instruction anchor, not a nonexistent file-backed data range."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5075868,
+          "relation": "code",
+          "scope": "Confirmed ECX load of BSS receiver0x6c4638 in4d72d0 panel-mode branch. BSS is documented through its actual instruction anchor, not a nonexistent file-backed data range."
         }
       ],
       "implementation": [
@@ -139280,11 +139303,15 @@
       ],
       "documents": [
         "research/runtime/actor-service-composition-20261021.md",
-        "research/runtime/service-composition-results-20261022/frontier.json"
+        "research/runtime/service-composition-results-20261022/frontier.json",
+        "research/runtime/service-composition-results-20261022/frontier-panel.json"
       ],
       "evidence": [
         "SCP1.providers.isolated_original-20261022",
-        "SCP1.frontier-20261022"
+        "SCP1.frontier-20261022",
+        "SCP2.providers.isolated_original-20261022",
+        "SCP2.frontier-20261022",
+        "SCP3.providers.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -139441,12 +139468,15 @@
         "research/runtime/service-composition-results-20261022/frontier.json",
         "research/runtime/service-composition-results-20261022/incoming-history.json",
         "research/runtime/service-composition-results-20261022/history-review-v2.json",
-        "research/runtime/service-composition-results-20261022/malformed-copy-negative.json"
+        "research/runtime/service-composition-results-20261022/malformed-copy-negative.json",
+        "research/runtime/service-composition-results-20261022/frontier-panel.json"
       ],
       "evidence": [
         "SCP1.composition.isolated_original-20261022",
         "SCP1.history-review-v2-20261022",
-        "SCP1.frontier-20261022"
+        "SCP1.frontier-20261022",
+        "SCP2.composition.isolated_original-20261022",
+        "SCP2.frontier-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -313069,6 +313099,582 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "SCP2.values.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "42 complete selected service bodies at their listed original entries, with owned PE32 storage, byte-preserving scalar/animation/owner/pool policies, list mutation, resource/allocator notifications, spell-slot register arguments, gauge allocation and pixels, and actual voice query/retirement composed with scheduler lookup/retirement. The64 variants per root compare complete owned storage, selected globals, ordered callbacks and callback-time state; explicit platform/allocator/secondary/decoder providers stay separate. Normal vector construction is included; actual MSVC exception unwinding, invalid/unbounded caller domains, transitive provider bodies, whole-session integration and live replacement remain pending. Original memory/division faults are observations, not native policy changes.",
+      "record": "research/runtime/service-composition-results-20261022/values-panel.json",
+      "sha256": "cfa9c13c97fe615c58e3e20d3ba9ad142dc3c8f148dd133d1d0a65a5cdf0683c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2688
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP2.controllers.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Ten complete direct actor service bodies: singleton publication, normal animation start/reverse orchestration, session cleanup, secondary facing, owner-dependent resource selection, spell selection, task reset/action transition/special-state cleanup and owner-count maintenance. Compose the42 independently recovered value/container/audio suppliers through explicit PE32 memory. Each64-variant matrix compares complete owned storage, selected globals, defined returns and callback-time state including failures. Actual50da50 EDX:EAX action-table and594490 profile-address suppliers are included. External decoder/step/constructor/UI/RNG services are explicit providers; actual exception unwind, broader transitive service bodies, arbitrary concurrent publication, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/service-composition-results-20261022/controllers-panel.json",
+      "sha256": "516ea5b743b54840d7c90bfd4cf2bedba3b18d643d403bf6d73a2c541c38136a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 640
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP2.world.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Nine complete direct bodies: peer repair, map attachment/detachment, secondary release cascade, world facing, footprint item consumption, terrain effects/hazard scan, task-target descriptor and x87 creature valuation. Compose the42 value and10 actor-controller suppliers, actual pure wrap/difference/weighted-distance/direction helpers, original memmove and x87 truncation.64 owned variants per root compare complete owned memory, selected globals, defined returns, ordered callbacks and callback-time state. Terrain mutation, item handling, debug file notifications and hazard/animation decoder providers are explicit external boundaries; arbitrary malformed cycles/unbounded inputs, transitive engine services, real platform devices, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/service-composition-results-20261022/world-panel.json",
+      "sha256": "06ca46cf672dc2ee762299c919995af6a6f18dace4944f28f4accb5eb6100df9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP2.ui.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Ten complete direct UI/resource service bodies, including the packed22-byte actor admission descriptor and unchanged coordinate-copy suppliers40e2c0/40e8d0/40eec0: linked/panel health rectangles, secondary descriptor submission, spell popup rebuild, selection removal, message queue/text formatting, sprite/animation bank ownership and actor report retirement.64 owned variants per root compare complete owned bytes, selected globals, defined returns, ordered callbacks and callback-time state. Native local records are compared by content with original stack buffers; scratch addresses are normalized only at named boundaries. Compose recovered value/container/heap-wrapper suppliers, actual memmove and pure509790 descriptor addressing. Drawing/localization/formatting, virtual widgets, loader/cache services, Windows path/message APIs are explicit deterministic providers; actual platform services, malformed/unbounded string domains, transitive loader/UI bodies, exception unwinding, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/service-composition-results-20261022/ui-panel.json",
+      "sha256": "99ef6c7139b38bf98c9904e140811453ad561980260de3deeb2fc967f8f54c30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 640
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP2.dependencies.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Eighteen further service bodies: animation scan/overlay, owner selection, debug notification, widget invalidation/state/amount wrappers, raw image fill, audio stack removal, localization bounds/fallback, deferred rectangle queue, allocation retry/handler/alignment policy and tagged allocation release.64 owned variants per root compare complete owned state, selected globals, defined returns and ordered callback-time arguments/state; actual recovered value/controller suppliers remain composed where called. Virtual widget callbacks, low-level heap/init/retry/error handlers, CRT output and further UI draw methods are explicit normal-return providers. Arbitrary allocation/header corruption, infinite retry domains, actual platform heaps, exceptional unwind and whole actor/session integration/live replacement remain separate.",
+      "record": "research/runtime/service-composition-results-20261022/dependencies-panel.json",
+      "sha256": "22a2007130ae74827a377fd9e7b2f43810bf8c7654707b4650bca7b36d92154b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1152
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP2.popups.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Nine further popup/presentation service bodies: full health redraw and icon rendering, popup widget reset, artifact admission/stack counts/overflow, selected focus retirement, quota disable/enable, resolution border refresh and message scroll presentation.64 owned variants per root compare full owned state/globals, defined returns, complete declared local records and ordered callback-time state. Compose actual widget/image/localization/heap wrappers and actor/value suppliers; virtual widget methods, raster/font/image-loading/format/sound APIs and further UI methods remain normal-return providers. Font record byte0 is compared as the consumed bool; its three uninitialized padding bytes do not grant caller-stack representation equivalence. Actual hardware, arbitrary concurrent UI writers, exceptional unwind, complete session ownership and live replacement remain separate.",
+      "record": "research/runtime/service-composition-results-20261022/popups-panel.json",
+      "sha256": "30948eff16f06c56149bd53f7d8448453d563ac1a0980ccd460dfd0d2dfe10c0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP2.collections.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Complete vector insertion/growth and callback-visible old-storage retirement, secondary slot125+ admission/reclamation, original experience thresholds/health/gauge/animation effects and scenario-event dispatch over explicit owned records and normal-return callbacks.64variants per selected entry compare complete owned state/globals, defined returns and ordered callback state; recovered heap/value/controller/world suppliers are composed. Low-level vector allocation, concrete scenario predicates/actions, secondary subtype replacement, exceptional runtime/heap corruption and supported-session/live replacement remain distinct.",
+      "record": "research/runtime/service-composition-results-20261022/collections-panel.json",
+      "sha256": "a5f7e6b820ed6d097062ea49b497e59bce0d219606ca39a49a242d70a389d5d9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 256
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP2.effects.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Original468470 item traversal/consumption,469000 fastcall spell removal and490260 terrain/particle/owner cleanup over explicit owned map, descriptors and normal-return callbacks. Value/controller/heap/world/collection suppliers are composed; concrete item effects, contribution accounting, particle construction/pool, scenario predicates, localization/CRT, allocation identity and supported-session/live replacement remain separate. The baseline uninitialized contribution read when no healing branch assigns it is explicitly indeterminate and excluded from deterministic comparison.64 variants per selected body compare persistent bytes/globals, defined returns and ordered callback state.",
+      "record": "research/runtime/service-composition-results-20261022/effects-panel.json",
+      "sha256": "bffc1b39e2b19f0c591043dfe23d45b69562ccf6cbafc1443eb691c6fd116b8f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP2.construction.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Normal-return464350 and4a4df0 initialization,463270 destructor,4a4f70 widget table removal,58b3e0 canvas release and59bf87 reverse vector destruction, plus59c4ab cold-finally selection under an explicit parent frame.64 owned variants per body compare persistent bytes/globals and ordered callback state. Actual OS exception delivery, a destructor throwing during unwind, arbitrary reentry and supported-session/live replacement remain separate; the cold body is exercised directly without claiming a Windows SEH dispatcher. Native vector construction additionally destroys only the completed prefix in reverse order and propagates the original exception (171 failure/completion combinations); this composition test does not emulate OS SEH.",
+      "record": "research/runtime/service-composition-results-20261022/construction-panel.json",
+      "sha256": "6e5ddbc3de4863deb7cfcf8664d64f2d03f518e236e4d55c6c5714cb30246e93",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 448
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exception_cases",
+          "equals": 171
+        }
+      ]
+    },
+    {
+      "id": "SCP2.providers.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "PE32 value-address animation dispatch/restart and descriptor access; camera rectangle; flight predicate; fastcall raster binding/clip and text flag mutation; particle position/colour/random constructor, concrete XOR stream, virtual priority, deleting destructor and pool admission; owner lookup, scenario eligibility, named-region overlap, repeat/finalization and action dispatch; panel redraw allocation/rectangle submission and mode switching. Owned storage and normal-return explicit heap/platform/virtual and scenario-action providers. Complete scenario evaluator/action subtype bodies, font raster/resource decoding, supported-session and live equivalence remain pending.",
+      "record": "research/runtime/service-composition-results-20261022/providers-panel.json",
+      "sha256": "c08146b5f51e53bb880c824897c5b15b6ce945e2490873f627b0f88e3d46effb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2176
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP2.composition.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Twenty-one independently seeded original/native caller chains: marker singleton allocation/vector construction; forward/reverse animation setup followed by zero to four ticks; task/action animation; secondary explosion/200 particle construction and pool admission; popup descriptor population; scroll text raster bind/clip/flags; scenario eligibility and action/finalization dispatch; 64 preloaded actor activation/baseline to release/cleanup sequences plus independent release/cleanup roots, peer repair, occupancy attach/detach, task reset, marker/list/spell/audio retirement and original experience progression. Recovered value/controller/world/UI/dependency/popup/collection/effect/construction and concrete provider bodies share value-address storage. Valid owned vectors; malformed CRT partial-copy fault prefixes are not equivalent. Explicit source-controller registration, heap primitives, resource/font raster, scenario evaluator/actions and virtual/platform endpoints remain declared providers. Bounded headless comparison is separate from complete actor/session integration and live replacement.",
+      "record": "research/runtime/service-composition-results-20261022/composition-panel.json",
+      "sha256": "3a00c7240a5e92da8408842b95c3b9cfceddd00b3f9b1b7d411db13183be4fba",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1344
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/required_normal_returns_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/lifecycle_sequences",
+          "equals": 64
+        },
+        {
+          "pointer": "/native_service_coverage_only",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SCP2.frontier-20261022",
+      "kind": "static",
+      "scope": "Current native routing and inspected frontier after separate panel global receivers are corrected; all unresolved indirect and concrete downstream boundaries retained.",
+      "record": "research/runtime/service-composition-results-20261022/frontier-panel.json",
+      "sha256": "dbee9ab8acdd506382288837c4a8bb0abd90772bfe8715d1d2095bbb8c6385d7",
+      "sources_pointer": "/sources",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/whole_session_integration",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCP3.providers.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "PE32 value-address animation dispatch/restart and descriptor access; camera rectangle; flight predicate; fastcall raster binding/clip and text flag mutation; particle position/colour/random constructor, concrete XOR stream, virtual priority, deleting destructor and pool admission; owner lookup, scenario eligibility, named-region overlap, repeat/finalization and action dispatch; panel redraw allocation/rectangle submission and mode switching. Owned storage and normal-return explicit heap/platform/virtual and scenario-action providers. Complete scenario evaluator/action subtype bodies, font raster/resource decoding, supported-session and live equivalence remain pending.",
+      "record": "research/runtime/service-composition-results-20261022/providers-panel-anchored.json",
+      "sha256": "b77536b8182000a0f59cd9f1e3fbd2ccddc719b041504e4c26b4099fa2526307",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2176
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -337557,8 +338163,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-874f3d96902b65d39a5878d27442e56bc4d857c362647dc937cf6d1324c1cd7f.json",
-    "sha256": "874f3d96902b65d39a5878d27442e56bc4d857c362647dc937cf6d1324c1cd7f"
+    "path": "research/runtime/coverage/source-index-75891cf81fcdcbfe5eebb95ad4f0ec5b345bf4cfeb36e139674f70774c1141ff.json",
+    "sha256": "75891cf81fcdcbfe5eebb95ad4f0ec5b345bf4cfeb36e139674f70774c1141ff"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
