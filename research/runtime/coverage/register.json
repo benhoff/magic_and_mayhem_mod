@@ -137826,7 +137826,7 @@
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Complete actor downstream service ownership and behavior",
-      "scope": "Seventy-two direct actor service/helper entries retain bounded suppliers and the initial83-target frontier retains35raw suppliers,43historical semantic leads and five CRT boundaries. The prior149-route composition now gains22source/pool/transition routes with one owned actor-session/source store. Selected preloaded two-session journeys include real source grouping/registration, growing queues, pruning, recipient handoff/retention, release/cleanup, guarded slot reuse and teardown/restart. Native session barriers remain separate policy. Original owner/planner cadence, arbitrary supported installed profiles and the remaining named resource/font/task/scenario/indirect provider paths, malformed CRT copying, Windows SEH, external acceptance and full original-world/live replacement remain explicit. This Critical umbrella remains partial.",
+      "scope": "Seventy-two original direct service/helper entries and the initial83-target frontier retain bounded scope. The owned actor/source lifecycle composes171routes; twelve additional concrete resource/effect/profile/stun/attack/surface providers now expose183routes through one owned backend. All43historical semantic leads retain24concrete-route and19embedded-helper dispositions within their stated domains. The12-root/3-caller normal-return matrix is separate from original planner cadence, arbitrary installed profiles, actual font/palette/file/task/scenario/platform lower providers and incomplete indirect targets. Malformed CRT, uninitialized original locals, Windows SEH/throwing cleanup, external acceptance and full original-world/live replacement remain explicit. This Critical umbrella remains partial.",
       "confidence": "provisional",
       "original": [
         {
@@ -138197,7 +138197,8 @@
         "research/runtime/actor-service-composition-20261021.md",
         "research/runtime/service-composition-results-20261022/frontier.json",
         "research/runtime/service-composition-results-20261022/frontier-panel.json",
-        "research/runtime/actor-session-source-lifecycle-20261022.md"
+        "research/runtime/actor-session-source-lifecycle-20261022.md",
+        "research/runtime/actor-concrete-provider-frontier-20261022.md"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -138217,7 +138218,8 @@
         "reconstruction/rendering/actor_service_composition.hpp",
         "reconstruction/rendering/actor_session.hpp",
         "reconstruction/rendering/actor_source_services.hpp",
-        "reconstruction/rendering/actor_transition_services.hpp"
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "reconstruction/rendering/actor_frontier_providers.hpp"
       ],
       "tests": [
         "tools/inspect-actor-downstream.py",
@@ -138234,13 +138236,18 @@
         "tools/reconcile-service-composition.py",
         "tests/actor-session-reference.cpp",
         "tools/test-actor-session.py",
-        "tools/reconcile-actor-session.py"
+        "tools/reconcile-actor-session.py",
+        "tests/actor-frontier-reference.cpp",
+        "tests/actor-frontier-seeds.inc",
+        "tools/test-actor-frontier.py",
+        "tools/reconcile-actor-frontier.py"
       ],
       "evidence": [
         "SCP1.frontier-20261022",
         "SCP1.malformed-copy-negative-20261022",
         "SCP2.frontier-20261022",
-        "ASL1.reconciliation-reviewed.static-20261022"
+        "ASL1.reconciliation-reviewed.static-20261022",
+        "AFP1.reconciliation.static-20261022"
       ],
       "status": {
         "understanding": "partial",
@@ -140123,6 +140130,154 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.actor-concrete-provider-frontier",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Concrete actor, resource and surface provider frontier",
+      "scope": "Twelve selected raw PE32 value-address provider bodies: ANI3/4/5 load/reload/conversion and failure retention; SPRv4 load/cleanup and palette-pointer publication; mode0..9 per-palette chain append control; effect unlink/placement, terrain frame mutation, wrapped support aggregation, profile facing/movement-bank control, stun state/effect retirement, large-creature attack selection and rectangle/COM loss/restore/retry. All composed storage is owned by one backend. Named file/allocator/platform, palette-table builder, profile-transform/support-query, task/subtype and other lower provider endpoints remain explicit; this is not recursive provider or original-session closure. Valid finite owned buffers/acyclic lists, bounded strings and well-formed animation programs are admitted. The5050d0 initialized sequence-count path (at least8) is admitted; the original uninitialized local for smaller counts is retained as an unresolved representation boundary. Malformed CRT partial-copy equivalence, Windows SEH/throwing cleanup, arbitrary imported backing and live replacement are excluded. Diagnostic effect-file logging and indeterminate closed-CRT-handle semantics after failed associated SPR/DestroyWindow are outside the claim; only the named supplied endpoint continuation is compared.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4605136,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752176,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4800288,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5158944,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5194544,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5263568,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5263904,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5296224,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5301248,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5755664,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5756560,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818528,
+          "relation": "code",
+          "scope": "Selected provider body and explicit caller composition within the declared owned-input and supplied-endpoint domain."
+        }
+      ],
+      "documents": [
+        "research/runtime/actor-concrete-provider-frontier-20261022.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_frontier_providers.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp"
+      ],
+      "tests": [
+        "tests/actor-frontier-reference.cpp",
+        "tests/actor-frontier-seeds.inc",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc",
+        "tools/test-actor-frontier.py"
+      ],
+      "validation_dependencies": [
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/test-actor-services.py",
+        "tools/reconcile-actor-frontier.py"
+      ],
+      "evidence": [
+        "AFP1.frontier.isolated_original-20261022",
+        "AFP1.frontier.headless-20261022",
+        "AFP1.attempt-catalog.static-20261022",
+        "AFP1.incoming-history.static-20261022",
+        "AFP1.inspection-report.static-20261022"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_domain": {
+        "roots": 12,
+        "composed_routes": 183,
+        "cases_per_root": 64,
+        "caller_roots": [
+          "0x414890",
+          "0x4637c0",
+          "0x5055a0"
+        ],
+        "normal_returns_only": true,
+        "lower_services": "Named authored file, palette builder, profile transform, support, task, subtype and COM endpoints; CRT/SEH/driver internals excluded."
       }
     }
   ],
@@ -315280,6 +315435,182 @@
           "equals": 2
         }
       ]
+    },
+    {
+      "record": "research/runtime/actor-concrete-provider-results-20261022/frontier-final-1.json",
+      "sha256": "519df7cb6ef2f03abb4b5090f478948b73681ae11fc529a1e3587522f7b0656b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 960
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 1920
+        },
+        {
+          "pointer": "/composed_routes",
+          "equals": 183
+        },
+        {
+          "pointer": "/bytes_compared",
+          "equals": 515692604
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "AFP1.frontier.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Twelve selected raw PE32 value-address provider bodies: ANI3/4/5 load/reload/conversion and failure retention; SPRv4 load/cleanup and palette-pointer publication; mode0..9 per-palette chain append control; effect unlink/placement, terrain frame mutation, wrapped support aggregation, profile facing/movement-bank control, stun state/effect retirement, large-creature attack selection and rectangle/COM loss/restore/retry. All composed storage is owned by one backend. Named file/allocator/platform, palette-table builder, profile-transform/support-query, task/subtype and other lower provider endpoints remain explicit; this is not recursive provider or original-session closure. Valid finite owned buffers/acyclic lists, bounded strings and well-formed animation programs are admitted. The5050d0 initialized sequence-count path (at least8) is admitted; the original uninitialized local for smaller counts is retained as an unresolved representation boundary. Malformed CRT partial-copy equivalence, Windows SEH/throwing cleanup, arbitrary imported backing and live replacement are excluded. Diagnostic effect-file logging and indeterminate closed-CRT-handle semantics after failed associated SPR/DestroyWindow are outside the claim; only the named supplied endpoint continuation is compared.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "record": "research/runtime/actor-concrete-provider-results-20261022/frontier-final-1.json",
+      "sha256": "519df7cb6ef2f03abb4b5090f478948b73681ae11fc529a1e3587522f7b0656b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 960
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 1920
+        },
+        {
+          "pointer": "/composed_routes",
+          "equals": 183
+        },
+        {
+          "pointer": "/bytes_compared",
+          "equals": 515692604
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "AFP1.frontier.headless-20261022",
+      "kind": "native_integration",
+      "scope": "Twelve raw providers and three actual callers composed over one owned store;960cases include explicit partial-state observation and caller-owned teardown. Same matrix as original comparison, not additional cases or whole-session/driver acceptance."
+    },
+    {
+      "id": "AFP1.attempt-catalog.static-20261022",
+      "kind": "static",
+      "scope": "Failed and superseded attempts with prospective exact inputs; no current equivalence credit.",
+      "record": "research/runtime/actor-concrete-provider-results-20261022/attempt-catalog-reviewed.json",
+      "sha256": "5365c56c248e35ac6d2bf526f08fb69a54367f5cece32eaaa69bae0018474554",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "AFP1.incoming-history.static-20261022",
+      "kind": "static",
+      "scope": "Reviewed34exact parent/current file transitions in18baf155..d48226f4; no missing or rewritten receipts and no retrospective execution assertion.",
+      "record": "research/runtime/actor-concrete-provider-results-20261022/incoming-history-reviewed.json",
+      "sha256": "2cc59d9728ec8e6a3b8e4ea56438522eed7b21e0f0287049ff08f3d76d32b29b",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "AFP1.reconciliation.static-20261022",
+      "kind": "static",
+      "scope": "Reviewed183-route composition and43historical leads:24concrete-route/19embedded-helper dispositions,124supplied endpoint specifications and incomplete indirect target sets. Static scope only.",
+      "record": "research/runtime/actor-concrete-provider-results-20261022/reconciliation.json",
+      "sha256": "f848f522129f806110e8d464f8cbf519c1e373ac96d85261c9750c9b8205341f",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "AFP1.inspection-report.static-20261022",
+      "kind": "static",
+      "scope": "Fresh pinned original static instruction/ABI inspection of12new roots and selected helpers, including manifest verification; no execution claim.",
+      "record": "research/runtime/actor-concrete-provider-results-20261022/inspection-report.json",
+      "sha256": "9db019217c4185bb7870bad7c359a853c1a95d552696a3829a3b507dd2a04c10",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
     }
   ],
   "classifications": [],
@@ -323019,6 +323350,96 @@
         },
         {
           "value": "unresolved-owner-task-resource-indirect-targets",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "actor-concrete-provider-frontier-routing",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4800288,
+        "relation": "code",
+        "scope": "Native routing of twelve bounded raw providers and prior171routes; lower suppliers and unresolved indirect sites remain open."
+      },
+      "document": "research/runtime/actor-concrete-provider-frontier-20261022.md",
+      "complete": false,
+      "scope": "Native routing of twelve bounded raw providers and prior171routes; lower suppliers and unresolved indirect sites remain open.",
+      "entries": [
+        {
+          "value": 4605136,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": 4752176,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": 4800288,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": 5158944,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": 5194544,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": 5263568,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": 5263904,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": 5296224,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": 5301248,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": 5755664,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": 5756560,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": 5818528,
+          "behaviors": [
+            "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": "unresolved-lower-provider-and-indirect-targets",
           "behaviors": []
         }
       ]
@@ -339310,6 +339731,26 @@
       "evidence": [
         "NT9.observer-completion-20261022"
       ]
+    },
+    {
+      "id": "actor-concrete-provider-callers-20261022",
+      "scope": "Selected actual recovered callers and twelve concrete provider roots over one owned value-address backend with explicit lower endpoint inputs; no original scheduling or external acceptance claim.",
+      "level": "headless",
+      "behaviors": [
+        "RS.actor-concrete-provider-frontier"
+      ],
+      "tests": [
+        "tests/actor-frontier-reference.cpp",
+        "tests/actor-frontier-seeds.inc",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc",
+        "tools/test-actor-frontier.py"
+      ],
+      "evidence": [
+        "AFP1.frontier.headless-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -340065,8 +340506,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ce9fb9bc2ea2ee0915959a37ea715dac4ef27fab70aeccde2fe0e852cc59d2a1.json",
-    "sha256": "ce9fb9bc2ea2ee0915959a37ea715dac4ef27fab70aeccde2fe0e852cc59d2a1"
+    "path": "research/runtime/coverage/source-index-76cc62124b562b10cbe84b466f7778c76a3ba1eba5adeb2e7dec841e767e8680.json",
+    "sha256": "76cc62124b562b10cbe84b466f7778c76a3ba1eba5adeb2e7dec841e767e8680"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

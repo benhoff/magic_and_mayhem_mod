@@ -3197,8 +3197,8 @@
       "behavior": "RS.actor-downstream-services",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Bounded owned actor/source lifecycle composition and explicit native ownership barriers have independent proof; original planner cadence and remaining concrete providers stay in the Critical umbrella.",
-      "contract_sha256": "912a1ff857b0ab29771a2809c59098ecba47c7d81108a8eaae4306bf16a09bf5"
+      "reason": "The183-route owned composition now recovers the12remaining historical supplied roots within explicit bounded domains. Original planner cadence, actual lower providers, installed-session and external/live acceptance retain Critical residual scope.",
+      "contract_sha256": "b49b95288b4c289f01de6c870d49053e1a69c96c20ac453c81b810cf9937abf9"
     },
     {
       "behavior": "RS.actor-downstream-value-services",
@@ -3332,6 +3332,13 @@
       "work_type": "capability",
       "reason": "Bounded owned actor/source lifecycle composition and explicit native ownership barriers have independent proof; original planner cadence and remaining concrete providers stay in the Critical umbrella.",
       "contract_sha256": "c104d73515b1a8923ff04d13b7ff03b3c87d1767cbd6cd5284b0863fb57faff3"
+    },
+    {
+      "behavior": "RS.actor-concrete-provider-frontier",
+      "weight": 4,
+      "work_type": "original_recovery",
+      "reason": "Concrete actor/resource/surface ownership and control, independently compared in a bounded shared-store composition; recursive suppliers and live acceptance remain separate.",
+      "contract_sha256": "0dd1c93efa5403d8740482bb459b5811a7ed2ca7fc33a623121ba3f0e109e052"
     }
   ],
   "tranche_plan": {

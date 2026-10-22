@@ -20927,3 +20927,27 @@ engine execution.
 ## Ninth rendering batch — bounded observer completion (2026-10-22)
 
 [Ten implementation closeouts](rendering-ninth-ten-closeouts-20261022.md) complete saved artifact postchecks, physical timing, Quit and Whole120 completion, COPY analysis/request trace, worker producer-prefix, Region/mutex observation and pending-copy admission. `NT9.observer-completion-20261022` passes 97 tests/16 suites, native production/fixture builds, V4 source-only 1/16/120-queue replay and real SQLite CLI pipelines with 660 stable prospective inputs. Registered native-rendering partials fall 86→76. Failed setup attempts and incoming exact history review remain immutable SQLite records. Original-game comparison, all writer/backing/lifetime/route and semantic ownership, shutdown quiescence and live replacement remain independent; shared-source older proofs may be stale and are retained.
+
+### Concrete actor/resource/surface provider frontier (2026-10-22)
+
+[The twelve-provider batch](actor-concrete-provider-frontier-20261022.md) adds
+raw ANI 3/4/5 and SPR v4 ownership/loading, palette append control, effect placement
+and unlinking, terrain-frame mutation, support aggregation, profile bank/statistic
+construction, stun/attack control and rectangle restore/retry to the 171-route
+owned composition. `FrontierComposition<M>` exposes 183 routes over one backend.
+The new recovered leaf and three-caller headless scenario carry independent
+milestones; prior immutable evidence/source hashes are preserved.
+
+The 960 original32/native64/ASan+UBSan cases compare 1920 snapshots per build,
+including partial failure state before explicit teardown. Callback state catches
+ANI free-before-clear ordering. Frame flags are at +10, cleanup receives the map
+manager and cell argument, and surface reload is an object virtual call. The
+original attack tables are checked before fixture setup. Normal returns and
+zero live owned allocations are required; original inputs remain unchanged.
+
+The 43 historical semantic leads now have 24 concrete-route and 19 embedded-helper
+dispositions. Their named list is closed only within scope: 37 lower endpoint
+specifications become visible, with 124 supplied ends across the composed harness.
+Actual palette/file/profile/subtype/task/platform providers, planner cadence,
+installed-session acceptance, incomplete indirect targets, malformed CRT/SEH and
+live/physical driver behavior remain open. The Critical umbrella stays partial.
