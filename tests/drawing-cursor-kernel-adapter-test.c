@@ -29,7 +29,14 @@ void start(void){
  unsigned owner=GetCurrentThreadId();
  HANDLE outer=CreateMutexA(0,0,0),inner=CreateMutexA(0,0,0),a=0,b=0,process=GetCurrentProcess();
  check(outer&&inner&&DuplicateHandle(process,outer,process,&a,0,0,2)&&DuplicateHandle(process,inner,process,&b,0,0,2),201);
- check(mnm_cursor_kernel_publish(&adapter,0,outer,a,1)&&mnm_cursor_kernel_publish(&adapter,1,inner,b,2),202);
+ check(mnm_cursor_kernel_publish(&adapter,0,outer,a,1),202);
+ check(!mnm_cursor_kernel_publish(&adapter,1,inner,a,2)&&!adapter.inner.duplicate,229);
+ check(!mnm_cursor_kernel_publish(&adapter,1,outer,b,2)&&!adapter.inner.duplicate,230);
+ check(!mnm_cursor_kernel_publish(&adapter,1,a,b,2)&&!adapter.inner.duplicate,231);
+ check(!mnm_cursor_kernel_publish(&adapter,1,inner,outer,2)&&!adapter.inner.duplicate,232);
+ check(!mnm_cursor_kernel_publish(&adapter,1,inner,b,1)&&!adapter.inner.duplicate,233);
+ check(!mnm_cursor_kernel_publish(&adapter,2,inner,b,2)&&!adapter.inner.duplicate,234);
+ check(mnm_cursor_kernel_publish(&adapter,1,inner,b,2),235);
  MnmCursorKernelLease* lease=mnm_cursor_kernel_reserve(&adapter,owner,outer,inner);check(lease!=0,203);unsigned token=lease->token->token;
  check(mnm_cursor_gate_acquire(&lease->gate,a,b,wait,release),204);
  check(!mnm_cursor_kernel_return(&adapter,owner+1,token)&&!mnm_cursor_kernel_return(&adapter,owner,token),205);

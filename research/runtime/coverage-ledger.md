@@ -20817,3 +20817,27 @@ Private backup does not satisfy the public sharing/CI manifest or grant original
 comparison, integration or replacement credit. Operational transport and restore
 receipts are retained under working/tests/private-evidence-backup-20261021/ and
 working/coverage/private-backups/.
+
+## Fourth ten native ownership/refusal closeouts (2026-10-21)
+
+The ten bounded helper implementations in
+[the fourth batch](rendering-fourth-ten-closeouts-20261021.md) close cursor gate,
+mutex lifetime, forwarding, lease/token, kernel retirement, recorder thread,
+held/pending-source refusal and Wine lifetime/buffer-origin contracts. Native
+changes refuse duplicate role ownership, retain missing-release failures, preserve
+recorder entry LastError, accept exact invalid-phase rejection metadata and bound
+buffer-origin lookup storage by lifetime transitions. The runner pins prospective
+contracts and compiled source closure, writes evidence directly to SQLite and
+uses one owned prefix. Understanding, comparison, integration and replacement
+retain their prior statuses; full original/game/driver acceptance remains open.
+
+
+## Fourth-ten integration into local master (2026-10-21)
+
+This local merge combines the ten native ownership/refusal closeouts with current
+actor-service recovery, SQLite reader updates and explicit private-backup tooling.
+Both parents retain immutable evidence and exact reviews. The combined rendering
+helper execution is repeated against merged source dependencies; no original-game,
+external provider, physical-driver or live replacement milestone is promoted.
+Local hash-verified evidence and retained SQLite backups satisfy local merge
+requirements; external publication is a separate explicitly requested operation.

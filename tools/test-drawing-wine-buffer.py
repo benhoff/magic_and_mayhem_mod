@@ -58,21 +58,22 @@ def main():
         raw=(capture/'wine-buffer.bin').read_bytes()
         observed=decode(raw,(capture/'wine-lifetime.bin').read_bytes())
         calls=observed['calls']
-        if len(calls)!=6 or observed['unknown_texture_returns']!=2:raise ValueError('Getter fixture count')
-        for i,c in enumerate(calls):
+        if len(calls)!=8 or observed['unknown_texture_returns']!=2:raise ValueError('Getter fixture count')
+        for i,c in enumerate(calls[:6]):
             if c['method']!=i//3+1 or c['index']!=(0 if i<3 else 3) or c['last_error']!=0xcafe or c['swapchain_generation']!=1 or c['texture_generation']!=(2 if i%3==1 else 0):raise ValueError('Getter fixture forwarding/generation')
+        if any(c['nonnull'] or c['texture_generation'] or c['last_error']!=0xcafe for c in calls[6:]):raise ValueError('Null getter inherited retired generation')
         if any(sha((ROOT/n).read_bytes()) != h for n,h in sources.items()):
             raise ValueError('Fixture sources changed during execution')
         report = dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],
                       artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),
-                      journal_sha256=sha(raw),cdecl_cases=6,unknown_texture_returns=2,
+                      journal_sha256=sha(raw),cdecl_cases=8,unknown_texture_returns=2,
                       null_result_preserved=True,known_generation_retained=True,
                       unknown_generation_not_invented=True,result_last_error_x87_preserved=True,
                       original_game_executed=False,source_storage_owned=False,
                       scope='ActualPE32selected getter ABI/null/known/unknown metadata forwarding guards;nooriginalbufferownership/allinternal lifetime orEGLassignment.')
         a.report.parent.mkdir(parents=True,exist_ok=True)
         a.report.write_text(json.dumps(report,indent=2)+'\n')
-        print(json.dumps(dict(success=True,cdecl_cases=6,unknown_texture_returns=2)))
+        print(json.dumps(dict(success=True,cdecl_cases=8,unknown_texture_returns=2)))
     finally:
         subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
 

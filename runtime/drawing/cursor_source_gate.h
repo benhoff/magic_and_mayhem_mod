@@ -13,6 +13,8 @@ typedef unsigned (*MnmCursorGateRelease)(void*);
 
 static int mnm_cursor_gate_release(MnmCursorSourceGate* gate,
                                    MnmCursorGateRelease release) {
+    if (!gate->acquired) return 1;
+    if (!release) {gate->failure = 6; return 0;}
     int ok = 1;
     if (gate->acquired & 2) {
         if (release(gate->inner)) gate->acquired &= ~2u;

@@ -6,6 +6,11 @@
 static int mnm_cursor_kernel_publish(MnmCursorKernelAdapter* adapter,unsigned role,
  void* original,void* duplicate,unsigned identity){
  if(adapter->fault||role>1)return 0;
+ /* Each role owns a distinct duplicate. Cross-role handle reuse could close
+  * a handle still owned by the other cell, even before any lease is admitted. */
+ MnmCursorLifetime* other=role?&adapter->outer:&adapter->inner;
+ if(other->duplicate && (identity==other->identity || original==other->original ||
+    original==other->duplicate || duplicate==other->original || duplicate==other->duplicate))return 0;
  return mnm_cursor_lifetime_publish(role?&adapter->inner:&adapter->outer,original,duplicate,identity);
 }
 static int mnm_cursor_kernel_retire(MnmCursorKernelAdapter* adapter,unsigned role,

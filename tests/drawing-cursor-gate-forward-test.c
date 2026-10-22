@@ -23,5 +23,17 @@ void start(void){
   save(actual);require_forward(result==0xfedcba98&&GetLastError()==0xdef01234&&same(output,actual)&&forwards==1,213);
   unsigned owned=(a<2?1u:0u)|(a==0&&b<2?2u:0u);if(owned&~mask)require_forward(gate.failure==6,215);require_forward(gate.acquired==(owned&~mask)&&waits==(a==0?2u:1u)&&releases==(unsigned)((owned&1)!=0)+(unsigned)((owned&2)!=0),214);
  }
+ /* A prior release fault forbids new waits, yet the original still forwards
+  * exactly once and its output state survives. No old lease is released. */
+ MnmCursorSourceGate held={(void*)1,(void*)2,3,6};
+ waits=releases=forwards=0;save(input);SetLastError(0xabc01234);
+ unsigned result=mnm_cursor_gate_forward(&held,(void*)1,(void*)2,wait,release,original,(void*)3,get_error,set_error,save,restore);
+ save(actual);require_forward(result==0xfedcba98&&GetLastError()==0xdef01234&&same(output,actual)&&forwards==1&&!waits&&!releases&&held.acquired==3&&held.failure==5,216);
+ /* Missing handles/callbacks refuse gate admission while preserving forwarding. */
+ for(unsigned invalid=0;invalid<3;++invalid){
+  MnmCursorSourceGate gate={0};waits=releases=forwards=0;save(input);SetLastError(0xabc01234);
+  result=mnm_cursor_gate_forward(&gate,invalid==0?0:(void*)1,(void*)2,invalid==1?0:wait,invalid==2?0:release,original,(void*)3,get_error,set_error,save,restore);
+  save(actual);require_forward(result==0xfedcba98&&GetLastError()==0xdef01234&&same(output,actual)&&forwards==1&&!waits&&!releases&&!gate.acquired&&gate.failure==1,217);
+ }
  ExitProcess(0);
 }

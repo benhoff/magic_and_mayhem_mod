@@ -53,6 +53,13 @@ static void scripted_matrix(void){
 void start(void){
  outer=CreateMutexA(0,0,0);inner=CreateMutexA(0,0,0);ready=CreateEventA(0,0,0,0);stop=CreateEventA(0,0,0,0);require_gate(outer&&inner&&ready&&stop,201);
  scripted_matrix();
+ MnmCursorSourceGate unavailable={outer,inner,3,0};
+ require_gate(!mnm_cursor_gate_release(&unavailable,0)&&unavailable.acquired==3&&unavailable.failure==6,254);
+ require_gate(mnm_cursor_gate_release(&unavailable,gate_release)==0&&unavailable.acquired==3,255);
+ /* The scripted acquisition owns no real levels; a successful scripted retry
+  * drains precisely those retained bits without touching kernel recursion. */
+ release_mask=3;release_count=0;require_gate(mnm_cursor_gate_release(&unavailable,scripted_release)&&!unavailable.acquired,256);
+ require_gate(mnm_cursor_gate_release(&unavailable,0),257);
  MnmCursorSourceGate gate={0};require_gate(mnm_cursor_gate_acquire(&gate,outer,inner,&gate_wait,&gate_release)&&gate.acquired==3,202);require_gate(probe_handle(outer)==0x102&&probe_handle(inner)==0x102,203);require_gate(mnm_cursor_gate_release(&gate,&gate_release)&&probe_handle(outer)==0&&probe_handle(inner)==0,204);
  // Preserve original recursive ownership: the policy releases only its extra
  // recursion level, so a competitor still times out until the caller releases.

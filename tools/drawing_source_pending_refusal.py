@@ -11,7 +11,7 @@ def decode(data):
         raise ValueError('Pending refusal header')
     frames=[];slots=set()
     for ordinal,r in enumerate(struct.iter_unpack('<16I',data[64:]),1):
-        if r[0]!=ordinal or not 1<=r[1]<=128 or r[1] in slots or r[2] not in {*range(56),100} or any(r[i]>1 for i in (4,10,11,12,13,14)) or r[15] or r[5]>=0x1c0000:
+        if r[0]!=ordinal or not 1<=r[1]<=128 or (slots and r[1]<=max(slots)) or not r[3] or r[2] not in {*range(56),100} or any(r[i]>1 for i in (4,10,11,12,13,14)) or r[15] or r[5]>=0x1c0000:
             raise ValueError('Pending frame identity/reserve')
         if not r[13] and any(r[7:10]):raise ValueError('Unknown owned record has fields')
         if r[10]!=bool(r[6] and r[6]==h[8]) or r[11]!=bool(r[8] and r[8]==h[8]) or r[12]!=bool(r[9] and r[9]==h[8]):

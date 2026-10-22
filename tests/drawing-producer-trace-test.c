@@ -27,6 +27,7 @@ void start(void){
  if(n&&test[0]=='i'){require(!producer_trace_configure(),40);ExitProcess(0);}
  require(producer_trace_configure()&&producer_trace_mode,41);
  u32 owner=GetCurrentThreadId();
+ if(n&&test[0]=='z'){PRODUCER_TRACE_SCOPE;(void)producer_trace_depth(0);ExitProcess(55);}
  if(n&&test[0]=='e'){PRODUCER_TRACE_SCOPE;for(u32 i=1;i<=33;++i)(void)producer_trace_depth(i);ExitProcess(42);}
  {PRODUCER_TRACE_SCOPE;u32* nesting=producer_trace_depth(owner);require(!*nesting,43);++*nesting;}
  /* No recorder mutex is held across the simulated original body. If it is,

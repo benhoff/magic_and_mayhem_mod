@@ -16,7 +16,11 @@ def decode(data):
     r = struct.unpack_from('<48I', data, 64)
     if h[2:6] != (1, 192, 0x40209ca7, 1) or any(h[11:]) or h[7] > h[6]:
         raise ValueError('Held rejection header')
-    if r[0] != 1 or r[1] not in REASONS or r[2] not in (1, 2) or not all(r[3:6]) or r[14] > 1:
+    if h[8] > 2048 or h[9] > 1024 or h[10] > 1024**3:
+        raise ValueError('Held rejection budget')
+    # Owner-mismatch is also the diagnostic for an invalid phase. Preserve the
+    # rejected scalar instead of rejecting the very failure the emitter records.
+    if r[0] != 1 or r[1] not in REASONS or (r[2] not in (1, 2) and r[1] != 8) or not all(r[3:6]) or r[14] > 1:
         raise ValueError('Held rejection identity')
     if not r[14] and any(r[8:12]):
         raise ValueError('Unreadable rectangle has owned values')

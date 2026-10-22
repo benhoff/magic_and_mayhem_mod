@@ -34,4 +34,15 @@ int main(){
  assert(outer.leases==64&&inner.leases==64);
  for(unsigned i=0;i<64;++i)assert(mnm_cursor_lease_return(&pool,&outer,&inner,i+1,full[i],0));
  assert(!outer.leases&&!inner.leases);
+ // Overflow in either lifetime must roll back the token and any first reserve.
+ for(unsigned which=0;which<2;++which){
+  (which?inner:outer).leases=~0u;
+  assert(!mnm_cursor_lease_reserve(&pool,&outer,&inner,9,h(1),h(3)));
+  assert((which?outer:inner).leases==0);
+  for(const auto& cell:pool.cells)assert(!cell.token);
+  (which?inner:outer).leases=0;
+ }
+ pool.next=~0u;
+ assert(!mnm_cursor_lease_reserve(&pool,&outer,&inner,9,h(1),h(3)));
+ assert(!outer.leases&&!inner.leases);
 }

@@ -34,13 +34,14 @@ def decode(data):
                     if any(r[10:12]):raise ValueError('Invalid create output generation')
                 else:
                     if r[12] or not r[10] or r[11]!=len(generations)+1 or (kind,r[10]) in active:raise ValueError('Wine lifetime duplicate/reused creation')
+                    if len(active) >= 2048:raise ValueError('Wine lifetime active object capacity')
                     generations.add(r[11]);active[kind,r[10]]=r[11]
             else:
                 if r[10:12]!=entry[10:12] or r[12]!=(2 if r[8]==0 and r[11] else 0):raise ValueError('Wine lifetime release result')
                 if r[12]==2:active.pop((kind,r[10]))
             events.append(dict(call=r[2],method=r[3],thread=r[4],api_entry=r[5],object=r[10],generation=r[11],result=r[8],last_error=r[9],flags=r[12]))
     terminal=rows[-1]
-    if pending or terminal[0]!=len(rows) or terminal[2] not in (1,2) or terminal[3]!=entered or terminal[11]!=len(generations) or any(terminal[5:7]) or any(terminal[8:11]) or any(terminal[12:]):raise ValueError('Wine lifetime incomplete/count')
+    if pending or not terminal[4] or terminal[0]!=len(rows) or terminal[2] not in (1,2) or terminal[3]!=entered or terminal[11]!=len(generations) or any(terminal[5:7]) or any(terminal[8:11]) or any(terminal[12:]):raise ValueError('Wine lifetime incomplete/count')
     return dict(schema=1,success=True,journal_sha256=sha(data),events=events,observed_generations=len(generations),
                 remaining_observed_objects=len(active),unknown_release_calls=unknown,
                 all_internal_lifetimes_observed=False,source_storage_owned=False,
