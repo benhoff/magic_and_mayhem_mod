@@ -67600,12 +67600,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in original-active producer recorder serialization and thread nesting",
-      "scope": "Intentional opt-in recorder synchronization through Win32 critical sections with per-thread primitive nesting and32local thread slots. Recorder entry/return/close scopes release before original bodies; original bytes are not synchronized. Slot exhaustion/wrong return owner refuse with98; malformed flags and incompatible raster/batch/continuous/opaque-publication/glyph configurations refuse. Actual PE32 helper concurrency and legacy default53-site ABI/forwarding are separate from pending original trace-mode source/physical coupling. No immutable producers, native pixels, global frames, driver equivalence or original suppression.",
+      "scope": "Intentional opt-in recorder synchronization through Win32 critical sections with per-thread primitive nesting and32local thread slots. Recorder entry/return/close scopes release before original bodies; original bytes are not synchronized. Slot exhaustion/wrong return owner refuse with98; malformed flags and incompatible raster/batch/continuous/opaque-publication/glyph configurations refuse. Actual PE32 helper concurrency and legacy default53-site ABI/forwarding are separate from pending original trace-mode source/physical coupling. No immutable producers, native pixels, global frames, driver equivalence or original suppression. Fourth batch closes the bounded native helper implementation and strict malformed-input controls described in rendering-fourth-ten-closeouts-20261021.md; original game/physical-driver installation and acceptance remain separate.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/draw02-producer-recorder.md",
-        "research/runtime/draw02-end-to-end.md"
+        "research/runtime/draw02-end-to-end.md",
+        "research/runtime/rendering-fourth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/scene/producer_trace_guard.h",
@@ -67613,7 +67614,10 @@
       ],
       "tests": [
         "tests/drawing-producer-trace-test.c",
-        "tools/test-drawing-producer-trace.py"
+        "tools/test-drawing-producer-trace.py",
+        "tools/test-rendering-fourth-ten.py",
+        "tests/test-rendering-fourth-ten.py",
+        "tests/rendering-recorder-state-test.c"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/generic_producer_caller.h",
@@ -67632,18 +67636,21 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT4.native-ownership-refusals-20261021",
+        "NT4.final-native-ownership-refusals-20261021"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Actual opt-in producer entry/return source-state and physical API binding remains pending. Recorder locking does not own original source bytes, deduce unknown writers or synchronize scanout.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -68430,12 +68437,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Pinned Wine texture/swapchain observed generations",
-      "scope": "Pending opt-in observation of pinned Wine11.16ddraw imports texture/swapchain create and decref. Successful create and zero-refcount return delimit observed object generations; reuse gets new identity,preexisting/unobserved/internal creations remain unknown. No private object-layout reads,texture pixels,allaliases/internalrelease coverage or immutable submission ownership.",
+      "scope": "opt-in observation of pinned Wine11.16ddraw imports texture/swapchain create and decref. Successful create and zero-refcount return delimit observed object generations; reuse gets new identity,preexisting/unobserved/internal creations remain unknown. No private object-layout reads,texture pixels,allaliases/internalrelease coverage or immutable submission ownership. Fourth batch closes the bounded native helper implementation and strict malformed-input controls described in rendering-fourth-ten-closeouts-20261021.md; original game/physical-driver installation and acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-object-lifetimes.md",
-        "research/formats/drawing-wine-lifetime-v1.md"
+        "research/formats/drawing-wine-lifetime-v1.md",
+        "research/runtime/rendering-fourth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/wine_lifetime.h",
@@ -68445,7 +68453,9 @@
         "tests/drawing-wine-lifetime-test.c",
         "tools/test-drawing-wine-lifetime.py",
         "tests/test-drawing-wine-lifetime.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-fourth-ten.py",
+        "tests/test-rendering-fourth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/session.c",
@@ -68468,11 +68478,13 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT4.native-ownership-refusals-20261021",
+        "NT4.final-native-ownership-refusals-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -68480,7 +68492,8 @@
       "remaining_gaps": [
         "Pending exact installed import pins/ABI fixtures,creation/failure/release/reuse/unknown guards and actual original observation. InternalWineunhookedlifetime/asyncEGL/storage ownership remain separate.",
         "Original01closes82generations/71retirements/11active/0unknownreleases,but submission admission fails shared allocator count assumption:62allocated identities/45used inblits. Pending corrected bound guard and fresh acquisition; failed report retained.",
-        "Original02admits82generations/11remainingobjects/0unknownreleases underselectedimports;exactsubmissiongenerationpoint/internalWinepaths/asyncEGL/storageownership andsemanticjourneys remainpending."
+        "Original02admits82generations/11remainingobjects/0unknownreleases underselectedimports;exactsubmissiongenerationpoint/internalWinepaths/asyncEGL/storageownership andsemanticjourneys remainpending.",
+        "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -68551,12 +68564,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Selected Wine swapchain buffer getter origins",
-      "scope": "Pending pinned front/backbuffer getter observation:opaque returnedtextureID,swapchainID/observedgeneration,index,parentAPI,result/error and lifetimeprefix. Getter origin does not create an invented texturegeneration orproveimmutablebytes/allinternal lifetimes/asyncEGLownership.",
+      "scope": "pinned front/backbuffer getter observation:opaque returnedtextureID,swapchainID/observedgeneration,index,parentAPI,result/error and lifetimeprefix. Getter origin does not create an invented texturegeneration orproveimmutablebytes/allinternal lifetimes/asyncEGLownership. Fourth batch closes the bounded native helper implementation and strict malformed-input controls described in rendering-fourth-ten-closeouts-20261021.md; original game/physical-driver installation and acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-buffer-origins.md",
-        "research/formats/drawing-wine-buffer-v1.md"
+        "research/formats/drawing-wine-buffer-v1.md",
+        "research/runtime/rendering-fourth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/wine_buffer.h",
@@ -68566,7 +68580,9 @@
         "tests/drawing-wine-buffer-test.c",
         "tools/test-drawing-wine-buffer.py",
         "tests/test-drawing-wine-buffer.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-fourth-ten.py",
+        "tests/test-rendering-fourth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/wine_lifetime.h",
@@ -68585,18 +68601,21 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT4.native-ownership-refusals-20261021",
+        "NT4.final-native-ownership-refusals-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Pending pinnedgetterABI/result/error/alias/unknown/reusefixtureandactualoriginalunknownobject14origin. Returnedobjectgenerationremains0ifcreationunobserved;source/EGLownershipseparate.",
-        "Original01admits333frontgetterreturns:swapchain4/generation4\u2192texture14/generation0. Backgetterunreached;textureinternalcreation/release/storageownership/asyncEGLassignment remainpending;originisnotinventedgeneration."
+        "Original01admits333frontgetterreturns:swapchain4/generation4\u2192texture14/generation0. Backgetterunreached;textureinternalcreation/release/storageownership/asyncEGLassignment remainpending;originisnotinventedgeneration.",
+        "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -69628,11 +69647,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded held-source rejection record",
-      "scope": "Record the exact failed protected-source snapshot guard, API/lease/phase identity, scalar call geometry and source metadata before diagnostic exit99. Accepted snapshot protocol is unchanged. A rejection report diagnoses admission only; it never establishes source ownership or native parity.",
+      "scope": "Record the exact failed protected-source snapshot guard, API/lease/phase identity, scalar call geometry and source metadata before diagnostic exit99. Accepted snapshot protocol is unchanged. A rejection report diagnoses admission only; it never establishes source ownership or native parity. Fourth batch closes the bounded native helper implementation and strict malformed-input controls described in rendering-fourth-ten-closeouts-20261021.md; original game/physical-driver installation and acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-source-held-refusal.md"
+        "research/runtime/draw02-source-held-refusal.md",
+        "research/runtime/rendering-fourth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/source_held_snapshot.h",
@@ -69641,7 +69661,9 @@
       "tests": [
         "tests/drawing-source-held-snapshot-test.c",
         "tools/test-drawing-source-held-snapshot.py",
-        "tests/test-drawing-source-held-refusal.py"
+        "tests/test-drawing-source-held-refusal.py",
+        "tools/test-rendering-fourth-ten.py",
+        "tests/test-rendering-fourth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/session.c",
@@ -69666,18 +69688,21 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT4.native-ownership-refusals-20261021",
+        "NT4.final-native-ownership-refusals-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Six PE32 cases and three decoder methods pass. Two original-active combined runs close normally without rejection; the earlier resource-original01 refusal remains unreproduced and cause unassigned. Diagnostic cannot identify an event it did not capture.",
-        "All guard branches beyond fixture coverage, source/map/upload ownership and storage reuse, whole source/COM/texture lifetimes, other routes and semantic actions, diagnostic cadence controls and full DRAW-02 47/21 acceptance remain pending."
+        "All guard branches beyond fixture coverage, source/map/upload ownership and storage reuse, whole source/COM/texture lifetimes, other routes and semantic actions, diagnostic cadence controls and full DRAW-02 47/21 acceptance remain pending.",
+        "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -69970,12 +69995,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Protected source-byte pending-frame refusal snapshot",
-      "scope": "At the exact pending-frame rejection inside the producer recorder scope, retain one bounded pointer-free snapshot per active matching source lease: selected source canvas, frame slots/tags/owners/primitive state/known object and owned record canvas IDs. Only diagnostics on refusal; no source-copy admission change, bytes or allocation ownership claim.",
+      "scope": "At the exact pending-frame rejection inside the producer recorder scope, retain one bounded pointer-free snapshot per active matching source lease: selected source canvas, frame slots/tags/owners/primitive state/known object and owned record canvas IDs. Only diagnostics on refusal; no source-copy admission change, bytes or allocation ownership claim. Fourth batch closes the bounded native helper implementation and strict malformed-input controls described in rendering-fourth-ten-closeouts-20261021.md; original game/physical-driver installation and acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-source-pending-frame-refusal.md",
-        "research/runtime/draw02-canvas-storage-generations.md"
+        "research/runtime/draw02-canvas-storage-generations.md",
+        "research/runtime/rendering-fourth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/scene/source_pending_refusal.h",
@@ -69985,7 +70011,9 @@
         "tests/drawing-source-pending-refusal-test.c",
         "tools/test-drawing-source-pending-refusal.py",
         "tests/test-drawing-source-pending-refusal.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-fourth-ten.py",
+        "tests/test-rendering-fourth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/scene/canvas_producers.c",
@@ -70017,11 +70045,13 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT4.native-ownership-refusals-20261021",
+        "NT4.final-native-ownership-refusals-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -70030,7 +70060,8 @@
         "Two exact refusal PE32 cases and three decoder methods pass; corrected existing byte export and readonly protection/write-fault fixtures pass. Two original combined runs close normally without emitting refusal files; intermittent earlier extra frame identity/overlap remains unreproduced and unassigned. No source-copy admission was loosened.",
         "Numeric canvas/record equality is not alias/overlap proof. Whole source/COM/resource/texture/storage lifetime and all writers/uploads/versions, unknown/stopped routes and semantic actions, diagnostic cadence controls and full DRAW-02 47/21 acceptance remain pending.",
         "A fresh version3 run identifies foreign tag32owned copy source1/destination5 during source9lease17owner tag7copy; whether backing overlaps remains unknown. Guard unchanged; successful retry does not prove race resolved.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -88782,18 +88813,21 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Isolated nonblocking cursor-source mutex diagnostic gate",
-      "scope": "Caller-pinned distinct live handles, outer/inner zero-timeout acquisition, reverse release of exactly acquired recursion levels, abandoned acquisition refusal with unwind, failed-release ownership retained and reacquisition refusal. Isolated header and real Wine kernel mutex fixture; not installed in original capture. Actual Wine DuplicateHandle fixture also checks same-object recursive ownership, invalid source refusal and lifetime after synchronized source closure; no original identity/lifetime adapter.",
+      "scope": "Caller-pinned distinct live handles, outer/inner zero-timeout acquisition, reverse release of exactly acquired recursion levels, abandoned acquisition refusal with unwind, failed-release ownership retained and reacquisition refusal. Isolated header and real Wine kernel mutex fixture; not installed in original capture. Actual Wine DuplicateHandle fixture also checks same-object recursive ownership, invalid source refusal and lifetime after synchronized source closure; no original identity/lifetime adapter. Fourth batch closes the bounded native helper implementation and strict malformed-input controls described in rendering-fourth-ten-closeouts-20261021.md; original game/physical-driver installation and acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/cursor-source-gate.md"
+        "research/runtime/cursor-source-gate.md",
+        "research/runtime/rendering-fourth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/cursor_source_gate.h"
       ],
       "tests": [
         "tests/drawing-cursor-source-gate-test.c",
-        "tools/test-drawing-cursor-source-gate.py"
+        "tools/test-drawing-cursor-source-gate.py",
+        "tools/test-rendering-fourth-ten.py",
+        "tests/test-rendering-fourth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
@@ -88807,17 +88841,20 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT4.native-ownership-refusals-20261021",
+        "NT4.final-native-ownership-refusals-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh duplicate fixture passes only owned Wine object alias/lifetime cases; first fixture remains historical after test/runner/scope changes. Actual original handle identity/lifetime including concurrent close/use, caller-state preservation and live diagnostic integration unimplemented. Private duplicates intentionally extend object lifetime; no recovered behavior, complete reference, native parity or game synchronization repair claim."
+        "Fresh duplicate fixture passes only owned Wine object alias/lifetime cases; first fixture remains historical after test/runner/scope changes. Actual original handle identity/lifetime including concurrent close/use, caller-state preservation and live diagnostic integration unimplemented. Private duplicates intentionally extend object lifetime; no recovered behavior, complete reference, native parity or game synchronization repair claim.",
+        "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -88829,18 +88866,21 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Isolated duplicate-handle cursor mutex diagnostic lifetime registry",
-      "scope": "Caller-serialized pure state model for one original mutex identity/private duplicate: reserve numeric identity leases, retire to block new leases, defer private close until all leases return, claim one close attempt, retain duplicate after close failure and reject stale identities after reuse. No OS calls, synchronization or live capture installation. Host-thread fixture uses an explicit caller mutex for8x1000attempts crossed with retirement; the model itself remains unsynchronized.",
+      "scope": "Caller-serialized pure state model for one original mutex identity/private duplicate: reserve numeric identity leases, retire to block new leases, defer private close until all leases return, claim one close attempt, retain duplicate after close failure and reject stale identities after reuse. No OS calls, synchronization or live capture installation. Host-thread fixture uses an explicit caller mutex for8x1000attempts crossed with retirement; the model itself remains unsynchronized. Fourth batch closes the bounded native helper implementation and strict malformed-input controls described in rendering-fourth-ten-closeouts-20261021.md; original game/physical-driver installation and acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/cursor-mutex-lifetime.md"
+        "research/runtime/cursor-mutex-lifetime.md",
+        "research/runtime/rendering-fourth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/cursor-mutex/diagnostic_lifetime.h"
       ],
       "tests": [
         "tests/test-drawing-cursor-mutex-lifetime.cpp",
-        "tools/test-drawing-cursor-mutex-lifetime.py"
+        "tools/test-drawing-cursor-mutex-lifetime.py",
+        "tools/test-rendering-fourth-ten.py",
+        "tests/test-rendering-fourth-ten.py"
       ],
       "validation_dependencies": [
         "tools/coverage_claims.py"
@@ -88851,17 +88891,20 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT4.native-ownership-refusals-20261021",
+        "NT4.final-native-ownership-refusals-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh owned transition/thread fixture passes; caller serialization, actual original constructor/global identity pins, per-thread opaque lease tokens, OS duplicate/close handling, full512FX/error forwarding and live controls/integration remain unimplemented. No source alias/parity or safe live repair."
+        "Fresh owned transition/thread fixture passes; caller serialization, actual original constructor/global identity pins, per-thread opaque lease tokens, OS duplicate/close handling, full512FX/error forwarding and live controls/integration remain unimplemented. No source alias/parity or safe live repair.",
+        "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -88873,18 +88916,21 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Isolated cursor-source diagnostic gate original-call preservation",
-      "scope": "Owned PE32 synthetic forwarding adapter around native nonblocking gate. Exactly one original body call with raw result/error/full512FX preserved on64wait/release result cells despite clobbering diagnostics; release faults remain explicit. Not integrated with original game, lifetime registry, source protection or worker callbacks.",
+      "scope": "Owned PE32 synthetic forwarding adapter around native nonblocking gate. Exactly one original body call with raw result/error/full512FX preserved on64wait/release result cells despite clobbering diagnostics; release faults remain explicit. Not integrated with original game, lifetime registry, source protection or worker callbacks. Fourth batch closes the bounded native helper implementation and strict malformed-input controls described in rendering-fourth-ten-closeouts-20261021.md; original game/physical-driver installation and acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/cursor-gate-forwarding.md"
+        "research/runtime/cursor-gate-forwarding.md",
+        "research/runtime/rendering-fourth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/drawing/cursor_gate_forward.h"
       ],
       "tests": [
         "tests/drawing-cursor-gate-forward-test.c",
-        "tools/test-drawing-cursor-gate-forward.py"
+        "tools/test-drawing-cursor-gate-forward.py",
+        "tools/test-rendering-fourth-ten.py",
+        "tests/test-rendering-fourth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/cursor_source_gate.h",
@@ -88898,17 +88944,20 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT4.native-ownership-refusals-20261021",
+        "NT4.final-native-ownership-refusals-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh owned PE32 forwarding fixture passes. Actual original result/register/thread/lifetime/worker callback order, disabled/budget paths and live diagnostic controls remain unimplemented. No safe live repair/source alias/reference/parity claim."
+        "Fresh owned PE32 forwarding fixture passes. Actual original result/register/thread/lifetime/worker callback order, disabled/budget paths and live diagnostic controls remain unimplemented. No safe live repair/source alias/reference/parity claim.",
+        "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -88920,11 +88969,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded thread-owned diagnostic cursor mutex lease accounting",
-      "scope": "Caller-serialized64cell monotonic owner/identity token pool and paired lifetime reservation/return. Capacity/wrap/foreign/stale refusals, partial reservation unwind, retirement drainage only after zero outstanding mutex levels. Pure model with no OS calls/live exports/original capture.",
+      "scope": "Caller-serialized64cell monotonic owner/identity token pool and paired lifetime reservation/return. Capacity/wrap/foreign/stale refusals, partial reservation unwind, retirement drainage only after zero outstanding mutex levels. Pure model with no OS calls/live exports/original capture. Fourth batch closes the bounded native helper implementation and strict malformed-input controls described in rendering-fourth-ten-closeouts-20261021.md; original game/physical-driver installation and acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/cursor-gate-leases.md"
+        "research/runtime/cursor-gate-leases.md",
+        "research/runtime/rendering-fourth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/cursor-mutex/cursor_gate_tokens.h",
@@ -88933,7 +88983,9 @@
       "tests": [
         "tests/test-drawing-cursor-gate-tokens.cpp",
         "tests/test-drawing-cursor-gate-lease.cpp",
-        "tools/test-drawing-cursor-gate-leases.py"
+        "tools/test-drawing-cursor-gate-leases.py",
+        "tools/test-rendering-fourth-ten.py",
+        "tests/test-rendering-fourth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/cursor-mutex/diagnostic_lifetime.h",
@@ -88945,17 +88997,20 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT4.native-ownership-refusals-20261021",
+        "NT4.final-native-ownership-refusals-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh owned token/paired lease fixture passes. Caller lock/token ownership of actual duplicate refs, kernel operations, pinned original constructors/globals/close retirement, versioned exports/wire, full caller-state/callback/worker controls and live integration unimplemented. No safe repair/reference/source alias/parity claim."
+        "Fresh owned token/paired lease fixture passes. Caller lock/token ownership of actual duplicate refs, kernel operations, pinned original constructors/globals/close retirement, versioned exports/wire, full caller-state/callback/worker controls and live integration unimplemented. No safe repair/reference/source alias/parity claim.",
+        "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -88967,11 +89022,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owning diagnostic cursor mutex gate and kernel lease state",
-      "scope": "Caller-serialized owning-module phase model binds actual stored gate levels to numeric thread/identity tokens, publishes private duplicate identities, retires originals, defers closes until stored levels and leases drain. Owned PE32 actual mutex duplicate/acquire/source-close/release plus scripted private-close failure; no game installer/live exports/source capture. Synchronized real foreign-thread retirement/original closure while main owns the active gate is tested separately; no real game callbacks.",
+      "scope": "Caller-serialized owning-module phase model binds actual stored gate levels to numeric thread/identity tokens, publishes private duplicate identities, retires originals, defers closes until stored levels and leases drain. Owned PE32 actual mutex duplicate/acquire/source-close/release plus scripted private-close failure; no game installer/live exports/source capture. Synchronized real foreign-thread retirement/original closure while main owns the active gate is tested separately; no real game callbacks. Fourth batch closes the bounded native helper implementation and strict malformed-input controls described in rendering-fourth-ten-closeouts-20261021.md; original game/physical-driver installation and acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/cursor-kernel-adapter.md"
+        "research/runtime/cursor-kernel-adapter.md",
+        "research/runtime/rendering-fourth-ten-closeouts-20261021.md"
       ],
       "implementation": [
         "runtime/cursor-mutex/cursor_kernel_adapter_core.h",
@@ -88979,7 +89035,9 @@
       ],
       "tests": [
         "tests/drawing-cursor-kernel-adapter-test.c",
-        "tools/test-drawing-cursor-kernel-adapter.py"
+        "tools/test-drawing-cursor-kernel-adapter.py",
+        "tools/test-rendering-fourth-ten.py",
+        "tests/test-rendering-fourth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/cursor-mutex/cursor_gate_lease.h",
@@ -88997,17 +89055,20 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT4.native-ownership-refusals-20261021",
+        "NT4.final-native-ownership-refusals-20261021"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh synchronized foreign-thread fixture passes; previous single-thread fixture remains historical after extended test/runner/scope. Original constructor/global pins/import forwarding, callback/worker controls, versioned exports/live capture remain unimplemented. Scripted private-close failure not actual OS failure; no lock-order/complete reference/parity claim."
+        "Fresh synchronized foreign-thread fixture passes; previous single-thread fixture remains historical after extended test/runner/scope. Original constructor/global pins/import forwarding, callback/worker controls, versioned exports/live capture remain unimplemented. Scripted private-close failure not actual OS failure; no lock-order/complete reference/parity claim.",
+        "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -310959,6 +311020,68 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NT4.native-ownership-refusals-20261021",
+      "kind": "native_integration",
+      "scope": "Ten bounded native ownership/refusal helper implementations; production scene/drawing build closure, real Wine11.16 PE32 kernel and call-state fixtures, all eleven held-source guards, strict journal and temporal-origin controls, optimized and ASan/UBSan host models. No original game/artifacts, physical pixels, whole campaign or live replacement.",
+      "record": "research/runtime/rendering-fourth-ten-results-20261021/controls-04.json",
+      "sha256": "515b68703ad41194cf6def3d1f9b7894b6716fc520fd17c5fcca08137dd04698",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NT4.final-native-ownership-refusals-20261021",
+      "kind": "native_integration",
+      "scope": "Ten bounded native ownership/refusal helper implementations; production scene/drawing build closure, real Wine11.16 PE32 kernel and call-state fixtures, all eleven held-source guards, strict journal and temporal-origin controls, optimized and ASan/UBSan host models. No original game/artifacts, physical pixels, whole campaign or live replacement. Final tracker null-generation fix, both-kind post-retirement lookups and two additional actual null getters are included; earlier proof remains historical.",
+      "record": "research/runtime/rendering-fourth-ten-results-20261021/controls-05.json",
+      "sha256": "81f7b717c3fa281364e720f0b25755a23a65d9e315e879a38b13bacfc6d20167",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -333746,6 +333869,32 @@
       "evidence": [
         "TOOL.local-first-workflow-20261021"
       ]
+    },
+    {
+      "id": "NR.fourth-ten.ownership-refusals-20261021",
+      "level": "headless",
+      "scope": "Owned native helper state transitions, malformed journals, bounded buffer-origin indexing, optimized/sanitized host models, real PE32 kernel fixtures and production compile closure. No original game or live capture/pixel equivalence.",
+      "behaviors": [
+        "NR.drawing-cursor-source-gate",
+        "NR.drawing-cursor-mutex-lifetime",
+        "NR.drawing-cursor-gate-forwarding",
+        "NR.drawing-cursor-gate-leases",
+        "NR.drawing-cursor-kernel-lease-state",
+        "NR.producer-recorder-thread-policy",
+        "NR.drawing-source-held-refusal",
+        "NR.drawing-source-pending-frame-refusal",
+        "NR.drawing-wine-object-lifetimes",
+        "NR.drawing-wine-buffer-origins"
+      ],
+      "tests": [
+        "tools/test-rendering-fourth-ten.py",
+        "tests/test-rendering-fourth-ten.py",
+        "tests/rendering-recorder-state-test.c"
+      ],
+      "evidence": [
+        "NT4.native-ownership-refusals-20261021",
+        "NT4.final-native-ownership-refusals-20261021"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -334501,8 +334650,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-83171d81446736419ccecb39a7f10e1683935d80c77c95496ffd8fff98f58063.json",
-    "sha256": "83171d81446736419ccecb39a7f10e1683935d80c77c95496ffd8fff98f58063"
+    "path": "research/runtime/coverage/source-index-e88829efe87dcb8bb3a0057d4210dd35326ea14b6f2e661afbcf70e91b2f75aa.json",
+    "sha256": "e88829efe87dcb8bb3a0057d4210dd35326ea14b6f2e661afbcf70e91b2f75aa"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

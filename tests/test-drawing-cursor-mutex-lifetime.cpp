@@ -78,6 +78,19 @@ int main() {
     assert(mnm_cursor_lifetime_publish(&cell,handle(1),handle(2),1));
     assert(!mnm_cursor_lifetime_retire(&cell,handle(3),1));
     assert(!mnm_cursor_lifetime_close_end(&cell,handle(2),1,1));
-    cell.leases=~0u;
+    // A close claim remains exclusive and failure cannot revive admission.
+    assert(mnm_cursor_lifetime_retire(&cell,handle(1),1));
+    assert(mnm_cursor_lifetime_close_begin(&cell)==handle(2));
     assert(!mnm_cursor_lifetime_reserve(&cell,handle(1),1));
+    assert(!mnm_cursor_lifetime_publish(&cell,handle(3),handle(4),2));
+    assert(!mnm_cursor_lifetime_close_end(&cell,handle(9),1,1));
+    assert(cell.closing&&cell.duplicate==handle(2));
+    assert(mnm_cursor_lifetime_close_end(&cell,handle(2),1,0));
+    assert(!mnm_cursor_lifetime_reserve(&cell,handle(1),1));
+    assert(mnm_cursor_lifetime_close_begin(&cell)==handle(2));
+    assert(mnm_cursor_lifetime_close_end(&cell,handle(2),1,1));
+    assert(mnm_cursor_lifetime_publish(&cell,handle(1),handle(3),2));
+    assert(!mnm_cursor_lifetime_return(&cell,1));
+    cell.leases=~0u;
+    assert(!mnm_cursor_lifetime_reserve(&cell,handle(1),2));
 }

@@ -20753,3 +20753,16 @@ checks every outgoing evidence version before sharing. See the
 availability timing, not implementation/comparison/integration/replacement proof
 requirements. The pending shared checkout checkpoint is completed from its
 isolated owned snapshot; subsequent concurrent edits remain separate.
+
+## Fourth ten native ownership/refusal closeouts (2026-10-21)
+
+The ten bounded helper implementations in
+[the fourth batch](rendering-fourth-ten-closeouts-20261021.md) close cursor gate,
+mutex lifetime, forwarding, lease/token, kernel retirement, recorder thread,
+held/pending-source refusal and Wine lifetime/buffer-origin contracts. Native
+changes refuse duplicate role ownership, retain missing-release failures, preserve
+recorder entry LastError, accept exact invalid-phase rejection metadata and bound
+buffer-origin lookup storage by lifetime transitions. The runner pins prospective
+contracts and compiled source closure, writes evidence directly to SQLite and
+uses one owned prefix. Understanding, comparison, integration and replacement
+retain their prior statuses; full original/game/driver acceptance remains open.

@@ -4,6 +4,7 @@ static u32 wine_lifetime_records,wine_lifetime_calls,wine_lifetime_generations;
 static void* wine_lifetime_original[4];
 static struct {void* pointer;u32 kind,generation;} wine_lifetime_objects[2048];
 static u32 wine_lifetime_find(void* pointer,u32 kind){
+ if(!pointer)return 0; /* Empty/retired slots never identify a null result. */
  for(u32 i=0;i<2048;++i)if(wine_lifetime_objects[i].pointer==pointer&&wine_lifetime_objects[i].kind==kind)return wine_lifetime_objects[i].generation;
  return 0;
 }

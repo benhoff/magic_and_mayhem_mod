@@ -18,7 +18,7 @@ void start(void){
    u32 r=kind==1?wine_lifetime_texture_create((void*)1,(void*)2,3,4,5,(void*)6,(void*)7,(void*)8,&output):wine_lifetime_swapchain_create((void*)1,(void*)2,(void*)3,(void*)4,(void*)5,&output);
    require(r==0&&calls==before+1&&output==returned_object&&GetLastError()==0xcafe,85);u32 generation=wine_lifetime_find(output,kind);require(generation!=0,86);
    result_value=1;SetLastError(0xbeef);r=kind==1?wine_lifetime_texture_decref(output):wine_lifetime_swapchain_decref(output);require(r==1&&wine_lifetime_find(output,kind)==generation,87);
-   result_value=0;SetLastError(0xbeef);r=kind==1?wine_lifetime_texture_decref(output):wine_lifetime_swapchain_decref(output);require(!r&&!wine_lifetime_find(output,kind),88);
+   result_value=0;SetLastError(0xbeef);r=kind==1?wine_lifetime_texture_decref(output):wine_lifetime_swapchain_decref(output);require(!r&&!wine_lifetime_find(output,kind)&&!wine_lifetime_find(0,kind),88);
   }
   result_value=0x80004005;SetLastError(0xbeef);output=0;
   u32 r=kind==1?wine_lifetime_texture_create((void*)1,(void*)2,3,4,5,(void*)6,(void*)7,(void*)8,&output):wine_lifetime_swapchain_create((void*)1,(void*)2,(void*)3,(void*)4,(void*)5,&output);require(r==result_value&&!output,89);
