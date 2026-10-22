@@ -31,7 +31,7 @@ def decode_bytes(raw):
     rows=list(struct.iter_unpack('<24I',raw[64:]));previous=0
     for index,r in enumerate(rows):
         qpc=r[3]|r[4]<<32
-        if r[0]!=index+1 or r[1] not in EVENTS or h[2]==1 and r[1] in ROUTE_EVENTS or r[2]!=h[9] or qpc<previous:raise ValueError('Engine trace identity/time')
+        if r[0]!=index+1 or r[1] not in EVENTS or h[2]==1 and r[1] in ROUTE_EVENTS or r[2]!=h[9] or r[10]>255 or qpc<previous:raise ValueError('Engine trace identity/time')
         previous=qpc
     return frequency,rows
 

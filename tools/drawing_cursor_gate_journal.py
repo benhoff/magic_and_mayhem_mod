@@ -19,7 +19,7 @@ def decode(data):
 
 def account(observation):
     """Prospective scoped lifecycle pairing; no complete capture promotion."""
-    creations={};identities={};retirements={};tokens={};drained={};gaps=[]
+    creations={};identities={};retirements={};tokens={};drained={};gaps=[];seen_tokens=set()
     for row in observation['rows']:
         phase=row['phase'];call=row['call_identity'];identity=row['mutex_identity'];role=row['role_mask'];token=row['token']
         if phase==1:
@@ -45,8 +45,8 @@ def account(observation):
             elif any(identity in pair[1:] for pair in tokens.values()):gaps.append('private close before explicit drain')
             elif row['diagnostic_result']:state['live']=False
         elif phase==6 and row['diagnostic_result']:
-            if not token or token in tokens or row['point'][13]!=3:gaps.append('invalid begin token')
-            else:tokens[token]=(row['owner'],row['outer_identity'],row['inner_identity'])
+            if not token or token in seen_tokens or row['point'][13]!=3:gaps.append('invalid begin token')
+            else:seen_tokens.add(token);tokens[token]=(row['owner'],row['outer_identity'],row['inner_identity'])
         elif phase==10 and row['diagnostic_result']:
             expected=(row['owner'],row['outer_identity'],row['inner_identity'])
             if tokens.get(token)!=expected or row['point'][13]:gaps.append('unbound drain token')

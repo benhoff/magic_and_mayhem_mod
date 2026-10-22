@@ -9,5 +9,6 @@ void start(void){
  r[1]=7;refused((void*)r[12],r[13],out,64);r[1]=8;put((void*)0x6c4830,11);refused((void*)r[12],r[13],out,64);put((void*)0x6c4830,10);put((void*)(0x6cbb78+0xfd62),21);refused((void*)r[12],r[13],out,64);put((void*)(0x6cbb78+0xfd62),20);*(u8*)(0x6cbb78+0xfd5a)=1;refused((void*)r[12],r[13],out,64);*(u8*)(0x6cbb78+0xfd5a)=0;
  ++owner;refused((void*)r[12],r[13],out,64);--owner;frequency[0]=0;refused((void*)r[12],r[13],out,64);frequency[0]=1000;enabled=0;refused((void*)r[12],r[13],out,64);enabled=1;
  void* read_only=VirtualAlloc(0,4096,0x3000,2);require(read_only!=0,174);refused((void*)r[12],r[13],read_only,64);
+ u32 saved_queue=r[12];r[12]=0;refused(0,r[13],out,64);r[12]=saved_queue;
  r[13]=0x4fd559;require(EngineCadenceQueuePointV1((void*)r[12],r[13],out,64)&&out[7]==2,175);ExitProcess(0);
 }

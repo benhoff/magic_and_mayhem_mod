@@ -1,11 +1,10 @@
 """Per-update accounting of the observed routes; global ownership stays independent."""
 from collections import Counter
+from drawing_observed_inputs import unique as observed_unique
 
 
 def unique(items,key):
-    result={item[key]:item for item in items}
-    if len(result)!=len(items):raise ValueError('Ambiguous update accounting identity: '+key)
-    return result
+    return observed_unique(items,key,allow_zero=key=='sequence')
 
 
 def overlaps(call,begin,end):
@@ -15,6 +14,8 @@ def overlaps(call,begin,end):
 
 def build(routes,timing,sources,queues,producer_records,physical_frames,egl,source_frames,count=120):
     if count!=120:raise ValueError('The accepted interval denominator is120')
+    if type(count) is not int:raise ValueError('Integer interval denominator required')
+    if type(routes['frequency']) is not int or routes['frequency']<=0:raise ValueError('Positive integer QPC frequency required')
     if routes['frequency']!=timing['frequency']:raise ValueError('Windows QPC frequency differs')
     points=unique(sources['points'],'sequence');calls=unique(timing['calls'],'entry');frames=unique(physical_frames,'entry')
     source_points=unique(source_frames,'entry');unique(physical_frames,'ordinal')
@@ -48,6 +49,7 @@ def build(routes,timing,sources,queues,producer_records,physical_frames,egl,sour
         for q in bound_queues:
             if not q['complete_update_window'] or not q['advancing_update_window'] or not q['update_queue_record_matches'] or not a['producer_prefix']<=q['producer_before']<q['producer_after']<=b['producer_prefix']:
                 raise ValueError('Queue does not lie inside its source callback prefixes')
+        if any(type(p['producer_prefix']) is not int or not 0<=p['producer_prefix']<=len(producer_records) for p in (a,b)) or a['producer_prefix']>b['producer_prefix']:raise ValueError('Source callback prefix outside producer denominator')
         if a['pending_frames'] or b['pending_frames']:pending_source.append(w['sequence'])
         admitted=[c for c in calls.values() if overlaps(c,begin,end)]
         crossing=[c['entry'] for c in admitted if c['enter_qpc']<begin or c['return_qpc']>end];straddlers.update(crossing)

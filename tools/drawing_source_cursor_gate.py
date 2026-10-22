@@ -13,12 +13,13 @@ def decode(data):
   if r[0]!=i+1 or any(r[7:16]):raise ValueError('Gate binding ordinal/reserved')
   phase,api,owner,token,lease,reason=r[1:7];point=r[16:]
   if phase==4:
-   if i!=count-1 or pending or any(r[3:]):raise ValueError('Gate binding terminal/pending')
+   if i!=count-1 or pending or api not in (1,2) or any(r[3:]):raise ValueError('Gate binding terminal/pending')
    terminal=api;continue
   if phase not in (1,2,3) or not api or not owner:raise ValueError('Gate binding phase/identity')
   if point[:3]!=(1,128,0x40209ca7) or any(point[16:]) or point[6]!=owner or (token and point[5]!=token):raise ValueError('Gate scalar point mismatch')
   if phase!=3 and (point[3]!=(1 if phase==1 or not token else 2) or point[4]!=reason):raise ValueError('Gate scalar phase/reason mismatch')
   identity=(owner,token,reason,point[5],point[7],point[8])
+  if phase==1 and lease or not token and lease:raise ValueError('Unacquired source lease in gate binding')
   if phase==1:
    if api in seen:raise ValueError('Duplicate API gate entry')
    seen.add(api)

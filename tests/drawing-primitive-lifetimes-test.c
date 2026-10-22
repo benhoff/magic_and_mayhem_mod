@@ -51,7 +51,7 @@ void start(void){
  SetLastError(0xbeef);require(!SceneDrawingPrimitivePointV1(point,188)&&GetLastError()==0xbeef,51);
  require(SceneDrawingPrimitivePointV1(point,192)&&point[2]==0&&!point[3]&&GetLastError()==0xbeef,52);
  {PRODUCER_TRACE_SCOPE;struct Frame outer={0};outer.owner=owner;outer.tag=100;outer.caller=0x401234;primitive_lifetime_enter(&outer);primitive_lifetime_record(&outer,2,0,0,0);outer.sp=1;frames[0]=outer;
-  struct Frame inner={0};inner.owner=owner;inner.tag=10;inner.caller=0x401234;primitive_lifetime_enter(&inner);primitive_lifetime_record(&inner,2,0,0,0);inner.sp=2;frames[1]=inner;
+  struct Frame inner={0};inner.owner=owner;inner.tag=10;inner.caller=0x401234;primitive_lifetime_enter(&inner);inner.primitive=1;primitive_lifetime_record(&inner,2,0,0,0);inner.sp=2;frames[1]=inner;
   SetLastError(0xbeef);primitive_api_capture(&api,1);require(GetLastError()==0xbeef,57);api.r[8]=9;primitive_api_capture(&api,2);api.r[0]=5;primitive_api_capture(&api,3);require(GetLastError()==0xbeef,58);require(SceneDrawingPrimitivePointV1(point,192)&&point[2]==1&&point[3]==inner.lifetime_id&&point[4]==outer.lifetime_id&&point[11]==2&&GetLastError()==0xbeef,53);primitive_lifetimes_boundary(10,1,2);require(GetLastError()==0xbeef,46);
   frames[1].sp=0;primitive_lifetime_record(&inner,3,7,0,0);primitive_lifetime_retire(&inner,7);
   frames[0].sp=0;primitive_lifetime_record(&outer,3,9,0,0);primitive_lifetime_retire(&outer,9);

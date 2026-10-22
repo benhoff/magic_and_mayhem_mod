@@ -81,6 +81,10 @@ void start(void){
   if(mode=='u'){frames[1].sp=2;frames[1].owner=GetCurrentThreadId();frames[1].tag=99;}
   if(mode=='d'||mode=='j'){u32 id;if(!CreateThread(0,0,(void*)&retire_frame,0,0,&id))ExitProcess(214);}
  }
+ if(mode=='v'||mode=='x'){
+  SetLastError(0xbeef);u32 bad_record=mode=='v'?0:9,bad_mode=mode=='x'?256:0;
+  if(SceneDrawingUpdateBoundaryV1(bad_record,30,19,bad_mode)||GetLastError()!=0xbeef||source_windows_records||observed_boundaries)ExitProcess(226);
+ }
  queue=0;event[0]=9;event[5]=19;event[6]=30;observe_boundary(event);if(closed||emitted)ExitProcess(193);if(mode=='j'){if(!stopped||observed_boundaries)ExitProcess(215);ExitProcess(0);}queue=1;event[0]=11;event[5]=20;event[6]=31;
  if(mode=='s')event[6]=32;if(mode=='t')event[5]=21;if(mode=='r')event[0]=10;if(mode=='o')++update_point_first[6];if(mode=='p'){frames[0].sp=1;frames[0].owner=GetCurrentThreadId();}if(mode=='a')update_point_active=1;if(mode=='n')update_point_completed=0;if(mode=='e')failures=1;
  if(mode=='w'||mode=='z'){frames[0].sp=1;frames[0].owner=GetCurrentThreadId()+1;if(mode=='w'){u32 id;if(!CreateThread(0,0,(void*)&retire_frame,0,0,&id))ExitProcess(196);}}

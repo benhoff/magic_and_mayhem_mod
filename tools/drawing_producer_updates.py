@@ -11,11 +11,14 @@ def decode(data):
     if len(data)<160 or (len(data)-64)%96 or len(data)>64+257*96:raise ValueError('Producer update envelope')
     h=struct.unpack_from('<16I',data)
     if data[:8]!=b'MNMDUP01' or h[2:6]!=(1,96,0x40209ca7,256) or not 1<=h[6]<=120 or any(h[7:]):raise ValueError('Producer update header')
-    rows=list(struct.iter_unpack('<24I',data[64:]));pending=None;queues=[];events=set()
+    rows=list(struct.iter_unpack('<24I',data[64:]));pending=None;queues=[];events=set();owner=None;frequency=None
     for ordinal,r in enumerate(rows[:-1],1):
         p=r[8:24]
         if r[0]!=ordinal or r[1] not in (1,2) or not r[3] or r[6] not in (1,2) or r[7]!=1 or p[:2]!=(64,1) or not p[2] or p[5]>255 or p[6]!=r[3] or p[7]!=r[6] or not(p[10]|p[11]) or p[12]!=8 or p[13]>1 or any(p[14:]):raise ValueError('Producer update point identity')
+        if owner is None:owner=r[3];frequency=p[10:12]
+        if r[3]!=owner or p[10:12]!=frequency:raise ValueError('Producer update owner/frequency changed')
         if r[1]==1:
+            if queues and r[4]<queues[-1]['producer_after']:raise ValueError('Producer update source prefix regressed')
             if pending or r[2]!=len(queues)+1 or p[2] in events:raise ValueError('Producer update duplicate/nested queue')
             pending=r;events.add(p[2])
         else:

@@ -79,6 +79,9 @@ def decode(raw, producer_records=None, callbacks=None, include_call_ids=None):
                 raise ValueError('Primitive terminal producer prefix')
         if r[13] != len(active):
             raise ValueError('Primitive active-call accounting')
+        # Classification is assigned during request acquisition, after phase1.
+        if phase == 2:c['primitive']=r[11]
+        elif phase in (3,4,6) and c.get('primitive') is not None and r[11]!=c['primitive']:raise ValueError('Primitive classification changed after acquisition')
         if phase == 6 and len(pending['calls']) == pending['pending'] and set(pending['calls']) != set(active):
             raise ValueError('Pending callback omits an active call')
     if phase != 7 or callback_by_record is not None and {b['cadence_record'] for b in boundaries} != set(callback_by_record):

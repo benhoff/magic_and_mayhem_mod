@@ -47,6 +47,7 @@ static int whole_update_configure(void){
 }
 u32 WIN SceneDrawingUpdateBoundaryV1(u32 record,u32 accepted,u32 counter,u32 mode){
  u32 error=GetLastError();if(!whole_update_capture||stopped){SetLastError(error);return 1;}PRODUCER_TRACE_SCOPE;
+ if(!record||mode>255){SetLastError(error);return 0;}
  if(!whole_update_wait_frames(record,accepted,counter,mode)){SetLastError(error);return 0;}
  /* A stop during the unlocked wait is not another boundary. */
  if(stopped){SetLastError(error);return 1;}

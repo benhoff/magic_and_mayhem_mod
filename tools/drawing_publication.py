@@ -106,7 +106,7 @@ def applied_actions(directory,calls,frames,producer_records):
             pending[r[2]]=r
         else:
             first=pending.pop(r[2],None)
-            if r[7] not in range(1,6) or not first or r[2:7]!=first[2:7] or r[8]<first[8] or r[9]<first[9]:raise ValueError('Unmatched original action return')
+            if r[7] not in range(1,6) or not first or r[2:7]!=first[2:7] or r[8]<first[8] or r[9]<first[9] or r[12]<first[12]:raise ValueError('Unmatched original action return')
             actions.append({'request':r[2],'action':r[3],'screen':r[4],'generation':r[5],'argument':r[6],
                             'status':r[7],'entry_source_sequence':first[8],'return_source_sequence':r[8],
                             'entry_next_frame':first[10],'return_next_frame':r[10],'thread':r[11],

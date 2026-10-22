@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+from coverage_evidence import read_json,write_report,evidence_digest
 import signal
 import subprocess
 import tempfile
@@ -34,11 +35,11 @@ def main():
     a = p.parse_args()
     if a.report.exists():
         p.error('Refusing evidence overwrite')
-    claims = json.loads(a.claims.read_text())
+    claims = read_json(a.claims,root=ROOT)
     sources = dict(claims['sources'])
     digest = lambda data: hashlib.sha256(data).hexdigest()
     sources['tools/test-drawing-documented-input.py'] = digest(Path(__file__).read_bytes())
-    if any(digest((ROOT / n).read_bytes()) != h for n, h in sources.items()):
+    if any(evidence_digest(ROOT/n,root=ROOT) != h for n, h in sources.items()):
         raise ValueError('Prospective fixture sources changed')
     x = C.CDLL('libX11.so.6')
 
@@ -92,8 +93,21 @@ def main():
                                       ('wrong-action', ['Shift'], 'wait')]:
             cases.append((name, [dict(kind=kind, x=100, y=100, button=1,
                                      modifiers=modifiers, after_ms=40)], None))
+        valid=dict(kind='click',x=100,y=100,button=1,after_ms=0)
+        for name,action in [
+            ('fractional-x',dict(valid,x=1.5)),
+            ('boolean-button',dict(valid,button=True)),
+            ('fractional-wait',dict(kind='wait',after_ms=.5)),
+            ('negative-hold',dict(kind='hold',key='space',duration_ms=-1)),
+            ('oversized-hold',dict(kind='hold',key='space',duration_ms=60001)),
+            ('late-invalid',dict(valid,modifiers=['Control'])),
+            ('nonobject-action',17)]:
+            # A valid earlier row must not inject before a later refusal.
+            cases.append((name,[dict(valid),action],None))
         cases.append(('cancel-held', [dict(kind='click', x=100, y=100, button=1,
                                           modifiers=['Shift'], after_ms=40)], signal.SIGTERM))
+        cases.append(('cancel-held-storage', [dict(kind='click', x=100, y=100, button=1,
+                                                  modifiers=['Shift'], after_ms=40)], signal.SIGTERM))
         for name, actions, cancel in cases:
             directory = run / name
             directory.mkdir()
@@ -104,11 +118,14 @@ def main():
                 event = Event()
                 next_event(display, C.byref(event))
             events, sent = [], False
+            input_env = dict(os.environ, QT_QPA_PLATFORM='xcb')
+            if name == 'cancel-held-storage':
+                input_env['MNM_DRAW_STORAGE_INPUT'] = '1'
             with (directory / 'input.log').open('x') as log:
                 process = subprocess.Popen([str(a.executable.resolve()), str(directory),
                                             str(schedule), str(report)], stdout=log,
                                            stderr=subprocess.STDOUT,
-                                           env=dict(os.environ, QT_QPA_PLATFORM='xcb'))
+                                           env=input_env)
                 deadline = time.monotonic() + 15
                 while process.poll() is None:
                     while pending(display):
@@ -155,15 +172,13 @@ def main():
                 assert not any(e['type'] in (2, 4) for e in events)
             runs.append(dict(name=name, exit=process.returncode, outcome=outcome,
                              events=events, held_inputs_cleared=True))
-        assert all(digest((ROOT / n).read_bytes()) == h for n, h in sources.items())
+        assert all(evidence_digest(ROOT/n,root=ROOT) == h for n, h in sources.items())
         result = dict(schema=1, success=True, sources=sources, sources_stable=True,
                       claims=claims['claims'], executable_sha256=digest(a.executable.read_bytes()),
                       artifacts=str(run.relative_to(ROOT)), cases=runs,
                       original_game_executed=False, selection_or_pause_semantics_proved=False,
-                      scope='Real XTest on owned X11 child: Shift state on both button events, key pairs, four malformed modifier refusals and cancellation while held with no leaked inputs. No original engine or presentation parity.')
-        with a.report.open('x') as out:
-            json.dump(result, out, indent=2)
-            out.write('\n')
+                      scope='Real XTest on owned X11 child: Shift state on both button events, key pairs, malformed modifiers, typed/bounded waits/coordinates/buttons and late-row preflight refusals and cancellation while held in both ordinary and storage mode with no leaked inputs. No original engine or presentation parity.')
+        write_report(ROOT,a.report,(json.dumps(result,indent=2)+'\n').encode())
         print(json.dumps(dict(success=True, cases=len(runs), artifacts=str(run))))
     finally:
         if parent:

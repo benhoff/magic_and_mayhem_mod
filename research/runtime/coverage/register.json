@@ -35881,7 +35881,8 @@
       "documents": [
         "research/runtime/draw02-publication.md",
         "research/formats/drawing-publication-v1.md",
-        "research/runtime/rendering-low20-20261020.md"
+        "research/runtime/rendering-low20-20261020.md",
+        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md"
       ],
       "original": [],
       "implementation": [
@@ -35898,7 +35899,10 @@
         "tests/test-drawing-publication.py",
         "tools/test-menu-observer.py",
         "tools/test-rendering-low20.py",
-        "tests/rendering-low20/CMakeLists.txt"
+        "tests/rendering-low20/CMakeLists.txt",
+        "tools/test-rendering-eleventh-ten.py",
+        "tests/test-rendering-eleventh-ten.py",
+        "tests/drawing-menu-action-observation-test.c"
       ],
       "evidence": [
         "NR.drawing-actions.original-20261011",
@@ -35908,11 +35912,12 @@
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "LOW20.component-controls-20261020"
+        "LOW20.component-controls-20261020",
+        "NT11.source-observers-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
@@ -35993,7 +35998,7 @@
         "runtime/scene/kind8_sprite_admission.h"
       ],
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-5-20261020",
@@ -45572,7 +45577,8 @@
         "research/runtime/engine-cadence-page-reservation-negative-20261011.json",
         "research/runtime/engine-cadence-controls-20261011.json",
         "research/runtime/engine-cadence-titan-20261011.json",
-        "research/runtime/rendering-low20-20261020.md"
+        "research/runtime/rendering-low20-20261020.md",
+        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/engine-cadence/observer.c",
@@ -45587,7 +45593,9 @@
         "tools/test-engine-cadence.py",
         "tools/test-native-campaign.py",
         "tools/test-rendering-low20.py",
-        "tests/rendering-low20/CMakeLists.txt"
+        "tests/rendering-low20/CMakeLists.txt",
+        "tools/test-rendering-eleventh-ten.py",
+        "tests/test-rendering-eleventh-ten.py"
       ],
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
@@ -45605,7 +45613,7 @@
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -45623,10 +45631,12 @@
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH03.public-default-cadence-20261020",
-        "LOW20.component-controls-20261020"
+        "LOW20.component-controls-20261020",
+        "NT11.source-observers-20261022"
       ],
       "remaining_gaps": [
-        "Fresh TITAN4545World casting/combat/portrait/menu/Quit trace passes and establishes4355advancing1counter/8globalANI/1scheduler/1queue windows plus189non-advancing1queue/no selected tick/ANI/maintenance/scheduler windows. Field+fd5a is observed as a low byte; complete mode policy and other timers/world/effect work are excluded. Repeated original render-only invocation safety, independent simulation timing, arbitrary long stalls, complete pause/network/alternate pacing/all-animation/lifecycle/driver/pixel equivalence and60FPS remain unproven."
+        "Fresh TITAN4545World casting/combat/portrait/menu/Quit trace passes and establishes4355advancing1counter/8globalANI/1scheduler/1queue windows plus189non-advancing1queue/no selected tick/ANI/maintenance/scheduler windows. Field+fd5a is observed as a low byte; complete mode policy and other timers/world/effect work are excluded. Repeated original render-only invocation safety, independent simulation timing, arbitrary long stalls, complete pause/network/alternate pacing/all-animation/lifecycle/driver/pixel equivalence and60FPS remain unproven.",
+        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-5-20261020",
@@ -68785,7 +68795,8 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-blit-command.md",
-        "research/formats/drawing-wine-blit-worker-v1.md"
+        "research/formats/drawing-wine-blit-worker-v1.md",
+        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/inspect-drawing-wine-blit-command.py",
@@ -68797,10 +68808,13 @@
         "tests/drawing-wine-blit-worker-test.c",
         "tools/test-drawing-wine-blit-worker.py",
         "tests/test-drawing-wine-blit-worker.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-eleventh-ten.py",
+        "tests/test-rendering-eleventh-ten.py"
       ],
       "validation_dependencies": [
-        "tools/inspect-drawing-wine-imports.py"
+        "tools/inspect-drawing-wine-imports.py",
+        "tools/drawing_lifetime_index.py"
       ],
       "evidence": [
         "DRAW02.draw02-wine-blit-worker-fixture-01-native_integration-20261012",
@@ -68813,18 +68827,20 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT11.source-observers-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Pending pinnedemit/handlerinstructionsandtablemapping,ABIfixtures/actualworkertrace/sourceownership. Unknownindirectflow/otheropcodes/routes retained.",
-        "Original01admits1511opcode42workercalls/1threads/0unknowndestination/0unknownsourcegenerations;sourcequeueidentity/EGLassignment/immutablebytes remainpending."
+        "Current native fixtures and exact pinned installed-Wine opcode42 emit/handler/table inventory pass under NT11. Actual original source submission/storage ownership, unknown indirect flow, other opcodes/routes remain independent.",
+        "Original01admits1511opcode42workercalls/1threads/0unknowndestination/0unknownsourcegenerations;sourcequeueidentity/EGLassignment/immutablebytes remainpending.",
+        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -69374,7 +69390,8 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-producer-update-binding.md",
-        "research/runtime/draw02-end-to-end.md"
+        "research/runtime/draw02-end-to-end.md",
+        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/engine-cadence/queue_point.h",
@@ -69386,7 +69403,9 @@
         "tests/drawing-cadence-queue-point-test.c",
         "tests/drawing-producer-update-test.c",
         "tools/test-drawing-producer-update.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-eleventh-ten.py",
+        "tests/test-rendering-eleventh-ten.py"
       ],
       "validation_dependencies": [
         "runtime/engine-cadence/entry.S",
@@ -69415,11 +69434,12 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT11.source-observers-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -69427,7 +69447,7 @@
       "remaining_gaps": [
         "PE32getter two caller IDs/twelve guards/LastError and producer point order/four failures pass; six decoder guards refuse. Original01 exact cadence event/producer queue boundaries bind all16sourcequeues to advancing updates1\u201316, with same return point; overall69completewindows. No count-only binding.",
         "Source prefix closes at sixteen World queue returns; complete UI composition, source/action/physical frame ownership through whole120advancing windows, larger bounded decoders, lifetime/alternate-route policy and diagnostic cadence controls remain pending. Full47/21acceptance remains open.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -69444,7 +69464,8 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-whole-update-source.md",
-        "research/formats/canvas-producers-v4.md"
+        "research/formats/canvas-producers-v4.md",
+        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/engine-cadence/update_boundary.h",
@@ -69461,7 +69482,9 @@
         "tests/canvas-producers-v4-test.cpp",
         "tools/capture-drawing-interactive.py",
         "tests/canvas-sequence-test.cpp",
-        "tests/fixtures/drawing-journeys/wine-source-map-world120-ownership-schedule.json"
+        "tests/fixtures/drawing-journeys/wine-source-map-world120-ownership-schedule.json",
+        "tools/test-rendering-eleventh-ten.py",
+        "tests/test-rendering-eleventh-ten.py"
       ],
       "validation_dependencies": [
         "compat/legacy/canvas-producers/CMakeLists.txt",
@@ -69510,11 +69533,12 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT11.source-observers-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -69522,11 +69546,11 @@
       "remaining_gaps": [
         "Original01/02refuse foreigntag39copyatnextaccepted17;exactdiagnostic retained. Fresh13casefixturevalidates5sforeignwaitoutsideproducerlock/sameowner/timeoutplusidentity/failures. Original05closes16whole sourcequeues/updateswithpostlude,end27exactnextaccepted17,87542records/37653258bytes/0failures.",
         "Native/PythonV4postlude1,16,120queuefixtures andlegacyregressionspass. Fresh106selected physical witnesses and212held-sourceplanesmatchnativeexactly;actual120windowcapture/decoder gates,completephysical source/action/frame/lifetimeownership,alternate/mode/cadencecontrolsandfull47/21acceptance remain open. No broad status promotion.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
         "Combined original120attempt01 times out after72whole queue pairs;4096source definitions fall back to3579inline primitives without input loss. Fresh retry02 adds bounded postinput/pre-Escape dwell and closes120whole source queues/476150records/2176checkpoints with no failures, exact next accepted boundary122 and normal original exit0. These queues span121advancing accepted windows, with no observed selected World queue at96; longest consecutive queue-bound sequence run95. Full presentation/source/action/backing ownership remains open; historical16/first120fingerprints remain immutable.",
         "Opt-in source callback journal opens only after directory configuration; initial pre-Main failure remains immutable. Fresh original03closes120queues/494412records/2202checkpoints ataccepted123, with123prefixpoints and32pending-frame boundaries. Complete per-window immutable sources/physical routes/semantics remain open.",
         "Fresh source-boundary final original120uses timestamp-spanning prepare/commit/cancel admission. All120queues close with zero pending callback frames and zero primary source-point gaps;2054input calls/312matching primary witnesses/2584fenced source reservations are retained. The unchanged complete-interval checker refuses only globalpresentationroutes and alloriginalbackingaliaswriters. No original timing, all-source ownership or native parity promotion.",
-        "The private COPY ownership acquisition recipe leaves World active until the exact120-source marker before driving Results; this is a new scoped capture schedule, not a promotion of historical whole-capture equivalence or global alias/presentation ownership."
+        "The private COPY ownership acquisition recipe leaves World active until the exact120-source marker before driving Results; this is a new scoped capture schedule, not a promotion of historical whole-capture equivalence or global alias/presentation ownership.",
+        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -89429,7 +89453,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/cursor-source-gate-module.md"
+        "research/runtime/cursor-source-gate-module.md",
+        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/cursor-source-gate/module.c",
@@ -89440,7 +89465,9 @@
         "tests/drawing-cursor-source-gate-module-test.c",
         "tools/test-drawing-cursor-source-gate-module.py",
         "tools/drawing_cursor_gate_journal.py",
-        "tests/test-drawing-cursor-gate-journal.py"
+        "tests/test-drawing-cursor-gate-journal.py",
+        "tools/test-rendering-eleventh-ten.py",
+        "tests/test-rendering-eleventh-ten.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_cursor_gate_v1.h",
@@ -89491,11 +89518,12 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT11.source-observers-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
@@ -89516,7 +89544,8 @@
         "Original-active 120 queues:645189 producer records,2200 checkpoints,812 primary physical planes; source interval closes and actual original exit0. Diagnostic cohort only; all routes, source backing ownership and semantic outcomes remain open. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
         "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
-        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open.",
+        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -89532,7 +89561,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/drawing-source-cursor-gate.md"
+        "research/runtime/drawing-source-cursor-gate.md",
+        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/drawing/source_cursor_gate.h",
@@ -89551,7 +89581,9 @@
         "tools/test-drawing-source-gate-protected.py",
         "tools/capture-drawing-interactive.py",
         "tools/drawing_source_cursor_gate.py",
-        "tests/test-drawing-source-cursor-gate.py"
+        "tests/test-drawing-source-cursor-gate.py",
+        "tools/test-rendering-eleventh-ten.py",
+        "tests/test-rendering-eleventh-ten.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_cursor_gate_v1.h",
@@ -89643,11 +89675,12 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT11.source-observers-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
@@ -89669,7 +89702,8 @@
         "Original-active 120 queues:645189 producer records,2200 checkpoints,812 primary physical planes; source interval closes and actual original exit0. Diagnostic cohort only; all routes, source backing ownership and semantic outcomes remain open. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
         "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
-        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open.",
+        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -89842,11 +89876,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original documented selection-toggle and pause input actions",
-      "scope": "Private XTest input runner supports explicit Shift modifier on mouse clicks and Space/Insert/Delete taps. Reject malformed, unknown or duplicate modifier declarations before injection; only clicks accept modifiers. Preserve emitted action metadata, check mouse button injection returns, release held keys/buttons on errors. Prospective targets are interpreted only through independently recorded original Region/HUD/semantic journals and viewport images; successful XTest calls do not assert selection, pause, frame synchronization or native parity.",
+      "scope": "Private XTest input runner supports explicit Shift modifier on mouse clicks and Space/Insert/Delete taps. Reject malformed, unknown or duplicate modifier declarations before injection; only clicks accept modifiers. Preserve emitted action metadata, check mouse button injection returns, release held keys/buttons on errors. Prospective targets are interpreted only through independently recorded original Region/HUD/semantic journals and viewport images; successful XTest calls do not assert selection, pause, frame synchronization or native parity. Validate the entire authored schedule before focus changes or input: integer coordinates/buttons, supported keys and 0..60000ms after waits / 1..60000ms holds. A malformed later row refuses the whole schedule without earlier injection; these finite limits are native transport policy.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/drawing-documented-input-actions.md"
+        "research/runtime/drawing-documented-input-actions.md",
+        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tests/drawing-session-input.cpp"
@@ -89855,7 +89890,9 @@
         "tools/capture-drawing-interactive.py",
         "tests/fixtures/drawing-journeys/region-selection-pause-schedule.json",
         "tools/test-drawing-documented-input.py",
-        "tests/fixtures/drawing-journeys/region-ground-click-schedule.json"
+        "tests/fixtures/drawing-journeys/region-ground-click-schedule.json",
+        "tools/test-rendering-eleventh-ten.py",
+        "tests/test-rendering-eleventh-ten.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/window_host.cpp",
@@ -89871,11 +89908,12 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT11.source-observers-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -89883,7 +89921,8 @@
       "remaining_gaps": [
         "Fresh original modifier/pause action execution pending; modifier refusal and held-input cleanup execution pending. Complete selection/pause and source/frame/native parity remain open.",
         "Owned X11 six-case fixture passes current transport/refusal/cancellation cleanup. Original probe02 records requested toggles and pause intervals; its transport claim predates adding the owned-fixture test path and remains historical. Separate Region/semantic claims retain their own boundaries. Full semantic/frame/native parity remains pending.",
-        "Final-contract owned X11 fixture02passes all six transport/refusal/cancellation cases after reviewed ground schedule link. No original semantic/frame/native parity is inferred from owned execution; original scopes stay separately bounded."
+        "Final-contract owned X11 fixture02passes all six transport/refusal/cancellation cases after reviewed ground schedule link. No original semantic/frame/native parity is inferred from owned execution; original scopes stay separately bounded.",
+        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -92168,7 +92207,8 @@
         }
       ],
       "documents": [
-        "research/runtime/draw02-update-interval-accounting.md"
+        "research/runtime/draw02-update-interval-accounting.md",
+        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/engine-cadence/observer.c",
@@ -92199,7 +92239,9 @@
         "tests/drawing-whole-update-boundary-test.c",
         "tests/test-drawing-source-callback-windows.py",
         "tests/test-drawing-update-accounting.py",
-        "tests/test-drawing-update-interval-gate.py"
+        "tests/test-drawing-update-interval-gate.py",
+        "tools/test-rendering-eleventh-ten.py",
+        "tests/test-rendering-eleventh-ten.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/canvas_producers_v4.h",
@@ -92260,11 +92302,12 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT11.source-observers-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -92277,7 +92320,8 @@
         "Full interval admission rechecks the unchanged raw observations and independently rejoins the first120records, then requires every ownership gate; unsupported global-route/backing promotions, pending-frame/source-point gaps and removed queue-free updates cannot pass. Current actual first120cohort is expected to refuse, without promoting any47/21closure or statuses.",
         "Actual full first120interval admission01 refuses pending source-boundary frames (34affected updates),19known/live source sets crossing associated callback prefixes, globalpresentationrouteclosure and alloriginalbackingaliaswriters. All289primary witnesses still bind tosource/worker/EGLand matchpixels. Refusal does not invalidate bounded reference association or close complete owned/presented acquisition; Step2/47/21remain open.",
         "Current primitive-lifetimes original120-03 preserves first120updates with119queues and queue-free113;4336call intervals/2100inputs/329matching source-worker-EGL witnesses. All39pending cursor-copy calls identified;42affected updates/21prefix gaps remain,20APIcalls returned before their completion-associated update. Identified calls and late ACK classification do not waive quiescence, immutable ownership or global routes/writers. Historical34/19and all47/21closures stay unchanged.",
-        "Fresh source-boundary final original120uses timestamp-spanning prepare/commit/cancel admission. All120queues close with zero pending callback frames and zero primary source-point gaps;2054input calls/312matching primary witnesses/2584fenced source reservations are retained. The unchanged complete-interval checker refuses only globalpresentationroutes and alloriginalbackingaliaswriters. No original timing, all-source ownership or native parity promotion."
+        "Fresh source-boundary final original120uses timestamp-spanning prepare/commit/cancel admission. All120queues close with zero pending callback frames and zero primary source-point gaps;2054input calls/312matching primary witnesses/2584fenced source reservations are retained. The unchanged complete-interval checker refuses only globalpresentationroutes and alloriginalbackingaliaswriters. No original timing, all-source ownership or native parity promotion.",
+        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -93280,7 +93324,8 @@
       ],
       "documents": [
         "research/formats/drawing-primitive-lifetimes-v1.md",
-        "research/runtime/drawing-primitive-lifetimes.md"
+        "research/runtime/drawing-primitive-lifetimes.md",
+        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/drawing_primitive_lifetimes.h",
@@ -93294,7 +93339,9 @@
         "tests/drawing-primitive-lifetimes-test.c",
         "tools/test-drawing-primitive-lifetimes.py",
         "tests/test-drawing-primitive-lifetimes.py",
-        "tests/test-drawing-primitive-ownership.py"
+        "tests/test-drawing-primitive-ownership.py",
+        "tools/test-rendering-eleventh-ten.py",
+        "tests/test-rendering-eleventh-ten.py"
       ],
       "validation_dependencies": [
         "runtime/scene/canvas_producers.c",
@@ -93328,18 +93375,20 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT11.source-observers-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Immutable COPY source bytes and all backing aliases/writers remain unproved. The executed opt-in trace identifies outstanding call and parameter-snapshot envelopes only; global presentation, semantic outcomes and full120ownership admission remain independent open gates.",
-        "Actual original120-03 identifies all39pending copies and20late API acknowledgements among21cross-prefix witnesses, with one overlapping keyed API call;42first120updates retain pending boundaries. COPY request envelopes own only parameter headers, not source pixel bytes. Every immutable-source/global-route/backing-writer admission gate remains open; hardware/scanout, semantics and native parity are separate."
+        "Actual original120-03 identifies all39pending copies and20late API acknowledgements among21cross-prefix witnesses, with one overlapping keyed API call;42first120updates retain pending boundaries. COPY request envelopes own only parameter headers, not source pixel bytes. Every immutable-source/global-route/backing-writer admission gate remains open; hardware/scanout, semantics and native parity are separate.",
+        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -315811,6 +315860,121 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NT11.source-observers-20261022",
+      "kind": "native_integration",
+      "scope": "Ten bounded native source/update observer implementation scopes: 107 tests in 16 suites and 105 recorded commands; production observers, PE32 cadence thunks/getter, five producer controls, 25 whole-update cases, six primitive cases, worker opcode42/scalar/generation forwarding, relocated cursor mutex module and three source-gate probes, five menu action entry/return pairs, 32 COM calls/eight byte readbacks/18 action events, native V4 replay at 1/16/120 queues and legacy replay, and 14 real private XTest cases including late-row preflight and cancellation while held in ordinary/storage modes. All 951 prospective inputs and ten behavior/scenario contracts remain stable. No original game/artifacts, original timing equivalence, full backing/route/lifetime ownership, semantic journeys, normal shutdown quiescence or live replacement.",
+      "record": "research/runtime/rendering-eleventh-ten-results-20261022/controls-03.json",
+      "sha256": "bf31f56d4519e95badd84b5c4ddce2f019b43364cbb3895c379b6378944cd666",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests_run",
+          "equals": 107
+        },
+        {
+          "pointer": "/source_inputs",
+          "equals": 951
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_comparison_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/native_v4/queues",
+          "equals": [
+            1,
+            16,
+            120
+          ]
+        },
+        {
+          "pointer": "/native_v4/source_only_replay",
+          "equals": true
+        },
+        {
+          "pointer": "/native_v4/legacy_sequence_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cadence_native/full_512_fx",
+          "equals": true
+        },
+        {
+          "pointer": "/cadence_native/null_queue_refused",
+          "equals": true
+        },
+        {
+          "pointer": "/primitives/success",
+          "equals": true
+        },
+        {
+          "pointer": "/workers/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor_module_accounting/gaps",
+          "equals": []
+        },
+        {
+          "pointer": "/menu_actions/success",
+          "equals": true
+        },
+        {
+          "pointer": "/api_regression/success",
+          "equals": true
+        },
+        {
+          "pointer": "/update_timing/all_admitted_calls_timestamped",
+          "equals": true
+        },
+        {
+          "pointer": "/documented_input/success",
+          "equals": true
+        },
+        {
+          "pointer": "/documented_input/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/documented_input/cases/12/name",
+          "equals": "cancel-held"
+        },
+        {
+          "pointer": "/documented_input/cases/12/held_inputs_cleared",
+          "equals": true
+        },
+        {
+          "pointer": "/documented_input/cases/13/name",
+          "equals": "cancel-held-storage"
+        },
+        {
+          "pointer": "/documented_input/cases/13/held_inputs_cleared",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -339978,6 +340142,32 @@
         "NT10.observer-completion-20261022",
         "NT10.observer-final-20261022"
       ]
+    },
+    {
+      "id": "NR.eleventh-ten.observer-completion-20261022",
+      "level": "headless",
+      "scope": "Ten bounded native source/update observation and input transport implementation scopes. Owned PE32 cadence thunk/flags/register/FX/error preservation and pinned guard refusals, exact producer/source-boundary callbacks, V4 native 1/16/120 replay, primitive identities, opcode42 scalar/lifetime joins, real cursor mutex/relocated module and controlled production source-worker gate schedules, actual menu relay into production DLL, COM/update QPC regressions, real private XTest preflight/injection/cancellation. No original game, complete source/backing/routes, original cadence equivalence, scanout, semantic outcomes or live replacement.",
+      "behaviors": [
+        "NR.engine-cadence-observation",
+        "NR.drawing-wine-blit-command-discovery",
+        "NR.drawing-producer-update-binding",
+        "NR.drawing-whole-update-source-capture",
+        "NR.drawing-update-interval-accounting",
+        "NR.drawing-primitive-lifetimes",
+        "NR.drawing-cursor-source-gate-module",
+        "NR.drawing-source-cursor-gate-binding",
+        "NR.drawing-actions",
+        "NR.drawing-documented-input-actions"
+      ],
+      "tests": [
+        "tools/test-rendering-eleventh-ten.py",
+        "tests/test-rendering-eleventh-ten.py",
+        "tests/drawing-menu-action-observation-test.c",
+        "tools/test-drawing-documented-input.py"
+      ],
+      "evidence": [
+        "NT11.source-observers-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -340733,8 +340923,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-c2cc5f074eabec47a1bc48277d0879b41ce44363fc488ab377ab523c51f5db22.json",
-    "sha256": "c2cc5f074eabec47a1bc48277d0879b41ce44363fc488ab377ab523c51f5db22"
+    "path": "research/runtime/coverage/source-index-70b90b10be89b9195d6eb6492c0821c4db41ce0ccd4338b0b6a99d08b9d07369.json",
+    "sha256": "70b90b10be89b9195d6eb6492c0821c4db41ce0ccd4338b0b6a99d08b9d07369"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
