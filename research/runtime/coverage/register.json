@@ -140513,7 +140513,8 @@
         "PP1.power-diagnostic.static-20261022",
         "PP1.incoming-history.static-20261022",
         "PP1.decompilation.static-20261022",
-        "PP1.inspection-report.static-20261022"
+        "PP1.inspection-report.static-20261022",
+        "PP1.incoming-history-third.static-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -140679,7 +140680,8 @@
         "PP1.power-diagnostic.static-20261022",
         "PP1.incoming-history.static-20261022",
         "PP1.decompilation.static-20261022",
-        "PP1.inspection-report.static-20261022"
+        "PP1.inspection-report.static-20261022",
+        "PP1.incoming-history-third.static-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -316534,6 +316536,20 @@
         }
       ],
       "sources_pointer": "/sources"
+    },
+    {
+      "id": "PP1.incoming-history-third.static-20261022",
+      "kind": "static",
+      "scope": "Seven exact parent/current transitions in7071d81f..50521beb with no missing or mutated receipts. Original planning review objects and historical hashes are preserved by the incoming successor reviews. Metadata/history accounting only; current engine execution sources and claims are unchanged.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/incoming-history-third.json",
+      "sha256": "2746a564d4607401273aed812467e91a17683439931bdc2d0d1a8f3cd6ea5fbb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -341607,8 +341623,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b2cb8424a0145eb9c0cfc6bf9f4c30d8a1536ff6f37cb242993ca9b9901f698a.json",
-    "sha256": "b2cb8424a0145eb9c0cfc6bf9f4c30d8a1536ff6f37cb242993ca9b9901f698a"
+    "path": "research/runtime/coverage/source-index-3e04729529e65afa1f2fa82d52c0418eff5f23e8705db800dabcd59c2700a54b.json",
+    "sha256": "3e04729529e65afa1f2fa82d52c0418eff5f23e8705db800dabcd59c2700a54b"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

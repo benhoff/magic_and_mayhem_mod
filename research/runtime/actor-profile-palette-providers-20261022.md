@@ -103,3 +103,10 @@ font rasterization, support/postprocess, particle/special subtype and scenario
 providers, unresolved indirect targets, actual file/platform and profile
 backends, throwing/SEH cleanup and malformed/indeterminate CRT continuations.
 Installed-session, hardware and live acceptance are separate validation steps.
+
+Integration also retains the successor observer planning reviews from
+`50521beb` (seven exact file transitions from7071d81f, no gaps or rewritten
+receipts). Original planning review objects and fingerprints remain in history.
+The merged register preserves both provider scope/scenario fingerprints and
+every source byte from the successful matrix; this metadata merge adds no
+engine comparison or live acceptance.
