@@ -104,7 +104,7 @@ def decode(data):
     if data[:8] != b'MNMDCQ01' or h[2:6] != (1, 128, 0x40209ca7, 65536) or any(h[6:]):
         raise ValueError('Copy order header')
     rows = list(struct.iter_unpack('<32I', data[64:]))
-    pending, entries, returns, requests, previous = {}, [], [], 0, 0
+    pending, entries, returns, requests, previous, returned_sequences = {}, [], [], 0, 0, set()
     for ordinal, r in enumerate(rows, 1):
         if r[0] != ordinal or r[1] not in (1, 2, 3) or r[6] < previous or any(r[22:24]) or any(r[25:]):
             raise ValueError('Copy order identity/reserved/prefix')
@@ -128,8 +128,10 @@ def decode(data):
             entries.append(record)
         else:
             entry = pending.pop(r[2], None)
-            if entry is None or r[3:5] != entry[3:5] or r[8:21] != entry[8:21] or not entry[6] < r[21] <= r[6]:
+            if (entry is None or r[3:5] != entry[3:5] or r[8:21] != entry[8:21] or not entry[6] < r[21] <= r[6]
+                    or r[21] in returned_sequences or (r[5]-entry[5])%2**32>=2**31):
                 raise ValueError('Copy request unmatched/changed return')
+            returned_sequences.add(r[21])
             returns.append(record)
         if r[24] != len(pending):
             raise ValueError('Copy request active count')

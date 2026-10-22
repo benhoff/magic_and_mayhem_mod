@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 import struct
 from drawing_api_session import BUILD, sha
+from drawing_copy_records import producer_records
+from coverage_evidence import read_bytes, write_report
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -23,7 +25,7 @@ def main():
     a = p.parse_args()
     if a.report.exists():
         p.error('Refusing evidence overwrite')
-    raw, native_raw = a.reference.read_bytes(), a.native.read_bytes()
+    raw, native_raw = read_bytes(a.reference, root=ROOT), read_bytes(a.native, root=ROOT)
     reference, native = json.loads(raw), json.loads(native_raw)
     if not reference['success'] or reference['source_sha256'] != BUILD or native['success'] or native['native_exit'] or native['reference']['sha256'] != sha(raw):
         raise ValueError('Successful original and failed completed native comparison required')
@@ -36,6 +38,7 @@ def main():
     if sha(expected) != mismatch['source_sha256'] or len(actual) != 960000 or len(expected) != len(actual):
         raise ValueError('Native/source mismatch plane changed')
     bad = [i for i, (x, y) in enumerate(zip(struct.unpack('<480000H', actual), struct.unpack('<480000H', expected))) if x != y]
+    if not bad:raise ValueError('No source-plane mismatch to diagnose')
     box = [min(i % 800 for i in bad), min(i // 800 for i in bad), max(i % 800 for i in bad) + 1, max(i // 800 for i in bad) + 1]
     if len(bad) != 1600 or box[2] - box[0] != 40 or box[3] - box[1] != 40:
         raise ValueError('Mismatch is outside the diagnosed 40x40 domain')
@@ -47,14 +50,7 @@ def main():
     if sha(prior_plane) != sha(expected) or sha(after_plane) != sha(expected) or after['sha256'] == sha(expected):
         raise ValueError('Original unchanged / native changed checkpoint boundary differs')
     wire = (capture / 'canvas-producers.bin').read_bytes()
-    records, at = [], 64
-    while at < len(wire):
-        r = struct.unpack_from('<24I', wire, at)
-        if r[0] < 96 or at + r[0] > len(wire):
-            raise ValueError('Producer wire extent changed')
-        at += r[0]
-        if before['sequence'] < r[1] <= after['sequence'] and r[2] == 6:
-            records.append(r)
+    records = [r for r, _ in producer_records(wire) if before['sequence']<r[1]<=after['sequence'] and r[2]==6]
     full = one([r for r in records if r[4] == mismatch['boundary']['canvas'] and list(r[10:14]) == [0, 0, 800, 600] and r[8:10] == (0, 0)], 'One full-source copy in checkpoint interval required')
     save = one([r for r in records if r[4] == full[3] and list(r[10:14]) == box and r[8:10] == (0, 0)], 'One same-primary background save required')
     if save[1] >= full[1]:
@@ -62,6 +58,7 @@ def main():
     points = {}
     for row in struct.iter_unpack('<48I', (capture / 'api-producer-points.bin').read_bytes()[64:]):
         if row[1] == 3 and before['sequence'] <= row[35] < after['sequence']:
+            if row[2] in points:raise ValueError('Duplicate API source point')
             points[row[2]] = row
     calls = {r[29]: r for r in struct.iter_unpack('<32I', (capture / 'session.bin').read_bytes()[64:]) if r[1] == 1}
 
@@ -82,7 +79,7 @@ def main():
     if max(c['worker_return_record'] for c in full_event['commands']) >= min(c['worker_entry_record'] for c in save_event['commands']):
         raise ValueError('Full driver copy did not finish before background save')
     result = dict(schema=1, success=True, review_only=True,
-                  sources={n: sha((ROOT / n).read_bytes()) for n in ['tools/analyze-drawing-copy-order.py', 'tools/drawing_api_session.py']},
+                  sources={n: sha((ROOT / n).read_bytes()) for n in ['tools/analyze-drawing-copy-order.py', 'tools/drawing_copy_records.py', 'tools/inspect-canvas-producers.py', 'tools/drawing_api_session.py']},
                   reference=dict(path=str(a.reference), sha256=sha(raw)), native=dict(path=str(a.native), sha256=sha(native_raw)),
                   mismatch=mismatch, native_frame_ordinal=ordinal, mismatch_box=box,
                   before_checkpoint=before, after_checkpoint=after,
@@ -92,9 +89,7 @@ def main():
                   ordering_reversal_confirmed=True, mismatch_cause_fully_proved=False,
                   original_game_reexecuted=False, source_or_physical_ownership_proved=False,
                   scope='Static exact local mismatch and uniquely matched original API/driver command order reversal. Original CPU checkpoints remain equal while return-order native replay changes the40x40region. Ordering is confirmed; general cause, view/alias/lifetime and safe replay repair remain hypotheses. No original pixels enter native inputs and no code/admission/status is changed.')
-    with a.report.open('x') as out:
-        json.dump(result, out, indent=2)
-        out.write('\n')
+    write_report(ROOT,a.report,(json.dumps(result,indent=2)+'\n').encode())
     print(json.dumps(dict(success=True, mismatch_box=box, return_sequences=[save[1], full[1]],
                           api_entries=[full_event['api_entry'], save_event['api_entry']])))
 

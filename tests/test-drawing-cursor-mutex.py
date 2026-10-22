@@ -28,6 +28,19 @@ def fixture():
 
 
 class CursorMutex(unittest.TestCase):
+    def test_reused_call_id_after_completion_and_fabricated_boolean_refuse(self):
+        raw=fixture()
+        # Reuse completed wait ID for an otherwise valid later release pair.
+        for index in (4,5):struct.pack_into('<I',raw,64+index*128+4,2)
+        with self.assertRaises(ValueError):decode(raw)
+        for index,value in ((11,2),(12,2),(32+9,2)):
+            raw=fixture();struct.pack_into('<I',raw,64+index*4,value)
+            with self.assertRaises(ValueError):decode(raw)
+
+    def test_raw_initial_owner_bool_argument_is_preserved(self):
+        raw=fixture()
+        for index in (0,1):struct.pack_into('<I',raw,64+index*128+8*4,0xffffffff)
+        self.assertEqual(decode(raw)['calls'][0]['entry']['parameter'],0xffffffff)
     def test_returns_can_interleave(self):
         raw = fixture()
         rows = [list(r) for r in struct.iter_unpack('<32I', raw[64:])]

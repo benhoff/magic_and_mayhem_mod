@@ -1,9 +1,9 @@
 """Keep command acknowledgement separate from actual original process exit."""
-import time
+import math,time
 
 
 def wait_for_quit(process,state,heartbeat,request,timeout=15,monotonic=time.monotonic,sleep=time.sleep,alive_before_dispatch=False,target_exit=None):
-    if request<=0 or not 0<timeout<=15:raise ValueError('Invalid Quit wait bounds')
+    if type(request) is not int or not 0<request<2**32 or type(timeout) not in (int,float) or not math.isfinite(timeout) or not 0<timeout<=15:raise ValueError('Invalid Quit wait bounds')
     if process.poll() is not None and not alive_before_dispatch:raise ValueError('Launcher already exited before Quit wait')
     deadline=monotonic()+timeout;ack=False;target=None
     while monotonic()<deadline:
@@ -14,7 +14,9 @@ def wait_for_quit(process,state,heartbeat,request,timeout=15,monotonic=time.mono
         if target_exit:
             target=target_exit()
             if target is not None:
-                if not isinstance(target,dict) or target.get('complete') is not True or not target.get('attached_alive') or not target.get('thread') or not target.get('process'):raise ValueError('Original process exit identity incomplete')
+                if (not isinstance(target,dict) or target.get('complete') is not True or target.get('attached_alive') is not True
+                    or any(type(target.get(k)) is not int or not 0<target[k]<2**32 for k in ('thread','process'))
+                    or type(target.get('exit_code')) is not int or not 0<=target['exit_code']<2**32):raise ValueError('Original process exit identity incomplete')
                 if target['exit_code']:raise ValueError('Original process exit failed: '+str(target['exit_code']))
                 break
         elif process.poll() is not None:break

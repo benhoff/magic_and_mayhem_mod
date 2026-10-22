@@ -75,6 +75,20 @@ class Points(unittest.TestCase):
             with self.assertRaises(ValueError):
                 decode(bad, legacy)
 
+    def test_legacy_terminal_and_every_return_are_independently_required(self):
+        data,legacy=fixture()
+        for offset,value in [(64+192+2*4,2),(64+192+8*4,99),(64+4*192+3*4,99),(64+4*192+1*4,2)]:
+            bad=bytearray(legacy);struct.pack_into('<I',bad,offset,value)
+            with self.assertRaises(ValueError):decode(data,bad)
+
+    def test_return_tick_wrap_is_allowed_but_reversal_is_not(self):
+        data,legacy=fixture();raw=bytearray(data)
+        struct.pack_into('<I',raw,64+4*4,0xfffffff0)
+        struct.pack_into('<I',raw,64+3*128+4*4,16)
+        self.assertEqual(len(decode(raw,legacy)['calls']),2)
+        struct.pack_into('<I',raw,64+3*128+4*4,0xffffffef)
+        with self.assertRaises(ValueError):decode(raw,legacy)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -7,6 +7,12 @@ class Process:
     def __init__(self):self.code=None
     def poll(self):return self.code
 class Quit(unittest.TestCase):
+    def test_untyped_bounds_and_fabricated_exit_identities_refuse(self):
+        for request,timeout in ((True,1),(1.5,1),(2**32,1),(1,True),(1,float('nan')),(1,float('inf'))):
+            with self.assertRaises(ValueError):wait_for_quit(Process(),lambda:None,lambda:None,request,timeout=timeout)
+        for key,value in [('thread',True),('process',-1),('attached_alive',1),('exit_code',False),('exit_code',1.5)]:
+            child=dict(complete=True,attached_alive=True,thread=44,process=88,exit_code=0);child[key]=value
+            with self.assertRaises(ValueError):wait_for_quit(Process(),lambda:None,lambda:None,11,target_exit=lambda:child)
     def test_exit_before_ack(self):
         p=Process();x=wait_for_quit(p,lambda:None,lambda:setattr(p,'code',0),11);self.assertFalse(x['ack_observed']);self.assertEqual(x['exit_code'],0)
     def test_ack_then_exit(self):

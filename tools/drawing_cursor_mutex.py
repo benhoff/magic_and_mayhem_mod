@@ -17,11 +17,14 @@ def decode(data):
     completed = []
     live = set()
     next_id = 0
+    seen = set()
     for i, row in enumerate(rows, 1):
         if row[0] != i or not 1 <= row[1] <= calls or row[2] not in (1, 2, 3, 4) or row[3] not in (1, 2) or not row[4] or row[6] >= 0x1c0000 or any(row[13:15]) or row[15] not in (1, 2):
             raise ValueError('Invalid cursor mutex row identity')
         if row[2] != 1 and any(row[11:13]) or row[2] != 2 and row[2] != 1 and row[8]:
             raise ValueError('Unexpected cursor mutex arguments')
+        if any(row[k]>1 for k in (11,12)) or row[2]==1 and row[9]>1:
+            raise ValueError('Invalid cursor mutex boolean metadata')
         if row[15] == 1:
             point = decode_point(struct.pack('<16I', *row[16:]))
             if point['owner_thread'] != row[4]:
@@ -32,8 +35,9 @@ def decode(data):
             point = None
         sample = dict(ordinal=i, call=row[1], operation=row[2], phase=row[3], thread=row[4], tick=row[5], caller_rva=row[6], mutex_id=row[7], parameter=row[8], raw_result=row[9], last_error=row[10], security_nonnull=row[11], name_nonnull=row[12], point=point)
         if row[3] == 1:
-            if row[1] in entries or row[9]:
+            if row[1] in seen or row[9]:
                 raise ValueError('Duplicate cursor mutex entry/result')
+            seen.add(row[1])
             if row[7] and row[7] not in live:
                 raise ValueError('Cursor mutex entry references retired identity')
             entries[row[1]] = sample

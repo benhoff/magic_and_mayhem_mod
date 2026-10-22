@@ -7,7 +7,7 @@ static int source_pending_copy_enabled(void){
  char flag[2];return GetEnvironmentVariableA("MNM_DRAW_SOURCE_PENDING_COPY",flag,2)==1&&flag[0]=='1';
 }
 static int source_lease_protected(const struct Surface* source){
- if(!source_lease_active||source_lease_owner!=GetCurrentThreadId()||source_lease_canvas!=source->id||source_lease_object!=source->object||source_lease_pixels!=source->pixels)return 0;
+ if(!source_lease_active||!source_lease_base||!source_lease_extent||source_lease_extent>~source_lease_base||source_lease_owner!=GetCurrentThreadId()||source_lease_canvas!=source->id||source_lease_object!=source->object||source_lease_pixels!=source->pixels)return 0;
  for(u32 at=source_lease_base;at<source_lease_base+source_lease_extent;){u32 m[7];if(VirtualQuery((void*)at,m,28)!=28||m[4]!=0x1000||m[5]!=2||m[0]+m[3]<=at)return 0;at=m[0]+m[3];}
  return 1;
 }

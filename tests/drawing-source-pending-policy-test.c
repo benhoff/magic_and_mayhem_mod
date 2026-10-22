@@ -36,6 +36,11 @@ void start(void){
   surfaces[2].pixels=(u32)pixels;HANDLE thread=CreateThread(0,0,alias_writer,pixels,0,0);require(thread!=0,136);WaitForSingleObject(thread,5000);ExitProcess(137);
  }
  SetLastError(0xcafe);struct Frame foreign=frames[1];
+ u32 saved_base=source_lease_base,saved_extent=source_lease_extent;
+ source_lease_extent=0;require(!source_lease_protected(surfaces),171);
+ source_lease_base=0xfffff000u;source_lease_extent=0x2000;require(!source_lease_protected(surfaces),172);
+ source_lease_base=0;source_lease_extent=saved_extent;require(!source_lease_protected(surfaces),173);
+ source_lease_base=saved_base;require(source_lease_protected(surfaces),174);
  for(u32 test=0;test<16;++test){
   frames[1]=foreign;record[0]=96;record[2]=6;record[3]=3;record[4]=2;output[0]=0xaa;
   switch(test){case 0:frames[1].sp=0xffffffffu;break;case 1:frames[1].primitive=1;break;case 2:frames[1].tag=1;break;case 3:frames[1].owner=GetCurrentThreadId();break;case 4:frames[1].owner=0;break;case 5:frames[1].record=0;break;case 6:record[0]=95;break;case 7:record[2]=4;break;case 8:record[3]=13;break;case 9:record[4]=13;break;case 10:record[3]=0;break;case 11:record[4]=99;break;case 12:frames[1].ecx=(u32)wrapper;break;case 13:frames[1].ecx=(u32)dest;break;case 14:frames[1]=frames[0];frames[1].sp=2;break;case 15:frames[1].tag=33;break;}

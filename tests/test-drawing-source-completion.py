@@ -12,6 +12,19 @@ class Process:
 
 
 class Completion(unittest.TestCase):
+    def test_advertised_budget_and_nonregular_marker_refuse(self):
+        from drawing_source_completion import decode_completion
+        for word,value in ((4,1048577),(6,10000),(7,536870913),(7,100)):
+            raw=bytearray(marker());struct.pack_into('<I',raw,word*4,value)
+            with self.assertRaises(ValueError):decode_completion(raw,120)
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'actual';p.write_bytes(marker());link=Path(d)/'link';link.symlink_to(p)
+            with self.assertRaises((OSError,ValueError)):wait_for_source(link,120,Process(),lambda:None)
+
+    def test_nonfinite_and_boolean_timeout_refuse(self):
+        with tempfile.TemporaryDirectory() as d:
+            for timeout in (True,float('inf'),float('nan')):
+                with self.assertRaises(ValueError):wait_for_source(Path(d)/'done',120,Process(),lambda:None,timeout=timeout)
     def test_heartbeat_until_exact_marker(self):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)/'done';ticks=[0];beats=[]

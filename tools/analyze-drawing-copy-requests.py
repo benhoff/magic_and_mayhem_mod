@@ -6,6 +6,8 @@ from pathlib import Path
 import struct
 from drawing_api_session import sha
 from drawing_copy_order import decode
+from drawing_copy_records import producer_records
+from coverage_evidence import read_bytes, write_report
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,7 +19,7 @@ def main():
     args = parser.parse_args()
     if args.report.exists():
         parser.error('Refusing evidence overwrite')
-    raw = args.reference.read_bytes()
+    raw = read_bytes(args.reference, root=ROOT)
     reference = json.loads(raw)
     if not reference['success'] or not reference['normal_original_quit_verified']:
         raise ValueError('Completed original capture required')
@@ -27,18 +29,7 @@ def main():
     if observation != reference['copy_order_observation']:
         raise ValueError('Journal differs from recorded observation')
     wire = (capture / 'canvas-producers.bin').read_bytes()
-    copies, offset = {}, 64
-    while offset < len(wire):
-        if len(wire) - offset < 96:
-            raise ValueError('Truncated producer record')
-        record = struct.unpack_from('<24I', wire, offset)
-        if record[0] < 96 or offset + record[0] > len(wire):
-            raise ValueError('Producer record extent')
-        offset += record[0]
-        if record[2] == 6:
-            if record[1] in copies:
-                raise ValueError('Duplicate producer COPY sequence')
-            copies[record[1]] = record
+    copies = {record[1]: record for record, _ in producer_records(wire) if record[2]==6}
     linked = set()
     for returned in observation['returns']:
         sequence = returned['producer_return_sequence']
@@ -58,7 +49,8 @@ def main():
     result = dict(schema=1, success=True, review_only=True,
                   sources={p: sha((ROOT / p).read_bytes()) for p in
                            ['tools/analyze-drawing-copy-requests.py',
-                            'tools/drawing_copy_order.py', 'tools/drawing_api_session.py']},
+                            'tools/drawing_copy_order.py', 'tools/drawing_copy_records.py',
+                            'tools/inspect-canvas-producers.py', 'tools/drawing_api_session.py']},
                   reference=dict(path=str(args.reference), sha256=sha(raw)),
                   journal_sha256=sha(journal), producer_sha256=sha(wire),
                   requests=observation['requests'], producer_copies=len(copies),
@@ -66,9 +58,7 @@ def main():
                   original_game_reexecuted=False, driver_order_proved=False,
                   api_request_bindings_proved=False,
                   scope='Static exact journal/producer COPY identity check and entry/return reversals. No driver ordering, source ownership, replay repair or new original execution.')
-    with args.report.open('x') as output:
-        json.dump(result, output, indent=2)
-        output.write('\n')
+    write_report(ROOT,args.report,(json.dumps(result,indent=2)+'\n').encode())
     print(json.dumps(dict(success=True, requests=result['requests'],
                           adjacent_entry_reversals=len(reversals))))
 

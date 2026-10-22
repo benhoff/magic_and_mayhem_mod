@@ -26,6 +26,16 @@ def fixture(nested=False):
 
 
 class RegionInput(unittest.TestCase):
+    def test_receiver_and_same_slot_observations_cannot_contradict(self):
+        raw=fixture();struct.pack_into('<I',raw,64+256+7*4,126)
+        with self.assertRaises(ValueError):decode(raw)
+        raw=fixture();struct.pack_into('<I',raw,8,3)
+        for start in (64,320):
+            struct.pack_into('<11I',raw,start+45*4,7,1,8,3,27,0,1,100,0,0,2)
+        self.assertTrue(decode(raw)['calls'][0]['entry']['tracked_actor']['actor_valid'])
+        for word,value in ((47,9),(49,99),(52,101),(53,1)):
+            changed=bytearray(raw);struct.pack_into('<I',changed,64+word*4,value)
+            with self.assertRaises(ValueError):decode(changed)
     def test_v3_actor_can_be_valid_without_current_hit(self):
         raw=fixture();struct.pack_into('<I',raw,8,3)
         for start in [64,64+256]:

@@ -93,6 +93,13 @@ def journal(mutate=None):
 
 
 class Order(unittest.TestCase):
+    def test_two_requests_cannot_claim_one_producer_return(self):
+        with self.assertRaises(ValueError):decode(journal(lambda rows: rows[3].__setitem__(21,12)))
+
+    def test_tick_wrap_and_reversed_callback_time(self):
+        def wrap(rows):rows[0][5]=0xfffffff0;rows[3][5]=16
+        self.assertEqual(decode(journal(wrap))['requests'],2)
+        with self.assertRaises(ValueError):decode(journal(lambda rows: rows[3].__setitem__(5,99)))
     def test_reversed_returns_retained(self):
         r = decode(journal())
         self.assertEqual([e['request'] for e in r['entries']], [1, 2])

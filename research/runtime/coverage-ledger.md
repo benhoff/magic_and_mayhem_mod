@@ -20923,3 +20923,7 @@ unchanged after the merge. Incoming rendering milestones retain their recorded
 source freshness and do not acquire new comparison or live credit. The combined
 source census and dashboard summary are refreshed as accounting, separately from
 engine execution.
+
+## Ninth rendering batch — bounded observer completion (2026-10-22)
+
+[Ten implementation closeouts](rendering-ninth-ten-closeouts-20261022.md) complete saved artifact postchecks, physical timing, Quit and Whole120 completion, COPY analysis/request trace, worker producer-prefix, Region/mutex observation and pending-copy admission. `NT9.observer-completion-20261022` passes 97 tests/16 suites, native production/fixture builds, V4 source-only 1/16/120-queue replay and real SQLite CLI pipelines with 660 stable prospective inputs. Registered native-rendering partials fall 86→76. Failed setup attempts and incoming exact history review remain immutable SQLite records. Original-game comparison, all writer/backing/lifetime/route and semantic ownership, shutdown quiescence and live replacement remain independent; shared-source older proofs may be stale and are retained.

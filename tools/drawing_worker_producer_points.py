@@ -9,17 +9,27 @@ def decode(data, legacy):
     header = struct.unpack_from('<16I', data)
     if data[:8] != b'MNMWPP01' or header[2:7] != (1, 128, 0x40209ca7, 131072, 64) or any(header[7:]):
         raise ValueError('Worker producer point header')
-    if len(legacy) < 256 or (len(legacy) - 64) % 192 or legacy[:8] != b'MNMWBK01':
+    if len(legacy) < 256 or len(legacy)>64+131072*192 or (len(legacy) - 64) % 192 or legacy[:8] != b'MNMWBK01':
         raise ValueError('Legacy worker envelope')
     legacy_header = struct.unpack_from('<16I', legacy)
     if legacy_header[2:7] != (1, 192, 0x40209ca7, 131072, 42) or any(legacy_header[7:]):
         raise ValueError('Legacy worker header')
-    original = {}
-    for row in struct.iter_unpack('<48I', legacy[64:-192]):
+    original, pending_legacy = {}, {}
+    legacy_rows=list(struct.iter_unpack('<48I',legacy[64:]))
+    for ordinal,row in enumerate(legacy_rows[:-1],1):
+        if row[0]!=ordinal or row[1] not in (1,2) or row[3]!=42 or not row[4] or any(row[34:]):
+            raise ValueError('Legacy worker identity/reserved')
         if row[1] == 1:
-            if row[2] in original:
+            if row[2]!=len(original)+1 or row[2] in original or row[6]:
                 raise ValueError('Duplicate legacy worker')
-            original[row[2]] = row
+            original[row[2]] = pending_legacy[row[2]] = row
+        else:
+            entry=pending_legacy.pop(row[2],None)
+            if entry is None or entry[3:5]!=row[3:5] or entry[7:]!=row[7:] or (row[5]-entry[5])%2**32>=2**31:
+                raise ValueError('Legacy worker unmatched/changed return')
+    terminal=legacy_rows[-1]
+    if pending_legacy or terminal[0]!=len(legacy_rows) or terminal[1]!=4 or terminal[2] not in (1,2) or terminal[3]!=len(original) or any(terminal[6:]):
+        raise ValueError('Legacy worker incomplete terminal/count')
     rows = list(struct.iter_unpack('<32I', data[64:]))
     pending, complete, entered, seen = {}, [], 0, set()
     for ordinal, row in enumerate(rows[:-1], 1):
@@ -44,7 +54,7 @@ def decode(data, legacy):
             pending[row[2]] = record
         else:
             before = pending.pop(row[2], None)
-            if before is None or before['thread'] != row[3] or before['legacy_entry_record'] != row[6]:
+            if before is None or before['thread'] != row[3] or before['legacy_entry_record'] != row[6] or (row[4]-before['tick'])%2**32>=2**31:
                 raise ValueError('Unpaired worker producer return')
             if not row[5] and not before['getter_status'] and point[3] < before['point'][3]:
                 raise ValueError('Worker producer prefix regressed')

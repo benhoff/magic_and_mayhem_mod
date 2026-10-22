@@ -19,7 +19,7 @@ def decode(data):
         begin, end = rows[at:at + 2]
         if begin[:3] != (at + 1, at // 2 + 1, 1) or end[:3] != (at + 2, at // 2 + 1, 2):
             raise ValueError('Broken Region callback pair')
-        if begin[5] != owner or end[5] != owner or begin[6] != end[6] or begin[8:18] != end[8:18] or begin[18]:
+        if begin[5] != owner or end[5] != owner or begin[6] != end[6] or (begin[7]&1)!=(end[7]&1) or begin[8:18] != end[8:18] or begin[18]:
             raise ValueError('Region callback argument/owner identity differs')
         if begin[3] >= end[3] or not begin[3] or end[3] > count or (end[4] - begin[4]) % 2**32 >= 2**31:
             raise ValueError('Region callback phase/time order differs')
@@ -58,7 +58,8 @@ def decode(data):
                 elif any(row[46:55]):raise ValueError('Invalid tracked pool has data')
                 if track&2:
                     if row[48]!=row[55]+1:raise ValueError('Tracked actor slot differs')
-                    if row[24]==1 and row[25]!=row[46]:raise ValueError('Hit/tracked pool identity differs')
+                    if row[24]==1 and (row[25],row[26])!=(row[46],row[47]):raise ValueError('Hit/tracked pool identity differs')
+                    if row[24]==1 and row[27]==row[48] and row[28:32]+row[42:44]!=row[49:55]:raise ValueError('Same-slot actor observations differ')
                 elif any(row[48:55]):raise ValueError('Invalid tracked actor has data')
                 sample['tracked_actor']=dict(requested_slot=row[55],pool_valid=bool(track&1),actor_valid=bool(track&2),pool_id=row[46],capacity=row[47],slot_plus_one=row[48],actor_type=row[49],actor_owner=row[50],actor_active=row[51],actor_health=row[52],actor_flag_68=row[53],actor_flag_70=row[54],allocation_generation_proved=False)
             samples.append(sample)
