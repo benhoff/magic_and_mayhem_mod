@@ -90,8 +90,8 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        # Reviewed observer closeouts through7071d81f retain14 Low and6 Supporting partials.
-        self.assertEqual(result['partial_counts'], {1: 14, 2: 6, 3: 4, 4: 38, 5: 28})
+        # Reviewed bounded implementations through97c3f5b2 retain pending acceptance separately.
+        self.assertEqual(result['partial_counts'], {1: 13, 2: 1, 3: 3, 4: 37, 5: 26})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -161,7 +161,8 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual(completed, {'NR.canvas-producer-replay', 'NR.world-startup-sequence', 'NR.world-producer-handoff',
                                     'NP.surface-final-word-read', 'NR.displacement-finite-edge',
                                     'NR.readonly-description-continuity', 'NR.world-source-region-epoch',
-                                    'NR.resident-bind-admission', 'NR.resident-command-pressure'})
+                                    'NR.resident-bind-admission', 'NR.resident-command-pressure',
+                                    'NR.callback-publication-isolation', 'NR.recorded-physical-frame-admission'})
         self.assertEqual({task['behavior'] for task in tasks} | set(plan['unplanned_critical']), critical | completed)
         self.assertTrue(all(t['implementation'] in {'partial', 'scoped'} for t in tasks))
         self.assertTrue(all(t['review_state'] in {'current','needs_review'} for t in tasks))
@@ -435,6 +436,7 @@ class TrancheTest(unittest.TestCase):
         completed = {e['behavior'] for e in json.loads(evidence_text(ROOT /
             'research/runtime/coverage/native-implementation-completion-20261020.json'))['entries']
             if e['decision'] == 'scoped_implementation_complete'}
+        completed.add('RS.shadow-linear-stride')  # bounded implementation in97c3f5b2
         unplanned = {'RE.palette-effect-builders', 'RE.terrain-camera-lifecycle',
                      'RE.terrain-entity-section-rotation', 'RE.terrain-spectator-lighting'}
         self.assertEqual({t['behavior'] for t in tasks} | unplanned,
@@ -466,7 +468,7 @@ class TrancheTest(unittest.TestCase):
             'RS.actor-session-source-lifecycle', 'NP.actor-session-source-ownership',
             'RS.actor-concrete-provider-frontier',
             'RS.actor-profile-transform-providers', 'RS.actor-palette-builder-providers',
-            'RS.actor-font-providers',
+            'RS.actor-font-providers', 'RS.actor-support-query-provider',
         }
         scoped_high = {e['behavior'] for e in result['entries']
                        if e['weight'] == 4 and e['implementation'] == 'scoped'}

@@ -138031,7 +138031,7 @@
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Complete actor downstream service ownership and behavior",
-      "scope": "Seventy-two original direct service/helper entries and the initial83-target frontier retain bounded scope. The owned actor/source lifecycle now composes215 routes, including profile animation/movement, palette ownership and seventeen raw font providers with four global setup/teardown pairs. All43 historical semantic leads retain24 concrete-route and19 embedded-helper dispositions within their stated domains. Bounded normal-return comparisons do not establish original planner cadence, arbitrary installed profiles, remaining task/support/particle/scenario providers or complete indirect targets. Named profile/directory/file/heap/atexit/COM endpoints, unsafe odd-count allocation, malformed CRT, uninitialized original locals, Windows SEH/throwing cleanup, external acceptance and full original-world/live replacement remain explicit. This Critical umbrella remains partial.",
+      "scope": "Seventy-two original direct service/helper entries and the initial83-target frontier retain bounded scope. The owned actor/source lifecycle now composes216 routes, including profile animation/movement, palette ownership, seventeen raw font providers and the actual4f3320 support predicate with4f4330 aggregation over caller-owned backing. All43 historical semantic leads retain24 concrete-route and19 embedded-helper dispositions within their stated domains. Bounded normal-return comparisons do not establish original world production or planner cadence, arbitrary installed profiles, remaining task/postprocess/particle/scenario providers or complete indirect targets. Named profile/directory/file/heap/atexit/COM endpoints, unsafe odd-count allocation, malformed CRT, uninitialized original locals, Windows SEH/throwing cleanup, external acceptance and full original-world/live replacement remain explicit. This Critical umbrella remains partial.",
       "confidence": "provisional",
       "original": [
         {
@@ -138405,7 +138405,8 @@
         "research/runtime/actor-session-source-lifecycle-20261022.md",
         "research/runtime/actor-concrete-provider-frontier-20261022.md",
         "research/runtime/actor-profile-palette-providers-20261022.md",
-        "research/runtime/actor-font-providers-20261022.md"
+        "research/runtime/actor-font-providers-20261022.md",
+        "research/runtime/actor-support-provider-20261022.md"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -138434,7 +138435,8 @@
         "reconstruction/rendering/palette_shading.hpp",
         "reconstruction/rendering/terrain_selection.cpp",
         "reconstruction/rendering/terrain_selection.hpp",
-        "reconstruction/rendering/actor_font_providers.hpp"
+        "reconstruction/rendering/actor_font_providers.hpp",
+        "reconstruction/rendering/actor_support_provider.hpp"
       ],
       "tests": [
         "tools/inspect-actor-downstream.py",
@@ -138463,7 +138465,11 @@
         "tests/actor-font-reference.cpp",
         "tests/actor-font-seeds.inc",
         "tools/test-actor-font.py",
-        "tools/reconcile-actor-font.py"
+        "tools/reconcile-actor-font.py",
+        "tests/actor-support-reference.cpp",
+        "tests/actor-support-seeds.inc",
+        "tools/test-actor-support.py",
+        "tools/reconcile-actor-support.py"
       ],
       "evidence": [
         "SCP1.frontier-20261022",
@@ -138472,7 +138478,8 @@
         "ASL1.reconciliation-reviewed.static-20261022",
         "AFP1.reconciliation.static-20261022",
         "PP1.reconciliation.static-20261022",
-        "FP1.reconciliation.static-20261022"
+        "FP1.reconciliation.static-20261022",
+        "SUP1.reconciliation.static-20261022"
       ],
       "status": {
         "understanding": "partial",
@@ -141000,6 +141007,131 @@
       },
       "remaining_gaps": [
         "Bounded raw font loader/setup/retirement, text adapters, ordinary masked nearest extended-FP RGB565/555 glyphs and one actual actor caller only. Arbitrary malformed traversal, unsafe long-word paths, unusual FP/ABI states, actual file/heap/atexit/COM/driver providers, other full callers and installed/live font transitions remain separate. Reload retention and stale borrowed fields are recovered baseline behavior, not native asset policy."
+      ]
+    },
+    {
+      "id": "RS.actor-support-query-provider",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Concrete borrowed map support query and actor aggregation",
+      "scope": "Original4f3320 raw map support predicate composed with actual4f4330 single-cell/wrapped aggregation over borrowed caller-owned cells, offset tables, terrain and packed movement parameters. Independently authored initialized safe address windows, finite dimensions and normal returns only. No allocation or ownership transfer within the query; caller rebind/reuse and explicit backing retirement are separate observed lifecycle steps. Malformed/unmapped pointers, arbitrary overflow/cyclic normalization, actual world production, original planner cadence, installed/live acceptance remain separate.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5190432,
+          "relation": "code",
+          "scope": "Selected support predicate and real aggregate caller within the initialized owned backing domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5194544,
+          "relation": "code",
+          "scope": "Selected support predicate and real aggregate caller within the initialized owned backing domain."
+        }
+      ],
+      "documents": [
+        "research/runtime/actor-support-provider-20261022.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_frontier_providers.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp",
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp",
+        "reconstruction/rendering/actor_font_providers.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/actor_support_provider.hpp"
+      ],
+      "tests": [
+        "tests/actor-support-reference.cpp",
+        "tests/actor-support-seeds.inc",
+        "tools/test-actor-support.py",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc"
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/map.hpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
+        "reconstruction/pathfinding/route_line.hpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/ghidra/ExportFontProviders.java",
+        "tools/inspect-actor-support.py",
+        "tools/original_x86.py",
+        "tools/test-actor-services.py"
+      ],
+      "evidence": [
+        "SUP1.providers.isolated_original-20261022",
+        "SUP1.providers.headless-20261022",
+        "SUP1.inspection-2.static-20261022",
+        "SUP1.incoming-history.static-20261022",
+        "SUP1.attempt-catalog.static-20261022",
+        "SUP1.reconciliation.static-20261022",
+        "SUP1.ui-regressions.static-20261022"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_domain": {
+        "normal_returns_only": true,
+        "storage": "Stable initialized borrowed map/terrain/parameter buffers; explicit caller-owned allocation and retirement, no original-world production."
+      },
+      "remaining_gaps": [
+        "Initialized borrowed cell/terrain/offset/packed-parameter windows, raw support query and actual aggregation only. Actual world production, arbitrary malformed/wrapped pointers, throwing/SEH, original planner/task lifetime and full installed/live acceptance remain separate. Query does not transfer ownership; caller teardown and rebind are explicit."
       ]
     }
   ],
@@ -317172,6 +317304,240 @@
           "equals": true
         }
       ]
+    },
+    {
+      "record": "research/runtime/actor-support-results-20261022/support-matrix-3.json",
+      "sha256": "6f17c3ab68ae35020830b56284fa2f7769bb32012dd36abb42fb9ce72165bd30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2048
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 4096
+        },
+        {
+          "pointer": "/queries_verified",
+          "equals": 12288
+        },
+        {
+          "pointer": "/borrowed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/allocations_during_query",
+          "equals": 0
+        },
+        {
+          "pointer": "/typed_model_agreement",
+          "equals": true
+        },
+        {
+          "pointer": "/compiler_dependency_closure_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/composed_routes",
+          "equals": 216
+        },
+        {
+          "pointer": "/bytes_compared",
+          "equals": 2351845376
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "SUP1.providers.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Original4f3320 and actual4f4330 aggregation:2048 independent cases,12288 typed-model checked read-only queries through six caller rebind/reuse phases,4096 ownership/teardown snapshots. Initialized safe address windows only; no actual world production or installed/live acceptance.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "record": "research/runtime/actor-support-results-20261022/support-matrix-3.json",
+      "sha256": "6f17c3ab68ae35020830b56284fa2f7769bb32012dd36abb42fb9ce72165bd30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2048
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 4096
+        },
+        {
+          "pointer": "/queries_verified",
+          "equals": 12288
+        },
+        {
+          "pointer": "/borrowed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/allocations_during_query",
+          "equals": 0
+        },
+        {
+          "pointer": "/typed_model_agreement",
+          "equals": true
+        },
+        {
+          "pointer": "/compiler_dependency_closure_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/composed_routes",
+          "equals": 216
+        },
+        {
+          "pointer": "/bytes_compared",
+          "equals": 2351845376
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "SUP1.providers.headless-20261022",
+      "kind": "native_integration",
+      "scope": "Same2048 cases and12288 queries as original comparison;216-route owned actor composition with borrowed storage rebind/reuse and zero residual live allocations after caller teardown. Not extra cases or full-session/platform acceptance."
+    },
+    {
+      "id": "SUP1.inspection-2.static-20261022",
+      "kind": "static",
+      "scope": "Fresh raw support/caller instructions, complete pinned ranges, ABI/reference/decompilation and original manifests; static only.",
+      "record": "research/runtime/actor-support-results-20261022/inspection-2.json",
+      "sha256": "8176908566a4b2d677315d872b28ef72ade793841f9f46bc95f49caed9e632af",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SUP1.incoming-history.static-20261022",
+      "kind": "static",
+      "scope": "Exact33 parent/current file transitions in dcb606bd..97c3f5b2 match receipts with no mutated or missing records; no retrospective execution or past gate claim.",
+      "record": "research/runtime/actor-support-results-20261022/incoming-history.json",
+      "sha256": "696b884c2839372ba7eaa75c197e3a0fd13a04673f385f3a61a23f573eafa128",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SUP1.attempt-catalog.static-20261022",
+      "kind": "static",
+      "scope": "Retained exact prospective sources and failed attempts only; only matrix3 receives full execution credit.",
+      "record": "research/runtime/actor-support-results-20261022/attempt-catalog.json",
+      "sha256": "bca5e0f859c236c004c7a3610fff35c60ec49106f3bcbaf54d73ad4001c39d9c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SUP1.reconciliation.static-20261022",
+      "kind": "static",
+      "scope": "216 routes with actual support predicate/aggregation,43 retained leads,113 named supplier specifications and incomplete indirect sets; static only.",
+      "record": "research/runtime/actor-support-results-20261022/reconciliation.json",
+      "sha256": "e2598d45456fdce8cc73137fb991c1c9ce15268de83f848f897efd2feabc7204",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SUP1.ui-regressions.static-20261022",
+      "kind": "static",
+      "scope": "Dashboard regressions and exact inherited bounded implementation denominators; no new engine or live acceptance.",
+      "record": "research/runtime/actor-support-results-20261022/ui-regressions-2.json",
+      "sha256": "a9a38c65f10df374564695195780ca1bbe268f67006b7d67dd36d01560a9bc4d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -325229,6 +325595,36 @@
         },
         {
           "value": "unresolved-lower-provider-and-indirect-targets",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "actor-support-provider-routing",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5190432,
+        "relation": "code",
+        "scope": "Raw support predicate and actual4f4330 aggregation on initialized caller-owned backing."
+      },
+      "document": "research/runtime/actor-support-provider-20261022.md",
+      "complete": false,
+      "scope": "216 native public routes; selected support leaf closed, other provider/indirect targets remain explicit.",
+      "entries": [
+        {
+          "value": 5190432,
+          "behaviors": [
+            "RS.actor-support-query-provider"
+          ]
+        },
+        {
+          "value": 5194544,
+          "behaviors": [
+            "RS.actor-support-query-provider"
+          ]
+        },
+        {
+          "value": "unresolved-other-provider-and-indirect-targets",
           "behaviors": []
         }
       ]
@@ -341659,6 +342055,26 @@
       "evidence": [
         "NT12.native-controls-20261022"
       ]
+    },
+    {
+      "id": "actor-support-owned-20261022",
+      "level": "headless",
+      "scope": "Raw4f3320 support and actual4f4330 aggregation sharing owned caller backing with independent typed-model checks, backing rebind/reuse and explicit teardown; no live world/provider acceptance.",
+      "behaviors": [
+        "RS.actor-support-query-provider"
+      ],
+      "tests": [
+        "tests/actor-support-reference.cpp",
+        "tests/actor-support-seeds.inc",
+        "tools/test-actor-support.py",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc"
+      ],
+      "evidence": [
+        "SUP1.providers.headless-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -342494,8 +342910,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-facb75eae8f31becad1254afaba87b9b564807e0d8683801fa038937df392add.json",
-    "sha256": "facb75eae8f31becad1254afaba87b9b564807e0d8683801fa038937df392add"
+    "path": "research/runtime/coverage/source-index-254bac97af794d26912567d390e4e6ffe5b583fa2f3e338f542d77dfa24a970e.json",
+    "sha256": "254bac97af794d26912567d390e4e6ffe5b583fa2f3e338f542d77dfa24a970e"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

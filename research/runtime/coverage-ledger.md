@@ -20999,3 +20999,25 @@ malformed/FP/SEH paths, wider callers, installed and live/platform acceptance.
 ## Twelfth rendering batch — bounded native diagnostics (2026-10-22)
 
 [Ten implementation closeouts](rendering-twelfth-ten-closeouts-20261022.md) complete linear displacement/projected shadow, resident/draw/owner profiling, scene repetition/budget, callback publication isolation, COPY checkpoint hashes and physical requested-frame admission within their existing scopes. Fresh `NT12.native-controls-20261022` passes 33 tests in six suites, 114 recorded commands, 1800 stable prospective inputs, native software and actual NVIDIA TITAN controls, 65 PE32 state/budget cases, six publication cases, nine authored native phase hashes and three 800×600 physical game planes with same-image markers. Registered rendering partials fall 56→46. Original comparisons, captured-gameplay performance/acceptance, complete state/backing/writer/routes, scanout and live replacement remain separate. Historical source hashes and failures are unchanged; affected shared-source proofs may remain stale. Eight planning-review successors preserve historical fingerprints and add required test/document links before full dashboard preflight. SQLite stores all generated evidence; raw runs and verified backups are pinned, and second-drive outputs preserve the main 90 GiB reserve. Incoming `50521beb..65485ada` has 62 exact file transition checks and eleven changed evidence records, with no receipt gaps or rewrites.
+
+
+## Concrete actor support query and borrowed ownership (2026-10-22)
+
+[Raw4f3320 support](actor-support-provider-20261022.md) composes with actual4f4330
+aggregation, extending215→216 actor routes. Existing typed pathfinding models
+remain unchanged and independently cross-check each query. SUP1 original and
+headless evidence share2048 authored cases/12288 queries/4096 before-and-after
+caller teardown snapshots: 2351845376 bytes per matching original32/
+native64/ASan+UBSan stream, with stable complete compiler sources, guarded
+original bodies, no query allocation or borrowed-byte mutation, and zero residual
+live allocations after caller retirement. Rebind/reuse, parameter changes, null
+terrain bypass, high unsigned indices, nonstandard offsets and all low flag bytes
+across both special/4000 banks are included. Safe initialized windows only.
+
+Fresh static inspection finds no lower predicate callees or inventory changes.
+All43 historical leads retain24routes/19embedded dispositions, with113 named
+supplier specifications and incomplete other indirect targets. The Critical
+parent remains partial for original world/planner/task lifetime, postprocess/
+particle/special/scenario providers, actual external backing/exceptional cleanup
+and installed/live/hardware acceptance. Historical evidence is preserved; the
+incoming dcb606bd..97c3f5b2 history has33 exact transitions with no receipt gaps.
