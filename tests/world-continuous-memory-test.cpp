@@ -4,8 +4,11 @@
 struct Region {unsigned start,bytes,state,protection;};
 static std::vector<Region> regions;
 static unsigned probes;
+static bool forced;
+static std::array<unsigned,7> answer;
 static unsigned query(unsigned p,unsigned *m) {
  ++probes;
+ if(forced){for(unsigned k=0;k<7;++k)m[k]=answer[k];return 28;}
  for(auto r:regions) if(p>=r.start && p-r.start<r.bytes) {
   std::array<unsigned,7> fields{r.start,r.start,0,r.bytes,r.state,r.protection,0};
   for(unsigned k=0;k<7;++k)m[k]=fields[k];
@@ -67,4 +70,23 @@ int main(){
  regions[0].protection=4;regions[1].protection=1;base=end=0;
  assert(!mnm_readable_refresh_window(8100,200,&base,&end));
  regions[1].protection=2;assert(mnm_readable_refresh_window(8100,200,&base,&end)&&!base&&!end);
+ // An unknown low-byte protection is not a readable mode even if it shares
+ // bits with PAGE_READWRITE. Exercise both the direct and spanning paths.
+ for(unsigned protection:{6u,0x12u,0x30u,0xfeu}){
+  regions[0].protection=protection;base=end=0;
+  assert(!mnm_readable_extent(4100,1,&end));
+  assert(!mnm_readable_refresh_window(4100,1,&base,&end)&&!base&&!end);
+  regions[0].protection=4;regions[1].protection=protection;
+  assert(!mnm_readable_window(8100,200,&base,&end)&&!base&&!end);
+ }
+ for(unsigned protection:{2u,4u,8u,0x20u,0x40u,0x80u}){
+  regions[0].protection=protection;base=end=0;
+  assert(mnm_readable_refresh_window(4100,1,&base,&end));
+ }
+ forced=true;
+ for(auto bounds:{std::array<unsigned,2>{4200,4096},{4096,0},{4096,~0u}}){
+  answer={bounds[0],bounds[0],0,bounds[1],0x1000,4,0};base=end=0;
+  assert(!mnm_readable_extent(4100,1,&end));
+  assert(!mnm_readable_refresh_window(4100,1,&base,&end)&&!base&&!end);
+ }
 }

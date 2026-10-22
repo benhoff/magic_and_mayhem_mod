@@ -9,6 +9,7 @@ from pathlib import Path
 
 from coverage_audit import audit
 from coverage_reviews import load_journal
+from coverage_evidence import Reader, evidence_digest, read_json
 
 spec = importlib.util.spec_from_file_location('gate_source_index', Path(__file__).with_name('index-coverage-sources.py'))
 source_index = importlib.util.module_from_spec(spec)
@@ -36,14 +37,14 @@ def digest(value):
 
 
 def file_digest(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return evidence_digest(path)
 
 
 def load_json(root, path):
     target = (root / path).resolve()
     if Path(path).is_absolute() or not target.is_relative_to(root.resolve()):
         raise ValueError(f'Escaping repository path: {path}')
-    return json.loads(target.read_text())
+    return read_json(target, root=root)
 
 
 def gap_items(report):
@@ -67,6 +68,11 @@ def gap_items(report):
 
 
 def snapshot(root, register=None):
+    with Reader(root) as reader:
+        return _snapshot(root, register, reader)
+
+
+def _snapshot(root, register, reader):
     root = Path(root).resolve()
     register = register if register is not None else load_json(root, REGISTER)
     recorded_sources = {}
@@ -85,7 +91,7 @@ def snapshot(root, register=None):
     journal, review_paths = load_journal(root) if (root/REVIEWS).is_file() else ({'reviews': []}, {REVIEWS})
     # Discard the cache after this snapshot. Staged, Git-base and later working
     # snapshots must independently fingerprint their actual bytes.
-    fingerprint = cache(file_digest)
+    fingerprint = cache(reader.digest)
     sources = {item['path']: item for item in source_index.index(root, register)['files']}
     for name in ('research', 'docs'):
         for path in sorted((root/name).rglob('*')):

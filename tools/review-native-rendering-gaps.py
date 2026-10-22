@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Review current renderer limits and retained evidence; never launch the game."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import importlib.util
@@ -39,7 +40,7 @@ RECORDS = [
 
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(evidence_bytes(path)).hexdigest()
 
 
 def main():
@@ -62,7 +63,7 @@ def main():
                   witnesses=[], executions=[], findings=[])
 
     def witness(path, token):
-        lines = (ROOT/path).read_text().splitlines()
+        lines = evidence_text(ROOT/path).splitlines()
         matches = [i for i, line in enumerate(lines) if token in line]
         if len(matches) != 1:
             raise ValueError(f'Review witness changed: {path}: {token!r}')
@@ -144,12 +145,12 @@ int main(void){
     selected = launcher.selection({'MNM_OTHER_PIXEL_PRODUCERS': '1'})
     flags = sorted(k for k, v in selected.items() if k.endswith('_TAKEOVER') and v == '1')
     assert len(flags) == 6 and 'MNM_DC_COPY_TAKEOVER' not in selected
-    suite = json.loads((ROOT/'tests/fixtures/drawing-journeys/suite.json').read_text())
+    suite = json.loads(evidence_text(ROOT/'tests/fixtures/drawing-journeys/suite.json'))
     all_routes = {family+'/'+route for family, routes in counters.ROUTES.items() for route in routes}
     assert len(all_routes) == 43
     route_evidence = [];exercised = set()
     for path in RECORDS[:4]:
-        record = json.loads((ROOT/path).read_text());p = record['pixel_producers']
+        record = json.loads(evidence_text(ROOT/path));p = record['pixel_producers']
         assert record['success'] and p['forwarded'] == 0 and not p['history_refused']
         active = {family+'/'+row['route'] for family, rows in p['families'].items() for row in rows if row['native']}
         exercised |= active
@@ -163,7 +164,7 @@ int main(void){
                                    recorded_session_cases=sum(c['adapter']=='recorded_session' for c in suite['cases']),
                                    journey_requirements=len(suite['requirements']),
                                    operation_requirements=len(suite['operation_requirements']))
-    latest = json.loads((ROOT/RECORDS[3]).read_text())
+    latest = json.loads(evidence_text(ROOT/RECORDS[3]))
     world = latest['resident_world']
     assert world['completed'] == world['imports'] == world['verified_returns']
     assert latest['normal_quit_verified'] and latest['world_canvas_transition_verified']

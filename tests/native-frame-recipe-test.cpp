@@ -12,8 +12,65 @@ void require(bool value,const char* reason){if(!value)throw std::runtime_error(r
 template<class F> void rejected(F f){bool caught=false;try{f();}catch(const std::exception&){caught=true;}require(caught,"Invalid frame operation accepted");}
 const PixelFormat rgb{16,{0xf800,0x7e0,31}};
 SurfaceCommand copy(unsigned from,unsigned to,int width,int height,int x=0,int y=0){SurfaceCommand c;c.operation=3;c.words={from,to,0,0,unsigned(width),unsigned(height),unsigned(x),unsigned(y),0,0};return c;}
+void lifetimeAndBudget(GlBlitter& g){
+ // Owned UI inputs may retire after a seal; the identities of the World and
+ // final output may not. Exercise both deletions before destroying the COM-like
+ // native handles, matching the command consumer's actual dispatch order.
+ for(unsigned retired:{1u,2u}){
+  std::map<unsigned,SurfaceId> h{{1,g.create({2,2,{1,2,3,4}},rgb)},{2,g.create({2,2,{0,0,0,0}},rgb)}};
+  {
+   NativeFrameRecipe recipe(g,1,1,h);recipe.record(copy(1,2,2,2),h);g.copy(h.at(1),h.at(2),{0,0,2,2},0,0);recipe.seal(2,h);
+   SurfaceCommand release;release.operation=7;release.words={retired};recipe.record(release,h);
+   require(!recipe.ready()&&!recipe.sealedReady()&&!recipe.hasWorldOutput(),"Released frame identity retained a sealed replay");
+   rejected([&]{recipe.render(g.presentGpu(h.at(1)));});rejected([&]{recipe.renderSealed(g.presentGpu(h.at(1)));});
+   require(!recipe.restart(1,2,h),"Retired frame restarted from stale identities");
+  }
+  for(auto p:h)g.destroy(p.second);
+ }
+ // Exactly 32 source handles coexist with all 32 prepared handles. The next
+ // coordinate allocation must refuse before changing the renderer or UI seal.
+ {
+  std::map<unsigned,SurfaceId> h;for(unsigned i=1;i<=32;++i)h.emplace(i,g.create({1,1,{i}},rgb));
+  {
+   NativeFrameRecipe recipe(g,1,1,h);
+   for(unsigned i=2;i<=29;++i){recipe.record(copy(1,i,1,1),h);g.copy(h.at(1),h.at(i),{0,0,1,1},0,0);}
+   recipe.seal(2,h);require(recipe.surfaces()==32&&g.stats().surfaces==64,"Exact handle partition not reached");
+   const auto before=g.stats();rejected([&]{recipe.record(copy(1,30,1,1),h);});
+   require(g.stats().surfaces==before.surfaces&&g.stats().pixels==before.pixels,"Handle refusal allocated storage");
+   require(!recipe.ready()&&recipe.sealedReady(),"Failed partial command changed completed seal eligibility");
+  }
+  for(auto p:h)g.destroy(p.second);
+ }
+ // 5M source pixels + 11M prepared pixels fill the existing 16M global cap.
+ // Retiring a source does not release its owned coordinate plane.
+ {
+  std::map<unsigned,SurfaceId> h{{1,g.create({2048,1024,std::vector<std::uint32_t>(2097152,31)},rgb)},
+    {2,g.create({2048,1024,std::vector<std::uint32_t>(2097152,0)},rgb)},
+    {3,g.create({1024,1024,std::vector<std::uint32_t>(1048576,0)},rgb)}};
+  {
+   NativeFrameRecipe recipe(g,1,1,h);recipe.record(copy(1,2,2048,1024),h);g.copy(h.at(1),h.at(2),{0,0,2048,1024},0,0);
+   recipe.record(copy(1,3,1024,1024),h);g.copy(h.at(1),h.at(3),{0,0,1024,1024},0,0);recipe.seal(2,h);
+   require(g.stats().pixels==16777216,"Exact pixel partition not reached");
+   g.destroy(h.at(3));h.erase(3);h.emplace(4,g.create({1,1,{0}},rgb));
+   const auto before=g.stats();rejected([&]{recipe.record(copy(1,4,1,1),h);});
+   require(g.stats().pixels==before.pixels&&g.stats().surfaces==before.surfaces,"Pixel refusal allocated storage");
+  }
+  for(auto p:h)g.destroy(p.second);
+ }
+ // A failed first seal used to leave ui_ nonzero and appear replayable despite
+ // having no completed coordinate/work snapshot. The failure is terminal.
+ {
+  std::map<unsigned,SurfaceId> h{{1,g.create({2048,2048,std::vector<std::uint32_t>(4194304,1)},rgb)}};
+  {NativeFrameRecipe recipe(g,1,1,h);rejected([&]{recipe.seal(1,h);});
+   require(!recipe.ready()&&!recipe.sealedReady(),"Partially allocated seal became replayable");
+   rejected([&]{recipe.renderSealed(g.presentGpu(h.at(1)));});}
+  g.destroy(h.at(1));
+ }
+ require(g.stats().surfaces==0,"Boundary controls leaked prepared storage");
+}
 int main(int argc,char** argv)try{
  QGuiApplication app(argc,argv);QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QOpenGLContext context;context.setFormat(format);require(context.create(),"Fixture context creation");QOffscreenSurface surface;surface.setFormat(context.format());surface.create();GlBlitter g(&context);
+ lifetimeAndBudget(g);
  const auto world=g.create({8,8,std::vector<std::uint32_t>(64,0x07e0)},rgb),front=g.create({8,8,std::vector<std::uint32_t>(64,0)},rgb),hud=g.create({2,2,std::vector<std::uint32_t>(4,31)},rgb),output=g.allocate(8,8,rgb);
  std::map<unsigned,SurfaceId> handles{{1,world},{2,front},{3,hud}};
  {
@@ -156,8 +213,13 @@ int main(int argc,char** argv)try{
   for(unsigned i=0;i<100;++i){patch.pixels.assign(64,i);coverage.assign(64,0);coverage[i%64]=1;g.updateMasked(unknown,0,0,patch,coverage);}
   require(g.stats().maskedScratchAllocations==allocations,"Masked update allocated scratch per call");auto expected=std::vector<std::uint32_t>(64,31);for(unsigned i=0;i<100;++i)expected[i%64]=i;require(g.read(unknown).pixels==expected,"Shared masked scratch leaked coverage/value history");
   coverage.assign(64,0);g.updateMasked(unknown,0,0,patch,coverage);require(g.stats().maskedScratchAllocations==allocations,"Zero mask allocated scratch");
-  coverage[0]=2;rejected([&]{g.updateMasked(unknown,0,0,patch,coverage);});g.destroy(unknown);
+  coverage[0]=2;rejected([&]{g.updateMasked(unknown,0,0,patch,coverage);});require(g.read(unknown).pixels==expected,"Malformed mask changed completed pixels");
+  coverage.assign(64,0);patch.pixels[63]=65536;rejected([&]{g.updateMasked(unknown,0,0,patch,coverage);});patch.pixels[63]=0;
+  rejected([&]{g.updateMasked(unknown,1,0,patch,coverage);});require(g.read(unknown).pixels==expected,"Invalid zero-mask patch changed completed pixels");g.destroy(unknown);
   const auto large=g.allocate(2048,2048,rgb);Image wide{2048,1,std::vector<std::uint32_t>(2048,1)},tall{1,2048,std::vector<std::uint32_t>(2048,2)};g.updateMasked(large,0,0,wide,std::vector<std::uint8_t>(2048,1));g.updateMasked(large,0,0,tall,std::vector<std::uint8_t>(2048,1));require(g.stats().maskedScratchPixels<=4*1024*1024,"Opposite aspect scratch exceeded16MiB");g.destroy(large);
+  const auto bounded=g.allocate(2048,1025,rgb);Image oversized{2048,1025,std::vector<std::uint32_t>(2048*1025,1)};
+  const auto before=g.stats();rejected([&]{g.updateMasked(bounded,0,0,oversized,std::vector<std::uint8_t>(oversized.pixels.size(),1));});
+  require(g.stats().maskedScratchAllocations==before.maskedScratchAllocations&&g.stats().uploads==before.uploads,"Oversized masked patch allocated or uploaded");rejected([&]{g.read(bounded);});g.destroy(bounded);
  }
  // Static indexed palettes are owned at the actual PRESENT read boundary.
  const PixelFormat indexed{8,{0,0,0}};const auto indices=g.create({8,8,std::vector<std::uint32_t>(64,1)},indexed);handles[5]=indices;
@@ -175,5 +237,5 @@ int main(int argc,char** argv)try{
  {NativeFrameRecipe recipe(g,1,12,handles);recipe.record(copy(1,2,8,8),handles);g.copy(world,front,{0,0,8,8},0,0);recipe.seal(2,handles);g.importGpu565(output,recipe.render(g.presentGpu(world)));require(g.stats().surfaces<=64&&g.stats().pixels<=16777216,"Prepared/source residency exceeded renderer cap");}
  for(auto id:sourceResidency)g.destroy(id);
  for(auto id:{world,front,output})g.destroy(id);
- require(g.stats().surfaces==0,"Prepared native UI leaked surfaces");std::cout<<"{\"cross_generation_native_world_frames\":40,\"inherited_ui_identity_refusals\":true,\"static_seal_retires_world_map\":true,\"world_hud_repeats\":30,\"source_mutation_release\":true,\"partial_frame_refusal\":true,\"sealed_ui_during_partial_transaction\":true,\"continuous_partial_ui_gpu_frames\":40,\"unsealed_first_frame_refused\":true,\"same_update_hud_changes\":true,\"fresh_world_used\":true,\"ordinary_readbacks\":0,\"static_uploads_folded\":100,\"versioned_masked_reads\":true,\"swap_repeats\":10,\"indexed_palette_owned\":true,\"compiled_glyph_versions\":200,\"masked_scratch_repeats\":100,\"unknown_coverage_preserved\":true,\"paired_scratch_bound\":true,\"shared_budget_coexistence\":true,\"fullscreen_mutable_versions\":40,\"single_assembly_pass\":true,\"translated_self_copy\":true,\"equal_color_ui_ownership\":true,\"clipped_world_mapping\":true,\"teardown_surfaces\":0}\n";return 0;
+ require(g.stats().surfaces==0,"Prepared native UI leaked surfaces");std::cout<<"{\"retired_frame_identities\":2,\"failed_seal_refused\":true,\"exact_source_handles\":32,\"exact_prepared_handles\":32,\"exact_source_pixels\":5242880,\"exact_prepared_pixels\":11534336,\"one_over_budget_refused\":true,\"cross_generation_native_world_frames\":40,\"inherited_ui_identity_refusals\":true,\"static_seal_retires_world_map\":true,\"world_hud_repeats\":30,\"source_mutation_release\":true,\"partial_frame_refusal\":true,\"sealed_ui_during_partial_transaction\":true,\"continuous_partial_ui_gpu_frames\":40,\"unsealed_first_frame_refused\":true,\"same_update_hud_changes\":true,\"fresh_world_used\":true,\"ordinary_readbacks\":0,\"static_uploads_folded\":100,\"versioned_masked_reads\":true,\"swap_repeats\":10,\"indexed_palette_owned\":true,\"compiled_glyph_versions\":200,\"masked_scratch_repeats\":100,\"unknown_coverage_preserved\":true,\"paired_scratch_bound\":true,\"shared_budget_coexistence\":true,\"fullscreen_mutable_versions\":40,\"single_assembly_pass\":true,\"translated_self_copy\":true,\"equal_color_ui_ownership\":true,\"clipped_world_mapping\":true,\"teardown_surfaces\":0}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

@@ -132,6 +132,61 @@
           ]
         },
         {
+          "id": "casting-foundations",
+          "title": "Recovered casting foundations",
+          "scope": "Packed descriptor expansion, cast admission and resource mutation, with explicit supplied lower services.",
+          "remaining": "Complete spell creation, effect families and integrated original lifecycle remain separate.",
+          "requirements": [
+            {
+              "behaviors": [
+                "CAST.descriptor-expansion",
+                "CAST.admission",
+                "CAST.resource-change"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "wizard-spell-tasks",
+          "title": "Recovered wizard spell task execution",
+          "scope": "Shared mana readiness, eight actor-target execution bodies and the Magic Sphere execution body; effects and complete strategic selection remain separate.",
+          "remaining": "Recover original per-spell candidate/scoring/preparation/lifetime and the remaining task families.",
+          "requirements": [
+            {
+              "behaviors": [
+                "AI.wizard-spell-control",
+                "AI.wizard-target-task",
+                "AI.wizard-projectile-task"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "wizard-spell-encounter",
+          "title": "Native wizard spell-to-effect encounter",
+          "scope": "Bounded installed-profile encounter composes Cure41, Sphere73 and native Crocodile17 summoning with checkpoint continuation.",
+          "remaining": "Original scoring, summon factories, full scheduling, other spells and live replacement remain pending.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.native-wizard-encounter"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": "headless"
+              }
+            }
+          ]
+        },
+        {
           "id": "spell-effects",
           "title": "Cure & Magic Sphere battle integration",
           "scope": "Two named spells with native authoritative health/mana, effect lifetime and save continuation; authored arena policies remain explicit.",
@@ -1493,7 +1548,8 @@
       "subsystems": [
         "gameplay_gaps",
         "spell_dispatch",
-        "remaining_engine_boundaries"
+        "remaining_engine_boundaries",
+        "casting"
       ],
       "planned": false,
       "milestones": [
@@ -1546,10 +1602,85 @@
           ]
         },
         {
+          "id": "casting-foundations",
+          "title": "Recovered casting foundations",
+          "scope": "Packed descriptor expansion, cast admission and resource mutation, with explicit supplied lower services.",
+          "remaining": "Complete spell creation, effect families and integrated original lifecycle remain separate.",
+          "requirements": [
+            {
+              "behaviors": [
+                "CAST.descriptor-expansion",
+                "CAST.admission",
+                "CAST.resource-change"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "wizard-spell-tasks",
+          "title": "Recovered wizard spell task execution",
+          "scope": "Shared mana readiness, eight actor-target execution bodies and the Magic Sphere execution body; effects and complete strategic selection remain separate.",
+          "remaining": "Recover original per-spell candidate/scoring/preparation/lifetime and the remaining task families.",
+          "requirements": [
+            {
+              "behaviors": [
+                "AI.wizard-spell-control",
+                "AI.wizard-target-task",
+                "AI.wizard-projectile-task"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "native-spell-integration",
+          "title": "Native Cure, Sphere and wizard integration",
+          "scope": "Owned Cure sessions, native World/battle effects and the installed-profile wizard encounter, each within its registered native policy.",
+          "remaining": "Whole original spell equivalence, remaining effects and live replacement remain pending.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.cure-owned-session",
+                "NP.cure-world-session",
+                "NP.native-wizard-encounter"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": "headless"
+              }
+            }
+          ]
+        },
+        {
+          "id": "native-spell-battle",
+          "title": "Playable Cure & Magic Sphere battles",
+          "scope": "The two recovered effect families run through native battle state and campaign continuation.",
+          "remaining": "Broader spell families, original lifecycle and balance equivalence remain pending.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.cure-battle",
+                "NP.sphere-battle"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": "preview"
+              }
+            }
+          ]
+        },
+        {
           "id": "spells",
-          "title": "Spell casting & dispatched effects",
-          "scope": "Recover casting and all explicitly registered spell dispatch cases. The dispatch checklist contributes one milestone.",
-          "remaining": "Implement casting and the currently unimplemented spell effects; mapping a case is not executing it.",
+          "title": "Complete original spell lifecycles & dispatch inventory",
+          "scope": "Whole original casting and every registered dispatch ID, including unresolved Unused-named slots. Component achievements have separate milestones.",
+          "remaining": "Complete the remaining per-spell effects, creation, ownership, cleanup and failure paths; compare whole original lifecycles. Existing casting, task and native integration work is counted separately.",
           "requirements": [
             {
               "behaviors": [
@@ -1598,7 +1729,39 @@
             }
           ]
         }
-      ]
+      ],
+      "summary_exclusions": [
+        "SP.024",
+        "SP.025",
+        "SP.026",
+        "SP.027",
+        "SP.028",
+        "SP.029",
+        "SP.030",
+        "SP.031",
+        "SP.032",
+        "SP.037",
+        "SP.039",
+        "SP.040",
+        "SP.045",
+        "SP.047",
+        "SP.048",
+        "SP.049",
+        "SP.051",
+        "SP.053",
+        "SP.056",
+        "SP.057",
+        "SP.059",
+        "SP.061",
+        "SP.063",
+        "SP.064",
+        "SP.066",
+        "SP.067",
+        "SP.101",
+        "SP.102",
+        "SP.103"
+      ],
+      "summary_exclusion_reason": "The 29 configuration slots named Unused remain in the full dispatch inventory and spell-completion milestone, but are listed separately from the track implementation denominator. Their reachability is unresolved."
     },
     {
       "id": "future-gameplay",
@@ -1674,5 +1837,182 @@
         }
       ]
     }
-  ]
+  ],
+  "spell_progress": {
+    "scope": "Shared components, per-spell task/effect work and native integration are counted independently. A completed task body or native encounter does not complete an original spell lifecycle. Counts describe registered scope, not effort or playable-spell completion.",
+    "unused_behaviors": [
+      "SP.024",
+      "SP.025",
+      "SP.026",
+      "SP.027",
+      "SP.028",
+      "SP.029",
+      "SP.030",
+      "SP.031",
+      "SP.032",
+      "SP.037",
+      "SP.039",
+      "SP.040",
+      "SP.045",
+      "SP.047",
+      "SP.048",
+      "SP.049",
+      "SP.051",
+      "SP.053",
+      "SP.056",
+      "SP.057",
+      "SP.059",
+      "SP.061",
+      "SP.063",
+      "SP.064",
+      "SP.066",
+      "SP.067",
+      "SP.101",
+      "SP.102",
+      "SP.103"
+    ],
+    "groups": [
+      {
+        "id": "foundations",
+        "title": "Casting foundations",
+        "behaviors": [
+          "CAST.descriptor-expansion",
+          "CAST.admission",
+          "NP.cast-admission",
+          "CAST.resource-change"
+        ]
+      },
+      {
+        "id": "tasks",
+        "title": "Wizard spell task execution",
+        "behaviors": [
+          "AI.wizard-spell-control",
+          "AI.wizard-target-task",
+          "AI.wizard-projectile-task"
+        ]
+      },
+      {
+        "id": "effects",
+        "title": "Effect & delivery components",
+        "behaviors": [
+          "CAST.cure-effect",
+          "NP.cure-effect-admission",
+          "CAST.cure-delivery",
+          "CAST.cure-status-cleanup",
+          "CAST.cure-presentation",
+          "CAST.projectile-update",
+          "CAST.sphere-motion"
+        ]
+      },
+      {
+        "id": "integration",
+        "title": "Native spell integration",
+        "behaviors": [
+          "NP.cure-owned-session",
+          "NP.cure-world-session",
+          "NP.cure-battle",
+          "NP.sphere-battle",
+          "NP.native-wizard-encounter"
+        ]
+      }
+    ],
+    "spells": [
+      {
+        "behavior": "SP.017",
+        "tasks": [],
+        "effects": [],
+        "integration": [
+          "NP.native-wizard-encounter"
+        ]
+      },
+      {
+        "behavior": "SP.041",
+        "tasks": [
+          "AI.wizard-target-task"
+        ],
+        "effects": [
+          "CAST.cure-effect",
+          "CAST.cure-status-cleanup",
+          "CAST.cure-presentation",
+          "CAST.cure-delivery"
+        ],
+        "integration": [
+          "NP.cure-owned-session",
+          "NP.cure-world-session",
+          "NP.cure-battle",
+          "NP.native-wizard-encounter"
+        ]
+      },
+      {
+        "behavior": "SP.042",
+        "tasks": [
+          "AI.wizard-target-task"
+        ],
+        "effects": [],
+        "integration": []
+      },
+      {
+        "behavior": "SP.073",
+        "tasks": [
+          "AI.wizard-projectile-task"
+        ],
+        "effects": [
+          "CAST.projectile-update",
+          "CAST.sphere-motion"
+        ],
+        "integration": [
+          "NP.sphere-battle",
+          "NP.native-wizard-encounter"
+        ]
+      },
+      {
+        "behavior": "SP.074",
+        "tasks": [
+          "AI.wizard-target-task"
+        ],
+        "effects": [],
+        "integration": []
+      },
+      {
+        "behavior": "SP.078",
+        "tasks": [
+          "AI.wizard-target-task"
+        ],
+        "effects": [],
+        "integration": []
+      },
+      {
+        "behavior": "SP.079",
+        "tasks": [
+          "AI.wizard-target-task"
+        ],
+        "effects": [],
+        "integration": []
+      },
+      {
+        "behavior": "SP.083",
+        "tasks": [
+          "AI.wizard-target-task"
+        ],
+        "effects": [],
+        "integration": []
+      },
+      {
+        "behavior": "SP.084",
+        "tasks": [
+          "AI.wizard-target-task"
+        ],
+        "effects": [],
+        "integration": []
+      },
+      {
+        "behavior": "SP.085",
+        "tasks": [
+          "AI.wizard-target-task"
+        ],
+        "effects": [],
+        "integration": []
+      }
+    ]
+  }
 }

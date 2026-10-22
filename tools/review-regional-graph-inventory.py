@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Publish only the verified navigation comparator from a retained discovery re-export."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import copy
 import hashlib
@@ -8,15 +9,15 @@ import json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 PIN='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
-def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def sha(path):return hashlib.sha256(evidence_bytes(path)).hexdigest()
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--candidate',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True)
     a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
-    raw=a.candidate/'inventory.json';report=json.loads((a.candidate/'report.json').read_text())
+    raw=a.candidate/'inventory.json';report=json.loads(evidence_text(a.candidate/'report.json'))
     if not report['success'] or sha(raw)!=report['inventory_sha256']:raise ValueError('Candidate provenance mismatch')
-    candidate=json.loads(raw.read_text());baseline=ROOT/'research/runtime/coverage/binary-nocd.json';old=json.loads(baseline.read_text())
+    candidate=json.loads(evidence_text(raw));baseline=ROOT/'research/runtime/coverage/binary-nocd.json';old=json.loads(evidence_text(baseline))
     if candidate['source_sha256']!=PIN or old['source_sha256']!=PIN:raise ValueError('Unsupported original build')
     comparator=next(f for f in candidate['functions'] if f['entry']==0x53d6f0)
     if comparator['ranges']!=[[0x53d6f0,0x53d707]] or comparator['sha256']!='a964deca08cd1425a76c14075c5635fe95c29da889f3efc069341e8f26ebdd1c':raise ValueError('Comparator body differs')

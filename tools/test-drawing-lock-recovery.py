@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Unchanged original Lock wrapper under bounded synthetic external results."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 from collections import Counter
 import hashlib
@@ -13,12 +14,12 @@ from drawing_census import ROOT, BUILD_SHA256, instructions
 
 
 def run(executable, claims):
-    declaration = json.loads(claims.read_text()); sources = declaration['sources']
+    declaration = json.loads(evidence_text(claims)); sources = declaration['sources']
     def source_hashes():
-        return {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in sources}
+        return {p: hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() for p in sources}
     if source_hashes() != sources: raise ValueError('Prospective sources changed')
-    if hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256: raise ValueError('Wrong original input')
-    inventory = json.loads((ROOT / 'research/runtime/coverage/binary-nocd.json').read_text()); contracts = []
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest() != BUILD_SHA256: raise ValueError('Wrong original input')
+    inventory = json.loads(evidence_text(ROOT / 'research/runtime/coverage/binary-nocd.json')); contracts = []
     for address, cleanup in {0x58b660: 0, 0x484c00: 4, 0x4a2f90: 0}.items():
         f = next(f for f in inventory['functions'] if f['entry'] == address); returns = []
         for start, end in f['ranges']:
@@ -52,8 +53,8 @@ def run(executable, claims):
             if row['present'] and row['initial'] == 0x887601c2 and saved != row['retry']: divergent += 1
             if row['present'] and saved and row['returned_nonnull']: returned_after_failure += 1
     if len(seen) != 13824 or len(seen) != len(list(itertools.product(*axes.values()))): raise ValueError('Incomplete matrix')
-    if source_hashes() != sources or hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256: raise ValueError('Sources/input changed during execution')
-    report = {'schema': 1, 'success': True, 'scope': 'Unchanged original58b660 Lock wrapper client only: owned mock interfaces,13824unique selected result/callback/key/teardown/early-Unlock cells, descriptor zeroing/size and pitch/pointer writes, absent surface, exact lost code, Restore result retained separately from retryLock result, low16 key, zero/callback/sentinel endpoints, ordered teardown globals and DestroyWindow, optional auxiliary Unlock. External API/key/release/display/UI/sentinel bodies are scripted; list is empty. No real COM/driver recovery, actual pixels/font/asset reload, populated destructor list, reentrancy/null mutation, native equivalence or full scenario/dispatch completion.', 'sources': sources, 'claims': declaration['claims'], 'sources_stable': True, 'original_sha256': BUILD_SHA256, 'input_unchanged': True, 'original_wrapper_instructions_unchanged': True, 'original_cases': len(seen), 'unique_matrix_cells': len(seen), 'matrix_axes': {k: sorted(v) for k, v in axes.items()}, 'calls_by_tag': dict(totals), 'stored_result_differs_from_retry_result': divergent, 'nonnull_return_with_nonzero_stored_result': returned_after_failure, 'original_return_contracts': contracts, 'destroy_window_import': imports[0], 'artifacts': {str(p.relative_to(ROOT)): {'sha256': hashlib.sha256(p.read_bytes()).hexdigest(), 'bytes': p.stat().st_size} for p in [out / 'cases.jsonl', out / 'reference', out / 'build.log', out / 'execution.log', out / 'execution-status.json']}}
+    if source_hashes() != sources or hashlib.sha256(evidence_bytes(executable)).hexdigest() != BUILD_SHA256: raise ValueError('Sources/input changed during execution')
+    report = {'schema': 1, 'success': True, 'scope': 'Unchanged original58b660 Lock wrapper client only: owned mock interfaces,13824unique selected result/callback/key/teardown/early-Unlock cells, descriptor zeroing/size and pitch/pointer writes, absent surface, exact lost code, Restore result retained separately from retryLock result, low16 key, zero/callback/sentinel endpoints, ordered teardown globals and DestroyWindow, optional auxiliary Unlock. External API/key/release/display/UI/sentinel bodies are scripted; list is empty. No real COM/driver recovery, actual pixels/font/asset reload, populated destructor list, reentrancy/null mutation, native equivalence or full scenario/dispatch completion.', 'sources': sources, 'claims': declaration['claims'], 'sources_stable': True, 'original_sha256': BUILD_SHA256, 'input_unchanged': True, 'original_wrapper_instructions_unchanged': True, 'original_cases': len(seen), 'unique_matrix_cells': len(seen), 'matrix_axes': {k: sorted(v) for k, v in axes.items()}, 'calls_by_tag': dict(totals), 'stored_result_differs_from_retry_result': divergent, 'nonnull_return_with_nonzero_stored_result': returned_after_failure, 'original_return_contracts': contracts, 'destroy_window_import': imports[0], 'artifacts': {str(p.relative_to(ROOT)): {'sha256': hashlib.sha256(evidence_bytes(p)).hexdigest(), 'bytes': p.stat().st_size} for p in [out / 'cases.jsonl', out / 'reference', out / 'build.log', out / 'execution.log', out / 'execution-status.json']}}
     (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n'); print(json.dumps({'output': str(out), 'cases': len(seen), 'calls': dict(totals)}), flush=True)
     return report
 

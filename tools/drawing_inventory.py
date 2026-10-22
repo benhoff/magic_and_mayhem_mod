@@ -1,4 +1,5 @@
 """DRAW-01 route accounting. Recorded activity is not rendering equivalence."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 from collections import Counter
 import hashlib
 import json
@@ -323,7 +324,7 @@ def reconcile(root, catalog, register):
     hook_path = catalog['hook_source']
     if Path(hook_path).is_absolute() or '..' in Path(hook_path).parts or hook_path.startswith(('original/', 'working/', '.git/')) or not (root / hook_path).resolve().is_relative_to(root.resolve()):
         raise ValueError('Unsafe hook source')
-    hooks = hook_entries((root / hook_path).read_text())
+    hooks = hook_entries(evidence_text(root / hook_path))
     for hook in hooks:
         key = selector_key('entry', hook['entry'])
         if key not in selectors:
@@ -335,7 +336,7 @@ def reconcile(root, catalog, register):
             raise ValueError('Unsafe additional hook source')
         if source['kind'] != 'interior_jump':
             raise ValueError('Unreviewed additional hook parser')
-        entries = re.findall(r'jump\(\(u8\*\)(0x[0-9a-fA-F]+),', (root / path).read_text())
+        entries = re.findall(r'jump\(\(u8\*\)(0x[0-9a-fA-F]+),', evidence_text(root / path))
         if not entries:
             raise ValueError('Interior hook declaration changed; review the census')
         for entry in entries:
@@ -475,7 +476,7 @@ def producer_trace(stream, done, expected_sha256, scenario, runtime_base, report
     before = digest(paths[0])
     if before != expected_sha256:
         raise ValueError('Producer journal hash mismatch')
-    marker = paths[1].read_bytes()
+    marker = evidence_bytes(paths[1])
     if len(marker) != 32 or marker[:8] != b'MNMPDONE':
         raise ValueError('Missing or malformed completion marker')
     finished = struct.unpack('<8I', marker)
@@ -534,7 +535,7 @@ def producer_trace(stream, done, expected_sha256, scenario, runtime_base, report
             source.seek(row[18], 1)
     if queue_open or finished[2] != 1 or finished[3:] != (queues, sequence, failures, checkpoints, size) or queues != words[6] or failures:
         raise ValueError('Incomplete or failed journal completion')
-    if digest(paths[0]) != before or paths[1].read_bytes() != marker:
+    if digest(paths[0]) != before or evidence_bytes(paths[1]) != marker:
         raise ValueError('Trace inputs changed during inventory')
     rows = [{'operation': op, 'caller_va': hex(raw), 'normalized_return_pc': hex(pc) if pc is not None else None,
              'entry_route': entry, 'operation_route': operation, 'count': hits}

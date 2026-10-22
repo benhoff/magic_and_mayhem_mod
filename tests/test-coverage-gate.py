@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
 from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, digest, draft, snapshot, source_index, file_digest
 from coverage_claims import behavior_contract, scenario_contract
+from coverage_evidence import Reader
 from coverage_reviews import ARCHIVES, load_journal, read_journal, split_journal
 
 spec = importlib.util.spec_from_file_location('gate_cli', ROOT/'tools/check-re-coverage.py')
@@ -111,9 +112,16 @@ class GateTests(unittest.TestCase):
         self.assertEqual(snapshot(self.root)[0], snapshot(self.root)[0])
 
     def test_snapshot_fingerprints_shared_paths_once_without_cross_call_reuse(self):
-        with patch('coverage_gate.file_digest', wraps=file_digest) as fingerprints:
+        paths = []
+
+        class ObservedReader(Reader):
+            def digest(self, path):
+                paths.append(path)
+                return super().digest(path)
+
+        # Observe the snapshot reader separately from its independent audit.
+        with patch('coverage_gate.Reader', ObservedReader):
             first, _ = snapshot(self.root)
-        paths = [call.args[0] for call in fingerprints.call_args_list]
         self.assertEqual(paths.count(self.root/'assets/model.cpp'), 1)
         # Research participates both in source and immutable-artifact accounting.
         self.assertEqual(paths.count(self.root/'research/record.json'), 1)

@@ -147,7 +147,7 @@ def main():
         if args.publication_probe and not args.expect_inline_publication:
             trace=struct.unpack('<5I',(out/'publication-trace.bin').read_bytes())
             assert trace[0] and trace[0]!=trace[4] and trace[1]>0 and trace[2:4]==(0,0),trace
-        report.update(width=args.width,height=480 if args.width==640 else 600,invalid_extent_controls=4,case=args.case, expected_no_world=expect_no_world, publication_trace=list(trace) if trace else None, success=not negative_control, negative_control_verified=negative_control,
+        report.update(width=args.width,height=480 if args.width==640 else 600,invalid_extent_controls=4,zero_identity_controls=2,post_shutdown_bind_refused=True,case=args.case, expected_no_world=expect_no_world, publication_trace=list(trace) if trace else None, success=not negative_control, negative_control_verified=negative_control,
                       original_locks=result[2], original_unlocks=result[3],
                       last_error=result[1], bind_succeeded=bool(result[0]), complete_shutdown=True,
                       bind_ms=elapsed*1000/frequency, opcodes=[op for op,_ in records],

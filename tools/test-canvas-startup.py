@@ -20,6 +20,7 @@ def main():
     paths = [ROOT/p for p in ['runtime/scene/canvas_startup.c','runtime/scene/canvas_startup.S',
         'tests/canvas-startup-test.c','tests/canvas-startup-call.S','tools/inspect-canvas-startup.py',
         'tools/test-canvas-startup.py','runtime/shadow/win32_min.h','tools/build-shadow-bridge.py']]
+    paths.append(ROOT/'runtime/scene/canvas_driver_observe.h')
     sources = {str(p.relative_to(ROOT)):sha(p) for p in paths}
     parent=ROOT/'working/tests/canvas-startup';parent.mkdir(parents=True,exist_ok=True)
     output=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(output,flush=True)
@@ -28,7 +29,8 @@ def main():
         m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
     build=load('canvas_build','tools/build-shadow-bridge.py')
     definition=output/'kernel32.def'
-    definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{s}\n' for n,s in build.IMPORTS.items()))
+    definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{s}\n' for n,s in
+        {**build.IMPORTS,'GetCurrentThreadId':0}.items()))
     subprocess.run(['llvm-dlltool','-m','i386','-D','KERNEL32.dll','-d',str(definition),'-l',str(output/'kernel32.lib'),'--kill-at'],check=True)
     flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector',
            '-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-DMNM_SCENE_SELFTEST']

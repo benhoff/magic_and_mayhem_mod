@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Plan exact original CALL splices alongside existing census hooks; no patch."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import importlib.util
@@ -18,10 +19,10 @@ def load(name, relative):
 
 def export(executable, boundaries, api_only=False):
     paths=['tools/export-drawing-api-splices.py','tools/drawing_api_journal.py','tools/drawing_api_pairs.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-drawing-census.py','tools/export-menu-support.py','runtime/scene/canvas_producers.c','research/runtime/drawing-inventory.json','research/runtime/coverage/binary-nocd.json',str(boundaries.relative_to(ROOT))]
-    sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
-    raw=executable.read_bytes()
+    sources={p:hashlib.sha256(evidence_bytes(ROOT/p)).hexdigest() for p in paths}
+    raw=evidence_bytes(executable)
     if hashlib.sha256(raw).hexdigest()!=BUILD_SHA256:raise ValueError('Unsupported original executable')
-    selected=json.loads(boundaries.read_text())
+    selected=json.loads(evidence_text(boundaries))
     if selected['source_sha256']!=BUILD_SHA256 or selected['image_base']!=0x400000 or selected['input_unchanged'] is not True:
         raise ValueError('API boundary build/base/input mismatch')
     code=instructions(subprocess.check_output(['objdump','-w','-d','-Mintel',str(executable)],text=True))
@@ -52,8 +53,8 @@ def export(executable, boundaries, api_only=False):
             hooks.append(item);occupied.append((site,site+item['length']))
         except (KeyError,ValueError) as error:refused.append({'site':site,'reason':str(error)})
     if not hooks or len(hooks)>512:raise ValueError('API hook count outside bounded capacity')
-    if hashlib.sha256(executable.read_bytes()).hexdigest()!=BUILD_SHA256:raise ValueError('Original executable changed')
-    if sources!={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}:raise ValueError('Planner sources changed during export')
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest()!=BUILD_SHA256:raise ValueError('Original executable changed')
+    if sources!={p:hashlib.sha256(evidence_bytes(ROOT/p)).hexdigest() for p in paths}:raise ValueError('Planner sources changed during export')
     return {'schema':1,'scope':'Static exact original CALL splice plan in explicit '+('API-only, core-absent' if api_only else 'core/API')+' cohort. No actual hook execution, API result/ABI/output/ownership/borrowing or DRAW-01 closure.','cohort':'api_only' if api_only else 'core_api','original_sha256':BUILD_SHA256,'input_unchanged':True,'sources_stable':True,'hooks':hooks,'refused':refused,'core_hook_count':len(census),'core_refused':core_refused,'counts':{'selected':len(selected['calls']),'planned':len(hooks),'refused':len(refused)},'sources':sources}
 
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Offline full native-word and DC RGB comparison from independent Surface2 captures."""
+from coverage_evidence import read_text as evidence_text
 import argparse,gzip,importlib.util,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -8,7 +9,7 @@ spec=importlib.util.spec_from_file_location('dc',ROOT/'tools/check-surface-dib-d
 require=dc.require;sha=dc.sha
 
 def load(report=DEFAULT):
- c=json.loads(report.read_text());require(c['schema']==1 and c['success'] is True,'Invalid full DC capture');p=c['corpus']['path'];require(p=='tests/fixtures/surfaces/surface-dib-ddraw-rgb.json.gz','Unsafe full fixture path');require(sha(ROOT/p)==c['corpus']['sha256'],'Full DC fixture differs')
+ c=json.loads(evidence_text(report));require(c['schema']==1 and c['success'] is True,'Invalid full DC capture');p=c['corpus']['path'];require(p=='tests/fixtures/surfaces/surface-dib-ddraw-rgb.json.gz','Unsafe full fixture path');require(sha(ROOT/p)==c['corpus']['sha256'],'Full DC fixture differs')
  with gzip.open(ROOT/p,'rb') as f:raw=f.read(48*1024*1024+1)
  require(len(raw)<=48*1024*1024,'Expanded full fixture limit');data=json.loads(raw);require(data['schema']==1 and len(data['rows'])==c['cases']==72,'Full DC case count');return c,data
 

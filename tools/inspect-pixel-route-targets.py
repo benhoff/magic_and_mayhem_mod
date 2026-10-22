@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Pin original API identities and the selected minimap camera switch."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -21,11 +22,11 @@ def main():
     p.add_argument('--report',type=Path,required=True)
     a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
-    declaration=json.loads(a.claims.read_text())
-    if any(sha((ROOT/path).read_bytes())!=h for path,h in declaration['sources'].items()):p.error('Prospective source changed')
+    declaration=json.loads(evidence_text(a.claims))
+    if any(sha(evidence_bytes(ROOT/path))!=h for path,h in declaration['sources'].items()):p.error('Prospective source changed')
     subprocess.run([ROOT/'tools/original-manifest.sh','verify'],check=True)
     try:
-        image=ROOT/'original/Arcane_Nocd/Chaos.exe';data=image.read_bytes()
+        image=ROOT/'original/Arcane_Nocd/Chaos.exe';data=evidence_bytes(image)
         if sha(data)!=BUILD:raise ValueError('Unsupported executable')
         pe=struct.unpack_from('<I',data,60)[0];opt=pe+24
         n=struct.unpack_from('<H',data,pe+6)[0];s=struct.unpack_from('<H',data,pe+20)[0]
@@ -35,7 +36,7 @@ def main():
                 offset=address-0x400000-rva
                 if 0<=offset and offset+size<=length:return data[raw+offset:raw+offset+size]
             raise ValueError('Unbacked PE address')
-        inventory=json.loads((ROOT/'research/runtime/coverage/binary-nocd.json').read_text())
+        inventory=json.loads(evidence_text(ROOT/'research/runtime/coverage/binary-nocd.json'))
         target=next(i for i in inventory['imports'] if i['iat_va']==0x5c51fc)
         if target['name']!='ClientToScreen' or target['dll'].lower()!='user32.dll':raise ValueError('Wrong imported API')
         if any(i.get('name')=='BitBlt' for i in inventory['imports']):raise ValueError('Re-review BitBlt imports')
@@ -53,7 +54,7 @@ def main():
             cases.append(dict(value=case,branch=branch,call=branch+2,target=callee,route=route))
         if read(0x555c3c,18)!=bytes.fromhex('8b86a400000083f8037720ff2485085e5500'):raise ValueError('Camera selector changed')
         report=dict(schema=1,success=True,kind='static',claims=declaration['claims'],sources=declaration['sources'],
-                    original_executable_sha256=BUILD,binary_inventory_sha256=sha((ROOT/'research/runtime/coverage/binary-nocd.json').read_bytes()),
+                    original_executable_sha256=BUILD,binary_inventory_sha256=sha(evidence_bytes(ROOT/'research/runtime/coverage/binary-nocd.json')),
                     imported_api=target,retired_sites=list(SITES),bitblt_imports=0,
                     camera_switch=dict(selector=0x555c3c,table=0x555e08,cases=cases,
                                        code_sha256=sha(read(0x555c3c,43)),table_sha256=sha(read(0x555e08,16))),
@@ -101,8 +102,8 @@ def main():
                 live_exercised=False,global_unreachable_proved=False))
         report['remaining_route_reachability']=reachability
         report['reachability_scope']='Static candidate inventory for24 valid routes absent from the prior bounded campaign. Byte hits are not automatically instructions or live callers. Zero candidates does not prove global dead code. No native comparison or live route promotion.'
-        report['sources_stable']=all(sha((ROOT/path).read_bytes())==h for path,h in declaration['sources'].items())
-        if not report['sources_stable'] or sha(image.read_bytes())!=BUILD:raise ValueError('Inputs changed')
+        report['sources_stable']=all(sha(evidence_bytes(ROOT/path))==h for path,h in declaration['sources'].items())
+        if not report['sources_stable'] or sha(evidence_bytes(image))!=BUILD:raise ValueError('Inputs changed')
         a.report.parent.mkdir(parents=True,exist_ok=True)
         with a.report.open('x') as f:json.dump(report,f,indent=2);f.write('\n')
     finally:subprocess.run([ROOT/'tools/original-manifest.sh','verify'],check=True)

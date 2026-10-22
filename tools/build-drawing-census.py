@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build signature-pinned observation-only drawing census hooks; no CRT."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import importlib.util
@@ -34,13 +35,13 @@ def site_mode(route, entry, inventory):
 
 
 def hook_rows(executable):
-    raw = executable.read_bytes()
+    raw = evidence_bytes(executable)
     if hashlib.sha256(raw).hexdigest() != BUILD_SHA256:
         raise ValueError('Unsupported original executable; no build')
     offset = load('census_pe', 'tools/export-menu-support.py').image_offset
-    catalog = json.loads((ROOT / 'research/runtime/drawing-inventory.json').read_text())
-    inventory = json.loads((ROOT / 'research/runtime/coverage/binary-nocd.json').read_text())
-    text = (ROOT / 'runtime/scene/canvas_producers.c').read_text()
+    catalog = json.loads(evidence_text(ROOT / 'research/runtime/drawing-inventory.json'))
+    inventory = json.loads(evidence_text(ROOT / 'research/runtime/coverage/binary-nocd.json'))
+    text = evidence_text(ROOT / 'runtime/scene/canvas_producers.c')
     known = {int(a, 16): int(pop) for a, pop in re.findall(
         r'\{(0x[0-9a-fA-F]+),\d+,(\d+),\{[^}]+\},producer_enter_\d+,-?\d+\}', text)}
     all_code = instructions(subprocess.check_output(['objdump', '-d', '-Mintel', str(executable)], text=True))
@@ -95,7 +96,7 @@ def hook_rows(executable):
                          'pop': pop, 'site': site, 'relocations': relocs, 'route': route['id']})
         except (KeyError, ValueError) as error:
             refused.append({'entry': entry, 'route': route['id'], 'reason': str(error)})
-    if hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256:
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest() != BUILD_SHA256:
         raise ValueError('Original executable changed during build preparation')
     if len(rows) > 256: raise ValueError('Hook census exceeds reviewed capacity')
     return rows, refused
@@ -122,7 +123,7 @@ def build(executable):
             ','.join(str(v) for v in bytes.fromhex(r['signature'])),
             ','.join(str(v) for v in r['relocations']) or '0', r['tag']))
     header.append('};'); (output / 'hooks.inc').write_text('\n'.join(header) + '\n')
-    assembly = (ROOT / 'runtime/drawing-census/entry.S').read_text()
+    assembly = evidence_text(ROOT / 'runtime/drawing-census/entry.S')
     assembly += '\n' + '\n'.join(f'census_entry {r["tag"]}' for r in rows) + '\n'
     (output / 'entry.S').write_text(assembly)
     flags = ['clang', '--target=i686-pc-windows-msvc', '-O2', '-ffreestanding', '-fno-builtin',
@@ -141,9 +142,9 @@ def build(executable):
              'runtime/shadow/win32_min.h', 'runtime/scene/canvas_producers.c',
              'protocols/include/mnm/drawing_census_v1.h', 'protocols/include/mnm/drawing_census_bindings_v1.h', 'research/runtime/drawing-inventory.json',
              'research/runtime/coverage/binary-nocd.json']
-    report = {'schema': 1, 'original_sha256': BUILD_SHA256, 'dll_sha256': hashlib.sha256(dll.read_bytes()).hexdigest(),
+    report = {'schema': 1, 'original_sha256': BUILD_SHA256, 'dll_sha256': hashlib.sha256(evidence_bytes(dll)).hexdigest(),
               'named_leave_export_checked': True,
-              'hooks': rows, 'unhookable': refused, 'sources': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths},
+              'hooks': rows, 'unhookable': refused, 'sources': {p: hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() for p in paths},
               'scope': 'Observation-only entry/return metadata. Safe splices only; refused entries remain explicit. '
                        'No writer completeness, side-effect equivalence, full dispatch or scenario closure assertion.'}
     (output / 'manifest.json').write_text(json.dumps(report, indent=2) + '\n')

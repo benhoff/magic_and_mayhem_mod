@@ -14,6 +14,8 @@ import time
 from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, draft, load_json, snapshot
 from coverage_merge_history import inherited_history
 from coverage_reviews import load_journal, read_journal
+from coverage_evidence import shared_cache
+from evidence_local import local_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -26,7 +28,7 @@ def git(root, *args):
 def git_snapshot(root, revision):
     """Read a base tree without switching branches or executing its code."""
     commit = git(root, 'rev-parse', '--verify', '--end-of-options', revision + '^{commit}').decode().strip()
-    with tempfile.TemporaryDirectory(prefix='coverage-git-base-') as temporary:
+    with shared_cache(root), tempfile.TemporaryDirectory(prefix='coverage-git-base-') as temporary:
         target = Path(temporary)
         # Stream the archive instead of buffering several GiB before extraction.
         # Keep stderr off a pipe so an export failure cannot deadlock the reader.
@@ -82,7 +84,7 @@ def staged_tree(root):
         if mode not in {b'100644', b'100755'}:
             raise ValueError(f'Unsupported staged file mode: {path}')
         paths.append(name)
-    with tempfile.TemporaryDirectory(prefix='coverage-git-index-') as temporary:
+    with shared_cache(root), tempfile.TemporaryDirectory(prefix='coverage-git-index-') as temporary:
         target = Path(temporary)
         subprocess.run(['git', '-C', str(root), 'checkout-index', '--prefix=' + temporary + '/',
                         '-z', '--stdin'], input=b'\0'.join(paths) + b'\0' if paths else b'',
@@ -114,7 +116,7 @@ def main():
     parser.add_argument('--timings', action='store_true', help='Print phase durations to stderr and include them in the JSON report')
     args = parser.parse_args()
     ROOT = args.root.resolve()
-    with ExitStack() as stack:
+    with local_evidence(ROOT), ExitStack() as stack:
         return run(args, stack)
 
 

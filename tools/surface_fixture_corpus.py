@@ -4,6 +4,7 @@ Adapters keep each historical wire format and oracle separate. A catalog cannot
 choose a program, add arguments, supply expected pixels as native inputs, or
 turn a represented operation family into full surface acceptance.
 """
+from coverage_evidence import read_text as evidence_text
 from contextlib import nullcontext
 import hashlib
 import json
@@ -224,7 +225,7 @@ def check(corpus_path, build, headless=False):
     sources = dict(pinned)
     # The reviewed central links declare the transitive replay source closure.
     # Pin it before execution as well as checking every adapter's actual report.
-    register = json.loads((ROOT / 'research/runtime/coverage/register.json').read_text())
+    register = json.loads(evidence_text(ROOT / 'research/runtime/coverage/register.json'))
     behavior = next(b for b in register['behaviors'] if b['id'] == 'NR.surface-fixture-corpus')
     for role in ('implementation', 'tests', 'validation_dependencies'):
         for name in behavior.get(role, []):

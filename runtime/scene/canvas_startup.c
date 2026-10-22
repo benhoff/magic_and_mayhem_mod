@@ -31,6 +31,7 @@ static u32 get(const void* p){const u8* b=p;return b[0]|(u32)b[1]<<8|(u32)b[2]<<
 static void put(void* p,u32 v){u8* b=p;b[0]=v;b[1]=v>>8;b[2]=v>>16;b[3]=v>>24;}
 static void copy(void* to,const void* from,u32 n){u8* d=to;const u8* s=from;while(n--)*d++=*s++;}
 static int readable(u32 p,u32 n){u32 end=p+n;if(!p||end<p)return 0;while(p<end){u32 m[7];if(VirtualQuery((void*)p,m,28)!=28||m[4]!=0x1000||(m[5]&0x101)||!(m[5]&0xee))return 0;u32 next=m[0]+m[3];if(next<=p)return 0;p=next<end?next:end;}return 1;}
+#include "canvas_driver_observe.h"
 void canvas_startup_close(void){if(file){CloseHandle(file);file=0;}}
 static void snapshot(u32* out,u32 pixels,u32 width,u32 height,u32 stride){
     out[0]=pixels;out[1]=width;out[2]=height;out[3]=stride;out[4]=0xffffffff;out[5]=0;
@@ -52,7 +53,12 @@ static void record(u32 tag,u32 phase,const struct Frame* f,u32 result){
     u32 object=f&&tag<12&&tag!=3&&tag!=4&&tag!=10&&tag!=11?f->ecx:0;
     if(readable(object,48))for(u32 i=0;i<6;++i)row[21+i]=get((void*)(object+4+i*4));
     row[31]=0xffffffff;
-    if(tag==3&&f)snapshot(row+27,f->ecx,f->edx,f->args[0],f->edx);
+    if(driver_enabled){
+        /* Legacy readable-pointer snapshots are deliberately disabled here. */
+        if(tag==12)driver_finish();
+        else if(phase==1&&f)driver_after(tag,f->ecx,f->caller,f->args[0]);
+    }
+    else if(tag==3&&f)snapshot(row+27,f->ecx,f->edx,f->args[0],f->edx);
     else if(tag==12)snapshot(row+27,row[13],row[18],row[19],row[14]);
     else if(tag==2&&phase==1)snapshot(row+27,result,row[24],row[25],row[26]/2);
     else if((tag==5||tag==6||tag==7||tag==8||tag==9)&&object){
@@ -90,6 +96,7 @@ int canvas_startup_install(void){
 #ifndef MNM_SCENE_SELFTEST
     if((u32)GetModuleHandleA(0)!=0x400000)return 0;
 #endif
+    if(!driver_prepare())return 0;
     /* Validate every entry before any code mutation. Staging pins the full hash. */
     for(u32 i=0;i<HOOKS;++i){const struct Hook* h=hooks+i;if(!readable(h->address,h->length))return 0;
         for(u32 j=0;j<h->length;++j)if(((u8*)h->address)[j]!=h->bytes[j])return 0;
@@ -109,5 +116,6 @@ int canvas_startup_install(void){
         copy((void*)h->address,patch,h->length);FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);
         VirtualProtect((void*)h->address,h->length,old,&unused);
     }
+    if(!driver_install())return 0;
     enabled=1;return 1;
 }

@@ -46,6 +46,10 @@ struct RuntimeActorBackend {
         ((Message)r(0x5c520c))(0,0x5da204,0x5da224,0x42030);
         ((Destroy)r(0x5c5208))(r(0x656614));
     }
+    u32 fastcall(u32 entry,u32 receiver,u32 second) {
+        using F=u32(__attribute__((fastcall)) *)(u32,u32);
+        return ((F)entry)(receiver,second);
+    }
     template<class... A>u32 call(u32 entry,u32 receiver,A... args) {
         using F=u32(__attribute__((thiscall)) *)(u32,A...);
         return ((F)entry)(receiver,args...);

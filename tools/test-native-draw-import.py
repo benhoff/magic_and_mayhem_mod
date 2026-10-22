@@ -26,6 +26,8 @@ def sha(data):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--claims', type=Path, required=True)
+    parser.add_argument('--executable', type=Path, default=ROOT/'original/Arcane_Nocd/Chaos.exe',
+                        help='Unmodified hash-pinned executable; never use an implicitly staged installation')
     args = parser.parse_args()
     claims = json.loads(args.claims.read_text())
     parent = ROOT/'working/tests/native-draw-import'
@@ -41,7 +43,7 @@ def main():
             raise ValueError('Prospective source changed')
         subprocess.run([ROOT/'tools/original-manifest.sh', 'verify'], check=True)
         before = True
-        source = ROOT/'working/game-nocd/Chaos.exe'
+        source = args.executable.resolve()
         data = source.read_bytes()
         report['source_executable_sha256'] = sha(data)
         if sha(data) != '40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168':

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Opt-in five terminal parent frames beside the unchanged default core census."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import importlib.util
@@ -19,8 +20,8 @@ def load(name,path):
 
 def terminal_rows(raw, base_rows, code, proof, image_offset):
     """Exact original prefix/RET0 composition; no guessed function boundaries."""
-    if hashlib.sha256(proof.read_bytes()).hexdigest()!=PROOF_SHA256:raise ValueError('Unreviewed original terminal range proof')
-    record=json.loads(proof.read_text());ranges={r['start']:r for r in record['original_instruction_contracts']}
+    if hashlib.sha256(evidence_bytes(proof)).hexdigest()!=PROOF_SHA256:raise ValueError('Unreviewed original terminal range proof')
+    record=json.loads(evidence_text(proof));ranges={r['start']:r for r in record['original_instruction_contracts']}
     if record['original_sha256']!=BUILD_SHA256 or not record['success'] or not record['original_wrapper_instructions_unchanged']:raise ValueError('Missing original terminal wrapper execution')
     rows=list(base_rows);occupied=[(r['entry'],r['entry']+r['length']) for r in rows]
     for entry in TARGETS:
@@ -47,21 +48,21 @@ def terminal_rows(raw, base_rows, code, proof, image_offset):
 
 def hook_rows(executable):
     backend=load('terminal_base_rows','tools/build-drawing-census.py')
-    rows,refused=backend.hook_rows(executable);raw=executable.read_bytes()
+    rows,refused=backend.hook_rows(executable);raw=evidence_bytes(executable)
     if hashlib.sha256(raw).hexdigest()!=BUILD_SHA256:raise ValueError('Wrong original terminal input')
     code=instructions(subprocess.check_output(['objdump','-w','-d','-Mintel',str(executable)],text=True))
     rows=terminal_rows(raw,rows,code,ROOT/PROOF,load('terminal_pe','tools/export-menu-support.py').image_offset)
-    if hashlib.sha256(executable.read_bytes()).hexdigest()!=BUILD_SHA256:raise ValueError('Original terminal input changed')
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest()!=BUILD_SHA256:raise ValueError('Original terminal input changed')
     return rows,refused
 
 
 def build(executable):
     paths=['tools/build-drawing-terminal-census.py','tools/drawing_terminal_crosswalk.py',PROOF]
-    sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
+    sources={p:hashlib.sha256(evidence_bytes(ROOT/p)).hexdigest() for p in paths}
     backend=load('terminal_base_build','tools/build-drawing-census.py');backend.hook_rows=hook_rows
-    dll=backend.build(executable);path=dll.parent/'manifest.json';record=json.loads(path.read_text())
+    dll=backend.build(executable);path=dll.parent/'manifest.json';record=json.loads(evidence_text(path))
     if len(record['hooks'])!=88 or {r['entry'] for r in record['hooks'][-5:]}!=set(TARGETS):raise ValueError('Expected83default and five terminal hooks')
-    if sources!={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}:raise ValueError('Terminal build sources changed')
+    if sources!={p:hashlib.sha256(evidence_bytes(ROOT/p)).hexdigest() for p in paths}:raise ValueError('Terminal build sources changed')
     record['sources'].update(sources);record['terminal_flow_observation']=True
     record['scope']='Separate opt-in88entry core cohort:83safe default hooks plus five byte-pinned terminal wrapper parent frames with exact original RET0 composition. Native writer/forwarder unchanged; no original replacement, generic ownership, all side effects/lifetimes, caller or scenario/dispatch closure from compilation.'
     path.write_text(json.dumps(record,indent=2)+'\n');return dll

@@ -5,6 +5,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import resource
 from pathlib import Path
 import struct
 import subprocess
@@ -18,9 +19,10 @@ def sha(path):
 
 
 def main():
+    resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--experiment', type=Path, default=ROOT/'working/experiments/menu-observer/run-r9nz3st2')
-    parser.add_argument('--executable', type=Path, default=ROOT/'working/game-nocd/Chaos.exe')
+    parser.add_argument('--executable', type=Path, default=ROOT/'original/Arcane_Nocd/Chaos.exe')
     args = parser.parse_args()
     if not args.experiment.resolve().is_relative_to(ROOT/'working'):
         parser.error('Require an owned retained experiment under working')
@@ -36,12 +38,14 @@ def main():
     claims = json.loads((out / 'claims.json').read_text())
     report = dict(success=False, sources=claims['sources'], claims=claims['claims'],
                   scope=__doc__, original_pixels_used_as_native_inputs=False)
-    env = dict(os.environ, TMPDIR=str(ROOT / 'working/coverage-hook-tmp'),
+    env = dict(os.environ, TMPDIR=str(out / 'tmp'),
                QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1',
-               GALLIUM_DRIVER='llvmpipe', LP_NUM_THREADS='4')
+               GALLIUM_DRIVER='llvmpipe', LP_NUM_THREADS='4',
+               __GLX_VENDOR_LIBRARY_NAME='mesa',
+               __EGL_VENDOR_LIBRARY_FILENAMES='/usr/share/glvnd/egl_vendor.d/50_mesa.json',
+               QT_XCB_GL_INTEGRATION='xcb_glx')
     Path(env['TMPDIR']).mkdir(parents=True,exist_ok=True)
-    for key in ['MESA_LOADER_DRIVER_OVERRIDE', '__GLX_VENDOR_LIBRARY_NAME',
-                '__EGL_VENDOR_LIBRARY_FILENAMES', 'QT_XCB_GL_INTEGRATION']:
+    for key in ['MESA_LOADER_DRIVER_OVERRIDE']:
         env.pop(key, None)
 
     def run(label, command):
@@ -92,16 +96,26 @@ def main():
                                'tests/displacement-linear-reference.cpp', '-o', reference])
         run('original-edge', [reference, pe, owned, out / 'original.json', '--bottom-edge'])
         report['original'] = json.loads((out / 'original.json').read_text())
-        build = ROOT / 'working/build/qt-shell'
-        run('configure', ['cmake', '-S', ROOT / 'apps/qt-shell', '-B', build,
-                          '-DBUILD_TESTING=ON', '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
-        run('build', ['cmake', '--build', build, '--target', 'masked-displacement-test',
-                      'scene-renderer-test', 'sprite-atlas-test', '-j4'])
-        run('fixture', ['xvfb-run', '-a', build / 'world-rolling/masked-displacement-test',
+        build = out / 'native-build'
+        run('fixture-configure', ['cmake', '-S', ROOT / 'tests/native-world-rolling',
+                                 '-B', build, '-DBUILD_TESTING=ON', '-DCMAKE_BUILD_TYPE=Debug'])
+        report['build_configuration'] = {'source': 'tests/native-world-rolling',
+                                         'build_testing': True, 'type': 'Debug',
+                                         'assertions_enabled': True}
+        run('fixture-build', ['cmake', '--build', build, '--parallel', '2', '--target',
+                              'masked-displacement-test', 'scene-renderer-test', 'sprite-atlas-test'])
+        # Keep one source entry and Debug cache for this private fixture build.
+        # Reconfiguring it as the Qt application is a different CMake project.
+        run('fixture', ['xvfb-run', '-a', '-e', out / 'fixture-xserver.log', build / 'world-rolling/masked-displacement-test',
                         source, assets, 'edge'])
         report['controls'] = json.loads((out / 'fixture.log').read_text().splitlines()[-1])
         for name in ['scene-renderer-test', 'sprite-atlas-test']:
-            run(name, ['xvfb-run', '-a', build / 'world-rolling/canvas-producers/scenes' / name])
+            run(name, ['xvfb-run', '-a', '-e', out / (name+'-xserver.log'), build / 'world-rolling/canvas-producers/scenes' / name])
+        report['executed_binaries_sha256'] = {
+            str(path.relative_to(ROOT)): sha(path) for path in [
+                build / 'world-rolling/masked-displacement-test',
+                build / 'world-rolling/canvas-producers/scenes/scene-renderer-test',
+                build / 'world-rolling/canvas-producers/scenes/sprite-atlas-test']}
         report.update(success=True, regressions=2)
     except (OSError, ValueError, StopIteration, AssertionError, subprocess.SubprocessError) as error:
         report['error'] = str(error)

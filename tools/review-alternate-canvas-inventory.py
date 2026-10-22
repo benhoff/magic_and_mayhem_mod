@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Review only the newly found 59455c x87 copy body; preserve historical discovery."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import copy
 import hashlib
@@ -11,7 +12,7 @@ from original_x86 import PE32, Decoder
 ROOT=Path(__file__).resolve().parents[1]
 PIN='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 DIGEST='5fa7b04519567f0cbefd9ec6550daaf01fa00e667914cb288334da3d56cc5585'
-def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
+def sha(path): return hashlib.sha256(evidence_bytes(path)).hexdigest()
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--candidate',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
@@ -25,9 +26,9 @@ def main():
     before=False
     try:
         subprocess.run([ROOT/'tools/original-manifest.sh','verify'],check=True);before=True
-        image=PE32((ROOT/'original/Arcane_Nocd/Chaos.exe').read_bytes())
-        old=json.loads(baseline.read_text());export=json.loads((a.candidate/'report.json').read_text())
-        candidate_path=a.candidate/'inventory.json';candidate=json.loads(candidate_path.read_text())
+        image=PE32(evidence_bytes(ROOT/'original/Arcane_Nocd/Chaos.exe'))
+        old=json.loads(evidence_text(baseline));export=json.loads(evidence_text(a.candidate/'report.json'))
+        candidate_path=a.candidate/'inventory.json';candidate=json.loads(evidence_text(candidate_path))
         if image.sha256!=PIN or not export['success'] or sha(candidate_path)!=export['artifacts']['inventory.json']:
             raise ValueError('Unadmitted export/original')
         if old['source_sha256']!=PIN or candidate['source_sha256']!=PIN:raise ValueError('Inventory build differs')

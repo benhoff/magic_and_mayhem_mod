@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Export exact drawing caller PCs from a verified original build."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -18,9 +19,9 @@ def main():
         parser.error('Output must be new and outside immutable original/Git roots')
     subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
     try:
-        catalog = json.loads((ROOT / 'research/runtime/drawing-inventory.json').read_text())
+        catalog = json.loads(evidence_text(ROOT / 'research/runtime/drawing-inventory.json'))
         report = export(args.executable, catalog, ROOT / 'research/runtime/coverage/binary-nocd.json')
-        report['sources']['tools/export-drawing-census.py'] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+        report['sources']['tools/export-drawing-census.py'] = hashlib.sha256(evidence_bytes(Path(__file__))).hexdigest()
         output.parent.mkdir(parents=True, exist_ok=True)
         with output.open('x') as out:
             json.dump(report, out, indent=2)

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Bounded third-twenty capture/storage controls and retained normalization replay."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -19,7 +20,7 @@ TESTS = ['test-drawing-backing-provenance.py', 'test-drawing-storage-transitions
 
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(evidence_bytes(path)).hexdigest()
 
 
 def main():
@@ -31,7 +32,7 @@ def main():
         parser.error('Require a new output under working/tests')
     out.mkdir(parents=True)
     (out/'.retain').write_text('Third-twenty offline controls and immutable-input replay.\n')
-    register = json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
+    register = json.loads(evidence_text(ROOT/'research/runtime/coverage/register.json'))
     by_id = {b['id']: b for b in register['behaviors']}
     builds = {b['id']: b for b in register['builds']}
     names = set().union(*(required_sources(by_id[bid]) for bid in IDS))
@@ -57,19 +58,19 @@ def main():
         run('original-before', [ROOT/'tools/original-manifest.sh', 'verify'])
         for name in TESTS:
             run(name, [sys.executable, '-B', ROOT/'tests'/name])
-            text = (out/(name+'.log')).read_text()
+            text = evidence_text(out/(name+'.log'))
             count = int(re.search(r'Ran (\d+) tests?', text).group(1))
             report['controls'].append(dict(test=name, tests=count, success=True))
         from drawing_recorded_session import admit
         from drawing_corpus import artifact
         from drawing_copy_order import normalize
         catalog_path = ROOT/'tests/fixtures/drawing-storage-corrected-session/session.json'
-        catalog = json.loads(catalog_path.read_text())
+        catalog = json.loads(evidence_text(catalog_path))
         raw, records, frames, _ = admit(ROOT, catalog, register)
         original_path = ROOT/next(e['record'] for e in register['evidence'] if e['id']==catalog['evidence'])
         expected_path = ROOT/'research/runtime/egl-destination-native-corrected-20261016.json'
-        original = json.loads(original_path.read_text())
-        expected = json.loads(expected_path.read_text())['copy_order']
+        original = json.loads(evidence_text(original_path))
+        expected = json.loads(evidence_text(expected_path))['copy_order']
         reads = [f for f in frames if f['fill'] is None and not f.get('background')]
         reads += [f['background'] for f in frames if 'sequence' in f.get('background', {})]
         normalized, proof = normalize(raw, records, artifact(ROOT, catalog['traces']['points']), original, reads)

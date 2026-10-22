@@ -3,7 +3,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-from coverage_evidence import decode_bytes
+from coverage_evidence import Reader, read_bytes
 
 REVIEWS = 'research/runtime/coverage/change-reviews.json'
 ARCHIVES = 'research/runtime/coverage/review-archives/'
@@ -39,8 +39,9 @@ def load_journal(root, path=REVIEWS):
         target = (root/name).resolve()
         if Path(name).is_absolute() or not target.is_relative_to(root):
             raise ValueError('Escaping review path: ' + name)
-        return decode_bytes(root, target.read_bytes())
-    return read_journal(read, path)
+        return reader.read_bytes(target)
+    with Reader(root) as reader:
+        return read_journal(read, path)
 
 
 def split_journal(root, max_bytes=32 * 1024 * 1024):
@@ -66,7 +67,7 @@ def split_journal(root, max_bytes=32 * 1024 * 1024):
         target = root/name
         target.parent.mkdir(parents=True, exist_ok=True)
         if target.exists():
-            if target.read_bytes() != data:
+            if read_bytes(target, root=root) != data:
                 raise ValueError('Refusing to overwrite review archive: ' + name)
         else:
             with target.open('xb') as out:

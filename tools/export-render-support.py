@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Export a hash-checked DirectDraw drawing inventory and direct call sites."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -48,7 +49,7 @@ SITES = {
 
 
 def export(executable):
-    if hashlib.sha256(executable.read_bytes()).hexdigest() != HASH:
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest() != HASH:
         raise ValueError('Unsupported executable hash; refusing build-specific export')
     result = subprocess.run(['objdump', '-d', '-Mintel', str(executable)],
                             check=True, capture_output=True, text=True)
@@ -62,7 +63,7 @@ def export(executable):
     parent.mkdir(parents=True, exist_ok=True)
     output = Path(tempfile.mkdtemp(prefix='render-support-', dir=parent))
     inventory_path = REPO / 'research/runtime/coverage/binary-nocd.json'
-    inventory = json.loads(inventory_path.read_text())
+    inventory = json.loads(evidence_text(inventory_path))
     if inventory['source_sha256'] != HASH:
         raise ValueError('Discovery inventory build mismatch')
     def owners(va):
@@ -72,7 +73,7 @@ def export(executable):
     for name, (start, end) in RANGES.items():
         path = output / (name + '.asm')
         path.write_text('\n'.join(line for va, line in instructions if start <= va < end) + '\n')
-        artifacts[path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
+        artifacts[path.name] = hashlib.sha256(evidence_bytes(path)).hexdigest()
         callers[name] = []
         for index, (va, line) in enumerate(instructions):
             call = re.search(r'\bcall\s+0x([0-9a-f]+)\b', line)
@@ -98,14 +99,14 @@ def export(executable):
                 computed_jumps[name].append({'site': f'0x{va:08x}', 'instruction': line})
     path = output / 'direct-callers.json'
     path.write_text(json.dumps(callers, indent=2) + '\n')
-    artifacts[path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    artifacts[path.name] = hashlib.sha256(evidence_bytes(path)).hexdigest()
     result = subprocess.run(['objdump', '-s', '--start-address=0x5f19d8', '--stop-address=0x5f1a64', str(executable)],
                             check=True, capture_output=True, text=True)
     path = output/'monitor-api-strings.txt'; path.write_text(result.stdout)
-    artifacts[path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    artifacts[path.name] = hashlib.sha256(evidence_bytes(path)).hexdigest()
     site_lines = {f'0x{va:08x}': {'operation': name, 'instruction': next(s for at, s in instructions if at == va)}
                   for va, name in SITES.items()}
-    if hashlib.sha256(executable.read_bytes()).hexdigest() != HASH:
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest() != HASH:
         raise ValueError('Input changed during export')
     (output / 'manifest.json').write_text(json.dumps({
         'source': str(executable.resolve()), 'source_sha256': HASH, 'image_base': '0x00400000',
@@ -113,9 +114,9 @@ def export(executable):
         'direct_caller_counts': {k: len(v) for k, v in callers.items()},
         'callers': callers, 'indirect_calls': indirect,
         'outgoing_direct_calls': outgoing, 'computed_jumps': computed_jumps,
-        'sources': {str(Path(__file__).resolve().relative_to(REPO)): hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-                    str(inventory_path.relative_to(REPO)): hashlib.sha256(inventory_path.read_bytes()).hexdigest()},
-        'discovery_inventory_sha256': hashlib.sha256(inventory_path.read_bytes()).hexdigest(),
+        'sources': {str(Path(__file__).resolve().relative_to(REPO)): hashlib.sha256(evidence_bytes(Path(__file__))).hexdigest(),
+                    str(inventory_path.relative_to(REPO)): hashlib.sha256(evidence_bytes(inventory_path)).hexdigest()},
+        'discovery_inventory_sha256': hashlib.sha256(evidence_bytes(inventory_path)).hexdigest(),
         'scope': 'Selected static wrappers; direct calls only, no inferred function boundaries or runtime frequencies',
         'input_unchanged': True,
     }, indent=2) + '\n')

@@ -36,7 +36,9 @@ void authored(render::GlBlitter& g,const std::filesystem::path& root){
    w.beginResident(e,canvas,generation);rejected([&]{w.replayPrepared();});
    auto red=rectangle(3,4,0xf800),blue=rectangle(4,5,0x001f);
    w.append(red);w.completeResident();w.append(blue);w.completeResident();
-   rejected([&]{w.replayPrepared();});w.end(end);
+   rejected([&]{w.replayPrepared();});auto invalid=end;invalid.fields[3]=8;
+   const auto captures=w.retainedImageCaptures();rejected([&]{w.end(invalid);});
+   require(w.retainedImageCaptures()==captures,"Failed return captured an incomplete World");w.end(end);
    auto expected=std::vector<std::uint32_t>(256,background);
    for(auto at:{67,68,83,84})expected[at]=half(0xf800,expected[at]);
    for(auto at:{84,85,100,101})expected[at]=half(0x001f,expected[at]);
@@ -55,6 +57,14 @@ void authored(render::GlBlitter& g,const std::filesystem::path& root){
    require(w.retainedImageCaptures()==generation&&w.completedSequence()==generation,"Image reuse changed source sequence/capture count");
   }
   require(w.preparedReplays()==80&&w.draws()==4,"Image reuse advanced native producer draws");
+  const auto replacement=g.create({8,8,std::vector<std::uint32_t>(64,0x07e0)},rgb);
+  e={};e.fields[2]=11;e.fields[3]=9;e.fields[5]=e.fields[6]=8;e.fields[14]=1;
+  end=e;end.fields[2]=12;auto red=rectangle(3,4,0xf800);red.fields[3]=9;red.fields[5]=red.fields[6]=red.fields[12]=red.fields[13]=8;
+  rejected([&]{w.beginResident(e,replacement,4);});w.beginResident(e,replacement,3);w.append(red);w.completeResident();w.end(end);
+  auto expected=std::vector<std::uint32_t>(64,0x07e0);for(auto at:{35,36,43,44})expected[at]=half(0xf800,0x07e0);
+  for(unsigned i=0;i<12;++i){g.update(replacement,0,0,{8,8,std::vector<std::uint32_t>(64,0xffff)});w.replayPrepared();require(g.read(replacement).pixels==expected,"Retained image kept old identity or extent");}
+  require(w.retainedImageCaptures()==3&&w.completedSequence()==3&&w.draws()==5,"Replacement reuse repeated source processing");
+  g.destroy(replacement);
  }
  g.destroy(canvas);require(g.stats().surfaces==0,"Retained image teardown leaked surfaces");
  rejected([&]{legacy::WorldRollingSession invalid(g,store(root),false,true,false,true);});
@@ -92,7 +102,7 @@ int main(int argc,char** argv)try{
   replayMs=benchmark(replay,normal);reuseMs=benchmark(reuse,retained);
   require(reuse.completed()==1&&reuse.retainedImageCaptures()==1&&reuse.producerCacheStats().decodes==decodes,"Image reuse changed producer history");
  }
- std::cout<<"{\"success\":true,\"destination_dependent_repeats\":80,\"source_updates\":2,\"ui_contamination_checked\":true,\"active_world_refused\":true,\"actual_source_repeats\":"<<actual
+ std::cout<<"{\"success\":true,\"destination_dependent_repeats\":92,\"source_updates\":3,\"replacement_repeats\":12,\"failed_returns_not_captured\":true,\"ui_contamination_checked\":true,\"active_world_refused\":true,\"actual_source_repeats\":"<<actual
  <<",\"prepared_replay_ms\":"<<replayMs<<",\"retained_image_ms\":"<<reuseMs<<",\"benchmark_repeats_per_policy\":"<<(argc==4?200:0)
  <<",\"ordinary_readbacks\":0,\"producer_history_unchanged\":true,\"teardown_surfaces\":0}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

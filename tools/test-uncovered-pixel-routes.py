@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Execute every pending optional pixel route against pinned original code."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -17,7 +18,7 @@ RUNNERS = {'pixel': 'pixel', 'minimap': 'minimap', 'colour_rect': 'colour-rect',
 
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(evidence_bytes(path)).hexdigest()
 
 
 def main():
@@ -27,12 +28,12 @@ def main():
     a = p.parse_args()
     if a.report.exists():
         p.error('Refusing to overwrite evidence')
-    declaration = json.loads(a.claims.read_text())
+    declaration = json.loads(evidence_text(a.claims))
     if not declaration['claims'] or any(sha(ROOT / n) != h for n, h in declaration['sources'].items()):
         p.error('Missing claims or changed prospective sources')
     if TARGETS not in declaration['sources']:
         p.error('Pending-route inventory must be prospectively fingerprinted')
-    pending = [r['route'] for r in json.loads((ROOT / TARGETS).read_text())['remaining_route_reachability']]
+    pending = [r['route'] for r in json.loads(evidence_text(ROOT / TARGETS))['remaining_route_reachability']]
     if len(pending) != 24:
         p.error('Pending-route inventory changed; review the new denominator')
     parent = ROOT / 'working/tests/uncovered-pixel-routes'
@@ -57,7 +58,7 @@ def main():
             child = Path(result.stdout.strip().splitlines()[-1])
             if not child.resolve().is_relative_to(ROOT / 'working/tests') or child.name != 'report.json':
                 raise ValueError('Unexpected comparison report location')
-            record = json.loads(child.read_text())
+            record = json.loads(evidence_text(child))
             if record.get('success') is not True or record.get('sources_stable') is not True or record.get('inputs_stable') is not True:
                 raise ValueError('Incomplete original comparison: ' + family)
             if record.get('original_sha256') != BUILD:

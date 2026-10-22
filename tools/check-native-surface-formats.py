@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Replay independently captured format draws through owned signed byte rows, offline."""
+from coverage_evidence import read_text as evidence_text
 import argparse,importlib.util,json,os,subprocess,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -47,7 +48,7 @@ def main():
   c=r['input'];f=c['format'];default=r['source_before']['descriptor'][4];default=default if default<0x80000000 else default-0x100000000
   for variant in ([0,1,2,3,4] if c['layout']==0 else [0]):inputs.append(dict(c,variant=variant,pitch=default if variant==0 else pitch(f,variant),**{'import':c['layout']!=0 or variant!=0}))
  inp=run/'inputs.json';inp.write_text(json.dumps(inputs,separators=(',',':')));output=run/'outputs.json';binary=a.executable.resolve() if a.executable else a.build.resolve()/'render-surface-formats-test';library=a.build.resolve()/'libmnm-renderer.a'
- proc=subprocess.run([str(binary),str(inp),str(output)],capture_output=True,text=True,env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1'),timeout=160);(run/'native.log').write_text(proc.stdout+proc.stderr);oracle.require(proc.returncode==0,proc.stdout+proc.stderr);actual=json.loads(output.read_text());results=compare(actual,inputs,rows);oracle.require(all(oracle.sha(ROOT/n)==h for n,h in fingerprints.items()),'Sources changed during replay')
+ proc=subprocess.run([str(binary),str(inp),str(output)],capture_output=True,text=True,env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1'),timeout=160);(run/'native.log').write_text(proc.stdout+proc.stderr);oracle.require(proc.returncode==0,proc.stdout+proc.stderr);actual=json.loads(evidence_text(output));results=compare(actual,inputs,rows);oracle.require(all(oracle.sha(ROOT/n)==h for n,h in fingerprints.items()),'Sources changed during replay')
  r=dict(schema=1,success=True,sources=fingerprints,**counts,**results,binary_sha256=oracle.sha(binary),library_sha256=oracle.sha(library),inputs_sha256=oracle.sha(inp),outputs_sha256=oracle.sha(output),artifacts=str(run.relative_to(ROOT)),scope='Owned five-format fill/key/opaque/keyed/overlap/clip results and complete native words compare independent standalone DirectDraw2/Surface2 captures. Four additional tight/padded signed byte imports use the same recorded logical outputs; driver negative-pitch rejection retained separately. Active RGB key masking, high installed key bits and fill masking measured; copies retain unused native bits. Caller bytes are owned copies, no borrowed pointers. Presentation conversion and signed import/guard/budget policy are native. No original game multi-format reachability, cross-format/DC conversion, Windows or live replacement claim.')
  with report.open('x') as f:json.dump(r,f,indent=2);f.write('\n')
  print(json.dumps(dict(success=True,**counts,**results)))

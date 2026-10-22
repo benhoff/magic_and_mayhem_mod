@@ -3,6 +3,8 @@
 #include <iostream>
 #include <algorithm>
 #include <stdexcept>
+#include <fstream>
+#include "clipped-word-grayscale-cases.hpp"
 namespace {
 void expect(bool b) {
   if (!b)
@@ -220,7 +222,20 @@ void clippedGrayscale() {
   refuses([&]{canvas.raster(1,sprite,0,0,{0,0,256,256},0,11,{},{});});
   expect(canvas.read(1).pixels==before);
 }
-int main() {
+void grayscaleBoundaryOutputs(const char* prefix){
+  for(unsigned index=0;index<grayscale_fixture::count;++index){
+    const auto c=grayscale_fixture::cases[index];mnm::assets::SpriteFrame f;
+    f.width=c.width;f.height=c.height;f.originX=c.originX;f.originY=c.originY;
+    std::vector<std::uint16_t> words(unsigned(c.width*c.height));f.opaqueMask.resize(words.size());
+    for(unsigned i=0;i<words.size();++i){words[i]=index?std::uint16_t(i*739+31):std::uint16_t(i);f.opaqueMask[i]=!c.transparent||(i%7!=0&&i%11!=0);}
+    f.pixels=std::move(words);mnm::render::CanvasSequence canvas;canvas.create(1,259,256);canvas.fill(1,{0,0,259,256},0x1234);
+    canvas.raster(1,f,c.x,c.y,{c.left,c.top,c.right,c.bottom},0,11,{},{});
+    const auto image=canvas.read(1);std::ofstream out(std::string(prefix)+"-case-"+std::to_string(index)+".native.565",std::ios::binary);
+    for(auto word:image.pixels){out.put(char(word));out.put(char(word>>8));}expect(bool(out));
+  }
+}
+int main(int argc,char** argv) {
+  if(argc==2)grayscaleBoundaryOutputs(argv[1]);
   clippedGrayscale();
   try {
     using namespace mnm;

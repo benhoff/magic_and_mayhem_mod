@@ -1,4 +1,5 @@
 """Reviewed next work for Critical partials; no engine status or proof inferred."""
+from coverage_evidence import read_bytes as evidence_bytes
 import hashlib
 from pathlib import Path
 
@@ -71,7 +72,7 @@ def critical_needs_view(definition, register, importance, root):
                     len(expected) != 64 or any(c not in '0123456789abcdef' for c in expected)):
                 raise ValueError('Invalid Critical assessment source')
             if name not in hashes:
-                hashes[name] = hashlib.sha256(target.read_bytes()).hexdigest() if target.is_file() else None
+                hashes[name] = hashlib.sha256(evidence_bytes(target)).hexdigest() if target.is_file() else None
             if hashes[name] != expected:
                 changed.append(name)
         if contract_changed:

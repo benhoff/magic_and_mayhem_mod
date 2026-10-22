@@ -51,7 +51,7 @@ def main():
     finally:
         verify('original-after')
     result = json.loads(execution.stdout) if execution is not None and execution.returncode == 0 else None
-    success = result is not None and result['success'] and result['cases'] == 8 and result['full_source_words'] == 65536 and result['different_words'] == 0
+    success = result is not None and result['success'] and result['cases'] == 16 and result['full_source_words'] == 65536 and result['different_words'] == 0
     report = dict(schema=1, success=success, sources=sources, claims=declaration['claims'],
                   original_pe_sha256=BUILD, build_exit=build.returncode,
                   native_exit=execution.returncode if execution is not None else None,
@@ -60,7 +60,7 @@ def main():
                   original_manifest_verified_before_after=True, original_game_executed=False,
                   reference_process_launched=execution is not None,
                   original_body_executed=True if success else None, original_code_modified=False,
-                  scope='Isolated unmodified original589c90 compared against authored unpacked-channel scalar expectations and clipped/transparency/origin/padding/guard conditions in eight private-memory cases, including all65536RGB565words. Full-width/vertical-only routes convert to gray; horizontally clipped routes retain colored words. Private fixture globals use the zero-format branch. No original output supplied to native renderer, Windows/session integration, RGB555 or indexed validation, full caller ABI or complete presentation claim.')
+                  scope='Isolated unmodified original589c90 compared against authored unpacked-channel scalar expectations and clipped/transparency/origin/padding/guard conditions in sixteen private-memory cases, including all65536RGB565words. Full-width/vertical-only routes convert to gray; horizontally clipped routes retain colored words. Private fixture globals use the zero-format branch. No original output supplied to native renderer, Windows/session integration, RGB555 or indexed validation, full caller ABI or complete presentation claim.')
     with args.report.open('x') as output:
         json.dump(report, output, indent=2)
         output.write('\n')

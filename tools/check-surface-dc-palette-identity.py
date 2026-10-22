@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Offline input-derived indexed palette and independent DC/DirectDraw clipping checks."""
+from coverage_evidence import read_text as evidence_text
 import argparse,base64,gzip,importlib.util,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -18,7 +19,7 @@ def nearest(rgb,colors):
  return min(range(256),key=lambda i:(r-((colors[i]>>16)&255))**2+(g-((colors[i]>>8)&255))**2+(b-(colors[i]&255))**2)
 def inside(x,y,regions):return regions is None or any(l<=x<r and t<=y<b for l,t,r,b in regions)
 def load(report=DEFAULT):
- c=json.loads(report.read_text());require(c['schema']==1 and c['success'] is True,'Invalid DC palette capture');p=c['corpus']['path'];require(p=='tests/fixtures/surfaces/surface-dc-palette-identity.json.gz','Unsafe corpus path');require(sha(ROOT/p)==c['corpus']['sha256'],'DC palette fixture differs')
+ c=json.loads(evidence_text(report));require(c['schema']==1 and c['success'] is True,'Invalid DC palette capture');p=c['corpus']['path'];require(p=='tests/fixtures/surfaces/surface-dc-palette-identity.json.gz','Unsafe corpus path');require(sha(ROOT/p)==c['corpus']['sha256'],'DC palette fixture differs')
  with gzip.open(ROOT/p,'rb') as f:raw=f.read(16*1024*1024+1)
  require(len(raw)<=16*1024*1024,'Expanded fixture limit');data=json.loads(raw);require(data['schema']==1 and len(data['rows'])==c['cases']==150,'DC palette case count');return c,data
 

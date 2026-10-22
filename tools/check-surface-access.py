@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Offline Surface2 full-surface lock/DC admission and output-mutation comparison."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse,gzip,hashlib,importlib.util,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -7,9 +8,9 @@ DEFAULT=ROOT/'research/runtime/surface-access-capture-20261006.json'
 spec=importlib.util.spec_from_file_location('capture',ROOT/'tools/capture-surface-access.py');capture=importlib.util.module_from_spec(spec);spec.loader.exec_module(capture)
 def require(ok,message):
  if not ok:raise ValueError(message)
-def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def sha(path):return hashlib.sha256(evidence_bytes(path)).hexdigest()
 def load():
- cap=json.loads(DEFAULT.read_text());require(cap['schema']==1 and cap['success'] is True,'Invalid access capture');path=cap['corpus']['path'];require(path=='tests/fixtures/surfaces/surface-access.json.gz','Unsafe fixture path');require(sha(ROOT/path)==cap['corpus']['sha256'],'Access fixture hash differs')
+ cap=json.loads(evidence_text(DEFAULT));require(cap['schema']==1 and cap['success'] is True,'Invalid access capture');path=cap['corpus']['path'];require(path=='tests/fixtures/surfaces/surface-access.json.gz','Unsafe fixture path');require(sha(ROOT/path)==cap['corpus']['sha256'],'Access fixture hash differs')
  with gzip.open(ROOT/path,'rb') as f:raw=f.read(8*1024*1024+1)
  require(len(raw)<=8*1024*1024,'Expanded access limit');data=json.loads(raw);require(data['schema']==1 and len(data['rows'])==cap['cases']==96,'Access case count');return cap,data
 

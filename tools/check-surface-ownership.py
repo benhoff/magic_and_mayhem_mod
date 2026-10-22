@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """Offline Wine ownership and flipping outputs; COM counts remain diagnostic."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse,gzip,hashlib,json,struct
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 DEFAULT=ROOT/'research/runtime/surface-ownership-final-capture-20261006.json'
 def require(ok,message):
  if not ok:raise ValueError(message)
-def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def sha(path):return hashlib.sha256(evidence_bytes(path)).hexdigest()
 def color(i,id,generation):return ((i*17+id*37+generation*11)&255)|(((i*29+3+generation*19)&255)<<8)|(((i*43+9+generation*23)&255)<<16)
 def load(path=DEFAULT):
- report=json.loads(path.read_text());require(report['schema']==1 and report['success'] and report['original_game_executed'] is False and report['original_manifest_verified_before_after'] is True,'Capture scope')
- c=report['corpus'];p=ROOT/c['path'];require(p.resolve().is_relative_to(ROOT) and sha(p)==c['sha256'],'Corpus hash/path');raw=gzip.decompress(p.read_bytes());require(len(raw)==c['raw_bytes'] and hashlib.sha256(raw).hexdigest()==c['raw_sha256']==report['outputs_sha256'] and len(raw)<1024*1024 and len(raw)%24==0,'Raw bytes/hash');rows=[list(v) for v in struct.iter_unpack('<6I',raw)];require(len(rows)==report['row_count'],'Row count');return report,rows
+ report=json.loads(evidence_text(path));require(report['schema']==1 and report['success'] and report['original_game_executed'] is False and report['original_manifest_verified_before_after'] is True,'Capture scope')
+ c=report['corpus'];p=ROOT/c['path'];require(p.resolve().is_relative_to(ROOT) and sha(p)==c['sha256'],'Corpus hash/path');raw=gzip.decompress(evidence_bytes(p));require(len(raw)==c['raw_bytes'] and hashlib.sha256(raw).hexdigest()==c['raw_sha256']==report['outputs_sha256'] and len(raw)<1024*1024 and len(raw)%24==0,'Raw bytes/hash');rows=[list(v) for v in struct.iter_unpack('<6I',raw)];require(len(rows)==report['row_count'],'Row count');return report,rows
 def validate(report,rows):
  at=0;frames={};tables={};flips={};cleanups={};detached=None;counts=[];palette=[color(i,0,0) for i in range(256)];other=[color(i,1,0) for i in range(256)]
  def take(kind,phase,id,result=None):

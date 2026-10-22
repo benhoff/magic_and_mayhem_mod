@@ -67,6 +67,17 @@ class ReviewTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Incomplete reviewed'):load_reviews(self.root,self.r)
         self.doc['entries'][0]['reviewed_paths']=['code.cpp','scope.md'];self.doc['entries'][0]['related_behaviors']=['unknown'];self.write()
         with self.assertRaisesRegex(ValueError,'Invalid narrower'):load_reviews(self.root,self.r)
+    def test_new_contract_sources_leave_immutable_review_historical(self):
+        (self.root/'new.cpp').write_text('int new_route(){return 2;}\n')
+        self.b['implementation'].append('new.cpp')
+        before=copy.deepcopy(self.r);record=(self.root/'review.json').read_bytes()
+        row=load_reviews(self.root,self.r)[0]['entries'][0]
+        self.assertEqual(row['freshness'],'historical')
+        self.assertFalse(row['contract_current'])
+        self.assertIn('newly linked input: new.cpp',row['changed_sources'])
+        self.assertNotIn('new.cpp',row['reviewed_paths'])
+        self.assertEqual(self.r,before)
+        self.assertEqual((self.root/'review.json').read_bytes(),record)
     def test_paths_cannot_open_original_working_or_escape(self):
         for p in ['../escape','/etc/passwd','original/game.exe','working/a','x/../original/game.exe']:
             with self.subTest(path=p),self.assertRaises(ValueError):safe(self.root,p)

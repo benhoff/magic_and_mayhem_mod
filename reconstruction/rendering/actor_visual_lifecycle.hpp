@@ -169,7 +169,7 @@ public:
 template<class B> void ActorLifecycle<B>::activate(U p,U type,U owner,unsigned char loaded) {
     w(p+0x174,owner);
     if(!loaded) {
-        const U animation=call(0x5057b0,type);
+        const U animation=b.fastcall(0x5057b0,type,owner);
         if(!call(0x5055a0,0x6a5f80+type*0x5c9,type,animation))b.loadError();
     }
     w(p+0xa8,type);w(p+0xac,0x6a5f80+type*0x5c9);
@@ -284,7 +284,7 @@ template<class B> void ActorLifecycle<B>::cleanup(U p,unsigned char quiet) {
     w(p+0xe4,0);
     if(r(p+0x967)) {
         if(!quiet)call(0x4637c0,r(p+0x967));
-        else {const U node=call(0x463cb0,r(p+0x967),p);call(0x464030,node);}
+        else {const U node=call(0x463cb0,0);call(0x464030,node,p);}
         w(p+0x967,0);
     }
     w(p+0x9c,0);w(p+0x778,0);w(p+0x64c,~0u);

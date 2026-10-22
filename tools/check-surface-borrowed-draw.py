@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """Offline input-derived Surface2 fill/copy admission for Lock/DC operands."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse,gzip,hashlib,importlib.util,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];DEFAULT=ROOT/'research/runtime/surface-borrowed-draw-capture-20261006.json'
 s=importlib.util.spec_from_file_location('capture',ROOT/'tools/capture-surface-borrowed-draw.py');capture=importlib.util.module_from_spec(s);s.loader.exec_module(capture)
 def require(ok,reason):
  if not ok:raise ValueError(reason)
-def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def sha(p):return hashlib.sha256(evidence_bytes(p)).hexdigest()
 def load():
- cap=json.loads(DEFAULT.read_text());require(cap['schema']==1 and cap['success'] is True,'Borrowed capture status');require(cap['corpus']['path']=='tests/fixtures/surfaces/surface-borrowed-draw.json.gz','Unsafe borrowed corpus');path=ROOT/cap['corpus']['path'];require(sha(path)==cap['corpus']['sha256'],'Borrowed corpus hash')
+ cap=json.loads(evidence_text(DEFAULT));require(cap['schema']==1 and cap['success'] is True,'Borrowed capture status');require(cap['corpus']['path']=='tests/fixtures/surfaces/surface-borrowed-draw.json.gz','Unsafe borrowed corpus');path=ROOT/cap['corpus']['path'];require(sha(path)==cap['corpus']['sha256'],'Borrowed corpus hash')
  with gzip.open(path,'rb') as f:raw=f.read(2*1024*1024+1)
  require(len(raw)<=2*1024*1024,'Expanded borrowed limit');d=json.loads(raw);require(d['schema']==1 and len(d['rows'])==180,'Borrowed extent');return cap,d
 

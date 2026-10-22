@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Execute pinned original queue state/clip/postlude branches with synthetic backends."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 from collections import Counter
 import hashlib
@@ -15,15 +16,15 @@ from drawing_census import ROOT, BUILD_SHA256, instructions
 
 
 def run(executable, claims):
-    if hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256:
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest() != BUILD_SHA256:
         raise ValueError('Unsupported original consumer input')
-    declaration = json.loads(claims.read_text())
+    declaration = json.loads(evidence_text(claims))
     sources = declaration['sources']
-    if any(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != h for p, h in sources.items()):
+    if any(hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() != h for p, h in sources.items()):
         raise ValueError('Prospective source changed before execution')
     spec = importlib.util.spec_from_file_location('dispatch_fixture', ROOT / 'tools/test-drawing-dispatch.py')
     module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
-    inventory = json.loads((ROOT / 'research/runtime/coverage/binary-nocd.json').read_text())
+    inventory = json.loads(evidence_text(ROOT / 'research/runtime/coverage/binary-nocd.json'))
     contracts = []
     for address, pop in module.BINDINGS.items():
         function = next(f for f in inventory['functions'] if f['entry'] == address)
@@ -63,7 +64,7 @@ def run(executable, claims):
             if process.poll() is None: process.kill(); process.wait(timeout=5)
     (out / 'execution-status.json').write_text(json.dumps({'return_code': process.returncode,
         'timed_out': expired[0], 'raw_case_sha256': raw_digest.hexdigest(), 'raw_case_bytes': raw_bytes,
-        'binary_sha256': hashlib.sha256((out / 'reference').read_bytes()).hexdigest()}, indent=2) + '\n')
+        'binary_sha256': hashlib.sha256(evidence_bytes(out / 'reference')).hexdigest()}, indent=2) + '\n')
     if process.returncode or expired[0]: raise ValueError('Original state fixture exit ' + str(process.returncode) + '; retained attempt: ' + str(out))
     totals, kinds, returns_seen, count = Counter(), Counter(), Counter(), 0
     axes = {'indexed': {0, 1}, 'offset': {-127, 3}, 'video': {0, 1}, 'count': {0, 1, 2}, 'postlude': {0, 1}, 'kind': set(range(-2, 36)),
@@ -92,9 +93,9 @@ def run(executable, claims):
         raise ValueError('Compressed case archive differs from original output')
     if count != 4924800 or kinds != {k: 129600 for k in range(-2, 36)}:
         raise ValueError('Incomplete original state matrix')
-    if hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256:
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest() != BUILD_SHA256:
         raise ValueError('Original input changed during execution')
-    if any(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != h for p, h in sources.items()):
+    if any(hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() != h for p, h in sources.items()):
         raise ValueError('Sources changed during execution')
     report = {'schema': 1, 'success': True, 'scope': 'Unchanged pinned consumer with synthetic backend/clip/cleanup bindings:4924800unique empty/one/two row cells, all kinds-2..35, Video0/1, direct/indexed object markers, ordinary/-127 offsets and AX1/high-EAX=12340001 distinctions, sentinel and changed prior metadata, signed spans, strict clip and480/600height branches, raw0/1/high/negative backend results, postlude0/1. Original row/container and counter mutations and exact opaque CALL arguments are checked. Actual helper side effects, pixels, external objects/graphics and full dispatch/scenario closure remain outside this fixture.',
         'sources': sources, 'claims': declaration['claims'], 'sources_stable': True,
@@ -105,7 +106,7 @@ def run(executable, claims):
                          'decoded_sha256': decoded_digest.hexdigest(), 'decoded_bytes': decoded_bytes},
         'cases_by_kind': dict(kinds), 'calls_by_tag': dict(totals), 'calls_by_exact_return_pc': dict(returns_seen),
         'backend_return_contracts': contracts,
-        'artifacts': {str(p.relative_to(ROOT)): {'sha256': hashlib.sha256(p.read_bytes()).hexdigest(), 'bytes': p.stat().st_size}
+        'artifacts': {str(p.relative_to(ROOT)): {'sha256': hashlib.sha256(evidence_bytes(p)).hexdigest(), 'bytes': p.stat().st_size}
                       for p in [out / 'cases.jsonl.gz', out / 'reference', out / 'build.log', out / 'execution.log', out / 'execution-status.json']}}
     (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps({'output': str(out), 'cases': count, 'calls_by_tag': dict(totals)}), flush=True)

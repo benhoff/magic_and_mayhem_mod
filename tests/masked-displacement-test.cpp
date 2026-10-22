@@ -30,6 +30,20 @@ int main(int argc,char** argv)try{
  auto other=g.create({2,1,{1,1}},{8,{}});g.swapContents(mask,other);rejected([&]{g.composite(src,dst,{0,0,2,1},2,1,mask,c);});g.swapContents(mask,other);g.composite(src,dst,{0,0,2,1},2,1,mask,c);
  g.copy(cloned,mask,{0,0,2,1},0,0);rejected([&]{g.composite(src,dst,{0,0,2,1},2,1,mask,c);});g.update(mask,0,0,{2,1,{1,0}});g.setPalette(mask,0,{{0,0,0},{255,255,255}});g.composite(src,dst,{0,0,2,1},2,1,mask,c);
  g.update(mask,0,0,{2,1,{1,2}});rejected([&]{g.composite(src,dst,{0,0,2,1},2,1,mask,c);});g.update(mask,0,0,{2,1,{1,0}});g.invalidateContents(mask);rejected([&]{g.composite(src,dst,{0,0,2,1},2,1,mask,c);});g.update(mask,0,0,{2,1,{1,1}});c.rowOffsets[1]=0;g.composite(src,dst,{0,0,2,1},2,1,mask,c); // unused larger phase must not refuse
+ // Every preflight failure must leave the complete destination unchanged,
+ // including malformed phases and mask proof invalidation/recovery.
+ const auto unchanged=g.read(dst).pixels;
+ for(unsigned variant=0;variant<6;++variant){
+  auto bad=c;
+  if(variant==0)bad.rowPeriod=0;else if(variant==1)bad.rowPeriod=17;
+  else if(variant==2)bad.rowOffsets[1]=-1;else if(variant==3)bad.rowOffsets[1]=17;
+  else {bad.rowOffsets[1]=1;if(variant==5)g.copy(cloned,mask,{0,0,2,1},0,0);}
+  rejected([&]{g.composite(src,dst,{0,0,2,1},2,1,mask,bad);});
+  require(g.read(dst).pixels==unchanged,"Displacement refusal mutated destination");
+ }
+ g.update(mask,0,0,{2,1,{1,0}});c.rowOffsets[1]=1;g.composite(src,dst,{0,0,2,1},2,1,mask,c);
+ require(g.read(dst).pixels==unchanged,"Binary reload did not restore conservative proof admission");
+ g.update(mask,0,0,{2,1,{1,1}});
  require(g.stats().coverageProofBytes<=g.stats().pixels,"Mask proof exceeded native pixel budget");
  // Defined edge policy must preserve invalid taps, still draw valid taps and
  // wrap horizontally into an existing next row, even without CPU mask proof.
@@ -70,5 +84,5 @@ int main(int argc,char** argv)try{
   require(oldRefusals>0&&cases>0,"Failed public geometry not exercised");
   if(argc==4)require(edgeRetains>0,"Captured bottom-edge failure not exercised");
  }
- require(g.stats().surfaces==0,"Displacement controls leaked surfaces");std::cout<<QJsonDocument(QJsonObject{{"success",true},{"mask_controls",14},{"high_water_edge_checks",18},{"captured_pixel_cases",int(cases)},{"baseline_envelope_refusals",int(oldRefusals)},{"edge_pixels_retained",int(edgeRetains)},{"words_per_captured_case",480000},{"ordinary_readbacks",0},{"remaining_surfaces",0}}).toJson(QJsonDocument::Compact).constData()<<'\n';return 0;
+ require(g.stats().surfaces==0,"Displacement controls leaked surfaces");std::cout<<QJsonDocument(QJsonObject{{"success",true},{"mask_controls",20},{"atomic_refusals",6},{"high_water_edge_checks",18},{"captured_pixel_cases",int(cases)},{"baseline_envelope_refusals",int(oldRefusals)},{"edge_pixels_retained",int(edgeRetains)},{"words_per_captured_case",480000},{"ordinary_readbacks",0},{"remaining_surfaces",0}}).toJson(QJsonDocument::Compact).constData()<<'\n';return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

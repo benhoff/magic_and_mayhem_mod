@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Offline indexed driver observations; restored pixels are not an oracle."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse,gzip,hashlib,io,json,struct
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -9,11 +10,11 @@ WRONGMODE=0x8876024b
 
 def require(ok,message):
  if not ok:raise ValueError(message)
-def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def sha(p):return hashlib.sha256(evidence_bytes(p)).hexdigest()
 def load(path=DEFAULT):
- r=json.loads(path.read_text());require(r['schema']==1 and r['success'] is True and r['environment']['display_bpp']==8 and r['environment']['override']=='ddraw=b','Unsupported capture')
+ r=json.loads(evidence_text(path));require(r['schema']==1 and r['success'] is True and r['environment']['display_bpp']==8 and r['environment']['override']=='ddraw=b','Unsupported capture')
  m=r['corpus'];p=ROOT/m['path'];require(not Path(m['path']).is_absolute() and p.resolve().is_relative_to(ROOT) and sha(p)==m['sha256'],'Corpus path/hash')
- with gzip.GzipFile(fileobj=io.BytesIO(p.read_bytes())) as f:raw=f.read(1024*1024+1)
+ with gzip.GzipFile(fileobj=io.BytesIO(evidence_bytes(p))) as f:raw=f.read(1024*1024+1)
  require(len(raw)<=1024*1024 and len(raw)==m['raw_bytes'] and len(raw)%24==0 and hashlib.sha256(raw).hexdigest()==m['raw_sha256']==r['outputs_sha256'],'Raw output size/hash')
  rows=[list(x) for x in struct.iter_unpack('<6I',raw)];require(len(rows)==r['row_count'],'Row count');return r,rows
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Export exact original direct CALLs to the opt-in88entry terminal cohort."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -15,11 +16,11 @@ def export(executable):
         'research/runtime/drawing-canvas-release-original-range-20261011.json',
         'research/runtime/drawing-inventory.json','research/runtime/coverage/binary-nocd.json',
         'tools/export-menu-support.py','runtime/scene/canvas_producers.c']
-    sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
+    sources={p:hashlib.sha256(evidence_bytes(ROOT/p)).hexdigest() for p in paths}
     spec=importlib.util.spec_from_file_location('terminal_caller_entries',ROOT/'tools/build-drawing-terminal-census.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-    hooks,refused=m.hook_rows(executable);inventory=json.loads((ROOT/'research/runtime/coverage/binary-nocd.json').read_text())
+    hooks,refused=m.hook_rows(executable);inventory=json.loads(evidence_text(ROOT/'research/runtime/coverage/binary-nocd.json'))
     code=instructions(subprocess.check_output(['objdump','-w','-d','-Mintel',str(executable)],text=True));entries={r['entry'] for r in hooks};calls=calls_for(code,entries,inventory)
-    if len(hooks)!=88 or hashlib.sha256(executable.read_bytes()).hexdigest()!=BUILD_SHA256 or sources!={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}:raise ValueError('Terminal caller sources/original/hook scope changed')
+    if len(hooks)!=88 or hashlib.sha256(evidence_bytes(executable)).hexdigest()!=BUILD_SHA256 or sources!={p:hashlib.sha256(evidence_bytes(ROOT/p)).hexdigest() for p in paths}:raise ValueError('Terminal caller sources/original/hook scope changed')
     return {'schema':1,'source_sha256':BUILD_SHA256,'image_base':0x400000,'input_unchanged':True,
         'sources_stable':True,'sources':sources,'entries':sorted(entries),'callers':calls,
         'scope':'Exact original direct CALLs to88terminal/core entries. Discovered containing owners only; no indirect target/registration, function/semantic, runtime flow or DRAW-01 closure.','refused_core_entries':refused}

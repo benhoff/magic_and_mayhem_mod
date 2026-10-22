@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Measure exact ordered native World inputs and baseline-restored redraws on TITAN."""
+from coverage_evidence import read_text as evidence_text
 import argparse,importlib.util,json,os,shutil,subprocess,tempfile
 from pathlib import Path
 from profile_native_resident_helpers import sha,distribution
@@ -60,13 +61,13 @@ def main():
   if not a.prepared:run('build',['cmake','--build',build,'--target','mnm-resident-profile','mnm-gpu-timing-fixture','mnm-palette-row-fixture','mnm_headless_egl','-j4'])
   compiled=set()
   for dep in build.rglob('*.o.d'):
-   for token in dep.read_text().replace('\\\n',' ').split():
+   for token in evidence_text(dep).replace('\\\n',' ').split():
     path=Path(token).resolve()
     dependency_root=(a.prepared/'source') if a.prepared else frozen
     if path.is_file() and path.is_relative_to(dependency_root.resolve()):compiled.add(path.relative_to(dependency_root.resolve()).as_posix())
   report['compiled_sources']={n:sha(frozen/n) for n in sorted(compiled)};report['undeclared_compiler_inputs']=sorted(compiled-set(d['sources']));assert not report['undeclared_compiler_inputs'],report['undeclared_compiler_inputs']
-  env['QT_QPA_PLATFORM_PLUGIN_PATH']=str(build/'platforms');run('gpu-fixture',[build/'mnm-gpu-timing-fixture']);report['gpu_fixture']=json.loads((out/'gpu-fixture.log').read_text().splitlines()[-1])
-  run('palette-fixture',[build/'mnm-palette-row-fixture']);report['palette_fixture']=json.loads((out/'palette-fixture.log').read_text().splitlines()[-1])
+  env['QT_QPA_PLATFORM_PLUGIN_PATH']=str(build/'platforms');run('gpu-fixture',[build/'mnm-gpu-timing-fixture']);report['gpu_fixture']=json.loads(evidence_text(out/'gpu-fixture.log').splitlines()[-1])
+  run('palette-fixture',[build/'mnm-palette-row-fixture']);report['palette_fixture']=json.loads(evidence_text(out/'palette-fixture.log').splitlines()[-1])
   # Retain the actual build location; a reused compiled closure stays immutable.
   report['build_path']=str(build.resolve())
   binary=build/'mnm-resident-profile';report['binary_sha256']=sha(binary);report['egl_plugin_sha256']=sha(build/'platforms/libmnm_headless_egl.so')

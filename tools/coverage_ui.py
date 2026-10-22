@@ -115,11 +115,45 @@ def track_view(definition, behaviors, evidence):
             milestones.append({**milestone, 'behaviors': ids, 'checks': checks, 'missing': missing,
                                'state': status, 'current': ready and all(c['fresh'] for c in checks)})
         counts = Counter(m['state'] for m in milestones)
-        tracks.append({**track, 'milestones': milestones, 'behaviors': sorted(track_ids & by_id.keys()),
+        exclusions = set(track.get('summary_exclusions', []))
+        if not exclusions <= track_ids or not exclusions <= by_id.keys():
+            raise ValueError('Unknown track summary exclusion: ' + track['id'])
+        tracks.append({**track, 'milestones': milestones, 'behaviors': sorted((track_ids & by_id.keys()) - exclusions),
                        'progress': measure(counts['demonstrated'], len(milestones)),
                        'counts': dict(counts), 'current': sum(m['current'] for m in milestones),
                        'next': next((m['id'] for m in milestones if m['state'] != 'demonstrated'), None)})
     return tracks
+
+
+def spell_view(definition, behaviors):
+    """Explicit component crosswalk; never infer whole-spell completion."""
+    plan = definition.get('spell_progress')
+    if plan is None:
+        return None
+    by_id = {b['id']: b for b in behaviors}
+    catalog = {b['id'] for b in behaviors if b['subsystem'] == 'spell_dispatch'}
+    unused = plan['unused_behaviors']
+    if len(unused) != len(set(unused)) or not set(unused) <= catalog:
+        raise ValueError('Invalid unused spell catalog selection')
+    group_ids, component_ids = set(), set()
+    for group in plan['groups']:
+        ids = group['behaviors']
+        if (group['id'] in group_ids or len(ids) != len(set(ids))
+                or not set(ids) <= by_id.keys() or component_ids & set(ids)):
+            raise ValueError('Invalid spell component group: ' + group['id'])
+        group_ids.add(group['id'])
+        component_ids.update(ids)
+    seen = set()
+    for entry in plan['spells']:
+        if entry['behavior'] in seen or entry['behavior'] not in catalog - set(unused):
+            raise ValueError('Invalid spell crosswalk entry: ' + entry['behavior'])
+        seen.add(entry['behavior'])
+        for stage in ('tasks', 'effects', 'integration'):
+            ids = entry[stage]
+            if len(ids) != len(set(ids)) or not set(ids) <= component_ids:
+                raise ValueError('Invalid spell component link: ' + entry['behavior'])
+    return {**plan, 'catalog_behaviors': sorted(catalog),
+            'named_behaviors': sorted(catalog - set(unused))}
 
 
 def validate_tracks(definition):
@@ -244,10 +278,17 @@ def safe_file(root, path, allowed):
 
 
 def build_snapshot(root=ROOT):
+    from coverage_evidence import Reader
+    with Reader(root):
+        return _build_snapshot(root)
+
+
+def _build_snapshot(root):
     root = Path(root).resolve()
     source = (root / REGISTER).read_bytes()
     register = json.loads(source)
-    inventories = {b['id']: json.loads(safe_file(root, b['inventory'], {b['inventory']}).read_text())
+    from coverage_evidence import read_json
+    inventories = {b['id']: read_json(safe_file(root, b['inventory'], {b['inventory']}), root=root)
                    for b in register['builds']}
     report = audit(root, register)
     if report['errors']:
@@ -271,7 +312,9 @@ def build_snapshot(root=ROOT):
         'summary': {kind: summarize([b for b in behaviors if kind == 'all' or b['kind'] == kind])
                     for kind in ('all', 'recovered', 'native_policy')},
     }
-    snapshot['tracks'] = track_view(json.loads((root / TRACKS).read_text()), behaviors, snapshot['evidence'])
+    definition = json.loads((root / TRACKS).read_text())
+    snapshot['tracks'] = track_view(definition, behaviors, snapshot['evidence'])
+    snapshot['spell_progress'] = spell_view(definition, behaviors)
     importance = importance_view(json.loads((root / IMPORTANCE).read_text()), register, snapshot['tracks'], root=root)
     snapshot['importance'] = importance
     snapshot['critical_needs'] = critical_needs_view(
@@ -358,7 +401,8 @@ class CoverageHandler(BaseHTTPRequestHandler):
                 path = parse_qs(request.query).get('path', [''])[0]
                 with self.server.refresh_lock:
                     target = safe_file(self.server.root, path, self.server.allowed_files)
-                return self.respond(target.read_bytes(), 'text/plain; charset=utf-8')
+                from coverage_evidence import read_bytes
+                return self.respond(read_bytes(target, root=self.server.root), 'text/plain; charset=utf-8')
             except (ValueError, OSError) as exc:
                 return self.json_response({'error': str(exc)}, 404)
         assets = {'/': ('index.html', 'text/html'), '/index.html': ('index.html', 'text/html'),

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Re-export pinned read-only discovery after identifying wizard target/projectile task entries."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 from importlib.machinery import SourceFileLoader
@@ -10,7 +11,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 PIN = '40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(evidence_bytes(path)).hexdigest()
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--project',type=Path,required=True)
@@ -28,11 +29,11 @@ def main():
                  '-scriptPath',str(ROOT/'tools/ghidra'),'-postScript','ExportWizardAIInventory.java',str(out/'discovery.json'),'-max-cpu','2']
         with (out/'ghidra.log').open('w') as log:subprocess.run(command,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=600)
         module=SourceFileLoader('regional_inventory',str(ROOT/'tools/inventory-binary.py')).load_module()
-        inventory=module.normalize(pe.read_bytes(),json.loads((out/'discovery.json').read_text()))
+        inventory=module.normalize(evidence_bytes(pe),json.loads(evidence_text(out/'discovery.json')))
         sources={path:sha(ROOT/path) for path in ['tools/export-wizard-ai-inventory.py','tools/ghidra/ExportWizardAIInventory.java','tools/ghidra/ExportBinaryInventory.java','tools/inventory-binary.py','tools/audit-file-apis.py']}
         inventory['provenance']={'command':command,'discovery_sha256':sha(out/'discovery.json'),'sources':sources,'scope':'Read-only whole-image discovery re-export; NS87 wizard target and projectile entry points explicitly seeded. No behavior validation follows from discovery.'}
         (out/'inventory.json').write_text(json.dumps(inventory,separators=(',',':'))+'\n')
-        old=json.loads((ROOT/'research/runtime/coverage/binary-nocd-owner-planner-20261016.json').read_text());before={f['entry']:f for f in old['functions']};after={f['entry']:f for f in inventory['functions']}
+        old=json.loads(evidence_text(ROOT/'research/runtime/coverage/binary-nocd-owner-planner-20261016.json'));before={f['entry']:f for f in old['functions']};after={f['entry']:f for f in inventory['functions']}
         report={'success':True,'original_sha256':PIN,'sources':sources,'inventory_sha256':sha(out/'inventory.json'),'functions_before':len(before),'functions_after':len(after),
                 'added':[after[a] for a in sorted(after.keys()-before.keys())], 'removed':[before[a] for a in sorted(before.keys()-after.keys())],
                 'changed':[{'before':before[a],'after':after[a]} for a in sorted(before.keys()&after.keys()) if before[a]!=after[a]],

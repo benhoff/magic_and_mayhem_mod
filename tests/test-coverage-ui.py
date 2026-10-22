@@ -11,7 +11,7 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from coverage_ui import binary_view, enrich_behaviors, measure, safe_file, summarize, union_size, track_view, request_authority_allowed, CoverageServer, ROOT, TRACKS
+from coverage_ui import binary_view, enrich_behaviors, measure, safe_file, summarize, union_size, track_view, spell_view, request_authority_allowed, CoverageServer, ROOT, TRACKS
 
 
 def behavior(bid='one', kind='recovered', implementation='partial'):
@@ -266,6 +266,80 @@ class TracksTest(unittest.TestCase):
         # Native policy controls cannot require or substitute for original equivalence.
         self.assertNotIn('comparison',goals['extended-2d']['requirements'][0]['status'])
         self.assertNotIn('replacement',goals['isolated-recovery']['requirements'][0]['status'])
+
+
+class SpellProgressTest(unittest.TestCase):
+    def setUp(self):
+        self.definition = json.loads((ROOT/TRACKS).read_text())
+        self.register = json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
+        self.by_id = {b['id']: b for b in self.register['behaviors']}
+
+    def test_named_and_unused_catalogs_partition_all_ids_without_removing_gates(self):
+        result = spell_view(self.definition, self.register['behaviors'])
+        named, unused = set(result['named_behaviors']), set(result['unused_behaviors'])
+        self.assertEqual((len(named), len(unused)), (75, 29))
+        self.assertFalse(named & unused)
+        self.assertEqual(named | unused, {b['id'] for b in self.register['behaviors']
+                                         if b['subsystem'] == 'spell_dispatch'})
+        self.assertTrue(all(self.by_id[bid]['title'].endswith(': Unused') for bid in unused))
+        evidence = [{**e, 'freshness': 'current'} for e in self.register['evidence']]
+        tracks = track_view(self.definition, self.register['behaviors'], evidence)
+        gameplay = next(t for t in tracks if t['id'] == 'gameplay')
+        self.assertFalse(unused & set(gameplay['behaviors']))
+        self.assertTrue(named <= set(gameplay['behaviors']))
+        full = next(m for m in gameplay['milestones'] if m['id'] == 'spells')
+        self.assertTrue((named | unused) <= set(full['behaviors']))
+        self.assertNotEqual(full['state'], 'demonstrated')
+
+    def test_delivered_components_count_once_and_whole_spell_stages_stay_pending(self):
+        result = spell_view(self.definition, self.register['behaviors'])
+        ids = [bid for group in result['groups'] for bid in group['behaviors']]
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertEqual(len(ids), 19)
+        for entry in result['spells']:
+            b = self.by_id[entry['behavior']]
+            with self.subTest(spell=b['id']):
+                self.assertEqual(b['status']['implementation'], 'none' if b['id'] == 'SP.017' else 'partial')
+                for stage in ('comparison', 'integration', 'replacement'):
+                    self.assertEqual(b['status'][stage], 'none')
+                for component in entry['tasks'] + entry['effects']:
+                    self.assertTrue(set(self.by_id[component]['implementation']) <= set(b['implementation']))
+                    if self.by_id[component]['implementation']:
+                        self.assertTrue(set(self.by_id[component]['tests']) <= set(b['tests']))
+        self.assertEqual(self.by_id['CAST.cure-delivery']['status']['implementation'], 'none')
+        self.assertEqual(self.by_id['AI.wizard-controller']['status']['implementation'], 'none')
+
+    def test_both_tracks_credit_existing_components_without_double_counting_overview(self):
+        evidence = [{**e, 'freshness': 'current'} for e in self.register['evidence']]
+        tracks = {t['id']: t for t in track_view(self.definition, self.register['behaviors'], evidence)}
+        for tid in ('simulation', 'gameplay'):
+            track = tracks[tid]
+            for bid in ('CAST.admission', 'AI.wizard-target-task', 'AI.wizard-projectile-task',
+                        'NP.native-wizard-encounter'):
+                self.assertIn(bid, track['behaviors'])
+            milestones = {m['id']: m for m in track['milestones']}
+            self.assertEqual(milestones['casting-foundations']['state'], 'demonstrated')
+            self.assertEqual(milestones['wizard-spell-tasks']['state'], 'demonstrated')
+            self.assertFalse(milestones['wizard-spell-tasks']['current'])
+        overview = {bid for t in tracks.values() for bid in t['behaviors']}
+        self.assertEqual(list(overview).count('CAST.admission'), 1)
+
+    def test_invalid_crosswalks_and_exclusions_fail_instead_of_hiding_missing_work(self):
+        for change in ('missing', 'duplicate', 'unused', 'spell', 'link'):
+            d = copy.deepcopy(self.definition)
+            plan = d['spell_progress']
+            if change == 'missing': plan['groups'][0]['behaviors'].append('missing-contract')
+            elif change == 'duplicate': plan['groups'][1]['behaviors'].append(plan['groups'][0]['behaviors'][0])
+            elif change == 'unused': plan['unused_behaviors'].append('missing-slot')
+            elif change == 'spell': plan['spells'].append(plan['spells'][0])
+            else: plan['spells'][0]['tasks'].append('missing-component')
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                spell_view(d, self.register['behaviors'])
+        d = self.definition
+        d['tracks'][0]['summary_exclusions'] = ['missing-contract']
+        with self.assertRaisesRegex(ValueError, 'Unknown track summary exclusion'):
+            track_view(d, self.register['behaviors'], [])
+        self.assertIsNone(spell_view({'tracks': []}, []))
 
 
 class BindAuthorityTest(unittest.TestCase):

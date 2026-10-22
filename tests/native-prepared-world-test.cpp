@@ -48,6 +48,20 @@ void prepared(render::GlBlitter& g,const std::filesystem::path& root){
   g.update(canvas,0,0,{16,16,std::vector<std::uint32_t>(256,0x07e0)});w.beginResident(e,canvas,2);c.payload={0,248,0,248,0,248,0,248};w.append(c);w.completeResident();w.end(end);
   auto second=std::vector<std::uint32_t>(256,0x07e0);for(auto at:{67,68,83,84})second[at]=0x7be0;
   require(g.read(canvas).pixels==second,"Second native baseline mismatch");w.replayPrepared();require(g.read(canvas).pixels==second,"Replay retained stale first baseline");
+  // A new source may replace both storage identity and extent. Two completed
+  // subqueues freeze the baseline once, rather than freezing after the first.
+  const auto replacement=g.create({8,8,std::vector<std::uint32_t>(64,31)},rgb);
+  e.fields[5]=e.fields[6]=8;end=e;end.fields[2]=12;
+  rejected([&]{w.beginResident(e,replacement,4);});
+  w.beginResident(e,replacement,3);c.fields[5]=c.fields[6]=c.fields[12]=c.fields[13]=8;
+  w.append(c);w.completeResident();w.append(c);w.completeResident();
+  rejected([&]{w.replayPrepared();});auto invalid=end;invalid.fields[3]=8;
+  rejected([&]{w.end(invalid);});w.end(end);
+  auto third=std::vector<std::uint32_t>(64,31);for(auto at:{35,36,43,44})third[at]=0xb007;
+  require(g.read(replacement).pixels==third,"Split native queues did not draw twice");
+  for(unsigned i=0;i<12;++i){g.update(replacement,0,0,{8,8,std::vector<std::uint32_t>(64,0xffff)});w.replayPrepared();require(g.read(replacement).pixels==third,"Replacement baseline or split replay accumulated");}
+  require(w.completedSequence()==3&&w.draws()==4,"Replay advanced replacement producer history");
+  g.destroy(replacement);
  }
  g.destroy(canvas);
 }
@@ -63,5 +77,5 @@ int main(int argc,char** argv)try{
   for(unsigned i=0;i<4;++i){auto reads=extra.stats().nativeReadbacks;candidate.replayPrepared();require(extra.stats().nativeReadbacks==reads,"Actual-source replay readback");require(candidate.diagnosticReadResident(extra).pixels==expected,"Actual-source replay pixel parity");}
   require(candidate.completed()==1&&candidate.producerCacheStats().decodes==decodes,"Actual-source replay advanced producer preparation");
  }
- require(g.stats().surfaces==0,"Prepared fixture leaked native surfaces");std::cout<<"{\"baseline_controls\":9,\"destination_dependent_repeats\":40,\"source_updates\":2,\"actual_source_repeats\":"<<(argc==4?4:0)<<",\"producer_history_unchanged\":true,\"ordinary_readbacks\":0,\"teardown_surfaces\":0}\n";return 0;
+ require(g.stats().surfaces==0,"Prepared fixture leaked native surfaces");std::cout<<"{\"baseline_controls\":9,\"destination_dependent_repeats\":53,\"source_updates\":3,\"replacement_repeats\":12,\"split_queues\":true,\"actual_source_repeats\":"<<(argc==4?4:0)<<",\"producer_history_unchanged\":true,\"ordinary_readbacks\":0,\"teardown_surfaces\":0}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

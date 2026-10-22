@@ -19941,6 +19941,132 @@ Broad World/kind8 contracts remain partial and full live drawing replacement
 remains none; the retained877-World hardware journey still fails the20FPSgate.
 The unrelated dirty master work is excluded from the merge commit and preserved.
 
+
+## Critical original recovery — 2026-10-20
+
+[Recovery findings](critical-original-recovery-20261020.md) retain new immutable
+REC6 results independently of older scope/reconciliation evidence. The owned
+world consumer envelope matches 49,248 original cases; six selected kind8
+constructors/nondeleting virtual lifetimes match 2,592 whole-object cases. The
+actual first original startup clear succeeds and all 480,000 pixels are zero
+under an added valid driver read lease. Four real Wine original-wrapper cohorts
+confirm two actual Lock SURFACELOST/Restore/retry paths, 384 explicitly filled
+pixels and four original release/registry removals. Actual Blt succeeds despite
+IsLost in this driver; fill lost-result recovery remains unobserved.
+
+New scoped children separate these bounded comparisons/observations from the
+six broad partial parents. Startup-clear's named unsampled first-completion
+recovery case is supplied; its next work is validation. Physical backing and
+all-alias/writer ownership, live alternate-buffer reachability, full downstream
+raster/finalizer pixels, other kind8 constructors/RNG/terrain/deleting lifetimes,
+full journeys and hardware acceptance remain pending. Static direct-load-only
+references are not proof of no indirect writers. No live replacement or gameplay
+change is introduced. Original manifest bookends pass. Shared observer source
+changes retain earlier broad evidence as historical pending validation.
+
+## Original ownership and concrete helper recovery — 2026-10-20
+
+[REC7 findings](critical-original-ownership-20261020.md) supply four additional
+scoped children. Original release/registry state matches 3,600 cases and
+1,515,384 ordered API events. Actual Wine alias cohorts confirm shared pixels,
+nine PageUnlock calls and consumption of 48 externally retained COM credits;
+reference draining is recovered original behavior, independent of native owner
+policy or physical backing retirement. Concrete kind9 line calls, full
+palette-add pixels and original consumer composition each match 72,576 cases.
+Known kind8 seeded construction, owned terrain/cache indexing, colour planes,
+actual original allocation and deleting/nondeleting lifetimes match 93,312
+cases plus 6,150 complete RNG checkpoints. The original custom heap is retired
+after 103,680 observed frees. Full manifests and source stability pass.
+
+The same five broad recovery parents remain partial. Outstanding work includes
+complete graphics caller/indirect flows and physical backing/alias/writer
+closure; reachable alternate-buffer allocation/initial clear/writers; other
+concrete helpers and finalizer/font pixels with mutable queues; and wider kind8
+classes, constructor variants, strategic seed selection, actor updates and
+original cache/external writers. Static nearby indexed-write review narrows
+candidates without proving the alternate path unreachable. These are recovery
+obligations, separately from validation, supported-session acceptance and live
+replacement. Historical reports and failed attempts remain unchanged.
+
+## All original rendering recovery areas: REC8 — 2026-10-20
+
+The user authorized every remaining area. [REC8 findings and remaining
+boundaries](all-original-recovery-20261020.md) now supply sixteen separately
+scoped contracts, with unchanged original execution and independent native
+comparisons where applicable. These include the finalizer and six actual SFT
+fonts (18,432 cases), actual custom-heap particle manager (3,600 cases), all four
+sprite draw families (77,760 trace and 77,760 pixel cases), motion/owner updates
+(59,904 cases), mutable World consumption (23,712 cases), terrain cache/collision
+(77,760 cases), nine constructor variants (58,320 cases), every emitting updater
+family and child ownership (54,432 cases), all sixteen known core table identities
+and concrete properties (1,536 cases), four remaining special helpers (three
+26,112-case trace/pixel/consumer comparisons), shared RNG/three particle seed
+routes (576 cases), complete fading factory/resource preparation (36,288 cases),
+original particle projection and World publication (19,200 cases), and original
+alternate-copy physical alias ordering (1,980 cases).
+
+Two additional real-provider suites supply 36 retained Surface3/4/7 cohorts and
+36 separately matched CPU calloc backing generations with 108 valid Lock spans
+and completed frees. These are original ownership observations; no independent
+full native surface comparison is inferred. Actual pointers can remain writable
+after wrapper retirement through separately retained interfaces and held Lock/DC
+access. Same-address reuse is never treated as the same backing generation.
+
+Original undefined descriptor bytes from block-zero terrain cache misses remain
+explicitly undefined, with raw values preserved. The native validity result and
+masked comparison do not invent an original null descriptor. Original quirks in
+seeking Z steering, attached-owner offsets, X/Y-only emitted follow state,
+RGB555 blending and writes outside logical clip are documented and compared.
+The special helper/queue proofs compare every word of owned physical storage.
+
+Read-only discovery expands the reviewed inventory from6,701 to6,756 functions,
+preserving previous functions/flows/imports and rejecting unrelated decompiler
+range broadening. The current retained frontier has542,904 decoded instruction
+rows,30 seed call sites,16 assigned core class tables and2,948 unresolved
+indirect edges. Potential pointer roots and overlapping decodes are candidates,
+not semantic reachability proof. New body discovery is not validation of all
+callers or all lifetime writers.
+
+The actual supplied1998 DirectX6 library fails admission with error1114 because
+its16-bit bridge requiresDIBENG.DLL, even with a private Wine prefix and Windows98
+application setting; builtin fallback is forbidden. This is a measured environment
+limitation. Wine original Lock/Restore and observed backing outcomes do not
+supply the missing legacy-driver Blt SURFACELOST/failure outcomes.
+
+All five broad parents retain explicit remaining recovery: required indirect
+graphics and external/non-CPU writers, original alternate enable/source
+allocation/initial clear/reachability, external actor/terrain/resource lifetime,
+arbitrary reclamation and whole supported-session pixel composition. Known
+helpers, constructors, properties, updater families, seed selections, finalizer,
+pool and publication supplied above are no longer listed as wholly unimplemented.
+Full native integration, class admission, journeys, hardware acceptance and live
+replacement remain independent. No broad parent, historical source fingerprint
+or gameplay milestone is promoted. New results and failed attempts are retained;
+the main checkout's work remains uncommitted.
+
+
+## Legacy DirectDraw DIB Engine validation — 2026-10-20
+
+[Dependency-assisted admission](legacy-ddraw-dibeng-20261020.md) resolves the
+previous missing-DIBENG condition without validating legacy rendering. The
+hash-verified archived Windows98 DIB Engine and supplied DDRAW16 both load
+natively, but DirectDraw LoadLibrary returns NULL/error998 with a probe-thread
+c0000005 access violation before DirectDrawCreate or surface creation. The
+matching no-DIBENG control reproduces error1114. Both final probes complete with
+a surviving private X server and original manifest verification before/after.
+Native fallback is forbidden; Wine has a private prefix, filesystem writes and
+network namespace. No original game wrapper, driver recovery, surface/Lock/Blt
+equivalence, live replacement or broad recovery completion is asserted.
+
+REC9.legacy-dibeng-environment-20261020 and
+REC9.legacy-missing-dibeng-control-20261020 preserve new reports/logs and exact
+prospective source/scope declarations; REC8 evidence is unchanged. Admission now
+requires investigation of legacy Win16 initialization or a compatible legacy
+OS/display-driver environment. All five broad parents remain partial. The
+newly integrated rendering merge's323 exact first-parent file transitions were
+reviewed separately with zero missing receipts; this is accounting, not new
+engine validation. The dependency-probe changes remain uncommitted.
+
 ## Alternate canvas initialization and new x87 copy — 2026-10-20
 
 [Alternate-canvas recovery](alternate-canvas-recovery-20261020.md) separates the
@@ -20213,6 +20339,214 @@ executable agrees with the application image, installed hashes remain stable and
 original manifest bookends pass. Original whole-scene, physical NVIDIA and live
 acceptance remain independent. No new baseline or gameplay behavior is invented.
 
+## Spell progress accounting reconciliation — 2026-10-20
+
+The coverage atlas now exposes four independent spell-work groups: casting
+foundations (4/4 implemented within scope), wizard spell task execution (3/3),
+effect/delivery components (6/7) and native spell integration (5/5). Gameplay
+includes these existing casting/wizard contracts; Simulation gains explicit
+casting, task-comparison and native wizard-encounter milestones. Shared behavior
+IDs remain deduplicated in engine overview totals. These presentation changes
+claim no new engine execution or whole-spell equivalence.
+
+SP.041/042/073/074/078/079/083/084/085 now link the delivered task/effect code
+and tests as partial implementation. The whole-spell comparison, integration
+and replacement stages remain unchanged. Spell17 native summon composition
+retains its policy boundary and does not complete original factory/lifetime
+work. CAST.cure-delivery and the complete wizard controller remain open.
+
+All 104 catalog IDs remain registered and required by the full inventory
+milestone. The 29 Unused-named slots are shown separately and excluded only
+from the gameplay track implementation summary; reachability remains unresolved.
+The other 75 IDs include internal/unnamed entries, not 75 asserted playable
+spells. They currently contain nine partial and 66 absent implementations.
+Dashboard regression checks validate accounting/presentation only. Historical
+engine evidence and its fingerprints are preserved; changed scopes retain
+pending current validation. See [the exact crosswalk and remaining boundaries](spell-progress-accounting-20261020.md).
+
+
+### Native creature drawing lifecycle implementation — 2026-10-20
+
+The formerly unimplemented `RS.creature-draw-preparation`,
+`RS.creature-draw-position-history` and `RS.scene-queue-retirement` now have
+shared integer-only native implementations and an opt-in PE32 runtime adapter.
+Original selected-creature/scene/raster orchestration calls native preparation,
+history, queue retirement and active-slot post-draw cleanup at four guarded
+entry/span sites. Both staging and capture expose `--native-creature-drawing`.
+No gameplay balance, simulation cadence or default launch policy changes.
+
+[Source-bound execution](native-creature-drawing-results-20261020.json) compares
+2,240 four-creature sequences over three history frames, with six complete
+20-KiB ownership snapshots per sequence, plus two mutable count/backing alias
+cases, 305 original-byte mutations, four protection refusals and four ownership
+refusals. Native core and installed entry stubs match unchanged original helper
+execution; the installed pass poisons original tails and the original overlap
+copy entry. Queue EBX/EDX/meaningful flags, live x87 state and LastError survive.
+Production PE32 build and original-section-preserving import staging pass. All
+2,927 original files verify before/after every acquisition. Two failed attempts
+are preserved: a fixture-only stack-range overflow and an overlong PE section
+name, both corrected before the successful source-bound result.
+
+Only the declared recovered helper implementation/comparison dimensions advance.
+`NP.native-creature-drawing-adapter` separately owns bounded memory access and
+terminal invalid-reference refusal. Integration and live replacement remain none;
+original scene generation, camera/cache/animation work, external writers and
+actual-game/Windows-provider admission retain their independent boundaries.
+See [contracts, ordering and reproducible command](native-creature-drawing-20261020.md).
+Raw prospective claims, logs, binaries and staged PE remain at
+`working/tests/creature-drawing-sourcebound-complete-20261020/`; the registered
+report and source guards are durable evidence, compiler/build outputs temporary.
+No commits landed after the prior reviewed `5fc819d5` history boundary.
+
+
+## Ten bounded native rendering policy closeouts — 2026-10-20
+
+[TEN1 evidence and exact ten-contract scope](rendering-ten-closeouts-20261020.md)
+closes implementation from partial to scoped for the surface final-WORD tail,
+status file lifetime, status deferral, minimap readable window, World permission
+epoch, read-only descriptor continuity, masked scratch reuse, colour rectangle
+cache, palette row cache and finite-edge displacement policies. Existing scopes
+and all other milestone dimensions remain unchanged. The new headless scenario
+binds prospective claims to 358 stable source fingerprints.
+
+The minimap helper now refuses malformed readable-protection combinations and
+invalid region extents; its negative-first regression failed before the repair.
+Expanded controls cover twelve native allocation-tail cases, invalid sizes and
+row Locks, real 96-byte status-file publication/retirement and startup refusal,
+optimized/sanitized CPU helpers, bounded masked patches and cached/baseline
+palette equality. Eight actual PE32 schedules retain five valid sessions, three
+expected refusals and thirteen independent complete-frame comparisons. Shared
+scene/upload/atlas controls pass. No original artifact or game process was used.
+
+The retained failed attempts are environment/probe setup outcomes, not successful
+engine evidence. Exact failed-run source variants are preserved without rewriting
+reports. Historical original/live results remain historical where shared sources
+changed; no full public journey, hardware/FPS, physical driver equivalence,
+unknown-writer ownership or live replacement milestone is promoted. Durable
+results live under rendering-ten-closeouts-results-20261020; local logs/builds
+and minimal unique-source snapshots are retained execution artifacts.
+
+TEN2.native-policy-closeouts-sentinel-20261020 reruns all ten controls after adding
+an untouched palette-eviction sentinel. The complete matrix passes again with
+358 stable source fingerprints, 242 palette evictions and the same thirteen
+independent PE32 frame comparisons. TEN1 is preserved with historical source
+freshness; only TEN2 supplies current proof after the fixture change.
+
+## Original World ownership continuation — 2026-10-20
+
+[REC10 recovery and remaining obligations](original-world-ownership-continuation-20261020.md)
+adds seven scoped original/native comparisons: complete World signed row sort,
+row/mask storage construction and teardown, occlusion query/stamp, ordinary canvas
+startup, reverse occlusion/actor writers, actor slot reset with retained particle
+aliases, and complete controlled graphics-session shutdown. All176,802 cases and
+1,298,569,036 compared bytes pass with prospective exact source/scope bindings,
+unchanged selected original bodies and original-manifest bookends. Only these
+seven children advance to scoped implementation and recorded original comparison;
+integration/replacement remain none, and all five broad Critical parents remain
+partial. Null mask/list allocation faults and nonprogressing malformed shutdown
+are executed negative controls, not invented successful original recovery.
+
+The14,577-byte cleared occlusion mask is separate from alternate canvas storage.
+Reset preserves the actor slot address while replacing owned subobjects; retained
+raw particle aliases can follow newly authored activation at that address. Real
+activation/release cascades, external actor/resource writers, alternate pixel
+allocation/publication/reachability and physical driver outcomes remain open.
+
+Two final native-only legacy probes select the separately pinned supplied Win95
+and Win98 archives; their four runtime payloads are byte-identical and both fail
+LoadLibrary998 after DDRAW16/DIBENG loading. Read-only per-run NE mapping narrows
+the observed faults to INT31 Get/Set Descriptor. This is negative environment
+evidence only; original driver surfaces, a compatible host or a specific fix have
+not been validated. Earlier failed runs and all historical evidence hashes remain
+unchanged. No gameplay changes or live replacement are included.
+
+### Next ten native rendering contracts, 2026-10-20
+
+[The closeout report](rendering-next-ten-closeouts-20261020.md) records scoped
+implementation completion for masked displacement admission, clipped RGB565
+grayscale, retained World images, prepared World replay, the shared prepared
+budget, prepared HUD/World frames, immutable GPU copy plans, resident bind
+admission, command pressure and owned snapshot delivery. The production fix
+retires sealed frame data on World/final identity release and refuses partially
+allocated failed seals. Exact handle/pixel limits, generation/extent replacement,
+refusal atomicity, bounded pressure/stop, snapshot ownership and real PE32
+admission/ACK failures have fresh source-bound controls; optimized and sanitizer
+queue/plan checks pass. Captured native prepared/reuse outputs match without
+ordinary delivery readback.
+
+The selected unchanged original `0x00589c90` and native direct-word grayscale
+path match all 1,060,864 words in sixteen private-memory cases, including all
+65,536 RGB565 colors. Only this bounded recovered leaf advances its scoped
+understanding and recorded comparison. Other original comparison, integration
+and live replacement milestones remain independent. The existing live copy-order
+GAPs, wider caller/driver domains, sustained performance and default-route
+acceptance remain explicit; no original artifacts, gameplay balance, admission
+deadlines, storage caps or default renderer selection were modified.
+
+### SQLite change-review workspace, 2026-10-20
+
+`TOOL.coverage-review-workspace` adds a worktree-local SQLite workspace for
+review preparation, indexed receipt queries, explicit reason/validation recording
+and automatic deterministic export to the existing Git-tracked journal.
+`tools/coverage-bookkeeping.py prepare` computes exact Git-base changes and can
+generate/pin a content-addressed census after an explicit source-link review;
+`record` freshly checks the draft before storing and exporting it. Stale source,
+contract, census or HEAD state refuses recording. Scoped reviews retain every
+affected shared-file contract and report all remaining gate failures. Historical
+receipt values/order and archive bytes remain unchanged; failed exports retain
+accepted local receipts for retry. No cached pass, automatic semantic mapping,
+evidence renewal, staging or commit is introduced.
+
+[The source-bound execution report](coverage/sqlite-review-workspace-20261020.json)
+records fifteen synthetic SQLite/Git guards plus the existing gate, audit,
+merge-history and evidence-import suites. The real journal imports all 2,062
+receipts unchanged, indexing 128,668 file transitions and 152,665 behavior
+transitions; a no-op export preserves all six journal/archive file hashes, and
+SQLite integrity passes. Only the new tooling behavior receives this bounded
+headless integration evidence. Changed shared tooling/document links leave their
+older evidence historical; no original engine comparison or live replacement
+milestone advances. The central behavior register remains text, unexported local
+receipts require the SQLite file, arbitrary noncooperating journal editor races
+and atomic multi-file census/register publication remain outside the contract.
+
+A later independently authored appendix changed the shared coverage README.
+The first execution fingerprint remains historical; the
+[final execution report](coverage/sqlite-review-workspace-final-20261020.json)
+reruns the guards and retained-journal verification against that documentation.
+Earlier full-tree closeout attempts retained five actor-rendering comparison/
+implementation-link errors, subsequently repaired by concurrent work. Neither
+receipt storage nor the new tooling evidence itself claims a repository-wide
+audit or gate pass; those checks run independently.
+
+
+## REC11 actor recovery and current-source proof, 2026-10-21
+
+Five actor child contracts now have independent unchanged-original/native
+comparisons: pool admission15360, reference invalidation15360, map occupancy10368,
+cleanup/release3840 and activation2592 (47520total). Full selected memory and
+ordered provider events compare; explicit downstream services remain owned
+boundaries. Scoped implementation/comparison does not confer integration or
+replacement. The integrated ALIFE1 supplier separately provides pool preparation,
+construction/reset and reverse destruction orchestration. Actual allocator
+failures, exception unwinding and downstream provider ownership remain separate.
+
+Twenty-four prior suites were renewed for their actual child contracts, with
+three palette-dependent suites rerun again after the incoming native-rendering
+merge. Actual original-active startup lease observation and the current-source
+Debug finite-edge native-policy controls also pass. Historical evidence remains
+unchanged; REC11 adds31newexecutionreports and3diagnostics.
+
+The user has no Windows98/ME host available. Native legacy runtime admission still
+fails998 under Wine, but the prior DIBENG terminal-cause attribution is corrected:
+both descriptor services dispatch and execution continues before a later32-bit
+access violation. The read-only observer does not handle or modify that failure.
+Actual legacy surface/driver validation remains blocked.
+
+The five broad Critical parents remain partial for alternate publication,
+external original owners/writers, unresolved classes/providers and full supported
+composition. See [REC11 findings and remaining boundaries](open-recovery-closeout-20261021.md)
+and [the immutable results](open-recovery-results-20261021/).
+
 
 ### Native creature drawing lifecycle implementation — 2026-10-20
 
@@ -20291,6 +20625,23 @@ range separately. The lifecycle execution inputs and four claim bindings remain
 byte-exact after importing the newer parent. The capture-aware execution result
 also checks that declared capture sources include every actual DLL compiler input.
 
+Prepared-source cache follow-up (`NXT6`) executes six actual PE32 schedules under
+the32handle/5Mpixel partition with142complete native GPU frame comparisons.
+Five normal schedules clean publication storage; the all-pinned request correctly
+refuses and joins publication owners while retaining exactly2976authored bytes
+of uncertain lock baselines for process teardown. No borrowed state is cleared
+to manufacture cleanup. `NXT7`/`NXT8` re-execute all ten controls and the selected
+original grayscale comparison after the standalone diagnostic clarification;
+earlier fingerprints remain unchanged.
+
+REC11 final integration adds8post-merge repetitions and1current ten-policy
+native control run (40executionreports total, plus3diagnostics). Thirteen
+full-frame GPU comparisons across5valid and3refused PE32 sessions pass.
+Implementation-only credit preserves older live milestones as separately pending.
+The public actor lifecycle include remains compatible; the independent ownership
+model uses `actor_ownership.hpp`. Superseded static reconciliation documents now
+remain in an explicit historical index instead of blocking the active UI refresh.
+
 ### Complete native world cell producer (2026-10-20)
 
 The remaining `0x4f8960` entry branches are implemented in
@@ -20344,3 +20695,49 @@ agree; source hashes and both original-manifest bookends pass. See
 alternate-canvas research keeps its historical evidence and boundaries. Original
 alternate allocation/publication, initial pixels, external ownership and physical
 provider failures remain open; no live or whole-session promotion is made.
+
+## Third ten native rendering implementation closeouts, 2026-10-21
+
+The [third ten closeouts](rendering-third-ten-closeouts-20261021.md) complete the
+selected native owned-plane lookup, explicit COPY-refusal replay, guarded import
+staging, obsolete DC-hook retirement, stopped-journal diagnostic, owned DC copy,
+owned DIB paint, colour-rectangle admission, held-lease flip and fresh zero-history
+contracts within their registered scopes. `NT3.final-ten-native-admission-lifetimes-20261021`
+records408 stable source inputs, six focused fixture suites, optimized/sanitized
+initialization and actual emitter controls, rebuilt21-queue native replay and
+four independent native/Wine11.16 flip schedules. The modified-working-EXE staging
+assumption is repaired without relaxing its original hash gate; selected bitmap
+and atomic output/payload refusal controls are added. Only implementation status
+advances; broader original comparison, integration, live replacement and hardware
+performance remain separate. Previous results and failed setup attempts retain
+exact historical hashes; unrelated current-source drift receives no new credit.
+
+
+## Actor downstream service inventory and body comparisons (2026-10-21)
+
+The72direct service/helper entries now resolve to71PE32 value-address models and
+one existing source-controller supplier. Four fresh DSVC1matrices pass4544cases;
+source controller and composed registration each pass8192cases with sanitizers.
+The session cleanup463cb0/464030stack split and5057b0's owner register are repaired;
+47520independent actor cases and192original/native/runtime compositions pass,
+including7138body-byte,13protection and13ownership refusal controls.
+
+[The service report](actor-downstream-services-20261021.md) and its immutable matrix
+retain83further direct targets (44scoped supplier leads,39without an explicit native
+implementation link),14indirect call sites, normal-versus-exceptional construction,
+owned external provider boundaries and pending complete actor/session integration.
+The broad downstream contract remains partial; body comparisons do not grant
+whole-session, physical legacy provider or live replacement credit. Existing
+historical evidence/hashes and the original media are preserved.
+
+### Shared checkout commit validation, 2026-10-21
+
+The authorized all-changes checkpoint freezes the pending source tree against
+`3abf6e2d4f71dc9969ac01adab47b61d266f4ac4` and re-executes all three ten-item native
+rendering batches plus affected bounded original recovery controls. See
+[commit validation and retained boundaries](all-changes-commit-results-20261021/README.md).
+Successful reports retain prospective scope claims and exact source fingerprints;
+historical reports and failed attempts remain unchanged. The new source census
+records an indexing review only. Exact pending accounting retains unrelated
+staleness and partial actor popup work; no whole-engine, performance or replacement
+milestone is implied by committing the checkout.
