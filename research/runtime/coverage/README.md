@@ -700,6 +700,45 @@ the present pre-push guard and hosted CI use the pinned release manifest. A
 private sharing backend would need its own verified reader and CI setup before
 replacing that transport. Local work does not wait for that backend decision.
 
+Private SSH backup is an explicit operation after local completion:
+
+```sh
+git config mm.evidenceBackupHost <ssh-alias>
+git config mm.evidenceBackupDirectory /absolute/private/project-directory
+python3 tools/working-retention.py run --reserve-gib 4 -- python3 tools/backup-evidence.py
+python3 tools/backup-evidence.py --status
+python3 tools/backup-evidence.py --retry
+```
+
+The host must already be accessible through SSH and provide Python 3.11 or newer
+and rsync. The command uses SQLite's online backup API for the main checkout's
+evidence and review databases and the selected worktree's review database, if
+present; `--review-db` includes an additional worktree's drafts. Other worktrees'
+unexported drafts are not discovered automatically. Locally cached pinned archive
+databases are included so database restoration does not require a public release
+download. Live database files and their WAL files are never copied independently.
+
+The private directory contains `objects/<sha256>.sqlite3` snapshots and
+`sets/<sha256>.sqlite3` manifests identifying the Git commit and original source
+of each database. Completed manifests appear only after all remote hashes and
+SQLite integrity checks pass. Directories are private and completed files have
+mode 0600. Existing objects are verified and reused; corruption refuses rather
+than overwriting a prior object. Interrupted transfers remain pending in
+`working/coverage/private-backups/catalog.sqlite3` in the main checkout. Retry
+uses the original retained snapshots; it does not refresh historical evidence.
+Nothing is deleted automatically, and no commit hook invokes this command.
+
+For restoration, download the selected set manifest and query its `backup` and
+`files` tables. Retrieve its named objects over SSH, check their SHA-256 values
+against `files.sha256`, and verify SQLite integrity before opening a copy. The
+`source` column identifies each database's original location; restore pending
+evidence as `working/coverage/evidence-pending.sqlite3` while its writers are
+stopped, and place pinned archive objects in the configured evidence cache.
+Keep the recovered Git commit with the database set. This backs up databases;
+untracked game installations, original media and Git source history are outside
+the backup command's scope. Private backup is not public release publication and
+does not satisfy the existing hosted-CI availability guard.
+
 Use `--record-current-promotions` only after reviewing the requested milestone
 changes. It records stage-specific proof from existing current audit support;
 it does not change statuses, manufacture claims, or grant other stages credit.

@@ -305,6 +305,12 @@ local commit or merge. Keep the local databases and their backup catalogs pinned
 against working-storage cleanup; a Git commit contains references, not payloads.
 Use `tools/finish-work.py` to record the exact review in SQLite, retain verified
 SQLite backups, stage the owned batch and commit with the normal hook enabled.
+Private backups use the explicit `tools/backup-evidence.py` command after local
+completion. Its SSH host and project directory are repository-local Git settings
+(`mm.evidenceBackupHost` and `mm.evidenceBackupDirectory`); never attach a transfer
+to commit hooks. Preserve its retained SQLite catalog and pending sets, use
+`--retry` after interruptions and verify a downloaded snapshot before claiming
+restoration. Private backups do not update public publication/CI availability.
 Before an explicitly requested remote push or merge in a hosted repository, all
 referenced evidence must be available from the configured shared store. This
 sharing requirement does not apply to local Git merges. GitHub Releases is the

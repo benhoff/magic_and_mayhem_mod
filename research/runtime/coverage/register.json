@@ -137202,7 +137202,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Immutable SQLite evidence archives and exact Git pointer recovery",
-      "scope": "Storage-only content-addressed SQLite report import, every historical artifact blob version, append-only chunk storage, exact original-byte recovery, corruption and missing-object refusal, pinned compressed release download, local clean-filter pointers, fresh-clone stat refresh preserving staged blob identities, old/new graph lookup and push guards against legacy commits/raw artifacts/unpublished objects. Bounded synthetic Git, filesystem, SQLite and download fixtures validate these paths. Upload-only SSH/Actions publication is operational storage, with retained receipts and independently verified remote downloads; fixture claims do not guarantee future service availability. Original engine behavior and live replacement remain excluded. Shared absolute hooks use current gate tooling against the selected worktree and preserve the configured hook owner. Direct verified SQLite reads through invocation-scoped readers and compatible text/byte adapters preserve original payload hashes without whole-tree hydration. Reviewed JSON classification retains editable registers, source locks, schemas, fixtures, UI policy and configuration; generated runtime/format reports compact to references only after exact cold backup verification, restore verification, dual durable receipts and repeated source-identity checks. New census outputs write directly to SQLite. Consumer parser/engine logic is unchanged outside reviewed input adapters; no original-engine revalidation is claimed.",
+      "scope": "Storage-only content-addressed SQLite report import, every historical artifact blob version, append-only chunk storage, exact original-byte recovery, corruption and missing-object refusal, pinned compressed release download, local clean-filter pointers, fresh-clone stat refresh preserving staged blob identities, old/new graph lookup and push guards against legacy commits/raw artifacts/unpublished objects. Bounded synthetic Git, filesystem, SQLite and download fixtures validate these paths. Upload-only SSH/Actions publication is operational storage, with retained receipts and independently verified remote downloads; fixture claims do not guarantee future service availability. Original engine behavior and live replacement remain excluded. Shared absolute hooks use current gate tooling against the selected worktree and preserve the configured hook owner. Direct verified SQLite reads through invocation-scoped readers and compatible text/byte adapters preserve original payload hashes without whole-tree hydration. Reviewed JSON classification retains editable registers, source locks, schemas, fixtures, UI policy and configuration; generated runtime/format reports compact to references only after exact cold backup verification, restore verification, dual durable receipts and repeated source-identity checks. New census outputs write directly to SQLite. Consumer parser/engine logic is unchanged outside reviewed input adapters; no original-engine revalidation is claimed. Explicit private SSH backup supports consistent verified SQLite snapshots, pinned local archive inclusion, immutable commit-linked SQLite set manifests, checksum verification and owner-only files on the selected private host, interrupted-transfer retry and corruption refusal. Nine synthetic controls execute the actual remote verifier locally and restore payloads, including live-WAL data. Commit hooks never transfer backups. This is separate from public publication and hosted-CI availability; expanded storage validation remains independently pending rather than renewing historical engine or toolkit execution claims.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -137217,12 +137217,14 @@
         ".githooks/pre-push",
         ".gitattributes",
         "tools/evidence_sweep.py",
-        "tools/index-coverage-sources.py"
+        "tools/index-coverage-sources.py",
+        "tools/backup-evidence.py"
       ],
       "tests": [
         "tests/test-evidence-store.py",
         "tests/test-re-coverage.py",
-        "tests/test-coverage-ui.py"
+        "tests/test-coverage-ui.py",
+        "tests/test-private-evidence-backup.py"
       ],
       "validation_dependencies": [
         "tools/coverage_audit.py",
@@ -335405,8 +335407,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-7599523947fb526b27c176ede017ce7e87f191a06f3b8314e8f37a9c39d2fb6e.json",
-    "sha256": "7599523947fb526b27c176ede017ce7e87f191a06f3b8314e8f37a9c39d2fb6e"
+    "path": "research/runtime/coverage/source-index-ad3625854595504775d58f9b8a6e7602d7301619b91db8ce6ce2b9322091131c.json",
+    "sha256": "ad3625854595504775d58f9b8a6e7602d7301619b91db8ce6ce2b9322091131c"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

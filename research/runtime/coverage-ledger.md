@@ -20800,3 +20800,20 @@ backups and the normal staged coverage gate. Publication is reserved for explici
 external sharing. The prepared release archive remains local and is not uploaded.
 This changes storage availability policy only; historical evidence, current
 source checks and all engine milestone boundaries remain unchanged.
+
+
+### Explicit private SQLite backup, 2026-10-21
+
+The user selected a private SSH backup alongside the persistent local database.
+The explicit backup-evidence command snapshots live evidence and selected review
+databases through SQLite, includes pinned local archive databases and records a
+commit-linked immutable SQLite set manifest before transport. Remote checks verify
+file hashes and SQLite integrity before exposing a completed set. A retained local
+SQLite catalog keeps interrupted sets pending for retry; no existing remote object
+is overwritten and no automatic cleanup is introduced. Commit hooks remain local.
+Nine synthetic controls cover actual remote verifier execution, restored payloads,
+WAL state, retries, deduplication, corruption and destination-change refusal.
+Private backup does not satisfy the public sharing/CI manifest or grant original
+comparison, integration or replacement credit. Operational transport and restore
+receipts are retained under working/tests/private-evidence-backup-20261021/ and
+working/coverage/private-backups/.
