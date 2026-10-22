@@ -6,6 +6,21 @@
 #include <stdexcept>
 namespace mnm::reconstruction {
 namespace {
+long double effectPower(double base,double power){
+#if defined(__i386__) || defined(__x86_64__)
+ // Positive finite branch of59bcc0/5a05e0: binary64 operands, x87
+ // logarithm/exponential reduction, extended result until the caller spills.
+ // libm powl can round an integer power exactly where this sequence does not.
+ long double result;
+ asm volatile("fldl %2; fldl %1; fyl2x; fld %%st(0); frndint; fxch; "
+              "fsub %%st(1), %%st(0); f2xm1; fld1; faddp; fscale; fstp %%st(1); fstpt %0"
+              : "=m"(result) : "m"(base), "m"(power)
+              : "st", "st(1)", "st(2)");
+ return result;
+#else
+ return std::pow(static_cast<long double>(base),static_cast<long double>(power));
+#endif
+}
 int integer(long double v){
  // The original __ftol returns integer-indefinite for unordered/out-of-range.
  if(!std::isfinite(v)||v<std::numeric_limits<int>::min()||v>=2147483648.L)return std::numeric_limits<int>::min();
@@ -73,11 +88,13 @@ PaletteEffectResult buildPaletteEffect(const PaletteRgb& rgb,unsigned mode,Palet
  const unsigned half=out.neutral;out.tables.resize(mode==9?half+1:2*half+1);
  const auto pack=[&](std::array<int,3> values){for(auto& v:values)v=std::clamp(v,0,255);return std::uint16_t(rgb555?((values[0]&248)<<7)|((values[1]&248)<<2)|(values[2]>>3):((values[0]&248)<<8)|((values[1]&252)<<3)|(values[2]>>3));};
  for(unsigned table=0;table<out.tables.size();++table){
-  const auto factor=table<half?std::pow(static_cast<long double>((127*half-127*table)/half),static_cast<long double>(c.intensityPower)):0.L;
+  const auto factor=table<half?effectPower((127*half-127*table)/half,c.intensityPower):0.L;
   if(!std::isfinite(factor))throw std::invalid_argument("Palette dark power");
   for(unsigned colour=0;colour<256;++colour){const auto& bytes=result.source[colour];std::array<int,3> input{{bytes[0],bytes[1],bytes[2]}},value=input;
    if(table<half){
-    const long double r=bytes[0],g=bytes[1],b=bytes[2];const double luminance=double(mode==5?r*double(.3)+g*double(.59)+b*double(.11):g*double(.59)+b*double(.11)+r*double(.3));
+    const long double r=bytes[0],g=bytes[1],b=bytes[2];// Preserve the x87 addition order before the original double spill.
+    // Metal starts with blue/green; the other effect builders start red/blue.
+    const double luminance=double(mode==5?(b*double(.11)+g*double(.59))+r*double(.3):(r*double(.3)+b*double(.11))+g*double(.59));
     if(mode==6)value=desaturate(value);
     for(auto& v:value)v=v?integer((intensity/(static_cast<long double>(intensity)+factor))*((static_cast<long double>(luminance)-v)*(factor/(static_cast<long double>(saturation)+factor))+v)):0;
    }else if(table>half){for(unsigned channel=0;channel<3;++channel)value[channel]=input[channel]+((255-input[channel])*(table-half))/half;}

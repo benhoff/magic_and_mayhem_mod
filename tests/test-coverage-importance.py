@@ -90,8 +90,8 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        # Reviewed native observer closeouts through d48226f4 retain32 Low and8 Supporting partials.
-        self.assertEqual(result['partial_counts'], {1: 32, 2: 8, 3: 4, 4: 38, 5: 28})
+        # Reviewed observer closeouts through7071d81f retain14 Low and6 Supporting partials.
+        self.assertEqual(result['partial_counts'], {1: 14, 2: 6, 3: 4, 4: 38, 5: 28})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -465,6 +465,7 @@ class TrancheTest(unittest.TestCase):
             'RS.actor-service-composition', 'RS.actor-concrete-providers',
             'RS.actor-session-source-lifecycle', 'NP.actor-session-source-ownership',
             'RS.actor-concrete-provider-frontier',
+            'RS.actor-profile-transform-providers', 'RS.actor-palette-builder-providers',
         }
         scoped_high = {e['behavior'] for e in result['entries']
                        if e['weight'] == 4 and e['implementation'] == 'scoped'}

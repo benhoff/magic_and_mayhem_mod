@@ -133453,7 +133453,7 @@
       "id": "RE.palette-effect-builders",
       "kind": "recovered",
       "subsystem": "rendering_reconstruction",
-      "scope": "Original palette modes0..9, count admission and owned effect-chain selection. Mode-zero power-of-two baseline already exists; remaining builders, non-power-of-two semantics and runtime chain integration are under recovery.",
+      "scope": "Aggregate original palette modes0..9: arithmetic, count admission, owned effect-chain selection and raw allocation/profile/cache/append control now have linked bounded components. Wider original unsafe allocation/failure, installed scene/platform ownership and live acceptance remain separate; this umbrella remains partial.",
       "confidence": "provisional",
       "original": [
         {
@@ -133476,15 +133476,20 @@
         "reconstruction/rendering/palette_effect_chain.hpp",
         "apps/scene-session/palette_binding.cpp",
         "apps/scene-session/palette_binding.hpp",
-        "apps/scene-session/palette_profile.cpp"
+        "apps/scene-session/palette_profile.cpp",
+        "reconstruction/rendering/actor_profile_palette_providers.hpp"
       ],
       "tests": [
         "tests/palette-shading-test.cpp",
         "tests/rendering-boundary-reference.cpp",
-        "tools/test-rendering-boundaries.py"
+        "tools/test-rendering-boundaries.py",
+        "tests/actor-profile-palette-reference.cpp",
+        "tests/actor-profile-palette-seeds.inc",
+        "tools/test-actor-profile-palette.py"
       ],
       "documents": [
-        "research/runtime/remaining-rendering-implementations-20261020.md"
+        "research/runtime/remaining-rendering-implementations-20261020.md",
+        "research/runtime/actor-profile-palette-providers-20261022.md"
       ],
       "evidence": [
         "REMAIN.boundaries-original-20261020",
@@ -133498,7 +133503,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "All numerical modes/count admission, owned chain append/ordinal selection, profile production and revision-bound native/terrain delivery are now implemented by the linked scoped components. Original full allocation-failure behavior and installed full-scene/hardware/live acceptance remain independent. Parent milestones remain historical; new execution credit is assigned to exact component scopes."
+        "Numerical and raw owned allocation/header/cache/profile/append paths have scoped component comparisons. Original unsafe odd-count allocation, arbitrary malformed/nonfinite profile inputs, actual Windows profile/file/heap service and installed full-scene/hardware/live acceptance remain independent. Execution credit is assigned to exact component scopes; the aggregate retains partial status."
       ],
       "validation_dependencies": [
         "tests/sprite-binary-reference.cpp"
@@ -134084,7 +134089,8 @@
         "research/runtime/remaining-rendering-implementations-20261020.md"
       ],
       "evidence": [
-        "PALETTE.modes-original-20261020"
+        "PALETTE.modes-original-20261020",
+        "PP1.palette-math.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -134150,7 +134156,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Successful original appends, unknown/empty no-ops and post-metal source propagation are compared. Atomic native budget/allocation failure is intentional policy, not reproduction of original partially appended allocation failures. Full original failure injection, installed scene and hardware/live acceptance remain separate."
+        "Successful original appends, unknown/empty no-ops and post-metal source propagation are compared. Atomic native budget/allocation failure is intentional policy, not reproduction of original partially appended allocation failures. Full original failure injection, installed scene and hardware/live acceptance remain separate.",
+        "2026-10-22 shared palette luminance addition-order correction: prior source fingerprints remain historical. Fresh palette arithmetic and raw-provider comparisons do not assert current chain/scene/terrain integration; rerun their respective execution scenarios before current integration/equivalence credit."
       ]
     },
     {
@@ -134201,7 +134208,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Owned profile production, current revision/frame binding, independent resources, budget failure atomicity and retirement run through Mesa headless OpenGL. Real installed scene population, physical GPU acceptance and full-game/live replacement remain separate validation/integration work."
+        "Owned profile production, current revision/frame binding, independent resources, budget failure atomicity and retirement run through Mesa headless OpenGL. Real installed scene population, physical GPU acceptance and full-game/live replacement remain separate validation/integration work.",
+        "2026-10-22 shared palette luminance addition-order correction: prior source fingerprints remain historical. Fresh palette arithmetic and raw-provider comparisons do not assert current chain/scene/terrain integration; rerun their respective execution scenarios before current integration/equivalence credit."
       ]
     },
     {
@@ -134248,7 +134256,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "All modes, explicit ordinal, profile input, non-power counts0/8 and invalid CLI refusal run through native Mesa headless preview. Production world/entity orchestration and installed physical/live acceptance remain separate."
+        "All modes, explicit ordinal, profile input, non-power counts0/8 and invalid CLI refusal run through native Mesa headless preview. Production world/entity orchestration and installed physical/live acceptance remain separate.",
+        "2026-10-22 shared palette luminance addition-order correction: prior source fingerprints remain historical. Fresh palette arithmetic and raw-provider comparisons do not assert current chain/scene/terrain integration; rerun their respective execution scenarios before current integration/equivalence credit."
       ]
     },
     {
@@ -137941,7 +137950,7 @@
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Complete actor downstream service ownership and behavior",
-      "scope": "Seventy-two original direct service/helper entries and the initial83-target frontier retain bounded scope. The owned actor/source lifecycle composes171routes; twelve additional concrete resource/effect/profile/stun/attack/surface providers now expose183routes through one owned backend. All43historical semantic leads retain24concrete-route and19embedded-helper dispositions within their stated domains. The12-root/3-caller normal-return matrix is separate from original planner cadence, arbitrary installed profiles, actual font/palette/file/task/scenario/platform lower providers and incomplete indirect targets. Malformed CRT, uninitialized original locals, Windows SEH/throwing cleanup, external acceptance and full original-world/live replacement remain explicit. This Critical umbrella remains partial.",
+      "scope": "Seventy-two original direct service/helper entries and the initial83-target frontier retain bounded scope. The owned actor/source lifecycle now composes198 routes, including fifteen additional profile animation/movement and palette ownership providers. All43 historical semantic leads retain24 concrete-route and19 embedded-helper dispositions within their stated domains. The15-root/5-caller normal-return matrix does not establish original planner cadence, arbitrary installed profiles, actual font/file/task/scenario/platform lower providers or complete indirect targets. Named profile/directory/heap endpoints, unsafe odd-count allocation, malformed CRT, uninitialized original locals, Windows SEH/throwing cleanup, external acceptance and full original-world/live replacement remain explicit. This Critical umbrella remains partial.",
       "confidence": "provisional",
       "original": [
         {
@@ -138313,7 +138322,8 @@
         "research/runtime/service-composition-results-20261022/frontier.json",
         "research/runtime/service-composition-results-20261022/frontier-panel.json",
         "research/runtime/actor-session-source-lifecycle-20261022.md",
-        "research/runtime/actor-concrete-provider-frontier-20261022.md"
+        "research/runtime/actor-concrete-provider-frontier-20261022.md",
+        "research/runtime/actor-profile-palette-providers-20261022.md"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -138334,7 +138344,14 @@
         "reconstruction/rendering/actor_session.hpp",
         "reconstruction/rendering/actor_source_services.hpp",
         "reconstruction/rendering/actor_transition_services.hpp",
-        "reconstruction/rendering/actor_frontier_providers.hpp"
+        "reconstruction/rendering/actor_frontier_providers.hpp",
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp",
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp"
       ],
       "tests": [
         "tools/inspect-actor-downstream.py",
@@ -138355,14 +138372,19 @@
         "tests/actor-frontier-reference.cpp",
         "tests/actor-frontier-seeds.inc",
         "tools/test-actor-frontier.py",
-        "tools/reconcile-actor-frontier.py"
+        "tools/reconcile-actor-frontier.py",
+        "tests/actor-profile-palette-reference.cpp",
+        "tests/actor-profile-palette-seeds.inc",
+        "tools/test-actor-profile-palette.py",
+        "tools/reconcile-actor-profile-palette.py"
       ],
       "evidence": [
         "SCP1.frontier-20261022",
         "SCP1.malformed-copy-negative-20261022",
         "SCP2.frontier-20261022",
         "ASL1.reconciliation-reviewed.static-20261022",
-        "AFP1.reconciliation.static-20261022"
+        "AFP1.reconciliation.static-20261022",
+        "PP1.reconciliation.static-20261022"
       ],
       "status": {
         "understanding": "partial",
@@ -140394,6 +140416,296 @@
         "normal_returns_only": true,
         "lower_services": "Named authored file, palette builder, profile transform, support, task, subtype and COM endpoints; CRT/SEH/driver internals excluded."
       }
+    },
+    {
+      "id": "RS.actor-profile-transform-providers",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Concrete profile animation validators and movement maximum",
+      "scope": "Raw PE32 walk/fly program validation and four-facing group agreement with exact diagnostic notifications, plus profile movement base/acceleration scalars and five-category maximum control. Owned bounded ANI programs and profile storage; borrowed diagnostic/scalar outputs use value addresses. Lower formatted-message, dialog and CRT math/parsing remain explicit boundaries. Real owner/planner cadence, arbitrary malformed/unbounded programs, divide faults, SEH/throwing cleanup and live replacement excluded.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5262528,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5263040,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5263712,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5265472,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5265696,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        }
+      ],
+      "documents": [
+        "research/runtime/actor-profile-palette-providers-20261022.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_frontier_providers.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp",
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp"
+      ],
+      "tests": [
+        "tests/actor-profile-palette-reference.cpp",
+        "tests/actor-profile-palette-seeds.inc",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc",
+        "tools/test-actor-profile-palette.py"
+      ],
+      "validation_dependencies": [
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/test-actor-services.py",
+        "assets/asset_file.hpp",
+        "assets/map.hpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp"
+      ],
+      "evidence": [
+        "PP1.providers.isolated_original-20261022",
+        "PP1.providers.headless-20261022",
+        "PP1.attempt-catalog.static-20261022",
+        "PP1.incoming-history-second.static-20261022",
+        "PP1.power-diagnostic.static-20261022",
+        "PP1.incoming-history.static-20261022",
+        "PP1.decompilation.static-20261022",
+        "PP1.inspection-report.static-20261022"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_domain": {
+        "roots": 5,
+        "cases_per_root": 64,
+        "caller_roots": [
+          "0x5050d0",
+          "0x505220",
+          "0x5055a0",
+          "0x57d310",
+          "0x57d690"
+        ],
+        "normal_returns_only": true,
+        "palette_safe_counts": "powers of two 2..256 and mode0 count3; mode1..7/9 invalid counts are explicit normal refusal cases",
+        "lighting": "finite profile values, initialized bounded lighting; no native-original math-library bit identity outside compared cases"
+      },
+      "remaining_gaps": [
+        "Bounded normal-return original comparison and owned caller composition only. Named file/directory/profile/heap/diagnostic endpoints, arbitrary malformed or nonfinite inputs, original odd-count allocation overruns, divide faults, SEH/throwing cleanup, actual owner/planner cadence, installed sessions and live replacement remain separate."
+      ]
+    },
+    {
+      "id": "RS.actor-palette-builder-providers",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Concrete palette table allocation and chain ownership",
+      "scope": "Ten raw PE32 palette mode builders compose actual packed word/DWORD tables, node headers, allocator publication/failure ordering, lighting cache mutation, profile path/lookup control, mode5 caller RGB mutation and per-palette chain ownership with SPR/ANI callers. Named directory/profile/file/heap/CRT endpoints are supplied; owned safe allocation/count/lighting domains and normal returns only. Mode0/8 odd-count original underallocation remains excluded, except mode0 count3 where output fits. Invalid mode1..7/9 power-of-two counts retain observed early/profile side effects. Malformed allocation overrun, nonfinite/undefined profile conversions, external platform acceptance, SEH and live replacement excluded.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5776448,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5778048,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5780272,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5782448,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5793376,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5796048,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5791104,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5799536,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5801776,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5802992,
+          "relation": "code",
+          "scope": "Selected raw provider control and owned storage domain; no all-callers or recursive platform recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881024,
+          "relation": "code",
+          "scope": "Embedded positive finite binary64-operand x87 power/reduction branch only; not a new public route or complete CRT exceptional-domain recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5899744,
+          "relation": "code",
+          "scope": "Embedded positive finite binary64-operand x87 power/reduction branch only; not a new public route or complete CRT exceptional-domain recovery."
+        }
+      ],
+      "documents": [
+        "research/runtime/actor-profile-palette-providers-20261022.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_frontier_providers.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp",
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp"
+      ],
+      "tests": [
+        "tests/actor-profile-palette-reference.cpp",
+        "tests/actor-profile-palette-seeds.inc",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc",
+        "tools/test-actor-profile-palette.py"
+      ],
+      "validation_dependencies": [
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/test-actor-services.py",
+        "assets/asset_file.hpp",
+        "assets/map.hpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp"
+      ],
+      "evidence": [
+        "PP1.providers.isolated_original-20261022",
+        "PP1.providers.headless-20261022",
+        "PP1.attempt-catalog.static-20261022",
+        "PP1.incoming-history-second.static-20261022",
+        "PP1.power-diagnostic.static-20261022",
+        "PP1.incoming-history.static-20261022",
+        "PP1.decompilation.static-20261022",
+        "PP1.inspection-report.static-20261022"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_domain": {
+        "roots": 10,
+        "cases_per_root": 64,
+        "caller_roots": [
+          "0x5050d0",
+          "0x505220",
+          "0x5055a0",
+          "0x57d310",
+          "0x57d690"
+        ],
+        "normal_returns_only": true,
+        "palette_safe_counts": "powers of two 2..256 and mode0 count3; mode1..7/9 invalid counts are explicit normal refusal cases",
+        "lighting": "finite profile values, initialized bounded lighting; no native-original math-library bit identity outside compared cases"
+      },
+      "remaining_gaps": [
+        "Bounded normal-return original comparison and owned caller composition only. Named file/directory/profile/heap/diagnostic endpoints, arbitrary malformed or nonfinite inputs, original odd-count allocation overruns, divide faults, SEH/throwing cleanup, actual owner/planner cadence, installed sessions and live replacement remain separate."
+      ]
     }
   ],
   "evidence": [
@@ -315975,6 +316287,253 @@
           "equals": true
         }
       ]
+    },
+    {
+      "record": "research/runtime/actor-profile-palette-results-20261022/profile-palette-matrix-7.json",
+      "sha256": "da49d5eb202158ab860ca1284c8482a471cfb990ff0a4fb62f3b31146000018a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1280
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 2560
+        },
+        {
+          "pointer": "/composed_routes",
+          "equals": 198
+        },
+        {
+          "pointer": "/bytes_compared",
+          "equals": 1346349916
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "PP1.providers.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Fifteen profile/palette roots and five actual callers:1280 independently seeded normal-return cases,2560 before/after teardown snapshots over one owned backend. Only the declared safe/finite domain; no recursive platform/session closure.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "record": "research/runtime/actor-profile-palette-results-20261022/profile-palette-matrix-7.json",
+      "sha256": "da49d5eb202158ab860ca1284c8482a471cfb990ff0a4fb62f3b31146000018a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1280
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 2560
+        },
+        {
+          "pointer": "/composed_routes",
+          "equals": 198
+        },
+        {
+          "pointer": "/bytes_compared",
+          "equals": 1346349916
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "PP1.providers.headless-20261022",
+      "kind": "native_integration",
+      "scope": "Same1280-case matrix as the original comparison;198-route headless owned composition with allocator/profile callback ordering, actual packed tables and zero residual live allocations. Not additional cases, installed session, physical driver or live acceptance."
+    },
+    {
+      "id": "PP1.palette-math.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Current shared x87 power and luminance evaluation order:3468 palettes/63416320 words,24 refusals/384 source mutations, independent original32/native64/sanitizer equality and normal/sanitized units. Padded oracle storage does not validate original unsafe allocation behavior.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/legacy-math-2.json",
+      "sha256": "da77d25e20fd5583e798c4ecdea3391eb7da193cd7f585a9fdc8ca7a0f0753d9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_and_sanitized_units_passed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PP1.attempt-catalog.static-20261022",
+      "kind": "static",
+      "scope": "Immutable failed/prospective input catalog; no failed execution credit.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/attempt-catalog-reviewed.json",
+      "sha256": "c38ca5ef59ef7c86d16fc85571f8274c589e434bf175258a24e84e540b2a858b",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "PP1.incoming-history-second.static-20261022",
+      "kind": "static",
+      "scope": "Reviewed31 exact transitions in b12abf7d..7071d81f with no missing or mutated receipts; retrospective accounting only.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/incoming-history-second.json",
+      "sha256": "2bf63fbef87a99defd72dfd4180b9cc7b35e8cda5e9e511330425a8c536f6bbb",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "PP1.power-diagnostic.static-20261022",
+      "kind": "static",
+      "scope": "Direct original x87 finite-power diagnostics; no complete CRT recovery or separate provider scenario credit.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/power-diagnostic.json",
+      "sha256": "d207e62bc545ad68fee45146837e80655307c74bb6c82aebc31436baeef6d0b7",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "PP1.incoming-history.static-20261022",
+      "kind": "static",
+      "scope": "Reviewed30 exact committed parent/current transitions in c6068e97..b12abf7d with no gaps; no past gate or execution assertion.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/incoming-history.json",
+      "sha256": "487a879932087c17f68aa626ae466d2b7302c1b4ee2fbad2b5f7111ccc252c94",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "PP1.decompilation.static-20261022",
+      "kind": "static",
+      "scope": "Fifteen original root decompilations and pinned hashes; known unrelated55a650 candidate not adopted.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/decompilation.json",
+      "sha256": "a1e8436a55515c5ff2fa6e53c7bd07bab745c00c3e06ad9d2c47c13922ba6fbf",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "PP1.inspection-report.static-20261022",
+      "kind": "static",
+      "scope": "Fresh original instructions/ABI/call frontier for selected provider roots; manifest checks, static scope only.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/inspection-report.json",
+      "sha256": "b42a30b94dacd2b18e84db84f362207458f9fa613931b643e0a079fd3096af39",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "PP1.reconciliation.static-20261022",
+      "kind": "static",
+      "scope": "198-route reconciliation,43 retained lead dispositions,113 supplied endpoint specifications and incomplete indirect targets; static scope only.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/reconciliation.json",
+      "sha256": "4cca8ec57fc225dbb8e691706396f3b7437554af3e1991067b5c512d4abc532a",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
     }
   ],
   "classifications": [],
@@ -323800,6 +324359,114 @@
           "value": 5818528,
           "behaviors": [
             "RS.actor-concrete-provider-frontier"
+          ]
+        },
+        {
+          "value": "unresolved-lower-provider-and-indirect-targets",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "actor-profile-palette-provider-routing",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5262528,
+        "relation": "code",
+        "scope": "Fifteen selected raw provider entries composed over the previous183 routes; unresolved lower providers/indirect sites retained."
+      },
+      "document": "research/runtime/actor-profile-palette-providers-20261022.md",
+      "complete": false,
+      "scope": "198 native public routes with bounded profile/palette caller ownership; not recursive provider closure.",
+      "entries": [
+        {
+          "value": 5262528,
+          "behaviors": [
+            "RS.actor-profile-transform-providers"
+          ]
+        },
+        {
+          "value": 5263040,
+          "behaviors": [
+            "RS.actor-profile-transform-providers"
+          ]
+        },
+        {
+          "value": 5263712,
+          "behaviors": [
+            "RS.actor-profile-transform-providers"
+          ]
+        },
+        {
+          "value": 5265472,
+          "behaviors": [
+            "RS.actor-profile-transform-providers"
+          ]
+        },
+        {
+          "value": 5265696,
+          "behaviors": [
+            "RS.actor-profile-transform-providers"
+          ]
+        },
+        {
+          "value": 5776448,
+          "behaviors": [
+            "RS.actor-palette-builder-providers"
+          ]
+        },
+        {
+          "value": 5778048,
+          "behaviors": [
+            "RS.actor-palette-builder-providers"
+          ]
+        },
+        {
+          "value": 5780272,
+          "behaviors": [
+            "RS.actor-palette-builder-providers"
+          ]
+        },
+        {
+          "value": 5782448,
+          "behaviors": [
+            "RS.actor-palette-builder-providers"
+          ]
+        },
+        {
+          "value": 5793376,
+          "behaviors": [
+            "RS.actor-palette-builder-providers"
+          ]
+        },
+        {
+          "value": 5796048,
+          "behaviors": [
+            "RS.actor-palette-builder-providers"
+          ]
+        },
+        {
+          "value": 5791104,
+          "behaviors": [
+            "RS.actor-palette-builder-providers"
+          ]
+        },
+        {
+          "value": 5799536,
+          "behaviors": [
+            "RS.actor-palette-builder-providers"
+          ]
+        },
+        {
+          "value": 5801776,
+          "behaviors": [
+            "RS.actor-palette-builder-providers"
+          ]
+        },
+        {
+          "value": 5802992,
+          "behaviors": [
+            "RS.actor-palette-builder-providers"
           ]
         },
         {
@@ -340144,6 +340811,23 @@
       ]
     },
     {
+      "id": "actor-profile-palette-owned-20261022",
+      "scope": "Five raw profile/scalar providers, ten concrete palette builders and five existing callers over one owned store; partial failures observed before explicit chain/resource teardown. Named lower OS/file/message services remain supplied; no original-world/live acceptance.",
+      "level": "headless",
+      "behaviors": [
+        "RS.actor-profile-transform-providers",
+        "RS.actor-palette-builder-providers"
+      ],
+      "tests": [
+        "tests/actor-profile-palette-reference.cpp",
+        "tests/actor-profile-palette-seeds.inc",
+        "tools/test-actor-profile-palette.py"
+      ],
+      "evidence": [
+        "PP1.providers.headless-20261022"
+      ]
+    },
+    {
       "id": "NR.eleventh-ten.observer-completion-20261022",
       "level": "headless",
       "scope": "Ten bounded native source/update observation and input transport implementation scopes. Owned PE32 cadence thunk/flags/register/FX/error preservation and pinned guard refusals, exact producer/source-boundary callbacks, V4 native 1/16/120 replay, primitive identities, opcode42 scalar/lifetime joins, real cursor mutex/relocated module and controlled production source-worker gate schedules, actual menu relay into production DLL, COM/update QPC regressions, real private XTest preflight/injection/cancellation. No original game, complete source/backing/routes, original cadence equivalence, scanout, semantic outcomes or live replacement.",
@@ -340923,8 +341607,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-70b90b10be89b9195d6eb6492c0821c4db41ce0ccd4338b0b6a99d08b9d07369.json",
-    "sha256": "70b90b10be89b9195d6eb6492c0821c4db41ce0ccd4338b0b6a99d08b9d07369"
+    "path": "research/runtime/coverage/source-index-b2cb8424a0145eb9c0cfc6bf9f4c30d8a1536ff6f37cb242993ca9b9901f698a.json",
+    "sha256": "b2cb8424a0145eb9c0cfc6bf9f4c30d8a1536ff6f37cb242993ca9b9901f698a"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
