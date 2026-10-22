@@ -6,7 +6,7 @@ static int(WIN *wine_source_map_counter)(void*);
 static u32 wine_source_map_bounded,wine_source_map_total_attempts,wine_source_map_total_bytes;
 static u32 wine_source_map_attempt_limit=8192,wine_source_map_byte_limit=0x80000000u;
 static int wine_source_map_limit(const char* name,u32 maximum,u32* value){
- char text[12];u32 n=GetEnvironmentVariableA(name,text,sizeof(text));if(!n)return 1;
+ char text[12];SetLastError(0);u32 n=GetEnvironmentVariableA(name,text,sizeof(text));if(!n)return GetLastError()==203;
  if(n>=sizeof(text)||text[0]=='0')return 0;u32 result=0;
  for(u32 i=0;i<n;++i){if(text[i]<'0'||text[i]>'9')return 0;u32 digit=text[i]-'0';if(result>maximum/10||(result==maximum/10&&digit>maximum%10))return 0;result=result*10+digit;}
  if(!result)return 0;*value=result;return 1;

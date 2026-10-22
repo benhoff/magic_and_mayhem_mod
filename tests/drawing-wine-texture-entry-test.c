@@ -10,6 +10,8 @@ void start(void){
  const u8 decref[]={0x55,0x89,0xe5,0x83,0xec,0x34,0x31,0xc0,0xc9,0xc3};
  copy(code,create,sizeof(create));copy(code+64,decref,sizeof(decref));const u32 rvas[2]={0,64};
  code[64]=0x90;require(!wine_texture_entry_patch_rvas(code,rvas)&&code[0]==0x55,102);code[64]=0x55;
+ require(!wine_texture_entry_patch_rvas(0,rvas)&&!wine_texture_entry_patch_rvas(code,0)&&!wine_texture_entry_patch_rvas((void*)0xfffffffeu,rvas),108);
+ const u32 wrapped[2]={0xffffffffu,64};require(!wine_texture_entry_patch_rvas(code,wrapped)&&code[0]==0x55&&code[64]==0x55,109);
  require(wine_texture_entry_patch_rvas(code,rvas),103);
  typedef u32(__attribute__((cdecl))*Create)(void*,const void*,u32,u32,u32,const void*,void*,const void*,void**);
  typedef u32(__attribute__((cdecl))*Release)(void*);

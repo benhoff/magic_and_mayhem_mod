@@ -50,5 +50,9 @@ void start(void){
  surface.pixels=(u32)owned+80;storage_transition_record(&f,2,surface.pixels);
  point[2]=3;require(storage_transition_query(point,1,0,0,16)==7,219);
  require(storage_transition_calls==8&&storage_transition_returns==8&&storage_transition_epoch==5&&storage_transition_address_count==6,203);
+ u32 free_region[7]={0},free_at=0;
+ for(u32 at=0x100000;at<0x70000000;){require(VirtualQuery((void*)at,free_region,28)==28,220);if(free_region[4]==0x10000&&free_region[3]>=4096){free_at=free_region[0];break;}u32 next=free_region[0]+free_region[3];require(next>at,221);at=next;}
+ require(free_at!=0,222);surface.pixels=free_at+64;point[2]=3;
+ require(storage_transition_query(point,2,0,(void*)(free_at+80),16)==8&&storage_candidate_rows==2,223);
  storage_transitions_close();require(!storage_transition_file,204);ExitProcess(0);
 }

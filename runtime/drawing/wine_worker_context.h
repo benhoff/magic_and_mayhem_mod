@@ -12,8 +12,9 @@ static int wine_worker_context_open(void){
 }
 static void wine_worker_context_publish(const void* packet,u32 worker,u32 phase){
  if(!wine_worker_context_words)return;
+ if(!packet||!worker||(phase!=2&&phase!=3)||wine_worker_context_sequence>0xfffffffdu)ExitProcess(99);
  if(phase==2&&wine_worker_context_words[5])ExitProcess(99);
- if(phase==3&&(!wine_worker_context_words[5]||wine_worker_context_words[6]!=worker))ExitProcess(99);
+ if(phase==3&&(!wine_worker_context_words[5]||wine_worker_context_words[6]!=worker||wine_worker_context_words[9]!=GetCurrentThreadId()))ExitProcess(99);
  u32 command=0,submission=0;if(phase==2)for(u32 i=0;i<2048;++i)if(wine_blit_packets[i].pointer==packet){command=wine_blit_packets[i].command;submission=wine_blit_packets[i].submission;break;}
  wine_worker_context_sequence+=2;__atomic_store_n(wine_worker_context_words+4,wine_worker_context_sequence-1,__ATOMIC_SEQ_CST);
  wine_worker_context_words[5]=phase==2;wine_worker_context_words[6]=phase==2?worker:0;wine_worker_context_words[7]=command;wine_worker_context_words[8]=submission;wine_worker_context_words[9]=phase==2?GetCurrentThreadId():0;wine_worker_context_words[10]=phase==2?wine_lifetime_records:0;wine_worker_context_words[11]=phase==2&&!command?1:0;

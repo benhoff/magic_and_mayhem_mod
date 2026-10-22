@@ -4,7 +4,7 @@ from drawing_api_session import sha
 
 
 def decode(data):
-    if len(data)<128 or (len(data)-64)%64 or len(data)>64+16385*64:
+    if len(data)<128 or (len(data)-64)%64 or len(data)>64+16384*64:
         raise ValueError('Worker lease envelope')
     h=struct.unpack_from('<16I',data)
     if data[:8]!=b'MNMSWL01' or h[2:8]!=(1,64,0x40209ca7,16384,2048,5000) or any(h[8:]):
@@ -25,6 +25,7 @@ def decode(data):
             owned=active['commands']
             if phase==2:
                 if thread!=active['owner'] or not command or command in commands or worker:raise ValueError('Worker lease emission')
+                if len(owned)>=2048:raise ValueError('Worker lease command capacity')
                 commands.add(command);owned[command]=None
             elif phase==3:
                 if command not in owned or owned[command] is not None or not worker:raise ValueError('Worker lease completion')

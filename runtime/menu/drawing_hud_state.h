@@ -1,3 +1,4 @@
+API u32 WIN GetCurrentThreadId(void);
 API void* WIN GetProcAddress(HANDLE,const char*);
 #ifndef MNM_HUD_STATE_GLOBALS
 #define MNM_HUD_STATE_GLOBALS 0x656600
@@ -21,7 +22,7 @@ static int hud_state_open(void){
  hud_state_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(hud_state_file==(HANDLE)-1){hud_state_file=0;return 0;}return 1;
 }
 static void hud_state_sample(void){
- if(!hud_state_file)return;u32 tick=GetTickCount();if(hud_state_count&&tick-hud_state_tick<50)return;hud_state_tick=tick;
+ if(!hud_state_file||!menu_thread||menu_thread!=GetCurrentThreadId())return;u32 tick=GetTickCount();if(hud_state_count&&tick-hud_state_tick<50)return;hud_state_tick=tick;
  if(hud_state_count>=4096){++hud_state_dropped;return;}
  u32* r=hud_state_rows[hud_state_count++];r[0]=hud_state_count;r[1]=tick;r[2]=menu_thread;r[3]=menu_screen;
  if(readable((void*)MNM_HUD_STATE_GLOBALS,4)&&readable((void*)MNM_HUD_STATE_INDEX,4)&&readable((void*)MNM_HUD_STATE_CLASS,4)){
@@ -29,7 +30,7 @@ static void hud_state_sample(void){
   u32 actor=get((void*)MNM_HUD_STATE_GLOBALS);r[21]=actor?2:0;
   if(readable((void*)MNM_HUD_STATE_POOL,8)){
    u32 base=get((void*)MNM_HUD_STATE_POOL),capacity=get((void*)(MNM_HUD_STATE_POOL+4));
-   if(base&&capacity&&capacity<=256){
+   if(base&&capacity&&capacity<=256&&base+capacity*0xe4b>=base){
     if(base!=hud_state_pool_base){hud_state_pool_base=base;++hud_state_pool_id;}
     r[4]|=2;r[7]=hud_state_pool_id;r[8]=capacity;
     if(actor>=base&&(actor-base)%0xe4b==0&&(actor-base)/0xe4b<capacity&&readable((void*)actor,0xe4b)){

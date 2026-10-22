@@ -16,6 +16,7 @@ static int producer_points_open(void){
 }
 static void producer_points_capture(struct Context* c,void* object,u32 phase){
  if(!producer_points_enabled||!c->observed||c->r[1]!=1)return;
+ if(phase<1||phase>3)ExitProcess(97);
  ProducerPoint getter=__atomic_load_n(&producer_point,__ATOMIC_ACQUIRE);
  if(!getter){void* scene=GetModuleHandleA("MnmScene.dll");
   getter=scene?(ProducerPoint)GetProcAddress(scene,"SceneDrawingSourcePairV1"):0;
@@ -27,6 +28,12 @@ static void producer_points_capture(struct Context* c,void* object,u32 phase){
  u32 r[48]={0};r[1]=phase;r[2]=c->r[29];r[4]=method;r[5]=c->r[3];r[6]=c->interval_related;r[7]=c->r[6];r[8]=GetTickCount();
  if(phase>=2)r[9]=c->r[8];if(phase==3){r[3]=c->r[0];r[10]=c->r[12];}
  if(!getter(object,source,r+16,128))ExitProcess(97);
+ for(u32 at=16;at<=32;at+=16){u32* p=r+at;
+  if(p[0]!=64||p[1]!=1||!(p[2]&1)||p[2]&~31u||(p[2]&8&&p[2]&16)||p[14]!=r[7]||p[15]||p[12]>128||p[13]>128)ExitProcess(97);
+  if(p[2]&16){if(!p[6])ExitProcess(97);}else for(u32 i=6;i<12;++i)if(p[i])ExitProcess(97);
+ }
+ for(u32 i=3;i<=5;++i)if(r[16+i]!=r[32+i])ExitProcess(97);
+ for(u32 i=12;i<=14;++i)if(r[16+i]!=r[32+i])ExitProcess(97);
  EnterCriticalSection(journal_lock);r[0]=++producer_point_records;
  if(!producer_point_file||producer_point_records>=786433||!write(producer_point_file,r,192))ExitProcess(97);
  LeaveCriticalSection(journal_lock);

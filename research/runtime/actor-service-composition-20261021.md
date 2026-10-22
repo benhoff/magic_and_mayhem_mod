@@ -29,7 +29,7 @@ Further instruction review of4d738b..4d73a7confirmed two distinct global
 receivers:4dcab0takes6c4630, while4a5000takes the widget at6c4638. The corrected
 provider matrix now enables this branch using68991cand6c4634, checks the cleared
 byte6c4659and covers both calls' receivers. Earlier SCP1results retain their
-original disabled-branch inputs; current results use new SCP2identities.
+original disabled-branch inputs; current results use new SCP2/SCP3identities.
 The original particle pool's callback-visible reloads, signed priorities and
 index-minus-one hint update remain intact. Its raw admission semantics are kept
 separate from the existing native token policy that refuses duplicate ownership.

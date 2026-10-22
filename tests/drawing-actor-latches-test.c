@@ -18,13 +18,20 @@ static u8 before[65536];
 #include "../runtime/menu/drawing_actor_latches.h"
 static void require(int ok,u32 code){if(!ok)ExitProcess(code);}
 static void sample(u32 kind,u32 call,u32 phase){copy(before,owned,65536);latch_sample(kind,call,phase);require(equal(before,owned,65536),210);}
+static u32 point_mode;
+static u32 WIN fake_point(u32 owner,void* output,u32 bytes){
+ require(bytes==64,214);u32* out=output;for(u32 i=0;i<16;++i)out[i]=0;out[0]=1;out[1]=64;out[2]=0x40209ca7;out[4]=point_mode==2?owner^1:owner;
+ if(point_mode==1){out[6]=123;return 0;}return 1;
+}
 void start(void){
  owned=VirtualAlloc(0,65536,0x3000,4);require(owned!=0,201);
  u32 base=(u32)owned+0x1000,actor=base+0xe4b;
  put((void*)MNM_LATCH_POOL,base);put((void*)(MNM_LATCH_POOL+4),3);
  for(u32 i=0;i<3;++i){put((void*)(base+i*0xe4b),i);put((void*)(base+i*0xe4b+4),1);}
  put((void*)(actor+0x68),1);put((void*)(actor+0xa8),27);put((void*)(actor+0xe4),100);put((void*)MNM_LATCH_COUNT,1);put((void*)MNM_LATCH_MODE,1);
- require(latch_open(),202);sample(1,1,1);
+ require(latch_open(),202);
+ char mode[2]={0};GetEnvironmentVariableA("MNM_LATCH_FIXTURE_POINT",mode,2);point_mode=mode[0]=='1'?1:mode[0]=='2'?2:0;if(point_mode)latch_input_point=&fake_point;
+ sample(1,1,1);if(point_mode==1)for(u32 i=40;i<56;++i)require(!latch_rows[0][i],215);
  require(latch_count==1&&latch_rows[0][10]==3&&latch_rows[0][11]==1&&latch_rows[0][24]==2&&latch_rows[0][57]==2&&latch_rows[0][58]==27,203);
  put((void*)MNM_LATCH_HIT,base+2*0xe4b);sample(2,1,2);
  require(latch_rows[1][15]==3&&latch_rows[1][57]==2&&latch_rows[1][24]==2,204);

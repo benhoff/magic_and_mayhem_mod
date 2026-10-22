@@ -9,7 +9,7 @@ def decode(data):
     if data[:8]!=b'MNMWRM01' or h[2:7]!=(1,128,0x40209ca7,131072,2048) or any(h[7:]):raise ValueError('Resource map header')
     rows=list(struct.iter_unpack('<32I',data[64:]));pending={};calls=[];intervals={};unknown=[];seen_calls=set()
     for ordinal,r in enumerate(rows[:-1],1):
-        if r[0]!=ordinal or r[1] not in (1,2) or r[3] not in (1,2,3) or not r[2] or not r[4] or r[31] or r[30]>1 or r[17]>2:raise ValueError('Resource map identity/reserve')
+        if r[0]!=ordinal or r[1] not in (1,2) or r[3] not in (1,2,3) or not r[2] or not r[4] or r[31] or r[6]>32 or bool(r[5])!=bool(r[6]) or r[30]>1 or r[17]>2:raise ValueError('Resource map identity/reserve')
         if r[1]==1:
             if r[2] in pending or r[2] in seen_calls:raise ValueError('Resource map duplicatecall')
             pending[r[2]]=r;seen_calls.add(r[2])
@@ -26,7 +26,9 @@ def decode(data):
                 elif any(r[24:28]):raise ValueError('Failedmapdescriptor')
             else:
                 if r[24:28]!=entry[24:28] or r[30]!=entry[30]:raise ValueError('Resource unmap interval changed')
-                if r[30]:unknown.append(r[2])
+                if r[30]:
+                    if any(r[24:28]):raise ValueError('Unknown unmap has a retained descriptor')
+                    unknown.append(r[2])
                 elif not r[27] or r[27] not in intervals or intervals[r[27]]['closed'] or (intervals[r[27]]['resource'],intervals[r[27]]['subresource'])!=(r[10],r[12]):raise ValueError('Resource unmap interval mismatch')
                 elif success:intervals[r[27]]['closed']=True
             calls.append(dict(call=r[2],method=method,thread=r[4],api_entry=r[5],depth=r[6],result=r[8],last_error=r[9],object=r[10],generation=r[11],subresource=r[12],lifetime_before=r[13],lifetime_after=r[15],returned_resource=r[14],flags=r[16],box_present=bool(r[17]),box_status=r[17],box=list(r[18:24]),row_pitch=r[24],slice_pitch=r[25],data=r[26],map_interval=r[27],texture=r[28],texture_generation=r[29],unknown_unmap=bool(r[30])))

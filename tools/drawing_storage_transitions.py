@@ -20,7 +20,7 @@ def decode(data):
             if h[2]==5 and r[18]!=q['input_address']:raise ValueError('Candidate/query input identity changed')
             count=candidate_counts.get(r[2],0)+1;candidate_counts[r[2]]=count
             if r[4]!=count or count>16:raise ValueError('Storage candidate ordinal/budget')
-            if r[5]&8 and r[5]&6!=6:raise ValueError('Same allocation without both queries')
+            if r[5]&8 and (r[5]&6!=6 or r[12] not in (0x1000,0x2000) or r[15] not in (0x1000,0x2000)):raise ValueError('Same allocation without live region queries')
             if not r[5]&2 and any(r[12:15]) or not r[5]&4 and any(r[15:18]):raise ValueError('Missing region query has fields')
             n=r[10]*2*r[9]
             if bool(r[5]&16)!=(bool(r[7]) and r[6]<n) or bool(r[5]&32)!=((not r[7] or not r[6]) and r[6]<n):

@@ -7,30 +7,6 @@ from drawing_wine_lifetime import decode as lifetime_decode
 from drawing_wine_submission import decode as submission_decode
 
 
-def resource_states(raw, wanted):
-    state={}; snapshots={0:{}}
-    for r in struct.iter_unpack('<32I',raw[64:]):
-        key=(r[10],r[12])
-        if r[1]==2 and r[3]==2 and r[8]<0x80000000:
-            state[key]=dict(resource=r[10],sub=r[12],texture=r[28],generation=r[29],
-                            call=r[2],interval=r[27],data=r[26],row=r[24],slice=r[25],open=1)
-        elif r[1]==2 and r[3]==3 and r[8]<0x80000000 and key in state and state[key]['interval']==r[27]:
-            state[key]=dict(state[key],open=0)
-        if r[0] in wanted:snapshots[r[0]]=dict(state)
-    return snapshots
-
-
-def lifetime_states(raw, wanted):
-    state={};snapshots={0:{}}
-    for r in struct.iter_unpack('<24I',raw[64:]):
-        kind=1 if r[3]<=2 else 3
-        if r[1]==2:
-            if r[3] in (1,3) and r[8]<0x80000000 and not r[12]:state[kind,r[10]]=r[11]
-            elif r[3] in (2,4) and r[12]==2:state.pop((kind,r[10]),None)
-        if r[0] in wanted:snapshots[r[0]]=dict(state)
-    return snapshots
-
-
 def decode(data, resource_data, submission_data, lifetime_data):
     if len(data)<256 or (len(data)-64)%192 or len(data)>64+131072*192:
         raise ValueError('Retained map source envelope')
@@ -41,8 +17,9 @@ def decode(data, resource_data, submission_data, lifetime_data):
     submission=submission_decode(submission_data,lifetime=lifetime_data)
     sources={r[2]:r for r in struct.iter_unpack('<48I',submission_data[64:-192]) if r[1]==1 and r[3]==1}
     rows=list(struct.iter_unpack('<48I',data[64:]))
-    rs=resource_states(resource_data,{r[i] for r in rows[:-1] for i in (16,17)})
-    ls=lifetime_states(lifetime_data,{r[i] for r in rows[:-1] for i in (18,19)})
+    from drawing_resource_index import ResourceIndex
+    from drawing_lifetime_index import LifetimeIndex
+    rs=ResourceIndex(resource_data);ls=LifetimeIndex(lifetime_data)
     seen=set();points=[]
     for ordinal,r in enumerate(rows[:-1],1):
         s=sources.get(r[2]);m=r[24:40]
@@ -51,12 +28,12 @@ def decode(data, resource_data, submission_data, lifetime_data):
         if (r[3],r[4],r[5],r[6],r[7])!=(s[4],s[5],s[11],s[28],s[13]):
             raise ValueError('Retained source submission mismatch')
         seen.add(r[2])
-        if r[16] not in rs or r[17] not in rs or r[18] not in ls or r[19] not in ls or r[17]<r[16] or r[19]<r[18]:
+        if not rs.valid_prefix(r[16]) or not rs.valid_prefix(r[17]) or not ls.valid_prefix(r[18]) or not ls.valid_prefix(r[19]) or r[17]<r[16] or r[19]<r[18]:
             raise ValueError('Retained source journal prefix')
-        before=[v for v in rs[r[16]].values() if (v['texture'],v['generation'],v['sub'])==(r[5],r[6],r[7])] if r[6] else []
-        after=[v for v in rs[r[17]].values() if (v['texture'],v['generation'],v['sub'])==(r[5],r[6],r[7])] if r[6] else []
+        before=rs.candidates(r[16],r[5],r[6],r[7])
+        after=rs.candidates(r[17],r[5],r[6],r[7])
         if len(before)!=r[22]:raise ValueError('Retained map candidate count')
-        stable_life=ls[r[18]].get((1,r[5]),0)==r[6] and ls[r[19]].get((1,r[5]),0)==r[6]
+        stable_life=ls.generation(r[18],1,r[5])==r[6] and ls.generation(r[19],1,r[5])==r[6]
         if len(before)==1:
             b=before[0]
             if tuple(r[8:15])!=(b['resource'],b['call'],b['interval'],b['data'],b['row'],b['slice'],b['open']):

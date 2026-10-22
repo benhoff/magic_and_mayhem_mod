@@ -40,6 +40,11 @@ void start(void){
  u8* readonly=VirtualAlloc(0,4096,0x3000,4);require(readonly!=0,213);for(u32 i=0;i<4096;++i)readonly[i]=0x6b;u32 old,ignored;
  require(VirtualProtect(readonly,4096,2,&old)&&!query(owner,readonly,64),214);
  for(u32 i=0;i<4096;++i)require(readonly[i]==0x6b,215);require(VirtualProtect(readonly,4096,old,&ignored),216);
+ u8* split=VirtualAlloc(0,8192,0x3000,4);require(split!=0,227);
+ for(u32 i=0;i<8192;++i)split[i]=0x6b;
+ require(VirtualProtect(split+4096,4096,2,&old)&&!query(owner,split+4096-32,64),228);
+ for(u32 i=0;i<8192;++i)require(split[i]==0x6b,229);
+ require(VirtualProtect(split+4096,4096,old,&ignored)&&query(owner,split+4096-32,64),230);
  callback_success=0;require(forward(point)==0&&GetLastError()==0xabcd&&calls==2,207);
  require(query(owner,points[2],64)&&points[2][3]==1&&points[2][11]==2&&!points[2][14]&&!points[2][15],208);
  callback_success=1;HANDLE threads[16];threads[0]=CreateThread(0,0,worker,(void*)1,0,0);require(threads[0]!=0,217);wait_done(1);

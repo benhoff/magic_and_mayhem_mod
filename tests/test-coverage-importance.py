@@ -90,8 +90,8 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        # Ten native ownership contracts were already closed in1e663376.
-        self.assertEqual(result['partial_counts'], {1: 82, 2: 9, 3: 4, 4: 38, 5: 28})
+        # Reviewed native rendering closeouts through8cf6678b retain61low partials.
+        self.assertEqual(result['partial_counts'], {1: 61, 2: 9, 3: 4, 4: 38, 5: 28})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')

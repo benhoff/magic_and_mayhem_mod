@@ -31,6 +31,10 @@ static u32 WIN producer_point(void* object,u32* out,u32 size){
  u16 control=0x037f;__asm__ volatile("fldcw %0"::"m"(control));SetLastError(0x4321);
  return 1;
 }
+/* Ownership enforcement is covered by drawing-physical-owners-test.c.
+ * This completion-only fixture counts the worker hand-off boundary. */
+static u32 ownership_checks;
+static void wine_source_ownership_require(void){++ownership_checks;}
 #include "../runtime/drawing/wine_blit_worker.h"
 /* This fixture isolates GPU completion; reservation enforcement has its own
  * real-wrapper PE32 suite. Verify the hand-off arguments here. */
@@ -65,6 +69,8 @@ void start(void){
  char value[2];require(GetEnvironmentVariableA("MNM_GPU_TEST",value,2)==1,200);mode=value[0]-'0';InitializeCriticalSection(journal_lock);
  if(mode==10){require(!wine_gpu_open(),211);ExitProcess(0);}
  require(wine_gpu_open(),206);wine_gpu_current=&current;wine_gpu_proc=&proc;wine_blit_worker_original=(void*)&original;
+ if(mode==15){wine_gpu_complete(0,1);ExitProcess(223);}
+ if(mode==16){u32 dummy[25]={0};wine_gpu_complete(dummy,0);ExitProcess(224);}
  require(wine_blit_worker_open(),207);worker_producer_getter=&producer_point;u32 packet[25]={0};packet[0]=42;wine_blit_packets[0].pointer=packet;wine_blit_packets[0].command=7;wine_blit_packets[0].submission=8;copy(wine_blit_packets[0].words,packet,100);
  SetLastError(0xbeef);u32 stack_before,stack_after;__asm__ volatile("movl %%esp,%0":"=r"(stack_before));wine_blit_worker((void*)0x4567,packet);__asm__ volatile("movl %%esp,%0":"=r"(stack_after));
  u16 control;__asm__ volatile("fnstcw %0":"=m"(control));require(stack_before==stack_after&&control==0x077f&&GetLastError()==0xcafe&&forwarded==1&&returned==1&&!held,208);
@@ -86,5 +92,5 @@ void start(void){
 require(!wine_gpu_enabled,216);wine_submission_enabled=0;wine_blit_worker_original=(void*)&teardown_original;
  u32 prior_forwards=forwarded,queries=context_calls,fences=waited;SetLastError(0xbeef);wine_blit_worker((void*)0x4567,packet);
  __asm__ volatile("fnstcw %0":"=m"(control));require(control==0x087f&&GetLastError()==0xface&&forwarded==prior_forwards+1&&context_calls==queries&&waited==fences&&!wine_gpu_file,218);
- ExitProcess(0);
+ require(ownership_checks==forwarded,225);ExitProcess(0);
 }
