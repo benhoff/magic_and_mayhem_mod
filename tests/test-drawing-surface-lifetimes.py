@@ -134,4 +134,19 @@ class Lifetimes(unittest.TestCase):
         raw,journal=lifetime_fixture((5,25,32),(1,11,11));b=bytearray(raw);struct.pack_into('<I',b,64+20,7)
         with self.assertRaises(ValueError):analyze_lifetimes(b,journal)
 
+    def test_lease_index_matches_independent_overlap_oracle_and_bounds_listing(self):
+        import random
+        from drawing_lease_intervals import LeaseIntervals
+        random.seed(141)
+        leases=[dict(entry=i+1,acquire_event=i*3+1,release_event=None if i%13==0 else i*3+2+random.randrange(100)) for i in range(1000)]
+        index=LeaseIntervals(leases)
+        for enter in range(1,3100,37):
+            ack=enter+71
+            expected=[x['entry'] for x in leases if x['acquire_event']<ack and (x['release_event'] is None or x['release_event']>enter)]
+            count,listing=index.overlaps(enter,ack,17)
+            self.assertEqual(count,len(expected));self.assertEqual(listing,expected[:17])
+        leases=[dict(entry=i+1,acquire_event=i+1,release_event=None) for i in range(10000)]
+        count,listing=LeaseIntervals(leases).overlaps(10001,10002)
+        self.assertEqual(count,10000);self.assertEqual(listing,list(range(1,257)))
+
 if __name__=='__main__':unittest.main()

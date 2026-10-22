@@ -40,4 +40,18 @@ class CursorBinding(unittest.TestCase):
         self.assertEqual(bind(h,raw)['timely_samples'],0)
 
 
+    def test_negative_prefix_invented_admission_and_loss_refuse(self):
+        for key,value in [('record_prefix',-1),('record_prefix',True),('entry_prefix',2),('after_frame',1),('drops',True),('gaps',True),('current_cursor_admissible',False)]:
+            hud,raw=fixture();hud['samples'][0]['input_point'][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):bind(hud,raw)
+
+    def test_missing_owner_cannot_hide_wrong_thread_or_invented_tick(self):
+        h,raw=fixture();p=h['samples'][0]['input_point']
+        p.update(flags=1,record_prefix=0,entry_prefix=0,cursor_record=0,cursor_entry=0,cursor_tick=0,cursor=None,current_cursor_admissible=False,timely_cursor=False)
+        self.assertEqual(bind(h,raw)['missing_owner_points'],1)
+        for key,value in [('owner_thread',19),('cursor_tick',1),('cursor',[0,0])]:
+            old=p[key];p[key]=value
+            with self.assertRaises(ValueError):bind(h,raw)
+            p[key]=old
+
 if __name__=='__main__':unittest.main()

@@ -5,6 +5,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+from coverage_evidence import read_bytes, read_json, write_report, evidence_digest
 import shutil
 import subprocess
 import tempfile
@@ -27,11 +28,11 @@ def main():
     args = parser.parse_args()
     if args.report.exists():
         parser.error('Refusing evidence overwrite')
-    raw_reference = args.reference.read_bytes()
+    raw_reference = read_bytes(args.reference, root=ROOT)
     reference = json.loads(raw_reference)
     if not reference['success'] or not reference['normal_original_quit_verified'] or reference['source_sha256'] != BUILD:
         raise ValueError('Completed original-active reference required')
-    raw_assets = args.assets_reference.read_bytes()
+    raw_assets = read_bytes(args.assets_reference, root=ROOT)
     assets_reference = json.loads(raw_assets)
     if assets_reference['original_pixels_used_as_native_inputs'] or not assets_reference['original_manifest_verified_before_after']:
         raise ValueError('Previously isolated encoded assets required')
@@ -40,10 +41,10 @@ def main():
     if pin['executable_sha256'] != BUILD or not pin['original_manifest_verified_before_after']:
         raise ValueError('Pinned installed inputs required')
     sources = dict(json.loads(args.claims.read_text())['sources'])
-    sources.update({name: sha((ROOT / name).read_bytes()) for name in
+    sources.update({name: evidence_digest(ROOT/name,root=ROOT) for name in
                     ['tools/compare-drawing-copy-checkpoints.py', 'tools/drawing_scene_corpus.py',
                      'tools/inspect-canvas-producers.py', 'tools/drawing_api_session.py']})
-    if any(sha((ROOT / name).read_bytes()) != digest for name, digest in sources.items()):
+    if any(evidence_digest(ROOT/name,root=ROOT) != digest for name, digest in sources.items()):
         raise ValueError('Prospective sources changed')
     executable_hash = sha(args.executable.read_bytes())
     parent = ROOT / 'working/tests/drawing-copy-checkpoints'
@@ -84,15 +85,15 @@ def main():
         native_source = raster_inputs(drawing_prefix)
         phase_policy = None
         if args.copy_phase_plan:
-            plan_raw = args.copy_phase_plan.read_bytes()
+            plan_raw = read_bytes(args.copy_phase_plan, root=ROOT)
             plan = json.loads(plan_raw)
             binding_path = Path(plan['bindings']['path'])
-            binding_raw = binding_path.read_bytes()
+            binding_raw = read_bytes(binding_path,root=ROOT)
             if (not plan['success'] or plan['reference']['sha256'] != sha(raw_reference) or
                     plan['producer_sha256'] != sha(producer) or
                     plan['bindings']['sha256'] != sha(binding_raw) or
                     plan['original_pixels_used_as_native_inputs'] or
-                    any(sha((ROOT / n).read_bytes()) != h for n, h in plan['sources'].items())):
+                    any(evidence_digest(ROOT/n,root=ROOT) != h for n, h in plan['sources'].items())):
                 raise ValueError('Exact current metadata-only phase plan required')
             bindings = json.loads(binding_raw)
             if not bindings['success'] or bindings['reference']['sha256'] != sha(raw_reference):
@@ -157,7 +158,7 @@ def main():
                 different = 0 if original == predicted else sum(original[i:i + 2] != predicted[i:i + 2] for i in range(0, len(original), 2))
                 comparisons.append(dict(ordinal=ordinal, sequence=sequence, canvas=canvas, width=width, height=height,
                                         original_sha256=sha(original), native_sha256=sha(predicted), different_pixels=different))
-        if sha(args.executable.read_bytes()) != executable_hash or any(sha((ROOT / name).read_bytes()) != digest for name, digest in sources.items()):
+        if sha(args.executable.read_bytes()) != executable_hash or any(evidence_digest(ROOT/name,root=ROOT) != digest for name, digest in sources.items()):
             raise ValueError('Sources or executable changed during comparison')
     finally:
         verify('original-after')
@@ -175,9 +176,7 @@ def main():
                   complete_journey_coverage=False,
                   scope=('Explicit experimental metadata-selected adjacent full/save transpositions; all checkpoint identities and denominators remain, original pixels stay external. Only guarded COPY bodies are transposed; no all-writer/view/GPU/CPU ownership, general schedule, live replacement or whole journey closure.' if phase_policy is not None else
                          'Source-only unchanged return-order native replay of every checkpoint in a completed original copy-journal interval. The strict original V4 update-end bookkeeping marker is validated separately and retained; all drawing operations/checkpoints remain. Only parameters and independently pinned encoded assets enter native inputs; all original planes stay external. No general ordering repair, source/view ownership, physical presentation or whole journey closure.'))
-    with args.report.open('x') as output:
-        json.dump(report, output, indent=2)
-        output.write('\n')
+    write_report(ROOT,args.report,(json.dumps(report,indent=2)+'\n').encode())
     print(json.dumps(dict(success=report['success'], compared=len(comparisons),
                           failed=sum(bool(c['different_pixels']) for c in comparisons), native_exit=execution.returncode)))
 

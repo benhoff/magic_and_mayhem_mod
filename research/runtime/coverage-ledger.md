@@ -20882,3 +20882,7 @@ counterexample shows differing CRT partial-copy fault state and is excluded from
 valid owned-vector claims. No Windows SEH or legacy physical-driver promotion.
 See [the bounded composition and remaining boundaries](actor-service-composition-20261021.md).
 
+
+### Eighth rendering implementation batch (2026-10-22)
+
+Ten bounded observation-policy implementations receive strict cadence/control admission, exact HUD/cursor and actor/selection/pause identities, COPY transposition guards, indexed lifetime overlap accounting and direct SQLite report support. See [the task scopes and controls](rendering-eighth-ten-closeouts-20261022.md). Fresh prospective `NT8.observation-policies-20261022` passes 115 tests in 16 suites plus actual native fixtures with 396 stable inputs and covers these ten implementation scopes; historical shared-source limitations and independent original/live/ownership/presentation/semantic gates remain explicit. The incoming `6ec85425..fd3e6402` history has187exact parent/current file receipt comparisons and32verified changed evidence records, with no missing receipts or rewritten prior reviews; this is accounting only.

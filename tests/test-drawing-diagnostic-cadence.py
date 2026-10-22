@@ -14,7 +14,7 @@ executed_schedule=runpy.run_path(str(Path(__file__).resolve().parents[1]/'tools/
 
 def config():
     return SimpleNamespace(cadence_control=True,control=True,engine_cadence=True,
-                           observer_mode='metadata',**{k:False for k in DISABLED})
+                           observer_mode='metadata',**{k:None if k=='region_track_slot' else False for k in DISABLED})
 
 
 def observation(step=10):
@@ -51,6 +51,30 @@ class Cadence(unittest.TestCase):
         self.assertEqual(compare(a,observation())['common_queued_updates'],2)
         for w in a['windows']:w['queues']=[]
         with self.assertRaises(ValueError):measurements(a)
+
+    def test_nonfinite_or_noninteger_clocks_and_tick_identity_refuse(self):
+        for value in (True,float('nan'),float('inf'),1.5,0,2**64):
+            o=observation();o['frequency']=value
+            with self.assertRaises(ValueError):measurements(o)
+        for value in (True,1.5,2**64):
+            o=observation();o['windows'][1]['qpc']=value
+            with self.assertRaises(ValueError):measurements(o)
+        for ticks in ([],[1,2],[99]):
+            o=observation();o['windows'][0]['ticks']=ticks
+            with self.assertRaises(ValueError):measurements(o)
+        with self.assertRaises(ValueError):measurements(observation(),True)
+
+    def test_no_capture_flags_or_tracked_slot_can_escape_control(self):
+        args=config();args.region_track_slot=0
+        with self.assertRaises(ValueError):validate_control(args)
+        for name in ('wine_source_ownership','primitive_lifetimes','update_routes','egl_swap_completion'):
+            args=config();setattr(args,name,True)
+            with self.assertRaises(ValueError):validate_control(args)
+
+    def test_counter_wrap_preserves_measured_duration(self):
+        o=observation();o['windows']=o['windows'][:3]
+        for i,w in enumerate(o['windows']):w.update(sequence=(0xffffffff+i)&0xffffffff,counter_before=(0xffffffff+i)&0xffffffff,ticks=[i])
+        self.assertEqual(measurements(o)['count'],2)
 
 
 class ExecutedSchedule(unittest.TestCase):

@@ -5,6 +5,7 @@ alias, infers CPU writes from pixels, or proves all backing-storage aliases.
 """
 import struct
 from drawing_call_intervals import MUTATORS, decode_intervals
+from drawing_lease_intervals import LeaseIntervals
 
 
 def analyze_lifetimes(intervals, journal):
@@ -121,12 +122,12 @@ def analyze_lifetimes(intervals, journal):
             lease.update(release_event=ordinal, release_entry=entry, release_interface=call[3])
         for owner, target in open_windows.items(): relevant[owner].update(relevant_snapshot(target))
     frames = sorted(windows.values(), key=lambda frame: frame['ordinal'])
+    lease_intervals = LeaseIntervals(leases)
     for frame in frames:
-        overlapping = [lease for lease in leases if lease['acquire_event'] < frame['ack_event'] and
-                       (lease['release_event'] is None or lease['release_event'] > frame['enter_event'])]
-        frame['overlapping_lease_count'] = len(overlapping)
-        frame['overlapping_lease_entries'] = [lease['entry'] for lease in overlapping[:256]]
-        frame['lease_listing_complete'] = len(overlapping) <= 256
+        count, entries = lease_intervals.overlaps(frame['enter_event'], frame['ack_event'])
+        frame['overlapping_lease_count'] = count
+        frame['overlapping_lease_entries'] = entries
+        frame['lease_listing_complete'] = count <= 256
         frame['relevant_lease_count'] = len(relevant[frame['entry']])
         frame['relevant_lease_entries'] = sorted(relevant[frame['entry']])[:256]
         frame['relevant_lease_listing_complete'] = len(relevant[frame['entry']]) <= 256

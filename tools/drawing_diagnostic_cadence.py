@@ -1,7 +1,7 @@
 """Bounded update timing measurements; counter observation is still diagnostic."""
 from statistics import median
 
-DISABLED = ('session_producers','producer_samples','source_byte_witness','source_readonly_lease','source_worker_lease',
+DISABLED = ('wine_external_source_leases','wine_source_ownership','wine_source_handoff','wine_physical_owners','wine_source_reservations','primitive_lifetimes','update_routes','strict_presentation_routes','region_track_slot','egl_correct_stale_upload','egl_xcb_image_witness','egl_release_drawable','egl_rebind_drawable','egl_destination_gpu_witness','egl_refresh_viewport','egl_source_gpu_witness','egl_swap_completion','session_producers','producer_samples','source_byte_witness','source_readonly_lease','source_worker_lease',
             'wine_gpu_completion','source_write_trace','wine_source_version','wine_source_map_bounded','wine_source_map','wine_source_descriptor','source_pending_copy','source_held_snapshot','cursor_mutex','actor_latches','region_input','hud_state','hud_input_point','campaign_guidance','semantic_state','campaign_pause','canvas_storage_transitions','whole_updates','producer_update_binding','wine_submission',
             'wine_texture_entry','wine_blit_worker','wine_blit_packet','wine_worker_context', 'copy_order','aux_save_readback','close_physical_on_source_complete','cursor_source_gate','wine_worker_producer_points',
             'wine_resource_copy','wine_resource_map','wine_map_storage_point','wine_client_memory','wine_retained_map_source',
@@ -13,14 +13,21 @@ def validate_control(args):
         return
     if not args.control or not args.engine_cadence or args.observer_mode!='metadata':
         raise ValueError('Cadence control requires explicit control/counter-only metadata mode')
-    if any(getattr(args,name) for name in DISABLED):
+    if any(getattr(args,name,None) is not None if name=='region_track_slot' else bool(getattr(args,name,False)) for name in DISABLED):
         raise ValueError('Cadence control cannot enable drawing/source/Wine/display capture')
 
 
 def measurements(observation,limit=120):
-    if not 1<=limit<=120 or observation.get('success') is not True or observation.get('frequency',0)<=0:
+    if type(limit) is not int or not 1<=limit<=120 or observation.get('success') is not True or type(observation.get('frequency')) is not int or not 0<observation['frequency']<2**64:
         raise ValueError('Cadence observation bounds')
     windows=observation['windows'];samples=[]
+    for w in windows:
+        if type(w['qpc']) is not int or not 0<=w['qpc']<2**64 or type(w['sequence']) is not int or not 0<=w['sequence']<2**32 or type(w['counter_before']) is not int or not 0<=w['counter_before']<2**32:
+            raise ValueError('Invalid cadence counter identity')
+        if type(w['advancing']) is not bool or w['advancing'] and (len(w['ticks'])!=1 or (w['ticks'][0]-w['counter_before'])&0xffffffff!=1) or not w['advancing'] and w['ticks']:
+            raise ValueError('Cadence tick/advancement identity')
+    if any(b['qpc']<=a['qpc'] or not 0<(b['sequence']-a['sequence'])&0xffffffff<2**31 for a,b in zip(windows,windows[1:])):
+        raise ValueError('Cadence interval order')
     for i,w in enumerate(windows[:-1]):
         following=windows[i+1]
         if not w['queues']:
