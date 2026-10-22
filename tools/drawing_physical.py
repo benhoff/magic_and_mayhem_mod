@@ -1,4 +1,5 @@
 """Admit original post-copy physical witnesses without widening route coverage."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import json
 from pathlib import Path
 import struct
@@ -20,20 +21,20 @@ def admit_witness(request,ack,physical,oracle,metadata):
     return dict(**expected,pixels=r[12]*r[13],sha256=sha(physical),stable_double_capture=True)
 
 def analyze(directory,peer_report,publication):
-    directory=Path(directory);report=json.loads(Path(peer_report).read_text());frames=publication['frames']
+    directory=Path(directory);report=json.loads(evidence_text(Path(peer_report)));frames=publication['frames']
     if report.get('success') is not True or report.get('original_draw_thread_fenced') is not True or report.get('native_rendering') is not False or report.get('all_global_presentation_routes') is not False:
         raise ValueError('Original physical peer did not finish its declared scope')
     if not frames or len(report['frames'])!=len(frames):raise ValueError('Incomplete physical witness sequence')
-    trace=(directory/'drawing-publication-0000.bin').read_bytes();rows={r[19]:trace[32+i*96:32+(i+1)*96] for i,r in enumerate(struct.iter_unpack('<24I',trace[32:])) if r[19]}
+    trace=evidence_bytes(directory/'drawing-publication-0000.bin');rows={r[19]:trace[32+i*96:32+(i+1)*96] for i,r in enumerate(struct.iter_unpack('<24I',trace[32:])) if r[19]}
     if len(list(directory.glob('physical-request-*.bin')))!=len(frames) or len(list(directory.glob('physical-ack-*.bin')))!=len(frames) or len(list(directory.glob('physical-oracle-*.rgba')))!=len(frames):
         raise ValueError('Missing or extra physical witness artifacts')
     results=[]
     for index,(frame,metadata) in enumerate(zip(frames,report['frames']),1):
-        request=(directory/f'physical-request-{index:04}.bin').read_bytes()
+        request=evidence_bytes(directory/f'physical-request-{index:04}.bin')
         if request!=rows.get(index) or frame['ordinal']!=index or metadata['path']!=f'physical-oracle-{index:04}.rgba':
             raise ValueError('Physical reference does not match the exact original call record')
-        results.append(admit_witness(request,(directory/f'physical-ack-{index:04}.bin').read_bytes(),
-            (directory/metadata['path']).read_bytes(),(directory/frame['path']).read_bytes(),metadata))
+        results.append(admit_witness(request,evidence_bytes(directory/f'physical-ack-{index:04}.bin'),
+            evidence_bytes(directory/metadata['path']),evidence_bytes(directory/frame['path']),metadata))
     return dict(success=True,boundary='fenced_opaque_primary_point',frames=results,pixels=sum(f['pixels'] for f in results),
         original_draw_thread_fenced=True,all_global_presentation_routes_observed=False,entire_original_process_frozen=False,
-        complete_presented_journey=False,original_pixels_used_as_native_inputs=False,peer_report_sha256=sha(Path(peer_report).read_bytes()))
+        complete_presented_journey=False,original_pixels_used_as_native_inputs=False,peer_report_sha256=sha(evidence_bytes(Path(peer_report))))

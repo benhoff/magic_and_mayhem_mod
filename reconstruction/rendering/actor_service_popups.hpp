@@ -41,7 +41,7 @@ public:
             for(U i=0,cursor=p+0x15f3;i<3;++i,cursor+=0xc6){w(cursor+0x58,U(-1));for(U off:{U(-4),0u,4u,8u})w(cursor+off,U(-1));U widget=cursor-0x5d;method(widget,0x24);w(cursor-36,3);call(0x4a5000,widget);method(widget,0x14);}
             for(U i=0,cursor=p+0x159;i<26;++i,cursor+=0xc6){w(cursor+0x64,U(-1));m.set8(cursor+0x68,0);w(cursor+0x1d,0);for(U off:{U(-4),0u,4u,8u})w(cursor+off,U(-1));U widget=cursor-0x5d;method(widget,0x24);w(cursor-36,3);call(0x4a5000,widget);method(widget,0x14);}
             for(U off:{0x1908u,0x190cu})w(p+off,U(-1));
-            for(U off:{0x1518u,0x1921u,0x183cu}){w(p+off,0);}
+            for(U off:{0x1518u,0x1921u,0x183cu})w(p+off,0);
             break;
         }
         case 0x4d6620:{

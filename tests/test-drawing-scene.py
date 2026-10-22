@@ -11,14 +11,15 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text, shared_cache
 import drawing_scene_corpus as corpus
 
 
 class SceneCorpusTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.catalog = json.loads((ROOT / corpus.CATALOG).read_text())
-        cls.register = json.loads((ROOT / 'research/runtime/coverage/register.json').read_text())
+        cls.catalog = json.loads(evidence_text(ROOT / corpus.CATALOG))
+        cls.register = json.loads(evidence_text(ROOT / 'research/runtime/coverage/register.json'))
 
     def test_admit_full_owned_startup(self):
         raw, assets, oracles = corpus.admit(ROOT, self.catalog, self.register)
@@ -82,13 +83,13 @@ class SceneCorpusTest(unittest.TestCase):
                 if source.is_dir():
                     shutil.copytree(source, target)
                 else:
-                    shutil.copyfile(source, target)
+                    target.write_bytes(evidence_bytes(source))
             binary = root / 'renderer'
             binary.write_bytes(b'test-binary')
             seen = []
             def execute(command, **kwargs):
                 scene_path = Path(command[-2])
-                declaration = json.loads(scene_path.read_text())
+                declaration = json.loads(evidence_text(scene_path))
                 native_input = scene_path.parent
                 self.assertEqual(set(declaration), {'schema', 'boundary', 'assets', 'retain_checkpoints'})
                 self.assertFalse(any('oracle' in p.name for p in native_input.rglob('*')))
@@ -96,7 +97,7 @@ class SceneCorpusTest(unittest.TestCase):
                 self.assertTrue((native_input / 'assets/interface').is_dir())
                 self.assertFalse((native_input / 'assets/Interface').exists())
                 self.assertEqual(len(list((native_input / 'assets').rglob('*.spr'))), 4)
-                source_raw=(native_input / 'producers.bin').read_bytes()
+                source_raw=evidence_bytes(native_input / 'producers.bin')
                 self.assertTrue(all(r[21]==0 for r,_ in corpus.load_tool('inspect-canvas-producers').decode(source_raw,False)[1] if r[2]==9))
                 seen.append(command)
                 output = Path(command[-1]);output.mkdir()
@@ -112,7 +113,7 @@ class SceneCorpusTest(unittest.TestCase):
                           'original_pixels_used_as_native_inputs': False, 'original_oracles_read': False,
                           'native_gpu_presentation_ready': True, 'checkpoints': checkpoints, 'scene_sha256': corpus.sha(pixels)}
                 original=corpus.input_bytes(ROOT,self.catalog)
-                historical=json.loads((ROOT / 'research/runtime/native-world-producer-handoff-gpu-current-comparison-20261008.json').read_text())
+                historical=json.loads(evidence_text(ROOT / 'research/runtime/native-world-producer-handoff-gpu-current-comparison-20261008.json'))
                 results=corpus.original_raster_results(original,historical)
                 result_data=''.join('\t'.join(map(str,row))+'\n' for row in results).encode()
                 (output/'raster-results.tsv').write_bytes(result_data)
@@ -121,7 +122,7 @@ class SceneCorpusTest(unittest.TestCase):
                 (output / 'scene-report.json').write_text(json.dumps(report))
                 from subprocess import CompletedProcess
                 return CompletedProcess(command, 0, b'', b'')
-            with patch.object(corpus.subprocess, 'run', side_effect=execute):
+            with shared_cache(ROOT), patch.object(corpus.subprocess, 'run', side_effect=execute):
                 result = corpus.check(root=root, executable=binary)
             self.assertEqual(len(seen), 1)
             self.assertTrue(result['declared_canvas_complete'])

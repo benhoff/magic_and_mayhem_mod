@@ -7,14 +7,15 @@ import sys
 import unittest
 from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'tools'))
+from coverage_evidence import read_text as evidence_text
 import drawing_recorded_session as session
 from drawing_corpus import artifact
 
 class Cases(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.catalog=json.loads((ROOT/session.STORAGE_CATALOG).read_text())
-        cls.original=json.loads((ROOT/'research/runtime/storage-action-original-20261016.json').read_text())
+        cls.catalog=json.loads(evidence_text(ROOT/session.STORAGE_CATALOG))
+        cls.original=json.loads(evidence_text(ROOT/'research/runtime/storage-action-original-20261016.json'))
         cls.journal=artifact(ROOT,cls.catalog['traces']['journal'])
         cls.actions=artifact(ROOT,cls.catalog['action_frames'])
     def test_legacy_and_explicit_retention_ids_coexist(self):
@@ -30,8 +31,8 @@ class Cases(unittest.TestCase):
         for key,value in [('egl_destination_gpu_witness',False),('egl_xcb_image_witness',False),('egl_correct_stale_upload_policy',1),('egl_drawable_rebind_policy',True),('egl_drawable_release_policy',True),('egl_viewport_refresh_policy',True)]:
             with self.subTest(key=key),self.assertRaises(ValueError):session.presentation_profile(dict(original,**{key:value}))
     def test_explicit_corrected_profile_and_witness_admission(self):
-        catalog=json.loads((ROOT/'tests/fixtures/drawing-storage-corrected-session/session.json').read_text())
-        original=json.loads((ROOT/'research/runtime/egl-destination-original-corrected-20261016.json').read_text())
+        catalog=json.loads(evidence_text(ROOT/'tests/fixtures/drawing-storage-corrected-session/session.json'))
+        original=json.loads(evidence_text(ROOT/'research/runtime/egl-destination-original-corrected-20261016.json'))
         # Check complete cohorts and original metadata, independently of the immutable catalog guard.
         files=session.admit_witnesses(ROOT,catalog,original)
         self.assertEqual(len(files),222)
@@ -46,10 +47,10 @@ class Cases(unittest.TestCase):
             else:changed['reference_profile']['policies']['egl_correct_stale_upload_policy']=False
             with self.subTest(change=change),self.assertRaises(ValueError):session.admit_witnesses(ROOT,changed,source)
     def test_corrected_reference_cannot_be_relabelled_legacy(self):
-        catalog=json.loads((ROOT/'tests/fixtures/drawing-storage-corrected-session/session.json').read_text())
-        register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
-        original=json.loads((ROOT/'research/runtime/egl-destination-original-corrected-20261016.json').read_text())
-        bound=json.loads((ROOT/'research/runtime/egl-destination-native-corrected-20261016.json').read_text())
+        catalog=json.loads(evidence_text(ROOT/'tests/fixtures/drawing-storage-corrected-session/session.json'))
+        register=json.loads(evidence_text(ROOT/'research/runtime/coverage/register.json'))
+        original=json.loads(evidence_text(ROOT/'research/runtime/egl-destination-original-corrected-20261016.json'))
+        bound=json.loads(evidence_text(ROOT/'research/runtime/egl-destination-native-corrected-20261016.json'))
         for mode in ('legacy','profile','retention-kind'):
             changed=deepcopy(catalog);reg=deepcopy(register)
             if mode=='legacy':changed.update(schema=2)
@@ -99,7 +100,7 @@ class Cases(unittest.TestCase):
         with patch('drawing_action_session.bind',return_value=observed),self.assertRaises(ValueError):
             session.admit_actions(ROOT,self.catalog,original,self.journal)
     def test_partial_boundary_does_not_close_generic_acceptance(self):
-        suite=json.loads((ROOT/'tests/fixtures/drawing-journeys/storage-suite.json').read_text())
+        suite=json.loads(evidence_text(ROOT/'tests/fixtures/drawing-journeys/storage-suite.json'))
         # The focused suite retains exactly the default acceptance denominator.
         self.assertEqual(len(suite['requirements']),14);self.assertEqual(len(suite['operation_requirements']),21)
 if __name__=='__main__':unittest.main()

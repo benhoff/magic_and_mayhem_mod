@@ -297,12 +297,19 @@ JSON. Use `inventory-json` and a verified, cold-backed `compact-json` plan for
 existing expanded reports. Preserve editable registers, schemas, configuration,
 fixtures and source locks as JSON. Evidence pointers in Git preserve exact original report bytes in
 SHA-256-pinned SQLite release archives; never refresh historical hashes to
-satisfy current checks. Local commits require locally available, hash-verified
-evidence and passing coverage checks; remote publication is not a prerequisite.
+satisfy current checks. Local commits and local merges, including merges into
+local master, require locally available, hash-verified evidence, retained verified
+SQLite backups and passing coverage checks. Remote publication is not a
+prerequisite for either operation; never upload evidence merely to finish a
+local commit or merge. Keep the local databases and their backup catalogs pinned
+against working-storage cleanup; a Git commit contains references, not payloads.
 Use `tools/finish-work.py` to record the exact review in SQLite, retain verified
 SQLite backups, stage the owned batch and commit with the normal hook enabled.
-Before pushing or merging, all referenced evidence must be available from the
-configured shared store. `tools/sync-evidence.py` collects missing immutable
+Before an explicitly requested remote push or merge in a hosted repository, all
+referenced evidence must be available from the configured shared store. This
+sharing requirement does not apply to local Git merges. GitHub Releases is the
+current distribution backend, not a local completion requirement; publication
+is a separate explicit operation. `tools/sync-evidence.py` collects missing immutable
 payloads across outgoing history, verifies publication and commits the pinned
 availability manifest; `--push` explicitly also pushes the current branch.
 The normal pre-push guard and CI continue to reject unavailable or raw evidence

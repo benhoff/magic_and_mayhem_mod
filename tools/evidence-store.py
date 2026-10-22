@@ -101,7 +101,7 @@ def main():
             sys.stdout.buffer.write(data)
             return
         target = args.output.resolve()
-        if target.is_relative_to(root/'original'):
+        if target.is_relative_to((root/'original').resolve()):
             raise ValueError('Never export over original/')
         from coverage_bookkeeping import atomic_replace
         previous = target.read_bytes() if target.exists() else None

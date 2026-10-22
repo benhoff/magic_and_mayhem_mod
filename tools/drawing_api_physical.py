@@ -1,4 +1,5 @@
 """Bind full physical witnesses to actual API journal rows; preserve partial scope."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import json
 import struct
 from pathlib import Path
@@ -7,9 +8,9 @@ from drawing_api_session import PRIMARY_METHODS, inspect, sha
 
 def analyze(directory, report_path):
     directory = Path(directory)
-    journal = (directory / 'session.bin').read_bytes()
+    journal = evidence_bytes(directory / 'session.bin')
     observed = inspect(directory)
-    peer = json.loads(Path(report_path).read_text())
+    peer = json.loads(evidence_text(Path(report_path)))
     if (not observed['physical_fence_enabled'] or peer.get('success') is not True or
             peer.get('original_draw_thread_fenced') is not True or
             peer.get('native_rendering') is not False or
@@ -40,7 +41,7 @@ def analyze(directory, report_path):
         frame = frames[ordinal-1]
         if name in seen or sample['path'] != name or sample['width'] != frame['width'] or sample['height'] != frame['height']:
             raise ValueError('Transient identity or extent changed')
-        plane = (directory / name).read_bytes()
+        plane = evidence_bytes(directory / name)
         if len(plane) != frame['width']*frame['height']*4 or sha(plane) != sample['sha256']:
             raise ValueError('Incomplete or changed transient plane')
         transient_bytes += len(plane)
@@ -51,18 +52,18 @@ def analyze(directory, report_path):
     result = []
     for frame, metadata in zip(frames, peer['frames']):
         ordinal = frame['ordinal']
-        request = (directory / f'api-physical-request-{ordinal:06d}.bin').read_bytes()
+        request = evidence_bytes(directory / f'api-physical-request-{ordinal:06d}.bin')
         start = 64 + (frame['record'] - 1) * 128
         if len(request) != 128 or request != journal[start:start+128]:
             raise ValueError('Physical API request differs from original journal')
         row = struct.unpack('<32I', request)
         if row[2] not in PRIMARY_METHODS or row[12] != ordinal:
             raise ValueError('Physical API route/ordinal changed')
-        ack = (directory / f'api-physical-ack-{ordinal:06d}.bin').read_bytes()
+        ack = evidence_bytes(directory / f'api-physical-ack-{ordinal:06d}.bin')
         if ack != b'MNMAPI01' + struct.pack('<II', ordinal, row[0]):
             raise ValueError('Physical API acknowledgement changed')
         name = f'api-physical-oracle-{ordinal:06d}.rgba'
-        physical = (directory / name).read_bytes()
+        physical = evidence_bytes(directory / name)
         identity = dict(ordinal=ordinal, record=row[0], entry=row[29], method=row[2],
                         object=row[3], caller=row[5], thread=row[6], width=row[14], height=row[15])
         if (any(type(metadata.get(k)) is not int or metadata[k] != v for k, v in identity.items()) or

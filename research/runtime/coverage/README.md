@@ -682,6 +682,24 @@ It requires all configured archive snapshots locally; `evidence-store.py fetch
 or fetches evidence. Its temporary Git trees can resolve the local pending store;
 every resolved payload still undergoes its original hash and size checks.
 
+Local Git merges, including integration into local master, use the same local
+evidence and verified-backup requirements. They never require publication or
+network access. Keep the evidence database, review workspace and SQLite backup
+catalogs under retained local storage. In this checkout the persistent evidence
+database is `working/coverage/evidence-pending.sqlite3` in the main checkout;
+owned integration worktrees resolve that same store through their local pending
+database link. Review workspaces remain worktree-local. `finish-work.py` returns
+the commit ID and verified backup paths together; preserve that result and the
+backup catalogs. Git contains report identities and exported accounting; a Git
+clone alone does not contain unpublished evidence payloads.
+
+A normal local finish therefore ends with a Git commit and retained SQLite
+backups. Creating a GitHub release is optional and separate. Remote source
+distribution still needs its referenced payloads available to the recipient;
+the present pre-push guard and hosted CI use the pinned release manifest. A
+private sharing backend would need its own verified reader and CI setup before
+replacing that transport. Local work does not wait for that backend decision.
+
 Use `--record-current-promotions` only after reviewing the requested milestone
 changes. It records stage-specific proof from existing current audit support;
 it does not change statuses, manufacture claims, or grant other stages credit.
@@ -689,7 +707,8 @@ Missing, stale, incomplete or unbound execution proof refuses completion. Withou
 that option, new promotions require previously recorded valid proof receipts.
 Failed checks or commits preserve source, accepted SQLite receipts and backups.
 
-When sharing is requested, synchronize from a clean owned worktree:
+Only when external sharing is explicitly requested, synchronize from a clean
+owned worktree (this command publishes to GitHub Releases):
 
 ```sh
 python3 tools/sync-evidence.py \

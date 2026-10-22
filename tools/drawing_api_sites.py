@@ -1,4 +1,5 @@
 """Selected original CALL boundaries; decoding never supplies COM semantics."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import hashlib
 import json
 from pathlib import Path
@@ -154,10 +155,10 @@ def boundary_rows(code, selections, inventory, virtual_candidates=False):
 def export(executable, inventory_path, catalog_path, virtual_candidates=False):
     paths = ['tools/drawing_api_sites.py', 'tools/export-drawing-api-sites.py', 'tools/drawing_census.py',
              str(inventory_path.relative_to(ROOT)), str(catalog_path.relative_to(ROOT))]
-    frozen={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
-    raw = executable.read_bytes()
+    frozen={p:hashlib.sha256(evidence_bytes(ROOT/p)).hexdigest() for p in paths}
+    raw = evidence_bytes(executable)
     if hashlib.sha256(raw).hexdigest() != BUILD_SHA256: raise ValueError('Unsupported original executable')
-    inventory = json.loads(inventory_path.read_text()); catalog = json.loads(catalog_path.read_text())
+    inventory = json.loads(evidence_text(inventory_path)); catalog = json.loads(evidence_text(catalog_path))
     if inventory['source_sha256'] != BUILD_SHA256 or catalog['source_sha256'] != BUILD_SHA256:
         raise ValueError('Selected graphics export build mismatch')
     # Wide output keeps all bytes of prefixed/long CALLs on their instruction row.
@@ -165,8 +166,8 @@ def export(executable, inventory_path, catalog_path, virtual_candidates=False):
     code = instructions(assembly)
     selections = selected_ranges(catalog, inventory, code)
     rows = boundary_rows(code, selections, inventory, virtual_candidates)
-    if hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256: raise ValueError('Original input changed')
-    if frozen!={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}:raise ValueError('API boundary sources changed')
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest() != BUILD_SHA256: raise ValueError('Original input changed')
+    if frozen!={p:hashlib.sha256(evidence_bytes(ROOT/p)).hexdigest() for p in paths}:raise ValueError('API boundary sources changed')
     return {'schema': 1, 'source_sha256': BUILD_SHA256, 'image_base': inventory['image_base'],
         'input_unchanged': True, 'sources_stable':True,'virtual_candidates_enabled':virtual_candidates, 'scope': 'Selected exact outgoing CALL boundaries and unresolved semantics; no runtime API/lifetime or complete drawing census.',
         'sources': frozen,

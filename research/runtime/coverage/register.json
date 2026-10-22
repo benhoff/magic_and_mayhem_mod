@@ -136793,7 +136793,8 @@
         "tests/test-coverage-gate.py",
         ".github/workflows/re-coverage.yml",
         ".githooks/pre-commit",
-        "tests/test-tooling.sh"
+        "tests/test-tooling.sh",
+        "tools/coverage_evidence.py"
       ],
       "evidence": [
         "TOOL.sqlite-review-workspace-20261020",
@@ -136803,7 +136804,10 @@
         "TOOL.sqlite-evidence-migration-publish-ready-20261021",
         "TOOL.sqlite-evidence-migration-worktree-ready-20261021",
         "TOOL.sqlite-evidence-store-complete-20261021",
-        "TOOL.sqlite-evidence-store-complete-v2-20261021"
+        "TOOL.sqlite-evidence-store-complete-v2-20261021",
+        "TOOL.sqlite-json-reader-sweep-20261021",
+        "TOOL.sqlite-json-reader-sweep-v2-20261021",
+        "TOOL.sqlite-json-reader-sweep-v3-20261021"
       ],
       "status": {
         "understanding": "scoped",
@@ -137198,7 +137202,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Immutable SQLite evidence archives and exact Git pointer recovery",
-      "scope": "Storage-only content-addressed SQLite report import, every historical artifact blob version, append-only chunk storage, exact original-byte recovery, corruption and missing-object refusal, pinned compressed release download, local clean-filter pointers, fresh-clone stat refresh preserving staged blob identities, old/new graph lookup and push guards against legacy commits/raw artifacts/unpublished objects. Bounded synthetic Git, filesystem, SQLite and download fixtures validate these paths. Upload-only SSH/Actions publication is operational storage, with retained receipts and independently verified remote downloads; fixture claims do not guarantee future service availability. Original engine behavior and live replacement remain excluded. Shared absolute hooks use current gate tooling against the selected worktree and preserve the configured hook owner.",
+      "scope": "Storage-only content-addressed SQLite report import, every historical artifact blob version, append-only chunk storage, exact original-byte recovery, corruption and missing-object refusal, pinned compressed release download, local clean-filter pointers, fresh-clone stat refresh preserving staged blob identities, old/new graph lookup and push guards against legacy commits/raw artifacts/unpublished objects. Bounded synthetic Git, filesystem, SQLite and download fixtures validate these paths. Upload-only SSH/Actions publication is operational storage, with retained receipts and independently verified remote downloads; fixture claims do not guarantee future service availability. Original engine behavior and live replacement remain excluded. Shared absolute hooks use current gate tooling against the selected worktree and preserve the configured hook owner. Direct verified SQLite reads through invocation-scoped readers and compatible text/byte adapters preserve original payload hashes without whole-tree hydration. Reviewed JSON classification retains editable registers, source locks, schemas, fixtures, UI policy and configuration; generated runtime/format reports compact to references only after exact cold backup verification, restore verification, dual durable receipts and repeated source-identity checks. New census outputs write directly to SQLite. Consumer parser/engine logic is unchanged outside reviewed input adapters; no original-engine revalidation is claimed.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -137211,10 +137215,14 @@
         "tools/evidence-store.py",
         "tools/evidence_publish.py",
         ".githooks/pre-push",
-        ".gitattributes"
+        ".gitattributes",
+        "tools/evidence_sweep.py",
+        "tools/index-coverage-sources.py"
       ],
       "tests": [
-        "tests/test-evidence-store.py"
+        "tests/test-evidence-store.py",
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-ui.py"
       ],
       "validation_dependencies": [
         "tools/coverage_audit.py",
@@ -137225,7 +137233,121 @@
         "tools/check-re-coverage.py",
         "tests/test-coverage-gate.py",
         ".github/workflows/re-coverage.yml",
-        "tools/install-coverage-hook.py"
+        "tools/install-coverage-hook.py",
+        "tools/build-drawing-api-census.py",
+        "tools/build-drawing-census.py",
+        "tools/build-drawing-cpu-census.py",
+        "tools/build-drawing-terminal-census.py",
+        "tools/capture-drawing-census-game.py",
+        "tools/check-native-surface-backend.py",
+        "tools/check-native-surface-formats.py",
+        "tools/check-native-surface-ownership.py",
+        "tools/check-rendering-high-closure.py",
+        "tools/check-rendering-high-surfaces.py",
+        "tools/check-surface-access.py",
+        "tools/check-surface-borrowed-draw.py",
+        "tools/check-surface-dc-palette-identity.py",
+        "tools/check-surface-dc-palette.py",
+        "tools/check-surface-dc-reuse.py",
+        "tools/check-surface-dib-ddraw-rgb.py",
+        "tools/check-surface-dib-ddraw.py",
+        "tools/check-surface-dib-gdi.py",
+        "tools/check-surface-fixtures.py",
+        "tools/check-surface-formats.py",
+        "tools/check-surface-ownership.py",
+        "tools/check-surface-palette-restore.py",
+        "tools/coverage_critical_needs.py",
+        "tools/coverage_importance.py",
+        "tools/drawing_api_surface_contracts.py",
+        "tools/drawing_inventory.py",
+        "tools/export-all-original-recovery.py",
+        "tools/export-cure-lifecycle.py",
+        "tools/export-cure-presentation.py",
+        "tools/export-drawing-api-splices.py",
+        "tools/export-drawing-census.py",
+        "tools/export-drawing-cpu-sites.py",
+        "tools/export-drawing-terminal-callers.py",
+        "tools/export-drawing-terminal-plan.py",
+        "tools/export-owner-planner-inventory.py",
+        "tools/export-owner-planner.py",
+        "tools/export-projectile.py",
+        "tools/export-regional-graph-inventory.py",
+        "tools/export-render-support.py",
+        "tools/export-wizard-ai-inventory.py",
+        "tools/inspect-all-original-recovery.py",
+        "tools/inspect-drawing-cursor-clients.py",
+        "tools/inspect-drawing-cursor-mutexes.py",
+        "tools/inspect-drawing-hud-input.py",
+        "tools/inspect-drawing-mouse-dispatch.py",
+        "tools/inspect-drawing-selection-clients.py",
+        "tools/inspect-drawing-source-buffer.py",
+        "tools/inspect-drawing-source-lease-clients.py",
+        "tools/inspect-original-ownership.py",
+        "tools/inspect-original-recovery.py",
+        "tools/inspect-owner-task-inputs.py",
+        "tools/inspect-pixel-route-caller-ranges.py",
+        "tools/inspect-pixel-route-targets.py",
+        "tools/profile-native-draw-costs.py",
+        "tools/rendering_coverage.py",
+        "tools/rendering_reconciliation.py",
+        "tools/retain-drawing-journey.py",
+        "tools/review-all-original-inventory.py",
+        "tools/review-alternate-canvas-inventory.py",
+        "tools/review-drawing-cpu-crosswalk.py",
+        "tools/review-drawing-terminal-crosswalk.py",
+        "tools/review-drawing-terminal-edges.py",
+        "tools/review-native-rendering-gaps.py",
+        "tools/review-original-rendering-entries.py",
+        "tools/review-original-rng-inventory.py",
+        "tools/review-owner-planner-inventory.py",
+        "tools/review-regional-graph-inventory.py",
+        "tools/review-wizard-ai-inventory.py",
+        "tools/surface_fixture_corpus.py",
+        "tools/test-critical-scope-reconciliation.py",
+        "tools/test-dc-copy-retirement.py",
+        "tools/test-drawing-canvas-release.py",
+        "tools/test-drawing-dispatch.py",
+        "tools/test-drawing-lock-recovery.py",
+        "tools/test-drawing-movie.py",
+        "tools/test-drawing-postlude.py",
+        "tools/test-drawing-queue-state.py",
+        "tools/test-live-host-lobby.py",
+        "tools/test-original-alternate-canvas.py",
+        "tools/test-owner-visibility-integration.py",
+        "tools/test-third20-offline.py",
+        "tools/test-uncovered-pixel-routes.py",
+        "tests/test-coverage-importance.py",
+        "tests/test-drawing-journey.py",
+        "tests/test-drawing-scene.py",
+        "tests/test-drawing-storage-retention.py",
+        "tests/test-rendering-high-surfaces.py",
+        "tools/drawing_acceptance.py",
+        "tools/drawing_api_clients.py",
+        "tools/drawing_api_physical.py",
+        "tools/drawing_api_sites.py",
+        "tools/drawing_census.py",
+        "tools/drawing_corpus.py",
+        "tools/drawing_egl_physical.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/drawing_journeys.py",
+        "tools/drawing_physical.py",
+        "tools/drawing_presented_session.py",
+        "tools/drawing_publication_corpus.py",
+        "tools/drawing_recorded_session.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/drawing_sequence.py",
+        "tools/drawing_session.py",
+        "tools/drawing_storage_capture.py",
+        "tools/drawing_terminal_crosswalk.py",
+        "tools/drawing_terminal_edges.py",
+        "tests/test-drawing-terminal-crosswalk.py",
+        "tests/test-drawing-terminal-edges.py",
+        "tests/test-drawing-terminal-observer.py",
+        "tools/coverage_ui.py",
+        "tools/test-world-effect-producers.py",
+        "tools/test-world-surface-extents.py",
+        "tools/test-native-colour-cache.py",
+        "tools/profile_native_resident_helpers.py"
       ],
       "evidence": [
         "TOOL.sqlite-evidence-migration-20261021",
@@ -137233,7 +137355,10 @@
         "TOOL.sqlite-evidence-migration-publish-ready-20261021",
         "TOOL.sqlite-evidence-migration-worktree-ready-20261021",
         "TOOL.sqlite-evidence-store-complete-20261021",
-        "TOOL.sqlite-evidence-store-complete-v2-20261021"
+        "TOOL.sqlite-evidence-store-complete-v2-20261021",
+        "TOOL.sqlite-json-reader-sweep-20261021",
+        "TOOL.sqlite-json-reader-sweep-v2-20261021",
+        "TOOL.sqlite-json-reader-sweep-v3-20261021"
       ],
       "status": {
         "understanding": "scoped",
@@ -137248,7 +137373,7 @@
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Complete actor downstream service ownership and behavior",
-      "scope": "Complete72-root union of explicit ownership/visual actor services, allocation helpers and shared classifier/reset. Reconcile existing scoped suppliers and recover original audio/resource/terrain/animation/task/session/heap behavior, actual failure/exception ordering and their composed ownership. Generic owned-return stand-ins are not completed services. Each subordinate recovery keeps its domain and transitive/OS boundaries explicit; actual physical Windows providers, arbitrary external concurrent writers and whole-session/live replacement remain independent.",
+      "scope": "Seventy-two direct actor service/helper entries have bounded suppliers, including71raw PE32 value-address bodies and existing source-controller ownership. The initial83-target further frontier is fully dispositioned:35explicit raw bodies,43existing scoped supplier/composition leads and five CRT runtime boundaries. Seven constructor/canvas/compiler helper bodies have dedicated ownership comparisons. Complete actor/session composition, expanded concrete provider paths, indirect dispatch completeness, OS SEH/throwing cleanup, indeterminate original item contribution and actual external platform/lifetime acceptance remain separate; this umbrella is intentionally partial.",
       "confidence": "provisional",
       "original": [
         {
@@ -137614,7 +137739,8 @@
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md",
-        "research/runtime/downstream-service-results-20261021/service-matrix.json"
+        "research/runtime/downstream-service-results-20261021/service-matrix.json",
+        "research/runtime/downstream-service-results-20261021/service-matrix-extended.json"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -137625,7 +137751,11 @@
         "reconstruction/creature-ai/source_controller.cpp",
         "reconstruction/creature-ai/source_owned.hpp",
         "reconstruction/creature-ai/source_owned.cpp",
-        "reconstruction/rendering/actor_service_dependencies.hpp"
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp"
       ],
       "tests": [
         "tools/inspect-actor-downstream.py",
@@ -137661,10 +137791,15 @@
         "reconstruction/creature-ai/source_graph.hpp",
         "reconstruction/creature-ai/source_pending.cpp",
         "reconstruction/creature-ai/source_pending.hpp",
-        "tests/sprite-binary-reference.cpp"
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_ownership.hpp"
       ],
       "implementation_review": {
-        "review": "DSVC1.actor-service-source-review-20261021",
+        "review": "DSVC2.actor-service-source-review-final-20261021",
         "entry": "RS.actor-downstream-services"
       }
     },
@@ -137904,13 +138039,18 @@
         "reconstruction/rendering/actor_ownership.hpp",
         "reconstruction/rendering/actor_service_ui.hpp",
         "reconstruction/rendering/actor_service_dependencies.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
       ],
       "evidence": [
         "DSVC1.values.isolated_original-20261021",
+        "DSVC2.values.isolated_original-20261021",
         "COMMIT20261021.actor-values.isolated_original"
       ],
       "status": {
@@ -137921,7 +138061,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "DSVC1.actor-service-source-review-20261021",
+        "review": "DSVC2.actor-service-source-review-final-20261021",
         "entry": "RS.actor-downstream-value-services"
       }
     },
@@ -138011,13 +138151,18 @@
         "reconstruction/rendering/actor_ownership.hpp",
         "reconstruction/rendering/actor_service_ui.hpp",
         "reconstruction/rendering/actor_service_dependencies.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
       ],
       "evidence": [
         "DSVC1.controllers.isolated_original-20261021",
+        "DSVC2.controllers.isolated_original-20261021",
         "COMMIT20261021.actor-controllers.isolated_original"
       ],
       "status": {
@@ -138028,7 +138173,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "DSVC1.actor-service-source-review-20261021",
+        "review": "DSVC2.actor-service-source-review-final-20261021",
         "entry": "RS.actor-downstream-controller-services"
       }
     },
@@ -138153,13 +138298,18 @@
         "tools/original_x86.py",
         "reconstruction/rendering/actor_service_ui.hpp",
         "reconstruction/rendering/actor_service_dependencies.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
       ],
       "evidence": [
         "DSVC1.world.isolated_original-20261021",
+        "DSVC2.world.isolated_original-20261021",
         "COMMIT20261021.actor-world.isolated_original"
       ],
       "status": {
@@ -138170,7 +138320,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "DSVC1.actor-service-source-review-20261021",
+        "review": "DSVC2.actor-service-source-review-final-20261021",
         "entry": "RS.actor-downstream-world-services"
       }
     },
@@ -138270,13 +138420,18 @@
         "reconstruction/rendering/actor_service_world.hpp",
         "reconstruction/rendering/actor_ownership.hpp",
         "reconstruction/rendering/actor_service_dependencies.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
       ],
       "evidence": [
         "DSVC1.ui.isolated_original-20261021",
+        "DSVC2.ui.isolated_original-20261021",
         "COMMIT20261021.actor-ui.isolated_original"
       ],
       "status": {
@@ -138287,7 +138442,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "DSVC1.actor-service-source-review-20261021",
+        "review": "DSVC2.actor-service-source-review-final-20261021",
         "entry": "RS.actor-downstream-ui-services"
       }
     },
@@ -138297,7 +138452,7 @@
       "kind": "recovered",
       "title": "Actor downstream widget, image, localization and heap service bodies",
       "scope": "Eighteen further service bodies: animation scan/overlay, owner selection, debug notification, widget invalidation/state/amount wrappers, raw image fill, audio stack removal, localization bounds/fallback, deferred rectangle queue, allocation retry/handler/alignment policy and tagged allocation release.64 owned variants per root compare complete owned state, selected globals, defined returns and ordered callback-time arguments/state; actual recovered value/controller suppliers remain composed where called. Virtual widget callbacks, low-level heap/init/retry/error handlers, CRT output and further UI draw methods are explicit normal-return providers. Arbitrary allocation/header corruption, infinite retry domains, actual platform heaps, exceptional unwind and whole actor/session integration/live replacement remain separate.",
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -138407,20 +138562,29 @@
         "reconstruction/rendering/actor_service_world.hpp",
         "reconstruction/rendering/actor_ownership.hpp",
         "reconstruction/rendering/actor_service_ui.hpp",
-        "reconstruction/rendering/actor_service_popups.hpp"
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
       ],
       "evidence": [
+        "DSVC2.dependencies.isolated_original-20261021",
         "COMMIT20261021.actor-dependencies.isolated_original"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "DSVC2.actor-service-source-review-final-20261021",
+        "entry": "RS.actor-downstream-dependency-services"
       }
     },
     {
@@ -138429,7 +138593,7 @@
       "kind": "recovered",
       "title": "Actor popup widgets, artifact ownership, redraw and message presentation",
       "scope": "Nine further popup/presentation service bodies: full health redraw and icon rendering, popup widget reset, artifact admission/stack counts/overflow, selected focus retirement, quota disable/enable, resolution border refresh and message scroll presentation.64 owned variants per root compare full owned state/globals, defined returns, complete declared local records and ordered callback-time state. Compose actual widget/image/localization/heap wrappers and actor/value suppliers; virtual widget methods, raster/font/image-loading/format/sound APIs and further UI methods remain normal-return providers. Font record byte0 is compared as the consumed bool; its three uninitialized padding bytes do not grant caller-stack representation equivalence. Actual hardware, arbitrary concurrent UI writers, exceptional unwind, complete session ownership and live replacement remain separate.",
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -138494,18 +138658,249 @@
         "tools/original_x86.py",
         "reconstruction/rendering/actor_service_world.hpp",
         "reconstruction/rendering/actor_ownership.hpp",
-        "reconstruction/rendering/actor_service_ui.hpp"
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp"
       ],
       "documents": [
         "research/runtime/actor-downstream-services-20261021.md"
       ],
-      "evidence": [],
+      "evidence": [
+        "DSVC2.popups.isolated_original-20261021"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "DSVC2.actor-service-source-review-final-20261021",
+        "entry": "RS.actor-downstream-popup-services"
+      }
+    },
+    {
+      "id": "RS.actor-downstream-collection-services",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Actor downstream vector, reclamation, progression and scenario services",
+      "scope": "Complete vector insertion/growth and callback-visible old-storage retirement, secondary slot125+ admission/reclamation, original experience thresholds/health/gauge/animation effects and scenario-event dispatch over explicit owned records and normal-return callbacks.64variants per selected entry compare complete owned state/globals, defined returns and ordered callback state; recovered heap/value/controller/world suppliers are composed. Low-level vector allocation, concrete scenario predicates/actions, secondary subtype replacement, exceptional runtime/heap corruption and supported-session/live replacement remain distinct.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4367168,
+          "scope": "Complete selected collection/actor/event body within owned records, composed suppliers and declared normal-return providers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4836784,
+          "scope": "Complete selected collection/actor/event body within owned records, composed suppliers and declared normal-return providers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5328448,
+          "scope": "Complete selected collection/actor/event body within owned records, composed suppliers and declared normal-return providers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5656208,
+          "scope": "Complete selected collection/actor/event body within owned records, composed suppliers and declared normal-return providers."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_ownership.hpp"
+      ],
+      "tests": [
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tools/test-actor-services.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/original-linux-seh.hpp",
+        "tools/original_x86.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp"
+      ],
+      "documents": [
+        "research/runtime/actor-downstream-services-20261021.md"
+      ],
+      "evidence": [
+        "DSVC2.collections.isolated_original-20261021"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "DSVC2.actor-service-source-review-final-20261021",
+        "entry": "RS.actor-downstream-collection-services"
+      }
+    },
+    {
+      "id": "RS.actor-downstream-effect-services",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Actor downstream item, spell and explosion orchestration",
+      "scope": "Original468470 item traversal/consumption,469000 fastcall spell removal and490260 terrain/particle/owner cleanup over explicit owned map, descriptors and normal-return callbacks. Value/controller/heap/world/collection suppliers are composed; concrete item effects, contribution accounting, particle construction/pool, scenario predicates, localization/CRT, allocation identity and supported-session/live replacement remain separate. The baseline uninitialized contribution read when no healing branch assigns it is explicitly indeterminate and excluded from deterministic comparison.64 variants per selected body compare persistent bytes/globals, defined returns and ordered callback state.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4621424,
+          "scope": "Complete selected orchestration body with explicit downstream suppliers and excluded indeterminate original stack-value branch."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4624384,
+          "scope": "Complete selected orchestration body with explicit downstream suppliers and excluded indeterminate original stack-value branch."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4784736,
+          "scope": "Complete selected orchestration body with explicit downstream suppliers and excluded indeterminate original stack-value branch."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_ownership.hpp"
+      ],
+      "tests": [
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tools/test-actor-services.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/original-linux-seh.hpp",
+        "tools/original_x86.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp"
+      ],
+      "documents": [
+        "research/runtime/actor-downstream-services-20261021.md"
+      ],
+      "evidence": [
+        "DSVC2.effects.isolated_original-20261021"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "DSVC2.actor-service-source-review-final-20261021",
+        "entry": "RS.actor-downstream-effect-services"
+      }
+    },
+    {
+      "id": "RS.actor-downstream-construction-services",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Actor service widget/canvas construction and compiler cleanup",
+      "scope": "Normal-return464350 and4a4df0 initialization,463270 destructor,4a4f70 widget table removal,58b3e0 canvas release and59bf87 reverse vector destruction, plus59c4ab cold-finally selection under an explicit parent frame.64 owned variants per body compare persistent bytes/globals and ordered callback state. Actual OS exception delivery, a destructor throwing during unwind, arbitrary reentry and supported-session/live replacement remain separate; the cold body is exercised directly without claiming a Windows SEH dispatcher. Native vector construction additionally destroys only the completed prefix in reverse order and propagates the original exception (171 failure/completion combinations); this composition test does not emulate OS SEH.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4604752,
+          "scope": "Complete selected ownership/cleanup body with explicit normal-return backend calls; cold finally receives its explicit parent frame."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4869616,
+          "scope": "Complete selected ownership/cleanup body with explicit normal-return backend calls; cold finally receives its explicit parent frame."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4600432,
+          "scope": "Complete selected ownership/cleanup body with explicit normal-return backend calls; cold finally receives its explicit parent frame."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4870000,
+          "scope": "Complete selected ownership/cleanup body with explicit normal-return backend calls; cold finally receives its explicit parent frame."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813216,
+          "scope": "Complete selected ownership/cleanup body with explicit normal-return backend calls; cold finally receives its explicit parent frame."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881735,
+          "scope": "Complete selected ownership/cleanup body with explicit normal-return backend calls; cold finally receives its explicit parent frame."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5883051,
+          "scope": "Complete selected ownership/cleanup body with explicit normal-return backend calls; cold finally receives its explicit parent frame."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp"
+      ],
+      "tests": [
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tools/test-actor-services.py",
+        "tests/actor-service-exception-test.cpp"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/original-linux-seh.hpp",
+        "tools/original_x86.py",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp"
+      ],
+      "documents": [
+        "research/runtime/actor-downstream-services-20261021.md"
+      ],
+      "evidence": [
+        "DSVC2.construction.isolated_original-20261021"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "implementation_review": {
+        "review": "DSVC2.actor-service-source-review-final-20261021",
+        "entry": "RS.actor-downstream-construction-services"
       }
     }
   ],
@@ -310112,6 +310507,508 @@
       ]
     },
     {
+      "id": "TOOL.sqlite-json-reader-sweep-20261021",
+      "kind": "native_integration",
+      "scope": "Fresh source-bound execution of 237 synthetic SQLite/audit/gate/bookkeeping/UI guards, including no-hydration audit and HTTP reads, immutable archive-identity verification, cold compaction/restore and concurrent-edit refusals. Exact AST review covers only the consumer input adapters and two isolated fixture exports. The retained real 6039-file sweep is operational storage provenance, not a new engine comparison.",
+      "record": "research/runtime/coverage/sqlite-json-reader-sweep-20261021.json",
+      "sha256": "bc07bbeced4257f8c16dd59e03dc3f4e42ea221b537939dfa0b8124ccded62f1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/adapter_ast/success",
+          "equals": true
+        },
+        {
+          "pointer": "/compaction/completed",
+          "equals": 6039
+        },
+        {
+          "pointer": "/census/direct_sqlite",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TOOL.sqlite-json-reader-sweep-v2-20261021",
+      "kind": "native_integration",
+      "scope": "Fresh source-bound execution of 238 synthetic SQLite/audit/gate/bookkeeping/UI guards, including protection of original inputs through parent-directory aliases, no-hydration audit and HTTP reads, immutable archive-identity verification, cold compaction/restore and concurrent-edit refusals. Exact AST review covers the consumer input adapters and two isolated fixture exports. The retained real 6039-file sweep is operational storage provenance, not a new engine comparison.",
+      "record": "research/runtime/coverage/sqlite-json-reader-sweep-v2-20261021.json",
+      "sha256": "48273eee021d0603ff3a4e9e482228ab73dc309d60dba4603011514187b5e33c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/adapter_ast/success",
+          "equals": true
+        },
+        {
+          "pointer": "/compaction/completed",
+          "equals": 6039
+        },
+        {
+          "pointer": "/census/direct_sqlite",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DSVC2.values.isolated_original-20261021",
+      "kind": "isolated_original",
+      "scope": "42 complete selected service bodies at their listed original entries, with owned PE32 storage, byte-preserving scalar/animation/owner/pool policies, list mutation, resource/allocator notifications, spell-slot register arguments, gauge allocation and pixels, and actual voice query/retirement composed with scheduler lookup/retirement. The64 variants per root compare complete owned storage, selected globals, ordered callbacks and callback-time state; explicit platform/allocator/secondary/decoder providers stay separate. Normal vector construction is included; actual MSVC exception unwinding, invalid/unbounded caller domains, transitive provider bodies, whole-session integration and live replacement remain pending. Original memory/division faults are observations, not native policy changes.",
+      "record": "research/runtime/downstream-service-results-20261021/values-current.json",
+      "sha256": "28d7fc6bd68d540a27855c8595f364d1139ba9ae00089e5dcf79a2499ca9d394",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2688
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DSVC2.controllers.isolated_original-20261021",
+      "kind": "isolated_original",
+      "scope": "Ten complete direct actor service bodies: singleton publication, normal animation start/reverse orchestration, session cleanup, secondary facing, owner-dependent resource selection, spell selection, task reset/action transition/special-state cleanup and owner-count maintenance. Compose the42 independently recovered value/container/audio suppliers through explicit PE32 memory. Each64-variant matrix compares complete owned storage, selected globals, defined returns and callback-time state including failures. Actual50da50 EDX:EAX action-table and594490 profile-address suppliers are included. External decoder/step/constructor/UI/RNG services are explicit providers; actual exception unwind, broader transitive service bodies, arbitrary concurrent publication, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/downstream-service-results-20261021/controllers-current.json",
+      "sha256": "020640685420044cdf398de03d8ad26ea79c66cf25c5412eeb9c3ba87f781b2e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 640
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DSVC2.world.isolated_original-20261021",
+      "kind": "isolated_original",
+      "scope": "Nine complete direct bodies: peer repair, map attachment/detachment, secondary release cascade, world facing, footprint item consumption, terrain effects/hazard scan, task-target descriptor and x87 creature valuation. Compose the42 value and10 actor-controller suppliers, actual pure wrap/difference/weighted-distance/direction helpers, original memmove and x87 truncation.64 owned variants per root compare complete owned memory, selected globals, defined returns, ordered callbacks and callback-time state. Terrain mutation, item handling, debug file notifications and hazard/animation decoder providers are explicit external boundaries; arbitrary malformed cycles/unbounded inputs, transitive engine services, real platform devices, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/downstream-service-results-20261021/world-current.json",
+      "sha256": "a6ff1241cb1840629fbe91d1c0ab4433c0e6929a7a7762d3add45f72a6dd0bc9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 576
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DSVC2.ui.isolated_original-20261021",
+      "kind": "isolated_original",
+      "scope": "Ten complete direct UI/resource service bodies, including the packed22-byte actor admission descriptor and unchanged coordinate-copy suppliers40e2c0/40e8d0/40eec0: linked/panel health rectangles, secondary descriptor submission, spell popup rebuild, selection removal, message queue/text formatting, sprite/animation bank ownership and actor report retirement.64 owned variants per root compare complete owned bytes, selected globals, defined returns, ordered callbacks and callback-time state. Native local records are compared by content with original stack buffers; scratch addresses are normalized only at named boundaries. Compose recovered value/container/heap-wrapper suppliers, actual memmove and pure509790 descriptor addressing. Drawing/localization/formatting, virtual widgets, loader/cache services, Windows path/message APIs are explicit deterministic providers; actual platform services, malformed/unbounded string domains, transitive loader/UI bodies, exception unwinding, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/downstream-service-results-20261021/ui-current.json",
+      "sha256": "f22da3ad6bcc180c7371b6787dfba56f7504013a98f5fc9d5f73e4bb8bf2ac54",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 640
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DSVC2.dependencies.isolated_original-20261021",
+      "kind": "isolated_original",
+      "scope": "Eighteen further service bodies: animation scan/overlay, owner selection, debug notification, widget invalidation/state/amount wrappers, raw image fill, audio stack removal, localization bounds/fallback, deferred rectangle queue, allocation retry/handler/alignment policy and tagged allocation release.64 owned variants per root compare complete owned state, selected globals, defined returns and ordered callback-time arguments/state; actual recovered value/controller suppliers remain composed where called. Virtual widget callbacks, low-level heap/init/retry/error handlers, CRT output and further UI draw methods are explicit normal-return providers. Arbitrary allocation/header corruption, infinite retry domains, actual platform heaps, exceptional unwind and whole actor/session integration/live replacement remain separate.",
+      "record": "research/runtime/downstream-service-results-20261021/dependencies-current.json",
+      "sha256": "0ad85129aa4d6a3a63bbab6d10e494fbd9a22beb95e6db0864bcbf62443d31f9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1152
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DSVC2.popups.isolated_original-20261021",
+      "kind": "isolated_original",
+      "scope": "Nine further popup/presentation service bodies: full health redraw and icon rendering, popup widget reset, artifact admission/stack counts/overflow, selected focus retirement, quota disable/enable, resolution border refresh and message scroll presentation.64 owned variants per root compare full owned state/globals, defined returns, complete declared local records and ordered callback-time state. Compose actual widget/image/localization/heap wrappers and actor/value suppliers; virtual widget methods, raster/font/image-loading/format/sound APIs and further UI methods remain normal-return providers. Font record byte0 is compared as the consumed bool; its three uninitialized padding bytes do not grant caller-stack representation equivalence. Actual hardware, arbitrary concurrent UI writers, exceptional unwind, complete session ownership and live replacement remain separate.",
+      "record": "research/runtime/downstream-service-results-20261021/popups-current.json",
+      "sha256": "2ea16591eda50397bf7c53665a24fecabc0462c1730540af4c19426c6eddac03",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 576
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DSVC2.collections.isolated_original-20261021",
+      "kind": "isolated_original",
+      "scope": "Complete vector insertion/growth and callback-visible old-storage retirement, secondary slot125+ admission/reclamation, original experience thresholds/health/gauge/animation effects and scenario-event dispatch over explicit owned records and normal-return callbacks.64variants per selected entry compare complete owned state/globals, defined returns and ordered callback state; recovered heap/value/controller/world suppliers are composed. Low-level vector allocation, concrete scenario predicates/actions, secondary subtype replacement, exceptional runtime/heap corruption and supported-session/live replacement remain distinct.",
+      "record": "research/runtime/downstream-service-results-20261021/collections-current.json",
+      "sha256": "d2173f42023d77fce935a2f181fb110c3d01aa661aa7254bf279a594b4227220",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 256
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DSVC2.effects.isolated_original-20261021",
+      "kind": "isolated_original",
+      "scope": "Original468470 item traversal/consumption,469000 fastcall spell removal and490260 terrain/particle/owner cleanup over explicit owned map, descriptors and normal-return callbacks. Value/controller/heap/world/collection suppliers are composed; concrete item effects, contribution accounting, particle construction/pool, scenario predicates, localization/CRT, allocation identity and supported-session/live replacement remain separate. The baseline uninitialized contribution read when no healing branch assigns it is explicitly indeterminate and excluded from deterministic comparison.64 variants per selected body compare persistent bytes/globals, defined returns and ordered callback state.",
+      "record": "research/runtime/downstream-service-results-20261021/effects-current.json",
+      "sha256": "212c03c0f5a3fc1c7005c70d711f4ba3a61db9f187ba813dcc29d453d032869a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DSVC2.construction.isolated_original-20261021",
+      "kind": "isolated_original",
+      "scope": "Normal-return464350 and4a4df0 initialization,463270 destructor,4a4f70 widget table removal,58b3e0 canvas release and59bf87 reverse vector destruction, plus59c4ab cold-finally selection under an explicit parent frame.64 owned variants per body compare persistent bytes/globals and ordered callback state. Actual OS exception delivery, a destructor throwing during unwind, arbitrary reentry and supported-session/live replacement remain separate; the cold body is exercised directly without claiming a Windows SEH dispatcher. Native vector construction additionally destroys only the completed prefix in reverse order and propagates the original exception (171 failure/completion combinations); this composition test does not emulate OS SEH.",
+      "record": "research/runtime/downstream-service-results-20261021/construction-current.json",
+      "sha256": "3ff37f2417907c0128d48c0732e72f91b88229e65045e92c693aa52c0849e7fe",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 448
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exception_cases",
+          "equals": 171
+        }
+      ]
+    },
+    {
+      "id": "TOOL.sqlite-json-reader-sweep-v3-20261021",
+      "kind": "native_integration",
+      "scope": "Fresh source-bound execution of 239 synthetic SQLite/audit/gate/bookkeeping/UI guards, including original-input alias protection, no-hydration audit/HTTP/profile payload hashes, archive-identity verification, cold compaction/restore and concurrent-edit refusals. Exact AST review covers 112 consumer adapter modules, 533 Path reads and fourteen legacy stream loads; the shared profile hash adapter has an execution regression. The real 6039-file sweep is operational storage provenance, not a new engine comparison.",
+      "record": "research/runtime/coverage/sqlite-json-reader-sweep-v3-20261021.json",
+      "sha256": "8e3f69f9f216c5f0201a68224f19d86d9fb4e7691421606c370b62ef29b67115",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/adapter_ast/success",
+          "equals": true
+        },
+        {
+          "pointer": "/compaction/completed",
+          "equals": 6039
+        },
+        {
+          "pointer": "/census/direct_sqlite",
+          "equals": true
+        }
+      ]
+    },
+    {
       "id": "COMMIT20261021.matrix-release.original",
       "kind": "isolated_original",
       "scope": "Pinned original58b3e0 release semantics with owned nonreentrant registry and scripted COM results. Compare all128x64object bytes, full128entry registry and ordered calls in3600cases including nullSurface2, PageUnlock, optional palette/primary, compaction positions and shared1000-attempt counter. Recover original drain-to-zero behavior independently of COM reference ownership and physical lifetime. No real driver alias/physical allocation/all-writer, reentrant callbacks, live replacement or native-policy adoption of drained borrowed credits.",
@@ -333543,8 +334440,7 @@
       "evidence": [
         "REC6.startup-lease.live-20261020",
         "REC11.startup.live_observation-20261021",
-        "REC11.startup-capture-current.live_observation-20261021",
-        "COMMIT20261021.startup.live_observation"
+        "REC11.startup-capture-current.live_observation-20261021"
       ]
     },
     {
@@ -333655,18 +334551,23 @@
         "TOOL.sqlite-evidence-migration-publish-ready-20261021",
         "TOOL.sqlite-evidence-migration-worktree-ready-20261021",
         "TOOL.sqlite-evidence-store-complete-20261021",
-        "TOOL.sqlite-evidence-store-complete-v2-20261021"
+        "TOOL.sqlite-evidence-store-complete-v2-20261021",
+        "TOOL.sqlite-json-reader-sweep-20261021",
+        "TOOL.sqlite-json-reader-sweep-v2-20261021",
+        "TOOL.sqlite-json-reader-sweep-v3-20261021"
       ]
     },
     {
       "id": "SC.tooling.sqlite-evidence-storage",
-      "scope": "Headless exact multichunk SQLite recovery and refusal, immutable records, real Git history import, clean-filter idempotence and fresh-clone cleanliness, safe pointer stat refresh and published-object/legacy-history push checks. No original game execution.",
+      "scope": "Headless exact multichunk SQLite recovery and refusal, immutable records, real Git history import, clean-filter idempotence and fresh-clone cleanliness, safe pointer stat refresh and published-object/legacy-history push checks. No original game execution. Direct SQLite audit/gate/UI reads without hydration, cold-backed generated-JSON compaction, concurrent-edit refusal, configuration/fixture preservation, and direct-to-SQLite source-census export.",
       "level": "headless",
       "behaviors": [
         "TOOL.sqlite-evidence-storage"
       ],
       "tests": [
-        "tests/test-evidence-store.py"
+        "tests/test-evidence-store.py",
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-ui.py"
       ],
       "evidence": [
         "TOOL.sqlite-evidence-migration-20261021",
@@ -333674,7 +334575,10 @@
         "TOOL.sqlite-evidence-migration-publish-ready-20261021",
         "TOOL.sqlite-evidence-migration-worktree-ready-20261021",
         "TOOL.sqlite-evidence-store-complete-20261021",
-        "TOOL.sqlite-evidence-store-complete-v2-20261021"
+        "TOOL.sqlite-evidence-store-complete-v2-20261021",
+        "TOOL.sqlite-json-reader-sweep-20261021",
+        "TOOL.sqlite-json-reader-sweep-v2-20261021",
+        "TOOL.sqlite-json-reader-sweep-v3-20261021"
       ]
     },
     {
@@ -334501,8 +335405,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-83171d81446736419ccecb39a7f10e1683935d80c77c95496ffd8fff98f58063.json",
-    "sha256": "83171d81446736419ccecb39a7f10e1683935d80c77c95496ffd8fff98f58063"
+    "path": "research/runtime/coverage/source-index-7599523947fb526b27c176ede017ce7e87f191a06f3b8314e8f37a9c39d2fb6e.json",
+    "sha256": "7599523947fb526b27c176ede017ce7e87f191a06f3b8314e8f37a9c39d2fb6e"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
@@ -334589,9 +335493,9 @@
       "sha256": "13a8eb1d5b30494557c98fb574aa56e1ef59153643e0fe66eaf98d73e50b9ca6"
     },
     {
-      "id": "DSVC1.actor-service-source-review-20261021",
-      "path": "research/runtime/coverage/actor-downstream-source-review-20261021.json",
-      "sha256": "5c54768aceaa065853309027f8d2003ebdf6e28d0bcb2afdfaffaa03b2e256bd"
+      "id": "DSVC2.actor-service-source-review-final-20261021",
+      "path": "research/runtime/coverage/actor-downstream-source-review-final-20261021.json",
+      "sha256": "8dba30bf030638bdcba842ff6b074553ad46a12302084f46e6dd3f84cdbc1da8"
     }
   ],
   "implementation_review_history": [
@@ -334749,6 +335653,16 @@
       "id": "SCENECOMP.source-review-5-20261020",
       "path": "research/runtime/coverage/production-scene-current-source-review-5-20261020.json",
       "sha256": "8f342ec351d295ea024fbf42d60f59c1c645a9bd1310f88a59e75f81057699ed"
+    },
+    {
+      "id": "DSVC1.actor-service-source-review-20261021",
+      "path": "research/runtime/coverage/actor-downstream-source-review-20261021.json",
+      "sha256": "5c54768aceaa065853309027f8d2003ebdf6e28d0bcb2afdfaffaa03b2e256bd"
+    },
+    {
+      "id": "DSVC2.actor-service-source-review-20261021",
+      "path": "research/runtime/coverage/actor-downstream-source-review-current-20261021.json",
+      "sha256": "1c3fabda18f32347b74af71b73cea2cf3eb8d66e0e6a6cfeb416c6292bb11486"
     }
   ]
 }

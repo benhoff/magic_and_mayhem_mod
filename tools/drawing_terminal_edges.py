@@ -1,4 +1,5 @@
 """Review inherited terminal tail edges without turning them into CALLs."""
+from coverage_evidence import read_text as evidence_text
 from collections import Counter
 import hashlib
 import json
@@ -15,7 +16,7 @@ OUTER_BYTES = bytes.fromhex('a1582c640085c0741150ff15a0505c00c705582c64000000000
 
 def verified_contracts(proof, staged, image_offset):
     contracts(proof, staged, image_offset)
-    record = json.loads(proof.read_text())
+    record = json.loads(evidence_text(proof))
     raw = bytes.fromhex(record['original_entry_anchors'][hex(OUTER)])
     offset = image_offset(staged, OUTER, len(raw))
     if raw != OUTER_BYTES or staged[offset:offset+len(raw)] != raw:

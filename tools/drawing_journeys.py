@@ -3,6 +3,7 @@
 A component canvas can contribute useful comparisons without closing a journey.
 Coverage is derived from admitted frame/action contracts, never a stored pass bit.
 """
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 from drawing_corpus import SCENARIOS, BUILD, local, sha
 import json
 
@@ -57,7 +58,7 @@ def admit_suite(root, catalog):
         if case['adapter'] not in ('components', 'scene', 'producer_sequence', 'publication', 'recorded_session', 'recorded_action_session', 'session'):
             raise ValueError('Unsupported journey adapter')
         path = local(root, case['catalog']['path'])
-        if sha(path.read_bytes()) != case['catalog']['sha256']:
+        if sha(evidence_bytes(path)) != case['catalog']['sha256']:
             raise ValueError('Journey catalog identity changed')
         if not isinstance(case['scope'], str) or not case['scope'].strip():
             raise ValueError('Missing suite case scope')
@@ -137,8 +138,8 @@ def coverage(observations):
 
 
 def inventory(root, catalog_path=CATALOG):
-    catalog = admit_suite(root, json.loads(local(root, catalog_path).read_text()))
+    catalog = admit_suite(root, json.loads(evidence_text(local(root, catalog_path))))
     # Inventory reports requirements, never fabricates execution observations.
     return {'schema': 1, 'source_executable_sha256': BUILD,
-            'suite_sha256': sha(local(root, catalog_path).read_bytes()),
+            'suite_sha256': sha(evidence_bytes(local(root, catalog_path))),
             'cases': catalog['cases'], **coverage([])}

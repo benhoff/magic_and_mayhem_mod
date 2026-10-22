@@ -92,9 +92,11 @@ directory or documentation changes do not establish new behavior validation.
 
 ## Evidence storage
 
-After cloning, run `python3 tools/evidence-store.py hydrate` before inspecting
-execution reports. Git stores small evidence pointers and the SHA-256-pinned
-archive manifest; SQLite payloads are downloaded from GitHub Releases, verified,
-and restored to their original paths. The command installs the local clean
-filter so restored reports leave Git clean. Original report bytes and source
-fingerprints remain unchanged. See research/runtime/coverage/README.md.
+After cloning, run `python3 tools/evidence-store.py fetch --verify`. Git stores
+small evidence references and a SHA-256-pinned archive manifest. The audit,
+coverage UI and research readers resolve original report bytes directly from
+SQLite, without expanding thousands of JSON files. Export an individual report
+with `python3 tools/evidence-store.py export <research-path> --output <new-file>`.
+Configuration, schemas, fixtures and editable registers remain JSON. Original
+report bytes and source fingerprints remain unchanged. See
+[the storage workflow](research/runtime/coverage/README.md#sqlite-evidence-and-automated-bookkeeping).

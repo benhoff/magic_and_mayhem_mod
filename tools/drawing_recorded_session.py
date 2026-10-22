@@ -1,4 +1,5 @@
 """Portable complete observed-EGL interval, without full-journey promotion."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import json,os,struct,subprocess,tempfile
 from pathlib import Path
 import numpy as np
@@ -149,7 +150,7 @@ def backend_environment(*,hardware=False,headless=False,inherited=None):
 
 def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False,output_parent=None,hardware=False):
  env=backend_environment(hardware=hardware,headless=headless)
- root=Path(root).resolve();path=local(root,catalog_path);catalog_bytes=path.read_bytes();catalog=json.loads(catalog_bytes);reg_path=root/'research/runtime/coverage/register.json';reg_bytes=reg_path.read_bytes();register=json.loads(reg_bytes)
+ root=Path(root).resolve();path=local(root,catalog_path);catalog_bytes=evidence_bytes(path);catalog=json.loads(catalog_bytes);reg_path=root/'research/runtime/coverage/register.json';reg_bytes=evidence_bytes(reg_path);register=json.loads(reg_bytes)
  raw,records,frames,assets=admit(root,catalog,register);comparator=load_tool('compare-drawing-quick-battle')
  parent=Path(os.path.abspath(output_parent if output_parent is not None else root/'working/tests/recorded-drawing-session'))
  if not parent.is_relative_to(root/'working'):raise ValueError('Recorded output parent must be under working')
@@ -163,7 +164,7 @@ def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False,outpu
   if 'sequence' in bg:reads.append(bg)
  from drawing_copy_order import normalize
  original_record=next(e['record'] for e in register['evidence'] if e['id']==catalog['evidence'])
- normalized,copy_order=normalize(raw,records,artifact(root,catalog['traces']['points']),json.loads((root/original_record).read_text()),reads)
+ normalized,copy_order=normalize(raw,records,artifact(root,catalog['traces']['points']),json.loads(evidence_text(root/original_record)),reads)
  unique={(f['sequence'],f['canvas']):f for f in reads}
  end=64
  for _ in range(max(s for s,c in unique)):end+=struct.unpack_from('<I',normalized,end)[0]
@@ -174,12 +175,12 @@ def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False,outpu
    if record[2]==12:queues=record[14]
   cursor=seq;bounds.append(dict(sequence=seq,queues=queues,canvas=canvas,width=f['width'],height=f['height']))
  (owned/'drawing-session.json').write_text(json.dumps(dict(schema=1,session='1',assets=asset_hashes,segments=[dict(segment=1,stage='scene',producer=dict(path='producers.bin',sha256=sha(source)),frames=bounds)]))+'\n')
- binaries={str(Path(p).resolve()):sha(Path(p).read_bytes()) for p in (native,presenter)}
+ binaries={str(Path(p).resolve()):sha(evidence_bytes(Path(p))) for p in (native,presenter)}
  def execute(label,command):
   if headless:command=['xvfb-run','-a','-s','-screen 0 1280x1024x24',*command]
   result=subprocess.run(command,env=env,capture_output=True,timeout=600);(run/(label+'.log')).write_bytes(result.stdout+result.stderr)
   if result.returncode:raise ValueError('Recorded native '+label+' failed; inspect '+str(run/(label+'.log')))
- execute('sources',[str(Path(native).resolve()),str(owned),str(run/'native'),'--source-snapshots']);snapshots=json.loads((run/'native/session-report.json').read_text())
+ execute('sources',[str(Path(native).resolve()),str(owned),str(run/'native'),'--source-snapshots']);snapshots=json.loads(evidence_text(run/'native/session-report.json'))
  if not snapshots['success'] or snapshots['remaining_surfaces'] or snapshots['original_oracles_read'] or snapshots['original_pixels_used_as_native_inputs'] or len(snapshots['frames'])!=len(bounds):raise ValueError('Recorded native source cohort/refusal')
  if hardware:
   from native_render_driver import require_nvidia
@@ -187,11 +188,11 @@ def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False,outpu
  for expected,observed in zip(bounds,snapshots['frames']):
   if any(expected[k]!=observed[k] for k in ('sequence','canvas','width','height')):raise ValueError('Recorded native source order changed')
  prepare(run/'gpu-owned',run/'native',snapshots['frames'],frames)
- execute('gpu',[str(Path(presenter).resolve()),str(run/'gpu-owned'),str(run/'gpu'),'--recorded-composition']);gpu=json.loads((run/'gpu/presentation-report.json').read_text())
- if gpu.get('physical_generation_frames')!=len(frames) or gpu.get('diagnostic_marker_rows')!=32 or gpu.get('painted_before_swap_frames')!=len(frames) or not gpu['success'] or gpu['remaining_surfaces'] or gpu['qimage_uploads'] or not gpu['gpu_composition'] or not gpu['physical_presentation'] or gpu['original_oracles_read'] or len(gpu['frames'])!=len(frames) or gpu['plan_sha256']!=sha((run/'gpu-owned/presentation.json').read_bytes()):raise ValueError('Recorded GPU frame cohort/provenance')
+ execute('gpu',[str(Path(presenter).resolve()),str(run/'gpu-owned'),str(run/'gpu'),'--recorded-composition']);gpu=json.loads(evidence_text(run/'gpu/presentation-report.json'))
+ if gpu.get('physical_generation_frames')!=len(frames) or gpu.get('diagnostic_marker_rows')!=32 or gpu.get('painted_before_swap_frames')!=len(frames) or not gpu['success'] or gpu['remaining_surfaces'] or gpu['qimage_uploads'] or not gpu['gpu_composition'] or not gpu['physical_presentation'] or gpu['original_oracles_read'] or len(gpu['frames'])!=len(frames) or gpu['plan_sha256']!=sha(evidence_bytes(run/'gpu-owned/presentation.json')):raise ValueError('Recorded GPU frame cohort/provenance')
  drivers=[snapshots.get('driver'),gpu.get('driver')]
  hardware_admission=require_nvidia(drivers) if hardware else dict(verified=False,software_requested=True)
- acquisition=json.loads((root/original_record).read_text())
+ acquisition=json.loads(evidence_text(root/original_record))
  if catalog['schema']==3:
   witness_dir=run/'reference-witnesses';witness_dir.mkdir()
   for files in admit_witnesses(root,catalog,acquisition):
@@ -199,9 +200,9 @@ def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False,outpu
  comparisons=[]
  for index,(frame,item) in enumerate(zip(catalog['frames'],gpu['frames'])):
   if item['index']!=index+1 or (item['width'],item['height'])!=(frames[index].get('output_width',800),frames[index].get('output_height',600)) or item['path']!=f'frame-{index:06}.rgba' or item['native_path']!=f'frame-{index:06}.565':raise ValueError('Recorded GPU frame identity changed')
-  original=artifact(root,frame['oracle']);words=(run/f'gpu/frame-{index:06}.565').read_bytes();physical=(run/f'gpu/frame-{index:06}.rgba').read_bytes()
+  original=artifact(root,frame['oracle']);words=evidence_bytes(run/f'gpu/frame-{index:06}.565');physical=evidence_bytes(run/f'gpu/frame-{index:06}.rgba')
   from drawing_physical_generation import validate_capture
-  validate_capture(item,physical,(run/'gpu'/f'frame-{index:06}-marker.rgba').read_bytes(),item['width'],item['height'],index+1)
+  validate_capture(item,physical,evidence_bytes(run/'gpu'/f'frame-{index:06}-marker.rgba'),item['width'],item['height'],index+1)
   if sha(words)!=item['native_sha256'] or sha(physical)!=item['sha256'] or len(physical)!=len(original):raise ValueError('Recorded native whole plane changed')
   delta=np.max(np.abs(np.frombuffer(physical,dtype=np.uint8).reshape(-1,4)[:,:3].astype(np.int16)-np.frombuffer(original,dtype=np.uint8).reshape(-1,4)[:,:3].astype(np.int16)),axis=1)
   comparisons.append(dict(ordinal=index+1,gpu=comparator.compare_plane(words,original,item['width'],item['height']),physical=dict(pixels=item['width']*item['height'],mismatching_pixels=int(np.count_nonzero(delta>1)),max_channel_difference=int(delta.max()),native_sha256=sha(physical),original_sha256=sha(original))))
@@ -211,8 +212,8 @@ def check(*,root=ROOT,catalog_path=CATALOG,native,presenter,headless=False,outpu
    comparisons[-1]['source']=compare_source(acquisition,witness_dir,index+1,words,item['width'],item['height'])
    comparisons[-1]['destination']=compare_frame(acquisition,witness_dir,index+1,words,original,item['width'],item['height'])
  relevant={catalog['evidence'],catalog['asset_binding_evidence'],retention_id(catalog)}
- current=json.loads(reg_path.read_bytes())
- if (path.read_bytes()!=catalog_bytes or any(sha(Path(p).read_bytes())!=h for p,h in binaries.items()) or
+ current=json.loads(evidence_bytes(reg_path))
+ if (evidence_bytes(path)!=catalog_bytes or any(sha(evidence_bytes(Path(p)))!=h for p,h in binaries.items()) or
      not same_json([e for e in register['evidence'] if e['id'] in relevant],[e for e in current['evidence'] if e['id'] in relevant]) or
      not same_json(register['builds'],current['builds'])):raise ValueError('Recorded catalog/evidence/build/binaries changed')
  admit(root,catalog,register)

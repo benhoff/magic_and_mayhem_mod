@@ -1,4 +1,5 @@
 """Portable full producer-history comparison, with independently retained outputs."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 from collections import Counter
 import json
 import os
@@ -114,12 +115,12 @@ def admit(root, catalog, register):
 
 
 def check(*,root=ROOT,catalog_path=CATALOG,executable,headless=False):
-    root=Path(root).resolve();path=local(root,catalog_path);catalog_bytes=path.read_bytes()
+    root=Path(root).resolve();path=local(root,catalog_path);catalog_bytes=evidence_bytes(path)
     catalog=json.loads(catalog_bytes)
     register_path=root/'research/runtime/coverage/register.json'
-    register_bytes=register_path.read_bytes();register=json.loads(register_bytes)
+    register_bytes=evidence_bytes(register_path);register=json.loads(register_bytes)
     raw,assets,checkpoints=admit(root,catalog,register)
-    executable=executable.resolve();binary_hash=sha(executable.read_bytes())
+    executable=executable.resolve();binary_hash=sha(evidence_bytes(executable))
     parent=root/'working/tests/drawing-sequence';parent.mkdir(parents=True,exist_ok=True)
     output=Path(tempfile.mkdtemp(prefix='run-',dir=parent));native_input=output/'inputs'
     asset_root=native_input/'assets';asset_root.mkdir(parents=True)
@@ -138,7 +139,7 @@ def check(*,root=ROOT,catalog_path=CATALOG,executable,headless=False):
     (output/'native.log').write_bytes(execution.stdout+execution.stderr)
     if execution.returncode:
         raise ValueError('Native sequence refused: '+str(output/'native.log'))
-    native=json.loads((output/'native/scene-report.json').read_text())
+    native=json.loads(evidence_text(output/'native/scene-report.json'))
     if (native['success'] is not True or native['boundary']!=catalog['boundary'] or native['remaining_surfaces'] or
         native['original_pixels_used_as_native_inputs'] or native['original_oracles_read'] or
         native['original_raster_results_used_as_native_inputs'] or
@@ -149,7 +150,7 @@ def check(*,root=ROOT,catalog_path=CATALOG,executable,headless=False):
         raise ValueError('Native sequence omits/reorders checkpoints')
     rows=[]
     for (c,expected),n in zip(oracle_planes(root,checkpoints),completed):
-        actual=(output/f"native/checkpoint-{c['ordinal']:04}.565").read_bytes()
+        actual=evidence_bytes(output/f"native/checkpoint-{c['ordinal']:04}.565")
         if any(c[k]!=n[k] for k in ('sequence','canvas','width','height')) or sha(actual)!=n['sha256']:
             raise ValueError('Native sequence checkpoint identity mismatch')
         # Byte equality checks the complete little-endian plane. Detailed word
@@ -161,11 +162,11 @@ def check(*,root=ROOT,catalog_path=CATALOG,executable,headless=False):
         rows.append({'ordinal':c['ordinal'],'sequence':c['sequence'],'canvas':c['canvas'],
                      'queue':c['queue'],'reason':c['reason'],**result})
     final=next(c for c in reversed(checkpoints) if c['canvas']==catalog['boundary']['canvas'])
-    scene=(output/'native/scene.565').read_bytes()
+    scene=evidence_bytes(output/'native/scene.565')
     if (sha(scene)!=native['scene_sha256'] or
-        scene!=(output/f"native/checkpoint-{final['ordinal']:04}.565").read_bytes()):
+        scene!=evidence_bytes(output/f"native/checkpoint-{final['ordinal']:04}.565")):
         raise ValueError('Final sequence canvas differs from final native checkpoint')
-    if path.read_bytes()!=catalog_bytes or register_path.read_bytes()!=register_bytes or sha(executable.read_bytes())!=binary_hash:
+    if evidence_bytes(path)!=catalog_bytes or evidence_bytes(register_path)!=register_bytes or sha(evidence_bytes(executable))!=binary_hash:
         raise ValueError('Sequence catalog/register/binary changed during replay')
     admit(root,catalog,register)
     return {'schema':1,'success':all(c['matching'] for c in rows),'scope':catalog['scope'],

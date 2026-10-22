@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import subprocess
 from original_x86 import Decoder, PE32
+from coverage_evidence import read_json, evidence_digest
 ROOT=Path(__file__).resolve().parents[1]
 PIN='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -14,11 +15,11 @@ def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True);p.add_argument('--extra-entries',nargs='*',type=lambda value:int(value,0),default=[]);a=p.parse_args();out=a.output.resolve()
  if out.exists() or not out.is_relative_to(ROOT/'working/tests'):p.error('Require new retained output under working/tests')
  out.mkdir(parents=True)
- paths=['tools/inspect-actor-downstream.py','tools/original_x86.py','tests/actor-lifecycle-providers.hpp','tests/actor-lifecycle-services.inc']
- sources={n:sha(ROOT/n) for n in paths};r=json.loads((ROOT/'research/runtime/coverage/register.json').read_text());build=next(b for b in r['builds'] if b['id']=='nocd-40209ca7');ip=ROOT/build['inventory'];inv=json.loads(ip.read_text());fs={f['entry']:f for f in inv['functions']}
- roots={int(v,16) for v in re.findall(r'\{(0x[0-9a-f]+),',(ROOT/paths[2]).read_text())}
- roots|={int(v,16) for v in re.findall(r'ACTOR_SERVICE\(([0-9a-f]+),',(ROOT/paths[3]).read_text())};roots|={0x597850,0x597870,0x5979b0,0x59c441,0x411e50,0x506080};roots={v for v in roots if v<0x5c0000}
- report=dict(schema=1,success=False,static_only=True,scope=__doc__,sources=sources,original_sha256=PIN,inputs={str(ip.relative_to(ROOT)):sha(ip)},semantic_or_transitive_closure_proved=False)
+ paths=['tools/inspect-actor-downstream.py','tools/original_x86.py','tools/coverage_evidence.py','tests/actor-lifecycle-providers.hpp','tests/actor-lifecycle-services.inc']
+ sources={n:sha(ROOT/n) for n in paths};r=json.loads((ROOT/'research/runtime/coverage/register.json').read_text());build=next(b for b in r['builds'] if b['id']=='nocd-40209ca7');ip=ROOT/build['inventory'];inv=read_json(ip,root=ROOT);fs={f['entry']:f for f in inv['functions']}
+ roots={int(v,16) for v in re.findall(r'\{(0x[0-9a-f]+),',(ROOT/'tests/actor-lifecycle-providers.hpp').read_text())}
+ roots|={int(v,16) for v in re.findall(r'ACTOR_SERVICE\(([0-9a-f]+),',(ROOT/'tests/actor-lifecycle-services.inc').read_text())};roots|={0x597850,0x597870,0x5979b0,0x59c441,0x411e50,0x506080};roots={v for v in roots if v<0x5c0000}
+ report=dict(schema=1,success=False,static_only=True,scope=__doc__,sources=sources,original_sha256=PIN,inputs={str(ip.relative_to(ROOT)):evidence_digest(ip,root=ROOT)},semantic_or_transitive_closure_proved=False)
  (out/'prospective.json').write_text(json.dumps(report,indent=2)+'\n');verified=False;decoder=None
  try:
   with (out/'original-before.log').open('x') as log:subprocess.run([ROOT/'tools/original-manifest.sh','verify'],stdout=log,stderr=subprocess.STDOUT,check=True)

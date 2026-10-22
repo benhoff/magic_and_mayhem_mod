@@ -55,15 +55,15 @@ def index(root, register):
 
 
 def main():
+    from coverage_evidence import write_report
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--register', type=Path, default=ROOT/'research/runtime/coverage/register.json')
     parser.add_argument('--output', type=Path, required=True, help='New source-index snapshot; refuses overwrite')
     args = parser.parse_args()
     result = index(ROOT, json.loads(args.register.read_text()))
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    with args.output.open('x') as out:
-        json.dump(result, out, indent=2)
-        out.write('\n')
+    if args.output.exists():
+        parser.error('Refusing to overwrite source index: '+str(args.output))
+    write_report(ROOT, args.output.resolve(), (json.dumps(result, indent=2)+'\n').encode())
     print(f'{len(result["files"])} source/build files; {sum(bool(r["references"]) for r in result["files"])} explicitly linked')
 
 

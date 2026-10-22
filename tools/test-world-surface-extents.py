@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Validate bounded 640/800 World extent admission in host batches and real PE32 entries."""
+from coverage_evidence import read_json as evidence_json
 import argparse,hashlib,json,subprocess
 from pathlib import Path
 from coverage_claims import behavior_contract,required_sources,scenario_contract
 ROOT=Path(__file__).resolve().parents[1];BEHAVIOR='NP.world-raster-surface-extents'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def declaration():
-    r=json.load(open(ROOT/'research/runtime/coverage/register.json'));b=next(b for b in r['behaviors'] if b['id']==BEHAVIOR);s=next(s for s in r['scenarios'] if s['id']=='native-world-surface-extents')
+    r=evidence_json(ROOT/'research/runtime/coverage/register.json');b=next(b for b in r['behaviors'] if b['id']==BEHAVIOR);s=next(s for s in r['scenarios'] if s['id']=='native-world-surface-extents')
     paths=required_sources(b)|set(s['tests'])
     for directory in ['runtime/scene','runtime/shadow','runtime/render','protocols','compat/legacy','renderer','assets']:
         paths.update(str(p.relative_to(ROOT)) for p in (ROOT/directory).rglob('*') if p.is_file() and (p.suffix in ['.h','.hpp','.c','.cpp','.S','.py','.json'] or p.name=='CMakeLists.txt'))
@@ -25,7 +26,7 @@ def main():
         gpu=[json.loads(line) for line in (out/'gpu.log').read_text().splitlines() if line.startswith('{\"width\":')]
         if [(row['width'],row['height']) for row in gpu]!=[(640,480),(800,600)] or any(row['world_readbacks'] or row['hud_and_copy_checks']!=2 for row in gpu):raise ValueError('Incomplete GPU extent composition')
         (out/'hook-claims.json').write_text(json.dumps(dict(claims=claims,sources=sources),indent=2)+'\n')
-        run('hooks',['python3',ROOT/'tools/test-canvas-producers.py','--claims',out/'hook-claims.json','--report',out/'hook-report.json']);hook=json.load(open(out/'hook-report.json'))
+        run('hooks',['python3',ROOT/'tools/test-canvas-producers.py','--claims',out/'hook-claims.json','--report',out/'hook-report.json']);hook=evidence_json(out/'hook-report.json')
         if not hook['surface_extent640_native_bypassed'] or hook['surface_extent640_invalid_controls']!=4 or hook['surface_extent640_midqueue_identity_controls']!=5:raise ValueError('Incomplete extent controls')
         binds=[]
         for width in [640,800]:
@@ -34,7 +35,7 @@ def main():
             logs=(out/(label+'.log')).read_text().splitlines()
             paths=[Path(line.strip()) for line in logs if line.strip().startswith(str(ROOT/'working/tests/resident-bind-admission/run-')) and not line.strip().endswith('report.json')]
             if not paths:raise ValueError('Missing bind fixture output')
-            result=paths[0]/'report.json';bind=json.load(open(result))
+            result=paths[0]/'report.json';bind=evidence_json(result)
             if not bind.get('success') or not bind.get('bind_succeeded') or bind.get('width')!=width:raise ValueError('Incomplete public bind proof')
             binds.append(dict(width=width,record=str(result),sha256=sha(result)))
         if declaration()!=(claims,sources):raise ValueError('Source/contract changed')

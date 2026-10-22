@@ -4,6 +4,9 @@
 #include "../reconstruction/rendering/actor_service_ui.hpp"
 #include "../reconstruction/rendering/actor_service_dependencies.hpp"
 #include "../reconstruction/rendering/actor_service_popups.hpp"
+#include "../reconstruction/rendering/actor_service_collections.hpp"
+#include "../reconstruction/rendering/actor_service_effects.hpp"
+#include "../reconstruction/rendering/actor_service_construction.hpp"
 #include <algorithm>
 #include <array>
 #include <cstdio>
@@ -23,6 +26,7 @@
 #include "sprite-binary-reference.cpp"
 #undef main
 #include "original-linux-seh.hpp"
+extern "C" unsigned actor_services_cleanup(unsigned);
 extern "C" unsigned actor_services_call(unsigned,unsigned,unsigned,unsigned,const unsigned*,unsigned);
 #endif
 namespace s=mnm::reconstruction::actor_services;
@@ -31,11 +35,11 @@ constexpr U Base=0x10000000,Object=Base,Other=Base+0x2000,Manager=Base+0x4000,
     Pool=Base+0x5000,Catalog=Base+0xa000,Array=Base+0xe000,
     Nodes=Base+0xf000,Buffer=Base+0x12000,Output=Base+0x14000,Code=Base+0x1e000;
 constexpr U GetStatus=0x1001f000,Stop=0x1001f040,Position=0x1001f080,Constructor=0x1001f100;
-static constexpr std::array<std::array<U,2>,52> Globals{{
+static constexpr std::array<std::array<U,2>,60> Globals{{
     {{0x5e1900,0x40}},{{0x5fbf00,0x40}},{{0x5fcc80,4}},{{0x643a80,0xb00}},
     {{0x65b250,0x1500}},{{0x689920,4}},{{0x6a4646,4}},{{0x6def58,0x240}},
     {{0x6e1f88,4}},{{0x6e9848,12}},{{0x6f2a94,4}},{{0x6f437c,4}},
-    {{0x6fa78c,16}},{{0x6e0000,16}},{{0x5c7144,0x120}},{{0x6dbe9d,1}},{{0x5d9e38,4}},{{0x5e16fc,4}},{{0x6de6d5,8}},{{0x6c482c,4}},{{0x6c4859,1}},{{0x6903e8,16}},{{0x689498,0x450}},{{0x6b1270,0x1000}},{{0x5fed7c,4}},{{0x6c5040,0x110}},{{0x65660c,4}},{{0x6c5494,0x50}},{{0x6cb8be,0x100}},{{0x6cb942,0x100}},{{0x6b1248,8}},{{0x5e5594,0x34}},{{0x6a5fd8,0xa600}},{{0x6bb743,4}},{{0x6e1ee4,4}},{{0x6e2032,1}},{{0x6e1f0c,4}},{{0x6dbf00,0x2700}},{{0x6db967,0x300}},{{0x6f37f8,8}},{{0x6e9808,4}},{{0x5e04cc,4}},{{0x641ab8,0x600}},{{0x641fbc,4}},{{0x5f2094,0x58}},{{0x5f1ec8,4}},{{0x6f6b50,0x2d88}},{{0x6593e0,16}},{{0x6903dc,4}},{{0x6c4e3c,4}},{{0x6a4642,0x40}},{{0x6c4e40,0x200}}
+    {{0x6fa78c,16}},{{0x6e0000,16}},{{0x5c7144,0x120}},{{0x6dbe9d,1}},{{0x5d9e38,4}},{{0x5e16fc,4}},{{0x6de6d5,8}},{{0x6c482c,4}},{{0x6c4859,1}},{{0x6903e8,16}},{{0x689498,0x450}},{{0x6b1270,0x1000}},{{0x5fed7c,4}},{{0x6c5040,0x110}},{{0x65660c,4}},{{0x6c5494,0x50}},{{0x6cb8be,0x100}},{{0x6cb942,0x100}},{{0x6b1248,8}},{{0x5e5594,0x34}},{{0x6a5fd8,0xa600}},{{0x6bb743,4}},{{0x6e1ee4,4}},{{0x6e2032,1}},{{0x6e1f0c,4}},{{0x6dbf00,0x2700}},{{0x6db967,0x300}},{{0x6f37f8,8}},{{0x6e9808,4}},{{0x5e04cc,4}},{{0x641ab8,0x600}},{{0x641fbc,4}},{{0x5f2094,0x58}},{{0x5f1ec8,4}},{{0x6f6b50,0x2d88}},{{0x6593e0,16}},{{0x6903dc,4}},{{0x6c4e3c,4}},{{0x6a4642,0x40}},{{0x6c4e40,0x200}},{{0x6e1f3c,4}},{{0x6c5c88,4}},{{0x6f3a70,0x30}},{{0x6b1250,8}},{{0x6a42e8,4}},{{0x6f694c,0x204}},{{0x642034,0xc38}},{{0x6e1f1c,4}}
 }};
 struct Memory;
 static Memory* active;
@@ -105,16 +109,50 @@ struct Memory {
         if(id==0x4d9f30||id==0x57d310)stringRecord(0);
         if(id==0x59c1fd)normalized[0]=0x20000000;
         if(id==0x5c50c0){normalized[2]=0x20000000;normalized[3]=0x20001000;}
+        if(id==0x4694e0){U x,y,z;std::memcpy(&x,localPointer(self,4),4);std::memcpy(&y,localPointer(second,4),4);std::memcpy(&z,localPointer(a[0],4),4);self=0x20000008;second=0x20000004;normalized[0]=0x20000000;payload.insert(payload.end(),{x,y,z});}
+        if(id==0x4f49e0)normalized[3]=0x20000000;
         events.insert(events.end(),{id,self,second,U(args.size())});events.insert(events.end(),normalized,normalized+args.size());events.insert(events.end(),payload.begin(),payload.end());digest();++calls;
         switch(id){
+        case 0x1001f380:return variant&4&&++heapRetries<3?1:0;
+        case 0x1001f3c0:break;
+        case 0x1001f400:set32(self+8,a[0]);break;
+        case 0x4694e0:{U v=7;std::memcpy(localPointer(a[0],4),&v,4);return variant&4?0:1;}
+        case 0x469170:break;
+        case 0x509aa0:set32(self+0x17c+a[0]*24+20,0);break;
+        case 0x506220:return variant&4;
+        case 0x51e7d0:set32(self+0x128,a[0]);break;
+        case 0x416d80:return variant*3+1;
+        case 0x522770:return a[0]&&!(variant&8)?0:Output+0x800+a[0]*64;
+        case 0x5437f0:return variant&8?0:0xffff;
+        case 0x4681f0:case 0x4680f0:case 0x467fe0:set32(second+4,0);break;
+        case 0x5097b0:return variant&8?0:1;
+        case 0x571310:break;
+        case 0x543ee0:set32(self+0x2a,a[0]);break;
+        case 0x51e500:return variant*127-700;
+        case 0x507fa0:set32(self+0x24+a[0]*4,get32(self+0x24+a[0]*4)+a[1]);break;
+        case 0x4db080:set32(self,a[0]);break;
+        case 0x543c60:set32(self+4,0);break;
+        case 0x4f49e0:{U values[]={a[0]*32+16,a[1]*32+16,a[2]*16};std::memcpy(localPointer(a[3],12),values,12);break;}
+        case 0x4eb710:set16(self,a[0]);break;
+        case 0x540430:return variant&16?U(-1):3;
+        case 0x540140:break;
+        case 0x545e90:set32(self,Output+0xc00);set32(Output+0xc00,0x1001f340);set32(self+8,a[0]);set32(self+12,a[1]);set32(self+16,a[2]);return variant&4?0:self;
+        case 0x5457e0:return variant&8;
+        case 0x1001f340:set32(self+20,a[0]);break;
         case 0x4f4330:return variant&1;
+        case 0x494ab0:set32(self+0x180,a[0]);break;
+        case 0x565180:return (variant+a[1])%3!=0;
+        case 0x5654e0:if(variant&2)set32(a[0]+0x27c,1);return (variant+a[1])&1;
+        case 0x566d80:if(variant&4)set32(a[0],0);break;
+        case 0x466900:return 0x643a80+(variant%3)*0x154;
         case 0x58b660:return variant&2?0:Buffer;
-        case 0x57dc20:case 0x57dc60:case 0x57de00:case 0x4d72d0:case 0x4d53d0:case 0x58bc10:case 0x4d47f0:case 0x4a5a90:case 0x4a5ce0:case 0x56f000:case 0x1001f280:case 0x1001f2c0:break;
+        case 0x4d53d0:if(UsePopups&&get32(self+0x1518))set32(self+0x1518,get32(self+0x1518)-1);break;
+        case 0x57dc20:case 0x57dc60:case 0x57de00:case 0x4d72d0:case 0x58bc10:case 0x4d47f0:case 0x4a5a90:case 0x4a5ce0:case 0x56f000:case 0x1001f280:case 0x1001f2c0:break;
         case 0x1001f300:return variant&1;
         case 0x58d1a0:return variant&1?0:1;
         case 0x4d2e50:case 0x4d6e90:case 0x4de6c0:case 0x597b40:break;
         case 0x1001f1c0:if(variant&4)set32(self+4,U(-1));break;
-        case 0x1001f200:set32(self+16,0);break;
+        case 0x1001f200:set32(self+16,0);if(runningEntry==0x42a340&&(variant&16))set32(Manager+8,get32(Manager+8)-4);break;
         case 0x1001f240:set32(0x5f2094,Other);break;
         case 0x597d40:if(!(variant&2))set32(0x5f2094,Other);return variant&1?0:1;
         case 0x598a10:++heapAttempts;return heapAttempts>variant%3?Buffer:0;
@@ -181,11 +219,17 @@ struct Memory {
         if(UseUiServices)for(U entry:UiRoots)if(entry==id)return s::UiServices<Memory>(*this).run(id,self,args);
         if(UseDependencies)for(U entry:DependencyRoots)if(entry==id)return s::Dependencies<Memory>(*this).run(id,self,args);
         if(UsePopups)for(U entry:PopupRoots)if(entry==id)return s::PopupServices<Memory>(*this).run(id,self,args);
+        if(UseCollections)for(U entry:CollectionRoots)if(entry==id)return s::CollectionServices<Memory>(*this).run(id,self,args);
+        if(UseEffects)for(U entry:EffectRoots)if(entry==id)return s::EffectServices<Memory>(*this).run(id,self,args);
+        if(UseConstruction)for(U entry:ConstructionRoots)if(entry==id)return s::ConstructionServices<Memory>(*this).run(id,self,args);
+        if(id==0x509790)return self+0x17c+*args.begin()*24;
         if(id==0x59cb60){auto it=args.begin();U dst=*it++,src=*it++,count=*it;std::memmove(pointer(dst,count),pointer(src,count),count);return dst;}
         return external(id,self,0,args);
     }
     U fastcall(U id,U self,U second,std::initializer_list<U> args){
         for(U entry:ControllerRoots)if(entry==id)return s::Controllers<Memory>(*this).run(id,self,args,second);
+        if(UseCollections)for(U entry:CollectionRoots)if(entry==id)return s::CollectionServices<Memory>(*this).run(id,self,args,second);
+        if(UseEffects)for(U entry:EffectRoots)if(entry==id)return s::EffectServices<Memory>(*this).run(id,self,args,second);
         return external(id,self,second,args);
     }
     U com(U id,U buffer,std::initializer_list<U> args){
@@ -249,6 +293,7 @@ extern "C" __attribute__((force_align_arg_pointer)) U actor_services_provider(U 
         case 4:return active->external(id,self,second,{args[0],args[1],args[2],args[3]});
         case 6:return active->external(id,self,second,{args[0],args[1],args[2],args[3],args[4],args[5]});
         case 7:return active->external(id,self,second,{args[0],args[1],args[2],args[3],args[4],args[5],args[6]});
+        case 8:return active->external(id,self,second,{args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7]});
         case 11:return active->external(id,self,second,{args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10]});
         default:_exit(85);
         }
@@ -269,7 +314,7 @@ static void installProviders(){
     }
 }
 #endif
-static bool returnsValue(U id){for(U entry:{0x4667c0u,0x58a680u,0x5977d0u,0x597880u,0x598f70u,0x414890u,0x5055a0u,0x520790u,0x463cb0u,0x5057b0u,0x411e50u,0x466870u,0x474b40u,0x49bcf0u,0x49c530u,0x4de090u,0x5075f0u,0x597850u})if(id==entry)return true;return false;}
+static bool returnsValue(U id){for(U entry:{0x464350u,0x4a4df0u,0x469000u,0x49cdb0u,0x4667c0u,0x58a680u,0x5977d0u,0x597880u,0x598f70u,0x414890u,0x5055a0u,0x520790u,0x463cb0u,0x5057b0u,0x411e50u,0x466870u,0x474b40u,0x49bcf0u,0x49c530u,0x4de090u,0x5075f0u,0x597850u})if(id==entry)return true;return false;}
 int main(int argc,char** argv)try{
     struct sigaction action{};action.sa_sigaction=fault;action.sa_flags=SA_SIGINFO;sigemptyset(&action.sa_mask);for(int n:{SIGSEGV,SIGILL,SIGFPE,SIGABRT})sigaction(n,&action,nullptr);
 #ifdef MNM_ORIGINAL_REFERENCE
@@ -337,7 +382,53 @@ int main(int argc,char** argv)try{
             for(U i=0;i<4;++i){w(Other+0x1500+i*4,i*64);w(Other+0x1600+i*64+28,(seed+i)&1?U(-1):0);}
             w(0x6de6d9,seed&1);w(0x6de6d5,(seed/2)&1);memory.set8(0x6e2032,(seed/4)&1);w(0x6e1ee4,seed&1);
         }
+        if(UseCollections){
+            p=Other;w(p,1);w(p+4,1);w(p+8,2);w(p+12,2);w(p+16,1);w(p+0xac,Catalog);w(p+0xa8,17);w(Catalog,17);w(Catalog+24,100);w(Catalog+40,30);w(Catalog+20,40);w(Catalog+8,1);w(Catalog+12,1);w(p+0x174,1);w(p+0x7c,0);w(p+0xe4,80);w(p+0x124,0);w(p+0x128,0);w(p+0x60c,seed%8);
+            constexpr U Definition=Catalog+0x800;w(Definition+4,Array);w(Definition+8,Buffer);
+            for(U off:{0xb0u,0x12cu,0x7d5u}){w(p+off,0);w(p+off+4,Buffer);w(p+off+24,Buffer);w(p+off+28,Definition);}
+            w(0x6894a0,Definition);w(0x6898d0,Other+0x1000);w(Other+0x1240,2);w(Other+0x1244,0);
+            w(p+0x6b4,5);w(p+0x6b8,10);w(p+0x6c4,80);w(p+0x6c8,100);w(p+0x6cc,6);w(p+0x6d0,Output+0x400);
+            w(Base+0x10008,0x1001f200);memory.set16(Base+0x1000e,0xcad0);w(0x5f2094,Other);w(0x5f1ec8,0);
+        }
+        if(UseEffects){
+            constexpr U First=Base+0x9000;w(0x689498,First-125*0x22e);w(0x68949c,126);w(First,125);w(First+4,0);w(First+0x20e,0);w(0x6898dc,1);w(0x6f3a70,Nodes+0x400);w(0x6f3a78,0);w(0x6f3a90,0);w(0x6c5c88,9);w(0x6b1250,Base+0x6000);w(0x6b1254,123);w(0x6a42e8,0);w(0x68991c,seed&2);w(0x5e1904,100);w(0x5e1908,30);
+        }
+        if(UseConstruction){
+            p=Other;w(p+4,seed%5==4?U(-1):seed%4);w(p+8,9);w(p+0x85,seed&1?Base+0x11000:0);w(p+0x93,seed&2?Output:0);w(Output,Output+0x100);w(Output+0x104,0x1001f400);w(0x6e1f1c,seed&1);w(0x6f8154,2);w(0x6f98c0,p+0x21);w(0x6f6b4c,7);w(0x6f694c,9);
+            constexpr U Table=Output+0x200;w(Table+8,0x1001f380);w(Table+0x98,0x1001f3c0);
+            for(U i=0;i<3;++i)w(Output+0x300+i*32,Table);
+            for(U i=0;i<2;++i){U c=p+(i?0x53:0x21);w(c+4,Output+0x300);w(c+8,seed&8?0:Output+0x320);w(c+12,seed&16?Output+0x340:0);w(c+28,i);w(0x6f6950+i*4,c);}for(U i=2;i<128;++i)w(0x6f6950+i*4,0);
+            w(0x642c68,4);w(0x5e04cc,seed%6==5?U(-1):seed%5);for(U i=0;i<4;++i){U widget=Nodes+i*64;w(0x642034+i*4,widget);w(widget+4,i);w(widget+8,1);}w(Base+0x10008,0x1001f200);memory.set16(Base+0x1000e,0xcad0);
+        }
         switch(entry){
+        case 0x4a4df0:case 0x464350:case 0x463270:break;
+        case 0x4a4f70:p=seed%5==4?U(-1):seed%4;break;
+        case 0x58b3e0:p+=0x21;break;
+        case 0x59bf87:args={Nodes+(seed%7)*17,17,seed%7,Constructor};break;
+        case 0x59c4ab:p=Manager;w(p-32,seed&1);w(p-28,seed%7);w(p+8,Nodes+(seed%7)*17);w(p+12,17);w(p+24,Constructor);break;
+        case 0x469000:{
+            second=seed%3;U desc=p+0x17c+second*24;for(U i=0;i<5;++i)w(desc+i*4,30+i);w(desc+20,seed%4);U at=Base+0x16000+(2+2*6+30)*12;memory.set16(at+6,seed&8?0:0xffff);w(0x6b1248,Base+0x6800);w(0x6b124c,1);w(Base+0x682a,seed&16?50:1);w(Base+0x686a,U(-1));args={seed&32?31u:30u,seed&2?U(-1):seed%4};break;
+        }
+        case 0x468470:{
+            second=Base+0x6800;U types[]={0,1,2,3,4,6,5,19,50,53,54,55,56,97,122,123,61};U type=types[seed%17];w(second+4,seed%13!=0);w(second+0x2a,type);for(U i=0;i<4;++i)w(second+0x6a+i*4,3+i);w(0x6b1248,Base+0x6900);w(0x6b124c,1);w(Base+0x6904,1);w(Base+0x692a,5);for(U i=0;i<4;++i)w(Base+0x696a+i*4,3+i);w(Catalog,seed&16?17:0);w(p+0x7c,0);w(p+0xe4,60);w(Base+0x6000+type*32+20,2);memory.set8(0x6a6500+17*0x5c9,10);for(U i=0;i<8;++i)w(p+0x24+i*4,i%2);break;
+        }
+        case 0x490260:{
+            U types[]={65,69,70,91,92,1},starts[]={0x167,0x153,0x159,0x14d,0x160,0};U k=seed%6;w(p+0x4c,types[k]);w(p+20,64);w(p+24,96);w(p+28,48);w(p+40,1);w(p+0x19c,0);w(p+0x5c,0);w(p+0x194,Base+0x16000+(2+2*6+2*30)*12);for(U z=0;z<3;++z)memory.set16(Base+0x16000+(2+2*6+z*30)*12,seed&1?starts[k]+z:1);w(0x6e1f3c,seed&2);w(0x6898e4,Nodes);w(0x6898e8,2);w(Nodes,Nodes+64);w(Nodes+4,Nodes+128);w(Nodes+64,Nodes+128);w(Nodes+68,Nodes);w(Nodes+72,seed&32?0:p);w(Nodes+128,Nodes);w(Nodes+132,Nodes+64);w(Nodes+136,seed&32?p:0);w(Base+8,0x1001f200);memory.set16(Base+14,0xcad0);break;
+        }
+        case 0x42a340:{
+            p=Manager;U begin=Base+0x11000,size=seed%7,capacity=seed&8?size:10;w(p+4,begin);w(p+8,begin+size*4);w(p+12,begin+capacity*4);for(U i=0;i<16;++i)w(begin+i*4,i+100);w(Output,777);args={begin+((seed/7)%(size+1))*4,(seed/14)%4,seed&32?begin:Output};break;
+        }
+        case 0x49cdb0:{
+            p=Manager;constexpr U First=Base+0x9000,SecondaryBase=First-125*0x22e;
+            w(p,SecondaryBase);w(p+4,123+seed%8);w(0x689498,SecondaryBase);w(0x68949c,131);w(0x6898dc,131);
+            for(U i=0;i<7;++i){U row=First+i*0x22e;w(row,125+i);w(row+4,seed&8?1:(seed+i)%3);w(row+0x20e,(seed+i)%5==0);U types[]={85,14,26,40,58,39,1};w(row+40,types[(seed+i)%7]);w(row+8,i%6);w(row+12,2);w(row+16,1);w(row+0x19c,0);w(row+0x5c,0);}break;
+        }
+        case 0x514e40:
+            w(p+0x124,seed%3);w(p+0x128,seed%3==0?30:60);w(0x6a650d+17*0x5c9,25);w(0x6a6511+17*0x5c9,50);w(0x6def78+17*4,seed&8);if(seed&16)w(Catalog,24);if(seed&32)w(p+0xe4,0);args={seed%7};break;
+        case 0x564e90:{
+            U actor=p;p=Manager;constexpr U Records=Base+0x7800;w(p,Records);w(p+8,seed%5);w(p+32,17);U kinds[]={0,1,2,3,6,7,9,8};U event=kinds[(seed/5)%8];
+            for(U i=0;i<4;++i){U row=Records+i*0x47c;w(row,(seed+i)&1);w(row+4,(seed+i)%3);w(row+8,(seed+i)%3);w(row+0x138,seed%3);memory.set8(row+0x144,seed&8?'a':0);memory.set8(row+0x145,0);w(row+0x27c,(seed+i)&1);w(row+0x470,(seed+i)&2);w(row+0x24,0);}memory.set16(0x5fc874,0);args={event,actor,(seed/3)%3,2,3,4};break;
+        }
         case 0x4d3b40:case 0x4d3c90:case 0x4d5640:case 0x4d78b0:case 0x4d7a00:case 0x4d7a90:break;
         case 0x4d6c80:args={seed,0};if(seed&16)w(p+0x1908,12);break;
         case 0x4d6620:
@@ -462,15 +553,16 @@ int main(int argc,char** argv)try{
         U result;
 #ifdef MNM_ORIGINAL_REFERENCE
         U pop=0;for(const auto& spec:ServiceAbis)if(spec.id==entry)pop=spec.pop;
-        result=actor_services_call(entry,p,second,U(args.size()),args.data(),pop);seh.check();if(!bodiesUnchanged())throw std::runtime_error("original body altered during execution");
+        result=entry==0x59c4ab?actor_services_cleanup(p):actor_services_call(entry,p,second,U(args.size()),args.data(),pop);seh.check();if(!bodiesUnchanged())throw std::runtime_error("original body altered during execution");
 #else
         bool controller=false;for(U id:ControllerRoots)controller|=id==entry;
-        auto execute=[&](std::initializer_list<U> values){return controller?s::Controllers<Memory>(memory).run(entry,p,values,second):UsePopups?s::PopupServices<Memory>(memory).run(entry,p,values):UseWorldServices?s::WorldServices<Memory>(memory).run(entry,p,values):UseUiServices?s::UiServices<Memory>(memory).run(entry,p,values):UseDependencies?s::Dependencies<Memory>(memory).run(entry,p,values):native.run(entry,p,values);};
+        auto execute=[&](std::initializer_list<U> values){return UseConstruction?s::ConstructionServices<Memory>(memory).run(entry,p,values):UseEffects?s::EffectServices<Memory>(memory).run(entry,p,values,second):controller?s::Controllers<Memory>(memory).run(entry,p,values,second):UsePopups?s::PopupServices<Memory>(memory).run(entry,p,values):UseCollections?s::CollectionServices<Memory>(memory).run(entry,p,values,second):UseWorldServices?s::WorldServices<Memory>(memory).run(entry,p,values):UseUiServices?s::UiServices<Memory>(memory).run(entry,p,values):UseDependencies?s::Dependencies<Memory>(memory).run(entry,p,values):native.run(entry,p,values);};
         if(args.size()==0)result=execute({});
         else if(args.size()==1)result=execute({args[0]});
         else if(args.size()==2)result=execute({args[0],args[1]});
         else if(args.size()==3)result=execute({args[0],args[1],args[2]});
         else if(args.size()==6)result=execute({args[0],args[1],args[2],args[3],args[4],args[5]});
+        else if(args.size()==4)result=execute({args[0],args[1],args[2],args[3]});
         else if(args.size()==5)result=execute({args[0],args[1],args[2],args[3],args[4]});
         else throw std::runtime_error("root argument extent");
 #endif

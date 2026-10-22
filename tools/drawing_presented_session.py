@@ -3,6 +3,7 @@
 Only the external comparator holds original pixels and expected caller results.
 The physical presenter receives frames derived by the native composition child.
 """
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import json
 import os
 from pathlib import Path
@@ -50,7 +51,7 @@ def read(root, name, limit):
     path = local(root, name)
     if not path.is_file() or path.stat().st_size > limit:
         raise ValueError('Owned input is missing or oversized')
-    return path.read_bytes()
+    return evidence_bytes(path)
 
 
 def asset_path(root, name):
@@ -206,7 +207,7 @@ def replay(root, output, composition, presenter, conversion='bit-replicated'):
         (output/(name+'.log')).write_bytes(result.stdout+result.stderr)
         if result.returncode: raise ValueError('Native '+name+' execution failed')
     execute('composition', [str(Path(composition).resolve()), str(owned), str(output/'composed')])
-    native = json.loads((output/'composed/session-report.json').read_text())
+    native = json.loads(evidence_text(output/'composed/session-report.json'))
     if native['success'] is not True or native['remaining_surfaces'] != 0 or native['original_oracles_read'] is not False or native['original_pixels_used_as_native_inputs'] is not False or native['session'] != plan['session'] or len(native['frames']) != len(mapped):
         raise ValueError('Incomplete or contaminated native composition')
     physical_input = output/'presentation-input'; physical_input.mkdir(); declarations = []; planes = []
@@ -221,7 +222,7 @@ def replay(root, output, composition, presenter, conversion='bit-replicated'):
     (physical_input/'presentation.json').write_text(json.dumps(dict(schema=1, frames=declarations)))
     execute('presentation', [str(Path(presenter).resolve()), str(physical_input), str(output/'physical'),
         *(['--normalized-nearest'] if conversion == 'normalized-nearest' else [])])
-    physical = json.loads((output/'physical/presentation-report.json').read_text())
+    physical = json.loads(evidence_text(output/'physical/presentation-report.json'))
     if physical['success'] is not True or physical['remaining_surfaces'] != 0 or physical['qimage_uploads'] != 0 or physical['physical_presentation'] is not True or physical['display_conversion'] != conversion or len(physical['frames']) != len(planes):
         raise ValueError('Native physical presentation did not finish')
     frames = []
