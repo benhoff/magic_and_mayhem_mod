@@ -70,6 +70,17 @@ static void test_working_set(const char* mode){
     u32 cs_counts[2]={cs_locks,cs_unlocks};pl_file("cs-counts.bin",cs_counts,8);
     SetLastError(0x77);u32 complete=RenderShutdown(3000);if(complete!=(full?0u:1u) || GetLastError()!=0x77)ExitProcess(479);
     if(RenderShutdown(0)!=complete || GetLastError()!=0x77)ExitProcess(480);
-    u32 storage[6];if(!RenderRecoveryStorageForTest(storage) || GetLastError()!=0x77 || storage[0] || storage[1] || storage[2] || storage[5])ExitProcess(481);
-    pl_file("storage.bin",storage,sizeof(storage));ExitProcess(0);
+    u32 storage[6];u32 reported=RenderRecoveryStorageForTest(storage),error=GetLastError();
+    pl_file("storage.bin",storage,sizeof(storage));
+    /* Ordered prepared admission stops observation after the all-pinned GAP.
+     * Original Unlock still forwards, but cannot retire unobserved native
+     * history. Retain exactly the31authored6x4x32-bit bases until process exit;
+     * never clear inferred borrows merely to satisfy a cleanup counter. */
+    char prepared_mode[8];
+    u32 prepared=GetEnvironmentVariableA("MNM_WORLD_SNAPSHOT",prepared_mode,8)==1 && prepared_mode[0]=='1';
+    prepared&=GetEnvironmentVariableA("MNM_PUBLIC_RESIDENT_WORLD",prepared_mode,8)==1 && prepared_mode[0]=='1';
+    prepared&=GetEnvironmentVariableA("MNM_RENDER_ORDERED_COPIES",prepared_mode,8)==1 && prepared_mode[0]=='1';
+    u32 retained=full && prepared?31u*6u*4u*4u:0;
+    if(!reported || error!=0x77 || storage[0] || storage[1] || storage[2] || storage[5]!=retained)ExitProcess(481);
+    ExitProcess(0);
 }

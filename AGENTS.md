@@ -47,6 +47,9 @@ changes.
   verified.
 - Avoid introducing gameplay balance changes while still validating engine
   behavior.
+- Store new generated evidence and bookkeeping in SQLite. Follow
+  [SQLite evidence storage](#sqlite-evidence-storage); do not introduce expanded
+  JSON report files as the default recording or export workflow.
 
 ## Working storage budget
 
@@ -68,9 +71,37 @@ changes.
   and completed-run retention over accumulating full disposable copies. Record
   storage reports under `working/retention/`; do not refresh historical evidence
   hashes or remove originals to meet the budget.
+- Check free space at the start of a work session, at least daily during active
+  work, and after each build/experiment batch. Review storage when main-drive
+  free space is below 150 GiB, or a completed batch has produced at least 10 GiB.
+  Aim to restore 180 GiB free through eligible cleanup; 90 GiB remains the hard
+  reserve, not the normal operating target. Do not rescan the whole tree before
+  every command: retain one inventory per maintenance pass and refresh affected
+  activity, dependencies and file identities immediately before removal.
+- Periodic maintenance is authorized by the user on 2026-10-20. Within this
+  standing authorization, archive and remove only reviewed, ignored payloads in
+  completed/inactive runs, including ignored output inside registered worktrees.
+  Preserve the source checkouts, unique sources, reports, configuration, saves,
+  current fixture/tool inputs, all `.retain` pins, active/recent runs and the
+  newest two runs per group. Keep files modified within 24 hours and directories
+  active within the past hour. Check host-visible processes and Wine prefixes;
+  old timestamps and a manifest alone do not establish inactivity.
+- Before maintenance removes a local payload, retain an exact file-level plan,
+  verify its complete cold copy and both durable catalog receipts, and recheck
+  the source identity, pins, current consumers and activity. Record reclaimed
+  allocated bytes separately from filesystem free-space changes; verify a real
+  restore and preserve failed attempts. Historical source drift is not permission
+  to discard original captures or negative evidence. If no safe candidates remain,
+  report the shortfall rather than weakening these exclusions.
+- At batch closeout, identify durable evidence and temporary execution outputs.
+  Prefer bounded captures and reusable, marked, idle, exclusively locked fixture
+  prefixes over fresh full installations for every attempt. Avoid full source
+  snapshots when an exact Git revision plus preserved unique changes supplies the
+  same reproducibility; never remove existing source snapshots without review.
 - The verified cold archive is `/var/local/magic-and-mayhem-archive` on the second
-  NVMe. Automatic archiving is disabled; cleanup is deferred until explicitly
-  requested. Use `working-retention.py restore <working-path>` before
+  NVMe; keep at least 100 GiB free there. Automatic archiving inside experiment
+  launch remains disabled; the reviewed periodic maintenance above is separate.
+  Use `working-retention.py restore <working-path>` before
   reading archived inputs. Include ignored worktree output only after inspecting
   its activity; preserve tracked sources, pins and active/recent runs. An archive
   is storage provenance, not fresh engine comparison or replacement evidence.
@@ -130,8 +161,14 @@ infer semantic mappings or update the register automatically.
   retrospective accounting does not assert a past gate pass or new validation.
 - For affected code, tests, research or coverage metadata, append an exact
   hash-bound review to `research/runtime/coverage/change-reviews.json`, naming
-  all affected behaviors and new pending gaps. Use `--draft-review` to prepare
-  the hashes, then supply concrete review and validation reasons. Drafts with
+  all affected behaviors and new pending gaps. Prefer the local SQLite workflow:
+  `python3 tools/coverage-bookkeeping.py prepare --base HEAD`, then `record`
+  with concrete `--reason` and `--validation-reason` values. Recording rechecks
+  the draft and exports automatically; inspect `gate_errors`, since a scoped
+  receipt can leave unrelated work pending. After reviewing source links,
+  `prepare --index-review-reason <reason>` generates and pins the source census.
+  Keep the database under ignored `working/`; text exports remain Git/CI authority.
+  The manual `--draft-review` workflow also prepares exact hashes. Drafts with
   empty reasons do not pass. Preserve prior receipts.
   Validation is `pending`, `recorded` or `not_required`; engine/protocol changes
   cannot use `not_required`, and status promotions require fresh execution
@@ -146,8 +183,9 @@ infer semantic mappings or update the register automatically.
   update their `register_imports` hashes only after reviewing their entries.
 - Update `research/runtime/coverage-ledger.md` when scope or milestones change.
   Refresh the generated coverage summary when register/status changes warrant
-  it, retaining new machine-readable reports under `working/`. Follow the
-  coverage README's report and evidence preservation workflow.
+  it. Retain durable machine-readable results through the SQLite report writer;
+  use physical JSON under `working/` only for the explicit interchange/retention
+  exceptions below. Follow the coverage README's evidence preservation workflow.
 - Retain unknown functions, unassigned ranges, unresolved indirect flows and
   incomplete dispatch tables. Add documented classifications or recovered-range
   exceptions where justified. Re-export/review the binary inventory when new
@@ -207,13 +245,69 @@ Once the working installation and launcher have been created, use:
 
 ## SQLite evidence storage
 
-Run `python3 tools/evidence-store.py hydrate` in a fresh checkout and install the
-coverage hook. Evidence pointers in Git preserve exact original report bytes in
+SQLite is the default for generated evidence, experiment results, inventories,
+source censuses, coverage snapshots and change-review bookkeeping. Choose the
+storage path before running a producer; do not generate a durable JSON file and
+leave its migration to a later cleanup.
+
+- New tools and agent scripts must use `coverage_evidence.write_report` for
+  immutable generated reports under `research/runtime/` or `research/formats/`.
+  Pass serialized bytes directly to the writer. Do not use `write_text`,
+  `json.dump`, shell redirection or file copies to create expanded JSON reports
+  there, including dated `*-current.json`, `*-final.json` and review snapshots.
+  If a producer requires a physical output file, use a bounded temporary output
+  under ignored `working/`, then import the durable result through the writer.
+- The writer stores payloads in ignored
+  `working/coverage/evidence-pending.sqlite3`. A small `.json`-named SQLite
+  reference is allowed where the existing evidence/register/census interface
+  requires a path. It is a compatibility reference, not an editable JSON report.
+  Do not add redundant report copies or exports alongside it.
+- Record reviews with `tools/coverage-bookkeeping.py prepare` and `record`.
+  SQLite recording automatically exports accepted receipts to the existing
+  active journal. Do not create separate draft/review/closeout JSON files for
+  routine bookkeeping; use the SQLite draft and receipt records. Required
+  machine-readable retention plans and dual durable archive receipts remain
+  exceptions to this rule.
+- Keep editable central/focused registers, the active review journal, reviewed
+  gate baseline, source locks, bootstrap manifests, UI policy, authored
+  configuration, wire schemas and test fixtures in their existing JSON format.
+  A new authored JSON file needs an actual configuration/schema/fixture consumer;
+  generated observations and evidence do not become exceptions by being called
+  configuration or fixtures.
+- Physical JSON under `working/` is an explicit interchange/debug export or a
+  required producer/tool input, not a second durable evidence store. Keep it
+  bounded and identify its consumer. Persist citable results, including failures
+  and negative evidence, in SQLite before closeout. Preserve required retention
+  reports, raw evidence and active consumers; this rule does not authorize their
+  deletion or replace the reviewed cold-archive maintenance workflow.
+- Before closeout, inspect newly added or copied generated research reports and
+  confirm they are SQLite references rather than expanded JSON. Verify the
+  original payload through the SQLite reader. Read routine review/audit results
+  from SQLite or stdout where supported instead of creating another JSON file.
+
+Run `python3 tools/evidence-store.py fetch --verify` in a fresh checkout and install
+the coverage hook. Audit, gate and UI readers resolve reports directly from
+SQLite without hydrating the working tree. Use `coverage_evidence.read_json`,
+`read_text`, `read_bytes` or an invocation-scoped `Reader` for generated research
+inputs; hashing a reference must mean the verified original payload hash.
+The source-census workflow already writes generated research reports straight
+to SQLite.
+Use `export` or targeted `hydrate <path>...` only for readers needing physical
+JSON. Use `inventory-json` and a verified, cold-backed `compact-json` plan for
+existing expanded reports. Preserve editable registers, schemas, configuration,
+fixtures and source locks as JSON. Evidence pointers in Git preserve exact original report bytes in
 SHA-256-pinned SQLite release archives; never refresh historical hashes to
-satisfy current checks. Stage and publish new evidence/census payloads before
-preparing the final receipt, then stage their pinned manifest and exact review
-together. `evidence-store.py publish` verifies remote restoration before updating
-the manifest. The pre-push guard refuses old graph commits, raw artifacts and
-unpublished pointers. Preserve failed publication receipts and immutable assets.
+satisfy current checks. Local commits require locally available, hash-verified
+evidence and passing coverage checks; remote publication is not a prerequisite.
+Use `tools/finish-work.py` to record the exact review in SQLite, retain verified
+SQLite backups, stage the owned batch and commit with the normal hook enabled.
+Before pushing or merging, all referenced evidence must be available from the
+configured shared store. `tools/sync-evidence.py` collects missing immutable
+payloads across outgoing history, verifies publication and commits the pinned
+availability manifest; `--push` explicitly also pushes the current branch.
+The normal pre-push guard and CI continue to reject unavailable or raw evidence
+and old graph commits. Preserve failed publication receipts and immutable assets.
+Use one owned worktree per bounded task batch. Keep later concurrent edits out
+of that batch's source snapshot, evidence claims and commit.
 The review workspace remains local and its exact text exports remain Git/CI
 authority; archive relocation does not assert engine validation.

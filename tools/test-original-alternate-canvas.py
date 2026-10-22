@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Bounded original alternate-canvas provenance, initializer and x87 copy recovery."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import itertools
@@ -21,16 +22,16 @@ GLOBALS = (0x6e1f68, 0x6e1f6c, 0x6e1f70, 0x6e1f74, 0x6e1f78)
 
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(evidence_bytes(path)).hexdigest()
 
 
 def provenance(image):
     retained = ROOT/'research/runtime/all-original-recovery-results-20261020/flow-review-final.json'
-    old = json.loads(retained.read_text())
+    old = json.loads(evidence_text(retained))
     raw = ROOT/old['raw_flow']['path']
     if sha(raw) != old['raw_flow']['sha256']:
         raise ValueError('Retained instruction frontier changed; restore archived input first')
-    flow = json.loads(raw.read_text())
+    flow = json.loads(evidence_text(raw))
     if not flow['success'] or flow['original_sha256'] != BUILD:
         raise ValueError('Unadmitted original frontier')
     rows = {r['address']: r for r in flow['rows']}
@@ -119,7 +120,7 @@ def main():
         parser.error('Require a new retained output under working/tests')
     out.mkdir(parents=True); (out/'tmp').mkdir(); (out/'.retain').write_text('Alternate canvas original recovery evidence; preserve raw outcomes.\n')
     env=dict(os.environ,TMPDIR=str(out/'tmp'))
-    register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
+    register=json.loads(evidence_text(ROOT/'research/runtime/coverage/register.json'))
     behaviors={b['id']:b for b in register['behaviors']}; builds={b['id']:b for b in register['builds']}
     paths=set().union(*(required_sources(behaviors[i]) for i in IDS))|{'tools/coverage_claims.py','tools/original_x86.py'}
     sources={p:sha(ROOT/p) for p in sorted(paths)}
@@ -149,7 +150,7 @@ def main():
     before=False
     try:
         run('original-before',[ROOT/'tools/original-manifest.sh','verify']); before=True
-        image_path=ROOT/'original/Arcane_Nocd/Chaos.exe'; image=PE32(image_path.read_bytes())
+        image_path=ROOT/'original/Arcane_Nocd/Chaos.exe'; image=PE32(evidence_bytes(image_path))
         if image.sha256!=BUILD: raise ValueError('Original hash changed')
         static=provenance(image); static.update(sources=sources)
         (out/'provenance.json').write_text(json.dumps(static,indent=2)+'\n')

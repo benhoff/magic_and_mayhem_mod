@@ -1,4 +1,5 @@
 """Explicit planning importance, independent of code and execution milestones."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 from collections import Counter
 import hashlib
 from pathlib import Path
@@ -82,10 +83,10 @@ def task_work_review(review, labels, behavior, root):
         profile_path = (root/profile_record).resolve()
         if (Path(profile_record).is_absolute() or not profile_path.is_relative_to(root.resolve()) or
                 Path(profile_record).parts[:2] != ('research', 'runtime') or
-                hashlib.sha256(profile_path.read_bytes()).hexdigest() != sources[profile_record]):
+                hashlib.sha256(evidence_bytes(profile_path)).hexdigest() != sources[profile_record]):
             raise ValueError('Acceptance profile execution record changed or escaped research')
         import json
-        execution = json.loads(profile_path.read_text())
+        execution = json.loads(evidence_text(profile_path))
         if (execution.get('success') is not True or
                 execution.get('sources_stable') is not True or execution.get('inputs_stable') is not True or
                 execution.get('policy') != 'critical-rendering-correct-output-v1' or
@@ -116,7 +117,7 @@ def task_work_review(review, labels, behavior, root):
                 Path(name).parts[0] in {'original', 'working', '.git'} or
                 len(expected) != 64 or any(c not in '0123456789abcdef' for c in expected)):
             raise ValueError('Invalid work review source')
-        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+        if not path.is_file() or hashlib.sha256(evidence_bytes(path)).hexdigest() != expected:
             changed.append(name)
     for witness in witnesses:
         name = witness['path']; line = witness['line']; text = witness['text']
@@ -124,7 +125,7 @@ def task_work_review(review, labels, behavior, root):
                 type(line) is not int or line < 1 or not text.strip()):
             raise ValueError('Invalid implementation witness')
         if name not in changed:
-            lines = (root / name).read_text().splitlines()
+            lines = evidence_text(root / name).splitlines()
             if line > len(lines) or lines[line - 1] != text:
                 raise ValueError('Implementation witness differs from reviewed source')
     for witness in research_witnesses:
@@ -133,7 +134,7 @@ def task_work_review(review, labels, behavior, root):
                 type(line) is not int or line < 1 or not text.strip()):
             raise ValueError('Invalid research witness')
         if name not in changed:
-            lines = (root / name).read_text().splitlines()
+            lines = evidence_text(root / name).splitlines()
             if line > len(lines) or lines[line - 1] != text:
                 raise ValueError('Research witness differs from reviewed source')
     return {**review, 'acceptance_profiles': profiles, 'legacy_diagnostics': diagnostics,

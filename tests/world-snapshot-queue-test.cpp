@@ -48,12 +48,14 @@ struct Peer {
 int main(int argc,char** argv){
  QCoreApplication app(argc,argv);assert(argc==3);auto source=read(argv[1]),request=read(argv[2]);QTemporaryDir temp;assert(temp.isValid());
  {
-  auto path=temp.filePath("owned");WorldContinuousChannel::create(path,0x100000007ULL,0,true,true);WorldContinuousChannel channel(path);assert(channel.snapshot()&&channel.resident());Peer peer(path,source,request);WorldSnapshotQueue q(channel);
+  auto path=temp.filePath("owned");WorldContinuousChannel::create(path,0x100000007ULL,0,true,true);WorldContinuousChannel channel(path);assert(channel.snapshot()&&channel.resident());Peer peer(path,source,request);WorldSnapshotQueue q(channel,true,true);
   peer.publish(1);peer.returned(1);wait([&]{return q.stats().returned==1;});peer.publish(2);peer.returned(2);wait([&]{return q.stats().returned==2;});
   // Rendering is deliberately absent: both accepted sources already belong to
   // native storage and original returns have been verified.
   assert(q.stats().outstanding==2&&q.stats().highWater==2);peer.publish(3);std::this_thread::sleep_for(std::chrono::milliseconds(30));assert(load(peer.slot(3))==2&&q.stats().accepted==2);
   OwnedWorldSnapshot a,b,c;assert(q.take(a)&&q.take(b)&&!q.take(c));assert(a.generation==1&&b.generation==2);
+  assert(a.wireSource==source&&a.wireRequest==request&&a.readyAt>=a.acquiredAt);
+  refuses([&]{q.imported(0);});refuses([&]{q.imported(4);});
   auto frozen=encodeRollingQueue(a.handoff.stream.operations);std::memset(peer.slot(2)+128,0x75,source.size());assert(encodeRollingQueue(a.handoff.stream.operations)==frozen);
   refuses([&]{q.imported(2);});q.imported(1);peer.returned(3);wait([&]{return q.stats().returned==3;});assert(q.take(c)&&c.generation==3);refuses([&]{q.imported(1);});q.imported(2);q.imported(3);assert(q.stats().outstanding==0&&q.stats().imports==3&&q.stats().bytes==3*source.size());q.stop();assert(q.stats().terminal);
  }
@@ -65,8 +67,31 @@ int main(int argc,char** argv){
  {
   auto path=temp.filePath("cancel");WorldContinuousChannel::create(path,9,0,true,true);WorldContinuousChannel channel(path);WorldSnapshotQueue q(channel);channel.cancel();wait([&]{return q.stats().terminal;});assert(q.stats().accepted==0);
  }
+ // Stop joins while the peer owes its actual return, and while both native
+ // credits are held. Repeated stop/destruction cannot accept another source.
+ for(unsigned phase=0;phase<2;++phase){
+  auto path=temp.filePath(QString("stop-%1").arg(phase));WorldContinuousChannel::create(path,17,0,true,true);WorldContinuousChannel channel(path);Peer peer(path,source,request);WorldSnapshotQueue q(channel);
+  peer.publish(1);wait([&]{return load(peer.slot(1))==4;});
+  if(phase){peer.returned(1);wait([&]{return q.stats().returned==1;});peer.publish(2);peer.returned(2);wait([&]{return q.stats().returned==2;});peer.publish(3);}
+  auto started=Clock::now();q.stop();q.stop();assert(Clock::now()-started<std::chrono::seconds(2));
+  const auto state=q.stats();assert(state.terminal&&state.error.empty()&&channel.cancelled());
+  assert(state.accepted==(phase?2u:1u)&&state.returned==(phase?2u:0u));
+  if(phase){assert(load(peer.slot(3))==2&&state.outstanding==2);OwnedWorldSnapshot a,b;assert(q.take(a)&&q.take(b));q.imported(1);q.imported(2);assert(q.stats().outstanding==0);}
+ }
+ for(unsigned mutation=0;mutation<4;++mutation){
+  auto path=temp.filePath(QString("envelope-%1").arg(mutation));WorldContinuousChannel::create(path,19,0,true,true);WorldContinuousChannel channel(path);Peer peer(path,source,request);
+  peer.publish(1);
+  // Freeze the malformed envelope before starting the worker. These are
+  // immutable-envelope failures, not a race against the fixture's own writes.
+  if(mutation==0)put(peer.map,6,20);
+  else if(mutation==1)store(peer.map+36,0);
+  else if(mutation==2)put(peer.slot(1),3,1);
+  else put(peer.slot(1),31,1);
+  WorldSnapshotQueue q(channel);
+  wait([&]{return q.stats().terminal;});assert(!q.stats().error.empty()&&q.stats().returned==0&&channel.cancelled());
+ }
  {
   auto path=temp.filePath("legacy");WorldContinuousChannel::create(path,11,0,true);WorldContinuousChannel channel(path);refuses([&]{WorldSnapshotQueue q(channel);});
  }
- std::cout<<"{\"owned_before_render\":2,\"backpressure\":true,\"source_overwrite_safe\":true,\"ordered_imports\":3,\"failure_cases\":12,\"legacy_refused\":true,\"cancellation_joined\":true}\n";
+ std::cout<<"{\"owned_before_render\":2,\"backpressure\":true,\"source_overwrite_safe\":true,\"ordered_imports\":3,\"failure_cases\":16,\"stop_phases\":2,\"retained_wire_owned\":true,\"legacy_refused\":true,\"cancellation_joined\":true}\n";
 }

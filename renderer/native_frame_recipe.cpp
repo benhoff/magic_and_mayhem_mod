@@ -33,7 +33,18 @@ void NativeFrameRecipe::copy(const SurfaceCommand& c,const std::map<unsigned,Sur
 void NativeFrameRecipe::record(const SurfaceCommand& c,const std::map<unsigned,SurfaceId>& handles){
  const auto& w=c.words;
  switch(c.operation){case MNM_RENDER_STREAM_V5_OPERATION_CPU_READ:case 5:case 8:case 10:case 12:case 15:case MNM_RENDER_STREAM_V3_OPERATION_SURFACE_RESULT_CHECK:return;
- case 7:{auto it=maps_.find(w[0]);if(it!=maps_.end()){auto id=it->second;drop(id);maps_.erase(it);}return;}
+ case 7:{
+  // A frozen UI owns deleted *input* values, but cannot outlive the identities
+  // of its World or final output. Retire all World tags with their source.
+  if(w[0]==world_ || w[0]==final_){
+   sealed_=false;dirty_=true;drop(work_);drop(coordinates_);drop(ui_);
+   final_=0;finalIdentity_=0;sealedSourceGeneration_=0;
+  }
+  if(w[0]==world_){
+   for(auto& pair:maps_){auto id=pair.second;drop(id);}maps_.clear();world_=0;
+  }else{auto it=maps_.find(w[0]);if(it!=maps_.end()){auto id=it->second;drop(id);maps_.erase(it);}}
+  return;
+ }
  default:break;}
  if(++recorded_>8192)throw std::runtime_error("Compiled native frame command budget");
  dirty_=true;
@@ -61,6 +72,9 @@ void NativeFrameRecipe::record(const SurfaceCommand& c,const std::map<unsigned,S
 }
 void NativeFrameRecipe::palette(unsigned,const std::vector<Rgb>&,unsigned,const std::map<unsigned,SurfaceId>&){dirty_=true;}
 void NativeFrameRecipe::seal(unsigned id,const std::map<unsigned,SurfaceId>& handles){
+ // Allocation/restore can fail partway through sealing. No mixture of an old
+ // coordinate plane and a newly copied UI may become a completed snapshot.
+ sealed_=false;dirty_=true;
  const auto original=handles.at(id);const auto size=renderer_.dimensions(original);const auto count=std::size_t(size.width())*size.height();
  if(final_!=id){drop(work_);drop(coordinates_);drop(ui_);}
  if(!ui_){budget(count);ui_=renderer_.cloneSurface(original);pixels_+=count;}else renderer_.restoreSurface(original,ui_);
@@ -69,7 +83,7 @@ void NativeFrameRecipe::seal(unsigned id,const std::map<unsigned,SurfaceId>& han
   if(!coordinates_){budget(count);coordinates_=renderer_.cloneSurface(found->second);pixels_+=count;}else renderer_.restoreSurface(found->second,coordinates_);
   if(!work_){budget(count);work_=renderer_.allocate(size.width(),size.height(),{16,{0xf800,0x7e0,31}});pixels_+=count;}
  }else{drop(work_);drop(coordinates_);}
- final_=id;finalIdentity_=original;sealedSourceGeneration_=generation_;dirty_=false;recorded_=0;
+ final_=id;finalIdentity_=original;sealedSourceGeneration_=generation_;dirty_=false;recorded_=0;sealed_=true;
 }
 bool NativeFrameRecipe::restart(unsigned world,std::uint64_t generation,const std::map<unsigned,SurfaceId>& handles){
  const auto source=handles.find(world),final=handles.find(final_);

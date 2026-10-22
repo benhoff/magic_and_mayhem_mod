@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Verify portable surface fixtures against independent captured driver pixels."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import gzip
 import hashlib
@@ -36,7 +37,7 @@ def local(root, name):
 
 
 def read_case(root, case):
-    packed = local(root, case['capture']['path']).read_bytes()
+    packed = evidence_bytes(local(root, case['capture']['path']))
     if sha(packed) != case['capture']['sha256']:
         raise ValueError('Compressed capture hash mismatch')
     with gzip.GzipFile(fileobj=io.BytesIO(packed)) as stream:
@@ -44,7 +45,7 @@ def read_case(root, case):
     if len(data) > replay.MAX_CAPTURE or sha(data) != case['capture']['raw_sha256']:
         raise ValueError('Raw capture size/hash mismatch')
     capture = replay.decode(data)
-    proof = local(root, case['provenance']['path']).read_bytes()
+    proof = evidence_bytes(local(root, case['provenance']['path']))
     if sha(proof) != case['provenance']['sha256']:
         raise ValueError('Capture provenance hash mismatch')
     manifest = json.loads(proof)
@@ -65,7 +66,7 @@ def read_case(root, case):
 
 
 def check(corpus_path, backend='cpu', executable=None, headless=False, build=None):
-    corpus = json.loads(corpus_path.read_text())
+    corpus = json.loads(evidence_text(corpus_path))
     if corpus.get('schema') == 2:
         if backend != 'opengl':
             raise ValueError('Operation corpus requires the opengl backend; CPU is not a substitute')
@@ -73,7 +74,7 @@ def check(corpus_path, backend='cpu', executable=None, headless=False, build=Non
     if corpus.get('schema') != 1 or not corpus.get('cases'):
         raise ValueError('Unsupported or empty fixture corpus')
     matrix_path = ROOT / 'research/runtime/native-surface-operation-matrix.json'
-    matrix = json.loads(matrix_path.read_text())
+    matrix = json.loads(evidence_text(matrix_path))
     operations = {row['id']: row for row in matrix['operations']}
     seen, covered, rows = set(), set(), []
     for case in corpus['cases']:
@@ -137,7 +138,7 @@ def check(corpus_path, backend='cpu', executable=None, headless=False, build=Non
             'scope': 'Five retained game-driver RGB565 opaque BltFast captures at return PC 0x0058c5be; offline comparison only.',
             'covered_matrix_ids': sorted(covered), 'missing_required_matrix_ids': sorted(required-covered),
             'milestone_complete': all(row['success'] for row in rows) and required <= covered,
-            'sources': {path: sha((ROOT/path).read_bytes()) for path in sorted(set(sources))}}
+            'sources': {path: sha(evidence_bytes(ROOT/path)) for path in sorted(set(sources))}}
 
 
 def main():

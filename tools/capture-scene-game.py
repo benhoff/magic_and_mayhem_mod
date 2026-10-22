@@ -63,6 +63,7 @@ def main():
     parser.add_argument('--skip-window-screenshot',action='store_true',help='Skip the diagnostic desktop screenshot; raw completion comparisons remain independent')
     parser.add_argument('--manual-input',action='store_true',help='Bounded producer/batch session controlled through the original window; closing either window cancels')
     parser.add_argument('--canvas-startup',action='store_true',help='Trace selected creation/lock/bind/clear/copy paths from process startup through first World queue')
+    parser.add_argument('--canvas-driver-observe',action='store_true',help='Original-active startup clear HRESULT and pixels under an added real read-only driver lease; disable legacy pointer snapshots')
     parser.add_argument('--producer-storage-transitions',action='store_true',help='Original-active producer recorder with same-run logical wrapper and Lock-return epochs')
     parser.add_argument('--startup-queues',type=int,choices=range(1,257),help='Retain every raw queue in this startup prefix (automatic with canvas/refusal diagnostics)')
     parser.add_argument('--kind8-objects',action='store_true',help='Finite read-only kind8 object/vtable diagnostics')
@@ -78,6 +79,11 @@ def main():
     parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
     if args.world_colour_word is not None and (not args.world_frames or args.world_live or args.canvas_producers or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('Colour checkpoints require finite original-active World capture')
+
+    if args.canvas_driver_observe and (not args.canvas_startup or args.native_draw or args.native_creature_drawing or args.native_actor_lifecycle or
+            args.canvas_producers or args.world_frames or args.world_lifetime or
+            args.world_live or args.drawing_publication or args.samples!=1):
+        parser.error('Driver clear observation requires original-active --canvas-startup --samples 1 without other pixel/lifetime/publication modes')
     if args.producer_storage_transitions and (not args.canvas_producers or args.producer_live or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix or args.drawing_publication):parser.error('Storage transition observation requires original-active producer capture without a live viewer or replacement')
     if args.drawing_publication and (not args.canvas_producers or args.producer_live or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('--drawing-publication requires original-active producer capture without live bypass/viewer')
     if args.drawing_physical_peer and not args.drawing_publication:parser.error('--drawing-physical-peer requires --drawing-publication')
@@ -133,6 +139,7 @@ def main():
     if args.drawing_publication:sources.append(ROOT/'tools/drawing_publication.py')
     if args.drawing_physical_peer:sources += [ROOT/p for p in ['tools/drawing_physical.py','tools/drawing_presented_session.py','apps/drawing-session/observe.cpp','apps/drawing-session/CMakeLists.txt','apps/qt-shell/window_host.cpp','apps/qt-shell/window_host.hpp']]
     if args.startup_queues:sources.append(ROOT/'tools/inspect-startup-queues.py')
+    if args.canvas_driver_observe:sources.append(ROOT/'tools/canvas_driver_observation.py')
     if args.kind8_objects:sources.append(ROOT/'tools/inspect-kind8.py')
     if args.world_colour_word is not None:sources.append(ROOT/'tools/inspect-world-colour.py')
     if history:sources.append(ROOT/'tools/world_refusal.py')
@@ -238,6 +245,7 @@ def main():
         if args.world_colour_word is not None:env['MNM_SCENE_COLOUR_WORD']=str(args.world_colour_word)
         if args.world_lifetime:env['MNM_SCENE_LIFETIME']='1'
         if args.canvas_startup:env['MNM_CANVAS_STARTUP']='1'
+        if args.canvas_driver_observe:env['MNM_CANVAS_DRIVER_OBSERVE']='1'
         if args.minimap_owned:env['MNM_MINIMAP_OWNED']='1'
         if args.minimap_input_fixture:env['MNM_MINIMAP_INPUT_FIXTURE']='1'
         if args.drawing_publication:env['MNM_DRAW02_PUBLICATION']='1'
@@ -560,6 +568,11 @@ def main():
             report.update(canvas_startup={'path':str(startup.relative_to(root)),'sha256':sha(startup),'records':len(rows),
                 'first_world_nonzero_pixels':rows[-1][31],'first_world_content_fnv1a':rows[-1][32],
                 'original_pixels_used_as_native_inputs':False,'complete_writer_census':False})
+        if args.canvas_driver_observe:
+            from canvas_driver_observation import analyze as analyze_driver
+            report['canvas_driver_observation']=analyze_driver(root/'capture')
+            report['canvas_driver_observation']['path']='capture/canvas-driver.bin'
+            report['canvas_driver_observation']['pixels_path']='capture/canvas-driver-clear.565'
         if args.kind8_objects:
             spec=importlib.util.spec_from_file_location('kind8',ROOT/'tools/inspect-kind8.py');kind8=importlib.util.module_from_spec(spec);spec.loader.exec_module(kind8)
             observed=kind8.collect(root/'capture')

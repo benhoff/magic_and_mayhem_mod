@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Execute pinned windowed copy wrappers after refusing the obsolete DC hook."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import importlib.util
@@ -16,7 +17,7 @@ BUILD='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 SITES=(0x58bfe2,0x58c1d6,0x58c3f5,0x58c534,0x58c6f8,0x58c922,0x58cb17,0x58cc16,0x58cdd1,0x58cfa1)
 
 
-def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def sha(path):return hashlib.sha256(evidence_bytes(path)).hexdigest()
 
 
 def main():
@@ -24,7 +25,7 @@ def main():
     p.add_argument('--claims',type=Path,required=True)
     p.add_argument('--wine-prefix',type=Path,required=True)
     p.add_argument('--executable',type=Path,default=ROOT/'original/Arcane_Nocd/Chaos.exe')
-    a=p.parse_args();declaration=json.loads(a.claims.read_text());prefix=a.wine_prefix.resolve()
+    a=p.parse_args();declaration=json.loads(evidence_text(a.claims));prefix=a.wine_prefix.resolve()
     if not prefix.is_relative_to(ROOT/'working/tests') or not prefix.is_dir() or prefix.is_symlink():p.error('Use an owned stopped prefix')
     if any(sha(ROOT/path)!=h for path,h in declaration['sources'].items()):p.error('Prospective sources changed')
     parent=ROOT/'working/tests/dc-copy-retirement';parent.mkdir(parents=True,exist_ok=True)
@@ -40,9 +41,9 @@ def main():
     try:
         run('original-before',[ROOT/'tools/original-manifest.sh','verify']);verified=True
         run('admission-controls',['python3','-B',ROOT/'tests/test-pixel-route-requirements.py'])
-        data=a.executable.read_bytes()
+        data=evidence_bytes(a.executable)
         if hashlib.sha256(data).hexdigest()!=BUILD:raise ValueError('Unsupported executable')
-        inventory=json.loads((ROOT/'research/runtime/coverage/binary-nocd.json').read_text())
+        inventory=json.loads(evidence_text(ROOT/'research/runtime/coverage/binary-nocd.json'))
         imported=[i for i in inventory['imports'] if i['iat_va']==0x5c51fc]
         if len(imported)!=1 or imported[0]['name']!='ClientToScreen' or imported[0]['dll'].lower()!='user32.dll':raise ValueError('Wrong target API')
         if any(i.get('name')=='BitBlt' for i in inventory['imports']):raise ValueError('Re-review BitBlt imports')
@@ -68,7 +69,7 @@ def main():
         run('compile',['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-c',ROOT/'tests/dc-copy-retirement-probe.c','-o',out/'probe.obj'])
         run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(out/'probe.exe'),out/'probe.obj',out/'kernel32.lib'])
         run('wrappers',['xvfb-run','-a','wine',out/'probe.exe'],out)
-        raw=(out/'retirement.bin').read_bytes()
+        raw=evidence_bytes(out/'retirement.bin')
         if len(raw)!=30*64:raise ValueError('Incomplete wrapper report')
         rows=[struct.unpack_from('<16I',raw,i*64) for i in range(30)]
         for i,row in enumerate(rows):

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Offline three-lease DC state and default-context raster comparison."""
+from coverage_evidence import read_text as evidence_text
 import argparse,base64,gzip,importlib.util,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];DEFAULT=ROOT/'research/runtime/surface-dc-reuse-capture-20261006.json'
@@ -7,7 +8,7 @@ spec=importlib.util.spec_from_file_location('p',ROOT/'tools/check-surface-dc-pal
 require=p.require;sha=p.sha
 
 def load(report=DEFAULT):
- c=json.loads(report.read_text());require(c['schema']==1 and c['success'] is True,'Invalid reuse capture');path=c['corpus']['path'];require(path=='tests/fixtures/surfaces/surface-dc-reuse.json.gz','Unsafe reuse fixture path');require(sha(ROOT/path)==c['corpus']['sha256'],'Reuse fixture differs')
+ c=json.loads(evidence_text(report));require(c['schema']==1 and c['success'] is True,'Invalid reuse capture');path=c['corpus']['path'];require(path=='tests/fixtures/surfaces/surface-dc-reuse.json.gz','Unsafe reuse fixture path');require(sha(ROOT/path)==c['corpus']['sha256'],'Reuse fixture differs')
  with gzip.open(ROOT/path,'rb') as f:raw=f.read(16*1024*1024+1)
  require(len(raw)<=16*1024*1024,'Expanded reuse limit');data=json.loads(raw);require(data['schema']==1 and len(data['rows'])==c['cases']==192,'Reuse case count');require(len(data['default_dc_palette'])==256 and all(0<=v<=0xffffff for v in data['default_dc_palette']),'Default context table invalid');return c,data
 

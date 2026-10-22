@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Search all bytes of five unresolved original windows, retaining unknown flows."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -23,7 +24,7 @@ WINDOWS = {
 
 
 def sha(path):
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    return hashlib.sha256(evidence_bytes(Path(path))).hexdigest()
 
 
 def inspect(data, inventory):
@@ -106,7 +107,7 @@ def main():
     args = parser.parse_args()
     if args.report.exists():
         parser.error('Refusing evidence overwrite')
-    declaration = json.loads(args.claims.read_text())
+    declaration = json.loads(evidence_text(args.claims))
     if any(sha(ROOT/p) != h for p, h in declaration['sources'].items()):
         parser.error('Prospective source changed')
     image = ROOT/'original/Arcane_Nocd/Chaos.exe'
@@ -114,7 +115,7 @@ def main():
     report = dict(success=False, kind='static', sources=declaration['sources'], claims=declaration['claims'])
     subprocess.run([ROOT/'tools/original-manifest.sh', 'verify'], check=True)
     try:
-        report.update(inspect(image.read_bytes(), json.loads(inventory.read_text())))
+        report.update(inspect(evidence_bytes(image), json.loads(evidence_text(inventory))))
         report.update(original_sha256=sha(image), inventory_sha256=sha(inventory), original_game_executed=False)
         report['success'] = True
     finally:

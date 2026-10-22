@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Plan the separate128CPU CALL cohort beside88terminal/core entries."""
+from coverage_evidence import read_bytes as evidence_bytes
 import argparse
 import hashlib
 import importlib.util
@@ -16,12 +17,12 @@ def load(name,path):
 def export(executable,boundaries):
     paths=['tools/export-drawing-terminal-plan.py','tools/build-drawing-terminal-census.py',
         'tools/drawing_terminal_crosswalk.py','research/runtime/drawing-canvas-release-original-range-20261011.json']
-    sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
+    sources={p:hashlib.sha256(evidence_bytes(ROOT/p)).hexdigest() for p in paths}
     backend=load('terminal_call_planner','tools/export-drawing-api-splices.py');original_load=backend.load
     backend.load=lambda name,path:load(name,'tools/build-drawing-terminal-census.py') if name=='api_core_splices' else original_load(name,path)
     record=backend.export(executable,boundaries.resolve())
     if record['core_hook_count']!=88 or len(record['hooks'])!=128 or record['refused']:raise ValueError('Terminal CPU plan must admit128CALLs beside88entries')
-    if sources!={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}:raise ValueError('Terminal planner sources changed')
+    if sources!={p:hashlib.sha256(evidence_bytes(ROOT/p)).hexdigest() for p in paths}:raise ValueError('Terminal planner sources changed')
     record['sources'].update(sources);record['terminal_flow_observation']=True
     return record
 

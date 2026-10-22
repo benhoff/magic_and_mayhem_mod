@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Replay retained CPU/core exit calls against exact original wrapper bytes."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import importlib.util
@@ -19,7 +20,7 @@ def fingerprint(path):
 
 def run(args):
     if args.output.exists():raise ValueError('Refuse to overwrite terminal crosswalk evidence')
-    load=lambda path:json.loads(path.read_text())
+    load=lambda path:json.loads(evidence_text(path))
     declaration=load(args.claims);sources=declaration['sources']
     def stable():return all(fingerprint(ROOT/path)['sha256']==digest for path,digest in sources.items())
     if not stable() or not any(c['behavior']=='TOOL.drawing-terminal-crosswalk' for c in declaration['claims']):raise ValueError('Missing/current prospective terminal declaration')
@@ -33,7 +34,7 @@ def run(args):
     if fingerprint(staged)['sha256']!=manifest['binaries']['Chaos.exe']:raise ValueError('Retained staged binary differs from prepared original run')
     spec=importlib.util.spec_from_file_location('terminal_pe',ROOT/'tools/export-menu-support.py')
     pe=importlib.util.module_from_spec(spec);spec.loader.exec_module(pe)
-    verified=contracts(PROOF,staged.read_bytes(),pe.image_offset)
+    verified=contracts(PROOF,evidence_bytes(staged),pe.image_offset)
     result=review(paths[0],load(paths[4]),paths[1],paths[2],load(paths[5]),paths[3],manifest,load(paths[11]),load(paths[12]),verified)
     if not stable() or any(fingerprint(ROOT/p)!=v for p,v in artifacts.items()):raise ValueError('Terminal sources/inputs changed during review')
     result.update(sources=sources,sources_stable=True,claims=declaration['claims'],artifacts=artifacts,

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Replay inherited terminal edges from the retained88entry original cohort."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import importlib.util
 import hashlib
@@ -23,7 +24,7 @@ def run(args):
     output = args.output.resolve()
     if output.exists() or not output.is_relative_to(ROOT) or output.relative_to(ROOT).parts[0] in {'original','.git'}:
         raise ValueError('Terminal edge output must be new and repository-owned')
-    load = lambda p:json.loads(p.read_text())
+    load = lambda p:json.loads(evidence_text(p))
     claim_path = args.claims.resolve();claims = load(claim_path)
     if not any(c['behavior'] == 'TOOL.drawing-terminal-edges' for c in claims['claims']):
         raise ValueError('Missing prospective terminal edge scope')
@@ -41,7 +42,7 @@ def run(args):
         raise ValueError('Retained staged binary differs from original cohort')
     spec = importlib.util.spec_from_file_location('edge_pe',ROOT/'tools/export-menu-support.py')
     pe = importlib.util.module_from_spec(spec);spec.loader.exec_module(pe)
-    contracts = verified_contracts(PROOF,staged.read_bytes(),pe.image_offset)
+    contracts = verified_contracts(PROOF,evidence_bytes(staged),pe.image_offset)
     result = review(paths[0],load(paths[2]),paths[1],load(CALLERS),load(INVENTORY),contracts)
     if not stable() or any(fingerprint(ROOT/p) != v for p,v in artifacts.items()):
         raise ValueError('Terminal edge sources or artifacts changed during replay')

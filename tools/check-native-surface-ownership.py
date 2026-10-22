@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Owned backend lifetimes, flipping, driver Restore and recovered scheduling."""
+from coverage_evidence import read_text as evidence_text
 import argparse,importlib.util,json,os,shlex,subprocess,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -42,7 +43,7 @@ def main():
  fingerprints={n:own.sha(ROOT/n) for n in names};library=a.build.resolve()/'libmnm-renderer.a';binary=a.executable.resolve() if a.executable else run/'native'
  if not a.executable:
   qt=shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','Qt6Gui','Qt6OpenGL'],text=True));subprocess.run(['g++','-std=c++17','-O2','-fPIC','-Wall','-Wextra','-Werror','-pedantic','-I'+str(ROOT/'renderer'),str(ROOT/'tests/render-surface-ownership-test.cpp'),str(library),*qt,'-o',str(binary)],check=True)
- output=run/'outputs.json';proc=subprocess.run([str(binary),str(output)],capture_output=True,text=True,env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1'),timeout=120);(run/'native.log').write_text(proc.stdout+proc.stderr);own.require(proc.returncode==0,proc.stdout+proc.stderr);actual=json.loads(output.read_text());counts=compare(actual,observed,states);own.require(all(own.sha(ROOT/n)==h for n,h in fingerprints.items()),'Sources changed during replay')
+ output=run/'outputs.json';proc=subprocess.run([str(binary),str(output)],capture_output=True,text=True,env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1'),timeout=120);(run/'native.log').write_text(proc.stdout+proc.stderr);own.require(proc.returncode==0,proc.stdout+proc.stderr);actual=json.loads(evidence_text(output));counts=compare(actual,observed,states);own.require(all(own.sha(ROOT/n)==h for n,h in fingerprints.items()),'Sources changed during replay')
  rows,m=retry.load();model=run/'retry-model';subprocess.run(['g++','-std=c++17','-O2','-Wall','-Wextra','-Werror','-pedantic',str(ROOT/'tests/surface-retry-model.cpp'),'-o',str(model)],check=True)
  cases=run/'retry-inputs.txt';cases.write_text(''.join(' '.join(str(v) for v in [*(c[k] for k in ['id','entry','fast','no_wait','key_enabled','reload_bits','source_restore','destination_restore','key_result','color']),len(c['draw_results']),*c['draw_results']])+'\n' for c in (row['input'] for row in rows)))
  recovered=subprocess.run([str(model),str(cases)],capture_output=True,text=True,check=True,timeout=30);(run/'retry-outputs.json').write_text(recovered.stdout);traces=json.loads(recovered.stdout)

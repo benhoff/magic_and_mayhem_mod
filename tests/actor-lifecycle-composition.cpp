@@ -1,4 +1,3 @@
-#include "../reconstruction/rendering/actor_visual_lifecycle.hpp"
 #include "../reconstruction/rendering/actor_lifecycle.hpp"
 #define main unused_sprite_reference
 #include "sprite-binary-reference.cpp"
@@ -77,6 +76,7 @@ struct Backend {
     }
     U scratch(){return 0x20100000;}
     U service(U entry,U receiver,U n,const U* args){
+        if(entry==0x463cb0)receiver=0; // cdecl singleton has no receiver.
         word(entry);word(receiver);word(n);
         for(U i=0;i<n;++i)word(entry==0x520790?0:args[i]);
         if(trace)state();
@@ -86,7 +86,7 @@ struct Backend {
         case 0x5075f0:return r(r(receiver+0xac)+24);
         case 0x466870:return (scenario&2)?actorBase:0;
         case 0x414890:return scenario&4;
-        case 0x463cb0:return receiver+4;
+        case 0x463cb0:return 0x20104004;
         case 0x474b40:return 33;
         case 0x49bcf0:return receiver+16;
         case 0x49c530:return scenario&1;
@@ -95,6 +95,10 @@ struct Backend {
         case 0x57d0d0:free(args[0]);return 0;
         default:return 0;
         }
+    }
+    U fastcall(U entry,U receiver,U second){
+        if(entry!=0x5057b0)fault("Unknown fastcall service");
+        return service(entry,receiver,1,&second);
     }
     template<class... A> U call(U entry,U receiver,A... args){
         const U values[]={U(args)...,0};
@@ -120,7 +124,7 @@ struct Backend {
 };
 static Backend* active;
 extern "C" __attribute__((force_align_arg_pointer)) U actor_service_dispatch(U* regs,U entry,U count){
-    try{return active->service(entry,regs[6],count,regs+9);}catch(...){_exit(80);}
+    try{return entry==0x5057b0?active->fastcall(entry,regs[6],regs[5]):active->service(entry,regs[6],count,regs+9);}catch(...){_exit(80);}
 }
 extern "C" __attribute__((force_align_arg_pointer)) void* actor_alloc(U n){return reinterpret_cast<void*>(active->allocate(n));}
 extern "C" __attribute__((force_align_arg_pointer)) void actor_free(void* p){active->free(U(p));}

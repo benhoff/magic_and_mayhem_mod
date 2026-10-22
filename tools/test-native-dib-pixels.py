@@ -57,7 +57,7 @@ def main():
         dll = builder.build(out/'native-build', claims['sources'])
         shutil.copyfile(dll, out/'MnmDraw.dll')
         imports = {'kernel32': {'LoadLibraryA': 4, 'GetProcAddress': 8, 'CreateFileA': 28, 'WriteFile': 20, 'CloseHandle': 4, 'ExitProcess': 4},
-                   'user32': {'GetDesktopWindow': 0}, 'gdi32': {'StretchDIBits': 52}}
+                   'user32': {'GetDesktopWindow': 0}, 'gdi32': {'StretchDIBits': 52, 'CreateCompatibleBitmap': 12, 'SelectObject': 8, 'DeleteObject': 4}}
         libraries = []
         for name, symbols in imports.items():
             definition = out/(name+'.def')
@@ -77,7 +77,7 @@ def main():
             row = struct.unpack_from('<12I', raw, i*48)
             if row[1]!=5 or row[2] or any(v!=0x80000000 for v in row[3:7]) or any(row[7:9]):
                 mismatch.append(dict(case=i, words=list(row)))
-        report.update(cases=256, physical_visible_words=256*117, lease_refusals=256*4, mismatches=mismatch,
+        report.update(cases=256, physical_visible_words=256*117, lease_refusals=256*5, mismatches=mismatch,
                       results_sha256=sha(out/'dib-pixels-results.bin'), native_ddraw_disabled=True,
                       remaining_dcs=0 if not mismatch else None, remaining_surfaces=0 if not mismatch else None)
         report['success'] = not mismatch

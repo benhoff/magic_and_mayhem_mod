@@ -10,6 +10,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
+from coverage_evidence import read_text as evidence_text
 from coverage_claims import behavior_contract
 from coverage_importance import importance_view
 from coverage_ui import track_view
@@ -75,11 +76,11 @@ class ImportanceTest(unittest.TestCase):
         self.assertEqual([e['behavior'] for e in result['entries']], ['one', 'two', 'three'])
 
     def test_real_catalog_covers_rendering_and_every_partial_without_promotions(self):
-        register = json.loads((ROOT / 'research/runtime/coverage/register.json').read_text())
+        register = json.loads(evidence_text(ROOT / 'research/runtime/coverage/register.json'))
         before = copy.deepcopy(register)
-        definition = json.loads((ROOT / 'apps/coverage-ui/tracks.json').read_text())
+        definition = json.loads(evidence_text(ROOT / 'apps/coverage-ui/tracks.json'))
         tracks = track_view(definition, register['behaviors'], [{**e, 'freshness': 'historical'} for e in register['evidence']])
-        catalog = json.loads((ROOT / 'apps/coverage-ui/importance.json').read_text())
+        catalog = json.loads(evidence_text(ROOT / 'apps/coverage-ui/importance.json'))
         result = importance_view(catalog, register, tracks)
         self.assertEqual(register, before)
         self.assertGreaterEqual(len(result['entries']), 345)
@@ -89,7 +90,7 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        self.assertEqual(result['partial_counts'], {1: 91, 2: 9, 3: 16, 4: 34, 5: 32})
+        self.assertEqual(result['partial_counts'], {1: 92, 2: 9, 3: 4, 4: 38, 5: 28})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -100,11 +101,11 @@ class ImportanceTest(unittest.TestCase):
 
 class TrancheTest(unittest.TestCase):
     def setUp(self):
-        self.register = json.loads((ROOT / 'research/runtime/coverage/register.json').read_text())
-        definition = json.loads((ROOT / 'apps/coverage-ui/tracks.json').read_text())
+        self.register = json.loads(evidence_text(ROOT / 'research/runtime/coverage/register.json'))
+        definition = json.loads(evidence_text(ROOT / 'apps/coverage-ui/tracks.json'))
         self.tracks = track_view(definition, self.register['behaviors'],
                                  [{**e, 'freshness': 'historical'} for e in self.register['evidence']])
-        self.catalog = json.loads((ROOT / 'apps/coverage-ui/importance.json').read_text())
+        self.catalog = json.loads(evidence_text(ROOT / 'apps/coverage-ui/importance.json'))
 
     def test_low_batch_keeps_first20_order_and_independent_acceptance(self):
         before = copy.deepcopy(self.register)
@@ -151,12 +152,15 @@ class TrancheTest(unittest.TestCase):
         plan = result['tranche_plan']
         self.assertEqual(plan['state'], 'planned')
         self.assertEqual(plan['selected_count'], 33)
-        self.assertEqual(plan['unplanned_critical'], ['RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
+        self.assertEqual(plan['unplanned_critical'], ['NR.external-backing-ownership', 'RS.actor-downstream-services', 'RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
         self.assertEqual([len(t['tasks']) for t in plan['tranches']], [11, 11, 11])
         tasks = [task for t in plan['tranches'] for task in t['tasks']]
         critical = {e['behavior'] for e in result['entries'] if e['weight'] == 5 and e['implementation'] == 'partial'}
         completed = {task['behavior'] for task in tasks if task['implementation'] == 'scoped'}
-        self.assertEqual(completed, {'NR.canvas-producer-replay', 'NR.world-startup-sequence', 'NR.world-producer-handoff'})
+        self.assertEqual(completed, {'NR.canvas-producer-replay', 'NR.world-startup-sequence', 'NR.world-producer-handoff',
+                                    'NP.surface-final-word-read', 'NR.displacement-finite-edge',
+                                    'NR.readonly-description-continuity', 'NR.world-source-region-epoch',
+                                    'NR.resident-bind-admission', 'NR.resident-command-pressure'})
         self.assertEqual({task['behavior'] for task in tasks} | set(plan['unplanned_critical']), critical | completed)
         self.assertTrue(all(t['implementation'] in {'partial', 'scoped'} for t in tasks))
         self.assertTrue(all(t['review_state'] in {'current','needs_review'} for t in tasks))
@@ -200,7 +204,7 @@ class TrancheTest(unittest.TestCase):
         next(e for e in self.catalog['entries'] if e['behavior'] == 'AN.world-facing')['weight'] = 5
         result = importance_view(self.catalog, self.register, self.tracks)['tranche_plan']
         self.assertEqual(result['selected_count'], 33)
-        self.assertEqual(result['unplanned_critical'], ['AN.world-facing', 'RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
+        self.assertEqual(result['unplanned_critical'], ['AN.world-facing', 'NR.external-backing-ownership', 'RS.actor-downstream-services', 'RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
 
     def test_first_tranche_briefs_gate_one_pilot_after_ten_controls(self):
         result = importance_view(self.catalog, self.register, self.tracks)
@@ -232,7 +236,7 @@ class TrancheTest(unittest.TestCase):
         for task in [task for tranche in reviewed for task in tranche['tasks']]:
             for runner in task['execution_brief']['runners']:
                 if not runner['path'].endswith('.py'): continue
-                tree = ast.parse((ROOT / runner['path']).read_text())
+                tree = ast.parse(evidence_text(ROOT / runner['path']))
                 flags = {arg.value for node in ast.walk(tree)
                          if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
                          and node.func.attr == 'add_argument'
@@ -263,7 +267,7 @@ class TrancheTest(unittest.TestCase):
         self.assertTrue(all(t.get('execution_result') == originals[bid].get('execution_result')
                             for bid, t in tasks.items()))
         self.assertEqual({t['execution_result']['outcome'] for t in tasks.values()}, {'PASS'})
-        execution = json.loads((ROOT / tranche['execution_report']).read_text())
+        execution = json.loads(evidence_text(ROOT / tranche['execution_report']))
         self.assertTrue(execution['all_tranche_tasks_accepted'])
         self.assertEqual(execution['counts']['bounded_task_pass'], 11)
         self.assertFalse(execution['status_promotions'])
@@ -295,7 +299,7 @@ class TrancheTest(unittest.TestCase):
             self.assertTrue(all(p['outcome'] == 'PASS' and p['mismatches'] == 0 for p in tasks[bid]['acceptance_profiles']))
             self.assertFalse(tasks[bid]['legacy_diagnostics']['hardware']['blocking'])
         self.assertTrue(all(tasks[bid]['implementation'] == 'implemented_within_scope' for bid in failures))
-        self.assertTrue(all(w['validation_state'] == ('pending' if bid in {'NR.drawing-storage-session-comparison', 'NR.recorded-hardware-session-parity'} else 'recorded' if bid == 'NR.world-producer-handoff' else 'historical') for bid,w in tasks.items()))
+        self.assertTrue(all(w['validation_state'] == ('pending' if bid in {'NR.drawing-storage-session-comparison', 'NR.recorded-hardware-session-parity'} else 'recorded' if bid in {'NR.world-producer-handoff', 'NR.directdraw-retirement'} else 'historical') for bid,w in tasks.items()))
         self.assertEqual(self.register, before)
 
     def test_second_tranche_reviews_supplied_mechanisms_and_unresolved_history(self):
@@ -427,17 +431,47 @@ class TrancheTest(unittest.TestCase):
         tasks = [task for tranche in plan['tranches'] for task in tranche['tasks']]
         expected = {e['behavior'] for e in result['entries']
                     if e['weight'] == 4 and e['implementation'] in {'partial', 'none'}}
-        completed = {e['behavior'] for e in json.loads((ROOT /
-            'research/runtime/coverage/native-implementation-completion-20261020.json').read_text())['entries']
+        completed = {e['behavior'] for e in json.loads(evidence_text(ROOT /
+            'research/runtime/coverage/native-implementation-completion-20261020.json'))['entries']
             if e['decision'] == 'scoped_implementation_complete'}
-        self.assertEqual({t['behavior'] for t in tasks}, expected | completed | {'RS.displacement-final-word-read'})
+        unplanned = {'RE.palette-effect-builders', 'RE.terrain-camera-lifecycle',
+                     'RE.terrain-entity-section-rotation', 'RE.terrain-spectator-lighting'}
+        self.assertEqual({t['behavior'] for t in tasks} | unplanned,
+                         expected | completed | {'RS.displacement-final-word-read'})
         self.assertEqual({t['behavior'] for t in tasks if t['implementation'] == 'scoped'}, completed | {'RS.displacement-final-word-read'})
         self.assertTrue(all(t['reviewed_implementation'] in {'partial', 'none'} for t in tasks))
         self.assertEqual(len(tasks), 51)
-        self.assertEqual(plan['unplanned_high'], [])
+        self.assertEqual(set(plan['unplanned_high']), unplanned)
         self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 0)
-        self.assertEqual(sum(e['weight'] == 4 and e['implementation'] == 'scoped'
-                             for e in result['entries']), 72 + len(completed))
+        recovered_suppliers = {
+            'RS.world-queue-sort', 'RS.world-queue-owner-storage',
+            'RS.world-occlusion-mask', 'RS.canvas-startup-initializer',
+            'RS.world-occlusion-actor-writers', 'RS.particle-owner-slot-lifecycle',
+            'RS.drawing-session-release', 'RS.alternate-canvas-x87-copy',
+            'NP.native-creature-drawing-adapter',
+            'RS.actor-map-occupancy', 'RS.actor-pool-admission',
+            'RS.actor-reference-invalidation', 'RS.actor-cleanup-release',
+            'RS.actor-activation-lifecycle',
+            'RS.actor-downstream-value-services',
+            'RS.actor-downstream-controller-services',
+            'RS.actor-downstream-world-services',
+            'RS.actor-downstream-ui-services',
+        }
+        scoped_high = {e['behavior'] for e in result['entries']
+                       if e['weight'] == 4 and e['implementation'] == 'scoped'}
+        self.assertTrue(recovered_suppliers.issubset(scoped_high))
+        incoming = json.loads(evidence_text(ROOT / 'research/runtime/coverage/open-recovery-incoming-importance-20261021.json'))
+        merged_high = {e['behavior'] for e in incoming if e['weight'] == 4 and e['implementation'] == 'scoped'}
+        merged_high.update({
+            'NP.native-world-cell-producer-adapter',
+            'RS.world-cell-artifact-production',
+            'RS.world-cell-creature-production',
+            'RS.world-cell-effect-production',
+            'RS.world-cell-queue-publication',
+            'RS.world-cell-terrain-production',
+        })
+        self.assertTrue(merged_high.issubset(scoped_high))
+        self.assertEqual(len(scoped_high), 72 + len(completed) + len(recovered_suppliers) + len(merged_high))
         for task in tasks:
             execution = task.get('execution_result')
             if execution:
@@ -452,7 +486,7 @@ class TrancheTest(unittest.TestCase):
         plan = importance_view(self.catalog, self.register, self.tracks)['high_tranche_plan']
         tranche = plan['tranches'][0]
         self.assertEqual(len(tranche['tasks']), 17)
-        record = json.loads((ROOT / tranche['execution_result']['report']).read_text())
+        record = json.loads(evidence_text(ROOT / tranche['execution_result']['report']))
         self.assertTrue(record['all_components_pass'])
         self.assertTrue(record['sources_stable'])
         self.assertEqual(set(record['results']), {t['behavior'] for t in tranche['tasks']})
@@ -485,7 +519,7 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual(task['work_review']['validation_state'], 'historical')
         self.assertIn('HIGH03.ownership-reservations-current-20261020', task['work_review']['evidence'])
         self.assertEqual(task['work_review']['acceptance'], 'pending')
-        record = json.loads((ROOT / task['execution_result']['report']).read_text())
+        record = json.loads(evidence_text(ROOT / task['execution_result']['report']))
         self.assertEqual(record['counts']['reproduced_false_admissions'], 24)
         self.assertEqual(record['counts']['remaining_false_admissions'], 0)
         self.assertFalse(record['status_promotions'])
@@ -538,7 +572,9 @@ class TrancheTest(unittest.TestCase):
         next(b for b in r['behaviors'] if b['id'] == 'NP.native-clipped-image-copy')['status']['implementation'] = 'partial'
         plan = importance_view(self.catalog, r, self.tracks)['high_tranche_plan']
         self.assertEqual(plan['selected_count'], 51)
-        self.assertEqual(plan['unplanned_high'], ['NP.native-clipped-image-copy'])
+        self.assertEqual(set(plan['unplanned_high']), {'NP.native-clipped-image-copy',
+                         'RE.palette-effect-builders', 'RE.terrain-camera-lifecycle',
+                         'RE.terrain-entity-section-rotation', 'RE.terrain-spectator-lighting'})
 
     def test_high_scope_status_weight_and_source_drift_require_review(self):
         for case in ['scope', 'status', 'weight', 'source']:

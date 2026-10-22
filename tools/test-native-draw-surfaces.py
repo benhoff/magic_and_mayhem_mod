@@ -83,7 +83,7 @@ def main():
           native_ddraw_disabled=True,native_ddraw_module_absent=True,native_directdraw_imports=False,native_remaining_surfaces=max(native_words[i*words+29] for i in range(64)),native_remaining_devices=max(native_words[i*words+30] for i in range(64)))
         if mismatch:raise ValueError('Original/native caller or pixel mismatch: '+repr(mismatch[:30]))
         policy=struct.unpack('<7I',(out/'native/surface-policy.bin').read_bytes())
-        if policy!=(10,117,512,0,4,367200,4):raise ValueError('Native refusal/capacity/tail-read policy incomplete')
+        if policy!=(15,117,512,0,4,367200,12):raise ValueError('Native refusal/capacity/tail-read policy incomplete')
         report['native_policy']=dict(refusals=policy[0],unchanged_words=policy[1],surface_capacity=policy[2],remaining_surfaces=policy[3],default_offscreen_cases=policy[4],default_offscreen_words=policy[5],final_pixel_dword_cases=policy[6],policy_sha256=sha(out/'native/surface-policy.bin'))
         report['success']=True
     except Exception as error:report['error']=str(error)

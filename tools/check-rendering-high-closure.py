@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Check the reviewed resident supplier map; never infer runtime validation."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -50,7 +51,7 @@ def validate(root, register, crosswalk):
             target = (root/p).resolve()
             if not target.is_relative_to(root.resolve()):
                 raise ValueError('Escaping witness path')
-            lines = target.read_text().splitlines()
+            lines = evidence_text(target).splitlines()
             at = witness['line']
             if not 1 <= at <= len(lines) or lines[at-1].strip() != witness['text']:
                 raise ValueError('Code witness moved or changed')
@@ -64,7 +65,7 @@ def validate(root, register, crosswalk):
         target = (root/p).resolve()
         if (Path(p).is_absolute() or not target.is_relative_to(root.resolve()) or
                 target.relative_to(root.resolve()).parts[0] in {'working', 'original', '.git'} or
-                hashlib.sha256(target.read_bytes()).hexdigest() != expected):
+                hashlib.sha256(evidence_bytes(target)).hexdigest() != expected):
             raise ValueError('Unsafe or changed reviewed source: '+p)
     return {'success': True, 'domains': sorted(seen), 'static_review_only': True,
             'implementation_supplied': not crosswalk['concrete_missing_required_code'],
@@ -75,8 +76,8 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--crosswalk', type=Path, default=DEFAULT)
     a = p.parse_args()
-    result = validate(ROOT, json.loads((ROOT/'research/runtime/coverage/register.json').read_text()),
-                      json.loads(a.crosswalk.read_text()))
+    result = validate(ROOT, json.loads(evidence_text(ROOT/'research/runtime/coverage/register.json')),
+                      json.loads(evidence_text(a.crosswalk)))
     print(json.dumps(result))
 
 

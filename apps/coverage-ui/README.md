@@ -40,6 +40,22 @@ both recovered contracts and native policies. `tracks.json` defines the checklis
 Bookmark `#view=simulation`. A native preview does not imply original
 engine equivalence or live replacement. UI checks validate presentation only.
 
+**Spell progress**, available in Simulation, Major tracks and the Simulation/
+Core gameplay & spells details, separates casting foundations, wizard task
+execution, effect/delivery components and native integration. Each component
+counts once within these groups; a per-spell crosswalk shows shared contributions
+without treating an implemented task body as a complete spell. The gameplay track
+now includes delivered casting and wizard components, with separate milestones
+for component comparisons, native journeys and complete original lifecycles.
+Whole-spell comparison, integration and replacement remain independent.
+
+The catalog preserves all 104 IDs. Its 29 Unused-named slots are listed separately
+and excluded only from the Core gameplay & spells implementation denominator;
+they remain in detailed coverage and the full inventory milestone. The other 75
+IDs include internal/unnamed entries and are not a count of distinct playable
+spells. No slot is classified unreachable from its name. See the
+[spell accounting review](../../research/runtime/spell-progress-accounting-20261020.md).
+
 The **Native rendering** page separates **Implementation** from **Validation**.
 Its **Critical partial contracts: what remains** panel assigns each current
 Critical partial contract one primary need: missing implementation, original

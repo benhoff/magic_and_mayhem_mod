@@ -1,4 +1,5 @@
 """Reviewed rendering denominators; scoped support never implies completion."""
+from coverage_evidence import read_text as evidence_text
 from collections import Counter
 import json
 from pathlib import Path
@@ -17,7 +18,7 @@ def read(root, path):
     target = (root / relative).resolve()
     if relative.is_absolute() or '..' in relative.parts or not relative.parts or relative.parts[0] in {'original', 'working', '.git'} or not target.is_relative_to(root.resolve()):
         raise ValueError('Only repository accounting inputs may be read: ' + path)
-    return json.loads(target.read_text())
+    return json.loads(evidence_text(target))
 
 
 def measure(count, total):

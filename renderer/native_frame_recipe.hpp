@@ -16,10 +16,10 @@ public:
  // source generation. Current command provenance starts empty again.
  bool restart(unsigned,std::uint64_t,const std::map<unsigned,SurfaceId>&);
  std::uint64_t sealedSourceGeneration() const{return sealedSourceGeneration_;}
- bool ready() const{return ui_ && !dirty_;}
+ bool ready() const{return sealedReady() && !dirty_;}
  // Last sealed GPU snapshots stay owned while a new UI transaction is partial.
- bool sealedReady() const{return ui_!=0;}
- bool hasWorldOutput() const{return coordinates_!=0;}
+ bool sealedReady() const{return sealed_ && ui_!=0;}
+ bool hasWorldOutput() const{return sealedReady() && coordinates_!=0;}
  std::uint64_t generation() const{return generation_;}
  GpuFrame render(const GpuFrame&);
  GpuFrame renderSealed(const GpuFrame&);
@@ -36,6 +36,7 @@ private:
  std::size_t pixels_=0;
  unsigned recorded_=0;
  bool dirty_=true;
+ bool sealed_=false;
  void budget(std::size_t,unsigned count=1) const;
  SurfaceId ensure(unsigned,const std::map<unsigned,SurfaceId>&,bool world=false);
  void drop(SurfaceId&);

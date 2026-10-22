@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Pinned original cursor painting clients and exact retained foreign-copy caller."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import importlib.util
 import json
@@ -15,9 +16,9 @@ def main():
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
         spec=importlib.util.spec_from_file_location('canvas',ROOT/'tools/inspect-drawing-canvas-storage.py');pe=importlib.util.module_from_spec(spec);spec.loader.exec_module(pe)
-        data=a.executable.read_bytes()
+        data=evidence_bytes(a.executable)
         if pe.sha(data)!=pe.BUILD:raise ValueError('Unsupported executable')
-        inventory_path=ROOT/'research/runtime/coverage/binary-nocd.json';inventory=json.loads(inventory_path.read_text());entries={f['entry']:f for f in inventory['functions']};windows={}
+        inventory_path=ROOT/'research/runtime/coverage/binary-nocd.json';inventory=json.loads(evidence_text(inventory_path));entries={f['entry']:f for f in inventory['functions']};windows={}
         for entry in (0x4a3720,0x4a45b0,0x4a4910,0x4eaaf0):
             f=entries.get(entry)
             if f is None:
@@ -35,7 +36,7 @@ def main():
             lines=[x for x in out.splitlines() if re.match(r'^\s*[0-9a-f]+:',x)]
             if not lines or int(lines[0].split(':')[0],16)!=entry:raise ValueError('Entry alignment differs')
             at=pe.offset(data,start);windows[hex(entry)]=dict(start=start,end=end,whole_inventory_function=f is not None,bytes_sha256=pe.sha(data[at:at+end-start]),instructions=lines)
-        pending_raw=a.pending_reference.read_bytes();pending=json.loads(pending_raw)
+        pending_raw=evidence_bytes(a.pending_reference);pending=json.loads(pending_raw)
         frames=[f for f in pending['pending']['frames'] if f['tag']==32]
         if len(frames)!=1:raise ValueError('Retained cursor caller not unique')
         frame=frames[0];caller=frame['original_caller_rva']+0x400000
@@ -45,8 +46,8 @@ def main():
         imports=[x for x in inventory['imports'] if x['iat_va'] in wanted]
         if {x['iat_va'] for x in imports}!=wanted:raise ValueError('Import identity missing')
         names=['tools/inspect-drawing-cursor-clients.py','tools/inspect-drawing-canvas-storage.py','research/runtime/coverage/binary-nocd.json']
-        if pe.sha(a.executable.read_bytes())!=pe.BUILD:raise ValueError('Executable changed')
-        a.report.write_text(json.dumps(dict(schema=1,success=True,sources={n:pe.sha((ROOT/n).read_bytes()) for n in names},source_executable_sha256=pe.BUILD,windows=windows,imports=imports,retained_pending=dict(path=str(a.pending_reference),sha256=pe.sha(pending_raw),frame=frame),exact_copy_link=dict(caller=caller,call=caller-5,target=0x58c360,within_function=0x4a4910,source_wrapper=0x6a4fe0,destination_wrapper=0x641fc8),source_overlap_proved=False,source_ownership_proved=False,gameplay_picking_recovered=False,original_game_executed=False,scope='Exact static cursor clients/timer wrapper/imports and retained foreign tag32direct-call identity. Source/destination wrappers come from instruction arguments only; numerical canvas IDs do not prove allocation/aliasing or complete cursor/input lifecycle.'),indent=2)+'\n')
+        if pe.sha(evidence_bytes(a.executable))!=pe.BUILD:raise ValueError('Executable changed')
+        a.report.write_text(json.dumps(dict(schema=1,success=True,sources={n:pe.sha(evidence_bytes(ROOT/n)) for n in names},source_executable_sha256=pe.BUILD,windows=windows,imports=imports,retained_pending=dict(path=str(a.pending_reference),sha256=pe.sha(pending_raw),frame=frame),exact_copy_link=dict(caller=caller,call=caller-5,target=0x58c360,within_function=0x4a4910,source_wrapper=0x6a4fe0,destination_wrapper=0x641fc8),source_overlap_proved=False,source_ownership_proved=False,gameplay_picking_recovered=False,original_game_executed=False,scope='Exact static cursor clients/timer wrapper/imports and retained foreign tag32direct-call identity. Source/destination wrappers come from instruction arguments only; numerical canvas IDs do not prove allocation/aliasing or complete cursor/input lifecycle.'),indent=2)+'\n')
         print(json.dumps(dict(success=True,foreign_call=hex(caller),function='0x4a4910')))
     finally:subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
 

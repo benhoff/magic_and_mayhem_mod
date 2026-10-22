@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Read-only export of pinned projectile setup, motion, impact and cleanup contracts."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -25,8 +26,8 @@ def main():
     args.output.mkdir(parents=True, exist_ok=False)
     report = dict(success=False, scope='Static pinned instruction/dispatch evidence only; no execution or lifecycle equivalence.',
                   source_executable_sha256=HASH, sources={
-                      'tools/export-projectile.py': sha(Path(__file__).read_bytes()),
-                      'research/runtime/coverage/binary-nocd.json': sha((ROOT/'research/runtime/coverage/binary-nocd.json').read_bytes())})
+                      'tools/export-projectile.py': sha(evidence_bytes(Path(__file__))),
+                      'research/runtime/coverage/binary-nocd.json': sha(evidence_bytes(ROOT/'research/runtime/coverage/binary-nocd.json'))})
     def manifest(name):
         result = subprocess.run([ROOT/'tools/original-manifest.sh', 'verify'], capture_output=True, text=True)
         (args.output/name).write_text(result.stdout + result.stderr)
@@ -34,7 +35,7 @@ def main():
     manifest('original-before.log')
     try:
         executable = ROOT/'original/Arcane_Nocd/Chaos.exe'
-        raw = executable.read_bytes()
+        raw = evidence_bytes(executable)
         if sha(raw) != HASH:
             raise ValueError('Unsupported original build')
         pe = struct.unpack_from('<I', raw, 60)[0]
@@ -45,7 +46,7 @@ def main():
                 if 0x400000+rva <= address and address+size <= 0x400000+rva+length:
                     return raw[offset+address-0x400000-rva:offset+address-0x400000-rva+size]
             raise ValueError('Unbacked address')
-        inventory = json.loads((ROOT/'research/runtime/coverage/binary-nocd.json').read_text())
+        inventory = json.loads(evidence_text(ROOT/'research/runtime/coverage/binary-nocd.json'))
         functions = {f['entry']: f for f in inventory['functions']}
         output = subprocess.check_output(['objdump', '-d', '-Mintel', str(executable)], text=True)
         lines = []
@@ -66,12 +67,12 @@ def main():
             report['functions'][hex(entry)] = dict(start=start, end=end, sha256=sha(body), entry_bytes=body[:16].hex(), assembly_sha256=sha(text.encode()))
         report['update_dispatch'] = list(struct.unpack('<89I', read(0x499e24, 89*4)))
         report['setup_dispatch'] = list(struct.unpack('<89I', read(0x496f04, 89*4)))
-        report['input_unchanged'] = executable.read_bytes() == raw
+        report['input_unchanged'] = evidence_bytes(executable) == raw
         report['success'] = report['input_unchanged']
     finally:
         manifest('original-after.log')
         report['original_manifest_verified_before_after'] = True
-        report['sources_unchanged'] = all(sha((ROOT/path).read_bytes()) == value for path, value in report['sources'].items())
+        report['sources_unchanged'] = all(sha(evidence_bytes(ROOT/path)) == value for path, value in report['sources'].items())
         with (args.output/'report.json').open('x') as out:
             json.dump(report, out, indent=2)
             out.write('\n')

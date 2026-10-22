@@ -4,6 +4,13 @@ Reviewed 2026-10-04. Companion to [creature AI, combat and spells](creature-ai-c
 using the same pinned executable and static evidence/confidence limits.
 
 This is a research checklist, **not an implementation or equivalence claim**.
+The table below retains the initial 2026-10-04 discovery assessment. The
+[2026-10-20 progress reconciliation](spell-progress-accounting-20261020.md)
+records subsequent casting, wizard task, Cure/Sphere and native integration
+work: nine spell IDs now have partial implementations in the central register.
+Its component crosswalk and separate Unused-named catalog count supersede this
+initial table for implementation progress; complete original lifecycles remain
+pending.
 Names come from decoded `working/decoded-cfg/spells.cfg`; that derivative's SHA-256
 is `6c81fc699ec3e37de83c1837570f6c1fb1c910b6c6263f5bfd8b88883df7738a`. Original encoding/loader mapping remains separate work.
 

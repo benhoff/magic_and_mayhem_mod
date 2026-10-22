@@ -3,6 +3,9 @@ API void* WIN LoadLibraryA(const char*);
 API void* WIN GetProcAddress(void*,const char*);
 API void* WIN GetDesktopWindow(void);
 API i32 WIN StretchDIBits(void*,i32,i32,i32,i32,i32,i32,i32,i32,const void*,const void*,u32,u32);
+API void* WIN CreateCompatibleBitmap(void*,i32,i32);
+API void* WIN SelectObject(void*,void*);
+API i32 WIN DeleteObject(void*);
 typedef i32 (WIN *Dib)(void*,i32,i32,i32,i32,i32,i32,i32,i32,const u8*,const u8*,u32,u32);
 typedef i32 (WIN *Create)(void*,void**,void*);
 typedef u32 (WIN *Count)(void);
@@ -37,6 +40,11 @@ void start(void){
   if(((i32 (WIN *)(void*,void**))table(a)[17])(a,&ad) || ((i32 (WIN *)(void*,void**))table(b)[17])(b,&bd))ExitProcess(176);
   r[0]=(u32)StretchDIBits(ad,x,y,w,h,0,0,w,h,source,info,usage,0xcc0020);
   r[1]=(u32)paint(bd,x,y,w,h,0,0,w,h,source,(const u8*)info,usage,0xcc0020);
+  /* A caller-selected replacement bitmap cannot acquire our owned lease. */
+  void* foreign=CreateCompatibleBitmap(bd,13,9);if(!foreign)ExitProcess(179);
+  void* selected=SelectObject(bd,foreign);if(!selected)ExitProcess(180);
+  if((u32)paint(bd,x,y,w,h,0,0,w,h,source,(const u8*)info,usage,0xcc0020)!=0x80000000u)ExitProcess(181);
+  if(SelectObject(bd,selected)!=foreign||!DeleteObject(foreign))ExitProcess(182);
   r[3]=(u32)paint((void*)0x1234,x,y,w,h,0,0,w,h,source,(const u8*)info,usage,0xcc0020);
   r[4]=(u32)paint(bd,x,y,w,h,0,0,w,h,source,(const u8*)info,usage,0x1234);
   r[5]=(u32)paint(bd,x,y,w,h,1,0,w,h,source,(const u8*)info,usage,0xcc0020);

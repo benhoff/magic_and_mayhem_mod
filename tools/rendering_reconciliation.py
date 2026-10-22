@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Validate explicit rendering review decisions; never infer implementation status."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 from collections import Counter
 import hashlib
@@ -19,7 +20,7 @@ LABELS={
 ROLES={'offline_reconstruction','native_capability','original_contract','diagnostic','acceptance'}
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(evidence_bytes(path)).hexdigest()
 
 def safe(root,name):
     p=Path(name)
@@ -42,7 +43,7 @@ def load_reviews(root,register):
     for ref in register.get('implementation_reviews',[]):
         record=safe(root,ref['path'])
         if sha(record)!=ref['sha256']:raise ValueError('Reconciliation record hash mismatch')
-        doc=json.loads(record.read_text())
+        doc=json.loads(evidence_text(record))
         if doc.get('schema')!=1 or doc.get('static_review_only') is not True or doc['id']!=ref['id']:
             raise ValueError('Invalid static reconciliation header')
         entries=doc['entries'];ids=[e['behavior'] for e in entries]
@@ -70,13 +71,18 @@ def load_reviews(root,register):
             if b.get('implementation_review')!=expected:
                 raise ValueError('Missing exact register review link: '+bid)
             required=set(b['implementation'])|set(b['tests'])|set(b['documents'])|set(b.get('validation_dependencies',[]))
-            if not required.issubset(set(e['reviewed_paths'])) or not set(e['reviewed_paths']).issubset(sources):
+            contract_current=behavior_contract(b,builds)==e['contract_sha256']
+            missing=sorted(required-set(e['reviewed_paths']))
+            if (missing and contract_current) or not set(e['reviewed_paths']).issubset(sources):
                 raise ValueError('Incomplete reviewed source paths: '+bid)
             changed=[p for p in e['reviewed_paths'] if hashes[p]!=sources[p]]
+            # A historical contract cannot review subsequently linked inputs.
+            # Preserve its exact record and expose that drift without blocking
+            # the whole dashboard or granting those inputs current review credit.
+            changed+=['newly linked input: '+p for p in missing]
             pending=e.get('pending_source_review',[])
             if not isinstance(pending,list) or not set(pending).issubset(e['reviewed_paths']):
                 raise ValueError('Pending reconciliation paths must be explicitly pinned')
-            contract_current=behavior_contract(b,builds)==e['contract_sha256']
             for relation in e['related_behaviors']:
                 if relation not in by_id or relation==bid:raise ValueError('Invalid narrower behavior link')
             witness=e.get('code_witness')
@@ -90,7 +96,7 @@ def load_reviews(root,register):
                 if not w.get('text','').strip() or not isinstance(w.get('line'),int) or w['line']<1:
                     raise ValueError('Invalid source witness')
                 if hashes[w['path']]==sources[w['path']]:
-                    lines=safe(root,w['path']).read_text(errors='replace').splitlines()
+                    lines=evidence_text(safe(root,w['path']), errors='replace').splitlines()
                     if w['line']>len(lines) or lines[w['line']-1]!=w['text']:
                         raise ValueError('Reconciliation witness differs from reviewed source')
             status_current=b['status']['implementation']==e['recorded_implementation']
@@ -110,7 +116,7 @@ def load_reviews(root,register):
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--json',type=Path)
     p.add_argument('--require-fresh',action='store_true');a=p.parse_args()
-    r=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
+    r=json.loads(evidence_text(ROOT/'research/runtime/coverage/register.json'))
     rows=load_reviews(ROOT,r)
     result={'static_review_only':True,'reviews':[{k:v for k,v in row.items() if k!='entries'} for row in rows]}
     if a.json:a.json.parent.mkdir(parents=True,exist_ok=True);a.json.open('x').write(json.dumps(result,indent=2)+'\n')

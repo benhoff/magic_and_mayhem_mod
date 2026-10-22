@@ -80,3 +80,43 @@ test('older server raw Low plan preserves the rendering page and names its refre
   assert.match(html,/Low work: first 20/);
   assert.match(html,/data-progress-section="validation"/);
 });
+
+function spellClient() {
+  const definition=JSON.parse(read('apps/coverage-ui/tracks.json'));
+  const register=JSON.parse(read('research/runtime/coverage/register.json'));
+  const spells=structuredClone(definition.spell_progress);
+  spells.catalog_behaviors=register.behaviors.filter(b=>b.subsystem==='spell_dispatch').map(b=>b.id);
+  spells.named_behaviors=spells.catalog_behaviors.filter(id=>!spells.unused_behaviors.includes(id));
+  const ids=new Set([...spells.catalog_behaviors,...spells.groups.flatMap(g=>g.behaviors)]);
+  const behaviors=register.behaviors.filter(b=>ids.has(b.id));
+  const track={id:'simulation',title:'Engine simulation',behaviors:[...ids],milestones:[],progress:{count:0,total:0},
+    current:0,focus:{boundary:'Complete original world scheduling remains open.',documents:[]}};
+  const context=vm.createContext({payload:{spell_progress:spells,behaviors,tracks:[track]}});
+  vm.runInContext(source,context);
+  vm.runInContext('data=payload;behaviorById=new Map(data.behaviors.map(b=>[b.id,b]))',context);
+  return {context,render:()=>vm.runInContext('spellProgressView()',context)};
+}
+
+test('spell progress credits component work while preserving whole-spell gaps', () => {
+  const {render}=spellClient();
+  const html=render();
+  assert.match(html,/data-spell-group="foundations"><summary>Casting foundations: 4 \/ 4 implemented/);
+  assert.match(html,/data-spell-group="tasks"><summary>Wizard spell task execution: 3 \/ 3 implemented/);
+  assert.match(html,/data-spell-group="effects"><summary>Effect &amp; delivery components: 6 \/ 7 implemented · 0 partial · 1 not implemented/);
+  assert.match(html,/data-spell-group="integration"><summary>Native spell integration: 5 \/ 5 implemented/);
+  assert.match(html,/data-spell="SP\.073"[^]*?data-stage="implementation">Registered partial/);
+  assert.match(html,/data-spell-catalog="named"><summary>Named spell catalog IDs \(75\): 0 \/ 75 implemented · 9 partial · 66 not implemented/);
+  assert.match(html,/data-spell-catalog="unused"><summary>Unused-named catalog slots \(29\)/);
+  assert.match(html,/Reachability is unresolved/);
+  assert.match(html,/No original comparison/);
+  assert.match(html,/No live replacement/);
+  assert.match(html,/Shared components may appear under several spells; they count once/);
+});
+
+test('simulation shows the spell panel and older snapshots give a refresh instruction', () => {
+  const {context}=spellClient();
+  assert.match(vm.runInContext("renderingView('simulation')",context),/data-spell-progress/);
+  vm.runInContext('delete data.spell_progress',context);
+  assert.match(vm.runInContext('spellProgressView()',context),/Restart the dashboard server/);
+  assert.doesNotMatch(vm.runInContext('spellProgressView()',context),/data-spell="/);
+});

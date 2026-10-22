@@ -11,12 +11,14 @@ import json
 import os
 from pathlib import Path
 import sqlite3
+import subprocess
 import tempfile
 
 from coverage_gate import (REGISTER, check, changes, digest, draft, review_errors,
                            snapshot, source_index)
 from coverage_merge_history import inherited_history
 from coverage_reviews import REVIEWS, load_journal
+from coverage_evidence import read_bytes as evidence_bytes, write_report
 
 DEFAULT_DB = 'working/coverage/bookkeeping.sqlite3'
 
@@ -220,9 +222,11 @@ def refresh_index(root):
     sha = hashlib.sha256(data).hexdigest()
     name = f'research/runtime/coverage/source-index-{sha}.json'
     target = root/name
-    if target.exists() and target.read_bytes() != data:
-        raise ValueError('Existing source census content mismatch')
-    atomic_replace(target, data, data if target.exists() else None)
+    if target.exists():
+        if evidence_bytes(target, root=root) != data:
+            raise ValueError('Existing source census content mismatch')
+    else:
+        write_report(root, target, data)
     register['code_index'] = {'path': name, 'sha256': sha}
     atomic_replace(path, (json.dumps(register, indent=2) + '\n').encode(), previous)
     return name
@@ -236,6 +240,12 @@ def gate_cli():
 
 
 def capture(root, base):
+    from evidence_local import local_evidence
+    with local_evidence(root):
+        return _capture(root, base)
+
+
+def _capture(root, base):
     cli = gate_cli()
     # Resolve a moving branch name once. This is deliberately not a pass cache.
     head = cli.git(root, 'rev-parse', '--verify', 'HEAD^{commit}').decode().strip()
@@ -343,3 +353,112 @@ def record(workspace, draft_id, reason, validation_reason, status='pending', evi
             exported = workspace.export()
     return {'receipt': review['id'], 'exported': exported, 'gate_passed': not report['errors'],
             'gate_errors': report['errors'], 'counts': report['counts']}
+
+
+def promotion_reviews(before, after, audit_report, delta, prefix, reason):
+    """Account existing declarations; never infer, set or promote a milestone."""
+    ranks = {'implementation': {'none': 0, 'partial': 1, 'scoped': 2},
+             'comparison': {'none': 0, 'recorded': 1},
+             'integration': {'none': 0, 'headless': 1, 'preview': 2,
+                             'live_observation': 3, 'live_equivalence': 4},
+             'replacement': {'none': 0, 'scoped_live': 1}}
+    audited = {b['id']: b for b in audit_report['behaviors']}
+    rows = {b['id']: b for b in delta['behaviors']}
+    groups = {}
+    for bid, current in after['behaviors'].items():
+        status = current['record']['status']
+        old = before['behaviors'].get(bid, {}).get('record', {}).get('status', {})
+        stages = tuple(stage for stage, levels in ranks.items()
+                       if levels.get(status.get(stage), 0) > levels.get(old.get(stage), 0)
+                       and (stage != 'implementation' or status[stage] == 'scoped'))
+        if not stages:
+            continue
+        evidence = set()
+        for stage in stages:
+            support = audited[bid]['current_validation'][stage]
+            if support['state'] != 'current' or not support['evidence']:
+                raise ValueError(f'Current execution evidence required for {bid}/{stage}')
+            evidence.update(support['evidence'])
+        group = groups.setdefault(stages, {'behaviors': [], 'evidence': set()})
+        group['behaviors'].append(rows[bid])
+        group['evidence'].update(evidence)
+    return [{'id': prefix + '-proof-' + '-'.join(stages),
+             'reason': 'Reviewed current scope-bound execution for the explicitly declared promoted dimensions.',
+             'files': [], 'behaviors': value['behaviors'], 'pending_gaps': [],
+             'validation': {'status': 'recorded', 'stages': list(stages),
+                            'reason': reason, 'evidence': sorted(value['evidence'])}}
+            for stages, value in sorted(groups.items())]
+
+
+def finish(workspace, base, reason, validation_reason, message, index_reason=None,
+           record_promotions=False):
+    from evidence_local import local_evidence
+    with local_evidence(workspace.root):
+        return _finish(workspace, base, reason, validation_reason, message,
+                       index_reason, record_promotions)
+
+
+def _finish(workspace, base, reason, validation_reason, message, index_reason=None,
+            record_promotions=False):
+    """One owned batch: fresh review, local backups, staging and normal commit.
+
+    Nothing is published. The normal pre-commit hook rechecks the actual index;
+    a failed check/commit leaves source, accepted receipts and backups intact.
+    """
+    from evidence_local import backup_sqlite, local_evidence
+    if not all(value.strip() for value in (reason, validation_reason, message)):
+        raise ValueError('Concrete review/validation reasons and commit message are required')
+    with workspace.locked():
+        workspace.sync()
+        if index_reason is not None:
+            if not index_reason.strip():
+                raise ValueError('Index review reason cannot be empty')
+            refresh_index(workspace.root)
+        before, after, audit_report, journal, history, commit, head = capture(workspace.root, base)
+        if commit != head:
+            raise ValueError('Finish must review against the current HEAD')
+        delta = changes(before, after)
+        if not delta['files'] and not delta['behaviors']:
+            raise ValueError('No changes to finish')
+        review = draft(delta)['reviews'][0]
+        review['reason'] = reason
+        review['validation'] = {'status': 'pending', 'reason': validation_reason, 'evidence': []}
+        if index_reason:
+            review['index_review_reason'] = index_reason
+        additions = [review]
+        if record_promotions:
+            additions += promotion_reviews(before, after, audit_report, delta, review['id'], validation_reason)
+        local = workspace.pending(journal)
+        existing = {r['id']: r for r in journal['reviews'] + local}
+        additions = [r for r in additions if r['id'] not in existing or r != existing[r['id']]]
+        for item in additions:
+            errors, _, _ = review_errors(item, delta, before, after, audit_report)
+            if errors:
+                raise ValueError('; '.join(errors))
+        candidate = dict(journal, reviews=journal['reviews'] + local + additions)
+        result = check(before, after, candidate, audit_report, history)
+        if result['errors']:
+            raise ValueError('; '.join(result['errors']))
+        workspace.db.execute('INSERT OR REPLACE INTO drafts VALUES (?,?)',
+                             (review['id'], encoded({'base': commit, 'head': head, 'review': review}).decode()))
+        for item in additions:
+            workspace.insert(item)
+    with workspace.locked():
+        exported = workspace.export()
+    directory = (workspace.path.parent/'backups').resolve()
+    if not directory.is_relative_to(workspace.root/'working'):
+        raise ValueError('SQLite backups must remain in this worktree working/ directory')
+    backups = [backup_sqlite(workspace.path, directory)]
+    pending = workspace.root/'working/coverage/evidence-pending.sqlite3'
+    if pending.is_file():
+        backups.append(backup_sqlite(pending, directory))
+    git = ['git', '-C', str(workspace.root)]
+    if subprocess.check_output(git + ['rev-parse', 'HEAD'], text=True).strip() != head:
+        raise ValueError('HEAD changed during completion; review the new base')
+    subprocess.run(git + ['add', '--all', '--', '.'], check=True)
+    # Hooks remain mandatory and execute against this worktree's staged tree.
+    with local_evidence(workspace.root):
+        subprocess.run(git + ['commit', '-m', message], check=True)
+    committed = subprocess.check_output(git + ['rev-parse', 'HEAD'], text=True).strip()
+    return {'commit': committed, 'receipts': exported, 'backups': backups,
+            'publication': 'local only; synchronize evidence before pushing'}

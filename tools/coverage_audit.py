@@ -6,7 +6,7 @@ import re
 from bisect import bisect_right
 from functools import cache, lru_cache
 from coverage_claims import validation_support
-from coverage_evidence import hydrate
+from coverage_evidence import Reader, evidence_digest
 
 STAGES = {
     'understanding': {'unknown', 'partial', 'scoped'},
@@ -37,7 +37,7 @@ def range_complement(sections, functions):
 
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return evidence_digest(path)
 
 
 def pointer(value, path):
@@ -86,8 +86,12 @@ class FunctionRangeIndex:
 
 
 def audit(root, register, *, recorded_sources=None):
+    with Reader(root) as reader:
+        return _audit(root, register, reader, recorded_sources=recorded_sources)
+
+
+def _audit(root, register, reader, *, recorded_sources=None):
     root = Path(root).resolve()
-    hydrate(root, refresh=False)
     errors, warnings = [], []
     findings = {'unclassified_functions': [], 'unassigned_executable_ranges': [],
                 'unresolved_indirect_flows': [], 'unmapped_imports': [],
@@ -103,13 +107,13 @@ def audit(root, register, *, recorded_sources=None):
     # An invocation observes each file once. Never retain cached paths/hashes
     # across audits: working files, staged trees and Git bases are independent.
     files = {}
-    cached_sha = cache(sha)
+    cached_sha = cache(reader.digest)
 
     @lru_cache(maxsize=2)
     def record_json(path):
         # A small invocation-local cache bounds retained report bodies while
         # avoiding repeated decoding of evidence sharing the same report.
-        return json.loads(path.read_text())
+        return reader.json(path)
 
     def require(condition, message):
         if not condition:
@@ -148,7 +152,7 @@ def audit(root, register, *, recorded_sources=None):
         for build_id, build in builds.items():
             inventory_file = file(build['inventory'])
             require(cached_sha(inventory_file) == build['inventory_sha256'], f'{build_id}: inventory hash mismatch')
-            inventory = json.loads(inventory_file.read_text())
+            inventory = reader.json(inventory_file)
             require(inventory['schema'] == 1 and inventory['build'] == build_id, f'{build_id}: inventory identity mismatch')
             require(inventory['source_sha256'] == build['source_sha256'], f'{build_id}: original binary hash mismatch')
             require(bool(re.fullmatch(r'[0-9a-f]{64}', build['source_sha256'])), f'{build_id}: malformed original digest')
@@ -482,7 +486,7 @@ def audit(root, register, *, recorded_sources=None):
             spec.loader.exec_module(source_tool)
             index_file = file(register['code_index']['path'])
             require(cached_sha(index_file) == register['code_index']['sha256'], 'Source index hash mismatch')
-            catalog = json.loads(index_file.read_text())
+            catalog = reader.json(index_file)
             require(catalog['schema'] == 1, 'Unsupported source index schema')
             # Retained Git bases predate the host adapter root. Accept their
             # exact declaration; current_paths still includes new compat code,

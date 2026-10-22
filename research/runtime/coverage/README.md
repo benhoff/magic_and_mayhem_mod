@@ -17,6 +17,9 @@ python3 tools/audit-re-coverage.py --require-fresh
 
 ## Required change accounting
 
+The SQLite workflow below automates receipt preparation, recording and export.
+The manual workflow remains supported for historical trees and initial adoption.
+
 The change gate is separate from the discovery audit:
 
 ```sh
@@ -494,11 +497,110 @@ change evidence reports, source fingerprints, historical claims or validation.
 A deletion at the tip cannot remove an oversized blob from an earlier commit;
 repair unpushed history before retrying a rejected push.
 
+### SQLite review workspace and automatic exports
+
+Use `tools/coverage-bookkeeping.py` for routine change reviews. Its local SQLite
+database at `working/coverage/bookkeeping.sqlite3` owns drafts, accepted local
+receipts and indexed file/behavior/gap/evidence relationships. The committed text
+journal and its existing archive shards remain the durable authority for clean
+checkouts, historical Git trees, staged checks and CI. SQLite requires only
+Python's standard library; no service or third-party package is needed.
+
+After reviewing the implementation/test links and updating any semantic findings
+or evidence definitions, prepare the review:
+
+```sh
+python3 tools/coverage-bookkeeping.py prepare --base HEAD \
+  --index-review-reason 'Reviewed the affected source links; describe the actual indexing review here.'
+```
+
+This imports the historical journal without changing it, generates and pins a
+new content-addressed source census, discovers exact changed file/contract hashes
+and new gap identities, and stores a draft in SQLite. Omit
+`--index-review-reason` when the existing census is current. The supplied reason
+acknowledges an indexing review only: the tool cannot infer semantic mappings,
+reconcile focused-register changes, renew evidence or review source code for you.
+Inspect the printed draft and gate errors before accepting it. Existing source
+censuses, original artifacts, evidence hashes and receipt values are preserved.
+
+Record the supplied review and validation decisions, exporting automatically:
+
+```sh
+python3 tools/coverage-bookkeeping.py record \
+  --reason 'Describe the concrete change, affected contracts and review.' \
+  --validation-reason 'Describe checks run and the remaining validation boundary.'
+```
+
+`record` uses the latest prepared draft; supply its ID explicitly when managing
+several drafts. Validation defaults to `pending`. Use `--validation recorded`
+with repeated `--evidence <id>` and optionally `--stage <dimension>` for fresh
+registered execution evidence. The existing gate enforces its source, scope,
+scenario and evidence-kind requirements. `--validation not_required` retains the
+existing restriction to eligible support work. Reasons must be substantive; the
+tool fills mechanical fields, never review judgments or validation claims.
+
+Recording freshly recomputes both Git-base and working snapshots. Changed source,
+contracts, census or HEAD invalidate the prepared draft; prepare again after
+edits. The gate receives the same exact receipt values as the manual workflow.
+Partial reviews can use repeated `prepare --path <exact-changed-path>` and/or
+`--behavior <exact-changed-id>`. A selected shared file includes all its affected
+behavior contracts; all new gap identities remain explicit in the draft. Partial
+recording may leave other changes unreviewed. The result reports `gate_passed`
+and every remaining `gate_errors`; successful receipt storage does not claim a
+passing gate. New receipt-validation errors refuse recording.
+
+Useful queries and recovery commands:
+
+```sh
+python3 tools/coverage-bookkeeping.py sync
+python3 tools/coverage-bookkeeping.py find --path tools/coverage_gate.py
+python3 tools/coverage-bookkeeping.py find --behavior TOOL.coverage-gate --validation pending
+python3 tools/coverage-bookkeeping.py export
+```
+
+`sync` losslessly imports exact historical values and rejects duplicate IDs,
+rewrites, deletions and reordering of imported receipts. Imported records are
+append-only in SQLite. The database is bound to its worktree, preventing receipts
+from another checkout being mixed in accidentally. `export` appends accepted local
+receipts to the active JSON journal with deterministic serialization, preserving
+all archive bytes and journal extension fields. No-op exports preserve every
+byte. Cooperating writers serialize through a worktree lock; changed output bytes
+are checked before atomic replacement. External editors must not modify the
+journal during export. Other completed external appends are imported and retained.
+
+The database transaction commits before export. A failed export leaves its
+accepted receipt available for retry; retry also tolerates a crash after journal
+replacement but before the import metadata commits. `record --no-export` keeps a
+receipt local until `export`. Exported receipts rebuild the SQLite workspace from
+a fresh checkout; unexported drafts/receipts exist only in that local database,
+so export before discarding it. Do not commit the binary database.
+
+Finally inspect/stage the generated journal, census and register changes along
+with the implementation, tests and documentation. Run the normal staged gate
+against `HEAD`. The workflow never stages files, commits, refreshes historical
+evidence fingerprints, infers behavior mappings or uses a cached gate pass.
+The current migration covers change reviews; the behavior register and immutable
+execution reports remain in their established text/file formats.
+
+
+### Active and historical implementation reviews
+
+`implementation_reviews` indexes only active static reconciliation documents,
+whose entries match each behavior's exact `implementation_review` backlink.
+Merged documents with no remaining active backlinks are retained unchanged under
+`implementation_review_history`; their files and recorded hashes remain available.
+Keeping every superseded version in the active list duplicates decisions and can
+prevent the dashboard from loading. Moving an inactive reference preserves its
+record and grants no new engine understanding, implementation or validation.
+
 ## SQLite evidence and automated bookkeeping
 
-On a fresh clone, run `python3 tools/evidence-store.py hydrate`, then
-`python3 tools/install-coverage-hook.py`. CI restores pinned evidence before its
-checks. The audit also restores pointer files when necessary. Large reports,
+On a fresh clone, run `python3 tools/evidence-store.py fetch --verify`, then
+`python3 tools/install-coverage-hook.py`. CI verifies the pinned SQLite archives
+without expanding their JSON files. The audit, gate, coverage UI and migrated
+research readers read original bytes directly through `coverage_evidence.Reader`.
+Readers verify content hashes and preserve historical source fingerprints; they
+do not hydrate the working tree. Large reports,
 generated summaries, binary captures and old receipt shards are exact SQLite
 objects outside the Git object history; source, handwritten research, live
 registers, the active review journal and small pinned manifests remain in Git.
@@ -506,6 +608,47 @@ The clean filter stores a pointer containing the original SHA-256 and byte count
 Restoration validates compressed downloads, the database and the original bytes.
 A missing or corrupt object fails closed; local pending data cannot establish
 remote availability. Archived findings retain their original hashes and claims.
+
+Generated reports under `research/runtime/` and `research/formats/` fit this
+storage policy. Editable central/focused registers, the active review journal,
+gate baseline, source locks, UI policy, wire schemas, test fixtures and authored
+game/launcher configuration remain JSON. Bootstrap manifests stay outside the
+database so a fresh clone can find and verify its archives.
+New immutable research exports can use `coverage_evidence.write_report`;
+`coverage-bookkeeping.py prepare --index-review-reason ...` and the source-index
+CLI already write managed census outputs directly to SQLite. Outputs explicitly
+requested under `working/` remain ordinary JSON for external tools.
+
+Inventory and compact an existing expanded checkout explicitly:
+
+```sh
+python3 tools/evidence-store.py inventory-json --output working/retention/json-inventory-<new-id>.json
+python3 tools/evidence-store.py compact-json \
+  --output /var/local/magic-and-mayhem-archive/json-compaction-<new-id> --apply
+```
+
+Compaction preserves exact payloads in SQLite, verifies a cold copy and a real
+restore, and writes matching receipts to the checkout and cold archive before
+replacing expanded files with small references. It rechecks source identities,
+retains negative evidence, preserves file modes and never stages files. A
+concurrent change aborts replacement; inspect the retained plan/partial receipt.
+Resume a reviewed interrupted plan with `evidence-store.py apply-plan <plan.json>`.
+The pending database also records queryable `json_documents` path, hash, size,
+success, scope and schema metadata for each sweep. Local pending evidence can be
+read before publication; it cannot satisfy the pre-push availability guard.
+
+To inspect or hand a report to a legacy external reader, export exact bytes:
+
+```sh
+python3 tools/evidence-store.py export research/runtime/<report>.json --output working/<report>.json
+```
+
+`hydrate <research-path>...` explicitly restores selected legacy inputs in place.
+Bare `hydrate` remains an optional full expansion and index refresh; it is no
+longer part of routine auditing or CI. Do not edit a reference as JSON. Export it,
+make a new result under a new evidence ID, and publish its captured bytes before
+pushing. Git references retain existing paths so recorded hashes and links do
+not need a semantic rewrite.
 
 Use `python3 tools/coverage-bookkeeping.py prepare --base HEAD` and `record` with
 concrete `--reason` and `--validation-reason` values. Recording recomputes source,
@@ -515,27 +658,52 @@ a new source census. Inspect `gate_errors`; a partial receipt is not a gate pass
 Registers and exported receipts remain reviewable text, and no cached result
 approves a later tree.
 
-Before committing newly generated evidence or a new source census, stage those
-paths to capture their exact payloads through the filter. Publish the pending
-SQLite objects with:
+Local completion and evidence distribution are separate operations. Create one
+owned worktree per bounded task batch; keep concurrent batches in their own trees.
+For example, start from a clean reviewed commit with
+`git worktree add -b native-next-batch working/worktrees/native-next-batch HEAD`.
+Run the appropriate bounded tests before recording the batch.
+
+Finish a local batch with concrete review and validation reasons:
 
 ```sh
-python3 tools/evidence-store.py publish \
-  --output working/evidence-publications/<new-id> --tag evidence-<new-id>
+python3 tools/finish-work.py \
+  --reason 'Reviewed the owned changes and their explicit behavior links' \
+  --validation-reason 'Describe executed checks and remaining validation boundaries' \
+  --index-review-reason 'Reviewed changed source links and census findings' \
+  --message 'Describe the bounded change'
 ```
 
-Publication uses SSH to push an upload-only temporary Actions branch. The job
-verifies and uploads bounded assets to an immutable-by-policy release, then
-deletes its transport branch. The publisher downloads and verifies the archive
-before updating `.evidence-store.json`. Existing asset names are never silently
-overwritten. A failed attempt retains its files and receipt for investigation.
-Then prepare/record the final exact review, stage its source, register, census,
-manifest and receipt together, and run the staged gate. Publication changes the
-manifest, so regenerate a draft prepared before publication. If prepare creates
-a new census, stage and publish that census before preparing the final draft.
-The pre-push guard rejects unavailable payloads, raw evidence blobs and commits
-from the old graph. Release payloads have local verified backups; availability
-and remote storage are dependencies of a fresh checkout.
+The command prepares exact receipts in the local SQLite workspace, verifies the
+whole change gate, exports accepted receipts, makes verified consistent SQLite
+backups, stages the owned worktree and commits with the normal hook enabled.
+It requires all configured archive snapshots locally; `evidence-store.py fetch
+--verify` is a separate explicit setup operation. Local completion never uploads
+or fetches evidence. Its temporary Git trees can resolve the local pending store;
+every resolved payload still undergoes its original hash and size checks.
+
+Use `--record-current-promotions` only after reviewing the requested milestone
+changes. It records stage-specific proof from existing current audit support;
+it does not change statuses, manufacture claims, or grant other stages credit.
+Missing, stale, incomplete or unbound execution proof refuses completion. Without
+that option, new promotions require previously recorded valid proof receipts.
+Failed checks or commits preserve source, accepted SQLite receipts and backups.
+
+When sharing is requested, synchronize from a clean owned worktree:
+
+```sh
+python3 tools/sync-evidence.py \
+  --output working/evidence-publications/<new-id> --tag evidence-<new-id> --push
+```
+
+Synchronization gathers only unpublished payloads across outgoing commit history,
+including report versions absent from HEAD. The existing publication transport
+verifies uploaded/downloaded immutable SQLite assets before updating the manifest.
+The command then records and commits availability metadata. Omit `--push` to
+publish evidence and commit its manifest without pushing the source branch.
+An upload failure prevents the branch push. The ordinary pre-push guard remains
+independent and fails closed; CI verifies published evidence from a fresh checkout.
+Publication changes storage availability, never an engine validation milestone.
 
 `.evidence-commits.json` maps old commit IDs to their storage-only rewritten IDs.
 Historical Git-base and merge-journal reads restore pointer bytes using current

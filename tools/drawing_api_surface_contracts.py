@@ -1,9 +1,10 @@
 """Exact reviewed graphics client sites; offset alone never assigns a type."""
+from coverage_evidence import read_text as evidence_text
 import json
 from pathlib import Path
 
 LAYOUT_PATH='research/runtime/drawing-surface-api-layouts-20261011.json'
-_LAYOUTS=json.loads((Path(__file__).resolve().parent.parent/LAYOUT_PATH).read_text())
+_LAYOUTS=json.loads(evidence_text(Path(__file__).resolve().parent.parent/LAYOUT_PATH))
 if _LAYOUTS['original_sha256']!='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168':
     raise ValueError('Reviewed surface CALL build mismatch')
 SITES={row['site']:row for row in _LAYOUTS['contracts']}

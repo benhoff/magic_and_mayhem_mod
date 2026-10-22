@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Offline independent five-format draw outputs; rejected memory layouts stay rejected."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse,gzip,hashlib,importlib.util,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -8,7 +9,7 @@ DEPTHS=[8,16,16,24,32]
 MASKS=[[0,0,0],[0x7c00,0x3e0,31],[0xf800,0x7e0,31],[0xff0000,0xff00,255],[0xff0000,0xff00,255]]
 def require(ok,message):
  if not ok:raise ValueError(message)
-def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def sha(p):return hashlib.sha256(evidence_bytes(p)).hexdigest()
 def key(f):return [0x81,0x9234,0x9234,0x901234,0x7f901234][f]
 def active_mask(f):return 255 if f==0 else MASKS[f][0]|MASKS[f][1]|MASKS[f][2]
 def pixels(f,destination=False):
@@ -26,9 +27,9 @@ def packed(values,f,pitch):
  for i,v in enumerate(values):at=16+(i//7)*pitch+(i%7)*size;data[at:at+size]=v.to_bytes(size,'little')
  return data.hex()
 def load(path=DEFAULT):
- r=json.loads(path.read_text());require(r['schema']==1 and r['success'] and not r['original_game_executed'] and r['original_manifest_verified_before_after'],'Scope/manifest')
+ r=json.loads(evidence_text(path));require(r['schema']==1 and r['success'] and not r['original_game_executed'] and r['original_manifest_verified_before_after'],'Scope/manifest')
  p=ROOT/r['corpus']['path'];require(p.resolve().is_relative_to(ROOT) and sha(p)==r['corpus']['sha256'],'Corpus path/hash')
- d=json.loads(gzip.decompress(p.read_bytes()));require(d['schema']==1 and len(d['rows'])==r['cases'],'Corpus schema/count');return r,d['rows']
+ d=json.loads(gzip.decompress(evidence_bytes(p)));require(d['schema']==1 and len(d['rows'])==r['cases'],'Corpus schema/count');return r,d['rows']
 def expected(c):
  f,kind,clip,mode=[c[k] for k in ['format','kind','clip','key_mode']];source=pixels(f);dest=pixels(f,kind<5);installed=None if mode==2 else key(f)^(1 if mode==1 else 0)
  if mode==3:installed=key(f)&active_mask(f)

@@ -50,3 +50,25 @@ _canvas_leave:
     popal
     popfl
     ret
+
+/* Forward the exact original Blt call and MOV EDI,EAX before observing its
+   actual HRESULT. The original wrapper EAX is never interpreted as HRESULT. */
+.globl _canvas_driver_blt_return
+_canvas_driver_blt_return:
+    call *0x14(%ecx)
+    movl %eax, %edi
+    pushfl
+    pushal
+    movl %esp, %ebx
+    subl $527, %esp
+    andl $-16, %esp
+    fxsave (%esp)
+    cld
+    pushl %ebx
+    call _canvas_driver_blt_observe
+    addl $4, %esp
+    fxrstor (%esp)
+    movl %ebx, %esp
+    popal
+    popfl
+    jmp *_canvas_driver_blt_continue

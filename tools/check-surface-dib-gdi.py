@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Compare retained real GDI raster outputs with input-derived pixels, offline."""
+from coverage_evidence import read_text as evidence_text
 import argparse,base64,gzip,hashlib,importlib.util,json,struct
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -22,7 +23,7 @@ def source_image(asset):
  return w,h,rgb
 
 def load(report=DEFAULT):
- capture=json.loads(report.read_text());require(capture['schema']==1 and capture['success'] is True,'Invalid capture report');p=capture['corpus']['path'];require(p=='tests/fixtures/surfaces/surface-dib-gdi.json.gz','Unsafe fixture path');corpus=ROOT/p;require(sha(corpus)==capture['corpus']['sha256'],'GDI fixture differs')
+ capture=json.loads(evidence_text(report));require(capture['schema']==1 and capture['success'] is True,'Invalid capture report');p=capture['corpus']['path'];require(p=='tests/fixtures/surfaces/surface-dib-gdi.json.gz','Unsafe fixture path');corpus=ROOT/p;require(sha(corpus)==capture['corpus']['sha256'],'GDI fixture differs')
  with gzip.open(corpus,'rb') as f:raw=f.read(16*1024*1024+1)
  require(len(raw)<=16*1024*1024,'Expanded GDI fixture limit');payload=json.loads(raw);require(payload['schema']==1 and len(payload['rows'])==capture['cases']==18,'GDI case count differs');return capture,payload
 

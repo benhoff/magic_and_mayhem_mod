@@ -51,6 +51,11 @@ static void Sleep(u32 ms){
     else if(mode==2){storage[8]=1;command_channel_pump();}
     else if(mode==3){storage[9]=storage[5]+1;command_channel_pump();}
     else if(mode==4)clock_ms+=5000;
+    else if(mode==5)command_channel_end();
+    else if(mode==6 || mode==7){
+        const u32 pending=COMMAND_PRESSURE_LOW+(mode==7 && sleeps==1);
+        __atomic_store_n(&command_queue_read,command_queue_written-pending,__ATOMIC_RELEASE);
+    }
 }
 static void pressure_reset(void){
     ring_reset();command_publication_worker_active=1;
@@ -102,8 +107,23 @@ int main(void){
         game_copy_leave(&lease);command_channel_close();
     }
     pressure_reset();check(command_pressure_admit(0,0));command_channel_end();check(!command_pressure_admit(1,0)&&!sleeps);command_channel_close();
+    for(u32 extra=0;extra<3;++extra){
+        pressure_reset();check(command_channel_append(input,COMMAND_PRESSURE_HIGH-1+extra,0,0,0,0));
+        check(command_pressure_admit(0,0)==(extra==0));check(!sleeps);command_channel_close();
+    }
+    for(u32 variant=0;variant<3;++variant){
+        pressure_reset();mode=5+variant;check(command_channel_append(input,COMMAND_PRESSURE_HIGH,0,0,0,0));
+        last_error=0x77;struct GameCopyLease lease=game_copy_bind_enter();
+        check(last_error==0x77&&lease.held==(variant!=0)&&lease.observe==(variant!=0));
+        check(sleeps==(variant==2?2u:1u)&&!command_queue_failure);
+        check(command_pressure_resumes==(variant!=0));game_copy_leave(&lease);
+        /* A stopped stream must not prevent joined shutdown from taking the
+         * released copy owner; no tracker was held during the wait. */
+        if(!variant){last_error=0x77;lease=game_copy_shutdown_enter();check(lease.held&&last_error==0x77);game_copy_leave(&lease);}
+        command_channel_close();
+    }
     (void)game_copy_observation_enter_at;(void)game_copy_stage;(void)game_copy_unobserved;
     (void)game_lifetime_invalidate;(void)game_copy_shutdown_enter;
     (void)command_callback_missed;
-    free(input);printf("{\"success\":true,\"pressure_cases\":12,\"baseline_packets\":%u,\"owned_bytes\":%u}\n",baseline,80*packet);return 0;
+    free(input);printf("{\"success\":true,\"pressure_cases\":18,\"exact_high_low_boundaries\":true,\"shutdown_during_wait\":true,\"baseline_packets\":%u,\"owned_bytes\":%u}\n",baseline,80*packet);return 0;
 }

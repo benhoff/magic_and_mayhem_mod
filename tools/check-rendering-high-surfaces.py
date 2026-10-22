@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Validate retained surface operation cohorts without widening their provenance."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -28,7 +29,7 @@ COMPONENTS = {
 
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(evidence_bytes(path)).hexdigest()
 
 
 def validate_catalog(catalog, required):
@@ -79,12 +80,12 @@ def main():
         p.error('Output must be task-owned working storage')
     out.mkdir(parents=True, exist_ok=False)
     (out/'.retain').write_text('Retained independent surface cohorts, including failures.\n')
-    catalog = json.loads(a.catalog.read_text())
-    matrix = json.loads((ROOT/'research/runtime/native-surface-operation-matrix.json').read_text())
+    catalog = json.loads(evidence_text(a.catalog))
+    matrix = json.loads(evidence_text(ROOT/'research/runtime/native-surface-operation-matrix.json'))
     required = {r['id'] for r in matrix['operations'] if r['requirement'] == 'required'}
     validate_catalog(catalog, required)
-    declaration = json.loads(a.claims.read_text())
-    reg = json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
+    declaration = json.loads(evidence_text(a.claims))
+    reg = json.loads(evidence_text(ROOT/'research/runtime/coverage/register.json'))
     behaviors = {b['id']: b for b in reg['behaviors']}
     builds = {b['id']: b for b in reg['builds']}
     for claim in declaration['claims']:
@@ -132,7 +133,7 @@ def main():
                 with (out/(key+'.log')).open('x') as log:
                     child = subprocess.run(command, cwd=ROOT, env=env, stdout=log,
                                            stderr=subprocess.STDOUT, timeout=600)
-                data = json.loads(result.read_text()) if result.exists() else {}
+                data = json.loads(evidence_text(result)) if result.exists() else {}
                 report['components'].append(dict(id=key, command=command,
                     returncode=child.returncode, success=data.get('success') is True,
                     report=str(result.relative_to(ROOT)),

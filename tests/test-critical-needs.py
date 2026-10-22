@@ -145,7 +145,12 @@ class CriticalNeeds(unittest.TestCase):
         # Source drift legitimately routes a row to review without losing its
         # authored primary need or the historical scope decision.
         self.assertEqual(Counter(e['reviewed_primary_need'] for e in result['entries']),
-                         dict(recovery=6, validation=18, acceptance=8))
+                         dict(recovery=7, validation=13, acceptance=8)
+        )
+        clear = next(e for e in result['entries'] if e['behavior'] == 'RS.canvas-startup-clear')
+        self.assertEqual(clear['reviewed_primary_need'], 'validation')
+        self.assertIn('REC6.startup-lease.live-20261020',
+                      by_id[clear['behavior']]['evidence'])
         self.assertEqual(len(result['scope_decisions']), 9)
         self.assertEqual(sum(e['implementation'] == 'scoped' for e in result['scope_decisions']), 3)
         self.assertEqual(register, before)

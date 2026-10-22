@@ -3,6 +3,13 @@
 /* Caller supplies MNM_REGION_QUERY(address, seven_DWORD_region).
  * A proof is local to one synchronous source admission. It must never survive
  * an original callback, a queue boundary, or an external memory writer. */
+static inline int mnm_readable_protection(unsigned protection) {
+  if (protection & 0x100) return 0;
+  switch (protection & 0xff) {
+    case 2: case 4: case 8: case 0x20: case 0x40: case 0x80: return 1;
+    default: return 0;
+  }
+}
 static int mnm_readable_extent(unsigned p, unsigned n, unsigned *through) {
   unsigned end = p + n;
   if (through) *through = 0;
@@ -10,7 +17,8 @@ static int mnm_readable_extent(unsigned p, unsigned n, unsigned *through) {
   while (p < end) {
     unsigned m[7];
     if (MNM_REGION_QUERY(p,m) != 28 || m[4] != 0x1000 ||
-        (m[5] & 0x101) || !(m[5] & 0xee)) return 0;
+        !mnm_readable_protection(m[5]) || m[0] > p ||
+        m[3] > ~0u-m[0]) return 0;
     unsigned next = m[0] + m[3];
     if (next <= p) return 0;
     if (through) *through = next;
@@ -31,7 +39,7 @@ static inline int mnm_readable_tail(unsigned p, unsigned n, unsigned through) {
 static int mnm_readable_window(unsigned p,unsigned n,unsigned *base,unsigned *end) {
   unsigned m[7];*base=*end=0;
   if(!p||n>~0u-p||MNM_REGION_QUERY(p,m)!=28||m[4]!=0x1000||
-     (m[5]&0x101)||!(m[5]&0xee)||m[0]>p||m[3]>~0u-m[0])return 0;
+     !mnm_readable_protection(m[5])||m[0]>p||m[3]>~0u-m[0])return 0;
   unsigned next=m[0]+m[3];if(next<=p)return 0;
   if(n<=next-p){*base=m[0];*end=next;return 1;}
   return mnm_readable_extent(p,n,0);

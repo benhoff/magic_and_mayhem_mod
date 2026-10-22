@@ -4,8 +4,10 @@ Pointers change storage only. Original report bytes, fingerprints, receipt value
 and validation claims remain unchanged. Archives are pinned by SHA-256 in Git.
 """
 from contextlib import contextmanager
+from contextvars import ContextVar
 import gzip
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -22,15 +24,17 @@ MAGIC = b'magic-and-mayhem-evidence-v1 '
 CONFIG = '.evidence-store.json'
 COMMIT_MAP = '.evidence-commits.json'
 CHUNK = 1024 * 1024
+_active_reader = ContextVar('sqlite_evidence_reader', default=None)
 KEEP = {'research/runtime/coverage/register.json',
         'research/runtime/coverage/change-reviews.json',
-        'research/runtime/coverage/gate-baseline.json'}
+        'research/runtime/coverage/gate-baseline.json',
+        'research/formats/mmsprite-source-lock.json'}
 
 
 def artifact(path):
     """Versioned storage policy: retain research prose, source, and live registers."""
     p = Path(path)
-    return (p.as_posix().startswith('research/runtime/') and p.as_posix() not in KEEP
+    return (p.as_posix().startswith(('research/runtime/', 'research/formats/')) and p.as_posix() not in KEEP
             and not p.name.endswith(('register.json', '-coverage.json'))
             and (p.suffix in {'.json', '.bin', '.png', '.log', '.gz'}
                  or (p.suffix == '.md' and p.name.startswith('summary')
@@ -173,6 +177,19 @@ def cache_root(root):
     return Path(value or Path(root)/'working/coverage/evidence-cache').resolve()
 
 
+@contextmanager
+def shared_cache(root):
+    """Use the caller's pinned cache for temporary staged and historical trees."""
+    previous = os.environ.get('MM_EVIDENCE_CACHE')
+    if previous is None:
+        os.environ['MM_EVIDENCE_CACHE'] = str(cache_root(root))
+    try:
+        yield
+    finally:
+        if previous is None:
+            os.environ.pop('MM_EVIDENCE_CACHE', None)
+
+
 def config(root):
     path = Path(root)/CONFIG
     if not path.exists():
@@ -249,26 +266,192 @@ class Resolver:
         alternate = os.environ.get('MM_EVIDENCE_DB')
         if alternate:
             self.stores.append(Store(alternate, readonly=True))
+        pending = self.root/'working/coverage/evidence-pending.sqlite3'
+        if pending.is_file() and not any(s.path.resolve() == pending.resolve() for s in self.stores):
+            self.stores.append(Store(pending, readonly=True))
 
     def close(self):
         for store in self.stores:
             store.close()
 
-    def copy(self, sha, size, out):
+    def find(self, sha, size):
         for store in self.stores:
             if store.has(sha, size):
-                store.copy(sha, size, out)
-                return
+                return store
         for archive in (self.spec or {}).get('archives', []):
+            expected = cache_root(self.root)/(archive['sha256'] + '.sqlite3')
+            if any(s.path == expected for s in self.stores):
+                continue
             path = fetch_archive(self.root, archive)
             if any(s.path == path for s in self.stores):
                 continue
             store = Store(path, readonly=True)
             self.stores.append(store)
             if store.has(sha, size):
-                store.copy(sha, size, out)
-                return
+                return store
         raise ValueError('Evidence unavailable; publish/fetch its pinned archive: ' + sha)
+
+    def copy(self, sha, size, out):
+        self.find(sha, size).copy(sha, size, out)
+
+
+class Reader:
+    """Read original evidence bytes from SQLite without expanding working files.
+
+    Connections belong to one invocation. A later audit always observes the
+    current pointer or edited file, and every resolved payload is hash checked.
+    """
+    def __init__(self, root):
+        self.root = Path(root).resolve()
+        self.resolver = Resolver(self.root)
+        self._token = None
+
+    def __enter__(self):
+        self._token = _active_reader.set(self)
+        return self
+
+    def __exit__(self, *args):
+        try:
+            _active_reader.reset(self._token)
+            self._token = None
+        finally:
+            self.close()
+
+    def close(self):
+        self.resolver.close()
+
+    def path(self, path):
+        path = Path(path)
+        target = path if path.is_absolute() else self.root/path
+        if not target.resolve().is_relative_to(self.root):
+            raise ValueError('Escaping evidence read: ' + str(path))
+        return target.resolve()
+
+    def read_bytes(self, path):
+        target = self.path(path)
+        data = target.read_bytes()
+        if len(data) > 160 or not data.startswith(MAGIC):
+            return data
+        ident = identity(data)
+        relative = target.relative_to(self.root).as_posix()
+        if not artifact(relative):
+            raise ValueError('Evidence pointer outside report storage policy: ' + relative)
+        safe_path(self.root, relative)
+        output = io.BytesIO()
+        self.resolver.copy(*ident, output)
+        return output.getvalue()
+
+    def read_text(self, path, encoding=None, errors=None, newline=None):
+        with io.TextIOWrapper(io.BytesIO(self.read_bytes(path)), encoding=encoding,
+                              errors=errors, newline=newline) as text:
+            return text.read()
+
+    def json(self, path):
+        return json.loads(self.read_text(path))
+
+    def digest(self, path):
+        target = self.path(path)
+        with target.open('rb') as stream:
+            head = stream.read(161)
+        if len(head) > 160 or not head.startswith(MAGIC):
+            return digest_file(target)
+        ident = identity(head)
+        relative = target.relative_to(self.root).as_posix()
+        if not artifact(relative):
+            raise ValueError('Evidence pointer outside report storage policy: ' + relative)
+        safe_path(self.root, relative)
+        class DigestSink:
+            def write(self, chunk):
+                pass
+        # Store.copy checks the original SHA-256, size and chunk boundaries.
+        self.resolver.copy(*ident, DigestSink())
+        return ident[0]
+
+
+def _reader_root(path, root=None):
+    if root is not None:
+        return Path(root).resolve()
+    path = Path(path).absolute()
+    for parent in path.parents:
+        if (parent/CONFIG).is_file():
+            return parent
+    raise ValueError('Evidence pointer has no repository manifest: ' + str(path))
+
+
+def read_bytes(path, *, root=None):
+    """Compatibility read for tools accepting either ordinary files or reports."""
+    path = Path(path)
+    if root is not None and not path.is_absolute():
+        path = Path(root)/path
+    if root is not None and not path.resolve().is_relative_to(Path(root).resolve()):
+        raise ValueError('Escaping evidence read: ' + str(path))
+    current = _active_reader.get()
+    if current is not None and path.resolve().is_relative_to(current.root) and (
+            root is None or Path(root).resolve() == current.root):
+        return current.read_bytes(path.absolute())
+    data = path.read_bytes()
+    if len(data) > 160 or not data.startswith(MAGIC):
+        return data
+    with Reader(_reader_root(path, root)) as reader:
+        return reader.read_bytes(path.absolute())
+
+
+def read_text(path, encoding=None, errors=None, newline=None, *, root=None):
+    with io.TextIOWrapper(io.BytesIO(read_bytes(path, root=root)), encoding=encoding,
+                          errors=errors, newline=newline) as text:
+        return text.read()
+
+
+def read_json(path, *, root=None):
+    return json.loads(read_text(path, root=root))
+
+
+def evidence_digest(path, *, root=None):
+    path = Path(path)
+    if root is not None and not path.is_absolute():
+        path = Path(root)/path
+    if root is not None and not path.resolve().is_relative_to(Path(root).resolve()):
+        raise ValueError('Escaping evidence read: ' + str(path))
+    current = _active_reader.get()
+    if current is not None and path.resolve().is_relative_to(current.root) and (
+            root is None or Path(root).resolve() == current.root):
+        return current.digest(path.absolute())
+    with path.open('rb') as stream:
+        head = stream.read(161)
+    if len(head) > 160 or not head.startswith(MAGIC):
+        return digest_file(path)
+    with Reader(_reader_root(path, root)) as reader:
+        return reader.digest(path.absolute())
+
+
+def write_report(root, path, data):
+    """Create an immutable report; adopted research paths go straight to SQLite.
+
+    Existing files are never overwritten or compacted implicitly. Non-research
+    output and pre-adoption fixtures retain the ordinary JSON export interface.
+    """
+    root = Path(root).resolve()
+    target = Path(path)
+    if not target.is_absolute():
+        target = root/target
+    if target.is_symlink() or target.resolve().is_relative_to(root/'original'):
+        raise ValueError('Unsafe report output: '+str(path))
+    if target.exists():
+        if read_bytes(target, root=root if target.resolve().is_relative_to(root) else None) != data:
+            raise ValueError('Refusing to overwrite immutable report: '+str(path))
+        return hashlib.sha256(data).hexdigest()
+    from coverage_bookkeeping import atomic_replace
+    managed = (target.resolve().is_relative_to(root) and (root/CONFIG).is_file()
+               and artifact(target.resolve().relative_to(root).as_posix()))
+    if managed:
+        safe_path(root, target.resolve().relative_to(root).as_posix())
+        with opened_store(root/'working/coverage/evidence-pending.sqlite3') as store:
+            with store.db:
+                sha = store.put(io.BytesIO(data), len(data))
+        atomic_replace(target, pointer(sha, len(data)), None)
+        return sha
+    atomic_replace(target, data, None)
+    return hashlib.sha256(data).hexdigest()
 
 
 def decode_bytes(root, data):
@@ -334,13 +517,14 @@ def refresh_pointer_stats(root, pending):
             Path(temporary).unlink()
 
 
-def hydrate(root, refresh=True):
+def hydrate(root, refresh=True, paths=None):
     """Restore pointers only; preserve changed reports and all non-evidence files."""
     root = Path(root).resolve()
     if not (root/CONFIG).exists():
         return 0
     pending = []
-    for path in sorted((root/'research').rglob('*')):
+    candidates = (safe_path(root, name) for name in paths) if paths is not None else (root/'research').rglob('*')
+    for path in sorted(candidates):
         if not path.is_file() or path.is_symlink() or path.stat().st_size > 160:
             continue
         data = path.read_bytes()

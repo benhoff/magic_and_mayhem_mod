@@ -53,6 +53,14 @@ int main(int argc,char** argv)try{
    if(mode){auto wire=packet(7,5,3,true,false,true);wire.operations.insert(wire.operations.begin()+2,bad);
     rejected([&]{legacy::decodeRollingQueue(legacy::encodeRollingQueue(wire.operations));});}
   }
+  // A no-op refusal cannot smuggle source bytes or an unknown marker.
+  for(unsigned mode=0;mode<3;++mode){auto bad=copy;
+   if(mode==0){bad.fields[18]=1;bad.payload={0xa5};}
+   if(mode==1)bad.payload={0xa5};
+   if(mode==2){bad.fields[23]=1;bad.fields[21]=0;}
+   rejected([&]{p.apply(bad);});
+   require(p.copyRectRefusals()==1&&p.read(72).pixels==std::vector<std::uint32_t>({0x2345,0x2345}),"Payload refusal changed history");
+  }
  }
  render::GlBlitter renderer;
  for(unsigned mode=0;mode<3;++mode){
@@ -95,5 +103,5 @@ int main(int argc,char** argv)try{
   require(resident.failed()&&resident.completed()==1,"Undefined new destination was admitted");
  }
  require(!renderer.stats().surfaces,"Transition resources retained after teardown");
- std::cout<<"{\"success\":true,\"modes\":3,\"queues\":21,\"copy_refusal_controls\":5,\"ordinary_world_readbacks\":0,\"remaining_surfaces\":0,\"independent_cpu_pixels\":true}\n";
+ std::cout<<"{\"success\":true,\"modes\":3,\"queues\":21,\"copy_refusal_controls\":8,\"ordinary_world_readbacks\":0,\"remaining_surfaces\":0,\"independent_cpu_pixels\":true}\n";
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

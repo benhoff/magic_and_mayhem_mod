@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
 from coverage_audit import FunctionRangeIndex, audit, markdown, pointer
 from coverage_claims import behavior_contract, scenario_contract
+from coverage_evidence import Reader
 
 spec = importlib.util.spec_from_file_location('binary_inventory', ROOT/'tools/inventory-binary.py')
 inventory_tool = importlib.util.module_from_spec(spec)
@@ -26,6 +27,35 @@ spec.loader.exec_module(source_tool)
 
 
 class CoverageTests(unittest.TestCase):
+    def test_audit_reads_sqlite_reports_without_expanding_working_files(self):
+        import io
+        from coverage_evidence import Store, pointer as evidence_pointer
+        register = copy.deepcopy(self.register)
+        directory = self.root/'research/runtime'
+        directory.mkdir(parents=True)
+        paths = {}
+        for name in ('inventory.json', 'record.json'):
+            path = directory/name
+            path.write_bytes((self.root/name).read_bytes())
+            paths[name] = path
+        register['builds'][0]['inventory'] = 'research/runtime/inventory.json'
+        for entry in register['evidence']:
+            entry['record'] = 'research/runtime/record.json'
+        baseline = audit(self.root, register)
+        store = Store(self.root/'working/coverage/evidence-pending.sqlite3')
+        try:
+            for path in paths.values():
+                data = path.read_bytes()
+                with store.db:
+                    sha = store.put(io.BytesIO(data), len(data))
+                path.write_bytes(evidence_pointer(sha, len(data)))
+        finally:
+            store.close()
+        references = {name:path.read_bytes() for name,path in paths.items()}
+        with patch('coverage_evidence.hydrate', side_effect=AssertionError('Unexpected restore')):
+            self.assertEqual(audit(self.root, register), baseline)
+        self.assertEqual({name:path.read_bytes() for name,path in paths.items()}, references)
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
@@ -130,13 +160,16 @@ class CoverageTests(unittest.TestCase):
         self.assert_invalid('Missing or escaping')
 
     def test_shared_evidence_sources_are_hashed_once_per_audit(self):
-        def fingerprint(path):
-            return hashlib.sha256(path.read_bytes()).hexdigest()
+        paths = []
 
-        with patch('coverage_audit.sha', wraps=fingerprint) as hashes:
+        class ObservedReader(Reader):
+            def digest(self, path):
+                paths.append(path)
+                return super().digest(path)
+
+        with patch('coverage_audit.Reader', ObservedReader):
             for invocation in range(2):
                 self.assertEqual(self.report()['errors'], [])
-                paths = [call.args[0] for call in hashes.call_args_list]
                 self.assertEqual(paths.count(self.root/'code.cpp'), invocation + 1)
                 self.assertEqual(paths.count(self.root/'record.json'), invocation + 1)
 
@@ -146,14 +179,13 @@ class CoverageTests(unittest.TestCase):
             evidence['recorded_inputs'] = ['fixture.bin']
         self.refresh_record()
         reads = []
-        original = Path.read_text
-
-        def read(path, *args, **kwargs):
-            reads.append(path)
-            return original(path, *args, **kwargs)
+        class ObservedReader(Reader):
+            def json(self, path):
+                reads.append(path)
+                return super().json(path)
 
         provenance = {}
-        with patch.object(Path, 'read_text', read):
+        with patch('coverage_audit.Reader', ObservedReader):
             result = audit(self.root, self.register, recorded_sources=provenance)
         self.assertEqual(result['errors'], [])
         self.assertEqual(reads.count(self.root/'record.json'), 1)

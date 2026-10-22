@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Execute unchanged original canvas release and terminal wrapper clients."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 from collections import Counter
 import hashlib
@@ -12,12 +13,12 @@ from drawing_census import ROOT, BUILD_SHA256, instructions
 
 
 def run(executable, claims):
-    declaration=json.loads(claims.read_text()); sources=declaration['sources']
+    declaration=json.loads(evidence_text(claims)); sources=declaration['sources']
     def source_hashes():
-        return {p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in sources}
+        return {p:hashlib.sha256(evidence_bytes(ROOT/p)).hexdigest() for p in sources}
     if source_hashes()!=sources:raise ValueError('Prospective sources changed')
-    if hashlib.sha256(executable.read_bytes()).hexdigest()!=BUILD_SHA256:raise ValueError('Wrong original input')
-    inventory=json.loads((ROOT/'research/runtime/coverage/binary-nocd.json').read_text())
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest()!=BUILD_SHA256:raise ValueError('Wrong original input')
+    inventory=json.loads(evidence_text(ROOT/'research/runtime/coverage/binary-nocd.json'))
     imports=[x for x in inventory['imports'] if x['iat_va']==0x5c50a0]
     if len(imports)!=1 or imports[0]['name']!='CloseHandle':raise ValueError('Wrong original cleanup import')
     ranges=[(0x58b3e0,0x58b4b8),(0x4bdd10,0x4bdd1a),(0x4bdcb0,0x4bdcba),
@@ -50,7 +51,7 @@ def run(executable, claims):
     axes={'present':{0,1},'aux':{0,1},'first':{0,2,1001},'second':{0,2,1001},
           'clipper':{0,1},'current':{0,1},'index':{0,1,126,127},'tail':{0,1,3},'count':{0,1,7}}
     seen=set();callbacks=set();outer=set();totals=Counter();shared_cap=underflow=0
-    for line in (out/'cases.jsonl').read_text().splitlines():
+    for line in evidence_text(out/'cases.jsonl').splitlines():
         row=json.loads(line)
         if row['kind']=='release':
             key=tuple(row[k] for k in axes)
@@ -72,7 +73,7 @@ def run(executable, claims):
     if seen!=set(itertools.product(*axes.values())) or len(seen)!=5184:raise ValueError('Incomplete release matrix')
     if callbacks!=set(itertools.product([0x4bdd10,0x4bdcb0,0x4a2f00,0x4a2f70],range(256))):raise ValueError('Incomplete callback flag matrix')
     if outer!=set(itertools.product([0,0x12345678,0xffffffff],[0,1,0xffffffff])):raise ValueError('Incomplete handle matrix')
-    if source_hashes()!=sources or hashlib.sha256(executable.read_bytes()).hexdigest()!=BUILD_SHA256:raise ValueError('Sources/input changed during execution')
+    if source_hashes()!=sources or hashlib.sha256(evidence_bytes(executable)).hexdigest()!=BUILD_SHA256:raise ValueError('Sources/input changed during execution')
     report={'schema':1,'success':True,'scope':'Unchanged original58b3e0 canvas release client with owned nonnull scripted interfaces,5184unique present/aux/Release-result/list/current/count cells, exact shared1000iteration cap, optional slot152, clipper/current retirement, list compaction/index updates, counter decrement and object writes. Separately execute four unchanged fixed-receiver/one-shot callbacks over all256flag states twice and outer4a37d0 over nine handle/result cells, with58b3e0 mocked only in that second phase. No real COM/refcounts/object deallocation, driver, external mutation/reentrancy, invalid index/null+4, arbitrary list shapes, callback registration, actual exit flow correlation, pixels/lifetime, native equivalence or scenario/dispatch closure.',
         'sources':sources,'claims':declaration['claims'],'sources_stable':True,'original_sha256':BUILD_SHA256,
         'input_unchanged':True,'original_release_instructions_unchanged_during_release_cases':True,
@@ -83,7 +84,7 @@ def run(executable, claims):
         'original_instruction_contracts':contracts,
         'original_entry_anchors':{hex(c['start']):''.join(row['bytes'] for row in c['instructions']) for c in contracts},
         'close_handle_import':imports[0],
-        'artifacts':{str(p.relative_to(ROOT)):{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size}
+        'artifacts':{str(p.relative_to(ROOT)):{'sha256':hashlib.sha256(evidence_bytes(p)).hexdigest(),'bytes':p.stat().st_size}
             for p in [out/'cases.jsonl',out/'reference',out/'build.log',out/'execution.log',out/'execution-status.json']}}
     with (out/'report.json').open('x') as f:json.dump(report,f,indent=2);f.write('\n')
     print(json.dumps({'output':str(out),'release_cases':len(seen),'callback_cases':len(callbacks),'outer_cases':len(outer),'calls':dict(totals)}),flush=True)

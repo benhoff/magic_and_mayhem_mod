@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Pin the mouse ring writer and bounded Region callback discovery, static only."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import importlib.util
 import json
@@ -23,10 +24,10 @@ def main():
         spec = importlib.util.spec_from_file_location('canvas', ROOT / 'tools/inspect-drawing-canvas-storage.py')
         pe = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(pe)
-        data = args.executable.read_bytes()
+        data = evidence_bytes(args.executable)
         if pe.sha(data) != pe.BUILD:
             raise ValueError('Unsupported executable')
-        inventory = json.loads((ROOT / 'research/runtime/coverage/binary-nocd.json').read_text())
+        inventory = json.loads(evidence_text(ROOT / 'research/runtime/coverage/binary-nocd.json'))
         entries = {f['entry']: f for f in inventory['functions']}
         windows = {}
         for entry in (0x4a3720, 0x4a3800, 0x4a5000, 0x4bfda0, 0x469b30):
@@ -63,9 +64,9 @@ def main():
         if len(imports) != 1 or imports[0]['name'] != 'GetAsyncKeyState':
             raise ValueError('Mouse writer import differs')
         names = ['tools/inspect-drawing-mouse-dispatch.py', 'tools/inspect-drawing-canvas-storage.py', 'research/runtime/coverage/binary-nocd.json']
-        if pe.sha(args.executable.read_bytes()) != pe.BUILD:
+        if pe.sha(evidence_bytes(args.executable)) != pe.BUILD:
             raise ValueError('Executable changed')
-        report = dict(schema=1, success=True, sources={n: pe.sha((ROOT / n).read_bytes()) for n in names}, source_executable_sha256=pe.BUILD, windows=windows, calls=calls, region_virtual_table=dict(address=0x5c6a54, first_three_entries=list(table)), imports=imports, original_game_executed=False, persistent_selection_proved=False, tooltip_proved=False, scope='Exact static mouse initialization/ring writer/control deactivation/Region constructor/camera input functions, and bounded missing-function call/Region callback anchors. 4a5000 copies the current40byte record to a virtual slot0 event0x40; it is not established queue consumption. Region slot0 starts4fdad0, whose bounded prefix reads hit class. No complete callback, window-procedure recovery, runtime picking, selection, tooltip, queue lifetime or native equivalence claim.')
+        report = dict(schema=1, success=True, sources={n: pe.sha(evidence_bytes(ROOT / n)) for n in names}, source_executable_sha256=pe.BUILD, windows=windows, calls=calls, region_virtual_table=dict(address=0x5c6a54, first_three_entries=list(table)), imports=imports, original_game_executed=False, persistent_selection_proved=False, tooltip_proved=False, scope='Exact static mouse initialization/ring writer/control deactivation/Region constructor/camera input functions, and bounded missing-function call/Region callback anchors. 4a5000 copies the current40byte record to a virtual slot0 event0x40; it is not established queue consumption. Region slot0 starts4fdad0, whose bounded prefix reads hit class. No complete callback, window-procedure recovery, runtime picking, selection, tooltip, queue lifetime or native equivalence claim.')
         with args.report.open('x') as out:
             json.dump(report, out, indent=2)
             out.write('\n')

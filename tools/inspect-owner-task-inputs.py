@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Inventory pinned actor/task field accesses; static leads, not behavior proof."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -22,7 +23,7 @@ def main():
     subprocess.run(manifest, check=True)
     try:
         exe = ROOT / 'original/Arcane_Nocd/Chaos.exe'
-        raw = exe.read_bytes()
+        raw = evidence_bytes(exe)
         assert hashlib.sha256(raw).hexdigest() == PIN
         pe = struct.unpack_from('<I', raw, 60)[0]
         sections = pe + 24 + struct.unpack_from('<H', raw, pe + 20)[0]
@@ -33,7 +34,7 @@ def main():
                     b = raw[off+va-0x400000-rva:off+va-0x400000-rva+8]
                     return dict(bytes=b.hex(), value=struct.unpack('<d', b)[0])
             raise ValueError('unbacked constant')
-        inventory = json.loads((ROOT / 'research/runtime/coverage/binary-nocd-owner-planner-20261016.json').read_text())
+        inventory = json.loads(evidence_text(ROOT / 'research/runtime/coverage/binary-nocd-owner-planner-20261016.json'))
         asm = subprocess.check_output(['objdump', '-d', '-M', 'intel', str(exe)], text=True)
         offsets = ['922', '926', '936', 'de7', '2f', '33']
         hits = {x: [] for x in offsets}
@@ -49,12 +50,12 @@ def main():
                     hits[offset].append(dict(address=hex(va), functions=owners, instruction=line.strip()))
         result = dict(success=True, scope='Static displacement search; aliases, indexed accesses and semantic field identity require separate review.',
                       original_sha256=PIN, hits=hits, distress_threshold=constant(0x5c5a88),
-                      sources={'tools/inspect-owner-task-inputs.py': hashlib.sha256(Path(__file__).read_bytes()).hexdigest()})
+                      sources={'tools/inspect-owner-task-inputs.py': hashlib.sha256(evidence_bytes(Path(__file__))).hexdigest()})
         a.output.parent.mkdir(parents=True, exist_ok=True)
         with a.output.open('x') as f:
             json.dump(result, f, indent=2)
             f.write('\n')
-        assert hashlib.sha256(exe.read_bytes()).hexdigest() == PIN
+        assert hashlib.sha256(evidence_bytes(exe)).hexdigest() == PIN
     finally:
         subprocess.run(manifest, check=True)
 

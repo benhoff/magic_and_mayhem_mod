@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Classify immutable lease refusals by geometry and bounded original API caller."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 from collections import Counter
 import importlib.util
@@ -27,15 +28,15 @@ def main():
              'tools/drawing_source_lease.py', 'tools/drawing_api_session.py',
              'research/runtime/coverage/binary-nocd.json', 'runtime/scene/canvas_producers.c',
              'runtime/scene/drawing_source_lease.h']
-    sources = {n: sha((ROOT / n).read_bytes()) for n in names}
+    sources = {n: sha(evidence_bytes(ROOT / n)) for n in names}
     subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
     try:
-        binary, reference_raw = a.executable.read_bytes(), a.reference.read_bytes()
+        binary, reference_raw = evidence_bytes(a.executable), evidence_bytes(a.reference)
         r = json.loads(reference_raw)
         if sha(binary) != BUILD or r['source_sha256'] != BUILD or not r['success'] or not r['normal_original_quit_verified']:
             raise ValueError('Pinned executable and successful immutable original reference required')
         capture = Path(r['experiment']) / 'capture'
-        lease_raw, api_raw = (capture / 'api-source-lease.bin').read_bytes(), (capture / 'session.bin').read_bytes()
+        lease_raw, api_raw = evidence_bytes(capture / 'api-source-lease.bin'), evidence_bytes(capture / 'session.bin')
         leases, api = decode(lease_raw), inspect(capture)
         if leases != r['api_source_lease_observation'] or api['calls'] != r['observation']['calls']:
             raise ValueError('Retained lease/API journal differs')
@@ -66,7 +67,7 @@ def main():
         if not selected:
             raise ValueError('No live full-frame pending refusals')
         inventory_path = ROOT / 'research/runtime/coverage/binary-nocd.json'
-        inventory = json.loads(inventory_path.read_text())
+        inventory = json.loads(evidence_text(inventory_path))
         spec = importlib.util.spec_from_file_location('canvas', ROOT / 'tools/inspect-drawing-canvas-storage.py')
         pe = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(pe)
@@ -89,7 +90,7 @@ def main():
             functions.append(dict(caller=caller, entry=start, end=end,
                                   whole_inventory_function=True,
                                   bytes_sha256=sha(binary[at:at + end - start]), instructions=instructions))
-        if sha(a.executable.read_bytes()) != BUILD or a.reference.read_bytes() != reference_raw or any(sha((ROOT / n).read_bytes()) != h for n, h in sources.items()):
+        if sha(evidence_bytes(a.executable)) != BUILD or evidence_bytes(a.reference) != reference_raw or any(sha(evidence_bytes(ROOT / n)) != h for n, h in sources.items()):
             raise ValueError('Original executable/reference/inspection sources changed')
         report = dict(schema=1, success=True, review_only=True,
                       sources=sources, sources_stable=True,

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Original render-postlude client state with real clip/frame/decimal helpers."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 from collections import Counter
 import hashlib
@@ -12,12 +13,12 @@ from drawing_census import ROOT, BUILD_SHA256, instructions
 
 
 def run(executable, claims):
-    if hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256:
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest() != BUILD_SHA256:
         raise ValueError('Unsupported original postlude input')
-    declaration = json.loads(claims.read_text()); sources = declaration['sources']
-    if any(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != h for p, h in sources.items()):
+    declaration = json.loads(evidence_text(claims)); sources = declaration['sources']
+    if any(hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() != h for p, h in sources.items()):
         raise ValueError('Prospective source changed')
-    inventory = json.loads((ROOT / 'research/runtime/coverage/binary-nocd.json').read_text())
+    inventory = json.loads(evidence_text(ROOT / 'research/runtime/coverage/binary-nocd.json'))
     contracts = []
     for address, pop in {0x4d8ab0: 12, 0x58bac0: 8, 0x58b660: 0, 0x4a5ce0: 28,
                          0x57dc20: 4, 0x57dc60: 8, 0x57dc90: 0, 0x59de2f: 0}.items():
@@ -51,16 +52,16 @@ def run(executable, claims):
             if case['draw']: texts.add(case['text_hex'])
             for call in case['calls']: totals[hex(call['tag'])] += 1
     if len(seen) != 12288 or len(texts) != 6: raise ValueError('Incomplete postlude matrix/text coverage')
-    if hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256:
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest() != BUILD_SHA256:
         raise ValueError('Original input changed')
-    if any(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != h for p, h in sources.items()):
+    if any(hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() != h for p, h in sources.items()):
         raise ValueError('Sources changed during execution')
     report = {'schema': 1, 'success': True,
         'scope': 'Unchanged original4d8ab0 render-postlude,57dc20frame/57dc60clip/57dc90getter and decimal formatter instructions with owned synthetic object/arrays. Canvas fill/Lock, font body and Surface Unlock are explicit synthetic bindings; client disabled/not-ready/null-Lock exits, prefix/signed decimal text, viewport/row alignment, metadata/real global stores and ignored failure results are checked. No actual pixels/font/canvas/COM/driver behavior, global ownership or live/scenario/full dispatch closure.',
         'sources': sources, 'claims': declaration['claims'], 'sources_stable': True, 'original_sha256': BUILD_SHA256,
         'input_unchanged': True, 'original_instructions_unchanged': True, 'original_cases': len(seen),
         'calls_by_tag': dict(totals), 'drawn_text_hex': sorted(texts), 'original_return_contracts': contracts,
-        'artifacts': {str(p.relative_to(ROOT)): {'sha256': hashlib.sha256(p.read_bytes()).hexdigest(), 'bytes': p.stat().st_size}
+        'artifacts': {str(p.relative_to(ROOT)): {'sha256': hashlib.sha256(evidence_bytes(p)).hexdigest(), 'bytes': p.stat().st_size}
                       for p in [out / 'cases.jsonl', out / 'reference', out / 'build.log', out / 'execution.log', out / 'execution-status.json']}}
     (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n'); print(json.dumps({'output': str(out), 'cases': len(seen), 'calls': dict(totals)}), flush=True)
     return report

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Compare original queue routing/metadata under synthetic backend contracts."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import importlib.util
@@ -17,19 +18,19 @@ BINDINGS = {0x4df840:20, 0x57dc60:8, 0x57de00:0, 0x57e540:4, 0x57e8e0:12,
 
 
 def run(executable, claims=None):
-    raw = executable.read_bytes()
+    raw = evidence_bytes(executable)
     if hashlib.sha256(raw).hexdigest() != BUILD_SHA256: raise ValueError('Unsupported original consumer input')
     paths = ['tools/test-drawing-dispatch.py', 'tools/drawing_dispatch.py', 'tools/drawing_census.py',
              'tools/inspect-world-dispatch.py', 'tests/drawing-dispatch-reference.cpp',
              'tests/sprite-binary-reference.cpp', 'tests/test-drawing-dispatch.py',
              'research/runtime/coverage/binary-nocd.json']
-    sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}
-    declaration = json.loads(claims.read_text()) if claims else None
+    sources = {p: hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() for p in paths}
+    declaration = json.loads(evidence_text(claims)) if claims else None
     if declaration:
         for p, digest in declaration['sources'].items():
-            if hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != digest: raise ValueError('Changed declaration source: ' + p)
+            if hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() != digest: raise ValueError('Changed declaration source: ' + p)
             sources[p] = digest
-    inventory = json.loads((ROOT / 'research/runtime/coverage/binary-nocd.json').read_text())
+    inventory = json.loads(evidence_text(ROOT / 'research/runtime/coverage/binary-nocd.json'))
     contracts = []
     for address, pop in BINDINGS.items():
         function = next(f for f in inventory['functions'] if f['entry'] == address)
@@ -54,7 +55,7 @@ def run(executable, claims=None):
         '-Wall', '-Wextra', '-Werror', ROOT / 'tests/drawing-dispatch-reference.cpp', '-o', out / 'reference'])
     with (out / 'cases.jsonl').open('x') as output, (out / 'execution.log').open('x') as log:
         subprocess.run([str(out / 'reference'), str(executable)], stdout=output, stderr=log, check=True, timeout=90)
-    cases = [json.loads(line) for line in (out / 'cases.jsonl').read_text().splitlines()]
+    cases = [json.loads(line) for line in evidence_text(out / 'cases.jsonl').splitlines()]
     if len(cases) != 2432 or {r['kind'] for r in cases} != set(range(-2, 36)): raise ValueError('Incomplete original case matrix')
     wave_cases = colour_cases = 0
     for case in cases:
@@ -73,14 +74,14 @@ def run(executable, claims=None):
     static = exporter.inspect(executable); static['branch_slices'] = slices(static)
     (out / 'static.json').write_text(json.dumps(static, indent=2) + '\n')
     command('slice-guards', ['python3', '-B', ROOT / 'tests/test-drawing-dispatch.py'])
-    if hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256: raise ValueError('Original input changed during comparison')
-    if sources != {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in sources}:
+    if hashlib.sha256(evidence_bytes(executable)).hexdigest() != BUILD_SHA256: raise ValueError('Original input changed during comparison')
+    if sources != {p: hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() for p in sources}:
         raise ValueError('Sources changed during comparison')
     report = {'schema': 1, 'success': True, 'sources': sources, 'sources_stable': True,
         'original_sha256': BUILD_SHA256, 'input_unchanged': True, 'original_consumer_instructions_unchanged': True,
         'original_cases': len(cases), 'table_entries': 105, 'wave_calls_checked': wave_cases,
         'colour_calls_checked': colour_cases, 'backend_return_contracts': contracts,
-        'artifacts': {str(p.relative_to(ROOT)): {'sha256': hashlib.sha256(p.read_bytes()).hexdigest(),
+        'artifacts': {str(p.relative_to(ROOT)): {'sha256': hashlib.sha256(evidence_bytes(p)).hexdigest(),
             'bytes': p.stat().st_size} for p in [out / 'cases.jsonl', out / 'static.json', out / 'reference']},
         'scope': 'Unmodified pinned consumer with synthetic backend bindings: 0..34 kinds and -2/-1/35 defaults, Video0/1, selected auxiliary span, palette-marker and -127/ordinary offset variants, AX0/1/1234/ffff. Check metadata zero/default/boolean/truncation policies and literal wave/colour arguments. All105 raw branch slices retained. Downstream pixels, arbitrary virtual objects, helper global effects, changed prior metadata, clip-boundary auxiliary paths and live graphics API/lifetime equivalence are excluded.'}
     if declaration: report['claims'] = declaration['claims']

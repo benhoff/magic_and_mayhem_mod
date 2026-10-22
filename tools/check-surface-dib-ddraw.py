@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Offline native-word/raster and DC admission checks against retained Surface2 output."""
+from coverage_evidence import read_text as evidence_text
 import argparse,base64,gzip,importlib.util,json,struct
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -8,7 +9,7 @@ spec=importlib.util.spec_from_file_location('gdi',ROOT/'tools/check-surface-dib-
 require=gdi.require;sha=gdi.sha
 
 def load(report=DEFAULT):
- capture=json.loads(report.read_text());require(capture['schema']==1 and capture['success'] is True,'Invalid capture report');p=capture['corpus']['path'];require(p=='tests/fixtures/surfaces/surface-dib-ddraw.json.gz','Unsafe fixture path');corpus=ROOT/p;require(sha(corpus)==capture['corpus']['sha256'],'DirectDraw fixture differs')
+ capture=json.loads(evidence_text(report));require(capture['schema']==1 and capture['success'] is True,'Invalid capture report');p=capture['corpus']['path'];require(p=='tests/fixtures/surfaces/surface-dib-ddraw.json.gz','Unsafe fixture path');corpus=ROOT/p;require(sha(corpus)==capture['corpus']['sha256'],'DirectDraw fixture differs')
  with gzip.open(corpus,'rb') as f:raw=f.read(32*1024*1024+1)
  require(len(raw)<=32*1024*1024,'Expanded fixture limit');payload=json.loads(raw);require(payload['schema']==1 and len(payload['rows'])==capture['cases']==72,'DirectDraw case count differs');return capture,payload
 

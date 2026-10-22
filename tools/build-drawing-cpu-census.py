@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build the existing exact CALL observer for the separate approved CPU cohort."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import importlib.util
@@ -14,16 +15,16 @@ CPU_PLAN=('research/runtime/drawing-cpu-core-splices-static-20261011.json',
 
 def build(executable, selected='core_api'):
     if selected!='core_api':raise ValueError('CPU target observation requires the original-active core cohort')
-    source='tools/build-drawing-cpu-census.py';before=hashlib.sha256((ROOT/source).read_bytes()).hexdigest()
+    source='tools/build-drawing-cpu-census.py';before=hashlib.sha256(evidence_bytes(ROOT/source)).hexdigest()
     spec=importlib.util.spec_from_file_location('cpu_call_observer',ROOT/'tools/build-drawing-api-census.py');backend=importlib.util.module_from_spec(spec);spec.loader.exec_module(backend)
     # This private module instance changes only its approved input plan. The
     # repository's graphics builder/default plans and native callback code stay
     # separate. Its hash/source/signature/capacity checks still execute.
     backend.PLANS={'core_api':CPU_PLAN}
     dll=backend.build(executable,selected)
-    p=dll.parent/'manifest.json';record=json.loads(p.read_text())
+    p=dll.parent/'manifest.json';record=json.loads(evidence_text(p))
     if len(record['hooks'])!=128 or record['refused'] or any(r['details']['formal_words']!=0xffffffff or r['details']['snapshots'] for r in record['hooks']):raise ValueError('CPU cohort must retain 128 untyped admitted CALLs')
-    if hashlib.sha256((ROOT/source).read_bytes()).hexdigest()!=before:raise ValueError('CPU builder changed during compilation')
+    if hashlib.sha256(evidence_bytes(ROOT/source)).hexdigest()!=before:raise ValueError('CPU builder changed during compilation')
     record['sources'][source]=before;record['call_boundary_role']='cpu_backend_dispatch'
     record['scope']='Separate original-active128site CPU-global/CRT CALL target cohort using the existing V2 writer/forwarder. Unknown formal layouts, no COM/graphics API semantics or lifetime inference; no original execution, universal timing/ABI, full writers or DRAW-01 closure from compilation.'
     p.write_text(json.dumps(record,indent=2)+'\n')

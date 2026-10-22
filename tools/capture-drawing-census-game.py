@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Run original menu/campaign/Quick Battle journeys; retain every attempt."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import configparser
 import ctypes as c
@@ -31,25 +32,25 @@ from drawing_api_cohorts import cohort, require_bindings, call_role
 def capture(root, template, journey, claims=None):
     root = root.resolve()
     if (root / 'journey.json').exists(): raise ValueError('Attempt already recorded; prepare a fresh experiment')
-    manifest = json.loads((root / 'manifest.json').read_text())
+    manifest = json.loads(evidence_text(root / 'manifest.json'))
     metadata_paths=['manifest.json','census-build.json','menu-build.json']
     if manifest.get('api_observation_enabled',False):metadata_paths.append('api-build.json')
-    frozen_metadata={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in metadata_paths}
+    frozen_metadata={p:hashlib.sha256(evidence_bytes(root/p)).hexdigest() for p in metadata_paths}
     selected=cohort(manifest)
     if journey == 'movies' and not manifest['movies_enabled']:
         raise ValueError('Movie journey requires explicitly enabled disposable preferences')
     if journey == 'campaign-effects' and not manifest.get('gameplay_observation_enabled', False):
         raise ValueError('Creature/effect journey requires opt-in passive original gameplay observation')
-    declaration = json.loads(claims.read_text()) if claims else None
+    declaration = json.loads(evidence_text(claims)) if claims else None
     if declaration:
         for p, digest in declaration['sources'].items():
-            if hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != digest: raise ValueError('Changed declaration source: ' + p)
+            if hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() != digest: raise ValueError('Changed declaration source: ' + p)
     source_paths = ['tools/capture-drawing-census-game.py', 'tools/drawing_census.py', 'tools/drawing-census-game-runner.py',
                     'tools/campaign_gameplay.py', 'tools/campaign_spell.py']
     source_paths += ['tools/drawing_api_cohorts.py']
     if manifest.get('call_census_enabled',True):source_paths+=['tools/drawing_census_bindings.py','tools/drawing_census_callers.py']
     if manifest.get('api_observation_enabled', False): source_paths += ['tools/drawing_api_journal.py', 'tools/drawing_api_pairs.py', 'tools/drawing_api_details.py','tools/drawing_api_resources.py', 'tools/drawing_api_contracts.py','tools/drawing_api_surface_contracts.py','research/runtime/drawing-surface-api-layouts-20261011.json', 'tools/drawing_api_bindings.py']
-    frozen_sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in source_paths}
+    frozen_sources = {p: hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() for p in source_paths}
     if declaration: frozen_sources.update(declaration['sources'])
     prefix = root / 'wineprefix'
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
@@ -352,7 +353,7 @@ def capture(root, template, journey, claims=None):
                 button('SaveGame/screen (Save Game).cfg', 'TEXTBUTTON_1'); hold(2)
                 created = [p for p in (root / 'game').rglob('*') if p.is_file() and str(p.relative_to(root / 'game')) not in before_files]
                 report['created_game_files'] = [{'path': str(p.relative_to(root / 'game')),
-                    'bytes': p.stat().st_size, 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()} for p in created]
+                    'bytes': p.stat().st_size, 'sha256': hashlib.sha256(evidence_bytes(p)).hexdigest()} for p in created]
                 if not any('draw01' in p.name.lower() and p.stat().st_size for p in created):
                     raise RuntimeError('Original Save produced no named nonempty draw01 file')
                 save_files = sorted((root / 'game/Save').glob('*.sav'))
@@ -366,7 +367,7 @@ def capture(root, template, journey, claims=None):
                 # authorize a selected file. The private fixture has one row.
                 click(400, 247)
                 report['loaded_save_selection'] = {'path': 'Save/draw01.sav', 'click': [400, 247],
-                    'sha256': hashlib.sha256(save_files[0].read_bytes()).hexdigest()}
+                    'sha256': hashlib.sha256(evidence_bytes(save_files[0])).hexdigest()}
                 ImageGrab.grab(xdisplay=env['DISPLAY']).save(root / 'original-selected-load-row.png')
                 phase(12, 'Original saved-map load and World drawing return')
                 button('LoadGame/screen (Load Game).cfg', 'TEXTBUTTON_1'); hold(4); open_mini()
@@ -382,21 +383,21 @@ def capture(root, template, journey, claims=None):
         struct.pack_into('<I', channel, 16, sequence)
         process.wait(timeout=30)
         if report['call_census_enabled']:
-            census = trace(root / 'capture/census.bin', json.loads((root / 'census-build.json').read_text()),
-                json.loads((ROOT / 'research/runtime/drawing-callers-movie-sites-20261010.json').read_text()),
-                json.loads((ROOT / 'research/runtime/coverage/binary-nocd.json').read_text()))
+            census = trace(root / 'capture/census.bin', json.loads(evidence_text(root / 'census-build.json')),
+                json.loads(evidence_text(ROOT / 'research/runtime/drawing-callers-movie-sites-20261010.json')),
+                json.loads(evidence_text(ROOT / 'research/runtime/coverage/binary-nocd.json')))
             (root / 'decoded.json').write_text(json.dumps(census, indent=2) + '\n')
-            report.update(decoded_sha256=hashlib.sha256((root / 'decoded.json').read_bytes()).hexdigest(),
+            report.update(decoded_sha256=hashlib.sha256(evidence_bytes(root / 'decoded.json')).hexdigest(),
                           events=census['events'], calls=census['calls'])
         if report['call_census_enabled']:
-            report['core_bindings']=core_bindings(root/'capture/core-bindings.bin',json.loads((root/'census-build.json').read_text()))
+            report['core_bindings']=core_bindings(root/'capture/core-bindings.bin',json.loads(evidence_text(root/'census-build.json')))
             (root/'decoded-core-bindings.json').write_text(json.dumps(report['core_bindings'],indent=2)+'\n')
-            report['core_caller_review']=core_caller_review(root/'capture/census.bin',json.loads((root/'census-build.json').read_text()),root/'capture/core-bindings.bin',json.loads((ROOT/'research/runtime/drawing-callers-movie-sites-20261010.json').read_text()),json.loads((ROOT/'research/runtime/coverage/binary-nocd.json').read_text()))
+            report['core_caller_review']=core_caller_review(root/'capture/census.bin',json.loads(evidence_text(root/'census-build.json')),root/'capture/core-bindings.bin',json.loads(evidence_text(ROOT/'research/runtime/drawing-callers-movie-sites-20261010.json')),json.loads(evidence_text(ROOT/'research/runtime/coverage/binary-nocd.json')))
             (root/'decoded-core-callers.json').write_text(json.dumps(report['core_caller_review'],indent=2)+'\n')
             core_callers=sorted({r['caller'] for r in census['entry_counts']})
             report['core_physical_caller_review']={'scope':'Exact per-run relocated E8 and named leave identities only; logical tail flow/original owners remain pending.','callers':[{'physical_caller':pc,'classification':core_physical(pc,report['core_bindings'])} for pc in core_callers]}
         if report['api_observation_enabled']:
-            api_manifest = json.loads((root / 'api-build.json').read_text())
+            api_manifest = json.loads(evidence_text(root / 'api-build.json'))
             if report['call_boundary_role']=='cpu_backend_dispatch':
                 from drawing_api_cohorts import cpu_journal_words
                 cpu_journal_words(api_manifest)
@@ -425,10 +426,10 @@ def capture(root, template, journey, claims=None):
         if report['gameplay_observation_enabled']:
             gp = root / 'gameplay-events.bin'; sp = root / 'spell-events.bin'
             report['original_gameplay_trace'] = {'rows': len(read_rows(gp, complete=True)),
-                'sha256': hashlib.sha256(gp.read_bytes()).hexdigest(), 'bytes': gp.stat().st_size,
+                'sha256': hashlib.sha256(evidence_bytes(gp)).hexdigest(), 'bytes': gp.stat().st_size,
                 'scope': 'Bounded passive original samples; no protocol terminal, all-tick or exhaustive lifecycle claim'}
             report['original_spell_trace'] = {'rows': len(read_spell_rows(sp, complete=True)),
-                'sha256': hashlib.sha256(sp.read_bytes()).hexdigest(), 'bytes': sp.stat().st_size,
+                'sha256': hashlib.sha256(evidence_bytes(sp)).hexdigest(), 'bytes': sp.stat().st_size,
                 'scope': 'Bounded passive original spell callbacks; no all-path/whole-frame equivalence claim'}
         if process.returncode != 0: raise RuntimeError('Original process exited abnormally: ' + str(process.returncode))
         report.update(success=True, process_exit=process.returncode)
@@ -453,12 +454,12 @@ def capture(root, template, journey, claims=None):
             except subprocess.TimeoutExpired: server.kill(); server.wait()
         for resource in [channel, control, log]:
             if resource is not None: resource.close()
-        report['inputs_unchanged'] = all(hashlib.sha256((root / 'game' / name).read_bytes()).hexdigest() == digest
+        report['inputs_unchanged'] = all(hashlib.sha256(evidence_bytes(root / 'game' / name)).hexdigest() == digest
                                         for name, digest in manifest['binaries'].items())
         report['sources'] = frozen_sources
         report['metadata_sources']=frozen_metadata
-        report['metadata_inputs_unchanged']=all(hashlib.sha256((root/p).read_bytes()).hexdigest()==digest for p,digest in frozen_metadata.items())
-        report['sources_stable'] = all(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == digest for p, digest in frozen_sources.items())
+        report['metadata_inputs_unchanged']=all(hashlib.sha256(evidence_bytes(root/p)).hexdigest()==digest for p,digest in frozen_metadata.items())
+        report['sources_stable'] = all(hashlib.sha256(evidence_bytes(ROOT / p)).hexdigest() == digest for p, digest in frozen_sources.items())
         if declaration: report['claims'] = declaration['claims']
         if not report['sources_stable'] or not report['inputs_unchanged'] or not report['metadata_inputs_unchanged']: report['success'] = False
         (root / 'journey.json').write_text(json.dumps(report, indent=2) + '\n')

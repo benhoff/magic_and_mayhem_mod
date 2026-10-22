@@ -59,6 +59,7 @@ void start(void){
     if(((i32(WIN*)(void*,void*,u32*,u32,HANDLE))table[25])(&object,0,d,1,0)!=13 || GetLastError()!=0x88)ExitProcess(16);
     const u32 invalid[4][3]={{640,600,640},{800,480,800},{641,480,641},{640,480,642}};
     for(u32 i=0;i<4;++i){SetLastError(0x77);if(RenderResidentWorldV1((u32)pixels,invalid[i][0],invalid[i][1],invalid[i][2],1,0,17,34)||GetLastError()!=0x77)ExitProcess(26);}
+    for(u32 i=0;i<2;++i){SetLastError(0x77);if(RenderResidentWorldV1((u32)pixels,width,height,width,i?1:0,0,i?0:17,i?0:34)||GetLastError()!=0x77)ExitProcess(27);}
     char mode[16];GetEnvironmentVariableA("MNM_BIND_CASE",mode,sizeof(mode));u32 reentrant=mode[0]=='r';
     HANDLE owner=0,releaser=0;
     if(!reentrant){owner=CreateThread(0,0,hold,0,0,0);if(!owner)ExitProcess(17);await_file("bind-held.bin");
@@ -80,6 +81,7 @@ void start(void){
     SetLastError(0x77);u32 pump_calls=publication_probe?RenderCallbackPublicationProbeForTest(0):0;
     if(GetLastError()!=0x77)ExitProcess(23);
     SetLastError(0x77);u32 complete=RenderShutdown(3000);if(GetLastError()!=0x77)ExitProcess(21);
+    SetLastError(0x77);if(RenderResidentWorldV1((u32)pixels,width,height,width,2,0,17,34)||GetLastError()!=0x77)ExitProcess(28);
     unsigned long long elapsed=end-begin;
     unsigned long long unlock_elapsed=unlock_end-unlock_begin;
     u32 result[13]={bound,error,locks,unlocks,holder,complete,(u32)elapsed,(u32)(elapsed>>32),(u32)frequency,(u32)(frequency>>32),pump_calls,(u32)unlock_elapsed,(u32)(unlock_elapsed>>32)};

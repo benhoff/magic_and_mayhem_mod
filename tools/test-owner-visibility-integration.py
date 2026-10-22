@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Source-bound owner visibility, coupled original encounters and portable saves."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 import hashlib
@@ -21,7 +22,7 @@ SCOPE = ('Owner visibility52b540/508ca0/5150a0/515270/4e14a0 simulation projecti
 
 
 def sha(p):
-    return hashlib.sha256(p.read_bytes()).hexdigest()
+    return hashlib.sha256(evidence_bytes(p)).hexdigest()
 
 
 def validate_reuse_state(old, declaration, installed):
@@ -49,16 +50,16 @@ def reuse_engine(args, declaration, report, builds, sources):
     previous = args.reuse_engine_run.resolve()
     raw = previous / 'report.json'
     retained = ROOT / 'research/runtime/owner-visibility-engine-stage-ns77-20261016.json'
-    if raw.read_bytes() != retained.read_bytes():
+    if evidence_bytes(raw) != evidence_bytes(retained):
         raise ValueError('Cached report differs from the preserved engine-stage record')
-    old = json.loads(raw.read_text())
+    old = json.loads(evidence_text(raw))
     validate_reuse_state(old, declaration, report['installed_inputs'])
-    archive = json.loads((ROOT / 'research/runtime/owner-visibility-retained-sources-ns77-20261016.json').read_text())
+    archive = json.loads(evidence_text(ROOT / 'research/runtime/owner-visibility-retained-sources-ns77-20261016.json'))
     driver = 'tools/test-owner-visibility-integration.py'
     if hashlib.sha256(archive['sources'][driver].encode()).hexdigest() != old['source_sha256'][driver]:
         raise ValueError('Superseded driver bytes missing')
-    core = (previous / 'native64-core.stdout').read_text()
-    diagnostics = (previous / 'native64-core.stderr').read_text()
+    core = evidence_text(previous / 'native64-core.stdout')
+    diagnostics = evidence_text(previous / 'native64-core.stderr')
     if ('Unable to find executable' not in diagnostics or
             any(not re.search(r'Test\s+#'+str(i)+r': [^\n]+Passed', core) for i in range(1,6))):
         raise ValueError('Cached failure is not unbuilt inherited CTest discovery')
@@ -71,11 +72,11 @@ def reuse_engine(args, declaration, report, builds, sources):
         for seed in [17, 91]:
             name = f'scenario-{scenario}-seed-{seed}'
             directory = previous / name
-            oracle = json.loads((previous / (name+'.stdout')).read_text())
+            oracle = json.loads(evidence_text(previous / (name+'.stdout')))
             if not oracle['success'] or oracle['ticks'] != 2304:
                 raise ValueError('Cached original journey incomplete')
             # Bind actual consumed/embedded asset bytes, not just a later reread.
-            data = (directory / 'initial.snapshot').read_bytes()
+            data = evidence_bytes(directory / 'initial.snapshot')
             at = data.index(b'MNMENC01') + 8 + 16
             for key in input_names:
                 n = int.from_bytes(data[at:at+4], 'little'); at += 4
@@ -83,14 +84,14 @@ def reuse_engine(args, declaration, report, builds, sources):
                     raise ValueError('Embedded installed input differs: '+key)
                 at += n
             for tag in ['native64', 'sanitized']:
-                row = json.loads((previous / (tag+'-'+name+'.stdout')).read_text())
+                row = json.loads(evidence_text(previous / (tag+'-'+name+'.stdout')))
                 if (not row['success'] or row['ticks'] != 2304 or
-                        (previous / (tag+'-'+name+'.snapshot')).read_bytes() != (directory/'final.snapshot').read_bytes() or
-                        (previous / (tag+'-'+name+'.trace')).read_bytes() != (directory/'trace.txt').read_bytes()):
+                        evidence_bytes(previous / (tag+'-'+name+'.snapshot')) != evidence_bytes(directory/'final.snapshot') or
+                        evidence_bytes(previous / (tag+'-'+name+'.trace')) != evidence_bytes(directory/'trace.txt')):
                     raise ValueError('Cached native/sanitized replay differs')
                 restores += row['restores']
-        if ((previous / f'resume-{scenario}-2304.snapshot').read_bytes() !=
-                (previous / f'scenario-{scenario}-seed-17/final.snapshot').read_bytes()):
+        if (evidence_bytes(previous / f'resume-{scenario}-2304.snapshot') !=
+                evidence_bytes(previous / f'scenario-{scenario}-seed-17/final.snapshot')):
             raise ValueError('Cached cold continuation differs')
     if restores != old['journey_restores']:
         raise ValueError('Cached restore accounting differs')
@@ -104,7 +105,7 @@ def reuse_engine(args, declaration, report, builds, sources):
                'tools/export-owner-visibility.py', 'tools/export-regional-navigation.py',
                'tools/ghidra/ExportPersistenceProgression.java'}
     for log in previous.glob('*-dependencies-*.stdout'):
-        for token in shlex.split(log.read_text().replace('\\\n', ' ')):
+        for token in shlex.split(evidence_text(log).replace('\\\n', ' ')):
             q = Path(token)
             q = q.resolve() if q.is_absolute() else (ROOT / q).resolve()
             if q.is_file() and q.is_relative_to(ROOT) and not q.is_relative_to(ROOT/'working'):
@@ -112,7 +113,7 @@ def reuse_engine(args, declaration, report, builds, sources):
     for tag in ['original32', 'native64', 'sanitized']:
         builds[tag] = args.build_root.resolve()/tag
         for makefile in builds[tag].rglob('CMakeFiles/Makefile.cmake'):
-            for token in re.findall(r'"([^"]+)"', makefile.read_text()):
+            for token in re.findall(r'"([^"]+)"', evidence_text(makefile)):
                 q = Path(token).resolve()
                 if q.is_file() and q.is_relative_to(ROOT) and not q.is_relative_to(ROOT/'working'):
                     closure.add(q.relative_to(ROOT).as_posix())
@@ -138,7 +139,7 @@ def main():
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
     (out / '.retain').write_text('NS77 source-bound visibility evidence; preserve raw comparisons.\n')
-    declaration = json.loads(args.claims.read_text())
+    declaration = json.loads(evidence_text(args.claims))
     if any(sha(ROOT / p) != v for p, v in declaration['sources'].items()):
         raise ValueError('Declared source changed before execution')
     report = dict(success=False, scope=SCOPE, source_executable_sha256=PIN,
@@ -206,7 +207,7 @@ def main():
                 run(tag + '-build', ['cmake', '--build', build, '--target', *targets, '-j2'])
             run('helpers', [sys.executable, ROOT / 'tools/test-owner-visibility.py',
                             '--claims', args.claims, '--output', out / 'helpers'])
-            report['helper'] = json.loads((out / 'helpers/report.json').read_text())
+            report['helper'] = json.loads(evidence_text(out / 'helpers/report.json'))
             run('static', [sys.executable, ROOT / 'tools/export-owner-visibility.py', '--output', out / 'static'])
 
             def journey(case):
@@ -220,7 +221,7 @@ def main():
                     snapshot, trace = out / (tag + '-' + name + '.snapshot'), out / (tag + '-' + name + '.trace')
                     result = json.loads(run(tag + '-' + name, [builds[tag] / 'owner-visibility-encounter-test',
                         directory / 'initial.snapshot', scenario, 2304, snapshot, trace, 16], env=env))
-                    if snapshot.read_bytes() != (directory / 'final.snapshot').read_bytes() or trace.read_bytes() != (directory / 'trace.txt').read_bytes():
+                    if evidence_bytes(snapshot) != evidence_bytes(directory / 'final.snapshot') or evidence_bytes(trace) != evidence_bytes(directory / 'trace.txt'):
                         raise ValueError('Native/sanitized replay differs: ' + name)
                     restores += result['restores']
                 return dict(scenario=scenario, seed=seed, **original), restores
@@ -239,7 +240,7 @@ def main():
                     run(name, [builds['native64'] / 'owner-visibility-encounter-test', previous,
                                scenario, end - last, snapshot, trace, 0], env={**env, 'PATH': '/nonexistent'})
                     previous, last, count = snapshot, end, count + 1
-                if previous.read_bytes() != (directory / 'final.snapshot').read_bytes():
+                if evidence_bytes(previous) != evidence_bytes(directory / 'final.snapshot'):
                     raise ValueError('Cold continuation differs')
                 return count
 
@@ -260,7 +261,7 @@ def main():
         run('cli-whole', [exe, 'run-visibility', args.install, 0, 0, 32, 32, 17, 2304, out / 'cli-whole.snapshot'])
         run('cli-initial', [exe, 'run-visibility', args.install, 0, 0, 32, 32, 17, 129, out / 'cli-initial.snapshot'])
         run('cli-resume', [exe, 'resume', out / 'cli-initial.snapshot', 2175, out / 'cli-resumed.snapshot'], env={**env, 'PATH': '/nonexistent'})
-        if (out / 'cli-whole.snapshot').read_bytes() != (out / 'cli-resumed.snapshot').read_bytes():
+        if evidence_bytes(out / 'cli-whole.snapshot') != evidence_bytes(out / 'cli-resumed.snapshot'):
             raise ValueError('CLI cold resume differs')
         if reused:
             validate_artifacts(reused[0], reused[1]['artifacts_sha256'])

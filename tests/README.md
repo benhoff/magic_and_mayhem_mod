@@ -21,6 +21,14 @@ Both suites and `python3 tools/check-re-coverage.py` are included in tooling;
 the dedicated coverage CI workflow runs them without installed game artifacts.
 See [the change-accounting workflow](../research/runtime/coverage/README.md#required-change-accounting).
 
+`python3 -B tests/test-coverage-bookkeeping.py` checks lossless SQLite journal
+imports, indexed queries, deterministic text export, immutable history, export
+failure/crash recovery, stale drafts, scoped review boundaries and real Git-base
+gate equivalence. It runs in the tooling suite and coverage CI using temporary
+synthetic repositories, without game media. Use the
+[SQLite workflow](../research/runtime/coverage/README.md#sqlite-review-workspace-and-automatic-exports)
+to prepare reviews, record supplied reasons and export automatically.
+
 `python3 tests/test-route-trace.py` builds the trace replay and checks synthetic
 zero/nonzero route counts, normalized arguments, full snapshot comparison,
 pointer/flag mismatch detection, malformed data and architecture fail-closed
@@ -956,7 +964,9 @@ SQLite review and evidence guards run without game media:
 `python3 -B tests/test-coverage-bookkeeping.py` and
 `python3 -B tests/test-evidence-store.py`. They exercise real temporary Git
 repositories, lossless receipt import/export and crash recovery, exact multichunk
-report restoration, corrupted/missing payload refusal, immutable records,
+report restoration, direct SQLite reads without hydration, text-adapter newline
+semantics, concurrent source-change refusal, verified cold compaction/restore,
+preservation of editable JSON and targeted exports, corrupted/missing payload refusal, immutable records,
 checksummed download and SQLite backup, pointer filters, fresh-clone cleanliness,
 and push refusal for legacy history or unpublished evidence. Coverage gate,
 audit, evidence-import and merge-history suites remain required.

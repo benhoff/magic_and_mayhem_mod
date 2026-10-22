@@ -10,6 +10,7 @@
 #include <string>
 #include <sys/mman.h>
 #include <vector>
+#include "clipped-word-grayscale-cases.hpp"
 using Bytes=std::vector<std::uint8_t>;
 static unsigned word(const Bytes& b,unsigned p){
   if(p>b.size()||b.size()-p<4)throw std::runtime_error("PE extent");
@@ -32,7 +33,6 @@ static void map(const char* path){
   const std::uint8_t signature[]={0x83,0xec,0x1c,0xa1,0x88,0x1f,0x6e,0};
   if(std::memcmp(reinterpret_cast<void*>(0x589c90),signature,sizeof(signature)))throw std::runtime_error("original entry");
 }
-struct Case{int width,height,x,y,originX,originY,left,top,right,bottom;bool transparent;};
 int main(int argc,char** argv)try{
   if(argc!=3)throw std::runtime_error("expected pinned PE and retained output prefix");
   map(argv[1]);
@@ -41,15 +41,7 @@ int main(int argc,char** argv)try{
   global(0x6e1f88,0);
   const std::uint16_t masks[]={0xf800,0x07e0,0x001f};
   std::memcpy(reinterpret_cast<void*>(0x6e1f7c),masks,sizeof(masks));
-  const Case cases[]={
-    {256,256,0,0,0,0,0,0,256,256,false},
-    {37,41,0,96,0,0,0,96,37,137,true},
-    {37,41,-8,-12,2,3,1,1,21,25,true},
-    {37,41,12,8,-3,-2,17,13,34,32,true},
-    {37,41,400,400,0,0,0,0,37,41,true},
-    {37,41,0,96,0,0,0,96,35,137,true},
-    {37,41,0,96,0,0,2,96,37,137,true},
-    {37,41,0,96,0,0,0,100,37,130,true}};
+  const auto& cases=grayscale_fixture::cases;
   unsigned compared=0;
   for(unsigned index=0;index<sizeof(cases)/sizeof(cases[0]);++index){
     const auto c=cases[index];const unsigned height=256,stride=259;
@@ -97,7 +89,10 @@ int main(int argc,char** argv)try{
     }
     if(!std::all_of(guarded.begin(),guarded.begin()+32,[](auto v){return v==0x1234;})||!std::all_of(guarded.end()-32,guarded.end(),[](auto v){return v==0x1234;}))throw std::runtime_error("destination guards changed");
     compared+=stride*height;
+    std::ofstream retained(std::string(argv[2])+"-case-"+std::to_string(index)+".original.565",std::ios::binary);
+    retained.write(reinterpret_cast<const char*>(output),expected.size()*2);
+    if(!retained)throw std::runtime_error("Cannot retain original grayscale words");
   }
-  std::cout<<"{\"success\":true,\"cases\":8,\"compared_words\":"<<compared<<",\"full_source_words\":65536,\"different_words\":0}\n";
+  std::cout<<"{\"success\":true,\"cases\":"<<grayscale_fixture::count<<",\"compared_words\":"<<compared<<",\"full_source_words\":65536,\"different_words\":0}\n";
   return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

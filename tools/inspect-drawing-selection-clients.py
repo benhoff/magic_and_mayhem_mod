@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Pinned actor latch/count clients and bounded Region zero-mode click branch."""
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import importlib.util
 import json
@@ -22,10 +23,10 @@ def main():
         spec = importlib.util.spec_from_file_location('canvas', ROOT / 'tools/inspect-drawing-canvas-storage.py')
         pe = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(pe)
-        data = args.executable.read_bytes()
+        data = evidence_bytes(args.executable)
         if pe.sha(data) != pe.BUILD:
             raise ValueError('Unsupported executable')
-        inventory = json.loads((ROOT / 'research/runtime/coverage/binary-nocd.json').read_text())
+        inventory = json.loads(evidence_text(ROOT / 'research/runtime/coverage/binary-nocd.json'))
         entries = {f['entry']: f for f in inventory['functions']}
         windows = []
         for entry in (0x4a5070, 0x5073d0, 0x5074f0):
@@ -46,9 +47,9 @@ def main():
             at = pe.offset(data, start)
             result.append(dict(start=start, end=end, whole_inventory_function=whole, bytes_sha256=pe.sha(data[at:at + end - start]), instructions=lines))
         names = ['tools/inspect-drawing-selection-clients.py', 'tools/inspect-drawing-canvas-storage.py', 'research/runtime/coverage/binary-nocd.json']
-        if pe.sha(args.executable.read_bytes()) != pe.BUILD:
+        if pe.sha(evidence_bytes(args.executable)) != pe.BUILD:
             raise ValueError('Executable changed')
-        report = dict(schema=1, success=True, sources={n: pe.sha((ROOT / n).read_bytes()) for n in names}, source_executable_sha256=pe.BUILD, windows=result, actor_field_offsets=dict(activity=4, creature_type=0xa8, owner=0x174, health=0xe4, raw_control_flag_68=0x68, raw_control_flag_70=0x70), raw_latch_count=0x6e984c, raw_mode=0x6903e8, original_game_executed=False, complete_selection_semantics_proved=False, scope='Exact inventory-bounded control dispatcher and actor latch setter/resetter, plus bounded Regionzero-mode maskbit1branch absent whole discovered function. Static instruction/offset evidence only; no running-game input, complete selection/highlight/lifetime semantics or native parity.')
+        report = dict(schema=1, success=True, sources={n: pe.sha(evidence_bytes(ROOT / n)) for n in names}, source_executable_sha256=pe.BUILD, windows=result, actor_field_offsets=dict(activity=4, creature_type=0xa8, owner=0x174, health=0xe4, raw_control_flag_68=0x68, raw_control_flag_70=0x70), raw_latch_count=0x6e984c, raw_mode=0x6903e8, original_game_executed=False, complete_selection_semantics_proved=False, scope='Exact inventory-bounded control dispatcher and actor latch setter/resetter, plus bounded Regionzero-mode maskbit1branch absent whole discovered function. Static instruction/offset evidence only; no running-game input, complete selection/highlight/lifetime semantics or native parity.')
         with args.report.open('x') as out:
             json.dump(report, out, indent=2)
             out.write('\n')

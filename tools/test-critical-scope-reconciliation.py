@@ -4,6 +4,7 @@
 Selected original wrappers use scripted external APIs. Retained capture replay
 is offline comparison, never a new live capture or complete driver recovery.
 """
+from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -23,7 +24,7 @@ TOOL = 'TOOL.critical-scope-reconciliation'
 
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(evidence_bytes(path)).hexdigest()
 
 
 def main():
@@ -37,7 +38,7 @@ def main():
     if out.exists() or not out.is_relative_to(ROOT / 'working/tests'):
         p.error('Require a fresh output under this checkout working/tests')
     out.mkdir(parents=True)
-    register = json.loads((ROOT / 'research/runtime/coverage/register.json').read_text())
+    register = json.loads(evidence_text(ROOT / 'research/runtime/coverage/register.json'))
     behaviors = {b['id']: b for b in register['behaviors']}
     builds = {b['id']: b for b in register['builds']}
     scenarios = {s['id']: s for s in register['scenarios']}
@@ -48,7 +49,7 @@ def main():
     # Reviewed compiler dependency output and the actual PE32 builder closure
     # avoid unrelated application sources in this execution's provenance.
     manifest_path = 'research/runtime/coverage/critical-scope-compiler-inputs-20261020.json'
-    compiler_inputs = json.loads((ROOT / manifest_path).read_text())
+    compiler_inputs = json.loads(evidence_text(ROOT / manifest_path))
     if compiler_inputs.get('schema') != 1 or compiler_inputs.get('reviewed') is not True:
         raise ValueError('Require the reviewed native/PE32 compiler input manifest')
     paths.add(manifest_path)
@@ -100,11 +101,11 @@ def main():
                            timeout=timeout, check=True)
 
     def saved_report(label):
-        lines = (out / (label + '.log')).read_text().splitlines()
+        lines = evidence_text(out / (label + '.log')).splitlines()
         paths = [Path(line) for line in lines if line.endswith('/report.json')]
         if not paths or not paths[-1].is_relative_to(ROOT / 'working/tests'):
             raise ValueError('Missing isolated executed report: ' + label)
-        return paths[-1], json.loads(paths[-1].read_text())
+        return paths[-1], json.loads(evidence_text(paths[-1]))
 
     try:
         run('original-before', [ROOT / 'tools/original-manifest.sh', 'verify'])
@@ -134,7 +135,7 @@ def main():
                          '--executable', ROOT / 'original/Arcane_Nocd/Chaos.exe',
                          '--output', out / 'branches', '--claims', out / 'branches-claims.json',
                          *[v for case in ('create', 'bind', 'clear', 'wave', 'palette', 'caller') for v in ('--case', case)]])
-        branch = json.loads((out / 'branches/report.json').read_text())
+        branch = json.loads(evidence_text(out / 'branches/report.json'))
         palette = next(row for row in branch['results'] if row['case'] == 'palette-selection')
         if not branch['success'] or palette['cases'] != 14280 or palette['palette_ordinals'] != 8:
             raise ValueError('Expanded palette/reference matrix is incomplete')
@@ -162,7 +163,7 @@ def main():
         if not (handoff['success'] and handoff['completed'] == 1061 and handoff['equal'] == 1061 and
                 handoff['original_world_equal'] == 16 and handoff['bypass_equal'] == 0):
             raise ValueError('Incomplete finite source-only handoff or unexpected bypass selection')
-        wave = json.loads((out / 'wave/report.json').read_text())
+        wave = json.loads(evidence_text(out / 'wave/report.json'))
         if not wave['success']:
             raise ValueError('Full CPU/GPU wave comparison failed')
         inputs = {str(original): expected_original}

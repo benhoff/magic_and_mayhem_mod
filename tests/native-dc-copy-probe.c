@@ -14,13 +14,22 @@ typedef u32 (WIN *Ref)(void*);
 static u32 results[1024][18];
 static void** table(void* p){return *(void***)p;}
 static u32 selected_format;
+static void plane_refusal(Plane plane,const void* pixels,u32 bytes,i32 expected,u32* result){
+ u32 fields[6];for(u32 i=0;i<6;++i)fields[i]=0xa5a50000+i;
+ if(plane(pixels,fields,bytes)!=expected)++result[13];
+ for(u32 i=0;i<6;++i)if(fields[i]!=0xa5a50000+i)++result[13];
+}
 static void desc(u32* d){for(u32 i=0;i<31;++i)d[i]=0;d[0]=108;d[1]=0x1007;d[2]=9;d[3]=13;d[18]=32;d[19]=0x40;d[21]=16;d[22]=selected_format?0x7c00:0xf800;d[23]=selected_format?0x3e0:0x7e0;d[24]=0x1f;d[26]=0x840;}
 static void* words(void* surface,u16* pixels,u32 write,Plane plane,u32* results){
  u32 d[31],fields[6];desc(d);if(((i32 (WIN *)(void*,void*,u32*,u32,HANDLE))table(surface)[25])(surface,0,d,1,0))ExitProcess(172);
  if(plane((void*)d[9],fields,24)||fields[0]!=1||fields[1]!=13||fields[2]!=9||fields[3]!=d[4]/2||fields[4]!=1||fields[5]!=selected_format)++results[13];
  for(u32 y=0;y<9;++y)for(u32 x=0;x<13;++x){u16* p=(u16*)(d[9]+y*d[4])+x;if(write)*p=pixels[y*13+x];else pixels[y*13+x]=*p;}
  if(((i32 (WIN *)(void*,void*))table(surface)[32])(surface,(void*)d[9]))ExitProcess(173);
- if(plane((void*)d[9],fields,24)||fields[4])++results[13];return (void*)d[9];
+ if(plane((void*)d[9],fields,24)||fields[4])++results[13];
+ plane_refusal(plane,0,24,(i32)0x80070057u,results);
+ plane_refusal(plane,(void*)(d[9]+2),24,(i32)0x80070057u,results);
+ plane_refusal(plane,(void*)d[9],20,(i32)0x80070057u,results);
+ return (void*)d[9];
 }
 void start(void){
  void* module=LoadLibraryA("MnmDraw.dll"),*route=LoadLibraryA("MnmDcCopy.dll");if(!module||!route)ExitProcess(170);
@@ -36,6 +45,7 @@ void start(void){
   words(a,seed,1,plane,r);void* retired=words(b,seed,1,plane,r);words(s,source,1,plane,r);
   if(((i32 (WIN *)(void*,void**))table(a)[17])(a,&ad)||((i32 (WIN *)(void*,void**))table(b)[17])(b,&bd)||((i32 (WIN *)(void*,void**))table(s)[17])(s,&sd))ExitProcess(176);
   r[14]=(u32)plane(retired,fields,24);
+  plane_refusal(plane,retired,24,(i32)0x887601aeu,r);
   r[0]=(u32)BitBlt(ad,x,y,7,5,self?ad:sd,sx,sy,0xcc0020);
   r[1]=(u32)copy(bd,x,y,7,5,self?bd:sd,sx,sy,0xcc0020);
   r[3]=(u32)paint((void*)0x1234,x,y,7,5,sd,sx,sy,0xcc0020);
@@ -55,6 +65,7 @@ void start(void){
   words(a,expected,0,plane,r);words(b,actual,0,plane,r);for(u32 i=0;i<117;++i)if(expected[i]!=actual[i])++r[2];
   ((Ref)table(a)[2])(a);((Ref)table(b)[2])(b);((Ref)table(s)[2])(s);((Ref)table(draw)[2])(draw);
   r[8]=dcs();r[9]=surfaces();r[10]=native();r[11]=original();r[12]=(u32)plane(retired,fields,24);r[15]=self;
+  plane_refusal(plane,retired,24,(i32)0x80070057u,r);
  }
  HANDLE f=CreateFileA("dc-copy-results.bin",0x40000000,0,0,1,0x80,0);u32 done=0;
  if(f==(HANDLE)-1||!WriteFile(f,results,sizeof(results),&done,0)||done!=sizeof(results))ExitProcess(178);CloseHandle(f);ExitProcess(0);

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Reproduce a CPU/core crosswalk from retained original-run artifacts."""
+from coverage_evidence import read_text as evidence_text
 import argparse
 import hashlib
 import json
@@ -22,7 +23,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     if args.output.exists(): raise ValueError('Refuse to overwrite execution evidence')
-    load = lambda path:json.loads(path.read_text())
+    load = lambda path:json.loads(evidence_text(path))
     claims = load(args.claims)
     if not any(row['behavior']=='TOOL.drawing-cpu-crosswalk' for row in claims['claims']):
         raise ValueError('Missing prospective CPU crosswalk scope declaration')

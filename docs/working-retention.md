@@ -1,14 +1,14 @@
 # Working storage retention
 
-The repository policy keeps at least **100 GiB of filesystem free space** on the
+The repository policy keeps at least **90 GiB of filesystem free space** on the
 main checkout's drive. There is no fixed size limit on `working/`, including
 nested worktree output. Before launching, the guard subtracts the estimated
 output reservation from available disk space and requires the remainder to stay
 at or above the reserve. For example, a 10 GiB reservation needs at least
-110 GiB free. Available space includes consumption by other directories and jobs
+100 GiB free. Available space includes consumption by other directories and jobs
 on that filesystem.
 
-`tools/working-retention.json` sets `minimum_free_gib` to 100 and
+`tools/working-retention.json` sets `minimum_free_gib` to 90 and
 `max_working_gib` to `null`. A positive numeric maximum remains supported for
 older or explicitly stricter custom policies; omitting it also selects free-space
 only checks. Free-space-only `check` and `run` skip the working-size scan.
@@ -16,8 +16,51 @@ Inventory still reports allocated working bytes, with `over_budget_bytes: null`
 when no size maximum applies and a separate `free_space_shortfall_bytes` field.
 
 Game installations, toolchains, manifests, runtime staging, logs and retention
-reports are exemptions from cleanup selection. Registered Git worktrees are
-retained whole, including ignored outputs. Automatic archiving remains disabled.
+reports are exemptions from blanket cleanup selection. Registered Git source
+checkouts are preserved; their ignored completed-run output can be reviewed
+separately. Automatic archiving inside experiment launch remains disabled.
+
+## Periodic maintenance
+
+The user authorized periodic reviewed cleanup on 2026-10-20. Check available
+space at session start, at least daily while work is active, and after each
+build/experiment batch. Start a maintenance review below **150 GiB free**, or
+after a completed batch produces at least **10 GiB**. Aim for **180 GiB free**
+through eligible cleanup. These are maintenance thresholds; the main hard reserve
+stays 90 GiB and the archive hard reserve stays 100 GiB. This is an agent workflow,
+not an installed cron job or an unattended deletion service.
+
+Use one new inventory per maintenance pass, retain its exact candidate plan,
+and prioritize inactive copied game installations, Wine prefixes and historical
+compiler outputs. Bulky captures may move to verified cold storage only when
+their dependencies and retention rules permit it. Keep original references,
+failures and regression inputs even when their historical source versions differ
+from current code. Source drift changes execution freshness, not storage value.
+
+Preserve all retention pins, unique sources, registered checkouts, reports,
+configuration, saves, current tool/fixture inputs and the newest two runs in each
+group. Files modified within 24 hours and directories active within the past hour
+remain local. Inspect host-visible open files, working directories, executable
+paths and Wine prefixes before acting. A manifest or old timestamps alone do not
+prove a run has stopped. Recheck dependencies, pins and exact file identities
+immediately before each removal. Never unlink a payload before complete archive
+verification and durable receipts on both disks.
+
+Routine maintenance within these reviewed bounds does not need renewed user
+permission. Changing a reserve, removing a pin, deleting unique evidence or
+removing source checkouts is outside that authorization. When eligible candidates
+cannot reach the target, retain the measured shortfall and keep the exclusions.
+Do not substitute blanket directory deletion or historical-hash refreshes.
+
+Close each batch by distinguishing durable evidence from disposable environments;
+prefer bounded captures and marked, idle, exclusively locked reusable fixture
+prefixes. Prefer an exact Git revision plus preserved unique changes over another
+full source copy when that retains the necessary provenance. Existing unique
+snapshots remain protected. Keep a maintenance result with verified reclaimed
+allocated bytes, before/after filesystem capacity, skipped candidates and a real
+restore check. Independent writers can make free-space deltas differ from the
+verified removals. Use the existing archive primitives or a retained, hash-bound
+reviewed executor; do not treat an old plan as authority to remove changed files.
 
 Create a new dry-run inventory:
 
@@ -53,7 +96,7 @@ Both commands refuse with exit status 2 if the reservation would reduce free
 disk space below the minimum. An explicitly configured numeric working-size
 maximum is also checked for custom policies. The reservation is a preflight estimate, not allocated space.
 During `run`, filesystem free space is checked every two seconds. If it falls
-below 100 GiB, the guard sends SIGTERM to the command's isolated process group,
+below 90 GiB, the guard sends SIGTERM to the command's isolated process group,
 allows up to five seconds for shutdown, then kills any remaining descendants and
 returns status 2. Ctrl-C also stops that group. A free-space measurement failure
 stops the command rather than leaving it running unmonitored. Separately
@@ -69,8 +112,8 @@ global disk limit. Runtime monitoring checks free space without repeatedly
 scanning the whole tree. Changing the minimum reserve requires an explicit policy
 change; growth of `working/` alone does not require raising a size cap.
 No background pruning is enabled, and `auto_archive` is false. Guarded launches
-refuse when there is insufficient space; manual archiving remains available for
-later cleanup.
+refuse when there is insufficient space; reviewed periodic maintenance is a
+separate operation under the standing authorization above.
 
 In the first cleanup pass, inventory and review before deleting or relocating
 anything. Record the approved paths and exclusions, preserve retained artifacts
