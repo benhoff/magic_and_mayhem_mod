@@ -20971,3 +20971,27 @@ The static reconciliation retains43 historical leads as24 concrete routes/19 emb
 The profile/palette integration also retains `50521beb` observer planning
 successors and their seven exact file receipts. Historical planning objects
 and all successful provider execution inputs/contracts remain unchanged.
+
+
+## Concrete font providers and global ownership (2026-10-22)
+
+[Seventeen raw font providers](actor-font-providers-20261022.md) extend the
+owned actor composition198→215 routes. Raw version2/3 loading, byte/layout/glyph
+adapters and four global font setup/teardown pairs compose with actual4d9f30
+actor text drawing. `FP1.providers.isolated_original-20261022` and its headless
+companion share1152 independently seeded cases/2304 before-and-after teardown
+snapshots:1428014200 bytes per original32/native64/ASan+UBSan stream, identical
+with unchanged original bodies, stable sources, ordered callbacks and zero
+residual live allocations. Short-read retention, declared-size cleanup, failed
+palette publication, stale borrowed fields and old raw-buffer reload retention
+are preserved; final fixture cleanup does not imply leak-free original reload.
+
+Six retained installed SFT inputs, cold/warm coefficients, RGB565/555 and bounded
+normal failures are compared. Existing byte/layout/coverage models are reused
+without edits. Fresh discovery supports eight exact global-function recovered
+range exceptions; the central inventory and unrelated55a650 remain unchanged.
+All43 historical leads retain24 concrete-route/19 embedded-helper dispositions;
+114 named endpoint specifications and incomplete indirect targets remain.
+The Critical parent stays partial for owner/planner cadence, task/support/
+particle/scenario providers, actual file/profile/heap/atexit/COM backends, unsafe
+malformed/FP/SEH paths, wider callers, installed and live/platform acceptance.

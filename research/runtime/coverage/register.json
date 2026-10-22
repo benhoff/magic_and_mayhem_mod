@@ -137950,7 +137950,7 @@
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Complete actor downstream service ownership and behavior",
-      "scope": "Seventy-two original direct service/helper entries and the initial83-target frontier retain bounded scope. The owned actor/source lifecycle now composes198 routes, including fifteen additional profile animation/movement and palette ownership providers. All43 historical semantic leads retain24 concrete-route and19 embedded-helper dispositions within their stated domains. The15-root/5-caller normal-return matrix does not establish original planner cadence, arbitrary installed profiles, actual font/file/task/scenario/platform lower providers or complete indirect targets. Named profile/directory/heap endpoints, unsafe odd-count allocation, malformed CRT, uninitialized original locals, Windows SEH/throwing cleanup, external acceptance and full original-world/live replacement remain explicit. This Critical umbrella remains partial.",
+      "scope": "Seventy-two original direct service/helper entries and the initial83-target frontier retain bounded scope. The owned actor/source lifecycle now composes215 routes, including profile animation/movement, palette ownership and seventeen raw font providers with four global setup/teardown pairs. All43 historical semantic leads retain24 concrete-route and19 embedded-helper dispositions within their stated domains. Bounded normal-return comparisons do not establish original planner cadence, arbitrary installed profiles, remaining task/support/particle/scenario providers or complete indirect targets. Named profile/directory/file/heap/atexit/COM endpoints, unsafe odd-count allocation, malformed CRT, uninitialized original locals, Windows SEH/throwing cleanup, external acceptance and full original-world/live replacement remain explicit. This Critical umbrella remains partial.",
       "confidence": "provisional",
       "original": [
         {
@@ -138323,7 +138323,8 @@
         "research/runtime/service-composition-results-20261022/frontier-panel.json",
         "research/runtime/actor-session-source-lifecycle-20261022.md",
         "research/runtime/actor-concrete-provider-frontier-20261022.md",
-        "research/runtime/actor-profile-palette-providers-20261022.md"
+        "research/runtime/actor-profile-palette-providers-20261022.md",
+        "research/runtime/actor-font-providers-20261022.md"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -138351,7 +138352,8 @@
         "reconstruction/rendering/palette_shading.cpp",
         "reconstruction/rendering/palette_shading.hpp",
         "reconstruction/rendering/terrain_selection.cpp",
-        "reconstruction/rendering/terrain_selection.hpp"
+        "reconstruction/rendering/terrain_selection.hpp",
+        "reconstruction/rendering/actor_font_providers.hpp"
       ],
       "tests": [
         "tools/inspect-actor-downstream.py",
@@ -138376,7 +138378,11 @@
         "tests/actor-profile-palette-reference.cpp",
         "tests/actor-profile-palette-seeds.inc",
         "tools/test-actor-profile-palette.py",
-        "tools/reconcile-actor-profile-palette.py"
+        "tools/reconcile-actor-profile-palette.py",
+        "tests/actor-font-reference.cpp",
+        "tests/actor-font-seeds.inc",
+        "tools/test-actor-font.py",
+        "tools/reconcile-actor-font.py"
       ],
       "evidence": [
         "SCP1.frontier-20261022",
@@ -138384,7 +138390,8 @@
         "SCP2.frontier-20261022",
         "ASL1.reconciliation-reviewed.static-20261022",
         "AFP1.reconciliation.static-20261022",
-        "PP1.reconciliation.static-20261022"
+        "PP1.reconciliation.static-20261022",
+        "FP1.reconciliation.static-20261022"
       ],
       "status": {
         "understanding": "partial",
@@ -140707,6 +140714,211 @@
       },
       "remaining_gaps": [
         "Bounded normal-return original comparison and owned caller composition only. Named file/directory/profile/heap/diagnostic endpoints, arbitrary malformed or nonfinite inputs, original odd-count allocation overruns, divide faults, SEH/throwing cleanup, actual owner/planner cadence, installed sessions and live replacement remain separate."
+      ]
+    },
+    {
+      "id": "RS.actor-font-providers",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Concrete owned font loading, layout and raster providers",
+      "scope": "Original raw font object setup/reset/load/retirement and byte/layout/glyph dispatch composed with owned storage and actual actor text caller. Bounded well-formed fonts, terminated byte strings, initialized colour/coverage and owned software canvas; named file/heap/diagnostic/platform endpoints remain supplied. Malformed/unbounded pointer traversal, throwing/SEH cleanup, actual platform backing/driver acceptance, installed full-session and live replacement remain separate.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4872384,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4872416,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4872672,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4872928,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4873440,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4874640,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4875824,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4876656,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5775040,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4974704,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain.",
+          "recovered_range": "font-global-4be870"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4974784,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain.",
+          "recovered_range": "font-global-4be8c0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4974864,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain.",
+          "recovered_range": "font-global-4be910"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4974944,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain.",
+          "recovered_range": "font-global-4be960"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4975024,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain.",
+          "recovered_range": "font-global-4be9b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4975104,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain.",
+          "recovered_range": "font-global-4bea00"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4975184,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain.",
+          "recovered_range": "font-global-4bea50"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4975264,
+          "relation": "code",
+          "scope": "Selected raw font setup/retirement, loader or text/glyph adapter within the bounded owned normal-return domain.",
+          "recovered_range": "font-global-4beaa0"
+        }
+      ],
+      "documents": [
+        "research/runtime/actor-font-providers-20261022.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_frontier_providers.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp",
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp",
+        "reconstruction/rendering/actor_font_providers.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h"
+      ],
+      "tests": [
+        "tests/actor-font-reference.cpp",
+        "tests/actor-font-seeds.inc",
+        "tests/actor-profile-palette-reference.cpp",
+        "tests/actor-profile-palette-seeds.inc",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc",
+        "tools/test-actor-font.py"
+      ],
+      "validation_dependencies": [
+        "tests/original-linux-seh.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/test-actor-services.py",
+        "assets/asset_file.hpp",
+        "assets/map.hpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "tools/ghidra/ExportFontProviders.java"
+      ],
+      "evidence": [
+        "FP1.providers.isolated_original-20261022",
+        "FP1.providers.headless-20261022",
+        "FP1.font-decompilation.static-20261022",
+        "FP1.owners-decompilation.static-20261022",
+        "FP1.inspection-report.static-20261022",
+        "FP1.attempt-catalog.static-20261022",
+        "FP1.reconciliation.static-20261022",
+        "FP1.ownership-references.static-20261022",
+        "FP1.ui-regressions.static-20261022"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_domain": {
+        "normal_returns_only": true,
+        "owned_fonts": "Bounded well-formed font buffers and safe counts; no arbitrary malformed/throwing/platform equivalence."
+      },
+      "remaining_gaps": [
+        "Bounded raw font loader/setup/retirement, text adapters, ordinary masked nearest extended-FP RGB565/555 glyphs and one actual actor caller only. Arbitrary malformed traversal, unsafe long-word paths, unusual FP/ABI states, actual file/heap/atexit/COM/driver providers, other full callers and installed/live font transitions remain separate. Reload retention and stale borrowed fields are recovered baseline behavior, not native asset policy."
       ]
     }
   ],
@@ -316550,6 +316762,236 @@
           "equals": true
         }
       ]
+    },
+    {
+      "record": "research/runtime/font-provider-results-20261022/font-matrix-3.json",
+      "sha256": "b090fcd1114edd805482b1c945f4267fdaa14f6a916dce6a7f1dcdfd549971a3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1152
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 2304
+        },
+        {
+          "pointer": "/composed_routes",
+          "equals": 215
+        },
+        {
+          "pointer": "/bytes_compared",
+          "equals": 1428014200
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/font_inputs_stable",
+          "equals": true
+        }
+      ],
+      "id": "FP1.providers.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Seventeen font providers and actual actor text caller:1152 independently seeded bounded normal-return cases,2304 before/after teardown snapshots,1428014200 bytes per stream. RGB565/555, cold/warm coefficients, versions2/3, normal failures and retained reload allocations; no actual platform/driver/full-session claim.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "record": "research/runtime/font-provider-results-20261022/font-matrix-3.json",
+      "sha256": "b090fcd1114edd805482b1c945f4267fdaa14f6a916dce6a7f1dcdfd549971a3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1152
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 2304
+        },
+        {
+          "pointer": "/composed_routes",
+          "equals": 215
+        },
+        {
+          "pointer": "/bytes_compared",
+          "equals": 1428014200
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/font_inputs_stable",
+          "equals": true
+        }
+      ],
+      "id": "FP1.providers.headless-20261022",
+      "kind": "native_integration",
+      "scope": "Same1152-case matrix as original comparison;215-route owned headless composition including real raw loader/layout/glyph and actor caller with four global font lifetimes. Not extra cases, installed session or live acceptance."
+    },
+    {
+      "id": "FP1.font-decompilation.static-20261022",
+      "kind": "static",
+      "scope": "Fresh pinned raw font/caller decompilation, static only.",
+      "record": "research/runtime/font-provider-results-20261022/font-decompilation.json",
+      "sha256": "702a9e43663cd626b7141ea6ba46788afb40fe2140bde648f47e11a775f10389",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FP1.owners-decompilation.static-20261022",
+      "kind": "static",
+      "scope": "Eight global setup/destructor decompilations and fresh discovery export; only eight reviewed range exceptions adopted.",
+      "record": "research/runtime/font-provider-results-20261022/owners-decompilation.json",
+      "sha256": "d349c32c7e44e2de88e58402fbc6b1c029e6b88ece1c63d9112f41975e906ac8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FP1.inspection-report.static-20261022",
+      "kind": "static",
+      "scope": "Fresh pinned raw instruction/ABI/frontier inspection and verified manifests, static only.",
+      "record": "research/runtime/font-provider-results-20261022/inspection-report.json",
+      "sha256": "af82b453c2f155a607b942333de4ca7b616daedbd7c1c059d242b7fecdbd4d45",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FP1.attempt-catalog.static-20261022",
+      "kind": "static",
+      "scope": "Retained exact prospective source inputs, failed and limited trials; no failure or extra scenario credit.",
+      "record": "research/runtime/font-provider-results-20261022/attempt-catalog.json",
+      "sha256": "a358e4c44fd1e3db24ceb9bc00ac341ef7907e95b2ba0bac353f05233e7eb829",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FP1.reconciliation.static-20261022",
+      "kind": "static",
+      "scope": "215 routes,17 added font roots,43 retained semantic leads and114 named endpoint specifications; indirect targets incomplete, static only.",
+      "record": "research/runtime/font-provider-results-20261022/reconciliation.json",
+      "sha256": "0531c2a922feaff3117c9be41abdfad392134541f1eba60ee0cea14a62475c49",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FP1.ownership-references.static-20261022",
+      "kind": "static",
+      "scope": "Read-only original references to font globals and selected neighboring helpers; references are static ownership evidence, not recovery of each caller.",
+      "record": "research/runtime/font-provider-results-20261022/ownership-references.json",
+      "sha256": "4047aa38130838fb2381c11ef53c7bbd06b3167d0f8cb54da1ce4037d5c56ff0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FP1.ui-regressions.static-20261022",
+      "kind": "static",
+      "scope": "Dashboard planning/coverage regression checks only; no engine comparison or live acceptance.",
+      "record": "research/runtime/font-provider-results-20261022/ui-regressions.json",
+      "sha256": "b53cfd512f37a9e66427b205efd40d2aed6fabca24201834cd4a218c7558c27b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -324483,6 +324925,126 @@
           "value": 5802992,
           "behaviors": [
             "RS.actor-palette-builder-providers"
+          ]
+        },
+        {
+          "value": "unresolved-lower-provider-and-indirect-targets",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "actor-font-provider-routing",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4872928,
+        "relation": "code",
+        "scope": "Seventeen selected raw font provider entries and actual actor text caller within the bounded owned domain."
+      },
+      "document": "research/runtime/actor-font-providers-20261022.md",
+      "complete": false,
+      "scope": "215 native public routes including17 font entries; actual platform/atexit/file providers and unresolved indirect targets remain explicit.",
+      "entries": [
+        {
+          "value": 4872384,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4872416,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4872672,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4872928,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4873440,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4874640,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4875824,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4876656,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 5775040,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4974704,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4974784,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4974864,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4974944,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4975024,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4975104,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4975184,
+          "behaviors": [
+            "RS.actor-font-providers"
+          ]
+        },
+        {
+          "value": 4975264,
+          "behaviors": [
+            "RS.actor-font-providers"
           ]
         },
         {
@@ -340868,6 +341430,28 @@
       "evidence": [
         "NT11.source-observers-20261022"
       ]
+    },
+    {
+      "id": "actor-font-owned-20261022",
+      "scope": "Seventeen font providers and the actual4d9f30 actor text caller over one owned backend, independent source fonts/byte programs, normal returns and explicit caller-owned teardown. Named file/heap/atexit/COM boundaries; no installed/live/physical acceptance.",
+      "level": "headless",
+      "behaviors": [
+        "RS.actor-font-providers"
+      ],
+      "tests": [
+        "tests/actor-font-reference.cpp",
+        "tests/actor-font-seeds.inc",
+        "tests/actor-profile-palette-reference.cpp",
+        "tests/actor-profile-palette-seeds.inc",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc",
+        "tools/test-actor-font.py"
+      ],
+      "evidence": [
+        "FP1.providers.headless-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -341513,6 +342097,86 @@
       "document": "research/runtime/critical-original-recovery-20261020.md",
       "evidence": "REC6.kind8-anchors.original-20261020",
       "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "font-global-4be870",
+      "build": "nocd-40209ca7",
+      "start": 4974704,
+      "end": 4974783,
+      "document": "research/runtime/actor-font-providers-20261022.md",
+      "evidence": "FP1.providers.isolated_original-20261022",
+      "anchors_pointer": "/anchors",
+      "scope": "Fresh read-only discovery and unchanged original execution of this font global setup/destructor only. Other unassigned ranges and unrelated inventory candidates remain pending."
+    },
+    {
+      "id": "font-global-4be8c0",
+      "build": "nocd-40209ca7",
+      "start": 4974784,
+      "end": 4974857,
+      "document": "research/runtime/actor-font-providers-20261022.md",
+      "evidence": "FP1.providers.isolated_original-20261022",
+      "anchors_pointer": "/anchors",
+      "scope": "Fresh read-only discovery and unchanged original execution of this font global setup/destructor only. Other unassigned ranges and unrelated inventory candidates remain pending."
+    },
+    {
+      "id": "font-global-4be910",
+      "build": "nocd-40209ca7",
+      "start": 4974864,
+      "end": 4974943,
+      "document": "research/runtime/actor-font-providers-20261022.md",
+      "evidence": "FP1.providers.isolated_original-20261022",
+      "anchors_pointer": "/anchors",
+      "scope": "Fresh read-only discovery and unchanged original execution of this font global setup/destructor only. Other unassigned ranges and unrelated inventory candidates remain pending."
+    },
+    {
+      "id": "font-global-4be960",
+      "build": "nocd-40209ca7",
+      "start": 4974944,
+      "end": 4975017,
+      "document": "research/runtime/actor-font-providers-20261022.md",
+      "evidence": "FP1.providers.isolated_original-20261022",
+      "anchors_pointer": "/anchors",
+      "scope": "Fresh read-only discovery and unchanged original execution of this font global setup/destructor only. Other unassigned ranges and unrelated inventory candidates remain pending."
+    },
+    {
+      "id": "font-global-4be9b0",
+      "build": "nocd-40209ca7",
+      "start": 4975024,
+      "end": 4975103,
+      "document": "research/runtime/actor-font-providers-20261022.md",
+      "evidence": "FP1.providers.isolated_original-20261022",
+      "anchors_pointer": "/anchors",
+      "scope": "Fresh read-only discovery and unchanged original execution of this font global setup/destructor only. Other unassigned ranges and unrelated inventory candidates remain pending."
+    },
+    {
+      "id": "font-global-4bea00",
+      "build": "nocd-40209ca7",
+      "start": 4975104,
+      "end": 4975177,
+      "document": "research/runtime/actor-font-providers-20261022.md",
+      "evidence": "FP1.providers.isolated_original-20261022",
+      "anchors_pointer": "/anchors",
+      "scope": "Fresh read-only discovery and unchanged original execution of this font global setup/destructor only. Other unassigned ranges and unrelated inventory candidates remain pending."
+    },
+    {
+      "id": "font-global-4bea50",
+      "build": "nocd-40209ca7",
+      "start": 4975184,
+      "end": 4975263,
+      "document": "research/runtime/actor-font-providers-20261022.md",
+      "evidence": "FP1.providers.isolated_original-20261022",
+      "anchors_pointer": "/anchors",
+      "scope": "Fresh read-only discovery and unchanged original execution of this font global setup/destructor only. Other unassigned ranges and unrelated inventory candidates remain pending."
+    },
+    {
+      "id": "font-global-4beaa0",
+      "build": "nocd-40209ca7",
+      "start": 4975264,
+      "end": 4975337,
+      "document": "research/runtime/actor-font-providers-20261022.md",
+      "evidence": "FP1.providers.isolated_original-20261022",
+      "anchors_pointer": "/anchors",
+      "scope": "Fresh read-only discovery and unchanged original execution of this font global setup/destructor only. Other unassigned ranges and unrelated inventory candidates remain pending."
     }
   ],
   "register_imports": [
@@ -341623,8 +342287,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-3e04729529e65afa1f2fa82d52c0418eff5f23e8705db800dabcd59c2700a54b.json",
-    "sha256": "3e04729529e65afa1f2fa82d52c0418eff5f23e8705db800dabcd59c2700a54b"
+    "path": "research/runtime/coverage/source-index-c2bc85e15109fcb23ebbdd4952e8bd5eaa91e9d7177221831e99d7c376f8f5fa.json",
+    "sha256": "c2bc85e15109fcb23ebbdd4952e8bd5eaa91e9d7177221831e99d7c376f8f5fa"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
