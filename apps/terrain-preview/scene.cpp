@@ -1,10 +1,12 @@
 #include "scene.hpp"
 #include "../scene-session/palette_binding.hpp"
 #include <map>
+#include <limits>
 #include <stdexcept>
 namespace mnm::preview {
 TerrainPreviewResult renderTerrain(render::GlBlitter& renderer,const assets::TerrainCatalog& catalog,
  const assets::Sprite& sprite,std::vector<TerrainPreviewTile> tiles,reconstruction::TerrainAdmission admission,bool visibility,bool world,std::optional<reconstruction::PaletteShadingConfig> shading,const TerrainPaletteEffects& effects){
+ if(admission.view>3 || sprite.frames.size()>std::numeric_limits<std::uint32_t>::max())throw std::invalid_argument("Terrain view/frame identity outside native range");
  if((!world && (tiles.empty() || tiles.size()>9)) || tiles.size()>16384 || sprite.frames.empty())throw std::invalid_argument("Terrain preview tile/SPR bounds exceeded");
  std::optional<reconstruction::PaletteEffectChain> palettes;std::size_t ordinal=0;
  if(shading){

@@ -31,7 +31,9 @@ std::optional<assets::AnimationRecord> displayed(const assets::Animation& a,cons
 std::vector<Draw> compose(const game::MovementSession& session,const assets::Animation& animation,
                          const assets::TerrainCatalog& catalog,const std::vector<Tile>& tiles,const Camera& camera,
                          std::size_t terrainFrames,std::size_t creatureFrames) {
-    if(tiles.empty() || tiles.size()>4096 || !terrainFrames || !creatureFrames)
+    if(tiles.empty() || tiles.size()>4096 || !terrainFrames || !creatureFrames ||
+       terrainFrames>std::numeric_limits<std::uint32_t>::max() ||
+       creatureFrames>std::numeric_limits<std::uint32_t>::max())
         throw std::invalid_argument("Scene requires 1..4096 terrain tiles and nonempty sprites");
     std::vector<Draw> draws;std::vector<reconstruction::SpriteQueueEntry> queue;
     const auto add=[&](Draw d){queue.push_back({d.key,std::uint32_t(draws.size())});draws.push_back(d);};

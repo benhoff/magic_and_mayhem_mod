@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import tempfile
 from drawing_api_session import BUILD, sha
+from drawing_comparison import index, plane
 from drawing_scene_corpus import asset_name, raster_inputs
 from drawing_copy_phase import select as select_phase, transpose
 
@@ -28,19 +29,19 @@ def main():
     args = parser.parse_args()
     if args.report.exists():
         parser.error('Refusing evidence overwrite')
-    raw_reference = read_bytes(args.reference, root=ROOT)
+    raw_reference = read_bytes(args.reference)
     reference = json.loads(raw_reference)
     if not reference['success'] or not reference['normal_original_quit_verified'] or reference['source_sha256'] != BUILD:
         raise ValueError('Completed original-active reference required')
-    raw_assets = read_bytes(args.assets_reference, root=ROOT)
+    raw_assets = read_bytes(args.assets_reference)
     assets_reference = json.loads(raw_assets)
     if assets_reference['original_pixels_used_as_native_inputs'] or not assets_reference['original_manifest_verified_before_after']:
         raise ValueError('Previously isolated encoded assets required')
-    pin_bytes = args.input_manifest.read_bytes()
+    pin_bytes = read_bytes(args.input_manifest)
     pin = json.loads(pin_bytes)
     if pin['executable_sha256'] != BUILD or not pin['original_manifest_verified_before_after']:
         raise ValueError('Pinned installed inputs required')
-    sources = dict(json.loads(args.claims.read_text())['sources'])
+    sources = dict(json.loads(read_bytes(args.claims))['sources'])
     sources.update({name: evidence_digest(ROOT/name,root=ROOT) for name in
                     ['tools/compare-drawing-copy-checkpoints.py', 'tools/drawing_scene_corpus.py',
                      'tools/inspect-canvas-producers.py', 'tools/drawing_api_session.py']})
@@ -145,7 +146,7 @@ def main():
             if not native['success'] or native['boundary'] != boundary or native['remaining_surfaces'] or any(native[k] for k in
                     ['original_pixels_used_as_native_inputs', 'original_oracles_read', 'original_raster_results_used_as_native_inputs', 'live_replacement']):
                 raise ValueError('Native provenance/closure changed')
-            actual = {c['ordinal']: c for c in native['checkpoints']}
+            actual = index(native['checkpoints'], 'ordinal', 'native checkpoint')
             if len(actual) != len(checkpoints):
                 raise ValueError('Native checkpoint count changed')
             for record in checkpoints:
@@ -153,6 +154,8 @@ def main():
                 original = (capture / f'producer-oracle-{ordinal:04d}.565').read_bytes()
                 predicted = (run / f'native/checkpoint-{ordinal:04d}.565').read_bytes()
                 n = actual[ordinal]
+                plane(original, width, height, expected_hashes[ordinal])
+                plane(predicted, width, height, n['sha256'])
                 if len(original) != width * height * 2 or len(predicted) != len(original) or sha(original) != expected_hashes[ordinal] or n['sha256'] != sha(predicted) or (n['sequence'], n['canvas'], n['width'], n['height']) != (sequence, canvas, width, height):
                     raise ValueError('Checkpoint identity/extent changed')
                 different = 0 if original == predicted else sum(original[i:i + 2] != predicted[i:i + 2] for i in range(0, len(original), 2))
@@ -163,7 +166,7 @@ def main():
     finally:
         verify('original-after')
     report = dict(schema=1, success=execution.returncode == 0 and len(comparisons) == len(checkpoints) and all(not c['different_pixels'] for c in comparisons),
-                  sources=sources, sources_stable=True, claims=json.loads(args.claims.read_text())['claims'],
+                  sources=sources, sources_stable=True, claims=json.loads(read_bytes(args.claims))['claims'],
                   reference=dict(path=str(args.reference), sha256=sha(raw_reference)),
                   assets_reference=dict(path=str(args.assets_reference), sha256=sha(raw_assets)),
                   input_manifest=dict(path=str(args.input_manifest), sha256=sha(pin_bytes)),

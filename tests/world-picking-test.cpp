@@ -81,6 +81,12 @@ int main(int argc,char** argv) try {
     }
     refused([&] {scene::compose(blank,{},catalog,{{0,{32,32,20},4,0,game::Point{2,1,1}}},{},1,1);});
     refused([&] {scene::compose(blank,{},catalog,{{0,{32,32,20},4,0,game::Point{1,1,3}}},{},1,1);});
+    const auto stable=bytes(blank);
+    for(auto counts: {std::pair<std::size_t,std::size_t>{std::size_t(1)<<32,1},
+                      std::pair<std::size_t,std::size_t>{1,std::size_t(1)<<32}}) {
+        refused([&] {scene::compose(blank,{},catalog,{{0,{32,32,20},4,0,{}}},{},counts.first,counts.second);});
+        check(bytes(blank)==stable);
+    }
     auto s=empty();game::Entity e;e.type=7;e.x=1;e.y=1;e.z=1;auto a=s.spawn(e);e.y=3;auto b=s.spawn(e);
     auto state=s.world().state();state.slots[a.slot].generation=0xfedcba98;a.generation=0xfedcba98;s=session(state);
     scene::Orders orders;scene::SceneCanvas canvas;scene::MovementControls controls;unsigned picks=0,moves=0;bool rejectedEvent=false;

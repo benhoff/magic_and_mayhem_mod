@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Read native buffer values around retained copy-order inversions; never reorder."""
+from coverage_evidence import read_bytes, read_json, write_report, evidence_digest
 import argparse
 import importlib.util
 import json
@@ -9,6 +10,7 @@ import shutil
 import subprocess
 import tempfile
 from drawing_api_session import sha
+from drawing_comparison import index, plane as complete_plane
 from drawing_scene_corpus import asset_name
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,10 +29,10 @@ def main():
     a = p.parse_args()
     if a.report.exists():
         p.error('Refusing evidence overwrite')
-    raw, template_raw = a.reference.read_bytes(), a.template.read_bytes()
+    raw, template_raw = read_bytes(a.reference), read_bytes(a.template)
     reference, template = json.loads(raw), json.loads(template_raw)
     association_path = a.bindings or a.diagnosis
-    association_raw = association_path.read_bytes()
+    association_raw = read_bytes(association_path)
     associations = json.loads(association_raw)
     if (not reference['success'] or not reference['normal_original_quit_verified'] or
             template['native_exit'] or template['reference']['sha256'] != sha(raw) or
@@ -59,7 +61,7 @@ def main():
         queues[r[1]], in_world[r[1]] = completed, active
     candidates = []
     if a.bindings:
-        bindings = {q['request']: q for q in associations['bindings']}
+        bindings = index(associations['bindings'], 'request', 'copy request')
         returned = reference['copy_order_observation']['returns']
         fulls = [q for q in returned if q['source_rectangle'] == [0, 0, 800, 600] and
                  q['destination_position'] == [0, 0] and q['raw_key'] == 0xffffffff]
@@ -136,9 +138,9 @@ def main():
                              next_full_source_checkpoint=checkpoint))
     if not selected:
         raise ValueError('No admitted native-only value diagnostic')
-    claims = json.loads(a.claims.read_bytes())
+    claims = json.loads(read_bytes(a.claims))
     sources = claims['sources']
-    if any(sha((ROOT / name).read_bytes()) != digest for name, digest in sources.items()):
+    if any(evidence_digest(ROOT/name, root=ROOT) != digest for name, digest in sources.items()):
         raise ValueError('Prospective source changed')
     executable_hash = sha(a.executable.read_bytes())
     parent = ROOT / 'working/tests/drawing-copy-order-values'
@@ -190,6 +192,10 @@ def main():
         positions = {f['sequence']: i for i, f in enumerate(frames, 1)}
         def plane(sequence, width, height):
             data = (run / ('native/frame-%04d.565' % positions[sequence])).read_bytes()
+            metadata=native['frames'][positions[sequence]-1]
+            if (metadata['sequence'],metadata['width'],metadata['height'])!=(sequence,width,height):
+                raise ValueError('Diagnostic publication identity differs')
+            complete_plane(data,width,height,metadata['sha256'])
             if len(data) != width * height * 2 or sha(data) != native['frames'][positions[sequence] - 1]['sha256']:
                 raise ValueError('Diagnostic output identity/extent changed')
             return data
@@ -203,7 +209,7 @@ def main():
             values.append(dict(item, native_primary_roi_sha256=sha(prior), native_current_source_roi_sha256=sha(current),
                                native_saved_background_sha256=sha(saved), different_pixels=different,
                                saved_equals_prior_primary=saved == prior, saved_equals_current_source=saved == current))
-    if sha(a.executable.read_bytes()) != executable_hash or any(sha((ROOT / name).read_bytes()) != h for name, h in sources.items()):
+    if sha(a.executable.read_bytes()) != executable_hash or any(evidence_digest(ROOT/name, root=ROOT) != h for name, h in sources.items()):
         raise ValueError('Source/executable changed during diagnostic')
     report = dict(schema=1, success=execution.returncode == 0 and len(values) == len(selected) and all(v['saved_equals_prior_primary'] for v in values),
                   sources=sources, claims=claims['claims'], native_exit=execution.returncode, native=native,
@@ -216,9 +222,7 @@ def main():
                   original_game_reexecuted=False, original_pixels_used_as_native_inputs=False, replay_order_changed=False,
                   checkpoints_unchanged=execution.returncode == 0, original_manifest_verified_before_after=True,
                   scope='Native-only diagnostic publication before a background save, source surface after that save and saved buffer after the adjacent full-copy return. Input bytes, operation order and every checkpoint hash are unchanged. Retain caller addresses and first subsequent copy into the saved buffer or from it into the full source, stopping at tracked canvas creation/release; other writes, other destinations and backing aliases are not classified by this predicate. Compare owned native regions only; exact request/API/worker association or explicitly retained legacy local diagnosis stays separate. No original view/byte ownership, causal repair, general ordering or complete presentation claim.')
-    with a.report.open('x') as output:
-        json.dump(report, output, indent=2)
-        output.write('\n')
+    write_report(ROOT, a.report, (json.dumps(report, indent=2)+'\n').encode())
     print(json.dumps(dict(success=report['success'], native_exit=execution.returncode, counts=report['counts'], refused=len(refused))))
 
 

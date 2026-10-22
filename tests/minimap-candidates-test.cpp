@@ -79,6 +79,16 @@ int main() try {
  check(canvas.read(1).pixels==expected.pixels);
  refuses([&]{canvas.minimap(1,stride,[](MinimapPlane& p){return p.words[0];},true);});++refusals;
  check(canvas.read(1).pixels==expected.pixels);
+ for(bool traced:{false,true})for(unsigned invocation:{1u,2u}) {
+  unsigned calls=0;
+  refuses([&]{canvas.minimap(1,stride,[&](MinimapPlane& p){
+   if(++calls==invocation){p.words.resize(1);}return 0;
+  },traced);});++refusals;
+  check(canvas.read(1).pixels==expected.pixels);
+ }
+ canvas.minimap(1,stride,[](MinimapPlane& p){
+  check(std::all_of(p.words.begin(),p.words.end(),[s=p.words.front()](auto v){return v==s;}));return 0;
+ },true);
  CanvasSequence undefined;undefined.create(1,width,height);
  undefined.minimap(1,stride,[](MinimapPlane& p){return drawMinimapCellMarker(p,{80,60,40,30,80,60,400,150,0,false},{3,2,0,false},{},false);},true);
  refuses([&]{undefined.read(1);});++refusals;

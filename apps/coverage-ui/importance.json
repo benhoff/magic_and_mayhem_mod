@@ -19959,16 +19959,17 @@
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Installed scene breadth, original source producers and complete scene parity remain acceptance/integration work.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "Terrain preview map-region tile production and authored/generated region loading are implemented.",
+              "current_state": "Terrain preview map-region tile production and authored/generated region loading are implemented. Thirteenth batch executes the bounded scene implementation with current authored/native and installed-source controls.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Current native shaded-cache/light-cycle composition controls pass; previous full terrain tranche evidence retains its own exact pins.",
+              "validation_summary": "Current native shaded-cache/light-cycle composition controls pass; previous full terrain tranche evidence retains its own exact pins. Fresh NT13 supplies 76 tests in eight suites, 146 recorded commands and 2714 stable prospective inputs and source-only CPU/GPU/continuation/refusal controls. Existing acceptance boundaries, broader original validation and every historical source fingerprint remain unchanged.",
               "acceptance": "pending",
               "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Installed scene breadth, original source producers and complete scene parity remain acceptance/integration work.",
               "evidence": [
                 "HIGH01.rendering-work-review-20261019",
                 "HIGH03.scene-controls-20261020",
-                "HIGH03.scene-controls-current-20261020"
+                "HIGH03.scene-controls-current-20261020",
+                "NT13.native-controls-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -19997,12 +19998,19 @@
                 "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
                 "tests/terrain-lighting-cycle-test.cpp": "11d9373076159497c646255708bff59d9ca0209050ed253929471b947a2e87db",
                 "tests/terrain-lighting-scene-reference.cpp": "71b6a118ba12009dc341c92f14c563923685d1ae79e9b9d368af2f3a2c1f23fe",
-                "tests/terrain-shaded-cache-test.cpp": "7c3053b51cbc71a4264a018f344857b198501c8b1df136b9c38a4e2e4a2cc077"
+                "tests/terrain-shaded-cache-test.cpp": "7c3053b51cbc71a4264a018f344857b198501c8b1df136b9c38a4e2e4a2cc077",
+                "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md": "44913d9a8a4d83807477986eaeeca5b3e6ce2c4b6c4935184dc653f0c0f62c80",
+                "tests/rendering-thirteenth-ten/CMakeLists.txt": "e8fbed5dcdcd2eaf9020cdb75e19e48283c86ecfa3799a5818c82fc1c68bde71",
+                "tests/test-rendering-thirteenth-ten.py": "bd2429b3c603fd8bebb36d0c0909d82bbe8f15e4a69e2b80b4f93b1d629f4c2d",
+                "tools/rendering_thirteenth_controls.py": "33cd8d16f1ed312021408577c971d0d8ce8307452c0302aae712002646814614",
+                "tools/test-rendering-thirteenth-ten.py": "7ef9854bd939af6639fdc1b4bd9b5cfa06545dc99ef9f88e6e00b3d0bbf39398",
+                "tools/test-terrain-preview.py": "463798743875ea9f2f6054a11f242c0c049b755444c6fed85aacbedca06fe8f5"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "pending_source_review": []
+              "pending_source_review": [],
+              "review_reason": "Append required reviewed test/build/document links for current native implementation validation; retain the prior work review and historical hashes."
             },
             "work_review_history": [
               {
@@ -20048,6 +20056,53 @@
                   "tests/terrain-lighting-scene-reference.cpp": "71b6a118ba12009dc341c92f14c563923685d1ae79e9b9d368af2f3a2c1f23fe",
                   "tests/terrain-shaded-cache-test.cpp": "7c3053b51cbc71a4264a018f344857b198501c8b1df136b9c38a4e2e4a2cc077"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Terrain preview map-region tile production and authored/generated region loading are implemented.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Current native shaded-cache/light-cycle composition controls pass; previous full terrain tranche evidence retains its own exact pins.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Installed scene breadth, original source producers and complete scene parity remain acceptance/integration work.",
+                "evidence": [
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.scene-controls-20261020",
+                  "HIGH03.scene-controls-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Installed scene breadth, original source producers and complete scene parity remain acceptance/integration work."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "apps/terrain-preview/map_region.cpp",
+                    "line": 17,
+                    "text": "std::vector<TerrainPreviewTile> worldTerrainTiles(const assets::MapAsset& map,const reconstruction::TerrainCamera& camera){"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/terrain-preview/README.md": "42e850ed235ac0771ffb103982405a36c27fe34beff0f26e268d2ffac0abc2de",
+                  "apps/terrain-preview/light_fixture.cpp": "b5fe5c88c498c3d001c816094671444f97e1eaf360c0e1267827300cddf0d064",
+                  "apps/terrain-preview/light_fixture.hpp": "28ef95ca4796216d0a2c4b9f854385a65aa4cfdd62ac5d2ecabf5e2d37d16475",
+                  "apps/terrain-preview/main.cpp": "52c00cd5752e736c1bbf713c0ae7524099360e425a9eac388293742b63dea8c9",
+                  "apps/terrain-preview/map_region.cpp": "33bf4e53cf0c5725d92cacdfd6f0a358f393827c40b74ee92c1e45c27081c767",
+                  "apps/terrain-preview/region_loader.cpp": "fc2937d702592c413b8f650523e98926773a2ab46e13c11e2e172e12f65edf35",
+                  "apps/terrain-preview/region_loader.hpp": "334c90d5c0e92893d045f0b89f150672504da8a521c7b31f74a8450cbec23755",
+                  "apps/terrain-preview/scene.cpp": "6ef6f266e456a6a7c3e79cbe71eaf414b1322b8c69bc3243889dcd2f2365919b",
+                  "apps/terrain-preview/scene.hpp": "175d0b8450640e98223e10a40549e3846e39b3037377472f1f5591af3449b170",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/terrain-lighting-cycle-test.cpp": "11d9373076159497c646255708bff59d9ca0209050ed253929471b947a2e87db",
+                  "tests/terrain-lighting-scene-reference.cpp": "71b6a118ba12009dc341c92f14c563923685d1ae79e9b9d368af2f3a2c1f23fe",
+                  "tests/terrain-shaded-cache-test.cpp": "7c3053b51cbc71a4264a018f344857b198501c8b1df136b9c38a4e2e4a2cc077"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": []
               }
             ],
             "planning_history": [
@@ -20084,10 +20139,10 @@
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. The same-profile multi-mover preview is not full original multi-actor simulation or live scene replacement.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "WorldScene presents owned moving entities through the shared ordered scene renderer.",
+              "current_state": "WorldScene presents owned moving entities through the shared ordered scene renderer. Thirteenth batch executes the bounded scene implementation with current authored/native and installed-source controls.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Current native scene/picking/lifecycle controls plus actual preview CLI pass144mixed World pixel comparisons and12fresh-process continuations, with a prospective preview scenario binding. No original World equivalence.",
+              "validation_summary": "Current native scene/picking/lifecycle controls plus actual preview CLI pass144mixed World pixel comparisons and12fresh-process continuations, with a prospective preview scenario binding. No original World equivalence. Fresh NT13 supplies 76 tests in eight suites, 146 recorded commands and 2714 stable prospective inputs and source-only CPU/GPU/continuation/refusal controls. Existing acceptance boundaries, broader original validation and every historical source fingerprint remain unchanged.",
               "acceptance": "pending",
               "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. The same-profile multi-mover preview is not full original multi-actor simulation or live scene replacement.",
               "evidence": [
@@ -20097,7 +20152,8 @@
                 "HIGH01.rendering-work-review-20261019",
                 "HIGH03.scene-controls-20261020",
                 "HIGH03.preview-world-20261020",
-                "HIGH03.scene-controls-current-20261020"
+                "HIGH03.scene-controls-current-20261020",
+                "NT13.native-controls-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -20127,12 +20183,18 @@
                 "tests/world-scene-test.cpp": "33a5a7c6b6b78a5f4150a765b6ded6225a7f4c9ece5cb522b1c01de296964400",
                 "tools/test-multi-world-scene.py": "e8ef1ff58984f1a07499119f763b3ade5bb3e6db11fa9654228dcb88a3067c43",
                 "tools/test-native-scene-service.py": "37e1fac472738c95b03b917dfb2b1dbdc1d012faad38324c2e058364223986b1",
-                "tools/test-world-scene.py": "d3230950e5d8d254a0b3c1875819b02eb094d2b44a11c753d3ee62750bd236df"
+                "tools/test-world-scene.py": "d3230950e5d8d254a0b3c1875819b02eb094d2b44a11c753d3ee62750bd236df",
+                "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md": "44913d9a8a4d83807477986eaeeca5b3e6ce2c4b6c4935184dc653f0c0f62c80",
+                "tests/rendering-thirteenth-ten/CMakeLists.txt": "e8fbed5dcdcd2eaf9020cdb75e19e48283c86ecfa3799a5818c82fc1c68bde71",
+                "tests/test-rendering-thirteenth-ten.py": "bd2429b3c603fd8bebb36d0c0909d82bbe8f15e4a69e2b80b4f93b1d629f4c2d",
+                "tools/rendering_thirteenth_controls.py": "33cd8d16f1ed312021408577c971d0d8ce8307452c0302aae712002646814614",
+                "tools/test-rendering-thirteenth-ten.py": "7ef9854bd939af6639fdc1b4bd9b5cfa06545dc99ef9f88e6e00b3d0bbf39398"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "pending_source_review": []
+              "pending_source_review": [],
+              "review_reason": "Append required reviewed test/build/document links for current native implementation validation; retain the prior work review and historical hashes."
             },
             "work_review_history": [
               {
@@ -20182,6 +20244,58 @@
                   "tools/test-native-scene-service.py": "37e1fac472738c95b03b917dfb2b1dbdc1d012faad38324c2e058364223986b1",
                   "tools/test-world-scene.py": "d3230950e5d8d254a0b3c1875819b02eb094d2b44a11c753d3ee62750bd236df"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "WorldScene presents owned moving entities through the shared ordered scene renderer.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Current native scene/picking/lifecycle controls plus actual preview CLI pass144mixed World pixel comparisons and12fresh-process continuations, with a prospective preview scenario binding. No original World equivalence.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. The same-profile multi-mover preview is not full original multi-actor simulation or live scene replacement.",
+                "evidence": [
+                  "NATIVE.native-world-scene",
+                  "NS12.multi-scene",
+                  "NR.scene-service.synthetic-20261006",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.scene-controls-20261020",
+                  "HIGH03.preview-world-20261020",
+                  "HIGH03.scene-controls-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "The same-profile multi-mover preview is not full original multi-actor simulation or live scene replacement."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "apps/world-scene/main.cpp",
+                    "line": 30,
+                    "text": "void writeNew(const QString& path,const QByteArray& data) {"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/world-scene/CMakeLists.txt": "321c4f33db0640bcc777ec01bacbe8f8ba2ae202992904badf80766628ba2dd1",
+                  "apps/world-scene/README.md": "722e5a0fc090bf7faa277b4e7a7018f684d51a834bc53ed1321fd6e38833725c",
+                  "apps/world-scene/main.cpp": "0089066bd4f565a32410f5910f9f7b0d208eb7984e43e6588c8a16bfe828736a",
+                  "apps/world-scene/scene.cpp": "83b5558f7106aff82afbeac032f01b8f5ef072b012e30629a9a0977f7b2ce554",
+                  "apps/world-scene/scene.hpp": "4e5f7a980e4a63c55a1a4d69ff86438a98023ce2dc135c9b5ccbf8067b0fdb8f",
+                  "research/runtime/native-multi-world-scene.md": "5911bd8845adbc5c5df4ca1123046a510aa92d4499592d1e08c947fcc8f9ef12",
+                  "research/runtime/native-shared-scene-renderer.md": "d7f865acfcb7514c71d5b547a03776d7bb52fd14946af3de5b690705c66eb094",
+                  "research/runtime/native-world-scene.md": "1c0bc5dcc18be3af315cd6ae54b04b999e764665d6bb2fb7e161f7bf90c74cd5",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/scene-resource-fixtures.hpp": "5ced8ef0997b85f1298f7239154c43c6af940dd5fcc38712c9894956d29882ea",
+                  "tests/world-scene-test.cpp": "33a5a7c6b6b78a5f4150a765b6ded6225a7f4c9ece5cb522b1c01de296964400",
+                  "tools/test-multi-world-scene.py": "e8ef1ff58984f1a07499119f763b3ade5bb3e6db11fa9654228dcb88a3067c43",
+                  "tools/test-native-scene-service.py": "37e1fac472738c95b03b917dfb2b1dbdc1d012faad38324c2e058364223986b1",
+                  "tools/test-world-scene.py": "d3230950e5d8d254a0b3c1875819b02eb094d2b44a11c753d3ee62750bd236df"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": []
               }
             ],
             "planning_history": [

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Source-only native prediction of bounded API physical witnesses; no journey credit."""
+from coverage_evidence import read_bytes, read_json, write_report, evidence_digest
 import argparse
 import importlib.util
 import json
@@ -9,6 +10,7 @@ import struct
 import subprocess
 import tempfile
 from drawing_api_session import BUILD,sha
+from drawing_comparison import same_held_observation
 from drawing_producer_points import inspect_points
 from drawing_scene_corpus import asset_name,raster_inputs
 from drawing_presented_session import rgba565
@@ -21,6 +23,8 @@ def load_producers(raw):
 
 def wire_prefix(raw,last):
     # V3 decode expands owned references; canonical record size is not wire size.
+    if type(last) is not int or not 1 <= last <= 4000000 or len(raw) < 64:
+        raise ValueError("Invalid native source prefix identity")
     at=64
     for _ in range(last):
         if at+96>len(raw):raise ValueError('Incomplete native source prefix')
@@ -35,8 +39,8 @@ from drawing_held_egl_candidates import candidates
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--reference',type=Path,required=True);p.add_argument('--input-manifest',type=Path,required=True);p.add_argument('--executable',type=Path,required=True);p.add_argument('--display-conversion',choices=('normalized-nearest','bit-replicated'),default='normalized-nearest');p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
-    original_bytes=a.reference.read_bytes();reference=json.loads(original_bytes)
-    pin_bytes=a.input_manifest.read_bytes();pin=json.loads(pin_bytes)
+    original_bytes=read_bytes(a.reference);reference=json.loads(original_bytes)
+    pin_bytes=read_bytes(a.input_manifest);pin=json.loads(pin_bytes)
     if pin.get('executable_sha256')!=BUILD or pin.get('original_manifest_verified_before_after') is not True:raise ValueError('Pinned reference input manifest required')
     if reference.get('success') is not True or reference.get('source_sha256')!=BUILD or reference.get('original_drawing_active') is not True or reference.get('original_manifest_verified_before_after') is not True:raise ValueError('Independent original-active reference required')
     capture=Path(reference['experiment'])/'capture';raw=(capture/'canvas-producers.bin').read_bytes();records=load_producers(raw);observed=inspect_points(capture)
@@ -44,14 +48,14 @@ def main():
     api={r[29]:r for r in struct.iter_unpack('<32I',(capture/'session.bin').read_bytes()[64:-128]) if r[1]==1}
     from drawing_source_held_snapshot import analyze as analyze_held
     from drawing_worker_context import decode as decode_contexts
-    if analyze_held(capture)!=reference['source_held_snapshot_observation'] or decode_contexts((capture/'egl-worker-context.bin').read_bytes())!=reference['egl_worker_context_observation']:raise ValueError('Held/context journals changed')
+    if not same_held_observation(analyze_held(capture),reference['source_held_snapshot_observation']) or decode_contexts((capture/'egl-worker-context.bin').read_bytes())!=reference['egl_worker_context_observation']:raise ValueError('Held/context journals changed')
     for name,key in [('wine-blit-packet.bin','wine_blit_packet_observation'),('wine-blit-worker.bin','wine_blit_worker_observation'),('wine-submission.bin','wine_submission_observation')]:
         if sha((capture/name).read_bytes())!=reference[key]['journal_sha256']:raise ValueError('Recorded command journal changed: '+name)
     selected,excluded=candidates(reference,records)
     if not selected:raise ValueError('No bounded source prediction candidates')
-    claims=json.loads(a.claims.read_text());sources=dict(claims['sources'])
-    for name in ('tools/compare-drawing-held-egl.py','tools/drawing_held_egl_candidates.py','tools/drawing_source_held_snapshot.py','tools/drawing_worker_context.py','tools/drawing_producer_points.py','tools/drawing_scene_corpus.py','tools/drawing_presented_session.py','tools/inspect-canvas-producers.py'):sources[name]=sha((ROOT/name).read_bytes())
-    if any(sha((ROOT/name).read_bytes())!=digest for name,digest in sources.items()):raise ValueError('Prospective sources changed')
+    claims=json.loads(read_bytes(a.claims));sources=dict(claims['sources'])
+    for name in ('tools/compare-drawing-held-egl.py','tools/drawing_held_egl_candidates.py','tools/drawing_source_held_snapshot.py','tools/drawing_worker_context.py','tools/drawing_producer_points.py','tools/drawing_scene_corpus.py','tools/drawing_presented_session.py','tools/inspect-canvas-producers.py'):sources[name]=evidence_digest(ROOT/name, root=ROOT)
+    if any(evidence_digest(ROOT/name, root=ROOT)!=digest for name,digest in sources.items()):raise ValueError('Prospective sources changed')
     parent=ROOT/'working/tests/drawing-held-egl';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));inputs=run/'inputs';assets=inputs/'assets';assets.mkdir(parents=True)
     def verify(label):
         result=subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],capture_output=True,text=True,timeout=120)
@@ -100,8 +104,8 @@ def main():
             source_differences=sum(held[at:at+2]!=native_source[at:at+2] for at in range(0,len(held),2))
             differences=sum(actual[at:at+4]!=expected[at:at+4] for at in range(0,len(expected),4))
             comparisons.append(dict(**frame,native_sha256=sha(actual),original_sha256=sha(expected),pixels=len(actual)//4,different_pixels=differences,source_different_pixels=source_differences))
-    if any(sha((ROOT/name).read_bytes())!=digest for name,digest in sources.items()):raise ValueError('Prediction sources changed during execution')
+    if any(evidence_digest(ROOT/name, root=ROOT)!=digest for name,digest in sources.items()):raise ValueError('Prediction sources changed during execution')
     report=dict(schema=1,success=execution.returncode==0 and all(not f['different_pixels'] and not f['source_different_pixels'] for f in comparisons),sources=sources,sources_stable=True,claims=claims['claims'],reference=dict(path=str(a.reference),sha256=sha(original_bytes)),source_input_manifest=dict(path=str(a.input_manifest),sha256=sha(pin_bytes)),artifacts=str(run.relative_to(ROOT)),executable_sha256=sha(a.executable.read_bytes()),native_exit=execution.returncode,native=native,selected=selected,excluded=excluded,comparisons=comparisons,source_assets=asset_hashes,native_input_sha256=sha(prefix),original_game_executed=False,original_manifest_verified_before_after=True,original_pixels_used_as_native_inputs=False,observed_raster_results_removed=True,display_conversion=a.display_conversion,coherent_presented_frames=False,complete_journey_coverage=False,scope='Separate exact protected-source/API-command/worker/activeEGLphysical cohort. Native inputs only parameters and encoded assets;source snapshots and physical planes external. All exclusions preserved;no whole lifetime/texture upload/allroutes/scanout/action/completejourney claim.')
-    a.report.parent.mkdir(parents=True,exist_ok=True);a.report.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(dict(success=report['success'],selected=len(selected),excluded=len(excluded),compared=len(comparisons),different_pixels=sum(f['different_pixels'] for f in comparisons),native_exit=execution.returncode)))
+    write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode());print(json.dumps(dict(success=report['success'],selected=len(selected),excluded=len(excluded),compared=len(comparisons),different_pixels=sum(f['different_pixels'] for f in comparisons),native_exit=execution.returncode)))
 
 if __name__=='__main__':main()

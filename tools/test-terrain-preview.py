@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Compare installed terrain preview queues, owner flags and complete pixels offline."""
-import hashlib,json,os,struct,subprocess,sys,tempfile
+import argparse,hashlib,json,os,struct,subprocess,sys,tempfile
 from pathlib import Path
 REPO=Path(__file__).resolve().parent.parent
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -24,12 +24,19 @@ def frame(asset,index):
             x+=run;colour=not colour
         if delta>at+size or pixel>at+size:raise ValueError('SPR plane extent')
     asset['frames'][index]=(ox,oy,pixels);return asset['frames'][index]
+def rgba_words(words,conversion):
+    if conversion not in ('normalized-floor','bit-replicated'):raise ValueError('Unknown display conversion')
+    def channel(value,maximum):
+        if conversion=='normalized-floor':return value*255//maximum
+        return (value<<3)|(value>>2) if maximum==31 else (value<<2)|(value>>4)
+    return b''.join(bytes((channel((v>>11)&31,31),channel((v>>5)&63,63),channel(v&31,31),255)) for v in words)
+
 def main():
     if '--inner' not in sys.argv:
         subprocess.run(['xvfb-run','-a',sys.executable,__file__,*sys.argv[1:],'--inner'],check=True,timeout=300);return
     args=[x for x in sys.argv[1:] if x!='--inner']
-    if len(args)!=2:raise ValueError('Supply native executable and original report')
-    preview=Path(args[0]).resolve();reference=Path(args[1]).resolve()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('native',type=Path);parser.add_argument('reference',type=Path);parser.add_argument('--display-conversion',choices=('normalized-floor','bit-replicated'),default='normalized-floor');selected=parser.parse_args(args)
+    preview=selected.native.resolve();reference=selected.reference.resolve()
     parent=REPO/'working/tests/terrain-preview';parent.mkdir(parents=True,exist_ok=True)
     out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
     def verify(phase):
@@ -61,11 +68,11 @@ def main():
                     if not 0<=x<512 or not 0<=y<256:raise ValueError('Fixture outside bounded preview')
                     expected[y*512+x]=word
             if prefix.with_suffix('.565').read_bytes()!=struct.pack('<'+'H'*len(expected),*expected):raise ValueError('Complete terrain frame differs')
-            rgba=b''.join(bytes((((v>>11)&31)*255//31,((v>>5)&63)*255//63,(v&31)*255//31,255)) for v in expected)
+            rgba=rgba_words(expected,selected.display_conversion)
             if hashlib.sha256(rgba).hexdigest()!=native['rgba_sha256'] or native['remaining_surfaces']:raise ValueError('Presentation/ownership mismatch')
             runs.append({'view':fixture['view'],'overlap':fixture['overlap'],'visibility':fixture['visibility'],'repeated':fixture['repeated'],'hidden_draws':sum(d['kind']==-2 for d in fixture['queue']),'all_match':True,'pixels_sha256':sha(prefix.with_suffix('.565'))})
         if any(sha(p)!=h for p,h in inputs.items()):raise ValueError('Input changed during run')
-        report={'all_match':True,'live_validated':False,'frames':len(runs),'runs':runs,'source_and_input_sha256':{str(p.relative_to(REPO)):h for p,h in inputs.items()},'pixel_oracle':'Independent Python SPR decode/composition using original producer/sort/visibility records; unshaded embedded palette'}
+        report={'all_match':True,'live_validated':False,'frames':len(runs),'runs':runs,'source_and_input_sha256':{str(p.relative_to(REPO)):h for p,h in inputs.items()},'display_conversion':selected.display_conversion,'pixel_oracle':'Independent Python SPR decode/composition using original producer/sort/visibility records; unshaded embedded palette'}
         (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print({'frames':len(runs),'hidden_draws':sum(r['hidden_draws'] for r in runs)})
     finally:verify('after')
 if __name__=='__main__':main()
