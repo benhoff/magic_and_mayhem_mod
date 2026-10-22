@@ -16,6 +16,7 @@ static void wine_map_storage_capture(const u32* map,const u32* descriptor){
  u32 r[24]={0};r[1]=2;r[2]=map[2];r[3]=map[10];r[4]=map[27];r[5]=GetCurrentThreadId();r[6]=GetTickCount();
  /* Original-driver return and export run outside journal_lock. */
  r[7]=wine_map_storage_getter((void*)descriptor[2],map[24],map[25],r+8,64);
+ if(r[7]>1)ExitProcess(99);if(!r[7])memset(r+8,0,64);
  EnterCriticalSection(journal_lock);if(__atomic_load_n(&wine_map_storage_enabled,__ATOMIC_ACQUIRE)){++wine_map_storage_points;wine_map_storage_emit(r);}LeaveCriticalSection(journal_lock);
 }
 static void wine_map_storage_close(u32 reason){

@@ -67663,12 +67663,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Portable recorder source-point metadata at original drawing API boundaries",
-      "scope": "Pending read-only source-point association of local COM interface fields+4/+8 with known logical producer canvas generations under the opt-in recorder guard. Fixed64byte version1 scalar payload includes sequence/queue/failure, extent/dirty/sample generations, outstanding return frames and local caller nesting/thread. Unknown, ambiguous, stopped and pending state remain explicit; no original pixel bytes or process pointers enter metadata. API-point producer acquisition, complete immutable source prefixes and physical causal binding remain separate pending milestones. Paired128byte snapshots share one recorder critical section; the additive192byte MNMDSRC1 journal cross-binds every observed surface entry/return/completion to original API identities/results/physical ordinal and a known producer generation at its exact recorded prefix. Unknown/ambiguous/stopped/pending state is retained; this is metadata association, not immutable original bytes or a coherent presented frame.",
+      "scope": "Pending read-only source-point association of local COM interface fields+4/+8 with known logical producer canvas generations under the opt-in recorder guard. Fixed64byte version1 scalar payload includes sequence/queue/failure, extent/dirty/sample generations, outstanding return frames and local caller nesting/thread. Unknown, ambiguous, stopped and pending state remain explicit; no original pixel bytes or process pointers enter metadata. API-point producer acquisition, complete immutable source prefixes and physical causal binding remain separate pending milestones. Paired128byte snapshots share one recorder critical section; the additive192byte MNMDSRC1 journal cross-binds every observed surface entry/return/completion to original API identities/results/physical ordinal and a known producer generation at its exact recorded prefix. Unknown/ambiguous/stopped/pending state is retained; this is metadata association, not immutable original bytes or a coherent presented frame. Sixth batch completes this bounded native metadata helper and its explicit refusal/retirement cases, described in rendering-sixth-ten-closeouts-20261022.md. Current original comparison, installation, all-route ownership and live acceptance remain separate pending milestones.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-producer-recorder.md",
-        "research/formats/drawing-producer-source-points-v1.md"
+        "research/formats/drawing-producer-source-points-v1.md",
+        "research/runtime/rendering-sixth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/drawing_source_point.h",
@@ -67679,7 +67680,11 @@
       "tests": [
         "tests/canvas-producers-test.c",
         "tools/test-canvas-producers.py",
-        "tests/test-drawing-producer-points.py"
+        "tests/test-drawing-producer-points.py",
+        "tools/test-rendering-sixth-ten.py",
+        "tests/test-rendering-sixth-ten.py",
+        "tests/drawing-source-pair-guards-test.c",
+        "tests/drawing-source-export-test.c"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/vertical_bar.h",
@@ -67736,18 +67741,21 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT6.native-metadata-20261022",
+        "NT6.final-native-metadata-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Paired getter/API synthetic guards and bounded original03acquisition are recorded; complete immutable source ownership, all writers/routes, actual scanout and journey admission remain pending. Metadata and sixteen World queues do not fulfill step2.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "Fresh owned helper controls cover the declared bounded implementation only. Original behavior comparison, full callback/module quiescence, immutable source/all backing aliases, actor allocation generations, physical causality and native/gameplay parity remain pending; historical evidence retains its original hashes. Forced mid-call recorder retirement remains an incomplete trace and cannot claim a completed callback."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -68750,12 +68758,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Selected Wine emitted packet to worker identity binding",
-      "scope": "Pending opt-in pinnedemitterRVA1dff8ccompletepacketpoint binds localpacketaddress+100byteinputscalar fingerprint to portablecommandID/currentWine submissionID. Worker must observe sameoutstandingpacket/fingerprintbefore retirement;pointer nevercrosseswire. Retainunknown/duplicate/copied/reused/mutated packets andsource/EGLownership gaps. ABIassemblypreservesregisters/flags/FP/LastError.",
+      "scope": "Pending opt-in pinnedemitterRVA1dff8ccompletepacketpoint binds localpacketaddress+100byteinputscalar fingerprint to portablecommandID/currentWine submissionID. Worker must observe sameoutstandingpacket/fingerprintbefore retirement;pointer nevercrosseswire. Retainunknown/duplicate/copied/reused/mutated packets andsource/EGLownership gaps. ABIassemblypreservesregisters/flags/FP/LastError. Sixth batch completes this bounded native metadata helper and its explicit refusal/retirement cases, described in rendering-sixth-ten-closeouts-20261022.md. Current original comparison, installation, all-route ownership and live acceptance remain separate pending milestones.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-blit-packet-binding.md",
-        "research/formats/drawing-wine-blit-packet-v1.md"
+        "research/formats/drawing-wine-blit-packet-v1.md",
+        "research/runtime/rendering-sixth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/drawing/wine_blit_packet.h",
@@ -68767,7 +68776,9 @@
         "tests/drawing-wine-blit-packet-call.S",
         "tools/test-drawing-wine-blit-packet.py",
         "tests/test-drawing-wine-blit-packet.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-sixth-ten.py",
+        "tests/test-rendering-sixth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/wine_blit_worker.h",
@@ -68789,18 +68800,21 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT6.native-metadata-20261022",
+        "NT6.final-native-metadata-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Pendingexpectedbytes/register/stackpoint andforwardfixture,current submissionthreadstack/portablepacketjournal/actualoriginalpairing. Copied/unknownworkerpacketsandimmutablebytes/asyncEGLassignmentremainpending.",
-        "Original01admits1610exactemission/workerentry/returnbindingswith0unknown/pending/unbound. Commandidentityisnotimmutabletexture-sourceownership/asyncEGLassignment;otheremitpaths/queuedcopies andfullroutes/semanticjourneysremainpending."
+        "Original01admits1610exactemission/workerentry/returnbindingswith0unknown/pending/unbound. Commandidentityisnotimmutabletexture-sourceownership/asyncEGLassignment;otheremitpaths/queuedcopies andfullroutes/semanticjourneysremainpending.",
+        "Fresh owned helper controls cover the declared bounded implementation only. Original behavior comparison, full callback/module quiescence, immutable source/all backing aliases, actor allocation generations, physical causality and native/gameplay parity remain pending; historical evidence retains its original hashes. Forced mid-call recorder retirement remains an incomplete trace and cannot claim a completed callback."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -68812,12 +68826,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Portable active Wine worker context sampled around EGLswap",
-      "scope": "Pending opt-in64byteversionedfilemapping/seqlock publishes activeobservedworker/command/submissionIDs/Winthread while originalworkerbody runs;UnixEGLobserver readsscalar snapshotbefore/afteroriginalswap. No hostpointer/pixelbytes/sharedC++layout. Stableactivecontextisintervalmetadata,notimmutable source/scanout;Win/Linuxthread mapping/unknown/overlap remainexplicit.",
+      "scope": "Pending opt-in64byteversionedfilemapping/seqlock publishes activeobservedworker/command/submissionIDs/Winthread while originalworkerbody runs;UnixEGLobserver readsscalar snapshotbefore/afteroriginalswap. No hostpointer/pixelbytes/sharedC++layout. Stableactivecontextisintervalmetadata,notimmutable source/scanout;Win/Linuxthread mapping/unknown/overlap remainexplicit. Sixth batch completes this bounded native metadata helper and its explicit refusal/retirement cases, described in rendering-sixth-ten-closeouts-20261022.md. Current original comparison, installation, all-route ownership and live acceptance remain separate pending milestones.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-egl-worker-context.md",
-        "research/formats/drawing-worker-context-v1.md"
+        "research/formats/drawing-worker-context-v1.md",
+        "research/runtime/rendering-sixth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/drawing/wine_worker_context.h",
@@ -68830,7 +68845,9 @@
         "tools/test-drawing-egl-worker-context.py",
         "tests/drawing-wine-worker-context-test.c",
         "tools/test-drawing-wine-worker-context.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-sixth-ten.py",
+        "tests/test-rendering-sixth-ten.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_worker_context_v1.h",
@@ -68860,18 +68877,21 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "HIGH03.egl-context-20261020"
+        "HIGH03.egl-context-20261020",
+        "NT6.native-metadata-20261022",
+        "NT6.final-native-metadata-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Pending64bytewireseqlock/atomicownership/exactcontext/closedmappingguards,ABIfixtures/actualEGLsnapshots andthreadrelation. Intervaloverlapdoesnotproveownedsource/asyncallroutes/scanout.",
-        "Original01admits458EGLpairedsnapshots/331stableactive/0missingunstable;offline331exactworker/command/submissionlinks/330physicalwitnesses,127unassigned. Winthread432/Unix765577associationisnotthread-equivalence;byteownership/scanout/allroutes/semanticjourneysremainpending."
+        "Original01admits458EGLpairedsnapshots/331stableactive/0missingunstable;offline331exactworker/command/submissionlinks/330physicalwitnesses,127unassigned. Winthread432/Unix765577associationisnotthread-equivalence;byteownership/scanout/allroutes/semanticjourneysremainpending.",
+        "Fresh owned helper controls cover the declared bounded implementation only. Original behavior comparison, full callback/module quiescence, immutable source/all backing aliases, actor allocation generations, physical causality and native/gameplay parity remain pending; historical evidence retains its original hashes. Forced mid-call recorder retirement remains an incomplete trace and cannot claim a completed callback."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -69587,11 +69607,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Pinned Wine texture/resource map association observation",
-      "scope": "Separateopt-in pinned installedWine11.16DirectDraw imports for publictexture_get_resource/map/unmap,once-onlycdecl forwarding withHRESULT/pointer/LastError/FP preservation. Associateprocess-local opaque resource/textureIDs andknowntexturegeneration,recordmapdescriptorpitches/dataidentity asportablelocalID;no private object layouts or GPU reads. Closedmapinterval/pointer-to-originalCPUsource relationship andactualuploads remain separate validation. Observation retirement atomically disables recording before journal close, rechecks under the private journal lock at both phases, preserves original postclose forwarding, and tracks pending resource callbacks through map queries so ordinary session stop cannot close an active recorder. Forced midcall teardown remains incomplete; no broad IAT/timer quiescence or replacement inferred.",
+      "scope": "Separateopt-in pinned installedWine11.16DirectDraw imports for publictexture_get_resource/map/unmap,once-onlycdecl forwarding withHRESULT/pointer/LastError/FP preservation. Associateprocess-local opaque resource/textureIDs andknowntexturegeneration,recordmapdescriptorpitches/dataidentity asportablelocalID;no private object layouts or GPU reads. Closedmapinterval/pointer-to-originalCPUsource relationship andactualuploads remain separate validation. Observation retirement atomically disables recording before journal close, rechecks under the private journal lock at both phases, preserves original postclose forwarding, and tracks pending resource callbacks through map queries so ordinary session stop cannot close an active recorder. Forced midcall teardown remains incomplete; no broad IAT/timer quiescence or replacement inferred. Sixth batch completes this bounded native metadata helper and its explicit refusal/retirement cases, described in rendering-sixth-ten-closeouts-20261022.md. Current original comparison, installation, all-route ownership and live acceptance remain separate pending milestones.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-wine-resource-mapping.md"
+        "research/runtime/draw02-wine-resource-mapping.md",
+        "research/runtime/rendering-sixth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/drawing/wine_resource_mapping.h",
@@ -69603,7 +69624,9 @@
         "tools/test-drawing-wine-resource-map.py",
         "tests/test-drawing-wine-resource-map.py",
         "tools/capture-drawing-interactive.py",
-        "tests/test-drawing-quit-completion.py"
+        "tests/test-drawing-quit-completion.py",
+        "tools/test-rendering-sixth-ten.py",
+        "tests/test-rendering-sixth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/session.c",
@@ -69642,11 +69665,13 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT6.native-metadata-20261022",
+        "NT6.final-native-metadata-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -69654,7 +69679,8 @@
       "remaining_gaps": [
         "SevenPE32forward/error/512BFP/nullfailedmap/unreadablebox/interval controls andresource/Quithelper tests pass. Finaloriginal04observes5229calls2647getters1291map/unmapclosed0unknown/allmapsknowntexturegen;365API364EGLnormalexit0ACKnotobservedexplicit. Original01combinedleaseearlyshutdownand02QuitACKrace retainednegative;03historicalsuccessful1openinterval.",
         "CPUsource/mapbuffer exactidentity/bytes andupload ownership,resourcepointerreuse/newgeneration/wholetexture/COMlifetimes,unobservedroutes/callers/actions/cadencecontrols/full47/21acceptance remainopen. Sourcelease shutdowncoupling01unresolvedseparately. Metadataobserverneverreadsprivateobjectlayouts/GPU/mapbufferbytes.",
-        "Fresh owned retirement guards and original combined32actualexit0pass; previous owned/originalexit99failures remain retained. Original6973resource calls/1727maps close with0open/unknown unmaps, but all1727map points are unknown:15live unknown,895live transition-pending unknown(flags131),817stopped.985storage calls/910lock-return epochs/119local address IDs do not establish map-buffer/current-cache or allocation ownership. Public copy boundary has0calls; no transfers/async ownership or general replay repair proved. Full IAT/module/timer quiescence and47/21closure remain open."
+        "Fresh owned retirement guards and original combined32actualexit0pass; previous owned/originalexit99failures remain retained. Original6973resource calls/1727maps close with0open/unknown unmaps, but all1727map points are unknown:15live unknown,895live transition-pending unknown(flags131),817stopped.985storage calls/910lock-return epochs/119local address IDs do not establish map-buffer/current-cache or allocation ownership. Public copy boundary has0calls; no transfers/async ownership or general replay repair proved. Full IAT/module/timer quiescence and47/21closure remain open.",
+        "Fresh owned helper controls cover the declared bounded implementation only. Original behavior comparison, full callback/module quiescence, immutable source/all backing aliases, actor allocation generations, physical causality and native/gameplay parity remain pending; historical evidence retains its original hashes. Forced mid-call recorder retirement remains an incomplete trace and cannot claim a completed callback."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -69734,13 +69760,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Public Wine map-buffer association to known original canvas storage",
-      "scope": "Opt-in read-only in-process comparison of successful public map descriptor data/pitches to the live producer recorder canvas cache, under its recorder scope. Export only portable point metadata and link it to the exact map interval, resource and texture generation. Unknown, ambiguous, stopped and extent-mismatched caches remain explicit. No source bytes, private Wine layouts, upload ownership or exclusive storage lifetime claim. Recheck the atomic recorder flag under the journal lock before emitting a completed query; a close during an outside-lock query must not write the retired journal. No complete callback/module quiescence inferred.",
+      "scope": "Opt-in read-only in-process comparison of successful public map descriptor data/pitches to the live producer recorder canvas cache, under its recorder scope. Export only portable point metadata and link it to the exact map interval, resource and texture generation. Unknown, ambiguous, stopped and extent-mismatched caches remain explicit. No source bytes, private Wine layouts, upload ownership or exclusive storage lifetime claim. Recheck the atomic recorder flag under the journal lock before emitting a completed query; a close during an outside-lock query must not write the retired journal. No complete callback/module quiescence inferred. Sixth batch completes this bounded native metadata helper and its explicit refusal/retirement cases, described in rendering-sixth-ten-closeouts-20261022.md. Current original comparison, installation, all-route ownership and live acceptance remain separate pending milestones.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-map-storage-point.md",
         "research/runtime/draw02-canvas-storage-generations.md",
-        "research/formats/drawing-storage-transitions.md"
+        "research/formats/drawing-storage-transitions.md",
+        "research/runtime/rendering-sixth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/drawing_storage_point.h",
@@ -69755,7 +69782,9 @@
         "tools/test-drawing-storage-point.py",
         "tests/drawing-wine-map-storage-point-test.c",
         "tools/test-drawing-wine-map-storage-point.py",
-        "tests/test-drawing-wine-map-storage-point.py"
+        "tests/test-drawing-wine-map-storage-point.py",
+        "tools/test-rendering-sixth-ten.py",
+        "tests/test-rendering-sixth-ten.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_storage_point_v2.h",
@@ -69806,11 +69835,13 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT6.native-metadata-20261022",
+        "NT6.final-native-metadata-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -69821,7 +69852,8 @@
         "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime.",
         "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion.",
         "Fresh owned retirement guards and original combined32actualexit0pass; previous owned/originalexit99failures remain retained. Original6973resource calls/1727maps close with0open/unknown unmaps, but all1727map points are unknown:15live unknown,895live transition-pending unknown(flags131),817stopped.985storage calls/910lock-return epochs/119local address IDs do not establish map-buffer/current-cache or allocation ownership. Public copy boundary has0calls; no transfers/async ownership or general replay repair proved. Full IAT/module/timer quiescence and47/21closure remain open.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "Fresh owned helper controls cover the declared bounded implementation only. Original behavior comparison, full callback/module quiescence, immutable source/all backing aliases, actor allocation generations, physical causality and native/gameplay parity remain pending; historical evidence retains its original hashes. Forced mid-call recorder retirement remains an incomplete trace and cannot claim a completed callback."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -69833,13 +69865,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Public Wine client memory binding and submitted source cache point",
-      "scope": "Pinned optional texture_update_desc four-argument cdecl forwarding observation and process-local retained client memory binding keyed by texture generation/subresource. At an exact texture blit submission compare the retained address/pitch with the live recorder canvas cache; serialize only local IDs and scalar metadata. No source bytes or private Wine layouts; pointer equality and a successful setter do not prove completed upload, immutable allocation or whole lifetime.",
+      "scope": "Pinned optional texture_update_desc four-argument cdecl forwarding observation and process-local retained client memory binding keyed by texture generation/subresource. At an exact texture blit submission compare the retained address/pitch with the live recorder canvas cache; serialize only local IDs and scalar metadata. No source bytes or private Wine layouts; pointer equality and a successful setter do not prove completed upload, immutable allocation or whole lifetime. Sixth batch completes this bounded native metadata helper and its explicit refusal/retirement cases, described in rendering-sixth-ten-closeouts-20261022.md. Current original comparison, installation, all-route ownership and live acceptance remain separate pending milestones.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-client-memory-binding.md",
         "research/runtime/draw02-canvas-storage-generations.md",
-        "research/formats/drawing-storage-transitions.md"
+        "research/formats/drawing-storage-transitions.md",
+        "research/runtime/rendering-sixth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/drawing/wine_client_memory.h",
@@ -69855,7 +69888,9 @@
         "tools/test-drawing-wine-client-memory.py",
         "tests/test-drawing-wine-client-memory.py",
         "tests/drawing-storage-point-test.c",
-        "tools/test-drawing-storage-point.py"
+        "tools/test-drawing-storage-point.py",
+        "tools/test-rendering-sixth-ten.py",
+        "tests/test-rendering-sixth-ten.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_storage_point_v2.h",
@@ -69905,11 +69940,13 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT6.native-metadata-20261022",
+        "NT6.final-native-metadata-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -69919,7 +69956,8 @@
         "Protected source canvas2/7/8/9/10/13 remain unlinked by selected client setter route. Resource map route is seen once for source texture generations21/23/25/32 and27, before cache association is known; a later point may be needed but unmap address retention/ownership cannot be assumed. Source versions/upload/writers/alias/reuse/whole lifetime, other routes/actions and cadence controls/full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this code; historical results remain unchanged.",
         "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime.",
         "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "Fresh owned helper controls cover the declared bounded implementation only. Original behavior comparison, full callback/module quiescence, immutable source/all backing aliases, actor allocation generations, physical causality and native/gameplay parity remain pending; historical evidence retains its original hashes. Forced mid-call recorder retirement remains an incomplete trace and cannot claim a completed callback."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -69931,26 +69969,30 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Submitted source association to last observed public map address",
-      "scope": "Separate optional local retention of a successful public map descriptor address/pitches and exact resource/texture generation/subresource/map interval. Mark observed successful unmap closure. At an exact source texture blit query that last observed address against the live canvas cache outside the journal lock, revalidate its epoch/open state and emit only portable metadata. No pointer or map bytes on wire. A closed map address match is a point association, not retained driver allocation ownership or completed upload.",
+      "scope": "Separate optional local retention of a successful public map descriptor address/pitches and exact resource/texture generation/subresource/map interval. Mark observed successful unmap closure. At an exact source texture blit query that last observed address against the live canvas cache outside the journal lock, revalidate its epoch/open state and emit only portable metadata. No pointer or map bytes on wire. A closed map address match is a point association, not retained driver allocation ownership or completed upload. Sixth batch completes this bounded native metadata helper and its explicit refusal/retirement cases, described in rendering-sixth-ten-closeouts-20261022.md. Current original comparison, installation, all-route ownership and live acceptance remain separate pending milestones.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-retained-map-source.md",
         "research/runtime/draw02-canvas-storage-generations.md",
-        "research/formats/drawing-storage-transitions.md"
+        "research/formats/drawing-storage-transitions.md",
+        "research/runtime/rendering-sixth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/drawing/wine_retained_map_source.h",
         "tools/drawing_wine_retained_map_source.py",
         "runtime/drawing/storage_point_exports.h",
-        "tools/drawing_storage_point.py"
+        "tools/drawing_storage_point.py",
+        "tools/drawing_resource_index.py"
       ],
       "tests": [
         "tests/drawing-wine-retained-map-source-test.c",
         "tools/test-drawing-wine-retained-map-source.py",
         "tests/test-drawing-wine-retained-map-source.py",
         "tests/drawing-storage-point-test.c",
-        "tools/test-drawing-storage-point.py"
+        "tools/test-drawing-storage-point.py",
+        "tools/test-rendering-sixth-ten.py",
+        "tests/test-rendering-sixth-ten.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_storage_point_v2.h",
@@ -69966,7 +70008,11 @@
         "runtime/scene/drawing_storage_transitions.h",
         "tools/build-drawing-session.py",
         "tools/capture-drawing-interactive.py",
-        "tools/drawing-session-runner.py"
+        "tools/drawing-session-runner.py",
+        "tools/drawing_lifetime_index.py",
+        "tools/drawing_wine_resource_mapping.py",
+        "tools/drawing_wine_lifetime.py",
+        "tools/drawing_wine_submission.py"
       ],
       "evidence": [
         "DRAW02.retained-map-fixture-01-native-20261012",
@@ -69990,11 +70036,13 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT6.native-metadata-20261022",
+        "NT6.final-native-metadata-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -70003,7 +70051,8 @@
         "PE32 28 original forwards/10 queries and four decoder methods pass. Original01 negative records64 partial address matches, then phase2 source-byte getter refuses two pending producer frames after one command completed; extra frame identity/overlap remains unknown. Metadata-only original02 closes1675queries:340known/1027unbound308stopped, all340known afterobservedunmap,336API335EGLnormalQuit0; resource intervals allclose.",
         "Known points include fullframe canvas2/7/8/9/10/13 andUI12/14/15/22/53/54. Last observed map address at submission is not post-unmap allocation ownership or actualupload/sourceversion/writer/alias/reuse/wholeCOM/resource/texture/storage lifetime. Combined protected source copying still needs a sound pending-frame diagnosis/admission contract. Other routes/actions/cadencecontrols/current nativeparity/full DRAW-02 47/21 acceptance remain pending.",
         "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime.",
-        "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion."
+        "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion.",
+        "Fresh owned helper controls cover the declared bounded implementation only. Original behavior comparison, full callback/module quiescence, immutable source/all backing aliases, actor allocation generations, physical causality and native/gameplay parity remain pending; historical evidence retains its original hashes. Forced mid-call recorder retirement remains an incomplete trace and cannot claim a completed callback."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -70724,14 +70773,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Read-only candidate hit identity and actual camera sampling",
-      "scope": "Bounded same-menu-thread memory-buffered candidate656600/draw-index657d40/hit-class6a5134 sampler. Validate current pool address/shape/slot before emitting actor type/owner/active/health; observed numeric base IDs are not allocations/generations. Separately record camera689930orientation/whole/fraction fields. Readability does not establish current activation, persistent selection or tooltip.",
+      "scope": "Bounded same-menu-thread memory-buffered candidate656600/draw-index657d40/hit-class6a5134 sampler. Validate current pool address/shape/slot before emitting actor type/owner/active/health; observed numeric base IDs are not allocations/generations. Separately record camera689930orientation/whole/fraction fields. Readability does not establish current activation, persistent selection or tooltip. Sixth batch completes this bounded native metadata helper and its explicit refusal/retirement cases, described in rendering-sixth-ten-closeouts-20261022.md. Current original comparison, installation, all-route ownership and live acceptance remain separate pending milestones.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-end-to-end.md",
         "research/runtime/scene-production-repetition.md",
         "research/runtime/terrain-camera-setters.md",
-        "research/formats/drawing-hud-state.md"
+        "research/formats/drawing-hud-state.md",
+        "research/runtime/rendering-sixth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/menu/drawing_hud_state.h",
@@ -70742,7 +70792,9 @@
         "tests/test-drawing-hud-state.py",
         "tools/test-drawing-hud-state.py",
         "tools/capture-drawing-interactive.py",
-        "tests/fixtures/drawing-journeys/hud-hit-camera-schedule.json"
+        "tests/fixtures/drawing-journeys/hud-hit-camera-schedule.json",
+        "tools/test-rendering-sixth-ten.py",
+        "tests/test-rendering-sixth-ten.py"
       ],
       "evidence": [
         "DRAW02.draw02-hud-state-fixture-01-20261012",
@@ -70766,18 +70818,21 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT6.native-metadata-20261022",
+        "NT6.final-native-metadata-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Original controlled pointer/click candidate semantics, persistent selection/tooltip and source/presentation outcomes unverified. Numeric pool changes do not detect allocation reuse or actor generations; readable camera fields do not prove current activation or pause equivalence.",
-        "Original probe01encounters rendered Hermes guidance after camera actions; subsequent Mini request times out. Forced teardown leaves scalar journals empty and APIterminal absent; no capture admission. Guidance input/lifecycle/source ownership remains unassigned. A bounded dismissal click in the next schedule needs actual Mini confirmation."
+        "Original probe01encounters rendered Hermes guidance after camera actions; subsequent Mini request times out. Forced teardown leaves scalar journals empty and APIterminal absent; no capture admission. Guidance input/lifecycle/source ownership remains unassigned. A bounded dismissal click in the next schedule needs actual Mini confirmation.",
+        "Fresh owned helper controls cover the declared bounded implementation only. Original behavior comparison, full callback/module quiescence, immutable source/all backing aliases, actor allocation generations, physical causality and native/gameplay parity remain pending; historical evidence retains its original hashes. Forced mid-call recorder retirement remains an incomplete trace and cannot claim a completed callback."
       ],
       "validation_dependencies": [
         "runtime/menu/observer.c",
@@ -71293,7 +71348,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Read-only actor latch pool independent of hover",
-      "scope": "Opt-in bounded same-owner periodic and exact Region callback entry/return whole-pool active-slot raw68/raw70 bitmaps; two equal collections and numeric pool-shape checks; raw count/mode and completed original cursor point. No atomic pool, allocation/generation, complete selection/tooltip or source/physical/native parity claim.",
+      "scope": "Opt-in bounded same-owner periodic and exact Region callback entry/return whole-pool active-slot raw68/raw70 bitmaps; two equal collections and numeric pool-shape checks; raw count/mode and completed original cursor point. No atomic pool, allocation/generation, complete selection/tooltip or source/physical/native parity claim. Sixth batch completes this bounded native metadata helper and its explicit refusal/retirement cases, described in rendering-sixth-ten-closeouts-20261022.md. Current original comparison, installation, all-route ownership and live acceptance remain separate pending milestones.",
       "confidence": "provisional",
       "original": [
         {
@@ -71310,7 +71365,8 @@
       "documents": [
         "research/formats/drawing-actor-latches.md",
         "research/runtime/actor-control-latches.md",
-        "research/runtime/draw02-step2-selection.md"
+        "research/runtime/draw02-step2-selection.md",
+        "research/runtime/rendering-sixth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/menu/drawing_actor_latches.h",
@@ -71321,11 +71377,14 @@
         "tools/test-drawing-actor-latches.py",
         "tests/test-drawing-actor-latches.py",
         "tests/drawing-actor-latch-region-test.c",
-        "tools/test-drawing-actor-latch-region.py"
+        "tools/test-drawing-actor-latch-region.py",
+        "tools/test-rendering-sixth-ten.py",
+        "tests/test-rendering-sixth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
-        "tools/drawing_input_point.py"
+        "tools/drawing_input_point.py",
+        "tools/drawing_region_input.py"
       ],
       "evidence": [
         "DRAW02.draw02-actor-latches-fixture-build-negative-01-20261012",
@@ -71347,11 +71406,13 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT6.native-metadata-20261022",
+        "NT6.final-native-metadata-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -71359,7 +71420,8 @@
       "remaining_gaps": [
         "Observed pool IDs are numeric base changes only. Two equal collections do not exclude concurrent ABA/writes. Complete actor lifetime, selection/tooltip semantics and source/physical/native parity remain pending.",
         "The numeric runtime pool address6def58 lies outside the file-backed inventory sections and is documented as a runtime observation, not a file-backed data anchor. Initial prospective records with that unsupported anchor remain historical; corrected contract requires fresh declarations. No binary inventory or historical hash is changed.",
-        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
+        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending.",
+        "Fresh owned helper controls cover the declared bounded implementation only. Original behavior comparison, full callback/module quiescence, immutable source/all backing aliases, actor allocation generations, physical causality and native/gameplay parity remain pending; historical evidence retains its original hashes. Forced mid-call recorder retirement remains an incomplete trace and cannot claim a completed callback."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -92975,7 +93037,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Exact active primitive through surface API and observed Wine worker",
-      "scope": "Opt-in original-active No-CD diagnostic: pointer-free SceneDrawingPrimitivePointV1 snapshots under the recorder mutex, exact same-thread active call/parent/request identities at surface API entry, original return and completion, independently crosschecked lifetime and completed API journals, then existing explicit Wine submission and emitted-command/worker identities. No temporal candidate used as a parent; inactive/unavailable/stopped calls and unbound consumers stay explicit. Identity snapshots do not own pixel storage, serialize original bodies, close unknown writers/aliases or presentation routes, or assert native parity.",
+      "scope": "Opt-in original-active No-CD diagnostic: pointer-free SceneDrawingPrimitivePointV1 snapshots under the recorder mutex, exact same-thread active call/parent/request identities at surface API entry, original return and completion, independently crosschecked lifetime and completed API journals, then existing explicit Wine submission and emitted-command/worker identities. No temporal candidate used as a parent; inactive/unavailable/stopped calls and unbound consumers stay explicit. Identity snapshots do not own pixel storage, serialize original bodies, close unknown writers/aliases or presentation routes, or assert native parity. Sixth batch completes this bounded native metadata helper and its explicit refusal/retirement cases, described in rendering-sixth-ten-closeouts-20261022.md. Current original comparison, installation, all-route ownership and live acceptance remain separate pending milestones.",
       "confidence": "provisional",
       "original": [
         {
@@ -92992,7 +93054,8 @@
       "documents": [
         "research/runtime/drawing-primitive-api-binding.md",
         "research/formats/drawing-primitive-api-v1.md",
-        "research/runtime/native-render-completion-20261017.md"
+        "research/runtime/native-render-completion-20261017.md",
+        "research/runtime/rendering-sixth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "protocols/include/mnm/drawing_primitive_point_v1.h",
@@ -93003,7 +93066,9 @@
         "tests/test-drawing-primitive-api.py",
         "tests/drawing-primitive-lifetimes-test.c",
         "tools/test-drawing-primitive-lifetimes.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tools/test-rendering-sixth-ten.py",
+        "tests/test-rendering-sixth-ten.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/session.c",
@@ -93040,17 +93105,20 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT6.native-metadata-20261022",
+        "NT6.final-native-metadata-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Exact primitive/API/worker identities do not own COPY backing bytes. All four full120interval ownership gates, alias/writer/global route closure and47/21journey/operation requirements remain open. Diagnostic trace overhead is not production cadence."
+        "Exact primitive/API/worker identities do not own COPY backing bytes. All four full120interval ownership gates, alias/writer/global route closure and47/21journey/operation requirements remain open. Diagnostic trace overhead is not production cadence.",
+        "Fresh owned helper controls cover the declared bounded implementation only. Original behavior comparison, full callback/module quiescence, immutable source/all backing aliases, actor allocation generations, physical causality and native/gameplay parity remain pending; historical evidence retains its original hashes. Forced mid-call recorder retirement remains an incomplete trace and cannot claim a completed callback."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -312117,6 +312185,68 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NT6.native-metadata-20261022",
+      "kind": "native_integration",
+      "scope": "Ten bounded native metadata helper implementations: production drawing/scene/menu builds, actual owned scene/source/primitive/association/packet/context/sampler PE32 fixtures, callback retirement/refusal matrices, full decoder memory control and generated-input software Mesa EGL windows on private Xvfb. No original artifact/game, hardware GL, immutable backing ownership or live replacement claim.",
+      "record": "research/runtime/rendering-sixth-ten-results-20261022/controls-06.json",
+      "sha256": "ada273e87f60b2edb93c5d962b2d3f2bc529f73686886c45af1e3cc719c9ec28",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NT6.final-native-metadata-20261022",
+      "kind": "native_integration",
+      "scope": "Final ten bounded native metadata helper scopes with compiler dependency checks, recursive local Python imports and literal-loaded fixture provenance. All 98 compiled/execution/retirement commands and 66 Python tests pass, including actual owned PE32 scene/API/association/lifecycle/sampler fixtures and generated-input Mesa software EGL. No original artifacts/game, hardware GL, immutable backing ownership or live replacement.",
+      "record": "research/runtime/rendering-sixth-ten-results-20261022/controls-08.json",
+      "sha256": "dc80d5befee9fbf5faea8ecfd4998c9a58a3ed88436c85e6a72161b17b3b1da6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -334965,6 +335095,33 @@
       "evidence": [
         "NT5.native-adapters-20261021"
       ]
+    },
+    {
+      "id": "NR.sixth-ten.identities-20261022",
+      "level": "headless",
+      "scope": "Ten bounded native metadata helpers: exact paired source identities, primitive/API phases, public resource/cache associations, packet/context lifecycle, sampler owner/refused output, linear-memory retained-map analysis. Owned PE32 inputs and strict decoder controls only; no original artifacts/game, hardware GL, immutable backing ownership or live replacement.",
+      "behaviors": [
+        "NR.drawing-producer-source-points",
+        "NR.drawing-primitive-api-binding",
+        "NR.drawing-wine-resource-mapping",
+        "NR.drawing-wine-map-storage-point",
+        "NR.drawing-wine-client-memory-binding",
+        "NR.drawing-wine-retained-map-source",
+        "NR.drawing-wine-blit-packet-binding",
+        "NR.drawing-wine-egl-worker-context",
+        "NR.drawing-hud-state-observation",
+        "NR.drawing-actor-latch-observation"
+      ],
+      "tests": [
+        "tools/test-rendering-sixth-ten.py",
+        "tests/test-rendering-sixth-ten.py",
+        "tests/drawing-source-pair-guards-test.c",
+        "tests/drawing-source-export-test.c"
+      ],
+      "evidence": [
+        "NT6.native-metadata-20261022",
+        "NT6.final-native-metadata-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -335720,8 +335877,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-a661f18e171433cb51d8fb9c836b6068c1e518cf83ac03bddadbef66d64246f5.json",
-    "sha256": "a661f18e171433cb51d8fb9c836b6068c1e518cf83ac03bddadbef66d64246f5"
+    "path": "research/runtime/coverage/source-index-cfc741efe449816c14b125b3bba2f75812d1a1baa36a9e9ae091ef9dd56fe463.json",
+    "sha256": "cfc741efe449816c14b125b3bba2f75812d1a1baa36a9e9ae091ef9dd56fe463"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

@@ -5,7 +5,7 @@ from drawing_api_session import sha
 
 def channel(words):
     if len(words)!=16 or struct.pack('<2I',*words[:2])!=b'MNMWCX01' or words[2:4]!=(1,64) or words[4]&1 or words[5]>1 or words[11]>1 or any(words[12:]):raise ValueError('Worker context wire')
-    if not words[5] and any(words[6:12]) or words[5] and (not words[6] or not words[9] or bool(words[11])!=bool(not words[7])):raise ValueError('Worker context active fields')
+    if not words[5] and any(words[6:12]) or words[5] and (not words[6] or not words[9] or bool(words[11])!=bool(not words[7]) or not words[7] and words[8]):raise ValueError('Worker context active fields')
     return dict(sequence=words[4],active=bool(words[5]),worker=words[6],command=words[7],submission=words[8],win_thread=words[9],lifetime_prefix=words[10],flags=words[11])
 
 

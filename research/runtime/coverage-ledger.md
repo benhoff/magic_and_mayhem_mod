@@ -20846,3 +20846,8 @@ requirements; external publication is a separate explicitly requested operation.
 ### Fifth ten native adapter tasks (2026-10-21)
 
 [The fifth batch](rendering-fifth-ten-closeouts-20261021.md) closes texture-entry, worker-lease, storage-candidate, resource-copy, cursor-point, source-descriptor, read-mapping (legacy and bounded), write-trace, GPU-completion adapter and semantic-state sampler implementations. Eleven stable behavior IDs represent ten tasks because mapping modes share one task. The submission parser dependency retains partial status. Prospective source-bound owned PE32 and strict decoder execution is recorded separately from original comparison, live integration, allocation/backing ownership and hardware GL completion; those remain pending. Generated reports use the SQLite evidence store.
+
+
+### Sixth ten native metadata helper tasks (2026-10-22)
+
+[The sixth batch](rendering-sixth-ten-closeouts-20261022.md) completes ten bounded helper implementation scopes: paired producer/source points, primitive/API identity, public resource mapping, map/storage points, client-memory association, retained-map association, packet binding, worker context, HUD sampling and actor latches. Owned PE32 identity/refusal/retirement execution, linear-memory decoding and actual software EGL controls remain separate from original comparison, full quiescence, allocation/backing ownership, hardware validation and live replacement. Historical evidence remains immutable and generated results use SQLite.

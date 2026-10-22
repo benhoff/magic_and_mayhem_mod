@@ -15,12 +15,13 @@ static int primitive_api_open(void){
 }
 static void primitive_api_capture(struct Context* c,u32 phase){
  if(!primitive_api_file||!c->observed||c->r[1]!=1)return;
+ if(phase<1||phase>3)ExitProcess(99);
  u32 error=GetLastError();PrimitivePoint getter=__atomic_load_n(&primitive_api_getter,__ATOMIC_ACQUIRE);
  if(!getter){void* scene=GetModuleHandleA("MnmScene.dll");getter=scene?(PrimitivePoint)GetProcAddress(scene,"SceneDrawingPrimitivePointV1"):0;if(!getter)ExitProcess(99);__atomic_store_n(&primitive_api_getter,getter,__ATOMIC_RELEASE);}
  u32 r[64]={0};r[1]=phase;r[2]=c->r[29];r[3]=c->r[6];r[4]=c->r[2];r[5]=c->r[3];r[6]=c->interval_related;
  if(phase>=2)r[7]=c->r[8];if(phase==3)r[8]=c->r[0];
  if(!getter(r+16,MNM_PRIMITIVE_POINT_BYTES)||r[17]!=r[3])ExitProcess(99);
- EnterCriticalSection(journal_lock);if(phase==1)++primitive_api_entries;r[0]=++primitive_api_records;
+ EnterCriticalSection(journal_lock);if(!primitive_api_file){LeaveCriticalSection(journal_lock);SetLastError(error);return;}if(phase==1)++primitive_api_entries;r[0]=++primitive_api_records;
  if(primitive_api_records>=MNM_PRIMITIVE_API_MAX_ROWS||!write(primitive_api_file,r,256))ExitProcess(99);
  LeaveCriticalSection(journal_lock);SetLastError(error);
 }

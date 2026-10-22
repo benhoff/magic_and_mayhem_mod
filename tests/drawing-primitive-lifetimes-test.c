@@ -34,6 +34,7 @@ static u32 WIN child(void* unused){
  {PRODUCER_TRACE_SCOPE;struct Frame f=frames[0];frames[0].sp=0;primitive_lifetime_record(&f,3,7,0,0);primitive_lifetime_retire(&f,7);}
  return 0;
 }
+static u32 WIN close_getter(u32* out,u32 size){primitive_api_close(2);return SceneDrawingPrimitivePointV1(out,size);}
 void start(void){
  char mode[16]={0};GetEnvironmentVariableA("MNM_FIXTURE_MODE",mode,sizeof mode);
  require(producer_trace_configure()&&GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof directory),41);
@@ -45,6 +46,8 @@ void start(void){
  if(mode[0]=='w'){CloseHandle(primitive_lifetimes_file);primitive_lifetime_record(0,5,0,10,1);primitive_lifetimes_flush();ExitProcess(45);}
  u32 owner=GetCurrentThreadId(),point[48];
  struct Context api={0};api.observed=1;api.r[1]=1;api.r[2]=7;api.r[3]=1;api.r[6]=owner;api.r[29]=11;api.interval_related=2;
+ if(mode[0]=='x'){primitive_api_capture(&api,0);ExitProcess(59);}
+ if(mode[0]=='c'){primitive_api_getter=&close_getter;SetLastError(0xbeef);primitive_api_capture(&api,1);require(!primitive_api_file&&primitive_api_records==1&&GetLastError()==0xbeef,60);primitive_lifetimes_close();ExitProcess(0);}
  SetLastError(0xbeef);require(!SceneDrawingPrimitivePointV1(point,188)&&GetLastError()==0xbeef,51);
  require(SceneDrawingPrimitivePointV1(point,192)&&point[2]==0&&!point[3]&&GetLastError()==0xbeef,52);
  {PRODUCER_TRACE_SCOPE;struct Frame outer={0};outer.owner=owner;outer.tag=100;outer.caller=0x401234;primitive_lifetime_enter(&outer);primitive_lifetime_record(&outer,2,0,0,0);outer.sp=1;frames[0]=outer;

@@ -11,7 +11,7 @@ static HANDLE latch_file;
 static u32 latch_rows[2048][64],latch_count,latch_dropped,latch_foreign,latch_owner,latch_tick;
 static u32 latch_pool_base,latch_pool_id;
 static int latch_open(void){
- char name[1024];u32 n=GetEnvironmentVariableA("MNM_DRAW_ACTOR_LATCH_FILE",name,sizeof(name));
+ char name[1024];SetLastError(0);u32 n=GetEnvironmentVariableA("MNM_DRAW_ACTOR_LATCH_FILE",name,sizeof(name));
  if(!n)return GetLastError()==203;
  if(n>=sizeof(name)||latch_file)return 0;
  latch_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);
@@ -66,7 +66,9 @@ static void latch_sample(u32 kind,u32 call,u32 phase){
   r[7]|=2;r[13]=get((void*)MNM_LATCH_COUNT);r[14]=get((void*)MNM_LATCH_MODE);
  }
  if(!latch_input_point){void* module=GetModuleHandleA("MnmDrawing.dll");if(module)latch_input_point=(LatchInputPoint)GetProcAddress(module,"DrawingInputPointV1");}
- if(latch_input_point&&latch_input_point(thread,r+40,64))r[7]|=4;
+ if(latch_input_point&&latch_input_point(thread,r+40,64)){
+  u32* p=r+40;if(p[0]!=1||p[1]!=64||p[2]!=0x40209ca7||p[3]&~3u||p[4]!=thread)ExitProcess(99);r[7]|=4;
+ }else for(u32 i=40;i<56;++i)r[i]=0;
 }
 static void latch_close(void){
  if(!latch_file)return;
