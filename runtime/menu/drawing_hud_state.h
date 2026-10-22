@@ -49,8 +49,10 @@ static void hud_state_sample(void){
  if(hud_state_input_enabled){
   if(!hud_state_input_point){void* module=GetModuleHandleA("MnmDrawing.dll");if(module)hud_state_input_point=(HudInputPoint)GetProcAddress(module,"DrawingInputPointV1");}
   u32 point[16]={0};
-  if(!hud_state_input_point||!hud_state_input_point(menu_thread,point,64)){r[22]=8;return;}
+  u32 status=hud_state_input_point?hud_state_input_point(menu_thread,point,64):0;
+  if(!status){r[22]=8;return;}if(status!=1)ExitProcess(99);
   if(point[0]!=1||point[1]!=64||point[2]!=0x40209ca7||point[3]&~3u||point[4]!=menu_thread)ExitProcess(99);
+  if(point[5]>262144||point[6]>262144||point[7]>1024||point[11]>point[5]||point[12]>point[6]||!!point[11]!=!!point[12]||((point[3]&2)&&!point[11])||(!(point[3]&2)&&(point[14]||point[15]))||(!point[11]&&point[13]))ExitProcess(99);
   r[22]=point[3];r[23]=point[5];r[24]=point[6];r[25]=point[11];r[26]=point[12];r[27]=point[13];r[28]=point[14];r[29]=point[15];r[30]=point[7];r[31]=(point[8]?1u:0u)|(point[9]?2u:0u)|(point[10]?4u:0u);
  }
 }

@@ -110,5 +110,22 @@ class Guards(unittest.TestCase):
                 observe_pauses(s, r, a)
 
 
+    def test_toggle_does_not_bridge_invalid_intermediate_tracking(self):
+        for field,value in [('actor_valid',False),('actor_flag_68',0),('actor_health',0)]:
+            r,a=toggle_fixture();broken=copy.deepcopy(r['calls'][2]);broken['returned']['tracked_actor'][field]=value
+            broken['call']=3
+            for c in r['calls'][2:]:c['call']+=1
+            r['calls'].insert(2,broken)
+            with self.assertRaises(ValueError):observe_toggles(r,a)
+        r,a=toggle_fixture();a[1]['ordinal']=1
+        with self.assertRaises(ValueError):observe_toggles(r,a)
+
+    def test_pause_cannot_bridge_invalid_samples_or_counter_reversal(self):
+        for field,value in [('validity',0),('top_screen',17),('accepted_sequence',0)]:
+            s,r,a=pause_fixture();sample=next(x for x in s['samples'] if x['tick']==4000);sample[field]=value
+            with self.assertRaises(ValueError):observe_pauses(s,r,a)
+        s,r,a=pause_fixture();r.insert(1,r[0])
+        with self.assertRaises(ValueError):observe_pauses(s,r,a)
+
 if __name__ == '__main__':
     unittest.main()

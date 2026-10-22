@@ -3,6 +3,7 @@ from collections import Counter
 import math
 import statistics
 import struct
+from drawing_observed_inputs import regular_bytes
 
 EVENTS={1:'pacer-enter',11:'pacer-return',2:'accepted-update',3:'world-tick',
         5:'animation-enter',15:'animation-return',6:'scheduler-enter',16:'scheduler-return',
@@ -17,8 +18,10 @@ def distribution(values):
                 p95=values[math.ceil(len(values)*.95)-1],maximum=values[-1])
 
 def decode(path):
-    if path.stat().st_size>64+262144*96:raise ValueError('Engine trace size limit')
-    raw=path.read_bytes()
+    return decode_bytes(regular_bytes(path,64+262144*96))
+
+def decode_bytes(raw):
+    if len(raw)>64+262144*96:raise ValueError('Engine trace size limit')
     if len(raw)<64 or raw[:8]!=b'MNMCAD01':raise ValueError('Engine trace header')
     h=struct.unpack_from('<16I',raw)
     if h[2] not in (1,2) or h[3]!=96 or h[10]!=262144 or any(h[11:]):raise ValueError('Engine trace version/bounds')

@@ -3,6 +3,7 @@
 import argparse
 import json
 from pathlib import Path
+from coverage_evidence import read_bytes, read_json, write_report, evidence_digest
 import struct
 from drawing_api_session import BUILD, sha
 from drawing_documented_semantics import observe_toggles, observe_pauses
@@ -19,7 +20,7 @@ def main():
     a = p.parse_args()
     if a.report.exists():
         p.error('Refusing evidence overwrite')
-    raw = a.reference.read_bytes()
+    raw = read_bytes(a.reference, root=ROOT)
     r = json.loads(raw)
     if not r['success'] or r['source_sha256'] != BUILD or not r['normal_original_quit_verified']:
         raise ValueError('Successful pinned original and actual target exit required')
@@ -44,15 +45,13 @@ def main():
         witnesses.append(dict(action_ordinal=t['action_ordinal'], path=str(image),
                               sha256=sha(image.read_bytes()), synchronized_original_frame=False))
     result = dict(schema=1, success=True, review_only=True,
-                  sources={n: sha((ROOT / n).read_bytes()) for n in names},
+                  sources={n: evidence_digest(ROOT/n,root=ROOT) for n in names},
                   reference=dict(path=str(a.reference), sha256=sha(raw)),
                   journal_sha256=dict(region=sha(region_bytes), semantic=sha(semantic_bytes), input=sha(journal)),
                   toggles=toggles, pauses=pauses, visual_witnesses=witnesses,
                   original_game_reexecuted=False, complete_presented_journey=False,
                   scope='Static immutable original callback/mapped-key/selected-scalar analysis. Explicit bounded actor select-clear-reselect and stable World counter while render updates continue, followed by advancement. No allocation generation, keyboard message phase, all animation/simulation pause, exact action/frame/source ownership or native parity.')
-    with a.report.open('x') as out:
-        json.dump(result, out, indent=2)
-        out.write('\n')
+    write_report(ROOT,a.report,(json.dumps(result,indent=2)+'\n').encode())
     print(json.dumps(dict(success=True, toggles=len(toggles['transitions']), pauses=len(pauses['pause_intervals']))))
 
 

@@ -25,10 +25,24 @@ class Latch(unittest.TestCase):
             with self.assertRaises(ValueError):observe(r,a)
     def test_v3_requires_independent_latch_not_current_hit(self):
         r,a=fixture();r['wire_version']=3
-        track=dict(actor_valid=True,pool_id=1,capacity=125,slot_plus_one=1,actor_type=0,actor_owner=0,requested_slot=0,actor_health=345,actor_flag_68=1)
+        track=dict(actor_valid=True,actor_active=1,pool_id=1,capacity=125,slot_plus_one=1,actor_type=0,actor_owner=0,requested_slot=0,actor_health=345,actor_flag_68=1)
         r['calls'][2]['returned']=dict(r['calls'][2]['returned'],actor_state=0,tracked_actor=track)
         x=observe(r,a);self.assertEqual(x['matches'][0]['independent_tracked_latch'][0]['current_hit_state'],0)
         for field,value in [('pool_id',2),('actor_flag_68',0),('actor_valid',False)]:
             changed=copy.deepcopy(r);changed['calls'][2]['returned']['tracked_actor'][field]=value
             with self.assertRaises(ValueError):observe(changed,a)
+
+    def test_release_mode_and_reordered_calls_refuse(self):
+        r,a=fixture();r=copy.deepcopy(r);r['calls'][1]['returned']['mode']=0
+        with self.assertRaises(ValueError):observe(r,a)
+        r,a=fixture();r['calls'].reverse()
+        with self.assertRaises(ValueError):observe(r,a)
+
+    def test_invalid_or_dead_tracked_actor_is_not_independent_selection(self):
+        for field,value in [('actor_active',0),('actor_health',0),('actor_valid',False)]:
+            r,a=fixture();r['wire_version']=3
+            track=dict(actor_valid=True,actor_active=1,actor_health=345,pool_id=1,capacity=125,slot_plus_one=1,actor_type=0,actor_owner=0,requested_slot=0,actor_flag_68=1)
+            track[field]=value;r['calls'][2]['returned']=dict(r['calls'][2]['returned'],actor_state=0,tracked_actor=track)
+            with self.assertRaises(ValueError):observe(r,a)
+
 if __name__=='__main__':unittest.main()

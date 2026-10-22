@@ -7,6 +7,11 @@ def identity(sample):
 def observe(region,actions):
     if region['wire_version'] not in (2,3) or region['dropped'] or region['foreign_thread_calls'] or region['pending']:
         raise ValueError('Closed owner-only RegionV2/V3required')
+    from drawing_observed_inputs import unique
+    unique(region['calls'],'call')
+    if [c['call'] for c in region['calls']]!=sorted(c['call'] for c in region['calls']):raise ValueError('Region call order differs')
+    selected_actions=[a for a in actions if a.get('kind')=='click' and a.get('button')==1]
+    unique(selected_actions,'ordinal')
     matches=[]
     for action in actions:
         if action.get('kind')!='click' or action.get('button')!=1:continue
@@ -20,7 +25,7 @@ def observe(region,actions):
         if (start['actor_flag_68'],end['actor_flag_68'])!=(0,1) or (start['raw_latch_count'],end['raw_latch_count'])!=(0,1) or (start['mode'],end['mode'])!=(0,1):
             raise ValueError('Observed callback does not establish latch transition')
         release=up[0]
-        if release['call']<=down[0]['call'] or any(identity(s)!=key or s['actor_flag_68']!=1 or s['raw_latch_count']!=1 for s in (release['entry'],release['returned'])):
+        if release['call']<=down[0]['call'] or any(identity(s)!=key or s['actor_flag_68']!=1 or s['raw_latch_count']!=1 or s['mode']!=1 for s in (release['entry'],release['returned'])):
             raise ValueError('Button release lacks matching observed latch')
         later=[]
         for call in region['calls']:
@@ -33,7 +38,7 @@ def observe(region,actions):
             for call in region['calls']:
                 if call['call']<=release['call']:continue
                 sample=call['returned'];track=sample.get('tracked_actor',{});elapsed=(sample['tick']-end['tick'])&0xffffffff
-                if sample['actor_state']==1 or not track.get('actor_valid') or not 1000<=elapsed<0x80000000:continue
+                if sample['actor_state']!=0 or not track.get('actor_valid') or not track.get('actor_active') or not track.get('actor_health') or not 1000<=elapsed<0x80000000:continue
                 tracked_key=tuple(track[k] for k in ('pool_id','capacity','slot_plus_one','actor_type','actor_owner'))
                 if tracked_key==key and track['actor_flag_68']==1 and sample['raw_latch_count']==1:
                     independent.append(dict(call=call['call'],elapsed_ms=elapsed,current_hit_state=sample['actor_state'],requested_slot=track['requested_slot'],actor_health=track['actor_health']))

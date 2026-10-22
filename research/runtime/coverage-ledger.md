@@ -20909,3 +20909,17 @@ owner/planner cadence, arbitrary installed profiles, concrete font/resource/task
 scenario and other indirect providers, actual external lifetime/failure acceptance
 and full original-world/live behavior. Windows SEH, malformed CRT partial-copy and
 legacy physical-driver validation remain outside these new claims.
+
+### Eighth rendering implementation batch (2026-10-22)
+
+Ten bounded observation-policy implementations receive strict cadence/control admission, exact HUD/cursor and actor/selection/pause identities, COPY transposition guards, indexed lifetime overlap accounting and direct SQLite report support. See [the task scopes and controls](rendering-eighth-ten-closeouts-20261022.md). Fresh prospective `NT8.observation-policies-20261022` passes 115 tests in 16 suites plus actual native fixtures with 396 stable inputs and covers these ten implementation scopes; historical shared-source limitations and independent original/live/ownership/presentation/semantic gates remain explicit. The incoming `6ec85425..fd3e6402` history has187exact parent/current file receipt comparisons and32verified changed evidence records, with no missing receipts or rewritten prior reviews; this is accounting only.
+
+### Actor/source lifecycle integration with current rendering
+
+The local integration preserves the owned session batch and the eighth native
+observation-policy batch with their exact receipts and immutable evidence. The
+session's28declared source inputs and both scope/scenario fingerprints remain
+unchanged after the merge. Incoming rendering milestones retain their recorded
+source freshness and do not acquire new comparison or live credit. The combined
+source census and dashboard summary are refreshed as accounting, separately from
+engine execution.

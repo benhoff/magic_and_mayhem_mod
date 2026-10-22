@@ -3,6 +3,7 @@
 import argparse
 import json
 from pathlib import Path
+from coverage_evidence import read_bytes, read_json, write_report, evidence_digest
 from drawing_api_session import BUILD, sha
 from drawing_actor_latches import decode, bind_callbacks
 from drawing_hud_input_binding import bind as bind_cursor
@@ -11,6 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def analyze(latches, region, api):
+    if [s['ordinal'] for s in latches['samples']]!=list(range(1,len(latches['samples'])+1)):
+        raise ValueError('Latch sample order/identity differs')
     callbacks = bind_callbacks(latches, region)
     samples = []
     for sample in latches['samples']:
@@ -31,25 +34,25 @@ def analyze(latches, region, api):
         entry, returned = call['entry'], call['returned']
         if not call['mask'] & 1 or entry['actor_state'] != 1 or returned['actor_state'] != 1:
             continue
-        if entry['actor_flag_68'] != 0 or returned['actor_flag_68'] != 1 or entry['slot_plus_one'] != returned['slot_plus_one'] or entry['pool_id'] != returned['pool_id']:
+        if entry['actor_flag_68'] != 0 or returned['actor_flag_68'] != 1 or entry['slot_plus_one'] != returned['slot_plus_one'] or entry['pool_id'] != returned['pool_id'] or any(entry[k]!=returned[k] for k in ('capacity','actor_type','actor_owner')):
             continue
         slot = returned['slot_plus_one'] - 1
         before, after = by_phase[(call['call'], 1)], by_phase[(call['call'], 2)]
-        if not before['flags'] & 1 or not after['flags'] & 1 or before['pool_id'] != after['pool_id'] or slot in before['raw_68_slots'] or slot not in after['raw_68_slots']:
+        if not before['flags'] & 1 or not after['flags'] & 1 or before['pool_id'] != after['pool_id'] or before['capacity']!=after['capacity'] or slot in before['raw_68_slots'] or slot not in after['raw_68_slots']:
             continue
         if before['raw_count'] != entry['raw_latch_count'] or after['raw_count'] != returned['raw_latch_count']:
             continue
         actor = after['first_latched_actor']
-        if actor is None or actor['slot'] != slot:
+        if actor is None or actor['slot'] != slot or (actor['actor_type'],actor['owner'])!=(returned['actor_type'],returned['actor_owner']):
             continue
         persistent, away = [], []
         for s in samples[after['ordinal'] :]:
             # Stop at the first observed pool/flag change or invalid sample.
             # Never bridge a refusal to infer continuity.
-            if not s['flags'] & 1 or s['pool_id'] != after['pool_id'] or slot not in s['raw_68_slots']:
+            if not s['flags'] & 1 or s['pool_id'] != after['pool_id'] or s['capacity']!=after['capacity'] or s['raw_mode']!=after['raw_mode'] or slot not in s['raw_68_slots']:
                 break
             observed_actor = s['first_latched_actor']
-            if observed_actor is None or any(observed_actor[k] != actor[k] for k in ('slot', 'actor_type', 'owner', 'active')):
+            if observed_actor is None or any(observed_actor[k] != actor[k] for k in ('slot', 'actor_type', 'owner', 'active','raw_68','raw_70')):
                 break
             persistent.append(s['ordinal'])
             link = timely.get(s['ordinal'])
@@ -67,9 +70,9 @@ def main():
     a = p.parse_args()
     if a.report.exists(): p.error('Refusing evidence overwrite')
     declaration = json.loads(a.claims.read_text())
-    if any(sha((ROOT / name).read_bytes()) != digest for name, digest in declaration['sources'].items()):
+    if any(evidence_digest(ROOT/name,root=ROOT) != digest for name, digest in declaration['sources'].items()):
         raise ValueError('Prospective analysis sources changed')
-    raw = a.reference.read_bytes(); reference = json.loads(raw)
+    raw = read_bytes(a.reference, root=ROOT); reference = json.loads(raw)
     if reference.get('success') is not True or reference.get('source_sha256') != BUILD or not reference.get('normal_original_quit_verified') or not reference['staging'].get('actor_latches'):
         raise ValueError('Complete original latch reference required')
     capture = Path(reference['experiment']) / 'capture'
@@ -83,10 +86,10 @@ def main():
     if (capture / 'session.done').read_bytes() != api[-128:]:
         raise ValueError('Original API terminal differs')
     result = analyze(latches, region, api)
-    if any(sha((ROOT / name).read_bytes()) != digest for name, digest in declaration['sources'].items()):
+    if any(evidence_digest(ROOT/name,root=ROOT) != digest for name, digest in declaration['sources'].items()):
         raise ValueError('Analysis sources changed during execution')
     report = dict(schema=1, success=True, sources=declaration['sources'], sources_stable=True, claims=declaration['claims'], reference=dict(path=str(a.reference), sha256=sha(raw)), journal_hashes=dict(latches=sha(latch_raw), region=sha(region_raw), api=sha(api)), analysis=result, original_game_executed=False, scope='Fresh offline exact callback/cursor joins and bounded sampled hover-independent raw latch persistence over an immutable original run. No continuous unsampled state, allocation/generation, full selection/tooltip, source/physical/native parity or new original execution claim.')
-    with a.report.open('x') as out: json.dump(report, out, indent=2); out.write('\n')
+    write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode())
     print(json.dumps(dict(success=True, selecting_callbacks=len(result['observations']), hover_independent_latch_observed=result['bounded_hover_independent_latch_observed'])))
 
 

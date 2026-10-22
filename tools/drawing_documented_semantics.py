@@ -1,5 +1,6 @@
 """Bounded callback toggle and mapped-key/scalar observations; no frame closure."""
 from drawing_region_selection import identity
+from drawing_observed_inputs import unique
 
 
 def tracked_identity(sample):
@@ -16,9 +17,13 @@ def latch(sample):
 def observe_toggles(region, actions):
     if region['wire_version'] != 3 or any(region[k] for k in ('dropped', 'foreign_thread_calls', 'pending')):
         raise ValueError('Closed V3 owner-only actor tracking required')
+    unique(region['calls'],'call')
+    if [c['call'] for c in region['calls']]!=sorted(c['call'] for c in region['calls']):raise ValueError('Toggle callback order differs')
     clicks = [a for a in actions if a.get('kind') == 'click' and a.get('button') == 1]
     if len(clicks) != 3 or [a.get('modifiers', []) for a in clicks] != [[], ['Shift'], ['Shift']]:
         raise ValueError('One select and two explicit Shift clicks required')
+    unique(clicks,'ordinal')
+    if [a['ordinal'] for a in clicks]!=sorted(a['ordinal'] for a in clicks):raise ValueError('Toggle action order differs')
     transitions, key = [], None
     for a, before, after in zip(clicks, (0, 1, 0), (1, 0, 1)):
         xy = (a['x'], a['y'])
@@ -30,7 +35,7 @@ def observe_toggles(region, actions):
         if not current or key is not None and current != key:
             raise ValueError('Toggle lacks same validated actor hit')
         key = current
-        if any(tracked_identity(s) != key for c in (down, up) for s in (c['entry'], c['returned'])):
+        if any(identity(s)!=key or tracked_identity(s) != key for c in (down, up) for s in (c['entry'], c['returned'])):
             raise ValueError('Tracked toggle actor identity changed')
         if latch(down['entry']) != (before,) * 3 or latch(down['returned']) != (after,) * 3:
             raise ValueError('Original toggle fields differ')
@@ -47,6 +52,8 @@ def observe_toggles(region, actions):
         for c in region['calls']:
             s = c['returned']
             elapsed = (s['tick'] - t['return_tick']) & 0xffffffff
+            if t['up_call'] < c['call'] < stop and any(tracked_identity(v)!=key or latch(v)!=(t['after'],)*3 for v in (c['entry'],c['returned'])):
+                raise ValueError('Intervening toggle identity/latch refusal')
             if t['up_call'] < c['call'] < stop and s['actor_state'] == 0 and tracked_identity(s) == key and latch(s) == (t['after'],) * 3 and 100 <= elapsed < 0x80000000:
                 retained.append(dict(call=c['call'], elapsed_ms=elapsed))
         if not retained:
@@ -64,6 +71,13 @@ def observe_pauses(semantic, rows, actions):
     samples = [s for s in semantic['samples'] if s['top_screen'] == 2 and s['validity'] == 63]
     if not samples:
         raise ValueError('Valid original World samples required')
+    all_samples=semantic['samples']
+    if any(type(s['tick']) is not int or not 0<=s['tick']<2**32 for s in all_samples) or any(b['tick']<=a['tick'] for a,b in zip(all_samples,all_samples[1:])):
+        raise ValueError('Pause sample clock order differs')
+    if any(type(s[k]) is not int or not 0<=s[k]<2**32 for s in samples for k in ('accepted_sequence','world_counter')) or any(not 0<=(b['accepted_sequence']-a['accepted_sequence'])&0xffffffff<2**31 for a,b in zip(samples,samples[1:])):
+        raise ValueError('Pause counter identity/order differs')
+    if [r[0] for r in rows]!=sorted(set(r[0] for r in rows)):
+        raise ValueError('Mapped key journal order/identity differs')
     first, last = samples[0]['tick'], samples[-1]['tick']
     if last < first:
         raise ValueError('Wrapped pause interval outside this diagnostic policy')
@@ -94,6 +108,8 @@ def observe_pauses(semantic, rows, actions):
     for i in (0, 2):
         start, end = changes[i][1]['tick'], changes[i + 1][1]['tick']
         interval = [s for s in samples if start <= s['tick'] < end]
+        if any(s['top_screen']!=2 or s['validity']!=63 for s in all_samples if start<=s['tick']<end):
+            raise ValueError('Invalid/unavailable World sample inside pause interval')
         duration = interval[-1]['tick'] - interval[0]['tick']
         if len(interval) < 5 or duration < 1000 or any(s['mode'] != 1 or s['world_counter'] != interval[0]['world_counter'] for s in interval) or interval[-1]['accepted_sequence'] <= interval[0]['accepted_sequence']:
             raise ValueError('Paused counter/continuing rendering interval not observed')

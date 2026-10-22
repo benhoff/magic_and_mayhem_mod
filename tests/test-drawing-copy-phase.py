@@ -20,9 +20,16 @@ def fixture():
     rows = [row(1, 1, 5, 800, 600, (400, 300), (0, 0, 40, 40), 0x4a4b01),
             row(2, 5, 1, 40, 40, (0, 0), (400, 300, 440, 340), 0x4a4c26),
             row(3, 1, 2, 800, 600, (0, 0), (0, 0, 800, 600), 0x46ba01)]
-    returns = [dict(request=i, producer_return_sequence=seq) for i, seq in ((1, 1), (2, 3), (3, 2))]
-    bindings = [dict(request=i, producer_entry_prefix=0, commands=[dict(worker_entry_record=lo, worker_return_record=lo + 1)])
-                for i, lo in ((1, 1), (2, 3), (3, 5))]
+    returns = []
+    for request,sequence in ((1,1),(2,3),(3,2)):
+        r=rows[sequence-1][0]
+        returns.append(dict(request=request,owner=11,producer_return_sequence=sequence,
+            destination=r[3],source=r[4],destination_extent_stride=list(r[5:8]),
+            destination_position=list(r[8:10]),source_rectangle=list(r[10:14]),raw_key=r[14]))
+    bindings = [dict(request=i,owner=11,producer_return_sequence=sequence,producer_entry_prefix=0,
+                commands=[dict(command=i,worker=i,worker_entry_record=lo,worker_return_record=lo+1)])
+                for i,sequence,lo in ((1,1,1),(2,3,3),(3,2,5))]
+
     return rows, dict(entries=[], returns=returns), dict(bindings=bindings)
 
 
@@ -61,11 +68,14 @@ class PhaseGuards(unittest.TestCase):
         for index, field, value in ((0, 8, 761), (1, 14, 0), (2, 22, 0x123456), (1, 18, 4)):
             rows, obs, b = fixture()
             r = list(rows[index][0]); r[field] = value; rows[index] = tuple(r), b''
+            sequence=rows[index][0][1];q=next(q for q in obs['returns'] if q['producer_return_sequence']==sequence)
+            r=rows[index][0];q.update(destination_position=list(r[8:10]),raw_key=r[14])
             self.rejected(rows, obs, b, 'unsupported-copy-triple')
 
     def test_cursor_movement_across_full_overwrite(self):
         rows, obs, b = fixture()
         r = list(rows[0][0]); r[8:10] = [393, 299]; rows[0] = tuple(r), b''
+        obs['returns'][0]['destination_position']=[393,299]
         self.assertEqual(1, len(select(rows, obs, b)['selected']))
 
     def test_world_and_other_draw_refused(self):
@@ -74,6 +84,7 @@ class PhaseGuards(unittest.TestCase):
             marker = [0] * 24; marker[:4] = [96, 1, kind, 2]
             rows = [(tuple(marker), b'')] + [(tuple([r[0], r[1] + 1, *r[2:]]), payload) for r, payload in rows]
             obs['returns'] = [dict(q, producer_return_sequence=q['producer_return_sequence'] + 1) for q in obs['returns']]
+            b['bindings']=[dict(q,producer_return_sequence=q['producer_return_sequence']+1) for q in b['bindings']]
             self.rejected(rows, obs, b, reason)
 
     def test_invalid_and_duplicate_transpositions(self):
@@ -85,6 +96,25 @@ class PhaseGuards(unittest.TestCase):
         with self.assertRaises(ValueError):
             transpose(raw[:-1], [item])
 
+
+    def test_duplicate_and_changed_bindings_refuse(self):
+        for table,key in [('returns','producer_return_sequence'),('bindings','request')]:
+            rows,obs,b=fixture();container=obs if table=='returns' else b
+            container[table].append(copy.deepcopy(container[table][0]))
+            with self.assertRaises(ValueError):select(rows,obs,b)
+        rows,obs,b=fixture();b['bindings'][1]['producer_return_sequence']=2
+        self.rejected(rows,obs,b,'changed-exact-request-binding')
+        rows,obs,b=fixture();b['bindings'][1]['commands'][0]['worker_return_record']=3
+        with self.assertRaises(ValueError):select(rows,obs,b)
+
+    def test_hidden_payload_missing_identity_and_truncated_wire_refuse(self):
+        rows,obs,b=fixture();rows[1]=(rows[1][0],b'not-declared')
+        self.rejected(rows,obs,b,'unsupported-copy-triple')
+        rows,obs,b=fixture();raw=b'H'*64+b''.join(struct.pack('<24I',*r) for r,_ in rows)
+        for data in (b'',raw[:65],raw[:-4]):
+            with self.assertRaises(ValueError):transpose(data,[])
+        invalid=bytearray(raw);struct.pack_into('<I',invalid,64+4,2)
+        with self.assertRaises(ValueError):transpose(invalid,[])
 
 if __name__ == '__main__':
     unittest.main()

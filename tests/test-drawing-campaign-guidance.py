@@ -29,4 +29,17 @@ class Guidance(unittest.TestCase):
         with self.assertRaises(ValueError):open_mini(None,None,7)
 
 
+    def test_noninteger_page_budget_and_wrong_wait_state_refuse(self):
+        for value in (True,False,1.5,'1',0):
+            with self.assertRaises(ValueError):open_mini(None,None,value)
+        for state in (False,(),((1,2,1),),((1,17,0),)):
+            with self.assertRaises(ValueError):open_mini(lambda *a:None,lambda *a,**k:state)
+        self.assertTrue(open_mini(lambda *a:None,lambda *a,**k:((1,17,1),))['mini_verified'])
+
+    def test_failed_physical_action_does_not_continue(self):
+        actions=[]
+        def failed(name,action):actions.append(name);raise RuntimeError('input child failed')
+        with self.assertRaises(RuntimeError):open_mini(failed,lambda *a,**k:None)
+        self.assertEqual(len(actions),1)
+
 if __name__=='__main__':unittest.main()

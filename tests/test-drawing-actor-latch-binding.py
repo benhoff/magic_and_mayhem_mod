@@ -22,7 +22,7 @@ def fixture():
     after = dict(base, ordinal=2, tick=102, kind=2, phase_ordinal=2, raw_68_slots=[1], raw_count=1, raw_mode=1, first_latched_actor=actor)
     point = dict(flags=3, owner_thread=18, record_prefix=1, entry_prefix=1, after_frame=0, drops=False, gaps=False, pending=False, cursor_record=1, cursor_entry=1, cursor_tick=80, cursor=[450, 350], current_cursor_admissible=True)
     away = dict(after, ordinal=3, tick=103, kind=0, call=0, phase_ordinal=0, hit_state=0, hit_slot=None, input_point=point)
-    before_state = dict(phase_ordinal=1, tick=101, actor_state=1, actor_flag_68=0, slot_plus_one=2, pool_id=1, raw_latch_count=0)
+    before_state = dict(capacity=3,actor_type=27,actor_owner=0,phase_ordinal=1, tick=101, actor_state=1, actor_flag_68=0, slot_plus_one=2, pool_id=1, raw_latch_count=0)
     after_state = dict(before_state, phase_ordinal=2, tick=102, actor_flag_68=1, raw_latch_count=1)
     region = dict(owner=18, calls=[dict(call=1, mask=1, mouse_record=[400, 265] + [0] * 8, entry=before_state, returned=after_state)])
     return dict(owner=18, samples=[base, after, away]), region, api
@@ -60,5 +60,21 @@ class Binding(unittest.TestCase):
         latches, region, api = fixture(); latches['samples'][1]['phase_ordinal'] = 4
         with self.assertRaises(ValueError): analysis.analyze(latches, region, api)
 
+
+    def test_duplicate_ordinals_and_capacity_or_flag_changes_do_not_bridge(self):
+        l,r,a=fixture();l['samples'][2]['ordinal']=2
+        with self.assertRaises(ValueError):analysis.analyze(l,r,a)
+        for change in ('capacity','mode','flag'):
+            l,r,a=fixture();middle=copy.deepcopy(l['samples'][2]);middle.update(input_point=None)
+            if change=='capacity':middle['capacity']=4
+            elif change=='mode':middle['raw_mode']=0
+            else:middle['first_latched_actor']['raw_68']=2
+            l['samples'][2]['ordinal']=4;l['samples'].insert(2,middle)
+            self.assertFalse(analysis.analyze(l,r,a)['bounded_hover_independent_latch_observed'])
+
+    def test_region_type_owner_and_latched_actor_must_agree(self):
+        for field,value in [('actor_owner',1),('actor_type',28),('capacity',4)]:
+            l,r,a=fixture();r['calls'][0]['returned'][field]=value
+            self.assertEqual(analysis.analyze(l,r,a)['observations'],[])
 
 if __name__ == '__main__': unittest.main()

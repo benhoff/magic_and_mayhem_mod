@@ -1,11 +1,20 @@
 """Experimental offline COPY transpositions selected solely by observed metadata."""
 import struct
+from drawing_observed_inputs import unique
 
 
 def select(records, observation, bindings):
+    if [r[1] for r,_ in records]!=list(range(1,len(records)+1)):
+        raise ValueError('COPY source record sequence/identity')
     rows = {r[1]: r for r, _ in records}
-    returns = {r['producer_return_sequence']: r for r in observation['returns']}
-    bound = {b['request']: b for b in bindings['bindings']}
+    payloads = {r[1]: payload for r,payload in records}
+    returns = unique(observation['returns'],'producer_return_sequence')
+    unique(observation['returns'],'request')
+    bound = unique(bindings['bindings'],'request')
+    commands=[c for b in bindings['bindings'] for c in b['commands']]
+    unique(commands,'worker');unique(commands,'command')
+    if any(type(c[k]) is not int or c[k]<=0 for c in commands for k in ('worker_entry_record','worker_return_record')) or any(c['worker_entry_record']>=c['worker_return_record'] for c in commands):
+        raise ValueError('Incomplete COPY worker execution interval')
     active, world = False, {}
     for r, _ in records:
         if r[2] == 11:
@@ -26,6 +35,10 @@ def select(records, observation, bindings):
         bs = [bound.get(q['request']) if q else None for q in qs]
         if any(q is None or b is None for q, b in zip(qs, bs)):
             reason = 'missing-exact-request-binding'
+        elif any(b['producer_return_sequence']!=r[1] or b['owner']!=q['owner'] or [r[3],r[4],*r[5:8],*r[8:10],*r[10:14],r[14]]!=[q['destination'],q['source'],*q['destination_extent_stride'],*q['destination_position'],*q['source_rectangle'],q['raw_key']] for r,q,b in zip((restore,f,s),qs,bs)):
+            reason = 'changed-exact-request-binding'
+        elif any(payloads[r[1]] for r in (restore,f,s)):
+            reason = 'unsupported-copy-triple'
         elif (f[0] != 96 or s[0] != 96 or restore[0] != 96 or
               f[5:7] != (800, 600) or f[8:14] != (0, 0, 0, 0, 800, 600) or
               s[5:7] != (40, 40) or s[8:10] != (0, 0) or
@@ -47,6 +60,8 @@ def select(records, observation, bindings):
             prefix = fb['producer_entry_prefix']
             if not 0 <= prefix < restore[1] < s[1] < f[1]:
                 reason = 'unsupported-full-entry-prefix'
+            elif qs[1]['request']>=qs[2]['request']:
+                reason = 'full-save-entry-order-not-inverted'
             elif any(world[i] for i in range(prefix + 1, f[1] + 1)):
                 reason = 'inside-active-world'
             elif (not all(b['commands'] for b in bs) or
@@ -73,10 +88,12 @@ def select(records, observation, bindings):
 
 def transpose(raw, selected):
     """Swap only admitted adjacent payload-free COPY bodies; preserve wire sequences."""
+    if len(raw)<64:raise ValueError('Truncated native input header')
     offsets, at = {}, 64
     while at < len(raw):
+        if len(raw)-at<96:raise ValueError('Truncated native input record')
         size, sequence, kind = struct.unpack_from('<3I', raw, at)
-        if size < 96 or at + size > len(raw) or sequence in offsets:
+        if size < 96 or at + size > len(raw) or sequence!=len(offsets)+1:
             raise ValueError('Invalid native input record bounds')
         offsets[sequence] = (at, size, kind)
         at += size
@@ -84,7 +101,7 @@ def transpose(raw, selected):
     occupied = set()
     for item in selected:
         s, f = item['save_sequence'], item['full_sequence']
-        if f != s + 1 or s in occupied or f in occupied:
+        if type(s) is not int or type(f) is not int or s not in offsets or f not in offsets or f != s + 1 or s in occupied or f in occupied:
             raise ValueError('Nonadjacent/overlapping COPY transposition')
         sa, fs = offsets[s], offsets[f]
         if sa[1:] != (96, 6) or fs[1:] != (96, 6) or fs[0] != sa[0] + 96:

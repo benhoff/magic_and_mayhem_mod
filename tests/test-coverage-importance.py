@@ -90,8 +90,8 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        # Reviewed native rendering closeouts through6ec85425 retain51low partials.
-        self.assertEqual(result['partial_counts'], {1: 51, 2: 9, 3: 4, 4: 38, 5: 28})
+        # Reviewed native observation closeouts through6ace1d8f retain41low partials.
+        self.assertEqual(result['partial_counts'], {1: 41, 2: 9, 3: 4, 4: 38, 5: 28})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
