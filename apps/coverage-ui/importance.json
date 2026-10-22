@@ -3197,8 +3197,8 @@
       "behavior": "RS.actor-downstream-services",
       "weight": 5,
       "work_type": "original_recovery",
-      "reason": "Selected original/native service and ownership composition has its own bounded proof. Source registration, resource/font/scenario and arbitrary supported-session/live boundaries remain in the Critical umbrella.",
-      "contract_sha256": "08c69d4dc68513a312898217331ca230b3f18b390c45d47d8e0d480a536bb3f7"
+      "reason": "Bounded owned actor/source lifecycle composition and explicit native ownership barriers have independent proof; original planner cadence and remaining concrete providers stay in the Critical umbrella.",
+      "contract_sha256": "912a1ff857b0ab29771a2809c59098ecba47c7d81108a8eaae4306bf16a09bf5"
     },
     {
       "behavior": "RS.actor-downstream-value-services",
@@ -3318,6 +3318,20 @@
       "work_type": "original_recovery",
       "reason": "Selected original/native service and ownership composition has its own bounded proof. Source registration, resource/font/scenario and arbitrary supported-session/live boundaries remain in the Critical umbrella.",
       "contract_sha256": "51bd0de9f5f14086bff71aa467f982e4ef26c820a4f035f08b05028d4c5796f0"
+    },
+    {
+      "behavior": "RS.actor-session-source-lifecycle",
+      "weight": 4,
+      "work_type": "original_recovery",
+      "reason": "Bounded owned actor/source lifecycle composition and explicit native ownership barriers have independent proof; original planner cadence and remaining concrete providers stay in the Critical umbrella.",
+      "contract_sha256": "42f0ad7d3d874c8359dffa710b458ecbfa7158694ed85208e4b0637b02cbea2b"
+    },
+    {
+      "behavior": "NP.actor-session-source-ownership",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Bounded owned actor/source lifecycle composition and explicit native ownership barriers have independent proof; original planner cadence and remaining concrete providers stay in the Critical umbrella.",
+      "contract_sha256": "c104d73515b1a8923ff04d13b7ff03b3c87d1767cbd6cd5284b0863fb57faff3"
     }
   ],
   "tranche_plan": {

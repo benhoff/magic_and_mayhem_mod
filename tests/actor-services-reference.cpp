@@ -23,9 +23,12 @@
 #include <ucontext.h>
 #include "actor-services-generated.hpp"
 #ifdef MNM_ORIGINAL_REFERENCE
+#pragma push_macro("main")
+#undef main
 #define main unused_sprite_reference
 #include "sprite-binary-reference.cpp"
 #undef main
+#pragma pop_macro("main")
 #include "original-linux-seh.hpp"
 extern "C" unsigned actor_services_cleanup(unsigned);
 extern "C" unsigned actor_services_call(unsigned,unsigned,unsigned,unsigned,const unsigned*,unsigned);

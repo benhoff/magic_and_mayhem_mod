@@ -20882,3 +20882,30 @@ counterexample shows differing CRT partial-copy fault state and is excluded from
 valid owned-vector claims. No Windows SEH or legacy physical-driver promotion.
 See [the bounded composition and remaining boundaries](actor-service-composition-20261021.md).
 
+
+### Owned actor session and source lifecycle (2026-10-22)
+
+[Actor/session source composition](actor-session-source-lifecycle-20261022.md)
+adds22source/pool/transition routes to the149-route service composition. One
+owned memory backend carries pool construction, selected preloaded activation,
+actual source grouping/registration, growing pending deques, recipient handoff
+and retention, actor release/cleanup, source pruning, slot reuse and repeated
+shutdown/restart. Native phase, retention, reconstruction and empty-backing
+retirement policies are separately registered; no original planner cadence is
+inferred from authored availability/task-provider inputs.
+
+The64original32/native64/ASan+UBSan journeys compare16checkpoints each, including
+32fragmented deque inputs and both source families. Every admitted journey must
+return normally and leave zero live owned allocations. Ordered callbacks and
+all selected owned bytes are compared except separately guarded opaque source
+byte25. The eleven prior service suites are rerun after the nested fixture
+include change. Historical reports and failed attempts retain their exact input
+hashes. Static routing reconciliation retains all43historical semantic leads,
+remaining supplied providers and unresolved indirect sites.
+
+The bounded recovered lifecycle and native policy receive independent headless
+milestones. The Critical downstream umbrella remains partial for original
+owner/planner cadence, arbitrary installed profiles, concrete font/resource/task/
+scenario and other indirect providers, actual external lifetime/failure acceptance
+and full original-world/live behavior. Windows SEH, malformed CRT partial-copy and
+legacy physical-driver validation remain outside these new claims.

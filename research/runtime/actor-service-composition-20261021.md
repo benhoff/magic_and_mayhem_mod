@@ -122,3 +122,13 @@ The nine prior suites remain available. `tools/reconcile-service-composition.py`
 checks routing against the actual model case entries and retains inspected call
 frontiers, scoped leads, supplied endpoints and unresolved indirect sites. Its
 report is a static review, not additional execution or transitive closure proof.
+
+## Subsequent owned session composition
+
+[Actor session/source recovery](actor-session-source-lifecycle-20261022.md) now
+composes source registration and ownership with the pool lifecycle in a separate
+headless scenario. The historical service matrices above retain their named
+source endpoint and original fingerprints. The new scenario supplies actual
+registration/grouping, growing queues, pruning and recipient retention; original
+planner cadence, supported installed profiles and concrete task/resource handlers
+remain separate.

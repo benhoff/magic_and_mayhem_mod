@@ -137659,7 +137659,7 @@
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Complete actor downstream service ownership and behavior",
-      "scope": "Seventy-two direct actor service/helper entries have bounded suppliers. The initial83-target frontier remains historically accounted as35raw suppliers,43existing semantic leads and five CRT boundaries. A common value-address router now composes112prior raw bodies,34concrete animation/raster-state/particle/scenario/widget providers and three lifecycle entries. Selected21-root caller comparisons include preloaded activation to release/cleanup; supplied source registration, resource/font/attack/scenario evaluator/action endpoints, other indirect targets, all43leads through arbitrary sessions, malformed CRT copying, Windows SEH and external lifetime/live acceptance remain explicit. This Critical umbrella remains partial.",
+      "scope": "Seventy-two direct actor service/helper entries retain bounded suppliers and the initial83-target frontier retains35raw suppliers,43historical semantic leads and five CRT boundaries. The prior149-route composition now gains22source/pool/transition routes with one owned actor-session/source store. Selected preloaded two-session journeys include real source grouping/registration, growing queues, pruning, recipient handoff/retention, release/cleanup, guarded slot reuse and teardown/restart. Native session barriers remain separate policy. Original owner/planner cadence, arbitrary supported installed profiles and the remaining named resource/font/task/scenario/indirect provider paths, malformed CRT copying, Windows SEH, external acceptance and full original-world/live replacement remain explicit. This Critical umbrella remains partial.",
       "confidence": "provisional",
       "original": [
         {
@@ -138029,7 +138029,8 @@
         "research/runtime/downstream-service-results-20261021/service-matrix-extended.json",
         "research/runtime/actor-service-composition-20261021.md",
         "research/runtime/service-composition-results-20261022/frontier.json",
-        "research/runtime/service-composition-results-20261022/frontier-panel.json"
+        "research/runtime/service-composition-results-20261022/frontier-panel.json",
+        "research/runtime/actor-session-source-lifecycle-20261022.md"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -138046,7 +138047,10 @@
         "reconstruction/rendering/actor_service_effects.hpp",
         "reconstruction/rendering/actor_service_construction.hpp",
         "reconstruction/rendering/actor_service_providers.hpp",
-        "reconstruction/rendering/actor_service_composition.hpp"
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp"
       ],
       "tests": [
         "tools/inspect-actor-downstream.py",
@@ -138060,12 +138064,16 @@
         "tools/reconcile-actor-downstream.py",
         "tests/actor-provider-seeds.inc",
         "tests/actor-composition-seeds.inc",
-        "tools/reconcile-service-composition.py"
+        "tools/reconcile-service-composition.py",
+        "tests/actor-session-reference.cpp",
+        "tools/test-actor-session.py",
+        "tools/reconcile-actor-session.py"
       ],
       "evidence": [
         "SCP1.frontier-20261022",
         "SCP1.malformed-copy-negative-20261022",
-        "SCP2.frontier-20261022"
+        "SCP2.frontier-20261022",
+        "ASL1.reconciliation-reviewed.static-20261022"
       ],
       "status": {
         "understanding": "partial",
@@ -138366,7 +138374,8 @@
         "DSVC2.values.isolated_original-20261021",
         "COMMIT20261021.actor-values.isolated_original",
         "SCP1.values.isolated_original-20261022",
-        "SCP2.values.isolated_original-20261022"
+        "SCP2.values.isolated_original-20261022",
+        "ASL1.regression-values.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138486,7 +138495,8 @@
         "DSVC2.controllers.isolated_original-20261021",
         "COMMIT20261021.actor-controllers.isolated_original",
         "SCP1.controllers.isolated_original-20261022",
-        "SCP2.controllers.isolated_original-20261022"
+        "SCP2.controllers.isolated_original-20261022",
+        "ASL1.regression-controllers.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138642,7 +138652,8 @@
         "DSVC2.world.isolated_original-20261021",
         "COMMIT20261021.actor-world.isolated_original",
         "SCP1.world.isolated_original-20261022",
-        "SCP2.world.isolated_original-20261022"
+        "SCP2.world.isolated_original-20261022",
+        "ASL1.regression-world.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138772,7 +138783,8 @@
         "DSVC2.ui.isolated_original-20261021",
         "COMMIT20261021.actor-ui.isolated_original",
         "SCP1.ui.isolated_original-20261022",
-        "SCP2.ui.isolated_original-20261022"
+        "SCP2.ui.isolated_original-20261022",
+        "ASL1.regression-ui.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -138922,7 +138934,8 @@
         "DSVC2.dependencies.isolated_original-20261021",
         "COMMIT20261021.actor-dependencies.isolated_original",
         "SCP1.dependencies.isolated_original-20261022",
-        "SCP2.dependencies.isolated_original-20261022"
+        "SCP2.dependencies.isolated_original-20261022",
+        "ASL1.regression-dependencies.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -139027,7 +139040,8 @@
       "evidence": [
         "DSVC2.popups.isolated_original-20261021",
         "SCP1.popups.isolated_original-20261022",
-        "SCP2.popups.isolated_original-20261022"
+        "SCP2.popups.isolated_original-20261022",
+        "ASL1.regression-popups.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -139108,7 +139122,8 @@
       "evidence": [
         "DSVC2.collections.isolated_original-20261021",
         "SCP1.collections.isolated_original-20261022",
-        "SCP2.collections.isolated_original-20261022"
+        "SCP2.collections.isolated_original-20261022",
+        "ASL1.regression-collections.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -139185,7 +139200,8 @@
       "evidence": [
         "DSVC2.effects.isolated_original-20261021",
         "SCP1.effects.isolated_original-20261022",
-        "SCP2.effects.isolated_original-20261022"
+        "SCP2.effects.isolated_original-20261022",
+        "ASL1.regression-effects.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -139281,7 +139297,8 @@
       "evidence": [
         "DSVC2.construction.isolated_original-20261021",
         "SCP1.construction.isolated_original-20261022",
-        "SCP2.construction.isolated_original-20261022"
+        "SCP2.construction.isolated_original-20261022",
+        "ASL1.regression-construction.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -139524,7 +139541,8 @@
         "SCP1.frontier-20261022",
         "SCP2.providers.isolated_original-20261022",
         "SCP2.frontier-20261022",
-        "SCP3.providers.isolated_original-20261022"
+        "SCP3.providers.isolated_original-20261022",
+        "ASL1.regression-providers.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -139689,13 +139707,254 @@
         "SCP1.history-review-v2-20261022",
         "SCP1.frontier-20261022",
         "SCP2.composition.isolated_original-20261022",
-        "SCP2.frontier-20261022"
+        "SCP2.frontier-20261022",
+        "ASL1.regression-composition.isolated_original-20261022"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.actor-session-source-lifecycle",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Owned actor session with composed source registration and retirement",
+      "scope": "Owned PE32 value-address actor pool construction/reset, selected preloaded activation, real416590 source grouping and416fe0 registration, shared actor roots/source forest/three pending deques/vector backing, source pruning, peer invalidation, release/cleanup, actor slot reuse and repeated session teardown/restart. Recovered behavior-transition control publishes its named task callback before invoking a supplied concrete handler. Existing animation/map/owner/widget/audio service bodies use the same storage. Successful owned heap primitives and named resource/font/task/scenario/virtual platform ends stay explicit; complete owner-planner cadence, arbitrary installed profiles, malformed CRT copying, Windows SEH/throwing cleanup, external provider acceptance and live replacement are excluded. Native source byte25 is deterministic opaque representation; original caller-stack provenance is separately guarded and byte25 baseline equality is excluded. Authored owner availability and secondary-family registration inputs exercise group creation/extension; imported duplicate queue backing exercises spare-map, single-block rotation, multi-block map growth and block crossing. Public phase/source-retention/reconstruction policies are accounted separately as NP.actor-session-source-ownership, not asserted as original game cadence. Recipient-to-group handoff updates both ownership links; an authored task-provider recipient alone retains retired actors and blocks pool teardown until released. Task creation/retirement and planner cadence remain supplied inputs.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4224592,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4224896,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225056,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225312,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225520,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4285840,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4288480,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4289920,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4292192,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4364544,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4370384,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4665600,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4980464,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4980944,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5266864,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267312,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267616,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5286448,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5326864,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5342192,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5367696,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426144,
+          "scope": "Selected owned session caller/supplier composition and lifecycle state; source/transition/pool entry only in the stated domain, not all callers or complete game execution."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp"
+      ],
+      "tests": [
+        "tests/actor-session-reference.cpp",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc",
+        "tools/test-actor-session.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tests/original-linux-seh.hpp",
+        "tools/original_x86.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "documents": [
+        "research/runtime/actor-session-source-lifecycle-20261022.md"
+      ],
+      "evidence": [
+        "ASL1.session.isolated_original-20261022",
+        "ASL1.session.headless-20261022",
+        "ASL1.attempt-catalog.static-20261022",
+        "ASL1.incoming-history.static-20261022"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "64 independently seeded two-session journeys,16 checkpoints each",
+          "Actual original source grouping/registration, two source families, child and manager vector growth, imported pre-existing duplicate deques, held planning roots, pruning and callback-visible memory",
+          "Full owned allocation bytes except separately guarded opaque node byte25; exact callback arguments and state at external boundaries",
+          "Authored recipient inputs exercise bidirectional group handoff, ancestor retention and recipient-only pool-destruction refusal before provider release."
+        ],
+        "excluded": [
+          "Original owner/planner producer cadence and task-handler bodies",
+          "Resource/font/scenario providers and installed profiles outside the declared preloaded inputs",
+          "Malformed CRT fault equivalence, Windows SEH and throwing cleanup",
+          "Original-world, physical driver and live replacement acceptance"
+        ]
+      }
+    },
+    {
+      "id": "NP.actor-session-source-ownership",
+      "subsystem": "rendering_reconstruction",
+      "kind": "native_policy",
+      "title": "Native actor session source ownership barriers",
+      "scope": "Native public actor session phase checks, rejection of reuse while a source retains the actor slot, rejection of pool destruction while planning roots/queues retain sources, explicit previous-record destruction/construction/reset before reuse, release of quiescent source backing, and repeatable close/restart. These are intentional native orchestration/refusal policies. Authored caller availability notifications are inputs; original owner/planner scheduling and policy equivalence are not claimed.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp"
+      ],
+      "tests": [
+        "tests/actor-session-reference.cpp",
+        "tools/test-actor-session.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/original-linux-seh.hpp",
+        "tools/original_x86.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-composition-seeds.inc",
+        "tests/actor-provider-seeds.inc"
+      ],
+      "documents": [
+        "research/runtime/actor-session-source-lifecycle-20261022.md"
+      ],
+      "evidence": [
+        "ASL1.session.headless-20261022"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -314043,6 +314302,703 @@
           "equals": false
         }
       ]
+    },
+    {
+      "record": "research/runtime/actor-session-source-results-20261022/final-1.json",
+      "sha256": "446655c6893df4e657f20869c35c4bac3aac1103efae06d04b8d14bdc89dc572",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 1024
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_public_session_api",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_source_byte25_provenance_guarded",
+          "equals": true
+        },
+        {
+          "pointer": "/protected_pool_and_reuse_refusals",
+          "equals": 128
+        },
+        {
+          "pointer": "/queued_backing_import_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "ASL1.session.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Owned PE32 value-address actor pool construction/reset, selected preloaded activation, real416590 source grouping and416fe0 registration, shared actor roots/source forest/three pending deques/vector backing, source pruning, peer invalidation, release/cleanup, actor slot reuse and repeated session teardown/restart. Recovered behavior-transition control publishes its named task callback before invoking a supplied concrete handler. Existing animation/map/owner/widget/audio service bodies use the same storage. Successful owned heap primitives and named resource/font/task/scenario/virtual platform ends stay explicit; complete owner-planner cadence, arbitrary installed profiles, malformed CRT copying, Windows SEH/throwing cleanup, external provider acceptance and live replacement are excluded. Native source byte25 is deterministic opaque representation; original caller-stack provenance is separately guarded and byte25 baseline equality is excluded. Authored owner availability and secondary-family registration inputs exercise group creation/extension; imported duplicate queue backing exercises spare-map, single-block rotation, multi-block map growth and block crossing. Public phase/source-retention/reconstruction policies are accounted separately as NP.actor-session-source-ownership, not asserted as original game cadence. Recipient-to-group handoff updates both ownership links; an authored task-provider recipient alone retains retired actors and blocks pool teardown until released. Task creation/retirement and planner cadence remain supplied inputs.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "record": "research/runtime/actor-session-source-results-20261022/final-1.json",
+      "sha256": "446655c6893df4e657f20869c35c4bac3aac1103efae06d04b8d14bdc89dc572",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 1024
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_public_session_api",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_source_byte25_provenance_guarded",
+          "equals": true
+        },
+        {
+          "pointer": "/protected_pool_and_reuse_refusals",
+          "equals": 128
+        },
+        {
+          "pointer": "/queued_backing_import_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "ASL1.session.headless-20261022",
+      "kind": "native_integration",
+      "scope": "One owned public actor/source session API; recovered PE32 callees and explicit native ownership/refusal policy. Same64 journeys as the original comparison; no double counting or original game cadence claim."
+    },
+    {
+      "id": "ASL1.regression-values.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "42 complete selected service bodies at their listed original entries, with owned PE32 storage, byte-preserving scalar/animation/owner/pool policies, list mutation, resource/allocator notifications, spell-slot register arguments, gauge allocation and pixels, and actual voice query/retirement composed with scheduler lookup/retirement. The64 variants per root compare complete owned storage, selected globals, ordered callbacks and callback-time state; explicit platform/allocator/secondary/decoder providers stay separate. Normal vector construction is included; actual MSVC exception unwinding, invalid/unbounded caller domains, transitive provider bodies, whole-session integration and live replacement remain pending. Original memory/division faults are observations, not native policy changes.",
+      "record": "research/runtime/actor-session-source-results-20261022/regression-values.json",
+      "sha256": "fbf6b5587b39c1f20c2587ce147ae4ff5c9c0f42b4de5c44d76bbe0f4b1743ba",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2688
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ASL1.regression-controllers.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Ten complete direct actor service bodies: singleton publication, normal animation start/reverse orchestration, session cleanup, secondary facing, owner-dependent resource selection, spell selection, task reset/action transition/special-state cleanup and owner-count maintenance. Compose the42 independently recovered value/container/audio suppliers through explicit PE32 memory. Each64-variant matrix compares complete owned storage, selected globals, defined returns and callback-time state including failures. Actual50da50 EDX:EAX action-table and594490 profile-address suppliers are included. External decoder/step/constructor/UI/RNG services are explicit providers; actual exception unwind, broader transitive service bodies, arbitrary concurrent publication, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/actor-session-source-results-20261022/regression-controllers.json",
+      "sha256": "3079d1f580315bbc010220b8bfce33c0ac706814ec5e3a4e1a452489662d9122",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 640
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ASL1.regression-world.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Nine complete direct bodies: peer repair, map attachment/detachment, secondary release cascade, world facing, footprint item consumption, terrain effects/hazard scan, task-target descriptor and x87 creature valuation. Compose the42 value and10 actor-controller suppliers, actual pure wrap/difference/weighted-distance/direction helpers, original memmove and x87 truncation.64 owned variants per root compare complete owned memory, selected globals, defined returns, ordered callbacks and callback-time state. Terrain mutation, item handling, debug file notifications and hazard/animation decoder providers are explicit external boundaries; arbitrary malformed cycles/unbounded inputs, transitive engine services, real platform devices, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/actor-session-source-results-20261022/regression-world.json",
+      "sha256": "348de3f91472e9bdde93e5df781b29d7af3268848b89d66a8f537886e4dffe39",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ASL1.regression-ui.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Ten complete direct UI/resource service bodies, including the packed22-byte actor admission descriptor and unchanged coordinate-copy suppliers40e2c0/40e8d0/40eec0: linked/panel health rectangles, secondary descriptor submission, spell popup rebuild, selection removal, message queue/text formatting, sprite/animation bank ownership and actor report retirement.64 owned variants per root compare complete owned bytes, selected globals, defined returns, ordered callbacks and callback-time state. Native local records are compared by content with original stack buffers; scratch addresses are normalized only at named boundaries. Compose recovered value/container/heap-wrapper suppliers, actual memmove and pure509790 descriptor addressing. Drawing/localization/formatting, virtual widgets, loader/cache services, Windows path/message APIs are explicit deterministic providers; actual platform services, malformed/unbounded string domains, transitive loader/UI bodies, exception unwinding, whole-session integration and live replacement remain pending.",
+      "record": "research/runtime/actor-session-source-results-20261022/regression-ui.json",
+      "sha256": "aab1d0d1f741790ccf33d3f88091c5569982db5dc80b9413e6b9fe264e389c7e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 640
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ASL1.regression-dependencies.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Eighteen further service bodies: animation scan/overlay, owner selection, debug notification, widget invalidation/state/amount wrappers, raw image fill, audio stack removal, localization bounds/fallback, deferred rectangle queue, allocation retry/handler/alignment policy and tagged allocation release.64 owned variants per root compare complete owned state, selected globals, defined returns and ordered callback-time arguments/state; actual recovered value/controller suppliers remain composed where called. Virtual widget callbacks, low-level heap/init/retry/error handlers, CRT output and further UI draw methods are explicit normal-return providers. Arbitrary allocation/header corruption, infinite retry domains, actual platform heaps, exceptional unwind and whole actor/session integration/live replacement remain separate.",
+      "record": "research/runtime/actor-session-source-results-20261022/regression-dependencies.json",
+      "sha256": "5034ebe0c8717a67a48ef24d9cc8edbdc942d647146145b7651ac56a957e4957",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1152
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ASL1.regression-popups.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Nine further popup/presentation service bodies: full health redraw and icon rendering, popup widget reset, artifact admission/stack counts/overflow, selected focus retirement, quota disable/enable, resolution border refresh and message scroll presentation.64 owned variants per root compare full owned state/globals, defined returns, complete declared local records and ordered callback-time state. Compose actual widget/image/localization/heap wrappers and actor/value suppliers; virtual widget methods, raster/font/image-loading/format/sound APIs and further UI methods remain normal-return providers. Font record byte0 is compared as the consumed bool; its three uninitialized padding bytes do not grant caller-stack representation equivalence. Actual hardware, arbitrary concurrent UI writers, exceptional unwind, complete session ownership and live replacement remain separate.",
+      "record": "research/runtime/actor-session-source-results-20261022/regression-popups.json",
+      "sha256": "8ad925b7b3e0b0719b8855f957cac91271141b00ad7b87e8447a97d6d212389a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ASL1.regression-collections.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Complete vector insertion/growth and callback-visible old-storage retirement, secondary slot125+ admission/reclamation, original experience thresholds/health/gauge/animation effects and scenario-event dispatch over explicit owned records and normal-return callbacks.64variants per selected entry compare complete owned state/globals, defined returns and ordered callback state; recovered heap/value/controller/world suppliers are composed. Low-level vector allocation, concrete scenario predicates/actions, secondary subtype replacement, exceptional runtime/heap corruption and supported-session/live replacement remain distinct.",
+      "record": "research/runtime/actor-session-source-results-20261022/regression-collections.json",
+      "sha256": "3b96d15767a0f4489ba6cda47bf8d54aa834169776e98d841da8cdb369113886",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 256
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ASL1.regression-effects.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Original468470 item traversal/consumption,469000 fastcall spell removal and490260 terrain/particle/owner cleanup over explicit owned map, descriptors and normal-return callbacks. Value/controller/heap/world/collection suppliers are composed; concrete item effects, contribution accounting, particle construction/pool, scenario predicates, localization/CRT, allocation identity and supported-session/live replacement remain separate. The baseline uninitialized contribution read when no healing branch assigns it is explicitly indeterminate and excluded from deterministic comparison.64 variants per selected body compare persistent bytes/globals, defined returns and ordered callback state.",
+      "record": "research/runtime/actor-session-source-results-20261022/regression-effects.json",
+      "sha256": "6fd947e2987634af5a1887c41edcdf9756fdecccb4b5b163037fcd3719d0ce36",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ASL1.regression-construction.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Normal-return464350 and4a4df0 initialization,463270 destructor,4a4f70 widget table removal,58b3e0 canvas release and59bf87 reverse vector destruction, plus59c4ab cold-finally selection under an explicit parent frame.64 owned variants per body compare persistent bytes/globals and ordered callback state. Actual OS exception delivery, a destructor throwing during unwind, arbitrary reentry and supported-session/live replacement remain separate; the cold body is exercised directly without claiming a Windows SEH dispatcher. Native vector construction additionally destroys only the completed prefix in reverse order and propagates the original exception (171 failure/completion combinations); this composition test does not emulate OS SEH.",
+      "record": "research/runtime/actor-session-source-results-20261022/regression-construction.json",
+      "sha256": "1e2c80f2785b2d0d6333374ce7ee0b1f64229b7e2ff8f2a0d822d65c32e9753f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 448
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exception_cases",
+          "equals": 171
+        }
+      ]
+    },
+    {
+      "id": "ASL1.regression-providers.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "PE32 value-address animation dispatch/restart and descriptor access; camera rectangle; flight predicate; fastcall raster binding/clip and text flag mutation; particle position/colour/random constructor, concrete XOR stream, virtual priority, deleting destructor and pool admission; owner lookup, scenario eligibility, named-region overlap, repeat/finalization and action dispatch; panel redraw allocation/rectangle submission and mode switching. Owned storage and normal-return explicit heap/platform/virtual and scenario-action providers. Complete scenario evaluator/action subtype bodies, font raster/resource decoding, supported-session and live equivalence remain pending.",
+      "record": "research/runtime/actor-session-source-results-20261022/regression-providers.json",
+      "sha256": "3d728c7014175966652c70cc31547e1cfa7e651304fb70262312891a1f7ca8bf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2176
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ASL1.regression-composition.isolated_original-20261022",
+      "kind": "isolated_original",
+      "scope": "Twenty-one independently seeded original/native caller chains: marker singleton allocation/vector construction; forward/reverse animation setup followed by zero to four ticks; task/action animation; secondary explosion/200 particle construction and pool admission; popup descriptor population; scroll text raster bind/clip/flags; scenario eligibility and action/finalization dispatch; 64 preloaded actor activation/baseline to release/cleanup sequences plus independent release/cleanup roots, peer repair, occupancy attach/detach, task reset, marker/list/spell/audio retirement and original experience progression. Recovered value/controller/world/UI/dependency/popup/collection/effect/construction and concrete provider bodies share value-address storage. Valid owned vectors; malformed CRT partial-copy fault prefixes are not equivalent. Explicit source-controller registration, heap primitives, resource/font raster, scenario evaluator/actions and virtual/platform endpoints remain declared providers. Bounded headless comparison is separate from complete actor/session integration and live replacement.",
+      "record": "research/runtime/actor-session-source-results-20261022/regression-composition.json",
+      "sha256": "6149a4267391280b04832bb34abf4d1b2cf94cf6f208bb4fe15d1ff294ef172f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1344
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/required_normal_returns_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/lifecycle_sequences",
+          "equals": 64
+        },
+        {
+          "pointer": "/native_service_coverage_only",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ASL1.reconciliation-reviewed.static-20261022",
+      "kind": "static",
+      "scope": "Reviewed171-route composition, disposition of43historical semantic leads:12routes,19embedded scoped helpers and12remaining supplied providers. Unresolved indirect sites remain; static only.",
+      "record": "research/runtime/actor-session-source-results-20261022/reconciliation-reviewed.json",
+      "sha256": "10d99fc5d4ae95901e682494b53a4ea9edf07b234656cb3da7bdf7fd045f66b2",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "ASL1.attempt-catalog.static-20261022",
+      "kind": "static",
+      "scope": "Historical attempts, failures and report aggregation caveat; no current equivalence credit.",
+      "record": "research/runtime/actor-session-source-results-20261022/attempt-catalog-review.json",
+      "sha256": "c850f7441d97aa51348916aa8e1e39bad534b1ecc51615de2c4292a570be6943",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/retained_history_only",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "ASL1.incoming-history.static-20261022",
+      "kind": "static",
+      "scope": "Exact40parent/current hash-bound file receipt checks for fd3e6402..6ace1d8f; zero gaps, no retrospective validation.",
+      "record": "research/runtime/actor-session-source-results-20261022/incoming-history-review.json",
+      "sha256": "5e0f0181af6e1458b9cac3d032f96731fddb26831ecff27c9f574725cd35f317",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/retained_history_only",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
     }
   ],
   "classifications": [],
@@ -321632,6 +322588,156 @@
         },
         {
           "value": "unresolved-transitive-and-indirect-services",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "actor-session-source-routing",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4285840,
+        "relation": "code",
+        "scope": "Native routing for bounded actor pool/source/transition composition; complete=False retains unresolved original planner/task/provider and indirect targets."
+      },
+      "document": "research/runtime/actor-session-source-lifecycle-20261022.md",
+      "complete": false,
+      "scope": "Native routing for bounded actor pool/source/transition composition; complete=False retains unresolved original planner/task/provider and indirect targets.",
+      "entries": [
+        {
+          "value": 4224592,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4224896,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4225056,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4225312,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4225520,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4285840,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4288480,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4289920,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4292192,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4364544,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4370384,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4665600,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4980464,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 4980944,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 5266864,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 5267312,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 5267616,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 5286448,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 5326864,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 5342192,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 5367696,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": 5426144,
+          "behaviors": [
+            "RS.actor-session-source-lifecycle"
+          ]
+        },
+        {
+          "value": "unresolved-owner-task-resource-indirect-targets",
           "behaviors": []
         }
       ]
@@ -337855,6 +338961,22 @@
         "NT7.offline-identities-20261022",
         "NT7.final-offline-identities-20261022"
       ]
+    },
+    {
+      "id": "actor-session-source-owned-20261022",
+      "scope": "Public native actor session construction, activation/source registration, retirement/pruning, slot reuse and repeated close/restart on the same owned storage; named external providers and broader game/live acceptance remain explicit. Includes explicit native ownership refusals and authored/imported provider inputs; it does not establish original scheduling policy.",
+      "level": "headless",
+      "behaviors": [
+        "RS.actor-session-source-lifecycle",
+        "NP.actor-session-source-ownership"
+      ],
+      "tests": [
+        "tools/test-actor-session.py",
+        "tests/actor-session-reference.cpp"
+      ],
+      "evidence": [
+        "ASL1.session.headless-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -338610,8 +339732,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-d3a07cddbb110d685cded79cce054fe55ffff9efbb0fb109a996522a212f0b33.json",
-    "sha256": "d3a07cddbb110d685cded79cce054fe55ffff9efbb0fb109a996522a212f0b33"
+    "path": "research/runtime/coverage/source-index-96e324028b9c28cbf3eae62d8040bdd87598995a863166bf7f09152e39313c3e.json",
+    "sha256": "96e324028b9c28cbf3eae62d8040bdd87598995a863166bf7f09152e39313c3e"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
