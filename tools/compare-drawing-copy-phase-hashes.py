@@ -8,6 +8,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+from coverage_evidence import read_bytes as evidence_bytes,read_json,evidence_digest,write_report
 from drawing_api_session import sha
 from drawing_copy_phase import select, transpose
 from drawing_scene_corpus import asset_name
@@ -18,6 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 def compare_checkpoints(expected, actual):
     """Reject missing identities; retain every failing hash with unknown pixel count."""
     def keyed(rows):
+        for r in rows:
+            if not isinstance(r,dict) or any(type(r.get(k)) is not int or not 1<=r[k]<=(2048 if k in ('width','height') else 0xffffffff) for k in ('ordinal','sequence','canvas','width','height')):
+                raise ValueError('Typed checkpoint identity/extent required')
         keyed_rows = {r['ordinal']: r for r in rows}
         if len(keyed_rows) != len(rows):
             raise ValueError('Duplicate checkpoint identity')
@@ -31,7 +35,7 @@ def compare_checkpoints(expected, actual):
         if any(old[k] != new[k] for k in ('sequence', 'canvas', 'width', 'height')):
             raise ValueError('Checkpoint sequence/canvas/extent changed')
         for digest in (old['original_sha256'], new['sha256']):
-            if len(digest) != 64 or any(c not in '0123456789abcdef' for c in digest):
+            if not isinstance(digest,str) or len(digest) != 64 or any(c not in '0123456789abcdef' for c in digest):
                 raise ValueError('Invalid full-plane SHA256')
         matched = old['original_sha256'] == new['sha256']
         compared.append(dict(ordinal=ordinal, **{k: old[k] for k in ('sequence', 'canvas', 'width', 'height')},
@@ -47,19 +51,19 @@ def main():
     a = p.parse_args()
     if a.report.exists():
         p.error('Refusing evidence overwrite')
-    raw, template_raw, plan_raw = a.reference.read_bytes(), a.template.read_bytes(), a.plan.read_bytes()
+    raw, template_raw, plan_raw = (evidence_bytes(p) for p in (a.reference,a.template,a.plan))
     ref, template, plan = json.loads(raw), json.loads(template_raw), json.loads(plan_raw)
-    claims = json.loads(a.claims.read_bytes())
+    claims = read_json(a.claims)
     if (not ref['success'] or not ref['normal_original_quit_verified'] or template['native_exit'] or
             template['reference']['sha256'] != sha(raw) or template['replay_order_changed'] or
             template['original_pixels_used_as_native_inputs'] or not plan['success'] or
             plan['reference']['sha256'] != sha(raw) or plan['original_pixels_used_as_native_inputs']):
         raise ValueError('Completed default template and exact metadata-only plan required')
     sources = claims['sources']
-    if any(sha((ROOT / n).read_bytes()) != h for n, h in sources.items()):
+    if any(evidence_digest(ROOT / n) != h for n, h in sources.items()):
         raise ValueError('Prospective source changed')
     binding_path = Path(plan['bindings']['path'])
-    binding_raw = (binding_path if binding_path.is_absolute() else ROOT / binding_path).read_bytes()
+    binding_raw = evidence_bytes(binding_path if binding_path.is_absolute() else ROOT / binding_path)
     if sha(binding_raw) != plan['bindings']['sha256']:
         raise ValueError('Plan binding changed')
     bindings = json.loads(binding_raw)
@@ -131,7 +135,7 @@ def main():
                                        'original_raster_results_used_as_native_inputs', 'live_replacement'))):
             raise ValueError('Native closure/input provenance changed')
         comparisons = compare_checkpoints(expected, native['checkpoints'])
-    if sha(a.executable.read_bytes()) != executable_hash or any(sha((ROOT / n).read_bytes()) != h for n, h in sources.items()):
+    if sha(a.executable.read_bytes()) != executable_hash or any(evidence_digest(ROOT / n) != h for n, h in sources.items()):
         raise ValueError('Source/executable changed during execution')
     report = dict(schema=1, success=result.returncode == 0 and len(comparisons) == len(expected) and
                   all(c['full_plane_hash_matches'] for c in comparisons), sources=sources, claims=claims['claims'],
@@ -144,9 +148,7 @@ def main():
                   original_game_reexecuted=False, original_manifest_verified_before_after=True,
                   replay_order_changed=True, source_assets=template['source_assets'],
                   scope='Explicit experimental metadata-only COPY phase policy; compare every original checkpoint identity and freshly computed native full-plane SHA256. Original planes externally rehashed, never native inputs. No duplicate native checkpoint plane dumps; hash mismatches remain failures with pixel count unknown, never zero. All checkpoint denominators retained, no general ordering/ownership/live replacement or whole journey closure.')
-    with a.report.open('x') as out:
-        json.dump(report, out, indent=2)
-        out.write('\n')
+    write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode())
     print(json.dumps(dict(success=report['success'], compared=len(comparisons),
                          failed=sum(not c['full_plane_hash_matches'] for c in comparisons), native_exit=result.returncode)))
 

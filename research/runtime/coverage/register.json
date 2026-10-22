@@ -41755,7 +41755,12 @@
         "tests/displacement-linear-test.cpp",
         "tests/other-writer-atomic-test.cpp",
         "tests/canvas-sequence-test.cpp",
-        "tools/test-rendering-medium.py"
+        "tools/test-rendering-medium.py",
+        "tools/test-rendering-twelfth-ten.py",
+        "tools/rendering_twelfth_controls.py",
+        "tests/test-rendering-twelfth-ten.py",
+        "tests/rendering-twelfth-ten/CMakeLists.txt",
+        "tests/rendering-twelfth-linear.cpp"
       ],
       "documents": [
         "research/runtime/public-resident-world.md",
@@ -41763,7 +41768,8 @@
         "research/runtime/public-displacement-linear-after-shadow-20261011.json",
         "research/runtime/public-displacement-after-minimap-20261011.json",
         "research/runtime/public-displacement-master-final-20261011.json",
-        "research/runtime/rendering-medium-fixes-20261019.md"
+        "research/runtime/rendering-medium-fixes-20261019.md",
+        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md"
       ],
       "validation_dependencies": [
         "compat/legacy/world-rolling/CMakeLists.txt",
@@ -41791,11 +41797,12 @@
         "MEDIUM05.native-controls-20261020",
         "MEDIUM05.selected-original-leaves-20261020",
         "MEDIUM07.native-controls-current-20261020",
-        "MEDIUM07.selected-original-leaves-current-20261020"
+        "MEDIUM07.selected-original-leaves-current-20261020",
+        "NT12.native-controls-20261022"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -41805,7 +41812,8 @@
         "entry": "RS.displacement-linear-stride"
       },
       "remaining_gaps": [
-        "2026-10-19 Medium review: a deterministic high-water scratch regression exposed an incorrect native finite-edge sample bound. The shader now uses logical canvas height; fresh bounded controls and selected isolated original comparisons are recorded separately from full current public gameplay, prior intermittent pixel instability, live branch reachability and sustained 60 FPS. No historical evidence is rewritten or broad stage promoted."
+        "2026-10-19 Medium review: a deterministic high-water scratch regression exposed an incorrect native finite-edge sample bound. The shader now uses logical canvas height; fresh bounded controls and selected isolated original comparisons are recorded separately from full current public gameplay, prior intermittent pixel instability, live branch reachability and sustained 60 FPS. No historical evidence is rewritten or broad stage promoted.",
+        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ]
     },
     {
@@ -41834,7 +41842,12 @@
         "tests/shadow-linear-test.cpp",
         "tests/scene-renderer-test.cpp",
         "tests/other-writer-atomic-test.cpp",
-        "tests/canvas-sequence-test.cpp"
+        "tests/canvas-sequence-test.cpp",
+        "tools/test-rendering-twelfth-ten.py",
+        "tools/rendering_twelfth_controls.py",
+        "tests/test-rendering-twelfth-ten.py",
+        "tests/rendering-twelfth-ten/CMakeLists.txt",
+        "tests/rendering-twelfth-linear.cpp"
       ],
       "documents": [
         "research/runtime/public-resident-world.md",
@@ -41843,7 +41856,8 @@
         "research/runtime/public-shadow-envelope-final-scope-comparison-20261011.json",
         "research/runtime/public-shadow-after-minimap-20261011.json",
         "research/runtime/public-shadow-master-final-20261011.json",
-        "research/runtime/rendering-high-validation-ownership-20261020.md"
+        "research/runtime/rendering-high-validation-ownership-20261020.md",
+        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md"
       ],
       "validation_dependencies": [
         "compat/legacy/world-rolling/CMakeLists.txt",
@@ -41869,11 +41883,12 @@
         "HIGH01.rendering-work-review-20261019",
         "HIGH03.shadow-20261020",
         "HIGH04.staged-source-support-review-20261020",
-        "REVIEW.shared-validation-boundaries-closeout-20261020"
+        "REVIEW.shared-validation-boundaries-closeout-20261020",
+        "NT12.native-controls-20261022"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -41881,7 +41896,10 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-1-20261020",
         "entry": "RS.shadow-linear-stride"
-      }
+      },
+      "remaining_gaps": [
+        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
+      ]
     },
     {
       "id": "NR.minimap-write-candidates",
@@ -44916,7 +44934,8 @@
         "research/runtime/resident-profile-offline-o3-20261011.json",
         "research/runtime/resident-profile-offline-o2-20261011.json",
         "research/runtime/resident-profile-matched-input-comparison-20261011.json",
-        "research/runtime/rendering-low20-20261020.md"
+        "research/runtime/rendering-low20-20261020.md",
+        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -44941,7 +44960,12 @@
         "tests/campaign-pacer-reference.c",
         "tools/test-native-pacer.py",
         "tools/test-rendering-low20.py",
-        "tests/rendering-low20/CMakeLists.txt"
+        "tests/rendering-low20/CMakeLists.txt",
+        "tools/test-rendering-twelfth-ten.py",
+        "tools/rendering_twelfth_controls.py",
+        "tests/test-rendering-twelfth-ten.py",
+        "tests/rendering-twelfth-ten/CMakeLists.txt",
+        "tests/rendering-twelfth-linear.cpp"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -45134,11 +45158,12 @@
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "LOW20.component-controls-20261020"
+        "LOW20.component-controls-20261020",
+        "NT12.native-controls-20261022"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -45148,8 +45173,8 @@
         "Frozen actual-prefix TITAN EGL completed average throughput exceeds60FPS at O2 and O3, with matching terminal hashes and no ordinary readbacks. Pipeline p95 exceeds16.667ms; steady60FPS and public gameplay are not proven. Matching97 compiled source hashes and O2 settings still leave backend/context/UI/original/capture/report workload differences; causal attribution remains pending.",
         "Original paired pacing and millisecond residual observations do not establish universal20Hz simulation behavior. Preserve selected50ms target; presentation/original-work attribution, crowded/other-scene workloads and safe60FPS gameplay remain outstanding.",
         "CPU symbolization is deferred until campaign cleanup; fresh execution of that deferred sampling branch is pending. Growing diagnostic JSON publication every64 Worlds remains outside stage timing and unoptimized.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
-        "Storage automation emits an empty steps array; its requested minimum_fps does not exercise the ordinary smoke flow worst-window cadence validator. The successful480-World storage journey is functional/resource evidence, not a new per-window paint-rate or sustained hardware pass."
+        "Storage automation emits an empty steps array; its requested minimum_fps does not exercise the ordinary smoke flow worst-window cadence validator. The successful480-World storage journey is functional/resource evidence, not a new per-window paint-rate or sustained hardware pass.",
+        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-5-20261020",
@@ -45358,7 +45383,8 @@
       "documents": [
         "research/runtime/resident-drawing-history-gap.md",
         "research/runtime/rendering-tranche1-execution-20261019.json",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/render/lock_lifecycle.h",
@@ -45368,7 +45394,12 @@
       ],
       "tests": [
         "tests/resident-bind-admission.c",
-        "tools/test-resident-bind-admission.py"
+        "tools/test-resident-bind-admission.py",
+        "tools/test-rendering-twelfth-ten.py",
+        "tools/rendering_twelfth_controls.py",
+        "tests/test-rendering-twelfth-ten.py",
+        "tests/rendering-twelfth-ten/CMakeLists.txt",
+        "tests/rendering-twelfth-linear.cpp"
       ],
       "validation_dependencies": [
         "protocols/generate.py",
@@ -45510,17 +45541,19 @@
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
         "CRIT20.review-20261019",
-        "CRIT20.publication-after-exit-20261019"
+        "CRIT20.publication-after-exit-20261019",
+        "NT12.native-controls-20261022"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Final-header controlled PE32 publication delay avoided with rebuilt identical DLL, owned FIFO and shutdown preserved; ordinary TITAN public camera/menu/Quit passes19FPS and7284balanced Worlds with no GAP. Instrumented capture/performance overload remains unresolved. No-worker/legacy fallback and failed-join flag lifetime reviewed; arbitrary OS stalls, driver equivalence and full lifecycle/refusal matrix remain unproven."
+        "Final-header controlled PE32 publication delay avoided with rebuilt identical DLL, owned FIFO and shutdown preserved; ordinary TITAN public camera/menu/Quit passes19FPS and7284balanced Worlds with no GAP. Instrumented capture/performance overload remains unresolved. No-worker/legacy fallback and failed-join flag lifetime reviewed; arbitrary OS stalls, driver equivalence and full lifecycle/refusal matrix remain unproven.",
+        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -45717,7 +45750,8 @@
         "research/runtime/scene-production-queue-cleanup-performance-negative-20261012.json",
         "research/runtime/scene-production-prepared-controls-20261012.json",
         "research/runtime/scene-production-prepared-titan-20261012.json",
-        "research/runtime/rendering-low20-20261020.md"
+        "research/runtime/rendering-low20-20261020.md",
+        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/export-scene-production.py",
@@ -45735,7 +45769,12 @@
         "tools/test-native-campaign.py",
         "tests/test-scene-production-decoder.py",
         "tools/test-rendering-low20.py",
-        "tests/rendering-low20/CMakeLists.txt"
+        "tests/rendering-low20/CMakeLists.txt",
+        "tools/test-rendering-twelfth-ten.py",
+        "tools/rendering_twelfth_controls.py",
+        "tests/test-rendering-twelfth-ten.py",
+        "tests/rendering-twelfth-ten/CMakeLists.txt",
+        "tests/rendering-twelfth-linear.cpp"
       ],
       "validation_dependencies": [
         "tools/export-menu-support.py",
@@ -45781,18 +45820,20 @@
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
         "NR.production-refusal-closeout-20261020",
-        "LOW20.component-controls-20261020"
+        "LOW20.component-controls-20261020",
+        "NT12.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Quiet prepared-phase TITAN16extra Worlds match all ordered scene rows and13protected regions;40normal history forwards/40extra skips, no extra forwards/refusal/foreign/critical changes.4620balanced World casting/combat/portrait/Mini/normal Quit journey passes19.29201FPS. Extra production/delivery averages28.67015ms;13/16exceed16.67ms, so60FPS remains a failure budget. Full nested/map/visibility/timer/driver/pixel/UI-cursor-clock and arbitrary pause/network/alternate inputs, sustained independently scheduled production, default safety and original helper completeness are unproved. Earlier Fireball/page-fault/18.55584FPS/scene-equality negatives remain historical, with crash/missing-row causality unproved.",
-        "Wireversion5 controlled44cases/20decoder refusals pass. TITAN16paired consumer intervals average28.67579ms of30.55809ms total, leaving1.88230ms build/surround; protected state and ordered rows match. Full instrumented campaign fails18.68812FPS despite input/flow/normal retirement; formal gameplay checks remain unasserted. Five fresh LOW20 same-process PE32 controls pass success-then-admission-refusal with zero refused-row extra/consumer durations and calls; this closes the diagnostic timing follow-up without renewing original performance acceptance. Sustained scheduling and lower native delivery cost pending."
+        "Wireversion5 controlled44cases/20decoder refusals pass. TITAN16paired consumer intervals average28.67579ms of30.55809ms total, leaving1.88230ms build/surround; protected state and ordered rows match. Full instrumented campaign fails18.68812FPS despite input/flow/normal retirement; formal gameplay checks remain unasserted. Five fresh LOW20 same-process PE32 controls pass success-then-admission-refusal with zero refused-row extra/consumer durations and calls; this closes the diagnostic timing follow-up without renewing original performance acceptance. Sustained scheduling and lower native delivery cost pending.",
+        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-5-20261020",
@@ -51596,7 +51637,8 @@
       "documents": [
         "research/runtime/scene-draw-budget.md",
         "research/runtime/scene-production-repetition.md",
-        "research/runtime/rendering-low20-20261020.md"
+        "research/runtime/rendering-low20-20261020.md",
+        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene-production/draw_budget.h",
@@ -51616,7 +51658,12 @@
         "tests/test-scene-production-decoder.py",
         "tools/test-native-campaign.py",
         "tools/test-rendering-low20.py",
-        "tests/rendering-low20/CMakeLists.txt"
+        "tests/rendering-low20/CMakeLists.txt",
+        "tools/test-rendering-twelfth-ten.py",
+        "tools/rendering_twelfth_controls.py",
+        "tests/test-rendering-twelfth-ten.py",
+        "tests/rendering-twelfth-ten/CMakeLists.txt",
+        "tests/rendering-twelfth-linear.cpp"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -51794,7 +51841,7 @@
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -51815,10 +51862,12 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
         "NR.production-refusal-closeout-20261020",
-        "LOW20.component-controls-20261020"
+        "LOW20.component-controls-20261020",
+        "NT12.native-controls-20261022"
       ],
       "remaining_gaps": [
-        "Final full native19FPS/half-rate gameplay and unchanged19.866Hz advancing simulation pass;296extra draws preserve exact protected states/scenes.24.530WorldFPS/20.423aggregate miss25/20.5experiment gates,4prediction misses remain; uniform60FPS, interpolation, default activation, unclassified module/map/nested/pause/network behavior remain pending."
+        "Final full native19FPS/half-rate gameplay and unchanged19.866Hz advancing simulation pass;296extra draws preserve exact protected states/scenes.24.530WorldFPS/20.423aggregate miss25/20.5experiment gates,4prediction misses remain; uniform60FPS, interpolation, default activation, unclassified module/map/nested/pause/network behavior remain pending.",
+        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-5-20261020",
@@ -52889,7 +52938,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-draw-cost-profiling.md",
-        "research/runtime/rendering-low20-20261020.md"
+        "research/runtime/rendering-low20-20261020.md",
+        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -52900,7 +52950,12 @@
         "tests/render-gpu-timing-test.cpp",
         "tools/profile-native-draw-costs.py",
         "tools/test-rendering-low20.py",
-        "tests/rendering-low20/CMakeLists.txt"
+        "tests/rendering-low20/CMakeLists.txt",
+        "tools/test-rendering-twelfth-ten.py",
+        "tools/rendering_twelfth_controls.py",
+        "tests/test-rendering-twelfth-ten.py",
+        "tests/rendering-twelfth-ten/CMakeLists.txt",
+        "tests/rendering-twelfth-linear.cpp"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -53095,7 +53150,7 @@
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
@@ -53113,12 +53168,14 @@
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "LOW20.component-controls-20261020"
+        "LOW20.component-controls-20261020",
+        "NT12.native-controls-20261022"
       ],
       "remaining_gaps": [
         "Current TITAN EGL128World/256redraw controls pass; publiczink/GLXGPU attribution, measured optimization, current full gameplay/60FPS and original/shared-source equivalence remain pending. Earlier compiler-closure and benchmark diagnostic-read accounting refusals stay retained.",
         "Extended2423World public-zink checkpoint comparison fails once with a changed prepared redraw; fresh diagnostic repetition and posthoc EGL hashes pass. Intermittent native pixel instability remains unresolved, not repaired or excused by performance measurements. Later scenes show189median uploads/271draws, versus12/75early; cache pressure is a hypothesis pending controls. CPU samples include excluded diagnostic work; public worker/sharing/UI/scanout and60FPS remain pending.",
-        "Integration with master startup changes 40b6ac2a/9e074d4e: historical paired replay and full gameplay source closures are stale at apps/qt-shell/main.cpp, tools/menu-game-runner.py and tools/prepare-menu-observer.py. Their recorded hashes are preserved. Renderer/cache implementation sources are unchanged; fresh merged launcher/gameplay execution is pending. Historical live_observation status does not assert fresh current-code validation."
+        "Integration with master startup changes 40b6ac2a/9e074d4e: historical paired replay and full gameplay source closures are stale at apps/qt-shell/main.cpp, tools/menu-game-runner.py and tools/prepare-menu-observer.py. Their recorded hashes are preserved. Renderer/cache implementation sources are unchanged; fresh merged launcher/gameplay execution is pending. Historical live_observation status does not assert fresh current-code validation.",
+        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-5-20261020",
@@ -65882,7 +65939,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-world-owner-costs.md",
-        "research/runtime/rendering-low20-20261020.md"
+        "research/runtime/rendering-low20-20261020.md",
+        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "compat/legacy/world_rolling_session.cpp",
@@ -65898,7 +65956,12 @@
         "tools/profile-native-world-owner.py",
         "tools/test-rendering-low20.py",
         "tests/rendering-low20/CMakeLists.txt",
-        "tests/rendering-low-owner-profile.cpp"
+        "tests/rendering-low-owner-profile.cpp",
+        "tools/test-rendering-twelfth-ten.py",
+        "tools/rendering_twelfth_controls.py",
+        "tests/test-rendering-twelfth-ten.py",
+        "tests/rendering-twelfth-ten/CMakeLists.txt",
+        "tests/rendering-twelfth-linear.cpp"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -66081,17 +66144,19 @@
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "LOW20.component-controls-20261020"
+        "LOW20.component-controls-20261020",
+        "NT12.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "The recorded128-World TITAN profile-off/on comparison and bounded native owner timings pass; quieter captured prefix is not the busy public workload. Shared-source changes retain historical freshness limitations. Live phase costs, original simulation CPU, GPU busy attribution, scanout and sustained60FPS remain pending."
+        "The recorded128-World TITAN profile-off/on comparison and bounded native owner timings pass; quieter captured prefix is not the busy public workload. Shared-source changes retain historical freshness limitations. Live phase costs, original simulation CPU, GPU busy attribution, scanout and sustained60FPS remain pending.",
+        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-5-20261020",
@@ -92008,13 +92073,19 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-copy-phase-policy.md"
+        "research/runtime/draw02-copy-phase-policy.md",
+        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/compare-drawing-copy-phase-hashes.py"
       ],
       "tests": [
-        "tests/test-drawing-copy-phase-hashes.py"
+        "tests/test-drawing-copy-phase-hashes.py",
+        "tools/test-rendering-twelfth-ten.py",
+        "tools/rendering_twelfth_controls.py",
+        "tests/test-rendering-twelfth-ten.py",
+        "tests/rendering-twelfth-ten/CMakeLists.txt",
+        "tests/rendering-twelfth-linear.cpp"
       ],
       "validation_dependencies": [
         "apps/qt-shell/canvas_producer_main.cpp",
@@ -92097,18 +92168,20 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT12.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Fresh denominator guard passes missing/duplicate/changedcanvas/malformedhash refusals and preserves mismatch pixelcountunknown. Current defaultoff policy comparison matches all2406checkpoint hashes. Prior refusal01is retained. Fresh policy02matches all2400checkpoint hashes, including the two historically failed1600pixel checkpoints; historical default reports remain failed and unchanged. Need further independent cohorts, mismatch localization when needed, original all-writer/view/GPUCPU, cadence/semantic controls and all47/21closures.",
-        "Fresh current policy validates7209checkpoint identities across2403/2406/2400cohorts plus67Auxbuffers, while preserving all original reports/hashes and three separate default CPU failures. This is scoped offline execution only; remaining source/all-writer/view/GPUCPU/route/cadence/semantic boundaries and all47/21closures remain open."
+        "Fresh current policy validates7209checkpoint identities across2403/2406/2400cohorts plus67Auxbuffers, while preserving all original reports/hashes and three separate default CPU failures. This is scoped offline execution only; remaining source/all-writer/view/GPUCPU/route/cadence/semantic boundaries and all47/21closures remain open.",
+        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -93919,7 +93992,8 @@
       "documents": [
         "research/runtime/drawing-physical-frame-admission.md",
         "research/formats/drawing-physical-generation-v1.md",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "apps/drawing-session/main.cpp",
@@ -93929,7 +94003,12 @@
       "tests": [
         "tools/check-drawing-journeys.py",
         "tests/test-drawing-recorded-hardware.py",
-        "tests/test-drawing-physical-generation.py"
+        "tests/test-drawing-physical-generation.py",
+        "tools/test-rendering-twelfth-ten.py",
+        "tools/rendering_twelfth_controls.py",
+        "tests/test-rendering-twelfth-ten.py",
+        "tests/rendering-twelfth-ten/CMakeLists.txt",
+        "tests/rendering-twelfth-linear.cpp"
       ],
       "validation_dependencies": [
         "apps/drawing-session/CMakeLists.txt",
@@ -93971,17 +94050,19 @@
         "CRIT20.review-20261019",
         "CRIT20.storage-physical-negative-20261019",
         "CRIT11.correct-output-commit-20261020",
-        "CRIT12.correct-output-commit-closure-20261020"
+        "CRIT12.correct-output-commit-closure-20261020",
+        "NT12.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Successful current requested-frame painting is required before a widget swap and same-image native ordinal marker are required; older presenters without complete receipts refuse. Paint-only1292pixel failure is retained. Current full software/hardware suite results are retained with unchanged reference ordinals/tolerance/baseline negative. Widget paint/swap does not establish all-context completion, scanout, arbitrary occlusion or complete native replacement."
+        "Successful current requested-frame painting is required before a widget swap and same-image native ordinal marker are required; older presenters without complete receipts refuse. Paint-only1292pixel failure is retained. Current full software/hardware suite results are retained with unchanged reference ordinals/tolerance/baseline negative. Widget paint/swap does not establish all-context completion, scanout, arbitrary occlusion or complete native replacement.",
+        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -316992,6 +317073,105 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NT12.native-controls-20261022",
+      "kind": "native_integration",
+      "scope": "Ten existing bounded rendering/profiling implementation scopes: 33 tests in six suites, 114 recorded commands, 1800 stable prospective inputs. Actual software/TITAN CPU/GPU linear and projected-envelope controls (100 cases/25600 words per backend), 64-World resident and byte/owned-packet profile controls, 64 timestamp pairs and palette-cache controls, compressed capture/whole-tail validation, 65 PE32 state/budget controls, original-clock observation, six actual worker-publication/extent/refusal/FIFO/END controls, three native source-formula COPY cohorts/nine phase checkpoint hashes with three expected default mismatches retained, and three real 800x600 requested-frame paint/swap/same-image ordinal captures. Authored sources only: no original game/artifacts, renewed original comparison, gameplay/performance acceptance, scanout or live replacement.",
+      "record": "research/runtime/rendering-twelfth-ten-results-20261022/controls-05.json",
+      "sha256": "bafa2f61ccd7f0eb361468570a862f0fa8f08cb915f6a38397a31a1fb63688a9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/contracts_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests_run",
+          "equals": 33
+        },
+        {
+          "pointer": "/source_inputs",
+          "equals": 1800
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_comparison_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_gameplay_or_performance_acceptance",
+          "equals": false
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/native/software/linear/compared_words",
+          "equals": 25600
+        },
+        {
+          "pointer": "/native/hardware/linear/compared_words",
+          "equals": 25600
+        },
+        {
+          "pointer": "/native/hardware/gpu/timestamp_pairs",
+          "equals": 64
+        },
+        {
+          "pointer": "/capture_roundtrip/qt_python_bytes_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/capture_roundtrip/excluded_tail_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/pacer/last_error_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/physical/frames",
+          "equals": 3
+        },
+        {
+          "pointer": "/physical/pixels",
+          "equals": 1440000
+        },
+        {
+          "pointer": "/physical/paint_before_swap",
+          "equals": true
+        },
+        {
+          "pointer": "/physical/same_image_markers",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_writers/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -341452,6 +341632,33 @@
       "evidence": [
         "FP1.providers.headless-20261022"
       ]
+    },
+    {
+      "id": "NR.twelfth-ten.native-controls-20261022",
+      "level": "headless",
+      "scope": "Ten existing bounded rendering/profiling implementation scopes: authored CPU/GPU linear and projected-envelope controls on software and actual TITAN, async timestamp/owner/capture controls, 65 PE32 production/budget cases, guarded clock observation, actual worker publication/borrowed-source/FIFO/END controls, source-only native COPY hash cohorts and real X11 requested-frame paint/swap markers. No original game, renewed original comparison, gameplay/performance acceptance, scanout or live replacement.",
+      "behaviors": [
+        "RS.displacement-linear-stride",
+        "RS.shadow-linear-stride",
+        "NR.resident-stage-profiling",
+        "NR.native-draw-cost-profiling",
+        "NR.native-world-owner-costs",
+        "NR.scene-production-repetition",
+        "NR.scene-draw-budget",
+        "NR.callback-publication-isolation",
+        "NR.drawing-copy-phase-hash-comparison",
+        "NR.recorded-physical-frame-admission"
+      ],
+      "tests": [
+        "tools/test-rendering-twelfth-ten.py",
+        "tools/rendering_twelfth_controls.py",
+        "tests/test-rendering-twelfth-ten.py",
+        "tests/rendering-twelfth-ten/CMakeLists.txt",
+        "tests/rendering-twelfth-linear.cpp"
+      ],
+      "evidence": [
+        "NT12.native-controls-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -342287,8 +342494,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-c2bc85e15109fcb23ebbdd4952e8bd5eaa91e9d7177221831e99d7c376f8f5fa.json",
-    "sha256": "c2bc85e15109fcb23ebbdd4952e8bd5eaa91e9d7177221831e99d7c376f8f5fa"
+    "path": "research/runtime/coverage/source-index-facb75eae8f31becad1254afaba87b9b564807e0d8683801fa038937df392add.json",
+    "sha256": "facb75eae8f31becad1254afaba87b9b564807e0d8683801fa038937df392add"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

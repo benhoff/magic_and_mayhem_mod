@@ -27,6 +27,11 @@ def decode(path):
         if budget[:4]!=(1,608,60,50) or budget[23]!=128 or budget[13]>16 or budget[14]>2400 or budget[13]+budget[14]!=h[4]:raise ValueError('Scene budget metadata')
         if sum(budget[24:])!=budget[18] or budget[20]!=budget[18] or budget[19]<budget[18] or budget[19]>600000*budget[18] or (budget[18] and not 1<=budget[21]<=600000):raise ValueError('Scene budget advancing intervals')
         if budget[14] and budget[13]!=16:raise ValueError('Scene budget missing warm audit')
+        bins=budget[24:];maximum=budget[21];fixed=sum(ms*n for ms,n in enumerate(bins[:127]));tail=bins[127]
+        if bins[0] or (not budget[18] and maximum):raise ValueError('Scene budget empty/zero advancing histogram')
+        if tail:
+            if maximum<127 or not fixed+127*(tail-1)+maximum<=budget[19]<=fixed+maximum*tail:raise ValueError('Scene budget saturated histogram sum/max')
+        elif budget[19]!=fixed or maximum!=max((ms for ms,n in enumerate(bins) if n),default=0):raise ValueError('Scene budget exact histogram sum/max')
     end=at+h[4]*160+h[12]*32
     if end>len(data):raise ValueError('Scene production records truncated')
     rows=list(struct.iter_unpack('<40I',data[at:at+h[4]*160]));at+=h[4]*160
@@ -34,10 +39,11 @@ def decode(path):
     for i,r in enumerate(rows):
         if r[0]!=i+1 or r[1]!=h[5] or r[7]>2 or r[8]>STATE_MAX or r[9]>STATE_MAX or any(r[34 if h[2]==1 else 37 if h[2]<5 else 40:]):raise ValueError('Scene production row')
         if h[2]>=5 and ((r[37]|r[38]<<32)>(r[14]|r[15]<<32) or r[39]>r[16]):raise ValueError('Scene production consumer timing')
+        if (bool(r[25])!=bool(r[11]) or (r[25] and (r[25] not in REGIONS or r[25]<10 or r[26]>=STATE_MAX or max(r[27:29])>255 or r[27]==r[28])) or (not r[25] and any(r[26:29]))):raise ValueError('Scene production first critical difference')
         if budget and i>=budget[13] and (not 1<=r[22]<=50 or not r[23] or r[23]+3>r[22]):raise ValueError('Scene budget admission exceeds deadline')
     if h[6]!=sum(bool(r[11]) for r in rows) or h[7]<sum(r[7]==2 for r in rows):raise ValueError('Scene production outcome counts')
     for d in diffs:
-        if not 1<=d[0]<=h[4] or d[1] not in REGIONS or d[3]>=d[7] or max(d[4:6])>255 or d[6]!=(d[1]>=10):raise ValueError('Scene production difference')
+        if not 1<=d[0]<=h[4] or d[1] not in REGIONS or d[3]>=d[7] or max(d[4:6])>255 or d[4]==d[5] or d[6]!=(d[1]>=10):raise ValueError('Scene production difference')
     states=[]
     for tag in range(1,h[15]+1):
         if at+16>len(data):raise ValueError('Scene state header truncated')

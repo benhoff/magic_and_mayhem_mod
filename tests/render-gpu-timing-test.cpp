@@ -23,6 +23,10 @@ int main(int argc,char** argv) try {
     refuses([&]{renderer.profileBatch(1,[&]{++executed;});});
     refuses([&]{renderer.profileBatch(0,[&]{++executed;});});
     require(executed==65 && renderer.stats().nativeReadbacks==before,"Overflow changed execution/readback");
+    refuses([&]{renderer.profileBatch(66,[&]{renderer.profileBatch(67,[]{});});});
+    require(renderer.pendingGpuTimings()==64,"Dropped nested profile changed query ring");
+    unsigned untimed=0;require(!renderer.profileBatch(68,[&]{++untimed;}),"Overflow stopped executing after nested refusal");
+    require(untimed==1,"Dropped callback did not execute exactly once");
     QElapsedTimer wait;wait.start();std::uint64_t next=1;
     while(renderer.pendingGpuTimings()){
         for(const auto& t:renderer.pollGpuTimings()){require(t.sequence==next++ && t.timelineMs>=0,"Timestamp order/elapsed");}
@@ -43,7 +47,7 @@ int main(int argc,char** argv) try {
     // Destruction with queued queries must also clean up without polling/waiting.
     {GlBlitter pending;require(pending.profileBatch(1,[]{}),"Pending destruction setup");}
     std::cout<<QJsonDocument(QJsonObject{{"success",true},{"timestamp_pairs",64},{"overflow_executions",1},
-        {"ordinary_readbacks",0},{"diagnostic_readbacks",2},{"words_compared",1024},{"refusals",4},
+        {"ordinary_readbacks",0},{"diagnostic_readbacks",2},{"words_compared",1024},{"refusals",5},
         {"remaining_queries",0},{"remaining_surfaces",0},{"renderer",QString::fromStdString(renderer.driver().renderer)}}).toJson(QJsonDocument::Compact).constData()<<'\n';
     return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

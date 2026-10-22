@@ -47,7 +47,23 @@ int main(int argc,char** argv)try{
    for(auto at:{67,68,83,84})require(actual[at]==0x780f,"Independently expected half-composite changed");
   }
   require(on.completed()==64&&off.completed()==64,"Profiling advanced source history");
+  // The byte-packet and owned-packet entry points must also reset each World.
+  qunsetenv("MNM_WORLD_OWNER_PROFILE");legacy::WorldRollingSession packetOff(renderer,store(root),false,false);
+  qputenv("MNM_WORLD_OWNER_PROFILE","1");legacy::WorldRollingSession packetOn(renderer,store(root),false,false);
+  legacy::WorldRollingSession ownedOn(renderer,store(root),false,false);qunsetenv("MNM_WORLD_OWNER_PROFILE");
+  for(unsigned seq=1;seq<=2;++seq){
+   std::vector<legacy::CanvasProducer> ops;if(seq==1)ops.push_back(create);
+   ops.insert(ops.end(),{fill,entry,raster,draw,checkpoint,returned});
+   const auto bytes=legacy::encodeRollingQueue(ops);const auto stream=legacy::decodeRollingQueue(bytes);
+   const auto expected=packetOff.consume(seq,bytes).pixels;
+   require(packetOn.consume(seq,bytes).pixels==expected&&ownedOn.consumeOwned(seq,stream).pixels==expected,"Packet profiling changed native words");
+   for(const auto* costs:{&packetOn.ownerCosts(),&ownedOn.ownerCosts()}){
+    require(costs->enabled&&costs->totalMs>0&&costs->validationMs<=costs->totalMs,"Missing packet timing parent");
+    require(costs->producerCalls[5]==1&&costs->producerCalls[1]==unsigned(seq==1),"Packet profile accumulated across Worlds");
+   }
+   require(!packetOff.ownerCosts().enabled&&packetOff.ownerCosts().totalMs==0,"Disabled packet profile measured work");
+  }
  }
  require(renderer.stats().surfaces==0,"Profiling retained surfaces");
- std::cout<<"{\"success\":true,\"worlds\":64,\"compared_words\":32768,\"ordinary_readbacks\":0,\"remaining_surfaces\":0}\n";return 0;
+ std::cout<<"{\"success\":true,\"worlds\":64,\"compared_words\":32768,\"packet_worlds\":2,\"packet_entry_points\":2,\"ordinary_readbacks\":0,\"remaining_surfaces\":0}\n";return 0;
 }catch(const std::exception& error){std::cerr<<error.what()<<'\n';return 1;}

@@ -40,6 +40,8 @@ render::Image WorldRollingSession::consume(
     throw std::runtime_error(
         "Rolling renderer session is terminal; create a fresh session");
   try {
+    ownerCosts_={};ownerCosts_.enabled=ownerProfile_;
+    const auto started=ownerProfile_?Clock::now():Clock::time_point{};
     if (completed_ == std::numeric_limits<std::uint64_t>::max() ||
         sequence != completed_ + 1)
       throw std::invalid_argument(
@@ -53,7 +55,10 @@ render::Image WorldRollingSession::consume(
     } else
       ++hits_;
     const auto &stream = *cached_;
-    return consumeStream(sequence, stream, checkpoint, entry);
+    if(ownerProfile_)ownerCosts_.validationMs=elapsed(started);
+    auto result=consumeStream(sequence, stream, checkpoint, entry);
+    if(ownerProfile_)ownerCosts_.totalMs=elapsed(started);
+    return result;
   } catch (...) {
     failed_ = true;
     throw;
@@ -69,7 +74,9 @@ WorldRollingSession::consumeOwned(std::uint64_t sequence,
     const auto start=ownerProfile_?Clock::now():Clock::time_point{};
     validateRollingQueue(stream);
     if(ownerProfile_)ownerCosts_.validationMs=elapsed(start);
-    return consumeStream(sequence, stream, {}, {});
+    auto result=consumeStream(sequence, stream, {}, {});
+    if(ownerProfile_)ownerCosts_.totalMs=elapsed(start);
+    return result;
   } catch (...) {
     failed_ = true;
     throw;

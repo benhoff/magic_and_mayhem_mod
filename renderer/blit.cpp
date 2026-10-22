@@ -738,7 +738,12 @@ bool GlBlitter::profileBatch(std::uint64_t sequence,const std::function<void()>&
     if(!sequence || !operations || p.profiling ||
        std::any_of(p.gpuTimings.begin(),p.gpuTimings.end(),[&](const auto& t){return t.sequence==sequence;}))
         throw std::runtime_error("Invalid GPU timing identity or nested profile");
-    if(p.gpuTimings.size()==64){batch(operations);return false;}
+    if(p.gpuTimings.size()==64){
+        // Dropping timestamps does not permit nested profiling callbacks.
+        p.profiling=true;
+        try{batch(operations);}catch(...){p.profiling=false;throw;}
+        p.profiling=false;return false;
+    }
     bool recorded=false;
     batch([&]{
         p.flushCopies();std::array<GLuint,2> queries{};p.gl.glGenQueries(2,queries.data());

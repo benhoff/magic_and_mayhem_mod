@@ -41,7 +41,7 @@ bool markerMatches(const QImage& image,unsigned width,unsigned height,unsigned o
     for(int bit=0;bit<markerRows;++bit)for(unsigned x=0;x<width;++x){
         const auto* pixel=image.constScanLine(int(height)+bit)+4*x;
         const unsigned expected=((word>>bit)&1)?255:0;
-        if(pixel[0]!=expected||pixel[1]!=expected||pixel[2]!=expected)return false;
+        if(pixel[0]!=expected||pixel[1]!=expected||pixel[2]!=expected||pixel[3]!=255)return false;
     }
     return true;
 }
