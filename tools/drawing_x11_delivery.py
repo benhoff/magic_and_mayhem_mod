@@ -7,13 +7,18 @@ def decode_delivery(raw,complete=True):
  if len(raw)<64 or (len(raw)-64)%96 or len(raw)>64+65536*96:raise ValueError('Incomplete X11 envelope')
  h=struct.unpack_from('<16I',raw)
  if raw[:8]!=b'MNMX1101' or (h[2] not in (1,2,3) or h[3:5]!=(96,65536)) or any(h[5:]):raise ValueError('Unsupported X11 header')
- rows=list(struct.iter_unpack('<24I',raw[64:]));calls={};entries=Counter();results=[]
+ rows=list(struct.iter_unpack('<24I',raw[64:]));calls={};entries=Counter();results=[];previous_time=0
  for r in rows:
   phase,identity,method,pid,tid=r[:5]
   if phase not in (1,2) or not identity or method not in METHODS or method==10 and h[2]<2 or method==11 and h[2]<3 or not pid or not tid or any(r[17:]):raise ValueError('Invalid X11 record identity/reserved fields')
   if method==10 and (not 1<=r[10]<=16 or any(r[11:17]) or r[7]):raise ValueError('Invalid GLX alias/void result metadata')
   if method==11 and (not 1<=r[9]<=256 or not 1<=r[10]<=256 or not 1<=r[11]<=16 or any(r[12:17]) or r[7]>1):raise ValueError('Invalid EGL local handle/alias/Boolean metadata')
   key=(pid,identity);time=r[5]|r[6]<<32
+  # CLOCK_MONOTONIC is sampled under the shared journal flock.
+  if time<previous_time:raise ValueError('X11 journal clock regressed')
+  previous_time=time
+  unused={1:(16,),5:(14,15,16),6:(11,12,13,14,15,16),7:(15,16),8:tuple(range(9,17)),9:tuple(range(10,17))}
+  if any(r[index] for index in unused.get(method,())):raise ValueError('X11 unused argument metadata')
   if phase==1:
    if key in calls or r[7]:raise ValueError('Duplicate X11 entry or premature result')
    calls[key]=r;entries[pid]+=1

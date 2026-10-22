@@ -7,7 +7,8 @@ from drawing_wine_lifetime import decode
 class LifetimeIndex:
     def __init__(self, data):
         decode(data)
-        self.last_prefix=(len(data)-64)//96
+        # A closed terminal cannot be an observed submission-entry prefix.
+        self.last_prefix=(len(data)-64)//96-1
         self.transitions={}
         for row in struct.iter_unpack('<24I',data[64:]):
             if row[1]!=2:continue

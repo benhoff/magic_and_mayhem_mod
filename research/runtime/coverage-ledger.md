@@ -20951,3 +20951,7 @@ specifications become visible, with 124 supplied ends across the composed harnes
 Actual palette/file/profile/subtype/task/platform providers, planner cadence,
 installed-session acceptance, incomplete indirect targets, malformed CRT/SEH and
 live/physical driver behavior remain open. The Critical umbrella stays partial.
+
+## Tenth rendering batch — display and source observers (2026-10-22)
+
+[Ten implementation closeouts](rendering-tenth-ten-closeouts-20261022.md) finish X11/GLX/EGL delivery metadata, post-EGL viewport witnesses, Wine submission observation/generations, CPU source bytes, readonly leases, held snapshots and auxiliary readback. Fresh final `NT10.observer-final-20261022` passes 65 tests/12 suites and 70 native/build/control commands with 642 stable prospective inputs. Four actual private 800×600 post-EGL root witnesses, exact provider aliases, protected-write refusal and 256 auxiliary attempts/247 images/9 refusals are verified. Registered rendering partials fall 76→66; original comparison, complete routes/backing ownership, scanout, semantic journeys and live replacement remain independent. Failed host setup attempts remain in SQLite. Incoming `d48226f4..c6068e97` has 44 exact file receipt checks/six changed evidence records with no gaps, and integration preserves every executed input/contract.

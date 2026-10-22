@@ -7,12 +7,13 @@ def decode(data):
     if len(data)<192 or len(data)>64+4097*128 or (len(data)-64)%128:raise ValueError('Sourcelease envelope')
     h=struct.unpack_from('<16I',data)
     if data[:8]!=b'MNMSLS01' or h[2:6]!=(1,128,0x40209ca7,4096) or any(h[6:]):raise ValueError('Sourcelease header')
-    rows=list(struct.iter_unpack('<32I',data[64:]));pending={};leases=set();calls=[]
+    rows=list(struct.iter_unpack('<32I',data[64:]));pending={};leases=set();calls=[];seen=set()
     if rows[-1][1]!=4 or any(r[1]==4 for r in rows[:-1]):raise ValueError('Sourcelease terminal')
     for ordinal,r in enumerate(rows[:-1],1):
         if r[0]!=ordinal or r[1] not in (1,2) or not r[2] or not r[3] or any(r[8:16]):raise ValueError('Sourcelease identity/reserve')
         if r[1]==1:
-            if r[2] in pending:raise ValueError('Duplicateleaseentry')
+            if r[2] in seen:raise ValueError('Duplicateleaseentry')
+            seen.add(r[2])
             accepted=bool(r[6]&0x80000000)
             if accepted:
                 if r[7]!=(r[6]&0x7fffffff) or not r[7] or r[7] in leases or r[16:18]!=(64,1) or r[18]!=19 or r[21] or r[29]:raise ValueError('Leaseacceptedmetadata')

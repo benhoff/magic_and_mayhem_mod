@@ -6,6 +6,7 @@ import struct
 from drawing_api_session import sha
 from drawing_x11_delivery import decode_delivery
 from drawing_delivery_timing import capture_span
+from drawing_observed_inputs import regular_bytes
 def decode_request(raw):
  if len(raw)!=128 or raw[:8] not in (b'MNMEGL01',b'MNMEGL02'):raise ValueError('Invalid EGL physical request')
  r=struct.unpack('<32I',raw)
@@ -39,14 +40,15 @@ def analyze_egl_physical(directory,peer_path):
   if f.get('clock_domain')!='linux_CLOCK_MONOTONIC' or first[0]<clock or first[1]>second[0] or clock<c['return_ns']:raise ValueError('EGL physical clock/order mismatch')
   ack=evidence_bytes(root/f'egl-physical-ack-{ordinal:06d}.bin')
   if ack!=b'MNMEACK1'+struct.pack('<2I',ordinal,r[7]):raise ValueError('EGL physical ACK changed')
-  name=f'egl-physical-oracle-{ordinal:06d}.rgba';plane=evidence_bytes(root/name)
+  name=f'egl-physical-oracle-{ordinal:06d}.rgba';plane=regular_bytes(root/name,r[14]*r[15]*4)
   if len(plane)!=r[14]*r[15]*4 or f.get('path')!=name or f.get('sha256')!=sha(plane) or f.get('request_sha256')!=sha(raw) or f.get('stable_double_capture') is not True:raise ValueError('EGL physical plane/hash mismatch')
   previous=clock
   for index,sample in enumerate(f.get('settling_samples',[]),1):
-   path=f'egl-physical-transient-{ordinal:06d}-{index:02d}.rgba';span=capture_span(sample['capture']);data=evidence_bytes(root/path)
+   path=f'egl-physical-transient-{ordinal:06d}-{index:02d}.rgba';span=capture_span(sample['capture']);data=regular_bytes(root/path,len(plane))
    if sample['ordinal']!=ordinal or sample['sample']!=index or sample['path']!=path or sha(data)!=sample['sha256'] or len(data)!=len(plane) or span[0]<previous or span[1]>first[0]:raise ValueError('EGL settling sample changed')
    previous=span[1];transient_names.add(path);transient_bytes+=len(data)
   result.append(dict(**identity,path=name,sha256=sha(plane),first_capture=f['first_capture'],second_capture=f['second_capture'],source_inputs_bound=False,coherent_presented_frame=False))
+ if closed[5]!=result[-1]['entry']:raise ValueError('EGL close marker differs from last witnessed swap')
  if seen!=set(calls) or len(pids)!=1 or len(versions)!=1 or (versions=={1} and len(threads)!=1):raise ValueError('Incomplete/competing successful EGL swap witnesses')
  if len(list(root.glob('egl-physical-transient-*.rgba')))!=len(transient_names) or peer.get('transient_bytes')!=transient_bytes or transient_bytes>peer['transient_byte_budget']:raise ValueError('EGL transient accounting mismatch')
  return dict(schema=1,success=True,boundary='observed_post_egl_return_physical',frames=result,pixels=sum(f["width"]*f["height"] for f in result),delivery_sha256=delivery['sha256'],transient_bytes=transient_bytes,original_pixels_used_as_native_inputs=False,all_physical_changes_captured=False,all_global_presentation_routes_observed=False,source_inputs_bound=False,scanout_established=False,complete_presented_journey=False)

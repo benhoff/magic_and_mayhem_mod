@@ -2,11 +2,12 @@
 import hashlib
 from pathlib import Path
 import struct
+from drawing_observed_inputs import regular_bytes
 
 
 def analyze(directory):
     directory = Path(directory)
-    raw = (directory / 'aux-save-readback.bin').read_bytes()
+    raw = regular_bytes(directory / 'aux-save-readback.bin',64+257*256)
     if len(raw) < 320 or (len(raw) - 64) % 256 or len(raw) > 64 + 257 * 256:
         raise ValueError('Incomplete auxiliary readback envelope')
     h = struct.unpack_from('<16I', raw)
@@ -17,6 +18,7 @@ def analyze(directory):
     if rows[-1][1] != 4 or any(r[1] != 1 for r in rows[:-1]):
         raise ValueError('Missing/early auxiliary readback terminal')
     samples, images, refused = [], [], 0
+    entries=set()
     for ordinal, r in enumerate(rows, 1):
         if r[0] != ordinal or not r[3]:
             raise ValueError('Invalid auxiliary row identity')
@@ -26,6 +28,8 @@ def analyze(directory):
                 or r[8] > 9 or any(r[62:]) or r[9:12] not in
                 ((1, 0, 0), (1, 1, 0), (1, 1, 1))):
             raise ValueError('Invalid auxiliary diagnostic/call accounting')
+        if r[2] in entries:raise ValueError('Duplicate auxiliary API sample')
+        entries.add(r[2])
         p = r[24:56]
         if (p[0:2] != (64, 1) or p[16:18] != (64, 1) or
                 p[2] & 31 != 19 or p[18] & 31 != 19 or p[6:9] != (5, 40, 40)
@@ -47,7 +51,7 @@ def analyze(directory):
                     or r[56] & 31 != 19 or r[59] != 5 or r[60] != p[10]):
                 raise ValueError('Invalid mapped-view auxiliary oracle')
             name = f'aux-save-oracle-{r[15]:06d}.565'
-            data = (directory / name).read_bytes()
+            data = regular_bytes(directory / name,3200)
             if len(data) != 3200:
                 raise ValueError('Auxiliary pixel extent changed')
             images.append(dict(ordinal=r[15], path=name, sha256=hashlib.sha256(data).hexdigest()))
