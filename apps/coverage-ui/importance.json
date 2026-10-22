@@ -25954,16 +25954,17 @@
             "remaining_at_review": "Broader input routes, semantic journeys and unobserved actions remain outside this diagnostic contract.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "Applied menu entry/return journals and request identities are implemented; rejected and unfinished dispatches remain explicit.",
+              "current_state": "Applied menu entry/return journals and request identities are implemented; rejected and unfinished dispatches remain explicit. Eleventh batch adds current typed identity/prefix guards and source-bound native refusal controls with the linked shared regression runner.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Recorded bounded component controls PASS in LOW20 on its pinned source snapshot; authored Python/PE32/native and NVIDIA EGL checks remain separate from complete original/live/captured-hardware acceptance. The subsequent minimap source-selection CLI change is accounted separately without refreshing that result.",
+              "validation_summary": "Recorded bounded component controls PASS in LOW20 on its pinned source snapshot; authored Python/PE32/native and NVIDIA EGL checks remain separate from complete original/live/captured-hardware acceptance. The subsequent minimap source-selection CLI change is accounted separately without refreshing that result. Fresh NT11 passes 107 tests/16 suites, 105 recorded commands and 951 stable prospective inputs for the ten bounded implementation contracts, including this task. Historical broader original/acceptance validation and its source hashes are retained; adding current test/document links does not refresh older execution.",
               "acceptance": "pending",
               "acceptance_summary": "Broader input routes, semantic journeys and unobserved actions remain outside this diagnostic contract.",
               "evidence": [
                 "LOW20.component-controls-20261020",
                 "NR.drawing-actions.original-20261011",
-                "RREC02.rendering-contract-reconciliation-20261019"
+                "RREC02.rendering-contract-reconciliation-20261019",
+                "NT11.source-observers-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -26060,15 +26061,134 @@
                 "tools/prepare-scene-observer.py": "81bd4e6c11e68c662aa9cadf4506d12a61661e39fa226e3b790e3568eb5e957e",
                 "tools/scene-game-runner.py": "d62c2bb8e9dbff679cce4f604b8ab18c053af882764244da0412646677f5d679",
                 "tools/test-menu-observer.py": "f5f45ccbabfa4d5f34a4644f34a76f89e588a8beac54d53753a20de83152a3f2",
-                "tools/test-rendering-low20.py": "a1523fcdc95d8452713dbc1b1d36e1278fec278900781974452542a52134f050"
-              }
+                "tools/test-rendering-low20.py": "a1523fcdc95d8452713dbc1b1d36e1278fec278900781974452542a52134f050",
+                "research/runtime/rendering-eleventh-ten-closeouts-20261022.md": "e34d610a9d310834203928d454f0176d962257d030b480ba55d1125d871e3f3d",
+                "tests/drawing-menu-action-observation-test.c": "6838049346d149a508a29a8bfde12ac717f11cf958bd0b49c5759d320729150c",
+                "tests/test-rendering-eleventh-ten.py": "5fca1f1b19817cd6e9e96f1d25799d92f8f93a8b6ebb1bcb2cbd2aa475fd919a",
+                "tools/test-rendering-eleventh-ten.py": "530e4b35710adcd900c1c1e07707ca1fee7beefe969f243fd7083ba75fe13ba3"
+              },
+              "reviewed_commit": "7071d81f2360e2e01e7207a14a01a5dd3cc72b03",
+              "review_reason": "Append reviewed test/document links required by the current registered task; preserve prior work review and every historical source fingerprint. The native source closure and claim fingerprints are unchanged."
             },
             "execution_result": {
               "outcome": "PASS",
               "scope_label": "Component controls",
               "report": "research/runtime/rendering-low20-controls-20261020.json",
               "note": "Diagnostic component controls passed on the recorded snapshot. Complete contract/live acceptance remains separate; the later minimap source-selection option and historical performance/pixel-instability failures are accounted explicitly."
-            }
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Applied menu entry/return journals and request identities are implemented; rejected and unfinished dispatches remain explicit.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded bounded component controls PASS in LOW20 on its pinned source snapshot; authored Python/PE32/native and NVIDIA EGL checks remain separate from complete original/live/captured-hardware acceptance. The subsequent minimap source-selection CLI change is accounted separately without refreshing that result.",
+                "acceptance": "pending",
+                "acceptance_summary": "Broader input routes, semantic journeys and unobserved actions remain outside this diagnostic contract.",
+                "evidence": [
+                  "LOW20.component-controls-20261020",
+                  "NR.drawing-actions.original-20261011",
+                  "RREC02.rendering-contract-reconciliation-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Capture current menu callbacks through normal Quit; require matched request, action, screen, generation, argument and thread identities. Verify camera outcomes from independent minimap and World records, never an ACK alone."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Broader input routes, semantic journeys and unobserved actions remain outside this diagnostic contract."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/menu/drawing_action.h",
+                    "line": 15,
+                    "text": "static void drawing_action_record(u32 request,u32 action,u32 screen,u32 generation,u32 argument,u32 phase,u32 status){"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/qt-shell/window_host.cpp": "811b5c9b361b8014c4b8c4486634299b7e1fdc44df50b6d7bda36bfb7ebea5ba",
+                  "apps/qt-shell/window_host.hpp": "7357751429aff4692145f53bc4bc7a7454cb41c4d16006ea5f3b0ebbaadbc46b",
+                  "research/formats/drawing-publication-v1.md": "b8230cc9d4510b64b5d30adc87e0b9cdec6a50b98f63af39a4cf55be1dd68b44",
+                  "research/runtime/draw02-publication.md": "b85de0675c1eb542c8e31d4ffa693a71c72ed8fa01c8818e7270c1cec004e9ec",
+                  "research/runtime/rendering-low20-20261020.md": "25aea8449d8bfd60908e7db83e2fb6b3c4b267f2ee769c355d54cea3e3ebcad6",
+                  "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+                  "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+                  "runtime/menu/campaign_defeat.h": "819bb10f479e4423f1f26d3d191dbca6ccf286f64511639a5281f3fc2e8cc4f6",
+                  "runtime/menu/campaign_gameplay_observe.h": "6969d3d3ccd673045dd8122ed535891b451572f37ef3ba594c4b882965d30a1c",
+                  "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+                  "runtime/menu/campaign_observe.h": "8f7a286ade7262354ab99f4de8a6cd33bec70b0b95f067eb726318ae2c6130ee",
+                  "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+                  "runtime/menu/campaign_spell_observe.h": "1020a7a459db112a3521ea6859061914a78ceda776d0f2a5aa75d7b5d3a00f7a",
+                  "runtime/menu/campaign_world_observe.h": "16b5d6c8f84c9ab9e804dd6415ecb01c5f719f777fb6610a0fc589726f15a2f2",
+                  "runtime/menu/channel.h": "3b707b318b56b9c451f442b68d32cff848f6f28a90df5c1791f6a8272889e18b",
+                  "runtime/menu/channel_selftest.h": "665a67108bd6ae5d404024530396b70e975724a33e9fa2571a8a00fb46e75740",
+                  "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c",
+                  "runtime/menu/contract_selftest.c": "35306dd4540f016158eb5c227e8ac1688b681c6d523adf5a34d9dc344f6acb8e",
+                  "runtime/menu/drawing_action.h": "9d75c9ac70f01cb2a90d8b25897e134681c0e0f7c9a34b7563bcd36f9375d5c5",
+                  "runtime/menu/drawing_actor_latches.h": "0623f0ad98ecac0743a1fb0203e3c59c2711a0bb9dfcf0f5833b628fb07d592f",
+                  "runtime/menu/mini.h": "8a8a10b06bcb930841433cc5668bf8bc402e4606ce3a9e226a4b911eb0cf8993",
+                  "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+                  "runtime/menu/observer.c": "4604add7eee37c8a27844252745a4c30f1791dceb802f2c0562c89d4f68703fd",
+                  "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+                  "runtime/menu/preferences_display.h": "60a7f61c7bd734b017c831c6ee3159cd751bf9b2df4a2c1e17b103628872a2cc",
+                  "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+                  "runtime/menu/region_entry.h": "ec5200152e39142157a995bf8fc655cd2a573ccda9de04523374c77c2f1e0f92",
+                  "runtime/menu/region_entry_observe.h": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+                  "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+                  "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+                  "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+                  "runtime/menu/spells.h": "b275e89df88841fedc5e2215ffd97bb4c4250c8f4128a0526197d91caeac1718",
+                  "runtime/scene/canvas_producers.S": "d565108a43b56c46cccb5c0e55c9d001b7514e5bb16391312482b5fb6668fa4c",
+                  "runtime/scene/canvas_producers.c": "7c320b307325418c66f598dee710e192f54e5c67ba926816c79b46c5b8a81fa3",
+                  "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+                  "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+                  "runtime/scene/drawing_publication.S": "5c38a4aeaa7457e720f3043bd3a3c83dab7c5b5fd8a18061d576d31c6cbf11d4",
+                  "runtime/scene/drawing_publication.h": "f2311cb7a86fc842beba616cef943285b3d914b172cba98bb106a312db3299e6",
+                  "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+                  "runtime/scene/glyph_entry.S": "9de083ae284419c71a47a99a4b88e1e192f9eef3c92b17fa16c0dcf0779b778e",
+                  "runtime/scene/glyph_leave.S": "dd4657c0638ab9426386197617132b65f25dc0aed44a1b9e097afd5138c617e9",
+                  "runtime/scene/glyph_live.c": "787dde08768df8e77b246ebacdc0c96d33c286042d467875fef29763cc2031b0",
+                  "runtime/scene/glyph_live.h": "1dca659a8b4903e66924f8ba14f4334d022e1a5b1363a3e330a0ccdadfe4b645",
+                  "runtime/scene/glyph_route.c": "cdc2b537e1ba7a16412c6d26524ccf0b0db8136ede19b7e5e723a80d0b17c2be",
+                  "runtime/scene/glyph_route.h": "84b23b94c20d3761fc5db0566438f8de7e120fa47f85bffeb498dd93e8fc6fb9",
+                  "runtime/scene/kind8_observer.c": "2446b756aa890f91a87fa4ae2d7a434c9f247c43b0ff7fabad994c75fa1f6563",
+                  "runtime/scene/observer.c": "5093ce5713cd437336b197d55a56045a38be4b8d315e80941aa8679f7e387dd8",
+                  "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+                  "runtime/scene/source_pending_policy.h": "7d609ec54a558ac0b189813498bb5a472f266ae2009683fa5c877383883185f9",
+                  "runtime/scene/startup_queue.c": "466d66d8343dbaac7e196129cca7ff0d6a2e8cb60a2c9faed1bb75ee7c96d6a5",
+                  "runtime/scene/word_entry.S": "23d72e078069edba6c1beed0dee47b1f3c8c1faf395bf6f36c9c06b92b450beb",
+                  "runtime/scene/word_route.c": "d0a3ebcaf73d2df6451162dbf7e1aa224612953b4b40514c66cd4ed01acccf55",
+                  "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+                  "runtime/scene/world_entry.S": "48ce2eeaaa4ec8446e7b8804aefb0fa561a8f872a00f41e1e8b32c7500256cf1",
+                  "runtime/scene/world_kinds.h": "dad1ab93f175db036c7b53fb3ee8f4f65259d016ae2ba3627a133e2685f87e4b",
+                  "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+                  "runtime/scene/world_producer_bypass.c": "0fa8a6914e726ca8ff0f55708f6ae5da0a525b494f597bdfe0cf063d5c53dad7",
+                  "runtime/scene/world_raster_batch.c": "451118a97af53719bec458c5b4b7e9fb940aabac9feda0fd0b2edfd50ecb77a0",
+                  "runtime/scene/world_raster_callers.h": "7b1dc71f105a199ceb448b6473d36ff5f62f3286459ec77181cac3c0ced466be",
+                  "runtime/scene/world_stream.c": "0f55cc0856779977a4b4c9a7795e4b5622fa6c16f00db06cc631fd0e12a48a60",
+                  "runtime/scene/world_stream_selftest.c": "2828bc32ae8e1ff3a3675fd11d863d8d73729d07e12f48dc1b173c8b57d6ef29",
+                  "runtime/scene/world_trace.c": "33b0f35a6bb9fdb4f0c013dde4c09fee3a7b8d0ad5a12b8514d7771916877d6a",
+                  "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+                  "tests/minimap-live-input.cpp": "b926d4d658594f438c0bb94efceab0fecb047618dbf9c5fcbcdd2bcb2d21157c",
+                  "tests/minimap-live-input/CMakeLists.txt": "568b999d54711d3ff7a8933e5c52a148f8ed92ec3f7cfeca82dfaee4af397ea0",
+                  "tests/rendering-low20/CMakeLists.txt": "3228daa224071f7294af793f0a9a743cb03f828767122e0f4d6bc0315a83db66",
+                  "tests/test-drawing-publication.py": "3f09eaa683fd14204c477aa49425c1368a7ac1e6e01805090c3a60f9062b5ba1",
+                  "tools/build-menu-observer.py": "0a1f61c92c82d75de509beaa5f03c52780c3a860d1aa4e8b285d424810d6505a",
+                  "tools/build-scene-observer.py": "4bf5a72a89e67328ad56f8a7e7727175800eb2e7afa79ee370ccada0ca1fbcc6",
+                  "tools/capture-scene-game.py": "7fd49113b1761a7706faf82be2d8115079f10bfef3b1bad3822d5bdf6540d21e",
+                  "tools/directplay_dx6_launch.py": "2cc2975990123ace45471bdaef6f87bec10108c08eec499009465c7f85064726",
+                  "tools/drawing_publication.py": "d9e9541184cb1f2383731bfd86a577b649423dac5b2530d140a27ca952f5f6df",
+                  "tools/native_prefix_template.py": "3b7ba11aaf24b04c3033d4c4c9442b855d25356ebb80993dad258aabf0386de7",
+                  "tools/prepare-scene-observer.py": "81bd4e6c11e68c662aa9cadf4506d12a61661e39fa226e3b790e3568eb5e957e",
+                  "tools/scene-game-runner.py": "d62c2bb8e9dbff679cce4f604b8ab18c053af882764244da0412646677f5d679",
+                  "tools/test-menu-observer.py": "f5f45ccbabfa4d5f34a4644f34a76f89e588a8beac54d53753a20de83152a3f2",
+                  "tools/test-rendering-low20.py": "a1523fcdc95d8452713dbc1b1d36e1278fec278900781974452542a52134f050"
+                }
+              }
+            ]
           },
           {
             "behavior": "NR.drawing-fenced-acquisition",
@@ -26764,16 +26884,17 @@
             "remaining_at_review": "Independent simulation timing, all animation controllers, pause/network/alternate policies and60FPS remain unproved.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "Fifteen guarded PE32 observation sites, once-only forwarding, bounded event storage and strict trace refusal are implemented without changing pacing.",
+              "current_state": "Fifteen guarded PE32 observation sites, once-only forwarding, bounded event storage and strict trace refusal are implemented without changing pacing. Eleventh batch adds current typed identity/prefix guards and source-bound native refusal controls with the linked shared regression runner.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Recorded bounded component controls PASS in LOW20 on its pinned source snapshot; authored Python/PE32/native and NVIDIA EGL checks remain separate from complete original/live/captured-hardware acceptance. The subsequent minimap source-selection CLI change is accounted separately without refreshing that result.",
+              "validation_summary": "Recorded bounded component controls PASS in LOW20 on its pinned source snapshot; authored Python/PE32/native and NVIDIA EGL checks remain separate from complete original/live/captured-hardware acceptance. The subsequent minimap source-selection CLI change is accounted separately without refreshing that result. Fresh NT11 passes 107 tests/16 suites, 105 recorded commands and 951 stable prospective inputs for the ten bounded implementation contracts, including this task. Historical broader original/acceptance validation and its source hashes are retained; adding current test/document links does not refresh older execution.",
               "acceptance": "pending",
               "acceptance_summary": "Independent simulation timing, all animation controllers, pause/network/alternate policies and60FPS remain unproved.",
               "evidence": [
                 "LOW20.component-controls-20261020",
                 "NR.engine-cadence-observation.reservation-negative-20261011",
-                "NR.engine-cadence-observation.page-reservation-negative-20261011"
+                "NR.engine-cadence-observation.page-reservation-negative-20261011",
+                "NT11.source-observers-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -26817,15 +26938,80 @@
                 "tools/test-engine-cadence.py": "6bd7494f658387fa509b7e75ae6e662fe20b576e2cfb7548f1156bc8e24d3cfc",
                 "tools/test-native-campaign.py": "7b73601422d0db7cccbc0a37179166bb815369e9338ceaf6968d0c908e7e21ad",
                 "tools/test-rendering-low20.py": "a1523fcdc95d8452713dbc1b1d36e1278fec278900781974452542a52134f050",
-                "tools/trace-engine-cadence.py": "ec2c931c39a512e48ea69f4a69379b827a24737c1abeb5646e88d27dfc24234b"
-              }
+                "tools/trace-engine-cadence.py": "ec2c931c39a512e48ea69f4a69379b827a24737c1abeb5646e88d27dfc24234b",
+                "research/runtime/rendering-eleventh-ten-closeouts-20261022.md": "e34d610a9d310834203928d454f0176d962257d030b480ba55d1125d871e3f3d",
+                "tests/test-rendering-eleventh-ten.py": "5fca1f1b19817cd6e9e96f1d25799d92f8f93a8b6ebb1bcb2cbd2aa475fd919a",
+                "tools/test-rendering-eleventh-ten.py": "530e4b35710adcd900c1c1e07707ca1fee7beefe969f243fd7083ba75fe13ba3"
+              },
+              "reviewed_commit": "7071d81f2360e2e01e7207a14a01a5dd3cc72b03",
+              "review_reason": "Append reviewed test/document links required by the current registered task; preserve prior work review and every historical source fingerprint. The native source closure and claim fingerprints are unchanged."
             },
             "execution_result": {
               "outcome": "PASS",
               "scope_label": "Component controls",
               "report": "research/runtime/rendering-low20-controls-20261020.json",
               "note": "Diagnostic component controls passed on the recorded snapshot. Complete contract/live acceptance remains separate; the later minimap source-selection option and historical performance/pixel-instability failures are accounted explicitly."
-            }
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Fifteen guarded PE32 observation sites, once-only forwarding, bounded event storage and strict trace refusal are implemented without changing pacing.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded bounded component controls PASS in LOW20 on its pinned source snapshot; authored Python/PE32/native and NVIDIA EGL checks remain separate from complete original/live/captured-hardware acceptance. The subsequent minimap source-selection CLI change is accounted separately without refreshing that result.",
+                "acceptance": "pending",
+                "acceptance_summary": "Independent simulation timing, all animation controllers, pause/network/alternate policies and60FPS remain unproved.",
+                "evidence": [
+                  "LOW20.component-controls-20261020",
+                  "NR.engine-cadence-observation.reservation-negative-20261011",
+                  "NR.engine-cadence-observation.page-reservation-negative-20261011"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Renew the bounded original casting/combat/menu/Quit trace; reconcile advancing and non-advancing counter/ANI/scheduler/World windows and retain every overflow, foreign-thread or incomplete-record refusal."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Independent simulation timing, all animation controllers, pause/network/alternate policies and60FPS remain unproved."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/engine-cadence/observer.c",
+                    "line": 46,
+                    "text": "void cadence_record(u32* registers,u32 event){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/engine-cadence-controls-20261011.json": "35fbd1f16f53e67a944dbb1b809082eceec5fbd3c1ae8cdebc58e2f55c91b638",
+                  "research/runtime/engine-cadence-page-reservation-negative-20261011.json": "8c8b19990b8cfd3d9dc3067893a3a1026b4a768937d2a3bdc90393d0a22fdef0",
+                  "research/runtime/engine-cadence-reservation-negative-20261011.json": "fbc87893282fa5b055dcba784bec511be43d653bfa8e6d8340186769441047f6",
+                  "research/runtime/engine-cadence-titan-20261011.json": "02eac5dc10d1b9b7864982cc2977ae8c7a24c021867b62f6a02aa1648259a62f",
+                  "research/runtime/engine-cadence.md": "3d35c612f232725ce6151f6866254354e3521d9ec08d279d4f5f86c93dab8c44",
+                  "research/runtime/rendering-low20-20261020.md": "25aea8449d8bfd60908e7db83e2fb6b3c4b267f2ee769c355d54cea3e3ebcad6",
+                  "runtime/engine-cadence/entry.S": "ac8196eb8e16b17a4ec0ed7c7ab329ca241583bfdec59da0d1e7f69a5bf02473",
+                  "runtime/engine-cadence/observer.c": "43f1f4d8fb91ede4a94ea2402cfffb50e96a9478b959f731e69b24049558dd26",
+                  "runtime/menu/drawing_actor_latches.h": "0623f0ad98ecac0743a1fb0203e3c59c2711a0bb9dfcf0f5833b628fb07d592f",
+                  "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+                  "tests/engine-cadence-reference.S": "86103f28c6a94b9842da3bd2137ad84a4bcafc1b8d5750afe0c577ef0c5f4e9a",
+                  "tests/engine-cadence-reference.c": "c08adfddab6369594471341212c86b8753778296dba964274616bea07858f64f",
+                  "tests/rendering-low20/CMakeLists.txt": "3228daa224071f7294af793f0a9a743cb03f828767122e0f4d6bc0315a83db66",
+                  "tools/build-engine-cadence.py": "8551a3fd055b4d90ccec59813a4af34fa7061ab3947f38584e40d631746f9340",
+                  "tools/build-menu-observer.py": "0a1f61c92c82d75de509beaa5f03c52780c3a860d1aa4e8b285d424810d6505a",
+                  "tools/engine_cadence.py": "ddacaa62712984b7e7d2aa111c0f271089aa80fbfe5a5ca32ab695e955c86d17",
+                  "tools/menu-game-runner.py": "15cb203b04367f3d704e9e6ca58c80e9c3e4ce3d7e3a899aed02453cf404a6bd",
+                  "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+                  "tools/prepare-menu-observer.py": "dad11ce8c37ec8d25d9b488bdf210693a323fd94372360e351dd7358f805dc7c",
+                  "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+                  "tools/test-engine-cadence.py": "6bd7494f658387fa509b7e75ae6e662fe20b576e2cfb7548f1156bc8e24d3cfc",
+                  "tools/test-native-campaign.py": "7b73601422d0db7cccbc0a37179166bb815369e9338ceaf6968d0c908e7e21ad",
+                  "tools/test-rendering-low20.py": "a1523fcdc95d8452713dbc1b1d36e1278fec278900781974452542a52134f050",
+                  "tools/trace-engine-cadence.py": "ec2c931c39a512e48ea69f4a69379b827a24737c1abeb5646e88d27dfc24234b"
+                }
+              }
+            ]
           },
           {
             "behavior": "NR.font-glyph-live-shadow",
