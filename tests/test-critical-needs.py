@@ -145,12 +145,14 @@ class CriticalNeeds(unittest.TestCase):
         # Source drift legitimately routes a row to review without losing its
         # authored primary need or the historical scope decision.
         self.assertEqual(Counter(e['reviewed_primary_need'] for e in result['entries']),
-                         dict(recovery=2, validation=2, acceptance=4)
+                         dict(recovery=2, validation=2, acceptance=2)
         )
-        # Reviewed implementations through6d0dd7bc retain authored
+        # Reviewed implementations throughbf170af0 retain authored
         # validation/acceptance requirements remain; scoped code only removes
         # them from the partial-implementation denominator.
-        recent = {'NR.callback-publication-isolation',
+        recent = {'NR.drawing-storage-session-comparison',
+                  'NR.recorded-hardware-session-parity',
+                  'NR.callback-publication-isolation',
                   'NR.recorded-physical-frame-admission',
                   'NR.external-backing-ownership',
                   'RS.canvas-create-lock', 'RS.canvas-bind-clip', 'RS.canvas-startup-clear',

@@ -91,7 +91,7 @@ class ImportanceTest(unittest.TestCase):
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
         # Reviewed implementations through6d0dd7bc retain original comparison and acceptance separately.
-        self.assertEqual(result['partial_counts'], {1: 4, 2: 1, 3: 3, 4: 34, 5: 8})
+        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 3: 1, 4: 31, 5: 6})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -158,7 +158,8 @@ class TrancheTest(unittest.TestCase):
         tasks = [task for t in plan['tranches'] for task in t['tasks']]
         critical = {e['behavior'] for e in result['entries'] if e['weight'] == 5 and e['implementation'] == 'partial'}
         completed = {task['behavior'] for task in tasks if task['implementation'] == 'scoped'}
-        self.assertEqual(completed, {'NR.canvas-producer-replay', 'NR.world-startup-sequence', 'NR.world-producer-handoff',
+        self.assertEqual(completed, {'NR.drawing-storage-session-comparison', 'NR.recorded-hardware-session-parity',
+                                    'NR.canvas-producer-replay', 'NR.world-startup-sequence', 'NR.world-producer-handoff',
                                     'NP.surface-final-word-read', 'NR.displacement-finite-edge',
                                     'NR.readonly-description-continuity', 'NR.world-source-region-epoch',
                                     'NR.resident-bind-admission', 'NR.resident-command-pressure',
@@ -448,6 +449,8 @@ class TrancheTest(unittest.TestCase):
         completed = {e['behavior'] for e in json.loads(evidence_text(ROOT /
             'research/runtime/coverage/native-implementation-completion-20261020.json'))['entries']
             if e['decision'] == 'scoped_implementation_complete'}
+        completed.update({'NR.directdraw-public-native-menu', 'NR.directdraw-native-opengl-launch',
+                          'NR.storage-session-corpus'})  # bounded implementations inbf170af0
         completed.add('RS.shadow-linear-stride')  # bounded implementation in97c3f5b2
         completed.update({'NR.world_scene', 'NR.terrain_scene', 'NR.wine-private-backing-ownership'})  # implementation in4cd9121f
         unplanned = {'RE.palette-effect-builders', 'RE.terrain-camera-lifecycle',

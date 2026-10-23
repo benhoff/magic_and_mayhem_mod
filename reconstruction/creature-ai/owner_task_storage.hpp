@@ -57,16 +57,24 @@ public:
     explicit OwnerTaskStorage(M& memory) : m(memory) {}
     // 419e40 ignores the old evaluator's contents; this is fresh construction,
     // including fresh heads and shared nil references, rather than a deep copy.
-    U fallback() {
-        U p = m.allocate(0x14b); if (!p) return 0;
-        w(p + 4, 0); w(p + 0x23, ~U(0)); m.set8(p + 0x37, 0);
+    U construct(U size, U kind, U vtable) {
+        U p = m.allocate(size); if (!p) return 0;
+        w(p + 4, kind); w(p + 0x23, ~U(0)); m.set8(p + 0x37, 0);
         for (U o : {0x3bu, 0x3fu, 0x43u}) w(p + o, 0);
         for (U o = 0; o < 60; o += 4) w(p + 0x47 + o, 0);
         tree(p + 0xa4, 0x5faf2c, 24); tree(p + 0xb4, 0x5faf34, 56);
         for (U o : {0xc4u, 0xd4u}) { m.set8(p + o, 0); for(U q : {4u,8u,12u}) w(p+o+q,0); }
         tree(p + 0x101, 0x5faf3c, 24); tree(p + 0x111, 0x5faf44, 56);
         for (U o : {0x121u,0x131u}) { m.set8(p + o,0); for(U q : {4u,8u,12u}) w(p+o+q,0); }
-        w(p, 0x5c53c0); return p;
+        w(p, vtable); return p;
+    }
+    U fallback() { return construct(0x14b, 0, 0x5c53c0); }
+    // 426070 fresh task6 evaluator. Candidate/saved feature vectors begin empty;
+    // source-vector ownership is shared with the normal base destruction path.
+    U task6() {
+        U p=construct(0x1b4,6,0x5c596c);if(!p)return 0;
+        for(U off:{0x15fu,0x17bu}){m.set8(p+off,0);for(U o:{4u,8u,12u})w(p+off+o,0);}
+        return p;
     }
     // 418050 is a base destructor. Caller must unbind and free the task object;
     // the source pointer at+8 is borrowed and is deliberately not followed here.

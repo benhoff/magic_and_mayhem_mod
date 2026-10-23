@@ -21228,3 +21228,35 @@ exceptional providers remain pending. No extra episodes or live credit added.
 ## Sixteenth rendering batch — acquisition, recorded replay and native launch (2026-10-22)
 
 [Ten bounded implementation closeouts](rendering-sixteenth-ten-closeouts-20261022.md) record 98 Python controls, 95 recorded commands and 4960 stable prospective inputs. Full222frame corrected software/NVIDIA comparisons pass while each unchanged238frame baseline retains252mismatching pixels. Actual original32/120/120source acquisition prefixes, authored31-action schedules and verified Quit on both120-return profiles, native512/32history controls, owned standalone/default-native public menu delivery, and128queue live resident acknowledgement/death/fresh recovery retain separate observations. Four distinct session nonces are read-only-accounted against exact raw ready files. Strict physical witness cohorts and compiler-relative source-path guards refuse omissions/duplicates/escape; an owned RandR monitor repairs Qt zero-screen admission on the no-output NVIDIA seat. Functional acknowledgement leaves all measured performance results and default performance gates separate. Rendering implementation partials16→6; original comparison/integration/replacement, global47/21, original ownership/driver, complete gameplay and performance remain independent. Immutable SQLite reports retain both prototype failures and all historical negatives/source hashes. Committed history79694ed5..6d0dd7bc has60exact matching file receipts and no gaps/rewrites.
+
+## Task6 cached-source ownership — OSV1 (2026-10-23)
+
+AI.owner-task6-owned-sources now has scoped original comparison and public-API
+headless integration for426070 fresh construction, cache-hit413330/40f7f0
+copying into owned source vectors through419990/419a10 and42a340 append, real
+4289e0 installation/fresh evaluator, and428b40 completed/expiry retirement
+through418050/407650.255 cached trees and128 installation/retirement cycles
+pass751582 original32/native64/sanitizer checks across96 episodes. Exact owned
+release order, source/child vector lifetimes, borrowed cache cursors/actor canaries,
+source backlinks and shared sentinel conservation agree. Fifteen task tags and
+anonymous source25 have explicit native-zero representation/exclusions.64 first
+object refusals are covered; nested failures and exceptional cleanup are not.
+
+The previous fallback domain is unchanged and freshly agrees3718066 checks as
+OTS1-v4 after sharing construction and exposing the test fixture. Historical
+records retain their original hashes. Incoming f6382e4b..bf170af0 review finds
+184 exact transitions and zero missing/mutated receipts.
+
+The Critical actor/downstream umbrella remains partial. Winner/duration inputs,
+cache-miss construction, nonempty task6 candidate/saved vectors, task body/selection
+composition, other task/provider families, owner accounting producers and original
+World cadence/installed/live acceptance remain separate. Existing isolated
+recoveries retain their own scopes. See owner-source-vector-20261023.md and its
+immutable final3/attempt/static reports. No live replacement or balance credit.
+
+OSV1 final3 additionally recovers4289e0 occupied traversal and428b40 mode3 drain
+on the borrowed friendly source. All141 source bytes match after checked task
+backlink normalization at every install/retirement;36096 extra assertions bring
+the same96 episodes to751582 checks. Earlier final1/final2 claims retain their
+narrower historical source/scope fingerprints. Original and native source cursor
+side effects are now composed for this domain; broader World lifetimes stay open.

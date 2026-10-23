@@ -111,6 +111,7 @@ void seedTree(Storage& s,unsigned task,unsigned off,unsigned global,unsigned siz
   s.set32(head,b);s.set32(head+4,a);s.set32(head+8,c);s.set32(task+off+12,3);
 }
 }
+#ifndef MNM_TASK_STORAGE_FIXTURE
 int main(int argc,char** argv) try {
 #ifdef MNM_BRAIN_REFERENCE
   need(argc==2,"PE");map_image(load(argv[1]));
@@ -146,3 +147,5 @@ int main(int argc,char** argv) try {
   need(!std::memcmp(reinterpret_cast<void*>(0x401000),text.data(),text.size()),"task unchanged original text");
 #endif
 } catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
+
+#endif

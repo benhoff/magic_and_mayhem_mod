@@ -114,3 +114,12 @@ final5 fixes it and agrees3718066 checks. Earlier final1/2/3 and their evidence
 IDs remain historical with their exact source hashes; final5 alone supports
 current full bounded object composition. This does not extend the empty owned
 source-vector domain or claim arbitrary source cursor/World composition.
+
+## Follow-up source-vector scope
+
+The separate [task6 cached-source batch](owner-source-vector-20261023.md) now
+recovers populated owned vectors through real copy/install/normal retirement.
+The fallback domain above remains empty-vector. Fresh OTS1-v4 execution agrees
+3718066 checks after the shared constructor and fixture changes; prior results
+retain their historical fingerprints. Task6 uncached construction and nonempty
+candidate/saved feature-vector lifetimes remain open.
