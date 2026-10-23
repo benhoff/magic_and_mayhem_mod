@@ -21260,3 +21260,22 @@ backlink normalization at every install/retirement;36096 extra assertions bring
 the same96 episodes to751582 checks. Earlier final1/final2 claims retain their
 narrower historical source/scope fingerprints. Original and native source cursor
 side effects are now composed for this domain; broader World lifetimes stay open.
+
+## Generated task6 feature storage — OTF1 (2026-10-23)
+
+AI.owner-task6-generated-feature-ownership now has scoped original comparison
+and bounded public-API headless integration: actual426070 task factories,
+generated72 features/risk/duration, selection/save/replacement/body and final
+428b40/418050 retirement. Native64/original32/ASan+UBSan+LSan agree825288 checks
+across128 episodes,960 candidates,811 saves,448 task releases and640 populated
+suffix buffers retained by the original base path at release. That retention is
+recovered baseline behavior; no native cleanup policy or live replacement is
+inferred. All66 declared inputs and57 compiler inputs remain fixed.
+
+[Research and next composition seam](owner-task6-features-20261023.md) retain
+OSV1's separate common-source byte model, authored World/model/external service
+boundaries, failures/SEH, real training and other families/World/live work. The
+Critical actor-services umbrella remains partial. Exact bf170af0..2b8f9065 review:
+50 file transitions,zero missing/mutated receipts; ten planning-policy tests pass.
+Storage cleanup is verified provenance only; no original or project evidence
+was discarded. Earlier/interrupted results preserve their exact hashes.
