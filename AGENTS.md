@@ -134,8 +134,9 @@ infer semantic mappings or update the register automatically.
   current source. Existing unrelated historical staleness is not a reason to
   rerun every subsystem or stop authorized work.
 - Run `python3 tools/check-re-coverage.py` for the reviewed local baseline, or
-  pass `--base <reviewed-commit>` for a Git comparison. CI compares the actual
-  PR/push/merge-group base; changing a census/baseline in the same change cannot
+  pass `--base <reviewed-commit>` for a Git comparison. Full evidence CI is
+  manually requested; ordinary CI runs isolated tooling guards. The change gate
+  compares the requested Git base; changing a census/baseline cannot
   reset that comparison. Initial adoption retains the existing backlog;
   `--bootstrap` is rejected once the base contains the gate baseline.
 - Install the repository-local pre-commit gate with
@@ -311,15 +312,19 @@ completion. Its SSH host and project directory are repository-local Git settings
 to commit hooks. Preserve its retained SQLite catalog and pending sets, use
 `--retry` after interruptions and verify a downloaded snapshot before claiming
 restoration. Private backups do not update public publication/CI availability.
-Before an explicitly requested remote push or merge in a hosted repository, all
-referenced evidence must be available from the configured shared store. This
-sharing requirement does not apply to local Git merges. GitHub Releases is the
-current distribution backend, not a local completion requirement; publication
-is a separate explicit operation. `tools/sync-evidence.py` collects missing immutable
+Source pushes and hosted merges do not require evidence publication. The pre-push
+guard checks evidence pointer format and rejects raw evidence and pre-migration
+history without opening evidence databases or fetching archives. Ordinary CI runs
+isolated tooling tests; the full evidence-backed audit is an explicit manual
+workflow run. A source clone alone may lack unpublished payloads and cannot claim
+a complete evidence audit until its verified SQLite inputs are supplied. Local
+commit/merge accounting and retained verified SQLite backups remain required.
+GitHub Releases is an optional distribution backend; publication is a separate
+explicit operation. `tools/sync-evidence.py` collects missing immutable
 payloads across outgoing history, verifies publication and commits the pinned
 availability manifest; `--push` explicitly also pushes the current branch.
-The normal pre-push guard and CI continue to reject unavailable or raw evidence
-and old graph commits. Preserve failed publication receipts and immutable assets.
+Preserve failed publication receipts and immutable assets. Publishing or omitting
+publication never changes engine validation claims.
 Use one owned worktree per bounded task batch. Keep later concurrent edits out
 of that batch's source snapshot, evidence claims and commit.
 The review workspace remains local and its exact text exports remain Git/CI

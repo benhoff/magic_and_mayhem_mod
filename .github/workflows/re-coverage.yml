@@ -4,6 +4,12 @@ on:
   pull_request:
   push:
   merge_group:
+  workflow_dispatch:
+    inputs:
+      verify_evidence:
+        description: Run the full audit using published SQLite evidence
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -11,6 +17,25 @@ permissions:
 jobs:
   coverage:
     name: Coverage accounting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Test accounting and evidence tooling with isolated fixtures
+        run: |
+          python3 -B tests/test-re-coverage.py
+          python3 -B tests/test-coverage-gate.py
+          python3 -B tests/test-coverage-bookkeeping.py
+          python3 -B tests/test-evidence-store.py
+          python3 -B tests/test-local-evidence-workflow.py
+          python3 -B tests/test-private-evidence-backup.py
+          python3 -B tests/test-coverage-merge-history.py
+          python3 -B tests/test-coverage-evidence-imports.py
+
+  evidence:
+    name: Full evidence audit (manual)
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.verify_evidence }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

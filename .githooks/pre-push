@@ -1,5 +1,6 @@
 #!/bin/sh
 set -eu
+# Validate source history and pointer format; evidence publication is optional.
 repo=$(git rev-parse --show-toplevel)
 cd "$repo"
 script=$(cd "$(dirname "$0")/../tools" && pwd)/evidence-store.py

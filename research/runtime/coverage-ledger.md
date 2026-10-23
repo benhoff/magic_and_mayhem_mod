@@ -21066,3 +21066,26 @@ separately. Ten native implementation completions change partial counts to
 Supporting6/Low1/Medium3/High35/Critical25 without closing their pending original
 comparison, installed/live acceptance or replacement gaps. Actor Critical
 recovery, emitter emission and other remaining providers stay partial.
+
+
+### Optional evidence publication for source pushes, 2026-10-22
+
+The user explicitly removed the requirement to publish evidence before source
+pushes and hosted merges. The pre-push guard now checks pointer syntax and
+pre-migration history without opening payload stores or fetching archives.
+Ordinary CI runs isolated accounting/evidence/backup guards; full evidence-backed
+CI is a manually selected workflow run. Local staged accounting, verified payload
+reads and retained SQLite backups remain required. A source clone may lack
+unpublished payloads; source distribution does not claim their availability or
+a complete audit. Optional synchronization still publishes and verifies all
+outgoing evidence versions when explicitly requested. Engine milestones, original
+comparisons and historical evidence fingerprints are unchanged.
+
+Validation: [239 controls in eight isolated suites](coverage/optional-evidence-push-controls-20261022.json)
+pass, including a real local Git push with an unavailable evidence payload,
+retained raw/malformed/historical-pointer refusal, local staged hooks and SQLite
+backup restoration. The result is scoped to these controls; it does not renew
+the entire accounting contract or any engine milestone. Hosted workflow execution
+will be observed separately after the source push. The preliminary main-checkout
+test run is retained with its exact source hashes as a baseline; its descriptive
+scope is corrected by the owned result and supplies no proof of this new policy.
