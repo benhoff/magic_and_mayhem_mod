@@ -90,8 +90,8 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        # Reviewed implementations through195470ce retain original comparison and acceptance separately.
-        self.assertEqual(result['partial_counts'], {1: 5, 2: 1, 3: 3, 4: 35, 5: 16})
+        # Reviewed implementations through6d0dd7bc retain original comparison and acceptance separately.
+        self.assertEqual(result['partial_counts'], {1: 4, 2: 1, 3: 3, 4: 34, 5: 8})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -165,7 +165,11 @@ class TrancheTest(unittest.TestCase):
                                     'NR.callback-publication-isolation', 'NR.recorded-physical-frame-admission',
                                     'RS.canvas-create-lock', 'RS.canvas-bind-clip', 'RS.canvas-startup-clear',
                                     'RS.world-startup-palette', 'RS.world-startup-wave',
-                                    'NR.world-history-channel', 'NR.world-live-history'})
+                                    'NR.world-history-channel', 'NR.world-live-history',
+                                    'NR.palette-resources', 'NR.command-checkpoint-attachment',
+                                    'RS.world-initial-state', 'RS.canvas-preworld-reuse',
+                                    'RS.canvas-producer-sequence', 'RS.world-producer-bypass',
+                                    'RS.drawing-publication', 'NP.pixel-forwarding-guard'})
         self.assertEqual({task['behavior'] for task in tasks} | set(plan['unplanned_critical']), critical | completed)
         self.assertTrue(all(t['implementation'] in {'partial', 'scoped'} for t in tasks))
         self.assertTrue(all(t['review_state'] in {'current','needs_review'} for t in tasks))
@@ -324,10 +328,7 @@ class TrancheTest(unittest.TestCase):
         for task in tasks.values():
             self.assertFalse(task['work_review']['implementation_gaps'])
             self.assertTrue(task['execution_brief']['supplied_controls'])
-            self.assertEqual(task['implementation'], 'scoped' if task['behavior'] in
-                             {'NR.canvas-producer-replay','NR.world-startup-sequence',
-                              'RS.canvas-create-lock','RS.canvas-bind-clip','RS.canvas-startup-clear',
-                              'RS.world-startup-palette','RS.world-startup-wave'} else 'partial')
+            self.assertEqual(task['implementation'], 'scoped')
             original = next(t for t in self.catalog['tranche_plan']['tranches'][1]['tasks']
                             if t['behavior'] == task['behavior'])
             self.assertEqual(task.get('execution_result'), original.get('execution_result'))
@@ -448,7 +449,7 @@ class TrancheTest(unittest.TestCase):
             'research/runtime/coverage/native-implementation-completion-20261020.json'))['entries']
             if e['decision'] == 'scoped_implementation_complete'}
         completed.add('RS.shadow-linear-stride')  # bounded implementation in97c3f5b2
-        completed.update({'NR.world_scene', 'NR.terrain_scene'})  # implementation in4cd9121f
+        completed.update({'NR.world_scene', 'NR.terrain_scene', 'NR.wine-private-backing-ownership'})  # implementation in4cd9121f
         unplanned = {'RE.palette-effect-builders', 'RE.terrain-camera-lifecycle',
                      'RE.terrain-entity-section-rotation', 'RE.terrain-spectator-lighting'}
         self.assertEqual({t['behavior'] for t in tasks} | unplanned,
@@ -481,6 +482,7 @@ class TrancheTest(unittest.TestCase):
             'RS.actor-concrete-provider-frontier',
             'RS.actor-profile-transform-providers', 'RS.actor-palette-builder-providers',
             'RS.actor-font-providers', 'RS.actor-support-query-provider', 'RS.actor-particle-emitter-composition', 'RS.actor-emitting-update-composition',
+            'RS.actor-emitter-family-composition',
         }
         scoped_high = {e['behavior'] for e in result['entries']
                        if e['weight'] == 4 and e['implementation'] == 'scoped'}

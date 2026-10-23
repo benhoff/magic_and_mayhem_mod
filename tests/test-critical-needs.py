@@ -145,9 +145,9 @@ class CriticalNeeds(unittest.TestCase):
         # Source drift legitimately routes a row to review without losing its
         # authored primary need or the historical scope decision.
         self.assertEqual(Counter(e['reviewed_primary_need'] for e in result['entries']),
-                         dict(recovery=2, validation=9, acceptance=5)
+                         dict(recovery=2, validation=2, acceptance=4)
         )
-        # 97c3f5b2,4cd9121f and195470ce implement these bounded mechanisms. Their authored
+        # Reviewed implementations through6d0dd7bc retain authored
         # validation/acceptance requirements remain; scoped code only removes
         # them from the partial-implementation denominator.
         recent = {'NR.callback-publication-isolation',
@@ -156,7 +156,11 @@ class CriticalNeeds(unittest.TestCase):
                   'RS.canvas-create-lock', 'RS.canvas-bind-clip', 'RS.canvas-startup-clear',
                   'RS.world-startup-palette', 'RS.world-startup-wave',
                   'RS.world-dispatch-targets', 'RS.world-kind8-virtual',
-                  'NR.world-history-channel', 'NR.world-live-history'}
+                  'NR.world-history-channel', 'NR.world-live-history',
+                  'NR.palette-resources', 'NR.command-checkpoint-attachment',
+                  'RS.world-initial-state', 'RS.canvas-preworld-reuse',
+                  'RS.canvas-producer-sequence', 'RS.world-producer-bypass',
+                  'RS.drawing-publication', 'NP.pixel-forwarding-guard'}
         active = {e['behavior'] for e in result['entries']}
         assessed = {e['behavior']: e for e in definition['entries']}
         for bid in recent:
@@ -168,7 +172,7 @@ class CriticalNeeds(unittest.TestCase):
         self.assertIn('REC6.startup-lease.live-20261020',
                       by_id[clear['behavior']]['evidence'])
         self.assertEqual(len(result['scope_decisions']), 9)
-        self.assertEqual(sum(e['implementation'] == 'scoped' for e in result['scope_decisions']), 8)
+        self.assertEqual(sum(e['implementation'] == 'scoped' for e in result['scope_decisions']), 9)
         self.assertEqual(register, before)
 
 

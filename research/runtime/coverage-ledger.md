@@ -21156,3 +21156,40 @@ recovery remains partial at the wider ownership/provider/world/live boundary.
 ## Fifteenth rendering batch — ownership and diagnostics (2026-10-22)
 
 [Ten bounded implementation closeouts](rendering-fifteenth-ten-closeouts-20261022.md) complete palette/checkpoint ownership, first-World initial canvas/logical reuse, producer history/selected bypass, guarded publication, six-family no-forward admission, private Wine owners and supplied-runtime capability inspection. Fresh NT15 records 79 Python controls, 49 recorded commands and 2828 stable prospective inputs,21 checkpoint/10 recovery schedules,97 no-forward cases/all43 routes,36 private backing cases,9 publication callbacks,2403 complete retained source-only checkpoints and480000 initial words. Duplicate/contradictory checkpoint cohorts and missing Lock epochs refuse. Both actual runtime variants retain their true capability outcome; no negative environment result becomes a working-driver claim. Registered implementation partials fall26→16; original comparison, integration and replacement statuses remain independent. Exact incoming history8bf5e736..195470ce and195470ce..a5ab8270 has no receipt gaps/rewrites. Evidence and execution output remain on the second drive, with a verified cached SQLite pin for local readers and no remote publication.
+
+
+## Remaining emitter family ownership composition (2026-10-22)
+
+[Remaining emitter families](emitter-families-provider-20261022.md) adds48 routes,
+227→275, through real constructors,5457e0 admission,545910 reverse ticks, child
+and plane ownership, terrain recolouring, virtual predicates and deleting cleanup.
+EF1 original/headless records share768 authored cases,24576 manager ticks and
+5376 snapshots/build. Original32/native64/ASan+UBSan compare3326037036
+identical bytes, SHA-256 `b6ee1ea2097d591938addbca70074b1e3676de129accab38c0fe153de87f7653`; all91 source/compiler
+inputs stable, bodies/manifests unchanged, borrowed inputs/canaries intact and
+zero residual owned generations without fallback frees. Two full1792-object
+pool prefixes, object failure, RGB555/565, dimension clamps, retained terrain
+rebinding and preloaded primary/fallback animation are included.112 named service
+specifications and43 historical leads remain explicit; no synthetic callback is
+used by this suite. Failed/preliminary attempts remain in SQLite with exact hashes.
+
+New scoped behavior reaches recorded comparison/headless integration. The Critical
+actor umbrella stays partial: full original-world/planner/task cadence, other
+special/scenario/indirect providers, real resource/platform failure and lifetime
+acceptance and installed/live/physical replacement remain pending. Plane allocation
+failure, nondefault plane FP globals, block0 undefined descriptor scratch and
+arbitrary callback/SEH domains are separate. Incoming a5ab8270..6d0dd7bc has97
+exact reviewed file transitions, zero missing/rewritten receipts. Its ten independent
+palette/canvas closeouts remain integrated; static accounting is not execution.
+
+### Dashboard reconciliation with incoming 6d0dd7bc
+
+That independent commit completes ten bounded implementations: eight Critical,
+one High and one Supporting. Updated regression expectations retain the resulting
+partial counts (Supporting 4, Low 1, Medium 3, High 34, Critical 8) and all nine
+scoped Critical scope decisions. The eight remaining Critical partials retain two
+recovery, two validation and four acceptance assessments. Seven assessments route
+to review because incoming source changes invalidate their existing fingerprints;
+those fingerprints remain historical. The actor umbrella's assessment is renewed
+for EF1. Planning counts and test updates grant no engine or acceptance credit.
+The initial UI failure is retained separately from the corrected regression run.
