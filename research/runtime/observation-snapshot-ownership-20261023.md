@@ -42,13 +42,15 @@ normal populated destruction, zeroed resource pointers and repeated destruction.
 The actual virtual object destructor and buffer allocator backend remain explicit
 services. SEH/unwind, malformed/cyclic structures and aliasing ownership are open.
 
-Refresh differs from construction:4181d0 creates a temporary, assigns the live
-actor into it, assigns it into the existing snapshot, and destroys the temporary.
-418d50 shallow-copies708/8f9 and does not first release destination resources.
-Static evidence does not justify a deep-copy or safe aliasing interpretation.
-Native reconciliation explicitly rejects resource-bearing refresh. A separate
-native policy check exercises that refusal in every architecture; it is not an
-original resource-bearing refresh validation. That original path remains open.
+The initial refresh interpretation missed two original instruction stores.
+418631 and418638 clear the temporary's708/8f9 before assignment into the stored
+snapshot and temporary destruction. Resource-bearing source refresh therefore
+does not transfer those owning pointers. [OSR1 correction and new execution](snapshot-resource-refresh-20261023.md)
+implements and compares this extension, including borrowed cf3/8fd aliases and
+actual actor resource generations. Historical OOS1 reports and fingerprints remain
+unchanged; their original resource-free domain remains the execution scope below.
+The old conservative source-resource refusal is superseded. A guard against an
+invalid destination owning708/8f9 remains an explicit native policy.
 
 ## Comparison and composition
 
@@ -92,8 +94,10 @@ missing/mutated receipts; it does not assert a past gate or new execution.
 
 ## Remaining recovery
 
-Resource-bearing refresh and aliasing lifetime, multi-record erase/continuation,
-other owners, native PE tree compatibility if needed, failure/SEH and whole-brain
+Normal resource-bearing refresh and selected borrowed alias lifetimes now have
+separate OSR1 proof. Arbitrary callback classes/alias consumers, multi-record
+erase/continuation, other owners, native PE tree compatibility if needed,
+failure/SEH and whole-brain
 4156b0 destruction remain open. Mode2 nonempty task/notification consequences,
 intermediate source traversal/probe bytes, other task families, actual model
 training/backends and full World/session cadence remain separate. The Critical

@@ -246,8 +246,8 @@ int main(int argc, char **argv) try {
     resources += 2 + episode % 5;
     destruction(a, Scratch);
     record(a.objects, 1, "second destruction idempotent");
-    // Native admission policy is exercised in every architecture; this does
-    // not assert safe original behavior for resource-bearing mode2 refresh.
+    // A corrupted destination ownership invariant is native policy. It is
+    // separate from the original resource-stripping refresh contract.
     {
       m::OwnerKnowledge guarded;
       m::OwnerMemory row;
@@ -260,6 +260,7 @@ int main(int argc, char **argv) try {
       a.set32(Pool + 0x708, 0x99112233);
       owned.reconcile(guarded, 1, [](int) { return Pool; });
       guarded.records[0][0].memory.observedTick = 2;
+      a.set32(owned.snapshot(0, 0) + 0x708, 0x99112233);
       bool rejected = false;
       try {
         owned.reconcile(guarded, 2, [](int) { return Pool; });
@@ -267,8 +268,9 @@ int main(int argc, char **argv) try {
         rejected = true;
       }
       record(rejected, 1, "native resource refresh admission");
-      record(a.get32(owned.snapshot(0, 0) + 0x708), 0,
-             "refusal preserves constructed snapshot");
+      record(a.get32(owned.snapshot(0, 0) + 0x708), 0x99112233,
+             "refusal preserves invalid destination");
+      a.set32(owned.snapshot(0, 0) + 0x708, 0);
       owned.clear();
     }
     // One enabled owner; nonempty task/notification lists remain outside mode2.
@@ -514,6 +516,7 @@ int main(int argc, char **argv) try {
             << ",\"stale_snapshot_references\":" << stale
             << ",\"native_admission_refusals\":64,\"resource_releases\":"
             << resources << ",\"digest\":\"" << digest << "\"}\n";
+  return 0;
 } catch (const std::exception &e) {
   std::cerr << e.what() << '\n';
   return 1;

@@ -21347,3 +21347,29 @@ Native ordered indexing excludes PE RB topology/iterator ABI. Native resource
 refresh refusal is a separate policy, not original equivalence. No old evidence
 hashes are refreshed. The Critical actor umbrella remains partial. Incoming
 fa354308..f2253bb8 accounting:26 exact transitions,no missing/mutated receipts.
+
+## Resource-bearing observation refresh — OSR1 (2026-10-23)
+
+AI.owner-observation-resource-refresh corrects the earlier OOS1 interpretation:
+original418631/418638 clear the temporary's owning708/8f9 before stored assignment
+and destruction. Native valid-source refresh now strips those fields instead of
+refusing populated actors. Other aliases,includingcf3 callback and8fd list cursor,
+remain borrowed and can become stale after hidden actor reset/destruction. No
+reference counting or alias repair is invented. Invalid destination ownership is
+still rejected as native policy. Historical OOS1 evidence is preserved unchanged.
+
+[Research and source-bound evidence](snapshot-resource-refresh-20261023.md) compare
+7,550,016 checks across64 original/native/sanitizer episodes and2,304 updates,
+with256 insertions,1,088 refresh events,192 expiries,192 task clones,576 actor
+resets,256 actor destructions and576 concrete callback generations released.
+Actual5060a0 resources,52cbe0/52cc00 deletion,4181d0 modes1/2 and cache/task cleanup
+are composed; full resource bytes remain unchanged by observation updates.
+Original reset histogram retention remains explicit,with later fixture disposal.
+Borrowed aliases and task snapshot pointers are never dereferenced after release.
+
+Resource-bearing refresh is recovered within this domain. Arbitrary callback
+classes/alias consumers,multi-record/multi-owner erasure/continuation,whole-brain,
+nonempty task notifications,SEH/failures,other task families and World/live remain
+open. Separate fresh OOS1 compatibility supports its unchanged bounded domain.
+The Critical actor umbrella stays partial. Incomingf2253bb8..ac0b9e3b review:
+27 exact file transitions,zero missing/mutated receipts.

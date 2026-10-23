@@ -67,9 +67,21 @@ public:
   U snapshot(unsigned owner, int key) const {
     return records.at(owner).at(key) + 24;
   }
+  // 418631/418638 clear the temporary's708/8f9 before the second assignment.
+  // Its normal destructor then has no live actor resources to release. Other
+  // copied aliases (e.g. cf3 callback and8fd list cursor) remain borrowed
+  // bytes.
+  void refresh(U destination, U source) {
+    // Values created by this store always satisfy this invariant. Refusing an
+    // externally corrupted destination is native policy, not an original guard.
+    if (r(destination + 0x708) || r(destination + 0x8f9))
+      throw std::invalid_argument(
+          "observation destination owns live resources");
+    construct(destination, source);
+  }
   // Commit the independently recovered logical mode2 update. This adapter owns
-  // values, not matching/visibility policy. Resource-bearing refresh needs a
-  // separate contract: actual mode2 destroys a shallow-assigned temporary.
+  // values, not matching/visibility policy. Ticks increase in the compared
+  // domain.
   template <class Actor>
   void reconcile(const OwnerKnowledge &knowledge, int tick, Actor actor) {
     for (unsigned owner = 0; owner < 8; ++owner) {
@@ -106,11 +118,7 @@ public:
           U p = it->second;
           if (row.memory.observedTick == tick && r(p + 16) != U(tick)) {
             U source = actor(row.memory.actor.slot);
-            if (r(source + 0x708) || r(source + 0x8f9) || r(p + 24 + 0x708) ||
-                r(p + 24 + 0x8f9))
-              throw std::invalid_argument(
-                  "resource-bearing observation refresh");
-            assign(p + 24, source);
+            refresh(p + 24, source);
             w(p + 16, U(tick));
             ++refreshes;
           }

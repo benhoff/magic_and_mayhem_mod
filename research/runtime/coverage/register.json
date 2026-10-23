@@ -143586,7 +143586,9 @@
         "OOS1.inspection.static-20261023",
         "OOS1.history.static-20261023",
         "OOS1.ui.static-20261023",
-        "OOS1.attempts.static-20261023"
+        "OOS1.attempts.static-20261023",
+        "OSR1.compat-original-20261023",
+        "OSR1.compat-headless-20261023"
       ],
       "original": [
         {
@@ -143705,6 +143707,156 @@
         "reconstruction/pathfinding/route_neighbors.hpp",
         "reconstruction/pathfinding/route_request.hpp",
         "reconstruction/pathfinding/route_search.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/draft-coverage-claims.py",
+        "tools/ghidra/ExportFontProviders.java",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/owner_planner_comparison.py"
+      ]
+    },
+    {
+      "id": "AI.owner-observation-resource-refresh",
+      "kind": "recovered",
+      "subsystem": "creature_ai",
+      "title": "Resource-bearing observation refresh and borrowed alias lifetimes",
+      "scope": "Pinned NoCD40209ca7 observation snapshot refresh from one ordinary actor/owner0 carrying actual5060a0 callback/list generations and authored histogram backing/order nodes. Actual4181d0 modes1/2 copy through a temporary,clear its708/8f9 at418631/418638,copy stored value then destroy temporary; no live resource ownership transfer. Full packed0xe4b bytes and cf3 callback/8fd list-cursor aliases retained across refresh,unobserved reset/destruction,expiry and reacquisition; task sources retain snapshot addresses across invalidation/expiry,normal40a340 retirement. Native corrected OwnerObservationSnapshots composes existing ActorLifecycle,OwnerKnowledge,OwnerKnowledgeCache and OwnerTaskSources. Real52cbe0/52cc00 callback deleting destructor and resource list cleanup execute;alloc/free/buffer-free services explicit. Native corrupt-destination ownership guard is policy. Actor reset histogram retention preserved,fixture disposal explicit. Successful bounded allocations,strict increasing ticks,authored visibility/activation/list values,absent task/notification collections. Multi-record/multi-owner,arbitrary callback classes,callback invocation,SEH/failure,whole-brain/World/live excluded.",
+      "confidence": "high_within_scope",
+      "implementation": [
+        "reconstruction/creature-ai/owner_observation_snapshots.hpp"
+      ],
+      "tests": [
+        "tests/snapshot-resource-refresh-test.cpp",
+        "tools/test-snapshot-resource-refresh.py",
+        "tools/inspect-snapshot-resource-refresh.py"
+      ],
+      "documents": [
+        "research/runtime/snapshot-resource-refresh-20261023.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "OSR1.original-20261023",
+        "OSR1.headless-20261023",
+        "OSR1.inspection.static-20261023",
+        "OSR1.history.static-20261023",
+        "OSR1.ui.static-20261023",
+        "OSR1.attempts.static-20261023"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4293072,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4295520,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4296016,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267312,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267616,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426144,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426176,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426288,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4272944,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4257776,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4236096,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4368096,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4294193,
+          "relation": "code",
+          "scope": "Zero-valued edi writes temporary snapshot708/8f9 between assignments;not a function root."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4294200,
+          "relation": "code",
+          "scope": "Zero-valued edi writes temporary snapshot708/8f9 between assignments;not a function root."
+        }
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_knowledge_cache.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_sources.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "tests/observation-snapshot-ownership-test.cpp",
         "tests/owner-brain-inference-test.cpp",
         "tests/sprite-binary-reference.cpp",
         "tools/coverage_claims.py",
@@ -324216,6 +324368,422 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "OSR1.original-20261023",
+      "kind": "isolated_original",
+      "scope": "7550016 checks/64 episodes/2304 updates;256 insertions,1088 refresh events,192 expiries,192 task clones,1152 stale snapshot pointer witnesses,576 actual5060a0 resets,256 actor505f70 destructions and576 real52cbe0/52cc00 callback deletions. Full packed snapshots and before/after live resource bytes;temporary708/8f9 stripping,cf3/8fd borrowed aliases across hidden reset/destruction and reacquisition,age1024/1025 expiry,task cleanup after snapshot release. Actor reset histogram retention remains baseline with explicit later fixture disposal. One stationary ordinary actor/owner0,authored visibility/activation/order content/histograms and empty task notifications;alloc/free services supplied. Arbitrary callbacks/alias consumers,whole-brain/SEH/World/live excluded.",
+      "record": "research/runtime/snapshot-resource-refresh-results-20261023/snapshot-resource-trial-2.json",
+      "sha256": "9c578e7fb141228dc312cb32d2061024f972425f61e9754d43fb32dab31be78a",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 7550016
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/digest",
+          "equals": "947184330397392515"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 2304
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 256
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 1088
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 192
+        },
+        {
+          "pointer": "/task_clones",
+          "equals": 192
+        },
+        {
+          "pointer": "/stale_snapshot_references",
+          "equals": 1152
+        },
+        {
+          "pointer": "/actor_resets",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_destructions",
+          "equals": 256
+        },
+        {
+          "pointer": "/callbacks_released",
+          "equals": 576
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "OSR1.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Same64 episodes/7550016 checks,not additional samples. Corrected OwnerObservationSnapshots.refresh strips owned708/8f9 instead of rejecting a valid resource-bearing source,composed with existing ActorLifecycle,OwnerKnowledge,cache and task source APIs. Native provider implements this concrete callback deleting flag1 contract;no original fallback in native run. Borrowedaliases retain stale identity without dereference;normal resources remain actor-owned. Corrupt destination guard is native policy. Native ordered index excludes PE RB ABI;other owners/multi-record,alias consumers,SEH/whole-brain/World/live remain open.",
+      "record": "research/runtime/snapshot-resource-refresh-results-20261023/snapshot-resource-trial-2.json",
+      "sha256": "9c578e7fb141228dc312cb32d2061024f972425f61e9754d43fb32dab31be78a",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 7550016
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/digest",
+          "equals": "947184330397392515"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 2304
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 256
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 1088
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 192
+        },
+        {
+          "pointer": "/task_clones",
+          "equals": 192
+        },
+        {
+          "pointer": "/stale_snapshot_references",
+          "equals": 1152
+        },
+        {
+          "pointer": "/actor_resets",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_destructions",
+          "equals": 256
+        },
+        {
+          "pointer": "/callbacks_released",
+          "equals": 576
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "OSR1.inspection.static-20261023",
+      "kind": "static",
+      "scope": "Pinned24-entry instruction/decompilation export and real callback vtable.418631/418638 clear temp708/8f9 omitted by older Ghidra pseudo-locals;EDI zero and stack-relative addresses checked. No function-boundary discovery or arbitrary callback promotion.",
+      "record": "research/runtime/snapshot-resource-refresh-results-20261023/inspection-1.json",
+      "sha256": "fdd75dd5825bd85e2cd1f0341da84d57ebfb47bf121f6dfcf62b7361d876c7fa",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OSR1.history.static-20261023",
+      "kind": "static",
+      "scope": "Exactf2253bb8..ac0b9e3b review:27 file transitions,zero missing/mutated receipts. Accounting only,no past gate/new execution credit.",
+      "record": "research/runtime/snapshot-resource-refresh-results-20261023/incoming-history-ac0b9e3b.json",
+      "sha256": "daf1d546919f4a51c60bb51f927f78319a75e365ee0b04d3b4a8e57b78a144f6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OSR1.ui.static-20261023",
+      "kind": "static",
+      "scope": "Ten Critical-needs policy regressions;no engine credit.",
+      "record": "research/runtime/snapshot-resource-refresh-results-20261023/ui-check-1.json",
+      "sha256": "034a78e38193c0e49b7e1070aaf8674133410c197cfbfd38e6bb73e3c2807d7c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OSR1.attempts.static-20261023",
+      "kind": "static",
+      "scope": "Preserved failed compile,successful scoped trial2,static correction and new OOS1 compatibility. Old reports/source hashes not rebound;imported parent objects are provenance only.",
+      "record": "research/runtime/snapshot-resource-refresh-results-20261023/attempt-catalog-1.json",
+      "sha256": "65e4a8b252ecdbe9293f2360607af5ab8c7c43dc11137151cbeb139650ea1895",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OSR1.compat-original-20261023",
+      "kind": "isolated_original",
+      "scope": "Independent OOS1 scoped resource-free lifecycle rerun against corrected shared header:6103742 checks,42 declared/35 compiler inputs. Same original ordinary lifecycle domain;native admission case now rejects a corrupted destination owning708/8f9 instead of a valid resource-bearing source,and explicit return permits fixture reuse. That policy case is native-only in all architectures,no original destination-invariant assertion. New evidence supplies current-code support;old hashes/reports unchanged.",
+      "record": "research/runtime/observation-snapshot-ownership-results-20261023/snapshot-resource-compat-1.json",
+      "sha256": "a482f7101b4a4f3af4a0362a25120776bbe8ca31a6c8bce31826e6c47e0ea9b6",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 6103742
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/digest",
+          "equals": "5573354435110942979"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 1728
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 256
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 896
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 192
+        },
+        {
+          "pointer": "/task_clones",
+          "equals": 192
+        },
+        {
+          "pointer": "/stale_snapshot_references",
+          "equals": 576
+        },
+        {
+          "pointer": "/native_admission_refusals",
+          "equals": 64
+        },
+        {
+          "pointer": "/resource_releases",
+          "equals": 254
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "OSR1.compat-headless-20261023",
+      "kind": "native_integration",
+      "scope": "Independent OOS1 scoped resource-free lifecycle rerun against corrected shared header:6103742 checks,42 declared/35 compiler inputs. Same original ordinary lifecycle domain;native admission case now rejects a corrupted destination owning708/8f9 instead of a valid resource-bearing source,and explicit return permits fixture reuse. That policy case is native-only in all architectures,no original destination-invariant assertion. New evidence supplies current-code support;old hashes/reports unchanged.",
+      "record": "research/runtime/observation-snapshot-ownership-results-20261023/snapshot-resource-compat-1.json",
+      "sha256": "a482f7101b4a4f3af4a0362a25120776bbe8ca31a6c8bce31826e6c47e0ea9b6",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 6103742
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/digest",
+          "equals": "5573354435110942979"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 1728
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 256
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 896
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 192
+        },
+        {
+          "pointer": "/task_clones",
+          "equals": 192
+        },
+        {
+          "pointer": "/stale_snapshot_references",
+          "equals": 576
+        },
+        {
+          "pointer": "/native_admission_refusals",
+          "equals": 64
+        },
+        {
+          "pointer": "/resource_releases",
+          "equals": 254
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -332854,6 +333422,30 @@
         {
           "value": "remaining-cache-miss-task-world-and-exception-providers",
           "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "owner-observation-live-callback-domain",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6058596,
+        "relation": "data",
+        "scope": "Live callback vtable created by5060a0; slot1 deleting destructor through505f70/reset. Snapshot cf3 remains borrowed."
+      },
+      "document": "research/runtime/snapshot-resource-refresh-20261023.md",
+      "scope": "Normal live callback deletion(flag1) while observation refresh strips owned callback/list pointers. Callback invocation/other classes remain unresolved.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 5426112,
+          "behaviors": []
+        },
+        {
+          "value": 5426144,
+          "behaviors": [
+            "AI.owner-observation-resource-refresh"
+          ]
         }
       ]
     }
@@ -349577,7 +350169,24 @@
         "tools/inspect-observation-snapshot-ownership.py"
       ],
       "evidence": [
-        "OOS1.headless-20261023"
+        "OOS1.headless-20261023",
+        "OSR1.compat-headless-20261023"
+      ]
+    },
+    {
+      "id": "snapshot-resource-refresh-20261023",
+      "scope": "Pinned NoCD40209ca7 observation snapshot refresh from one ordinary actor/owner0 carrying actual5060a0 callback/list generations and authored histogram backing/order nodes. Actual4181d0 modes1/2 copy through a temporary,clear its708/8f9 at418631/418638,copy stored value then destroy temporary; no live resource ownership transfer. Full packed0xe4b bytes and cf3 callback/8fd list-cursor aliases retained across refresh,unobserved reset/destruction,expiry and reacquisition; task sources retain snapshot addresses across invalidation/expiry,normal40a340 retirement. Native corrected OwnerObservationSnapshots composes existing ActorLifecycle,OwnerKnowledge,OwnerKnowledgeCache and OwnerTaskSources. Real52cbe0/52cc00 callback deleting destructor and resource list cleanup execute;alloc/free/buffer-free services explicit. Native corrupt-destination ownership guard is policy. Actor reset histogram retention preserved,fixture disposal explicit. Successful bounded allocations,strict increasing ticks,authored visibility/activation/list values,absent task/notification collections. Multi-record/multi-owner,arbitrary callback classes,callback invocation,SEH/failure,whole-brain/World/live excluded.",
+      "level": "headless",
+      "behaviors": [
+        "AI.owner-observation-resource-refresh"
+      ],
+      "tests": [
+        "tests/snapshot-resource-refresh-test.cpp",
+        "tools/test-snapshot-resource-refresh.py",
+        "tools/inspect-snapshot-resource-refresh.py"
+      ],
+      "evidence": [
+        "OSR1.headless-20261023"
       ]
     }
   ],
@@ -350414,8 +351023,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-cbe0b6d5b7136c789a0cce950114f70bde7decda6851599ab858eb79be21f6b9.json",
-    "sha256": "cbe0b6d5b7136c789a0cce950114f70bde7decda6851599ab858eb79be21f6b9"
+    "path": "research/runtime/coverage/source-index-eb4e38cf9e7af1340a7344b3142d0a8cda88b412b703647a6b22f15f57106aca.json",
+    "sha256": "eb4e38cf9e7af1340a7344b3142d0a8cda88b412b703647a6b22f15f57106aca"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
