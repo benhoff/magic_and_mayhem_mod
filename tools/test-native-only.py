@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Prospective native-only launch, Qt state and actual PE32 terminal/refusal controls."""
 import argparse
+from coverage_evidence import write_report
 import hashlib
 import json
 import os
@@ -68,8 +69,7 @@ def main():
     finally:
         subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
         report['sources_stable']=stable();report['success']=report['success'] and report['sources_stable']
-        args.report.parent.mkdir(parents=True,exist_ok=True)
-        with args.report.open('x') as out:json.dump(report,out,indent=2);out.write('\n')
+        write_report(ROOT,args.report,(json.dumps(report,indent=2)+'\n').encode())
     print(json.dumps({k:report.get(k) for k in ('success','sources_stable','error')}))
     return 0 if report['success'] else 1
 

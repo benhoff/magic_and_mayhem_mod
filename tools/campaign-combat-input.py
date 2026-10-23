@@ -44,6 +44,16 @@ def ground_step(actor, target):
     return sx/scale,sy/scale
 
 
+def dialogue_stage(label, checks):
+    """Give each readiness visit a distinct stage without changing its quiet gate."""
+    return label if label == 'dialogue-check' else label+'-visit-'+str(len(checks))
+
+
+def combat_in_range(actor, enemy):
+    """Use observed tile distance, never a screen-space calibration vector."""
+    return math.hypot(enemy['x']-actor['x'], enemy['y']-actor['y']) < 7
+
+
 def combat_approach(center, read_state, *, wizard_slot, owner):
     """Center first, then choose a bounded ground target from fresh observations."""
     center()
@@ -150,6 +160,7 @@ def main():
     def settle_dialogue(label, minimum_seconds=12):
         initial = label == 'dialogue-check'
         checks = result.setdefault('dialogue_checks' if initial else 'additional_dialogue_checks', [])
+        stage = dialogue_stage(label, checks)
         gate = DialogueReadiness(resident_dialogue, minimum_seconds, 48)
         while True:
             item = capture(label+'-'+str(gate.observations))
@@ -162,8 +173,8 @@ def main():
             visible = {r: 'hermes' in texts[r].lower() for r in texts}
             observed = time.monotonic()
             decision = gate.observe(visible, observed)
-            checks.append(dict(stage=label,capture=item['name'],texts=texts,visible=visible,observed_monotonic=observed,quiet_seconds=minimum_seconds,decision=decision))
-            record('dialogue-check',stage=label,visible=visible,decision=decision)
+            checks.append(dict(stage=stage,capture=item['name'],texts=texts,visible=visible,observed_monotonic=observed,quiet_seconds=minimum_seconds,decision=decision))
+            record('dialogue-check',stage=stage,visible=visible,decision=decision)
             if decision == 'ready':
                 return gate.dismissals
             if decision == 'dismiss':
@@ -274,7 +285,7 @@ def main():
                    projection_policy='isometric-ground-v1')
             click(*waypoint,3);time.sleep(3)
             center()
-            if math.hypot(dx,dy)<7:
+            if combat_in_range(actor,enemy):
                 if args.spell_cases and not result.get('ranged'):
                     # The starting green spell is Fireball71. Cast at nearby
                     # enemy terrain and require damage in its original effect.

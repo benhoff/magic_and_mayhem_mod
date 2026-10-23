@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Run strict backing admission through the actual PE32 native facade, no game."""
 import argparse
+from coverage_evidence import write_report
+from native_cpu_store_profile import decode_file as decode_store_profile
 import hashlib
 import json
 import os
@@ -34,7 +36,7 @@ def main():
     env.update(WINEPREFIX=str(args.prefix.resolve()),WINEDEBUG='-all',DISPLAY='',TMPDIR=str(root))
     try:
         args.prefix.mkdir(parents=True);(args.prefix/'.retain').write_text('Owned native backing probe prefix; preserve evidence.\n')
-        definition=root/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(n+'@'+str(size)+'\n' for n,size in [('LoadLibraryA',4),('GetProcAddress',8),('GetEnvironmentVariableA',12),('ExitProcess',4),('VirtualQuery',12),('CreateFileA',28),('WriteFile',20),('CloseHandle',4),('VirtualProtect',16)]))
+        definition=root/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(n+'@'+str(size)+'\n' for n,size in [('LoadLibraryA',4),('GetProcAddress',8),('GetEnvironmentVariableA',12),('ExitProcess',4),('VirtualQuery',12),('CreateFileA',28),('WriteFile',20),('CloseHandle',4),('VirtualProtect',16),('GetLastError',0),('SetLastError',4),('CreateThread',24),('WaitForSingleObject',8)]))
         subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(root/'kernel32.lib')],env=env,check=True)
         subprocess.run(['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-c',str(ROOT/'tests/native-owned-backing-probe.c'),'-o',str(root/'probe.obj')],env=env,check=True)
         binary=root/'probe.exe';subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(binary),str(root/'probe.obj'),str(root/'kernel32.lib')],env=env,check=True)
@@ -43,6 +45,7 @@ def main():
         schedules=[('owned','1','3','1',0),('disabled','1','0','1',124),('idle','1','1','1',124),('stepping','1','2','1',124),('nonresident','1','3','0',124),('invalid','0','3','1',124),('compatibility',None,'0','0',0),('copy-prefix','1','3','1',124),('copy-span','1','3','1',124)]
         for name,strict,mode,resident,expected in schedules:
             case=root/name;case.mkdir();trial=dict(env,MNM_OWNER_DRAW_DLL='Z:'+str(args.library.resolve()).replace('/',chr(92)),MNM_NATIVE_CPU_GUARD=mode,MNM_PUBLIC_RESIDENT_WORLD=resident)
+            if name=='owned':trial['MNM_NATIVE_CPU_STORE_PROFILE']='Z:'+str(case/'cpu-stores.bin').replace('/',chr(92))
             if strict is not None:trial['MNM_NATIVE_OWNERSHIP_REQUIRED']=strict
             if name=='copy-span':trial['MNM_OWNER_BAD_COPY_SPAN']='1'
             if name=='copy-prefix':trial['MNM_OWNER_BAD_COPY_PREFIX']='1'
@@ -51,6 +54,14 @@ def main():
                 result=subprocess.run(['wine',str(binary)],cwd=case,env=trial,stdout=out,stderr=subprocess.STDOUT,timeout=30)
             if result.returncode!=expected:raise RuntimeError('Native owner case '+name+' exit '+str(result.returncode))
             if name=='owned' and (case/'backing-owner-result.bin').stat().st_size!=32:raise RuntimeError('Missing real protected backing result')
+            if name=='owned':
+                profile=decode_store_profile(case/'cpu-stores.bin')
+                if not profile['complete'] or profile['stores']!=6 or profile['bytes']!=7:raise RuntimeError('Accepted protected-store census differs from six real scalar stores')
+                report['cpu_store_profile']=dict(result=profile,sha256=hashlib.sha256((case/'cpu-stores.bin').read_bytes()).hexdigest())
+                import struct
+                raw=(case/'direct-store-result.bin').read_bytes()
+                if len(raw)!=36 or struct.unpack('<9I',raw)!=(0x52545344,1,4,6,6,1,1,1,1):raise RuntimeError('Missing direct-store owner/protection/dirty-span proof')
+                report['direct_store']=dict(verified=True,stores=4,bytes=6,dirty_bytes=6,public_pages_protected=True,bounds_refused=True,foreign_owner_refused=True,world_guard_refused=True,sha256=hashlib.sha256(raw).hexdigest())
             if name!='owned' and (case/'backing-owner-result.bin').exists():raise RuntimeError('Rejected profile created an owned backing result')
             report['cases'].append(dict(id=name,exit_code=result.returncode,expected=expected))
         report.update(success=True,facade_sha256=manifest['sha256'],section_backing=True,active_lock_public_pages_protected=True,exact_restore_completed=True)
@@ -58,7 +69,7 @@ def main():
     finally:
         subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
         report['sources_stable']=stable();report['success']=report['success'] and report['sources_stable']
-        args.report.parent.mkdir(parents=True,exist_ok=True);args.report.write_text(json.dumps(report,indent=2)+'\n')
+        write_report(ROOT,args.report,(json.dumps(report,indent=2)+'\n').encode())
     print(json.dumps({key:report.get(key) for key in ('success','sources_stable','error')}))
     return 0 if report['success'] else 1
 

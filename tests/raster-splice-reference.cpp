@@ -14,7 +14,7 @@ static int WIN rasterPlane(const void* base,u32* d,u32 bytes){
 }
 static int WIN currentHistory(const void*,u32,u32,u32,u32,u32){return 0;}
 static void WIN countProducer(u32,u32,u32){}
-static void* rasterProc(void*,const char* name){if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(currentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(countProducer);if(std::strcmp(name,"NativeDrawPlaneV1"))throw std::runtime_error("Unexpected plane lookup");return reinterpret_cast<void*>(rasterPlane);}
+static void* rasterProc(void*,const char* name){if(!std::strcmp(name,"NativeDrawCpuStoreV1"))return nullptr;if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(currentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(countProducer);if(std::strcmp(name,"NativeDrawPlaneV1"))throw std::runtime_error("Unexpected plane lookup");return reinterpret_cast<void*>(rasterPlane);}
 #ifndef MNM_RASTER_TEST_UTILITIES
 static Bytes encoded(unsigned w,unsigned h,unsigned seed,bool indexed){
  Bytes controls,colours;std::vector<unsigned> rows,pixels;

@@ -21,10 +21,26 @@ static u32 ns_convert(const struct NsState* d,const struct NsState* s,u32 value)
  return nearest;
 }
 /* Avoid a freestanding PE32 compiler runtime division dependency. */
-static u32 ns_sample(u32 offset,u32 source,u32 target){
- if(!offset)return 0;if(source<=0xffffffffu/offset)return offset*source/target;
+static u32 ns_sample_divide(u32 offset,u32 source,u32 target,u32* phase){
+ if(!offset){if(phase)*phase=0;return 0;}
+ if(source==target && target){if(phase)*phase=0;return offset;}
+ if(source<=0xffffffffu/offset){u32 product=offset*source;if(phase)*phase=product%target;return product/target;}
  unsigned long long product=(unsigned long long)offset*source,remainder=0,result=0;
  for(u32 i=64;i;--i){remainder=(remainder<<1)|((product>>(i-1))&1u);result<<=1;
   if(remainder>=target){remainder-=target;result|=1;}}
- return (u32)result;
+ if(phase)*phase=(u32)remainder;return (u32)result;
+}
+static u32 ns_sample(u32 offset,u32 source,u32 target){return ns_sample_divide(offset,source,target,0);}
+/* Exact floor((offset+n)*source/target), for admitted nonwrapping offsets.
+ * Carry uses subtraction to avoid overflow when target is near UINT32_MAX.
+ * The returned sample retains the existing modulo32 quotient convention. */
+struct NsSampleCursor {u32 value,phase,step,residue,target;};
+static struct NsSampleCursor ns_sample_begin(u32 offset,u32 source,u32 target){
+ struct NsSampleCursor c;c.value=ns_sample_divide(offset,source,target,&c.phase);
+ c.step=source/target;c.residue=source%target;c.target=target;return c;
+}
+static void ns_sample_next(struct NsSampleCursor* c){
+ c->value+=c->step;
+ if(c->phase>=c->target-c->residue){c->phase-=c->target-c->residue;++c->value;}
+ else c->phase+=c->residue;
 }

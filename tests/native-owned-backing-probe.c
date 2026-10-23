@@ -4,6 +4,11 @@
 API void* WIN LoadLibraryA(const char*);
 API void* WIN GetProcAddress(void*,const char*);
 __declspec(allocate(".own")) static u8 owner_code[0x140000] __attribute__((used));
+API HANDLE WIN CreateThread(void*,u32,u32(WIN*)(void*),void*,u32,u32*);
+API u32 WIN WaitForSingleObject(HANDLE,u32);
+typedef i32(WIN* DirectStore)(void*,u32,u32);
+static DirectStore direct_store;static void* foreign_target;static i32 foreign_result;
+static u32 WIN foreign_store(void* unused){(void)unused;SetLastError(0x7337);foreign_result=direct_store(foreign_target,0xeeee,2);if(GetLastError()!=0x7337)ExitProcess(231);return 0;}
 typedef i32(WIN* Create)(void*,void**,void*);
 typedef i32(WIN* History)(const void*,u32,u32,u32,u32,u32);
 typedef i32(WIN* Transfer)(void*,u32*,const u16*,u32);
@@ -34,6 +39,7 @@ void start(void){
  History history=(History)GetProcAddress(module,"NativeDrawCpuHistoryV1");
  Transfer transfer=(Transfer)GetProcAddress(module,"NativeDrawCpuLeaseTransferV1");
  require(create&&history&&transfer,172);
+ direct_store=(DirectStore)GetProcAddress(module,"NativeDrawCpuStoreV1");require(direct_store!=0,230);
  u8* stub=(u8*)0x533000;u32 page[7],protection;
  require(VirtualQuery(stub,page,28)==28 && page[1]==0x400000 && page[4]==0x1000 && VirtualProtect(stub,4096,0x40,&protection),187);
  for(u32 i=0;i<sizeof(ns_image_copy_original);++i)stub[0xa00+i]=ns_image_copy_original[i];
@@ -52,6 +58,21 @@ void start(void){
  require(VirtualQuery((void*)pixels,memory,28)==28&&memory[5]==1,179);
  pixels[0]=0x1234; /* The real mode3 handler executes this via the private view. */
  require(VirtualQuery((void*)pixels,memory,28)==28&&memory[5]==1,180);
+ SetLastError(0x6776);require(!direct_store((void*)(pixels+1),0xabcd,2)&&GetLastError()==0x6776,232);
+ require(!direct_store((void*)(pixels+1),0xabcd,2),233);
+ require(!direct_store((u8*)pixels+4,0x78,1),234);
+ u32 layout[4]={(u32)pixels,13,9,descriptor[4]};
+ snapshot=GetProcAddress(module,"NativeDrawCpuLeaseSnapshotV1");mask=GetProcAddress(module,"NativeDrawCpuLeaseMaskV1");require(snapshot&&mask,235);
+ require(mask(surface,layout,0,0,2)==3,236);
+ require(!direct_store((u8*)pixels+5,0x56,1)&&mask(surface,layout,0,0,2)==1,237);
+ u16 observed[117];u8 dirty_flags[234];require(!snapshot(surface,layout,observed,sizeof(observed)),238);
+ require(observed[0]==0x1234&&observed[1]==0xabcd&&observed[2]==0x5678,239);
+ require(mask(surface,layout,dirty_flags,sizeof(dirty_flags),0)==1,240);
+ for(u32 i=0;i<234;++i)require(dirty_flags[i]==(i<6),241);
+ require(VirtualQuery((void*)pixels,memory,28)==28&&memory[5]==1,242);
+ require(direct_store((u8*)pixels+memory[3]-1,1,2)<0&&direct_store((void*)pixels,1,3)<0,243);
+ foreign_target=(void*)pixels;HANDLE thread=CreateThread(0,0,foreign_store,0,0,0);require(thread&&WaitForSingleObject(thread,2000)==0&&CloseHandle(thread)&&foreign_result==(i32)0x887601aeu,244);
+
  u32 identity[12];require(!transfer(surface,identity,0,0),181);
  u16 image[117];for(u32 i=0;i<117;++i)image[i]=0x4567;
  require(!transfer(surface,identity,image,sizeof(image)),182);
@@ -83,8 +104,15 @@ void start(void){
   if(test==4)require(pixels[3]==0x458c,201);
   require(GetLastError()==0x4321 && reader_calls==test+2,202);
  }
+ require(!history((void*)pixels,1,8,0,17,34),245);
+ i32(WIN* world)(const void*,u32)=GetProcAddress(module,"NativeDrawCpuGuardWorldV2");require(world&&world((void*)pixels,1)==1,246);
+ require(direct_store((void*)pixels,1,2)==(i32)0x887601aeu&&world((void*)pixels,0)==0,247);
+ require(!history((void*)pixels,1,9,0,17,34),248);
  require(!((i32(WIN*)(void*,void*))table(surface)[32])(surface,(void*)pixels),184);
  require(!release(surface)&&!release(draw),185);
+ u32 direct_result[9]={0x52545344,1,4,6,6,1,1,1,1},direct_written=0;
+ HANDLE direct_file=CreateFileA("direct-store-result.bin",0x40000000,0,0,1,0x80,0);
+ require(direct_file!=(HANDLE)-1&&WriteFile(direct_file,direct_result,sizeof(direct_result),&direct_written,0)&&direct_written==sizeof(direct_result)&&CloseHandle(direct_file),249);
  u32 states[3]={5,45,t1_fx_checks},state_written=0;
  HANDLE state_file=CreateFileA("continuation-state.bin",0x40000000,0,0,1,0x80,0);
  require(state_file!=(HANDLE)-1&&WriteFile(state_file,states,sizeof(states),&state_written,0)&&state_written==sizeof(states)&&CloseHandle(state_file),221);

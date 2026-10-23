@@ -51,8 +51,12 @@ bool LiveCommandRenderer::poll(quint32 budget){
         // command, allowing at most256 small uploads in a streaming GUI poll.
         // Copies, CREATE, larger updates and all v1 commands retain full cost.
         const auto importsBefore=consumer_->result().residentWorldImports;
+        // Resident World import shares this event loop with command/UI work.
+        // Yield between smaller chunks; preserve the same byte cap, FIFO and
+        // full command/PRESENT execution. General streaming retains256 work.
+        const unsigned workLimit=residentWorld?32u:256u;
         unsigned work=0;quint32 remaining=budget;waitingWorld_=false;
-        while(work<256){
+        while(work<workLimit){
             if(cursor_==pending_.size()){
                 if(!remaining)break;
                 const auto bytes=channel_.poll(remaining);
@@ -73,7 +77,7 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 }
                 const unsigned cost=channel_.version()>=2 && command.operation==2 &&
                     command.image.pixels.size()<=16384?1:8;
-                if(cost>256-work)break;
+                if(cost>workLimit-work)break;
                 work+=cost;++cursor_;
             }
             if(cursor_!=first)consumer_->submit(pending_.data()+first,cursor_-first);

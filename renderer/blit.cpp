@@ -431,7 +431,7 @@ struct GlBlitter::Impl {
         deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);
         maskedColour=maskedSelection=0;maskedWidth=maskedHeight=0;counters.maskedScratchPixels=0;
         GLuint colour=0,selection=0;
-        try{colour=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,w,h,nullptr);selection=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,w,h,nullptr);}
+        try{colour=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,w,h,nullptr);selection=texture(GL_R8UI,GL_RED_INTEGER,GL_UNSIGNED_BYTE,w,h,nullptr);}
         catch(...){if(colour)deleteTextures(1,&colour);if(selection)deleteTextures(1,&selection);throw;}
         maskedColour=colour;maskedSelection=selection;maskedWidth=w;maskedHeight=h;
         ++counters.maskedScratchAllocations;counters.maskedScratchPixels=std::uint64_t(w)*h*2;
@@ -885,14 +885,24 @@ void GlBlitter::updateCoveredWords(SurfaceId id,int x,int y,const Image& patch,c
        std::any_of(coverage.begin(),coverage.end(),[](auto v){return v>1;}))
         throw std::invalid_argument("Invalid owned masked RGB565 patch");
     if(std::find(coverage.begin(),coverage.end(),1)==coverage.end())return;
-    std::vector<std::uint32_t> pixels(patch.pixels.size()),mask(coverage.begin(),coverage.end());
+    // All pixels were validated above. A complete mask is an ordinary owned
+    // upload; it needs neither masked scratch nor a selection-texture copy.
+    if(std::find(coverage.begin(),coverage.end(),0)==coverage.end()){
+        update(id,x,y,patch);return;
+    }
+    std::vector<std::uint32_t> pixels(patch.pixels.size());
     for(std::size_t i=0;i<pixels.size();++i)if(coverage[i])pixels[i]=patch.pixels[i];
     p.flushCopies();Current current(p.context,p.surface);p.gl.glActiveTexture(GL_TEXTURE0);
     p.maskedScratch(patch.width,patch.height);
     p.gl.glBindTexture(GL_TEXTURE_2D,p.maskedColour);
     p.gl.glTexSubImage2D(GL_TEXTURE_2D,0,0,0,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,pixels.data());p.uploadBytes(std::uint64_t(patch.width)*patch.height*4);
     p.gl.glBindTexture(GL_TEXTURE_2D,p.maskedSelection);
-    p.gl.glTexSubImage2D(GL_TEXTURE_2D,0,0,0,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,mask.data());p.uploadBytes(std::uint64_t(patch.width)*patch.height*4);
+    // The validated selection contains only integer0/1. R8UI preserves those
+    // exact shader values without a CPU DWORD expansion. Tight odd rows need
+    // byte alignment; restore this owned context's established4-byte state.
+    p.gl.glPixelStorei(GL_UNPACK_ALIGNMENT,1);
+    p.gl.glTexSubImage2D(GL_TEXTURE_2D,0,0,0,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_BYTE,coverage.data());
+    p.gl.glPixelStorei(GL_UNPACK_ALIGNMENT,4);p.uploadBytes(std::uint64_t(patch.width)*patch.height);
     p.copyTexture(p.maskedColour,p.maskedSelection,s,{0,0,patch.width,patch.height},x,y,std::nullopt,UINT32_MAX);
     // Submission must complete before another patch overwrites shared scratch.
     p.flushCopies();p.check();

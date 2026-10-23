@@ -54,7 +54,11 @@ static int command_queue_append(const void* a,u32 an,const void* b,u32 bn,const 
         copy(command_queue+offset,parts[i],first);copy(command_queue,(const u8*)parts[i]+first,sizes[i]-first);written+=sizes[i];
     }
     command_queue_peak_update(written-read);
-    __atomic_store_n(&command_queue_written,written,__ATOMIC_RELEASE);return 1;
+    __atomic_store_n(&command_queue_written,written,__ATOMIC_RELEASE);
+    /* A sleeping publication worker compares this cursor before waiting.
+     * Notify after owned bytes are visible; callbacks never wait for the peer. */
+    if(an || bn || cn){u32 error=GetLastError();WakeByAddressAll(&command_queue_written);SetLastError(error);}
+    return 1;
 }
 static int command_queue_watch(void){
     /* Validate even when no bytes remain queued: an idle producer still owns

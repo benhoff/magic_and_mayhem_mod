@@ -66,6 +66,7 @@ def build(output, declared=None):
                'NativeDrawSurfaces': ('NativeDrawSurfaces', 0),
                'NativeDrawPlaneV1': ('NativeDrawPlaneV1', 12),
                'NativeDrawCpuHistoryV1': ('NativeDrawCpuHistoryV1', 24),
+               'NativeDrawCpuStoreV1': ('NativeDrawCpuStoreV1', 12),
                'NativeDrawGpuCopyV1': ('NativeDrawGpuCopyV1', 28),
                'NativeDrawGpuCopyPlanV1': ('NativeDrawGpuCopyPlanV1', 28),
                'NativeDrawCpuTransferV1': ('NativeDrawCpuTransferV1', 16),

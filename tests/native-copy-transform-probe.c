@@ -22,6 +22,29 @@ static void paint(void* s,u32 format,int pattern){
  require(!((i32(WIN*)(void*,void*))table(s)[32])(s,(void*)d[9]),64);
 }
 #ifndef MNM_TRANSFORM_HELPERS_ONLY
+static u32 fast_word(u32 format,u32 x,u32 y){
+ u32 v=colours[format][(x+y*13)%5];if(format==1 && (x+y)%3==0)v|=0x8000;return v;
+}
+static void fast_copy_controls(void* draw){
+ for(u32 format=1;format<=2;++format)for(u32 mode=0;mode<3;++mode){
+  void* source=make_surface(draw,format);void* target=mode==2?source:make_surface(draw,format);paint(source,format,1);
+  u32 d[31]={108};require(!((Lock)table(source)[25])(source,0,d,1,0),76);
+  for(u32 y=0;y<9;++y)for(u32 x=0;x<13;++x)*(u16*)((u8*)d[9]+y*d[4]+x*2)=(u16)fast_word(format,x,y);
+  require(!((i32(WIN*)(void*,void*))table(source)[32])(source,(void*)d[9]),77);
+  if(mode!=2)paint(target,format,0);
+  u32 key[2]={colours[format][2],colours[format][1]};require(!((i32(WIN*)(void*,u32,const u32*))table(source)[29])(source,8,key),78);
+  i32 sr[4]={2,1,10,7},dr[4]={3,2,11,8};
+  require(!((i32(WIN*)(void*,const i32*,void*,const i32*,u32,const u32*))table(target)[5])(target,dr,source,sr,mode==1?0x8000:0,0),79);
+  d[0]=108;require(!((Lock)table(target)[25])(target,0,d,0x10,0),80);
+  for(u32 y=0;y<9;++y)for(u32 x=0;x<13;++x){
+   u32 expected=mode==2?fast_word(format,x,y):colours[format][3];
+   if(x>=3&&x<11&&y>=2&&y<8){u32 value=fast_word(format,x-1,y-1);if(mode!=1||value<key[0]||value>key[1])expected=value;}
+   require(*(const u16*)((const u8*)d[9]+y*d[4]+x*2)==expected,81);
+  }
+  require(!((i32(WIN*)(void*,void*))table(target)[32])(target,(void*)d[9]),82);
+  if(mode!=2)require(!release(target),83);require(!release(source),84);
+ }
+}
 void start(void){
  char path[1024];require(GetEnvironmentVariableA("MNM_TEST_LIBRARY",path,sizeof(path))>0,65);
  void* module=LoadLibraryA(path);require(module!=0,66);Create create=GetProcAddress(module,"NativeDrawCreate");
@@ -45,6 +68,6 @@ void start(void){
   }
   require(!release(source)&&!release(target),74);
  }
- require(!release(draw),75);ExitProcess(0);
+ fast_copy_controls(draw);require(!release(draw),75);ExitProcess(0);
 }
 #endif

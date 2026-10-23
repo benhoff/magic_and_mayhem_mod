@@ -618,7 +618,9 @@ __declspec(dllexport) u32 WIN RenderCommandAdmissionForTest(void){
     u32 error=GetLastError();
     struct CommandLease callback __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
     if(!callback.counted){SetLastError(error);return 0;}
+    command_pressure_witness_for_test=1;
     struct GameCopyLease lease __attribute__((cleanup(game_copy_leave)))=game_copy_bind_enter();
+    command_pressure_witness_for_test=0;
     u32 ready=lease.held && lease.observe;SetLastError(error);return ready;
 }
 __declspec(dllexport) void WIN RenderResidentHistoryForTest(void* callback){

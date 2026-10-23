@@ -21373,3 +21373,7 @@ nonempty task notifications,SEH/failures,other task families and World/live rema
 open. Separate fresh OOS1 compatibility supports its unchanged bounded domain.
 The Critical actor umbrella stays partial. Incomingf2253bb8..ac0b9e3b review:
 27 exact file transitions,zero missing/mutated receipts.
+
+## Seventeenth rendering batch — five current contracts (2026-10-23)
+
+[Current five-contract closeout](rendering-seventeenth-five-20261023.md) records 83 Python controls plus13 combat-input regressions,20 asserted native controls,4096 verification and4096 normal returns/paints; original 19.90295FPS,Qt 19.90693FPS,warm median42.0ms/p9548ms/max69ms,cold247.225ms,RSS growth0bytes. Actual post-prefix peer deaths and128 normal recovery use fresh distinct sessions. Kernel/display/input isolation, actual PE32 protected backing and strict refusals, owned/strict normal and live Hard restart, plus public casting/combat/spell/portrait/movement/Mini/normal Quit complete. Ordinary public19FPS acceptance is False at 17.253776873910518FPS; failed portrait/window/aggregate timing remains pending and raw success remains false. Rendering implementation partials6→1. Scopes, old fingerprints/failures and independent original comparison/integration/replacement stages are preserved; full DirectDraw/whole-game/global ownership and60FPS remain separate. SQLite stores all new durable observations and exact source/collector provenance. Storage review finds no eligible cleanup candidates; retained source/pins/raw evidence are untouched.

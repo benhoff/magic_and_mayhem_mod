@@ -21,6 +21,7 @@ int mnm_raster_pixels(const struct MnmPixelPlane *, const struct MnmRasterPixels
 typedef int (*MnmRasterOutsideSample)(void *, uint32_t, uint32_t, int);
 int mnm_raster_pixels_with_sample_boundary(const struct MnmPixelPlane *,
     const struct MnmRasterPixels *, MnmRasterOutsideSample, void *);
+int mnm_raster_pixels_with_storage(const struct MnmPixelPlane *,const struct MnmRasterPixels *,MnmRasterOutsideSample,void *,MnmPixelStore16);
 #ifdef __cplusplus
 }
 #endif

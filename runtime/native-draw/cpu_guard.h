@@ -1,3 +1,4 @@
+#include "row_words.h"
 /* Stale allocation protection. Opt-in mode2 single-steps discovery stores;
  * resident mode3 emulates checked stores through a private mapped view.
  * No handler ever requests a readback. */
@@ -8,6 +9,7 @@ API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
 API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
 API i32 WIN UnmapViewOfFile(const void*);
 #include "cpu_store.h"
+#include "cpu_store_profile.h"
 #include "ownership_admission.h"
 static void* ns_guard_handler;
 static u32 ns_guard_initialized,ns_guard_enabled,ns_guard_faulted;
@@ -50,18 +52,14 @@ struct NsGuardExceptionRecord {u32 code,flags,record,address,count,information[1
 struct NsGuardExceptionPointers {struct NsGuardExceptionRecord* record;void* context;};
 static u32 ns_guard_bytes(const struct NsState* s){return (s->pitch*s->height+2+4095u)&~4095u;}
 static void ns_guard_dirty_clear(struct NsState* s){
- if(s->cpu_dirty)for(u32 i=0;i<(s->width*s->height*2+7)/8;++i)s->cpu_dirty[i]=0;
+ u8* dirty=s->cpu_dirty;const u32 length=(s->width*s->height*2+7)/8;
+ if(dirty)for(u32 i=0;i<length;++i)dirty[i]=0;
  s->cpu_dirty_count=s->cpu_dirty_partial=0;
 }
+#include "dirty_bytes.h"
 static void ns_guard_dirty(struct NsState* s,u32 offset,u32 bytes){
  if(!s->cpu_dirty || !s->history_stale || s->locked<=0)return;
- for(u32 i=0;i<bytes;++i){u32 at=offset+i,row=at/s->pitch,col=at%s->pitch;
-  if(row>=s->height || col>=s->width*2)continue;
-  u32 bit=row*s->width*2+col,index=bit>>3,flag=1u<<(bit&7);
-  if(s->cpu_dirty[index]&flag)continue;
-  if(s->cpu_dirty[index]&(1u<<((bit^1u)&7)))--s->cpu_dirty_partial;else ++s->cpu_dirty_partial;
-  s->cpu_dirty[index]|=(u8)flag;++s->cpu_dirty_count;
- }
+ ns_dirty_bytes(s->cpu_dirty,s->width,s->height,s->pitch,offset,bytes,&s->cpu_dirty_count,&s->cpu_dirty_partial);
 }
 static void ns_guard_set(struct NsState*,u32);
 static void ns_guard_refresh(struct NsState*);
@@ -96,6 +94,7 @@ static i32 WIN ns_guard_fault(struct NsGuardExceptionPointers* pointers){
     volatile u8* target=(volatile u8*)s->pixels_alias+store.address-base;
     for(u32 i=0;i<store.width;++i)target[i]=(u8)(store.value>>(i*8));
     ns_guard_dirty(s,store.address-base,store.width);
+    ns_store_profile_record(e->address,store.width,store.length);
     if(store.stos)context[39]+=(context[48]&0x400u)?0u-store.width:store.width;
     context[46]+=store.length;return -1;
    }
@@ -154,6 +153,7 @@ static void ns_guard_initialize(void){
    if(file!=(HANDLE)-1){WriteFile(file,modules,sizeof(modules),&done,0);CloseHandle(file);}
   }
  }
+ ns_store_profile_initialize(ns_guard_enabled);
  ns_ownership_admit(ns_guard_enabled);ns_native_only_initialize();
  ns_guard_initialized=1;SetLastError(error);
 }
@@ -177,11 +177,12 @@ static void ns_guard_refresh(struct NsState* s){
 static void ns_guard_baseline(struct NsState* s,u16* baseline){
  if(!s->pixels_alias)ns_guard_set(s,0);
  const u16* bytes=s->pixels_alias?s->pixels_alias:s->pixels;
- for(u32 y=0;y<s->height;++y)for(u32 x=0;x<s->width;++x)baseline[y*s->width+x]=bytes[y*(s->pitch/2)+x];
+ ns_copy_word_rows(baseline,s->width,bytes,s->pitch/2,s->width,s->height);
  if(!s->pixels_alias)ns_guard_refresh(s);
 }
 /* A process-local exception callback must not survive explicit DLL unload. */
 static void ns_guard_finish(void){
  if(ns_guard_handler){void* handler=ns_guard_handler;ns_guard_handler=0;
   if(!RemoveVectoredExceptionHandler(handler))ExitProcess(124);}
+ ns_store_profile_finish();
 }

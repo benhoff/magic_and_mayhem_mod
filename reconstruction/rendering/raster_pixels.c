@@ -3,7 +3,7 @@ static uint32_t u32(const uint8_t *p){return p[0]|(uint32_t)p[1]<<8|(uint32_t)p[
 static uint32_t u16(const uint8_t *p){return p[0]|(uint32_t)p[1]<<8;}
 static int alias(uintptr_t a,uint32_t n,uintptr_t b,uint32_t m){return a>UINTPTR_MAX-n||b>UINTPTR_MAX-m||(a<b+m&&b<a+n);}
 static int visit(const struct MnmPixelPlane *p,const struct MnmRasterPixels *r,int write,
-                 MnmRasterOutsideSample outside,void *context){
+                 MnmRasterOutsideSample outside,void *context,MnmPixelStore16 store){
  const uint8_t *f=r->frame;const uint32_t w=u32(f+4),h=u32(f+8),table=40+h*8,step=r->indexed?1:2;
  uint32_t end=r->bytes,previous_control=0,previous_pixel=0;
  for(uint32_t i=32;i<=36;i+=4){const uint32_t a=u32(f+i);if(a&&(a<table||a>r->bytes))return 0;if(a&&a<end)end=a;}
@@ -57,7 +57,7 @@ static int visit(const struct MnmPixelPlane *p,const struct MnmRasterPixels *r,i
      else if(r->mode==5)colour=(dest>>1)&mask;
      else if(r->mode==6){const uint32_t red=(colour>>(p->format?10:11))&31,green=(colour>>(p->format?5:6))&31;
       const uint32_t grey=(red+green+(colour&31))/3;colour=grey+(grey<<(p->format?10:11))+(grey<<(p->format?5:6));}
-     p->pixels[at]=(uint16_t)colour;
+     mnm_pixel_store16(store,p->pixels+at,(uint16_t)colour);
     }
     pixel+=n*step;
    }
@@ -67,8 +67,8 @@ static int visit(const struct MnmPixelPlane *p,const struct MnmRasterPixels *r,i
  }
  return 1;
 }
-int mnm_raster_pixels_with_sample_boundary(const struct MnmPixelPlane *p,const struct MnmRasterPixels *r,
-                                         MnmRasterOutsideSample outside,void *context){
+int mnm_raster_pixels_with_storage(const struct MnmPixelPlane *p,const struct MnmRasterPixels *r,
+                                         MnmRasterOutsideSample outside,void *context,MnmPixelStore16 store){
  if(!mnm_pixel_plane(p)||!r||!r->frame||r->bytes<48||r->bytes>4*1024*1024||u32(r->frame)!=r->bytes||
     r->indexed>1||r->mode>7||!r->period||r->period>16||r->contiguous>1||r->legacy_wave_clip>1||r->paired_palette>2||
     (r->paired_palette&&(!r->indexed||r->mode||r->palette_step!=4))||
@@ -82,9 +82,11 @@ int mnm_raster_pixels_with_sample_boundary(const struct MnmPixelPlane *p,const s
  if(!w||w>2048||!h||h>2048||40+h*8>r->bytes)return 0;
  if(r->indexed&&r->palette&&alias((uintptr_t)r->palette,256*r->palette_step,(uintptr_t)p->pixels,p->stride*p->height*2))return 0;
  if(r->strict_horizontal&&((int64_t)r->left<r->clip_left||(int64_t)r->left+w>=r->clip_right))return 0;
- if(!visit(p,r,0,outside,context))return 0;
- return visit(p,r,1,outside,context);
+ if(!visit(p,r,0,outside,context,store))return 0;
+ return visit(p,r,1,outside,context,store);
 }
 int mnm_raster_pixels(const struct MnmPixelPlane *p,const struct MnmRasterPixels *r){
  return mnm_raster_pixels_with_sample_boundary(p,r,0,0);
 }
+
+int mnm_raster_pixels_with_sample_boundary(const struct MnmPixelPlane* p,const struct MnmRasterPixels* r,MnmRasterOutsideSample outside,void* context){return mnm_raster_pixels_with_storage(p,r,outside,context,0);}

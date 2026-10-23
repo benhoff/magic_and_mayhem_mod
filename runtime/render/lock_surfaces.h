@@ -306,6 +306,12 @@ static void game_blit_apply(const struct GameBlit* p,const struct Snapshot* src,
     }
     for(u32 y=0;y<height;++y){const u8* in=src->data+((f[3]+y)*src->width+f[2])*bytes;u8* out=first+y*dst->width*bytes;
         if(!f[8]){copy(out,in,width*bytes);continue;}
+        if(bytes==2){
+            const u32 key=f[9];
+            for(u32 x=0;x<width;++x){const u32 at=x*2,value=(u32)in[at]|(u32)in[at+1]<<8;
+                if(value!=key){out[at]=in[at];out[at+1]=in[at+1];}}
+            continue;
+        }
         for(u32 x=0;x<width;++x){u32 value=0;for(u32 j=0;j<bytes;++j)value|=(u32)in[x*bytes+j]<<(8*j);
             if(value!=f[9])for(u32 j=0;j<bytes;++j)out[x*bytes+j]=in[x*bytes+j];}
     }

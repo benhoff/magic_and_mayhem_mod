@@ -33,7 +33,7 @@ struct Writer {
     void append(const QByteArray& data){std::memcpy(map+64+bytes,data.constData(),data.size());bytes+=data.size();set(20,bytes);}
 };
 quint64 sustainedBytes;unsigned sustainedCommands,sustainedRetries;
-unsigned coalescedPresents,coalescedPaints,coalescedPolls;
+unsigned coalescedPresents,coalescedPaints,coalescedPolls,residentBurstPolls,residentBurstMaximum;
 struct PaintCounter:QObject {
     unsigned paints=0;
     bool eventFilter(QObject*,QEvent* event) override{if(event->type()==QEvent::Paint)++paints;return false;}
@@ -42,9 +42,10 @@ struct InputProbe:QObject {
     bool delivered=false;
     bool event(QEvent* event) override{if(event->type()==QEvent::User){delivered=true;return true;}return QObject::event(event);}
 };
-void coalesced(GlViewport& viewport){
+void coalesced(GlViewport& viewport,bool resident=false){
     QTemporaryDir dir;LiveCommandRenderer live(viewport);const auto path=dir.filePath("burst");
     check(live.create(path,228,2),"burst create");Writer mapped(path);mnm_ring_writer writer{};
+    if(resident)live.residentWorld=[](auto,auto){throw std::runtime_error("Unexpected WORLD in UI-only backlog fixture");return mnm::render::GpuFrame{};};
     check(mnm_ring_writer_bind(&writer,mapped.map,MNM_RENDER_COMMANDS_V2_SIZE),"burst claim");
     QByteArray data("MNMCMD01");word(data,1);word(data,16);unsigned seq=0,shown=0;
     record(data,++seq,1,{1,2,2,16,0xf800,0x7e0,0x1f},QByteArray(8,0));
@@ -56,10 +57,12 @@ void coalesced(GlViewport& viewport){
     check(mnm_ring_write(&writer,data.data(),data.size())==1 && mnm_ring_end(&writer),"burst publish");
     live.framePresented=[&]{++shown;};
     PaintCounter counter;viewport.installEventFilter(&counter);InputProbe input;
-    unsigned polls=0,paints=0;
+    unsigned polls=0,paints=0,maximum=0;
     while(!live.ended()){
         const auto before=shown;counter.paints=0;
         check(live.poll(65536),"burst poll");++polls;paints+=counter.paints;
+        maximum=std::max(maximum,shown-before);
+        if(resident)check(shown-before<=3,"Resident UI chunk starved World/input service");
         if(counter.paints)std::fprintf(stderr,"Burst poll %u: %u presents, %u synchronous Paint events\n",polls,shown-before,counter.paints);
         check(!counter.paints,"Historical PRESENTs blocked the Qt event loop with a synchronous repaint");
         if(polls==1){
@@ -68,14 +71,15 @@ void coalesced(GlViewport& viewport){
         }
         QApplication::processEvents();
         check(input.delivered,"Input event starved between bounded command polls");
-        check(polls<=10,"Burst failed to drain");
+        check(polls<=(resident?32u:10u),"Burst failed to drain");
     }
     viewport.removeEventFilter(&counter);
     check(!live.hasPendingCommands() && shown==70 && live.result()->commands==seq,"Burst skipped commands or presentations");
     const auto image=viewport.grabFramebuffer();
     for(int y=0;y<64;++y)for(int x=0;x<64;++x)check(image.pixel(x,y)==qRgb(255,0,0),"Burst did not retain latest complete frame after DELETE/END");
     check(!live.result()->liveSurfaces && !live.result()->stats.nativeReadbacks && !live.result()->stats.rgbaReadbacks && !viewport.imageUploads(),"Burst ownership/readback regression");
-    coalescedPresents=shown;coalescedPaints=paints;coalescedPolls=polls;
+    if(resident){residentBurstPolls=polls;residentBurstMaximum=maximum;}
+    else{coalescedPresents=shown;coalescedPaints=paints;coalescedPolls=polls;}
 }
 unsigned sustained(GlViewport& viewport,bool movie=false){
     QTemporaryDir dir;LiveCommandRenderer live(viewport);auto path=dir.filePath("sustained");
@@ -261,7 +265,7 @@ int main(int argc,char** argv){
         GlViewport viewport;viewport.setMinimumSize(1,1);viewport.resize(64,64);viewport.show();app.processEvents();check(viewport.ready(),"viewport ready");
         if(argc==1){
             {GlViewport movie;movie.setMinimumSize(1,1);movie.resize(64,64);movie.show();app.processEvents();check(movie.ready(),"movie viewport ready");sustained(movie,true);}
-            coalesced(viewport);auto frames=synthetic(viewport)+sustained(viewport);auto lifetime=byteLifetime(viewport);std::printf("{\"success\":true,\"movie_command_drain\":true,\"v3_lifetime_bytes\":%llu,\"full_frames\":%u,\"checkpoint_budget_cases\":2,\"failures\":14,\"ordinary_readbacks\":0,\"viewport_uploads\":0,\"sustained_bytes\":%llu,\"sustained_commands\":%u,\"sustained_frames\":4,\"full_retries\":%u,\"burst_presents\":%u,\"burst_paints\":%u,\"burst_polls\":%u,\"input_between_polls\":true}\n",static_cast<unsigned long long>(lifetime),frames,static_cast<unsigned long long>(sustainedBytes),sustainedCommands,sustainedRetries,coalescedPresents,coalescedPaints,coalescedPolls);return 0;}
+            coalesced(viewport);coalesced(viewport,true);auto frames=synthetic(viewport)+sustained(viewport);auto lifetime=byteLifetime(viewport);std::printf("{\"success\":true,\"movie_command_drain\":true,\"v3_lifetime_bytes\":%llu,\"full_frames\":%u,\"checkpoint_budget_cases\":2,\"failures\":14,\"ordinary_readbacks\":0,\"viewport_uploads\":0,\"sustained_bytes\":%llu,\"sustained_commands\":%u,\"sustained_frames\":4,\"full_retries\":%u,\"burst_presents\":%u,\"burst_paints\":%u,\"burst_polls\":%u,\"input_between_polls\":true,\"resident_burst_polls\":%u,\"resident_max_presents_per_poll\":%u,\"resident_fifo_presents\":70}\n",static_cast<unsigned long long>(lifetime),frames,static_cast<unsigned long long>(sustainedBytes),sustainedCommands,sustainedRetries,coalescedPresents,coalescedPaints,coalescedPolls,residentBurstPolls,residentBurstMaximum);return 0;}
         check(argc==4,"live args: channel active-marker report");viewport.resize(800,600);app.processEvents();LiveCommandRenderer live(viewport);check(live.open(QString::fromLocal8Bit(argv[1])),"open live channel");QJsonArray frames;bool beforeExit=false;QElapsedTimer elapsed;elapsed.start();QTimer timer;
         live.framePresented=[&]{
             QFile marker(QString::fromLocal8Bit(argv[2]));if(marker.open(QIODevice::ReadOnly)){

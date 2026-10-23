@@ -29,6 +29,7 @@ static void ns_dc_drop(struct NsState*);
 static void ns_cpu_require(struct NsState*);
 static int ns_borrowed(const struct NsState* s){return s->locked || s->dc || s->storage_dc;}
 #include "cpu_guard.h"
+#include "cpu_direct_store.h"
 #include "native_only.h"
 static const u8 ns_ids[4][16]={
  {0x81,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60},
@@ -48,7 +49,7 @@ static i32 WIN ns_query(struct NsObject* o,const u8* iid,void** out){
 static u32 WIN ns_retain(struct NsObject* o){if(!o->state->refs[o->kind]++)++o->state->interfaces;return o->state->refs[o->kind];}
 static u32 WIN ns_release(struct NsObject* o){
  struct NsState* s=o->state;u32 error=GetLastError(),refs=--s->refs[o->kind];
- if(!refs && !--s->interfaces){if(s->device->state->primary==s)s->device->state->primary=0;ns_dc_drop(s);if(s->palette)np_release(s->palette);if(s->clipper)nc_release(s->clipper);ns_bytes-=s->pitch*s->height;if(s->back)ns_release(&s->back->aliases[s->device->kind==3?3:1]);
+ if(!refs && !--s->interfaces){ns_store_invalidate();if(s->device->state->primary==s)s->device->state->primary=0;ns_dc_drop(s);if(s->palette)np_release(s->palette);if(s->clipper)nc_release(s->clipper);ns_bytes-=s->pitch*s->height;if(s->back)ns_release(&s->back->aliases[s->device->kind==3?3:1]);
   if(s->pixels_mapping){UnmapViewOfFile(s->pixels);UnmapViewOfFile(s->pixels_alias);CloseHandle(s->pixels_mapping);}else VirtualFree(s->pixels,0,0x8000);
   if(s->cpu_dirty)HeapFree(GetProcessHeap(),0,s->cpu_dirty);
   if(s->previous_owned)s->previous_owned->next_owned=s->next_owned;else ns_owned=s->next_owned;
@@ -175,10 +176,30 @@ static i32 ns_draw_route(struct NsObject* dst,const i32* dr,struct NsObject* src
   long long last_x=(long long)rs[0]+ns_sample((u32)((long long)right-1-rd[0]),sw,(u32)width),
             last_y=(long long)rs[1]+ns_sample((u32)((long long)bottom-1-rd[1]),sh,(u32)height);
   if(s && (sx<0 || sy<0 || last_x>=s->width || last_y>=s->height)){result=NS_RECT;break;}
-  for(i32 y=top;y<bottom;++y)for(i32 x=left;x<right;++x){
-   u32 value=s?ns_read(s,(u32)((long long)rs[0]+ns_sample((u32)((long long)x-rd[0]),sw,(u32)width)),
-                          (u32)((long long)rs[1]+ns_sample((u32)((long long)y-rd[1]),sh,(u32)height))):fx[20];
-   if(!(flags&0x8000) || value<s->key_low || value>s->key_high)ns_write(d,x,y,s?ns_convert(d,s,value):value);
+  /* Borrow admission above proves no writable Lock/DC. Thus ns_write's
+   * dirty tracker is inactive here. Keep exact raw WORDs and key comparisons
+   * without redispatching format/conversion/sampling for every pixel. */
+  if(s && !conversion && !stretch && d->bits==16){
+   const u8* input=(const u8*)(s->pixels_alias?s->pixels_alias:s->pixels);
+   u8* output=(u8*)(d->pixels_alias?d->pixels_alias:d->pixels);
+   for(i32 y=top;y<bottom;++y){
+    const u16* in=(const u16*)(input+((u32)sy+(u32)(y-top))*s->pitch+(u32)sx*2);
+    u16* out=(u16*)(output+(u32)y*d->pitch+(u32)left*2);
+    for(u32 x=0;x<(u32)(right-left);++x){u32 value=in[x];
+     if(!(flags&0x8000) || value<s->key_low || value>s->key_high)out[x]=(u16)value;
+    }
+   }
+   continue;
+  }
+  struct NsSampleCursor first_x={0};if(s)first_x=ns_sample_begin((u32)((long long)left-rd[0]),sw,(u32)width);
+  for(i32 y=top;y<bottom;++y){
+   struct NsSampleCursor sample_x=first_x;
+   const u32 source_y=s?(u32)((long long)rs[1]+ns_sample((u32)((long long)y-rd[1]),sh,(u32)height)):0;
+   for(i32 x=left;x<right;++x){
+    u32 value=s?ns_read(s,(u32)((long long)rs[0]+sample_x.value),source_y):fx[20];
+    if(!(flags&0x8000) || value<s->key_low || value>s->key_high)ns_write(d,x,y,s?ns_convert(d,s,value):value);
+    if(s)ns_sample_next(&sample_x);
+   }
   }
  }
  if(frozen)HeapFree(GetProcessHeap(),0,frozen);
@@ -233,7 +254,7 @@ static i32 WIN ns_flip(struct NsObject* o,struct NsObject* target,u32 flags){
  if(target && target->state!=back)return ND_INVALID;
  /* Mapping debt is an unsupported access sequence, not unsigned wraparound. */
  if(front->locked<0 || back->locked<0 || front->cpu_guard_world || back->cpu_guard_world)return NS_BUSY;
- u16* temporary=front->pixels;front->pixels=back->pixels;back->pixels=temporary;
+ ns_store_invalidate();u16* temporary=front->pixels;front->pixels=back->pixels;back->pixels=temporary;
  temporary=front->pixels_alias;front->pixels_alias=back->pixels_alias;back->pixels_alias=temporary;
  HANDLE mapping=front->pixels_mapping;front->pixels_mapping=back->pixels_mapping;back->pixels_mapping=mapping;
  u8* dirty=front->cpu_dirty;front->cpu_dirty=back->cpu_dirty;back->cpu_dirty=dirty;
@@ -297,7 +318,7 @@ static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,
  if(!s->pixels){HeapFree(GetProcessHeap(),0,s);return 0;}
  for(u32 i=0;i<5;++i)s->aliases[i]=(struct NsObject){ns_tables[i],s,i};
  s->interfaces=1;s->refs[device->kind==3?3:1]=1;s->device=device;nd_retain(device);s->width=width;s->height=height;s->caps=caps;
- s->next_owned=ns_owned;if(ns_owned)ns_owned->previous_owned=s;ns_owned=s;
+ ns_store_invalidate();s->next_owned=ns_owned;if(ns_owned)ns_owned->previous_owned=s;ns_owned=s;
  ++nd_surfaces;++ns_creates;ns_bytes+=s->pitch*height;nd_status();return s;
 }
 /* First failed descriptor per owned launch, preserving the HRESULT policy.

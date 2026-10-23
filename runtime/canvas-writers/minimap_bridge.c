@@ -95,7 +95,7 @@ static int install(void){
  u32 pages[7],protection[7],count=0;
  for(u32 i=0;i<MNM_MAP_SITES;++i){const u32 page=sites[i].at&~4095u;u32 j=0;while(j<count && pages[j]!=page)++j;if(j<count)continue;
   if(!VirtualProtect((void*)page,4096,0x40,protection+count)){while(count){--count;u32 ignored;if(!VirtualProtect((void*)pages[count],4096,protection[count],&ignored))ExitProcess(123);}return 0;}pages[count++]=page;}
- mnm_map_resolve=resolve;mnm_map_notice=producer_notice;mnm_map_release=release;
+ mnm_map_resolve=resolve;mnm_map_notice=producer_notice;mnm_map_release=release;mnm_map_store=cpu_history_store16;
  for(u32 i=0;i<MNM_MAP_SITES;++i)jump((u8*)sites[i].at,(void*)sites[i].entry,sites[i].length);
  while(count){--count;u32 ignored;if(!VirtualProtect((void*)pages[count],4096,protection[count],&ignored) || !FlushInstructionCache(GetCurrentProcess(),(void*)pages[count],4096))ExitProcess(123);}
  installed=1;return 1;

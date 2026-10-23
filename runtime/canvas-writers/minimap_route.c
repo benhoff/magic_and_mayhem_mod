@@ -1,5 +1,6 @@
 #include "minimap_route.h"
 MnmMapResolve mnm_map_resolve;
+MnmPixelStore16 mnm_map_store;
 MnmMapRelease mnm_map_release;
 uintptr_t mnm_map_original[MNM_MAP_SITES],mnm_map_resume[MNM_MAP_SITES];
 uint32_t mnm_map_native[MNM_MAP_SITES],mnm_map_forwarded[MNM_MAP_SITES];
@@ -14,15 +15,15 @@ int mnm_map_route(uint32_t *r,unsigned kind){
  if(kind>=MNM_MAP_SITES)return 0;
  struct MnmPixelPlane p={0},history={0};struct MnmMinimapTerrain t={0};struct MnmMinimapView v={0};struct MnmMinimapCamera c={0};uint32_t a[8]={0},returned=0;int ok=0;
  if(!mnm_map_resolve || !mnm_map_resolve(r,kind,&p,&history,&t,&v,&c,a))goto done;
- if(kind==MNM_MAP_TERRAIN)ok=mnm_minimap_terrain(&p,&history,&t);
+ if(kind==MNM_MAP_TERRAIN)ok=mnm_minimap_terrain_with_store(&p,&history,&t,mnm_map_store);
  else if(kind==MNM_MAP_CELL){
-  ok=mnm_minimap_cell_at(&p,(int32_t)a[0],(int32_t)a[1],(uint16_t)a[2],a[3],&returned);
+  ok=mnm_minimap_cell_at_with_store(&p,(int32_t)a[0],(int32_t)a[1],(uint16_t)a[2],a[3],&returned,mnm_map_store);
   if(ok){r[7]=(uint32_t)(uintptr_t)p.pixels+returned*2;r[6]=p.stride;r[5]=(r[5]&0xffff0000u)|a[2];
    const uint32_t before=(uint32_t)(uintptr_t)p.pixels+((a[1]+(a[3]?1:0))*p.stride+a[0])*2;
    r[8]=add_flags(before,2,r[8]);}
- }else if(kind==MNM_MAP_CREATURE)ok=mnm_minimap_creature(&p,(int32_t)a[0],(int32_t)a[1],(uint16_t)r[1]);
+ }else if(kind==MNM_MAP_CREATURE)ok=mnm_minimap_creature_with_store(&p,(int32_t)a[0],(int32_t)a[1],(uint16_t)r[1],mnm_map_store);
  else {
-  ok=mnm_minimap_camera(&p,&v,&c);
+  ok=mnm_minimap_camera_with_store(&p,&v,&c,mnm_map_store);
   if(ok){const int swapped=v.orientation==1 || v.orientation==2;
    const int32_t first=(swapped?v.realm_height:v.realm_width)/2,second=(swapped?v.realm_width:v.realm_height)/2,dy=c.directions[7];
    r[6]=(uint32_t)((first+second)/2-1-dy*(c.viewport_height/64)+(dy<0));

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Exercise native ownership admission and a real isolated X11 output boundary."""
 import argparse
+from coverage_evidence import write_report
 import ctypes
 import hashlib
 import importlib.util
@@ -97,7 +98,7 @@ def main():
         for server,_ in reversed(servers):
             if server.poll() is None:server.terminate();server.wait(timeout=10)
         report['sources_stable']=stable();report['success']=report['success'] and report['sources_stable']
-        args.report.parent.mkdir(parents=True,exist_ok=True);args.report.write_text(json.dumps(report,indent=2)+'\n')
+        write_report(ROOT,args.report,(json.dumps(report,indent=2)+'\n').encode())
     print(json.dumps({key:report.get(key) for key in ('success','sources_stable','error')}))
     return 0 if report['success'] else 1
 

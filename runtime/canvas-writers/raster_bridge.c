@@ -100,8 +100,8 @@ int mnm_raster_route(u32 *r,unsigned site){
  }
  const u32 thread=GetCurrentThreadId();if(!owner)__sync_bool_compare_and_swap(&owner,0,thread);if(thread!=owner)RASTER_REFUSE;
  u32 retained=0;
- if(!mnm_raster_pixels_with_sample_boundary(&p,&q,
-      q.mode==3?mnm_retain_outside_displacement:0,&retained)){
+ if(!mnm_raster_pixels_with_storage(&p,&q,
+      q.mode==3?mnm_retain_outside_displacement:0,&retained,cpu_history_store16)){
   raster_refusal(site,__LINE__,r,&p,&q);RASTER_REFUSE;
  }
  if(retained){

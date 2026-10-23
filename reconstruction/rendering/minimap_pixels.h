@@ -24,6 +24,11 @@ int mnm_minimap_cell(const struct MnmPixelPlane *, const struct MnmMinimapView *
 int mnm_minimap_cell_at(const struct MnmPixelPlane *, int32_t x, int32_t y, uint16_t colour, uint32_t ring, uint32_t *returned_word);
 int mnm_minimap_creature(const struct MnmPixelPlane *, int32_t x, int32_t y, uint16_t colour);
 int mnm_minimap_camera(const struct MnmPixelPlane *, const struct MnmMinimapView *, const struct MnmMinimapCamera *);
+int mnm_minimap_terrain_with_store(const struct MnmPixelPlane *,const struct MnmPixelPlane *,const struct MnmMinimapTerrain *,MnmPixelStore16);
+int mnm_minimap_cell_with_store(const struct MnmPixelPlane *,const struct MnmMinimapView *,int32_t,int32_t,uint16_t,uint32_t,uint32_t *,MnmPixelStore16);
+int mnm_minimap_cell_at_with_store(const struct MnmPixelPlane *,int32_t,int32_t,uint16_t,uint32_t,uint32_t *,MnmPixelStore16);
+int mnm_minimap_creature_with_store(const struct MnmPixelPlane *,int32_t,int32_t,uint16_t,MnmPixelStore16);
+int mnm_minimap_camera_with_store(const struct MnmPixelPlane *,const struct MnmMinimapView *,const struct MnmMinimapCamera *,MnmPixelStore16);
 #ifdef __cplusplus
 }
 #endif

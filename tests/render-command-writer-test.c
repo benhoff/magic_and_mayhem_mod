@@ -16,6 +16,9 @@ static u32 clock_ms;
 static u32 GetTickCount(void){return clock_ms;}
 static u32 GetLastError(void){return last_error;}
 static void SetLastError(u32 value){last_error=value;}
+static u32 wake_calls;
+static void (*wake_probe)(void*);
+static void WakeByAddressAll(void* address){++wake_calls;if(wake_probe)wake_probe(address);last_error=0xbad;}
 static u32 GetEnvironmentVariableA(const char* key,char* path,u32 n){
     const char* value=!strcmp(key,"MNM_RENDER_CONTINUOUS")?continuous_env:
         !strcmp(key,"MNM_RENDER_STALL_TIMEOUT_MS")?stall_env:env?"test":0;

@@ -32,8 +32,15 @@ static u32 WIN command_worker_run(void* unused){
                 lock_diagnostic_values("command_queue_overflow",values);}
         }
         if(mnm_ring_load(command_ring.map+6)>=2 || failure)break;
-        Sleep(__atomic_load_n(&command_queue_read,__ATOMIC_ACQUIRE)!=__atomic_load_n(&command_queue_written,__ATOMIC_ACQUIRE) &&
-              !__atomic_load_n(&command_queue_blocked,__ATOMIC_ACQUIRE)?1:10);
+        const u32 written=__atomic_load_n(&command_queue_written,__ATOMIC_ACQUIRE);
+        if(__atomic_load_n(&command_queue_read,__ATOMIC_ACQUIRE)!=written)Sleep(1);
+        else{
+            /* Local queue publication wakes idle work immediately. The value
+             * comparison closes publish-before-wait races. Pending transport
+             * work retries at1ms even when the ring is full; idle stop and
+             * cancellation retain the existing10ms bounded poll. */
+            WaitOnAddress(&command_queue_written,(void*)&written,4,10);
+        }
     }
     command_channel_pump();
     copy_trace_drain();
@@ -144,6 +151,9 @@ static void command_scheduler_detach(void){
     if(command_worker_started && !command_worker_joined && command_queue){
         if(mnm_ring_load(command_ring.map+6)==1){
             command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INTERRUPTED);
+            /* ExitProcess has stopped the retry thread. Publish only the
+             * bounded mapped terminal word, never pump/join under loader lock. */
+            mnm_ring_fail(&command_ring,__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE));
         }
         return;
     }

@@ -24,6 +24,30 @@ class ReadinessTest(unittest.TestCase):
             spell_cases=spell_cases,wait=lambda _:None)
         return events
 
+    def test_repeated_selection_visits_keep_distinct_complete_readiness_stages(self):
+        from campaign_input_admission import validate_readiness_trace
+        record=dict(input_readiness_policy='continuous-quiet-distinct-spell-v2',
+                    dialogue_checks=[],additional_dialogue_checks=[],captures=[])
+        now=0
+        for label in ['dialogue-check','zombie-selection-0','after-invalid-target','zombie-selection-0']:
+            rows=record['dialogue_checks' if label=='dialogue-check' else 'additional_dialogue_checks']
+            stage=driver.dialogue_stage(label,rows)
+            quiet=12 if label=='dialogue-check' or label.startswith('after-') else 2
+            for elapsed,decision in [(0,'wait'),(quiet,'ready')]:
+                name=str(len(record['captures']));record['captures'].append(dict(name=name))
+                rows.append(dict(stage=stage,capture=name,quiet_seconds=quiet,
+                                 visible=dict(native=False,original=False),texts=dict(native='',original=''),
+                                 observed_monotonic=now+elapsed,decision=decision))
+            now+=quiet+1
+        result=validate_readiness_trace(record,True)
+        self.assertEqual(len(result['stages']),len(set(result['stages'])))
+        self.assertEqual(len(result['stages']),4)
+        # Old repeated labels still refuse: every visit must retain its own gate.
+        for row in record['additional_dialogue_checks']:
+            if row['stage'].startswith('zombie-selection-0'):row['stage']='zombie-selection-0'
+        with self.assertRaisesRegex(ValueError,'Duplicate or invalid'):
+            validate_readiness_trace(record,True)
+
     def test_default_route_selects_caster_before_spell_hud(self):
         events=self.prepare()
         self.assertEqual(events[:2],[('select-wizard',),('settle','after-center')])
@@ -93,6 +117,21 @@ class AdmissionIntegrationTest(unittest.TestCase):
         actor,enemy,point=driver.combat_approach(center,state,wizard_slot=7,owner=2)
         self.assertEqual(events,['center','read'])
         self.assertEqual((actor['slot'],enemy['slot'],point),(7,9,(570,300)))
+
+    def test_close_combat_uses_fresh_tiles_instead_of_screen_calibration(self):
+        actors=self.actors()
+        actors[9].update(x=30,y=40)
+        self.assertFalse(driver.combat_in_range(actors[7],actors[9]))
+        def center():
+            actors[7].update(x=100,y=100)
+            actors[9].update(x=103,y=104)
+        actor,enemy,point=driver.combat_approach(center,lambda:actors,wizard_slot=7,owner=2)
+        # The returned screen point is hundreds of pixels away from (0,0),
+        # while the observed actors are only five tiles apart.
+        self.assertGreater(point[0],100)
+        self.assertTrue(driver.combat_in_range(actor,enemy))
+        actors[9].update(x=107,y=100)
+        self.assertFalse(driver.combat_in_range(actor,actors[9]))
 
     def test_navigation_refuses_dead_or_replaced_wizard(self):
         for changes,message in [({'health':0},'died'),({'owner':3},'Expected active'),

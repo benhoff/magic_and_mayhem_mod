@@ -7,6 +7,8 @@
 #include <QOpenGLContext>
 #include <QOpenGLFunctions_3_3_Core>
 #include <iostream>
+#include <QJsonDocument>
+#include <QJsonObject>
 using namespace mnm::render;
 void require(bool value,const char* reason){if(!value)throw std::runtime_error(reason);}
 template<class F> void rejected(F f){bool caught=false;try{f();}catch(const std::exception&){caught=true;}require(caught,"Invalid frame operation accepted");}
@@ -70,6 +72,7 @@ void lifetimeAndBudget(GlBlitter& g){
 }
 int main(int argc,char** argv)try{
  QGuiApplication app(argc,argv);QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QOpenGLContext context;context.setFormat(format);require(context.create(),"Fixture context creation");QOffscreenSurface surface;surface.setFormat(context.format());surface.create();GlBlitter g(&context);
+ if(argc==2 && std::string(argv[1])=="--require-nvidia"){const auto name=g.driver().renderer;require(name.find("NVIDIA")!=std::string::npos&&name.find("llvmpipe")==std::string::npos&&name.find("lavapipe")==std::string::npos,"Actual NVIDIA context required");}
  lifetimeAndBudget(g);
  const auto world=g.create({8,8,std::vector<std::uint32_t>(64,0x07e0)},rgb),front=g.create({8,8,std::vector<std::uint32_t>(64,0)},rgb),hud=g.create({2,2,std::vector<std::uint32_t>(4,31)},rgb),output=g.allocate(8,8,rgb);
  std::map<unsigned,SurfaceId> handles{{1,world},{2,front},{3,hud}};
@@ -168,6 +171,14 @@ int main(int argc,char** argv)try{
   for(unsigned i=0;i<100;++i){SurfaceCommand u;u.operation=2;u.words={4,0,0};u.image={2,2,{31,31,31,31}};recipe.record(u,handles);g.update(bitmap,0,0,u.image);}
   recipe.record(copy(1,2,8,8),handles);g.copy(world,front,{0,0,8,8},0,0);
   recipe.record(copy(4,2,2,2),handles);g.copy(bitmap,front,{0,0,2,2},0,0);
+  // The actual recipe owns a canonical32-bit coverage plane. Record a
+  // complete same-value update through that public producer, retaining all
+  // UINT32_MAX flag bits and without widening the private renderer API.
+  SurfaceCommand dense;dense.operation=MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE;dense.words={2,0,0};dense.image={2,2,{31,31,31,31}};dense.coverage={1,1,1,1};
+  const auto denseBefore=g.stats();recipe.record(dense,handles);const auto denseAfter=g.stats();
+  require(denseAfter.maskedScratchAllocations==denseBefore.maskedScratchAllocations&&denseAfter.copies==denseBefore.copies,"Dense recipe coverage used scratch/copy");
+  require(denseAfter.textureUploadCalls==denseBefore.textureUploadCalls+1&&denseAfter.textureUploadBytes==denseBefore.textureUploadBytes+16,"Dense32-bit recipe coverage upload changed");
+  g.updateMasked(front,0,0,dense.image,dense.coverage);
   SurfaceCommand masked;masked.operation=MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE;masked.words={4,0,0};masked.image={2,2,{0xf800,0xf800,0xf800,0xf800}};masked.coverage={1,0,0,1};
   recipe.record(masked,handles);g.updateMasked(bitmap,0,0,masked.image,masked.coverage);
   recipe.record(copy(4,2,2,2,6,6),handles);g.copy(bitmap,front,{0,0,2,2},6,6);
@@ -203,6 +214,39 @@ int main(int argc,char** argv)try{
   }
   g.destroy(largeWorld);g.destroy(largeFront);
  }
+ // Public dense RGB565 coverage retains storage bits and outside pixels.
+ // No selection upload, masked scratch allocation or GPU copy is necessary.
+ {const auto format=rgb;
+  const std::uint32_t base=0xa55a;
+  Image original{5,4,std::vector<std::uint32_t>(20,base)};
+  auto id=g.create(original,format);
+  Image patch{3,2,{0,1,0x8000,0xffff,0x31,0x7e0}};
+  auto before=g.stats();g.updateMasked(id,1,1,patch,std::vector<std::uint8_t>(6,1));
+  auto after=g.stats();
+  require(after.maskedScratchAllocations==before.maskedScratchAllocations&&after.copies==before.copies,"Dense mask used scratch/copy");
+  require(after.textureUploadCalls==before.textureUploadCalls+1&&after.textureUploadBytes==before.textureUploadBytes+24,"Dense upload bytes changed");
+  for(int y=0;y<2;++y)for(int x=0;x<3;++x)original.pixels[(y+1)*5+x+1]=patch.pixels[y*3+x];
+  require(g.read(id).pixels==original.pixels,"Dense subrectangle changed outside pixels or storage bits");g.destroy(id);
+  id=g.allocate(3,2,format);before=g.stats();g.updateMasked(id,0,0,patch,std::vector<std::uint8_t>(6,1));
+  require(g.read(id).pixels==patch.pixels,"Dense upload failed to define unknown storage");
+  require(g.stats().maskedScratchAllocations==before.maskedScratchAllocations,"Dense unknown storage allocated masked scratch");g.destroy(id);
+ }
+ // Sparse byte selections include tight odd rows. Compare every destination
+ // pixel, source immutability, actual upload bytes and restored unpack state.
+ unsigned sparseByteCases=0;
+ for(int width=1;width<=17;++width)for(int height=1;height<=5;++height){
+  const auto count=std::size_t(width)*height;if(count<2)continue;
+  Image initial{width+2,height+2,std::vector<std::uint32_t>(std::size_t(width+2)*(height+2),0xa55a)};
+  Image patch{width,height,std::vector<std::uint32_t>(count)};std::vector<std::uint8_t> coverage(count);
+  for(int y=0;y<height;++y)for(int x=0;x<width;++x){const auto i=std::size_t(y)*width+x;patch.pixels[i]=(i*977u+0x8000)&65535;coverage[i]=(x+2*y)%3==0;}
+  const auto source=patch.pixels;const auto flags=coverage;auto expected=initial.pixels;
+  for(int y=0;y<height;++y)for(int x=0;x<width;++x)if(coverage[std::size_t(y)*width+x])expected[std::size_t(y+1)*(width+2)+x+1]=patch.pixels[std::size_t(y)*width+x];
+  const auto id=g.create(initial,rgb);const auto before=g.stats();g.updateMasked(id,1,1,patch,coverage);const auto after=g.stats();
+  require(after.textureUploadCalls==before.textureUploadCalls+2&&after.textureUploadBytes==before.textureUploadBytes+count*5,"Sparse byte-mask upload extent changed");
+  require(g.read(id).pixels==expected&&patch.pixels==source&&coverage==flags,"Sparse byte mask changed pixels or input");
+  g.batch([&]{QOpenGLFunctions_3_3_Core functions;require(functions.initializeOpenGLFunctions(),"Unpack fixture functions");GLint alignment=0;functions.glGetIntegerv(GL_UNPACK_ALIGNMENT,&alignment);require(alignment==4,"Byte mask leaked unpack alignment");});
+  g.destroy(id);++sparseByteCases;
+ }
  // Masked scratch is reused without promoting unknown words or leaking older
  // covered values into later patches. Opposite aspect growth stays bounded.
  {
@@ -237,5 +281,5 @@ int main(int argc,char** argv)try{
  {NativeFrameRecipe recipe(g,1,12,handles);recipe.record(copy(1,2,8,8),handles);g.copy(world,front,{0,0,8,8},0,0);recipe.seal(2,handles);g.importGpu565(output,recipe.render(g.presentGpu(world)));require(g.stats().surfaces<=64&&g.stats().pixels<=16777216,"Prepared/source residency exceeded renderer cap");}
  for(auto id:sourceResidency)g.destroy(id);
  for(auto id:{world,front,output})g.destroy(id);
- require(g.stats().surfaces==0,"Prepared native UI leaked surfaces");std::cout<<"{\"retired_frame_identities\":2,\"failed_seal_refused\":true,\"exact_source_handles\":32,\"exact_prepared_handles\":32,\"exact_source_pixels\":5242880,\"exact_prepared_pixels\":11534336,\"one_over_budget_refused\":true,\"cross_generation_native_world_frames\":40,\"inherited_ui_identity_refusals\":true,\"static_seal_retires_world_map\":true,\"world_hud_repeats\":30,\"source_mutation_release\":true,\"partial_frame_refusal\":true,\"sealed_ui_during_partial_transaction\":true,\"continuous_partial_ui_gpu_frames\":40,\"unsealed_first_frame_refused\":true,\"same_update_hud_changes\":true,\"fresh_world_used\":true,\"ordinary_readbacks\":0,\"static_uploads_folded\":100,\"versioned_masked_reads\":true,\"swap_repeats\":10,\"indexed_palette_owned\":true,\"compiled_glyph_versions\":200,\"masked_scratch_repeats\":100,\"unknown_coverage_preserved\":true,\"paired_scratch_bound\":true,\"shared_budget_coexistence\":true,\"fullscreen_mutable_versions\":40,\"single_assembly_pass\":true,\"translated_self_copy\":true,\"equal_color_ui_ownership\":true,\"clipped_world_mapping\":true,\"teardown_surfaces\":0}\n";return 0;
+ require(g.stats().surfaces==0,"Prepared native UI leaked surfaces");const auto raw=QByteArray("{\"retired_frame_identities\":2,\"failed_seal_refused\":true,\"exact_source_handles\":32,\"exact_prepared_handles\":32,\"exact_source_pixels\":5242880,\"exact_prepared_pixels\":11534336,\"one_over_budget_refused\":true,\"cross_generation_native_world_frames\":40,\"inherited_ui_identity_refusals\":true,\"static_seal_retires_world_map\":true,\"world_hud_repeats\":30,\"source_mutation_release\":true,\"partial_frame_refusal\":true,\"sealed_ui_during_partial_transaction\":true,\"continuous_partial_ui_gpu_frames\":40,\"unsealed_first_frame_refused\":true,\"same_update_hud_changes\":true,\"fresh_world_used\":true,\"ordinary_readbacks\":0,\"static_uploads_folded\":100,\"versioned_masked_reads\":true,\"swap_repeats\":10,\"indexed_palette_owned\":true,\"compiled_glyph_versions\":200,\"masked_scratch_repeats\":100,\"unknown_coverage_preserved\":true,\"paired_scratch_bound\":true,\"shared_budget_coexistence\":true,\"fullscreen_mutable_versions\":40,\"single_assembly_pass\":true,\"translated_self_copy\":true,\"equal_color_ui_ownership\":true,\"clipped_world_mapping\":true,\"teardown_surfaces\":0}\n");auto result=QJsonDocument::fromJson(raw).object();const auto driver=g.driver();result["driver"]=QString::fromStdString(driver.renderer);result["dense_covered_cases"]=3;result["sparse_byte_mask_cases"]=int(sparseByteCases);std::cout<<QJsonDocument(result).toJson(QJsonDocument::Compact).constData()<<'\n';return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

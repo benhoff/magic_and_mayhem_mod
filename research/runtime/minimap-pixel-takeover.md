@@ -46,3 +46,5 @@ Camera fixtures stub their terrain call to isolate the overlay body; the terrain
 body is checked independently. The actual camera entry retains that separately
 spliced terrain wrapper. These results confirm selected outer-border instruction
 order; combined live lifecycle/publication/World timing remains pending.
+
+A proposed per-copy fog-region admission cache was tried on2026-10-23 and removed without a causal improvement claim. The source versions, successful fake-query controls, original-reference loader refusal and subsequent live hover-readiness failure are preserved in NT17 provenance. The original per-access admission remains.

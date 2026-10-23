@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Bounded original-game observation of the opt-in private native output profile."""
 import argparse
+from coverage_evidence import write_report
 import hashlib
 import importlib.util
 import json
@@ -144,7 +145,7 @@ def main():
             report['original_verified_after']=result.returncode==0
             if result.returncode:report['success']=False
         report['sources_stable']=stable();report['success']=report['success'] and report['sources_stable']
-        args.report.parent.mkdir(parents=True,exist_ok=True);args.report.write_text(json.dumps(report,indent=2)+'\n')
+        write_report(ROOT,args.report,(json.dumps(report,indent=2)+'\n').encode())
     print(json.dumps({key:report.get(key) for key in ('success','sources_stable','error','session')}))
     return 0 if report['success'] else 1
 

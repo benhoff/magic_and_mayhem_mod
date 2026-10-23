@@ -10,11 +10,21 @@ static void ring_reset_version(u32 version){
     command_channel_init();check(command_channel==storage && command_queue && storage[6]==1);
 }
 static void ring_reset(void){ring_reset_version(2);}
+static void check_visible_wake(void* address){
+    check(address==&command_queue_written);
+    check(__atomic_load_n(&command_queue_written,__ATOMIC_ACQUIRE)==3);
+    check(command_queue[0]==0x12 && command_queue[1]==0x34 && command_queue[2]==0x56);
+}
 #ifndef QUEUE_TEST_MAIN
 #define QUEUE_TEST_MAIN main
 #endif
 int QUEUE_TEST_MAIN(void){
-    legacy_writer_main();ring_reset();u32 length=2*1024*1024+123;
+    legacy_writer_main();ring_reset();
+    const u8 notify_bytes[3]={0x12,0x34,0x56};wake_calls=0;wake_probe=check_visible_wake;last_error=0x73;
+    check(command_channel_append(notify_bytes,1,notify_bytes+1,2,0,0));
+    check(wake_calls==1 && last_error==0x73);
+    check(command_channel_append(0,0,0,0,0,0));check(wake_calls==1 && last_error==0x73);
+    wake_probe=0;command_channel_close();ring_reset();u32 length=2*1024*1024+123;
     u8* input=malloc(COMMAND_QUEUE_CAPACITY);check(input!=0);
     for(u32 i=0;i<length;++i)input[i]=(u8)(i*13+31);
     check(command_channel_append(input,17,input+17,length-17,0,0));memset(input,0xa5,length);command_channel_end();

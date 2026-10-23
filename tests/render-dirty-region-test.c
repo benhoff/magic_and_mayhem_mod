@@ -28,7 +28,36 @@ static void partition_check(const unsigned char* before,const unsigned char* aft
     if(count>1)++split_cases;else if(count)++dense_cases;else ++empty_cases;
     free(covered);free(replayed);
 }
+static void masked_unaligned_check(void){
+ for(unsigned bytes=1;bytes<=4;++bytes)for(unsigned width=1;width<=41;++width)for(unsigned align=0;align<4;++align){
+  unsigned height=3,length=width*height*bytes;
+  unsigned char* a=calloc(length+align,1);unsigned char* b=calloc(length+align,1);unsigned char* m=calloc(length+align,1);check(a&&b&&m);
+  unsigned char* before=a+align;unsigned char* after=b+align;unsigned char* mask=m+align;
+  for(unsigned pattern=0;pattern<5;++pattern){
+   memset(after,0,length);memset(mask,0,length);
+   if(pattern==1)mask[length-1]=0x80;
+   if(pattern==2)for(unsigned i=0;i<length;i+=17)mask[i]=1;
+   if(pattern==3){after[0]=1;mask[length-1]=2;}
+   if(pattern==4)for(unsigned i=0;i<length;++i)if(random_word()%9==0)mask[i]=0x40;
+   unsigned expected[4]={width,height,0,0},regions[COMMAND_DIRTY_REGIONS][4],actual[4];
+   for(unsigned y=0;y<height;++y)for(unsigned x=0;x<width;++x){
+    unsigned changed=0;for(unsigned j=0;j<bytes;++j){unsigned at=(y*width+x)*bytes+j;changed|=before[at]!=after[at]||mask[at]!=0;}
+    if(changed){if(x<expected[0])expected[0]=x;if(y<expected[1])expected[1]=y;if(x+1>expected[2])expected[2]=x+1;if(y+1>expected[3])expected[3]=y+1;}
+   }
+   unsigned found=command_dirty_region_mask(before,after,width,height,bytes,mask,actual);
+   check(found==(expected[2]!=0));if(found)check(!memcmp(actual,expected,sizeof(actual)));
+   unsigned count=command_dirty_regions_mask(before,after,width,height,bytes,mask,regions);check((count!=0)==found&&count<=32);
+   for(unsigned i=0;i<length;++i)if(before[i]!=after[i]||mask[i]){
+    unsigned x=(i/bytes)%width,y=i/(width*bytes),covered=0;
+    for(unsigned j=0;j<count;++j){covered+=x>=regions[j][0]&&x<regions[j][2]&&y>=regions[j][1]&&y<regions[j][3];}
+    check(covered==1);
+   }
+  }
+  free(a);free(b);free(m);
+ }
+}
 int main(void){
+    masked_unaligned_check();
     unsigned cases=0;
     for(unsigned bytes=1;bytes<=4;++bytes)for(unsigned width=1;width<=19;++width)for(unsigned height=1;height<=13;++height){
         unsigned length=width*height*bytes;

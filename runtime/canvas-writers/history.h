@@ -2,10 +2,17 @@
  * Resolve at adapter installation; hot calls do not query the loader. */
 typedef i32 (WIN *CpuHistory)(const void*,u32,u32,u32,u32,u32);
 static CpuHistory cpu_history;
+typedef i32 (WIN *CpuStore)(void*,u32,u32);
+static CpuStore cpu_store;
+static inline void cpu_history_store16(u16* target,u16 value){
+ if(cpu_store){const i32 result=cpu_store(target,value,2);if(!result)return;if(result!=1)ExitProcess(124);}
+ *target=value;
+}
 static int cpu_history_install(void){
  void* module=GetModuleHandleA("MnmDraw.dll");
  if(!module)return 1; /* Independent original-reference splice fixtures. */
  cpu_history=(CpuHistory)GetProcAddress(module,"NativeDrawCpuHistoryV1");
+ cpu_store=(CpuStore)GetProcAddress(module,"NativeDrawCpuStoreV1");
  return cpu_history!=0;
 }
 static void cpu_history_require_route(const void* pixels,u32 route){if(cpu_history)cpu_history(pixels,0,MNM_HISTORY_FAMILY,route,(u32)__builtin_return_address(0),0);}

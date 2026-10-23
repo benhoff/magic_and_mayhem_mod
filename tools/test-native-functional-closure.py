@@ -43,7 +43,7 @@ def main():
         builder=importlib.util.module_from_spec(spec);spec.loader.exec_module(builder)
         dll=builder.build(out/'native',sources)
         imports={k:dict(v) for k,v in builder.IMPORTS.items()}
-        imports['kernel32'].update(LoadLibraryA=4,GetProcAddress=8)
+        imports['kernel32'].update(LoadLibraryA=4,GetProcAddress=8,CreateThread=24,WaitForSingleObject=8)
         imports['user32']['GetDesktopWindow']=0
         imports['gdi32']['GetDIBColorTable']=16
         libs=[]
@@ -80,7 +80,7 @@ def main():
         run('python-restart',['python3','-B',ROOT/'tests/test-native-only-contract.py'])
         run('copy-wait-build',['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-pthread',ROOT/'tests/copy-timing-test.cpp','-o',out/'copy-wait'])
         run('copy-wait',[out/'copy-wait'])
-        report.update(success=True,transform_cases=150,transform_pixels=17550,raw_instruction_classes=['load','read_modify_write','rep_movsb','simd','locked_rmw'],original_row_body_trapped=True)
+        report.update(success=True,transform_cases=150,transform_pixels=17550,additional_fast_copy_cases=6,additional_fast_copy_pixels=702,raw_instruction_classes=['load','read_modify_write','rep_movsb','simd','locked_rmw'],original_row_body_trapped=True)
     except Exception as error:
         report['error']=str(error)
     finally:

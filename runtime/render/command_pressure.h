@@ -8,6 +8,18 @@ static u32 command_pressure_pending(void){
     u32 read=__atomic_load_n(&command_queue_read,__ATOMIC_ACQUIRE);
     return __atomic_load_n(&command_queue_written,__ATOMIC_ACQUIRE)-read;
 }
+#ifdef MNM_RENDER_SELFTEST
+static u32 command_pressure_witness_for_test;
+static void command_pressure_mark_for_test(u32 pending){
+    if(!command_pressure_witness_for_test)return;
+    u32 error=GetLastError(),words[2]={1,pending},wrote=0;
+    HANDLE file=CreateFileA("pressure-admission.bin",0x40000000,1,0,1,0x80,0);
+    if(file==(HANDLE)-1 || !WriteFile(file,words,sizeof(words),&wrote,0) || wrote!=sizeof(words))
+        command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);
+    if(file!=(HANDLE)-1)CloseHandle(file);
+    SetLastError(error);
+}
+#endif
 static int command_pressure_admit(u32 wait,u32 started){
     if(!game_resident_world || !game_copy_order_enabled || !command_queue ||
        !__atomic_load_n(&command_publication_worker_active,__ATOMIC_ACQUIRE))return 1;
@@ -17,6 +29,9 @@ static int command_pressure_admit(u32 wait,u32 started){
     __atomic_add_fetch(&command_pressure_waits,1,__ATOMIC_RELAXED);
     u32 began=GetTickCount();
     lock_diagnostic("command_pressure_begin",0,0,pending,COMMAND_PRESSURE_HIGH,0,COMMAND_PRESSURE_LOW,0);
+#ifdef MNM_RENDER_SELFTEST
+    command_pressure_mark_for_test(pending);
+#endif
     while(pending>COMMAND_PRESSURE_LOW){
         if(__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE) || __atomic_load_n(&command_queue_end,__ATOMIC_ACQUIRE))return 0;
         if(GetTickCount()-started>=COMMAND_PRESSURE_WAIT_MS){

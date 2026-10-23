@@ -458,6 +458,7 @@ def main():
     parser.add_argument('--command-wire-version',type=int,choices=(2,3),default=3,help='Diagnostic matched transport control; continuous public default is V3')
     parser.add_argument('--independent-world',action='store_true',help='Use explicit owned V5 delivery and independent native World/HUD drawing')
     parser.add_argument('--resident-world',action='store_true',help='Require GPU-resident World delivery and ordered public UI composition with no pixel return')
+    parser.add_argument('--profile-cpu-stores',action='store_true',help='Memory-only bounded accepted protected scalar-store census; flush after normal process exit')
     parser.add_argument('--profile-resident',action='store_true',help='Opt-in bounded CPU/GPU stage and original pacing diagnostics; cadence is instrumented')
     parser.add_argument('--capture-resident',action='store_true',help='Retain at most8192 ordered source-only World blocks/16GiB for offline resident replay')
     parser.add_argument('--gpu-copy-diagnostics',action='store_true',help='Bounded native-host copy input/output readbacks and independent CPU destination checks; resident World only')
@@ -537,6 +538,7 @@ def main():
     if args.reuse_world_image and not args.independent_world:parser.error('World image reuse requires independent resident World')
     if args.async_world and (not args.reuse_world_image or not args.independent_world or args.profile_resident or args.capture_resident):parser.error('Async World requires independent image reuse and excludes resident capture profiling')
     if args.independent_world and (not args.resident_world or args.scene_production_probe):parser.error('Independent World requires resident mode and excludes original extra-draw diagnostics')
+    if args.profile_cpu_stores and not (args.resident_world and args.normal_quit):parser.error('CPU store profiling requires resident World and normal Quit')
     if (args.profile_resident or args.capture_resident) and not args.resident_world:parser.error('Resident diagnostics require --resident-world')
     if args.capture_resident and not args.profile_resident:parser.error('Resident capture requires --profile-resident')
     if args.native_draw and args.legacy_directdraw:parser.error('Owned graphics and legacy DirectDraw are separate routes')
@@ -750,6 +752,7 @@ def main():
     if args.disable_wine_dsound:env['MNM_NATIVE_DISABLE_DSOUND']='1'
     if args.wine_import_census:env['MNM_WINE_IMPORT_CENSUS']='1'
     if args.profile_resident:env.update(MNM_RESIDENT_STAGE_PROFILE='1',MNM_RENDER_PACER_OBSERVE='1')
+    if args.profile_cpu_stores:env['MNM_NATIVE_CPU_STORE_PROFILE']='Z:'+str(out/'cpu-stores.bin').replace('/',chr(92))
     if args.capture_resident:env['MNM_RESIDENT_PROFILE_CAPTURE']=str(out/'resident-source.bin')
     if args.legacy_directdraw:env['MNM_NATIVE_DRAW']='0'
     elif explicit_native_draw:env['MNM_NATIVE_DRAW']='1'
@@ -1257,6 +1260,14 @@ def main():
             except (OSError, subprocess.SubprocessError) as error:
                 report.update(success=False, status='failed', original_manifest_error=str(error))
                 exit_code = 1
+        if args.profile_cpu_stores:
+            try:
+                from native_cpu_store_profile import decode_file
+                report['accepted_cpu_stores']=dict(result=decode_file(out/'cpu-stores.bin'),sha256=sha(out/'cpu-stores.bin'))
+            except (OSError,ValueError) as error:
+                report['accepted_cpu_stores_error']=str(error)
+                report['success']=False
+                if not report.get('error'):report['error']='CPU store profiling did not produce a complete parseable result'
         if args.observe_input_admission and len(roots)==1:
             try:
                 from campaign_input_observation import decode as decode_admission

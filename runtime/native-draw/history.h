@@ -84,7 +84,7 @@ __declspec(dllexport) i32 WIN NativeDrawCpuLeaseTransferV1(void* object,u32* ide
  for(u32 i=0;i<12;++i)if(identity[i]!=current[i])return ND_INVALID;
  if(!s->pixels_alias)ns_guard_set(s,0);
  u16* target=s->pixels_alias?s->pixels_alias:s->pixels;
- for(u32 y=0;y<s->height;++y)for(u32 x=0;x<s->width;++x)target[y*(s->pitch/2)+x]=pixels[y*s->width+x];
+ ns_copy_word_rows(target,s->pitch/2,pixels,s->width,s->width,s->height);
  s->history_stale=0;ns_guard_dirty_clear(s);ns_guard_refresh(s);return 0;
 }
 /* Process-local identity includes the physical base; it never crosses the wire.
@@ -101,7 +101,7 @@ __declspec(dllexport) i32 WIN NativeDrawCpuTransferV1(void* object,u32* identity
  for(u32 i=0;i<8;++i)if(identity[i]!=current[i])return ND_INVALID;
  if(!s->pixels_alias)ns_guard_set(s,0);
  u16* target=s->pixels_alias?s->pixels_alias:s->pixels;
- for(u32 y=0;y<s->height;++y)for(u32 x=0;x<s->width;++x)target[y*(s->pitch/2)+x]=pixels[y*s->width+x];
+ ns_copy_word_rows(target,s->pitch/2,pixels,s->width,s->width,s->height);
  s->history_stale=0;ns_guard_dirty_clear(s);ns_guard_refresh(s);return 0;
 }
 
@@ -174,6 +174,6 @@ __declspec(dllexport) i32 WIN NativeDrawCpuLeaseMaskV1(void* object,const u32* l
  if(!out || bytes!=s->width*s->height*2 || (u32)out>0xffffffffu-bytes)return ND_INVALID;
  for(struct NsState* p=ns_owned;p;p=p->next_owned){u32 at=(u32)out,base=(u32)p->pixels,alias=(u32)p->pixels_alias;
   if((at<base+ns_guard_bytes(p) && base<at+bytes) || (alias && at<alias+ns_guard_bytes(p) && alias<at+bytes))return ND_INVALID;}
- for(u32 i=0;i<bytes;++i)out[i]=(s->cpu_dirty[i>>3]>>(i&7))&1;
+ ns_expand_dirty_mask(out,s->cpu_dirty,bytes);
  return 1;
 }

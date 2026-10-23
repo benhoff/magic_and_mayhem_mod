@@ -5,6 +5,11 @@ extern "C" {
 #endif
 /* All extents are caller-owned. Admission precedes every destination write. */
 struct MnmPixelPlane { uint16_t *pixels; uint32_t width, height, stride, format; };
+/* Optional write-only storage backend; default model storage remains direct. */
+typedef void (*MnmPixelStore16)(uint16_t *,uint16_t);
+static inline void mnm_pixel_store16(MnmPixelStore16 store,uint16_t* target,uint16_t value){
+ if(store)store(target,value);else *target=value;
+}
 struct MnmPcxInput { const uint8_t *encoded, *palette; uint32_t bytes, width, height; };
 struct MnmDibInput { const uint8_t *info, *pixels; uint32_t info_bytes, pixel_bytes, usage; };
 int mnm_pixel_plane(const struct MnmPixelPlane *);

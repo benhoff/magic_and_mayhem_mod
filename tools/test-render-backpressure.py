@@ -59,6 +59,17 @@ def main():
                     assert child.poll() is None and time.monotonic()<deadline,'no publication';time.sleep(.002)
                 start=time.monotonic()
                 if reader_mode=='pause':time.sleep(.15);assert struct.unpack_from('<I',m,20)[0]==wire.CAPACITY
+                if args.admission and reader_mode in ['cancel','invalid-ack']:
+                    # Exercise failure during pressure admission, rather than
+                    # racing the faster publisher before the fixture enters it.
+                    witness=case/'pressure-admission.bin'
+                    while not (witness.exists() and witness.stat().st_size==8):
+                        assert child.poll() is None and time.monotonic()<deadline,'pressure admission not witnessed'
+                        assert struct.unpack_from('<I',m,24)[0]==1,'peer refused before pressure admission'
+                        time.sleep(.001)
+                    version,pending=struct.unpack('<2I',witness.read_bytes())
+                    assert version==1 and 8*1024*1024<=pending<=32*1024*1024
+                    assert struct.unpack_from('<I',m,24)[0]==1,'admission deadline expired before late peer failure' 
                 if reader_mode=='cancel':struct.pack_into('<I',m,32,1)
                 if reader_mode=='invalid-ack':struct.pack_into('<I',m,36,struct.unpack_from('<I',m,20)[0]+1)
                 if valid:

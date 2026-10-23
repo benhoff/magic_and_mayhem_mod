@@ -14085,7 +14085,8 @@
         "NR.owned-session-unlock-packed.delta-continuous-verified-20261006",
         "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006",
         "NR.owned-session-unlock-packed.delta-host-verified-20261006",
-        "NR.owned-session-unlock-packed.delta-game-verified-20261006"
+        "NR.owned-session-unlock-packed.delta-game-verified-20261006",
+        "NT17.native-copy-delta-controls-20261023"
       ],
       "status": {
         "understanding": "scoped",
@@ -14096,6 +14097,9 @@
       },
       "validation_dependencies": [
         "protocols/include/mnm/world_raster_batch_v3.h"
+      ],
+      "remaining_gaps": [
+        "Fresh NT17 exact sampling, protected byte/mask bookkeeping, PE32 copy, masked-delta and software/NVIDIA dense-upload controls cover only the changed native algorithms. Existing broader understanding, original-driver comparison, integration and replacement dimensions remain independent."
       ]
     },
     {
@@ -15457,6 +15461,9 @@
       },
       "validation_dependencies": [
         "protocols/include/mnm/world_raster_batch_v3.h"
+      ],
+      "remaining_gaps": [
+        "NT17 bounded16-byte unchanged-block skip pending fresh mask/unaligned/ASan controls. Every storage byte and pending mask bit must retain its existing publication meaning; no broader stage is promoted."
       ]
     },
     {
@@ -15572,6 +15579,9 @@
       },
       "validation_dependencies": [
         "protocols/include/mnm/world_raster_batch_v3.h"
+      ],
+      "remaining_gaps": [
+        "NT17 bounded16-byte unchanged-block skip pending fresh mask/unaligned/ASan controls. Every storage byte and pending mask bit must retain its existing publication meaning; no broader stage is promoted."
       ]
     },
     {
@@ -18354,7 +18364,8 @@
         "NR.continuous-update-partition.pressure-20261006",
         "NR.continuous-update-partition.game-20261006",
         "HOST.native-command-responsiveness.synthetic-20261007",
-        "NR.native-command-profile.live-20261007"
+        "NR.native-command-profile.live-20261007",
+        "NT17.native-copy-delta-controls-20261023"
       ],
       "status": {
         "understanding": "scoped",
@@ -18365,6 +18376,9 @@
       },
       "validation_dependencies": [
         "protocols/include/mnm/world_raster_batch_v3.h"
+      ],
+      "remaining_gaps": [
+        "Fresh NT17 exact sampling, protected byte/mask bookkeeping, PE32 copy, masked-delta and software/NVIDIA dense-upload controls cover only the changed native algorithms. Existing broader understanding, original-driver comparison, integration and replacement dimensions remain independent."
       ]
     },
     {
@@ -19164,7 +19178,8 @@
         "HOST.native-command-responsiveness.synthetic-20261007",
         "NR.native-command-profile.live-20261007",
         "NR.command-context-batching.hosting-20261007",
-        "HOST.surface-safe-launch.hosting-20261007"
+        "HOST.surface-safe-launch.hosting-20261007",
+        "NT17.native-copy-delta-controls-20261023"
       ],
       "status": {
         "understanding": "scoped",
@@ -19172,7 +19187,10 @@
         "comparison": "none",
         "integration": "preview",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Fresh NT17 exact sampling, protected byte/mask bookkeeping, PE32 copy, masked-delta and software/NVIDIA dense-upload controls cover only the changed native algorithms. Existing broader understanding, original-driver comparison, integration and replacement dimensions remain independent."
+      ]
     },
     {
       "id": "NR.headless-command-profile",
@@ -37338,7 +37356,8 @@
       "confidence": "provisional",
       "documents": [
         "research/runtime/native-world-continuous.md",
-        "research/runtime/rendering-high-validation-ownership-20261020.md"
+        "research/runtime/rendering-high-validation-ownership-20261020.md",
+        "research/runtime/rendering-seventeenth-five-20261023.md"
       ],
       "implementation": [
         "protocols/include/mnm/world_continuous_v1.h",
@@ -37364,7 +37383,11 @@
         "tests/world-continuous-hash-test.cpp",
         "tests/world-continuous-memory-test.cpp",
         "tests/world-continuous-normal-test.cpp",
-        "tools/test-native-world-continuous.py"
+        "tools/test-native-world-continuous.py",
+        "tools/test-rendering-seventeenth-five.py",
+        "tools/rendering_seventeenth_controls.py",
+        "tests/test-rendering-seventeenth-controls.py",
+        "tests/rendering-seventeenth-five/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "apps/qt-shell/gl_viewport.cpp",
@@ -37594,17 +37617,19 @@
         "HIGH01.rendering-work-review-20261019",
         "HIGH03.continuous-controls-20261020",
         "HIGH04.staged-source-support-review-20261020",
-        "REVIEW.shared-validation-boundaries-closeout-20261020"
+        "REVIEW.shared-validation-boundaries-closeout-20261020",
+        "NT17.five-rendering-contracts-20261023"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT17 completes this existing bounded implementation. Full original pixels/physical-driver equivalence, unclassified historical instrumented/capture failures, all original writers/aliases, whole-game reachability and60FPS remain independent; no earlier source fingerprint or negative result is rewritten."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-1-20261020",
@@ -37965,7 +37990,9 @@
       "confidence": "provisional",
       "documents": [
         "research/runtime/native-world-continuous.md",
-        "research/runtime/rendering-high-validation-ownership-20261020.md"
+        "research/runtime/rendering-high-validation-ownership-20261020.md",
+        "research/runtime/rendering-seventeenth-five-20261023.md",
+        "research/runtime/rendering-seventeenth-five-results-20261023/recovery-02-continuous-failure.json"
       ],
       "implementation": [
         "protocols/include/mnm/world_continuous_v1.h",
@@ -37991,7 +38018,11 @@
         "tests/world-continuous-hash-test.cpp",
         "tests/world-continuous-memory-test.cpp",
         "tests/world-continuous-normal-test.cpp",
-        "tools/test-native-world-continuous.py"
+        "tools/test-native-world-continuous.py",
+        "tools/test-rendering-seventeenth-five.py",
+        "tools/rendering_seventeenth_controls.py",
+        "tests/test-rendering-seventeenth-controls.py",
+        "tests/rendering-seventeenth-five/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "apps/qt-shell/gl_viewport.cpp",
@@ -38247,17 +38278,20 @@
         "HIGH03.normal-4096-negative-20261020",
         "HIGH03.normal-4096-isolated-20261020",
         "HIGH04.staged-source-support-review-20261020",
-        "REVIEW.shared-validation-boundaries-closeout-20261020"
+        "REVIEW.shared-validation-boundaries-closeout-20261020",
+        "NT17.five-rendering-contracts-20261023"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT17 completes this existing bounded implementation. Full original pixels/physical-driver equivalence, unclassified historical instrumented/capture failures, all original writers/aliases, whole-game reachability and60FPS remain independent; no earlier source fingerprint or negative result is rewritten.",
+        "NT17 extra128-queue recovery completes all returns/paints with clean resources but fails its65-sample warm timing cohort: median54ms and about17FPS. This failure is retained separately from the accepted4096-queue performance milestone; no every-short-run/arbitrary-scheduling guarantee or cause is inferred."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-1-20261020",
@@ -41649,7 +41683,11 @@
         "tests/menu-resident-quit-test.cpp",
         "tools/check-rendering-high-closure.py",
         "tests/test-rendering-high-closure.py",
-        "tools/test-third20-native.py"
+        "tools/test-third20-native.py",
+        "tools/test-rendering-seventeenth-five.py",
+        "tools/rendering_seventeenth_controls.py",
+        "tests/test-rendering-seventeenth-controls.py",
+        "tests/rendering-seventeenth-five/CMakeLists.txt"
       ],
       "documents": [
         "research/runtime/public-resident-world.md",
@@ -41694,7 +41732,8 @@
         "research/runtime/coverage/high-resident-supplier-crosswalk-current-20261020.json",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
         "research/runtime/third20-implementation-progress-20261020.md",
-        "research/runtime/coverage/native-implementation-completion-20261020.json"
+        "research/runtime/coverage/native-implementation-completion-20261020.json",
+        "research/runtime/rendering-seventeenth-five-20261023.md"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -41802,21 +41841,27 @@
         "T20.native-controls-20261020",
         "HIGH04.staged-source-support-review-20261020",
         "COMPLETE.native-20261020",
-        "OWNERSHIP.native-20261020"
+        "OWNERSHIP.native-20261020",
+        "NT17.five-rendering-contracts-20261023",
+        "NT17.public-legacy-audio-timing-limit-20261023"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Serialized stage-profile/capture Apprentice campaign reaches2423 balanced Worlds then native command drawing-history GAP reason2 with one pending World. Repeats an earlier profiled GAP without concurrent coverage; failing source/read/transition and instrumentation contribution remain unclassified. Full uninstrumented regression attribution and complete capture/normal Quit at current profiler remain pending.",
-        "Fresh diagnostic camera/menu attempt reaches651 balanced Worlds then public bind tracker admission expires at observed16ms under cursor-copy ownership, cancelling the resident producer. Serialize bind with callback/copy ownership and prove bounded live continuity; phase33 Unlock GAP suboperation remains unresolved.",
-        "Ordinary unprofiled/uncaptured isolated TITAN3x120s/2menu/normal-Quit journey passes19FPS harness at19.6335engine FPS and7284balanced Worlds without GAP/timeout/fallback/readback. Retained instrumented run completes7091Worlds but fails a3.243s sample and truncates capture183/7091at256MiB queue. Full instrumented capture/performance, original-frame/driver equivalence, uninstrumented casting/combat rerun at final headers, arbitrary OS stalls and60FPS remain unproven.",
-        "Final-header casting/combat/spell-refusal/portrait/movement/Mini/normal-Quit rerun now passes under bounded engine-cadence instrumentation on TITAN:4545balanced Worlds at19.29295aggregateFPS. This is separate from ordinary uninstrumented and previous overloaded capture/performance results;60FPS and original UI/driver/frame equivalence remain unproven.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Serialized stage-profile/capture Apprentice campaign reaches2423 balanced Worlds then native command drawing-history GAP reason2 with one pending World. Repeats an earlier profiled GAP without concurrent coverage; failing source/read/transition and instrumentation contribution remain unclassified. Full uninstrumented regression attribution and complete capture/normal Quit at current profiler remain pending.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Fresh diagnostic camera/menu attempt reaches651 balanced Worlds then public bind tracker admission expires at observed16ms under cursor-copy ownership, cancelling the resident producer. Serialize bind with callback/copy ownership and prove bounded live continuity; phase33 Unlock GAP suboperation remains unresolved.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Ordinary unprofiled/uncaptured isolated TITAN3x120s/2menu/normal-Quit journey passes19FPS harness at19.6335engine FPS and7284balanced Worlds without GAP/timeout/fallback/readback. Retained instrumented run completes7091Worlds but fails a3.243s sample and truncates capture183/7091at256MiB queue. Full instrumented capture/performance, original-frame/driver equivalence, uninstrumented casting/combat rerun at final headers, arbitrary OS stalls and60FPS remain unproven.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Final-header casting/combat/spell-refusal/portrait/movement/Mini/normal-Quit rerun now passes under bounded engine-cadence instrumentation on TITAN:4545balanced Worlds at19.29295aggregateFPS. This is separate from ordinary uninstrumented and previous overloaded capture/performance results;60FPS and original UI/driver/frame equivalence remain unproven.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT17 completes this existing bounded implementation. Full original pixels/physical-driver equivalence, unclassified historical instrumented/capture failures, all original writers/aliases, whole-game reachability and60FPS remain independent; no earlier source fingerprint or negative result is rewritten.",
+        "Current ordinary public portrait/aggregate/window19FPS acceptance: False; observed engine FPS 17.253777. Only bounded implementation is closed. Preserve the complete raw ordinary result and every failed portrait/window/gameplay attempt; wider public performance and current live acceptance remain pending when the ordinary harness fails.",
+        "Fresh implementation probe01 completes the full journey and clean normal Quit but fails unchanged portrait19FPS at18.9317106153FPS over7.395seconds. Probe02 fails the same-engaged-enemy lethal combat deadline after one recorded summon hit; neither earns implementation or performance acceptance, and no cause is assigned. Their immutable parent/child reports and raw traces remain in the negative catalog. A later bounded positive does not establish universal scheduling/input reliability.",
+        "NT17 forced legacy-audio public campaign completes casting/combat/movement/normal Quit but fails the unchanged19FPS portrait gate near14FPS. Preserve its negative and original fingerprints independently of any production-default native-audio success; no legacy-profile guarantee or causal audio explanation follows."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -52712,10 +52757,12 @@
         "NXT4.prior-ten-regression-20261020",
         "NXT5.prior-ten-final-sources-20261020",
         "REC11.native-controls.native_integration-20261021",
-        "COMMIT20261021.first-ten.native_integration"
+        "COMMIT20261021.first-ten.native_integration",
+        "NT17.native-copy-delta-controls-20261023"
       ],
       "remaining_gaps": [
-        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
+        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion.",
+        "Fresh NT17 exact sampling, protected byte/mask bookkeeping, PE32 copy, masked-delta and software/NVIDIA dense-upload controls cover only the changed native algorithms. Existing broader understanding, original-driver comparison, integration and replacement dimensions remain independent."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -76885,7 +76932,8 @@
         "RS.pixel-route-targets.reviewed-static-20261015",
         "RS.optional-pixel-routes.matrix-20261017",
         "RS.optional-pixel-routes.matrix-final-20261017",
-        "RS.optional-pixel-routes.matrix-empty-fix-20261017"
+        "RS.optional-pixel-routes.matrix-empty-fix-20261017",
+        "NT17.native-writer-original-comparisons-20261023"
       ],
       "status": {
         "understanding": "partial",
@@ -76939,7 +76987,8 @@
       "evidence": [
         "RS.minimap-pixel-passes.original-20261014",
         "RS.minimap-pixel-passes.original-final-20261014",
-        "NP.native-completion.minimap-20261015"
+        "NP.native-completion.minimap-20261015",
+        "NT17.native-writer-original-comparisons-20261023"
       ],
       "status": {
         "understanding": "partial",
@@ -76947,7 +76996,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "The NT17 fog-region cache trial supplies no causal performance improvement and is removed; its original-comparison loader refusal and live hover-readiness failure remain negative."
+      ]
     },
     {
       "id": "RS.colour-rectangle-pixels",
@@ -77211,7 +77263,8 @@
         "RS.optional-pixel-routes.matrix-20261017",
         "RS.optional-pixel-routes.matrix-final-20261017",
         "RS.optional-pixel-routes.matrix-empty-fix-20261017",
-        "NP.raster-displacement-physical-boundary.original-20261018"
+        "NP.raster-displacement-physical-boundary.original-20261018",
+        "NT17.native-writer-original-comparisons-20261023"
       ],
       "status": {
         "understanding": "partial",
@@ -77267,7 +77320,8 @@
         "RS.outside-world-raster-pixels.original-20261014",
         "NP.native-completion.raster-20261015",
         "RS.native-history-readers.raster-20261015",
-        "NP.raster-displacement-physical-boundary.original-20261018"
+        "NP.raster-displacement-physical-boundary.original-20261018",
+        "NT17.native-writer-original-comparisons-20261023"
       ],
       "status": {
         "understanding": "partial",
@@ -118613,7 +118667,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-cpu-lease-coherence.md",
-        "research/formats/native-cpu-reader-counts-v1.md"
+        "research/formats/native-cpu-reader-counts-v1.md",
+        "research/formats/native-cpu-store-profile-v1.md"
       ],
       "implementation": [
         "runtime/native-draw/cpu_guard.h",
@@ -118621,7 +118676,11 @@
         "runtime/native-draw/surfaces.h",
         "runtime/native-draw/history.h",
         "runtime/scene/world_raster_batch.c",
-        "tools/build-native-draw.py"
+        "tools/build-native-draw.py",
+        "runtime/native-draw/cpu_store_profile.h",
+        "tools/native_cpu_store_profile.py",
+        "runtime/native-draw/row_words.h",
+        "runtime/native-draw/dirty_bytes.h"
       ],
       "tests": [
         "tests/native-cpu-store-test.c",
@@ -118636,7 +118695,12 @@
         "tests/native-cpu-guard-probe.c",
         "tests/native-history-probe.c",
         "tests/native-gpu-copy-probe.c",
-        "tests/native-draw-resource-probe.c"
+        "tests/native-draw-resource-probe.c",
+        "tests/test-native-cpu-store-profile.py",
+        "tools/test-native-backing-owner.py",
+        "tests/native-owned-backing-probe.c",
+        "tests/native-lease-row-copy-test.c",
+        "tests/native-dirty-byte-test.c"
       ],
       "evidence": [
         "NP.cpu-coherence.controls-20261018",
@@ -118654,7 +118718,8 @@
         "NP.cpu-coherence.joined-policy-20261018",
         "NP.cpu-coherence.joined-gl-20261018",
         "NP.cpu-coherence.joined-routes-20261018",
-        "NP.cpu-coherence.joined-live-20261018"
+        "NP.cpu-coherence.joined-live-20261018",
+        "NT17.native-copy-delta-controls-20261023"
       ],
       "status": {
         "understanding": "partial",
@@ -118900,7 +118965,9 @@
       ],
       "remaining_gaps": [
         "Mode3 general owner-Lock CPU instruction resumption is now implemented separately as NP.native-cpu-instruction-resume; prior evidence retains its original source fingerprints and does not validate this increment.",
-        "Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md."
+        "Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md.",
+        "NT17 adds optional bounded memory-only profiling of already accepted scalar stores to identify public-frame cost. It does not open protected pages, add admitted instructions, synthesize timing or certify arbitrary concurrency. Existing protected-store evidence retains its original source fingerprints; fresh complete observer/gameplay profiling is pending.",
+        "Fresh NT17 exact sampling, protected byte/mask bookkeeping, PE32 copy, masked-delta and software/NVIDIA dense-upload controls cover only the changed native algorithms. Existing broader understanding, original-driver comparison, integration and replacement dimensions remain independent."
       ]
     },
     {
@@ -122578,7 +122645,8 @@
         "research/runtime/rendering-tranche1-execution-20261019.json",
         "research/runtime/native-ownership-viewport-fix-20261019.json",
         "research/runtime/cpu-reply-publication-fix-20261019.json",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-seventeenth-five-20261023.md"
       ],
       "implementation": [
         "tools/native_output_owner.py",
@@ -122601,7 +122669,11 @@
         "tests/native-owned-backing-probe.c",
         "tools/test-native-backing-owner.py",
         "tests/native-output-input-test.cpp",
-        "tools/test-native-owned-campaign.py"
+        "tools/test-native-owned-campaign.py",
+        "tools/test-rendering-seventeenth-five.py",
+        "tools/rendering_seventeenth_controls.py",
+        "tests/test-rendering-seventeenth-controls.py",
+        "tests/rendering-seventeenth-five/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -123067,23 +123139,25 @@
         "CPU.reply.normal-campaigns-20261019",
         "CAMERA.capture.normal-journeys-20261019",
         "CRIT20.review-20261019",
-        "CRIT20.bounded-snapshot-controls-20261019"
+        "CRIT20.bounded-snapshot-controls-20261019",
+        "NT17.five-rendering-contracts-20261023"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "A reproduced delayed-durable-sync camera deadline is fixed by atomic PNG/ACK publication; actual helper and encoder controls plus two pinned normal journeys pass. General scheduling/current-tree and unclassified historical capture causes remain separate. See research/runtime/camera-helper-publication-fix-20261019.json.",
-        "The volatile reply publisher removes a reproduced durable-sync timeout; delayed-writeback and actual GL controls pass, as do two pinned normal journeys. This does not prove every historical stage13 cause or every current-tree/arbitrary-scheduling admission. See research/runtime/cpu-reply-publication-fix-20261019.json.",
-        "General movement/HUD stress is not accepted: campaign06 progresses past the fixed REP MOVS boundary but blocks in a private DirectDraw error dialog after application BltFast returns80004001 with flags10. Exact unsupported surface/format condition remains unproved.",
-        "Movies are skipped, route pixel captures omitted and Save/Load, restart, context loss, sustained hardware and ordinary64-World/FPS acceptance are pending. The successful native journey is bounded to7balanced Worlds.",
-        "This opt-in native containment policy does not close all-original-backing-alias-writers or global-original-presentation-route gates in reference accounting.",
-        "Native row-copy, mode3 CPU resumption, copy transforms and generation restart are implemented under their separate native-functional contracts; their current execution scope remains pending.",
-        "Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md."
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: A reproduced delayed-durable-sync camera deadline is fixed by atomic PNG/ACK publication; actual helper and encoder controls plus two pinned normal journeys pass. General scheduling/current-tree and unclassified historical capture causes remain separate. See research/runtime/camera-helper-publication-fix-20261019.json.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: The volatile reply publisher removes a reproduced durable-sync timeout; delayed-writeback and actual GL controls pass, as do two pinned normal journeys. This does not prove every historical stage13 cause or every current-tree/arbitrary-scheduling admission. See research/runtime/cpu-reply-publication-fix-20261019.json.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: General movement/HUD stress is not accepted: campaign06 progresses past the fixed REP MOVS boundary but blocks in a private DirectDraw error dialog after application BltFast returns80004001 with flags10. Exact unsupported surface/format condition remains unproved.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Movies are skipped, route pixel captures omitted and Save/Load, restart, context loss, sustained hardware and ordinary64-World/FPS acceptance are pending. The successful native journey is bounded to7balanced Worlds.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: This opt-in native containment policy does not close all-original-backing-alias-writers or global-original-presentation-route gates in reference accounting.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Native row-copy, mode3 CPU resumption, copy transforms and generation restart are implemented under their separate native-functional contracts; their current execution scope remains pending.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md.",
+        "NT17 completes this existing bounded implementation. Full original pixels/physical-driver equivalence, unclassified historical instrumented/capture failures, all original writers/aliases, whole-game reachability and60FPS remain independent; no earlier source fingerprint or negative result is rewritten."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -123360,7 +123434,8 @@
       "documents": [
         "research/runtime/native-only-launch.md",
         "research/runtime/directdraw-retirement-20261019.md",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-seventeenth-five-20261023.md"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -123382,7 +123457,11 @@
         "tests/native-only-session-test.cpp",
         "tests/native-only-facade-probe.c",
         "tools/test-native-only.py",
-        "tools/test-native-owned-campaign.py"
+        "tools/test-native-owned-campaign.py",
+        "tools/test-rendering-seventeenth-five.py",
+        "tools/rendering_seventeenth_controls.py",
+        "tests/test-rendering-seventeenth-controls.py",
+        "tests/rendering-seventeenth-five/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -124102,20 +124181,24 @@
         "DDR.native-only-20261019",
         "CRIT20.review-20261019",
         "CRIT20.session-current-20261019",
-        "CRIT20.session-retry-current-20261019"
+        "CRIT20.session-retry-current-20261019",
+        "NT17.five-rendering-contracts-20261023",
+        "NT17.strict-movement-stress-limit-20261023"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Subsequent concurrent edits to native-draw surfaces and render copy-order/CPU-reader/owned-session sources make the retained707-source final policy executions historical. Latest combined-source validation is pending; their successful12-World/1230-call results and hashes remain unchanged.",
-        "The final combined policy passes current headless controls and a12-World/1230-native-call original-game journey, including strict glyph refusal closure. Twenty-seven optional routes do not execute; movies/screenshots, ordinary64-World/FPS, full original pixels and live restart/media/storage/context-loss/hardware acceptance are separate.",
-        "Native row-copy, format/stretch and raw-reader implementations are present in the incoming code. Their own baseline comparison/caller/lifetime contracts are not promoted by this launch-policy result; original-reference alias/presentation closure remains separate.",
-        "Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md."
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Subsequent concurrent edits to native-draw surfaces and render copy-order/CPU-reader/owned-session sources make the retained707-source final policy executions historical. Latest combined-source validation is pending; their successful12-World/1230-call results and hashes remain unchanged.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: The final combined policy passes current headless controls and a12-World/1230-native-call original-game journey, including strict glyph refusal closure. Twenty-seven optional routes do not execute; movies/screenshots, ordinary64-World/FPS, full original pixels and live restart/media/storage/context-loss/hardware acceptance are separate.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Native row-copy, format/stretch and raw-reader implementations are present in the incoming code. Their own baseline comparison/caller/lifetime contracts are not promoted by this launch-policy result; original-reference alias/presentation closure remains separate.",
+        "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md.",
+        "NT17 completes this existing bounded implementation. Full original pixels/physical-driver equivalence, unclassified historical instrumented/capture failures, all original writers/aliases, whole-game reachability and60FPS remain independent; no earlier source fingerprint or negative result is rewritten.",
+        "NT17 additional10-second strict movement stress fails Mini readiness twice after real World delivery, with no recorded graphics refusal. A short default launch-policy journey passes; the reproduced stress/input-readiness cause remains unclassified and unaccepted. The existing policy excludes ordinary campaign acceptance; public hardware campaign stress is validated separately."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -124147,7 +124230,8 @@
         "runtime/render/lock_lifecycle.h",
         "runtime/render/lock_surfaces.h",
         "runtime/render/owned_session.h",
-        "tools/build-native-draw.py"
+        "tools/build-native-draw.py",
+        "runtime/native-draw/row_words.h"
       ],
       "tests": [
         "tests/native-active-reader-probe.c",
@@ -124155,7 +124239,9 @@
         "tests/native-draw-resource-probe.c",
         "tools/test-native-active-reader.py",
         "tools/test-native-functional-closure.py",
-        "tools/test-third20-native.py"
+        "tools/test-third20-native.py",
+        "tests/native-sampling-test.c",
+        "tests/native-lease-row-copy-test.c"
       ],
       "evidence": [
         "NATIVE.native-functional-closure.controls-20261018",
@@ -124176,7 +124262,8 @@
         "T20.native-controls-20261020",
         "HIGH04.staged-source-support-review-20261020",
         "COMPLETE.native-20261020",
-        "OWNERSHIP.native-20261020"
+        "OWNERSHIP.native-20261020",
+        "NT17.native-copy-delta-controls-20261023"
       ],
       "status": {
         "understanding": "scoped",
@@ -124188,7 +124275,8 @@
       "remaining_gaps": [
         "Headless current implementation controls pass. Broader original-game/driver equivalence, all-game caller coverage and complete replacement remain separate; bounded stress/restart acquisition is in progress.",
         "Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md.",
-        "Retained functional-closure runs are historical after subsequent shared renderer changes. Current-code acceptance and source-bound status promotion remain pending; implementation sources and old report hashes are preserved."
+        "Retained functional-closure runs are historical after subsequent shared renderer changes. Current-code acceptance and source-bound status promotion remain pending; implementation sources and old report hashes are preserved.",
+        "Fresh NT17 exact sampling, protected byte/mask bookkeeping, PE32 copy, masked-delta and software/NVIDIA dense-upload controls cover only the changed native algorithms. Existing broader understanding, original-driver comparison, integration and replacement dimensions remain independent."
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -127302,7 +127390,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Current source-bound isolated controls pass. Live application use of the new extensions/recovery, original driver equivalence and hardware fault/performance acceptance remain separate."
+        "Current source-bound isolated controls pass. Live application use of the new extensions/recovery, original driver equivalence and hardware fault/performance acceptance remain separate.",
+        "NT17 exact scalar sampling oracle exercises the changed shared sampler; complete extended-effect/driver scenarios are not rerun or promoted by this batch. Their historical fingerprints and broader current-validation boundary remain explicit."
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -142531,6 +142620,56 @@
           "Other task families/brains, World/source/perception/training/backend/installed/live acceptance"
         ]
       }
+    },
+    {
+      "id": "NP.protected-native-store-service",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Value-only native stores into protected CPU lease storage",
+      "scope": "PE32-local NativeDrawCpuStoreV1 accepts only scalar values and byte widths1/2/4, validates the complete public destination span and active stale mode3 lease owner, refuses private-alias destinations and World/DC ownership, writes only the private mapped view and records exact pending bytes. Return1 preserves ordinary current/unowned CPU storage; no alias pointer, stale-pixel reader or public RW interval is introduced. Minimap/raster models use an optional write-only backend after full admission while their default CPU entry points and integer pixel/order/return behavior remain. This is native storage policy, not recovered original-driver equivalence or arbitrary concurrent lifecycle safety.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-cpu-value-store-20261023.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/cpu_direct_store.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/canvas-writers/history.h",
+        "runtime/canvas-writers/minimap_bridge.c",
+        "runtime/canvas-writers/minimap_route.c",
+        "runtime/canvas-writers/minimap_route.h",
+        "runtime/canvas-writers/raster_bridge.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "reconstruction/rendering/minimap_pixels.h",
+        "reconstruction/rendering/minimap_pixels.c",
+        "reconstruction/rendering/raster_pixels.h",
+        "reconstruction/rendering/raster_pixels.c",
+        "tools/build-native-draw.py",
+        "runtime/native-draw/dirty_bytes.h"
+      ],
+      "tests": [
+        "tests/native-direct-store-test.c",
+        "tests/pixel-store-backend-test.c",
+        "tests/native-owned-backing-probe.c",
+        "tools/test-native-backing-owner.py",
+        "tools/test-rendering-seventeenth-five.py",
+        "tests/rendering-seventeenth-five/CMakeLists.txt",
+        "tests/native-dirty-byte-test.c"
+      ],
+      "evidence": [
+        "NT17.checked-native-store-service-20261023"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh native and PE32 controls plus the actual native writer journey validate this bounded value-only store contract. Original driver/frame equivalence, unsupported readers, allocation-address reuse beyond current active ownership and arbitrary concurrent lifecycle mutation remain separate."
+      ]
     },
     {
       "id": "AI.owner-task6-owned-sources",
@@ -324784,6 +324923,202 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NT17.native-writer-original-comparisons-20261023",
+      "kind": "isolated_original",
+      "scope": "Current actual production minimap and raster installer/resolver/entry/kernel comparisons against pinned No-CD callers under the existing supplied owned-plane/Win32/callback fixture. Minimap486 terrain+2054 overlay cases and133986384 physical WORDs; raster9323 native cases and111702784 WORDs. Caller state, physical padding, original side effects, formats and route guards remain checked. Loader mocks explicitly model absence of optional NativeDrawCpuStoreV1; default CPU model entry points are exercised. No real-driver or whole-game original pixel equivalence, captured extra frame case or live replacement.",
+      "record": "research/runtime/rendering-seventeenth-five-results-20261023/native-writer-comparisons-current.json",
+      "sha256": "ecad690b2e16118d68926a8c9f28015b1974d407a18105fb3b20b554360b8ea6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/comparisons/raster/result/original_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/comparisons/minimap/result/original_sha256"
+    },
+    {
+      "id": "NT17.native-copy-delta-controls-20261023",
+      "kind": "native_integration",
+      "scope": "Regular owned CPU blits use equal-extent and exact integer quotient/remainder sampling, row-coordinate hoisting and fixed-state horizontal stepping; no per-pixel division, allocation or changed nearest-neighbour rounding. Admitted lease copies use fixed geometry with the same forward WORD order, physical padding and alias selection. Native and ASan/UBSan checks validate4104 packed/padded geometry cases and three explicit overlapping-copy orders; x86 REP MOVSW retains individual forward WORD order and exact width, with130 real no-access guard-page cases; inline assembly accesses are checked through those guards and independent byte output rather than sanitizer instrumentation. Separate scalar native/ASan/UBSan dirty-byte oracle comparisons cover405722 cases, including padding, partial and repeated flags, row crossings and unsigned offsets. The same independent oracle checks133120 nibble expansion cases,7392 relative input/output layouts with ordered alias cases and130 real guarded-page tail cases; bitmap flag bytes remain identical, including odd extents and unaligned spans. Bitmap clearing keeps its owned allocation and byte extent fixed for the same synchronous operation. The oracle checks large unsigned products, quotient wrap and consecutive nonwrapping offsets. Actual PE32 copy controls compare150 cases/17550 pixels over all25 native format pairs and source keys/scales, plus six shifted raw-WORD, range-key and overlapping-self cases/702 pixels in RGB555/RGB565, including unused high bits. The no-stretch WORD path retains preflight, source freezes, key comparisons and physical authority. An atomic non-owning namespace lookup caches only a public allocation disjoint from all private views and other public allocations. Allocation publication, final release and physical Flip invalidate it before metadata changes; each value retains fresh Lock/thread, World/DC, dirty and private-backing admission. Native and ASan/UBSan controls verify late private-alias refusal, first-match overlapping public ranges, physical swap and invalidation before inaccessible metadata. This is not concurrent lifecycle validation. Twenty-four actual PE32 synthetic locked-blit fixtures independently reconstruct keyed mirroring and GPU replay. Native and ASan/UBSan delta controls independently reconstruct5948 cases plus3280 same-value masks, byte bits, block tails, odd rows and unaligned buffers; all native bytes and dirty mask bits retain tight bounds and cost-selected partitioning. Commands, GPU execution, limits and wire remain unchanged. Fresh software and actual NVIDIA native-frame-recipe cases also cover dense public RGB565 subrectangle/undefined storage and internal canonical32-bit all-bit coverage through the actual compiled recipe, with exact outside pixels, one native texture upload and no selection scratch/copy. Eighty-four mixed byte-mask cases across widths1..17/heights1..5 verify exact pixels, unchanged source, five upload bytes per pixel, odd-row alignment and restoration of owned unpack state. Zero and malformed masks,2Mpixel limits and512 actual authored resident queues retain their independent controls. Resident-only UI command polling yields after32 weighted work, preserving the general256 budget, byte cap, FIFO and every PRESENT. The actual mapped70-PRESENT backlog drains with at most three resident presentations per poll, delivered Qt input between chunks, identical final pixels and the unchanged general ten-poll bound; the existing V3 actual4GiB lifetime/source/END checks also execute. No new original-driver equivalence or broad callback/concurrency claim.",
+      "record": "research/runtime/rendering-seventeenth-five-results-20261023/native-copy-delta-controls.json",
+      "sha256": "c8210ccd12c7de5e498532b464287aca7dd8dfc120217a52fdfaef19c3309c23",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/pe32_copy_transform/transform_cases",
+          "equals": 150
+        },
+        {
+          "pointer": "/additional_masked_unaligned_cases",
+          "equals": 3280
+        }
+      ]
+    },
+    {
+      "id": "NT17.strict-movement-stress-limit-20261023",
+      "kind": "live_observation",
+      "scope": "Current-batch additional10-second strict movement stress reaches original/native World delivery but fails witnessed Mini input readiness; a repeated attempt also fails. No graphics refusal or completed journey is claimed. Short launch-policy acceptance does not resolve or certify this separate stress case. Earlier execution hashes remain unchanged.",
+      "record": "research/runtime/rendering-seventeenth-five-results-20261023/strict-campaign-01-journey.json",
+      "sha256": "a665c7549daa65da646f93a2198f090ad1cb0819426d631a70fca11a6f6dfe46",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/stress_seconds",
+          "equals": 10
+        }
+      ]
+    },
+    {
+      "id": "NT17.public-legacy-audio-timing-limit-20261023",
+      "kind": "live_observation",
+      "scope": "Forced legacy-audio public campaign completes casting, combat, movement and normal Quit but fails the unchanged19FPS portrait gate, near14FPS in its retained windows. This profile remains a negative observation; testing the production-default native-audio frontend does not identify a cause or certify this alternate profile.",
+      "record": "research/runtime/rendering-seventeenth-five-results-20261023/public-campaign-03-timing-failure.json",
+      "sha256": "eecbbedef0620758163bdbac3aac4f780f656c1d3c4186c81c2a7654d669a410",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/error",
+          "equals": "Portrait rendering too slow"
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NT17.five-rendering-contracts-20261023",
+      "kind": "native_integration",
+      "scope": "Incoming creature-AI integration changes only two unlinked/uncompiled inventory inputs. Their old execution hashes are preserved and excluded from scoped current validation; every required/compiled rendering input is identical across the unrelated integration. The changed physical-input helper is validated by the fresh public execution and13 direct regressions, with earlier unused fingerprints explicitly projected rather than rewritten. Actual execution base and accounting base remain separate. The five unchanged bounded implementation contracts:4096 guarded source/CPU-GPU verification; separate4096 normal full-path performance at unchanged budgets; completed128-queue impossible0.001ms negative; both actual peer deaths beyond32 and128 fresh normal recovery; current asserted native/output/PE32 refusal controls and actual owned/strict/restart/public casting-combat-spell-portrait-movement-Mini/normal-Quit journeys. Independent original pixel/driver comparison, global aliases, complete game/DirectDraw retirement and60FPS remain separate. Implementation-only credit for public resident World. The unchanged complete ordinary harness is retained, including any failed portrait, aggregate or gameplay-window19FPS gate; public performance, current live integration and original/driver equivalence receive no promotion.",
+      "record": "research/runtime/rendering-seventeenth-five-results-20261023/accepted-five.json",
+      "sha256": "630478503717ed71c1c364557bb64ea419b15437a5f82618ca80ac720749284d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_six_sessions_distinct",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_comparison_promoted",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_directdraw_retirement",
+          "equals": false
+        },
+        {
+          "pointer": "/stages/verification/result/success",
+          "equals": true
+        },
+        {
+          "pointer": "/stages/normal/result/success",
+          "equals": true
+        },
+        {
+          "pointer": "/stages/impossible/result/success",
+          "equals": true
+        },
+        {
+          "pointer": "/stages/strict-restart/result/success",
+          "equals": true
+        },
+        {
+          "pointer": "/stages/public-implementation/result/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NT17.checked-native-store-service-20261023",
+      "kind": "native_integration",
+      "scope": "Value-only checked private-alias stores remove native minimap/raster protection exceptions without opening public pages, adding read admission or changing default CPU-model outputs. Fresh real PE32 dirty/bounds/owner/World/caller-state tests and20 native controls support the separate native policy. Original clocks, target50ms preferences, source input, integer rendering and gameplay rules remain unchanged.",
+      "record": "research/runtime/rendering-seventeenth-five-results-20261023/accepted-five.json",
+      "sha256": "630478503717ed71c1c364557bb64ea419b15437a5f82618ca80ac720749284d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/stages/controls/result/auxiliary_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/stages/controls/result/components/backing-owner/result/direct_store/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/stages/controls/result/components/backing-owner/result/direct_store/public_pages_protected",
+          "equals": true
+        },
+        {
+          "pointer": "/stages/controls/result/components/backing-owner/result/direct_store/foreign_owner_refused",
+          "equals": true
+        },
+        {
+          "pointer": "/stages/controls/result/components/backing-owner/result/direct_store/world_guard_refused",
+          "equals": true
+        },
+        {
+          "pointer": "/stages/controls/result/components/backing-owner/result/cpu_store_profile/result/stores",
+          "equals": 6
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -350090,6 +350425,43 @@
       ]
     },
     {
+      "id": "NR.seventeenth-five.current-rendering-20261023",
+      "scope": "Current unchanged-scope continuous4096 verification and normal performance with impossible-budget/peer-death/fresh-recovery controls; owned backing/output/strict refusal and actual native-only/public campaign/restart observations. Full DirectDraw retirement, original pixel/driver equivalence and60FPS remain separate. Implementation-stage credit only: public ordinary19FPS acceptance is evaluated and retained independently, including a failed final aggregate-FPS gate; it is not promoted by functional implementation closure.",
+      "level": "headless",
+      "behaviors": [
+        "NR.world-continuous-source",
+        "NR.world-continuous-normal-performance",
+        "NR.public-resident-world",
+        "NP.native-output-ownership",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-rendering-seventeenth-five.py",
+        "tools/rendering_seventeenth_controls.py",
+        "tests/test-rendering-seventeenth-controls.py"
+      ],
+      "evidence": [
+        "NT17.five-rendering-contracts-20261023"
+      ]
+    },
+    {
+      "id": "NP.protected-native-store-service.controls-20261023",
+      "scope": "Current native value-only store service and optional model storage backend: exact payload/dirty-byte/protection/owner/World refusals, caller state and model admission/output controls; no original driver comparison or full lifecycle claim.",
+      "level": "headless",
+      "behaviors": [
+        "NP.protected-native-store-service"
+      ],
+      "tests": [
+        "tools/test-rendering-seventeenth-five.py",
+        "tests/native-direct-store-test.c",
+        "tests/pixel-store-backend-test.c",
+        "tests/native-owned-backing-probe.c"
+      ],
+      "evidence": [
+        "NT17.checked-native-store-service-20261023"
+      ]
+    },
+    {
       "id": "owner-source-vector-20261023",
       "scope": "Kind6 ownership-only cached-root path:426070 fresh evaluator construction; cache-hit413330/40f7f0 recursive source copy through419990/419a10 and append-at-end42a340; preselected4289e0 installation and fresh evaluator;428b40 completed/expiry retirement through418050/407650. Public native OwnerTask6Owner composes owned records and sources. Bounded acyclic cached forests including empty and leaf roots,64 first-object allocation refusals, mode0..3 and nonnegative leaf activity, free/exhausted traversal slots, source/child vector growth, forward/reversed owned-source destruction order, borrowed actor/cache survival and complete borrowed friendly-source cursor bytes across install/retire, empty scalar maps and feature vectors, owner0/zero baseline, supplied finite winner and duration, successful nested allocations and normal returns. Fifteen task constructor stack tags and anonymous source byte25 have explicit native zero representation and raw-byte exclusions; actor source byte25 copies its borrowed pointer low byte. Uncached memory construction, task6 candidate generation/body, selection/replacement gates, source maintenance/perception/training backend, nested failures, arbitrary mutation/aliasing/malformed forests, throwing cleanup/SEH, original World cadence, installed/live replacement remain separate.",
       "level": "headless",
@@ -351023,8 +351395,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-eb4e38cf9e7af1340a7344b3142d0a8cda88b412b703647a6b22f15f57106aca.json",
-    "sha256": "eb4e38cf9e7af1340a7344b3142d0a8cda88b412b703647a6b22f15f57106aca"
+    "path": "research/runtime/coverage/source-index-85cc4e42497b57cdea35c6bf87bd88b4fd2edeaa1944e06e353abf371f7dc6a6.json",
+    "sha256": "85cc4e42497b57cdea35c6bf87bd88b4fd2edeaa1944e06e353abf371f7dc6a6"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
