@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Bounded actual standalone launcher proof with owned graphics and native GPU frames."""
+from coverage_evidence import write_report
 import argparse
 import hashlib
 import importlib.util
@@ -24,6 +25,8 @@ def load(name,path):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--claims',type=Path,required=True)
+    p.add_argument('--report',type=Path)
+    p.add_argument('--prefix-template',type=Path,help='Clone a marked fixture prefix held by the supervising exclusive suite lease')
     p.add_argument('--build',type=Path,default=ROOT/'working/build/render-tests')
     p.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default installation')
     a=p.parse_args();decl=json.loads(a.claims.read_text())
@@ -49,7 +52,19 @@ def main():
         assert closure
         report['compiled_sources']=closure
         report['native_binary_sha256']=sha(a.build/'live-render-route-probe')
+        if a.prefix_template:
+            from drawing_fixture_prefix import borrow
+            template,_=borrow(ROOT,a.prefix_template)
+            subprocess.run(['cp','-a','--reflink=auto',str(template),str(out/'wineprefix')],check=True,timeout=120)
+            # Prefix relocation must finish before the bounded launch begins.
+            report['fixture_prefix']=dict(template=str(template),exclusive_supervisor_lease=True,private_clone=str(out/'wineprefix'))
         server=helpers.start_native_hardware(out,env)
+        # Construct bootstrap only after hardware selection has removed software
+        # overrides. A stale software selector cannot be combined with Zink.
+        bootstrap=dict(env,WINEDLLOVERRIDES=(env.get('WINEDLLOVERRIDES','')+';mscoree,mshtml,winemenubuilder.exe,MicrosoftEdgeUpdate.exe='))
+        with (out/'prefix-bootstrap.log').open('x') as log:
+            subprocess.run(['wineboot','-u' if a.prefix_template else '-i'],env=bootstrap,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
+            subprocess.run(['wineserver','-w'],env=bootstrap,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
         report['hardware_driver_sha256']=sha(out/'hardware-driver.log')
         with (out/'original-before.log').open('w') as log:
             subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],stdout=log,stderr=log,check=True)
@@ -129,7 +144,7 @@ def main():
             report['original_manifest_verified_after']=True
         report['sources_unchanged']=all(sha(ROOT/path)==digest for path,digest in report['sources'].items())
         if not report['sources_unchanged']:report.update(success=False,status='failed',error='Source changed during proof')
-        (out/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+        write_report(ROOT,a.report or out/'report.json',(json.dumps(report,indent=2)+'\n').encode())
     print(report['status'],report.get('error',''),flush=True)
     return 0 if report['success'] else 1
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Acquire a bounded original-active interactive Quick Battle API reference."""
+from coverage_evidence import write_report
 import argparse,importlib.util,json,mmap,os,shutil,signal,struct,subprocess,tempfile,time
 from pathlib import Path
 from drawing_api_session import BUILD,inspect,sha
@@ -228,6 +229,9 @@ def main():
         with (run/'manifest.json').open('x') as out:json.dump(manifest,out,indent=2);out.write('\n')
         if not a.owned_prefix:subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),env['WINEPREFIX']],check=True)
         with (run/'wineboot.log').open('x') as log:subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
+        # wineboot can return while configuration children still own the server.
+        # Admit the original only after this private prefix is fully stopped.
+        with (run/'wineboot-idle.log').open('x') as log:subprocess.run(['wineserver','-w'],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
         if a.campaign_storage:
             from drawing_storage_capture import channel_bytes
             raw=channel_bytes()
@@ -439,6 +443,7 @@ def main():
             try:process.wait(timeout=5)
             except subprocess.TimeoutExpired:os.killpg(process.pid,signal.SIGKILL);process.wait(timeout=5)
         subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
+        subprocess.run(['wineserver','-w'],env=env,check=True,timeout=30)
         if channel:channel.close();channel_file.close()
         verify('original-after')
     if a.copy_order:
@@ -687,7 +692,7 @@ def main():
         except Exception as error:
             failure=error;report.update(success=False,admitted=False,error=str(error))
     a.report.parent.mkdir(parents=True,exist_ok=True)
-    with a.report.open('x') as f:json.dump(report,f,indent=2);f.write('\n')
+    write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode())
     if failure:raise failure
     if not report.get('success'):raise ValueError(report.get('error','Capture final validation refused'))
     print(json.dumps({'success':True,'primary_planes':len(observation['frames']),'consumed_input_calls':len(observation['inputs']),'gameplay':effects}))

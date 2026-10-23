@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.16)
+project(mnm_rendering_sixteenth_controls LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+add_compile_options(-UNDEBUG)
+add_subdirectory(../../compat/legacy/world-rolling world)
+add_subdirectory(../../apps/drawing-session drawing)

@@ -260,7 +260,8 @@ def validate_menu_resources(flow, preloads, game, allow_incomplete=False):
     if not allow_incomplete and flow.get('success') is not True:
         raise ValueError(flow.get('error') or 'Campaign driver did not complete')
     if (len(preloads)!=1 or not preloads[0].get('before_producer') or
-            preloads[0].get('root')!=str(game)):
+            not isinstance(preloads[0].get('root'),str) or
+            Path(preloads[0]['root']).resolve()!=Path(game).resolve()):
         raise ValueError('Native menu resources were not prepared from the admitted staged game before launch')
     return preloads[0]
 
@@ -391,6 +392,8 @@ def start_native_hardware(out,env):
             time.sleep(.1)
         for key in ['LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','WAYLAND_DISPLAY','QT_XCB_GL_INTEGRATION']:env.pop(key,None)
         env.update(DISPLAY=f':{display}',MESA_LOADER_DRIVER_OVERRIDE='zink',GALLIUM_DRIVER='zink')
+        from native_render_driver import provision_owned_monitor
+        provision_owned_monitor(out,env)
         with (out/'hardware-driver.log').open('w') as log:subprocess.run(['glxinfo','-B'],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=20)
         driver=(out/'hardware-driver.log').read_text()
         if 'NVIDIA' not in driver or 'Accelerated: yes' not in driver or 'llvmpipe' in driver or 'lavapipe' in driver:raise ValueError('Hardware renderer fallback refused')
@@ -870,7 +873,7 @@ def main():
                 while time.monotonic() < deadline:
                     lines = (out / 'shell.log').read_text(errors='replace').splitlines()
                     roots = [Path(line[20:]).resolve() for line in lines if line.startswith('Evidence directory: ')]
-                    if len(roots)==1 and roots[0].is_relative_to(ROOT/'working/experiments/menu-observer'):
+                    if len(roots)==1 and roots[0].is_relative_to((ROOT/'working/experiments/menu-observer').resolve()):
                         channel=roots[0]/'render-commands.bin'
                         if channel.exists():
                             with channel.open('rb') as wire:header=wire.read(64)
@@ -910,9 +913,9 @@ def main():
                     if args.other_pixel_producers and len(roots)==1 and (roots[0]/'game/native-cpu-history-refusal.bin').exists():
                         report['pixel_producers']=read_counters(roots[0]/'game')
                         raise RuntimeError('Combined pixel producer requires unavailable current CPU World history; native admission terminated before original fallback')
-                    if monitor is None and len(roots)==1 and roots[0].is_relative_to(ROOT/'working/experiments/menu-observer') and (roots[0]/'render-frame.bin').exists():
+                    if monitor is None and len(roots)==1 and roots[0].is_relative_to((ROOT/'working/experiments/menu-observer').resolve()) and (roots[0]/'render-frame.bin').exists():
                         monitor=subprocess.Popen(['python3',str(ROOT/'tools/profile-render-stream.py'),str(roots[0]/'render-frame.bin'),'--output',str(out/'publication-rate.jsonl'),'--seconds',str(args.timeout)],env=env,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)
-                    if len(roots) == 1 and roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer') and world_ready(roots[0]):
+                    if len(roots) == 1 and roots[0].is_relative_to((ROOT/'working/experiments/menu-observer').resolve()) and world_ready(roots[0]):
                         (out / 'flow.json.world-ready').touch(exist_ok=True)
                     if (out / 'flow.json').exists():
                         break
@@ -926,7 +929,7 @@ def main():
             preloads=[json.loads(line.split(' ',1)[1]) for line in (out/'shell.log').read_text().splitlines() if line.startswith('NATIVE_MENU_ASSETS ')]
             report['native_menu_resources']=validate_menu_resources(
                 flow,preloads,roots[0]/'game' if len(roots)==1 else '',args.cpu_census_only)
-            if args.resident_world and len(roots)==1 and roots[0].is_relative_to(ROOT/'working/experiments/menu-observer'):
+            if args.resident_world and len(roots)==1 and roots[0].is_relative_to((ROOT/'working/experiments/menu-observer').resolve()):
                 resident_path=roots[0]/'resident-world-report.json'
                 if resident_path.exists():
                     report['resident_world']=json.loads(resident_path.read_text());report['experiment']=str(roots[0])
@@ -976,7 +979,7 @@ def main():
                         raise RuntimeError('Missing or redirected screenshot: ' + str(shot))
             lines = (out / 'shell.log').read_text(errors='replace').splitlines()
             roots = [Path(line[20:]).resolve() for line in lines if line.startswith('Evidence directory: ')]
-            if len(roots) != 1 or not roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer'):
+            if len(roots) != 1 or not roots[0].is_relative_to((ROOT/'working/experiments/menu-observer').resolve()):
                 raise RuntimeError('Missing unique menu experiment identity')
             report['experiment'] = str(roots[0])
             if args.resident_world:

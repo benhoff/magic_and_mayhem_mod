@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Source-bound native GPU history proof; live acknowledgement is a later gate."""
+from coverage_evidence import write_report
 import argparse
 import hashlib
 import json
@@ -14,6 +15,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--claims',type=Path,required=True)
     parser.add_argument('--corpus',type=Path,required=True)
+    parser.add_argument('--report',type=Path)
     args=parser.parse_args();decl=json.loads(args.claims.read_text())
     for name,digest in decl['sources'].items():
         if sha(ROOT/name)!=digest:raise ValueError('Prospective source changed: '+name)
@@ -41,9 +43,9 @@ def main():
           'world-gpu-resident-replay','world-continuous-normal-test','-j4'])
         closure=set()
         for path in build.rglob('*.o.d'):
-            for name in shlex.split(path.read_text().replace('\\\n',' ')):
-                p=Path(name)
-                if p.is_absolute() and p.is_relative_to(ROOT) and not p.is_relative_to(ROOT/'working'):
+            for name in shlex.split(path.read_text().replace('\\\n',' ').split(':',1)[1]):
+                p=Path(name).resolve()
+                if p.is_file() and p.is_absolute() and p.is_relative_to(ROOT) and not p.is_relative_to(ROOT/'working'):
                     closure.add(str(p.relative_to(ROOT)))
         report['compiled_sources']={n:sha(ROOT/n) for n in sorted(closure)}
         if closure-set(report['sources']):raise ValueError('Undeclared compiler closure: '+repr(sorted(closure-set(report['sources']))))
@@ -65,6 +67,6 @@ def main():
         report['inputs_stable']=all(sha(Path(n))==h for n,h in inputs.items())
         report['sources_stable']=all(sha(ROOT/n)==h for n,h in report['sources'].items())
         report['success']=report['success'] and report['sources_stable'] and report['inputs_stable']
-        (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(out/'report.json',flush=True)
+        write_report(ROOT,args.report or out/'report.json',(json.dumps(report,indent=2)+'\n').encode());print(args.report or out/'report.json',flush=True)
     return 0 if report['success'] else 1
 if __name__=='__main__':raise SystemExit(main())

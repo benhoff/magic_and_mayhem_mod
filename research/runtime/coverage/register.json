@@ -38274,7 +38274,8 @@
       "confidence": "provisional",
       "documents": [
         "research/runtime/native-gpu-frame-ownership.md",
-        "research/runtime/native-master-integration-gpu-history-pass-20261011.json"
+        "research/runtime/native-master-integration-gpu-history-pass-20261011.json",
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "renderer/canvas_mirror.hpp",
@@ -38296,7 +38297,10 @@
         "tests/world-gpu-resident-test.cpp",
         "tests/world-gpu-resident-replay.cpp",
         "tools/test-native-gpu-frame-ownership.py",
-        "tests/world-continuous-normal-test.cpp"
+        "tests/world-continuous-normal-test.cpp",
+        "tools/test-rendering-sixteenth-ten.py",
+        "tests/rendering-sixteenth-ten/CMakeLists.txt",
+        "tests/test-rendering-session-contracts.py"
       ],
       "validation_dependencies": [
         "assets/CMakeLists.txt",
@@ -38459,11 +38463,12 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
         "MEDIUM05.native-controls-20261020",
-        "MEDIUM07.native-controls-current-20261020"
+        "MEDIUM07.native-controls-current-20261020",
+        "NT16.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
@@ -38471,7 +38476,10 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "NR.world-gpu-resident-frame"
-      }
+      },
+      "remaining_gaps": [
+        "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
+      ]
     },
     {
       "id": "NR.directdraw-retirement",
@@ -38953,7 +38961,8 @@
         "research/runtime/native-master-integration-current-producer-death-pass-20261011.json",
         "research/runtime/native-master-integration-current-consumer-death-pass-20261011.json",
         "research/runtime/native-master-integration-current-recovery128-pass-20261011.json",
-        "research/runtime/native-master-integration-current-world4096-pass-20261011.json"
+        "research/runtime/native-master-integration-current-world4096-pass-20261011.json",
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "protocols/include/mnm/world_continuous_v4.h",
@@ -38967,7 +38976,12 @@
       ],
       "tests": [
         "tests/world-gpu-ack-test.cpp",
-        "tools/test-native-world-continuous.py"
+        "tools/test-native-world-continuous.py",
+        "tools/test-rendering-sixteenth-ten.py",
+        "tests/rendering-sixteenth-ten/CMakeLists.txt",
+        "tests/test-rendering-session-contracts.py",
+        "tools/rendering_session_contracts.py",
+        "tools/native_render_driver.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/gl_viewport.cpp",
@@ -39244,17 +39258,20 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
         "MEDIUM05.native-controls-20261020",
-        "MEDIUM07.native-controls-current-20261020"
+        "MEDIUM07.native-controls-current-20261020",
+        "NT16.native-controls-20261022",
+        "NT16.session-recovery-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -39376,7 +39393,8 @@
         "research/runtime/surface-final-word-read.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
         "research/runtime/third20-implementation-progress-20261020.md",
-        "research/runtime/coverage/native-implementation-completion-20261020.json"
+        "research/runtime/coverage/native-implementation-completion-20261020.json",
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -39396,7 +39414,11 @@
       "tests": [
         "tools/test-native-campaign.py",
         "tests/test-native-campaign.py",
-        "tools/test-third20-native.py"
+        "tools/test-third20-native.py",
+        "tools/test-rendering-sixteenth-ten.py",
+        "tests/rendering-sixteenth-ten/CMakeLists.txt",
+        "tests/test-rendering-session-contracts.py",
+        "tools/native_render_driver.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -40159,17 +40181,19 @@
         "T20.native-controls-20261020",
         "HIGH04.staged-source-support-review-20261020",
         "COMPLETE.native-20261020",
-        "OWNERSHIP.native-20261020"
+        "OWNERSHIP.native-20261020",
+        "NT16.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -40215,7 +40239,8 @@
         "research/runtime/native-master-integration-latest-master-standalone-pass-20261011.json",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
         "research/runtime/third20-implementation-progress-20261020.md",
-        "research/runtime/coverage/native-implementation-completion-20261020.json"
+        "research/runtime/coverage/native-implementation-completion-20261020.json",
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/run-opengl-game.py",
@@ -40226,7 +40251,11 @@
       "tests": [
         "tools/test-native-opengl-launch.py",
         "tests/live-render-route-probe.cpp",
-        "tools/test-third20-native.py"
+        "tools/test-third20-native.py",
+        "tools/test-rendering-sixteenth-ten.py",
+        "tests/rendering-sixteenth-ten/CMakeLists.txt",
+        "tests/test-rendering-session-contracts.py",
+        "tools/native_render_driver.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -40985,17 +41014,19 @@
         "T20.native-controls-20261020",
         "HIGH04.staged-source-support-review-20261020",
         "COMPLETE.native-20261020",
-        "OWNERSHIP.native-20261020"
+        "OWNERSHIP.native-20261020",
+        "NT16.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -68615,7 +68646,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-trace32-acquisition.md"
+        "research/runtime/draw02-trace32-acquisition.md",
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/canvas_producers.c",
@@ -68629,7 +68661,10 @@
         "tools/test-canvas-producers.py",
         "tools/inspect-canvas-producers.py",
         "tests/extended-world-producer-test.py",
-        "tests/minimap-producer-test.cpp"
+        "tests/minimap-producer-test.cpp",
+        "tools/test-rendering-sixteenth-ten.py",
+        "tests/rendering-sixteenth-ten/CMakeLists.txt",
+        "tests/test-rendering-session-contracts.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/canvas_producers_v1.h",
@@ -68667,18 +68702,20 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT16.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Original03closes32World returns with171339records/81091310wire bytes and separate491API/490EGLwitnesses. Source submission/full lifetimes/all routes/action semantics and120consecutive advancing windows remain pending. Run01preMain gate refusal and Run02record-cap truncation retained.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -82969,7 +83006,8 @@
         "research/runtime/action-bound-storage-session.md",
         "research/formats/recorded-drawing-composition-v1.md",
         "research/runtime/drawing-copy-driver-order.md",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/compare-drawing-quick-battle.py",
@@ -82990,7 +83028,11 @@
         "tests/canvas-sequence-test.cpp",
         "tests/drawing-scene-test.cpp",
         "tests/test-drawing-egl-gpu-reference.py",
-        "tests/test-drawing-egl-destination.py"
+        "tests/test-drawing-egl-destination.py",
+        "tools/test-rendering-sixteenth-ten.py",
+        "tests/rendering-sixteenth-ten/CMakeLists.txt",
+        "tests/test-rendering-session-contracts.py",
+        "tools/rendering_session_contracts.py"
       ],
       "validation_dependencies": [
         "apps/drawing-session/CMakeLists.txt",
@@ -83050,18 +83092,20 @@
         "CRIT20.review-20261019",
         "CRIT20.storage-physical-negative-20261019",
         "CRIT11.correct-output-commit-20261020",
-        "CRIT12.correct-output-commit-closure-20261020"
+        "CRIT12.correct-output-commit-closure-20261020",
+        "NT16.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Current retained238frame replay has one126pixel failure per GPU/physical cohort. Fresh original final source texture vs native output agrees across all228initial and230final policy-disabled frames, while one physical frame still differs. EGL dimensions, exact GL projection, native X11 geometry and completed pre-read fences isolate remaining divergence after source rendering; exact Wine/Mesa cause remains unproved. The temporary viewport policy also fails one232frame physical presentation with all232source-GPU comparisons matching. Preserve old reports/hashes. Qt menu policy, source ownership/global routes, full14/21acceptance, hardware and replacement remain separate.",
-        "New explicit software-upload crop profile matches222frames including independent source-GPU, pre-swap destination and physical output. The historical238frame unmodified reference still fails once. Driver-policy success does not establish unmodified-driver equivalence or global native rendering replacement."
+        "New explicit software-upload crop profile matches222frames including independent source-GPU, pre-swap destination and physical output. The historical238frame unmodified reference still fails once. Driver-policy success does not establish unmodified-driver equivalence or global native rendering replacement.",
+        "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -83146,7 +83190,8 @@
         "research/runtime/drawing-copy-driver-order.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
         "research/runtime/third20-implementation-progress-20261020.md",
-        "research/runtime/coverage/native-implementation-completion-20261020.json"
+        "research/runtime/coverage/native-implementation-completion-20261020.json",
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/drawing_recorded_session.py",
@@ -83168,7 +83213,11 @@
         "tests/fixtures/drawing-storage-corrected-session/session.json",
         "tests/fixtures/drawing-journeys/storage-corrected-suite.json",
         "tests/fixtures/drawing-journeys/suite.json",
-        "tools/test-third20-offline.py"
+        "tools/test-third20-offline.py",
+        "tools/test-rendering-sixteenth-ten.py",
+        "tests/rendering-sixteenth-ten/CMakeLists.txt",
+        "tests/test-rendering-session-contracts.py",
+        "tools/rendering_session_contracts.py"
       ],
       "validation_dependencies": [
         "apps/drawing-session/CMakeLists.txt",
@@ -83213,18 +83262,20 @@
         "T20.offline-controls-merged-20261020",
         "HIGH04.staged-source-support-review-20261020",
         "COMPLETE.offline-20261020",
-        "OWNERSHIP.offline-20261020"
+        "OWNERSHIP.offline-20261020",
+        "NT16.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Retained full238frame reference now differs only at ordinal170 (126pixels each GPU/physical cohort). Nine loading/background failures fixed by independently bound COPY driver order/read prefixes. Preserve physical failure and unchanged tolerance/14journey/21operation gates. Original global routes, semantic causality, Qt menu policy, source ownership, hardware and live replacement remain separate.",
-        "Portable corrected222frame driver-policy fixture is separate from historical238frame unmodified uploads. Shared replay changes require new execution evidence; historical validation fingerprints remain unchanged. Retention alone is not new original execution, generic journey acceptance or renderer replacement."
+        "Portable corrected222frame driver-policy fixture is separate from historical238frame unmodified uploads. Shared replay changes require new execution evidence; historical validation fingerprints remain unchanged. Retention alone is not new original execution, generic journey acceptance or renderer replacement.",
+        "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -91322,14 +91373,18 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-results-redraw-repeat.md"
+        "research/runtime/draw02-results-redraw-repeat.md",
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/capture-drawing-interactive.py",
         "tests/drawing-session-input.cpp"
       ],
       "tests": [
-        "tests/fixtures/drawing-journeys/results-redraw-repeat-schedule.json"
+        "tests/fixtures/drawing-journeys/results-redraw-repeat-schedule.json",
+        "tools/test-rendering-sixteenth-ten.py",
+        "tests/rendering-sixteenth-ten/CMakeLists.txt",
+        "tests/test-rendering-session-contracts.py"
       ],
       "validation_dependencies": [
         "apps/drawing-session/CMakeLists.txt",
@@ -91619,18 +91674,21 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT16.native-controls-20261022",
+        "NT16.own-trace-checkpoints-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Prospective repeated-results original120capture pending. Need exact request-bound failing menu-redraw/restore reproduction, original backing/alias/all-writer lifetimes, cadence/diagnostic controls and all47/21closures.",
-        "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion."
+        "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
+        "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -91646,14 +91704,18 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-worker-prefix-observation-control.md"
+        "research/runtime/draw02-worker-prefix-observation-control.md",
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/capture-drawing-interactive.py",
         "tests/drawing-session-input.cpp"
       ],
       "tests": [
-        "tests/fixtures/drawing-journeys/results-redraw-repeat-schedule.json"
+        "tests/fixtures/drawing-journeys/results-redraw-repeat-schedule.json",
+        "tools/test-rendering-sixteenth-ten.py",
+        "tests/rendering-sixteenth-ten/CMakeLists.txt",
+        "tests/test-rendering-session-contracts.py"
       ],
       "validation_dependencies": [
         "apps/drawing-session/CMakeLists.txt",
@@ -91944,18 +92006,21 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT16.native-controls-20261022",
+        "NT16.own-trace-checkpoints-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Prospective worker-prefix-disabled capture pending. A changed outcome cannot establish probe causality without controlled state/timing and further evidence. Need exact failing first menu redraw/ROI/restore conjunction, source/view/backing/all-writer lifetimes, cadence controls and all47/21closures.",
-        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
+        "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -93995,7 +94060,8 @@
       "documents": [
         "research/runtime/recorded-native-session-comparison.md",
         "research/runtime/native-render-completion-20261017.md",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/drawing_recorded_session.py"
@@ -94003,7 +94069,13 @@
       "tests": [
         "tests/test-drawing-recorded-hardware.py",
         "tools/check-recorded-drawing-session.py",
-        "tools/check-drawing-journeys.py"
+        "tools/check-drawing-journeys.py",
+        "tools/test-rendering-sixteenth-ten.py",
+        "tests/rendering-sixteenth-ten/CMakeLists.txt",
+        "tests/test-rendering-session-contracts.py",
+        "tools/rendering_session_contracts.py",
+        "tools/run-rendering-hardware-control.py",
+        "tools/native_render_driver.py"
       ],
       "validation_dependencies": [
         "apps/drawing-session/CMakeLists.txt",
@@ -94045,18 +94117,20 @@
         "CRIT01.correct-output-20261019",
         "CRIT20.review-20261019",
         "CRIT11.correct-output-commit-20261020",
-        "CRIT12.correct-output-commit-closure-20261020"
+        "CRIT12.correct-output-commit-closure-20261020",
+        "NT16.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
       },
       "remaining_gaps": [
         "All three recorded NVIDIA cohorts execute but the unmodified historical software-upload reference retains252mismatching GPU/physical pixels. Corrected profile passes; neither profile closes original ownership,14journeys/47requirements/21operation failures, live World bypass or60FPS.",
-        "New pre-paint NVIDIA suites retain7953826and992633mismatching pixels; GPUreadbacks retain only126baseline pixels, remaining differences are physical captures. Eleven selected failures match preceding native GPU images at tolerance1. Paint-only remains1292mismatches; final presenter requires successful requested-frame paint, swap and native ordinal strip in the same physical X11 image. Both final whole suites retain only252baseline mismatches; all six other profiles match. No physical candidate reassignments. No ordinal reassignment, tolerance/reference change, scanout or47/21promotion."
+        "New pre-paint NVIDIA suites retain7953826and992633mismatching pixels; GPUreadbacks retain only126baseline pixels, remaining differences are physical captures. Eleven selected failures match preceding native GPU images at tolerance1. Paint-only remains1292mismatches; final presenter requires successful requested-frame paint, swap and native ordinal strip in the same physical X11 image. Both final whole suites retain only252baseline mismatches; all six other profiles match. No physical candidate reassignments. No ordinal reassignment, tolerance/reference change, scanout or47/21promotion.",
+        "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -320837,6 +320911,135 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NT16.native-controls-20261022",
+      "kind": "native_integration",
+      "scope": "Ten existing bounded acquisition/recorded-replay/owned-launch/resident-history/live-acknowledgement implementations. 98 Python controls, 95 recorded commands and 4960 stable prospective inputs. Full corrected222frame software/NVIDIA cohorts match all GPU, physical and source/default witnesses; complete unmodified238frame cohorts retain the252pixel negative. Actual original32-return input acquisition and two31-action120-return Results profiles retain their independent observed outcome and real normal Quit. Native512queue controls and source-only32queue GPU history; actual standalone/default-native public menu/command launches; versioned128queue resident acknowledgement, distinct peer-death controls beyond32 and128queue fresh recovery. Functional-only delivery preserves full timing observations and never completes performance. No global source/alias/writer/47journey/21operation, original-driver, physical scanout, sustained-performance, complete gameplay or live replacement acceptance.",
+      "record": "research/runtime/rendering-sixteenth-ten-results-20261022/continued-24/controls.json",
+      "sha256": "6bb4a9b131495119feee37c377adf522c4d1c7e544ff6a7659486a1a6a390c32",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/contracts_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_gameplay_or_performance_acceptance",
+          "equals": false
+        },
+        {
+          "pointer": "/components/storage-corrected/result/frames",
+          "equals": 222
+        },
+        {
+          "pointer": "/components/storage-corrected/result/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/components/storage-unmodified/result/success",
+          "equals": false
+        },
+        {
+          "pointer": "/components/storage-unmodified/result/mismatches",
+          "equals": 252
+        },
+        {
+          "pointer": "/components/hardware-corrected/result/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/components/hardware-unmodified/result/mismatches",
+          "equals": 252
+        },
+        {
+          "pointer": "/components/gpu-history/result/resident/queues",
+          "equals": 32
+        },
+        {
+          "pointer": "/components/standalone/result/consumer_terminal_resources",
+          "equals": 0
+        },
+        {
+          "pointer": "/components/public-menu/result/native_draw_default_required",
+          "equals": true
+        },
+        {
+          "pointer": "/components/ack-recovery/result/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NT16.session-recovery-20261022",
+      "kind": "native_integration",
+      "scope": "Four actual versioned resident sessions:128 completions, consumer/producer death beyond32, then128 fresh recovery completions; exact raw nonce files and current executed source/contract proof. Read-only accounting, no new engine execution or performance acceptance.",
+      "record": "research/runtime/rendering-sixteenth-ten-results-20261022/session-recovery-accounting.json",
+      "sha256": "9cbfae746c2075fde22b2b46ed21617518cab9be294f93b2bc8e563bef9d7160",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/distinct_fresh_sessions",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NT16.own-trace-checkpoints-20261022",
+      "kind": "native_integration",
+      "scope": "Actual complete native execution against each newly acquired120-return trace and its own external original checkpoints. Diagnostic acquisition/control implementation only: actual mismatches remain negative evidence, no pixel equivalence or general ordering repair inferred.",
+      "record": "research/runtime/rendering-sixteenth-ten-results-20261022/checkpoint-accounting.json",
+      "sha256": "33c04c3b970f6f8ab1bda62614b587e4b1f4da26d8f4e8a305b347955d28f10a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_own_source_checkpoints_compared",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/replay_order_changed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -345932,33 +346135,6 @@
       ]
     },
     {
-      "id": "emitter-families-owned-20261022",
-      "scope": "Compose remaining additive, default/custom owner, flagged terrain/trail, fading animated and simple gravity particle families through original constructors,5457e0 admission,545910 reverse ticks and deleting cleanup with owned generations and optional colour planes. Independently authored retained128x96x64 terrain/descriptor grids and preloaded animation resources, canonical R250, valid nonzero divisors and normal-return callbacks only. Covers object allocation failure, capacity rejection/eviction, owner changes, child ownership and retirement. Cell0 uninitialized descriptor scratch, plane allocation failure, arbitrary callback/SEH mutation, real resource/file loading, upstream original-world producers and installed/live replacement remain separate.",
-      "level": "headless",
-      "behaviors": [
-        "RS.actor-emitter-family-composition"
-      ],
-      "tests": [
-        "tests/emitter-families-reference.cpp",
-        "tests/emitter-families-seeds.inc",
-        "tools/test-emitter-families.py",
-        "tools/inspect-emitter-families.py",
-        "tools/reconcile-emitter-families.py",
-        "tests/actor-emission-reference.cpp",
-        "tests/actor-emission-seeds.inc",
-        "tools/test-actor-emission.py",
-        "tools/inspect-actor-emission.py",
-        "tools/reconcile-actor-emission.py",
-        "tests/actor-services-reference.cpp",
-        "tests/actor-services-call.S",
-        "tests/actor-provider-seeds.inc",
-        "tests/actor-composition-seeds.inc"
-      ],
-      "evidence": [
-        "EF1.providers.headless-20261022"
-      ]
-    },
-    {
       "id": "NR.fifteenth-ten.native-controls-20261022",
       "scope": "Current bounded palette/checkpoint/opaque ownership and GPU controls; same-run source-only initial canvas/storage binding over retained original input; actual PE32 producer/publication/no-forward/private allocation and worker-fence refusals; real supplied-runtime capability probes with negative and positive outcomes kept distinct. No fresh original-game session, real modern-driver alias/lease or physical loss/restore equivalence, all writers/routes, full-game/performance acceptance or live replacement.",
       "level": "headless",
@@ -345983,6 +346159,58 @@
       ],
       "evidence": [
         "NT15.native-controls-20261022"
+      ]
+    },
+    {
+      "id": "NR.sixteenth-ten.native-controls-20261022",
+      "scope": "Current-source bounded acquisition/recorded source-only GPU and physical comparison, hardware backend identities, public/standalone owned launch, native GPU history and live functional acknowledgement/refusal/death/recovery. Historical negatives and global journey/ownership/performance/replacement limits remain independent.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-results-redraw-repeat-stimulus",
+        "NR.drawing-worker-prefix-observation-control",
+        "NR.producer-trace32-acquisition",
+        "NR.storage-session-corpus",
+        "NR.drawing-storage-session-comparison",
+        "NR.recorded-hardware-session-parity",
+        "NR.directdraw-native-opengl-launch",
+        "NR.directdraw-public-native-menu",
+        "NR.world-gpu-resident-frame",
+        "NR.world-gpu-ack-delivery"
+      ],
+      "tests": [
+        "tools/test-rendering-sixteenth-ten.py",
+        "tests/rendering-sixteenth-ten/CMakeLists.txt",
+        "tests/test-rendering-session-contracts.py"
+      ],
+      "evidence": [
+        "NT16.native-controls-20261022"
+      ]
+    },
+    {
+      "id": "emitter-families-owned-20261022",
+      "scope": "Compose remaining additive, default/custom owner, flagged terrain/trail, fading animated and simple gravity particle families through original constructors,5457e0 admission,545910 reverse ticks and deleting cleanup with owned generations and optional colour planes. Independently authored retained128x96x64 terrain/descriptor grids and preloaded animation resources, canonical R250, valid nonzero divisors and normal-return callbacks only. Covers object allocation failure, capacity rejection/eviction, owner changes, child ownership and retirement. Cell0 uninitialized descriptor scratch, plane allocation failure, arbitrary callback/SEH mutation, real resource/file loading, upstream original-world producers and installed/live replacement remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "RS.actor-emitter-family-composition"
+      ],
+      "tests": [
+        "tests/emitter-families-reference.cpp",
+        "tests/emitter-families-seeds.inc",
+        "tools/test-emitter-families.py",
+        "tools/inspect-emitter-families.py",
+        "tools/reconcile-emitter-families.py",
+        "tests/actor-emission-reference.cpp",
+        "tests/actor-emission-seeds.inc",
+        "tools/test-actor-emission.py",
+        "tools/inspect-actor-emission.py",
+        "tools/reconcile-actor-emission.py",
+        "tests/actor-services-reference.cpp",
+        "tests/actor-services-call.S",
+        "tests/actor-provider-seeds.inc",
+        "tests/actor-composition-seeds.inc"
+      ],
+      "evidence": [
+        "EF1.providers.headless-20261022"
       ]
     },
     {
@@ -346838,8 +347066,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-581cb15af480a0ad1ab65e8fe210cfeca37621e63608ead435dce62b20626b7e.json",
-    "sha256": "581cb15af480a0ad1ab65e8fe210cfeca37621e63608ead435dce62b20626b7e"
+    "path": "research/runtime/coverage/source-index-8154f5fa1f7d6580db0080a01ebe206b81b1d8e9720a0393122ec411c909c080.json",
+    "sha256": "8154f5fa1f7d6580db0080a01ebe206b81b1d8e9720a0393122ec411c909c080"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

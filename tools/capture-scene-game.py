@@ -181,6 +181,7 @@ def main():
             except subprocess.TimeoutExpired:os.killpg(process.pid,signal.SIGKILL);process.wait(timeout=5)
         if root is not None and (root/'wineprefix').is_dir():
             subprocess.run(['wineserver','-k'],env={**os.environ,'WINEPREFIX':str(root/'wineprefix')},timeout=10,check=False)
+            subprocess.run(['wineserver','-w'],env={**os.environ,'WINEPREFIX':str(root/'wineprefix')},timeout=15,check=True)
         process=None
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
@@ -265,6 +266,8 @@ def main():
             subprocess.run(['cp','-a','--reflink=auto',str(args.prefix_template.resolve()),env['WINEPREFIX']],check=True)
             with (root/'wineboot.log').open('x') as log:
                 subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=subprocess.STDOUT,timeout=90,check=True)
+            with (root/'wineboot-idle.log').open('x') as log:
+                subprocess.run(['wineserver','-w'],env=env,stdout=log,stderr=subprocess.STDOUT,timeout=90,check=True)
         menu_version=3 if args.magic_items else 2;menu_size=65536 if args.magic_items else 32768
         raw=bytearray(menu_size);raw[:16]=(b'MNMMCMD3' if args.magic_items else b'MNMMCMD2')+struct.pack('<II',menu_version,menu_size);struct.pack_into('<III',raw,16,2,1,1)
         with (root/'channel.bin').open('xb') as f:f.write(raw)

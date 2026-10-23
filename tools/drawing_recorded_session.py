@@ -35,10 +35,10 @@ def witness_files(row):
 
 def admit_witnesses(root,catalog,original):
  from drawing_egl_destination import decode,decode_xcb
- rows=original['egl_swap_completion_observation']['frames'];kept=catalog['witnesses']
- if len(rows)!=len(catalog['frames']) or len(kept)!=len(rows):raise ValueError('Retained witness cohort incomplete')
+ from rendering_session_contracts import witness_cohort
+ rows,kept,physical_rows=witness_cohort(catalog,original)
  result=[]
- for ordinal,(row,entry,physical) in enumerate(zip(rows,kept,original['egl_physical_observation']['frames']),1):
+ for ordinal,(row,entry,physical) in enumerate(zip(rows,kept,physical_rows),1):
   if row['ordinal']!=ordinal or entry['ordinal']!=ordinal or any(row[k]!=physical[k] for k in ('width','height','pid','thread')) or row['call']!=physical['entry']:raise ValueError('Retained witness frame identity')
   expected=witness_files(row)
   if set(entry['files'])!=set(expected):raise ValueError('Retained witness file set')

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Replay every portable recorded frame through native source/GPU/X11 output."""
+from coverage_evidence import write_report
+from rendering_session_contracts import declared_source
 import argparse,json
 from pathlib import Path
 from drawing_corpus import ROOT,local,sha
@@ -17,9 +19,10 @@ def main():
   digest=sha(local(ROOT,name).read_bytes())
   if name in sources and sources[name]!=digest:raise ValueError('Prospective recorded-session source changed')
   sources[name]=digest
+ if any(sha(declared_source(ROOT,n).read_bytes())!=h for n,h in sources.items()):raise ValueError('Prospective recorded-session source changed')
  result=check(root=ROOT,catalog_path=a.catalog,native=a.native,presenter=a.presenter,headless=a.headless,output_parent=a.output_parent,hardware=a.hardware)
- if any(sha(local(ROOT,n).read_bytes())!=h for n,h in sources.items()):raise ValueError('Recorded-session source/fixture changed')
+ if any(sha(declared_source(ROOT,n).read_bytes())!=h for n,h in sources.items()):raise ValueError('Recorded-session source/fixture changed')
  result.update(sources=sources,sources_stable=True,claims=claims['claims']);a.report.parent.mkdir(parents=True,exist_ok=True)
- with a.report.open('x') as out:json.dump(result,out,indent=2);out.write('\n')
+ write_report(ROOT,a.report,(json.dumps(result,indent=2)+'\n').encode())
  print(json.dumps({k:result[k] for k in ('success','frames','pixels_compared','mismatches','artifacts')}));return int(not result['success'])
 if __name__=='__main__':raise SystemExit(main())

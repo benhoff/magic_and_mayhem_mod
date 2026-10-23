@@ -60,7 +60,10 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     if hashlib.sha256(data).hexdigest()!=HASH:raise ValueError('Unsupported executable; refusing staging')
     dll=build_adapter('tools/build-menu-observer.py',lambda: module('menu_build','tools/build-menu-observer.py').build(experimental_mini=experimental_mini),options={'experimental_mini':experimental_mini})
     parent=REPO/'working/experiments/menu-observer';parent.mkdir(parents=True,exist_ok=True)
-    root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));game=root/'game'
+    logical_root=Path(tempfile.mkdtemp(prefix='run-',dir=parent))
+    # Metadata and child runners share canonical file identities even when an
+    # explicitly provisioned working output parent is a volume alias.
+    root=logical_root.resolve();game=root/'game'
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable staging aliases its source')
@@ -198,7 +201,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         (root/'input-fingerprints.json').write_text(json.dumps(immutable_inputs,indent=2)+'\n')
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
     if hashlib.sha256((source/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Source executable changed')
-    return root
+    return logical_root
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--actions',action='store_true',help='Stage the opt-in bounded menu action bridge')
