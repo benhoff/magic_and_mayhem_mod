@@ -1,16 +1,21 @@
 """A new exact held-source/command/EGL cohort; legacy API exclusions stay intact."""
+from drawing_comparison import index
 FULL_RECT=[0,0,800,600]
 FULL_BOX=[0,0,800,600,0,1]
 
 
 def candidates(reference,records):
     snapshots={}
-    for f in reference['source_held_snapshot_observation']['frames']:snapshots.setdefault(f['api_entry'],{})[f['phase']]=f
-    leases={c['api_entry']:c for c in reference['api_source_worker_lease_observation']['calls']}
-    packets={b['command']:b for b in reference['wine_blit_packet_observation']['bindings']}
-    workers={c['call']:c for c in reference['wine_blit_worker_observation']['calls']}
-    submissions={c['call']:c for c in reference['wine_submission_observation']['calls']}
-    physical={f['entry']:f for f in reference['egl_physical_observation']['frames']}
+    for f in reference['source_held_snapshot_observation']['frames']:
+        pair=snapshots.setdefault(f['api_entry'],{})
+        if type(f['phase']) is not int or f['phase'] not in (1,2) or f['phase'] in pair:
+            raise ValueError('Invalid or duplicate held snapshot phase')
+        pair[f['phase']]=f
+    leases=index(reference['api_source_worker_lease_observation']['calls'],'api_entry','leases')
+    packets=index(reference['wine_blit_packet_observation']['bindings'],'command','packets')
+    workers=index(reference['wine_blit_worker_observation']['calls'],'call','workers')
+    submissions=index(reference['wine_submission_observation']['calls'],'call','submissions')
+    physical=index(reference['egl_physical_observation']['frames'],'entry','physical')
     state={0:(False,0)};active=False;completed=0
     for r,_ in records:
         if r[2]==11:active=True
@@ -25,7 +30,7 @@ def candidates(reference,records):
         else:
             api=submission['api_entry'];lease=leases.get(api);pair=snapshots.get(api,{})
             if not lease or set(pair)!={1,2} or str(command) not in lease['commands']:reason='command-without-accepted-source-lease'
-            elif pair[1]['lease']!=lease['lease'] or pair[2]['lease']!=lease['lease'] or pair[1]['thread']!=lease['owner'] or pair[1]['sha256']!=pair[2]['sha256']:reason='changed-held-source-version'
+            elif pair[1]['lease']!=lease['lease'] or pair[2]['lease']!=lease['lease'] or pair[1]['thread']!=lease['owner'] or pair[2]['thread']!=lease['owner'] or pair[1]['sha256']!=pair[2]['sha256']:reason='changed-held-source-version'
             elif lease['commands'][str(command)]['worker']!=point['worker'] or lease['commands'][str(command)]['thread']!=point['win_thread']:reason='lease-worker-return-mismatch'
             elif submission['hresult'] or submission['method']!=1 or submission['source_rect']!=FULL_RECT or submission['destination_rect']!=FULL_RECT:reason='unsupported-submission-result-or-geometry'
             elif worker['source_box']!=FULL_BOX or worker['destination_box']!=FULL_BOX or worker['source_subresource'] or worker['destination_subresource'] or worker['filter']!=1 or any(worker['effects']):reason='partial-or-unsupported-worker-command'

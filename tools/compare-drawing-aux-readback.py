@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Compare external auxiliary mapped-view witnesses to unchanged native buffers."""
+from coverage_evidence import read_bytes, read_json, write_report, evidence_digest
 import argparse
 import importlib.util
 import json
@@ -9,6 +10,7 @@ import shutil
 import subprocess
 import tempfile
 from drawing_api_session import sha
+from drawing_comparison import index as identity_index, plane
 from drawing_aux_save_readback import analyze
 from drawing_scene_corpus import asset_name
 
@@ -22,7 +24,7 @@ def main():
     a = p.parse_args()
     if a.report.exists():
         p.error('Refusing evidence overwrite')
-    raw, template_raw, binding_raw = a.reference.read_bytes(), a.template.read_bytes(), a.bindings.read_bytes()
+    raw, template_raw, binding_raw = read_bytes(a.reference), read_bytes(a.template), read_bytes(a.bindings)
     ref, template, bindings = json.loads(raw), json.loads(template_raw), json.loads(binding_raw)
     if (not ref['success'] or not ref['normal_original_quit_verified'] or template['native_exit']
             or template['reference']['sha256'] != sha(raw) or bindings['reference']['sha256'] != sha(raw)
@@ -47,10 +49,10 @@ def main():
         elif r[2] == 12:
             active, complete = False, r[14]
         queues[r[1]], in_world[r[1]] = complete, active
-    by_api = {b['api_entry']: b for b in bindings['bindings']}
+    by_api = identity_index(bindings['bindings'], 'api_entry', 'auxiliary API binding')
     policy = template.get('copy_phase_policy')
     moved = {v['save_sequence']: v['full_sequence'] for v in policy['selected']} if policy else {}
-    images = {i['ordinal']: i for i in observed['images']}
+    images = identity_index(observed['images'], 'ordinal', 'auxiliary image')
     selected, excluded, frames = [], [], []
     for sample in observed['samples']:
         if not sample['oracle']:
@@ -80,9 +82,9 @@ def main():
                              original_sequence=seq, source_box=list(r[10:14]), oracle=images[sample['oracle']], sample=sample))
     if not selected or len({f['sequence'] for f in frames}) != len(frames):
         raise ValueError('Missing/duplicate admitted auxiliary publication')
-    claims = json.loads(a.claims.read_bytes())
+    claims = json.loads(read_bytes(a.claims))
     sources = claims['sources']
-    if any(sha((ROOT / n).read_bytes()) != h for n, h in sources.items()):
+    if any(evidence_digest(ROOT/n, root=ROOT) != h for n, h in sources.items()):
         raise ValueError('Prospective source changed')
     source = ROOT / template['artifacts'] / 'inputs'
     native_source = (source / 'producers.bin').read_bytes()
@@ -130,12 +132,16 @@ def main():
             index = positions[item['frame']['sequence']]
             data = (run / ('native/frame-%04d.565' % index)).read_bytes()
             original = (capture / item['oracle']['path']).read_bytes()
+            publication = native['frames'][index - 1]
+            if any(publication[k] != item['frame'][k] for k in ('sequence','canvas','width','height')):
+                raise ValueError('Auxiliary native publication identity differs')
+            plane(data,40,40,publication['sha256']);plane(original,40,40,item['oracle']['sha256'])
             if (len(data) != 3200 or len(original) != 3200 or sha(original) != item['oracle']['sha256']
                     or sha(data) != native['frames'][index - 1]['sha256']):
                 raise ValueError('Auxiliary native/original plane changed')
             different = sum(data[i:i + 2] != original[i:i + 2] for i in range(0, 3200, 2))
             comparisons.append(dict(item, native_sha256=sha(data), different_pixels=different))
-    if sha(a.executable.read_bytes()) != executable_sha or any(sha((ROOT / n).read_bytes()) != h for n, h in sources.items()):
+    if sha(a.executable.read_bytes()) != executable_sha or any(evidence_digest(ROOT/n, root=ROOT) != h for n, h in sources.items()):
         raise ValueError('Source/executable changed during comparison')
     report = dict(schema=1, success=result.returncode == 0 and len(comparisons) == len(selected) and
                   not any(c['different_pixels'] for c in comparisons), sources=sources, claims=claims['claims'],
@@ -149,9 +155,7 @@ def main():
                   original_manifest_verified_before_after=True,
                   scope=('External auxiliary pixels compared against an explicit experimental metadata-selected COPY policy template. Save publication follows its transposed COPY; original request/oracle association and all comparison denominators/exclusions remain. No additional input/order/checkpoint changes relative to that template. Extra original Lock may perturb timing/cache; no general schedule or ownership/live replacement proof.' if policy else
                          'External post-save diagnostic mapped-view pixels to source-only native logical saved buffer at exact producer return. All input parameters/order/checkpoints unchanged; within-World/other observed writers excluded explicitly. Additional original Lock can affect cache/timing; no original backing/phase equivalence, ordering repair or whole presentation.'))
-    with a.report.open('x') as output:
-        json.dump(report, output, indent=2)
-        output.write('\n')
+    write_report(ROOT, a.report, (json.dumps(report, indent=2)+'\n').encode())
     print(json.dumps(dict(success=report['success'], native_exit=result.returncode,
                          compared=len(comparisons), excluded=len(excluded),
                          failed=sum(bool(c['different_pixels']) for c in comparisons))))

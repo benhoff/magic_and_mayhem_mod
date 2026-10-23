@@ -145,13 +145,14 @@ class CriticalNeeds(unittest.TestCase):
         # Source drift legitimately routes a row to review without losing its
         # authored primary need or the historical scope decision.
         self.assertEqual(Counter(e['reviewed_primary_need'] for e in result['entries']),
-                         dict(recovery=7, validation=12, acceptance=7)
+                         dict(recovery=6, validation=12, acceptance=7)
         )
-        # 97c3f5b2 implemented these bounded mechanisms. Their authored
+        # 97c3f5b2 and4cd9121f implemented these bounded mechanisms. Their authored
         # validation/acceptance requirements remain; scoped code only removes
         # them from the partial-implementation denominator.
         recent = {'NR.callback-publication-isolation',
-                  'NR.recorded-physical-frame-admission'}
+                  'NR.recorded-physical-frame-admission',
+                  'NR.external-backing-ownership'}
         active = {e['behavior'] for e in result['entries']}
         assessed = {e['behavior']: e for e in definition['entries']}
         for bid in recent:

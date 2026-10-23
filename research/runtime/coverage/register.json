@@ -5261,7 +5261,8 @@
       "original": [],
       "documents": [
         "apps/terrain-preview/README.md",
-        "research/runtime/rendering-high-validation-ownership-20261020.md"
+        "research/runtime/rendering-high-validation-ownership-20261020.md",
+        "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "apps/terrain-preview/main.cpp",
@@ -5276,7 +5277,12 @@
       "tests": [
         "tests/terrain-shaded-cache-test.cpp",
         "tests/terrain-lighting-cycle-test.cpp",
-        "tests/terrain-lighting-scene-reference.cpp"
+        "tests/terrain-lighting-scene-reference.cpp",
+        "tools/test-rendering-thirteenth-ten.py",
+        "tools/rendering_thirteenth_controls.py",
+        "tests/test-rendering-thirteenth-ten.py",
+        "tests/rendering-thirteenth-ten/CMakeLists.txt",
+        "tools/test-terrain-preview.py"
       ],
       "evidence": [
         "REVIEW.NR.terrain_scene",
@@ -5289,11 +5295,12 @@
         "HIGH03.scene-controls-20261020",
         "HIGH03.scene-controls-current-20261020",
         "HIGH04.staged-source-support-review-20261020",
-        "REVIEW.shared-validation-boundaries-closeout-20261020"
+        "REVIEW.shared-validation-boundaries-closeout-20261020",
+        "NT13.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -5301,7 +5308,13 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-1-20261020",
         "entry": "NR.terrain_scene"
-      }
+      },
+      "validation_dependencies": [
+        "apps/terrain-preview/CMakeLists.txt"
+      ],
+      "remaining_gaps": [
+        "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
+      ]
     },
     {
       "id": "NR.world_scene",
@@ -5316,7 +5329,8 @@
         "research/runtime/native-world-scene.md",
         "research/runtime/native-multi-world-scene.md",
         "research/runtime/native-shared-scene-renderer.md",
-        "research/runtime/rendering-high-validation-ownership-20261020.md"
+        "research/runtime/rendering-high-validation-ownership-20261020.md",
+        "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "apps/world-scene/main.cpp",
@@ -5329,7 +5343,11 @@
         "tools/test-world-scene.py",
         "tools/test-multi-world-scene.py",
         "tests/scene-resource-fixtures.hpp",
-        "tools/test-native-scene-service.py"
+        "tools/test-native-scene-service.py",
+        "tools/test-rendering-thirteenth-ten.py",
+        "tools/rendering_thirteenth_controls.py",
+        "tests/test-rendering-thirteenth-ten.py",
+        "tests/rendering-thirteenth-ten/CMakeLists.txt"
       ],
       "evidence": [
         "REVIEW.NR.world_scene",
@@ -5350,11 +5368,12 @@
         "HIGH03.preview-world-20261020",
         "HIGH03.scene-controls-current-20261020",
         "HIGH04.staged-source-support-review-20261020",
-        "REVIEW.shared-validation-boundaries-closeout-20261020"
+        "REVIEW.shared-validation-boundaries-closeout-20261020",
+        "NT13.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
         "replacement": "none"
@@ -5362,7 +5381,10 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-1-20261020",
         "entry": "NR.world_scene"
-      }
+      },
+      "remaining_gaps": [
+        "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
+      ]
     },
     {
       "id": "UI.main_menu",
@@ -41922,7 +41944,12 @@
         "tests/minimap-producer-test.cpp",
         "tools/test-public-resident-fixtures.py",
         "tools/test-minimap-scratch.py",
-        "tools/benchmark-native-resident.py"
+        "tools/benchmark-native-resident.py",
+        "tools/test-rendering-thirteenth-ten.py",
+        "tools/rendering_thirteenth_controls.py",
+        "tests/test-rendering-thirteenth-ten.py",
+        "tests/rendering-thirteenth-ten/CMakeLists.txt",
+        "tests/rendering-thirteenth-minimap.cpp"
       ],
       "validation_dependencies": [
         "compat/legacy/canvas-producers/CMakeLists.txt",
@@ -41936,7 +41963,8 @@
         "research/runtime/public-resident-master-integration-fixtures-20261011.json",
         "research/runtime/public-resident-master-final-campaign-20261011.json",
         "research/runtime/public-resident-master-final-fixtures-20261011.json",
-        "research/runtime/minimap-scratch-reuse.md"
+        "research/runtime/minimap-scratch-reuse.md",
+        "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md"
       ],
       "evidence": [
         "NR.minimap-write-candidates.minimap-shutdown-fixtures-20261011",
@@ -41953,11 +41981,12 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT13.native-controls-20261022"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
@@ -41965,7 +41994,10 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "NR.minimap-write-candidates"
-      }
+      },
+      "remaining_gaps": [
+        "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
+      ]
     },
     {
       "id": "NR.resident-normal-shutdown",
@@ -67880,14 +67912,20 @@
       "documents": [
         "research/runtime/draw02-end-to-end.md",
         "research/runtime/draw02-producer-recorder.md",
-        "research/formats/drawing-producer-source-points-v1.md"
+        "research/formats/drawing-producer-source-points-v1.md",
+        "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/compare-drawing-source-points.py",
-        "tools/analyze-drawing-source-prediction.py"
+        "tools/analyze-drawing-source-prediction.py",
+        "tools/drawing_comparison.py"
       ],
       "tests": [
-        "tests/test-drawing-source-prediction.py"
+        "tests/test-drawing-source-prediction.py",
+        "tools/test-rendering-thirteenth-ten.py",
+        "tools/rendering_thirteenth_controls.py",
+        "tests/test-rendering-thirteenth-ten.py",
+        "tests/rendering-thirteenth-ten/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "apps/qt-shell/canvas_producer_main.cpp",
@@ -67980,18 +68018,20 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT13.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Bar acquisition removes the300pixel strip differences: native prediction01matches103of104selected physical witnesses; the first uniform black display differs468103pixels despite matching original CPU source. Offline CPU analysis01matches all104source planes/49920000pixels exactly.490physical witnesses remain excluded. Actual display delivery, all writers/lifetimes and full47/21acceptance remain pending; no complete presented-frame or journey status.",
-        "Trace32prediction01native exits0;108of109selectedAPIphysical planes match,initialblack468103pixels differs,382excluded. No full semantic journey/submission binding."
+        "Trace32prediction01native exits0;108of109selectedAPIphysical planes match,initialblack468103pixels differs,382excluded. No full semantic journey/submission binding.",
+        "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -69731,15 +69771,21 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-held-source-egl-causality.md"
+        "research/runtime/draw02-held-source-egl-causality.md",
+        "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/drawing_held_egl_candidates.py",
-        "tools/compare-drawing-held-egl.py"
+        "tools/compare-drawing-held-egl.py",
+        "tools/drawing_comparison.py"
       ],
       "tests": [
         "tests/test-drawing-held-egl-candidates.py",
-        "tools/compare-drawing-held-egl.py"
+        "tools/compare-drawing-held-egl.py",
+        "tools/test-rendering-thirteenth-ten.py",
+        "tools/rendering_thirteenth_controls.py",
+        "tests/test-rendering-thirteenth-ten.py",
+        "tests/rendering-thirteenth-ten/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "compat/legacy/drawing_scene_limits.hpp",
@@ -69779,11 +69825,12 @@
         "RREC03.rendering-contract-reconciliation-final-20261019",
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
-        "RREC06.concurrent-dependency-links-pending-20261019"
+        "RREC06.concurrent-dependency-links-pending-20261019",
+        "NT13.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -69797,7 +69844,8 @@
         "Fresh source-only protected-source/API/worker/physical comparison:126 admitted contexts match; all686 exclusions retained. No all-route or presentation closure. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Fresh protected-source/API/worker/physical comparisons:134admitted matches;766excluded contexts retained. No full source/texture/route ownership or journey closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
         "Completed physical cohort140matches/695exclusions retained. CPU failures remain failed; matching admitted physical subset does not discharge excluded contexts or original backing ownership. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
-        "Fresh readback diagnostic physical cohort137matches/720exclusions; keep auxiliary extra calls and baseline source ownership separate. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
+        "Fresh readback diagnostic physical cohort137matches/720exclusions; keep auxiliary extra calls and baseline source ownership separate. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open.",
+        "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -90450,13 +90498,19 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-copy-order.md"
+        "research/runtime/draw02-copy-order.md",
+        "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
-        "tools/compare-drawing-copy-checkpoints.py"
+        "tools/compare-drawing-copy-checkpoints.py",
+        "tools/drawing_comparison.py"
       ],
       "tests": [
-        "tools/compare-drawing-copy-checkpoints.py"
+        "tools/compare-drawing-copy-checkpoints.py",
+        "tools/test-rendering-thirteenth-ten.py",
+        "tools/rendering_thirteenth_controls.py",
+        "tests/test-rendering-thirteenth-ten.py",
+        "tests/rendering-thirteenth-ten/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "apps/qt-shell/canvas_producer_main.cpp",
@@ -90543,11 +90597,12 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT13.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -90560,7 +90615,8 @@
         "Fresh unchanged return-order source-only replay:all2533CPU checkpoints match, nativeexit0. Older1600pixel failure remains failed; no general order/backing or presentation closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
         "Completed unchanged-order source-only replay:2400compared/2398match;canvas2checkpoints1352/1437each fail1600pixels. Originalsha b7626cbdf0e46cffee0c1d5a4d047e9c06597559f374cec15b0d4bf47361e859 matches historical failed Results source. Nativeexit0; preserve failed whole comparison. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
         "Fresh explicit-readback trace source-only unchanged replay:all2403CPU checkpoints match, nativeexit0. Prior readback-off1600pixel failures remain failed; no observer causality or general order repair. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open.",
-        "Current defaultoff source-only replay2406hasone1600pixel failure atCP1459/seq194077. Separately authored metadata policy has fresh successful evidence under NR.drawing-copy-phase-transposition; the default comparator and its historical failure stages are not promoted."
+        "Current defaultoff source-only replay2406hasone1600pixel failure atCP1459/seq194077. Separately authored metadata policy has fresh successful evidence under NR.drawing-copy-phase-transposition; the default comparator and its historical failure stages are not promoted.",
+        "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -90948,13 +91004,19 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-copy-order-values.md"
+        "research/runtime/draw02-copy-order-values.md",
+        "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
-        "tools/analyze-drawing-copy-order-values.py"
+        "tools/analyze-drawing-copy-order-values.py",
+        "tools/drawing_comparison.py"
       ],
       "tests": [
-        "tools/analyze-drawing-copy-order-values.py"
+        "tools/analyze-drawing-copy-order-values.py",
+        "tools/test-rendering-thirteenth-ten.py",
+        "tools/rendering_thirteenth_controls.py",
+        "tests/test-rendering-thirteenth-ten.py",
+        "tests/rendering-thirteenth-ten/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "apps/qt-shell/canvas_producer_main.cpp",
@@ -91033,11 +91095,12 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT13.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -91049,7 +91112,8 @@
         "Original source/view/backing ownership, actual execution ordering beyond associated worker bodies, fresh request-bound reproduction of the old failing branch, safe ordering repair, diagnostic controls and all47/21closure remain open.",
         "Repeated-menu current native probe32pairs/18divergent World regions. Four menu inversions atrequests955/1007/1150/1164have0prior-primary/current-source ROI differences and immediate5\u21922restoration before next CPU checkpoint. This isolates a missing conjunction:older failed menu pair has1600ROI differences. Optional worker-prefix observer perturbation, initial menu redraw/backing/actual cause and general repair remain unproved; no stage promotion.",
         "Read-only unchanged-order native publication35pairs/20divergent ROIs. Menu pairs969/970and1050/1051differ1600pixels and restore5\u21922before failed checkpoint;1229/1230has0ROI difference. All2400checkpoint hashes unchanged; failed template remainsfalse. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
-        "Aux readback current native29pairs/18divergent regions:originalAux mapped hashes atSave1102/1240/1269equal native current full-source ROI, while native Saved equals prior-primary and67pairAuxcomparison failednative plane. Later badSave1251/1280follow5\u21921restoration ofpreviouslybadNativeAux acrosspostlude source2writes. Supports a scoped executed-transfer ordering hypothesis; all-source/GPUCPU views/general policy/live remain independent and unproved."
+        "Aux readback current native29pairs/18divergent regions:originalAux mapped hashes atSave1102/1240/1269equal native current full-source ROI, while native Saved equals prior-primary and67pairAuxcomparison failednative plane. Later badSave1251/1280follow5\u21921restoration ofpreviouslybadNativeAux acrosspostlude source2writes. Supports a scoped executed-transfer ordering hypothesis; all-source/GPUCPU views/general policy/live remain independent and unproved.",
+        "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -91839,13 +91903,19 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-aux-save-readback.md"
+        "research/runtime/draw02-aux-save-readback.md",
+        "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
-        "tools/compare-drawing-aux-readback.py"
+        "tools/compare-drawing-aux-readback.py",
+        "tools/drawing_comparison.py"
       ],
       "tests": [
-        "tools/compare-drawing-aux-readback.py"
+        "tools/compare-drawing-aux-readback.py",
+        "tools/test-rendering-thirteenth-ten.py",
+        "tools/rendering_thirteenth_controls.py",
+        "tests/test-rendering-thirteenth-ten.py",
+        "tests/rendering-thirteenth-ten/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "apps/qt-shell/canvas_producer_main.cpp",
@@ -91919,11 +91989,12 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT13.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -91931,7 +92002,8 @@
       "remaining_gaps": [
         "Prospective read-only native saved-buffer comparison pending. Current original diagnostic75images includes8insideWorldpublication refusals; every oracle must remain accounted. Original complete GPU/CPU/view ownership and timing/cache perturbation, oldfailure repair and all47/21closure remain open.",
         "Fresh mapped-view comparison67:62match/5failed originalaux snapshots atSaveRequests1102/1240/1251/1269/1280;8insideWorldexcluded. CPU2403allmatch. Three failures have adjacent driverfull-before-save/producer-save-before-full pairs1101/1102,1239/1240,1268/1269;two may inherit prior saved-buffer state. Prove source/value propagation separately before schedule repair; no stage promotion.",
-        "The comparator now also publishes exact moved saves relative to an explicit experimental policy template; that evidence belongs to NR.drawing-copy-phase-transposition. Historical default unchanged-order67comparisons/fivefailures remain immutable and stale after this source change; no default comparison status promotion or underlying GPUCPU relation inferred."
+        "The comparator now also publishes exact moved saves relative to an explicit experimental policy template; that evidence belongs to NR.drawing-copy-phase-transposition. Historical default unchanged-order67comparisons/fivefailures remain immutable and stale after this source change; no default comparison status promotion or underlying GPUCPU relation inferred.",
+        "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -133816,26 +133888,33 @@
         "tests/test-drawing-source-handoff.py",
         "tools/test-drawing-backing-providers.py",
         "tests/drawing-direct-backing-test.c",
-        "tools/test-drawing-direct-backing.py"
+        "tools/test-drawing-direct-backing.py",
+        "tools/test-rendering-thirteenth-ten.py",
+        "tools/rendering_thirteenth_controls.py",
+        "tests/test-rendering-thirteenth-ten.py",
+        "tests/rendering-thirteenth-ten/CMakeLists.txt"
       ],
       "documents": [
         "research/runtime/remaining-rendering-implementations-20261020.md",
         "research/runtime/external-backing-providers-20261020.md",
-        "research/formats/source-handoff-v2.md"
+        "research/formats/source-handoff-v2.md",
+        "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md"
       ],
       "evidence": [
         "BACKING.providers-20261020",
-        "DIRECT.transfer-regression-20261020"
+        "DIRECT.transfer-regression-20261020",
+        "NT13.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Registered producer-v1 private binding transfers and producer-v2 direct original-binding read leases are implemented for bounded RGB565 copies. Installed producers must implement and enforce each local contract; unclassified/uncooperative storage is refused. Actual foreign GPU/driver and full-game acceptance remain unvalidated."
+        "Registered producer-v1 private binding transfers and producer-v2 direct original-binding read leases are implemented for bounded RGB565 copies. Installed producers must implement and enforce each local contract; unclassified/uncooperative storage is refused. Actual foreign GPU/driver and full-game acceptance remain unvalidated.",
+        "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
       ],
       "title": "Explicit external backing ownership",
       "validation_dependencies": [
@@ -137136,7 +137215,11 @@
         "tools/inspect-legacy-dibeng-fault.py"
       ],
       "tests": [
-        "tests/test-legacy-ne-fault.py"
+        "tests/test-legacy-ne-fault.py",
+        "tools/test-rendering-thirteenth-ten.py",
+        "tools/rendering_thirteenth_controls.py",
+        "tests/test-rendering-thirteenth-ten.py",
+        "tests/rendering-thirteenth-ten/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "tools/original_x86.py"
@@ -137144,20 +137227,25 @@
       "documents": [
         "research/formats/legacy-ne-dibeng.md",
         "research/runtime/original-world-ownership-continuation-20261020.md",
-        "research/runtime/open-recovery-closeout-20261021.md"
+        "research/runtime/open-recovery-closeout-20261021.md",
+        "research/runtime/rendering-thirteenth-ten-closeouts-20261022.md"
       ],
       "evidence": [
         "REC10.dpmi-current.static-20261020",
-        "REC11.legacy-attribution.static-20261021"
+        "REC11.legacy-attribution.static-20261021",
+        "NT13.native-controls-20261022"
       ],
       "confidence": "provisional",
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
+      ]
     },
     {
       "id": "RS.actor-pool-admission",
@@ -141275,7 +141363,9 @@
         "AP1.inspection-3.static-20261022",
         "AP1.attempt-catalog.static-20261022",
         "AP1.reconciliation.static-20261022",
-        "AP1.ui-regressions.static-20261022"
+        "AP1.ui-regressions.static-20261022",
+        "AP1.incoming-history.static-20261022",
+        "AP1.ui-regressions-merged2.static-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -317909,6 +317999,129 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NT13.native-controls-20261022",
+      "kind": "native_integration",
+      "scope": "Ten existing bounded scene/diagnostic implementation scopes: 76 tests in eight suites, 146 recorded commands and 2714 stable prospective inputs. Software and actual TITAN scene/palette controls, independent complete native pixels and late refusals; 32 installed terrain frames; 144 same-profile two-actor frames and 12 exact continuations; traced/generic minimap atomicity and 1024 alternating timed calls; 102 PE32 private/direct provider cases plus private-profile refusal; five complete current source-only replays over retained original checkpoint/held/auxiliary cohorts with every mismatch/exclusion retained; exact static NE/DPMI attribution. No new original game or legacy driver execution, repaired historical parity, original comparison promotion, full foreign ownership/journey/performance/scanout acceptance or live replacement.",
+      "record": "research/runtime/rendering-thirteenth-ten-results-20261022/attempt-08/controls.json",
+      "sha256": "7004bcd67aa2a5981183c4d6b029e0a8970d65a105c52edda7636b5a3d81b8e1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/contracts_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests_run",
+          "equals": 76
+        },
+        {
+          "pointer": "/original_manifest_verified_before",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_comparison_stage_promoted",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_gameplay_or_performance_acceptance",
+          "equals": false
+        },
+        {
+          "pointer": "/installed_terrain/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_terrain/frames",
+          "equals": 32
+        },
+        {
+          "pointer": "/installed_multi_world/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_multi_world/pixel_comparisons",
+          "equals": 144
+        },
+        {
+          "pointer": "/installed_multi_world/fresh_process_continuations",
+          "equals": 12
+        },
+        {
+          "pointer": "/minimap_performance/compared_words",
+          "equals": 7680000
+        },
+        {
+          "pointer": "/minimap_performance/calls",
+          "equals": 1024
+        },
+        {
+          "pointer": "/minimap_performance/performance_threshold_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/providers/actual_foreign_gpu_or_driver_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "AP1.incoming-history.static-20261022",
+      "kind": "static",
+      "scope": "Exact48 reviewable parent/current transitions in6da5dc7b..4cd9121f match immutable receipts without missing or mutated records. Committed-history accounting only; no retrospective execution or past gate claim.",
+      "record": "research/runtime/actor-particle-results-20261022/incoming-history-4cd9121f.json",
+      "sha256": "35f38b4e0da8dc8cd73ac0e46ab25be39e2b8c44930d15c454bafae44e88c7f0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AP1.ui-regressions-merged2.static-20261022",
+      "kind": "static",
+      "scope": "Dashboard routing/count/HTTP/client regressions only; no engine or acceptance promotion.",
+      "record": "research/runtime/actor-particle-results-20261022/ui-regressions-merged-2.json",
+      "sha256": "9b29efd4ab44a26c123498244063cd5d4b0f1cf432f6bc60a4e40a47ae562225",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -342502,6 +342715,33 @@
       "evidence": [
         "AP1.providers.headless-20261022"
       ]
+    },
+    {
+      "id": "NR.thirteenth-ten.native-controls-20261022",
+      "level": "headless",
+      "scope": "Ten bounded current native implementation scopes: terrain/world CPU/GPU authored scenes and atomic refusal, traced/generic minimap storage guards, actual PE32 typed private/direct backing lease admission, strict diagnostic identities and semantic SQLite I/O, unchanged source-only replay over retained original source/checkpoint/held/auxiliary cohorts with all mismatches/exclusions preserved, and exact read-only NE exception attribution. This is current tool/native implementation proof, not new original game execution, repaired historical parity, global ownership, journey/performance/driver acceptance, scanout or live replacement.",
+      "behaviors": [
+        "NR.terrain_scene",
+        "NR.world_scene",
+        "NR.minimap-write-candidates",
+        "NR.drawing-source-point-native-prediction",
+        "NR.drawing-held-source-egl-causality",
+        "NR.drawing-copy-checkpoint-comparison",
+        "NR.drawing-copy-order-value-diagnostics",
+        "NR.drawing-aux-readback-native-comparison",
+        "NR.external-backing-ownership",
+        "NP.legacy-ne-dpmi-inspection"
+      ],
+      "tests": [
+        "tools/test-rendering-thirteenth-ten.py",
+        "tools/rendering_thirteenth_controls.py",
+        "tests/test-rendering-thirteenth-ten.py",
+        "tests/rendering-thirteenth-ten/CMakeLists.txt",
+        "tests/rendering-thirteenth-minimap.cpp"
+      ],
+      "evidence": [
+        "NT13.native-controls-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -343337,8 +343577,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-86da88be8f0eaecbf20a69c7a06f83a5973dd6aacac6c7e6e7487703e017127c.json",
-    "sha256": "86da88be8f0eaecbf20a69c7a06f83a5973dd6aacac6c7e6e7487703e017127c"
+    "path": "research/runtime/coverage/source-index-40e9931c5c84c568084824f89ad5d970a670ca0bcc83a78fefe212aedc1fe985.json",
+    "sha256": "40e9931c5c84c568084824f89ad5d970a670ca0bcc83a78fefe212aedc1fe985"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

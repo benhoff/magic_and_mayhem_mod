@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Map observed Win16 exception PCs to hash-pinned DIB Engine NE instructions."""
+from coverage_evidence import read_bytes, read_json, write_report, evidence_digest
 import argparse
 import ctypes
 import hashlib
@@ -24,7 +25,7 @@ def ne_segment(raw, ordinal):
     if raw[ne:ne+2] != b'NE':
         raise ValueError('Not an NE module')
     count, alignment = word(ne+0x1c), word(ne+0x32)
-    if not 1 <= ordinal <= count or alignment > 16:
+    if type(ordinal) is not int or not 1 <= ordinal <= count or alignment > 16:
         raise ValueError('Invalid NE segment index/alignment')
     table = ne + word(ne+0x22)
     if table + count * 8 > len(raw):
@@ -49,28 +50,36 @@ def exception_contexts(log):
         if not match:
             continue
         prefix = match[1]+':trace:seh:dispatch_exception '
-        following = '\n'.join(row for row in lines[i+1:i+3] if row.startswith(prefix))
-        eax = re.search(r'\beax=([0-9a-f]+)', following)
-        bx = re.search(r'\bebx=([0-9a-f]+)', following)
-        cs = re.search(r'\bcs=([0-9a-f]+)', following)
-        if eax and bx and cs:
-            result.append(dict(thread=match[1], ip=int(match[2], 16),
-                               ax=int(eax[1], 16)&0xffff, bx=int(bx[1], 16)&0xffff,
-                               cs=int(cs[1], 16)))
+        fields = {}
+        for row in lines[i+1:]:
+            if not row.startswith(prefix):
+                continue
+            body = row[len(prefix):]
+            if re.search(r'\beip=', body):
+                break
+            found = re.findall(r'\b(eax|ebx|cs)=([0-9a-f]+)', body)
+            if any(key in fields for key, value in found):
+                break
+            fields.update(found)
+            if {'eax', 'ebx', 'cs'} <= fields.keys():
+                result.append(dict(thread=match[1], ip=int(match[2], 16),
+                    ax=int(fields['eax'],16)&0xffff, bx=int(fields['ebx'],16)&0xffff,
+                    cs=int(fields['cs'],16)))
+                break
     return result
 
 
 def continuation_diagnostic(log, admission, mapped):
     """First-chance INT31 PCs are not by themselves the terminal loader fault."""
     contexts=exception_contexts(log)
-    rest=[c for c in contexts if c not in [f['context'] for f in mapped]]
+    rest=[c for c in contexts if c['ip']>0xffff and c not in [f['context'] for f in mapped]]
     observations=admission.get('readonly_loader_exception_observations',[])
     terminal=rest[-1] if rest else None
     matched=None
     if terminal:
         for i,row in enumerate(observations):
-            if len(row)==6 and row[0]==88 and row[2]==terminal['ip']:
-                if i+1<len(observations) and observations[i+1][0]==89:
+            if len(row)==6 and row[0]==88 and row[2]==terminal['ip'] and row[5]==terminal['cs']:
+                if i+1<len(observations) and len(observations[i+1])==6 and observations[i+1][0]==89:
                     matched={'exception':row,'memory_query':observations[i+1]}
     services=[(thread,service) for thread,service in re.findall(
         r'(?m)^([0-9a-f]+):trace:int31:DOSVM_Int31Handler (get|set) descriptor ',log)]
@@ -86,15 +95,15 @@ def main():
     parser.add_argument('--dll', type=Path, required=True)
     parser.add_argument('--log', type=Path, required=True)
     parser.add_argument('--admission-report', type=Path, required=True)
-    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--report', type=Path, required=True, help='New immutable SQLite research report')
     args = parser.parse_args()
-    out = args.output.resolve()
-    if out.exists() or not out.is_relative_to(ROOT/'working/tests'):
-        parser.error('Require new retained output under working/tests')
+    out = args.report if args.report.is_absolute() else ROOT/args.report
+    if out.exists() or not out.resolve().is_relative_to(ROOT/'research/runtime'):
+        parser.error('Require new immutable research/runtime report')
     raw = args.dll.read_bytes()
     if hashlib.sha256(raw).hexdigest() != PIN:
         raise ValueError('Unreviewed DIB Engine module')
-    admission = json.loads(args.admission_report.read_text())
+    admission = read_json(args.admission_report)
     if (not admission['success'] or admission['loader_error'] != 998 or
             admission['legacy_surface_available'] or
             not {'DDRAW16.DLL', 'DIBENG.DLL'} <= set(admission['native_16bit_modules'])):
@@ -133,16 +142,15 @@ def main():
     names = ['tools/inspect-legacy-dibeng-fault.py', 'tools/original_x86.py', 'tests/test-legacy-ne-fault.py']
     report = dict(schema=1, success=True, static_only=True, executed_downloaded_code=False,
                   scope=__doc__, sources={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in names},
-                  inputs={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
+                  inputs={str(p):evidence_digest(p)
                           for p in (args.dll.resolve(), args.log.resolve(), args.admission_report.resolve())},
                   dll_sha256=PIN, decoder_version=decoder.version, faults=faults, legacy_surface_available=False,
                   continuation=continuation_diagnostic(log,admission,faults),
                   compatible_host_or_specific_fix_not_validated=True,
                   specification=['https://www.delorie.com/djgpp/doc/dpmi/api/31000b.html',
                                  'https://www.delorie.com/djgpp/doc/dpmi/api/31000c.html'])
-    out.mkdir(parents=True)
-    (out/'report.json').write_text(json.dumps(report, indent=2)+'\n')
-    print(out/'report.json')
+    write_report(ROOT,out,(json.dumps(report,indent=2)+'\n').encode())
+    print(out)
 
 
 if __name__ == '__main__':

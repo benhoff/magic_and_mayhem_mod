@@ -21048,3 +21048,21 @@ indirect targets, malformed/throwing/SEH/platform and installed/live acceptance.
 Historical isolated particle evidence is unchanged. Early attempts and their
 prospective source/contract identities are preserved without fresh execution
 credit; only matrix2 supports the final named scenario.
+
+## Thirteenth rendering batch — scene and diagnostic implementations (2026-10-22)
+
+[Ten implementation closeouts](rendering-thirteenth-ten-closeouts-20261022.md) finish native terrain/world presentation, minimap write candidates, five retained-source prediction/checkpoint/value/auxiliary diagnostic contracts, typed cooperating backing admission and NE fault inspection. Fresh `NT13.native-controls-20261022` records 76 tests in eight suites, 146 recorded commands and 2714 stable prospective inputs, software/TITAN scenes, 32 installed terrain frames, 144 two-actor frames/12 continuations, 102 PE32 provider cases and 1,024 alternating timed minimap calls. All five replay cohorts execute from owned parameters/pinned encoded assets; mismatches and exclusions stay explicit. Static NE attribution executes no driver. Registered rendering partials fall 46→36; understanding, original comparison, integration and replacement statuses remain independent. No historical failure is repaired, no foreign driver/source/route/scanout/full-journey/performance acceptance is inferred. Exact incoming `dcb606bd..97c3f5b2` history has 33 reviewed transitions and one changed evidence record without receipt gaps/rewrites. SQLite retains generated results and bookkeeping, and second-drive raw runs/restored inputs/backups are pinned.
+
+
+### Actor particle integration with native rendering completion
+
+Retain emitter source98514d0b and incoming rendering4cd9121f, including both
+append-only research histories and exact receipts. The48 incoming reviewable
+file transitions have no receipt gaps or rewrites. All81 emitter execution
+inputs, behavior scope and scenario stay unchanged; matrix2 original/native/
+sanitizer proof remains current. The earlier AP1 UI report remains historical
+after combining the importance catalog; merged UI regressions are recorded
+separately. Ten native implementation completions change partial counts to
+Supporting6/Low1/Medium3/High35/Critical25 without closing their pending original
+comparison, installed/live acceptance or replacement gaps. Actor Critical
+recovery, emitter emission and other remaining providers stay partial.

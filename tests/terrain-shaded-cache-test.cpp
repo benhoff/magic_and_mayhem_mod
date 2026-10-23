@@ -16,6 +16,20 @@ int main(int argc,char** argv)try{
  const auto original=mnm::preview::renderTerrain(renderer,catalog,sprite,tiles,{},false,false,mnm::reconstruction::PaletteShadingConfig{});
  if(original.pixels.pixels[100*512+100]!=0||original.pixels.pixels[100*512+101]!=0x53d4||original.pixels.pixels[100*512+102]!=65535||renderer.stats().surfaces)throw std::runtime_error("Repeated terrain frame reused another shade or leaked surfaces");
  unsigned frames=1;
+ for(unsigned fault=0;fault<4;++fault) {
+  auto selected=tiles;auto admission=mnm::reconstruction::TerrainAdmission{};
+  mnm::preview::TerrainPaletteEffects effects;
+  if(fault==0)admission.view=4;
+  if(fault==1)selected.back().definition=1;
+  if(fault==2)selected.back().state.anchorX=512;
+  if(fault==3)effects.ordinal=99;
+  bool refused=false;
+  try {mnm::preview::renderTerrain(renderer,catalog,sprite,selected,admission,false,false,mnm::reconstruction::PaletteShadingConfig{},effects);}
+  catch(const std::exception&){refused=true;}
+  if(!refused||renderer.stats().surfaces)throw std::runtime_error("Terrain admission leaked or partially accepted an invalid late frame");
+ }
+ const auto recovered=mnm::preview::renderTerrain(renderer,catalog,sprite,tiles,{},false,false,mnm::reconstruction::PaletteShadingConfig{});
+ if(recovered.pixels.pixels!=original.pixels.pixels)throw std::runtime_error("Terrain refusal poisoned a later frame");
  mnm::reconstruction::PaletteRgb rgb{};rgb[1]={80,120,160};
  for(unsigned mode=0;mode<10;++mode){
   auto selected=tiles;if(mode>=8)for(unsigned i=0;i<3;++i)selected[i].state.light=std::int8_t(int(i)*63-127);

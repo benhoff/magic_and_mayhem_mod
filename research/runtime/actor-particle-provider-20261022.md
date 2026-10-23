@@ -24,3 +24,13 @@ remaining special particle/task/scenario providers, malformed inputs, throwing
 Windows SEH, platform and installed/live acceptance remain separate. The
 Critical actor downstream umbrella remains partial. Existing isolated variant
 evidence and its hashes remain unchanged.
+
+Local integration retains both98514d0b emitter recovery and4cd9121f native
+rendering work. All48 reviewable incoming file transitions have exact receipts
+and no missing or mutated records. None changes the81 emitter execution inputs
+or its scope/scenario. The original matrix2 proof remains current. The earlier
+AP1 dashboard regression report is preserved as historical after the importance
+catalog union; a fresh merged dashboard result replaces its current UI claim.
+Ten independently implemented native contracts change the dashboard partial
+counts to Supporting6/Low1/Medium3/High35/Critical25. These are implementation
+counts; pending comparison, acceptance and replacement boundaries remain.

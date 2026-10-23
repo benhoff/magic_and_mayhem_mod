@@ -90,8 +90,8 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        # Reviewed bounded implementations through97c3f5b2 retain pending acceptance separately.
-        self.assertEqual(result['partial_counts'], {1: 13, 2: 1, 3: 3, 4: 37, 5: 26})
+        # Reviewed implementations through4cd9121f retain original comparison and acceptance separately.
+        self.assertEqual(result['partial_counts'], {1: 6, 2: 1, 3: 3, 4: 35, 5: 25})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -153,7 +153,7 @@ class TrancheTest(unittest.TestCase):
         plan = result['tranche_plan']
         self.assertEqual(plan['state'], 'planned')
         self.assertEqual(plan['selected_count'], 33)
-        self.assertEqual(plan['unplanned_critical'], ['NR.external-backing-ownership', 'RS.actor-downstream-services', 'RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
+        self.assertEqual(plan['unplanned_critical'], ['RS.actor-downstream-services', 'RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
         self.assertEqual([len(t['tasks']) for t in plan['tranches']], [11, 11, 11])
         tasks = [task for t in plan['tranches'] for task in t['tasks']]
         critical = {e['behavior'] for e in result['entries'] if e['weight'] == 5 and e['implementation'] == 'partial'}
@@ -206,7 +206,7 @@ class TrancheTest(unittest.TestCase):
         next(e for e in self.catalog['entries'] if e['behavior'] == 'AN.world-facing')['weight'] = 5
         result = importance_view(self.catalog, self.register, self.tracks)['tranche_plan']
         self.assertEqual(result['selected_count'], 33)
-        self.assertEqual(result['unplanned_critical'], ['AN.world-facing', 'NR.external-backing-ownership', 'RS.actor-downstream-services', 'RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
+        self.assertEqual(result['unplanned_critical'], ['AN.world-facing', 'RS.actor-downstream-services', 'RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
 
     def test_first_tranche_briefs_gate_one_pilot_after_ten_controls(self):
         result = importance_view(self.catalog, self.register, self.tracks)
@@ -437,6 +437,7 @@ class TrancheTest(unittest.TestCase):
             'research/runtime/coverage/native-implementation-completion-20261020.json'))['entries']
             if e['decision'] == 'scoped_implementation_complete'}
         completed.add('RS.shadow-linear-stride')  # bounded implementation in97c3f5b2
+        completed.update({'NR.world_scene', 'NR.terrain_scene'})  # implementation in4cd9121f
         unplanned = {'RE.palette-effect-builders', 'RE.terrain-camera-lifecycle',
                      'RE.terrain-entity-section-rotation', 'RE.terrain-spectator-lighting'}
         self.assertEqual({t['behavior'] for t in tasks} | unplanned,

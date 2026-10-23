@@ -100,6 +100,8 @@ std::size_t CanvasSequence::minimap(std::uint32_t id, int stride,
   a.words.resize(count, 0x1357); b.words.resize(count, 0xeca8);
   const auto result = draw(a); if (draw(b) != result)
     throw std::logic_error("Minimap result depends on diagnostic background");
+  if (a.words.size() != count || b.words.size() != count)
+    throw std::invalid_argument("Minimap callback changed owned storage extent");
   if (tracedServices) {
     // Both fresh sentinels remain distinct at every untouched word. Only the
     // union of the recovered services' committed writes can compare equal.
