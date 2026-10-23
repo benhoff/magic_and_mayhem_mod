@@ -374,14 +374,63 @@ class EvidenceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'pre-migration Git history'):
             verify_push(self.root, f'refs/heads/master {old} refs/heads/master '+ '0'*40)
 
-    def test_pre_push_requires_published_evidence(self):
+    def test_pre_push_allows_unpublished_evidence_without_opening_stores(self):
         self.git('init', '-q'); self.git('config', 'user.name', 'Fixture')
         self.git('config', 'user.email', 'fixture@example.invalid')
         self.report(b'local evidence')
         self.git('add', CONFIG, 'research'); self.git('commit', '-qm', 'unpublished pointer')
         commit = self.git('rev-parse', 'HEAD').decode().strip()
-        with self.assertRaisesRegex(ValueError, 'Publish evidence before pushing'):
+        with patch('coverage_evidence.Resolver', side_effect=AssertionError('No store needed')), \
+             patch('coverage_evidence.fetch_archive', side_effect=AssertionError('No network needed')):
+            self.assertEqual(verify_push(self.root,
+                f'refs/heads/master {commit} refs/heads/master '+ '0'*40), 1)
+
+    def test_real_pre_push_hook_allows_pointers_without_payloads(self):
+        self.git('init', '-q'); self.git('config', 'user.name', 'Fixture')
+        self.git('config', 'user.email', 'fixture@example.invalid')
+        path = self.root/'research/runtime/unavailable.json'
+        path.parent.mkdir(parents=True)
+        path.write_bytes(pointer('a'*64, 42))
+        self.git('add', CONFIG, 'research'); self.git('commit', '-qm', 'Identity only')
+        remote = self.root/'remote.git'
+        self.git('init', '--bare', '-q', str(remote))
+        self.git('config', 'core.hooksPath', str(ROOT/'.githooks'))
+        self.git('push', str(remote), 'HEAD:refs/heads/master')
+        self.assertEqual(self.git('--git-dir='+str(remote), 'rev-parse', 'master'),
+                         self.git('rev-parse', 'HEAD'))
+
+    def test_pre_push_rejects_raw_and_malformed_evidence(self):
+        self.git('init', '-q'); self.git('config', 'user.name', 'Fixture')
+        self.git('config', 'user.email', 'fixture@example.invalid')
+        path = self.root/'research/runtime/raw.json'; path.parent.mkdir(parents=True)
+        for payload, message in ((b'x'*161, 'raw evidence artifact'),
+                                 (b'{"raw":true}', 'unconverted evidence artifact'),
+                                 (b'magic-and-mayhem-evidence-v1 invalid\n', 'Malformed evidence pointer')):
+            with self.subTest(message=message):
+                path.write_bytes(payload)
+                self.git('add', CONFIG, 'research'); self.git('commit', '-qm', message)
+                commit = self.git('rev-parse', 'HEAD').decode().strip()
+                with self.assertRaisesRegex(ValueError, message):
+                    verify_push(self.root,
+                        f'refs/heads/master {commit} refs/heads/master '+ '0'*40)
+                # Exclude this version so the next case checks only its new blob.
+                self.git('update-ref', 'refs/remotes/origin/master', commit)
+
+    def test_pre_push_checks_evidence_removed_from_head(self):
+        self.git('init', '-q'); self.git('config', 'user.name', 'Fixture')
+        self.git('config', 'user.email', 'fixture@example.invalid')
+        path = self.root/'research/runtime/raw.json'; path.parent.mkdir(parents=True)
+        path.write_bytes(b'{"raw":true}')
+        self.git('add', CONFIG, 'research'); self.git('commit', '-qm', 'Raw historical report')
+        self.git('rm', str(path)); self.git('commit', '-qm', 'Remove report')
+        commit = self.git('rev-parse', 'HEAD').decode().strip()
+        with self.assertRaisesRegex(ValueError, 'unconverted evidence artifact'):
             verify_push(self.root, f'refs/heads/master {commit} refs/heads/master '+ '0'*40)
+
+    def test_pre_push_allows_branch_deletion_without_evidence(self):
+        with patch('coverage_evidence.subprocess.check_output', side_effect=AssertionError('No history needed')):
+            self.assertEqual(verify_push(self.root,
+                'refs/heads/master '+ '0'*40 +' refs/heads/master '+ 'a'*40), 0)
 
     def test_transport_preserves_identity_normalizes_assets_and_has_a_parent(self):
         import evidence_publish as publication

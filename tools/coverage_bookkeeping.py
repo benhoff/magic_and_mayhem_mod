@@ -461,4 +461,4 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
         subprocess.run(git + ['commit', '-m', message], check=True)
     committed = subprocess.check_output(git + ['rev-parse', 'HEAD'], text=True).strip()
     return {'commit': committed, 'receipts': exported, 'backups': backups,
-            'publication': 'local only; synchronize evidence before pushing'}
+            'publication': 'local only; evidence publication is optional'}

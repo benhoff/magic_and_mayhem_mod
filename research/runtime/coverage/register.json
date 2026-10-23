@@ -20760,7 +20760,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Exact execution claims and composable coverage accounting",
-      "scope": "Offline build/address/source accounting, immutable scope and scenario identities, complete declared implementation/dependency fingerprints, historical/current validation separation, exact receipt composition and root build census. Synthetic guard fixtures and read-only UI validation only; scientific adequacy, inferred transitive dependencies, original execution, full-player-session corpus and engine equivalence are outside this toolkit contract. Evidence-ID collisions may be imported only from independent actual co-parents of a committed/pending Git merge, preserving the entire historical record except its namespaced ID, complete provenance keys and append-only mappings; unrelated branches/ancestors and modified records refuse without validation/status credit. Evidence-ID import contexts include committed merge ancestry reachable from verified actual pending merge tips, without admitting unrelated branch references. Staged reviews and local/bootstrap baselines are captured from the index before its temporary tree is released; Git-base materialization follows sequentially, keeping one full tree on scratch storage at a time without changing accounting policy. Review journals may store ordered, SHA-256-pinned archive shards; filesystem, staged and Git-history readers preserve every original receipt value and append-only enforcement. Sharding changes storage only and does not renew historical validation. Submission performance: snapshot-local file fingerprint reuse and audited raw provenance retain complete source, binding and recorded-input keys. Git archives and file members stream through bounded buffers with failed-export and unsafe-member refusal. Optional CLI phase timings are diagnostic only. No persistent pass cache or skipped accounting stage. Explicit recorded validation.stages grants credit only to named dimensions; omitted stages retain full current-milestone validation. Implementation-only evidence cannot authorize higher comparison/integration/replacement promotions. Local completion verifies SQLite-backed working/staged evidence without fetching or publication, records exact pending accounting and explicitly requested current promoted-stage proof, creates consistent retained SQLite backups, and commits with the normal staged hook. Explicit synchronization retains all outgoing evidence versions, publishes missing objects and records verified availability before an optional branch push. Remote availability remains required by the independent pre-push and CI guards; storage timing grants no engine status.",
+      "scope": "Offline build/address/source accounting, immutable scope and scenario identities, complete declared implementation/dependency fingerprints, historical/current validation separation, exact receipt composition and root build census. Synthetic guard fixtures and read-only UI validation only; scientific adequacy, inferred transitive dependencies, original execution, full-player-session corpus and engine equivalence are outside this toolkit contract. Evidence-ID collisions may be imported only from independent actual co-parents of a committed/pending Git merge, preserving the entire historical record except its namespaced ID, complete provenance keys and append-only mappings; unrelated branches/ancestors and modified records refuse without validation/status credit. Evidence-ID import contexts include committed merge ancestry reachable from verified actual pending merge tips, without admitting unrelated branch references. Staged reviews and local/bootstrap baselines are captured from the index before its temporary tree is released; Git-base materialization follows sequentially, keeping one full tree on scratch storage at a time without changing accounting policy. Review journals may store ordered, SHA-256-pinned archive shards; filesystem, staged and Git-history readers preserve every original receipt value and append-only enforcement. Sharding changes storage only and does not renew historical validation. Submission performance: snapshot-local file fingerprint reuse and audited raw provenance retain complete source, binding and recorded-input keys. Git archives and file members stream through bounded buffers with failed-export and unsafe-member refusal. Optional CLI phase timings are diagnostic only. No persistent pass cache or skipped accounting stage. Explicit recorded validation.stages grants credit only to named dimensions; omitted stages retain full current-milestone validation. Implementation-only evidence cannot authorize higher comparison/integration/replacement promotions. Local completion verifies SQLite-backed working/staged evidence without fetching or publication, records exact pending accounting and explicitly requested current promoted-stage proof, creates consistent retained SQLite backups, and commits with the normal staged hook. Explicit synchronization retains all outgoing evidence versions, publishes missing objects and records verified availability before an optional branch push. Source pushes do not require payload publication. The pre-push guard checks pointer format and pre-migration history without evidence-store or network access. Ordinary hosted CI runs isolated tooling fixtures; full archive-backed audits require an explicit manual workflow request and available verified inputs. Local staged accounting and retained verified SQLite backups remain required; source distribution alone grants no evidence-availability or engine-validation claim.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -20786,7 +20786,8 @@
         "tools/coverage-bookkeeping.py",
         "tools/evidence_local.py",
         "tools/finish-work.py",
-        "tools/sync-evidence.py"
+        "tools/sync-evidence.py",
+        "tools/coverage_evidence.py"
       ],
       "tests": [
         "tests/test-re-coverage.py",
@@ -20794,7 +20795,8 @@
         "tests/test-coverage-merge-history.py",
         "tests/test-coverage-evidence-imports.py",
         "tests/test-coverage-bookkeeping.py",
-        "tests/test-local-evidence-workflow.py"
+        "tests/test-local-evidence-workflow.py",
+        "tests/test-evidence-store.py"
       ],
       "evidence": [
         "COV01.execution-claims-20261008",
@@ -20803,7 +20805,8 @@
         "TOOL.creature-consolidation.incoming-ancestry-20261016",
         "TOOL.latest-campaign.staged-lifetime-20261016",
         "COMPLETE.gate-20261020",
-        "TOOL.local-first-workflow-20261021"
+        "TOOL.local-first-workflow-20261021",
+        "TOOL.optional-evidence-push-controls-20261022"
       ],
       "status": {
         "understanding": "scoped",
@@ -318277,6 +318280,32 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "TOOL.optional-evidence-push-controls-20261022",
+      "kind": "native_integration",
+      "scope": "Isolated tooling regression tests and actual local pre-push hook acceptance of evidence identities without payloads. Publication and archive-backed hosted audit are not executed; no engine milestone is renewed.",
+      "record": "research/runtime/coverage/optional-evidence-push-controls-20261022.json",
+      "sha256": "598c50eb2b669302a171c8a23c40c7c553ec4cf17448c3ec81fce064b3c57c44",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/changed_sources",
+          "equals": []
+        },
+        {
+          "pointer": "/publication_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -343756,8 +343785,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-1cad3da58290d7ab1564b70dc5a5793df4dab413347e498934d17596703159c4.json",
-    "sha256": "1cad3da58290d7ab1564b70dc5a5793df4dab413347e498934d17596703159c4"
+    "path": "research/runtime/coverage/source-index-d560cc11b4235ffc9baef02f99d8e098cfaaea6dab2434a35e790fec07cd73fe.json",
+    "sha256": "d560cc11b4235ffc9baef02f99d8e098cfaaea6dab2434a35e790fec07cd73fe"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

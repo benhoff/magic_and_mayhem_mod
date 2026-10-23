@@ -45,8 +45,8 @@ code is never executed. No persistent cached pass can approve a changed tree.
 
 The default command compares against the reviewed `gate-baseline.json` snapshot.
 Once the gate has been committed, use `--base HEAD` for local changes or an
-explicit reviewed commit for a branch comparison. CI compares the actual PR
-base, push predecessor or merge-group base. It reads that tree without switching
+explicit reviewed commit for a branch comparison. The full CI audit is manually
+requested and uses the event base, or HEAD's parent for a manual run. It reads that tree without switching
 branches or executing historical code. Updating a census or baseline in the same
 change cannot reset the Git comparison. Initial adoption uses `--bootstrap` only
 when the base predates the gate; using it after adoption fails.
@@ -126,8 +126,12 @@ validation remains independently pending when merged sources differ from earlier
 execution fingerprints. The report names the inspected commits and inherited
 statuses. CI fetches full history; staged checks also inspect actual MERGE_HEAD.
 
-The [CI workflow](../../../.github/workflows/re-coverage.yml) runs both guard suites
-and the change gate without game media, Ghidra, Qt, Wine or original execution.
+The [CI workflow](../../../.github/workflows/re-coverage.yml) runs isolated
+accounting, evidence-store and backup guard suites on ordinary pushes and PRs,
+without fetching evidence or requiring publication. Its **Full evidence audit
+(manual)** job runs the archive-backed suites and change gate only when a manual
+workflow run selects `verify_evidence`. That job requires its referenced payloads
+to be available; a source-only run does not claim a complete evidence audit.
 Configure the repository's merge rules to require **Coverage accounting**; a
 workflow file alone does not configure branch protection. `tests/test-tooling.sh`
 also runs the local gate. Install the local pre-commit check manually with:
@@ -148,7 +152,8 @@ checked. Unstaged repairs cannot approve an incomplete commit. Stage these
 related files together after recording the exact review, then commit normally.
 To inspect the same staged gate manually after adoption, run
 `python3 tools/check-re-coverage.py --staged --base HEAD`.
-Git's `--no-verify` bypasses local hooks; required CI remains the remote gate.
+The local staged gate remains required for commits. Ordinary CI validates the
+tooling with isolated fixtures; full evidence validation is explicitly requested.
 
 To start a reviewed baseline, use `--freeze-baseline` with a new path. This
 explicitly accepts existing accounting debt without changing any original
@@ -596,7 +601,7 @@ record and grants no new engine understanding, implementation or validation.
 ## SQLite evidence and automated bookkeeping
 
 On a fresh clone, run `python3 tools/evidence-store.py fetch --verify`, then
-`python3 tools/install-coverage-hook.py`. CI verifies the pinned SQLite archives
+`python3 tools/install-coverage-hook.py`. The manual full CI audit verifies pinned SQLite archives
 without expanding their JSON files. The audit, gate, coverage UI and migrated
 research readers read original bytes directly through `coverage_evidence.Reader`.
 Readers verify content hashes and preserve historical source fingerprints; they
@@ -606,8 +611,9 @@ objects outside the Git object history; source, handwritten research, live
 registers, the active review journal and small pinned manifests remain in Git.
 The clean filter stores a pointer containing the original SHA-256 and byte count.
 Restoration validates compressed downloads, the database and the original bytes.
-A missing or corrupt object fails closed; local pending data cannot establish
-remote availability. Archived findings retain their original hashes and claims.
+A missing or corrupt object fails closed when read. Source pushes require valid
+pointer identities, not remote payload availability. Archived findings retain
+their original hashes and claims.
 
 Generated reports under `research/runtime/` and `research/formats/` fit this
 storage policy. Editable central/focused registers, the active review journal,
@@ -635,7 +641,7 @@ concurrent change aborts replacement; inspect the retained plan/partial receipt.
 Resume a reviewed interrupted plan with `evidence-store.py apply-plan <plan.json>`.
 The pending database also records queryable `json_documents` path, hash, size,
 success, scope and schema metadata for each sweep. Local pending evidence can be
-read before publication; it cannot satisfy the pre-push availability guard.
+read before publication; source pushes do not require payload publication.
 
 To inspect or hand a report to a legacy external reader, export exact bytes:
 
@@ -695,10 +701,12 @@ clone alone does not contain unpublished evidence payloads.
 
 A normal local finish therefore ends with a Git commit and retained SQLite
 backups. Creating a GitHub release is optional and separate. Remote source
-distribution still needs its referenced payloads available to the recipient;
-the present pre-push guard and hosted CI use the pinned release manifest. A
-private sharing backend would need its own verified reader and CI setup before
-replacing that transport. Local work does not wait for that backend decision.
+distribution can proceed without publishing payloads. The pre-push guard checks
+pointer format and pre-migration history without opening stores or fetching
+archives. Full evidence audits need the referenced verified SQLite inputs;
+ordinary CI runs isolated tooling tests and the archive-backed audit is manual.
+Recipients may obtain payloads separately or use the optional release backend.
+Unpublished references do not assert that a fresh clone can read their reports.
 
 Private SSH backup is an explicit operation after local completion:
 
@@ -736,8 +744,8 @@ evidence as `working/coverage/evidence-pending.sqlite3` while its writers are
 stopped, and place pinned archive objects in the configured evidence cache.
 Keep the recovered Git commit with the database set. This backs up databases;
 untracked game installations, original media and Git source history are outside
-the backup command's scope. Private backup is not public release publication and
-does not satisfy the existing hosted-CI availability guard.
+the backup command's scope. Private backup is separate from optional public
+release publication and does not make those payloads available to hosted CI.
 
 Use `--record-current-promotions` only after reviewing the requested milestone
 changes. It records stage-specific proof from existing current audit support;
@@ -746,7 +754,7 @@ Missing, stale, incomplete or unbound execution proof refuses completion. Withou
 that option, new promotions require previously recorded valid proof receipts.
 Failed checks or commits preserve source, accepted SQLite receipts and backups.
 
-Only when external sharing is explicitly requested, synchronize from a clean
+Only when evidence publication is explicitly requested, synchronize from a clean
 owned worktree (this command publishes to GitHub Releases):
 
 ```sh
@@ -759,8 +767,9 @@ including report versions absent from HEAD. The existing publication transport
 verifies uploaded/downloaded immutable SQLite assets before updating the manifest.
 The command then records and commits availability metadata. Omit `--push` to
 publish evidence and commit its manifest without pushing the source branch.
-An upload failure prevents the branch push. The ordinary pre-push guard remains
-independent and fails closed; CI verifies published evidence from a fresh checkout.
+An upload failure prevents this command's optional branch push. A normal
+`git push` does not require publication. The manually requested full CI audit
+verifies published evidence from a fresh checkout; ordinary CI uses isolated fixtures.
 Publication changes storage availability, never an engine validation milestone.
 
 `.evidence-commits.json` maps old commit IDs to their storage-only rewritten IDs.

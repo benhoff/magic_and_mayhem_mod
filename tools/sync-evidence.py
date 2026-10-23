@@ -110,7 +110,7 @@ def synchronize(root, output, tag, push=False, database=None):
         finally:
             workspace.close()
     if push:
-        # The ordinary pre-push guard independently verifies remote availability.
+        # Publication is explicit here; ordinary Git pushes do not require it.
         push_branch(root, branch)
     return dict(collected, pushed=push, publication='verified' if collected['missing_objects'] else 'already available')
 

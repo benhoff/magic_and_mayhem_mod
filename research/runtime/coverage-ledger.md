@@ -21070,3 +21070,33 @@ recovery, emitter emission and other remaining providers stay partial.
 ## Fourteenth rendering batch — startup and finite history (2026-10-22)
 
 [Ten bounded implementation closeouts](rendering-fourteenth-ten-closeouts-20261022.md) complete the registered startup canvas creation/Lock, binding/clip, clear, raw queue prefix, wave/palette, dispatch table/kind8 diagnostic, finite history channel and asynchronous presentation implementations. Fresh `NT14.native-controls-20261022` supplies 4 Python controls, 39 recorded commands and 2646 stable prospective inputs, unchanged-original selected startup/dispatch fixtures,768 complete CPU/software-GPU/TITAN wave canvases and10 actual PE32 history outcomes. One-use journal slots, monotonic acknowledgements and terminal state checks during pending preparation are now enforced. Registered rendering implementation partials fall36→26. Original external APIs remain scripted; no new installed original-game/driver/ownership/full-game/performance/replacement equivalence is claimed. Exact incoming commit-range receipts6da5dc7b..4cd9121f and4cd9121f..8bf5e736 were inspected with no gaps or rewrites; the full batch reran after preserving owned sources/contracts during actor-emitter integration. Generated results and bookkeeping are SQLite-backed; raw controls/backups remain pinned.
+
+
+### Optional evidence publication for source pushes, 2026-10-22
+
+The user explicitly removed the requirement to publish evidence before source
+pushes and hosted merges. The pre-push guard now checks pointer syntax and
+pre-migration history without opening payload stores or fetching archives.
+Ordinary CI runs isolated accounting/evidence/backup guards; full evidence-backed
+CI is a manually selected workflow run. Local staged accounting, verified payload
+reads and retained SQLite backups remain required. A source clone may lack
+unpublished payloads; source distribution does not claim their availability or
+a complete audit. Optional synchronization still publishes and verifies all
+outgoing evidence versions when explicitly requested. Engine milestones, original
+comparisons and historical evidence fingerprints are unchanged.
+
+Validation: [239 controls in eight isolated suites](coverage/optional-evidence-push-controls-20261022.json)
+pass, including a real local Git push with an unavailable evidence payload,
+retained raw/malformed/historical-pointer refusal, local staged hooks and SQLite
+backup restoration. The result is scoped to these controls; it does not renew
+the entire accounting contract or any engine milestone. Hosted workflow execution
+will be observed separately after the source push. The preliminary main-checkout
+test run is retained with its exact source hashes as a baseline; its descriptive
+scope is corrected by the owned result and supplies no proof of this new policy.
+
+Integration preserves concurrent commit 195470ce and the reviewed policy commit
+0b3631c9. [Incoming-history review](coverage/optional-evidence-push-incoming-history-20261022.json)
+checks 29 exact parent/current transitions with no missing receipts. Native
+implementation milestones are inherited from the concurrent commit; changed
+shared tooling may leave its source fingerprints historical. This configuration
+change does not renew native or original-engine validation.

@@ -589,57 +589,43 @@ def install_filter(root, script):
 
 
 def verify_push(root, updates):
-    """Reject old history and pointers absent from the pinned, published archives."""
+    """Reject legacy history and raw/malformed evidence without requiring publication.
+
+    Source pushes carry evidence identities only. Payload availability and
+    hash-verified evidence reads remain separate, explicit operations.
+    """
     root = Path(root).resolve()
     mapping_path = root/COMMIT_MAP
     if not mapping_path.exists():
         mapping_path = Path(__file__).resolve().parents[1]/COMMIT_MAP
     old = set(json.loads(mapping_path.read_text()).get('commits', {})) if mapping_path.exists() else set()
-    resolver = Resolver(root)
-    # Pending local objects cannot prove remote availability.
-    for store in resolver.stores:
-        store.close()
-    resolver.stores = []
     seen, checked = set(), 0
-    try:
-        for line in updates.splitlines():
-            fields = line.split()
-            if len(fields) != 4:
-                raise ValueError('Invalid Git pre-push input')
-            _, local, _, remote = fields
-            if set(local) == {'0'}:
+    for line in updates.splitlines():
+        fields = line.split()
+        if len(fields) != 4:
+            raise ValueError('Invalid Git pre-push input')
+        _, local, _, remote = fields
+        if set(local) == {'0'}:
+            continue
+        commits = subprocess.check_output(['git', '-C', str(root), 'rev-list', local,
+                                           '--not', '--remotes=origin']).decode().splitlines()
+        if old.intersection(commits):
+            raise ValueError('Push would restore pre-migration Git history; migrate this branch first')
+        objects = subprocess.check_output(['git', '-C', str(root), 'rev-list', '--objects', local,
+                                           '--not', '--remotes=origin']).splitlines()
+        for row in objects:
+            parts = row.split(b' ', 1)
+            if len(parts) != 2 or not artifact(parts[1].decode('utf-8')) or parts[0] in seen:
                 continue
-            commits = subprocess.check_output(['git', '-C', str(root), 'rev-list', local,
-                                               '--not', '--remotes=origin']).decode().splitlines()
-            if old.intersection(commits):
-                raise ValueError('Push would restore pre-migration Git history; migrate this branch first')
-            objects = subprocess.check_output(['git', '-C', str(root), 'rev-list', '--objects', local,
-                                               '--not', '--remotes=origin']).splitlines()
-            for row in objects:
-                parts = row.split(b' ', 1)
-                if len(parts) != 2 or not artifact(parts[1].decode('utf-8')) or parts[0] in seen:
-                    continue
-                seen.add(parts[0])
-                oid = parts[0].decode()
-                size = int(subprocess.check_output(['git', '-C', str(root), 'cat-file', '-s', oid]))
-                if size > 160:
-                    raise ValueError('Push contains a raw evidence artifact; install the evidence filter')
-                data = subprocess.check_output(['git', '-C', str(root), 'cat-file', 'blob', oid])
-                ident = identity(data)
-                if ident is None:
-                    raise ValueError('Push contains an unconverted evidence artifact')
-                if not any(s.has(*ident) for s in resolver.stores):
-                    for spec in (resolver.spec or {}).get('archives', []):
-                        path = fetch_archive(root, spec)
-                        if not any(s.path == path for s in resolver.stores):
-                            resolver.stores.append(Store(path, readonly=True))
-                        if any(s.has(*ident) for s in resolver.stores):
-                            break
-                if not any(s.has(*ident) for s in resolver.stores):
-                    raise ValueError('Publish evidence before pushing: ' + ident[0])
-                checked += 1
-    finally:
-        resolver.close()
+            seen.add(parts[0])
+            oid = parts[0].decode()
+            size = int(subprocess.check_output(['git', '-C', str(root), 'cat-file', '-s', oid]))
+            if size > 160:
+                raise ValueError('Push contains a raw evidence artifact; install the evidence filter')
+            data = subprocess.check_output(['git', '-C', str(root), 'cat-file', 'blob', oid])
+            if identity(data) is None:
+                raise ValueError('Push contains an unconverted evidence artifact')
+            checked += 1
     return checked
 
 
