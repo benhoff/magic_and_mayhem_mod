@@ -21193,3 +21193,34 @@ to review because incoming source changes invalidate their existing fingerprints
 those fingerprints remain historical. The actor umbrella's assessment is renewed
 for EF1. Planning counts and test updates grant no engine or acceptance credit.
 The initial UI failure is retained separately from the corrected regression run.
+
+
+## Fallback planner ownership through retirement (2026-10-23)
+
+[Fallback task storage](owner-task-storage-20261023.md) closes fresh419e40
+construction and418050 normal base destruction inside the single-root415c40 /
+423590 /4289e0 /428b40 kind0 chain. Public native OwnerFallbackOwner composes
+selector/replacement/scheduler, evaluator/installed ownership, borrowed source
+backlinks and four shared sentinel families.96 original32/native64/sanitizer
+episodes pass3718066 checks:64 storage episodes/160 lifecycles and32 caller
+episodes/3072 slices/409 installations, plus441 evaluator/installed lifecycles.
+869 pending/133 disabled slices and32 expiry drains; full RNG and source/sentinel
+conservation agree. All40 declared inputs are stable, manifests/text unchanged,
+canaries intact. Exactly13 constructor stack tags use explicit native-zero
+representation and are excluded from raw byte equality. OTS1 original/headless
+records share this same matrix; no extra installed/live acceptance is asserted.
+
+The actor Critical umbrella stays partial. Nonempty owned-source vectors,
+nested allocation failures, general map operations, malformed/exception/SEH
+paths, other families/brains and actor handlers, nonzero accounting/producers,
+source/perception/training, full World cadence and installed/live/physical
+acceptance remain open. Exact6d0dd7bc..f6382e4b review covers49 transitions with
+zero missing/rewritten receipts. Failed and preliminary attempts retain their
+original hashes; static receipts do not claim execution or a past gate pass.
+
+Final5 additionally compares all per-slice evaluator/installed object bytes,
+normalizing only verified source/head identities and the13 documented allocator
+tags. It recovers4284e0 publication of evaluator source/owner before preparation
+and keeps native149/14a flags synchronized.3718066 checks agree; prior final3
+results retain narrower historical fingerprints. Other source/vector/World and
+exceptional providers remain pending. No extra episodes or live credit added.

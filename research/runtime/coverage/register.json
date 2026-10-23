@@ -138658,7 +138658,8 @@
         "research/runtime/actor-support-provider-20261022.md",
         "research/runtime/actor-particle-provider-20261022.md",
         "research/runtime/actor-emission-provider-20261022.md",
-        "research/runtime/emitter-families-provider-20261022.md"
+        "research/runtime/emitter-families-provider-20261022.md",
+        "research/runtime/owner-task-storage-20261023.md"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -142162,6 +142163,297 @@
         "comparison": "recorded",
         "integration": "headless",
         "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.owner-fallback-owned-lifecycle",
+      "kind": "recovered",
+      "subsystem": "creature_ai",
+      "title": "Fallback planner task storage through scheduled retirement",
+      "scope": "Ordinary brain0 single enabled direct-root fallback chain:415c40 count scheduling,423590/4284e0 preparation415640 and candidate415670,4289e0 install and419e40 fresh evaluator construction,419900 continuing body,428b40 expiry/invalidation displacement and418050 base destruction. Recovered native OwnerFallbackOwner API owns evaluator/installed records and source backlink. Includes four shared sentinel families, empty owned source vector, well-formed zero/three-node scalar/POD maps, trivial vector backing, varied destruction order, first object allocation failure, zero/odd/disabled count slices, full strategic RNG and explicit final close. Caller domain fixes owner0, zero owner accounting baseline/counters, source availability and maximum selection. Constructor allocator-tag stack bytes are excluded at thirteen documented offsets and zeroed by native representation policy. Nested allocation failure, source-vector population/destruction, arbitrary callbacks, throwing cleanup/Windows SEH, map insertion/rebalancing/partial erasure, other families/brains, source maintenance/perception/snapshot/registration/training, actual World cadence/allocation, installed sessions and live replacement remain separate.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4283456,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4339088,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4360672,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4361024,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4300352,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4292688,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4281920,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4281968,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4282016,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded.",
+          "recovered_range": "owner-fallback-life-4156a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4299008,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5116768,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4365152,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4365408,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4365680,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4365936,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4363968,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4364176,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4364208,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4366192,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4363920,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4363824,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4363728,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4365664,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4363600,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4363472,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4363200,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5108224,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4374192,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4375424,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4376656,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4377888,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4365200,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4365456,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4365728,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4365984,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4374080,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4375312,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4376544,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4377776,
+          "scope": "Fallback normal constructor/caller/destructor domain only. Whole-tree scalar/POD destruction paths; partial erase, source-vector population, malformed storage and unwind excluded."
+        }
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_task_storage.hpp",
+        "reconstruction/creature-ai/owner_fallback_owner.hpp",
+        "reconstruction/creature-ai/owner_task_scheduler.hpp",
+        "reconstruction/creature-ai/owner_task_scheduler.cpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.hpp",
+        "reconstruction/creature-ai/owner_task_lifecycle.cpp",
+        "reconstruction/creature-ai/owner_task_inputs.cpp",
+        "reconstruction/creature-ai/owner_planner.cpp",
+        "reconstruction/creature-ai/owner_fallback_task.hpp",
+        "reconstruction/combat/melee.cpp"
+      ],
+      "tests": [
+        "tests/owner-task-storage-test.cpp",
+        "tests/owner-task-storage-caller.inc",
+        "tools/test-owner-task-storage.py",
+        "tools/inspect-owner-task-storage.py"
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/owner_planner.hpp",
+        "reconstruction/creature-ai/owner_task_inputs.hpp",
+        "reconstruction/creature-ai/source_controller.hpp",
+        "reconstruction/creature-ai/source_decision.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/source_lifecycle.hpp",
+        "reconstruction/creature-ai/source_owned.hpp",
+        "reconstruction/creature-ai/source_pending.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-source-decision-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/draft-coverage-claims.py",
+        "tools/ghidra/ExportFontProviders.java",
+        "tools/original_x86.py",
+        "tools/owner_planner_comparison.py"
+      ],
+      "documents": [
+        "research/runtime/owner-task-storage-20261023.md"
+      ],
+      "evidence": [
+        "OTS1.original-20261023",
+        "OTS1.headless-20261023",
+        "OTS1.inspection-6.static-20261023",
+        "OTS1.attempt-catalog.static-20261023",
+        "OTS1.incoming-history-f6382e4b.static-20261023",
+        "OTS1.original-v2-20261023",
+        "OTS1.headless-v2-20261023",
+        "OTS1.attempt-catalog-2.static-20261023",
+        "OTS1.ui-regressions-2.static-20261023",
+        "OTS1.original-v3-20261023",
+        "OTS1.headless-v3-20261023",
+        "OTS1.attempt-catalog-3.static-20261023",
+        "OTS1.ui-regressions-3.static-20261023"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "64 storage episodes,1..4 objects and first-allocation refusal per episode",
+          "32 caller episodes,96 count slices each",
+          "Empty owned source vector, retained borrowed source backlink and four valid scalar/POD trees",
+          "Fixed native zero allocator tags versus explicit original stack-tag exclusions",
+          "Caller owner0, zero baseline/counters, fixed available source and maximum selection; no original accounting producer claimed."
+        ],
+        "excluded": [
+          "Nonempty owned source vectors and their original source destructor provider",
+          "Nested allocation failure, general map insertion/iterator erase, malformed storage and exceptional unwind",
+          "Other task families/brains, World/source/perception/training/backend/installed/live acceptance"
+        ]
       }
     }
   ],
@@ -319919,6 +320211,632 @@
           "equals": true
         }
       ]
+    },
+    {
+      "record": "research/runtime/owner-task-storage-results-20261023/task-storage-final-2.json",
+      "sha256": "f2378466b3a55390c7334fa6991a16cbd074a78dd39bb944775b3d500653f385",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 96
+        },
+        {
+          "pointer": "/slices",
+          "equals": 3072
+        },
+        {
+          "pointer": "/storage_cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/caller_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/constructions",
+          "equals": 160
+        },
+        {
+          "pointer": "/retirements",
+          "equals": 160
+        },
+        {
+          "pointer": "/installed",
+          "equals": 409
+        },
+        {
+          "pointer": "/expiry_drains",
+          "equals": 32
+        },
+        {
+          "pointer": "/pending_slices",
+          "equals": 869
+        },
+        {
+          "pointer": "/disabled_slices",
+          "equals": 133
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "id": "OTS1.original-20261023",
+      "kind": "isolated_original",
+      "scope": "96 bounded episodes:64 task storage episodes plus32 original415c40 fallback caller episodes,3072 count slices,409 installed tasks and real418050 cleanup. Original32/native64/sanitizer semantic digests agree. Thirteen constructor stack-derived allocator tag offsets excluded only from direct storage byte comparison; zero native representation explicit. No source-vector population, nested allocation failure, broader families/World or installed/live claim.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "record": "research/runtime/owner-task-storage-results-20261023/task-storage-final-2.json",
+      "sha256": "f2378466b3a55390c7334fa6991a16cbd074a78dd39bb944775b3d500653f385",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 96
+        },
+        {
+          "pointer": "/slices",
+          "equals": 3072
+        },
+        {
+          "pointer": "/storage_cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/caller_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/constructions",
+          "equals": 160
+        },
+        {
+          "pointer": "/retirements",
+          "equals": 160
+        },
+        {
+          "pointer": "/installed",
+          "equals": 409
+        },
+        {
+          "pointer": "/expiry_drains",
+          "equals": 32
+        },
+        {
+          "pointer": "/pending_slices",
+          "equals": 869
+        },
+        {
+          "pointer": "/disabled_slices",
+          "equals": 133
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "id": "OTS1.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Same96 episodes and3072 slices exercise the public native OwnerFallbackOwner API with checked value-address backend, real recovered selector/replacement/scheduler and owned TaskStorage. 160 direct storage lifecycles plus441 caller evaluator/installed lifecycles close; source backlink and shared sentinel conservation checked. Same execution as original proof, not extra cases; no application/live integration."
+    },
+    {
+      "id": "OTS1.inspection-6.static-20261023",
+      "kind": "static",
+      "scope": "Read-only full central instructions and available decompilations for constructors, base cleanup, scalar/POD whole-tree release and caller. Older-project missing functions and existing recovered ranges retained, no inventory mutation or execution promotion.",
+      "record": "research/runtime/owner-task-storage-results-20261023/inspection-6.json",
+      "sha256": "62b4f9c3c5465ad93f0ea26be4c01fd03bf43e332af5040c47406a423cf77c0d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OTS1.attempt-catalog.static-20261023",
+      "kind": "static",
+      "scope": "Preserved static/development attempts. Storage trial1 differed because4e1360 clears its own word plus the56-byte4df200 child:60 bytes total; trial2 corrects that and agrees915712 checks but has no caller scope. Trial3 compiler rejects unused reference tick before execution. Trial4 agrees1751968 checks/3072 slices but predates explicit native source backlink and borrowed-source canaries. Final1 agrees1772448 checks but predates sorted authored map keys and the explicit owner0/zero-accounting domain. Inspection3 rejected existing4156a0 exception; inspection4 rejected undiscovered4181c0; inspection5 records older-project decompilation gaps rather than inventing functions. Inspection6 retains central ranges and existing6-byte4156a0/1-byte419910 exceptions. Only final2 binds current source/domain. All reports, binaries and diagnostics retained; no old fingerprints refreshed.",
+      "record": "research/runtime/owner-task-storage-results-20261023/attempt-catalog.json",
+      "sha256": "ffd39591b02163a4b3e58277c237a8b6a674c3894b8ecfa099a3ccc8005492c2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OTS1.incoming-history-f6382e4b.static-20261023",
+      "kind": "static",
+      "scope": "6d0dd7bc..f6382e4b exact parent/current receipt review:49 affected transitions, zero missing/rewritten receipts. No retrospective engine execution or past gate assertion.",
+      "record": "research/runtime/owner-task-storage-results-20261023/incoming-history-f6382e4b.json",
+      "sha256": "ebce634639c4e96192b501988ec2eb2fbc036290f22cc57a15a6528af7175798",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "record": "research/runtime/owner-task-storage-results-20261023/task-storage-final-3.json",
+      "sha256": "79b3b525aeeed7fd5e49d2c185b7d792d32698e1c58c61e8ae3f04b92b317ec9",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 96
+        },
+        {
+          "pointer": "/slices",
+          "equals": 3072
+        },
+        {
+          "pointer": "/storage_cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/caller_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/constructions",
+          "equals": 160
+        },
+        {
+          "pointer": "/retirements",
+          "equals": 160
+        },
+        {
+          "pointer": "/installed",
+          "equals": 409
+        },
+        {
+          "pointer": "/expiry_drains",
+          "equals": 32
+        },
+        {
+          "pointer": "/pending_slices",
+          "equals": 869
+        },
+        {
+          "pointer": "/disabled_slices",
+          "equals": 133
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "id": "OTS1.original-v2-20261023",
+      "kind": "isolated_original",
+      "scope": "96 bounded episodes:64 task storage episodes plus32 original415c40 fallback caller episodes,3072 count slices,409 installed tasks and real418050 cleanup. Original32/native64/sanitizer semantic digests agree. Thirteen constructor stack-derived allocator tag offsets excluded only from direct storage byte comparison; zero native representation explicit. No source-vector population, nested allocation failure, broader families/World or installed/live claim. Fresh run after linking the existing six-byte4156a0 recovered range and classifying5c53c0 as data. Earlier result IDs/fingerprints preserved; no semantic extension or extra cases.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "record": "research/runtime/owner-task-storage-results-20261023/task-storage-final-3.json",
+      "sha256": "79b3b525aeeed7fd5e49d2c185b7d792d32698e1c58c61e8ae3f04b92b317ec9",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 96
+        },
+        {
+          "pointer": "/slices",
+          "equals": 3072
+        },
+        {
+          "pointer": "/storage_cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/caller_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/constructions",
+          "equals": 160
+        },
+        {
+          "pointer": "/retirements",
+          "equals": 160
+        },
+        {
+          "pointer": "/installed",
+          "equals": 409
+        },
+        {
+          "pointer": "/expiry_drains",
+          "equals": 32
+        },
+        {
+          "pointer": "/pending_slices",
+          "equals": 869
+        },
+        {
+          "pointer": "/disabled_slices",
+          "equals": 133
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "id": "OTS1.headless-v2-20261023",
+      "kind": "native_integration",
+      "scope": "Same96 episodes and3072 slices exercise the public native OwnerFallbackOwner API with checked value-address backend, real recovered selector/replacement/scheduler and owned TaskStorage. 160 direct storage lifecycles plus441 caller evaluator/installed lifecycles close; source backlink and shared sentinel conservation checked. Same execution as original proof, not extra cases; no application/live integration. Fresh run after linking the existing six-byte4156a0 recovered range and classifying5c53c0 as data. Earlier result IDs/fingerprints preserved; no semantic extension or extra cases."
+    },
+    {
+      "id": "OTS1.attempt-catalog-2.static-20261023",
+      "kind": "static",
+      "scope": "Preserved static/development attempts. Storage trial1 differed because4e1360 clears its own word plus the56-byte4df200 child:60 bytes total; trial2 corrects that and agrees915712 checks but has no caller scope. Trial3 compiler rejects unused reference tick before execution. Trial4 agrees1751968 checks/3072 slices but predates explicit native source backlink and borrowed-source canaries. Final1 agrees1772448 checks but predates sorted authored map keys and the explicit owner0/zero-accounting domain. Inspection3 rejected existing4156a0 exception; inspection4 rejected undiscovered4181c0; inspection5 records older-project decompilation gaps rather than inventing functions. Inspection6 retains central ranges and existing6-byte4156a0/1-byte419910 exceptions. Only final2 binds current source/domain. All reports, binaries and diagnostics retained; no old fingerprints refreshed. Final2 remains historical after adding its exact existing4156a0 recovered-range link to the prospective contract and fixing the vtable data anchor. Final3 repeats the unchanged39 source inputs under corrected metadata and is current. The initial UI run was stopped during importance tests before correction; its partial logs and failed report are retained, without UI acceptance credit.",
+      "record": "research/runtime/owner-task-storage-results-20261023/attempt-catalog-2.json",
+      "sha256": "09cb6363a6b5089f53a25ef584952f22e3add5954c3797b82fbb22bd824d5fa7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OTS1.ui-regressions-2.static-20261023",
+      "kind": "static",
+      "scope": "Dashboard routing/count/HTTP/client regressions only; no engine or acceptance promotion.",
+      "record": "research/runtime/owner-task-storage-results-20261023/ui-regressions-2.json",
+      "sha256": "f962ba7c92947d960cea3713cadecdc50a09531aad78d22032031a8d14048824",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "record": "research/runtime/owner-task-storage-results-20261023/task-storage-final-5.json",
+      "sha256": "d3a5534d6ec8d550b73afbd508040b69863e50e86adc660c30ba994d2eefa3ab",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 96
+        },
+        {
+          "pointer": "/slices",
+          "equals": 3072
+        },
+        {
+          "pointer": "/storage_cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/caller_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/constructions",
+          "equals": 160
+        },
+        {
+          "pointer": "/retirements",
+          "equals": 160
+        },
+        {
+          "pointer": "/installed",
+          "equals": 409
+        },
+        {
+          "pointer": "/expiry_drains",
+          "equals": 32
+        },
+        {
+          "pointer": "/pending_slices",
+          "equals": 869
+        },
+        {
+          "pointer": "/disabled_slices",
+          "equals": 133
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3718066
+        },
+        {
+          "pointer": "/digest",
+          "equals": "12702950054564443750"
+        }
+      ],
+      "id": "OTS1.original-v3-20261023",
+      "kind": "isolated_original",
+      "scope": "96 bounded episodes:64 task storage episodes plus32 original415c40 fallback caller episodes,3072 count slices,409 installed tasks and real418050 cleanup. Original32/native64/sanitizer semantic digests agree. Thirteen constructor stack-derived allocator tag offsets excluded only from direct storage byte comparison; zero native representation explicit. No source-vector population, nested allocation failure, broader families/World or installed/live claim. Fresh run after linking the existing six-byte4156a0 recovered range and classifying5c53c0 as data. Earlier result IDs/fingerprints preserved; no semantic extension or extra cases. Stronger final5 compares every per-slice evaluator/installed object byte after exactly13 tag exclusions and normalization of the borrowed-source/four head pointers; empty map linkage and source identity checked before normalization. Native preparation now publishes source/owner and candidate flags as actual4284e0/415640/415670 do. 3718066 checks; prior IDs retain their own narrower source versions.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "record": "research/runtime/owner-task-storage-results-20261023/task-storage-final-5.json",
+      "sha256": "d3a5534d6ec8d550b73afbd508040b69863e50e86adc660c30ba994d2eefa3ab",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 96
+        },
+        {
+          "pointer": "/slices",
+          "equals": 3072
+        },
+        {
+          "pointer": "/storage_cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/caller_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/constructions",
+          "equals": 160
+        },
+        {
+          "pointer": "/retirements",
+          "equals": 160
+        },
+        {
+          "pointer": "/installed",
+          "equals": 409
+        },
+        {
+          "pointer": "/expiry_drains",
+          "equals": 32
+        },
+        {
+          "pointer": "/pending_slices",
+          "equals": 869
+        },
+        {
+          "pointer": "/disabled_slices",
+          "equals": 133
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3718066
+        },
+        {
+          "pointer": "/digest",
+          "equals": "12702950054564443750"
+        }
+      ],
+      "id": "OTS1.headless-v3-20261023",
+      "kind": "native_integration",
+      "scope": "Same96 episodes and3072 slices exercise the public native OwnerFallbackOwner API with checked value-address backend, real recovered selector/replacement/scheduler and owned TaskStorage. 160 direct storage lifecycles plus441 caller evaluator/installed lifecycles close; source backlink and shared sentinel conservation checked. Same execution as original proof, not extra cases; no application/live integration. Fresh run after linking the existing six-byte4156a0 recovered range and classifying5c53c0 as data. Earlier result IDs/fingerprints preserved; no semantic extension or extra cases. Stronger final5 compares every per-slice evaluator/installed object byte after exactly13 tag exclusions and normalization of the borrowed-source/four head pointers; empty map linkage and source identity checked before normalization. Native preparation now publishes source/owner and candidate flags as actual4284e0/415640/415670 do. 3718066 checks; prior IDs retain their own narrower source versions."
+    },
+    {
+      "id": "OTS1.attempt-catalog-3.static-20261023",
+      "kind": "static",
+      "scope": "Preserved static/development attempts. Storage trial1 differed because4e1360 clears its own word plus the56-byte4df200 child:60 bytes total; trial2 corrects that and agrees915712 checks but has no caller scope. Trial3 compiler rejects unused reference tick before execution. Trial4 agrees1751968 checks/3072 slices but predates explicit native source backlink and borrowed-source canaries. Final1 agrees1772448 checks but predates sorted authored map keys and the explicit owner0/zero-accounting domain. Inspection3 rejected existing4156a0 exception; inspection4 rejected undiscovered4181c0; inspection5 records older-project decompilation gaps rather than inventing functions. Inspection6 retains central ranges and existing6-byte4156a0/1-byte419910 exceptions. Only final2 binds current source/domain. All reports, binaries and diagnostics retained; no old fingerprints refreshed. Final2 remains historical after adding its exact existing4156a0 recovered-range link to the prospective contract and fixing the vtable data anchor. Final3 repeats the unchanged40 source inputs under corrected metadata and is current. The initial UI run was stopped during importance tests before correction; its partial logs and failed report are retained, without UI acceptance credit. Final3 also remains historical after strengthening each caller slice with retained-object bytes. Final4 and trace trial5 expose missing evaluator source/owner publication before prepare; final5 publishes source/owner and candidate flags and passes3718066 checks. All40 declared inputs are stable in final5; only this run supplies current ownership/byte-composition proof. UI2 passed83 routing/HTTP/client tests before the later doc-fingerprint update; its source drift is explicit.",
+      "record": "research/runtime/owner-task-storage-results-20261023/attempt-catalog-3.json",
+      "sha256": "9319202cf22f78b33c51b2798bdf27192594bcad1f034c8612dff437b38fa6e2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OTS1.ui-regressions-3.static-20261023",
+      "kind": "static",
+      "scope": "Dashboard routing/count/HTTP/client regressions only; no engine or acceptance promotion.",
+      "record": "research/runtime/owner-task-storage-results-20261023/ui-regressions-3.json",
+      "sha256": "cb46c111585483fc2557e6f6dd9f3ebbd4f1550a38ae44a7bcdfbc376252b439",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -328414,6 +329332,60 @@
         },
         {
           "value": "unresolved-other-providers-world-and-indirect-targets",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "owner-fallback-owned-lifecycle-domain",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6050752,
+        "relation": "data",
+        "scope": "Kind0 fallback vtable in the declared single-root domain; no general task-provider closure."
+      },
+      "document": "research/runtime/owner-task-storage-20261023.md",
+      "complete": false,
+      "scope": "Recovered fallback prepare, fresh construction, next, fixed lifetime and continuing body, count caller and normal destruction. Save/expiry tiny no-op targets retain prior bounded evidence; other54-evaluator families, populated owned sources, general map operations, exceptional callbacks and World providers remain pending.",
+      "entries": [
+        {
+          "value": 4281920,
+          "behaviors": [
+            "AI.owner-fallback-owned-lifecycle"
+          ]
+        },
+        {
+          "value": 4300352,
+          "behaviors": [
+            "AI.owner-fallback-owned-lifecycle"
+          ]
+        },
+        {
+          "value": 4281968,
+          "behaviors": [
+            "AI.owner-fallback-owned-lifecycle"
+          ]
+        },
+        {
+          "value": 4282016,
+          "behaviors": [
+            "AI.owner-fallback-owned-lifecycle"
+          ]
+        },
+        {
+          "value": 4299008,
+          "behaviors": [
+            "AI.owner-fallback-owned-lifecycle"
+          ]
+        },
+        {
+          "value": 4299024,
+          "behaviors": [
+            "AI.owner-fallback-owned-lifecycle"
+          ]
+        },
+        {
+          "value": "remaining-task-families-source-world-and-exception-providers",
           "behaviors": []
         }
       ]
@@ -345012,6 +345984,25 @@
       "evidence": [
         "NT15.native-controls-20261022"
       ]
+    },
+    {
+      "id": "owner-task-storage-20261023",
+      "scope": "Ordinary brain0 single enabled direct-root fallback chain:415c40 count scheduling,423590/4284e0 preparation415640 and candidate415670,4289e0 install and419e40 fresh evaluator construction,419900 continuing body,428b40 expiry/invalidation displacement and418050 base destruction. Recovered native OwnerFallbackOwner API owns evaluator/installed records and source backlink. Includes four shared sentinel families, empty owned source vector, well-formed zero/three-node scalar/POD maps, trivial vector backing, varied destruction order, first object allocation failure, zero/odd/disabled count slices, full strategic RNG and explicit final close. Caller domain fixes owner0, zero owner accounting baseline/counters, source availability and maximum selection. Constructor allocator-tag stack bytes are excluded at thirteen documented offsets and zeroed by native representation policy. Nested allocation failure, source-vector population/destruction, arbitrary callbacks, throwing cleanup/Windows SEH, map insertion/rebalancing/partial erasure, other families/brains, source maintenance/perception/snapshot/registration/training, actual World cadence/allocation, installed sessions and live replacement remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "AI.owner-fallback-owned-lifecycle"
+      ],
+      "tests": [
+        "tests/owner-task-storage-test.cpp",
+        "tests/owner-task-storage-caller.inc",
+        "tools/test-owner-task-storage.py",
+        "tools/inspect-owner-task-storage.py"
+      ],
+      "evidence": [
+        "OTS1.headless-20261023",
+        "OTS1.headless-v2-20261023",
+        "OTS1.headless-v3-20261023"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -345847,8 +346838,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-1bb152069ae5a6af1c23541f0ae9fae2cdb8c26f68900848a4f94853b2f7af95.json",
-    "sha256": "1bb152069ae5a6af1c23541f0ae9fae2cdb8c26f68900848a4f94853b2f7af95"
+    "path": "research/runtime/coverage/source-index-581cb15af480a0ad1ab65e8fe210cfeca37621e63608ead435dce62b20626b7e.json",
+    "sha256": "581cb15af480a0ad1ab65e8fe210cfeca37621e63608ead435dce62b20626b7e"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
