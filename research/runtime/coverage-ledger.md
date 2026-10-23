@@ -21325,3 +21325,25 @@ Historical evidence is preserved,not rebound. Incoming3a5788e8..fa354308 review:
 33 exact file transitions,zero missing/mutated receipts. The NS76 research receives
 an explicit source-cache-vector terminology correction; this does not claim a
 new full observation lifecycle comparison or change its historical reports.
+
+## Owned observation snapshots — OOS1 (2026-10-23)
+
+AI.owner-observation-snapshot-ownership adds owned0xe68 record values/full0xe4b
+packed snapshots to the previously borrowed cache/task lifecycle. Actual4181d0
+modes1/2 compare one-owner/one-actor insertion, stable-address refresh and hidden
+expiry with absent task/notification lists, while independently allocated task
+source clones survive cache invalidation and record release. Full byte patterns
+and normal populated object/list/buffer destruction are compared separately.
+The64-episode matrix covers1,728 updates,256 insertions,896 refreshes,192 expiries,
+192 task clones and576 observations of retained dangling snapshot identities.
+Freed snapshots are never dereferenced. Ticks increase strictly; visibility and
+CFG/backend services remain supplied. Source activity stays3 on expiry alone.
+
+[Research and source-bound results](observation-snapshot-ownership-20261023.md)
+retain resource-bearing refresh/aliasing, multi-record erase/continuation, other
+owners, exceptional allocation/SEH, whole-brain teardown, nonempty mode2 task
+notifications, intermediate source bytes and World/live acceptance as open.
+Native ordered indexing excludes PE RB topology/iterator ABI. Native resource
+refresh refusal is a separate policy, not original equivalence. No old evidence
+hashes are refreshed. The Critical actor umbrella remains partial. Incoming
+fa354308..f2253bb8 accounting:26 exact transitions,no missing/mutated receipts.

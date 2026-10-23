@@ -143554,6 +143554,167 @@
           "Other owners/families,allocation failure/SEH,real backends,World/live replacement"
         ]
       }
+    },
+    {
+      "id": "AI.owner-observation-snapshot-ownership",
+      "kind": "recovered",
+      "subsystem": "creature_ai",
+      "title": "Owned observation records and packed snapshot lifetime",
+      "scope": "Pinned NoCD40209ca7 owned0xe68 observation records/full0xe4b packed snapshot construction,assignment and normal destruction. Independently recovered logical OwnerKnowledge drives native ordered-index value reconciliation; actual4181d0 modes1/2 owner0/one ordinary actor over three insertion/refresh/hidden expiry cycles, absent task/notification collections. Actual413330 bank1 production/common task clone and40a340 cleanup retain borrowed snapshot addresses across cache invalidation and record expiry without dereference. Full packed copy patterns,cleared6d0/6d4 auxiliary buffer words,constructor-only708/8f9 clearing; separate populated505f70 virtual object/list/buffer destructor with explicit deleting/free services. Original RB helpers execute, native index topology/iterator ABI is policy and excluded. Resource-bearing mode2 refresh,aliasing resource safety,other owners,multi-record erase/rebalance,allocator/SEH failures,whole brain/World/live replacement excluded.",
+      "confidence": "high_within_scope",
+      "implementation": [
+        "reconstruction/creature-ai/owner_observation_snapshots.hpp"
+      ],
+      "tests": [
+        "tests/observation-snapshot-ownership-test.cpp",
+        "tools/test-observation-snapshot-ownership.py",
+        "tools/inspect-observation-snapshot-ownership.py"
+      ],
+      "documents": [
+        "research/runtime/observation-snapshot-ownership-20261023.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "OOS1.original-20261023",
+        "OOS1.headless-20261023",
+        "OOS1.inspection.static-20261023",
+        "OOS1.history.static-20261023",
+        "OOS1.ui.static-20261023",
+        "OOS1.attempts.static-20261023"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4293072,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4295520,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4296016,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267312,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4367824,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4368096,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4378080,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4389696,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4387552,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426016,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5830384,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5561024,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4272944,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4257776,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4292192,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4236096,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4224592,
+          "scope": "Normal scoped observation value/copy/destruction and source clone lifetime only; no whole function or exceptional/RB topology claim."
+        }
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_knowledge_cache.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_sources.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/draft-coverage-claims.py",
+        "tools/ghidra/ExportFontProviders.java",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/owner_planner_comparison.py"
+      ]
     }
   ],
   "evidence": [
@@ -323823,6 +323984,238 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "OOS1.original-20261023",
+      "kind": "isolated_original",
+      "scope": "6103742 checks/64 episodes/1728 mode1+mode2 updates;256 insertions,896 refreshes,192 expiries,192 bank1 task clones,576 retained dangling snapshot references,254 object/list-node/buffer releases. Full packed construction/assignment and stored bytes on hidden ticks,age1024/1025 boundary,normal populated resource destructor;actual4181d0/413330/40a340/RB value helpers. One stationary ordinary actor/owner0,absent task/notification lists. Object virtual destructor and alloc/free services supplied. Original resource-bearing refresh,other owners,multi-record erase/continuation,SEH,World/live excluded. The64 native admission refusals execute native guard policy in all architectures,not original equivalence.",
+      "record": "research/runtime/observation-snapshot-ownership-results-20261023/observation-snapshot-final-1.json",
+      "sha256": "c520ae2ddbccd22b0deef6553570813e5d6114ccf7ce996a7c08ef8d1959fa7a",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 6103742
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/digest",
+          "equals": "17321810403833537543"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 1728
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 256
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 896
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 192
+        },
+        {
+          "pointer": "/task_clones",
+          "equals": 192
+        },
+        {
+          "pointer": "/stale_snapshot_references",
+          "equals": 576
+        },
+        {
+          "pointer": "/resource_releases",
+          "equals": 254
+        },
+        {
+          "pointer": "/native_admission_refusals",
+          "equals": 64
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "OOS1.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Same64 episodes/6103742 checks,not additional samples. New owned raw snapshot/value index composes recovered logical OwnerKnowledge with public OwnerKnowledgeCache/OwnerTaskSources. Stable value addresses on refresh,task source pointer identity survives cache invalidation and observation expiry;no freed snapshot dereference. Host ordered index excludes PE RB topology/iterator ABI. Resource-bearing refresh explicitly refused as native policy,not accepted original recovery. Other families,whole-brain,mode2 notifications,failures/backends/World/live remain open.",
+      "record": "research/runtime/observation-snapshot-ownership-results-20261023/observation-snapshot-final-1.json",
+      "sha256": "c520ae2ddbccd22b0deef6553570813e5d6114ccf7ce996a7c08ef8d1959fa7a",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 6103742
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/digest",
+          "equals": "17321810403833537543"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 1728
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 256
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 896
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 192
+        },
+        {
+          "pointer": "/task_clones",
+          "equals": 192
+        },
+        {
+          "pointer": "/stale_snapshot_references",
+          "equals": 576
+        },
+        {
+          "pointer": "/resource_releases",
+          "equals": 254
+        },
+        {
+          "pointer": "/native_admission_refusals",
+          "equals": 64
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "OOS1.inspection.static-20261023",
+      "kind": "static",
+      "scope": "Pinned20 entry instructions/read-only Ghidra exports for snapshot assignment/construct/destruct,resource helper/list node release,observation insert/erase and task borrow lifetimes; no function boundary discovery or broad destructor promotion.",
+      "record": "research/runtime/observation-snapshot-ownership-results-20261023/inspection-3.json",
+      "sha256": "205abe11beb08c5bb45d04e3cb935748d230121d4667aac72c3f0071a449afa5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OOS1.history.static-20261023",
+      "kind": "static",
+      "scope": "Exactfa354308..f2253bb8 review:26 file transitions,zero missing/mutated receipts. Retrospective accounting only,no past gate or fresh engine assertion.",
+      "record": "research/runtime/observation-snapshot-ownership-results-20261023/incoming-history-f2253bb8.json",
+      "sha256": "0bb5a428651a8f08a28ff07357f12596288f86f7d7e20caa73c2d59272cee51b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OOS1.ui.static-20261023",
+      "kind": "static",
+      "scope": "Ten Critical needs policy regressions;no engine credit.",
+      "record": "research/runtime/observation-snapshot-ownership-results-20261023/ui-check-1.json",
+      "sha256": "7e16559b6265f3080b1691b65a09871a5b5e13a5adaf30d95227705a02f0b835",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OOS1.attempts.static-20261023",
+      "kind": "static",
+      "scope": "Failed/narrower attempts and historical source hashes preserved. Final1 alone grants current scoped execution credit; imported parent objects are storage provenance only.",
+      "record": "research/runtime/observation-snapshot-ownership-results-20261023/attempt-catalog-1.json",
+      "sha256": "1a6b252f0421ea49adadeb82c19210143db5b0433673f98bcba49c832169bd3f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -349170,6 +349563,22 @@
       "evidence": [
         "OKC1.headless-20261023"
       ]
+    },
+    {
+      "id": "observation-snapshot-ownership-20261023",
+      "scope": "Pinned NoCD40209ca7 owned0xe68 observation records/full0xe4b packed snapshot construction,assignment and normal destruction. Independently recovered logical OwnerKnowledge drives native ordered-index value reconciliation; actual4181d0 modes1/2 owner0/one ordinary actor over three insertion/refresh/hidden expiry cycles, absent task/notification collections. Actual413330 bank1 production/common task clone and40a340 cleanup retain borrowed snapshot addresses across cache invalidation and record expiry without dereference. Full packed copy patterns,cleared6d0/6d4 auxiliary buffer words,constructor-only708/8f9 clearing; separate populated505f70 virtual object/list/buffer destructor with explicit deleting/free services. Original RB helpers execute, native index topology/iterator ABI is policy and excluded. Resource-bearing mode2 refresh,aliasing resource safety,other owners,multi-record erase/rebalance,allocator/SEH failures,whole brain/World/live replacement excluded.",
+      "level": "headless",
+      "behaviors": [
+        "AI.owner-observation-snapshot-ownership"
+      ],
+      "tests": [
+        "tests/observation-snapshot-ownership-test.cpp",
+        "tools/test-observation-snapshot-ownership.py",
+        "tools/inspect-observation-snapshot-ownership.py"
+      ],
+      "evidence": [
+        "OOS1.headless-20261023"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -350005,8 +350414,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-cca94249a3217ec25f7a9e121e438e9ae616515df0e6c1f6e301fffea8b4fb61.json",
-    "sha256": "cca94249a3217ec25f7a9e121e438e9ae616515df0e6c1f6e301fffea8b4fb61"
+    "path": "research/runtime/coverage/source-index-cbe0b6d5b7136c789a0cce950114f70bde7decda6851599ab858eb79be21f6b9.json",
+    "sha256": "cbe0b6d5b7136c789a0cce950114f70bde7decda6851599ab858eb79be21f6b9"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [
