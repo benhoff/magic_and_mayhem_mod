@@ -21279,3 +21279,26 @@ Critical actor-services umbrella remains partial. Exact bf170af0..2b8f9065 revie
 50 file transitions,zero missing/mutated receipts; ten planning-policy tests pass.
 Storage cleanup is verified provenance only; no original or project evidence
 was discarded. Earlier/interrupted results preserve their exact hashes.
+
+## Generated task6 common source composition — OTC1 (2026-10-23)
+
+AI.owner-task6-generated-source-composition joins generated logical groups,
+populated72 features and common task/source ownership through planning, save,
+replacement, body pointer/activity/position changes,40a340 sweep cleanup and
+428b40/418050 completed retirement. Final1 native64/original32/ASan+UBSan+LSan
+agree2,020,665 checks across128 episodes,1,313 planning slices and3,200 constructed/
+released owned sources. All71 declared inputs and60 compiler inputs remain fixed.
+The original resets remaining evaluator source-vector length at sweep completion
+while retaining capacity, stale source metadata and suffix backing. Current
+observations rebind source35 from a snapshot to a live actor; constructor byte25
+retains the original snapshot tag. Preserve640 retained feature buffers at448
+task releases as recovered baseline, not a new native cleanup policy.
+
+[Research, exact checked bytes and next cache-ownership step](task6-source-composition-20261023.md)
+retain intermediate cursor/probe-map storage, raw knowledge-cache ownership,
+other families, failure/SEH, real training/backend, World cadence and installed/
+live acceptance as explicit boundaries. Valid root/saved identities are checked
+only within their live generation; stale pointer identity is excluded. The
+Critical actor umbrella remains partial. Incoming2b8f9065..3a5788e8 review:23 exact
+file transitions,zero missing/mutated receipts. Earlier failed/narrower outcomes
+and original manifests remain preserved without historical hash refresh.
