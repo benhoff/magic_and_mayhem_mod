@@ -21152,3 +21152,7 @@ and explicit helper/catalog-source staleness; no old hashes are refreshed.
 All83 dashboard checks passed before the final fingerprint update; focused
 Critical/HTTP/client checks validate that update separately. Critical actor
 recovery remains partial at the wider ownership/provider/world/live boundary.
+
+## Fifteenth rendering batch — ownership and diagnostics (2026-10-22)
+
+[Ten bounded implementation closeouts](rendering-fifteenth-ten-closeouts-20261022.md) complete palette/checkpoint ownership, first-World initial canvas/logical reuse, producer history/selected bypass, guarded publication, six-family no-forward admission, private Wine owners and supplied-runtime capability inspection. Fresh NT15 records 79 Python controls, 49 recorded commands and 2828 stable prospective inputs,21 checkpoint/10 recovery schedules,97 no-forward cases/all43 routes,36 private backing cases,9 publication callbacks,2403 complete retained source-only checkpoints and480000 initial words. Duplicate/contradictory checkpoint cohorts and missing Lock epochs refuse. Both actual runtime variants retain their true capability outcome; no negative environment result becomes a working-driver claim. Registered implementation partials fall26→16; original comparison, integration and replacement statuses remain independent. Exact incoming history8bf5e736..195470ce and195470ce..a5ab8270 has no receipt gaps/rewrites. Evidence and execution output remain on the second drive, with a verified cached SQLite pin for local readers and no remote publication.

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Exercise producer entry/return forwarding and strict closed-input refusal."""
+from coverage_evidence import read_json, evidence_digest, write_report
 import argparse,hashlib,importlib.util,json,os,struct,subprocess,tempfile
 from pathlib import Path
 from kind8_sprite_fixture import original_fixture
@@ -118,6 +119,7 @@ def main():
  report['minimap_fixture_refused_before_hook_mutation']=fixture_negative
  if claims:report['claims']=claims['claims']
  if a.report:
-  a.report.parent.mkdir(parents=True,exist_ok=True);a.report.write_text(json.dumps(report,indent=2)+'\n')
- (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(out/'report.json',flush=True)
+  a.report.parent.mkdir(parents=True,exist_ok=True);write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode())
+ else:write_report(ROOT,out/'report.json',(json.dumps(report,indent=2)+'\n').encode())
+ print(a.report or out/'report.json',flush=True)
 if __name__=='__main__':main()

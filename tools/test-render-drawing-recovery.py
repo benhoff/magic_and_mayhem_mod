@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Drawing/recovery gate collisions, borrowed ownership refusal and fresh GPU retry."""
+from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import hashlib
 import importlib.util
@@ -41,13 +42,13 @@ def archive(path):
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--case',action='append',choices=['callback','callback-off','callback-short','reentrant','held','dc','late-lock','late-lock-off','late-dc','claimed']);args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--case',action='append',choices=['callback','callback-off','callback-short','reentrant','held','dc','late-lock','late-lock-off','late-dc','claimed']);parser.add_argument('--wine-prefix',type=Path);args=parser.parse_args()
     assert os.environ.get('DISPLAY'),'Run under xvfb-run -a'
     paths=sorted((ROOT/'runtime/render').glob('*.[ch]'))+[ROOT/p for p in ['tools/test-render-drawing-recovery.py','tools/test-render-recovery.py','tools/build-render-bridge.py','tools/test-live-render-channel.py','tools/prepare-shadow-experiment.py','runtime/shadow/win32_min.h','tests/live-render-channel-test.cpp','apps/qt-shell/live_command_renderer.cpp','apps/qt-shell/live_command_renderer.hpp','apps/qt-shell/command_channel.cpp','apps/qt-shell/command_channel.hpp','renderer/commands.cpp','renderer/command_consumer.cpp','protocols/include/mnm/render_command_ring.h']]
     sources={str(p.relative_to(ROOT)):live.sha(p) for p in paths}
     parent=ROOT/'working/tests/render-drawing-recovery';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
     dll=live.load('recovery_build','tools/build-render-bridge.py').build(True);stage=live.load('recovery_stage','tools/prepare-shadow-experiment.py')
-    env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',WINEDEBUG='-all',WINEPREFIX=str(ROOT/'working/tests/render-wine'))
+    env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',WINEDEBUG='-all',WINEPREFIX=str(args.wine_prefix.resolve() if args.wine_prefix else ROOT/'working/tests/render-wine'))
     report=dict(schema=1,success=True,sources=sources,cases=[],scope='Real PE32 Lock/Unlock callbacks, same-thread reentry, admitted Lock/DC and timed-out bypassed Lock/DC intervals refuse recovery without candidate claim. Failed DC release retains ownership. A collision after claim fails that candidate and fresh retry uses a new session. Both drawing-admission opt-in settings covered. Independent complete native frames and frozen retired rings/archives; no original game/driver or abandoned-thread guarantees.')
     for mode in args.case or ['callback','callback-off','callback-short','reentrant','held','dc','late-lock','late-lock-off','late-dc','claimed']:
         case=run/mode;case.mkdir();capture=case/'capture';capture.mkdir();phases=2
@@ -133,5 +134,5 @@ def main():
         print(mode+': passed',flush=True)
     assert all(live.sha(ROOT/p)==h for p,h in sources.items()),'Sources changed during execution'
     report['full_frame_comparisons']=sum(len(s['consumer']['frames']) for c in report['cases'] for s in c['sessions'])
-    (run/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(run/'report.json',flush=True)
+    write_report(ROOT,run/'report.json',(json.dumps(report,indent=2)+'\n').encode());print(run/'report.json',flush=True)
 if __name__=='__main__':main()

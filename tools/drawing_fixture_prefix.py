@@ -7,6 +7,36 @@ from pathlib import Path
 import subprocess
 
 
+def borrow(root, shared):
+    """Borrow a marked prefix already exclusively leased by the supervising runner.
+
+    The supervisor owns idle admission and final process retirement. Child tools
+    must stop their clients before returning and must not clone this prefix.
+    """
+    prefix = shared.resolve()
+    marker = json.loads(evidence_text(prefix.parent/'fixture-prefix-owner.json'))
+    owner = Path(marker['root']).resolve()
+    if (marker != {'schema': 1, 'root': str(owner), 'scope': 'serial-owned-fixtures-only'} or
+        prefix.name != 'wineprefix' or not prefix.is_dir() or
+        not prefix.is_relative_to((owner/'working/tests/drawing-fixture-prefix-suite').resolve())):
+        raise ValueError('Invalid borrowed fixture prefix owner')
+    def common(path):
+        value = subprocess.check_output(['git', '-C', str(path), 'rev-parse', '--git-common-dir'], text=True).strip()
+        return (path/value).resolve()
+    if common(owner) != common(root):
+        raise ValueError('Borrowed prefix must share this Git checkout')
+    try:
+        probe = (prefix.parent/'fixture-prefix.lock').open('rb')
+    except FileNotFoundError as error:
+        raise ValueError('Borrowed prefix requires a supervising exclusive lease') from error
+    with probe:
+        try:
+            fcntl.flock(probe, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            return prefix, None
+    raise ValueError('Borrowed prefix requires a supervising exclusive lease')
+
+
 def prepare(root,run,template,shared=None):
     if shared is None:
         prefix=run/'wineprefix'

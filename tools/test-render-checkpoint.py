@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Late Qt attachment and repeated retained checkpoints through real PE32 control."""
+from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import importlib.util
 import json
@@ -33,7 +34,7 @@ def main():
     parser.add_argument('--wine-prefix',type=Path,help='Reuse a stopped private test prefix under working/tests')
     parser.add_argument('--claims',type=Path,help='Prospective coverage/source declaration')
     args=parser.parse_args()
-    if args.wine_prefix and (not args.wine_prefix.is_dir() or not args.wine_prefix.resolve().is_relative_to(ROOT/'working/tests')):
+    if args.wine_prefix and (not args.wine_prefix.is_dir() or not args.wine_prefix.absolute().is_relative_to(ROOT/'working/tests')):
         parser.error('Expected an initialized private prefix under working/tests')
     assert os.environ.get('DISPLAY'),'Use xvfb-run -a'
     paths=list((ROOT/'runtime/render').glob('*.[ch]'))+[ROOT/p for p in ['apps/qt-shell/render_control.cpp','apps/qt-shell/render_control.hpp','apps/qt-shell/live_command_session.cpp','apps/qt-shell/live_command_session.hpp','apps/qt-shell/live_command_renderer.cpp','apps/qt-shell/live_command_renderer.hpp','apps/qt-shell/command_channel.cpp','apps/qt-shell/command_channel.hpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp','renderer/CMakeLists.txt','renderer/commands.cpp','renderer/commands.hpp','renderer/command_consumer.cpp','renderer/command_state.hpp','renderer/blit.cpp','renderer/blit.hpp','tests/live-command-checkpoint-test.cpp','tools/test-render-checkpoint.py','tools/test-render-mutations.py','tools/build-render-bridge.py','tools/prepare-shadow-experiment.py','protocols/schemas/render_control-v1.json','protocols/include/mnm/render_control_v1.h','protocols/python/mnm_protocols/render_control_v1.py','protocols/include/mnm/render_stream_v2.h']]
@@ -111,5 +112,5 @@ def main():
                     if process and process.poll() is None:process.terminate();process.wait(timeout=5)
     assert all(live.sha(ROOT/p)==h for p,h in sources.items()),'Source changed during execution'
     assert live.sha(consumer)==consumer_sha256,'Checkpoint consumer changed during execution'
-    report.update(success=True,full_frame_comparisons=sum(len(c['consumer']['frames']) for c in report['cases']));(run/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(run/'report.json',flush=True)
+    report.update(success=True,full_frame_comparisons=sum(len(c['consumer']['frames']) for c in report['cases']));write_report(ROOT,run/'report.json',(json.dumps(report,indent=2)+'\n').encode());print(run/'report.json',flush=True)
 if __name__=='__main__':main()

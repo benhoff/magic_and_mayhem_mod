@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """New bounded source-epoch, palette lifetime and opaque ownership fixtures."""
+from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import importlib.util
 import json
@@ -31,7 +32,7 @@ def main():
                 report['results'].append(dict(mode=label,cases=[json.loads(v) for v in result.splitlines()]))
             if a.case=='source':run('producer-build',['python3',ROOT/'tools/build-scene-observer.py'])
         else:
-            if not a.wine_prefix or not a.wine_prefix.resolve().is_relative_to(ROOT/'working/tests'):raise ValueError('Owned test prefix required')
+            if not a.wine_prefix or not a.wine_prefix.absolute().is_relative_to(ROOT/'working/tests'):raise ValueError('Owned test prefix required')
             spec=importlib.util.spec_from_file_location('palette_builder',ROOT/'tools/build-render-bridge.py');b=importlib.util.module_from_spec(spec);spec.loader.exec_module(b)
             dll=b.build(True)
             run('probe-build',['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-Wall','-Wextra','-Werror','-c',ROOT/'tests/render-palette-lifetime-probe.c','-o',out/'probe.obj'])
@@ -56,7 +57,7 @@ def main():
             subprocess.run(['wineserver','-k'],env=env,check=False,timeout=15)
         report['success']=True
     except Exception as error:report['error']=str(error)
-    (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(out/'report.json',flush=True)
+    write_report(ROOT,out/'report.json',(json.dumps(report,indent=2)+'\n').encode());print(out/'report.json',flush=True)
     return 0 if report['success'] else 1
 
 if __name__=='__main__':raise SystemExit(main())

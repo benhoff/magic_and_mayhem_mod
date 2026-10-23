@@ -4604,15 +4604,16 @@
             },
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "Palette storage, wire/GPU identities, retirement/recreation, factory startup and property/lifetime callback services are implemented within the observed-lifetime scope. Borrow/lifetime uncertainty has explicit refusal policy. Unobserved driver destruction and arbitrary owner death are separate boundaries.",
+              "current_state": "Palette storage, wire/GPU identities, retirement/recreation, factory startup and property/lifetime callback services are implemented within the observed-lifetime scope. Borrow/lifetime uncertainty has explicit refusal policy. Unobserved driver destruction and arbitrary owner death are separate boundaries. Fifteenth batch supplies current startup/dispatch/native finite-history implementation controls.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Native/sanitized wire/GPU baseline, two real-hook lifetime schedules, and indexed/cross-palette/palette-timeout matrix with 325 exact frames. Valid same-pointer recreation gets a newer identity; overlapping lifetime is incomplete. Retained execution is historical; this source/UI review does not renew current engine validation.",
+              "validation_summary": "Native/sanitized wire/GPU baseline, two real-hook lifetime schedules, and indexed/cross-palette/palette-timeout matrix with 325 exact frames. Valid same-pointer recreation gets a newer identity; overlapping lifetime is incomplete. Retained execution is historical; this source/UI review does not renew current engine validation. Fresh NT15 supplies 79 Python controls, 49 recorded commands and 2828 stable prospective inputs with selected unchanged original caller/uniform fixtures, retained original-source initial-canvas reconstruction, authored PE32 ownership/refusal/publication controls and actual supplied-runtime capability probes. All broader acceptance boundaries and historical source fingerprints remain unchanged.",
               "acceptance": "pending",
               "acceptance_summary": "Existing bounded controls are retained. The scope crosswalk identifies supplied services, conservative refusal and explicitly excluded capabilities; current-source and wider scheduling/game acceptance remain separate.",
               "evidence": [
                 "TR1.NR.palette-resources.controls-20261019",
-                "RREC08.tranche1-aggregate-scope-resolution-20261019"
+                "RREC08.tranche1-aggregate-scope-resolution-20261019",
+                "NT15.native-controls-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -4664,7 +4665,13 @@
                 "tools/test-render-mutations.py": "f9762d8ec6801d61c3dca015280e3a5cd8c4677afe5c831bf6512f3ae9c92d5d",
                 "tools/test-render-palette-resources.py": "34d2acde84229539beee24aba70d9ef18f8110c51db580901b19865687e2316d",
                 "tools/test-rendering-tranche-fixtures.py": "f1df4a73e92012abd36f9571203d490fd4b6165558f27af05efb0fddd2b85d0b",
-                "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e"
+                "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e",
+                "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md": "63a8464c37c339d91d16fabcbbe1b7bf841a29b5268e7c74d1b75573fd4674af",
+                "tests/rendering-fifteenth-ten/CMakeLists.txt": "f9cffa935d4441fe3f4d495f814b38ae647beb71d100a589f53ebe21e8b7cb15",
+                "tests/test-fixture-prefix-borrow.py": "c8bd6f703deda7539e801cce1d95b50bfef0c5854d51e5516d0d18eb18a2ea9d",
+                "tools/drawing_fixture_prefix.py": "ffcffbeafcef4c6d02ac2c29298ae36281fd3145b28b4ac6e5ff454e86b2baf9",
+                "tools/rendering_fifteenth_controls.py": "5864965bc45c4d1c0d8b9641a79d4ce8a959376537b66fe4da8da98ac0199489",
+                "tools/test-rendering-fifteenth-ten.py": "40a52c44eca46e87ebd459dc8220ea2bcebe2200b6c4e44907f5381a5168b2f9"
               },
               "scope_domains": [
                 {
@@ -4746,7 +4753,8 @@
               "incremental_review_notes": [
                 "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted."
               ],
-              "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed."
+              "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed.",
+              "review_reason": "Append reviewed current test/build/document links and evidence while preserving the previous work review and every historical source hash."
             },
             "work_review_history": [
               {
@@ -5032,6 +5040,152 @@
                 "incremental_review_notes": [
                   "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted."
                 ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Palette storage, wire/GPU identities, retirement/recreation, factory startup and property/lifetime callback services are implemented within the observed-lifetime scope. Borrow/lifetime uncertainty has explicit refusal policy. Unobserved driver destruction and arbitrary owner death are separate boundaries.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Native/sanitized wire/GPU baseline, two real-hook lifetime schedules, and indexed/cross-palette/palette-timeout matrix with 325 exact frames. Valid same-pointer recreation gets a newer identity; overlapping lifetime is incomplete. Retained execution is historical; this source/UI review does not renew current engine validation.",
+                "acceptance": "pending",
+                "acceptance_summary": "Existing bounded controls are retained. The scope crosswalk identifies supplied services, conservative refusal and explicitly excluded capabilities; current-source and wider scheduling/game acceptance remain separate.",
+                "evidence": [
+                  "TR1.NR.palette-resources.controls-20261019",
+                  "RREC08.tranche1-aggregate-scope-resolution-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Renew delivered palette wire/GPU, factory first/delayed/nested startup, failed-QI/property ordering and two-thread retirement/recreation controls; check complete pixels, original counts/LastError and refusal on uncertain identity."
+                  },
+                  {
+                    "kind": "validation",
+                    "action": "Exercise dedicated nested palette-QI/property and owner-scheduling scenarios prospectively; report unsupported observations separately without describing an already supplied wrapper as missing."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/render/lock_palette.h",
+                    "line": 21,
+                    "text": "static int game_palette_complete(const struct GamePalette* p){"
+                  }
+                ],
+                "source_sha256": {
+                  "protocols/CONTRACTS.md": "173a188bb1fc19880961f6d281c93836434ba0d4e97f62ff9b0abdb95710619f",
+                  "protocols/include/mnm/render_stream_v2.h": "4f8416f6dcdb5031b2f95f209e21e43dce0c0cad176c11ec8f2293c6c89c4101",
+                  "protocols/python/mnm_protocols/render_stream_v2.py": "3dcdc025048173b2f40c4d2b8c47a60fa38e47d8944bf957322328123c266b21",
+                  "protocols/schemas/render_stream-v2.json": "a0097ef2596bc7bc277fc9c87d828dad4a40d74756dea99248346bb9d0fab475",
+                  "renderer/CMakeLists.txt": "4e256190276b726fb4b7560886f00b02e6d7abcc849b5fe9ecb5d38a13cfeac4",
+                  "renderer/command_consumer.cpp": "921f6cde6e3661e3cb27e788e3798e885ff4772c1a1935bf513ef19b81816dcf",
+                  "renderer/command_state.hpp": "b6fe10d3c6d1ffa17f05a4c37828a1a6d926d1b275f1e070ba0895678d45e515",
+                  "renderer/commands.cpp": "f7c6caef1334893dac1b3a4f2997fe742a63713bf36deb2295cf23ee7c756769",
+                  "renderer/commands.hpp": "aab8b05f193a9e7da476ad7434185e53c7f2579345ffd5edbb9101a18d1b4fc4",
+                  "research/formats/render-stream-v2.md": "fcba95b0b4af10da18b298b673d4429c7e0f1d45d68886b663f6b7110a774efe",
+                  "research/runtime/opengl-draw-startup-order.md": "d79b2de358b1a2e80b7038a4937cb490296657239d46c2cfa06277e4da70b03a",
+                  "research/runtime/opengl-drawing-recovery.md": "7c3d761f1d49e68f84606bfb7e209a0902f13135505c6fa65b45e96b2d4c3768",
+                  "research/runtime/opengl-lifetime-order.md": "1f38b1aafe588a74e8531186fb576f8b9f5739e31f682c674512f371f2612fbd",
+                  "research/runtime/opengl-palette-identities.md": "173fbfd4444bd58a90b5f347fa66c4dd132f2d0ec457e5cf9f996e90d0a27f89",
+                  "research/runtime/opengl-palette-property-order.md": "20c83aad5682941c3f51095f6b60fb38bca9e8ae4f800fb0ef7e0dcdcb9e6dd6",
+                  "research/runtime/rendering-tranche1-execution-20261019.json": "395b3a15078faaf0fbbd00e65c2454b9ed5381d5daea1683850c33116e677ce9",
+                  "research/runtime/tranche1-aggregate-scope-resolution-20261019.json": "718af6063935a83eb1e8418d4a483e6be6df48cba1ab5c3cfac6ec1004c72718",
+                  "runtime/render/bridge.c": "c281d05686e784013cb3f8a2244be8cbfa3a7a34acb5fe22f8a3c1b5c228f183",
+                  "runtime/render/command_recovery.h": "ca5c633a06bda193f4e1d0341b90a6dcd329737f8ccbe6ef2ecfd60b2bc75829",
+                  "runtime/render/copy_order.h": "be68f193476fce50867b27512558c2a9e1412b79f0866c353eefb9e43b0317b1",
+                  "runtime/render/lock_lifecycle.h": "b8ea7a58bdacac385bb9eb03b138f70668627d71370d0b2d80e68a02c6ea35b3",
+                  "runtime/render/lock_palette.h": "8acb1ebf113d76025e2b9bf38364b159b51305c8cfe3ec4387b8fcd38e8968ab",
+                  "runtime/render/mutation_selftest.h": "0bf298b621a11724ffe15e1b97f70b7f13178958e02937e4d0d7a42f5df368b9",
+                  "runtime/render/owned_session.h": "21f94c6770a2c141765b1d7df62f414894fc137bfd399b4c6f7354a83737c982",
+                  "tests/render-palette-lifetime-probe.c": "127a1dcba6d23f285b4cceba56cae6e79c0d2884401beb1fe59dd24732b23014",
+                  "tests/render-palette-resources-test.cpp": "4e4c3e10074b318507682bf7a9f27f13d065b04e2e821b0f7684c6e784e9db38",
+                  "tools/build-render-bridge.py": "1edf98131c9d9acd9869314ac444501997763c6050abb9ad3428c6fe026a179c",
+                  "tools/run-opengl-game.py": "de41b8f194c3b87d74ef92ad0b8821ce30f2b694e9b1cd6b436b4d1f231dd36d",
+                  "tools/test-render-mutations.py": "f9762d8ec6801d61c3dca015280e3a5cd8c4677afe5c831bf6512f3ae9c92d5d",
+                  "tools/test-render-palette-resources.py": "34d2acde84229539beee24aba70d9ef18f8110c51db580901b19865687e2316d",
+                  "tools/test-rendering-tranche-fixtures.py": "f1df4a73e92012abd36f9571203d490fd4b6165558f27af05efb0fddd2b85d0b",
+                  "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e"
+                },
+                "scope_domains": [
+                  {
+                    "name": "Palette storage, wire commands and retirement",
+                    "disposition": "supplied",
+                    "finding": "Session-qualified CREATE/UPDATE/BIND/DELETE, complete owned colors, immutable observed lifetimes, verified final Release and fresh same-pointer identities are implemented.",
+                    "suppliers": [
+                      "NR.palette-resources"
+                    ],
+                    "paths": [
+                      "runtime/render/lock_palette.h",
+                      "runtime/render/owned_session.h",
+                      "renderer/command_consumer.cpp"
+                    ],
+                    "validation": "Renew independent wire/GPU pixels and valid recreation; no original driver equivalence is implied."
+                  },
+                  {
+                    "name": "Factory and first-pixel startup",
+                    "disposition": "supplied",
+                    "finding": "DirectDrawCreate already holds callback admission through startup, original execution and interface installation. Factory-only readiness supplies no pixels; first complete primary history does. The old startup TODO is superseded.",
+                    "suppliers": [
+                      "NR.draw-startup-order",
+                      "NR.lifecycle-races"
+                    ],
+                    "paths": [
+                      "runtime/render/bridge.c",
+                      "research/runtime/opengl-draw-startup-order.md"
+                    ],
+                    "validation": "Seven retained factory schedules cover first/delayed/nested/failure/null/race/timeout; wider external startup scheduling remains unvalidated."
+                  },
+                  {
+                    "name": "Palette/property callbacks and failed or nested queries",
+                    "disposition": "supplied",
+                    "finding": "The palette/property and lifetime wrappers exist. Failed QI does not create an alias; successful recognized QI records it. Nested calls retain generation/epoch guards rather than gaining unconditional concurrency support.",
+                    "suppliers": [
+                      "NR.palette-property-order",
+                      "NR.lifetime-order",
+                      "NR.metadata-order"
+                    ],
+                    "paths": [
+                      "runtime/render/bridge.c",
+                      "runtime/render/lock_palette.h",
+                      "runtime/render/copy_order.h"
+                    ],
+                    "validation": "Renew delivered ordering/failure/recreation controls. Dedicated nested palette-QI/property interleavings remain validation work, not an identified absent wrapper."
+                  },
+                  {
+                    "name": "Outstanding Lock/DC and lifetime collision",
+                    "disposition": "guarded_refusal",
+                    "finding": "Pending leases block retirement/checkpoint admission. Timed-out lifetime callbacks invalidate metadata and alias provenance before and after original-once forwarding. A colliding lifetime remains incomplete rather than inheriting an old identity.",
+                    "suppliers": [
+                      "NR.drawing-recovery",
+                      "NR.lifetime-order"
+                    ],
+                    "paths": [
+                      "runtime/render/owned_session.h",
+                      "runtime/render/command_recovery.h",
+                      "runtime/render/copy_order.h"
+                    ],
+                    "validation": "Two-thread palette collision and admitted/bypassed borrow fixtures are supplied; arbitrary driver schedules remain unvalidated."
+                  },
+                  {
+                    "name": "Unobserved aliases, implicit destruction and owner disappearance",
+                    "disposition": "outside_contract",
+                    "finding": "Observed COM lifetimes are the existing policy boundary. There is no claim to discover every unobserved driver alias/destructor or safely reclaim ownership after arbitrary thread death. Missing observation is retained as a reference/validation limitation.",
+                    "suppliers": [
+                      "NR.lifetime-order",
+                      "NR.drawing-recovery"
+                    ],
+                    "paths": [
+                      "research/runtime/opengl-palette-identities.md",
+                      "research/runtime/opengl-drawing-recovery.md"
+                    ],
+                    "validation": "These domains are not silently accepted. Extending the observed-lifetime contract would require new discovery and its own contract/evidence."
+                  }
+                ],
+                "scope_resolution_record": "research/runtime/tranche1-aggregate-scope-resolution-20261019.json",
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted."
+                ],
+                "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed."
               }
             ]
           },
@@ -5100,15 +5254,16 @@
             },
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "Complete owned checkpoints, lazy bounded residency, direct/host recovery and lifecycle/collision/opaque-borrow guards are implemented. Unsafe ownership refuses; independent external hosts and resident-generation replacement are separate capabilities. Sustained current-source acceptance remains validation work.",
+              "current_state": "Complete owned checkpoints, lazy bounded residency, direct/host recovery and lifecycle/collision/opaque-borrow guards are implemented. Unsafe ownership refuses; independent external hosts and resident-generation replacement are separate capabilities. Sustained current-source acceptance remains validation work. Fifteenth batch supplies current startup/dispatch/native finite-history implementation controls.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Seven checkpoints (60 frames), six host recovery schedules (87 frames), seven direct recovery schedules, and native/sanitized opaque capacity/abandoned-return controls. Native fake-clock opaque policy controls do not establish arbitrary thread-death recovery. Retained execution is historical; this source/UI review does not renew current engine validation.",
+              "validation_summary": "Seven checkpoints (60 frames), six host recovery schedules (87 frames), seven direct recovery schedules, and native/sanitized opaque capacity/abandoned-return controls. Native fake-clock opaque policy controls do not establish arbitrary thread-death recovery. Retained execution is historical; this source/UI review does not renew current engine validation. Fresh NT15 supplies 79 Python controls, 49 recorded commands and 2828 stable prospective inputs with selected unchanged original caller/uniform fixtures, retained original-source initial-canvas reconstruction, authored PE32 ownership/refusal/publication controls and actual supplied-runtime capability probes. All broader acceptance boundaries and historical source fingerprints remain unchanged.",
               "acceptance": "pending",
               "acceptance_summary": "Existing bounded controls are retained. The scope crosswalk identifies supplied services, conservative refusal and explicitly excluded capabilities; current-source and wider scheduling/game acceptance remain separate.",
               "evidence": [
                 "TR1.NR.command-checkpoint-attachment.controls-20261019",
-                "RREC08.tranche1-aggregate-scope-resolution-20261019"
+                "RREC08.tranche1-aggregate-scope-resolution-20261019",
+                "NT15.native-controls-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -5168,7 +5323,13 @@
                 "tools/test-render-recovery.py": "0e5a3dd71d43668f5a6a9d63910848ff753b5ad6f4c6b0d717766fe662cb65b9",
                 "tools/test-render-working-set.py": "ad587e7b8ae977ea6edc3763acffdfec320cdec5b311002cc12d718145b7f713",
                 "tools/test-rendering-tranche-fixtures.py": "f1df4a73e92012abd36f9571203d490fd4b6165558f27af05efb0fddd2b85d0b",
-                "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e"
+                "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e",
+                "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md": "63a8464c37c339d91d16fabcbbe1b7bf841a29b5268e7c74d1b75573fd4674af",
+                "tests/rendering-fifteenth-ten/CMakeLists.txt": "f9cffa935d4441fe3f4d495f814b38ae647beb71d100a589f53ebe21e8b7cb15",
+                "tests/test-fixture-prefix-borrow.py": "c8bd6f703deda7539e801cce1d95b50bfef0c5854d51e5516d0d18eb18a2ea9d",
+                "tools/drawing_fixture_prefix.py": "ffcffbeafcef4c6d02ac2c29298ae36281fd3145b28b4ac6e5ff454e86b2baf9",
+                "tools/rendering_fifteenth_controls.py": "5864965bc45c4d1c0d8b9641a79d4ce8a959376537b66fe4da8da98ac0199489",
+                "tools/test-rendering-fifteenth-ten.py": "40a52c44eca46e87ebd459dc8220ea2bcebe2200b6c4e44907f5381a5168b2f9"
               },
               "scope_domains": [
                 {
@@ -5260,7 +5421,8 @@
                 }
               ],
               "scope_resolution_record": "research/runtime/tranche1-aggregate-scope-resolution-20261019.json",
-              "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed."
+              "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed.",
+              "review_reason": "Append reviewed current test/build/document links and evidence while preserving the previous work review and every historical source hash."
             },
             "work_review_history": [
               {
@@ -5424,6 +5586,170 @@
                   }
                 ],
                 "scope_resolution_record": "research/runtime/tranche1-aggregate-scope-resolution-20261019.json"
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Complete owned checkpoints, lazy bounded residency, direct/host recovery and lifecycle/collision/opaque-borrow guards are implemented. Unsafe ownership refuses; independent external hosts and resident-generation replacement are separate capabilities. Sustained current-source acceptance remains validation work.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Seven checkpoints (60 frames), six host recovery schedules (87 frames), seven direct recovery schedules, and native/sanitized opaque capacity/abandoned-return controls. Native fake-clock opaque policy controls do not establish arbitrary thread-death recovery. Retained execution is historical; this source/UI review does not renew current engine validation.",
+                "acceptance": "pending",
+                "acceptance_summary": "Existing bounded controls are retained. The scope crosswalk identifies supplied services, conservative refusal and explicitly excluded capabilities; current-source and wider scheduling/game acceptance remain separate.",
+                "evidence": [
+                  "TR1.NR.command-checkpoint-attachment.controls-20261019",
+                  "RREC08.tranche1-aggregate-scope-resolution-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Renew complete/incomplete RGB/indexed/33-surface checkpoint, candidate collision, direct/host continuation and exact-return ownership controls. Retain finite restart refusal on capacity or abandoned-owner uncertainty."
+                  },
+                  {
+                    "kind": "validation",
+                    "action": "Run sustained current-source original-game recovery separately from READY/first-frame controls. Preserve the narrower historical sustained host results and the explicit external-host/resident-generation exclusions."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/render/command_recovery.h",
+                    "line": 57,
+                    "text": "static int command_checkpoint_complete(void){"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/qt-shell/live_command_session.cpp": "38cd97f8999d22521d677aa4183c807248ebbdab3164af94ef28033aff5ff71b",
+                  "apps/qt-shell/live_command_session.hpp": "050b59b7db1aa9ee6ee241dca5a633a62df5a5483bb1b85d9669c86fe12dbd26",
+                  "apps/qt-shell/render_control.cpp": "4eae2c56fbeb93d84264b22622d1a3789bb138acb030914a7a0cf560eedc2eb8",
+                  "apps/qt-shell/render_control.hpp": "c03459d7dfd58bb7c6764f84ce1d127742369656bc6ec7d8b1075b95aa5fd615",
+                  "protocols/CONTRACTS.md": "173a188bb1fc19880961f6d281c93836434ba0d4e97f62ff9b0abdb95710619f",
+                  "protocols/include/mnm/render_control_v1.h": "1d696c2a560e64fb9337f4ea77f9b73f284de889ba702ad3136612dcde8adbd6",
+                  "protocols/python/mnm_protocols/render_control_v1.py": "56463ab7211bedd358943ae2154a9ec19c7a56f334f9730600951f7db6671716",
+                  "protocols/schemas/render_control-v1.json": "0b9331969251cb7586f8f8574484212b2c99e24c8e6e4bade53b900635a31031",
+                  "renderer/CMakeLists.txt": "4e256190276b726fb4b7560886f00b02e6d7abcc849b5fe9ecb5d38a13cfeac4",
+                  "research/formats/render-control-v1.md": "62c9e4d5d2dc805485236af952237cd9b0506ac694b086d09eb9d8d2cb839ebf",
+                  "research/runtime/opengl-automatic-checkpoint-recovery.md": "a181e46f4951266406f7d541db710d176cddd68d794f48e01b5063de22a4bfd9",
+                  "research/runtime/opengl-command-checkpoint.md": "ca7e40dc535484996266bb9d239b6e6f65b5bdc47517d0d5eef41565912c3cdb",
+                  "research/runtime/opengl-command-recovery-metadata.md": "b06b6fc7dddf8bb9f3cced0401cfda7904d6a13276bc3d35d74686f36423b9c0",
+                  "research/runtime/opengl-command-recovery-validation.md": "5c476e26c26d83b7c26c9ab2857e30feb4642f64c7e4d2edc001a509a15788e5",
+                  "research/runtime/opengl-drawing-recovery.md": "7c3d761f1d49e68f84606bfb7e209a0902f13135505c6fa65b45e96b2d4c3768",
+                  "research/runtime/opengl-resource-working-set.md": "8f4278152009c03d66747dd2cd2c97cd1b778a0e9242b6c68d2f50493fc6c44b",
+                  "research/runtime/rendering-tranche1-execution-20261019.json": "395b3a15078faaf0fbbd00e65c2454b9ed5381d5daea1683850c33116e677ce9",
+                  "research/runtime/tranche1-aggregate-scope-resolution-20261019.json": "718af6063935a83eb1e8418d4a483e6be6df48cba1ab5c3cfac6ec1004c72718",
+                  "runtime/render/checkpoint_selftest.h": "e0320f879bd79b43ca6d563b342fcf02edd5323fcb97c085a650c11351c751a4",
+                  "runtime/render/command_control.h": "876ed2c234ab8068169bc0402f680c454f3fbed226f66c49444f343e32977fda",
+                  "runtime/render/command_gate.h": "33abc5524905b6158e7ec9107731bf4e58f6627717c1d4d4f81a08d4804eb23b",
+                  "runtime/render/command_recovery.h": "ca5c633a06bda193f4e1d0341b90a6dcd329737f8ccbe6ef2ecfd60b2bc75829",
+                  "runtime/render/command_scheduler.h": "b0b3e46caf8d3f0cf2c62451e330ba982e8d21bb0071e50dc2dd63093e2b392a",
+                  "runtime/render/host_recovery_selftest.h": "7981baf6069b7caab473461f33e49798d26ad6cc5bcb07731d4916d00f873024",
+                  "runtime/render/mutation_selftest.h": "0bf298b621a11724ffe15e1b97f70b7f13178958e02937e4d0d7a42f5df368b9",
+                  "runtime/render/recovery_selftest.h": "1ae7096f1e0fb935e1c5143001b5308fcaa4a4817cbe271cda030e874dd95048",
+                  "runtime/render/selftest.c": "89c63d22500261084e471425b2ffbacd7bf43463f437d541fa01f23eb0fb874d",
+                  "tests/live-command-checkpoint-test.cpp": "ddd7fe37eadb44fdae01f4ae024ebd57b57256e83c1fcb437791e77d18163445",
+                  "tests/live-render-recovery-probe.cpp": "c1bdd484029809bebc2087ed6cec6eefd7211456b386c61de0a34608d7981371",
+                  "tests/render-control-test.cpp": "1991b4592564492b56dcc4dd6d339d023919f7eb38fd720ef90be8e18b0d82b3",
+                  "tests/render-opaque-borrow-test.c": "8f6c7ac91b6c0205a4767b329b7c9c71a44488d1ea7fe8ca3652c4bca78b27f1",
+                  "tools/build-render-bridge.py": "1edf98131c9d9acd9869314ac444501997763c6050abb9ad3428c6fe026a179c",
+                  "tools/test-live-render-recovery.py": "3cb14fa6eb409a9b70cf58f2ffe7dcd14e8b42123aba934eef759824198bd8da",
+                  "tools/test-render-checkpoint.py": "9bf79ed4503944592802da08f265d0d77ca50b01435983e484cb4210c04f1817",
+                  "tools/test-render-drawing-recovery.py": "88bf6e5fdb1efdcfc1031ee16d1385d9fc7d4f01440fb653a178e89e8c858b48",
+                  "tools/test-render-host-recovery.py": "71144e0c4365b4838373cb797e45fbbc56f083ac4d46efff9f66dbddd337ddb1",
+                  "tools/test-render-recovery.py": "0e5a3dd71d43668f5a6a9d63910848ff753b5ad6f4c6b0d717766fe662cb65b9",
+                  "tools/test-render-working-set.py": "ad587e7b8ae977ea6edc3763acffdfec320cdec5b311002cc12d718145b7f713",
+                  "tools/test-rendering-tranche-fixtures.py": "f1df4a73e92012abd36f9571203d490fd4b6165558f27af05efb0fddd2b85d0b",
+                  "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e"
+                },
+                "scope_domains": [
+                  {
+                    "name": "Complete owned checkpoint and finite residency",
+                    "disposition": "supplied",
+                    "finding": "The existing 128-entry producer tracker validates complete independently owned state; the bounded consumer materializes primary/palettes before READY and complete offscreen dependencies on use. Admission refuses unknown epochs/layouts/pixels/palettes, aliases and budgets.",
+                    "suppliers": [
+                      "NR.command-checkpoint-attachment",
+                      "NR.continuous-resource-working-set"
+                    ],
+                    "paths": [
+                      "runtime/render/command_recovery.h",
+                      "research/runtime/opengl-resource-working-set.md"
+                    ],
+                    "validation": "Renew RGB/indexed, incomplete, held-borrow and 33-owned-surface checkpoint controls; READY and a complete first frame remain distinct."
+                  },
+                  {
+                    "name": "Direct and administrative recovery transitions",
+                    "disposition": "supplied",
+                    "finding": "Direct/host recovery share finite callback and lifecycle exclusion. Before-claim collision leaves the candidate untouched; after-claim failure spends it and retains worker storage until shutdown. Fresh retries use new files and higher sessions.",
+                    "suppliers": [
+                      "NR.command-recovery",
+                      "NR.command-host-recovery",
+                      "NR.drawing-recovery",
+                      "NR.recovery-lifecycle-races"
+                    ],
+                    "paths": [
+                      "runtime/render/command_recovery.h",
+                      "runtime/render/command_gate.h",
+                      "apps/qt-shell/live_command_session.cpp"
+                    ],
+                    "validation": "Renew complete/incomplete, before/after-claim collision and direct/host continuation fixtures. Original application/driver scheduling is separate."
+                  },
+                  {
+                    "name": "Bypassed borrows, capacity and abandoned owners",
+                    "disposition": "guarded_refusal",
+                    "finding": "Opaque Lock/DC ownership persists until the exact successful return. Failed/unmatched returns, exhausted capacity and abandoned owners cannot invent quiescence; uncertainty conservatively requires restart. Thread-death reclamation is not the supplied policy.",
+                    "suppliers": [
+                      "NR.drawing-recovery"
+                    ],
+                    "paths": [
+                      "runtime/render/command_gate.h",
+                      "tests/render-opaque-borrow-test.c",
+                      "research/runtime/opengl-drawing-recovery.md"
+                    ],
+                    "validation": "Native and ASan/UBSan capacity/abandoned-return controls pass in borrow-controls-003; these deterministic controls do not establish arbitrary thread-death recovery."
+                  },
+                  {
+                    "name": "Sustained actual-game recovery",
+                    "disposition": "supplied",
+                    "finding": "The host recovery service and lazy working-set implementation are supplied. Later narrower host evidence already reports a forced World recovery with 331 additional frames over 32.398 seconds; the early aggregate one-frame overflow is historical, not evidence of an absent recovery mechanism.",
+                    "suppliers": [
+                      "NR.command-host-recovery",
+                      "NR.continuous-resource-working-set"
+                    ],
+                    "paths": [
+                      "apps/qt-shell/live_command_session.cpp",
+                      "runtime/render/command_recovery.h",
+                      "research/runtime/opengl-command-recovery-validation.md"
+                    ],
+                    "validation": "Current-source sustained gameplay/movie, animated/full-frame and arbitrary contention acceptance remain pending. Do not renew historical execution from this source review."
+                  },
+                  {
+                    "name": "Independent external host takeover",
+                    "disposition": "outside_contract",
+                    "finding": "attachCheckpoint belongs to the host/producer lifecycle that established the control channel. The original checkpoint design explicitly excludes independently joining external host processes; that is an additional capability, not missing code in this contract.",
+                    "suppliers": [
+                      "NR.command-checkpoint-attachment",
+                      "NR.command-host-recovery"
+                    ],
+                    "paths": [
+                      "research/runtime/opengl-command-checkpoint.md",
+                      "apps/qt-shell/live_command_session.cpp"
+                    ],
+                    "validation": "An external-process attachment feature needs a separately scoped identity/authentication/lifecycle contract if requested."
+                  },
+                  {
+                    "name": "Resident World failure and process replacement",
+                    "disposition": "outside_contract",
+                    "finding": "Resident World recovery explicitly requires a fresh producer rather than resetting an in-flight World generation through the ordinary checkpoint path. That ownership policy is implemented as refusal, with restart handled separately.",
+                    "suppliers": [
+                      "NR.command-host-recovery",
+                      "NR.drawing-recovery"
+                    ],
+                    "paths": [
+                      "apps/qt-shell/live_command_session.cpp"
+                    ],
+                    "validation": "Do not treat ordinary checkpoint acceptance as acceptance of resident restart, arbitrary unload or original driver equivalence."
+                  }
+                ],
+                "scope_resolution_record": "research/runtime/tranche1-aggregate-scope-resolution-20261019.json",
+                "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed."
               }
             ]
           },
@@ -9967,10 +10293,10 @@
             "dependency_link_review": "Static dependency-link completeness only: registered inputs were added without widening scope or changing raw milestones. Critical weight and partial implementation are unchanged; all historical execution claims keep their original contract/source pins.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "The selected bounded contract is implemented. The delivered observer invalidates cached associations on selected create/release and records selected Lock returns. Run-local generations, not repeated pointer numbers, bind the source history.",
+              "current_state": "The selected bounded contract is implemented. The delivered observer invalidates cached associations on selected create/release and records selected Lock returns. Run-local generations, not repeated pointer numbers, bind the source history. Fifteenth batch supplies current startup/dispatch/native finite-history implementation controls.",
               "implementation_gaps": [],
               "validation_state": "pending",
-              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
+              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical. Fresh NT15 supplies 79 Python controls, 49 recorded commands and 2828 stable prospective inputs with selected unchanged original caller/uniform fixtures, retained original-source initial-canvas reconstruction, authored PE32 ownership/refusal/publication controls and actual supplied-runtime capability probes. All broader acceptance boundaries and historical source fingerprints remain unchanged.",
               "acceptance": "pending",
               "acceptance_summary": "Bounded task PASS. Original physical allocation/COM alias ownership, every writer and arbitrary sessions remain separate recovery requirements, explicitly outside this selected contract.",
               "evidence": [
@@ -9979,7 +10305,8 @@
                 "CRIT05.scope-resolution-20261019",
                 "CRIT02.producer-history-20261019",
                 "CRIT03.first-world-20261019",
-                "CRIT07.scope-final-20261019"
+                "CRIT07.scope-final-20261019",
+                "NT15.native-controls-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -10015,7 +10342,16 @@
                 "renderer/canvas_sequence.cpp": "6cd633c3e7e09c126234f2f17cd1efb69fc570c8249b8406789a1f63563438e0",
                 "research/runtime/critical-rendering-closeout-20261019.md": "fbec0ccb639d2d05a9e1dec91a4136373a143515a453cc26504cf58cf2fff513",
                 "research/runtime/critical-rendering-scope-resolution-accepted-20261019.json": "24698ef4d28aca83004882a7b350d2cbd99926421ed421ff55c31c3a32a96e69",
-                "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8"
+                "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md": "63a8464c37c339d91d16fabcbbe1b7bf841a29b5268e7c74d1b75573fd4674af",
+                "tests/rendering-fifteenth-ten/CMakeLists.txt": "f9cffa935d4441fe3f4d495f814b38ae647beb71d100a589f53ebe21e8b7cb15",
+                "tests/test-canvas-initial-history.py": "69e5bcb7bfc405eb7a7afc7591637009f317a46c04a66ff993cff772240c61da",
+                "tests/test-fixture-prefix-borrow.py": "c8bd6f703deda7539e801cce1d95b50bfef0c5854d51e5516d0d18eb18a2ea9d",
+                "tools/canvas_initial_history.py": "9a3ef7e7f60d0f183b68f3ac8e54f25f94fdfc01e925feeec31e294076471f7a",
+                "tools/check-first-world-history.py": "d8d4390689cbd57a006cba7bf65c04a17ea003565dbf91edcf4574c092cd0b41",
+                "tools/drawing_fixture_prefix.py": "ffcffbeafcef4c6d02ac2c29298ae36281fd3145b28b4ac6e5ff454e86b2baf9",
+                "tools/rendering_fifteenth_controls.py": "5864965bc45c4d1c0d8b9641a79d4ce8a959376537b66fe4da8da98ac0199489",
+                "tools/test-rendering-fifteenth-ten.py": "40a52c44eca46e87ebd459dc8220ea2bcebe2200b6c4e44907f5381a5168b2f9"
               },
               "assessment_history": [
                 {
@@ -10111,7 +10447,8 @@
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
               "pending_source_review": [
                 "research/runtime/next20-implementation-progress-20261020.md"
-              ]
+              ],
+              "review_reason": "Append reviewed current test/build/document links and evidence while preserving the previous work review and every historical source hash."
             },
             "execution_result": {
               "outcome": "PASS",
@@ -10270,6 +10607,154 @@
                     ]
                   }
                 ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The selected bounded contract is implemented. The delivered observer invalidates cached associations on selected create/release and records selected Lock returns. Run-local generations, not repeated pointer numbers, bind the source history.",
+                "implementation_gaps": [],
+                "validation_state": "pending",
+                "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
+                "acceptance": "pending",
+                "acceptance_summary": "Bounded task PASS. Original physical allocation/COM alias ownership, every writer and arbitrary sessions remain separate recovery requirements, explicitly outside this selected contract.",
+                "evidence": [
+                  "RS.canvas-startup.live-bound-20261008",
+                  "TR2.bounded-acceptance-review-20261019",
+                  "CRIT05.scope-resolution-20261019",
+                  "CRIT02.producer-history-20261019",
+                  "CRIT03.first-world-20261019",
+                  "CRIT07.scope-final-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Renew the selected replay when its actual producer, lifetime or storage inputs change. For a new session, declare a closed history and compare every full checkpoint; recover physical allocation and all-writer coverage under their separate contracts."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/scene/canvas_startup.c",
+                    "line": 77,
+                    "text": "        if(f.tag==0||f.tag==1){for(u32 j=0;j<128;++j)if(locks[j].object==f.ecx)locks[j].object=0;}"
+                  }
+                ],
+                "source_sha256": {
+                  "research/formats/canvas-startup-diagnostics.md": "468cd3aee03eb06a86ec014fd0fd7a7b48bce55051c251be1d12a742bd1345fc",
+                  "research/runtime/native-world-canvas-startup-bound-20261008.json": "dd8cacfbb1232a474abf77db8b70bce6e1bb5062fa3779aef6dc77e670df8b7f",
+                  "research/runtime/native-world-canvas-startup.md": "ba157648c590849eb6c48525ff012cdd5d80df673afc9ae86cd504befae6c437",
+                  "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+                  "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+                  "runtime/scene/observer.c": "5093ce5713cd437336b197d55a56045a38be4b8d315e80941aa8679f7e387dd8",
+                  "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+                  "tests/canvas-startup-test.c": "4564dfbf2072f6606de2bdfe1c65b7e9a8f47445eeb39105e2b78fa38be2a054",
+                  "tests/rendering-tranche2-native.cpp": "4db1837bd885fd21233569be4cf1be3e512ebeec6c1abb394ee7678dd17eeed0",
+                  "tools/build-scene-observer.py": "4bf5a72a89e67328ad56f8a7e7727175800eb2e7afa79ee370ccada0ca1fbcc6",
+                  "tools/capture-scene-game.py": "7fd49113b1761a7706faf82be2d8115079f10bfef3b1bad3822d5bdf6540d21e",
+                  "tools/inspect-canvas-startup.py": "dedc8bec15c4ba7c4f4c9ea80d6216d9927d0cda91f0fd2b6fc8aeccbd7078c8",
+                  "tools/test-canvas-startup.py": "4ffcf90c22d16b7f02242879f385febdb1e9b05fdc9baa605d9314c2df24b2dc",
+                  "tools/test-rendering-tranche2-history.py": "56eaf250b1286b31221c12a50951188d4320284d200f2dfeeddd7efe82132f09",
+                  "research/runtime/critical-rendering-scope-resolution-final-20261019.json": "c091a24c62fa5e2ae916b0e9605697727946d1e2f9da00465d85161fed43201d",
+                  "tools/drawing_storage_transitions.py": "7422badc92e419c06568b576eac425feb95061f5429c8f692d0d51495a69d6b6",
+                  "renderer/canvas_sequence.cpp": "6cd633c3e7e09c126234f2f17cd1efb69fc570c8249b8406789a1f63563438e0",
+                  "research/runtime/critical-rendering-closeout-20261019.md": "fbec0ccb639d2d05a9e1dec91a4136373a143515a453cc26504cf58cf2fff513",
+                  "research/runtime/critical-rendering-scope-resolution-accepted-20261019.json": "24698ef4d28aca83004882a7b350d2cbd99926421ed421ff55c31c3a32a96e69",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8"
+                },
+                "assessment_history": [
+                  {
+                    "implementation": "unresolved_aggregate",
+                    "current_state": "Two845-call/774-Lock-epoch closed captures and8-call/5-epoch authored reuse/null/pending transition controls. Logical generations/observed epochs do not establish physical allocation/COM alias ownership or every external writer.",
+                    "implementation_gaps": [],
+                    "validation_state": "historical",
+                    "validation_summary": "Two845-call/774-Lock-epoch closed captures and8-call/5-epoch authored reuse/null/pending transition controls. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift.",
+                    "acceptance": "pending",
+                    "acceptance_summary": "Declared bounded task PASS. Logical generations/observed epochs do not establish physical allocation/COM alias ownership or every external writer. Wider contract acceptance remains pending.",
+                    "evidence": [
+                      "RS.canvas-startup.live-bound-20261008",
+                      "TR2.bounded-acceptance-review-20261019"
+                    ],
+                    "failure_evidence": [],
+                    "next_steps": [
+                      {
+                        "kind": "scope_review",
+                        "action": "Logical generations/observed epochs do not establish physical allocation/COM alias ownership or every external writer."
+                      }
+                    ],
+                    "code_witnesses": [
+                      {
+                        "path": "runtime/scene/canvas_startup.c",
+                        "line": 77,
+                        "text": "        if(f.tag==0||f.tag==1){for(u32 j=0;j<128;++j)if(locks[j].object==f.ecx)locks[j].object=0;}"
+                      }
+                    ],
+                    "source_sha256": {
+                      "research/formats/canvas-startup-diagnostics.md": "468cd3aee03eb06a86ec014fd0fd7a7b48bce55051c251be1d12a742bd1345fc",
+                      "research/runtime/native-world-canvas-startup-bound-20261008.json": "dd8cacfbb1232a474abf77db8b70bce6e1bb5062fa3779aef6dc77e670df8b7f",
+                      "research/runtime/native-world-canvas-startup.md": "2314b68ea27543881b5d59200377f6bd5300bc031863e0cef332191e161d8be4",
+                      "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+                      "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+                      "runtime/scene/observer.c": "5093ce5713cd437336b197d55a56045a38be4b8d315e80941aa8679f7e387dd8",
+                      "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+                      "tests/canvas-startup-test.c": "4564dfbf2072f6606de2bdfe1c65b7e9a8f47445eeb39105e2b78fa38be2a054",
+                      "tests/rendering-tranche2-native.cpp": "b398805a66b346b7e8eff27948b29a5b662e99cd2e246c4b042fe26c3086a8e0",
+                      "tools/build-scene-observer.py": "4bf5a72a89e67328ad56f8a7e7727175800eb2e7afa79ee370ccada0ca1fbcc6",
+                      "tools/capture-scene-game.py": "7fd49113b1761a7706faf82be2d8115079f10bfef3b1bad3822d5bdf6540d21e",
+                      "tools/inspect-canvas-startup.py": "dedc8bec15c4ba7c4f4c9ea80d6216d9927d0cda91f0fd2b6fc8aeccbd7078c8",
+                      "tools/test-canvas-startup.py": "4ffcf90c22d16b7f02242879f385febdb1e9b05fdc9baa605d9314c2df24b2dc",
+                      "tools/test-rendering-tranche2-history.py": "d1a87ed386a84573ccbcd86a1074372f66fea162c7a6f1598e525948df049cbb"
+                    },
+                    "assessment_history": []
+                  }
+                ],
+                "scope_resolution_record": "research/runtime/critical-rendering-scope-resolution-accepted-20261019.json",
+                "scope_domains": [
+                  {
+                    "name": "Logical create/release and observed Lock-return epochs",
+                    "disposition": "supplied",
+                    "finding": "The delivered observer invalidates cached associations on selected create/release and records selected Lock returns. Run-local generations, not repeated pointer numbers, bind the source history.",
+                    "validation": "Two historical845-call/774-epoch captures remain immutable. The new current source-only replay and first-World check execute the same closed1061-checkpoint history.",
+                    "suppliers": [
+                      "RS.canvas-preworld-reuse",
+                      "RS.canvas-create-lock"
+                    ],
+                    "paths": [
+                      "runtime/scene/canvas_startup.c",
+                      "tools/drawing_storage_transitions.py",
+                      "tools/test-rendering-tranche2-history.py"
+                    ]
+                  },
+                  {
+                    "name": "Retired, undefined, missing and wrong-generation native input",
+                    "disposition": "guarded_refusal",
+                    "finding": "Native canvas storage begins undefined; create/release, missing sources and inconsistent generation/extent cannot silently seed a new canvas.",
+                    "validation": "Fresh native lifecycle controls refuse undefined/retired/missing inputs. They do not grant an original driver allocation lease.",
+                    "suppliers": [
+                      "NR.canvas-producer-replay"
+                    ],
+                    "paths": [
+                      "renderer/canvas_sequence.cpp",
+                      "tests/rendering-tranche2-native.cpp"
+                    ]
+                  },
+                  {
+                    "name": "Original physical allocation and unobserved writers",
+                    "disposition": "outside_contract",
+                    "finding": "This selected observational contract explicitly excludes physical allocation/COM alias ownership, every Lock and arbitrary external writers. These remain separate recovery obligations.",
+                    "validation": "The new alias matrix addresses only its nine native/Wine system-memory interface pairs. It cannot close the original all-writer/all-alias domain.",
+                    "suppliers": [
+                      "NR.wine-private-backing-ownership",
+                      "NR.drawing-source-read-reservations"
+                    ],
+                    "paths": [
+                      "research/runtime/native-world-canvas-startup.md",
+                      "tools/drawing_storage_transitions.py"
+                    ]
+                  }
+                ],
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+                "pending_source_review": [
+                  "research/runtime/next20-implementation-progress-20261020.md"
+                ]
               }
             ]
           },
@@ -10338,10 +10823,10 @@
             },
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "The selected bounded contract is implemented. Owned encoded assets, constants, source requests and observed lifetime/order reconstruct the selected producer chain; destination images remain external oracles.",
+              "current_state": "The selected bounded contract is implemented. Owned encoded assets, constants, source requests and observed lifetime/order reconstruct the selected producer chain; destination images remain external oracles. Fifteenth batch supplies current startup/dispatch/native finite-history implementation controls.",
               "implementation_gaps": [],
               "validation_state": "pending",
-              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
+              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical. Fresh NT15 supplies 79 Python controls, 49 recorded commands and 2828 stable prospective inputs with selected unchanged original caller/uniform fixtures, retained original-source initial-canvas reconstruction, authored PE32 ownership/refusal/publication controls and actual supplied-runtime capability probes. All broader acceptance boundaries and historical source fingerprints remain unchanged.",
               "acceptance": "pending",
               "acceptance_summary": "Bounded task PASS. Original physical allocation/COM alias ownership, every writer and arbitrary sessions remain separate recovery requirements, explicitly outside this selected contract.",
               "evidence": [
@@ -10351,7 +10836,8 @@
                 "CRIT05.scope-resolution-20261019",
                 "CRIT02.producer-history-20261019",
                 "CRIT04.startup-reference-20261019",
-                "CRIT07.scope-final-20261019"
+                "CRIT07.scope-final-20261019",
+                "NT15.native-controls-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -10396,7 +10882,13 @@
                 "research/runtime/critical-rendering-closeout-20261019.md": "fbec0ccb639d2d05a9e1dec91a4136373a143515a453cc26504cf58cf2fff513",
                 "research/runtime/critical-rendering-scope-resolution-accepted-20261019.json": "24698ef4d28aca83004882a7b350d2cbd99926421ed421ff55c31c3a32a96e69",
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
-                "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
+                "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd",
+                "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md": "63a8464c37c339d91d16fabcbbe1b7bf841a29b5268e7c74d1b75573fd4674af",
+                "tests/rendering-fifteenth-ten/CMakeLists.txt": "f9cffa935d4441fe3f4d495f814b38ae647beb71d100a589f53ebe21e8b7cb15",
+                "tests/test-fixture-prefix-borrow.py": "c8bd6f703deda7539e801cce1d95b50bfef0c5854d51e5516d0d18eb18a2ea9d",
+                "tools/drawing_fixture_prefix.py": "ffcffbeafcef4c6d02ac2c29298ae36281fd3145b28b4ac6e5ff454e86b2baf9",
+                "tools/rendering_fifteenth_controls.py": "5864965bc45c4d1c0d8b9641a79d4ce8a959376537b66fe4da8da98ac0199489",
+                "tools/test-rendering-fifteenth-ten.py": "40a52c44eca46e87ebd459dc8220ea2bcebe2200b6c4e44907f5381a5168b2f9"
               },
               "assessment_history": [
                 {
@@ -10514,7 +11006,8 @@
               "pending_source_review": [
                 "research/runtime/next20-implementation-progress-20261020.md",
                 "tools/test-next20-canvas-controls.py"
-              ]
+              ],
+              "review_reason": "Append reviewed current test/build/document links and evidence while preserving the previous work review and every historical source hash."
             },
             "execution_result": {
               "outcome": "PASS",
@@ -10702,6 +11195,186 @@
                       "research/runtime/draw02-producer-recorder.md"
                     ]
                   }
+                ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The selected bounded contract is implemented. Owned encoded assets, constants, source requests and observed lifetime/order reconstruct the selected producer chain; destination images remain external oracles.",
+                "implementation_gaps": [],
+                "validation_state": "pending",
+                "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
+                "acceptance": "pending",
+                "acceptance_summary": "Bounded task PASS. Original physical allocation/COM alias ownership, every writer and arbitrary sessions remain separate recovery requirements, explicitly outside this selected contract.",
+                "evidence": [
+                  "NR.canvas-producers.live-20261008",
+                  "NR.producer-recorder-thread-policy.native-20261012",
+                  "TR2.bounded-acceptance-review-20261019",
+                  "CRIT05.scope-resolution-20261019",
+                  "CRIT02.producer-history-20261019",
+                  "CRIT04.startup-reference-20261019",
+                  "CRIT07.scope-final-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Renew the selected replay when its actual producer, lifetime or storage inputs change. For a new session, declare a closed history and compare every full checkpoint; recover physical allocation and all-writer coverage under their separate contracts."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/scene/canvas_producers.c",
+                    "line": 300,
+                    "text": "   /* Original-active uniform copy leaf. Represent its owned constant/clip"
+                  }
+                ],
+                "source_sha256": {
+                  "research/formats/canvas-producers-v1.md": "a71e6e7ae27c5847630a60b2e1ed64b4a1b2d317dbb914111bb812dfc59a38e0",
+                  "research/runtime/draw02-canvas-storage-generations.md": "f291f013bc7fe7a4ad0c1eb728581775de6ccfec57adf1960f75b0dd7af7cfa6",
+                  "research/runtime/draw02-producer-recorder.md": "bf0ee1cacaf01d30adbe5d32d2ee135db2e7c5a3606528b767e60949dd831706",
+                  "research/runtime/draw02-producer-trace-fixture-03.json": "bbfc9c244fefab461819771c11a38c1377c3f148c0bc0cd11646ac712f9c393c",
+                  "research/runtime/native-canvas-producers-live-20261008.json": "f725d774af13ca489b4483cecc03fb3056198eb2acd3876b5c8a738777c20c8a",
+                  "research/runtime/native-canvas-producers.md": "7df47c3a171c298f64d606c0be4e0dc16e664170a34ac8d7b6c0a720493c8a6f",
+                  "research/runtime/native-world-producer-handoff.md": "24cf2aeba231e243920491cb061e782f3eda16740310fb290b6f7eaa1f92fafc",
+                  "runtime/scene/canvas_producers.S": "d565108a43b56c46cccb5c0e55c9d001b7514e5bb16391312482b5fb6668fa4c",
+                  "runtime/scene/canvas_producers.c": "7c320b307325418c66f598dee710e192f54e5c67ba926816c79b46c5b8a81fa3",
+                  "runtime/scene/observer.c": "5093ce5713cd437336b197d55a56045a38be4b8d315e80941aa8679f7e387dd8",
+                  "runtime/scene/producer_trace_guard.h": "f76ac0166a006b46e01652ec338f9acb925d83f45496deb8281a1dff0ad057e4",
+                  "tests/canvas-producers-test.c": "c996e80343a2dd0a7d8f98420f1e20ce675ef782b125ed4166a1fc40dd49facc",
+                  "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+                  "tests/drawing-producer-trace-test.c": "a1aaa6252c2e36a860cca1abcc4f43ae0b482f08b2bfa8785e14679479c07f60",
+                  "tests/rendering-tranche2-native.cpp": "4db1837bd885fd21233569be4cf1be3e512ebeec6c1abb394ee7678dd17eeed0",
+                  "tests/rendering-tranche2-reference.cpp": "4384efab59f590df5dfbd71edb6967ead456a882b5d6bd2c355cd02f17eba687",
+                  "tools/capture-scene-game.py": "7fd49113b1761a7706faf82be2d8115079f10bfef3b1bad3822d5bdf6540d21e",
+                  "tools/inspect-canvas-producers.py": "58ccca26889da4fbf067eb0e95b4afddcd7ca0919a54263bcf4ebb3b90f2e231",
+                  "tools/test-canvas-producers.py": "417adb9b1dc1cba65a0a4f4f7284b956af94eb6d1aefda2fcb43c00e6bf34cab",
+                  "tools/test-drawing-producer-trace.py": "5295e1c74540113ab61e2210be332d0799a47c32fb1decacd2c38e49212338a1",
+                  "tools/test-rendering-tranche2-reference.py": "5453718c4d211714f58efbf923b18651bbeb2a2d25ec0d84fc2287f02d8c927a",
+                  "research/runtime/critical-rendering-scope-resolution-final-20261019.json": "c091a24c62fa5e2ae916b0e9605697727946d1e2f9da00465d85161fed43201d",
+                  "compat/legacy/canvas_producers.cpp": "78fa96df9e164d486ec05f6f3b7c33096192ffd6c9df8199b00acad5da0ebf97",
+                  "tools/test-world-producer-handoff.py": "6c5b1f3f35f0dc2c9f26aac2a41f7d1fee666b7803b263af11a2f9f4836e96df",
+                  "reconstruction/rendering/generic_producer_caller.h": "2950064a71f055e985d93ee99c19e99636d32ee632d1eda0a9bc736bbea2d1a8",
+                  "research/runtime/critical-rendering-closeout-20261019.md": "fbec0ccb639d2d05a9e1dec91a4136373a143515a453cc26504cf58cf2fff513",
+                  "research/runtime/critical-rendering-scope-resolution-accepted-20261019.json": "24698ef4d28aca83004882a7b350d2cbd99926421ed421ff55c31c3a32a96e69",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                  "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
+                },
+                "assessment_history": [
+                  {
+                    "implementation": "unresolved_aggregate",
+                    "current_state": "180 private original uniform mode0/NULL-plane cells,64,260 words, current producer ABI/refusals and1061 matching source-only checkpoints. Selected uniform original execution is a fixture. Historical4x75 physical residual attribution and other live modes/planes remain unresolved.",
+                    "implementation_gaps": [],
+                    "validation_state": "historical",
+                    "validation_summary": "180 private original uniform mode0/NULL-plane cells,64,260 words, current producer ABI/refusals and1061 matching source-only checkpoints. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift.",
+                    "acceptance": "pending",
+                    "acceptance_summary": "Declared bounded task PASS. Selected uniform original execution is a fixture. Historical4x75 physical residual attribution and other live modes/planes remain unresolved. Wider contract acceptance remains pending.",
+                    "evidence": [
+                      "NR.canvas-producers.live-20261008",
+                      "NR.producer-recorder-thread-policy.native-20261012",
+                      "TR2.bounded-acceptance-review-20261019"
+                    ],
+                    "failure_evidence": [],
+                    "next_steps": [
+                      {
+                        "kind": "scope_review",
+                        "action": "Selected uniform original execution is a fixture. Historical4x75 physical residual attribution and other live modes/planes remain unresolved."
+                      }
+                    ],
+                    "code_witnesses": [
+                      {
+                        "path": "runtime/scene/canvas_producers.c",
+                        "line": 300,
+                        "text": "   /* Original-active uniform copy leaf. Represent its owned constant/clip"
+                      }
+                    ],
+                    "source_sha256": {
+                      "research/formats/canvas-producers-v1.md": "a71e6e7ae27c5847630a60b2e1ed64b4a1b2d317dbb914111bb812dfc59a38e0",
+                      "research/runtime/draw02-canvas-storage-generations.md": "f291f013bc7fe7a4ad0c1eb728581775de6ccfec57adf1960f75b0dd7af7cfa6",
+                      "research/runtime/draw02-producer-recorder.md": "bf0ee1cacaf01d30adbe5d32d2ee135db2e7c5a3606528b767e60949dd831706",
+                      "research/runtime/draw02-producer-trace-fixture-03.json": "bbfc9c244fefab461819771c11a38c1377c3f148c0bc0cd11646ac712f9c393c",
+                      "research/runtime/native-canvas-producers-live-20261008.json": "f725d774af13ca489b4483cecc03fb3056198eb2acd3876b5c8a738777c20c8a",
+                      "research/runtime/native-canvas-producers.md": "e5734d0527732513fdd3d70bddb7f0aae54c7d91f52c2f4baf1dfabc6c83f481",
+                      "research/runtime/native-world-producer-handoff.md": "24cf2aeba231e243920491cb061e782f3eda16740310fb290b6f7eaa1f92fafc",
+                      "runtime/scene/canvas_producers.S": "d565108a43b56c46cccb5c0e55c9d001b7514e5bb16391312482b5fb6668fa4c",
+                      "runtime/scene/canvas_producers.c": "7c320b307325418c66f598dee710e192f54e5c67ba926816c79b46c5b8a81fa3",
+                      "runtime/scene/observer.c": "5093ce5713cd437336b197d55a56045a38be4b8d315e80941aa8679f7e387dd8",
+                      "runtime/scene/producer_trace_guard.h": "f76ac0166a006b46e01652ec338f9acb925d83f45496deb8281a1dff0ad057e4",
+                      "tests/canvas-producers-test.c": "c996e80343a2dd0a7d8f98420f1e20ce675ef782b125ed4166a1fc40dd49facc",
+                      "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+                      "tests/drawing-producer-trace-test.c": "a1aaa6252c2e36a860cca1abcc4f43ae0b482f08b2bfa8785e14679479c07f60",
+                      "tests/rendering-tranche2-native.cpp": "b398805a66b346b7e8eff27948b29a5b662e99cd2e246c4b042fe26c3086a8e0",
+                      "tests/rendering-tranche2-reference.cpp": "347ffc11c4cb1b958bdce9bad3194a72689087ff0a83565bd6fea3ee964c3e47",
+                      "tools/capture-scene-game.py": "7fd49113b1761a7706faf82be2d8115079f10bfef3b1bad3822d5bdf6540d21e",
+                      "tools/inspect-canvas-producers.py": "58ccca26889da4fbf067eb0e95b4afddcd7ca0919a54263bcf4ebb3b90f2e231",
+                      "tools/test-canvas-producers.py": "417adb9b1dc1cba65a0a4f4f7284b956af94eb6d1aefda2fcb43c00e6bf34cab",
+                      "tools/test-drawing-producer-trace.py": "5295e1c74540113ab61e2210be332d0799a47c32fb1decacd2c38e49212338a1",
+                      "tools/test-rendering-tranche2-reference.py": "5453718c4d211714f58efbf923b18651bbeb2a2d25ec0d84fc2287f02d8c927a"
+                    },
+                    "assessment_history": []
+                  }
+                ],
+                "scope_resolution_record": "research/runtime/critical-rendering-scope-resolution-accepted-20261019.json",
+                "scope_domains": [
+                  {
+                    "name": "Recorded selected producer chain and exact whole checkpoints",
+                    "disposition": "supplied",
+                    "finding": "Owned encoded assets, constants, source requests and observed lifetime/order reconstruct the selected producer chain; destination images remain external oracles.",
+                    "validation": "Fresh source-only replay matches1061 checkpoints and16 separately executed unchanged-original World completions. No new live producer reachability is claimed.",
+                    "suppliers": [
+                      "NR.canvas-producer-replay",
+                      "NR.world-producer-handoff"
+                    ],
+                    "paths": [
+                      "runtime/scene/canvas_producers.c",
+                      "compat/legacy/canvas_producers.cpp",
+                      "tools/test-world-producer-handoff.py"
+                    ]
+                  },
+                  {
+                    "name": "Uniform547d80 mode0/NULL-plane and caller continuation",
+                    "disposition": "supplied",
+                    "finding": "Selected constant RGB565 fill/clip requests and the original generic caller are supplied in the declared domain.",
+                    "validation": "Fresh180 original uniform cases compare64260 words;36 original caller cells and21 native caller guards pass. Other modes/planes are not inferred from these fixtures.",
+                    "suppliers": [
+                      "RS.canvas-producer-sequence"
+                    ],
+                    "paths": [
+                      "tests/rendering-tranche2-reference.cpp",
+                      "tests/rendering-tranche2-native.cpp",
+                      "reconstruction/rendering/generic_producer_caller.h"
+                    ]
+                  },
+                  {
+                    "name": "Unknown, missing or unsupported producer inputs",
+                    "disposition": "guarded_refusal",
+                    "finding": "Recorder and replay retain explicit failure/unsupported/undefined-state boundaries. A complete chain is required before accepting a frame.",
+                    "validation": "Fresh native missing/retired-input controls pass; strict producer decoders retain unknown and incomplete paths.",
+                    "suppliers": [
+                      "NR.canvas-producer-replay"
+                    ],
+                    "paths": [
+                      "tools/inspect-canvas-producers.py",
+                      "compat/legacy/canvas_producers.cpp"
+                    ]
+                  },
+                  {
+                    "name": "All original writers, minimap orientations and arbitrary driver intervals",
+                    "disposition": "outside_contract",
+                    "finding": "The contract lists selected admitted branches and explicitly retains unsupported modes, unknown writer intervals and broader minimap/simulation behavior.",
+                    "validation": "These require separate original scenarios and recovery evidence; the bounded chain is implemented without asserting every branch or full physical presentation.",
+                    "suppliers": [
+                      "RS.canvas-producer-sequence"
+                    ],
+                    "paths": [
+                      "research/runtime/native-canvas-producers.md",
+                      "research/runtime/draw02-producer-recorder.md"
+                    ]
+                  }
+                ],
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+                "pending_source_review": [
+                  "research/runtime/next20-implementation-progress-20261020.md",
+                  "tools/test-next20-canvas-controls.py"
                 ]
               }
             ]
@@ -11784,10 +12457,10 @@
             "dependency_link_review": "Static dependency-link completeness only: registered inputs were added without widening scope or changing raw milestones. Critical weight and partial implementation are unchanged; all historical execution claims keep their original contract/source pins.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "The selected bounded contract is implemented. Native storage begins undefined and reconstructs all480000 words from the closed owned producer history before queue1.",
+              "current_state": "The selected bounded contract is implemented. Native storage begins undefined and reconstructs all480000 words from the closed owned producer history before queue1. Fifteenth batch supplies current startup/dispatch/native finite-history implementation controls.",
               "implementation_gaps": [],
               "validation_state": "pending",
-              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
+              "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical. Fresh NT15 supplies 79 Python controls, 49 recorded commands and 2828 stable prospective inputs with selected unchanged original caller/uniform fixtures, retained original-source initial-canvas reconstruction, authored PE32 ownership/refusal/publication controls and actual supplied-runtime capability probes. All broader acceptance boundaries and historical source fingerprints remain unchanged.",
               "acceptance": "pending",
               "acceptance_summary": "Bounded task PASS. Original physical allocation/COM alias ownership, every writer and arbitrary sessions remain separate recovery requirements, explicitly outside this selected contract.",
               "evidence": [
@@ -11798,7 +12471,8 @@
                 "CRIT05.scope-resolution-20261019",
                 "CRIT02.producer-history-20261019",
                 "CRIT03.first-world-20261019",
-                "CRIT07.scope-final-20261019"
+                "CRIT07.scope-final-20261019",
+                "NT15.native-controls-20261022"
               ],
               "failure_evidence": [
                 "RS.world-background.gap-20261007",
@@ -11850,7 +12524,16 @@
                 "tools/drawing_storage_transitions.py": "7422badc92e419c06568b576eac425feb95061f5429c8f692d0d51495a69d6b6",
                 "research/runtime/critical-rendering-closeout-20261019.md": "fbec0ccb639d2d05a9e1dec91a4136373a143515a453cc26504cf58cf2fff513",
                 "research/runtime/critical-rendering-scope-resolution-accepted-20261019.json": "24698ef4d28aca83004882a7b350d2cbd99926421ed421ff55c31c3a32a96e69",
-                "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8"
+                "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md": "63a8464c37c339d91d16fabcbbe1b7bf841a29b5268e7c74d1b75573fd4674af",
+                "tests/rendering-fifteenth-ten/CMakeLists.txt": "f9cffa935d4441fe3f4d495f814b38ae647beb71d100a589f53ebe21e8b7cb15",
+                "tests/test-canvas-initial-history.py": "69e5bcb7bfc405eb7a7afc7591637009f317a46c04a66ff993cff772240c61da",
+                "tests/test-fixture-prefix-borrow.py": "c8bd6f703deda7539e801cce1d95b50bfef0c5854d51e5516d0d18eb18a2ea9d",
+                "tools/canvas_initial_history.py": "9a3ef7e7f60d0f183b68f3ac8e54f25f94fdfc01e925feeec31e294076471f7a",
+                "tools/check-first-world-history.py": "d8d4390689cbd57a006cba7bf65c04a17ea003565dbf91edcf4574c092cd0b41",
+                "tools/drawing_fixture_prefix.py": "ffcffbeafcef4c6d02ac2c29298ae36281fd3145b28b4ac6e5ff454e86b2baf9",
+                "tools/rendering_fifteenth_controls.py": "5864965bc45c4d1c0d8b9641a79d4ce8a959376537b66fe4da8da98ac0199489",
+                "tools/test-rendering-fifteenth-ten.py": "40a52c44eca46e87ebd459dc8220ea2bcebe2200b6c4e44907f5381a5168b2f9"
               },
               "assessment_history": [
                 {
@@ -11964,7 +12647,8 @@
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
               "pending_source_review": [
                 "research/runtime/next20-implementation-progress-20261020.md"
-              ]
+              ],
+              "review_reason": "Append reviewed current test/build/document links and evidence while preserving the previous work review and every historical source hash."
             },
             "execution_result": {
               "outcome": "PASS",
@@ -12158,6 +12842,190 @@
                       "tools/drawing_storage_transitions.py"
                     ]
                   }
+                ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The selected bounded contract is implemented. Native storage begins undefined and reconstructs all480000 words from the closed owned producer history before queue1.",
+                "implementation_gaps": [],
+                "validation_state": "pending",
+                "validation_summary": "Fresh bounded replay matches all 1,061 checkpoints and 16 unchanged-original World completions; first-World continuity matches all 480,000 words. Selected original startup and native lifecycle controls pass. Raw recovered stages and broader validation remain independent. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
+                "acceptance": "pending",
+                "acceptance_summary": "Bounded task PASS. Original physical allocation/COM alias ownership, every writer and arbitrary sessions remain separate recovery requirements, explicitly outside this selected contract.",
+                "evidence": [
+                  "RS.world-background.gap-20261007",
+                  "RS.world-initial-state.before-after-20261007",
+                  "RS.canvas-startup.live-20261008",
+                  "TR2.bounded-acceptance-review-20261019",
+                  "CRIT05.scope-resolution-20261019",
+                  "CRIT02.producer-history-20261019",
+                  "CRIT03.first-world-20261019",
+                  "CRIT07.scope-final-20261019"
+                ],
+                "failure_evidence": [
+                  "RS.world-background.gap-20261007",
+                  "RS.world-initial-state.before-after-20261007"
+                ],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Renew the selected replay when its actual producer, lifetime or storage inputs change. For a new session, declare a closed history and compare every full checkpoint; recover physical allocation and all-writer coverage under their separate contracts."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/scene/world_trace.c",
+                    "line": 81,
+                    "text": "    if(!streaming&&!save(\".before.565\",(void*)canvas,stride*height*2)){HeapFree(GetProcessHeap(),0,inputs);inputs=0;return;}"
+                  },
+                  {
+                    "path": "compat/legacy/world_frame.cpp",
+                    "line": 21,
+                    "text": "    if(b.size()<MNM_WORLD_HEADER||b.size()>MNM_WORLD_MAX_BYTES||b.first(8)!=MNM_WORLD_MAGIC||word(b,8)!=1||word(b,12)!=MNM_WORLD_HEADER||word(b,16)!=std::uint32_t(b.size())||!word(b,20)||word(b,40)||word(b,44)!=MNM_WORLD_BUILD||word(b,72))throw std::invalid_argument(\"Unsupported/refused World input envelope\");"
+                  }
+                ],
+                "source_sha256": {
+                  "compat/legacy/world_frame.cpp": "92455bba8ee9ef67143abdb8ea019cf8543f17c875f820d04015762de9a5f7e1",
+                  "research/formats/canvas-startup-diagnostics.md": "468cd3aee03eb06a86ec014fd0fd7a7b48bce55051c251be1d12a742bd1345fc",
+                  "research/formats/world-history-v1.md": "e6750bd5637dbac43f66abf76c2963f2a12876b411e9f214e899ec12ccc5a9d5",
+                  "research/runtime/coverage/committed-history-world-refusal-20261008.json": "12c9c5ba16bc33fbe771357c3990d509d2eac466bf1bfdde351827f710d352d3",
+                  "research/runtime/native-world-background-comparison-20261007.json": "13b5540a6dc1621c2936cd4fc8fb5de25aa07a3604d006b5dcaa16283aa28ab3",
+                  "research/runtime/native-world-canvas-history.md": "02b3c6906a915ba4dbbb333d1b74a5eff16eef95df40ad395a38cf27a72c7b85",
+                  "research/runtime/native-world-canvas-startup-20261008.json": "8e9ef4e8762803b8257be056bf3e588ebea997cb28fc4b155ce5220e33efbd5d",
+                  "research/runtime/native-world-canvas-startup.md": "2314b68ea27543881b5d59200377f6bd5300bc031863e0cef332191e161d8be4",
+                  "research/runtime/native-world-history-comparison-20261007.json": "040f61870070d08ed1f87a718ebc643dcadb87ed2e318cd950e30e993b1a16d2",
+                  "research/runtime/native-world-live-background-gap.md": "af8d5199b6c972aeef9c947dda0ae7b66589e9281850e9cae79202f13f3939da",
+                  "research/runtime/native-world-live-rendering.md": "6ac96ed16102a22620a4e3c68ea413ff74e5bed645cbdd854ca099ea579aaa2e",
+                  "runtime/scene/observer.c": "5093ce5713cd437336b197d55a56045a38be4b8d315e80941aa8679f7e387dd8",
+                  "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+                  "runtime/scene/world_trace.c": "a2a40f336e007898f3bf44c60a25efda1b18d8466bdd69460bafa727cc752f4d",
+                  "tests/rendering-tranche2-native.cpp": "4db1837bd885fd21233569be4cf1be3e512ebeec6c1abb394ee7678dd17eeed0",
+                  "tests/world-frame-reference.cpp": "4d79a1c0df363218f5366a12d4829f53f0be527db5ca9b826bbbc1b0a79b8138",
+                  "tools/build-scene-observer.py": "4bf5a72a89e67328ad56f8a7e7727175800eb2e7afa79ee370ccada0ca1fbcc6",
+                  "tools/capture-scene-game.py": "7fd49113b1761a7706faf82be2d8115079f10bfef3b1bad3822d5bdf6540d21e",
+                  "tools/test-rendering-tranche2-history.py": "56eaf250b1286b31221c12a50951188d4320284d200f2dfeeddd7efe82132f09",
+                  "tools/test-world-background.py": "0b70a166f2f33b4ca7cb0170bfa8288faccca9826fec090ea151ce923fe13168",
+                  "tools/test-world-history.py": "292f33b93257f3d8d4a3b12575ea8177857251a490d81fbc6ba5ec0e7fe8252a",
+                  "research/runtime/critical-rendering-scope-resolution-final-20261019.json": "c091a24c62fa5e2ae916b0e9605697727946d1e2f9da00465d85161fed43201d",
+                  "compat/legacy/canvas_producers.cpp": "78fa96df9e164d486ec05f6f3b7c33096192ffd6c9df8199b00acad5da0ebf97",
+                  "renderer/canvas_sequence.cpp": "6cd633c3e7e09c126234f2f17cd1efb69fc570c8249b8406789a1f63563438e0",
+                  "tools/drawing_storage_transitions.py": "7422badc92e419c06568b576eac425feb95061f5429c8f692d0d51495a69d6b6",
+                  "research/runtime/critical-rendering-closeout-20261019.md": "fbec0ccb639d2d05a9e1dec91a4136373a143515a453cc26504cf58cf2fff513",
+                  "research/runtime/critical-rendering-scope-resolution-accepted-20261019.json": "24698ef4d28aca83004882a7b350d2cbd99926421ed421ff55c31c3a32a96e69",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8"
+                },
+                "assessment_history": [
+                  {
+                    "implementation": "unresolved_aggregate",
+                    "current_state": "Source-only replay reconstructs the complete480,000-word first-World before-canvas, with same-run generation/epoch and intervening-record checks. Bounded recorded history only; physical allocation/aliases and unobserved external intervals remain explicit.",
+                    "implementation_gaps": [],
+                    "validation_state": "historical",
+                    "validation_summary": "Source-only replay reconstructs the complete480,000-word first-World before-canvas, with same-run generation/epoch and intervening-record checks. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift.",
+                    "acceptance": "pending",
+                    "acceptance_summary": "Declared bounded task PASS. Bounded recorded history only; physical allocation/aliases and unobserved external intervals remain explicit. Wider contract acceptance remains pending.",
+                    "evidence": [
+                      "RS.world-background.gap-20261007",
+                      "RS.world-initial-state.before-after-20261007",
+                      "RS.canvas-startup.live-20261008",
+                      "TR2.bounded-acceptance-review-20261019"
+                    ],
+                    "failure_evidence": [
+                      "RS.world-background.gap-20261007",
+                      "RS.world-initial-state.before-after-20261007"
+                    ],
+                    "next_steps": [
+                      {
+                        "kind": "scope_review",
+                        "action": "Bounded recorded history only; physical allocation/aliases and unobserved external intervals remain explicit."
+                      }
+                    ],
+                    "code_witnesses": [
+                      {
+                        "path": "runtime/scene/world_trace.c",
+                        "line": 81,
+                        "text": "    if(!streaming&&!save(\".before.565\",(void*)canvas,stride*height*2)){HeapFree(GetProcessHeap(),0,inputs);inputs=0;return;}"
+                      },
+                      {
+                        "path": "compat/legacy/world_frame.cpp",
+                        "line": 21,
+                        "text": "    if(b.size()<MNM_WORLD_HEADER||b.size()>MNM_WORLD_MAX_BYTES||b.first(8)!=MNM_WORLD_MAGIC||word(b,8)!=1||word(b,12)!=MNM_WORLD_HEADER||word(b,16)!=std::uint32_t(b.size())||!word(b,20)||word(b,40)||word(b,44)!=MNM_WORLD_BUILD||word(b,72))throw std::invalid_argument(\"Unsupported/refused World input envelope\");"
+                      }
+                    ],
+                    "source_sha256": {
+                      "compat/legacy/world_frame.cpp": "92455bba8ee9ef67143abdb8ea019cf8543f17c875f820d04015762de9a5f7e1",
+                      "research/formats/canvas-startup-diagnostics.md": "468cd3aee03eb06a86ec014fd0fd7a7b48bce55051c251be1d12a742bd1345fc",
+                      "research/formats/world-history-v1.md": "e6750bd5637dbac43f66abf76c2963f2a12876b411e9f214e899ec12ccc5a9d5",
+                      "research/runtime/coverage/committed-history-world-refusal-20261008.json": "12c9c5ba16bc33fbe771357c3990d509d2eac466bf1bfdde351827f710d352d3",
+                      "research/runtime/native-world-background-comparison-20261007.json": "13b5540a6dc1621c2936cd4fc8fb5de25aa07a3604d006b5dcaa16283aa28ab3",
+                      "research/runtime/native-world-canvas-history.md": "02b3c6906a915ba4dbbb333d1b74a5eff16eef95df40ad395a38cf27a72c7b85",
+                      "research/runtime/native-world-canvas-startup-20261008.json": "8e9ef4e8762803b8257be056bf3e588ebea997cb28fc4b155ce5220e33efbd5d",
+                      "research/runtime/native-world-canvas-startup.md": "2314b68ea27543881b5d59200377f6bd5300bc031863e0cef332191e161d8be4",
+                      "research/runtime/native-world-history-comparison-20261007.json": "040f61870070d08ed1f87a718ebc643dcadb87ed2e318cd950e30e993b1a16d2",
+                      "research/runtime/native-world-live-background-gap.md": "af8d5199b6c972aeef9c947dda0ae7b66589e9281850e9cae79202f13f3939da",
+                      "research/runtime/native-world-live-rendering.md": "6ac96ed16102a22620a4e3c68ea413ff74e5bed645cbdd854ca099ea579aaa2e",
+                      "runtime/scene/observer.c": "5093ce5713cd437336b197d55a56045a38be4b8d315e80941aa8679f7e387dd8",
+                      "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+                      "runtime/scene/world_trace.c": "a2a40f336e007898f3bf44c60a25efda1b18d8466bdd69460bafa727cc752f4d",
+                      "tests/rendering-tranche2-native.cpp": "b398805a66b346b7e8eff27948b29a5b662e99cd2e246c4b042fe26c3086a8e0",
+                      "tests/world-frame-reference.cpp": "4d79a1c0df363218f5366a12d4829f53f0be527db5ca9b826bbbc1b0a79b8138",
+                      "tools/build-scene-observer.py": "4bf5a72a89e67328ad56f8a7e7727175800eb2e7afa79ee370ccada0ca1fbcc6",
+                      "tools/capture-scene-game.py": "7fd49113b1761a7706faf82be2d8115079f10bfef3b1bad3822d5bdf6540d21e",
+                      "tools/test-rendering-tranche2-history.py": "d1a87ed386a84573ccbcd86a1074372f66fea162c7a6f1598e525948df049cbb",
+                      "tools/test-world-background.py": "0b70a166f2f33b4ca7cb0170bfa8288faccca9826fec090ea151ce923fe13168",
+                      "tools/test-world-history.py": "292f33b93257f3d8d4a3b12575ea8177857251a490d81fbc6ba5ec0e7fe8252a"
+                    },
+                    "assessment_history": []
+                  }
+                ],
+                "scope_resolution_record": "research/runtime/critical-rendering-scope-resolution-accepted-20261019.json",
+                "scope_domains": [
+                  {
+                    "name": "Complete selected first-World before-canvas",
+                    "disposition": "supplied",
+                    "finding": "Native storage begins undefined and reconstructs all480000 words from the closed owned producer history before queue1.",
+                    "validation": "Fresh full-plane comparison, source generation/epoch binding and exact intervening source-copy/clip/rebind checks pass.",
+                    "suppliers": [
+                      "NR.canvas-producer-replay",
+                      "NR.world-producer-handoff"
+                    ],
+                    "paths": [
+                      "tools/test-rendering-tranche2-history.py",
+                      "compat/legacy/canvas_producers.cpp",
+                      "renderer/canvas_sequence.cpp"
+                    ]
+                  },
+                  {
+                    "name": "Word-zero reset versus recovered initial contents",
+                    "disposition": "guarded_refusal",
+                    "finding": "A zero reset is a separately declared native policy; it is not substituted for recovered first-World contents. Missing initialization is refused.",
+                    "validation": "Fresh undefined-storage lifecycle controls pass; the retained history comparison uses the actual independent before-canvas.",
+                    "suppliers": [
+                      "NR.world-history-channel",
+                      "RS.world-initial-state"
+                    ],
+                    "paths": [
+                      "compat/legacy/world_frame.cpp",
+                      "tests/rendering-tranche2-native.cpp",
+                      "research/runtime/native-world-canvas-history.md"
+                    ]
+                  },
+                  {
+                    "name": "Global original physical allocation and other sessions",
+                    "disposition": "outside_contract",
+                    "finding": "Selected first-canvas equality does not establish ownership of every original alias/writer or the same state in a different battle, format or driver interval.",
+                    "validation": "A new scenario must carry its own closed history, allocation/writer evidence and independent whole-plane oracle.",
+                    "suppliers": [
+                      "NR.wine-private-backing-ownership"
+                    ],
+                    "paths": [
+                      "research/runtime/native-world-live-background-gap.md",
+                      "tools/drawing_storage_transitions.py"
+                    ]
+                  }
+                ],
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+                "pending_source_review": [
+                  "research/runtime/next20-implementation-progress-20261020.md"
                 ]
               }
             ]
@@ -12955,10 +13823,10 @@
             },
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "Retain the exact admitted inside-domain caller/return policy; synthetic ABI and original caller comparisons do not renew live writeback. 36 original caller cases, native caller/signature guards and PE32 compatible forwarding/13raster bypass controls with zero-EAX/ABI preservation.",
+              "current_state": "Retain the exact admitted inside-domain caller/return policy; synthetic ABI and original caller comparisons do not renew live writeback. 36 original caller cases, native caller/signature guards and PE32 compatible forwarding/13raster bypass controls with zero-EAX/ABI preservation. Fifteenth batch supplies current startup/dispatch/native finite-history implementation controls.",
               "implementation_gaps": [],
               "validation_state": "recorded",
-              "validation_summary": "Fresh bounded scope controls pass at the recorded source/contract/scenario identities. 36 original caller cases, native caller/signature guards and PE32 compatible forwarding/13raster bypass controls with zero-EAX/ABI preservation. Wider original/session claims remain independent.",
+              "validation_summary": "Fresh bounded scope controls pass at the recorded source/contract/scenario identities. 36 original caller cases, native caller/signature guards and PE32 compatible forwarding/13raster bypass controls with zero-EAX/ABI preservation. Wider original/session claims remain independent. Fresh NT15 supplies 79 Python controls, 49 recorded commands and 2828 stable prospective inputs with selected unchanged original caller/uniform fixtures, retained original-source initial-canvas reconstruction, authored PE32 ownership/refusal/publication controls and actual supplied-runtime capability probes. All broader acceptance boundaries and historical source fingerprints remain unchanged.",
               "acceptance": "pending",
               "acceptance_summary": "Renew actual selected original/native writeback and caller-state acceptance; declare live5947b2 and other callers before expanding the admitted domain.",
               "evidence": [
@@ -12973,7 +13841,8 @@
                 "CSCOPE9.final-controls-native.20261020",
                 "CSCOPE9.final-branches-original.20261020",
                 "CSCOPE9.final-bypass-abi-native.20261020",
-                "CSCOPE9.final-scope-review.20261020"
+                "CSCOPE9.final-scope-review.20261020",
+                "NT15.native-controls-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -13135,7 +14004,13 @@
                 "renderer/resources/CMakeLists.txt": "2406af37eab58c53d7526ebd38d88b34e449bc71b234a2fe5f15822a6bdd67b2",
                 "research/runtime/critical-scope-reconciliation-20261020.md": "8820eb9e2df8bfe5a8895855d5034d29afc7bf7234d74a136d86d808541449bd",
                 "research/runtime/coverage/critical-scope-resolutions-20261020.json": "bd237ac4a29e61f51386472755cada676ee9d5269d8b78e8186e13a4d93a9fee",
-                "research/runtime/coverage/critical-scope-final-resolutions-20261020.json": "aa9ae4e7fd8ff3117db7057967357b6be65f2edc14e8b287b8092d6d4692c3d4"
+                "research/runtime/coverage/critical-scope-final-resolutions-20261020.json": "aa9ae4e7fd8ff3117db7057967357b6be65f2edc14e8b287b8092d6d4692c3d4",
+                "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md": "63a8464c37c339d91d16fabcbbe1b7bf841a29b5268e7c74d1b75573fd4674af",
+                "tests/rendering-fifteenth-ten/CMakeLists.txt": "f9cffa935d4441fe3f4d495f814b38ae647beb71d100a589f53ebe21e8b7cb15",
+                "tests/test-fixture-prefix-borrow.py": "c8bd6f703deda7539e801cce1d95b50bfef0c5854d51e5516d0d18eb18a2ea9d",
+                "tools/drawing_fixture_prefix.py": "ffcffbeafcef4c6d02ac2c29298ae36281fd3145b28b4ac6e5ff454e86b2baf9",
+                "tools/rendering_fifteenth_controls.py": "5864965bc45c4d1c0d8b9641a79d4ce8a959376537b66fe4da8da98ac0199489",
+                "tools/test-rendering-fifteenth-ten.py": "40a52c44eca46e87ebd459dc8220ea2bcebe2200b6c4e44907f5381a5168b2f9"
               },
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
               "review_history": [
@@ -13330,7 +14205,8 @@
                 "CSCOPE9.final-branches-original.20261020",
                 "CSCOPE9.final-bypass-abi-native.20261020"
               ],
-              "pending_source_review": []
+              "pending_source_review": [],
+              "review_reason": "Append reviewed current test/build/document links and evidence while preserving the previous work review and every historical source hash."
             },
             "execution_result": {
               "outcome": "PASS",
@@ -13391,6 +14267,385 @@
                   "tools/test-rendering-tranche2-reference.py": "5453718c4d211714f58efbf923b18651bbeb2a2d25ec0d84fc2287f02d8c927a",
                   "tools/test-world-producer-handoff.py": "ad2f6d7d46d6cc9dff91e08ec382ee71ef8cd23c219a6339bf093f670f3236d8"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Retain the exact admitted inside-domain caller/return policy; synthetic ABI and original caller comparisons do not renew live writeback. 36 original caller cases, native caller/signature guards and PE32 compatible forwarding/13raster bypass controls with zero-EAX/ABI preservation.",
+                "implementation_gaps": [],
+                "validation_state": "recorded",
+                "validation_summary": "Fresh bounded scope controls pass at the recorded source/contract/scenario identities. 36 original caller cases, native caller/signature guards and PE32 compatible forwarding/13raster bypass controls with zero-EAX/ABI preservation. Wider original/session claims remain independent.",
+                "acceptance": "pending",
+                "acceptance_summary": "Renew actual selected original/native writeback and caller-state acceptance; declare live5947b2 and other callers before expanding the admitted domain.",
+                "evidence": [
+                  "RS.world-producer-bypass.abi-20261008",
+                  "RS.world-producer-bypass.live-gpu-current-20261008",
+                  "NR.world-producer-handoff.original-gpu-current-20261008",
+                  "TR2.bounded-acceptance-review-20261019",
+                  "CSCOPE9.controls-native.20261020",
+                  "CSCOPE9.branches-original.20261020",
+                  "CSCOPE9.bypass-abi-native.20261020",
+                  "CSCOPE9.scope-review.20261020",
+                  "CSCOPE9.final-controls-native.20261020",
+                  "CSCOPE9.final-branches-original.20261020",
+                  "CSCOPE9.final-bypass-abi-native.20261020",
+                  "CSCOPE9.final-scope-review.20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Renew actual selected original/native writeback and caller-state acceptance; declare live5947b2 and other callers before expanding the admitted domain. Closes when: Every selected live reply matches independent original prefix and exact-body output with caller-state/lease retirement; unsampled scratch/callers and larger launch profiles remain separate."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/scene/world_producer_bypass.c",
+                    "line": 20,
+                    "text": " return readable(caller,10)&&mnm_generic_producer_caller(caller,tag,(const u8*)caller);"
+                  },
+                  {
+                    "path": "runtime/scene/canvas_producers.c",
+                    "line": 448,
+                    "text": "   if(!raster_active()&&!generic_bypass_caller((registers+9)[0],tag)){fail(43,tag);ExitProcess(95);}"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/qt-shell/canvas_producer_session.cpp": "cf619b37d19fb728571c4c943d88ce3e59e8a45cdc49224f3e3580b80248c6c5",
+                  "reconstruction/rendering/generic_producer_caller.h": "2950064a71f055e985d93ee99c19e99636d32ee632d1eda0a9bc736bbea2d1a8",
+                  "research/runtime/native-world-producer-handoff-forwarding-20261008.json": "cba172131286004f208fb1701e8c34e8d4cae2b967e142fbfea0c92bdcd19a71",
+                  "research/runtime/native-world-producer-handoff-gpu-current-bypass-20261008.json": "63474b8560ad609b3502bad595d86149d746358efbb85a3361cfd299abdf1548",
+                  "research/runtime/native-world-producer-handoff-gpu-current-comparison-20261008.json": "69ac3a94216bbc46a7b23f5b17c8811113f2e924373445a9f0ef06d5bf0dfc57",
+                  "research/runtime/native-world-producer-handoff.md": "3761778aed97ce240e6312a2866da84ed1b189a5c2f2d8fc5a3c15cc95651f59",
+                  "runtime/scene/canvas_producers.S": "d565108a43b56c46cccb5c0e55c9d001b7514e5bb16391312482b5fb6668fa4c",
+                  "runtime/scene/canvas_producers.c": "7c320b307325418c66f598dee710e192f54e5c67ba926816c79b46c5b8a81fa3",
+                  "runtime/scene/world_producer_bypass.c": "0fa8a6914e726ca8ff0f55708f6ae5da0a525b494f597bdfe0cf063d5c53dad7",
+                  "tests/canvas-producers-test.c": "c996e80343a2dd0a7d8f98420f1e20ce675ef782b125ed4166a1fc40dd49facc",
+                  "tests/canvas-world-test.cpp": "506b91fb9f253575d2f64ef22bf39cc05723904985d2d3c1926be444a6bd4b10",
+                  "tests/rendering-tranche2-native.cpp": "4db1837bd885fd21233569be4cf1be3e512ebeec6c1abb394ee7678dd17eeed0",
+                  "tests/rendering-tranche2-reference.cpp": "6dd615b5b3898b4ee26a2d5cce34b9a5a9e85ec32f3d7e2941958c552385031a",
+                  "tests/world-producer-bypass-call.S": "a853b13197f69c7beb864b725a9b4aaade4138fc9d4968a34c789638c8cc3640",
+                  "tests/world-producer-reference.cpp": "875a0e64cc4b57fcba14628640e12da41a33da6b9856e2a9527360e12a4a609b",
+                  "tools/test-rendering-tranche2-reference.py": "dd5a574ea6a115878dcd6b3418584466891659500839e0d2326b5076a9693b8d",
+                  "tools/test-world-producer-handoff.py": "6c5b1f3f35f0dc2c9f26aac2a41f7d1fee666b7803b263af11a2f9f4836e96df",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                  "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd",
+                  "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+                  "apps/qt-shell/gl_viewport.hpp": "b409c26c5ad2cdd7dc06c795d21c28dea0e27c9369d3cc186b2c118e50b1fc83",
+                  "assets/sprite_loader.hpp": "1c70e4341a23520e55c775e71778d8077d501723a7366ba45b12c0bbd2434203",
+                  "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+                  "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+                  "compat/legacy/world_resources.cpp": "c4a18fcefe9107ee7bd2284d5982891b1f4e634010939701ec31c91213b24b41",
+                  "renderer/scenes/scene_renderer.cpp": "27e988cda4bf64a266074bf3a95f547be90447edaab26f3273a229398e393c3c",
+                  "compat/legacy/canvas-producers/CMakeLists.txt": "723992afb3fcc262917d62233653371568fdd0c517622c8a5fcffe53975cac1c",
+                  "apps/qt-shell/gl_viewport.cpp": "314a47444db2de872ed4965f385a71a1530ff90f69d84810aa6dea68baa6092e",
+                  "renderer/canvas_sequence.cpp": "6cd633c3e7e09c126234f2f17cd1efb69fc570c8249b8406789a1f63563438e0",
+                  "runtime/scene/word_route.c": "d0a3ebcaf73d2df6451162dbf7e1aa224612953b4b40514c66cd4ed01acccf55",
+                  "compat/legacy/canvas_world.cpp": "3f0542abe6cb66e370169de10e8eadb7ce450d5743188f64422cadadee510049",
+                  "compat/legacy/canvas_world.hpp": "635aa4f963168c3173271542adacfd1be3128bca38d65ff7a1c72156e44fad50",
+                  "renderer/bitmap_dc.hpp": "c8fadb0fc0f4217960e08f067283b504a8dc918ef425de160df262798876fe29",
+                  "assets/resources/resource_manager.cpp": "da3e4232085f27daa534a445db4e5e27cdb5b36fa590dea7059d8912c187bc9e",
+                  "compat/legacy/canvas_producers.cpp": "78fa96df9e164d486ec05f6f3b7c33096192ffd6c9df8199b00acad5da0ebf97",
+                  "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+                  "tools/capture-scene-game.py": "7fd49113b1761a7706faf82be2d8115079f10bfef3b1bad3822d5bdf6540d21e",
+                  "renderer/command_consumer.cpp": "921f6cde6e3661e3cb27e788e3798e885ff4772c1a1935bf513ef19b81816dcf",
+                  "compat/legacy/canvas_producers.hpp": "65b951709656b238da54a0bb4f70f1015faac26ffeaf91e3b9312a329c7f98de",
+                  "apps/qt-shell/canvas_producer_session.hpp": "03ab24e3e49dc0aeeda88eb206a0d58984b0f974ced791bdc538c10f9d09a728",
+                  "renderer/scenes/scene_renderer.hpp": "77d78b56e78e25fae1c79f0a8f2919359560e8b674e260446942bcbc45f62fcd",
+                  "renderer/blit.cpp": "9cc4a156e7b4d43c55aa4357f0ffd39b3f98804b4993d3523607c2c4e1c2632c",
+                  "renderer/scenes/CMakeLists.txt": "e4c4f385d0ce952162c671086dab1aa45ab9096c375fdc3fdd2305fccdae9394",
+                  "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+                  "renderer/surface_backend.cpp": "c5cb22ea00315d78d2bcb8b4c6a252f34b32fab087f045187816a954d6113bff",
+                  "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+                  "runtime/scene/world_stream_selftest.c": "2828bc32ae8e1ff3a3675fd11d863d8d73729d07e12f48dc1b173c8b57d6ef29",
+                  "protocols/include/mnm/render_stream_v3.h": "5dcb2dcb44b2ab94c8800babe8cbddeec66fccf18ab2dcc9c7153d57d63bb152",
+                  "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+                  "tests/world-frame-reference.cpp": "8d65d919d9239b864d71c9738c9998d8c60020047622c8956ca602acee2edd3c",
+                  "tools/prepare-scene-observer.py": "81bd4e6c11e68c662aa9cadf4506d12a61661e39fa226e3b790e3568eb5e957e",
+                  "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+                  "renderer/sprites/sprite.cpp": "7fce79798a163cfdbb50e28c460d13400e6f815cb794abc80dc69194698c275f",
+                  "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+                  "assets/sprite_run_clipping.hpp": "2dcba42f3da7e567ee69c2750902b7ea26e2529954a477351e85c2f6d8007e53",
+                  "tests/scene-renderer-test.cpp": "a4441be3137cf5324a21a55317cce7e69d8787502cf8f591bdc930ac6e377e7e",
+                  "renderer/blit.hpp": "3d657b922652328eab32631e8d884e531b45e5ee2ff2664b12383fc3523306bf",
+                  "tools/scene-game-runner.py": "d62c2bb8e9dbff679cce4f604b8ab18c053af882764244da0412646677f5d679",
+                  "tools/test-canvas-producers.py": "417adb9b1dc1cba65a0a4f4f7284b956af94eb6d1aefda2fcb43c00e6bf34cab",
+                  "reconstruction/rendering/palette_shading.hpp": "bc7e54a5bf7881feb73d6dcfe5364cde7eb31fe5bf4d197b60c98dffde258866",
+                  "runtime/scene/world_trace.c": "33b0f35a6bb9fdb4f0c013dde4c09fee3a7b8d0ad5a12b8514d7771916877d6a",
+                  "renderer/CMakeLists.txt": "4f41abd710c508c1de9e77290f3859f3f5cf3f4486ce8d6b064debaafe6b3979",
+                  "runtime/scene/world_entry.S": "48ce2eeaaa4ec8446e7b8804aefb0fa561a8f872a00f41e1e8b32c7500256cf1",
+                  "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+                  "renderer/pixel_rows.hpp": "858459228fd19d19640a3d2fcefc0347952bdb07e6ccbdb0af3f3dce1637df88",
+                  "apps/qt-shell/canvas_producer_main.cpp": "cc939c512c05bb5651bc8fa2030ac7cdd07ccd0b016d622e427e53a49ddb8960",
+                  "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+                  "protocols/include/mnm/world_producer_bypass_v1.h": "62f85f8ed92092185692fdb066bfec489d2bd1493ad2fea72af44002b9974424",
+                  "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+                  "tests/canvas-sequence-test.cpp": "9c0900dcc6ffd6cd6c00cf6bb4aa724dac8d548dcfa94066e890427cbd069790",
+                  "renderer/resources/sprite_atlas.cpp": "1a5d3f933c39d529fb60993863bfb309e03c4249d3ca620de69d45c3033b0c7c",
+                  "renderer/scenes/scene_history.cpp": "f065d6ff91f8c2a00aac820a31a7b5d3533c259e6f16c8bcb9641b25228f1d15",
+                  "protocols/include/mnm/world_channel_v2.h": "7950078b61ef26403a9661981c5dd4ae9553bc582c232c8782f0f1b7ce1504f4",
+                  "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+                  "tools/inspect-startup-queues.py": "ced5f5e97970dbc00e7328589ee46f90035a896a754dcc62822316d4bd63c52f",
+                  "renderer/resources/sprite_atlas.hpp": "9a404ed6d109da25e423016d30ff6d246361ae3387b21db2c0c210c8ddb4f7e8",
+                  "assets/sprite_frame_decoder.hpp": "55ff6be0e30d13672c8fc2fab5c2328582fc3eb0ffdf4456d3b2c6ab1a0ec6ab",
+                  "compat/legacy/world_frame.hpp": "eb75708d5fd37d26fe3b6b504d6bc2e0f83ad16dcbf3fc6b1517d289518b1c9f",
+                  "renderer/canvas_sequence.hpp": "d29ef07ace020366ab172e2f57e44ba4981d62e200d5a5c5b1443ab1ef0aea06",
+                  "renderer/commands.cpp": "f7c6caef1334893dac1b3a4f2997fe742a63713bf36deb2295cf23ee7c756769",
+                  "tests/rendering-wave-fixture.hpp": "6710667e85c2fde21ad20df7b1ce8db00a9a9d090199f0cacf57d7bb80591859",
+                  "compat/legacy/scene_snapshot.hpp": "01c2118e748b3b630337c5b1bff9071acd4fb5e6f16623dbb6dc5d607ff221b2",
+                  "renderer/scenes/scene_history.hpp": "c6396e01daa3a614c578fcb6609ec64a1cdac57cbd5c460d488352115b892803",
+                  "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+                  "assets/jpeg.cpp": "0a3772e79bcace89a84aa060b3f95637f05171e7bd8c85ed77efcc0c9955d28e",
+                  "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+                  "tools/world_channel.py": "7a29c9710c7552a399b9ae6424505402f605785adb5dc53aae2d595a1d064db0",
+                  "assets/bmp.hpp": "a109cb3177826c54deba46b5952581ebbe9936a5feab49e0e958bee9f2fbc0d5",
+                  "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+                  "renderer/known_pixels.hpp": "ac863730923ac588136d4226d99a05e635c76aad98d0d588773180e80329fbf0",
+                  "compat/legacy/world_resources.hpp": "783f275df0ab7837808f04019d46f6f8ca1611d50956db8b821bf968732c8c45",
+                  "assets/pcx.hpp": "f823529c1bfd7f3b4359289f8cd6880e485c318acf711d5371cb84d8392348c2",
+                  "runtime/scene/source_pending_policy.h": "7d609ec54a558ac0b189813498bb5a472f266ae2009683fa5c877383883185f9",
+                  "assets/resources/resource_manager.hpp": "09b8bcf8b65064c88c07cd1da3267b81bac963ab9dc165ecbf0fe09c4f58a4bb",
+                  "runtime/scene/word_entry.S": "23d72e078069edba6c1beed0dee47b1f3c8c1faf395bf6f36c9c06b92b450beb",
+                  "assets/terrain_catalog.hpp": "a1b91474346fd9a780fe34282684e63f826707147e628099ae4bb24b6ff50478",
+                  "tools/inspect-canvas-producers.py": "58ccca26889da4fbf067eb0e95b4afddcd7ca0919a54263bcf4ebb3b90f2e231",
+                  "assets/resources/CMakeLists.txt": "b30bada87cdd7804bb490d204d6b35f75b0b9445a1a04ffee4eb02c32bdd3ee9",
+                  "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+                  "runtime/scene/world_kinds.h": "dad1ab93f175db036c7b53fb3ee8f4f65259d016ae2ba3627a133e2685f87e4b",
+                  "renderer/sprites/sprite.hpp": "1ca2c4cc8e9c456f5ef111035724bdf34c931701fef07b270f5164348e8d55c2",
+                  "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+                  "assets/terrain_catalog.cpp": "46f520fbada169bc3044b121e0a8838825214cff91730fa0046e5231d53f3b26",
+                  "runtime/scene/world_stream.c": "0f55cc0856779977a4b4c9a7795e4b5622fa6c16f00db06cc631fd0e12a48a60",
+                  "protocols/include/mnm/world_frame_v1.h": "b9b2f78c8e5b513232f803d2a0ec6643626974a8909db18611e87262a22f83b5",
+                  "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+                  "compat/legacy/scene_snapshot.cpp": "b5611c499a9a8500d381e8368c0fb2030a03499e3a3bb997ae0f612c76a770d3",
+                  "tests/resource-fixtures.hpp": "80cfb1ed1b880c352c485e0188d97a6c95fed643ca11f35046f32ca0d3ea4b44",
+                  "assets/jpeg.hpp": "e2a16ca4030480c7832c0f1b80be5d9d48134d49d65871c37ab03e79f23fda9a",
+                  "tools/directplay_dx6_launch.py": "2cc2975990123ace45471bdaef6f87bec10108c08eec499009465c7f85064726",
+                  "renderer/sprites/CMakeLists.txt": "925072708b6db2f7e478b3c7f0f74dd9a5c2b624bc4af02534b53f49c130d7ce",
+                  "assets/pcx.cpp": "776eac976327478959336bc1fa20fdfd1ac04c35a431f0e1fb949ef411defa8b",
+                  "assets/animation.cpp": "0cdd420e8bbd08751f652696a4eadf9fb0eada1b96ec04c83402feee1acf0bda",
+                  "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+                  "assets/sprite_loader.cpp": "5ea21595a1ab95bfcffe72b0b5d42d52e8fd6ce76630c2a7401e186b614034fe",
+                  "renderer/resources/resource_cache.hpp": "3e61d8836fff51ae3c04311958f748c574da4636d9332b6afb929729e8cedff6",
+                  "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+                  "tests/scene-history-test.cpp": "a6dcfcef13a0e008b88431a65141a67b24d0a3e9fb2e5f8f57fdd1c0de39daf2",
+                  "runtime/scene/startup_queue.c": "466d66d8343dbaac7e196129cca7ff0d6a2e8cb60a2c9faed1bb75ee7c96d6a5",
+                  "reconstruction/rendering/startup_canvas.hpp": "72ba6e386287ce5d640fa4a21bca8767d94375120f8b2385210268d8140f4b61",
+                  "assets/bmp.cpp": "2905db6469699156e4113816a9563a02f2f6071ecf3ce428bd19a535daf21151",
+                  "renderer/command_state.hpp": "b6fe10d3c6d1ffa17f05a4c37828a1a6d926d1b275f1e070ba0895678d45e515",
+                  "renderer/surface_access.hpp": "95166e8226849e7302dffa9762b737ed5dd1381ffc8b392283763b1fc77854ad",
+                  "renderer/canvas_mirror.hpp": "e86cd9082f8a6fdbba477246b2bab9cefccef0b2222dd089ab369c94a53b1719",
+                  "tools/native_prefix_template.py": "3b7ba11aaf24b04c3033d4c4c9442b855d25356ebb80993dad258aabf0386de7",
+                  "renderer/resources/resource_cache.cpp": "8ad7edd786c7fe6d3a0a64bc2c2e2d1ce0563f631256235e9b23ff7df4469d1b",
+                  "renderer/commands.hpp": "aab8b05f193a9e7da476ad7434185e53c7f2579345ffd5edbb9101a18d1b4fc4",
+                  "assets/CMakeLists.txt": "016a994da779a1fa5d49194e1cbe34c239a41514434da122f1a8629181ede465",
+                  "runtime/scene/observer.c": "5093ce5713cd437336b197d55a56045a38be4b8d315e80941aa8679f7e387dd8",
+                  "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+                  "reconstruction/rendering/palette_shading.cpp": "080dd815379d60096694f0e5d90379244a5b98dbfe292712627ff9562da378ad",
+                  "compat/legacy/world_frame.cpp": "92455bba8ee9ef67143abdb8ea019cf8543f17c875f820d04015762de9a5f7e1",
+                  "protocols/include/mnm/canvas_producers_v1.h": "5a644332be8e73853cda426477835aed3e330d68acdb88f1ad3004e8a00da52c",
+                  "tools/build-scene-observer.py": "4bf5a72a89e67328ad56f8a7e7727175800eb2e7afa79ee370ccada0ca1fbcc6",
+                  "renderer/pixel_rows.cpp": "ffa72fac123001700e435112c7b09f39fc90ca4cb3308b1e4e4e31ef93027bfd",
+                  "renderer/surface_backend.hpp": "f7b269b079dfb94b20fce31986a7464c403bec298c98756bb675369956992425",
+                  "assets/animation_decode.cpp": "76523a27832349dda6daf9988bc42b348611b657af710a2f3e65b7a2912e947d",
+                  "renderer/resources/CMakeLists.txt": "2406af37eab58c53d7526ebd38d88b34e449bc71b234a2fe5f15822a6bdd67b2",
+                  "research/runtime/critical-scope-reconciliation-20261020.md": "8820eb9e2df8bfe5a8895855d5034d29afc7bf7234d74a136d86d808541449bd",
+                  "research/runtime/coverage/critical-scope-resolutions-20261020.json": "bd237ac4a29e61f51386472755cada676ee9d5269d8b78e8186e13a4d93a9fee",
+                  "research/runtime/coverage/critical-scope-final-resolutions-20261020.json": "aa9ae4e7fd8ff3117db7057967357b6be65f2edc14e8b287b8092d6d4692c3d4"
+                },
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+                "review_history": [
+                  {
+                    "id": "before-critical-scope9-20261020",
+                    "source_sha256": {
+                      "apps/qt-shell/canvas_producer_session.cpp": "cf619b37d19fb728571c4c943d88ce3e59e8a45cdc49224f3e3580b80248c6c5",
+                      "reconstruction/rendering/generic_producer_caller.h": "2950064a71f055e985d93ee99c19e99636d32ee632d1eda0a9bc736bbea2d1a8",
+                      "research/runtime/native-world-producer-handoff-forwarding-20261008.json": "cba172131286004f208fb1701e8c34e8d4cae2b967e142fbfea0c92bdcd19a71",
+                      "research/runtime/native-world-producer-handoff-gpu-current-bypass-20261008.json": "63474b8560ad609b3502bad595d86149d746358efbb85a3361cfd299abdf1548",
+                      "research/runtime/native-world-producer-handoff-gpu-current-comparison-20261008.json": "69ac3a94216bbc46a7b23f5b17c8811113f2e924373445a9f0ef06d5bf0dfc57",
+                      "research/runtime/native-world-producer-handoff.md": "24cf2aeba231e243920491cb061e782f3eda16740310fb290b6f7eaa1f92fafc",
+                      "runtime/scene/canvas_producers.S": "d565108a43b56c46cccb5c0e55c9d001b7514e5bb16391312482b5fb6668fa4c",
+                      "runtime/scene/canvas_producers.c": "7c320b307325418c66f598dee710e192f54e5c67ba926816c79b46c5b8a81fa3",
+                      "runtime/scene/world_producer_bypass.c": "0fa8a6914e726ca8ff0f55708f6ae5da0a525b494f597bdfe0cf063d5c53dad7",
+                      "tests/canvas-producers-test.c": "c996e80343a2dd0a7d8f98420f1e20ce675ef782b125ed4166a1fc40dd49facc",
+                      "tests/canvas-world-test.cpp": "506b91fb9f253575d2f64ef22bf39cc05723904985d2d3c1926be444a6bd4b10",
+                      "tests/rendering-tranche2-native.cpp": "b398805a66b346b7e8eff27948b29a5b662e99cd2e246c4b042fe26c3086a8e0",
+                      "tests/rendering-tranche2-reference.cpp": "347ffc11c4cb1b958bdce9bad3194a72689087ff0a83565bd6fea3ee964c3e47",
+                      "tests/world-producer-bypass-call.S": "a853b13197f69c7beb864b725a9b4aaade4138fc9d4968a34c789638c8cc3640",
+                      "tests/world-producer-reference.cpp": "875a0e64cc4b57fcba14628640e12da41a33da6b9856e2a9527360e12a4a609b",
+                      "tools/test-rendering-tranche2-reference.py": "5453718c4d211714f58efbf923b18651bbeb2a2d25ec0d84fc2287f02d8c927a",
+                      "tools/test-world-producer-handoff.py": "ad2f6d7d46d6cc9dff91e08ec382ee71ef8cd23c219a6339bf093f670f3236d8",
+                      "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                      "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
+                    },
+                    "current_state": "Current finite count1 replacement of59521a matches original prefix/exact body and480,000 words; all1061 checkpoints and16 original World completions match. Separate pinned 275-World normal ownership journey and same-source isolation/input controls pass; engine/harness fingerprints match. Single59521a body only. No live5947b2, complete/default/native-only/restart or arbitrary scheduling acceptance. Earlier failures remain retained.",
+                    "validation_summary": "Current finite count1 replacement of59521a matches original prefix/exact body and480,000 words; all1061 checkpoints and16 original World completions match. Separate pinned 275-World normal ownership journey and same-source isolation/input controls pass; engine/harness fingerprints match. See the tranche-2 execution report for exact immutable source/input pins and explicit historical drift.",
+                    "next_steps": [
+                      {
+                        "kind": "scope_review",
+                        "action": "Single59521a body only. No live5947b2, complete/default/native-only/restart or arbitrary scheduling acceptance. Earlier failures remain retained."
+                      }
+                    ]
+                  },
+                  {
+                    "id": "before-critical-scope9-final-20261020",
+                    "source_sha256": {
+                      "apps/qt-shell/canvas_producer_session.cpp": "cf619b37d19fb728571c4c943d88ce3e59e8a45cdc49224f3e3580b80248c6c5",
+                      "reconstruction/rendering/generic_producer_caller.h": "2950064a71f055e985d93ee99c19e99636d32ee632d1eda0a9bc736bbea2d1a8",
+                      "research/runtime/native-world-producer-handoff-forwarding-20261008.json": "cba172131286004f208fb1701e8c34e8d4cae2b967e142fbfea0c92bdcd19a71",
+                      "research/runtime/native-world-producer-handoff-gpu-current-bypass-20261008.json": "63474b8560ad609b3502bad595d86149d746358efbb85a3361cfd299abdf1548",
+                      "research/runtime/native-world-producer-handoff-gpu-current-comparison-20261008.json": "69ac3a94216bbc46a7b23f5b17c8811113f2e924373445a9f0ef06d5bf0dfc57",
+                      "research/runtime/native-world-producer-handoff.md": "3761778aed97ce240e6312a2866da84ed1b189a5c2f2d8fc5a3c15cc95651f59",
+                      "runtime/scene/canvas_producers.S": "d565108a43b56c46cccb5c0e55c9d001b7514e5bb16391312482b5fb6668fa4c",
+                      "runtime/scene/canvas_producers.c": "7c320b307325418c66f598dee710e192f54e5c67ba926816c79b46c5b8a81fa3",
+                      "runtime/scene/world_producer_bypass.c": "0fa8a6914e726ca8ff0f55708f6ae5da0a525b494f597bdfe0cf063d5c53dad7",
+                      "tests/canvas-producers-test.c": "c996e80343a2dd0a7d8f98420f1e20ce675ef782b125ed4166a1fc40dd49facc",
+                      "tests/canvas-world-test.cpp": "506b91fb9f253575d2f64ef22bf39cc05723904985d2d3c1926be444a6bd4b10",
+                      "tests/rendering-tranche2-native.cpp": "4db1837bd885fd21233569be4cf1be3e512ebeec6c1abb394ee7678dd17eeed0",
+                      "tests/rendering-tranche2-reference.cpp": "6dd615b5b3898b4ee26a2d5cce34b9a5a9e85ec32f3d7e2941958c552385031a",
+                      "tests/world-producer-bypass-call.S": "a853b13197f69c7beb864b725a9b4aaade4138fc9d4968a34c789638c8cc3640",
+                      "tests/world-producer-reference.cpp": "875a0e64cc4b57fcba14628640e12da41a33da6b9856e2a9527360e12a4a609b",
+                      "tools/test-rendering-tranche2-reference.py": "dd5a574ea6a115878dcd6b3418584466891659500839e0d2326b5076a9693b8d",
+                      "tools/test-world-producer-handoff.py": "6c5b1f3f35f0dc2c9f26aac2a41f7d1fee666b7803b263af11a2f9f4836e96df",
+                      "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                      "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd",
+                      "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+                      "apps/qt-shell/gl_viewport.hpp": "b409c26c5ad2cdd7dc06c795d21c28dea0e27c9369d3cc186b2c118e50b1fc83",
+                      "assets/sprite_loader.hpp": "1c70e4341a23520e55c775e71778d8077d501723a7366ba45b12c0bbd2434203",
+                      "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+                      "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+                      "compat/legacy/world_resources.cpp": "c4a18fcefe9107ee7bd2284d5982891b1f4e634010939701ec31c91213b24b41",
+                      "renderer/scenes/scene_renderer.cpp": "27e988cda4bf64a266074bf3a95f547be90447edaab26f3273a229398e393c3c",
+                      "compat/legacy/canvas-producers/CMakeLists.txt": "723992afb3fcc262917d62233653371568fdd0c517622c8a5fcffe53975cac1c",
+                      "apps/qt-shell/gl_viewport.cpp": "314a47444db2de872ed4965f385a71a1530ff90f69d84810aa6dea68baa6092e",
+                      "renderer/canvas_sequence.cpp": "6cd633c3e7e09c126234f2f17cd1efb69fc570c8249b8406789a1f63563438e0",
+                      "runtime/scene/word_route.c": "d0a3ebcaf73d2df6451162dbf7e1aa224612953b4b40514c66cd4ed01acccf55",
+                      "compat/legacy/canvas_world.cpp": "3f0542abe6cb66e370169de10e8eadb7ce450d5743188f64422cadadee510049",
+                      "compat/legacy/canvas_world.hpp": "635aa4f963168c3173271542adacfd1be3128bca38d65ff7a1c72156e44fad50",
+                      "renderer/bitmap_dc.hpp": "c8fadb0fc0f4217960e08f067283b504a8dc918ef425de160df262798876fe29",
+                      "assets/resources/resource_manager.cpp": "da3e4232085f27daa534a445db4e5e27cdb5b36fa590dea7059d8912c187bc9e",
+                      "compat/legacy/canvas_producers.cpp": "78fa96df9e164d486ec05f6f3b7c33096192ffd6c9df8199b00acad5da0ebf97",
+                      "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+                      "tools/capture-scene-game.py": "7fd49113b1761a7706faf82be2d8115079f10bfef3b1bad3822d5bdf6540d21e",
+                      "renderer/command_consumer.cpp": "921f6cde6e3661e3cb27e788e3798e885ff4772c1a1935bf513ef19b81816dcf",
+                      "compat/legacy/canvas_producers.hpp": "65b951709656b238da54a0bb4f70f1015faac26ffeaf91e3b9312a329c7f98de",
+                      "apps/qt-shell/canvas_producer_session.hpp": "03ab24e3e49dc0aeeda88eb206a0d58984b0f974ced791bdc538c10f9d09a728",
+                      "renderer/scenes/scene_renderer.hpp": "77d78b56e78e25fae1c79f0a8f2919359560e8b674e260446942bcbc45f62fcd",
+                      "renderer/blit.cpp": "9cc4a156e7b4d43c55aa4357f0ffd39b3f98804b4993d3523607c2c4e1c2632c",
+                      "renderer/scenes/CMakeLists.txt": "e4c4f385d0ce952162c671086dab1aa45ab9096c375fdc3fdd2305fccdae9394",
+                      "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+                      "renderer/surface_backend.cpp": "c5cb22ea00315d78d2bcb8b4c6a252f34b32fab087f045187816a954d6113bff",
+                      "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+                      "runtime/scene/world_stream_selftest.c": "2828bc32ae8e1ff3a3675fd11d863d8d73729d07e12f48dc1b173c8b57d6ef29",
+                      "protocols/include/mnm/render_stream_v3.h": "5dcb2dcb44b2ab94c8800babe8cbddeec66fccf18ab2dcc9c7153d57d63bb152",
+                      "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+                      "tests/world-frame-reference.cpp": "8d65d919d9239b864d71c9738c9998d8c60020047622c8956ca602acee2edd3c",
+                      "tools/prepare-scene-observer.py": "81bd4e6c11e68c662aa9cadf4506d12a61661e39fa226e3b790e3568eb5e957e",
+                      "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+                      "renderer/sprites/sprite.cpp": "7fce79798a163cfdbb50e28c460d13400e6f815cb794abc80dc69194698c275f",
+                      "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+                      "assets/sprite_run_clipping.hpp": "2dcba42f3da7e567ee69c2750902b7ea26e2529954a477351e85c2f6d8007e53",
+                      "tests/scene-renderer-test.cpp": "a4441be3137cf5324a21a55317cce7e69d8787502cf8f591bdc930ac6e377e7e",
+                      "renderer/blit.hpp": "3d657b922652328eab32631e8d884e531b45e5ee2ff2664b12383fc3523306bf",
+                      "tools/scene-game-runner.py": "d62c2bb8e9dbff679cce4f604b8ab18c053af882764244da0412646677f5d679",
+                      "tools/test-canvas-producers.py": "417adb9b1dc1cba65a0a4f4f7284b956af94eb6d1aefda2fcb43c00e6bf34cab",
+                      "reconstruction/rendering/palette_shading.hpp": "bc7e54a5bf7881feb73d6dcfe5364cde7eb31fe5bf4d197b60c98dffde258866",
+                      "runtime/scene/world_trace.c": "33b0f35a6bb9fdb4f0c013dde4c09fee3a7b8d0ad5a12b8514d7771916877d6a",
+                      "renderer/CMakeLists.txt": "4f41abd710c508c1de9e77290f3859f3f5cf3f4486ce8d6b064debaafe6b3979",
+                      "runtime/scene/world_entry.S": "48ce2eeaaa4ec8446e7b8804aefb0fa561a8f872a00f41e1e8b32c7500256cf1",
+                      "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+                      "renderer/pixel_rows.hpp": "858459228fd19d19640a3d2fcefc0347952bdb07e6ccbdb0af3f3dce1637df88",
+                      "apps/qt-shell/canvas_producer_main.cpp": "cc939c512c05bb5651bc8fa2030ac7cdd07ccd0b016d622e427e53a49ddb8960",
+                      "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+                      "protocols/include/mnm/world_producer_bypass_v1.h": "62f85f8ed92092185692fdb066bfec489d2bd1493ad2fea72af44002b9974424",
+                      "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+                      "tests/canvas-sequence-test.cpp": "9c0900dcc6ffd6cd6c00cf6bb4aa724dac8d548dcfa94066e890427cbd069790",
+                      "renderer/resources/sprite_atlas.cpp": "1a5d3f933c39d529fb60993863bfb309e03c4249d3ca620de69d45c3033b0c7c",
+                      "renderer/scenes/scene_history.cpp": "f065d6ff91f8c2a00aac820a31a7b5d3533c259e6f16c8bcb9641b25228f1d15",
+                      "protocols/include/mnm/world_channel_v2.h": "7950078b61ef26403a9661981c5dd4ae9553bc582c232c8782f0f1b7ce1504f4",
+                      "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+                      "tools/inspect-startup-queues.py": "ced5f5e97970dbc00e7328589ee46f90035a896a754dcc62822316d4bd63c52f",
+                      "renderer/resources/sprite_atlas.hpp": "9a404ed6d109da25e423016d30ff6d246361ae3387b21db2c0c210c8ddb4f7e8",
+                      "assets/sprite_frame_decoder.hpp": "55ff6be0e30d13672c8fc2fab5c2328582fc3eb0ffdf4456d3b2c6ab1a0ec6ab",
+                      "compat/legacy/world_frame.hpp": "eb75708d5fd37d26fe3b6b504d6bc2e0f83ad16dcbf3fc6b1517d289518b1c9f",
+                      "renderer/canvas_sequence.hpp": "d29ef07ace020366ab172e2f57e44ba4981d62e200d5a5c5b1443ab1ef0aea06",
+                      "renderer/commands.cpp": "f7c6caef1334893dac1b3a4f2997fe742a63713bf36deb2295cf23ee7c756769",
+                      "tests/rendering-wave-fixture.hpp": "6710667e85c2fde21ad20df7b1ce8db00a9a9d090199f0cacf57d7bb80591859",
+                      "compat/legacy/scene_snapshot.hpp": "01c2118e748b3b630337c5b1bff9071acd4fb5e6f16623dbb6dc5d607ff221b2",
+                      "renderer/scenes/scene_history.hpp": "c6396e01daa3a614c578fcb6609ec64a1cdac57cbd5c460d488352115b892803",
+                      "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+                      "assets/jpeg.cpp": "0a3772e79bcace89a84aa060b3f95637f05171e7bd8c85ed77efcc0c9955d28e",
+                      "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+                      "tools/world_channel.py": "7a29c9710c7552a399b9ae6424505402f605785adb5dc53aae2d595a1d064db0",
+                      "assets/bmp.hpp": "a109cb3177826c54deba46b5952581ebbe9936a5feab49e0e958bee9f2fbc0d5",
+                      "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+                      "renderer/known_pixels.hpp": "ac863730923ac588136d4226d99a05e635c76aad98d0d588773180e80329fbf0",
+                      "compat/legacy/world_resources.hpp": "783f275df0ab7837808f04019d46f6f8ca1611d50956db8b821bf968732c8c45",
+                      "assets/pcx.hpp": "f823529c1bfd7f3b4359289f8cd6880e485c318acf711d5371cb84d8392348c2",
+                      "runtime/scene/source_pending_policy.h": "7d609ec54a558ac0b189813498bb5a472f266ae2009683fa5c877383883185f9",
+                      "assets/resources/resource_manager.hpp": "09b8bcf8b65064c88c07cd1da3267b81bac963ab9dc165ecbf0fe09c4f58a4bb",
+                      "runtime/scene/word_entry.S": "23d72e078069edba6c1beed0dee47b1f3c8c1faf395bf6f36c9c06b92b450beb",
+                      "assets/terrain_catalog.hpp": "a1b91474346fd9a780fe34282684e63f826707147e628099ae4bb24b6ff50478",
+                      "tools/inspect-canvas-producers.py": "58ccca26889da4fbf067eb0e95b4afddcd7ca0919a54263bcf4ebb3b90f2e231",
+                      "assets/resources/CMakeLists.txt": "b30bada87cdd7804bb490d204d6b35f75b0b9445a1a04ffee4eb02c32bdd3ee9",
+                      "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+                      "runtime/scene/world_kinds.h": "dad1ab93f175db036c7b53fb3ee8f4f65259d016ae2ba3627a133e2685f87e4b",
+                      "renderer/sprites/sprite.hpp": "1ca2c4cc8e9c456f5ef111035724bdf34c931701fef07b270f5164348e8d55c2",
+                      "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+                      "assets/terrain_catalog.cpp": "46f520fbada169bc3044b121e0a8838825214cff91730fa0046e5231d53f3b26",
+                      "runtime/scene/world_stream.c": "0f55cc0856779977a4b4c9a7795e4b5622fa6c16f00db06cc631fd0e12a48a60",
+                      "protocols/include/mnm/world_frame_v1.h": "b9b2f78c8e5b513232f803d2a0ec6643626974a8909db18611e87262a22f83b5",
+                      "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+                      "compat/legacy/scene_snapshot.cpp": "b5611c499a9a8500d381e8368c0fb2030a03499e3a3bb997ae0f612c76a770d3",
+                      "tests/resource-fixtures.hpp": "80cfb1ed1b880c352c485e0188d97a6c95fed643ca11f35046f32ca0d3ea4b44",
+                      "assets/jpeg.hpp": "e2a16ca4030480c7832c0f1b80be5d9d48134d49d65871c37ab03e79f23fda9a",
+                      "tools/directplay_dx6_launch.py": "2cc2975990123ace45471bdaef6f87bec10108c08eec499009465c7f85064726",
+                      "renderer/sprites/CMakeLists.txt": "925072708b6db2f7e478b3c7f0f74dd9a5c2b624bc4af02534b53f49c130d7ce",
+                      "assets/pcx.cpp": "776eac976327478959336bc1fa20fdfd1ac04c35a431f0e1fb949ef411defa8b",
+                      "assets/animation.cpp": "0cdd420e8bbd08751f652696a4eadf9fb0eada1b96ec04c83402feee1acf0bda",
+                      "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+                      "assets/sprite_loader.cpp": "5ea21595a1ab95bfcffe72b0b5d42d52e8fd6ce76630c2a7401e186b614034fe",
+                      "renderer/resources/resource_cache.hpp": "3e61d8836fff51ae3c04311958f748c574da4636d9332b6afb929729e8cedff6",
+                      "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+                      "tests/scene-history-test.cpp": "a6dcfcef13a0e008b88431a65141a67b24d0a3e9fb2e5f8f57fdd1c0de39daf2",
+                      "runtime/scene/startup_queue.c": "466d66d8343dbaac7e196129cca7ff0d6a2e8cb60a2c9faed1bb75ee7c96d6a5",
+                      "reconstruction/rendering/startup_canvas.hpp": "72ba6e386287ce5d640fa4a21bca8767d94375120f8b2385210268d8140f4b61",
+                      "assets/bmp.cpp": "2905db6469699156e4113816a9563a02f2f6071ecf3ce428bd19a535daf21151",
+                      "renderer/command_state.hpp": "b6fe10d3c6d1ffa17f05a4c37828a1a6d926d1b275f1e070ba0895678d45e515",
+                      "renderer/surface_access.hpp": "95166e8226849e7302dffa9762b737ed5dd1381ffc8b392283763b1fc77854ad",
+                      "renderer/canvas_mirror.hpp": "e86cd9082f8a6fdbba477246b2bab9cefccef0b2222dd089ab369c94a53b1719",
+                      "tools/native_prefix_template.py": "3b7ba11aaf24b04c3033d4c4c9442b855d25356ebb80993dad258aabf0386de7",
+                      "renderer/resources/resource_cache.cpp": "8ad7edd786c7fe6d3a0a64bc2c2e2d1ce0563f631256235e9b23ff7df4469d1b",
+                      "renderer/commands.hpp": "aab8b05f193a9e7da476ad7434185e53c7f2579345ffd5edbb9101a18d1b4fc4",
+                      "assets/CMakeLists.txt": "016a994da779a1fa5d49194e1cbe34c239a41514434da122f1a8629181ede465",
+                      "runtime/scene/observer.c": "5093ce5713cd437336b197d55a56045a38be4b8d315e80941aa8679f7e387dd8",
+                      "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+                      "reconstruction/rendering/palette_shading.cpp": "080dd815379d60096694f0e5d90379244a5b98dbfe292712627ff9562da378ad",
+                      "compat/legacy/world_frame.cpp": "92455bba8ee9ef67143abdb8ea019cf8543f17c875f820d04015762de9a5f7e1",
+                      "protocols/include/mnm/canvas_producers_v1.h": "5a644332be8e73853cda426477835aed3e330d68acdb88f1ad3004e8a00da52c",
+                      "tools/build-scene-observer.py": "4bf5a72a89e67328ad56f8a7e7727175800eb2e7afa79ee370ccada0ca1fbcc6",
+                      "renderer/pixel_rows.cpp": "ffa72fac123001700e435112c7b09f39fc90ca4cb3308b1e4e4e31ef93027bfd",
+                      "renderer/surface_backend.hpp": "f7b269b079dfb94b20fce31986a7464c403bec298c98756bb675369956992425",
+                      "assets/animation_decode.cpp": "76523a27832349dda6daf9988bc42b348611b657af710a2f3e65b7a2912e947d",
+                      "renderer/resources/CMakeLists.txt": "2406af37eab58c53d7526ebd38d88b34e449bc71b234a2fe5f15822a6bdd67b2",
+                      "research/runtime/critical-scope-reconciliation-20261020.md": "ac3477269e3db1d8d761c2aec8f8f7bf9ca7dbde9f7fdb3c2cefc750ecc440c3",
+                      "research/runtime/coverage/critical-scope-resolutions-20261020.json": "bd237ac4a29e61f51386472755cada676ee9d5269d8b78e8186e13a4d93a9fee"
+                    },
+                    "current_state": "Retain the exact admitted inside-domain caller/return policy; synthetic ABI and original caller comparisons do not renew live writeback. 36 original caller cases, native caller/signature guards and PE32 compatible forwarding/13raster bypass controls with zero-EAX/ABI preservation.",
+                    "validation_summary": "Fresh bounded scope controls pass at the recorded source/contract/scenario identities. 36 original caller cases, native caller/signature guards and PE32 compatible forwarding/13raster bypass controls with zero-EAX/ABI preservation. Wider original/session claims remain independent.",
+                    "next_steps": [
+                      {
+                        "kind": "validation",
+                        "action": "Renew actual selected original/native writeback and caller-state acceptance; declare live5947b2 and other callers before expanding the admitted domain. Closes when: Every selected live reply matches independent original prefix and exact-body output with caller-state/lease retirement; unsampled scratch/callers and larger launch profiles remain separate."
+                      }
+                    ]
+                  }
+                ],
+                "validation_evidence": [
+                  "CSCOPE9.final-controls-native.20261020",
+                  "CSCOPE9.final-branches-original.20261020",
+                  "CSCOPE9.final-bypass-abi-native.20261020"
+                ],
+                "pending_source_review": []
               }
             ],
             "execution_history": [
@@ -17727,15 +18982,16 @@
             "remaining_at_review": "Zero forwarding in one bounded run does not certify complete routes, pixels or all-game replacement.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "The six-family guard already refuses forwarding and missing/duplicate/unexpected installations before original fallback; strict success preserves caller LastError. Installed routes and exercised routes are counted separately.",
+              "current_state": "The six-family guard already refuses forwarding and missing/duplicate/unexpected installations before original fallback; strict success preserves caller LastError. Installed routes and exercised routes are counted separately. Fifteenth batch supplies current startup/dispatch/native finite-history implementation controls.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Historical eleven-case controls pass. One storage journey exercised 17 of 43 installed routes with zero forwarding; 26 routes were unexercised. A later storage/input timeout is retained independently of guard correctness.",
+              "validation_summary": "Historical eleven-case controls pass. One storage journey exercised 17 of 43 installed routes with zero forwarding; 26 routes were unexercised. A later storage/input timeout is retained independently of guard correctness. Fresh NT15 supplies 79 Python controls, 49 recorded commands and 2828 stable prospective inputs with selected unchanged original caller/uniform fixtures, retained original-source initial-canvas reconstruction, authored PE32 ownership/refusal/publication controls and actual supplied-runtime capability probes. All broader acceptance boundaries and historical source fingerprints remain unchanged.",
               "acceptance": "pending",
               "acceptance_summary": "Pending current-source guard and journey counters. Zero forwarding alone cannot close pixel parity, unknown writer coverage or complete replacement.",
               "evidence": [
                 "NATIVE.completion.forward-fixture-20261017",
-                "NATIVE.completion.native-storage-20261017"
+                "NATIVE.completion.native-storage-20261017",
+                "NT15.native-controls-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -17768,9 +19024,16 @@
                 "tools/pixel_forwarding_guard.py": "671306683f8f35e049d8fad7807a4cf79984a02c8e22d0f9ec61a93e427040eb",
                 "tools/test-native-campaign.py": "2048c225675be06e272e187617ed6320b835c60401fa9a7c7ff0be7754fcdb9b",
                 "tools/test-native-pixel-forward-guard.py": "2cecf172df30a7469cfc071a8dcb017d17dc411cd2cdc517fdd881c730610de9",
-                "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e"
+                "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e",
+                "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md": "63a8464c37c339d91d16fabcbbe1b7bf841a29b5268e7c74d1b75573fd4674af",
+                "tests/rendering-fifteenth-ten/CMakeLists.txt": "f9cffa935d4441fe3f4d495f814b38ae647beb71d100a589f53ebe21e8b7cb15",
+                "tests/test-fixture-prefix-borrow.py": "c8bd6f703deda7539e801cce1d95b50bfef0c5854d51e5516d0d18eb18a2ea9d",
+                "tools/drawing_fixture_prefix.py": "ffcffbeafcef4c6d02ac2c29298ae36281fd3145b28b4ac6e5ff454e86b2baf9",
+                "tools/rendering_fifteenth_controls.py": "5864965bc45c4d1c0d8b9641a79d4ce8a959376537b66fe4da8da98ac0199489",
+                "tools/test-rendering-fifteenth-ten.py": "40a52c44eca46e87ebd459dc8220ea2bcebe2200b6c4e44907f5381a5168b2f9"
               },
-              "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed."
+              "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed.",
+              "review_reason": "Append reviewed current test/build/document links and evidence while preserving the previous work review and every historical source hash."
             },
             "work_review_history": [
               {
@@ -17817,6 +19080,53 @@
                   "tools/test-native-campaign.py": "2048c225675be06e272e187617ed6320b835c60401fa9a7c7ff0be7754fcdb9b",
                   "tools/test-native-pixel-forward-guard.py": "2cecf172df30a7469cfc071a8dcb017d17dc411cd2cdc517fdd881c730610de9"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The six-family guard already refuses forwarding and missing/duplicate/unexpected installations before original fallback; strict success preserves caller LastError. Installed routes and exercised routes are counted separately.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Historical eleven-case controls pass. One storage journey exercised 17 of 43 installed routes with zero forwarding; 26 routes were unexercised. A later storage/input timeout is retained independently of guard correctness.",
+                "acceptance": "pending",
+                "acceptance_summary": "Pending current-source guard and journey counters. Zero forwarding alone cannot close pixel parity, unknown writer coverage or complete replacement.",
+                "evidence": [
+                  "NATIVE.completion.forward-fixture-20261017",
+                  "NATIVE.completion.native-storage-20261017"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Run the installed-family, duplicate/missing/unexpected route, strict forwarding and ordinary-partial compatibility controls."
+                  },
+                  {
+                    "kind": "validation",
+                    "action": "With the admitted journey matrix, record per-route coverage and original-fallback detection, preserving all unexercised routes as explicit validation gaps."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/native-draw/producer_guard.h",
+                    "line": 19,
+                    "text": "static void np_guard_count(u32 family,u32 route,u32 event){"
+                  }
+                ],
+                "source_sha256": {
+                  "protocols/include/mnm/native_pixel_guard_v1.h": "78822695ae487d9ddc30f8f90ee7b64eebd040a209df7db3c08ca693a1b2b54f",
+                  "research/formats/native-pixel-guard-v1.md": "dd518ba4dcd1bf5d09b7b0e51d4617aef9ca65b5756b0333041dc912ed107caf",
+                  "research/runtime/native-completion-forward-fixture-20261017.json": "4e2668fda6ba64e7c8f5e23d3efdae7f3e1f37d3fbcbda7c5050d2cb972a56fc",
+                  "research/runtime/native-completion-native-storage-20261017.json": "b6385b2f1afc7a88633a9f0b68aedaee85daca11c362e24b10e5e099d238d411",
+                  "research/runtime/native-pixel-forwarding-guard.md": "25394d97b28b44482da15a0d30bb617158343d10d320181938d9865782a25ae0",
+                  "research/runtime/native-render-completion-20261017.md": "9b20e0c77a1b6661d07c4d6bff8f5252e46ca6f5ff7870f8cc545014d5f907bc",
+                  "runtime/native-draw/producer_guard.h": "0f6f98c5e1c0f440f4d6cf4c286d9772ac204bf78d30198fbb6d0130d51ce170",
+                  "tests/native-pixel-forward-guard-probe.c": "9861edda374a481a37bd2cf3390d87c195cf30cd6d3a5b61976f8a5db3f9d129",
+                  "tests/test-pixel-forwarding-guard.py": "8e34d49ad5f9b7d46365608402aeb46425378880768373327a38a716f3b96625",
+                  "tools/pixel_forwarding_guard.py": "671306683f8f35e049d8fad7807a4cf79984a02c8e22d0f9ec61a93e427040eb",
+                  "tools/test-native-campaign.py": "2048c225675be06e272e187617ed6320b835c60401fa9a7c7ff0be7754fcdb9b",
+                  "tools/test-native-pixel-forward-guard.py": "2cecf172df30a7469cfc071a8dcb017d17dc411cd2cdc517fdd881c730610de9",
+                  "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e"
+                },
+                "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed."
               }
             ]
           },
@@ -17839,15 +19149,16 @@
             "remaining_at_review": "All publication routes, original failure/Restore/caller-state equivalence and physical identity are not established by the selected observation.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "The selected 0x58bf40 observer and parser implement guarded COM-site result/LastError recording, logical generations, primary readback and loss accounting through final HUD/cursor publication. This is observation tooling, not a native publication replacement.",
+              "current_state": "The selected 0x58bf40 observer and parser implement guarded COM-site result/LastError recording, logical generations, primary readback and loss accounting through final HUD/cursor publication. This is observation tooling, not a native publication replacement. Fifteenth batch supplies current startup/dispatch/native finite-history implementation controls.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Historical original-active one- and sixteen-return acquisitions exist. Synthetic parser failures do not execute original driver failure/Restore paths or prove observer ABI equivalence. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
+              "validation_summary": "Historical original-active one- and sixteen-return acquisitions exist. Synthetic parser failures do not execute original driver failure/Restore paths or prove observer ABI equivalence. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical. Fresh NT15 supplies 79 Python controls, 49 recorded commands and 2828 stable prospective inputs with selected unchanged original caller/uniform fixtures, retained original-source initial-canvas reconstruction, authored PE32 ownership/refusal/publication controls and actual supplied-runtime capability probes. All broader acceptance boundaries and historical source fingerprints remain unchanged.",
               "acceptance": "pending",
               "acceptance_summary": "Pending current-source selected-route observation validation. Broader publication recovery and action/global presentation acceptance remain separate.",
               "evidence": [
                 "RS.drawing-publication.original-20261011",
-                "RS.drawing-publication.camera-original-20261011"
+                "RS.drawing-publication.camera-original-20261011",
+                "NT15.native-controls-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -17886,13 +19197,21 @@
                 "tools/capture-scene-game.py": "150dc9c4bec27e6bb253711b4334b3e45469f8aa24d90e6d12d55fec660f27e0",
                 "tools/drawing_publication.py": "7e1ac45702c6d292defed007d809fe5b8d2d055bf57eb4d0cf02fb53e9051a4d",
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
-                "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
+                "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd",
+                "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md": "63a8464c37c339d91d16fabcbbe1b7bf841a29b5268e7c74d1b75573fd4674af",
+                "tests/drawing-publication-probe.c": "e92f1c2bd8880c9870b82b913dc9e246e7808a3388bb3e600196106e095fcd00",
+                "tests/rendering-fifteenth-ten/CMakeLists.txt": "f9cffa935d4441fe3f4d495f814b38ae647beb71d100a589f53ebe21e8b7cb15",
+                "tests/test-fixture-prefix-borrow.py": "c8bd6f703deda7539e801cce1d95b50bfef0c5854d51e5516d0d18eb18a2ea9d",
+                "tools/drawing_fixture_prefix.py": "ffcffbeafcef4c6d02ac2c29298ae36281fd3145b28b4ac6e5ff454e86b2baf9",
+                "tools/rendering_fifteenth_controls.py": "5864965bc45c4d1c0d8b9641a79d4ce8a959376537b66fe4da8da98ac0199489",
+                "tools/test-rendering-fifteenth-ten.py": "40a52c44eca46e87ebd459dc8220ea2bcebe2200b6c4e44907f5381a5168b2f9"
               },
               "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
               "pending_source_review": [
                 "research/runtime/next20-implementation-progress-20261020.md",
                 "tools/test-next20-canvas-controls.py"
-              ]
+              ],
+              "review_reason": "Append reviewed current test/build/document links and evidence while preserving the previous work review and every historical source hash."
             },
             "work_review_history": [
               {
@@ -17944,6 +19263,63 @@
                   "tools/capture-scene-game.py": "150dc9c4bec27e6bb253711b4334b3e45469f8aa24d90e6d12d55fec660f27e0",
                   "tools/drawing_publication.py": "7e1ac45702c6d292defed007d809fe5b8d2d055bf57eb4d0cf02fb53e9051a4d"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The selected 0x58bf40 observer and parser implement guarded COM-site result/LastError recording, logical generations, primary readback and loss accounting through final HUD/cursor publication. This is observation tooling, not a native publication replacement.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Historical original-active one- and sixteen-return acquisitions exist. Synthetic parser failures do not execute original driver failure/Restore paths or prove observer ABI equivalence. Newly linked remaining-Medium input/fixture sources are pinned for pending review; existing fingerprints and execution milestones remain historical.",
+                "acceptance": "pending",
+                "acceptance_summary": "Pending current-source selected-route observation validation. Broader publication recovery and action/global presentation acceptance remain separate.",
+                "evidence": [
+                  "RS.drawing-publication.original-20261011",
+                  "RS.drawing-publication.camera-original-20261011"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Run selected-route truncated/reordered/loss/failed-call/format/terminal-publication guards without inventing driver semantics."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Define a separately scoped original failure/Restore or caller-state investigation before extending this observer contract; identify its pinned sites and evidence requirements."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/scene/drawing_publication.h",
+                    "line": 9,
+                    "text": "static int publication_install(void){"
+                  },
+                  {
+                    "path": "runtime/scene/drawing_publication.h",
+                    "line": 31,
+                    "text": "void drawing_publication_observe(u32* registers,u32 kind){"
+                  }
+                ],
+                "source_sha256": {
+                  "research/formats/drawing-publication-v1.md": "b8230cc9d4510b64b5d30adc87e0b9cdec6a50b98f63af39a4cf55be1dd68b44",
+                  "research/runtime/draw02-camera-original-20261011.json": "d7697291ab22304ff3e9a574abd1f89bc313ea2632285649ad4b13b28a7e4d30",
+                  "research/runtime/draw02-canvas-storage-generations.md": "f291f013bc7fe7a4ad0c1eb728581775de6ccfec57adf1960f75b0dd7af7cfa6",
+                  "research/runtime/draw02-publication-original-20261011.json": "a2b5dcad4ebf21f068e8016985cd936a5fd672341aa1ac34bb5d9800319939e6",
+                  "research/runtime/draw02-publication.md": "b85de0675c1eb542c8e31d4ffa693a71c72ed8fa01c8818e7270c1cec004e9ec",
+                  "runtime/scene/canvas_producers.c": "7c320b307325418c66f598dee710e192f54e5c67ba926816c79b46c5b8a81fa3",
+                  "runtime/scene/drawing_publication.S": "5c38a4aeaa7457e720f3043bd3a3c83dab7c5b5fd8a18061d576d31c6cbf11d4",
+                  "runtime/scene/drawing_publication.h": "f2311cb7a86fc842beba616cef943285b3d914b172cba98bb106a312db3299e6",
+                  "tests/test-drawing-publication.py": "291ee316dfe3d35c52f2f49a23aafd519516dcd32e080c2ee60c77c28cf8bc82",
+                  "tools/build-scene-observer.py": "4bf5a72a89e67328ad56f8a7e7727175800eb2e7afa79ee370ccada0ca1fbcc6",
+                  "tools/capture-scene-game.py": "150dc9c4bec27e6bb253711b4334b3e45469f8aa24d90e6d12d55fec660f27e0",
+                  "tools/drawing_publication.py": "7e1ac45702c6d292defed007d809fe5b8d2d055bf57eb4d0cf02fb53e9051a4d",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                  "tools/test-next20-canvas-controls.py": "3be74f1566e3d24387b92568574faa418c0f6d8bddb78fc028b0ed82e1ad9ecd"
+                },
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+                "pending_source_review": [
+                  "research/runtime/next20-implementation-progress-20261020.md",
+                  "tools/test-next20-canvas-controls.py"
+                ]
               }
             ]
           },
@@ -24509,10 +25885,10 @@
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Unknown private allocations/writers and complete original interval ownership remain open.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "wine_physical_owners.h maintains bounded private backing owners and alias leases.",
+              "current_state": "wine_physical_owners.h maintains bounded private backing owners and alias leases. Fifteenth batch supplies current startup/dispatch/native finite-history implementation controls.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+              "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate. Fresh NT15 supplies 79 Python controls, 49 recorded commands and 2828 stable prospective inputs with selected unchanged original caller/uniform fixtures, retained original-source initial-canvas reconstruction, authored PE32 ownership/refusal/publication controls and actual supplied-runtime capability probes. All broader acceptance boundaries and historical source fingerprints remain unchanged.",
               "acceptance": "pending",
               "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Unknown private allocations/writers and complete original interval ownership remain open.",
               "evidence": [
@@ -24520,7 +25896,8 @@
                 "HIGH01.rendering-work-review-20261019",
                 "HIGH03.ownership-physical-20261020",
                 "HIGH03.ownership-source-lock-20261020",
-                "HIGH03.ownership-physical-current-20261020"
+                "HIGH03.ownership-physical-current-20261020",
+                "NT15.native-controls-20261022"
               ],
               "failure_evidence": [],
               "next_steps": [
@@ -24549,12 +25926,19 @@
                 "tests/test-drawing-physical-owners.py": "afa5c6a151feab4ea592eda8b58548904ab39cea5a866fafe26dca50f7b9aac8",
                 "tests/test-drawing-source-handoff.py": "d6793418dae54ae13d69b724b355b98b737d37cb3e5b5f6569536efed5e6817e",
                 "tools/test-drawing-physical-owners.py": "efab0384493171f5611051af1e6e08059964f6eaa2c5025b4c19d791350d67d4",
-                "tools/test-drawing-source-lock.py": "68b8c11ebaf9f6cde4c10126203d1b4ed6e90d73fc627c6704bd169a1f7cb352"
+                "tools/test-drawing-source-lock.py": "68b8c11ebaf9f6cde4c10126203d1b4ed6e90d73fc627c6704bd169a1f7cb352",
+                "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md": "63a8464c37c339d91d16fabcbbe1b7bf841a29b5268e7c74d1b75573fd4674af",
+                "tests/rendering-fifteenth-ten/CMakeLists.txt": "f9cffa935d4441fe3f4d495f814b38ae647beb71d100a589f53ebe21e8b7cb15",
+                "tests/test-fixture-prefix-borrow.py": "c8bd6f703deda7539e801cce1d95b50bfef0c5854d51e5516d0d18eb18a2ea9d",
+                "tools/drawing_fixture_prefix.py": "ffcffbeafcef4c6d02ac2c29298ae36281fd3145b28b4ac6e5ff454e86b2baf9",
+                "tools/rendering_fifteenth_controls.py": "5864965bc45c4d1c0d8b9641a79d4ce8a959376537b66fe4da8da98ac0199489",
+                "tools/test-rendering-fifteenth-ten.py": "40a52c44eca46e87ebd459dc8220ea2bcebe2200b6c4e44907f5381a5168b2f9"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "pending_source_review": []
+              "pending_source_review": [],
+              "review_reason": "Append reviewed current test/build/document links and evidence while preserving the previous work review and every historical source hash."
             },
             "work_review_history": [
               {
@@ -24601,6 +25985,55 @@
                   "tools/test-drawing-physical-owners.py": "9157c15f420a4fbf28f4b46e4d1f9f14b65cc1d6a8c644a5df808cd11bf76689",
                   "tools/test-drawing-source-lock.py": "af2e983a0a6671ea452d884ac65de4da2f1815513543da095f0c389778ee1c15"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "wine_physical_owners.h maintains bounded private backing owners and alias leases.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed current owned PE32 admission/refusal and host diagnostic cohort passes within the documented finite contract; global original ownership and complete live acceptance remain separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Unknown private allocations/writers and complete original interval ownership remain open.",
+                "evidence": [
+                  "NATIVE.physical-alias.controls-20261018",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.ownership-physical-20261020",
+                  "HIGH03.ownership-source-lock-20261020",
+                  "HIGH03.ownership-physical-current-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Unknown private allocations/writers and complete original interval ownership remain open."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "runtime/drawing/wine_physical_owners.h",
+                    "line": 22,
+                    "text": "static u32 wine_phys_heap_hash(void* heap,void* pointer){return ((((u32)heap>>4)^((u32)pointer>>4))*0x9e3779b1u)>>17;}"
+                  }
+                ],
+                "source_sha256": {
+                  "research/runtime/drawing-physical-alias-ownership.md": "f8da52bd50e5cd21f1906a09fa30ccea98e56fc82b3e92fdd1b7efdd138c772e",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "runtime/drawing/wine_physical_owners.h": "c190d95d6683a6f0899d1ad44a599e0d6634e5a303d5f724f390fb73dddcb68b",
+                  "runtime/drawing/wine_source_map.h": "617055a15e4edf5f74cf98f3adcb0591a0537b5a41b27ee6d15aa026927deab0",
+                  "runtime/drawing/wine_source_reservations.h": "63c16855df7b3f24c8038241160c8b29a8c75471bb2ccab62fdf023965bc15bf",
+                  "runtime/drawing/wine_source_version.h": "a0f2aa28c0506cedfdbf72226626243eaf81f2fb861ae8346861e9c5bdacef0d",
+                  "runtime/drawing/wine_submission.h": "45900bb9e8cbb2afd03f5ac3ff5c16905d614945c675fb03221cbc7ac44637be",
+                  "tests/drawing-physical-owners-test.c": "094a85630bcb8ed334bda2a37ecb96917b8259dfa9fd0c04a6bfba36ff3b53a3",
+                  "tests/drawing-source-lock-test.c": "b1020ed0250e19efd7c948c3d1ef5e5ffd46303af29beba6a37d7e999c01bfbb",
+                  "tests/test-drawing-physical-owners.py": "afa5c6a151feab4ea592eda8b58548904ab39cea5a866fafe26dca50f7b9aac8",
+                  "tests/test-drawing-source-handoff.py": "d6793418dae54ae13d69b724b355b98b737d37cb3e5b5f6569536efed5e6817e",
+                  "tools/test-drawing-physical-owners.py": "efab0384493171f5611051af1e6e08059964f6eaa2c5025b4c19d791350d67d4",
+                  "tools/test-drawing-source-lock.py": "68b8c11ebaf9f6cde4c10126203d1b4ed6e90d73fc627c6704bd169a1f7cb352"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": []
               }
             ],
             "planning_history": [

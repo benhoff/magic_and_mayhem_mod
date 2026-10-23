@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Check supplied DirectX6 native DirectDraw admission without executing an installer or permitting builtin fallback."""
+from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import fcntl
 import hashlib
@@ -14,6 +15,8 @@ import secrets
 import shutil
 import re
 
+from legacy_ddraw_admission import decode as decode_admission
+from drawing_fixture_prefix import borrow
 from coverage_claims import behavior_contract, required_sources
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -36,8 +39,9 @@ def main():
     p.add_argument('--trace-module',action='store_true',help='Retain module/Win16 selector diagnostics')
     p.add_argument('--trace-admission',action='store_true',help='Retain DPMI emulation and API relay diagnostics through the actual loader outcome')
     p.add_argument('--trace-dpmi',action='store_true',help='Retain DPMI service dispatch without the large API relay trace')
+    p.add_argument('--borrow-fixture-prefix',action='store_true',help='Supervising runner already holds exclusive marked-prefix lease')
     a=p.parse_args();out=a.output.resolve();prefix=a.session_prefix.resolve()
-    if out.exists() or not out.is_relative_to(ROOT/'working/tests') or not prefix.is_relative_to(ROOT/'working/tests'):
+    if out.exists() or not out.is_relative_to(ROOT/'working/tests') or (not a.borrow_fixture_prefix and not prefix.is_relative_to(ROOT/'working/tests')):
         p.error('Require a new retained output under working/tests')
     out.mkdir(parents=True)
     (out/'tmp').mkdir()
@@ -53,7 +57,7 @@ def main():
     report={'schema':1,'success':False,'original_sha256':BUILD,'sources':sources,
             'claims':claims,'scope':__doc__,'original_instruction_bytes_patched':False,
             'scripted_hresult':False,'live_replacement':False,'physical_driver_equivalence':False}
-    (out/'prospective.json').write_text(json.dumps(report,indent=2)+'\n')
+    write_report(ROOT,out/'prospective.json',(json.dumps(report,indent=2)+'\n').encode())
     env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE'))}
     env.update(TMPDIR=str(out/'tmp'),WINEDEBUG='+loaddll,+seh',WINEPREFIX=str(prefix),
                WINEDLLOVERRIDES='ddraw=n;ddraw16=n',LIBGL_ALWAYS_SOFTWARE='1',MNM_ORIGINAL_IMAGE='Z:'+str(a.executable.resolve()).replace('/','\\'))
@@ -97,7 +101,7 @@ def main():
             if sha(dependency)!=DIBENG:raise ValueError('Unreviewed DIBENG.DLL input')
             shutil.copyfile(dependency,out/'DIBENG.DLL')
             report['additional_runtime_files']={'DIBENG.DLL':dict(
-                input=str(dependency.relative_to(ROOT)),sha256=DIBENG,
+                input=str(dependency),sha256=DIBENG,
                 size=(out/'DIBENG.DLL').stat().st_size,
                 publisher_authentication_established=False)}
             env['WINEDLLOVERRIDES']+=';dibeng=n'
@@ -126,15 +130,18 @@ def main():
         run('original-pad',['clang','--target=i686-pc-windows-msvc','-c',pad,'-o',out/'pad.obj'])
         run('original-link',['lld-link','/machine:x86','/entry:start','/subsystem:console',
             '/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0',
-            '/include:_original_fixture_pad','/out:'+str(out/'probe.exe'),out/'pad.obj',
+            '/include:_original_fixture_pad','/out:'+str(out/'legacy-admission-probe.exe'),out/'pad.obj',
             out/'probe.obj',out/'kernel32.lib'])
-        lock=(prefix.parent/(prefix.name+'.lock')).open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        marker=prefix/'.original-recovery-session'
-        if prefix.exists():
-            if not marker.is_file() or marker.read_text()!=BUILD+'\n':raise ValueError('Unowned experiment prefix')
+        if a.borrow_fixture_prefix:
+            prefix,lock=borrow(ROOT,prefix)
         else:
-            run('prefix',['cp','-a','--reflink=auto',a.prefix_template.resolve(),prefix]);marker.write_text(BUILD+'\n')
-        owned_prefix=True;report['session_prefix']=str(prefix.relative_to(ROOT))
+            lock=(prefix.parent/(prefix.name+'.lock')).open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+            marker=prefix/'.original-recovery-session'
+            if prefix.exists():
+                if not marker.is_file() or marker.read_text()!=BUILD+'\n':raise ValueError('Unowned experiment prefix')
+            else:
+                run('prefix',['cp','-a','--reflink=auto',a.prefix_template.resolve(),prefix]);marker.write_text(BUILD+'\n')
+        owned_prefix=True;report['session_prefix']=str(prefix)
         report['wine_version']=subprocess.check_output(['wine','--version'],text=True).strip()
         report['installed_abi_sha256']=sha(Path('/usr/include/wine/windows/ddraw.h'))
         # The host /tmp quota can prevent X's Unix socket/lock creation. Use an
@@ -165,15 +172,14 @@ def main():
         else:raise ValueError('Isolated X server did not become ready')
         env['DISPLAY']='127.0.0.1:'+str(display)
         if a.windows_version!='default':
-            run('version',['wine','reg','add',r'HKCU\Software\Wine\AppDefaults\probe.exe',
+            run('version',['wine','reg','add',r'HKCU\Software\Wine\AppDefaults\legacy-admission-probe.exe',
                 '/v','Version','/t','REG_SZ','/d',a.windows_version,'/f'])
         report['application_windows_version']=a.windows_version
-        run('legacy-execute',['wine',out/'probe.exe'],timeout=60)
+        run('legacy-execute',['wine',out/'legacy-admission-probe.exe'],timeout=60)
         report['xserver_alive_after_probe']=xserver.poll() is None
         if not report['xserver_alive_after_probe']:raise ValueError('Isolated X server failed during probe')
-        rows=list(struct.iter_unpack('<6I',(out/'legacy-admission.bin').read_bytes()))
-        if not rows or rows[-1][0]!=99:raise ValueError('Incomplete native runtime admission')
-        stage=rows[-1][4]
+        admission=decode_admission((out/'legacy-admission.bin').read_bytes());rows=admission['rows'];stage=admission['admission_stage']
+        report['capability_outcome']=admission['outcome']
         loader_log=(out/'legacy-execute.log').read_text()
         probe_thread=re.search(r'(?m)^([0-9a-f]+):trace:loaddll:.*probe\.exe',loader_log)
         report['native_16bit_modules']=sorted(set(re.findall(
@@ -194,12 +200,13 @@ def main():
             if name.lower()!=expected.lower():raise ValueError('Native DLL path differs from supplied runtime')
         if stage!=5:report['remaining_boundary']='Actual supplied1998 runtime does not admit an offscreen surface on this Wine host; legacy OS/HAL outcomes remain unavailable in this environment. Inspect this run loader log for the actual stopping dependency or API; the failure is not assumed to be missing DIBENG.'
         if sha(a.executable)!=BUILD:raise ValueError('Original input changed')
-        report.update(success=True,probe_sha256=sha(out/'probe.exe'),
+        report.update(success=True,probe_sha256=sha(out/'legacy-admission-probe.exe'),
                       original_result_sha256=sha(out/'legacy-admission.bin'))
     except (OSError,ValueError,subprocess.SubprocessError) as e:report['error']=str(e)
     finally:
         if owned_prefix:
             subprocess.run(confined(['wineserver','-k']),env=env,timeout=10,check=False)
+            subprocess.run(confined(['wineserver','-w']),env=env,timeout=30,check=True)
         if xserver is not None:
             xserver.terminate()
             try:xserver.wait(timeout=10)
@@ -213,7 +220,7 @@ def main():
             except subprocess.SubprocessError as e:report.update(success=False,preservation_error=str(e))
         report['sources_stable']=all(sha(ROOT/n)==h for n,h in sources.items())
         report['success'] &= report['sources_stable']
-        (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(out/'report.json',flush=True)
+        write_report(ROOT,out/'report.json',(json.dumps(report,indent=2)+'\n').encode());print(out/'report.json',flush=True)
     return 0 if report['success'] else 1
 
 

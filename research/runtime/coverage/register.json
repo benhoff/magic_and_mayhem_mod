@@ -15841,7 +15841,8 @@
         "research/runtime/opengl-lifetime-order.md",
         "research/runtime/rendering-tranche1-execution-20261019.json",
         "research/runtime/tranche1-aggregate-scope-resolution-20261019.json",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/render/lock_palette.h",
@@ -15866,7 +15867,12 @@
         "tools/test-render-mutations.py",
         "renderer/CMakeLists.txt",
         "tests/render-palette-lifetime-probe.c",
-        "tools/test-rendering-tranche-fixtures.py"
+        "tools/test-rendering-tranche-fixtures.py",
+        "tools/test-rendering-fifteenth-ten.py",
+        "tools/rendering_fifteenth_controls.py",
+        "tests/rendering-fifteenth-ten/CMakeLists.txt",
+        "tools/drawing_fixture_prefix.py",
+        "tests/test-fixture-prefix-borrow.py"
       ],
       "evidence": [
         "NR.palette-resources.pe32",
@@ -15881,11 +15887,12 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.tranche1-aggregate-scope-resolution-20261019",
         "CRIT20.review-20261019",
-        "CRIT20.bounded-snapshot-controls-20261019"
+        "CRIT20.bounded-snapshot-controls-20261019",
+        "NT15.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
         "replacement": "none"
@@ -15895,7 +15902,8 @@
         "entry": "NR.palette-resources"
       },
       "remaining_gaps": [
-        "Scope accounting is resolved in research/runtime/tranche1-aggregate-scope-resolution-20261019.json. No concrete missing implementation branch was identified within the existing observed/finite native policy. Current-source validation and the named wider acceptance boundaries remain pending."
+        "Scope accounting is resolved in research/runtime/tranche1-aggregate-scope-resolution-20261019.json. No concrete missing implementation branch was identified within the existing observed/finite native policy. Current-source validation and the named wider acceptance boundaries remain pending.",
+        "NT15 supplies current bounded palette/canvas/ownership/diagnostic execution, source-only retained initial-state reconstruction, scripted COM controls and actual supplied-runtime capability outcomes. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "validation_dependencies": [
         "protocols/include/mnm/world_raster_batch_v3.h"
@@ -15920,7 +15928,8 @@
         "research/runtime/opengl-drawing-recovery.md",
         "research/runtime/rendering-tranche1-execution-20261019.json",
         "research/runtime/tranche1-aggregate-scope-resolution-20261019.json",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -15952,7 +15961,12 @@
         "tools/test-render-working-set.py",
         "tests/render-opaque-borrow-test.c",
         "tools/test-rendering-tranche-fixtures.py",
-        "tools/test-render-drawing-recovery.py"
+        "tools/test-render-drawing-recovery.py",
+        "tools/test-rendering-fifteenth-ten.py",
+        "tools/rendering_fifteenth_controls.py",
+        "tests/rendering-fifteenth-ten/CMakeLists.txt",
+        "tools/drawing_fixture_prefix.py",
+        "tests/test-fixture-prefix-borrow.py"
       ],
       "evidence": [
         "NR.command-checkpoint-attachment.pe32",
@@ -15981,11 +15995,12 @@
         "RREC08.tranche1-aggregate-scope-resolution-20261019",
         "CRIT20.review-20261019",
         "CRIT20.checkpoint-21-20261019",
-        "CRIT20.checkpoint-linked-20261019"
+        "CRIT20.checkpoint-linked-20261019",
+        "NT15.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
         "replacement": "none"
@@ -15995,7 +16010,8 @@
         "entry": "NR.command-checkpoint-attachment"
       },
       "remaining_gaps": [
-        "Scope accounting is resolved in research/runtime/tranche1-aggregate-scope-resolution-20261019.json. No concrete missing implementation branch was identified within the existing observed/finite native policy. Current-source validation and the named wider acceptance boundaries remain pending."
+        "Scope accounting is resolved in research/runtime/tranche1-aggregate-scope-resolution-20261019.json. No concrete missing implementation branch was identified within the existing observed/finite native policy. Current-source validation and the named wider acceptance boundaries remain pending.",
+        "NT15 supplies current bounded palette/canvas/ownership/diagnostic execution, source-only retained initial-state reconstruction, scripted COM controls and actual supplied-runtime capability outcomes. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "validation_dependencies": [
         "protocols/include/mnm/world_raster_batch_v3.h"
@@ -20019,7 +20035,8 @@
         "research/runtime/native-world-canvas-startup.md",
         "research/formats/canvas-startup-diagnostics.md",
         "research/runtime/critical-rendering-closeout-20261019.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/world_trace.c",
@@ -20034,7 +20051,15 @@
         "tools/capture-scene-game.py",
         "tools/test-rendering-tranche2-history.py",
         "tools/test-world-background.py",
-        "tools/test-world-history.py"
+        "tools/test-world-history.py",
+        "tools/test-rendering-fifteenth-ten.py",
+        "tools/rendering_fifteenth_controls.py",
+        "tests/rendering-fifteenth-ten/CMakeLists.txt",
+        "tools/drawing_fixture_prefix.py",
+        "tests/test-fixture-prefix-borrow.py",
+        "tools/canvas_initial_history.py",
+        "tools/check-first-world-history.py",
+        "tests/test-canvas-initial-history.py"
       ],
       "evidence": [
         "RS.world-background.gap-20261007",
@@ -20065,11 +20090,12 @@
         "CRIT02.producer-history-20261019",
         "CRIT03.first-world-20261019",
         "CRIT05.scope-resolution-20261019",
-        "CRIT07.scope-final-20261019"
+        "CRIT07.scope-final-20261019",
+        "NT15.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "headless",
         "replacement": "none"
@@ -20099,7 +20125,10 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-3-20261020",
         "entry": "RS.world-initial-state"
-      }
+      },
+      "remaining_gaps": [
+        "NT15 supplies current bounded palette/canvas/ownership/diagnostic execution, source-only retained initial-state reconstruction, scripted COM controls and actual supplied-runtime capability outcomes. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
+      ]
     },
     {
       "id": "NR.scene-history",
@@ -20670,7 +20699,8 @@
         "research/runtime/native-world-canvas-startup.md",
         "research/formats/canvas-startup-diagnostics.md",
         "research/runtime/critical-rendering-closeout-20261019.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/canvas_startup.c",
@@ -20685,7 +20715,15 @@
         "tests/rendering-tranche2-native.cpp",
         "tools/capture-scene-game.py",
         "tools/test-canvas-startup.py",
-        "tools/test-rendering-tranche2-history.py"
+        "tools/test-rendering-tranche2-history.py",
+        "tools/test-rendering-fifteenth-ten.py",
+        "tools/rendering_fifteenth_controls.py",
+        "tests/rendering-fifteenth-ten/CMakeLists.txt",
+        "tools/drawing_fixture_prefix.py",
+        "tests/test-fixture-prefix-borrow.py",
+        "tools/canvas_initial_history.py",
+        "tools/check-first-world-history.py",
+        "tests/test-canvas-initial-history.py"
       ],
       "evidence": [
         "RS.canvas-startup.static-20261008",
@@ -20710,11 +20748,12 @@
         "CRIT03.first-world-20261019",
         "CRIT04.startup-reference-20261019",
         "CRIT05.scope-resolution-20261019",
-        "CRIT07.scope-final-20261019"
+        "CRIT07.scope-final-20261019",
+        "NT15.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -20753,7 +20792,10 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-3-20261020",
         "entry": "RS.canvas-preworld-reuse"
-      }
+      },
+      "remaining_gaps": [
+        "NT15 supplies current bounded palette/canvas/ownership/diagnostic execution, source-only retained initial-state reconstruction, scripted COM controls and actual supplied-runtime capability outcomes. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
+      ]
     },
     {
       "id": "TOOL.coverage-accounting",
@@ -20796,7 +20838,8 @@
         "tests/test-coverage-evidence-imports.py",
         "tests/test-coverage-bookkeeping.py",
         "tests/test-local-evidence-workflow.py",
-        "tests/test-evidence-store.py"
+        "tests/test-evidence-store.py",
+        "tests/test-coverage-review-shards.py"
       ],
       "evidence": [
         "COV01.execution-claims-20261008",
@@ -22280,7 +22323,8 @@
         "research/runtime/draw02-producer-recorder.md",
         "research/runtime/draw02-canvas-storage-generations.md",
         "research/runtime/critical-rendering-closeout-20261019.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/canvas_producers.c",
@@ -22299,7 +22343,12 @@
         "tests/rendering-tranche2-native.cpp",
         "tests/rendering-tranche2-reference.cpp",
         "tools/test-rendering-tranche2-reference.py",
-        "tools/test-next20-canvas-controls.py"
+        "tools/test-next20-canvas-controls.py",
+        "tools/test-rendering-fifteenth-ten.py",
+        "tools/rendering_fifteenth_controls.py",
+        "tests/rendering-fifteenth-ten/CMakeLists.txt",
+        "tools/drawing_fixture_prefix.py",
+        "tests/test-fixture-prefix-borrow.py"
       ],
       "evidence": [
         "RS.canvas-producers.forwarding-20261008",
@@ -22350,11 +22399,12 @@
         "CRIT04.startup-reference-20261019",
         "CRIT05.scope-resolution-20261019",
         "CRIT07.scope-final-20261019",
-        "N20.canvas.native-20261020"
+        "N20.canvas.native-20261020",
+        "NT15.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -22407,7 +22457,8 @@
       "remaining_gaps": [
         "New opt-in producer recorder synchronization and per-thread nesting require PE32 ownership/legacy forwarding checks and original source/physical coupling. Recorder serialization does not synchronize original bytes or assign a coherent physical frame.",
         "The unobserved uniform colour leaf is a hypothesis for the two4x75physical residuals; native/original comparison must establish its actual reachability and clipping behavior before closure.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT15 supplies current bounded palette/canvas/ownership/diagnostic execution, source-only retained initial-state reconstruction, scripted COM controls and actual supplied-runtime capability outcomes. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-3-20261020",
@@ -22785,7 +22836,8 @@
       "confidence": "provisional",
       "documents": [
         "research/runtime/native-world-producer-handoff.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md"
       ],
       "evidence": [
         "RS.world-producer-bypass.abi-20261008",
@@ -22821,11 +22873,12 @@
         "CSCOPE9.final-controls-native.20261020",
         "CSCOPE9.final-branches-original.20261020",
         "CSCOPE9.final-bypass-abi-native.20261020",
-        "CSCOPE9.final-scope-review.20261020"
+        "CSCOPE9.final-scope-review.20261020",
+        "NT15.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -22861,7 +22914,12 @@
         "tests/rendering-tranche2-native.cpp",
         "tests/rendering-tranche2-reference.cpp",
         "tools/test-rendering-tranche2-reference.py",
-        "tools/test-next20-canvas-controls.py"
+        "tools/test-next20-canvas-controls.py",
+        "tools/test-rendering-fifteenth-ten.py",
+        "tools/rendering_fifteenth_controls.py",
+        "tests/rendering-fifteenth-ten/CMakeLists.txt",
+        "tools/drawing_fixture_prefix.py",
+        "tests/test-fixture-prefix-borrow.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/canvas_producer_main.cpp",
@@ -23004,7 +23062,8 @@
       },
       "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code.",
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT15 supplies current bounded palette/canvas/ownership/diagnostic execution, source-only retained initial-state reconstruction, scripted COM controls and actual supplied-runtime capability outcomes. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-3-20261020",
@@ -35515,7 +35574,8 @@
         "research/runtime/draw02-publication.md",
         "research/formats/drawing-publication-v1.md",
         "research/runtime/draw02-canvas-storage-generations.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md"
       ],
       "original": [
         {
@@ -35534,7 +35594,13 @@
       ],
       "tests": [
         "tests/test-drawing-publication.py",
-        "tools/test-next20-canvas-controls.py"
+        "tools/test-next20-canvas-controls.py",
+        "tools/test-rendering-fifteenth-ten.py",
+        "tools/rendering_fifteenth_controls.py",
+        "tests/rendering-fifteenth-ten/CMakeLists.txt",
+        "tools/drawing_fixture_prefix.py",
+        "tests/test-fixture-prefix-borrow.py",
+        "tests/drawing-publication-probe.c"
       ],
       "evidence": [
         "RS.drawing-publication.original-20261011",
@@ -35547,11 +35613,12 @@
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
-        "N20.canvas.native-20261020"
+        "N20.canvas.native-20261020",
+        "NT15.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -35610,7 +35677,8 @@
       ],
       "validation_domain": "Finite original-active map2/zero-item startup, observed opaque Blt/BltFast primary publications through a requested prefix of1..16 World returns, including the V2 action-phase trace; only positive-pitch RGB565. Readback loss is diagnostic refusal, not current equivalence. Synthetic parser failures do not establish original engine failure/ABI branches.",
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT15 supplies current bounded palette/canvas/ownership/diagnostic execution, source-only retained initial-state reconstruction, scripted COM controls and actual supplied-runtime capability outcomes. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-3-20261020",
@@ -93712,7 +93780,8 @@
         "research/runtime/native-pixel-forwarding-guard.md",
         "research/formats/native-pixel-guard-v1.md",
         "research/runtime/native-render-completion-20261017.md",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/native-draw/producer_guard.h",
@@ -93723,7 +93792,12 @@
         "tests/native-pixel-forward-guard-probe.c",
         "tools/test-native-pixel-forward-guard.py",
         "tests/test-pixel-forwarding-guard.py",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "tools/test-rendering-fifteenth-ten.py",
+        "tools/rendering_fifteenth_controls.py",
+        "tests/rendering-fifteenth-ten/CMakeLists.txt",
+        "tools/drawing_fixture_prefix.py",
+        "tests/test-fixture-prefix-borrow.py"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/pixel_kernel.c",
@@ -93763,17 +93837,19 @@
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
         "CRIT20.review-20261019",
-        "CRIT20.guard-20261019"
+        "CRIT20.guard-20261019",
+        "NT15.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "The successful native storage run exercises17of43installed optional routes with zero forwards. PE32 controls cover refusal logic, not original equivalence of every caller. Unknown writers, all aliases/readers, full source-only presented parity, lifecycle failures and60FPS remain separate; complete-native launch is unavailable."
+        "The successful native storage run exercises17of43installed optional routes with zero forwards. PE32 controls cover refusal logic, not original equivalence of every caller. Unknown writers, all aliases/readers, full source-only presented parity, lifecycle failures and60FPS remain separate; complete-native launch is unavailable.",
+        "NT15 supplies current bounded palette/canvas/ownership/diagnostic execution, source-only retained initial-state reconstruction, scripted COM controls and actual supplied-runtime capability outcomes. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -122950,7 +123026,8 @@
       "original": [],
       "documents": [
         "research/runtime/drawing-physical-alias-ownership.md",
-        "research/runtime/rendering-high-validation-ownership-20261020.md"
+        "research/runtime/rendering-high-validation-ownership-20261020.md",
+        "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/drawing/wine_physical_owners.h",
@@ -122965,7 +123042,12 @@
         "tests/test-drawing-physical-owners.py",
         "tests/test-drawing-source-handoff.py",
         "tests/drawing-source-lock-test.c",
-        "tools/test-drawing-source-lock.py"
+        "tools/test-drawing-source-lock.py",
+        "tools/test-rendering-fifteenth-ten.py",
+        "tools/rendering_fifteenth_controls.py",
+        "tests/rendering-fifteenth-ten/CMakeLists.txt",
+        "tools/drawing_fixture_prefix.py",
+        "tests/test-fixture-prefix-borrow.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_aux_save_readback_v1.h",
@@ -123045,17 +123127,19 @@
         "HIGH04.staged-source-support-review-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "BACKING.private-regression-20261020",
-        "DIRECT.private-regression-20261020"
+        "DIRECT.private-regression-20261020",
+        "NT15.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Controlled private allocation and borrowed-page leases pass. Long heap-page protection is not admitted for live original execution because heap metadata can share pages; live COPY uses NR.private-copy-source-handoff. Unknown/shared/imported/BO backing and arbitrary host/driver aliases remain outside admission; no global source or presentation closure."
+        "Controlled private allocation and borrowed-page leases pass. Long heap-page protection is not admitted for live original execution because heap metadata can share pages; live COPY uses NR.private-copy-source-handoff. Unknown/shared/imported/BO backing and arbitrary host/driver aliases remain outside admission; no global source or presentation closure.",
+        "NT15 supplies current bounded palette/canvas/ownership/diagnostic execution, source-only retained initial-state reconstruction, scripted COM controls and actual supplied-runtime capability outcomes. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -136695,7 +136779,14 @@
         "tests/legacy-ddraw-admission-reference.c"
       ],
       "tests": [
-        "tools/test-original-legacy-ddraw.py"
+        "tools/test-original-legacy-ddraw.py",
+        "tools/test-rendering-fifteenth-ten.py",
+        "tools/rendering_fifteenth_controls.py",
+        "tests/rendering-fifteenth-ten/CMakeLists.txt",
+        "tools/drawing_fixture_prefix.py",
+        "tests/test-fixture-prefix-borrow.py",
+        "tools/legacy_ddraw_admission.py",
+        "tests/test-legacy-ddraw-admission.py"
       ],
       "validation_dependencies": [
         "tests/surface-driver-restore-reference.c",
@@ -136705,7 +136796,8 @@
         "research/runtime/all-original-recovery-20261020.md",
         "research/runtime/legacy-ddraw-dibeng-20261020.md",
         "research/runtime/original-world-ownership-continuation-20261020.md",
-        "research/runtime/open-recovery-closeout-20261021.md"
+        "research/runtime/open-recovery-closeout-20261021.md",
+        "research/runtime/rendering-fifteenth-ten-closeouts-20261022.md"
       ],
       "evidence": [
         "REC8.legacy-environment-20261020",
@@ -136713,19 +136805,21 @@
         "REC9.legacy-missing-dibeng-control-20261020",
         "REC10.d98cur.static-20261020",
         "REC10.d95cur.static-20261020",
-        "REC11.legacy-admission.static-20261021"
+        "REC11.legacy-admission.static-20261021",
+        "NT15.native-controls-20261022"
       ],
       "confidence": "provisional",
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
         "20261020: hash-verified archived DIBENG.DLL and DDRAW16.DLL now load natively, resolving the missing-file condition. The supplied DirectDraw LoadLibrary still fails with error998 and probe-thread c0000005; DirectDrawCreate and surface/Lock/Restore/Blt outcomes remain unexecuted. This negative environment probe does not validate original game wrappers, legacy driver failure/recovery or hardware equivalence.",
-        "REC10: both supplied archives contain identical four runtime DLL/helper payloads and both final probes fail998 after native DDRAW16/DIBENG loading. Read-only per-run NE mapping identifies INT31 Get/Set Descriptor fault PCs; a compatible execution environment or verified specific fix and actual driver surface outcomes remain unavailable."
+        "REC10: both supplied archives contain identical four runtime DLL/helper payloads and both final probes fail998 after native DDRAW16/DIBENG loading. Read-only per-run NE mapping identifies INT31 Get/Set Descriptor fault PCs; a compatible execution environment or verified specific fix and actual driver surface outcomes remain unavailable.",
+        "NT15 supplies current bounded palette/canvas/ownership/diagnostic execution, source-only retained initial-state reconstruction, scripted COM controls and actual supplied-runtime capability outcomes. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ]
     },
     {
@@ -319008,6 +319102,113 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NT15.native-controls-20261022",
+      "kind": "native_integration",
+      "scope": "Ten existing bounded palette/checkpoint/canvas/ownership/diagnostic implementations: 79 Python controls, 49 recorded commands and 2828 stable prospective inputs. Fresh complete native palette wire/GPU and PE32 lifetime controls;21 checkpoint and10 drawing-recovery schedules; native/sanitized opaque borrow;61 producer compatible entries and selected generic native bypass/guards, recorder ownership and caller/uniform original fixtures;9 production publication callbacks with scripted COM and exact padded pixels/errors;97 guard cases including native/terminal-forwarding callbacks on every43 routes;36 private backing/fault/VM/worker-fence cases and lock inversion control;2403 complete current source-only retained checkpoints and480000 initial words with same-run logical generation/observed Lock epoch;two actual supplied-runtime native-only capability probes with real positive/negative outcomes kept distinct. No fresh original-game session, physical driver/allocation/COM alias or all-writer/route lifetime equivalence, general startup/journey/performance/scanout or live replacement.",
+      "record": "research/runtime/rendering-fifteenth-ten-results-20261022/completed/controls.json",
+      "sha256": "1774fedaa488e2a968daff264683daea7e723c522477d265945710a843f48fb9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/contracts_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_comparison_stage_promoted",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_gameplay_or_performance_acceptance",
+          "equals": false
+        },
+        {
+          "pointer": "/initial_history/success",
+          "equals": true
+        },
+        {
+          "pointer": "/initial_history/initial_pixels_compared",
+          "equals": 480000
+        },
+        {
+          "pointer": "/initial_history/all_replay_checkpoints",
+          "equals": 2403
+        },
+        {
+          "pointer": "/initial_history/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/initial_history/physical_allocation_ownership_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/components/pixel-guard/result/success",
+          "equals": true
+        },
+        {
+          "pointer": "/components/pixel-guard/result/cases/96/refusal/reason",
+          "equals": 6
+        },
+        {
+          "pointer": "/components/physical-owners/result/success",
+          "equals": true
+        },
+        {
+          "pointer": "/palette_lifetime/success",
+          "equals": true
+        },
+        {
+          "pointer": "/opaque_borrow/success",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_admission/win98/probe_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_admission/win95/probe_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_admission/win98/builtin_ddraw_fallback_allowed",
+          "equals": false
+        },
+        {
+          "pointer": "/legacy_admission/win95/builtin_ddraw_fallback_allowed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -343741,6 +343942,33 @@
       "evidence": [
         "NT14.native-controls-20261022"
       ]
+    },
+    {
+      "id": "NR.fifteenth-ten.native-controls-20261022",
+      "scope": "Current bounded palette/checkpoint/opaque ownership and GPU controls; same-run source-only initial canvas/storage binding over retained original input; actual PE32 producer/publication/no-forward/private allocation and worker-fence refusals; real supplied-runtime capability probes with negative and positive outcomes kept distinct. No fresh original-game session, real modern-driver alias/lease or physical loss/restore equivalence, all writers/routes, full-game/performance acceptance or live replacement.",
+      "level": "headless",
+      "behaviors": [
+        "NR.palette-resources",
+        "NR.command-checkpoint-attachment",
+        "RS.world-initial-state",
+        "RS.canvas-preworld-reuse",
+        "RS.canvas-producer-sequence",
+        "RS.world-producer-bypass",
+        "RS.drawing-publication",
+        "NP.pixel-forwarding-guard",
+        "NR.wine-private-backing-ownership",
+        "NP.legacy-ddraw-admission"
+      ],
+      "tests": [
+        "tools/test-rendering-fifteenth-ten.py",
+        "tools/rendering_fifteenth_controls.py",
+        "tests/rendering-fifteenth-ten/CMakeLists.txt",
+        "tools/drawing_fixture_prefix.py",
+        "tests/test-fixture-prefix-borrow.py"
+      ],
+      "evidence": [
+        "NT15.native-controls-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -344576,8 +344804,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-c5a55bf313898c8525a7128c9674e8663db8562a9acf29f5404dec237556f00d.json",
-    "sha256": "c5a55bf313898c8525a7128c9674e8663db8562a9acf29f5404dec237556f00d"
+    "path": "research/runtime/coverage/source-index-94ef31203b94770911fafc1156fcb8e6d90278ace3782505f372e99906eb0c78.json",
+    "sha256": "94ef31203b94770911fafc1156fcb8e6d90278ace3782505f372e99906eb0c78"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

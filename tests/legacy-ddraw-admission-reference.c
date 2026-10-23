@@ -43,5 +43,5 @@ void start(void){
     u32 desc[27];zero(desc,sizeof(desc));desc[0]=108;desc[1]=0x1007;desc[2]=6;desc[3]=8;desc[18]=32;desc[19]=0x40;desc[21]=16;desc[22]=0xf800;desc[23]=0x7e0;desc[24]=31;desc[26]=0x840;
     void* surface=0;result=((u32(WIN*)(void*,void*,void**,void*))vt(draw)[6])(draw,desc,&surface,0);emit(94,0,0,result,surface!=0,0);
     if(!result&&surface){fill(surface,0,0,0x1234);inspect(surface,0,0);release(surface);}
-    release(draw);legacy_finish(result?4:5);
+    release(draw);legacy_finish(result||!surface?4:5);
 }

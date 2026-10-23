@@ -3,7 +3,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-from coverage_evidence import Reader, read_bytes
+from coverage_evidence import Reader, read_bytes, write_report
 
 REVIEWS = 'research/runtime/coverage/change-reviews.json'
 ARCHIVES = 'research/runtime/coverage/review-archives/'
@@ -48,7 +48,8 @@ def split_journal(root, max_bytes=32 * 1024 * 1024):
     """Archive oldest receipts unchanged; leave the last shard appendable."""
     root = Path(root)
     path = root/REVIEWS
-    journal, _ = load_journal(root)
+    complete, _ = load_journal(root)
+    journal = json.loads(path.read_bytes())
     chunks, chunk, size = [], [], 32
     for review in journal['reviews']:
         length = len(json.dumps(review, ensure_ascii=True, separators=(',', ':')).encode()) + 1
@@ -59,29 +60,34 @@ def split_journal(root, max_bytes=32 * 1024 * 1024):
             chunk, size = [], 32
         chunk.append(review)
         size += length
-    archives = []
-    for reviews in chunks:
+    archives = list(journal.get('archives', []))
+    pending = []
+    def archive(reviews):
         data = (json.dumps({'schema': 1, 'reviews': reviews}, separators=(',', ':')) + '\n').encode()
         sha = hashlib.sha256(data).hexdigest()
         name = ARCHIVES + sha + '.json'
-        target = root/name
-        target.parent.mkdir(parents=True, exist_ok=True)
-        if target.exists():
-            if read_bytes(target, root=root) != data:
-                raise ValueError('Refusing to overwrite review archive: ' + name)
-        else:
-            with target.open('xb') as out:
-                out.write(data)
         archives.append({'path': name, 'sha256': sha})
-    value = dict(journal, archives=archives, reviews=chunk)
-    data = (json.dumps(value, separators=(',', ':')) + '\n').encode()
+        pending.append((name, data))
+    for reviews in chunks:
+        archive(reviews)
+    def encoded():
+        return (json.dumps(dict(journal, archives=archives, reviews=chunk), separators=(',', ':')) + '\n').encode()
+    data = encoded()
+    if len(data) > max_bytes and chunk:
+        archive(chunk)
+        chunk = []
+        data = encoded()
     if len(data) > max_bytes:
-        raise ValueError('Active journal exceeds shard size including archive index')
+        raise ValueError('Archive index exceeds the active journal size')
+    # Preserve all existing shard references and bytes. Only newly archived
+    # receipts enter the immutable SQLite store; old receipts retain identity.
+    for name, payload in pending:
+        write_report(root, name, payload)
     temporary = path.with_suffix('.json.tmp')
     with temporary.open('xb') as out:
         out.write(data)
     temporary.replace(path)
-    assert load_journal(root)[0]['reviews'] == journal['reviews']
+    assert load_journal(root)[0]['reviews'] == complete['reviews']
 
 
 if __name__ == '__main__':
