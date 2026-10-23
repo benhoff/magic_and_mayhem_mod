@@ -145,26 +145,30 @@ class CriticalNeeds(unittest.TestCase):
         # Source drift legitimately routes a row to review without losing its
         # authored primary need or the historical scope decision.
         self.assertEqual(Counter(e['reviewed_primary_need'] for e in result['entries']),
-                         dict(recovery=6, validation=12, acceptance=7)
+                         dict(recovery=2, validation=9, acceptance=5)
         )
-        # 97c3f5b2 and4cd9121f implemented these bounded mechanisms. Their authored
+        # 97c3f5b2,4cd9121f and195470ce implement these bounded mechanisms. Their authored
         # validation/acceptance requirements remain; scoped code only removes
         # them from the partial-implementation denominator.
         recent = {'NR.callback-publication-isolation',
                   'NR.recorded-physical-frame-admission',
-                  'NR.external-backing-ownership'}
+                  'NR.external-backing-ownership',
+                  'RS.canvas-create-lock', 'RS.canvas-bind-clip', 'RS.canvas-startup-clear',
+                  'RS.world-startup-palette', 'RS.world-startup-wave',
+                  'RS.world-dispatch-targets', 'RS.world-kind8-virtual',
+                  'NR.world-history-channel', 'NR.world-live-history'}
         active = {e['behavior'] for e in result['entries']}
         assessed = {e['behavior']: e for e in definition['entries']}
         for bid in recent:
             self.assertEqual(by_id[bid]['status']['implementation'], 'scoped')
             self.assertNotIn(bid, active)
             self.assertTrue(assessed[bid]['requirements'])
-        clear = next(e for e in result['entries'] if e['behavior'] == 'RS.canvas-startup-clear')
+        clear = next(e for e in result['scope_decisions'] if e['behavior'] == 'RS.canvas-startup-clear')
         self.assertEqual(clear['reviewed_primary_need'], 'validation')
         self.assertIn('REC6.startup-lease.live-20261020',
                       by_id[clear['behavior']]['evidence'])
         self.assertEqual(len(result['scope_decisions']), 9)
-        self.assertEqual(sum(e['implementation'] == 'scoped' for e in result['scope_decisions']), 3)
+        self.assertEqual(sum(e['implementation'] == 'scoped' for e in result['scope_decisions']), 8)
         self.assertEqual(register, before)
 
 

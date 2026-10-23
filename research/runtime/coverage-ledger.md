@@ -21100,3 +21100,55 @@ checks 29 exact parent/current transitions with no missing receipts. Native
 implementation milestones are inherited from the concurrent commit; changed
 shared tooling may leave its source fingerprints historical. This configuration
 change does not renew native or original-engine validation.
+
+
+## Actor emitter update and child ownership composition (2026-10-22)
+
+[Actor emission ownership](actor-emission-provider-20261022.md) composes selected
+546ce0 emitter updates,545910 reverse manager ticks, inline545650/545b70 child
+creation,546350 child lifetime and546270 deleting cleanup with actual493f20.
+The native composition grows219→227 public routes. AE1 original/headless records
+share1024 independently authored cases,32 ticks each,32768 ticks and7168 full
+snapshots per original32/native64/ASan+UBSan build. Each stream compares
+3948080688 identical bytes. All85 source/compiler inputs remain stable,
+original bodies/manifests unchanged, borrowed owner input unchanged, checked
+allocation canaries intact and zero residual owned generations through actual
+manager/deleting cleanup. No fallback frees or original output as native input.
+
+Six complete1792-object pool prefixes cover real capacity rejection; separately
+identified synthetic updater controls cover nested insertion/self-eviction,
+slot reload and both return paths. Callback-visible parent/child/R250 bytes
+are published before allocation, admission and destruction. Inactive present
+owners still supply descriptor facts for emitted-child binding, as established
+by preserved failed trial1 and corrected trial2/full comparison. The112 named
+service boundaries and one synthetic callback are not missing-function counts.
+All43 historical leads and unresolved indirect sites remain in reconciliation.
+
+The Critical umbrella remains partial for other emitter families, original
+world/planner/task cadence and lifetime, other postprocess/special/scenario
+providers, actual platform backends and installed/live/physical acceptance.
+Arbitrary callbacks, malformed/throwing/SEH behavior are outside this proof.
+The readonly Ghidra project's missing546120/546350 decompilations are explicit;
+central ranges, complete decoding and unchanged original execution cover them.
+Incoming195470ce retains its independent ten implementation closeouts; exact
+8bf5e736..195470ce review finds29 reviewed transitions and no receipt gaps or
+rewrites. Dashboard counts follow the combined register, without broader stage
+promotions or refreshed historical source fingerprints.
+
+
+### Final actor-emission proof after optional-publication integration
+
+Reviewed8bf5e736..a5ab8270:57 exact transitions across195470ce,0b3631c9 and
+a5ab8270, no missing or rewritten receipts. Only the evidence helper changes
+among85 execution inputs; the84 others and scope/scenario stay fixed. Fresh
+AE1 merged original/headless records use matrix2:1024 cases,32768 ticks,7168
+snapshots and3948080688 matching bytes per build, SHA-256
+`a38a22b6dab4f3aa200cfabe2a7605b32c0a7e7a0a26e1b23b8f2d89195b5f67`.
+Original/native/ASan+UBSan, compiler closure, protected bodies/manifests,
+borrowed bytes, allocation canaries and zero residual owned generations pass.
+Inspection4 and merged reconciliation/history receive new IDs. Historical
+matrix1, inspection3 and earlier history/UI reports retain their fingerprints
+and explicit helper/catalog-source staleness; no old hashes are refreshed.
+All83 dashboard checks passed before the final fingerprint update; focused
+Critical/HTTP/client checks validate that update separately. Critical actor
+recovery remains partial at the wider ownership/provider/world/live boundary.

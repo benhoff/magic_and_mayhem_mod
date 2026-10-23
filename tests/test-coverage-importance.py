@@ -90,8 +90,8 @@ class ImportanceTest(unittest.TestCase):
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        # Reviewed implementations through4cd9121f retain original comparison and acceptance separately.
-        self.assertEqual(result['partial_counts'], {1: 6, 2: 1, 3: 3, 4: 35, 5: 25})
+        # Reviewed implementations through195470ce retain original comparison and acceptance separately.
+        self.assertEqual(result['partial_counts'], {1: 5, 2: 1, 3: 3, 4: 35, 5: 16})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -153,7 +153,7 @@ class TrancheTest(unittest.TestCase):
         plan = result['tranche_plan']
         self.assertEqual(plan['state'], 'planned')
         self.assertEqual(plan['selected_count'], 33)
-        self.assertEqual(plan['unplanned_critical'], ['RS.actor-downstream-services', 'RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
+        self.assertEqual(plan['unplanned_critical'], ['RS.actor-downstream-services'])
         self.assertEqual([len(t['tasks']) for t in plan['tranches']], [11, 11, 11])
         tasks = [task for t in plan['tranches'] for task in t['tasks']]
         critical = {e['behavior'] for e in result['entries'] if e['weight'] == 5 and e['implementation'] == 'partial'}
@@ -162,7 +162,10 @@ class TrancheTest(unittest.TestCase):
                                     'NP.surface-final-word-read', 'NR.displacement-finite-edge',
                                     'NR.readonly-description-continuity', 'NR.world-source-region-epoch',
                                     'NR.resident-bind-admission', 'NR.resident-command-pressure',
-                                    'NR.callback-publication-isolation', 'NR.recorded-physical-frame-admission'})
+                                    'NR.callback-publication-isolation', 'NR.recorded-physical-frame-admission',
+                                    'RS.canvas-create-lock', 'RS.canvas-bind-clip', 'RS.canvas-startup-clear',
+                                    'RS.world-startup-palette', 'RS.world-startup-wave',
+                                    'NR.world-history-channel', 'NR.world-live-history'})
         self.assertEqual({task['behavior'] for task in tasks} | set(plan['unplanned_critical']), critical | completed)
         self.assertTrue(all(t['implementation'] in {'partial', 'scoped'} for t in tasks))
         self.assertTrue(all(t['review_state'] in {'current','needs_review'} for t in tasks))
@@ -206,7 +209,7 @@ class TrancheTest(unittest.TestCase):
         next(e for e in self.catalog['entries'] if e['behavior'] == 'AN.world-facing')['weight'] = 5
         result = importance_view(self.catalog, self.register, self.tracks)['tranche_plan']
         self.assertEqual(result['selected_count'], 33)
-        self.assertEqual(result['unplanned_critical'], ['AN.world-facing', 'RS.actor-downstream-services', 'RS.world-dispatch-targets', 'RS.world-kind8-virtual'])
+        self.assertEqual(result['unplanned_critical'], ['AN.world-facing', 'RS.actor-downstream-services'])
 
     def test_first_tranche_briefs_gate_one_pilot_after_ten_controls(self):
         result = importance_view(self.catalog, self.register, self.tracks)
@@ -322,7 +325,9 @@ class TrancheTest(unittest.TestCase):
             self.assertFalse(task['work_review']['implementation_gaps'])
             self.assertTrue(task['execution_brief']['supplied_controls'])
             self.assertEqual(task['implementation'], 'scoped' if task['behavior'] in
-                             {'NR.canvas-producer-replay','NR.world-startup-sequence'} else 'partial')
+                             {'NR.canvas-producer-replay','NR.world-startup-sequence',
+                              'RS.canvas-create-lock','RS.canvas-bind-clip','RS.canvas-startup-clear',
+                              'RS.world-startup-palette','RS.world-startup-wave'} else 'partial')
             original = next(t for t in self.catalog['tranche_plan']['tranches'][1]['tasks']
                             if t['behavior'] == task['behavior'])
             self.assertEqual(task.get('execution_result'), original.get('execution_result'))
@@ -402,7 +407,8 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual(result['review_state'], 'needs_review')
         self.assertEqual(result['work_review']['freshness'], 'historical')
         self.assertIn(name, result['work_review']['changed_sources'])
-        self.assertEqual(result['implementation'], 'partial')
+        self.assertEqual(result['behavior'], 'NR.world-history-channel')
+        self.assertEqual(result['implementation'], 'scoped')
         self.assertEqual(self.register, before)
 
     def test_indexed_inputs_cannot_silently_grant_source_review_credit(self):
@@ -413,11 +419,16 @@ class TrancheTest(unittest.TestCase):
         result = importance_view(c, self.register, self.tracks)['tranche_plan']['tranches'][2]['tasks'][0]
         self.assertEqual(result['work_review']['freshness'], 'historical')
         self.assertEqual(result['review_state'], 'needs_review')
-        self.assertEqual(result['implementation'], 'partial')
+        self.assertEqual(result['behavior'], 'NR.world-history-channel')
+        self.assertEqual(result['implementation'], 'scoped')
 
     def test_reviewed_witness_cannot_claim_missing_or_unlinked_code(self):
         for case in ['line', 'unlinked', 'escape']:
-            c = copy.deepcopy(self.catalog); w = c['tranche_plan']['tranches'][2]['tasks'][0]['work_review']
+            c = copy.deepcopy(self.catalog)
+            # Keep this corruption check on an unchanged witness. The history
+            # channel's old witness remains historical after195470ce.
+            w = next(t for t in c['tranche_plan']['tranches'][2]['tasks']
+                     if t['behavior'] == 'NR.directdraw-retirement')['work_review']
             if case == 'line': w['code_witnesses'][0]['text'] = 'invented code'
             if case == 'unlinked': w['code_witnesses'][0]['path'] = 'apps/coverage-ui/app.js'
             if case == 'escape': w['source_sha256']['../outside'] = '0' * 64
@@ -469,7 +480,7 @@ class TrancheTest(unittest.TestCase):
             'RS.actor-session-source-lifecycle', 'NP.actor-session-source-ownership',
             'RS.actor-concrete-provider-frontier',
             'RS.actor-profile-transform-providers', 'RS.actor-palette-builder-providers',
-            'RS.actor-font-providers', 'RS.actor-support-query-provider', 'RS.actor-particle-emitter-composition',
+            'RS.actor-font-providers', 'RS.actor-support-query-provider', 'RS.actor-particle-emitter-composition', 'RS.actor-emitting-update-composition',
         }
         scoped_high = {e['behavior'] for e in result['entries']
                        if e['weight'] == 4 and e['implementation'] == 'scoped'}
