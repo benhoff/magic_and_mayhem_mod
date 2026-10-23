@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Exercise read-only kind8 diagnostics through the actual PE32 queue hook."""
+from coverage_evidence import read_json, evidence_digest, write_report
 import hashlib,importlib.util,json,os,struct,subprocess,tempfile
 from pathlib import Path
 from coverage_claims import behavior_contract,required_sources
@@ -9,7 +10,7 @@ def main():
     r=json.loads((ROOT/'research/runtime/coverage/register.json').read_text());b=next(b for b in r['behaviors'] if b['id']=='RS.world-kind8-virtual')
     claims=[{'behavior':b['id'],'contract_sha256':behavior_contract(b,{b['id']:b for b in r['builds']})}]
     paths=required_sources(b)|{str(p.relative_to(ROOT)) for p in (ROOT/'runtime/scene').glob('*.[chS]')}
-    sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in sorted(paths)};(out/'prospective.json').write_text(json.dumps({'claims':claims,'sources':sources},indent=2)+'\n')
+    sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in sorted(paths)};write_report(ROOT,out/'prospective.json',(json.dumps({'claims':claims,'sources':sources},indent=2)+'\n').encode())
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(ROOT/'working/tests/scene-selftest-wine'),WINEDEBUG='-all',MNM_SCENE_DIR='Z:'+str(capture).replace('/','\\'),MNM_SCENE_SAMPLES='1',MNM_KIND8_QUEUES='2')
     def run(name,cmd):
         with (out/(name+'.log')).open('x') as f:subprocess.run([str(c) for c in cmd],cwd=ROOT,env=env,stdout=f,stderr=subprocess.STDOUT,timeout=180,check=True)
@@ -33,5 +34,5 @@ def main():
             else:raise AssertionError('Malformed kind8 diagnostics admitted')
         assert all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in sources.items())
         report.update(success=True,sources_stable=True,forwarding=True,malformed_refusals=len(malformed),captures=decoded)
-    finally:(out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(out/'report.json',flush=True)
+    finally:write_report(ROOT,out/'report.json',(json.dumps(report,indent=2)+'\n').encode());print(out/'report.json',flush=True)
 if __name__=='__main__':main()

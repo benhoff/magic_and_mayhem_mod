@@ -20242,7 +20242,8 @@
         "research/runtime/draw02-canvas-storage-generations.md",
         "research/runtime/next20-implementation-progress-20261020.md",
         "research/runtime/critical-original-recovery-20261020.md",
-        "research/runtime/original-world-ownership-continuation-20261020.md"
+        "research/runtime/original-world-ownership-continuation-20261020.md",
+        "research/runtime/rendering-fourteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/canvas_startup.c",
@@ -20264,7 +20265,9 @@
         "tests/drawing-lock-recovery-reference.cpp",
         "tests/surface-retry-reference.cpp",
         "tools/test-next20-canvas-controls.py",
-        "tests/test-canvas-driver-observation.py"
+        "tests/test-canvas-driver-observation.py",
+        "tools/test-rendering-fourteenth-ten.py",
+        "tests/rendering-fourteenth-ten/CMakeLists.txt"
       ],
       "evidence": [
         "RS.canvas-startup.static-20261008",
@@ -20305,11 +20308,12 @@
         "REC8.flow.static-20261020",
         "REC8.flow-final.static-20261020",
         "REC9.legacy-dibeng-environment-20261020",
-        "REC9.legacy-missing-dibeng-control-20261020"
+        "REC9.legacy-missing-dibeng-control-20261020",
+        "NT14.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -20350,7 +20354,8 @@
       },
       "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code.",
       "remaining_gaps": [
-        "DRAW-02 storage-generation review is prospective: exact successful Lock/conditional Unlock/release ordering and real COM alias/allocation lifetime must remain separate from readable cached storage and scripted recovery."
+        "DRAW-02 storage-generation review is prospective: exact successful Lock/conditional Unlock/release ordering and real COM alias/allocation lifetime must remain separate from readable cached storage and scripted recovery.",
+        "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-3-20261020",
@@ -20391,7 +20396,8 @@
         "research/runtime/next20-implementation-progress-20261020.md",
         "research/runtime/critical-original-recovery-20261020.md",
         "research/runtime/alternate-canvas-recovery-20261020.md",
-        "research/runtime/original-world-ownership-continuation-20261020.md"
+        "research/runtime/original-world-ownership-continuation-20261020.md",
+        "research/runtime/rendering-fourteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/canvas_startup.c",
@@ -20412,7 +20418,9 @@
         "tests/rendering-tranche2-reference.cpp",
         "tools/test-rendering-tranche2-reference.py",
         "tools/test-next20-canvas-controls.py",
-        "tests/test-canvas-driver-observation.py"
+        "tests/test-canvas-driver-observation.py",
+        "tools/test-rendering-fourteenth-ten.py",
+        "tests/rendering-fourteenth-ten/CMakeLists.txt"
       ],
       "evidence": [
         "RS.canvas-startup.static-20261008",
@@ -20447,11 +20455,12 @@
         "REC8.flow-final.static-20261020",
         "ACR1.original-20261020",
         "ACR1.provenance.static-20261020",
-        "ACR1.inventory.static-20261020"
+        "ACR1.inventory.static-20261020",
+        "NT14.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -20495,7 +20504,10 @@
       "scope_resolution": {
         "id": "scope9.RS.canvas-bind-clip",
         "record": "research/runtime/coverage/critical-scope-final-resolutions-20261020.json"
-      }
+      },
+      "remaining_gaps": [
+        "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
+      ]
     },
     {
       "id": "RS.canvas-startup-clear",
@@ -20525,7 +20537,8 @@
         "research/runtime/native-world-canvas-startup.md",
         "research/formats/canvas-startup-diagnostics.md",
         "research/runtime/next20-implementation-progress-20261020.md",
-        "research/runtime/critical-original-recovery-20261020.md"
+        "research/runtime/critical-original-recovery-20261020.md",
+        "research/runtime/rendering-fourteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/canvas_startup.c",
@@ -20544,7 +20557,9 @@
         "tests/rendering-tranche2-reference.cpp",
         "tools/test-rendering-tranche2-reference.py",
         "tools/test-next20-canvas-controls.py",
-        "tests/test-canvas-driver-observation.py"
+        "tests/test-canvas-driver-observation.py",
+        "tools/test-rendering-fourteenth-ten.py",
+        "tests/rendering-fourteenth-ten/CMakeLists.txt"
       ],
       "evidence": [
         "RS.canvas-startup.static-20261008",
@@ -20570,11 +20585,12 @@
         "CSCOPE9.final-controls-native.20261020",
         "CSCOPE9.final-branches-original.20261020",
         "CSCOPE9.final-scope-review.20261020",
-        "REC6.startup-lease.live-20261020"
+        "REC6.startup-lease.live-20261020",
+        "NT14.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -20616,7 +20632,10 @@
       "scope_resolution": {
         "id": "scope9.RS.canvas-startup-clear",
         "record": "research/runtime/coverage/critical-scope-final-resolutions-20261020.json"
-      }
+      },
+      "remaining_gaps": [
+        "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
+      ]
     },
     {
       "id": "RS.canvas-preworld-reuse",
@@ -21139,7 +21158,8 @@
       ],
       "documents": [
         "research/runtime/native-world-startup-queues.md",
-        "research/formats/startup-queue-diagnostics.md"
+        "research/formats/startup-queue-diagnostics.md",
+        "research/runtime/rendering-fourteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/startup_queue.c",
@@ -21153,7 +21173,9 @@
       ],
       "tests": [
         "tests/startup-queue-test.c",
-        "tools/test-startup-queues.py"
+        "tools/test-startup-queues.py",
+        "tools/test-rendering-fourteenth-ten.py",
+        "tests/rendering-fourteenth-ten/CMakeLists.txt"
       ],
       "evidence": [
         "RS.world-startup-queues.live-20261008",
@@ -21169,11 +21191,12 @@
         "RREC04.rendering-tranche1-source-review-20261019",
         "RREC05.native-ownership-harness-fix-20261019",
         "RREC06.concurrent-dependency-links-pending-20261019",
-        "RREC08.rendering-tranche2-execution-20261019"
+        "RREC08.rendering-tranche2-execution-20261019",
+        "NT14.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -21205,7 +21228,10 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RS.world-startup-queues"
-      }
+      },
+      "remaining_gaps": [
+        "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
+      ]
     },
     {
       "id": "RS.world-startup-wave",
@@ -21233,7 +21259,8 @@
       ],
       "documents": [
         "research/runtime/native-startup-sequence.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-fourteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "assets/sprite_loader.cpp",
@@ -21257,7 +21284,9 @@
         "tools/test-native-startup-sequence.py",
         "tools/test-rendering-tranche2-reference.py",
         "tools/test-rendering-tranche2-wave.py",
-        "tools/test-next20-canvas-controls.py"
+        "tools/test-next20-canvas-controls.py",
+        "tools/test-rendering-fourteenth-ten.py",
+        "tests/rendering-fourteenth-ten/CMakeLists.txt"
       ],
       "evidence": [
         "RS.startup-sequence.live-20261008",
@@ -21286,11 +21315,12 @@
         "CSCOPE9.final-branches-original.20261020",
         "CSCOPE9.final-wave-native.20261020",
         "CSCOPE9.final-startup-native.20261020",
-        "CSCOPE9.final-scope-review.20261020"
+        "CSCOPE9.final-scope-review.20261020",
+        "NT14.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -21347,7 +21377,10 @@
       "scope_resolution": {
         "id": "scope9.RS.world-startup-wave",
         "record": "research/runtime/coverage/critical-scope-final-resolutions-20261020.json"
-      }
+      },
+      "remaining_gaps": [
+        "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
+      ]
     },
     {
       "id": "NR.world-startup-sequence",
@@ -21674,7 +21707,8 @@
       ],
       "documents": [
         "research/runtime/native-startup-sequence.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-fourteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "runtime/scene/world_trace.c"
@@ -21686,7 +21720,9 @@
         "tests/rendering-tranche2-native.cpp",
         "tests/rendering-tranche2-reference.cpp",
         "tools/test-rendering-tranche2-reference.py",
-        "tools/test-next20-canvas-controls.py"
+        "tools/test-next20-canvas-controls.py",
+        "tools/test-rendering-fourteenth-ten.py",
+        "tests/rendering-fourteenth-ten/CMakeLists.txt"
       ],
       "evidence": [
         "RS.startup-sequence.live-20261008",
@@ -21711,11 +21747,12 @@
         "CSCOPE9.final-controls-native.20261020",
         "CSCOPE9.final-branches-original.20261020",
         "CSCOPE9.final-startup-native.20261020",
-        "CSCOPE9.final-scope-review.20261020"
+        "CSCOPE9.final-scope-review.20261020",
+        "NT14.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -21759,20 +21796,24 @@
       "scope_resolution": {
         "id": "scope9.RS.world-startup-palette",
         "record": "research/runtime/coverage/critical-scope-final-resolutions-20261020.json"
-      }
+      },
+      "remaining_gaps": [
+        "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
+      ]
     },
     {
       "id": "NR.world-history-channel",
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Finite ordered World startup journal",
-      "scope": "Native policy: sparse one-time 1..16-slot journal, publication and actual source queues exactly1..target, explicit logical canvas/native word-zero reset metadata, no drop/superseding or original consumer wait. Fixed original pointer/dimensions/stride producer refuses changes, gaps, missing capture, unsupported kinds, cancellation and incompatible skip/interval/startup configuration. Host drains ENDED prefix and rejects malformed identity/reset/sequence. No sustained ring, original initialization recovery, transition support or raster bypass.",
+      "scope": "Native policy: sparse one-time 1..16-slot journal, publication and actual source queues exactly1..target, explicit logical canvas/native word-zero reset metadata, no drop/superseding or original consumer wait. Fixed original pointer/dimensions/stride producer refuses changes, gaps, missing capture, unsupported kinds, cancellation and incompatible skip/interval/startup configuration. Host drains ENDED prefix and rejects malformed identity/reset/sequence. No sustained ring, original initialization recovery, transition support or raster bypass. Native host enforces one-use journal slots, nonzero monotonic presentation acknowledgement, and terminal producer failure/cancellation/identity checks during pending owned worker preparation.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/formats/world-channel-v2.md",
         "research/runtime/native-world-live-history.md",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-fourteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "protocols/include/mnm/world_channel_v1.h",
@@ -21790,7 +21831,9 @@
         "tests/world-channel-test.cpp",
         "runtime/scene/world_stream_selftest.c",
         "tools/test-world-live-history.py",
-        "tools/run-world-history-validation.py"
+        "tools/run-world-history-validation.py",
+        "tools/test-rendering-fourteenth-ten.py",
+        "tests/rendering-fourteenth-ten/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/canvas_producers_v1.h",
@@ -21823,17 +21866,19 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
         "CRIT20.review-20261019",
-        "CRIT20.finite-history-20261019"
+        "CRIT20.finite-history-20261019",
+        "NT14.native-controls-20261022"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -21845,13 +21890,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Async native presentation of contiguous startup canvases",
-      "scope": "Native policy: present every first contiguous Quick Battle World queue1..16 with owned worker preparation, resumable GPU upload and retained native SceneHistory; explicit first word-zero reset, fixed original canvas producer, no destination-pixel inputs. Strict refusal on missing queues/raster work; drain final queued and pending frames after producer ENDED. Synthetic identity/reset/resize/pending cleanup plus installed normal and optional independent exact post-consumer output comparison and measured GUI/processing latency. Original menus, loading pixels and between-queue HUD writes remain excluded; no live bypass, unbounded history, transition/input/HUD ownership or hard driver latency. Native word-zero does not generally equal the original first canvas: uncovered or displacement source pixels may retain external producer content; strict verification refuses such sessions. Successful prefixes establish only their observed fixture, not every seed.",
+      "scope": "Native policy: present every first contiguous Quick Battle World queue1..16 with owned worker preparation, resumable GPU upload and retained native SceneHistory; explicit first word-zero reset, fixed original canvas producer, no destination-pixel inputs. Strict refusal on missing queues/raster work; drain final queued and pending frames after producer ENDED. Synthetic identity/reset/resize/pending cleanup plus installed normal and optional independent exact post-consumer output comparison and measured GUI/processing latency. Original menus, loading pixels and between-queue HUD writes remain excluded; no live bypass, unbounded history, transition/input/HUD ownership or hard driver latency. Native word-zero does not generally equal the original first canvas: uncovered or displacement source pixels may retain external producer content; strict verification refuses such sessions. Successful prefixes establish only their observed fixture, not every seed. Native host enforces one-use journal slots, nonzero monotonic presentation acknowledgement, and terminal producer failure/cancellation/identity checks during pending owned worker preparation.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/formats/world-channel-v2.md",
         "research/runtime/native-world-live-history.md",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-fourteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "protocols/include/mnm/world_channel_v1.h",
@@ -21878,7 +21924,9 @@
         "tools/test-world-live-history.py",
         "tools/capture-scene-game.py",
         "tools/diagnose-native-history-gap.py",
-        "tools/run-world-history-validation.py"
+        "tools/run-world-history-validation.py",
+        "tools/test-rendering-fourteenth-ten.py",
+        "tests/rendering-fourteenth-ten/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "apps/qt-shell/gl_viewport.cpp",
@@ -22056,17 +22104,19 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "RREC08.rendering-tranche2-execution-20261019",
         "CRIT20.review-20261019",
-        "CRIT20.finite-history-20261019"
+        "CRIT20.finite-history-20261019",
+        "NT14.native-controls-20261022"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -23084,7 +23134,8 @@
         "research/runtime/native-world-dispatch-methods-20261019.md",
         "research/runtime/next20-implementation-progress-20261020.md",
         "research/runtime/critical-original-recovery-20261020.md",
-        "research/runtime/original-world-ownership-continuation-20261020.md"
+        "research/runtime/original-world-ownership-continuation-20261020.md",
+        "research/runtime/rendering-fourteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/inspect-world-dispatch.py",
@@ -23096,7 +23147,9 @@
         "tools/test-world-dispatch.py",
         "tests/drawing-dispatch-reference.cpp",
         "tests/world-consumer-test.cpp",
-        "tools/test-original-world-consumer.py"
+        "tools/test-original-world-consumer.py",
+        "tools/test-rendering-fourteenth-ten.py",
+        "tests/rendering-fourteenth-ten/CMakeLists.txt"
       ],
       "evidence": [
         "RS.world-dispatch-targets.static-20261008",
@@ -23123,11 +23176,12 @@
         "REC8.special.original-20261020",
         "REC8.publication.original-20261020",
         "REC8.flow.static-20261020",
-        "REC8.flow-final.static-20261020"
+        "REC8.flow-final.static-20261020",
+        "NT14.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -23140,6 +23194,9 @@
         "tests/sprite-binary-reference.cpp",
         "reconstruction/rendering/world-dispatch/CMakeLists.txt",
         "tools/coverage_claims.py"
+      ],
+      "remaining_gaps": [
+        "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ]
     },
     {
@@ -23162,7 +23219,8 @@
         "research/runtime/native-world-dispatch-methods-20261019.md",
         "research/runtime/next20-implementation-progress-20261020.md",
         "research/runtime/critical-original-recovery-20261020.md",
-        "research/runtime/original-world-ownership-continuation-20261020.md"
+        "research/runtime/original-world-ownership-continuation-20261020.md",
+        "research/runtime/rendering-fourteenth-ten-closeouts-20261022.md"
       ],
       "implementation": [
         "tools/inspect-world-dispatch.py",
@@ -23183,7 +23241,9 @@
         "tests/kind8-construction-reference.c",
         "tests/kind8-construction-test.cpp",
         "tests/original-pe32-image.h",
-        "tools/test-original-kind8-construction.py"
+        "tools/test-original-kind8-construction.py",
+        "tools/test-rendering-fourteenth-ten.py",
+        "tests/rendering-fourteenth-ten/CMakeLists.txt"
       ],
       "validation_dependencies": [
         "runtime/scene/startup_queue.c",
@@ -23243,11 +23303,12 @@
         "REC8.factory.original-20261020",
         "REC8.publication.original-20261020",
         "REC8.flow.static-20261020",
-        "REC8.flow-final.static-20261020"
+        "REC8.flow-final.static-20261020",
+        "NT14.native-controls-20261022"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -23255,7 +23316,10 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-3-20261020",
         "entry": "RS.world-kind8-virtual"
-      }
+      },
+      "remaining_gaps": [
+        "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
+      ]
     },
     {
       "id": "NR.sprite-atlas",
@@ -318122,6 +318186,97 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NT14.native-controls-20261022",
+      "kind": "native_integration",
+      "scope": "Ten existing bounded startup/queue/dispatch/history implementations: 4 Python controls, 39 recorded commands and 2646 stable prospective inputs. Scripted unchanged-original creation/Lock/bind/clip/clear/loss branches; cold/warm wave and shade/shift/palette matrix;768 complete wave canvases match independently initialized CPU, software GPU and actual TITAN GPU; actual PE32 callback ABI/palette/queue/kind8 forwarding and refusals; selected original routing/method/state matrices; ordered finite native history/reset/drain and zero-readback ordinary presentation; consumed-slot/acknowledgement and pending failure/cancel/identity controls;10 PE32 journal modes. No installed original-game execution, real DirectDraw allocation/lease/alias or loss/restore, arbitrary object/writer/thread routes, broad original comparison promotion, whole-game/performance/scanout acceptance or live replacement.",
+      "record": "research/runtime/rendering-fourteenth-ten-results-20261022/attempt-03/controls.json",
+      "sha256": "fb84602371a2a17d9f1b15e5cf883c9a2ceff899f640c2f5bde012f4c3fb96d4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/contracts_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/unchanged_original_fixture_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_comparison_stage_promoted",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_gameplay_or_performance_acceptance",
+          "equals": false
+        },
+        {
+          "pointer": "/wave/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/wave/cpu_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/wave/gpu_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/wave/table_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/wave_return_abi_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/shade_minus127_palette_capture_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/dispatch/routing_and_metadata_match",
+          "equals": true
+        },
+        {
+          "pointer": "/dispatch/class_methods_match",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_wave/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -342742,6 +342897,30 @@
       "evidence": [
         "NT13.native-controls-20261022"
       ]
+    },
+    {
+      "id": "NR.fourteenth-ten.native-controls-20261022",
+      "scope": "Current bounded startup wrappers/queue diagnostics, selected dispatch/kind8 contracts, complete original/CPU/software-GPU/NVIDIA wave canvases and finite native history ownership, terminal-pending preparation, ENDED draining and PE32 publication/refusals. No installed original-game execution, real DirectDraw lease, arbitrary writer/alias ownership, general startup parity or live replacement.",
+      "level": "headless",
+      "behaviors": [
+        "RS.canvas-create-lock",
+        "RS.canvas-bind-clip",
+        "RS.canvas-startup-clear",
+        "RS.world-startup-queues",
+        "RS.world-startup-wave",
+        "RS.world-startup-palette",
+        "RS.world-dispatch-targets",
+        "RS.world-kind8-virtual",
+        "NR.world-history-channel",
+        "NR.world-live-history"
+      ],
+      "tests": [
+        "tools/test-rendering-fourteenth-ten.py",
+        "tests/rendering-fourteenth-ten/CMakeLists.txt"
+      ],
+      "evidence": [
+        "NT14.native-controls-20261022"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -343577,8 +343756,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-40e9931c5c84c568084824f89ad5d970a670ca0bcc83a78fefe212aedc1fe985.json",
-    "sha256": "40e9931c5c84c568084824f89ad5d970a670ca0bcc83a78fefe212aedc1fe985"
+    "path": "research/runtime/coverage/source-index-1cad3da58290d7ab1564b70dc5a5793df4dab413347e498934d17596703159c4.json",
+    "sha256": "1cad3da58290d7ab1564b70dc5a5793df4dab413347e498934d17596703159c4"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

@@ -38,11 +38,17 @@ void WorldChannel::identity() const{
     for(quint32 i=history_?72:68;i<MNM_WCH_HEADER;i+=4)if(*word(i))fail("World channel reserved words changed");
     if(mnm_wch_load(word(20))>MNM_WCH_FAILED||mnm_wch_load(word(24))>1)fail("Invalid World channel state");
 }
+void WorldChannel::validate() const{
+    identity();
+    if(state()==MNM_WCH_FAILED)fail("World producer refused a complete frame");
+    if(mnm_wch_load(word(24)))fail("World channel cancelled");
+}
 std::optional<WorldPacket> WorldChannel::poll(){
-    identity();if(state()==MNM_WCH_FAILED)fail("World producer refused a complete frame");
+    try{validate();}catch(...){cancel();throw;}
     quint32 chosen=slots_,sequence=history_?0xffffffffu:0;
     for(quint32 i=0;i<slots_;++i){auto* s=word(MNM_WCH_HEADER+i*slotBytes_);const auto state=mnm_wch_load(s);
-        if(state>3)fail("Invalid World slot ownership");
+        if(state>3||(history_&&(consumedSlots_&(1u<<i))&&state)){
+            cancel();fail("Invalid or reused World slot ownership");}
         if(state==2&&(history_?s[1]<sequence:s[1]>sequence)){chosen=i;sequence=s[1];}}
     if(chosen==slots_){
         if(history_&&state()==MNM_WCH_ENDED&&last_!=slots_)fail("World history producer ended before its complete prefix");
@@ -62,7 +68,8 @@ std::optional<WorldPacket> WorldChannel::poll(){
         // Supersede only READY slots. WRITING and READING remain exclusively owned.
         auto* old=history_?nullptr:word(MNM_WCH_HEADER+(1-chosen)*MNM_WCH_SLOT);
         if(old&&mnm_wch_load(old)==2&&old[1]<sequence&&mnm_wch_cas(old,2,3)){++superseded_;mnm_wch_store(old,0);}
-        last_=sequence;mnm_wch_store(word(32),sequence);mnm_wch_store(s,0);return packet;
+        last_=sequence;if(history_)consumedSlots_|=1u<<chosen;
+        mnm_wch_store(word(32),sequence);mnm_wch_store(s,0);return packet;
     }catch(...){mnm_wch_store(s,0);cancel();throw;}
 }
 bool WorldChannel::drained() const{
@@ -70,7 +77,7 @@ bool WorldChannel::drained() const{
     for(quint32 i=0;i<slots_;++i)if(mnm_wch_load(word(MNM_WCH_HEADER+i*slotBytes_)))return false;
     return true;
 }
-void WorldChannel::presented(quint32 sequence){identity();if(sequence!=last_)fail("Unconsumed World presentation");mnm_wch_store(word(48),sequence);}
+void WorldChannel::presented(quint32 sequence){validate();if(!sequence||sequence!=last_||sequence<=presented_)fail("Unconsumed or repeated World presentation");presented_=sequence;mnm_wch_store(word(48),sequence);}
 void WorldChannel::cancel(){if(mapping_)mnm_wch_store(word(24),1);}
 quint32 WorldChannel::state() const{return mnm_wch_load(word(20));}
 quint32 WorldChannel::dropped() const{return mnm_wch_load(word(36));}

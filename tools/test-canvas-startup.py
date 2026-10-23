@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Exercise actual PE32 startup hooks and strict diagnostic decoding on fixtures."""
+from coverage_evidence import read_json, evidence_digest, write_report
+import argparse
 import hashlib
 import importlib.util
 import json
@@ -13,10 +15,13 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def sha(p):
-    return hashlib.sha256(p.read_bytes()).hexdigest()
+    return evidence_digest(p)
 
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--wine-prefix",type=Path,help="Existing exclusively leased fixture prefix; caller owns retirement")
+    args=parser.parse_args()
     paths = [ROOT/p for p in ['runtime/scene/canvas_startup.c','runtime/scene/canvas_startup.S',
         'tests/canvas-startup-test.c','tests/canvas-startup-call.S','tools/inspect-canvas-startup.py',
         'tools/test-canvas-startup.py','runtime/shadow/win32_min.h','tools/build-shadow-bridge.py']]
@@ -43,7 +48,11 @@ def main():
         '/safeseh:no','/timestamp:0',f'/out:{binary}',*objects,str(output/'kernel32.lib')],check=True)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
     env.update(MNM_SCENE_DIR='Z:'+str(output).replace('/','\\'),MNM_CANVAS_STARTUP='1',WINEDEBUG='-all',WINEPREFIX=str(output/'wineprefix'))
-    subprocess.run(['cp','-a','--reflink=auto',str(ROOT/'working/tests/scene-selftest-wine'),env['WINEPREFIX']],check=True)
+    if args.wine_prefix:
+        if not args.wine_prefix.is_dir():raise ValueError('Fixture prefix missing')
+        env['WINEPREFIX']=str(args.wine_prefix.resolve())
+    else:
+        subprocess.run(['cp','-a','--reflink=auto',str(ROOT/'working/tests/scene-selftest-wine'),env['WINEPREFIX']],check=True)
     with (output/'execution.log').open('x') as log:
         subprocess.run(['wine',str(binary)],cwd=output,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=60,check=True)
     decoder=load('canvas_decode','tools/inspect-canvas-startup.py')
@@ -66,7 +75,7 @@ def main():
         'all_entry_mismatch_refusal_checked':True,'post_boundary_forwarding_checked':True,'malformed_trace_refusals':cases,
         'first_world_nonzero_pixels':1,'trace_sha256':sha(output/'canvas-startup.bin'),'binary_sha256':sha(binary),
         'original_pixels_used_as_native_inputs':False,'live_replacement':False}
-    with (output/'report.json').open('x') as f:json.dump(report,f,indent=2);f.write('\n')
+    write_report(ROOT,output/'report.json',(json.dumps(report,indent=2)+'\n').encode())
     print(output/'report.json')
 
 

@@ -3,6 +3,8 @@
 #include "rendering-wave-fixture.hpp"
 #include "../reconstruction/rendering/startup_canvas.hpp"
 #include <QGuiApplication>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <iostream>
 #include <fstream>
 using namespace mnm;
@@ -35,7 +37,8 @@ int main(int argc,char** argv)try{
     });
   }
   resource_test::require(renderer.stats().surfaces==0,"GPU wave leaked storage");
-  std::cout<<"{\"success\":true,\"remaining_surfaces\":0,\"wave_pixel_hashes\":[";
+  const auto driver=renderer.driver();
+  std::cout<<"{\"driver\":"<<QJsonDocument(QJsonObject{{"vendor",QString::fromStdString(driver.vendor)},{"renderer",QString::fromStdString(driver.renderer)}}).toJson(QJsonDocument::Compact).constData()<<",\"success\":true,\"remaining_surfaces\":0,\"wave_pixel_hashes\":[";
   for(unsigned i=0;i<hashes.size();++i){if(i)std::cout<<',';std::cout<<hashes[i];}std::cout<<"]}\n";
   return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

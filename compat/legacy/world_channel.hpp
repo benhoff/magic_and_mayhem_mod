@@ -14,6 +14,8 @@ public:
     WorldChannel(const WorldChannel&)=delete;
     WorldChannel& operator=(const WorldChannel&)=delete;
     std::optional<WorldPacket> poll();
+    // Also check while owned worker/GPU preparation is pending.
+    void validate() const;
     void presented(quint32 sequence);
     void cancel();
     quint32 state() const;
@@ -27,7 +29,7 @@ public:
 private:
     void identity() const;
     quint32* word(quint32 offset) const;
-    QFile file_;uchar* mapping_=nullptr;quint32 session_=0,last_=0,superseded_=0;bool verify_=false,history_=false;
+    QFile file_;uchar* mapping_=nullptr;quint32 session_=0,last_=0,superseded_=0,presented_=0,consumedSlots_=0;bool verify_=false,history_=false;
     quint32 slots_=2,slotBytes_=MNM_WCH_SLOT,payloadOffset_=16,extent_=MNM_WCH_SIZE,lastCanvas_=0,lastSource_=0;
 };
 }

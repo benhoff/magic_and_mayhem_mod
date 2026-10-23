@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Compare owned queue routing and kind8 methods with pinned PE32 execution."""
+from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import hashlib
 import json
@@ -21,7 +22,7 @@ SOURCES = ['reconstruction/rendering/world_dispatch.hpp', 'tests/world-dispatch-
 
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return evidence_digest(path)
 
 
 def normalize(call):
@@ -63,7 +64,7 @@ def main():
     out = args.output.resolve()
     if not out.is_relative_to(ROOT/'working') or out.exists():
         parser.error('Require a new output directory under working/')
-    prefix = args.wine_prefix.resolve() if args.wine_prefix else out/'wine'
+    prefix = args.wine_prefix.absolute() if args.wine_prefix else out/'wine'
     if not prefix.is_relative_to(ROOT/'working/tests'):
         parser.error('Synthetic hook prefix must be isolated under working/tests')
     out.mkdir(parents=True)
@@ -83,7 +84,7 @@ def main():
                   live_replacement=False, raster_pixels_compared=False,
                   helper_receiver_identity_compared=False, clip_setup_compared=True,
                   clip_setup_domain="Bounded queue-state sample, fixed clip/dimensions; no live graphics helper effects")
-    (out/'prospective.json').write_text(json.dumps(report, indent=2)+'\n')
+    write_report(ROOT,out/'prospective.json',(json.dumps(report,indent=2)+'\n').encode())
 
     def run(label, command, output=None, env=None):
         with (out/(label+'.log')).open('x') as log:
@@ -129,7 +130,7 @@ def main():
         for actual, expected in zip(native, original):
             expected['calls'] = [row for c in expected['calls'] if (row := normalize(c)) is not None]
             if actual != expected:
-                (out/'mismatch.json').write_text(json.dumps(dict(native=actual, original=expected), indent=2)+'\n')
+                write_report(ROOT,out/'mismatch.json',(json.dumps(dict(native=actual,original=expected),indent=2)+'\n').encode())
                 raise ValueError('Native routing differs from original; see mismatch.json')
             calls += len(actual['calls'])
         run('state-original-build', ['g++', '-m32', '-O2', '-std=c++17', '-fno-pie', '-no-pie',
@@ -160,7 +161,7 @@ def main():
                         calls_for_state.append(normalize(call))
                 expected['calls'] = calls_for_state
                 if actual != expected:
-                    (out/'state-mismatch.json').write_text(json.dumps(dict(native=actual, original=expected), indent=2)+'\n')
+                    write_report(ROOT,out/'state-mismatch.json',(json.dumps(dict(native=actual,original=expected),indent=2)+'\n').encode())
                     raise ValueError('Native queue state differs from original')
                 state_cases += 1
                 state_calls += len(calls_for_state)
@@ -237,7 +238,7 @@ def main():
     finally:
         run('original-after', [ROOT/'tools/original-manifest.sh', 'verify'])
         report['original_manifest_verified_before_after'] = True
-        (out/'report.json').write_text(json.dumps(report, indent=2)+'\n')
+        write_report(ROOT,out/'report.json',(json.dumps(report,indent=2)+'\n').encode())
         print(out/'report.json', flush=True)
 
 

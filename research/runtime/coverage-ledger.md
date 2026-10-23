@@ -21066,3 +21066,7 @@ separately. Ten native implementation completions change partial counts to
 Supporting6/Low1/Medium3/High35/Critical25 without closing their pending original
 comparison, installed/live acceptance or replacement gaps. Actor Critical
 recovery, emitter emission and other remaining providers stay partial.
+
+## Fourteenth rendering batch — startup and finite history (2026-10-22)
+
+[Ten bounded implementation closeouts](rendering-fourteenth-ten-closeouts-20261022.md) complete the registered startup canvas creation/Lock, binding/clip, clear, raw queue prefix, wave/palette, dispatch table/kind8 diagnostic, finite history channel and asynchronous presentation implementations. Fresh `NT14.native-controls-20261022` supplies 4 Python controls, 39 recorded commands and 2646 stable prospective inputs, unchanged-original selected startup/dispatch fixtures,768 complete CPU/software-GPU/TITAN wave canvases and10 actual PE32 history outcomes. One-use journal slots, monotonic acknowledgements and terminal state checks during pending preparation are now enforced. Registered rendering implementation partials fall36→26. Original external APIs remain scripted; no new installed original-game/driver/ownership/full-game/performance/replacement equivalence is claimed. Exact incoming commit-range receipts6da5dc7b..4cd9121f and4cd9121f..8bf5e736 were inspected with no gaps or rewrites; the full batch reran after preserving owned sources/contracts during actor-emitter integration. Generated results and bookkeeping are SQLite-backed; raw controls/backups remain pinned.

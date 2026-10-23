@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Bounded unchanged-original startup branch comparisons, with owned adapters."""
+from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import hashlib
 import json
@@ -21,7 +22,7 @@ def main():
            'reconstruction/rendering/palette_shading.cpp','reconstruction/rendering/palette_shading.hpp']
     paths.append('reconstruction/rendering/generic_producer_caller.h')
     paths += ['assets/sprite_run_clipping.hpp','assets/sprite_loader.hpp','tests/rendering-wave-fixture.hpp']
-    def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+    def sha(p):return evidence_digest(p)
     claims=json.loads(a.claims.read_text()) if a.claims else None
     sources={n:sha(ROOT/n) for n in paths}
     if claims:
@@ -56,7 +57,7 @@ def main():
         report['original_manifest_verified_before_after']=True
         report['sources_stable']=all(sha(ROOT/n)==h for n,h in sources.items())
         report['success'] &= report['sources_stable']
-        (out/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+        write_report(ROOT,out/'report.json',(json.dumps(report,indent=2)+'\n').encode())
         print(out/'report.json',flush=True)
     return 0 if report['success'] else 1
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Exercise actual PE32 queue forwarding, refused/empty queues and raw kind retention."""
+from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import hashlib
 import importlib.util
@@ -15,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return evidence_digest(path)
 
 
 def main():
@@ -106,9 +107,7 @@ def main():
               'binaries': {p.name: sha(p) for p in [out/'fixture.exe', out/'MnmScene.dll']}}
     if claims:
         report['claims'] = claims['claims']
-    with (out/'report.json').open('x') as output:
-        json.dump(report, output, indent=2)
-        output.write('\n')
+    write_report(ROOT,out/'report.json',(json.dumps(report,indent=2)+'\n').encode())
     print(out/'report.json', flush=True)
 
 

@@ -17,10 +17,10 @@ int main(int argc,char** argv)try{
         require(mnm_wch_cas(p,0,1),"Producer overwrote owned slot");p[1]=sequence;p[2]=80;p[3]=0;
         std::memset(reinterpret_cast<char*>(p)+16,int(sequence&255),80);mnm_wch_store(p,2);};
     {
-        WorldChannel channel(path);require(!channel.poll(),"Unpublished frame admitted");
+        WorldChannel channel(path);require(!channel.poll(),"Unpublished frame admitted");rejected([&]{channel.presented(0);});
         auto* first=word(MNM_WCH_HEADER);mnm_wch_store(first,1);require(!channel.poll(),"WRITING frame admitted");mnm_wch_store(first,0);
         publish(0,1);publish(1,2);auto packet=channel.poll();require(packet&&packet->sequence==2&&packet->inputs==QByteArray(80,2),"Latest closed publication differs");
-        require(channel.superseded()==1&&mnm_wch_load(first)==0,"Older READY slot not released");channel.presented(2);require(*word(48)==2,"Presentation acknowledgement missing");rejected([&]{channel.presented(1);});
+        require(channel.superseded()==1&&mnm_wch_load(first)==0,"Older READY slot not released");channel.presented(2);require(*word(48)==2,"Presentation acknowledgement missing");rejected([&]{channel.presented(1);});rejected([&]{channel.presented(2);});
         std::atomic<bool> done{false};std::thread producer([&]{for(quint32 sequence=3;sequence<2003;++sequence){
             for(;;){bool written=false;for(unsigned slot=0;slot<2;++slot){auto* p=word(MNM_WCH_HEADER+slot*MNM_WCH_SLOT);
                 if(mnm_wch_cas(p,0,1)){p[1]=sequence;p[2]=80;p[3]=0;std::memset(reinterpret_cast<char*>(p)+16,int(sequence&255),80);mnm_wch_store(p,2);written=true;break;}}
@@ -39,7 +39,7 @@ int main(int argc,char** argv)try{
     *word(20)=0;*word(24)=0;
     {WorldChannel channel(path);*word(16)=8;rejected([&]{channel.poll();});*word(16)=7;}
     // Ordered journal must drain queued packets after producer ENDED.
-    for(unsigned scenario=0;scenario<7;++scenario){
+    for(unsigned scenario=0;scenario<10;++scenario){
         const auto historyPath=dir.filePath(QString("history-%1").arg(scenario));WorldChannel::createHistory(historyPath,9,false,3);
         QFile journal(historyPath);require(journal.open(QIODevice::ReadWrite),"History fixture map");auto* bytes=journal.map(0,MNM_WCH_HISTORY_SIZE(3));
         auto header=reinterpret_cast<quint32*>(bytes);
@@ -56,7 +56,15 @@ int main(int argc,char** argv)try{
                 if(scenario==4){publishHistory(0,1,1,1,1);require(channel.poll().has_value(),"Initial history packet absent");publishHistory(1,2,2,2,0);}
                 if(scenario==5)mnm_wch_store(header+5,MNM_WCH_ENDED);
                 if(scenario==6){publishHistory(0,1,1,1,1);reinterpret_cast<quint32*>(bytes+MNM_WCH_HEADER)[7]=1;}
+                if(scenario>=7){
+                    publishHistory(0,1,1,1,1);require(channel.poll().has_value(),"Initial history packet absent");
+                    // A journal slot is one-use even when the next packet has
+                    // otherwise valid contiguous sequence and reset metadata.
+                    publishHistory(0,2,1,2,0);
+                    mnm_wch_store(reinterpret_cast<quint32*>(bytes+MNM_WCH_HEADER),scenario-6);
+                }
                 rejected([&]{channel.poll();});
+                if(scenario>=7)require(header[6]==1,"Reused journal did not cancel producer");
             }
         }
         journal.unmap(bytes);

@@ -93,6 +93,34 @@ int main(int argc,char** argv)try{
     // Hold actual cold resource preparation on the worker while GUI timers and
     // session polls continue. Cancellation must not join this blocked work.
     struct Gate {std::atomic<unsigned> calls{0};std::atomic<bool> entered{false},release{false};};
+    // Terminal producer changes must interrupt a pending worker job before
+    // adoption, without waiting for that job or presenting stale work.
+    for(unsigned failure=0;failure<3;++failure){
+        const auto path=directory.filePath(QString("pending-terminal-%1").arg(failure));
+        mnm::legacy::WorldChannel::createHistory(path,31,false,1);
+        QFile file(path);require(file.open(QIODevice::ReadWrite),"Pending terminal map");
+        auto* mapping=file.map(0,MNM_WCH_HISTORY_SIZE(1));auto* header=reinterpret_cast<quint32*>(mapping);
+        auto* slot=reinterpret_cast<quint32*>(mapping+MNM_WCH_HEADER);auto b=wire(indexed,1);
+        slot[1]=1;slot[2]=b.size();slot[4]=1;slot[5]=1;slot[6]=1;
+        std::memcpy(reinterpret_cast<char*>(slot)+32,b.constData(),std::size_t(b.size()));mnm_wch_store(slot,2);
+        auto pendingGate=std::make_shared<Gate>();
+        {LiveWorldSession session(viewport,path,directory.path(),{},[pendingGate](const std::atomic<bool>& stop){
+            if(pendingGate->calls.fetch_add(1)==0)return;
+            pendingGate->entered=true;while(!pendingGate->release&&!stop)std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        });
+            QElapsedTimer timer;timer.start();while(!pendingGate->entered&&timer.elapsed()<10000){
+                require(session.poll(),"Pending terminal preparation failed early");app.processEvents();std::this_thread::sleep_for(std::chrono::milliseconds(1));}
+            require(pendingGate->entered&&session.hasPendingFrame(),"Terminal fixture missed owned worker boundary");
+            if(failure==0)mnm_wch_store(header+5,MNM_WCH_FAILED);
+            if(failure==1)header[4]=32;
+            if(failure==2)mnm_wch_store(header+6,1);
+            timer.restart();require(!session.poll()&&timer.elapsed()<100,"Pending terminal change waited for worker");
+            pendingGate->release=true;app.processEvents();
+            const auto report=session.report();require(session.presentations()==0&&!session.error().isEmpty()&&!session.hasPendingFrame()&&viewport.frameSize().isEmpty(),"Terminal producer work was presented or retained");
+            require(report["remaining_surfaces"].toInteger()==0&&header[6]==1,"Terminal producer cleanup failed");
+        }
+        file.unmap(mapping);
+    }
     auto gate=std::make_shared<Gate>();
     const auto slowPath=directory.filePath("slow-preparation");mnm::legacy::WorldChannel::create(slowPath,3,false);
     QFile slowFile(slowPath);require(slowFile.open(QIODevice::ReadWrite),"Slow preparation map");auto* slowMap=slowFile.map(0,MNM_WCH_SIZE);

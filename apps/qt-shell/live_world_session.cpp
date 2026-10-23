@@ -19,6 +19,7 @@ bool LiveWorldSession::poll(){
     if(closed_)return false;
     QElapsedTimer timer;timer.start();
     try{
+        channel_.validate();
         if(!viewport_.error().isEmpty())throw std::runtime_error(viewport_.error().toStdString());
         if(!viewport_.ready())return true;
         if(!pending_){pending_=channel_.poll();if(!pending_)return true;frameTimer_.start();

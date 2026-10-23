@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Compare complete original, native CPU and native GPU wave fixture canvases."""
+from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import hashlib
 import json
@@ -8,7 +9,7 @@ from pathlib import Path
 import subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
-def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def sha(p):return evidence_digest(p)
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
@@ -30,7 +31,7 @@ def main():
         return json.loads((out/(name+'.log')).read_text())
     subprocess.run([ROOT/'tools/original-manifest.sh','verify'],check=True)
     try:
-        pin(a.reference_report);reference=json.loads(a.reference_report.read_text())
+        pin(a.reference_report);reference=read_json(a.reference_report)
         if not reference['success'] or not reference['sources_stable']:raise ValueError('Original reference did not pass')
         if any(sha(ROOT/n)!=h for n,h in reference['sources'].items()):raise ValueError('Original fixture sources changed')
         original=Path(reference['wave_pixels']['path']);pin(original)
@@ -53,7 +54,7 @@ def main():
         report.update(original_manifest_verified_before_after=True,inputs=inputs,
             inputs_stable=all(sha(Path(n))==h for n,h in inputs.items()),sources_stable=all(sha(ROOT/n)==h for n,h in sources.items()))
         report['success'] &= report['inputs_stable'] and report['sources_stable']
-        (out/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+        write_report(ROOT,out/'report.json',(json.dumps(report,indent=2)+'\n').encode())
         print(json.dumps({k:report.get(k) for k in ('success','error','cases','cpu_equal','gpu_equal','table_equal')}))
     return 0 if report['success'] else 1
 

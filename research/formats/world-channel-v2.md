@@ -31,3 +31,9 @@ identity changes, unsupported raster kinds, malformed reset metadata and
 publication failures are fatal. Producer reason103 indicates a missing queue
 boundary,104 a changed/invalid canvas,105 a slot collision,110 incompatible
 sampling/startup configuration. Original drawing remains active.
+
+The native reader remembers consumed physical slot indices and cancels if any
+becomes WRITING, READY or READING again. Presentation acknowledgements are nonzero,
+name the latest consumed frame, and advance once. Pending CPU/GPU preparation
+rechecks producer failure, cancellation and immutable channel identity before
+adoption or presentation; ENDED still allows the complete pending prefix to drain.
