@@ -21302,3 +21302,26 @@ only within their live generation; stale pointer identity is excluded. The
 Critical actor umbrella remains partial. Incoming2b8f9065..3a5788e8 review:23 exact
 file transitions,zero missing/mutated receipts. Earlier failed/narrower outcomes
 and original manifests remain preserved without historical hash refresh.
+
+## Knowledge source-cache ownership — OKC1 (2026-10-23)
+
+AI.owner-knowledge-source-cache-ownership now composes raw owner0 bank0/1 cache
+production,creation-order source storage,root reuse and4181d0 mode1 invalidation
+with the generated task6 source/feature lifecycle. Cache and task source records
+are distinct allocations borrowing externally owned snapshots. The128-episode
+matrix constructs/retires8,576 sources:3,072 cache and5,504 task copies,with768
+builds,640 hits and384 invalidations. Bank0 rebuilds cover two/one/zero admitted
+observations; marker changes alone preserve cached roots. Actual42f250 retains
+cache-vector capacity after forward source destruction. Task copies survive
+cache invalidation; original suffix retention at task release remains unchanged.
+
+[Research and exact evidence](knowledge-cache-ownership-20261023.md) keep raw
+observation-tree/snapshot insertion,refresh/expiry/resource ownership,mode2 task
+notifications,intermediate traversal/probe bytes,other families,failures/SEH and
+World/live acceptance open. The Critical actor-services umbrella remains partial.
+The prior OTC1 fixture independently reruns2,020,665 original/native/sanitizer
+checks against the extended shared header,with the same digest and71 inputs.
+Historical evidence is preserved,not rebound. Incoming3a5788e8..fa354308 review:
+33 exact file transitions,zero missing/mutated receipts. The NS76 research receives
+an explicit source-cache-vector terminology correction; this does not claim a
+new full observation lifecycle comparison or change its historical reports.

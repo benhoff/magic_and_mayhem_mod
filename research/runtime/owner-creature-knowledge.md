@@ -140,3 +140,13 @@ inputs in a separate opt-in encounter mode. NS76's report, input policy and
 historical source hashes remain unchanged. The NS77 contract owns a bounded
 staggered creature-perception projection; observation-point fog, UI reveal,
 strategic consequences and full World scheduling retain their separate gaps.
+
+## Source-cache ownership clarification (2026-10-23)
+
+The two per-owner vectors at knowledge-row+10/+20, previously described above as
+notification vectors, own the cached source records produced by413330 through
+4174f0/417e80.4181d0 destroys them through417e60 before mode dispatch, then42f250
+retains their capacity. [OKC1](knowledge-cache-ownership-20261023.md) separately
+compares that ownership with task clones. NS76's memory projection, historical
+reports and recorded source hashes are unchanged. Other mode2 task/notification
+consequences and raw observation-tree/snapshot allocation remain outside OKC1.

@@ -51,6 +51,18 @@ public:
         // finish() on every remaining evaluator after any selected installation.
         m.set32(evaluator+0x14a,node(groups,0,snapshot));
     }
+    // Same normal task storage, now cloning an independently owned knowledge
+    // cache forest. Cache invalidation must not destroy this task's copy.
+    void prepareCached(const OwnerMemoryGroups& groups,U root){
+        validateOwnerMemoryGroups(groups,{32,32,8});if(groups.nodes.empty()||!root)throw std::invalid_argument("task6 missing cached forest");
+        U copy=sources.clone(evaluator,root);mapping.assign(groups.nodes.size(),0);
+        auto bind=[&](auto&& self,U id,U p)->void{
+            const auto& n=groups.nodes.at(id);mapping[id]=p;
+            U at=m.get32(p+0x29),end=m.get32(p+0x2d);
+            if((end-at)/4!=n.children.size())throw std::invalid_argument("task6 cached topology");
+            for(U child:n.children){self(self,child,m.get32(at));at+=4;}
+        };bind(bind,0,copy);m.set32(evaluator+0x14a,copy);
+    }
     void candidate(U root,int risk,int duration,const std::vector<int>& values){
         if(root==0||root>=mapping.size()||risk<0||duration<=0)throw std::invalid_argument("task6 generated candidate");
         m.set32(evaluator+0x153,mapping[root]);m.set32(evaluator+0x157,U(risk));m.set32(evaluator+0x15b,U(duration));features.candidate(evaluator,values);
