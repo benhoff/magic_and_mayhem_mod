@@ -1,5 +1,19 @@
 # Engine modernization coverage ledger
 
+## Alternate ownership through complete sessions and retail review — 2026-10-24
+
+ACO1 validates eight normal original windowed processes and sixteen repeated
+Quick Battles across both resolutions and DEBUG settings,including original
+results Continue/World resume,results Quit,Main Quit and fresh-process restart.
+All created threads retain both publication watches;4,076 World dispatches
+show no alternate writes or nonzero pointers. Supplemental retail literal
+review finds three base/two source reads;NoCD retains five/two. Neither image
+has a literal publisher/release. Computed,bulk and external writers remain
+unresolved;the dormant/incomplete-route explanation is a hypothesis. Original
+allocator,initial pixels,source/base relationship,complete writers and release
+remain unknown. Partial status and integration/replacement none are retained.
+[Recovery,retained attempts and SQLite results](alternate-ownership-sessions-20261024.md).
+
 
 ## Complete screen caller and original windowed route — 2026-10-24
 
