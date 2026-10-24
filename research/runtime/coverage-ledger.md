@@ -21377,3 +21377,49 @@ The Critical actor umbrella stays partial. Incomingf2253bb8..ac0b9e3b review:
 ## Seventeenth rendering batch — five current contracts (2026-10-23)
 
 [Current five-contract closeout](rendering-seventeenth-five-20261023.md) records 83 Python controls plus13 combat-input regressions,20 asserted native controls,4096 verification and4096 normal returns/paints; original 19.90295FPS,Qt 19.90693FPS,warm median42.0ms/p9548ms/max69ms,cold247.225ms,RSS growth0bytes. Actual post-prefix peer deaths and128 normal recovery use fresh distinct sessions. Kernel/display/input isolation, actual PE32 protected backing and strict refusals, owned/strict normal and live Hard restart, plus public casting/combat/spell/portrait/movement/Mini/normal Quit complete. Ordinary public19FPS acceptance is False at 17.253776873910518FPS; failed portrait/window/aggregate timing remains pending and raw success remains false. Rendering implementation partials6→1. Scopes, old fingerprints/failures and independent original comparison/integration/replacement stages are preserved; full DirectDraw/whole-game/global ownership and60FPS remain separate. SQLite stores all new durable observations and exact source/collector provenance. Storage review finds no eligible cleanup candidates; retained source/pins/raw evidence are untouched.
+
+
+## WBT1 — whole-brain normal teardown, 2026-10-23
+
+**Scope and confidence:** high within the independently authored ordinary brain0/1
+normal domain. [Whole-brain teardown](whole-brain-teardown-20261023.md) records
+actual415ac0 payload release and whole4c0920 final member destruction, separately
+from the traced4156b0 state reset and416b80 reset/re-registration wrapper.
+`OwnerBrainTeardown` composes existing source/base-task/snapshot destructors over
+checked PE32 value-address storage; it borrows the enclosing brain and actor pool.
+
+Fresh `WBT1.original-final2-20261023` and `WBT1.headless-final2-20261023` bind final2's exact
+sources and scope. Native64/original32/ASan+UBSan+LSan agree on3,572,476 checks,
+32 brain destructions/256 owner rows,5,606 allocation releases,84 snapshot-buffer
+releases and digest10878094686036488357. Both source banks,primary/secondary
+source overlap,pending task ownership/borrowed task aliases,inline sources,
+empty/singleton/three-node trees,shared nil last-user release and deque block
+boundaries participate. Complete final brain bytes,exact release order,other-brain
+preservation,125 actor assignment slots,source mode,canaries and zero live owned
+allocations are checked. Only alloc/free/buffer-free boundaries are supplied;
+original text remains RX/unchanged and manifests pass before/after each run.
+
+Payload release is forward owner0..7/bank0..1; final member destruction reverses
+owner rows and bank backing order. The secondary source vector alone deduplicates
+against primary pointer slots. Borrowed task-map aliases are not deleted twice.
+The original final deque bytes retain a freed map pointer/capacity; native
+reconstruction preserves them. Payload release is not idempotent and is not
+itself final member destruction. Earlier4156b0 destructor shorthand is corrected
+by explicit reset/final-destruction identities without rewriting historical proof.
+
+**Remaining:** reset/re-registration and original construction execution,portable
+RB insertion/rebalancing/iterator ABI,arbitrary ownership duplicates/cycles,
+other task-family derived state,callback/failure/SEH extensions,training/backends,
+full World/session cadence and installed/live replacement remain separate.
+This extends bounded headless teardown; the Critical actor-services umbrella
+remains partial and no gameplay balance changes are made.
+
+Durable declarations,attempts,inspection and incoming-history review use SQLite.
+Trial1's warning/system-tmp quota failure and trial2's successful earlier source
+hashes remain preserved; final1 pins exact central original function hash ranges.
+Theb45abf10..9b83b3d7 incoming review covers537 exact file transitions;missing
+raw-bin storage receipts are appended retrospectively,with the initial negative
+review preserved and no historical gate/new execution assertion. Startup storage
+inventory found no automatic cleanup candidates;no payload was removed. Retained
+execution binaries and compiler temporaries are ignored outputs in the owned
+whole-brain-teardown worktree.
