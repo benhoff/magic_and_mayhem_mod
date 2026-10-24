@@ -78347,44 +78347,65 @@
       "kind": "recovered",
       "subsystem": "rendering",
       "title": "Pinned four-case minimap camera dispatch",
-      "scope": "Static selector at 0x555c3c reads owner+0xa4, bounds unsigned values through3 and dispatches via table0x555e08. Cases0,1,2,3 call 0x5527a0,0x552f20,0x5527a0,0x552b50 respectively: camera0,2,0,1. Camera3 body0x5532f0 is not selected by this table. This does not establish global dead code, all indirect callers, physical key-to-orientation state, or pixel equivalence; preserve aliasing baseline.",
+      "scope": "Pinned NoCD selector555c3c..555c6e: raw unsigned owner+a4 values0,1,2,3 dispatch camera0,2,0,1; all other values skip camera. The common553850 creature-marker call follows both selected/default routes. Native owned-callback composition and unchanged original instruction window compare call order/receiver and unchanged source storage. Individual camera pixel kernels, caller state production, physical input mapping, whole minimap and live replacement are separate.",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5594172,
-          "scope": "Bounded static selector/three direct CALL branches only."
+          "scope": "Unchanged selector and common marker-call window555c3c..555c6e, owned callee/continuation endpoints."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5594632,
           "relation": "data",
           "scope": "Exact four-entry jump table, including aliased cases0/2."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5584976,
+          "scope": "Common marker-call identity only; marker implementation is an owned endpoint in this experiment."
         }
       ],
       "documents": [
         "research/runtime/native-pixel-route-scenarios.md",
-        "research/runtime/minimap-pixel-takeover.md"
+        "research/runtime/minimap-pixel-takeover.md",
+        "research/runtime/rendering-foundations-20261024.md"
       ],
       "implementation": [
-        "tools/inspect-pixel-route-targets.py"
+        "tools/inspect-pixel-route-targets.py",
+        "reconstruction/rendering/minimap_camera_dispatch.hpp"
       ],
-      "tests": [],
+      "tests": [
+        "tests/rendering-foundations-reference.cpp",
+        "tools/test-rendering-foundations.py",
+        "tests/rendering-foundations-native.cpp"
+      ],
       "validation_dependencies": [
         "research/runtime/coverage/binary-nocd.json",
-        "tools/original-manifest.sh"
+        "tests/sprite-binary-reference.cpp",
+        "tools/alternate_canvas_lifecycle.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/test-rendering-foundations.py"
       ],
       "evidence": [
         "RS.minimap-camera-dispatch.static-20261015",
-        "RS.pixel-route-targets.reviewed-static-20261015"
+        "RS.pixel-route-targets.reviewed-static-20261015",
+        "RF1.original-20261024"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "The owned selector is independently usable but is not installed into a live game or wired to a new native whole-minimap caller. Existing draw-stream routing remains unchanged."
+      ]
     },
     {
       "id": "HOST.native-render-save-load",
@@ -121011,35 +121032,67 @@
       "kind": "recovered",
       "subsystem": "rendering",
       "title": "Original displacement sine table initialization",
-      "scope": "Pinned original57dbd0 writes16DWORD displacements at656640 using x87 sine/conversion. Recorded FNINIT-context values8,11,13,15,15,15,13,11,8,5,3,1,1,1,3,5 feed original5968a4 sampling. Keep original initializer; arbitrary x87 environment/rounding, all callers, native initialization and full game equivalence remain unproved.",
-      "confidence": "provisional",
+      "scope": "Complete pinned57dbd0 sixteen-DWORD displacement initializer including59bee0 truncating conversion: binary64 approximate pi/8, x87 FSIN and negative8 amplitude,8-minus-truncated result into owned output. x86/x87 masked exceptions,empty register stack with any TOP,precision24/53/64 and all rounding modes; compare all entries,guards,CW/full status/tag/MXCSR under selected sticky flags/condition bits. Native short/null output,occupied stack,unmasked exceptions and reserved precision refuse atomically. FIP/FDP/empty register bytes,other architectures,unmasked execution,all original callers and live replacement excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5757904,
-          "scope": "Bounded table writer and observed16values, not complete caller/x87 environment behavior."
+          "scope": "Complete unchanged table writer57dbd0..57dc16, with masked x87 arithmetic and owned output comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881568,
+          "scope": "Complete original truncating x87-to-int64 conversion helper."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6060112,
+          "relation": "data",
+          "scope": "Pinned binary64 amplitude/angle initializer constant."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6060120,
+          "relation": "data",
+          "scope": "Pinned binary64 amplitude/angle initializer constant."
         }
       ],
       "documents": [
-        "research/runtime/raster-displacement-physical-boundary.md"
+        "research/runtime/raster-displacement-physical-boundary.md",
+        "research/runtime/rendering-foundations-20261024.md"
       ],
-      "implementation": [],
+      "implementation": [
+        "reconstruction/rendering/displacement_table.h"
+      ],
       "tests": [
         "tests/raster-displacement-boundary-reference.cpp",
-        "tools/test-raster-displacement-boundary.py"
+        "tools/test-raster-displacement-boundary.py",
+        "tests/rendering-foundations-reference.cpp",
+        "tools/test-rendering-foundations.py",
+        "tests/rendering-foundations-native.cpp"
       ],
       "evidence": [
-        "RS.raster-displacement-table-initializer.finding-20261018"
+        "RS.raster-displacement-table-initializer.finding-20261018",
+        "RF1.original-20261024"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md."
+        "The native initializer consumes no original table. The existing running-game raster bridge still observes original startup globals; no live initializer installation or current full-path rendering credit is claimed."
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/alternate_canvas_lifecycle.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/test-rendering-foundations.py"
       ]
     },
     {
@@ -133436,18 +133489,26 @@
         "tools/test-original-alternate-canvas.py"
       ],
       "tests": [
-        "tests/alternate-canvas-initializer.cpp"
+        "tests/alternate-canvas-initializer.cpp",
+        "tests/alternate-canvas-publication-watch.cpp",
+        "tools/test-rendering-foundations.py"
       ],
       "validation_dependencies": [
+        "reconstruction/rendering/canvas_initializer.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/alternate_canvas_lifecycle.py",
         "tools/coverage_claims.py",
-        "tools/original_x86.py"
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/test-rendering-foundations.py"
       ],
       "documents": [
-        "research/runtime/alternate-canvas-recovery-20261020.md"
+        "research/runtime/alternate-canvas-recovery-20261020.md",
+        "research/runtime/rendering-foundations-20261024.md"
       ],
       "evidence": [
-        "ACR1.original-20261020"
+        "ACR1.original-20261020",
+        "RF1.original-20261024"
       ],
       "confidence": "high_within_scope",
       "status": {
@@ -133456,7 +133517,10 @@
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Hardware watches cover transient writes to6e1f68/6c through288 bounded initializer cases; authored fixture writes exercise both watches. Actual alternate allocation/publication/lifetime and real COM failure/driver paths remain unresolved."
+      ]
     },
     {
       "id": "RS.alternate-canvas-x87-copy",
@@ -133503,7 +133567,7 @@
       "kind": "recovered",
       "subsystem": "rendering_reconstruction",
       "title": "Alternate enable/source initialization and unresolved writer frontier",
-      "scope": "Pinned original PE zero-fill for6e1f68/6c/70/74/78; exhaustive raw literal occurrences and byte-checked operand attribution against retained recursive frontier plus focused59455c/4e40d0 bodies. Nearby address constructions remain candidates. Separate config6e1f78 reader/writer and alternate6e1f68/source6e1f6c; preserve unresolved indirect flows. No recovered original alternate allocation,initial pixel clear,publisher,all-writer inventory or actual reachability/unreachability claim.",
+      "scope": "Pinned original PE zero-fill for6e1f68/6c/70/74/78; exhaustive raw literal occurrences and byte-checked operand attribution against retained recursive frontier plus focused59455c/4e40d0 bodies. Nearby address constructions remain candidates. Separate config6e1f78 reader/writer and alternate6e1f68/source6e1f6c; preserve unresolved indirect flows. No recovered original alternate allocation,initial pixel clear,publisher,all-writer inventory or actual reachability/unreachability claim. Bounded straight-line constant-address/overlapping-store and address-escape candidate review plus transient pointer-write watchpoints on complete initializer288cases; these strengthen only that boundary and do not close whole-session allocation/publication/writer/retirement.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -133528,22 +133592,35 @@
       ],
       "implementation": [
         "tools/test-original-alternate-canvas.py",
-        "tools/review-alternate-canvas-inventory.py"
+        "tools/review-alternate-canvas-inventory.py",
+        "tools/alternate_canvas_lifecycle.py"
       ],
-      "tests": [],
+      "tests": [
+        "tests/alternate-canvas-publication-watch.cpp",
+        "tools/test-rendering-foundations.py"
+      ],
       "validation_dependencies": [
-        "tools/original_x86.py",
-        "tools/inventory-binary.py",
+        "reconstruction/rendering/canvas_initializer.hpp",
+        "research/runtime/all-original-recovery-results-20261020/flow-review-final.json",
+        "research/runtime/alternate-canvas-results-20261020/provenance.json",
+        "tests/alternate-canvas-initializer.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/alternate_canvas_lifecycle.py",
         "tools/coverage_claims.py",
-        "research/runtime/all-original-recovery-results-20261020/flow-review-final.json"
+        "tools/coverage_evidence.py",
+        "tools/inventory-binary.py",
+        "tools/original_x86.py",
+        "tools/test-rendering-foundations.py"
       ],
       "documents": [
-        "research/runtime/alternate-canvas-recovery-20261020.md"
+        "research/runtime/alternate-canvas-recovery-20261020.md",
+        "research/runtime/rendering-foundations-20261024.md"
       ],
       "evidence": [
         "ACR1.original-20261020",
         "ACR1.provenance.static-20261020",
-        "ACR1.inventory.static-20261020"
+        "ACR1.inventory.static-20261020",
+        "RF1.original-20261024"
       ],
       "confidence": "high_within_scope",
       "status": {
@@ -133552,7 +133629,11 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Original alternate allocation, publication outside the admitted initializer, base/source relationship, initial pixels, upstream writers and release remain unknown. No allocator policy is introduced; preserve every unresolved indirect edge and unknown computed writer.",
+        "Hardware writes observed in fixture code are authored setup, not game publications; no natural live alternate route has been established."
+      ]
     },
     {
       "id": "NP.native-creature-drawing-adapter",
@@ -329711,6 +329792,59 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "RF1.original-20261024",
+      "kind": "isolated_original",
+      "scope": "Bounded unchanged original minimap dispatch/common marker ordering and full16-entry displacement writer with native owned composition;3072 admitted x87 states,8232 selectors,ASan/UBSan and independent native64 controls. Complete original graphics initializer288cases with owned COM/mode/create endpoints and hardware pointer-write watches; conservative static lifecycle candidates retain unknown alternate ownership.",
+      "record": "research/runtime/rendering-foundations-results-20261024/execution03.json",
+      "sha256": "cd139aa4355e00cb6cbfcb2a6e08b8381435b7bab7f42d76993693ee21fc3196",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/reference/selector_cases",
+          "equals": 8232
+        },
+        {
+          "pointer": "/reference/table_cases",
+          "equals": 3072
+        },
+        {
+          "pointer": "/publication/1/original_pointer_writes",
+          "equals": 0
+        },
+        {
+          "pointer": "/publication/1/authored_pointer_writes",
+          "equals": 576
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -357201,7 +357335,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-87a4547a1397ac4b2f022ff537e54ea72edf0f622be6f8b99a1c0d2b4ebef106.json",
-    "sha256": "87a4547a1397ac4b2f022ff537e54ea72edf0f622be6f8b99a1c0d2b4ebef106"
+    "path": "research/runtime/coverage/source-index-a6bbd3e9e80ff2d2510468c2acf30c3807e514ee662ebaa3d65181d68dac58bd.json",
+    "sha256": "a6bbd3e9e80ff2d2510468c2acf30c3807e514ee662ebaa3d65181d68dac58bd"
   }
 }

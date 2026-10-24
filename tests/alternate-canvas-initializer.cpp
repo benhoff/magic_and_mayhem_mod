@@ -46,7 +46,10 @@ static U __attribute__((stdcall)) pixelFormat(void* self, U* format) {
   ++formatCount; events.push_back(4); return 0;
 }
 static void __attribute__((thiscall)) diagnostic(void*, U result) { require(result == 0, "Unexpected original error"); }
-int main(int argc, char** argv) try {
+#ifndef MNM_ALTERNATE_INITIALIZER_ENTRY
+#define MNM_ALTERNATE_INITIALIZER_ENTRY main
+#endif
+int MNM_ALTERNATE_INITIALIZER_ENTRY(int argc, char** argv) try {
   if (argc != 2) throw std::runtime_error("Expected original executable");
   map_image(read(argv[1]));
   const auto snapshot = [](U at, unsigned n) { auto* p = reinterpret_cast<unsigned char*>(at); return Bytes(p, p+n); };

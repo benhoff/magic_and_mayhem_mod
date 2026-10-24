@@ -1,5 +1,28 @@
 # Engine modernization coverage ledger
 
+## Rendering helper recovery and alternate publication discovery — 2026-10-24
+
+Rendering chunks 1–3 add owned minimap selector/common-marker composition and
+independent native 16-entry displacement initialization. The unchanged original
+instructions match 8,232 selector cases and 3,072 admitted x87 states, with exact
+table/guard/CW/status/tag/MXCSR comparisons; PE32 ASan/UBSan and independent
+native64 sanitized controls pass. Only these two helpers receive scoped
+implementation/recorded isolated-comparison credit. Application integration and
+live replacement remain none; the running original startup still initializes its
+own table.
+
+Hardware write watches on alternate base/source slots catch all 576 fixture
+stores and zero original publications across 288 complete initializer cases,
+including transient writes. The renewed static review byte-checks 542,955 rows,
+retains 54,067 unknown computed writers and 2,948 unresolved indirect edges, and
+finds only known padding/configuration stores in the five-slot block. Original
+allocation, pointer relationship, initial pixels, upstream writers and retirement
+remain unresolved; no native allocator or actual-route claim is introduced.
+See [the chunk review](rendering-foundations-20261024.md) and
+[RF1 execution](rendering-foundations-results-20261024/execution03.json).
+Historical evidence is preserved. Full-path/physical driver/FPS acceptance is
+outside this batch.
+
 ## High tranche 3 reservation evidence admission — 2026-10-19
 
 The reservation analyzer now independently decodes the complete raw reservation,
