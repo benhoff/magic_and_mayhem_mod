@@ -3617,7 +3617,6 @@
         "entry": "RE.sprite_queue"
       },
       "remaining_gaps": [
-        "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints.",
         "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints."
       ]
     },
@@ -3684,7 +3683,6 @@
         "entry": "RE.sprite_visibility"
       },
       "remaining_gaps": [
-        "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints.",
         "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints."
       ]
     },
@@ -4783,7 +4781,6 @@
         "entry": "AN.direction"
       },
       "remaining_gaps": [
-        "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints.",
         "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints."
       ]
     },
@@ -140741,7 +140738,8 @@
         "tests/original-linux-seh.hpp",
         "tools/original_x86.py",
         "tools/coverage_claims.py",
-        "tools/coverage_evidence.py"
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/member_callbacks.hpp"
       ],
       "documents": [
         "research/runtime/actor-session-source-lifecycle-20261022.md"
@@ -140750,7 +140748,9 @@
         "ASL1.session.isolated_original-20261022",
         "ASL1.session.headless-20261022",
         "ASL1.attempt-catalog.static-20261022",
-        "ASL1.incoming-history.static-20261022"
+        "ASL1.incoming-history.static-20261022",
+        "BA1.session.original-20261023",
+        "BA1.session.headless-20261023"
       ],
       "status": {
         "understanding": "scoped",
@@ -140815,13 +140815,15 @@
         "tests/actor-services-reference.cpp",
         "tests/actor-services-call.S",
         "tests/actor-composition-seeds.inc",
-        "tests/actor-provider-seeds.inc"
+        "tests/actor-provider-seeds.inc",
+        "reconstruction/rendering/member_callbacks.hpp"
       ],
       "documents": [
         "research/runtime/actor-session-source-lifecycle-20261022.md"
       ],
       "evidence": [
-        "ASL1.session.headless-20261022"
+        "ASL1.session.headless-20261022",
+        "BA1.session.headless-20261023"
       ],
       "status": {
         "understanding": "scoped",
@@ -143918,7 +143920,9 @@
         "OSR1.inspection.static-20261023",
         "OSR1.history.static-20261023",
         "OSR1.ui.static-20261023",
-        "OSR1.attempts.static-20261023"
+        "OSR1.attempts.static-20261023",
+        "BA1.osr-compat.original-20261023",
+        "BA1.osr-compat.headless-20261023"
       ],
       "original": [
         {
@@ -144102,7 +144106,9 @@
         "OSC1.inspection.static-20261023",
         "OSC1.history.static-20261023",
         "OSC1.ui.static-20261023",
-        "OSC1.attempts.static-20261023"
+        "OSC1.attempts.static-20261023",
+        "OSC1.alias-merge.original-20261023",
+        "OSC1.alias-merge.headless-20261023"
       ],
       "original": [
         {
@@ -144221,7 +144227,9 @@
         "MOO1.original-20261023",
         "MOO1.headless-20261023",
         "MOO1.attempts.static-20261023",
-        "MOO1.history.static-20261023"
+        "MOO1.history.static-20261023",
+        "MOO1.alias-merge.original-20261023",
+        "MOO1.alias-merge.headless-20261023"
       ],
       "original": [
         {
@@ -144346,6 +144354,479 @@
         "tools/owner_planner_comparison.py",
         "tools/test-snapshot-resource-refresh.py"
       ]
+    },
+    {
+      "id": "AI.owner-borrowed-alias-consumers",
+      "kind": "recovered",
+      "subsystem": "creature_ai",
+      "title": "Member callback classes and stale observation source consumers",
+      "scope": "Pinned NoCD13 exact member-callback thunk classes: adjusted PE32 receiver,one argument,service return propagation,base-vtable reset and low-bit scalar deletion flags; explicit member targets/allocator services. Native checked storage refuses freed callback invocation as host policy. Nested task source407c10/407ed0 refresh after old marker,actual snapshot destruction/missing key,and same-key current reacquisition;retains stale35 bytes without dereference,filters mode3 versus mode0 identity,updates current live pool pointer/activity/root center and retains constructor tag25. One ordinary actor/owner0,valid32x32 coordinates,normal successful allocation. Original missing-record lookup executes while freed snapshot page is PROT_NONE. Snapshot construction uses the existing native value store;original42f2e0/505f70 performs retirement. No lower member target/51e890 semantics,arbitrary callback families,malformed trees,SEH/World/live replacement. Current dead/allied records replace35 before clearing activity;callback receiver arithmetic includes32-bit address wrapping. Full0x8d source bytes and traversal cursors participate in the cross-execution digest;actual407920/4079f0 mode3/mode0 traversal runs while the snapshot is inaccessible.",
+      "confidence": "high_within_scope",
+      "implementation": [
+        "reconstruction/rendering/member_callbacks.hpp",
+        "reconstruction/creature-ai/owner_task_sources.hpp",
+        "reconstruction/rendering/actor_session.hpp"
+      ],
+      "tests": [
+        "tests/borrowed-alias-consumers-test.cpp",
+        "tools/test-borrowed-alias-consumers.py",
+        "tools/inspect-borrowed-alias-consumers.py"
+      ],
+      "documents": [
+        "research/runtime/borrowed-alias-consumers-20261023.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "BA1.original-20261023",
+        "BA1.headless-20261023",
+        "BA1.inspection.static-20261023",
+        "BA1.history.static-20261023",
+        "BA1.final.original-20261023",
+        "BA1.final.headless-20261023",
+        "BA1.history-final.static-20261023",
+        "BA1.session-interrupted.static-20261023",
+        "BA1.attempts.static-20261023",
+        "BA1.merge.original-20261023",
+        "BA1.merge.headless-20261023"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4226064,
+          "scope": "Whole source refresh/recursive activity reset and normal snapshot retirement within this bounded fixture."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4226768,
+          "scope": "Whole source refresh/recursive activity reset and normal snapshot retirement within this bounded fixture."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4387552,
+          "scope": "Whole source refresh/recursive activity reset and normal snapshot retirement within this bounded fixture."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267312,
+          "scope": "Whole source refresh/recursive activity reset and normal snapshot retirement within this bounded fixture."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4604880,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-4643d0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4604912,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4604944,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4664976,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-472e90"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4665008,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4665040,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966496,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-4bc860"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967136,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967600,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966528,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-4bc880"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967264,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967616,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966560,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-4bc8a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967296,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967632,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106480,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-4deb30"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106848,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107264,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106560,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-4deb80"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106976,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107328,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106592,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-4deba0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107008,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107344,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106656,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-4debe0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107104,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107392,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426112,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-52cbc0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426144,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426176,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5579936,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-5524a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5579968,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5580000,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5597808,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-556a70"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5597840,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5597872,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5741728,
+          "scope": "Concrete member callback invoke entry;target service semantics excluded.",
+          "relation": "code",
+          "recovered_range": "borrowed-member-thunk-579ca0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5741760,
+          "scope": "Concrete member callback delete entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5741792,
+          "scope": "Concrete member callback destruct entry;target service semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225312,
+          "scope": "Real cursor initialization/leaf/actor traversal within the bounded stale-source fixture."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225520,
+          "scope": "Real cursor initialization/leaf/actor traversal within the bounded stale-source fixture."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225664,
+          "scope": "Real cursor initialization/leaf/actor traversal within the bounded stale-source fixture."
+        }
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_knowledge_cache.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_observation_snapshots.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_sources.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/member_callbacks.hpp",
+        "tests/observation-snapshot-ownership-test.cpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/snapshot-resource-refresh-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/draft-coverage-claims.py",
+        "tools/ghidra/ExportFontProviders.java",
+        "tools/inspect-borrowed-alias-consumers.py",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/owner_planner_comparison.py"
+      ],
+      "remaining_gaps": [
+        "Actual member target51e890 and other targets remain services;all stale8fd list-cursor consumers and nonmatching callback representations remain unrecovered.",
+        "Invalid pointers/tree corruption/allocation failure/SEH and whole-brain/World/live replacement remain independent.",
+        "Actor-session dispatcher integration has its own regression;this source fixture does not execute a complete owner scheduler."
+      ]
+    },
+    {
+      "id": "AI.owner-brain-teardown",
+      "kind": "recovered",
+      "subsystem": "creature_ai",
+      "title": "Whole-brain payload and member teardown",
+      "scope": "Pinned NoCD40209ca7 whole normal4c0920 brain destruction and415ac0 payload teardown over checked PE32 value-address storage. Two ordinary brains0/1 share task and observation sentinels;all eight owner rows,authored balanced0/1/3-node observation/scalar/task maps,base fallback tasks with owned source forests and feature vectors,two source-cache banks,overlapping primary1a/secondary11e05 sources,borrowed task aliases,two inline sources,125 actor assignment slots,and0/1/1024/1025-element nonowning deques. Compare exact release order,full final brain bytes,shared nil last-user release,other-brain preservation,source mode restoration and all owned storage released. Existing task/source/snapshot destruction composes natively;original allocator/free/buffer-free boundaries explicit. Final destructor borrows enclosing brain and actor pool. Reset4156b0 and416b80 actor re-registration are traced separately,not implemented or executed here. Native owner0/1 admission is policy. Original construction,RB insertion/erase iterator ABI,arbitrary trees/cycles/invalid ownership,other task-family derived state,allocation failure/SEH,full World/session cadence and installed/live replacement excluded.",
+      "confidence": "high_within_scope",
+      "implementation": [
+        "reconstruction/creature-ai/owner_brain_teardown.hpp"
+      ],
+      "tests": [
+        "tests/whole-brain-teardown-test.cpp",
+        "tools/test-whole-brain-teardown.py",
+        "tools/inspect-whole-brain-teardown.py"
+      ],
+      "documents": [
+        "research/runtime/whole-brain-teardown-20261023.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "WBT1.original-20261023",
+        "WBT1.headless-20261023",
+        "WBT1.inspection.static-20261023",
+        "WBT1.history.static-20261023",
+        "WBT1.attempts.static-20261023",
+        "WBT1.original-final2-20261023",
+        "WBT1.headless-final2-20261023",
+        "WBT1.attempts-final2.static-20261023",
+        "WBT1.merge.original-20261023",
+        "WBT1.merge.headless-20261023"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4283072,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4983072,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4983664,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4983760,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4983856,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4983952,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4984368,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5326864,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        }
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_knowledge_cache.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_observation_snapshots.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_sources.hpp",
+        "reconstruction/creature-ai/owner_task_storage.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/observation-snapshot-ownership-test.cpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/draft-coverage-claims.py",
+        "tools/ghidra/ExportFontProviders.java",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/owner_planner_comparison.py"
+      ],
+      "validation_domain": "16 episodes,two brains per episode,all8 owner rows,shared sentinels across brains,balanced empty/singleton/three-node trees,base fallback tasks,source aliases and forest topology,deque block boundary,normal success only. No reset,construction,World/live or exception evidence."
     }
   ],
   "evidence": [
@@ -326159,6 +326640,1612 @@
         }
       ],
       "sources_pointer": "/sources"
+    },
+    {
+      "scope": "Pinned NoCD13 exact member-callback thunk classes: adjusted PE32 receiver,one argument,service return propagation,base-vtable reset and low-bit scalar deletion flags; explicit member targets/allocator services. Native checked storage refuses freed callback invocation as host policy. Nested task source407c10/407ed0 refresh after old marker,actual snapshot destruction/missing key,and same-key current reacquisition;retains stale35 bytes without dereference,filters mode3 versus mode0 identity,updates current live pool pointer/activity/root center and retains constructor tag25. One ordinary actor/owner0,valid32x32 coordinates,normal successful allocation. Original missing-record lookup executes while freed snapshot page is PROT_NONE. Snapshot construction uses the existing native value store;original42f2e0/505f70 performs retirement. No lower member target/51e890 semantics,arbitrary callback families,malformed trees,SEH/World/live replacement. Current dead/allied records replace35 before clearing activity;callback receiver arithmetic includes32-bit address wrapping.",
+      "record": "research/runtime/borrowed-alias-consumers-results-20261023/borrowed-alias-final-1.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "sha256": "fce68a8dd62451f7e36613ce201aefeb2bcf6bdadaa132ce0f4deecad0441e61",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_classes",
+          "equals": 13
+        },
+        {
+          "pointer": "/callback_invocations",
+          "equals": 78
+        },
+        {
+          "pointer": "/source_refreshes",
+          "equals": 5
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "id": "BA1.original-20261023",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "scope": "Pinned NoCD13 exact member-callback thunk classes: adjusted PE32 receiver,one argument,service return propagation,base-vtable reset and low-bit scalar deletion flags; explicit member targets/allocator services. Native checked storage refuses freed callback invocation as host policy. Nested task source407c10/407ed0 refresh after old marker,actual snapshot destruction/missing key,and same-key current reacquisition;retains stale35 bytes without dereference,filters mode3 versus mode0 identity,updates current live pool pointer/activity/root center and retains constructor tag25. One ordinary actor/owner0,valid32x32 coordinates,normal successful allocation. Original missing-record lookup executes while freed snapshot page is PROT_NONE. Snapshot construction uses the existing native value store;original42f2e0/505f70 performs retirement. No lower member target/51e890 semantics,arbitrary callback families,malformed trees,SEH/World/live replacement. Current dead/allied records replace35 before clearing activity;callback receiver arithmetic includes32-bit address wrapping.",
+      "record": "research/runtime/borrowed-alias-consumers-results-20261023/borrowed-alias-final-1.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "sha256": "fce68a8dd62451f7e36613ce201aefeb2bcf6bdadaa132ce0f4deecad0441e61",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_classes",
+          "equals": 13
+        },
+        {
+          "pointer": "/callback_invocations",
+          "equals": 78
+        },
+        {
+          "pointer": "/source_refreshes",
+          "equals": 5
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "id": "BA1.headless-20261023",
+      "kind": "native_integration"
+    },
+    {
+      "id": "BA1.inspection.static-20261023",
+      "kind": "static",
+      "scope": "Exact13 concrete member-thunk/table/deleting/base-destructor signatures and inventoried407c10/407ed0 instructions. Before/after original manifests pass;no lower target semantics inferred.",
+      "record": "research/runtime/borrowed-alias-consumers-results-20261023/inspection-3.json",
+      "sha256": "42652bcfc057ff9b25892dc2402a511d935f0bddbdbf3483722ad1a402ec2dcb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/manifest_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "BA1.history.static-20261023",
+      "kind": "static",
+      "scope": "Initial exact history check found44 binary evidence paths without individual source receipts;negative accounting evidence retained.",
+      "record": "research/runtime/borrowed-alias-consumers-results-20261023/history-closeout-1.json",
+      "sha256": "2e7d28c84e3bc8a408263931c1475bc2813bf31d858109f11aa48c961df1f4e6",
+      "assertions": [
+        {
+          "pointer": "/initial_success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "scope": "Pinned NoCD13 exact member-callback thunk classes: adjusted PE32 receiver,one argument,service return propagation,base-vtable reset and low-bit scalar deletion flags; explicit member targets/allocator services. Native checked storage refuses freed callback invocation as host policy. Nested task source407c10/407ed0 refresh after old marker,actual snapshot destruction/missing key,and same-key current reacquisition;retains stale35 bytes without dereference,filters mode3 versus mode0 identity,updates current live pool pointer/activity/root center and retains constructor tag25. One ordinary actor/owner0,valid32x32 coordinates,normal successful allocation. Original missing-record lookup executes while freed snapshot page is PROT_NONE. Snapshot construction uses the existing native value store;original42f2e0/505f70 performs retirement. No lower member target/51e890 semantics,arbitrary callback families,malformed trees,SEH/World/live replacement. Current dead/allied records replace35 before clearing activity;callback receiver arithmetic includes32-bit address wrapping. Full0x8d source bytes and traversal cursors participate in the cross-execution digest;actual407920/4079f0 mode3/mode0 traversal runs while the snapshot is inaccessible.",
+      "record": "research/runtime/borrowed-alias-consumers-results-20261023/borrowed-alias-final-2.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "sha256": "b27c4ddfd614f4add7dcc548ae5410472ef8dc5973dde66895ba8046384a0abb",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_classes",
+          "equals": 13
+        },
+        {
+          "pointer": "/callback_invocations",
+          "equals": 78
+        },
+        {
+          "pointer": "/source_refreshes",
+          "equals": 5
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "id": "BA1.final.original-20261023",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "scope": "Pinned NoCD13 exact member-callback thunk classes: adjusted PE32 receiver,one argument,service return propagation,base-vtable reset and low-bit scalar deletion flags; explicit member targets/allocator services. Native checked storage refuses freed callback invocation as host policy. Nested task source407c10/407ed0 refresh after old marker,actual snapshot destruction/missing key,and same-key current reacquisition;retains stale35 bytes without dereference,filters mode3 versus mode0 identity,updates current live pool pointer/activity/root center and retains constructor tag25. One ordinary actor/owner0,valid32x32 coordinates,normal successful allocation. Original missing-record lookup executes while freed snapshot page is PROT_NONE. Snapshot construction uses the existing native value store;original42f2e0/505f70 performs retirement. No lower member target/51e890 semantics,arbitrary callback families,malformed trees,SEH/World/live replacement. Current dead/allied records replace35 before clearing activity;callback receiver arithmetic includes32-bit address wrapping. Full0x8d source bytes and traversal cursors participate in the cross-execution digest;actual407920/4079f0 mode3/mode0 traversal runs while the snapshot is inaccessible.",
+      "record": "research/runtime/borrowed-alias-consumers-results-20261023/borrowed-alias-final-2.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "sha256": "b27c4ddfd614f4add7dcc548ae5410472ef8dc5973dde66895ba8046384a0abb",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_classes",
+          "equals": 13
+        },
+        {
+          "pointer": "/callback_invocations",
+          "equals": 78
+        },
+        {
+          "pointer": "/source_refreshes",
+          "equals": 5
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "id": "BA1.final.headless-20261023",
+      "kind": "native_integration"
+    },
+    {
+      "id": "BA1.history-final.static-20261023",
+      "kind": "static",
+      "scope": "539 exact file transitions across b45abf10..9b83b3d7;44 binary payloads receive an explicit retrospective SQLite receipt. All other effective-byte transitions have exact existing receipts;receipt journal self-exempt. No historical gate pass or engine validation inferred.",
+      "record": "research/runtime/borrowed-alias-consumers-results-20261023/history-closeout-1.json",
+      "sha256": "2e7d28c84e3bc8a408263931c1475bc2813bf31d858109f11aa48c961df1f4e6",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "BA1.session-interrupted.static-20261023",
+      "kind": "static",
+      "scope": "Negative regression execution evidence;native/sanitized64 completed,original partial is retained.",
+      "record": "research/runtime/borrowed-alias-consumers-results-20261023/session-interruption-1.json",
+      "sha256": "84c1021c97865cb59b2fc60582e78436b27ae5642b419be51f2e936d92aae007",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/interrupted",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "BA1.osr-compat.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Fresh existing OSR1 bounded7550016-check compatibility against changed OwnerTaskSources header and explicit shared fixture return;not an alias-consumer scope extension. All old OSR1 metrics/digest unchanged.",
+      "record": "research/runtime/snapshot-resource-refresh-results-20261023/borrowed-alias-osr-compat-2.json",
+      "sha256": "c0804e144b4dd24028c755fefa94d7ec41843fc25ae7938af51ae7c5fe7b2db7",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 7550016
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/digest",
+          "equals": "947184330397392515"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 2304
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 256
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 1088
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 192
+        },
+        {
+          "pointer": "/task_clones",
+          "equals": 192
+        },
+        {
+          "pointer": "/stale_snapshot_references",
+          "equals": 1152
+        },
+        {
+          "pointer": "/actor_resets",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_destructions",
+          "equals": 256
+        },
+        {
+          "pointer": "/callbacks_released",
+          "equals": 576
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "BA1.osr-compat.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Fresh existing OSR1 bounded7550016-check compatibility against changed OwnerTaskSources header and explicit shared fixture return;not an alias-consumer scope extension. All old OSR1 metrics/digest unchanged.",
+      "record": "research/runtime/snapshot-resource-refresh-results-20261023/borrowed-alias-osr-compat-2.json",
+      "sha256": "c0804e144b4dd24028c755fefa94d7ec41843fc25ae7938af51ae7c5fe7b2db7",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 7550016
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/digest",
+          "equals": "947184330397392515"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 2304
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 256
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 1088
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 192
+        },
+        {
+          "pointer": "/task_clones",
+          "equals": 192
+        },
+        {
+          "pointer": "/stale_snapshot_references",
+          "equals": 1152
+        },
+        {
+          "pointer": "/actor_resets",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_destructions",
+          "equals": 256
+        },
+        {
+          "pointer": "/callbacks_released",
+          "equals": 576
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "BA1.attempts.static-20261023",
+      "kind": "static",
+      "scope": "Retained setup/negative source and storage evidence only;no validation credit for baseline misroutes or partial session attempts. Every intermediate source version rehashes to its prospective declaration.",
+      "record": "research/runtime/borrowed-alias-consumers-results-20261023/attempts-closeout-1.json",
+      "sha256": "7eeb71312133ec88389dc14b211897a719bbfdec651b13ed582e8aa88161fc1b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_versions_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/original_inputs_modified",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "record": "research/runtime/actor-session-source-results-20261022/borrowed-alias-session-4.json",
+      "sha256": "abde24707b022f2ff209d3bcaffd5cea6571d994f79c63c2b9c3f4583a94ddf5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 1024
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_public_session_api",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_source_byte25_provenance_guarded",
+          "equals": true
+        },
+        {
+          "pointer": "/protected_pool_and_reuse_refusals",
+          "equals": 128
+        },
+        {
+          "pointer": "/queued_backing_import_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "BA1.session.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Fresh existing64-variant/1024-checkpoint actor session scope against generalized MemberCallbacks dispatch. Same owned allocator/source/pool lifecycle and native policies;not whole-World/live replacement. Original target bodies unchanged and source closure stable.393604952 normalized bytes compare identically across original/native/sanitized.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "record": "research/runtime/actor-session-source-results-20261022/borrowed-alias-session-4.json",
+      "sha256": "abde24707b022f2ff209d3bcaffd5cea6571d994f79c63c2b9c3f4583a94ddf5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 1024
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_public_session_api",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_source_byte25_provenance_guarded",
+          "equals": true
+        },
+        {
+          "pointer": "/protected_pool_and_reuse_refusals",
+          "equals": 128
+        },
+        {
+          "pointer": "/queued_backing_import_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "BA1.session.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Fresh existing64-variant/1024-checkpoint actor session scope against generalized MemberCallbacks dispatch. Same owned allocator/source/pool lifecycle and native policies;not whole-World/live replacement. Original target bodies unchanged and source closure stable.393604952 normalized bytes compare identically across original/native/sanitized."
+    },
+    {
+      "scope": "Pinned NoCD13 exact member-callback thunk classes: adjusted PE32 receiver,one argument,service return propagation,base-vtable reset and low-bit scalar deletion flags; explicit member targets/allocator services. Native checked storage refuses freed callback invocation as host policy. Nested task source407c10/407ed0 refresh after old marker,actual snapshot destruction/missing key,and same-key current reacquisition;retains stale35 bytes without dereference,filters mode3 versus mode0 identity,updates current live pool pointer/activity/root center and retains constructor tag25. One ordinary actor/owner0,valid32x32 coordinates,normal successful allocation. Original missing-record lookup executes while freed snapshot page is PROT_NONE. Snapshot construction uses the existing native value store;original42f2e0/505f70 performs retirement. No lower member target/51e890 semantics,arbitrary callback families,malformed trees,SEH/World/live replacement. Current dead/allied records replace35 before clearing activity;callback receiver arithmetic includes32-bit address wrapping. Full0x8d source bytes and traversal cursors participate in the cross-execution digest;actual407920/4079f0 mode3/mode0 traversal runs while the snapshot is inaccessible.",
+      "record": "research/runtime/borrowed-alias-consumers-results-20261023/borrowed-alias-merge-1.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "sha256": "35cafd83829e2f54795347e9ab3f841ad242c3809033275ef4d4431631ebdff7",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_classes",
+          "equals": 13
+        },
+        {
+          "pointer": "/callback_invocations",
+          "equals": 78
+        },
+        {
+          "pointer": "/source_refreshes",
+          "equals": 5
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "id": "BA1.merge.original-20261023",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "scope": "Pinned NoCD13 exact member-callback thunk classes: adjusted PE32 receiver,one argument,service return propagation,base-vtable reset and low-bit scalar deletion flags; explicit member targets/allocator services. Native checked storage refuses freed callback invocation as host policy. Nested task source407c10/407ed0 refresh after old marker,actual snapshot destruction/missing key,and same-key current reacquisition;retains stale35 bytes without dereference,filters mode3 versus mode0 identity,updates current live pool pointer/activity/root center and retains constructor tag25. One ordinary actor/owner0,valid32x32 coordinates,normal successful allocation. Original missing-record lookup executes while freed snapshot page is PROT_NONE. Snapshot construction uses the existing native value store;original42f2e0/505f70 performs retirement. No lower member target/51e890 semantics,arbitrary callback families,malformed trees,SEH/World/live replacement. Current dead/allied records replace35 before clearing activity;callback receiver arithmetic includes32-bit address wrapping. Full0x8d source bytes and traversal cursors participate in the cross-execution digest;actual407920/4079f0 mode3/mode0 traversal runs while the snapshot is inaccessible.",
+      "record": "research/runtime/borrowed-alias-consumers-results-20261023/borrowed-alias-merge-1.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "sha256": "35cafd83829e2f54795347e9ab3f841ad242c3809033275ef4d4431631ebdff7",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_classes",
+          "equals": 13
+        },
+        {
+          "pointer": "/callback_invocations",
+          "equals": 78
+        },
+        {
+          "pointer": "/source_refreshes",
+          "equals": 5
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "id": "BA1.merge.headless-20261023",
+      "kind": "native_integration"
+    },
+    {
+      "id": "OSC1.alias-merge.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Actual4181d0 mode1/2 with nonempty independently authored observer source forests and installed task backlinks. Real407920/4079f0 full mode3 traversal/restoration,522770 terminal parent task and416d80 with505bf0/505c50/59bee0 execute without service redirects. Both families0/1,ordinary/wizard kinds,health-as-level and capped quantity,missing observer/root/eligible actor/task,wrong family,refresh/expiry silence,reacquisition and modulo32 totals. Forests/visibility/activation/profiles are authored fixture inputs;alloc/free explicit. Negative activity is restored to3 before separate fixture retirement because baseline destruction skips negative children. No general scheduler,World,whole-brain,failure/live claim.",
+      "record": "research/runtime/observation-task-services-results-20261023/borrowed-alias-merge-services-1.json",
+      "sha256": "ed48aeedc8af7babc2dc71de0a7b940518756ff9532ca4ef5ad2d104a2cfc00c",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 151424
+        },
+        {
+          "pointer": "/cases",
+          "equals": 384
+        },
+        {
+          "pointer": "/slices",
+          "equals": 3456
+        },
+        {
+          "pointer": "/digest",
+          "equals": "4880561449990472991"
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 1152
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 1152
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 768
+        },
+        {
+          "pointer": "/task_credits",
+          "equals": 480
+        },
+        {
+          "pointer": "/no_credit_insertions",
+          "equals": 672
+        },
+        {
+          "pointer": "/wrapped_credits",
+          "equals": 25
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "OSC1.alias-merge.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Same384 cases and3456 slices,not additional samples. New headless composition combines existing knowledge matching,owned snapshots,cache invalidation,source traversal and profile valuation with concrete ancestry recipient lookup and modulo32 task credit. One owner0/one actor,increasing ticks,non-reentrant storage/read-only profiles;preinstalled tasks and forests authored. Source/observer/task pointers borrowed;normal forward source retirement after explicit fixture activity restoration. Native ordered index and bounds are policies. No original fallback/output-fed state;general task install/scheduler,World providers,multi-owner/record,failures/live remain open.",
+      "record": "research/runtime/observation-task-services-results-20261023/borrowed-alias-merge-services-1.json",
+      "sha256": "ed48aeedc8af7babc2dc71de0a7b940518756ff9532ca4ef5ad2d104a2cfc00c",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 151424
+        },
+        {
+          "pointer": "/cases",
+          "equals": 384
+        },
+        {
+          "pointer": "/slices",
+          "equals": 3456
+        },
+        {
+          "pointer": "/digest",
+          "equals": "4880561449990472991"
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 1152
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 1152
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 768
+        },
+        {
+          "pointer": "/task_credits",
+          "equals": 480
+        },
+        {
+          "pointer": "/no_credit_insertions",
+          "equals": 672
+        },
+        {
+          "pointer": "/wrapped_credits",
+          "equals": 25
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "MOO1.alias-merge.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Pinned NoCD40209ca7 bounded4181d0 modes1/2 with up to eight enabled owners and twenty stationary ordinary actors, sparse owner sets and disabled/re-enabled owner3. Full packed observation values and real5060a0 callback/list generations; adjacent record erasure and ordered cursor continuation across eight-work slices, age1024 retention and later expiry, independent owner-local monotonic keys and reacquisition. Actual413330 bank1 task clones survive cache invalidation and observation erasure; actual407c10 resolves current keys to live actors, clears stale/missing activity while preserving borrowed pointers, and retains constructor pointer tags;40a340 retires sources without owning snapshots. Native OwnerObservationSnapshots,OwnerKnowledge,OwnerKnowledgeCache and OwnerTaskSources compose with checked value-only resolveOwnerTaskSources. Original RB topology and source traversal cursor bytes excluded from native representation. Successful allocations,strict increasing ticks,authored visibility and relation inputs,explicit false4f4ba0 line-reachability service,empty mode2 task/notification collections. Arbitrary forests/callback classes,allocator/SEH failures,whole-brain teardown,World/installed/live replacement excluded. Eight episodes/896 updates/215540764 checks,1264 insertions,528 expiries,795 cursor continuations,472 reacquisitions,6474 root resolutions,17748 retained freed snapshot borrows and216 callback retirements. Same dataset across original/native/sanitizer,not additional samples.",
+      "record": "research/runtime/multiple-observation-owners-results-20261023/borrowed-alias-merge-owners-1.json",
+      "sha256": "ff3e5e1254e121ce6c74037b135dba47a37d7c5bdf65740f1efdf788a9b44f3d",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 215540764
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/digest",
+          "equals": "1154226086461827485"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 896
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 1264
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 528
+        },
+        {
+          "pointer": "/cursor_continuations",
+          "equals": 795
+        },
+        {
+          "pointer": "/resolutions",
+          "equals": 6474
+        },
+        {
+          "pointer": "/missing_leaves",
+          "equals": 54124
+        },
+        {
+          "pointer": "/stale_leaves",
+          "equals": 12616
+        },
+        {
+          "pointer": "/reacquisitions",
+          "equals": 472
+        },
+        {
+          "pointer": "/disabled_rows",
+          "equals": 3120
+        },
+        {
+          "pointer": "/age1024_rows",
+          "equals": 545
+        },
+        {
+          "pointer": "/freed_borrow_resolutions",
+          "equals": 17748
+        },
+        {
+          "pointer": "/callbacks_released",
+          "equals": 216
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "MOO1.alias-merge.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Pinned NoCD40209ca7 bounded4181d0 modes1/2 with up to eight enabled owners and twenty stationary ordinary actors, sparse owner sets and disabled/re-enabled owner3. Full packed observation values and real5060a0 callback/list generations; adjacent record erasure and ordered cursor continuation across eight-work slices, age1024 retention and later expiry, independent owner-local monotonic keys and reacquisition. Actual413330 bank1 task clones survive cache invalidation and observation erasure; actual407c10 resolves current keys to live actors, clears stale/missing activity while preserving borrowed pointers, and retains constructor pointer tags;40a340 retires sources without owning snapshots. Native OwnerObservationSnapshots,OwnerKnowledge,OwnerKnowledgeCache and OwnerTaskSources compose with checked value-only resolveOwnerTaskSources. Original RB topology and source traversal cursor bytes excluded from native representation. Successful allocations,strict increasing ticks,authored visibility and relation inputs,explicit false4f4ba0 line-reachability service,empty mode2 task/notification collections. Arbitrary forests/callback classes,allocator/SEH failures,whole-brain teardown,World/installed/live replacement excluded. Eight episodes/896 updates/215540764 checks,1264 insertions,528 expiries,795 cursor continuations,472 reacquisitions,6474 root resolutions,17748 retained freed snapshot borrows and216 callback retirements. Same dataset across original/native/sanitizer,not additional samples.",
+      "record": "research/runtime/multiple-observation-owners-results-20261023/borrowed-alias-merge-owners-1.json",
+      "sha256": "ff3e5e1254e121ce6c74037b135dba47a37d7c5bdf65740f1efdf788a9b44f3d",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 215540764
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/digest",
+          "equals": "1154226086461827485"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 896
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 1264
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 528
+        },
+        {
+          "pointer": "/cursor_continuations",
+          "equals": 795
+        },
+        {
+          "pointer": "/resolutions",
+          "equals": 6474
+        },
+        {
+          "pointer": "/missing_leaves",
+          "equals": 54124
+        },
+        {
+          "pointer": "/stale_leaves",
+          "equals": 12616
+        },
+        {
+          "pointer": "/reacquisitions",
+          "equals": 472
+        },
+        {
+          "pointer": "/disabled_rows",
+          "equals": 3120
+        },
+        {
+          "pointer": "/age1024_rows",
+          "equals": 545
+        },
+        {
+          "pointer": "/freed_borrow_resolutions",
+          "equals": 17748
+        },
+        {
+          "pointer": "/callbacks_released",
+          "equals": 216
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "WBT1.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Pinned NoCD40209ca7 whole normal4c0920 brain destruction and415ac0 payload teardown over checked PE32 value-address storage. Two ordinary brains0/1 share task and observation sentinels;all eight owner rows,authored balanced0/1/3-node observation/scalar/task maps,base fallback tasks with owned source forests and feature vectors,two source-cache banks,overlapping primary1a/secondary11e05 sources,borrowed task aliases,two inline sources,125 actor assignment slots,and0/1/1024/1025-element nonowning deques. Compare exact release order,full final brain bytes,shared nil last-user release,other-brain preservation,source mode restoration and all owned storage released. Existing task/source/snapshot destruction composes natively;original allocator/free/buffer-free boundaries explicit. Final destructor borrows enclosing brain and actor pool. Reset4156b0 and416b80 actor re-registration are traced separately,not implemented or executed here. Native owner0/1 admission is policy. Original construction,RB insertion/erase iterator ABI,arbitrary trees/cycles/invalid ownership,other task-family derived state,allocation failure/SEH,full World/session cadence and installed/live replacement excluded.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-final-1.json",
+      "sha256": "4d701972c478d4c570fc063855c0b94d9d752d12af1489eb9c1b927e549599c9",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "WBT1.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Same16 episodes/32 brain destructions,not additional samples. Native checked value-address whole-brain teardown composes existing source/task/snapshot destruction without original fallback. Separate from native session ownership and live replacement.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-final-1.json",
+      "sha256": "4d701972c478d4c570fc063855c0b94d9d752d12af1489eb9c1b927e549599c9",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "WBT1.inspection.static-20261023",
+      "kind": "static",
+      "scope": "Existing inventory41-entry instruction/decompilation/caller-reference review.4156b0 resets and repopulates;415ac0 releases payloads;4c0920 destroys members. No function-boundary discovery or reset execution credit.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/inspection-4.json",
+      "sha256": "854da7c2efa37db0ce1bfd3c6e2783ec552f49c136a764f593153263cbc96ade",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WBT1.history.static-20261023",
+      "kind": "static",
+      "scope": "Committedb45abf10..9b83b3d7 range:537 exact file transitions;44 missing raw-bin storage receipts appended retrospectively. No unresolved gaps,no historical gate or execution assertion.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/incoming-history-reviewed-1.json",
+      "sha256": "5f896e9730d352ba3dc89829d3254d9627fcd28e11b2dd85a9d9f0778fbaf53a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WBT1.attempts.static-20261023",
+      "kind": "static",
+      "scope": "Preserved source-bound failure,successful trial2,final1 with exact inventory hash ranges and successive read-only inspections. No historical hashes refreshed.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/attempt-catalog-1.json",
+      "sha256": "c5d359f281fe861894bad77c35fe29d9452ee67788d3a05d01cef224d84089df",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WBT1.original-final2-20261023",
+      "kind": "isolated_original",
+      "scope": "Pinned NoCD40209ca7 whole normal4c0920 brain destruction and415ac0 payload teardown over checked PE32 value-address storage. Two ordinary brains0/1 share task and observation sentinels;all eight owner rows,authored balanced0/1/3-node observation/scalar/task maps,base fallback tasks with owned source forests and feature vectors,two source-cache banks,overlapping primary1a/secondary11e05 sources,borrowed task aliases,two inline sources,125 actor assignment slots,and0/1/1024/1025-element nonowning deques. Compare exact release order,full final brain bytes,shared nil last-user release,other-brain preservation,source mode restoration and all owned storage released. Existing task/source/snapshot destruction composes natively;original allocator/free/buffer-free boundaries explicit. Final destructor borrows enclosing brain and actor pool. Reset4156b0 and416b80 actor re-registration are traced separately,not implemented or executed here. Native owner0/1 admission is policy. Original construction,RB insertion/erase iterator ABI,arbitrary trees/cycles/invalid ownership,other task-family derived state,allocation failure/SEH,full World/session cadence and installed/live replacement excluded. Final2 independently authors normal black-root/red-child/black-nil tree colors;earlier final1 remains historical and stale after that fixture correction.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-final-2.json",
+      "sha256": "f7d67010f4379be2aec84fea67b7f2e80cbbd37d8fb5dcb85241ddcce96d8623",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "WBT1.headless-final2-20261023",
+      "kind": "native_integration",
+      "scope": "Same16 episodes/32 brain destructions,not additional samples. Native checked value-address whole-brain teardown composes existing source/task/snapshot destruction without original fallback. Separate from native session ownership and live replacement. Final2 independently authors normal black-root/red-child/black-nil tree colors;earlier final1 remains historical and stale after that fixture correction.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-final-2.json",
+      "sha256": "f7d67010f4379be2aec84fea67b7f2e80cbbd37d8fb5dcb85241ddcce96d8623",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "WBT1.attempts-final2.static-20261023",
+      "kind": "static",
+      "scope": "Preserve earlier failed compile/quota trial1,successful trial2/final1,normal-RB-color final2,successive inspections,and accounting/UI negative evidence. Only final2 binds current fixture sources;no prior source hash refreshed.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/attempt-catalog-2.json",
+      "sha256": "affc694f21a9f2cfbc7ba56d2d61d25a701eba80184daeb6b494ea091ce6395d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WBT1.merge.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Pinned NoCD40209ca7 whole normal4c0920 brain destruction and415ac0 payload teardown over checked PE32 value-address storage. Two ordinary brains0/1 share task and observation sentinels;all eight owner rows,authored balanced0/1/3-node observation/scalar/task maps,base fallback tasks with owned source forests and feature vectors,two source-cache banks,overlapping primary1a/secondary11e05 sources,borrowed task aliases,two inline sources,125 actor assignment slots,and0/1/1024/1025-element nonowning deques. Compare exact release order,full final brain bytes,shared nil last-user release,other-brain preservation,source mode restoration and all owned storage released. Existing task/source/snapshot destruction composes natively;original allocator/free/buffer-free boundaries explicit. Final destructor borrows enclosing brain and actor pool. Reset4156b0 and416b80 actor re-registration are traced separately,not implemented or executed here. Native owner0/1 admission is policy. Original construction,RB insertion/erase iterator ABI,arbitrary trees/cycles/invalid ownership,other task-family derived state,allocation failure/SEH,full World/session cadence and installed/live replacement excluded. Final2 independently authors normal black-root/red-child/black-nil tree colors;earlier final1 remains historical and stale after that fixture correction. Fresh combined master4ccfd582/teardown527d5e1b execution retains this exact bounded scope; the parent records remain immutable.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-merge-2.json",
+      "sha256": "3dd049763764a84c3ed2ad6f1337559ab748118267618f6c27fef5783e67bd6d",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "WBT1.merge.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Same16 episodes/32 brain destructions,not additional samples. Native checked value-address whole-brain teardown composes existing source/task/snapshot destruction without original fallback. Separate from native session ownership and live replacement. Final2 independently authors normal black-root/red-child/black-nil tree colors;earlier final1 remains historical and stale after that fixture correction. Fresh combined master4ccfd582/teardown527d5e1b execution retains this exact bounded scope; the parent records remain immutable.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-merge-2.json",
+      "sha256": "3dd049763764a84c3ed2ad6f1337559ab748118267618f6c27fef5783e67bd6d",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -334809,17 +336896,332 @@
         "scope": "Live callback vtable created by5060a0; slot1 deleting destructor through505f70/reset. Snapshot cf3 remains borrowed."
       },
       "document": "research/runtime/snapshot-resource-refresh-20261023.md",
-      "scope": "Normal live callback deletion(flag1) while observation refresh strips owned callback/list pointers. Callback invocation/other classes remain unresolved.",
-      "complete": false,
+      "scope": "Both concrete callback vtable slots have bounded member-thunk/deleting-wrapper execution. Lower51e890 remains a service;freed invocation is not an original safe path.",
+      "complete": true,
       "entries": [
         {
           "value": 5426112,
-          "behaviors": []
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
         },
         {
           "value": 5426144,
           "behaviors": [
-            "AI.owner-observation-resource-refresh"
+            "AI.owner-observation-resource-refresh",
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c5c38",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6052920,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 4604880,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 4604912,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c5e10",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6053392,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 4664976,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 4665008,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c67f0",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6055920,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 4966496,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 4967136,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c6894",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6056084,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 4966528,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 4967264,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c6938",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6056248,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 4966560,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 4967296,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c6e44",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6057540,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 5106480,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 5106848,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c6ef4",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6057716,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 5106560,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 5106976,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c6f1c",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6057756,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 5106592,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 5107008,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c6f60",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6057824,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 5106656,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 5107104,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c75a0",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059424,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 5579936,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 5579968,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c75b0",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059440,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 5597808,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 5597840,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "member-callback-5c77b4",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059956,
+        "relation": "data",
+        "scope": "Pinned two-slot member callback vtable from exact thunk scan."
+      },
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "scope": "Concrete adjusted member invocation and scalar deleting wrapper only;lower target semantics and lifetime ownership remain services.",
+      "complete": true,
+      "entries": [
+        {
+          "value": 5741728,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
+          ]
+        },
+        {
+          "value": 5741760,
+          "behaviors": [
+            "AI.owner-borrowed-alias-consumers"
           ]
         }
       ]
@@ -351057,7 +353459,8 @@
         "tests/actor-session-reference.cpp"
       ],
       "evidence": [
-        "ASL1.session.headless-20261022"
+        "ASL1.session.headless-20261022",
+        "BA1.session.headless-20261023"
       ]
     },
     {
@@ -351598,7 +354001,8 @@
         "tools/inspect-snapshot-resource-refresh.py"
       ],
       "evidence": [
-        "OSR1.headless-20261023"
+        "OSR1.headless-20261023",
+        "BA1.osr-compat.headless-20261023"
       ]
     },
     {
@@ -351614,7 +354018,9 @@
         "tools/inspect-observation-task-services.py"
       ],
       "evidence": [
-        "OSC1.headless-20261023"
+        "OSC1.headless-20261023",
+        "OSC1.alias-merge.original-20261023",
+        "OSC1.alias-merge.headless-20261023"
       ]
     },
     {
@@ -351630,7 +354036,46 @@
       ],
       "evidence": [
         "MOO1.original-20261023",
-        "MOO1.headless-20261023"
+        "MOO1.headless-20261023",
+        "MOO1.alias-merge.original-20261023",
+        "MOO1.alias-merge.headless-20261023"
+      ]
+    },
+    {
+      "id": "borrowed-alias-consumers-20261023",
+      "scope": "Pinned NoCD13 exact member-callback thunk classes: adjusted PE32 receiver,one argument,service return propagation,base-vtable reset and low-bit scalar deletion flags; explicit member targets/allocator services. Native checked storage refuses freed callback invocation as host policy. Nested task source407c10/407ed0 refresh after old marker,actual snapshot destruction/missing key,and same-key current reacquisition;retains stale35 bytes without dereference,filters mode3 versus mode0 identity,updates current live pool pointer/activity/root center and retains constructor tag25. One ordinary actor/owner0,valid32x32 coordinates,normal successful allocation. Original missing-record lookup executes while freed snapshot page is PROT_NONE. Snapshot construction uses the existing native value store;original42f2e0/505f70 performs retirement. No lower member target/51e890 semantics,arbitrary callback families,malformed trees,SEH/World/live replacement. Current dead/allied records replace35 before clearing activity;callback receiver arithmetic includes32-bit address wrapping. Full0x8d source bytes and traversal cursors participate in the cross-execution digest;actual407920/4079f0 mode3/mode0 traversal runs while the snapshot is inaccessible.",
+      "level": "headless",
+      "behaviors": [
+        "AI.owner-borrowed-alias-consumers"
+      ],
+      "tests": [
+        "tests/borrowed-alias-consumers-test.cpp",
+        "tools/test-borrowed-alias-consumers.py"
+      ],
+      "evidence": [
+        "BA1.headless-20261023",
+        "BA1.final.headless-20261023",
+        "BA1.merge.original-20261023",
+        "BA1.merge.headless-20261023"
+      ]
+    },
+    {
+      "id": "whole-brain-teardown-20261023",
+      "scope": "Two-brain final destruction with populated owner rows,source overlap,borrowed task aliases,shared sentinels and deque boundaries.",
+      "level": "headless",
+      "behaviors": [
+        "AI.owner-brain-teardown"
+      ],
+      "tests": [
+        "tests/whole-brain-teardown-test.cpp",
+        "tools/test-whole-brain-teardown.py",
+        "tools/inspect-whole-brain-teardown.py"
+      ],
+      "evidence": [
+        "WBT1.headless-20261023",
+        "WBT1.headless-final2-20261023",
+        "WBT1.merge.original-20261023",
+        "WBT1.merge.headless-20261023"
       ]
     }
   ],
@@ -352357,6 +354802,136 @@
       "evidence": "FP1.providers.isolated_original-20261022",
       "anchors_pointer": "/anchors",
       "scope": "Fresh read-only discovery and unchanged original execution of this font global setup/destructor only. Other unassigned ranges and unrelated inventory candidates remain pending."
+    },
+    {
+      "id": "borrowed-member-thunk-4643d0",
+      "build": "nocd-40209ca7",
+      "start": 4604880,
+      "end": 4604901,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-472e90",
+      "build": "nocd-40209ca7",
+      "start": 4664976,
+      "end": 4664997,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-4bc860",
+      "build": "nocd-40209ca7",
+      "start": 4966496,
+      "end": 4966517,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-4bc880",
+      "build": "nocd-40209ca7",
+      "start": 4966528,
+      "end": 4966549,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-4bc8a0",
+      "build": "nocd-40209ca7",
+      "start": 4966560,
+      "end": 4966581,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-4deb30",
+      "build": "nocd-40209ca7",
+      "start": 5106480,
+      "end": 5106501,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-4deb80",
+      "build": "nocd-40209ca7",
+      "start": 5106560,
+      "end": 5106581,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-4deba0",
+      "build": "nocd-40209ca7",
+      "start": 5106592,
+      "end": 5106613,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-4debe0",
+      "build": "nocd-40209ca7",
+      "start": 5106656,
+      "end": 5106677,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-52cbc0",
+      "build": "nocd-40209ca7",
+      "start": 5426112,
+      "end": 5426133,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-5524a0",
+      "build": "nocd-40209ca7",
+      "start": 5579936,
+      "end": 5579957,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-556a70",
+      "build": "nocd-40209ca7",
+      "start": 5597808,
+      "end": 5597829,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "borrowed-member-thunk-579ca0",
+      "build": "nocd-40209ca7",
+      "start": 5741728,
+      "end": 5741749,
+      "document": "research/runtime/borrowed-alias-consumers-20261023.md",
+      "evidence": "BA1.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
     }
   ],
   "register_imports": [
@@ -352724,7 +355299,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ce853f8f7968c02f6706bf10267d2d712558f2557323eab6a48d1e9cfa656257.json",
-    "sha256": "ce853f8f7968c02f6706bf10267d2d712558f2557323eab6a48d1e9cfa656257"
+    "path": "research/runtime/coverage/source-index-3bbb3d24295c0bd954c43b5c99aa8f1668f7d6157d2780e7113850c9c48431f8.json",
+    "sha256": "3bbb3d24295c0bd954c43b5c99aa8f1668f7d6157d2780e7113850c9c48431f8"
   }
 }
