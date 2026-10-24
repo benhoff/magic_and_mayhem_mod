@@ -1,6 +1,32 @@
 # Engine modernization coverage ledger
 
 
+## Alternate canvas live search and borrowed composition — 2026-10-24
+
+Chunk4 now has an independent borrowed-storage composition of4fd438..4fd5af,
+including actual57dc20/60 setters,complete594508 copy,World/Lock ordering,
+overlays and Unlock.1152 cases compare all1170874368 owned WORDs,ordered events
+and final state,with i386 ASan/UBSan and image-independent native64 controls.
+Eight atomic admission refusals are a separate native policy. No allocation,
+publication,clear or retirement policy is invented for the borrowed spans.
+
+Chunk3 remains partial after real original-game observation. Hardware write
+watches cover both alternate slots on every reported created thread; a main/
+worker positive control catches eight transient stores. With the debug setting
+disabled,both640x480 and800x600 Quick Battles reach at least40 dispatches without
+an alternate write/publication. With it enabled,both resolutions instead reach
+an original DirectDraw invalid-rectangle dialog before World dispatch,with
+actual flag1 and padding96/0. All cohorts use bounded termination,not Quit.
+
+See [the recovery/composition review](alternate-canvas-composition-20261024.md),
+[live observations](alternate-canvas-composition-results-20261024/live10.json)
+and [composition](alternate-canvas-composition-results-20261024/composition04.json).
+The native graph is scoped/compared but not live-integrated. Original alternate
+allocation,base/source relationship,initial pixels,all writers,retirement and
+broader reachability remain unknown. The configuration error is observed,not
+silently bypassed or attributed to a particular rectangle caller.
+
+
 ## Rendering alias leases and provider-backed shutdown — 2026-10-24
 
 Chunks 5–6 add current bounded lifetime validation of the existing native facade:
