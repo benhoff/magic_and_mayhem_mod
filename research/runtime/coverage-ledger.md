@@ -21377,3 +21377,22 @@ The Critical actor umbrella stays partial. Incomingf2253bb8..ac0b9e3b review:
 ## Seventeenth rendering batch — five current contracts (2026-10-23)
 
 [Current five-contract closeout](rendering-seventeenth-five-20261023.md) records 83 Python controls plus13 combat-input regressions,20 asserted native controls,4096 verification and4096 normal returns/paints; original 19.90295FPS,Qt 19.90693FPS,warm median42.0ms/p9548ms/max69ms,cold247.225ms,RSS growth0bytes. Actual post-prefix peer deaths and128 normal recovery use fresh distinct sessions. Kernel/display/input isolation, actual PE32 protected backing and strict refusals, owned/strict normal and live Hard restart, plus public casting/combat/spell/portrait/movement/Mini/normal Quit complete. Ordinary public19FPS acceptance is False at 17.253776873910518FPS; failed portrait/window/aggregate timing remains pending and raw success remains false. Rendering implementation partials6→1. Scopes, old fingerprints/failures and independent original comparison/integration/replacement stages are preserved; full DirectDraw/whole-game/global ownership and60FPS remain separate. SQLite stores all new durable observations and exact source/collector provenance. Storage review finds no eligible cleanup candidates; retained source/pins/raw evidence are untouched.
+
+## Multiple observations and owners — MOO1 (2026-10-23)
+
+AI.multiple-observation-owners adds checked native owner-local task-source
+resolution and a composed original/native lifecycle covering up to eight owners
+and twenty actors. [Research and exact evidence](multiple-observation-owners-20261023.md)
+record896 updates,1264 insertions,528 erasures,795 cursor continuations,472
+reacquisitions and6474 task-root resolutions. Missing/stale keys clear activity
+while preserving borrowed35,including17748 resolutions after snapshot release;
+current keys rebind live actors before health/diplomacy admission. New-key
+reacquisition does not resurrect old-key tasks. All216 actual callback generations
+and owned storage retire once. Native maps and source cursor representation remain
+policies; original instructions and full packed values are checked independently.
+
+Mode2 task notifications,arbitrary merged forest/callback consumers,allocation/
+SEH failures,whole-brain teardown and World/installed/live replacement remain
+open. Historical OOS1/OSR1 scopes and hashes stay unchanged; their multi-owner gap
+has this separate bounded result. The Critical actor-services umbrella stays
+partial. SQLite retains successes,failed trials and exact incoming-history review.
