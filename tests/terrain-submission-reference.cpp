@@ -48,13 +48,22 @@ int main(int argc,char** argv)try{
  using Run=void(__attribute__((thiscall)) *)(void*);
  const auto catalog=read(argv[2]);require(catalog.size()>=16 && catalog.size()==16+std::uint64_t(u32(catalog,12))*356);
  std::mt19937 rng(79186);unsigned cases=0,records=0;
- for(unsigned n=0;n<8192+4*u32(catalog,12);++n){
+ const unsigned ordinary=8192+4*u32(catalog,12),boundaryCases=512;
+ for(unsigned n=0;n<ordinary+boundaryCases;++n){
   mnm::reconstruction::TerrainDefinition d;
   for(unsigned v=0;v<4;++v){d.body[v]=rng()%6;d.first[v]=rng()%6;d.second[v]=rng()%6;put(definition.data(),0x84+4*v,d.body[v]);put(definition.data(),0xd0+4*v,d.first[v]);put(definition.data(),0xe0+4*v,d.second[v]);}
-  if(n>=8192){std::copy_n(catalog.data()+16+((n-8192)/4)*356,356,definition.data());d=mnm::reconstruction::decodeTerrainDefinition(definition);}
+  if(n>=8192 && n<ordinary){std::copy_n(catalog.data()+16+((n-8192)/4)*356,356,definition.data());d=mnm::reconstruction::decodeTerrainDefinition(definition);}
   mnm::reconstruction::TerrainTile t{int(rng()%8),int(rng()%8),int(rng()%40),100,110,int(rng()),std::uint16_t(rng()&0x80ff),std::uint16_t(rng()&0xe48),std::int8_t(rng())};
   mnm::reconstruction::TerrainAdmission a{std::uint32_t(rng()%4),std::uint32_t(1+rng()%40),std::uint32_t(1+rng()%3),std::uint32_t(rng()%2),int(rng()%100),bool(rng()%2)};
   if(n>=8192){a.view=(n-8192)%4;t.flags8=t.flags10=0;}
+  if(n>=ordinary){
+   const unsigned edge=n-ordinary;
+   const std::array<std::int32_t,8> biases{{0,-32767,-32768,-65535,-65536,-2147483647,-2147483647-1,2147483647}};
+   t.light=0;t.level=(edge/4)%32;a.lightBias=biases[(edge/4)%8];
+   a.view=edge%4;a.cutLevel=(edge/32)%2?0:32;a.player=(edge/64)%4;
+   a.mode=(edge/256)%2;t.flags8=(edge/128)%2?0x800c:0;
+   for(unsigned v=0;v<4;++v){d.body[v]=1;d.first[v]=2;d.second[v]=3;put(definition.data(),0x84+4*v,1);put(definition.data(),0xd0+4*v,2);put(definition.data(),0xe0+4*v,3);}
+  }
   light.fill(std::uint8_t(t.light));
   *reinterpret_cast<std::uint32_t*>(0x5e41b0)=a.forceVisible;
   std::array<unsigned char,12> owner{};put(owner.data(),2,0xffffffff);owner[6]=owner[7]=255;std::memcpy(owner.data()+8,&t.flags8,2);std::memcpy(owner.data()+10,&t.flags10,2);
@@ -66,7 +75,7 @@ int main(int argc,char** argv)try{
   const auto native=mnm::reconstruction::submitTerrain(d,t,a,3);
   std::uint32_t count;std::memcpy(&count,scene.data()+0x231,4);require(count==native.size());
   require(std::memcmp(owner.data()+8,&t.flags8,2)==0 && std::memcmp(owner.data()+10,&t.flags10,2)==0);
-  for(unsigned i=0;i<count;++i){const auto& r=queue[i];const auto& q=native[i];require(r[0]==std::uint32_t(q.key) && r[1]==reinterpret_cast<std::uintptr_t>(frames.data()+64*q.frame) && r[2]==std::uint32_t(q.anchorX) && r[3]==std::uint32_t(q.anchorY) && (r[4]&0xffff)==std::uint16_t(q.shade) && r[5]==reinterpret_cast<std::uintptr_t>(owner.data()) && r[6]==std::uint32_t(q.kind) && r[7]==0x8ad08ad0);++records;}
+  for(unsigned i=0;i<count;++i){const auto& r=queue[i];const auto& q=native[i];require(r[0]==std::uint32_t(q.key) && r[1]==reinterpret_cast<std::uintptr_t>(frames.data()+64*q.frame) && r[2]==std::uint32_t(q.anchorX) && r[3]==std::uint32_t(q.anchorY) && std::int32_t(std::int16_t(r[4]&0xffff))==q.shade && r[5]==reinterpret_cast<std::uintptr_t>(owner.data()) && r[6]==std::uint32_t(q.kind) && r[7]==0x8ad08ad0);++records;}
   ++cases;
  }
 

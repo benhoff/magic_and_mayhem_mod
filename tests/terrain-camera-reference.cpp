@@ -56,6 +56,7 @@ int main(int argc,char** argv)try{
    const int dx=step==0?0:step<5?-32*int(step):int(rng()%1025)-512;
    const int dy=step==0?0:int(rng()%1025)-512;
    reinterpret_cast<Two>(0x4f7c60)(receiver.data(),dx,dy);mnm::reconstruction::scrollTerrainCamera(c,w,h,dx,dy);compare(receiver.data(),c);++checks;
+   reinterpret_cast<Two>(0x4f7b50)(receiver.data(),dy,dx);mnm::reconstruction::scrollTerrainCameraAxes(c,w,h,dy,dx);compare(receiver.data(),c);++checks;
   }
  }
  std::cout<<"{\"fixtures\":8192,\"state_comparisons\":"<<checks<<",\"all_match\":true}\n";return 0;

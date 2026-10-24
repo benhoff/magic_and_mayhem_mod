@@ -26,6 +26,7 @@ struct TerrainDraw {
 // Selected ordinary terrain path in 0x4f8960. No map traversal, objects,
 // pointer picking, lighting-palette construction or original pointer ownership.
 // Mutates only the absent-layer flags, as the original producer does.
+// Queue shades are signed WORD values after wrapped subtraction and lower clamp.
 std::vector<TerrainDraw> submitTerrain(const TerrainDefinition&,TerrainTile&,
                                      const TerrainAdmission&,std::uint32_t highestFrame);
 }

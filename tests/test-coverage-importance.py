@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Planning weights cannot grant implementation or validation credit."""
 import copy
+import hashlib
 import ast
 import json
 from pathlib import Path
@@ -84,14 +85,17 @@ class ImportanceTest(unittest.TestCase):
         result = importance_view(catalog, register, tracks)
         self.assertEqual(register, before)
         self.assertGreaterEqual(len(result['entries']), 345)
-        self.assertEqual(result['unrated'], [])
+        self.assertEqual(result['unrated'], [
+            'NP.alternate-canvas-dispatch-admission', 'NP.graphics-session-provider-retirement',
+            'NP.protected-native-store-service', 'NP.surface-alias-lease-lifecycle',
+            'RS.alternate-canvas-dispatch-composition'])
         behaviors = {b['id']: b for b in register['behaviors']}
         builds = {b['id']: b for b in register['builds']}
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        # Reviewed implementations through6d0dd7bc retain original comparison and acceptance separately.
-        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 3: 1, 4: 31, 5: 6})
+        # Selected terrain closeouts retain comparison and acceptance independently.
+        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 3: 1, 4: 22, 5: 4})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -170,7 +174,8 @@ class TrancheTest(unittest.TestCase):
                                     'NR.palette-resources', 'NR.command-checkpoint-attachment',
                                     'RS.world-initial-state', 'RS.canvas-preworld-reuse',
                                     'RS.canvas-producer-sequence', 'RS.world-producer-bypass',
-                                    'RS.drawing-publication', 'NP.pixel-forwarding-guard'})
+                                    'RS.drawing-publication', 'NP.pixel-forwarding-guard',
+                                    'NP.native-only-launch-contract', 'NP.native-output-ownership'})
         self.assertEqual({task['behavior'] for task in tasks} | set(plan['unplanned_critical']), critical | completed)
         self.assertTrue(all(t['implementation'] in {'partial', 'scoped'} for t in tasks))
         self.assertTrue(all(t['review_state'] in {'current','needs_review'} for t in tasks))
@@ -431,6 +436,10 @@ class TrancheTest(unittest.TestCase):
             # channel's old witness remains historical after195470ce.
             w = next(t for t in c['tranche_plan']['tranches'][2]['tasks']
                      if t['behavior'] == 'NR.directdraw-retirement')['work_review']
+            # Bind only this synthetic corruption fixture to the current witness;
+            # production history retains its old fingerprint and freshness.
+            witness = w['code_witnesses'][0]['path']
+            w['source_sha256'][witness] = hashlib.sha256((ROOT / witness).read_bytes()).hexdigest()
             if case == 'line': w['code_witnesses'][0]['text'] = 'invented code'
             if case == 'unlinked': w['code_witnesses'][0]['path'] = 'apps/coverage-ui/app.js'
             if case == 'escape': w['source_sha256']['../outside'] = '0' * 64
@@ -451,6 +460,10 @@ class TrancheTest(unittest.TestCase):
             if e['decision'] == 'scoped_implementation_complete'}
         completed.update({'NR.directdraw-public-native-menu', 'NR.directdraw-native-opengl-launch',
                           'NR.storage-session-corpus'})  # bounded implementations inbf170af0
+        completed.update({'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission',
+                          'AN.direction', 'RE.sprite_queue', 'RE.sprite_visibility',
+                          'NR.public-resident-world', 'NR.world-continuous-source',
+                          'NR.world-continuous-normal-performance'})
         completed.add('RS.shadow-linear-stride')  # bounded implementation in97c3f5b2
         completed.update({'NR.world_scene', 'NR.terrain_scene', 'NR.wine-private-backing-ownership'})  # implementation in4cd9121f
         unplanned = {'RE.palette-effect-builders', 'RE.terrain-camera-lifecycle',
@@ -458,7 +471,7 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual({t['behavior'] for t in tasks} | unplanned,
                          expected | completed | {'RS.displacement-final-word-read'})
         self.assertEqual({t['behavior'] for t in tasks if t['implementation'] == 'scoped'}, completed | {'RS.displacement-final-word-read'})
-        self.assertTrue(all(t['reviewed_implementation'] in {'partial', 'none'} for t in tasks))
+        self.assertTrue(all(t['reviewed_implementation'] in {'partial', 'none', 'scoped'} for t in tasks))
         self.assertEqual(len(tasks), 51)
         self.assertEqual(set(plan['unplanned_high']), unplanned)
         self.assertEqual(sum(t['implementation'] == 'none' for t in tasks), 0)
@@ -535,8 +548,15 @@ class TrancheTest(unittest.TestCase):
         self.assertEqual(statuses['RE.terrain_generated']['comparison'], 'none')
         self.assertTrue(all(statuses[t['behavior']]['integration'] == 'none'
                             and statuses[t['behavior']]['replacement'] == 'none'
-                            and statuses[t['behavior']]['implementation'] == 'partial'
+                            and statuses[t['behavior']]['implementation'] ==
+                            ('scoped' if t['behavior'] in {'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission'} else 'partial')
                             for t in tranche['tasks']))
+        for task in tranche['tasks']:
+            if task['behavior'] in {'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission'}:
+                self.assertEqual(task['review_state'], 'current')
+                self.assertEqual(task['work_review']['validation_state'], 'recorded')
+                self.assertIn('N19.terrain-original-20261024', task['work_review']['validation_evidence'])
+                self.assertTrue(task['work_review_history'])
         self.assertEqual(self.register, before)
 
     def test_high_third_tranche_analyzer_fix_keeps_runtime_acceptance_pending(self):

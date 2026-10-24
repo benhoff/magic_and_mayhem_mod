@@ -2067,7 +2067,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Camera setters and scrolling: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "3672d6eaa6e96b464d5328a25dd468df3d96e1b2410b38fe1ff3664a11454504"
+      "contract_sha256": "7afd6f64f8707e47062eccdeddd10f5a8e6782ce780fadeecf9febb5b99120de"
     },
     {
       "behavior": "RE.terrain_catalog",
@@ -2130,7 +2130,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Section copying and transforms: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "13ccbad1fc4ad26b5344dca2d8a4111f34af52907b7348e45857bff4d39d1076"
+      "contract_sha256": "fb0428fa02bcb2d01d9a5cc706201e6551c1c956e955fa771d9609619c74107e"
     },
     {
       "behavior": "RE.terrain_selection",
@@ -2158,7 +2158,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Selected tile draw production: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "7455285e9a1418d52ef0786c4b9d4a121f765cada04e910f5409f20b319032f1"
+      "contract_sha256": "93d979b48b1c5e5fa01dd2971acfdbaab89e503f885049dc09f79281ee6da503"
     },
     {
       "behavior": "RE.terrain_traversal",
@@ -20651,43 +20651,43 @@
           },
           {
             "behavior": "RE.terrain_sections",
-            "mode": "Bounded comparisons passed; wider integration remains",
-            "next_action": "Bounded tranche validation PASS. Next broader work: Validate original cell/container ownership and entity/reference routes before broad live replacement.",
+            "mode": "Scoped offline implementation complete; broader ownership and live acceptance remain",
+            "next_action": "Review the separately registered broader ownership/production/lifecycle contracts before integration or live replacement.",
             "implementation_boundary": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare every admitted rotation and reference relocation; invalid input must leave the destination unchanged.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
               "tests/terrain-sections-test.cpp",
-              "tests/terrain-sections-reference.cpp"
+              "tests/terrain-sections-reference.cpp",
+              "tools/test-rendering-nineteenth-three.py"
             ],
             "documents": [
-              "research/runtime/terrain-section-assembly.md"
+              "research/runtime/terrain-section-assembly.md",
+              "research/runtime/rendering-nineteenth-three-20261024.md"
             ],
-            "contract_sha256": "13ccbad1fc4ad26b5344dca2d8a4111f34af52907b7348e45857bff4d39d1076",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Revalidate selected rotations/extent checks; original storage lifetime is not supplied by this offline service.",
+            "contract_sha256": "fb0428fa02bcb2d01d9a5cc706201e6551c1c956e955fa771d9609619c74107e",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Object-linked section rotation and original source mutation/allocator ownership remain separate; native assets stay immutable and aliased selections use frozen scratch.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "terrain_sections.cpp implements owned section copying and transforms. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "Scoped existing offline implementation complete. 8192 synthetic copies/410500 cells and3 installed maps/307200 cells;324 aliases and108 atomic native refusals.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"images\": 96, \"maps\": 683, \"original\": {\"all_match\": true, \"installed_cells\": 30084800, \"installed_maps\": 683, \"synthetic_cases\": 8192, \"synthetic_cells\": 410500}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "8192 synthetic copies/410500 cells and3 installed maps/307200 cells;324 aliases and108 atomic native refusals. Six native/sanitized controls pass at prospectively declared sources; no full-world/live/FPS acceptance.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Revalidate selected rotations/extent checks; original storage lifetime is not supplied by this offline service.",
+              "acceptance_summary": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Object-linked section rotation and original source mutation/allocator ownership remain separate; native assets stay immutable and aliased selections use frozen scratch.",
               "evidence": [
                 "ORIGINAL.terrain-section-assembly",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_sections-20261019"
+                "HTERR1.RE.terrain_sections-20261019",
+                "N19.terrain-native-20261024",
+                "N19.terrain-original-20261024"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate original cell/container ownership and entity/reference routes before broad live replacement."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Revalidate selected rotations/extent checks; original storage lifetime is not supplied by this offline service."
+                  "action": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Object-linked section rotation and original source mutation/allocator ownership remain separate; native assets stay immutable and aliased selections use frozen scratch."
                 }
               ],
               "code_witnesses": [
@@ -20700,21 +20700,77 @@
               "source_sha256": {
                 "reconstruction/rendering/terrain_sections.cpp": "b11b46b249314b8b02d731f7eb7947b8587f12117504db383ba83f7df60e0f6b",
                 "reconstruction/rendering/terrain_sections.hpp": "233d047f4fcb1e61af7b6994a07fc8aba8e1d9d5643a6845e1cab8620bcabbf6",
+                "research/runtime/rendering-nineteenth-three-20261024.md": "d8e1f6f096fcac54f1bd35d5ef3260c01abea642b19d456f6e5bd79a54831eac",
                 "research/runtime/terrain-section-assembly.md": "5f3316ef1f111be1e153f8f9b11e9e0722f84e1bd7d5d0b1c131c284d4c47a4c",
                 "tests/terrain-sections-reference.cpp": "51a7be16278df34d39af25a14790323a596f4cf98fffb83d75d28d314a122831",
-                "tests/terrain-sections-test.cpp": "71db6d683b4b672f41f86723c6267b6eea5c12455a37cc0be409f4edc03337a6",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/terrain-sections-test.cpp": "9bd9bb280f4c550ae2e287362b514c8d52788833c328b35d89db1fed0e8bf9bc",
+                "tools/test-rendering-nineteenth-three.py": "f85634d3011bd3bc42a36a87fa3b4d0354ade0df87641a0cef8ba54050dc1e71"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N19.terrain-native-20261024",
+                "N19.terrain-original-20261024"
               ]
             },
             "execution_result": {
               "outcome": "PASS",
-              "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
-              "remaining": "Validate original cell/container ownership and entity/reference routes before broad live replacement.",
-              "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+              "report": "research/runtime/rendering-nineteenth-three-results-20261024/execution-4.json",
+              "remaining": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Object-linked section rotation and original source mutation/allocator ownership remain separate; native assets stay immutable and aliased selections use frozen scratch.",
+              "note": "8192 synthetic copies/410500 cells and3 installed maps/307200 cells;324 aliases and108 atomic native refusals. No wider integration or replacement promotion."
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "terrain_sections.cpp implements owned section copying and transforms. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"images\": 96, \"maps\": 683, \"original\": {\"all_match\": true, \"installed_cells\": 30084800, \"installed_maps\": 683, \"synthetic_cases\": 8192, \"synthetic_cells\": 410500}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Revalidate selected rotations/extent checks; original storage lifetime is not supplied by this offline service.",
+                "evidence": [
+                  "ORIGINAL.terrain-section-assembly",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_sections-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate original cell/container ownership and entity/reference routes before broad live replacement."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Revalidate selected rotations/extent checks; original storage lifetime is not supplied by this offline service."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_sections.cpp",
+                    "line": 11,
+                    "text": "void copyTerrainSection(assets::MapAsset& dst,const assets::MapAsset& src,const assets::TerrainCatalog& t,"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_sections.cpp": "b11b46b249314b8b02d731f7eb7947b8587f12117504db383ba83f7df60e0f6b",
+                  "reconstruction/rendering/terrain_sections.hpp": "233d047f4fcb1e61af7b6994a07fc8aba8e1d9d5643a6845e1cab8620bcabbf6",
+                  "research/runtime/terrain-section-assembly.md": "5f3316ef1f111be1e153f8f9b11e9e0722f84e1bd7d5d0b1c131c284d4c47a4c",
+                  "tests/terrain-sections-reference.cpp": "51a7be16278df34d39af25a14790323a596f4cf98fffb83d75d28d314a122831",
+                  "tests/terrain-sections-test.cpp": "71db6d683b4b672f41f86723c6267b6eea5c12455a37cc0be409f4edc03337a6",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ],
+            "execution_result_history": [
+              {
+                "outcome": "PASS",
+                "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
+                "remaining": "Validate original cell/container ownership and entity/reference routes before broad live replacement.",
+                "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_region",
@@ -21251,70 +21307,126 @@
           },
           {
             "behavior": "RE.terrain_camera",
-            "mode": "Bounded comparisons passed; wider integration remains",
-            "next_action": "Bounded tranche validation PASS. Next broader work: Validate resource initialization and input/rectangle timing in the original caller; resource/allocation initialization remains separate.",
+            "mode": "Scoped offline implementation complete; broader ownership and live acceptance remain",
+            "next_action": "Review the separately registered broader ownership/production/lifecycle contracts before integration or live replacement.",
             "implementation_boundary": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare every admitted view and edge; original global camera lifecycle and UI input remain separate.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
               "tests/terrain-camera-test.cpp",
-              "tests/terrain-camera-reference.cpp"
+              "tests/terrain-camera-reference.cpp",
+              "tools/test-rendering-nineteenth-three.py"
             ],
             "documents": [
-              "research/runtime/terrain-camera-setters.md"
+              "research/runtime/terrain-camera-setters.md",
+              "research/runtime/rendering-nineteenth-three-20261024.md"
             ],
-            "contract_sha256": "3672d6eaa6e96b464d5328a25dd468df3d96e1b2410b38fe1ff3664a11454504",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Recheck the selected original setter comparison; original camera ownership and gameplay integration are separate.",
+            "contract_sha256": "7afd6f64f8707e47062eccdeddd10f5a8e6782ce780fadeecf9febb5b99120de",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Checked overflow refusal is native policy; original resource/lifecycle/input timing and the opaque +99 update marker remain separate.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "TerrainCamera binding, viewport setters and scrolling arithmetic are native functions. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "Scoped existing offline implementation complete. 270336 original camera states,including direct map-axis scrolling; atomic native overflow/viewport refusals.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"reference\": {\"all_match\": true, \"fixtures\": 8192, \"state_comparisons\": 139264}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "270336 original camera states,including direct map-axis scrolling; atomic native overflow/viewport refusals. Six native/sanitized controls pass at prospectively declared sources; no full-world/live/FPS acceptance.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Recheck the selected original setter comparison; original camera ownership and gameplay integration are separate.",
+              "acceptance_summary": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Checked overflow refusal is native policy; original resource/lifecycle/input timing and the opaque +99 update marker remain separate.",
               "evidence": [
                 "ORIGINAL.terrain-camera-setters",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_camera-20261019"
+                "HTERR1.RE.terrain_camera-20261019",
+                "N19.terrain-native-20261024",
+                "N19.terrain-original-20261024"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate resource initialization and input/rectangle timing in the original caller; resource/allocation initialization remains separate."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Recheck the selected original setter comparison; original camera ownership and gameplay integration are separate."
+                  "action": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Checked overflow refusal is native policy; original resource/lifecycle/input timing and the opaque +99 update marker remain separate."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/rendering/terrain_camera.cpp",
-                  "line": 37,
+                  "line": 57,
                   "text": "void scrollTerrainCamera(TerrainCamera& c,std::uint32_t w,std::uint32_t h,std::int32_t x,std::int32_t y){"
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/terrain_camera.cpp": "42f9a9c59d4c1e574fc4e0ed21f615d9b522242e39b52325643e99c7bc37f817",
-                "reconstruction/rendering/terrain_camera.hpp": "f6bacef97809b3d25c66f2e5f6990ba194970f10aa4fd569804a740629b56730",
+                "reconstruction/rendering/terrain_camera.cpp": "edb2e1126ab0a0d65157282233621a47ceb1a9e86dcb619dd109683c79279e75",
+                "reconstruction/rendering/terrain_camera.hpp": "1c1cf5a63b8db83468abde4a1f93be3beb44db8abb3022a802b5262889bda444",
+                "research/runtime/rendering-nineteenth-three-20261024.md": "d8e1f6f096fcac54f1bd35d5ef3260c01abea642b19d456f6e5bd79a54831eac",
                 "research/runtime/terrain-camera-setters.md": "9ae4a6fff31e7f5641044f9ee396b72c04c6df8ec17c8d19afde9a732a082a94",
-                "tests/terrain-camera-reference.cpp": "18d48767623529e7bb55a2943bb14f3162fc190c4d562b07c130e86728626987",
-                "tests/terrain-camera-test.cpp": "a30f6b40c95e77a9912c7213616727513d1619dd26044009a39edf955587e2ce",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/terrain-camera-reference.cpp": "ac7403312950e45817ea6a12fd54c5fc9808f81e673d28cea97ca19c06a581c0",
+                "tests/terrain-camera-test.cpp": "f907623ef6b098eb77a0b58d067b4b744e8b89f0210be312ee750d02c5880bcd",
+                "tools/test-rendering-nineteenth-three.py": "f85634d3011bd3bc42a36a87fa3b4d0354ade0df87641a0cef8ba54050dc1e71"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N19.terrain-native-20261024",
+                "N19.terrain-original-20261024"
               ]
             },
             "execution_result": {
               "outcome": "PASS",
-              "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
-              "remaining": "Validate resource initialization and input/rectangle timing in the original caller; resource/allocation initialization remains separate.",
-              "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+              "report": "research/runtime/rendering-nineteenth-three-results-20261024/execution-4.json",
+              "remaining": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Checked overflow refusal is native policy; original resource/lifecycle/input timing and the opaque +99 update marker remain separate.",
+              "note": "270336 original camera states,including direct map-axis scrolling; atomic native overflow/viewport refusals. No wider integration or replacement promotion."
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "TerrainCamera binding, viewport setters and scrolling arithmetic are native functions. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"reference\": {\"all_match\": true, \"fixtures\": 8192, \"state_comparisons\": 139264}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Recheck the selected original setter comparison; original camera ownership and gameplay integration are separate.",
+                "evidence": [
+                  "ORIGINAL.terrain-camera-setters",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_camera-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate resource initialization and input/rectangle timing in the original caller; resource/allocation initialization remains separate."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Recheck the selected original setter comparison; original camera ownership and gameplay integration are separate."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_camera.cpp",
+                    "line": 37,
+                    "text": "void scrollTerrainCamera(TerrainCamera& c,std::uint32_t w,std::uint32_t h,std::int32_t x,std::int32_t y){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_camera.cpp": "42f9a9c59d4c1e574fc4e0ed21f615d9b522242e39b52325643e99c7bc37f817",
+                  "reconstruction/rendering/terrain_camera.hpp": "f6bacef97809b3d25c66f2e5f6990ba194970f10aa4fd569804a740629b56730",
+                  "research/runtime/terrain-camera-setters.md": "9ae4a6fff31e7f5641044f9ee396b72c04c6df8ec17c8d19afde9a732a082a94",
+                  "tests/terrain-camera-reference.cpp": "18d48767623529e7bb55a2943bb14f3162fc190c4d562b07c130e86728626987",
+                  "tests/terrain-camera-test.cpp": "a30f6b40c95e77a9912c7213616727513d1619dd26044009a39edf955587e2ce",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ],
+            "execution_result_history": [
+              {
+                "outcome": "PASS",
+                "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
+                "remaining": "Validate resource initialization and input/rectangle timing in the original caller; resource/allocation initialization remains separate.",
+                "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_traversal",
@@ -21389,42 +21501,43 @@
           },
           {
             "behavior": "RE.terrain_submission",
-            "mode": "Bounded comparisons passed; wider integration remains",
-            "next_action": "Bounded tranche validation PASS. Next broader work: Recover object/overlay/creature and picking branches separately from the now-validated ordinary body/child roles.",
+            "mode": "Scoped offline implementation complete; broader ownership and live acceptance remain",
+            "next_action": "Review the separately registered broader ownership/production/lifecycle contracts before integration or live replacement.",
             "implementation_boundary": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare body/attachment selectors, flags and depth inputs; wider object/dispatcher production remains separate.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
-              "tests/terrain-submission-reference.cpp"
+              "tests/terrain-submission-reference.cpp",
+              "tools/test-rendering-nineteenth-three.py",
+              "tests/terrain-submission-test.cpp"
             ],
             "documents": [
-              "research/runtime/terrain-submission.md"
+              "research/runtime/terrain-submission.md",
+              "research/runtime/rendering-nineteenth-three-20261024.md"
             ],
-            "contract_sha256": "7455285e9a1418d52ef0786c4b9d4a121f765cada04e910f5409f20b319032f1",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Close additional producer admission/state branches before claiming full original terrain production.",
+            "contract_sha256": "93d979b48b1c5e5fa01dd2971acfdbaab89e503f885049dc09f79281ee6da503",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Picking, water, overlay, object/creature production, shade quantization/palette chain and original frame ownership remain separate.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "Terrain definition decoding and selected tile production exist in terrain_submission.cpp. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "Scoped existing offline implementation complete. 15716 original cases/16341 queue records; signed-WORD shade repair and native coordinate/frame/refusal controls.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"summary\": {\"cases\": 15204, \"records\": 15317}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "15716 original cases/16341 queue records; signed-WORD shade repair and native coordinate/frame/refusal controls. Six native/sanitized controls pass at prospectively declared sources; no full-world/live/FPS acceptance.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Close additional producer admission/state branches before claiming full original terrain production.",
+              "acceptance_summary": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Picking, water, overlay, object/creature production, shade quantization/palette chain and original frame ownership remain separate.",
               "evidence": [
                 "ORIGINAL.terrain-submission",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_submission-20261019"
+                "HTERR1.RE.terrain_submission-20261019",
+                "N19.terrain-native-20261024",
+                "N19.terrain-original-20261024"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Recover object/overlay/creature and picking branches separately from the now-validated ordinary body/child roles."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Close additional producer admission/state branches before claiming full original terrain production."
+                  "action": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Picking, water, overlay, object/creature production, shade quantization/palette chain and original frame ownership remain separate."
                 }
               ],
               "code_witnesses": [
@@ -21435,22 +21548,79 @@
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/terrain_submission.cpp": "b04bca853f9585e7dd58fcd35ebe0cacac1997bac262be07b39f6d6ca7944b2c",
-                "reconstruction/rendering/terrain_submission.hpp": "4f01f35b35d9adc0d0a3985a5616fc0207af8a43932bb48d64736d382d209a11",
+                "reconstruction/rendering/CMakeLists.txt": "d7b6a47a59fd1334cb65dd3dec36e10e2f5dc326ac814aa9f339cd2cefcef08a",
+                "reconstruction/rendering/terrain_submission.cpp": "125da99bd718f50d4ce0894fe024c16458177eed07f717059d41a6ca97f4afc1",
+                "reconstruction/rendering/terrain_submission.hpp": "5004a0aaf8256b8fdb1e7a7da4f769e4c55a843abafc954102123f47abc2da23",
+                "research/runtime/rendering-nineteenth-three-20261024.md": "d8e1f6f096fcac54f1bd35d5ef3260c01abea642b19d456f6e5bd79a54831eac",
                 "research/runtime/terrain-submission.md": "e8c727865648b917e7bc52d4c18a603d04fa4dc3ad0e3b28f79056a0442ad2ed",
-                "tests/terrain-submission-reference.cpp": "ee427accda5e706d27555db9f993ce5ab60c644322e55a1d06f5c2a07c10d395",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/terrain-submission-reference.cpp": "823afe01dd3470ced12345f97ba1387f65ca0bd50ea1f5b5113f3a85bbd2f681",
+                "tests/terrain-submission-test.cpp": "da4a8832b74a5644b6024be35f6562f1510656881fed58cfde11345fe533bd80",
+                "tools/test-rendering-nineteenth-three.py": "f85634d3011bd3bc42a36a87fa3b4d0354ade0df87641a0cef8ba54050dc1e71"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N19.terrain-native-20261024",
+                "N19.terrain-original-20261024"
               ]
             },
             "execution_result": {
               "outcome": "PASS",
-              "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
-              "remaining": "Recover object/overlay/creature and picking branches separately from the now-validated ordinary body/child roles.",
-              "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+              "report": "research/runtime/rendering-nineteenth-three-results-20261024/execution-4.json",
+              "remaining": "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.; Picking, water, overlay, object/creature production, shade quantization/palette chain and original frame ownership remain separate.",
+              "note": "15716 original cases/16341 queue records; signed-WORD shade repair and native coordinate/frame/refusal controls. No wider integration or replacement promotion."
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Terrain definition decoding and selected tile production exist in terrain_submission.cpp. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"summary\": {\"cases\": 15204, \"records\": 15317}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Close additional producer admission/state branches before claiming full original terrain production.",
+                "evidence": [
+                  "ORIGINAL.terrain-submission",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_submission-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Recover object/overlay/creature and picking branches separately from the now-validated ordinary body/child roles."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Close additional producer admission/state branches before claiming full original terrain production."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_submission.cpp",
+                    "line": 7,
+                    "text": "static std::int32_t bits(std::uint32_t value){std::int32_t result;std::memcpy(&result,&value,4);return result;}"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_submission.cpp": "b04bca853f9585e7dd58fcd35ebe0cacac1997bac262be07b39f6d6ca7944b2c",
+                  "reconstruction/rendering/terrain_submission.hpp": "4f01f35b35d9adc0d0a3985a5616fc0207af8a43932bb48d64736d382d209a11",
+                  "research/runtime/terrain-submission.md": "e8c727865648b917e7bc52d4c18a603d04fa4dc3ad0e3b28f79056a0442ad2ed",
+                  "tests/terrain-submission-reference.cpp": "ee427accda5e706d27555db9f993ce5ab60c644322e55a1d06f5c2a07c10d395",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ],
+            "execution_result_history": [
+              {
+                "outcome": "PASS",
+                "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
+                "remaining": "Recover object/overlay/creature and picking branches separately from the now-validated ordinary body/child roles.",
+                "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
+              }
+            ]
           },
           {
             "behavior": "RE.palette_preferences",

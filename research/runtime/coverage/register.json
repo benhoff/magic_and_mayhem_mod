@@ -3692,7 +3692,7 @@
       "kind": "recovered",
       "title": "Selected tile draw production",
       "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -3701,14 +3701,17 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-submission.md"
+        "research/runtime/terrain-submission.md",
+        "research/runtime/rendering-nineteenth-three-20261024.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_submission.cpp",
         "reconstruction/rendering/terrain_submission.hpp"
       ],
       "tests": [
-        "tests/terrain-submission-reference.cpp"
+        "tests/terrain-submission-reference.cpp",
+        "tools/test-rendering-nineteenth-three.py",
+        "tests/terrain-submission-test.cpp"
       ],
       "evidence": [
         "REVIEW.RE.terrain_submission",
@@ -3720,11 +3723,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_submission-20261019",
-        "HIGH04.RE.terrain_submission-20261020"
+        "HIGH04.RE.terrain_submission-20261020",
+        "N19.terrain-native-20261024",
+        "N19.terrain-original-20261024"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -3732,7 +3737,14 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_submission"
-      }
+      },
+      "remaining_gaps": [
+        "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.",
+        "Picking, water, overlay, object/creature production, shade quantization/palette chain and original frame ownership remain separate."
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/CMakeLists.txt"
+      ]
     },
     {
       "id": "RE.terrain_camera",
@@ -3740,7 +3752,7 @@
       "kind": "recovered",
       "title": "Camera setters and scrolling",
       "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -3769,7 +3781,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-camera-setters.md"
+        "research/runtime/terrain-camera-setters.md",
+        "research/runtime/rendering-nineteenth-three-20261024.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_camera.cpp",
@@ -3777,7 +3790,8 @@
       ],
       "tests": [
         "tests/terrain-camera-test.cpp",
-        "tests/terrain-camera-reference.cpp"
+        "tests/terrain-camera-reference.cpp",
+        "tools/test-rendering-nineteenth-three.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_camera",
@@ -3789,11 +3803,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_camera-20261019",
-        "HIGH04.RE.terrain_camera-20261020"
+        "HIGH04.RE.terrain_camera-20261020",
+        "N19.terrain-native-20261024",
+        "N19.terrain-original-20261024"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -3801,7 +3817,11 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_camera"
-      }
+      },
+      "remaining_gaps": [
+        "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.",
+        "Checked overflow refusal is native policy; original resource/lifecycle/input timing and the opaque +99 update marker remain separate."
+      ]
     },
     {
       "id": "RE.terrain_traversal",
@@ -3931,7 +3951,7 @@
       "kind": "recovered",
       "title": "Section copying and transforms",
       "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -3940,7 +3960,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-section-assembly.md"
+        "research/runtime/terrain-section-assembly.md",
+        "research/runtime/rendering-nineteenth-three-20261024.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_sections.cpp",
@@ -3948,7 +3969,8 @@
       ],
       "tests": [
         "tests/terrain-sections-test.cpp",
-        "tests/terrain-sections-reference.cpp"
+        "tests/terrain-sections-reference.cpp",
+        "tools/test-rendering-nineteenth-three.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_sections",
@@ -3960,11 +3982,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_sections-20261019",
-        "HIGH04.RE.terrain_sections-20261020"
+        "HIGH04.RE.terrain_sections-20261020",
+        "N19.terrain-native-20261024",
+        "N19.terrain-original-20261024"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -3972,7 +3996,11 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_sections"
-      }
+      },
+      "remaining_gaps": [
+        "Full world production, original allocation/driver ownership, complete scene integration and live replacement remain outside this selected offline contract.",
+        "Object-linked section rotation and original source mutation/allocator ownership remain separate; native assets stay immutable and aliased selections use frozen scratch."
+      ]
     },
     {
       "id": "RE.terrain_region",
@@ -330708,6 +330736,102 @@
           "equals": 2289434774
         }
       ]
+    },
+    {
+      "id": "N19.terrain-native-20261024",
+      "kind": "native_integration",
+      "scope": "Selected owned camera setters/map-axis and screen scrolling, ordinary section copy destination/source effects, and ordinary tile draw fields only. Checked native arithmetic/refusals and immutable aliased section sources are native policies. No object rotation, allocator/driver, original whole-world production, full scene pixels, installed camera timing, live, FPS or replacement credit.",
+      "record": "research/runtime/rendering-nineteenth-three-results-20261024/execution-4.json",
+      "sha256": "084283e4420e8e32072305572e88230e00ad95fd0b526601216bfdbc9a03597d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N19.terrain-original-20261024",
+      "kind": "isolated_original",
+      "scope": "Selected owned camera setters/map-axis and screen scrolling, ordinary section copy destination/source effects, and ordinary tile draw fields only. Checked native arithmetic/refusals and immutable aliased section sources are native policies. No object rotation, allocator/driver, original whole-world production, full scene pixels, installed camera timing, live, FPS or replacement credit.",
+      "record": "research/runtime/rendering-nineteenth-three-results-20261024/execution-4.json",
+      "sha256": "084283e4420e8e32072305572e88230e00ad95fd0b526601216bfdbc9a03597d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/original_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/comparisons/camera/state_comparisons",
+          "equals": 270336
+        },
+        {
+          "pointer": "/comparisons/sections/synthetic_cells",
+          "equals": 410500
+        },
+        {
+          "pointer": "/comparisons/sections/installed_cells",
+          "equals": 307200
+        },
+        {
+          "pointer": "/comparisons/sections/installed_maps",
+          "equals": 3
+        },
+        {
+          "pointer": "/comparisons/submission/cases",
+          "equals": 15716
+        },
+        {
+          "pointer": "/comparisons/submission/records",
+          "equals": 16341
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -358235,7 +358359,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-17dccd60f3a15a05fd58b0d83c5f35bcc33fd6b85af3437d357f9e6754527861.json",
-    "sha256": "17dccd60f3a15a05fd58b0d83c5f35bcc33fd6b85af3437d357f9e6754527861"
+    "path": "research/runtime/coverage/source-index-75a49aaaaaeef6c2624eb14aeb03ccb6b4c0234f173406e9d816a412aad19c39.json",
+    "sha256": "75a49aaaaaeef6c2624eb14aeb03ccb6b4c0234f173406e9d816a412aad19c39"
   }
 }

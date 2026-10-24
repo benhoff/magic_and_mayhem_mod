@@ -15,6 +15,10 @@ void setTerrainCameraCellPosition(TerrainCamera&,std::uint32_t width,std::uint32
 // Signed XY wraps to positive fine coordinates; Z retains its raw word bits.
 void followTerrainCamera(TerrainCamera&,std::uint32_t width,std::uint32_t height,
     std::uint32_t layers,std::optional<TerrainCameraFocus>);
+// 004f7b50: direct map-axis fine-coordinate movement, independent of view.
+// Both axes commit together; native arithmetic overflow refuses unchanged.
+void scrollTerrainCameraAxes(TerrainCamera&,std::uint32_t width,std::uint32_t height,
+    std::int32_t columns,std::int32_t rows);
 void scrollTerrainCamera(TerrainCamera&,std::uint32_t width,std::uint32_t height,
     std::int32_t horizontal,std::int32_t vertical);
 // 004f79b0 clamps whole cells to [-5, extent+5], preserving fractions unless

@@ -24,7 +24,8 @@ std::vector<TerrainDraw> submitTerrain(const TerrainDefinition& definition,Terra
     const std::array<std::uint32_t,3> frames{{definition.body[admission.view],definition.first[admission.view],definition.second[admission.view]}};
     if(!frames[0])return {};
     SpriteDepth depth{bits(std::uint32_t(tile.column)*32+16),bits(std::uint32_t(tile.row)*32+16),tile.level*16,tile.priority};
-    const auto shade=std::max(-127,bits(std::uint32_t(std::int32_t(tile.light))-std::uint32_t(admission.lightBias)));
+    const auto shadeBits=std::uint16_t(std::max(-127,bits(std::uint32_t(std::int32_t(tile.light))-std::uint32_t(admission.lightBias))));
+    std::int16_t shade;std::memcpy(&shade,&shadeBits,sizeof(shade));
     std::vector<TerrainDraw> result;
     const auto add=[&](unsigned role){result.push_back({frames[role]>highestFrame?0:frames[role],role,depth,tile.anchorX,tile.anchorY,spriteDepthKey(depth,admission.view),role==0 && (tile.flags10&8)?31:33,shade});};
     add(0);
