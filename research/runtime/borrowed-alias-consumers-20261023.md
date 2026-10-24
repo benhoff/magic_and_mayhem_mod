@@ -97,7 +97,11 @@ evidence additions outside the source gate's watched suffixes receive a new
 exact retrospective SQLite receipt; the initial negative history check remains.
 This does not assert a historical gate pass or new engine validation.
 
-Actual51e890 and other member targets, additional callback representations,
+The [target-body follow-up](alias-targets-20261023.md) implements51e890,33 compact
+callback classes,524130 and cursor-only save/load/reseed projections, with bounded
+allocation/duplicate-ownership failures. Its evidence and limitations are separate.
+The following list records the historical boundary at this comparison: actual51e890
+and other member targets, additional callback representations,
 invalid/aliased ownership, failures/SEH, all stale list-cursor consumers,
 whole-brain destruction, World cadence and installed/live replacement remain
 open. Historical OSR1 evidence remains unchanged; shared-source changes require

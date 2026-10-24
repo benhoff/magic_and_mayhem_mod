@@ -140707,12 +140707,14 @@
         "tools/test-actor-session.py"
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/alias_target_services.hpp",
+        "reconstruction/rendering/compact_member_callbacks.hpp",
+        "reconstruction/rendering/member_callbacks.hpp",
         "tests/original-linux-seh.hpp",
-        "tools/original_x86.py",
+        "tests/sprite-binary-reference.cpp",
         "tools/coverage_claims.py",
         "tools/coverage_evidence.py",
-        "reconstruction/rendering/member_callbacks.hpp"
+        "tools/original_x86.py"
       ],
       "documents": [
         "research/runtime/actor-session-source-lifecycle-20261022.md"
@@ -140723,7 +140725,9 @@
         "ASL1.attempt-catalog.static-20261022",
         "ASL1.incoming-history.static-20261022",
         "BA1.session.original-20261023",
-        "BA1.session.headless-20261023"
+        "BA1.session.headless-20261023",
+        "BA2.session.original-20261023",
+        "BA2.session.headless-20261023"
       ],
       "status": {
         "understanding": "scoped",
@@ -140796,7 +140800,8 @@
       ],
       "evidence": [
         "ASL1.session.headless-20261022",
-        "BA1.session.headless-20261023"
+        "BA1.session.headless-20261023",
+        "BA2.session.headless-20261023"
       ],
       "status": {
         "understanding": "scoped",
@@ -144639,9 +144644,685 @@
         "tools/owner_planner_comparison.py"
       ],
       "remaining_gaps": [
-        "Actual member target51e890 and other targets remain services;all stale8fd list-cursor consumers and nonmatching callback representations remain unrecovered.",
+        "Follow-on AI.borrowed-alias-target-bodies implements51e890,33 compact classes and cursor consumers; remaining arbitrary callback targets/representations remain separate. Historical BA1 scope and source fingerprints remain unchanged.",
         "Invalid pointers/tree corruption/allocation failure/SEH and whole-brain/World/live replacement remain independent.",
         "Actor-session dispatcher integration has its own regression;this source fixture does not execute a complete owner scheduler."
+      ]
+    },
+    {
+      "id": "AI.borrowed-alias-target-bodies",
+      "kind": "recovered",
+      "subsystem": "creature_ai",
+      "title": "Borrowed callback target bodies,compact representations and order cursor consumers",
+      "scope": "Pinned NoCD40209ca7 whole actor member target51e890 event switch and524130 order cursor tick,33 compact12-byte direct-receiver callback classes, and explicit cursor-only projections523e0f..523e34,526977..5269a5,5292c6..5292f0. Original callback51e890 reached through retainedcf3/52cbc0; lower world/action/presentation/serializer functions remain authored ordered services. Finite authored actor/list values,32x32 map, wrapped coordinates, deletion/repeat/type3 orders, cursor identity serialization with caller-retained scalar, signed load indices and append reseeding. Null callback allocation succeeds with owned list; list/head allocation failures and duplicate owning aliases fault in isolated original children, while native checked storage refuses unsafe access. Native throwing target/free ownership prefixes are policy tests,not Windows SEH or unwind equivalence. Other callback target bodies,arbitrary callback encodings,whole serializers/queue append,World/installed/live replacement remain separate.",
+      "confidence": "high_within_scope",
+      "implementation": [
+        "reconstruction/rendering/alias_target_services.hpp",
+        "reconstruction/rendering/compact_member_callbacks.hpp",
+        "reconstruction/rendering/actor_session.hpp"
+      ],
+      "tests": [
+        "tests/alias-targets-test.cpp",
+        "tools/test-alias-targets.py",
+        "tools/inspect-alias-targets.py"
+      ],
+      "documents": [
+        "research/runtime/alias-targets-20261023.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "BA2.original-20261023",
+        "BA2.inspection.static-20261023",
+        "BA2.headless-20261023"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5367952,
+          "scope": "Whole51e890 and524130 within authored service contexts; cursor-only projections in523be0/524df0/527310; bounded resource allocation/duplicate ownership failure paths in5060a0/505f70.",
+          "relation": "code",
+          "recovered_range": "alias-target-51e890"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5390640,
+          "scope": "Whole51e890 and524130 within authored service contexts; cursor-only projections in523be0/524df0/527310; bounded resource allocation/duplicate ownership failure paths in5060a0/505f70."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5389280,
+          "scope": "Whole51e890 and524130 within authored service contexts; cursor-only projections in523be0/524df0/527310; bounded resource allocation/duplicate ownership failure paths in5060a0/505f70."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5393904,
+          "scope": "Whole51e890 and524130 within authored service contexts; cursor-only projections in523be0/524df0/527310; bounded resource allocation/duplicate ownership failure paths in5060a0/505f70."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5403408,
+          "scope": "Whole51e890 and524130 within authored service contexts; cursor-only projections in523be0/524df0/527310; bounded resource allocation/duplicate ownership failure paths in5060a0/505f70."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267616,
+          "scope": "Whole51e890 and524130 within authored service contexts; cursor-only projections in523be0/524df0/527310; bounded resource allocation/duplicate ownership failure paths in5060a0/505f70."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267312,
+          "scope": "Whole51e890 and524130 within authored service contexts; cursor-only projections in523be0/524df0/527310; bounded resource allocation/duplicate ownership failure paths in5060a0/505f70."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4676480,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-475b80"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4676512,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4676576,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4676496,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-475b90"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4676544,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4676592,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745088,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-486780"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745104,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745136,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966256,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc770"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966720,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967392,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966272,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc780"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966752,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967408,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966288,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc790"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966784,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967424,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966336,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc7c0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966816,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967440,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966352,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc7d0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966848,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967456,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966368,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc7e0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966880,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967472,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966384,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc7f0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966912,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967488,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966400,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc800"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966944,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967504,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966416,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc810"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966976,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967520,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966432,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc820"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967008,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967536,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966448,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc830"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967040,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967552,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966464,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc840"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967072,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967568,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966480,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc850"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967104,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967584,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966688,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc920"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967328,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967648,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966704,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4bc930"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967360,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967664,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5022368,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4ca2a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5022384,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5022416,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106416,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4deaf0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106720,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107200,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106432,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4deb00"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106752,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107216,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106448,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4deb10"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106784,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107232,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106464,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106816,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107248,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106512,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4deb50"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106880,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107280,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106528,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4deb60"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106912,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107296,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106544,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4deb70"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106944,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107312,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106624,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4debc0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107040,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107360,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106640,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4debd0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107072,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107376,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106688,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4dec00"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107136,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107408,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5106704,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-4dec10"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107168,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107424,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5480816,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-53a170"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5480832,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5480864,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5690192,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-56d350"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5690208,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5690240,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5720592,
+          "scope": "Compact12-byte direct receiver callback invoke; target semantics supplied separately.",
+          "relation": "code",
+          "recovered_range": "compact-member-574a10"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5720608,
+          "scope": "Compact12-byte direct receiver callback deleting; target semantics supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5720640,
+          "scope": "Compact12-byte direct receiver callback destruct; target semantics supplied separately."
+        }
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_knowledge_cache.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_observation_snapshots.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_sources.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/member_callbacks.hpp",
+        "tests/observation-snapshot-ownership-test.cpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/snapshot-resource-refresh-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py"
+      ],
+      "remaining_gaps": [
+        "Other engine callback targets and encodings require their own original comparisons; the base-reset family scan is not whole-engine completeness.",
+        "Queue append and actor save/load are implemented only as named cursor projections; remaining parent bodies and file/serializer failures are separate.",
+        "Invalid owners/list or cursor pointers fault in the original and are refused by checked native memory; Windows SEH,arbitrary provider mutation,throwing original cleanup and rollback are unclaimed.",
+        "Session dispatcher routes new entries and existing64-variant lifecycle compatibility passes; direct new target-body integration into a full session,World cadence/installed/live replacement remain independent."
       ]
     }
   ],
@@ -327334,6 +328015,292 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "BA2.original-20261023",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Pinned NoCD40209ca7 whole actor member target51e890 event switch and524130 order cursor tick,33 compact12-byte direct-receiver callback classes, and explicit cursor-only projections523e0f..523e34,526977..5269a5,5292c6..5292f0. Original callback51e890 reached through retainedcf3/52cbc0; lower world/action/presentation/serializer functions remain authored ordered services. Finite authored actor/list values,32x32 map, wrapped coordinates, deletion/repeat/type3 orders, cursor identity serialization with caller-retained scalar, signed load indices and append reseeding. Null callback allocation succeeds with owned list; list/head allocation failures and duplicate owning aliases fault in isolated original children, while native checked storage refuses unsafe access. Native throwing target/free ownership prefixes are policy tests,not Windows SEH or unwind equivalence. Other callback target bodies,arbitrary callback encodings,whole serializers/queue append,World/installed/live replacement remain separate.",
+      "record": "research/runtime/alias-targets-results-20261023/alias-targets-final-1.json",
+      "sha256": "61d9cbc4b500d99d05ed67587e08ef21d909878ec53e0e169ce010ab1555f049",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 20593
+        },
+        {
+          "pointer": "/compact_classes",
+          "equals": 33
+        },
+        {
+          "pointer": "/compact_calls",
+          "equals": 198
+        },
+        {
+          "pointer": "/event_cases",
+          "equals": 3584
+        },
+        {
+          "pointer": "/order_cases",
+          "equals": 128
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "BA2.inspection.static-20261023",
+      "kind": "static",
+      "scope": "Exact base-reset wrapper callback-family scan and seven entry-aligned cursor references; switch data excluded from instructions.",
+      "record": "research/runtime/alias-targets-results-20261023/inspection-1.json",
+      "sha256": "1e88af2b61c98bcb4db18ba2cebc23bf669f9ee18f1e2ae358de2a60fff67c0b",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/static_only",
+          "equals": true
+        },
+        {
+          "pointer": "/manifest_before_after",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "record": "research/runtime/actor-session-source-results-20261022/alias-targets-session-1.json",
+      "sha256": "1e83e51ce6cb6e9c7d02f893fb574887a6221d7943ca503f81cdf595f3d687ed",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 1024
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_public_session_api",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_source_byte25_provenance_guarded",
+          "equals": true
+        },
+        {
+          "pointer": "/protected_pool_and_reuse_refusals",
+          "equals": 128
+        },
+        {
+          "pointer": "/queued_backing_import_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "BA2.session.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Fresh existing64-variant/1024-checkpoint actor-session compatibility after adding compact callback and alias target dispatcher routes;393604952 normalized bytes and unchanged comparison digest. No new target-body integration,World or live replacement claim.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "record": "research/runtime/actor-session-source-results-20261022/alias-targets-session-1.json",
+      "sha256": "1e83e51ce6cb6e9c7d02f893fb574887a6221d7943ca503f81cdf595f3d687ed",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 1024
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_public_session_api",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_original_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_source_byte25_provenance_guarded",
+          "equals": true
+        },
+        {
+          "pointer": "/protected_pool_and_reuse_refusals",
+          "equals": 128
+        },
+        {
+          "pointer": "/queued_backing_import_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_driver_equivalence",
+          "equals": false
+        }
+      ],
+      "id": "BA2.session.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Fresh existing64-variant/1024-checkpoint actor-session compatibility after adding compact callback and alias target dispatcher routes;393604952 normalized bytes and unchanged comparison digest. No new target-body integration,World or live replacement claim."
+    },
+    {
+      "id": "BA2.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Pinned NoCD40209ca7 whole actor member target51e890 event switch and524130 order cursor tick,33 compact12-byte direct-receiver callback classes, and explicit cursor-only projections523e0f..523e34,526977..5269a5,5292c6..5292f0. Original callback51e890 reached through retainedcf3/52cbc0; lower world/action/presentation/serializer functions remain authored ordered services. Finite authored actor/list values,32x32 map, wrapped coordinates, deletion/repeat/type3 orders, cursor identity serialization with caller-retained scalar, signed load indices and append reseeding. Null callback allocation succeeds with owned list; list/head allocation failures and duplicate owning aliases fault in isolated original children, while native checked storage refuses unsafe access. Native throwing target/free ownership prefixes are policy tests,not Windows SEH or unwind equivalence. Other callback target bodies,arbitrary callback encodings,whole serializers/queue append,World/installed/live replacement remain separate.",
+      "record": "research/runtime/alias-targets-results-20261023/alias-targets-final-1.json",
+      "sha256": "61d9cbc4b500d99d05ed67587e08ef21d909878ec53e0e169ce010ab1555f049",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 20593
+        },
+        {
+          "pointer": "/compact_classes",
+          "equals": 33
+        },
+        {
+          "pointer": "/compact_calls",
+          "equals": 198
+        },
+        {
+          "pointer": "/event_cases",
+          "equals": 3584
+        },
+        {
+          "pointer": "/order_cases",
+          "equals": 128
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -336310,6 +337277,80 @@
           "value": 5741760,
           "behaviors": [
             "AI.owner-borrowed-alias-consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alias-actor-event-switch",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5368924,
+        "relation": "data",
+        "scope": "Four-entry jump table selected by byte map51ec6c for events5..14; unsigned default outside that domain."
+      },
+      "document": "research/runtime/alias-targets-20261023.md",
+      "complete": true,
+      "scope": "Complete selected51e890 event switch; lower event effects remain explicit services.",
+      "entries": [
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.borrowed-alias-target-bodies"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "AI.borrowed-alias-target-bodies"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "AI.borrowed-alias-target-bodies"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "AI.borrowed-alias-target-bodies"
+          ]
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "AI.borrowed-alias-target-bodies"
+          ]
+        },
+        {
+          "value": 10,
+          "behaviors": [
+            "AI.borrowed-alias-target-bodies"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "AI.borrowed-alias-target-bodies"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "AI.borrowed-alias-target-bodies"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "AI.borrowed-alias-target-bodies"
+          ]
+        },
+        {
+          "value": 14,
+          "behaviors": [
+            "AI.borrowed-alias-target-bodies"
           ]
         }
       ]
@@ -352548,7 +353589,9 @@
       ],
       "evidence": [
         "ASL1.session.headless-20261022",
-        "BA1.session.headless-20261023"
+        "BA1.session.headless-20261023",
+        "BA2.session.original-20261023",
+        "BA2.session.headless-20261023"
       ]
     },
     {
@@ -353145,6 +354188,21 @@
         "BA1.final.headless-20261023",
         "BA1.merge.original-20261023",
         "BA1.merge.headless-20261023"
+      ]
+    },
+    {
+      "id": "alias-targets-20261023",
+      "scope": "Pinned NoCD40209ca7 whole actor member target51e890 event switch and524130 order cursor tick,33 compact12-byte direct-receiver callback classes, and explicit cursor-only projections523e0f..523e34,526977..5269a5,5292c6..5292f0. Original callback51e890 reached through retainedcf3/52cbc0; lower world/action/presentation/serializer functions remain authored ordered services. Finite authored actor/list values,32x32 map, wrapped coordinates, deletion/repeat/type3 orders, cursor identity serialization with caller-retained scalar, signed load indices and append reseeding. Null callback allocation succeeds with owned list; list/head allocation failures and duplicate owning aliases fault in isolated original children, while native checked storage refuses unsafe access. Native throwing target/free ownership prefixes are policy tests,not Windows SEH or unwind equivalence. Other callback target bodies,arbitrary callback encodings,whole serializers/queue append,World/installed/live replacement remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "AI.borrowed-alias-target-bodies"
+      ],
+      "tests": [
+        "tests/alias-targets-test.cpp",
+        "tools/test-alias-targets.py"
+      ],
+      "evidence": [
+        "BA2.headless-20261023"
       ]
     }
   ],
@@ -354001,6 +355059,336 @@
       "evidence": "BA1.original-20261023",
       "anchors_pointer": "/original_entry_anchors",
       "scope": "Exact21-byte straight-line adjusted member thunk ending ret4;called indirectly through the concrete vtable in this pinned execution. Member target remains supplied."
+    },
+    {
+      "id": "alias-target-51e890",
+      "build": "nocd-40209ca7",
+      "start": 5367952,
+      "end": 5368921,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Whole51e890 from reviewed entry through finalret4; jump and byte-selector data begins51ec5c. Actual callback dispatch is executed with authored ordered lower services; no arbitrary lower target equivalence."
+    },
+    {
+      "id": "compact-member-475b80",
+      "build": "nocd-40209ca7",
+      "start": 4676480,
+      "end": 4676496,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-475b90",
+      "build": "nocd-40209ca7",
+      "start": 4676496,
+      "end": 4676512,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-486780",
+      "build": "nocd-40209ca7",
+      "start": 4745088,
+      "end": 4745104,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc770",
+      "build": "nocd-40209ca7",
+      "start": 4966256,
+      "end": 4966272,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc780",
+      "build": "nocd-40209ca7",
+      "start": 4966272,
+      "end": 4966288,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc790",
+      "build": "nocd-40209ca7",
+      "start": 4966288,
+      "end": 4966304,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc7c0",
+      "build": "nocd-40209ca7",
+      "start": 4966336,
+      "end": 4966352,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc7d0",
+      "build": "nocd-40209ca7",
+      "start": 4966352,
+      "end": 4966368,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc7e0",
+      "build": "nocd-40209ca7",
+      "start": 4966368,
+      "end": 4966384,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc7f0",
+      "build": "nocd-40209ca7",
+      "start": 4966384,
+      "end": 4966400,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc800",
+      "build": "nocd-40209ca7",
+      "start": 4966400,
+      "end": 4966416,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc810",
+      "build": "nocd-40209ca7",
+      "start": 4966416,
+      "end": 4966432,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc820",
+      "build": "nocd-40209ca7",
+      "start": 4966432,
+      "end": 4966448,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc830",
+      "build": "nocd-40209ca7",
+      "start": 4966448,
+      "end": 4966464,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc840",
+      "build": "nocd-40209ca7",
+      "start": 4966464,
+      "end": 4966480,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc850",
+      "build": "nocd-40209ca7",
+      "start": 4966480,
+      "end": 4966496,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc920",
+      "build": "nocd-40209ca7",
+      "start": 4966688,
+      "end": 4966704,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4bc930",
+      "build": "nocd-40209ca7",
+      "start": 4966704,
+      "end": 4966720,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4ca2a0",
+      "build": "nocd-40209ca7",
+      "start": 5022368,
+      "end": 5022384,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4deaf0",
+      "build": "nocd-40209ca7",
+      "start": 5106416,
+      "end": 5106432,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4deb00",
+      "build": "nocd-40209ca7",
+      "start": 5106432,
+      "end": 5106448,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4deb10",
+      "build": "nocd-40209ca7",
+      "start": 5106448,
+      "end": 5106464,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4deb50",
+      "build": "nocd-40209ca7",
+      "start": 5106512,
+      "end": 5106528,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4deb60",
+      "build": "nocd-40209ca7",
+      "start": 5106528,
+      "end": 5106544,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4deb70",
+      "build": "nocd-40209ca7",
+      "start": 5106544,
+      "end": 5106560,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4debc0",
+      "build": "nocd-40209ca7",
+      "start": 5106624,
+      "end": 5106640,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4debd0",
+      "build": "nocd-40209ca7",
+      "start": 5106640,
+      "end": 5106656,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4dec00",
+      "build": "nocd-40209ca7",
+      "start": 5106688,
+      "end": 5106704,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-4dec10",
+      "build": "nocd-40209ca7",
+      "start": 5106704,
+      "end": 5106720,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-53a170",
+      "build": "nocd-40209ca7",
+      "start": 5480816,
+      "end": 5480832,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-56d350",
+      "build": "nocd-40209ca7",
+      "start": 5690192,
+      "end": 5690208,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "compact-member-574a10",
+      "build": "nocd-40209ca7",
+      "start": 5720592,
+      "end": 5720608,
+      "document": "research/runtime/alias-targets-20261023.md",
+      "evidence": "BA2.original-20261023",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
     }
   ],
   "register_imports": [
@@ -354111,8 +355499,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-2c421765cc38aee01dfa53355e9ad5becb5274d9ab822011b8fa5b908d33fa1b.json",
-    "sha256": "2c421765cc38aee01dfa53355e9ad5becb5274d9ab822011b8fa5b908d33fa1b"
+    "path": "research/runtime/coverage/source-index-4d881d0ecd358c895990811169d8a27aaa0fc543a466f89c728411ce1c40f001.json",
+    "sha256": "4d881d0ecd358c895990811169d8a27aaa0fc543a466f89c728411ce1c40f001"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

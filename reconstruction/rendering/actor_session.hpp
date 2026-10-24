@@ -5,6 +5,8 @@
 #include "actor_transition_services.hpp"
 #include "actor_visual_lifecycle.hpp"
 #include "member_callbacks.hpp"
+#include "compact_member_callbacks.hpp"
+#include "alias_target_services.hpp"
 #include <array>
 #include <stdexcept>
 
@@ -38,6 +40,8 @@ public:
     explicit SessionComposition(M& memory) : m(memory) {}
     std::optional<U> tryRun(U entry, U self, std::initializer_list<U> args = {}, U second = 0) {
         if(auto result=MemberCallbacks<M>(m).tryRun(entry,self,args))return result;
+        if(auto result=CompactMemberCallbacks<M>(m).tryRun(entry,self,args))return result;
+        if(auto result=AliasTargetServices<M>(m).tryRun(entry,self,args))return result;
         switch (entry) {
         case 0x50aa30:
             return TransitionServices<M>(m).run(entry, self, args);
