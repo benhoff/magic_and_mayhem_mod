@@ -21548,3 +21548,46 @@ Generated comparison reports and declarations reside in the retained main SQLite
 store; bounded executables and diagnostics remain pinned in the integration
 worktree. Local review/evidence databases receive verified retained backups before
 the normal commit hook. No evidence publication or external transfer is required.
+
+## Broader task-credit service composition — BTC1 (2026-10-23)
+
+[Research](broader-task-services-20261023.md) and
+[comparison](broader-task-services-results-20261023/broader-task-trial-7.json)
+connect activation467c80,item468470,nonlethal514990 damage,positive5076f0 healing,
+periodic509e50 resource contribution and normal512460 pending completion through
+actual416c30/42e610 signed-ID indexes,522770 source ancestry and416d80 valuation
+with505bf0/505c50/59bee0. Native shared providers compose the existing item,
+resource,maintenance,valuation and completion APIs. Actual51e7d0 FC/deadline,
+5075f0 maximum,466870 associated actor,507f00 resource update,507fa0 snapshots
+and51e500 inventory aggregation execute. Original32/native64/sanitizers agree
+128 episodes/1408 event steps,2048 index queries and384 owned task lifecycles.
+Both full packed actors,shared wrapping reward/cost counters and ordered external
+service calls are compared. Source forests/index installation are authored;
+registration,presentation,item application/removal,scenario/effect allocation and
+position/environment/animation/terrain remain explicit supplied endpoints.
+
+This is scoped headless integration,not broad task scheduling or live replacement.
+General task install/index mutation/scheduler,source split/merge,dual-brain cadence,
+training,real item/World services,lethal/scenario cleanup,unrestricted reentry and
+allocation failures/Windows SEH remain pending. Critical actor umbrella remains
+partial. Current master borrowed callback/source changes were incorporated before
+the final comparison. Historical failed attempts/diagnostic traces and immutable
+source fingerprints are preserved. Incoming committed-history163 transitions have
+exact receipts,zero missing/mutated matches;history review is separate from
+current-code execution.
+
+### BTC1 combined current-master accounting
+
+Master4b1aa12c landed before this batch committed. Its normal whole-brain teardown
+implementation is independent of the task-credit compiler closure.
+[Source review](broader-task-services-results-20261023/whole-brain-merge-source-review-1.json)
+checks all53 prospective execution source hashes plus exact behavior/scenario
+contracts after the merge;trial7 remains current execution evidence,not a new
+sample. The combined Critical action preserves both WBT1 and BTC1 milestones;
+all10 policy tests pass in
+[UI check2](broader-task-services-results-20261023/ui-check-2.json).
+The first UI result remains immutable history. The interrupted pre-staging
+completion exported two exact intermediate receipts,which are retained;it did
+not create a commit or pass the staged gate. A new completion reviews the combined
+tree against4b1aa12c. Incoming4ccfd582..4b1aa12c adds77 exactly reviewed
+gated transitions without missing or mutated receipts.

@@ -144827,6 +144827,216 @@
         "tools/owner_planner_comparison.py"
       ],
       "validation_domain": "16 episodes,two brains per episode,all8 owner rows,shared sentinels across brains,balanced empty/singleton/three-node trees,base fallback tasks,source aliases and forest topology,deque block boundary,normal success only. No reset,construction,World/live or exception evidence."
+    },
+    {
+      "id": "AI.owner-broader-task-credit-services",
+      "kind": "recovered",
+      "subsystem": "creature_ai",
+      "title": "Concrete task credit services across resource, item, health and completion callers",
+      "confidence": "high_within_scope",
+      "scope": "Pinned NoCD40209ca7 concrete task-credit composition across467c80 activation,468470 canonical healing/resource and flag-item paths plus ordinary defined healing branch,514990 positive nonlethal damage,5076f0 positive healing,509e50 periodic resource contribution and512460 normal no-landing/no-region completion. Existing EffectServices,Maintenance,Resource,SegmentCompletion andContributionAccount APIs compose with new checked task-credit providers. Actual416c30/42e610 signed-ID lookup in both brain indexes,522770 terminal-parent recipients,416d80/505bf0/505c50/59bee0 numeric graph,51e7d0 FC/deadline setter,5075f0 maximum,466870 associated actor,507f00 resource change,507fa0 snapshots and51e500 inventory aggregation execute. Real419e40 tasks/common owned source forests and normal418050/407650 retirement. Authored index insertion/unbinding,readonly28-profile catalog,normal successful bounded allocations,finite positive health/resource/capacity,stationary actors,normal inactive maintenance siblings and non-reentrant task state. Both source families,duplicate/absent/ancestor recipients,key misses,rewards/costs and modulo32 totals. Registration,presentation,item application/removal/next-item,scenario,effect allocation,position/environment/animation/terrain are explicit supplied services. Native bounds/depth/task-index projection policies separate. Lethal/form/scenario cleanup,real item/world backends,general task install/scheduler,source split/merge,training,failures/SEH and live replacement excluded.",
+      "implementation": [
+        "reconstruction/creature-ai/owner_task_credit_services.hpp"
+      ],
+      "tests": [
+        "tests/broader-task-services-test.cpp",
+        "tools/test-broader-task-services.py",
+        "tools/inspect-broader-task-services.py"
+      ],
+      "documents": [
+        "research/runtime/broader-task-services-20261023.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "BTC1.original-20261023",
+        "BTC1.headless-20261023",
+        "BTC1.inspection.static-20261023",
+        "BTC1.history1.static-20261023",
+        "BTC1.history2.static-20261023",
+        "BTC1.attempts.static-20261023",
+        "BTC1.history3.static-20261023",
+        "BTC1.merge-sources.static-20261023",
+        "BTC1.ui-merged.static-20261023"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4619392,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4621424,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5367760,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5327248,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5273328,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5273072,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5283408,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5275392,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5275552,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5275712,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5367040,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4614256,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4267600,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5317728,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4287536,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4384272,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5384048,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4287872,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5266416,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5266512,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881568,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4300352,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4292688,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4224592,
+          "scope": "Bounded concrete task-credit provider/caller composition only;other branches and external backend implementations excluded."
+        }
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/contribution_account.cpp",
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.cpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_knowledge_cache.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_observation_snapshots.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_sources.hpp",
+        "reconstruction/creature-ai/owner_task_storage.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/segment_completion.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "tests/observation-snapshot-ownership-test.cpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/draft-coverage-claims.py",
+        "tools/ghidra/ExportFontProviders.java",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/owner_planner_comparison.py"
+      ]
     }
   ],
   "evidence": [
@@ -328246,6 +328456,294 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "BTC1.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Actual467c80 activation,468470 canonical healing/resource/FC and defined ordinary healing,514990 nonlethal damage,positive5076f0 healing,509e50 periodic contribution and normal512460 pending completion,with concrete416c30/42e610 indexes,522770 ancestry,416d80/505bf0/505c50/59bee0 valuation,51e7d0,5075f0,466870,507f00,507fa0 and51e500. Actual419e40 construction and418050/407650 normal retirement. Authored task indexes/source forests/read-only profiles;registration,presentation,item application/removal/next-item,scenario,effect allocation and motion/world providers explicitly supplied. Both families,duplicate/absent/ancestor recipients,signed misses,wrapping counters. Ordinary ranks0/1/2,wizard8c1/CFG fallback,associated Pool/Subject and rejected controller tested. General scheduler/install,source split/merge,lethal/World/backend/failure/live excluded.",
+      "record": "research/runtime/broader-task-services-results-20261023/broader-task-trial-7.json",
+      "sha256": "1d4e07b44adb059acc3ad9498dfe48be944ed8562e9fc8230ecd67dcad36c019",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 10340226
+        },
+        {
+          "pointer": "/cases",
+          "equals": 128
+        },
+        {
+          "pointer": "/slices",
+          "equals": 1408
+        },
+        {
+          "pointer": "/digest",
+          "equals": "8778611745187551486"
+        },
+        {
+          "pointer": "/task_lookups",
+          "equals": 2048
+        },
+        {
+          "pointer": "/task_constructions",
+          "equals": 384
+        },
+        {
+          "pointer": "/task_retirements",
+          "equals": 384
+        },
+        {
+          "pointer": "/reward_changes",
+          "equals": 1105
+        },
+        {
+          "pointer": "/cost_changes",
+          "equals": 480
+        },
+        {
+          "pointer": "/wrapping_changes",
+          "equals": 66
+        },
+        {
+          "pointer": "/item_calls",
+          "equals": 384
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "BTC1.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Same128 cases/1408 slices as original proof,not additional samples. Concrete borrowed task-credit providers compose existing EffectServices,Maintenance,Resource,SegmentCompletion andContributionAccount APIs. Shared tasks receive rewards and costs through entire authored event sequence then retire normally. Ordered external callback calls and both packed actor records compared each step;resource callbacks may change resource/type before reload. No original fallback/output-fed state. Native bounds/depth/index projection and checked nonlethal/completion domain are policies. General task index insertion/erase ABI,scheduler/source split/merge,unrestricted reentry,real item/World/presentation services,death cleanup,training/failure/SEH/live remain pending.",
+      "record": "research/runtime/broader-task-services-results-20261023/broader-task-trial-7.json",
+      "sha256": "1d4e07b44adb059acc3ad9498dfe48be944ed8562e9fc8230ecd67dcad36c019",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 10340226
+        },
+        {
+          "pointer": "/cases",
+          "equals": 128
+        },
+        {
+          "pointer": "/slices",
+          "equals": 1408
+        },
+        {
+          "pointer": "/digest",
+          "equals": "8778611745187551486"
+        },
+        {
+          "pointer": "/task_lookups",
+          "equals": 2048
+        },
+        {
+          "pointer": "/task_constructions",
+          "equals": 384
+        },
+        {
+          "pointer": "/task_retirements",
+          "equals": 384
+        },
+        {
+          "pointer": "/reward_changes",
+          "equals": 1105
+        },
+        {
+          "pointer": "/cost_changes",
+          "equals": 480
+        },
+        {
+          "pointer": "/wrapping_changes",
+          "equals": 66
+        },
+        {
+          "pointer": "/item_calls",
+          "equals": 384
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "BTC1.inspection.static-20261023",
+      "kind": "static",
+      "scope": "Pinned caller/provider instruction and Ghidra export with13 aligned direct contribution callers and one unassigned encoding retained;no inferred complete scheduler/callgraph.",
+      "record": "research/runtime/broader-task-services-results-20261023/inspection-2.json",
+      "sha256": "37b35a164d8c5ed89880dcbd66824c6e966a30246acae03961e7b8df7f7a2fce",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "BTC1.history1.static-20261023",
+      "kind": "static",
+      "scope": "Exact593bd0ba..8d3d2b51 parent/current receipt inspection;63 gated path transitions,no missing/mutated receipts. Accounting only,no historical gate/new execution claim.",
+      "record": "research/runtime/broader-task-services-results-20261023/incoming-history-8d3d2b51.json",
+      "sha256": "a8b7a78c5a3a642b66263ef3a750629ee64d153a359dc8745e4b6ec3f4c32269",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "BTC1.history2.static-20261023",
+      "kind": "static",
+      "scope": "Exact8d3d2b51..4ccfd582 parent/current receipt inspection;100 gated path transitions,no missing/mutated receipts. Incoming borrowed callback/source changes included before current comparison.",
+      "record": "research/runtime/broader-task-services-results-20261023/incoming-history-4ccfd582.json",
+      "sha256": "9e11a53bfa6f4feb343308099e1c5a8ea14a35129fe0015e663bd263b8d547a9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "BTC1.ui.static-20261023",
+      "kind": "static",
+      "scope": "Ten Critical-needs policy regressions;engine status remains scoped actor umbrella partial.",
+      "record": "research/runtime/broader-task-services-results-20261023/ui-check-1.json",
+      "sha256": "b2d9c550cd3c528fc4e1364677d40cbde57df73f5447e525a5af37c299c38364",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "BTC1.attempts.static-20261023",
+      "kind": "static",
+      "scope": "Immutable failed compile/comparison reports,diagnostic trace and corrected successful comparisons retained;new source versions keep their own declarations.",
+      "record": "research/runtime/broader-task-services-results-20261023/attempt-catalog-1.json",
+      "sha256": "9017324828e043fea25a2da1390e85c61c5f6578ed1983668dfa76f8611484d0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "BTC1.history3.static-20261023",
+      "kind": "static",
+      "scope": "Exact4ccfd582..4b1aa12c whole-brain teardown incoming committed-history review. All gated parent/current hashes have exact receipts;no past gate or new execution claim.",
+      "record": "research/runtime/broader-task-services-results-20261023/incoming-history-4b1aa12c.json",
+      "sha256": "99c387d1f6435c674ded98f73f126d4449c55bfa08bdb51a528fe3be8bfa5a2f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "BTC1.merge-sources.static-20261023",
+      "kind": "static",
+      "scope": "All53 prospective original/native task-credit input hashes and behavior/scenario contracts remain exact after independent whole-brain teardown integration. Current execution proof remains trial7;this static review is not an additional execution sample.",
+      "record": "research/runtime/broader-task-services-results-20261023/whole-brain-merge-source-review-1.json",
+      "sha256": "6bcffa8fe8a223d8602466e7ba7d7752cf779c683e1af33208783f60643157ce",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "BTC1.ui-merged.static-20261023",
+      "kind": "static",
+      "scope": "Ten Critical-needs policy regressions with both WBT1 whole-brain teardown and BTC1 task-credit scopes retained;actor umbrella stays partial.",
+      "record": "research/runtime/broader-task-services-results-20261023/ui-check-2.json",
+      "sha256": "3b811a09949372a12a1e76b5d15e2e2ade01776c12d161e19d1436d4e7ebf09c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -354060,6 +354558,22 @@
       ]
     },
     {
+      "id": "broader-task-services-20261023",
+      "scope": "Pinned NoCD40209ca7 concrete task-credit composition across467c80 activation,468470 canonical healing/resource and flag-item paths plus ordinary defined healing branch,514990 positive nonlethal damage,5076f0 positive healing,509e50 periodic resource contribution and512460 normal no-landing/no-region completion. Existing EffectServices,Maintenance,Resource,SegmentCompletion andContributionAccount APIs compose with new checked task-credit providers. Actual416c30/42e610 signed-ID lookup in both brain indexes,522770 terminal-parent recipients,416d80/505bf0/505c50/59bee0 numeric graph,51e7d0 FC/deadline setter,5075f0 maximum,466870 associated actor,507f00 resource change,507fa0 snapshots and51e500 inventory aggregation execute. Real419e40 tasks/common owned source forests and normal418050/407650 retirement. Authored index insertion/unbinding,readonly28-profile catalog,normal successful bounded allocations,finite positive health/resource/capacity,stationary actors,normal inactive maintenance siblings and non-reentrant task state. Both source families,duplicate/absent/ancestor recipients,key misses,rewards/costs and modulo32 totals. Registration,presentation,item application/removal/next-item,scenario,effect allocation,position/environment/animation/terrain are explicit supplied services. Native bounds/depth/task-index projection policies separate. Lethal/form/scenario cleanup,real item/world backends,general task install/scheduler,source split/merge,training,failures/SEH and live replacement excluded.",
+      "level": "headless",
+      "behaviors": [
+        "AI.owner-broader-task-credit-services"
+      ],
+      "tests": [
+        "tests/broader-task-services-test.cpp",
+        "tools/test-broader-task-services.py",
+        "tools/inspect-broader-task-services.py"
+      ],
+      "evidence": [
+        "BTC1.headless-20261023"
+      ]
+    },
+    {
       "id": "whole-brain-teardown-20261023",
       "scope": "Two-brain final destruction with populated owner rows,source overlap,borrowed task aliases,shared sentinels and deque boundaries.",
       "level": "headless",
@@ -355299,7 +355813,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-3bbb3d24295c0bd954c43b5c99aa8f1668f7d6157d2780e7113850c9c48431f8.json",
-    "sha256": "3bbb3d24295c0bd954c43b5c99aa8f1668f7d6157d2780e7113850c9c48431f8"
+    "path": "research/runtime/coverage/source-index-df7e6dc8016a226539fca35ebfa67ee045f11af03b2df1ae1ded776ca7e9ed9f.json",
+    "sha256": "df7e6dc8016a226539fca35ebfa67ee045f11af03b2df1ae1ded776ca7e9ed9f"
   }
 }
