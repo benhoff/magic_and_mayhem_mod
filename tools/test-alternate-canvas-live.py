@@ -38,7 +38,8 @@ def main():
  resource.setrlimit(resource.RLIMIT_CORE,(0,0));p=argparse.ArgumentParser(description=__doc__)
  p.add_argument('--output',type=Path,required=True);p.add_argument('--report',required=True);p.add_argument('--source-game',type=Path,required=True)
  p.add_argument('--prefix-owner-root',type=Path,required=True);p.add_argument('--wine-prefix',type=Path,required=True)
- p.add_argument('--enabled-first',action='store_true');p.add_argument('--frames',type=int,default=40,choices=range(8,129));a=p.parse_args();out=a.output.resolve()
+ p.add_argument('--trace-errors',action='store_true');p.add_argument('--trace-blt',action='store_true');p.add_argument('--enabled-first',action='store_true');p.add_argument('--frames',type=int,default=40,choices=range(8,129));a=p.parse_args();out=a.output.resolve()
+ if a.trace_blt and a.trace_errors:p.error('Select one diagnostic watch mode')
  if out.exists() or not out.is_relative_to(ROOT/'working/tests'):p.error('Require new owned output')
  out.mkdir(parents=True);(out/'.retain').write_text('All-thread original alternate pointer and dispatch observations,including negative evidence.\n')
  j=read_json(ROOT/'research/runtime/coverage/register.json',root=ROOT);b=next(b for b in j['behaviors'] if b['id']==ID)
@@ -53,7 +54,8 @@ def main():
     if key not in paths:paths.add(key);todo.append(key)
  sources={n:evidence_digest(ROOT/n,root=ROOT) for n in sorted(paths)}
  report=dict(schema=1,success=False,sources=sources,claims=[dict(behavior=ID,contract_sha256=behavior_contract(b,{v['id']:v for v in j['builds']}))],original_sha256=BUILD,commands=[],cohorts=[],live_replacement=False,all_writers_recovered=False,original_allocation_recovered=False,
-  scope='Read-only hardware watchpoints on both alternate pointer slots and original dispatch/shutdown sites for every created process thread; authored positive control and natural original Quick Battle sessions across video/configuration choices. Menu navigation is an explicit adapter. Bounded termination is not normal cleanup or universal reachability evidence.')
+  scope='Read-only hardware watchpoints on both alternate pointer slots and original dispatch plus the selected shutdown/error-reporter/copy call-return diagnostic for every created process thread; authored positive control and natural original Quick Battle sessions across video/configuration choices. Menu navigation is an explicit adapter. Bounded termination is not normal cleanup or universal reachability evidence.')
+ report['diagnostic_mode']='copy_call_return' if a.trace_blt else 'error_reporter' if a.trace_errors else 'shutdown'
  env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE'))};env.update(WINEDEBUG='-all',LIBGL_ALWAYS_SOFTWARE='1',GALLIUM_DRIVER='llvmpipe',LP_NUM_THREADS='4',__EGL_VENDOR_LIBRARY_FILENAMES='/usr/share/glvnd/egl_vendor.d/50_mesa.json',__GLX_VENDOR_LIBRARY_NAME='mesa')
  env.pop('MESA_LOADER_DRIVER_OVERRIDE',None);env.pop('WAYLAND_DISPLAY',None)
  lock=server=process=xlog=None
@@ -65,6 +67,7 @@ def main():
  try:
   run('manifest-before',[ROOT/'tools/original-manifest.sh','verify'])
   image=PE32((ROOT/'original/Arcane_Nocd/Chaos.exe').read_bytes());assert image.sha256==BUILD
+  report['original_code_witnesses']={hex(address):image.read(address,16).hex() for address in [0x4e415a,0x4e41be,0x5597ea,0x58bf40,0x58c03a,0x58c05a,0x58c067,0x484c00]}
   prefix,lock=prepare(a.prefix_owner_root.resolve(),out,a.wine_prefix.resolve(),a.wine_prefix.resolve());env['WINEPREFIX']=str(prefix)
   def common(path):return (path/subprocess.check_output(['git','-C',str(path),'rev-parse','--git-common-dir'],text=True).strip()).resolve()
   if common(a.prefix_owner_root.resolve())!=common(ROOT):raise ValueError('Prefix must share repository')
@@ -96,13 +99,13 @@ def main():
     path=Path(name).resolve()
     if path.is_relative_to(ROOT) and not path.is_relative_to(ROOT/'working') and path.relative_to(ROOT).as_posix() not in sources:raise ValueError('Undeclared compiler source '+name)
    run(label+'-link',['lld-link','/machine:x86','/entry:'+('start' if label=='positive-target' else 'mainCRTStartup'),'/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(out/(label+'.exe')),*extra,out/(label+'.obj'),out/'kernel32.lib',out/'user32.lib'])
-  pin.write_text('static const unsigned char alternate_canvas_pinned[16]={0};\n');build('positive-debugger','runtime/diagnostics/alternate_canvas_debug.c')
+  pin.write_text('static const unsigned char alternate_canvas_pinned[16]={0},alternate_error_pinned[16]={0},alternate_blt_pinned[16]={0},alternate_call_pinned[16]={0},alternate_fast_pinned[16]={0};\n');build('positive-debugger','runtime/diagnostics/alternate_canvas_debug.c')
   pad=out/'pad.S';pad.write_text('.text\n.globl _alternate_pad\n_alternate_pad:\n.space 0x400000\n');run('pad-build',['clang','--target=i686-pc-windows-msvc','-c',pad,'-o',out/'pad.obj'])
   build('positive-target','tests/alternate-canvas-debug-target.c',['/base:0x400000','/dynamicbase:no','/include:_alternate_pad',str(out/'pad.obj')])
   positive=out/'positive';positive.mkdir();run('positive-control',['wine',out/'positive-debugger.exe',out/'positive-target.exe'],cwd=positive)
   proof=decode(positive/'alternate-watch.bin');report['positive_control']=proof
   if not proof['complete'] or proof['slot_writes']!=[4,4] or proof['dispatch_calls']!=2 or proof['shutdown_calls']!=2 or len({r[2] for r in proof['rows'] if r[1]==2})!=2:raise ValueError('Missing transient write/thread positive controls')
-  pin.write_text('static const unsigned char alternate_canvas_pinned[]={'+','.join(hex(v) for v in image.read(0x4fd438,16))+'};\n');build('debugger','runtime/diagnostics/alternate_canvas_debug.c')
+  pin.write_text(''.join('static const unsigned char '+name+'[]={'+','.join(hex(v) for v in image.read(address,16))+'};\n' for name,address in [('alternate_canvas_pinned',0x4fd438),('alternate_error_pinned',0x484c00),('alternate_blt_pinned',0x58bf40),('alternate_call_pinned',0x58c03a),('alternate_fast_pinned',0x58c05a)]));build('debugger','runtime/diagnostics/alternate_canvas_debug.c')
   menu=load('alternate_menu_builder','tools/build-menu-observer.py').build(out/'menu-build');manifest=json.loads((out/'menu-build/manifest.json').read_text())
   if set(manifest['compiled_sources'])-set(sources):raise ValueError('Undeclared menu compiler input')
   game=out/'game';source=a.source_game.resolve();installation_executable=digest(source/'Chaos.exe');raw=image.raw
@@ -139,6 +142,7 @@ def main():
    channel_path=case/'channel.bin';raw_channel=bytearray(32768);raw_channel[:16]=b'MNMMCMD2'+struct.pack('<II',2,32768);struct.pack_into('<3I',raw_channel,16,2,1,1);channel_path.write_bytes(raw_channel)
    channel_file=channel_path.open('r+b');channel=mmap.mmap(channel_file.fileno(),0);heartbeat=1;sequence=2;request=0;trace=[]
    child_env=env|dict(MNM_MENU_CHANNEL=win(channel_path),MNM_MENU_OBSERVE=win(case/'menus.bin'),MNM_ALTERNATE_CWD=win(game),WINEDLLOVERRIDES='ddraw=b;dplay,dplayx,dpwsockx=n')
+   if a.trace_errors or a.trace_blt:child_env['MNM_ALTERNATE_ERROR_TRACE']='2' if a.trace_blt else '1'
    log=(case/'game.log').open('x');process=subprocess.Popen(['wine','explorer','/desktop=alternate-watch,1024x768',str(out/'debugger.exe'),str(game/'Chaos.exe')],cwd=case,env=child_env,stdout=log,stderr=subprocess.STDOUT)
    def beat():
     nonlocal heartbeat,sequence
@@ -227,12 +231,25 @@ def main():
      try:process.wait(timeout=10)
      except subprocess.TimeoutExpired:process.terminate();process.wait(timeout=10)
     process=None;log.close();channel.close();channel_file.close()
+   if a.trace_blt or a.trace_errors and enabled:
+    path=case/('alternate-blt.bin' if a.trace_blt else 'alternate-error.bin');words=struct.unpack('<768I',path.read_bytes())
+    if words[:3]!=(0x45524e4d,2,3072) or words[15]!=1:raise ValueError('Error trace format')
+    report['cohorts'][-1]['error_trace']=dict(registers=list(words[3:13]),mode=words[13],hresult=words[14],stack=list(words[16:528]),source_wrapper=list(words[528:560]),destination_wrapper=list(words[560:592]),arguments=list(words[592:598]),destination_rectangle=list(words[608:612]),source_rectangle=list(words[612:616]),read_complete=list(words[616:620]),fast_route=words[650],sha256=digest(path))
+   if a.trace_blt or a.trace_errors and enabled:
+    captured=report['cohorts'][-1]['error_trace'];base_width,height=(800,600) if video else (640,480);width=base_width+(96 if enabled else 0)
+    if captured['source_wrapper'][4:7]!=[width,height,width*2] or captured['destination_wrapper'][4:6]!=[base_width,height] or captured['hresult']!=(0x88760096 if enabled else 0):raise ValueError('Unexpected original surface shape/result')
+    if captured['read_complete'][:2]!=[1,1] or captured['fast_route']!=1:raise ValueError('Unadmitted original presentation route')
+    if a.trace_blt:
+     args=captured['arguments']
+     if captured['registers'][1]!=0x58c05a or args[:4]!=[captured['destination_wrapper'][2],0,0,captured['source_wrapper'][2]] or args[5]!=0x10 or captured['source_rectangle']!=[0,0,width,height] or captured['read_complete'][3]!=1 or captured['stack'][22]!=0x5597fd:raise ValueError('Original copy arguments/caller mismatch')
+    elif captured['stack'][:2]!=[0x58c072,0x88760096] or captured['stack'][18]!=0x5597fd:raise ValueError('Original reporter caller mismatch')
+    captured['validated']=True
    if server.poll() is not None:raise ValueError('Private display died')
    run(case.name+'-prefix-stop',['wineserver','-k']);run(case.name+'-prefix-idle',['wineserver','-w']);run(case.name+'-prefix-keepalive',['wineserver','-p'])
   if digest(source/'Chaos.exe')!=installation_executable:raise ValueError('Source installation changed')
   if any(digest(source/path)!=v['sha256'] for path,v in report['source_installation_inputs'].items()):raise ValueError('Source installation input changed')
   if any(digest(Path('/usr/lib/wine/i386-windows')/name)!=h for name,h in provider.items()):raise ValueError('Provider changed')
-  report.update(success=True,original_game_executed=True,observed_pointer_writes=any(c['proof']['write_events'] for c in report['cohorts']),observed_natural_publications=any(r[1]==2 and (r[5] or r[6]) for c in report['cohorts'] for r in c['proof']['rows']),observed_alternate_dispatch=any(r[5]!=0 for c in report['cohorts'] for r in c['proof']['rows'] if r[1]==3))
+  report.update(error_attribution_validated=bool(a.trace_blt or a.trace_errors) and all(c.get('error_trace',{}).get('validated',False) for c in report['cohorts'] if a.trace_blt or c['use_malloced_backbuffer']),success=True,original_game_executed=True,observed_pointer_writes=any(c['proof']['write_events'] for c in report['cohorts']),observed_natural_publications=any(r[1]==2 and (r[5] or r[6]) for c in report['cohorts'] for r in c['proof']['rows']),observed_alternate_dispatch=any(r[5]!=0 for c in report['cohorts'] for r in c['proof']['rows'] if r[1]==3))
  except (OSError,ValueError,subprocess.SubprocessError,AssertionError) as error:report['error']=str(error)
  finally:
   if process is not None and process.poll() is None:process.terminate();process.wait(timeout=10)

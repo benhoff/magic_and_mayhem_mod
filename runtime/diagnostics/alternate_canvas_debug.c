@@ -1,5 +1,5 @@
 /* Read-only child-memory observer. Every created child thread gets two DWORD
- * write watches and execution watches at dispatch/shutdown. No software traps,
+ * write watches and execution watches at dispatch and shutdown/error/Blt. No software traps,
  * pixel reads, pointer publication, CPU-family edits or WriteProcessMemory. */
 #include "win32_debug_min.h"
 #include "alternate_canvas_pinned.h"
@@ -12,6 +12,30 @@ API u32 WIN GetWindowThreadProcessId(void*,u32*);
 API void* WIN GetWindow(void*,u32);
 API int WIN GetWindowTextA(void*,char*,int);
 static HANDLE process,output;
+static u32 trace_errors,trace_written,pending_tid;
+static u32 trace_record[768];
+static u32 trace_site(void){return trace_errors==2?0x58bf40:trace_errors?0x484c00:0x58acf0;}
+static int try_read(u32 address,void* data,u32 size){u32 done=0;return address&&ReadProcessMemory(process,(void*)address,data,size,&done)&&done==size;}
+static void capture_trace(u32 tid,CONTEXT* c){
+ memset(trace_record,0,sizeof(trace_record));
+ u32 regs[16]={0x45524e4d,2,sizeof(trace_record),tid,c->Eip,c->Esp,c->Eax,c->Ebx,c->Ecx,c->Edx,c->Esi,c->Edi,c->Ebp,trace_errors,0,0};
+ memcpy(trace_record,regs,sizeof(regs));
+ if(!try_read(c->Esp,trace_record+16,2048))ExitProcess(106);
+ trace_record[616]=try_read(c->Edi,trace_record+528,128);
+ trace_record[617]=try_read(c->Ebx,trace_record+560,128);
+ if(!try_read(0x6f68d8,trace_record+650,4))ExitProcess(106);
+ if(trace_errors==2){
+  for(u32 i=0;i<6;++i)trace_record[592+i]=trace_record[16+i];
+  trace_record[618]=c->Eip==0x58c03a?try_read(trace_record[593],trace_record+608,16):0;
+  trace_record[619]=try_read(trace_record[c->Eip==0x58c03a?595:596],trace_record+612,16);
+ }
+}
+static void write_trace(void){
+ u32 done;HANDLE file=CreateFileA(trace_errors==2?"alternate-blt.bin":"alternate-error.bin",GENERIC_WRITE,FILE_SHARE_READ,0,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,0);
+ if(file==INVALID_HANDLE_VALUE||!WriteFile(file,trace_record,sizeof(trace_record),&done,0)||done!=sizeof(trace_record)||!FlushFileBuffers(file))ExitProcess(107);
+ CloseHandle(file);trace_written=1;
+}
+
 static struct {u32 id;HANDLE handle;} threads[256];
 static u32 header[64]={0x414d4e4d,0x31305743,2,256},rows[256][16],row_count;
 static u32 last_values[5],have_values;
@@ -39,8 +63,8 @@ static void set_debug(HANDLE thread,CONTEXT* c){c->Dr6=0;c->EFlags|=0x10000;
 static HANDLE find_thread(u32 tid){for(u32 i=0;i<256;++i)if(threads[i].id==tid)return threads[i].handle;fail(96);return 0;}
 static void add_thread(u32 tid,HANDLE thread){
  for(u32 i=0;i<256;++i)if(!threads[i].id){threads[i].id=tid;threads[i].handle=thread;CONTEXT c=get_context(thread);
-  if((c.Dr7&255)&&!(c.Dr0==0x6e1f68&&c.Dr1==0x6e1f6c&&c.Dr2==0x4fd438&&c.Dr3==0x58acf0&&c.Dr7==0xdd0055))fail(97);
-  c.Dr0=0x6e1f68;c.Dr1=0x6e1f6c;c.Dr2=0x4fd438;c.Dr3=0x58acf0;c.Dr7=0xdd0055;set_debug(thread,&c);++header[9];return;
+  if((c.Dr7&255)&&!(c.Dr0==0x6e1f68&&c.Dr1==0x6e1f6c&&c.Dr2==0x4fd438&&c.Dr3==trace_site()&&c.Dr7==0xdd0055))fail(97);
+  c.Dr0=0x6e1f68;c.Dr1=0x6e1f6c;c.Dr2=0x4fd438;c.Dr3=trace_site();c.Dr7=0xdd0055;set_debug(thread,&c);++header[9];return;
  }
  fail(98);
 }
@@ -54,8 +78,14 @@ static void observe_error(void){
  read_child(0x6e1f78,header+36,4);read_child(0x6e1f70,header+37,8);read_child(0x6de6d5,header+23,4);read_child(0x6a49f4,header+24,8);save();
 }
 static void check_code(void){u8 bytes[sizeof(alternate_canvas_pinned)];read_child(0x4fd438,bytes,sizeof(bytes));
- for(u32 i=0;i<sizeof(bytes);++i)if(bytes[i]!=alternate_canvas_pinned[i])fail(99);++header[17];}
+ for(u32 i=0;i<sizeof(bytes);++i)if(bytes[i]!=alternate_canvas_pinned[i])fail(99);++header[17];
+ if(trace_errors){u8 observed[16];read_child(0x484c00,observed,16);for(u32 i=0;i<16;++i)if(observed[i]!=alternate_error_pinned[i])fail(99);
+  read_child(0x58bf40,observed,16);for(u32 i=0;i<16;++i)if(observed[i]!=alternate_blt_pinned[i])fail(99);
+  read_child(0x58c03a,observed,16);for(u32 i=0;i<16;++i)if(observed[i]!=alternate_call_pinned[i])fail(99);
+  read_child(0x58c05a,observed,16);for(u32 i=0;i<16;++i)if(observed[i]!=alternate_fast_pinned[i])fail(99);++header[17];}
+}
 void mainCRTStartup(void){
+ char trace[2];if(GetEnvironmentVariableA("MNM_ALTERNATE_ERROR_TRACE",trace,2)==1){if(trace[0]<'1'||trace[0]>'2')ExitProcess(108);trace_errors=trace[0]-'0';}
  output=CreateFileA("alternate-watch.bin",GENERIC_WRITE,FILE_SHARE_READ,0,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,0);if(output==INVALID_HANDLE_VALUE)ExitProcess(80);save();
  char* command=GetCommandLineA();if(*command=='"'){++command;while(*command&&*command!='"')++command;if(*command)++command;}else while(*command&&*command!=' '&&*command!='\t')++command;
  while(*command==' '||*command=='\t')++command;if(!*command)fail(81);
@@ -85,11 +115,25 @@ void mainCRTStartup(void){
   else if(e.dwDebugEventCode==4){for(u32 i=0;i<256;++i)if(threads[i].id==e.dwThreadId){CloseHandle(threads[i].handle);threads[i].id=0;++header[10];break;}}
   else if(e.dwDebugEventCode==LOAD_DLL_DEBUG_EVENT){if(e.u.LoadDll.hFile)CloseHandle(e.u.LoadDll.hFile);}
   else if(e.dwDebugEventCode==EXCEPTION_DEBUG_EVENT){u32 code=e.u.Exception.ExceptionRecord.ExceptionCode;
-   if(code==EXCEPTION_SINGLE_STEP){HANDLE thread=find_thread(e.dwThreadId);CONTEXT c=get_context(thread);u32 hits=c.Dr6&15;
+   if(stopping){}else if(code==EXCEPTION_SINGLE_STEP){HANDLE thread=find_thread(e.dwThreadId);CONTEXT c=get_context(thread);u32 hits=c.Dr6&15;
     if(!hits)fail(87);
     if(hits&3){++header[11];if(hits&1)++header[14];if(hits&2)++header[15];emit(2,e.dwThreadId,&c,hits);}
     if(hits&4){if(c.Eip!=0x4fd438)fail(88);++header[12];if(alternate_canvas_pinned[0]&&c.Ebx)fail(103);read_child(0x6de6d5,header+23,4);read_child(0x6a49f4,header+24,8);emit(3,e.dwThreadId,&c,hits);}
-    if(hits&8){if(c.Eip!=0x58acf0)fail(89);++header[13];emit(4,e.dwThreadId,&c,hits);}
+    if(hits&8){
+     if(trace_errors==2){
+      if(c.Eip==0x58bf40){
+       u32 destination;if(!try_read(c.Esp+4,&destination,4))fail(106);
+       if(!trace_written&&c.Ecx==0x6a49e0&&destination==0x6a4fe0){
+        if(pending_tid)fail(109);u32 fast;if(!try_read(0x6f68d8,&fast,4))fail(106);pending_tid=e.dwThreadId;c.Dr3=fast?0x58c05a:0x58c03a;
+       }
+      }else if((c.Eip==0x58c03a||c.Eip==0x58c05a)&&pending_tid==e.dwThreadId){
+       if(c.Edi!=0x6a49e0||c.Ebx!=0x6a4fe0)fail(110);capture_trace(e.dwThreadId,&c);c.Dr3=c.Eip==0x58c03a?0x58c03d:0x58c05d;
+      }else if((c.Eip==0x58c03d||c.Eip==0x58c05d)&&pending_tid==e.dwThreadId){trace_record[14]=c.Eax;trace_record[15]=1;write_trace();pending_tid=0;c.Dr3=trace_site();}else fail(89);
+     }else if(trace_errors){
+      if(c.Eip!=0x484c00)fail(89);u32 result;if(!try_read(c.Esp+4,&result,4))fail(106);
+      if(result&&!trace_written){capture_trace(e.dwThreadId,&c);trace_record[14]=result;trace_record[15]=1;write_trace();}
+     }else{if(c.Eip!=0x58acf0)fail(89);++header[13];emit(4,e.dwThreadId,&c,hits);}
+    }
     set_debug(thread,&c);save();
    }else if(code==EXCEPTION_BREAKPOINT&&e.u.Exception.dwFirstChance&&!header[19]++){}
    else{++header[20];status=DBG_EXCEPTION_NOT_HANDLED;if(!e.u.Exception.dwFirstChance)fail(90);}

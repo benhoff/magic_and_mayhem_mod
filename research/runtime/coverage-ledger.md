@@ -1,6 +1,20 @@
 # Engine modernization coverage ledger
 
 
+## Original enabled-setting rectangle failure attributed — 2026-10-24
+
+Read-only hardware call/return and independent error-reporter watches identify
+screen presentation5597f8 → whole-source copy58bf40 → Surface2 BltFast58c05a.
+The enabled setting asks a736x480 or896x600 source to fit the640x480 or800x600
+primary at(0,0),returning88760096; both disabled full-video controls succeed.
+The original reporter484c00 receives that result with return58c072 and upstream
+5597fd. This closes attribution of the previous Wine modal,not its remediation
+or alternate owner recovery. No game instructions,rectangles or pointers are
+corrected. All observed publication slots remain zero. Original alternate
+allocation,initial pixels,base/source relationship,writers,retirement and legacy
+physical-driver behavior remain open. See [diagnosis](alternate-error-diagnosis-20261024.md).
+
+
 ## Alternate canvas live search and borrowed composition — 2026-10-24
 
 Chunk4 now has an independent borrowed-storage composition of4fd438..4fd5af,
@@ -23,8 +37,8 @@ See [the recovery/composition review](alternate-canvas-composition-20261024.md),
 and [composition](alternate-canvas-composition-results-20261024/composition04.json).
 The native graph is scoped/compared but not live-integrated. Original alternate
 allocation,base/source relationship,initial pixels,all writers,retirement and
-broader reachability remain unknown. The configuration error is observed,not
-silently bypassed or attributed to a particular rectangle caller.
+broader reachability remain unknown. The initial configuration error observation was unattributed; the later
+diagnosis above identifies its screen-presentation rectangle without bypassing it.
 
 
 ## Rendering alias leases and provider-backed shutdown — 2026-10-24

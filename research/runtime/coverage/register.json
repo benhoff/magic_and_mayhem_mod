@@ -133569,7 +133569,7 @@
       "kind": "recovered",
       "subsystem": "rendering_reconstruction",
       "title": "Alternate enable/source initialization and unresolved writer frontier",
-      "scope": "Pinned original PE zero-fill for6e1f68/6c/70/74/78; exhaustive raw literal occurrences and byte-checked operand attribution against retained recursive frontier plus focused59455c/4e40d0 bodies. Nearby address constructions remain candidates. Separate config6e1f78 reader/writer and alternate6e1f68/source6e1f6c; preserve unresolved indirect flows. No recovered original alternate allocation,initial pixel clear,publisher,all-writer inventory or actual reachability/unreachability claim. Bounded straight-line constant-address/overlapping-store and address-escape candidate review plus transient pointer-write watchpoints on complete initializer288cases; these strengthen only that boundary and do not close whole-session allocation/publication/writer/retirement. Read-only child-memory debugger observes both DWORD publication slots with hardware writes on every reported created thread from process creation,plus real dispatch/shutdown execution watches. Live reachability and observed writes are cohort-specific; zero observations never prove global absence. Bounded disabled-setting real Quick Battle observations and enabled-setting original DirectDraw modal failures are distinguished. Child-owned modal text and stack/PC idle samples are read-only diagnostics; no error dismissal or allocator substitution.",
+      "scope": "Pinned original PE zero-fill for6e1f68/6c/70/74/78; exhaustive raw literal occurrences and byte-checked operand attribution against retained recursive frontier plus focused59455c/4e40d0 bodies. Nearby address constructions remain candidates. Separate config6e1f78 reader/writer and alternate6e1f68/source6e1f6c; preserve unresolved indirect flows. No recovered original alternate allocation,initial pixel clear,publisher,all-writer inventory or actual reachability/unreachability claim. Bounded straight-line constant-address/overlapping-store and address-escape candidate review plus transient pointer-write watchpoints on complete initializer288cases; these strengthen only that boundary and do not close whole-session allocation/publication/writer/retirement. Read-only child-memory debugger observes both DWORD publication slots with hardware writes on every reported created thread from process creation,plus real dispatch/shutdown execution watches. Live reachability and observed writes are cohort-specific; zero observations never prove global absence. Bounded disabled-setting real Quick Battle observations and enabled-setting original DirectDraw modal failures are distinguished. Child-owned modal text and stack/PC idle samples are read-only diagnostics; no error dismissal or allocator substitution. Optional read-only reporter484c00 and selected58bf40 API call/return watches attribute the enabled-setting pre-World presentation failure: screen caller5597f8 requests a full padded source rectangle through Surface2 BltFast58c05a into the unpadded primary,returning88760096 on the admitted Wine provider. Disabled controls succeed; no argument correction,modal dismissal or original alternate-owner recovery.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -133590,6 +133590,21 @@
           "build": "nocd-40209ca7",
           "address": 5128538,
           "scope": "Configuration padding flag reader, distinct from alternate enable/source."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816128,
+          "scope": "Whole-source surface copy wrapper and rectangle construction; API call/result observation only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816410,
+          "scope": "Actual Surface2 BltFast call,bracketed through return58c05d on the admitted Wine provider."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4738048,
+          "scope": "Original HRESULT reporter;58c072 and upstream5597fd observed on enabled-setting failures."
         }
       ],
       "implementation": [
@@ -133631,7 +133646,8 @@
       "documents": [
         "research/runtime/alternate-canvas-recovery-20261020.md",
         "research/runtime/rendering-foundations-20261024.md",
-        "research/runtime/alternate-canvas-composition-20261024.md"
+        "research/runtime/alternate-canvas-composition-20261024.md",
+        "research/runtime/alternate-error-diagnosis-20261024.md"
       ],
       "evidence": [
         "ACR1.original-20261020",
@@ -133639,7 +133655,11 @@
         "ACR1.inventory.static-20261020",
         "RF1.original-20261024",
         "ACX1.alternate-live-20261024",
-        "ACX1.alternate-live-final-20261024"
+        "ACX1.alternate-live-final-20261024",
+        "ACD1.copy-final-20261024",
+        "ACD1.reporter-final-20261024",
+        "ACD1.copy-bound02-20261024",
+        "ACD1.reporter-bound02-20261024"
       ],
       "confidence": "high_within_scope",
       "status": {
@@ -133651,7 +133671,9 @@
       },
       "remaining_gaps": [
         "Original alternate allocation, publication outside the admitted initializer, base/source relationship, initial pixels, upstream writers and release remain unknown. No allocator policy is introduced; preserve every unresolved indirect edge and unknown computed writer.",
-        "Hardware writes observed in fixture code are authored setup, not game publications; no natural live alternate route has been established."
+        "Hardware writes observed in fixture code are authored setup, not game publications; no natural live alternate route has been established.",
+        "Enabled-setting pre-World invalid-rectangle failure is attributed to full padded-source BltFast into an unpadded primary. It remains unmodified; no natural alternate publication/World route is admitted. Legacy Windows behavior and broader mode/configuration reachability remain unvalidated.",
+        "Observed screen copy call5597f8/return5597fd is an exact byte/stack witness outside the discovered-function inventory. It is documented without asserting a complete owning function or expanding the existing eight-byte5595d0 recovered range. Whole caller-function recovery remains pending."
       ]
     },
     {
@@ -330326,6 +330348,366 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "ACD1.copy-final-20261024",
+      "kind": "live_observation",
+      "record": "research/runtime/alternate-error-results-20261024/copy-final.json",
+      "scope": "Four actual original-game video/configuration cohorts on pinned Wine software providers,with main/worker transient-write controls. Direct unchanged Surface2 BltFast arguments,source/destination wrapper metadata,upstream5597fd caller and actual call return HRESULT. All pointer slots remain zero;bounded termination is not normal Quit and no original alternate owner or physical-driver equivalence is recovered.",
+      "sha256": "5127fb1b63f23f2ee166e63a9d1514ab33c448c386f1e21bcf9bada76d064a14",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/error_attribution_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_mode",
+          "equals": "copy_call_return"
+        },
+        {
+          "pointer": "/positive_control/slot_writes",
+          "equals": [
+            4,
+            4
+          ]
+        },
+        {
+          "pointer": "/positive_control/dispatch_calls",
+          "equals": 2
+        },
+        {
+          "pointer": "/positive_control/shutdown_calls",
+          "equals": 2
+        },
+        {
+          "pointer": "/observed_natural_publications",
+          "equals": false
+        },
+        {
+          "pointer": "/observed_alternate_dispatch",
+          "equals": false
+        },
+        {
+          "pointer": "/original_allocation_recovered",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/cohorts/0/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/0/error_trace/hresult",
+          "equals": 2289434774
+        },
+        {
+          "pointer": "/cohorts/1/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/1/error_trace/hresult",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/2/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/2/error_trace/hresult",
+          "equals": 2289434774
+        },
+        {
+          "pointer": "/cohorts/3/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/3/error_trace/hresult",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "ACD1.reporter-final-20261024",
+      "kind": "live_observation",
+      "record": "research/runtime/alternate-error-results-20261024/reporter-final.json",
+      "scope": "Four actual original-game video/configuration cohorts on pinned Wine software providers,with main/worker transient-write controls. Independent original484c00 reporter entry confirms88760096,return58c072 and upstream5597fd in both enabled-setting cohorts; disabled controls reach Quick Battle. All pointer slots remain zero;bounded termination is not normal Quit and no original alternate owner or physical-driver equivalence is recovered.",
+      "sha256": "e10a9c38d42ce3e52fe1b38fce2add5bd162cac1999193f8808d7090e296c6ce",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/error_attribution_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_mode",
+          "equals": "error_reporter"
+        },
+        {
+          "pointer": "/positive_control/slot_writes",
+          "equals": [
+            4,
+            4
+          ]
+        },
+        {
+          "pointer": "/positive_control/dispatch_calls",
+          "equals": 2
+        },
+        {
+          "pointer": "/positive_control/shutdown_calls",
+          "equals": 2
+        },
+        {
+          "pointer": "/observed_natural_publications",
+          "equals": false
+        },
+        {
+          "pointer": "/observed_alternate_dispatch",
+          "equals": false
+        },
+        {
+          "pointer": "/original_allocation_recovered",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/cohorts/0/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/0/error_trace/hresult",
+          "equals": 2289434774
+        },
+        {
+          "pointer": "/cohorts/2/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/2/error_trace/hresult",
+          "equals": 2289434774
+        }
+      ]
+    },
+    {
+      "id": "ACD1.copy-bound02-20261024",
+      "kind": "live_observation",
+      "record": "research/runtime/alternate-error-results-20261024/copy-bound02.json",
+      "scope": "Four actual original-game video/configuration cohorts on pinned Wine software providers,with main/worker transient-write controls. Direct unchanged Surface2 BltFast arguments,source/destination wrapper metadata,upstream5597fd caller and actual call return HRESULT. All pointer slots remain zero;bounded termination is not normal Quit and no original alternate owner or physical-driver equivalence is recovered.",
+      "sha256": "9d91a4201ca3cd2b51fc0531b9f46a44ad017217fefb009a96a340c0171d6f19",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/error_attribution_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_mode",
+          "equals": "copy_call_return"
+        },
+        {
+          "pointer": "/positive_control/slot_writes",
+          "equals": [
+            4,
+            4
+          ]
+        },
+        {
+          "pointer": "/positive_control/dispatch_calls",
+          "equals": 2
+        },
+        {
+          "pointer": "/positive_control/shutdown_calls",
+          "equals": 2
+        },
+        {
+          "pointer": "/observed_natural_publications",
+          "equals": false
+        },
+        {
+          "pointer": "/observed_alternate_dispatch",
+          "equals": false
+        },
+        {
+          "pointer": "/original_allocation_recovered",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/cohorts/0/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/0/error_trace/hresult",
+          "equals": 2289434774
+        },
+        {
+          "pointer": "/cohorts/1/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/1/error_trace/hresult",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/2/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/2/error_trace/hresult",
+          "equals": 2289434774
+        },
+        {
+          "pointer": "/cohorts/3/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/3/error_trace/hresult",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "ACD1.reporter-bound02-20261024",
+      "kind": "live_observation",
+      "record": "research/runtime/alternate-error-results-20261024/reporter-bound02.json",
+      "scope": "Four actual original-game video/configuration cohorts on pinned Wine software providers,with main/worker transient-write controls. Independent original484c00 reporter entry confirms88760096,return58c072 and upstream5597fd in both enabled-setting cohorts; disabled controls reach Quick Battle. All pointer slots remain zero;bounded termination is not normal Quit and no original alternate owner or physical-driver equivalence is recovered.",
+      "sha256": "3f596a0bddf477b533908e3994c8dbfa1d91ceee0f7c1c6eff52914a59fb1707",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/error_attribution_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_mode",
+          "equals": "error_reporter"
+        },
+        {
+          "pointer": "/positive_control/slot_writes",
+          "equals": [
+            4,
+            4
+          ]
+        },
+        {
+          "pointer": "/positive_control/dispatch_calls",
+          "equals": 2
+        },
+        {
+          "pointer": "/positive_control/shutdown_calls",
+          "equals": 2
+        },
+        {
+          "pointer": "/observed_natural_publications",
+          "equals": false
+        },
+        {
+          "pointer": "/observed_alternate_dispatch",
+          "equals": false
+        },
+        {
+          "pointer": "/original_allocation_recovered",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/cohorts/0/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/0/error_trace/hresult",
+          "equals": 2289434774
+        },
+        {
+          "pointer": "/cohorts/2/error_trace/validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/2/error_trace/hresult",
+          "equals": 2289434774
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -356283,6 +356665,24 @@
       "evidence": [
         "GLS1.provider-lifetime-20261024"
       ]
+    },
+    {
+      "id": "rendering.alternate-enabled-presentation-error",
+      "level": "live_observation",
+      "scope": "Both640x480 and800x600 original startup/screen presentation with DEBUG/UseMallocedBackBuffer enabled/disabled. Direct copy call/return and independent error reporter cohorts attribute the pre-World invalid rectangle without modal dismissal,argument edits or allocator substitution. Disabled controls reach12-plus Quick Battle dispatches;all use bounded termination. Not a live native integration or original alternate publication scenario.",
+      "behaviors": [
+        "RS.alternate-canvas-provenance"
+      ],
+      "evidence": [
+        "ACD1.copy-final-20261024",
+        "ACD1.reporter-final-20261024",
+        "ACD1.copy-bound02-20261024",
+        "ACD1.reporter-bound02-20261024"
+      ],
+      "tests": [
+        "tools/test-alternate-canvas-live.py",
+        "tests/alternate-canvas-debug-target.c"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -357835,7 +358235,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-e4e3d7674a9e2d682a546fb2fea79d7c24985ecffe465bac71f5e9bf70b898ae.json",
-    "sha256": "e4e3d7674a9e2d682a546fb2fea79d7c24985ecffe465bac71f5e9bf70b898ae"
+    "path": "research/runtime/coverage/source-index-17dccd60f3a15a05fd58b0d83c5f35bcc33fd6b85af3437d357f9e6754527861.json",
+    "sha256": "17dccd60f3a15a05fd58b0d83c5f35bcc33fd6b85af3437d357f9e6754527861"
   }
 }
