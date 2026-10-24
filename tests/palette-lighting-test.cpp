@@ -24,4 +24,26 @@ int main(){using namespace mnm;
  require(reconstruction::applyTerrainPalettePreference({},17).count==17);
  reconstruction::PaletteRgb rgb{};rgb[0]={255,255,255};const auto zero=reconstruction::buildShadedPalette(rgb,{16,1000,1,0,0});require(zero.tables.size()==15);
  refused=false;try{reconstruction::buildShadedPalette(rgb,{16,1000,1000,1000,1000});}catch(const std::invalid_argument&){refused=true;}require(refused);
+ // A leading plus is one sign, never a prefix that admits a second sign.
+ // The shared parser serves all seven fields; one malformed late field must
+ // return an error instead of publishing any partially decoded settings.
+ for(const char* key:{"LightCurve","ColourFactor","LightPower","ColourPower","AmbientLight","LightRamp","TerrainLightLevels"}){
+  const bool video=std::string(key)=="TerrainLightLevels";
+  const bool terrain=std::string(key)=="AmbientLight" || std::string(key)=="LightRamp";
+  for(const char* value:{"+-1","++1","-+1","--1","+","-","+ 1"}){
+   const std::string text=std::string(video?"[VIDEO]\n":"[GLOBAL_OPTIONS]\n")+key+"="+value+"\n";
+   auto config=std::get<assets::Config>(assets::decodeConfig(assets::Bytes(text.begin(),text.end())));
+   if(video)require(std::holds_alternative<assets::PersistenceError>(assets::decodeTerrainPalettePreference(config)));
+   else if(terrain)require(std::holds_alternative<assets::PersistenceError>(assets::decodeTerrainLightingFields(config)));
+   else require(std::holds_alternative<assets::PersistenceError>(assets::decodePaletteLightingFields(config)));
+  }
+ }
+ auto partial=read("[GLOBAL_OPTIONS]\nLightCurve=50\nColourFactor=50\nLightPower=2.2\nColourPower=+-1\n");
+ require(std::holds_alternative<assets::PersistenceError>(partial));
+ const auto negative=std::get<assets::PaletteLightingFields>(read("[GLOBAL_OPTIONS]\nLightCurve=-2147483648\nColourFactor=+2147483647\nLightPower=-2.2\nColourPower=+2.2 ; comment\n"));
+ require(negative.lightCurve==std::numeric_limits<int>::min() && negative.colourFactor==std::numeric_limits<int>::max() && negative.lightPower==-2.2 && negative.colourPower==2.2);
+ for(unsigned prior:{0u,1u,2u,17u,256u,257u,std::numeric_limits<unsigned>::max()}){
+  reconstruction::PaletteShadingConfig c;c.count=prior;require(reconstruction::applyTerrainPalettePreference(c,{}).count==prior);
+ }
+
 }

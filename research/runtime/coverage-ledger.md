@@ -21758,3 +21758,52 @@ promoted. Shared wider evidence retains its historical scope/freshness.
 Existing uncommitted main documentation,scenario and review changes are backed
 up exactly in a retained verified SQLite preservation database and stay outside
 this merge commit. New machine results and bookkeeping remain in SQLite.
+
+## Twentieth bounded terrain/palette implementation batch (2026-10-24)
+
+After merge `ff8b29be` on local master, `RE.terrain_map`,
+`RE.palette_preferences` and `RE.palette_shading` move implementation from
+partial to scoped for their existing selected offline contracts. Understanding
+remains partial, comparison recorded and integration/replacement none.
+`NP.palette-option-strict-parsing` separately records native malformed-input
+policy and has no original comparison/integration/replacement credit.
+
+[Research and retained results](rendering-twentieth-three-20261024.md) document
+2053 synthetic maps/945562 cells plus three installed maps/76800 cells, 3724
+VIDEO dispatch and 63 global-option cases, and 510 palettes/16776192 words.
+Six normal/sanitized controls and three Release CTests pass. The parser rejects
+repeated signs; the new controls fail against preserved prior source. Native
+map ownership/refusal and shade/configuration guards are checked. Historical
+image evidence, wider allocation/scene ownership, nondefault floating-point,
+special effects and whole-world/live/FPS acceptance remain separate. The
+mode0..9 umbrella remains partial; new policy remains unrated.
+
+SQLite retains reports and unique failed sources; source census and exact review
+receipts accompany this batch. Original manifest bookends verify 2927 inputs.
+No new installation, GPU/Wine session, gameplay change or publication is included.
+
+The initial accounting audit refused the static regression entry's missing
+source-pointer metadata; its [negative result](rendering-twentieth-three-results-20261024/coverage-audit-initial-negative.json)
+is retained. A separate immutable binding report links the unchanged negative
+execution and exact prior parser bytes; this corrects provenance without
+rewriting the original result or claiming another execution.
+
+The first dashboard run retained 37 passing tests and one failing drift-test
+fixture (four subcases), which assumed the first terrain task was partial.
+The fixture now toggles from its actual prior status and checks that scope,
+status, weight and source drift still require review. The initial report and
+exact prior test source are retained under this batch's SQLite result paths.
+
+A follow-up dashboard run caught an over-broad edit in an unrelated fixture;
+its exact prior source and failed result are retained. Restoring that one line
+passes both affected drift tests. Legacy audit CLI expanded outputs were
+imported at identical payload hashes into SQLite, with exact bounded import
+inputs retained under ignored working storage; no historical evidence changed.
+
+Final dashboard rerun passes all38 tests. The [closeout audit](rendering-twentieth-three-results-20261024/coverage-audit-closeout.json)
+has no errors or census drift; historical unrelated gaps remain. The [final
+bindings](rendering-twentieth-three-results-20261024/source-bindings-final.json)
+verify all35 execution sources, four prospective contracts, failed dashboard
+source variants and every newly generated report as a readable SQLite reference.
+The incoming integration's37 reviewed first-parent transitions have exact
+receipts, with no missing or rewritten entries.

@@ -140,3 +140,15 @@ object/creature admission, packed grid
 buffer initialization, lights/palettes, water and other terrain producers,
 configured entities/effects, visibility activation, original full camera
 lifecycle, input clock and live integration. No gameplay balance changes.
+
+## Bounded implementation review, 2026-10-24
+
+The [twentieth rendering batch](rendering-twentieth-three-20261024.md) renews
+the owned ordinary projection and surface-admission scope. Its native controls
+check atomic rejection at every cell, invalid dimensions/catalogs, all four
+owner bits, individual wraparound edge masks, projected reference/object
+counters, metadata and top-layer preservation. The original comparison adds
+fixed map-table limits to the earlier seeded synthetic cases. Native projection
+and malformed-input guards remain policies; original allocation, complete
+world creation, lifecycle and live integration are separate. Earlier results
+above retain their historical source pins and are not rerun by this review.

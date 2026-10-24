@@ -3911,7 +3911,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-map-initialization.md"
+        "research/runtime/terrain-map-initialization.md",
+        "research/runtime/rendering-twentieth-three-20261024.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_map.cpp",
@@ -3919,7 +3920,8 @@
       ],
       "tests": [
         "tests/terrain-map-test.cpp",
-        "tests/terrain-map-reference.cpp"
+        "tests/terrain-map-reference.cpp",
+        "tools/test-rendering-twentieth-three.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_map",
@@ -3931,11 +3933,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_map-20261019",
-        "HIGH04.RE.terrain_map-20261020"
+        "HIGH04.RE.terrain_map-20261020",
+        "N20.rendering-native-20261024",
+        "N20.rendering-original-20261024"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -3943,7 +3947,16 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_map"
-      }
+      },
+      "validation_dependencies": [
+        "tools/test-terrain-map.py",
+        "tools/decode-cfg.py",
+        "assets/map.hpp",
+        "assets/terrain_catalog.hpp"
+      ],
+      "remaining_gaps": [
+        "Original whole-world production, allocator/failure/update lifecycle, object/entity admission and complete scene/live replacement remain separate from selected owned ordinary geometry."
+      ]
     },
     {
       "id": "RE.terrain_sections",
@@ -4466,7 +4479,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-palette-shading.md"
+        "research/runtime/terrain-palette-shading.md",
+        "research/runtime/rendering-twentieth-three-20261024.md"
       ],
       "implementation": [
         "reconstruction/rendering/palette_shading.cpp",
@@ -4474,7 +4488,9 @@
       ],
       "tests": [
         "tests/palette-shading-test.cpp",
-        "tests/palette-shading-reference.cpp"
+        "tests/palette-shading-reference.cpp",
+        "tools/test-rendering-twentieth-three.py",
+        "tests/rendering-boundary-reference.cpp"
       ],
       "evidence": [
         "REVIEW.RE.palette_shading",
@@ -4486,11 +4502,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.palette_shading-20261019",
-        "HIGH04.RE.palette_shading-20261020"
+        "HIGH04.RE.palette_shading-20261020",
+        "N20.rendering-native-20261024",
+        "N20.rendering-original-20261024"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4501,7 +4519,15 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.palette_shading"
-      }
+      },
+      "validation_dependencies": [
+        "reconstruction/rendering/terrain_camera.cpp",
+        "reconstruction/rendering/terrain_camera.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "remaining_gaps": [
+        "Broader nondefault floating-point and special-effect/ordinal dispatch, original unsafe allocator/failure lifetimes, complete scene integration/live replacement and unresolved candidate 0x57e1b0 remain separate. The mode0..9 aggregate remains partial."
+      ]
     },
     {
       "id": "RE.terrain_lighting",
@@ -4637,14 +4663,18 @@
       ],
       "documents": [
         "research/runtime/terrain-palette-preferences.md",
-        "research/formats/terrain-palette-preferences.md"
+        "research/formats/terrain-palette-preferences.md",
+        "research/runtime/rendering-twentieth-three-20261024.md"
       ],
       "implementation": [
         "assets/palette_lighting.cpp",
         "assets/palette_lighting.hpp"
       ],
       "tests": [
-        "tests/terrain-palette-preference-reference.cpp"
+        "tests/terrain-palette-preference-reference.cpp",
+        "tools/test-rendering-twentieth-three.py",
+        "tests/palette-lighting-test.cpp",
+        "tests/palette-lighting-reference.cpp"
       ],
       "evidence": [
         "REVIEW.RE.palette_preferences",
@@ -4656,11 +4686,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.palette_preferences-20261019",
-        "HIGH04.RE.palette_preferences-20261020"
+        "HIGH04.RE.palette_preferences-20261020",
+        "N20.rendering-native-20261024",
+        "N20.rendering-original-20261024"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4668,7 +4700,17 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.palette_preferences"
-      }
+      },
+      "validation_dependencies": [
+        "assets/config_loader.cpp",
+        "assets/persistence_internal.hpp",
+        "assets/persistence.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp"
+      ],
+      "remaining_gaps": [
+        "Malformed original atoi/atof conversion is not equated to strict native parsing. File-loader/installed configuration integration, special appended effects, full scene/allocator ownership and live replacement remain separate."
+      ]
     },
     {
       "id": "AN.forward",
@@ -146215,6 +146257,45 @@
       },
       "remaining_gaps": [
         "A reachable enabled-setting World prefix does not recover an alternate publisher/allocator,base/source relationship,pixels,writers or retirement. No production default or original instruction is changed."
+      ]
+    },
+    {
+      "id": "NP.palette-option-strict-parsing",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Strict native palette option parsing",
+      "scope": "Decode seven selected optional numeric palette/terrain fields without mutation of the source Config; trim outer whitespace and semicolon comments, admit one optional sign, require complete finite representable numeric values and return a typed error for malformed fields. This strict malformed-input policy is intentional and makes no equivalence claim for permissive original atoi/atof conversion, file I/O, allocation failure or full renderer integration.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentieth-three-20261024.md"
+      ],
+      "implementation": [
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp"
+      ],
+      "tests": [
+        "tests/palette-lighting-test.cpp",
+        "tools/test-rendering-twentieth-three.py"
+      ],
+      "validation_dependencies": [
+        "assets/config_loader.cpp",
+        "assets/persistence_internal.hpp",
+        "assets/persistence.hpp"
+      ],
+      "evidence": [
+        "N20.rendering-native-20261024",
+        "N20.parser-prefixed-sign-counterexample-20261024"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Strict parser policy only; no original malformed-string, file I/O, allocation failure or complete rendering integration/replacement claim."
       ]
     }
   ],
@@ -331108,6 +331189,124 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "N20.rendering-native-20261024",
+      "kind": "native_integration",
+      "scope": "Owned ordinary map projection and surface admission, selected palette option clamp/missing semantics and strict native parsing, and mode-zero palette construction and checked shade selection. Malformed-string rejection, complete odd-count storage and invalid-input refusals are native policies, not original failure behavior. No whole-world production, file loader integration, nondefault floating-point equivalence, special effects, driver/allocator lifetime, live replacement or FPS credit.",
+      "record": "research/runtime/rendering-twentieth-three-results-20261024/execution-2.json",
+      "sha256": "0fbd81efd5be8ffd8adee6a14ed8160a0b4b034edb6960544967d1f7513736eb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N20.rendering-original-20261024",
+      "kind": "isolated_original",
+      "scope": "Owned ordinary map projection and surface admission, selected palette option clamp/missing semantics and strict native parsing, and mode-zero palette construction and checked shade selection. Malformed-string rejection, complete odd-count storage and invalid-input refusals are native policies, not original failure behavior. No whole-world production, file loader integration, nondefault floating-point equivalence, special effects, driver/allocator lifetime, live replacement or FPS credit.",
+      "record": "research/runtime/rendering-twentieth-three-results-20261024/execution-2.json",
+      "sha256": "0fbd81efd5be8ffd8adee6a14ed8160a0b4b034edb6960544967d1f7513736eb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/original_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/comparisons/map/synthetic_cases",
+          "equals": 2053
+        },
+        {
+          "pointer": "/comparisons/map/synthetic_cells",
+          "equals": 945562
+        },
+        {
+          "pointer": "/comparisons/map/installed_cells",
+          "equals": 76800
+        },
+        {
+          "pointer": "/comparisons/map/installed_maps",
+          "equals": 3
+        },
+        {
+          "pointer": "/comparisons/preferences/cases",
+          "equals": 3724
+        },
+        {
+          "pointer": "/comparisons/global-options/cases",
+          "equals": 63
+        },
+        {
+          "pointer": "/comparisons/shading/palettes",
+          "equals": 510
+        },
+        {
+          "pointer": "/comparisons/shading/palette_words",
+          "equals": 16776192
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "N20.parser-prefixed-sign-counterexample-20261024",
+      "kind": "static",
+      "scope": "Native strict parser regression: new malformed-sign controls fail against the preserved exact pre-fix source. Not a new original comparison.",
+      "record": "research/runtime/rendering-twentieth-three-results-20261024/parser-regression-bound.json",
+      "sha256": "e67a52dcbef39e6948b504ac02fe956d369f51f9dfcfe88dc63e43ef74c6d6aa",
+      "assertions": [
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
     }
   ],
   "classifications": [],
@@ -358662,7 +358861,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-a8932f41ee486c328593e8d6c9987c8d118a19660882993bd7e11d7b1076229d.json",
-    "sha256": "a8932f41ee486c328593e8d6c9987c8d118a19660882993bd7e11d7b1076229d"
+    "path": "research/runtime/coverage/source-index-67ad9459510ffbc83db6d7e96dddd3d3b558548b31a952b5c0c3801d07f073b9.json",
+    "sha256": "67ad9459510ffbc83db6d7e96dddd3d3b558548b31a952b5c0c3801d07f073b9"
   }
 }

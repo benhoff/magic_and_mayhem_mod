@@ -133,3 +133,19 @@ or installed binaries are patched; no gameplay balance changes are included.
 The subsequent [global lighting configuration milestone](terrain-lighting-config.md)
 adds installed controls, recovered admission and nondefault palette validation.
 The original baseline evidence above remains the explicit image-default fixture.
+
+## Bounded implementation review, 2026-10-24
+
+The [twentieth rendering batch](rendering-twentieth-three-20261024.md) checks
+all counts 2..256 in RGB565/RGB555 against the unchanged mode-zero builder,
+including non-powers of two. Owned native storage retains every produced table;
+the original odd-count allocation defect is observed through a bounded private
+allocator adapter. The body of the original builder is unchanged. Native shade
+selection is checked at every shift 0..7 over shades -32768..32768, with
+additional invalid-state/configuration and signed-32-bit extreme refusals.
+
+These are selected table/selector contracts. Wider nondefault floating-point,
+special-effect dispatch, original allocation/failure ownership, complete scene
+pixels and live replacement retain their separate evidence and gaps. The
+mode0..9 umbrella `RE.palette-effect-builders` remains partial; completion of
+this component does not close that aggregate or the unresolved 0x57e1b0 mapping.

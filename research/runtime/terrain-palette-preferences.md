@@ -80,3 +80,21 @@ at `006c5c5c`, indexed using `006cb942` and `006cb8c2`, then subtracts scene
 `+b1` and clamps the low end to -127. Reconstructing that grid's initialization
 and updates is the next boundary. Palette effect/ordinal selection and live
 terrain replacement also remain outstanding.
+
+## Bounded implementation review, 2026-10-24
+
+The [twentieth rendering batch](rendering-twentieth-three-20261024.md) renews
+selected VIDEO count admission/loader-argument dispatch and GLOBAL_OPTIONS
+clamp/missing behavior. The existing model admits every count 2..256 and
+preserves any prior unsigned count when the setting is absent. A preserved
+value outside the builder's domain is not permission to construct that palette.
+
+The native parser previously stripped a leading plus before admitting another
+minus, so `+-1` became -1. The fix rejects repeated signs across all seven
+shared numeric fields. Strict full-string, finite/representable-value rejection
+is an intentional native policy, registered separately as
+`NP.palette-option-strict-parsing`. It is not equivalence to the original
+permissive atoi/atof handling of malformed text. Original option windows and
+setters execute unchanged with checked private profile/return/dispatch adapters.
+File-loading integration, appended effects, allocator/scene ownership and live
+replacement remain separate; the earlier image evidence is not renewed here.
