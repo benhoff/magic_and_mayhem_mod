@@ -4,6 +4,7 @@
 #include "actor_source_services.hpp"
 #include "actor_transition_services.hpp"
 #include "actor_visual_lifecycle.hpp"
+#include "member_callbacks.hpp"
 #include <array>
 #include <stdexcept>
 
@@ -36,6 +37,7 @@ template<class M> class SessionComposition {
 public:
     explicit SessionComposition(M& memory) : m(memory) {}
     std::optional<U> tryRun(U entry, U self, std::initializer_list<U> args = {}, U second = 0) {
+        if(auto result=MemberCallbacks<M>(m).tryRun(entry,self,args))return result;
         switch (entry) {
         case 0x50aa30:
             return TransitionServices<M>(m).run(entry, self, args);
@@ -51,7 +53,7 @@ public:
         U a[2]{}; unsigned n = 0;
         // Non-lifecycle service arities are checked by their own dispatcher.
         switch (entry) {
-        case 0x4bfef0: case 0x5060a0: case 0x52cbe0:
+        case 0x4bfef0: case 0x5060a0:
             for (U value : args) { if (n == 2) throw std::invalid_argument("Pool argument extent"); a[n++] = value; }
             break;
         default: break;
@@ -63,10 +65,6 @@ public:
         case 0x505db0: life.construct(self); return 0;
         case 0x505f70: life.destruct(self); return 0;
         case 0x5060a0: life.reset(self, a[0]); return 0;
-        case 0x52cbe0:
-            m.set32(self, 0x5c5c40);
-            if (a[0] & 1) backend.free(self);
-            return self;
         default: return Composition<M>(m).tryRun(entry, self, args, second);
         }
     }

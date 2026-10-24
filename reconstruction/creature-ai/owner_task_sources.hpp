@@ -50,6 +50,36 @@ template<class M> class OwnerTaskSources {
         }
         m.set8(p+0x41+slot,1);return 0;
     }
+    // 407a80 returns the source leaf itself. In particular, it never reads the
+    // actor/snapshot referenced by35; that value may already have been freed.
+    U nextLeaf(U p,U slot,int mode,unsigned d){
+        depth(d);if(slot>=8)throw std::invalid_argument("source cursor");
+        if(r(p+0x35)){
+            if(signedWord(r(p+0x89))>=mode&&!r(p+0x69+slot*4)){w(p+0x69+slot*4,1);return p;}
+        }else{
+            while(r(p+0x49+slot*4)!=r(p+0x2d)){
+                U at=r(p+0x49+slot*4),leaf=nextLeaf(r(at),r(p+0x69+slot*4),mode,d+1);if(leaf)return leaf;
+                at+=4;w(p+0x49+slot*4,at);if(at!=r(p+0x2d))w(p+0x69+slot*4,begin(r(at),d+1));
+            }
+        }
+        m.set8(p+0x41+slot,1);return 0;
+    }
+    // 407ed0 recursively resets activity, using the original cursor protocol.
+    void resetActivity(U p,unsigned d){
+        depth(d);
+        if(r(p+0x35)){w(p+0x89,3);return;}
+        U slot=begin(p,d);
+        for(;;){
+            U at=r(p+0x49+slot*4),child=0;
+            while(at!=r(p+0x2d)){
+                child=r(at);at+=4;w(p+0x49+slot*4,at);
+                if(!child||!r(child+0x35)||signedWord(r(child+0x89))>=0)break;
+                child=0;
+            }
+            if(!child){m.set8(p+0x41+slot,1);break;}
+            resetActivity(child,d+1);
+        }
+    }
     U copy(U task,U p,unsigned d){
         depth(d);U slot=begin(p,0),out;
         if(r(p+0x35))out=source(task,next(p,slot,signedWord(r(0x5d854c)),0),true);
@@ -79,6 +109,37 @@ public:
     U anonymous(U task){return source(task,0);}
     U actor(U task,U borrowed){if(!borrowed)throw std::invalid_argument("borrowed actor");return source(task,borrowed,true);}
     U clone(U task,U root){return copy(task,root,0);}
+    // 407c10 normal source refresh. lookup(key) returns a live observation
+    // record (marker20, snapshot slot24), or0. live(slot) resolves current pool
+    // storage; allied(owner,actorOwner) supplies the byte relation. These
+    // services never resolve35. Old/missing records keep that borrowed value,
+    // including after snapshot expiry; only a current record replaces it.
+    template<class Lookup,class Live,class Allied>
+    bool refresh(U root,U tick,U owner,U width,U height,Lookup lookup,Live live,Allied allied){
+        if(owner>=8||!width||!height||width>1024||height>1024)
+            throw std::invalid_argument("source refresh context");
+        U saved=r(0x5d854c);w(0x5d854c,0);resetActivity(root,0);w(0x5d854c,saved);
+        U slot=begin(root,0),count=0;bool usable=false;
+        auto center=[&](U offset,U value,U extent){
+            std::int64_t before=signedWord(r(root+offset));
+            std::int64_t after=before+(std::int64_t(signedWord(value))-before)/count;
+            if(extent){after%=int(extent);if(after<0)after+=int(extent);}
+            w(root+offset,U(after));
+        };
+        while(U leaf=nextLeaf(root,slot,signedWord(saved),0)){
+            U record=lookup(r(leaf+9));
+            if(!record||r(record+20)!=tick){w(leaf+0x89,0);usable=true;continue;}
+            U actor=live(r(record+24));
+            // A current record with an invalid slot faults in the original.
+            // Refuse it before dereference as an explicit checked-host policy.
+            if(!actor)throw std::invalid_argument("source refresh current actor");
+            w(leaf+0x35,actor);
+            if(!r(actor+0xe4)||allied(owner,r(actor+0x174))){w(leaf+0x89,0);continue;}
+            w(leaf+0x89,3);usable=true;++count;
+            center(0xd,r(actor+8),width);center(0x11,r(actor+12),height);center(0x15,r(actor+16),0);
+        }
+        return usable;
+    }
     void attach(U parent,U child){
         if(r(parent+0x35)||r(child+0x39))return;
         U before=r(parent+0x29);append(parent+0x25,child);U shift=r(parent+0x29)-before;

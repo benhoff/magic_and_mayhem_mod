@@ -21377,3 +21377,28 @@ The Critical actor umbrella stays partial. Incomingf2253bb8..ac0b9e3b review:
 ## Seventeenth rendering batch — five current contracts (2026-10-23)
 
 [Current five-contract closeout](rendering-seventeenth-five-20261023.md) records 83 Python controls plus13 combat-input regressions,20 asserted native controls,4096 verification and4096 normal returns/paints; original 19.90295FPS,Qt 19.90693FPS,warm median42.0ms/p9548ms/max69ms,cold247.225ms,RSS growth0bytes. Actual post-prefix peer deaths and128 normal recovery use fresh distinct sessions. Kernel/display/input isolation, actual PE32 protected backing and strict refusals, owned/strict normal and live Hard restart, plus public casting/combat/spell/portrait/movement/Mini/normal Quit complete. Ordinary public19FPS acceptance is False at 17.253776873910518FPS; failed portrait/window/aggregate timing remains pending and raw success remains false. Rendering implementation partials6→1. Scopes, old fingerprints/failures and independent original comparison/integration/replacement stages are preserved; full DirectDraw/whole-game/global ownership and60FPS remain separate. SQLite stores all new durable observations and exact source/collector provenance. Storage review finds no eligible cleanup candidates; retained source/pins/raw evidence are untouched.
+
+
+## Borrowed observation callbacks and stale source consumers (2026-10-23)
+
+[BA1 implementation and comparison](borrowed-alias-consumers-20261023.md)
+extends the OSR1 critical path with13 concrete member-callback classes and raw
+407c10/407ed0 task-source refresh. Native, original32 and ASan/UBSan/LSan agree
+on645 checks,78 callback invocations,five source refreshes and complete source
+cursor digest17413001782988962481. An expired snapshot page is inaccessible
+through original missing-key refresh,mode3/mode0 traversal and reacquisition.
+Callbacks preserve adjusted receivers,returns,low-bit deletion,base-vtable order
+and self-deletion. Checked native storage refuses freed callback dispatch as
+host policy; original stale callback safety is not asserted. Lower51e890/member
+targets,stale8fd list cursors,other callback representations,whole-brain/World
+and live replacement remain independent. The actor-services umbrella stays partial.
+Incoming539 file transitions include44 exact retrospective binary evidence
+receipts;failed setup and the storage-interrupted64-variant session attempt are
+retained in SQLite. Historical results/source fingerprints remain unchanged.
+
+Fresh existing-scope compatibility closes with7,550,016 OSR1 checks at its
+unchanged digest and64 complete actor sessions per original/native/sanitized
+backend,1024 checkpoints and393,604,952 normalized bytes. This renews only the
+scoped snapshot/session evidence. Main-cwd baseline misroutes and a RAM private
+/dev setup failure remain uncredited;the source runner remains byte-identical
+to HEAD. All owned source and evidence bytes are retained on persistent sda2.
