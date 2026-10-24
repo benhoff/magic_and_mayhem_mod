@@ -144190,6 +144190,162 @@
         "tools/original_x86.py",
         "tools/owner_planner_comparison.py"
       ]
+    },
+    {
+      "id": "AI.multiple-observation-owners",
+      "kind": "recovered",
+      "subsystem": "creature_ai",
+      "title": "Multiple observations and owners across expiry and source resolution",
+      "scope": "Pinned NoCD40209ca7 bounded4181d0 modes1/2 with up to eight enabled owners and twenty stationary ordinary actors, sparse owner sets and disabled/re-enabled owner3. Full packed observation values and real5060a0 callback/list generations; adjacent record erasure and ordered cursor continuation across eight-work slices, age1024 retention and later expiry, independent owner-local monotonic keys and reacquisition. Actual413330 bank1 task clones survive cache invalidation and observation erasure; actual407c10 resolves current keys to live actors, clears stale/missing activity while preserving borrowed pointers, and retains constructor pointer tags;40a340 retires sources without owning snapshots. Native OwnerObservationSnapshots,OwnerKnowledge,OwnerKnowledgeCache and OwnerTaskSources compose with checked value-only resolveOwnerTaskSources. Original RB topology and source traversal cursor bytes excluded from native representation. Successful allocations,strict increasing ticks,authored visibility and relation inputs,explicit false4f4ba0 line-reachability service,empty mode2 task/notification collections. Arbitrary forests/callback classes,allocator/SEH failures,whole-brain teardown,World/installed/live replacement excluded.",
+      "confidence": "high_within_scope",
+      "implementation": [
+        "reconstruction/creature-ai/owner_source_resolution.hpp",
+        "reconstruction/creature-ai/owner_observation_snapshots.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp"
+      ],
+      "tests": [
+        "tests/multiple-observation-owners-test.cpp",
+        "tools/test-multiple-observation-owners.py"
+      ],
+      "documents": [
+        "research/runtime/multiple-observation-owners-20261023.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "MOO1.original-20261023",
+        "MOO1.headless-20261023",
+        "MOO1.attempts.static-20261023",
+        "MOO1.history.static-20261023"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4293072,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4295520,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4296016,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267312,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267616,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426144,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426176,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426288,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4272944,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4257776,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4236096,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4368096,
+          "scope": "Normal composed resource-bearing observation refresh and live resource generations only; original temporary-clearing sites are instruction anchors,not new function boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4294193,
+          "relation": "code",
+          "scope": "Zero-valued edi writes temporary snapshot708/8f9 between assignments;not a function root."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4294200,
+          "relation": "code",
+          "scope": "Zero-valued edi writes temporary snapshot708/8f9 between assignments;not a function root."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4226064,
+          "scope": "Normal leaf resolution after observation expiry/reacquisition and owner-local lookup; original traversal executes, native traversal cursor bytes excluded."
+        }
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_knowledge_cache.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_sources.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "tests/observation-snapshot-ownership-test.cpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/snapshot-resource-refresh-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/draft-coverage-claims.py",
+        "tools/ghidra/ExportFontProviders.java",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/owner_planner_comparison.py",
+        "tools/test-snapshot-resource-refresh.py"
+      ]
     }
   ],
   "evidence": [
@@ -325767,6 +325923,242 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "MOO1.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Pinned NoCD40209ca7 bounded4181d0 modes1/2 with up to eight enabled owners and twenty stationary ordinary actors, sparse owner sets and disabled/re-enabled owner3. Full packed observation values and real5060a0 callback/list generations; adjacent record erasure and ordered cursor continuation across eight-work slices, age1024 retention and later expiry, independent owner-local monotonic keys and reacquisition. Actual413330 bank1 task clones survive cache invalidation and observation erasure; actual407c10 resolves current keys to live actors, clears stale/missing activity while preserving borrowed pointers, and retains constructor pointer tags;40a340 retires sources without owning snapshots. Native OwnerObservationSnapshots,OwnerKnowledge,OwnerKnowledgeCache and OwnerTaskSources compose with checked value-only resolveOwnerTaskSources. Original RB topology and source traversal cursor bytes excluded from native representation. Successful allocations,strict increasing ticks,authored visibility and relation inputs,explicit false4f4ba0 line-reachability service,empty mode2 task/notification collections. Arbitrary forests/callback classes,allocator/SEH failures,whole-brain teardown,World/installed/live replacement excluded. Eight episodes/896 updates/215540764 checks,1264 insertions,528 expiries,795 cursor continuations,472 reacquisitions,6474 root resolutions,17748 retained freed snapshot borrows and216 callback retirements. Same dataset across original/native/sanitizer,not additional samples.",
+      "record": "research/runtime/multiple-observation-owners-results-20261023/multiple-owners-trial-5.json",
+      "sha256": "1840a63febd78410b7a77c381ddc10342549d1b1dea14e75dc8673aa531af797",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 215540764
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/digest",
+          "equals": "1154226086461827485"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 896
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 1264
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 528
+        },
+        {
+          "pointer": "/cursor_continuations",
+          "equals": 795
+        },
+        {
+          "pointer": "/resolutions",
+          "equals": 6474
+        },
+        {
+          "pointer": "/missing_leaves",
+          "equals": 54124
+        },
+        {
+          "pointer": "/stale_leaves",
+          "equals": 12616
+        },
+        {
+          "pointer": "/reacquisitions",
+          "equals": 472
+        },
+        {
+          "pointer": "/disabled_rows",
+          "equals": 3120
+        },
+        {
+          "pointer": "/age1024_rows",
+          "equals": 545
+        },
+        {
+          "pointer": "/freed_borrow_resolutions",
+          "equals": 17748
+        },
+        {
+          "pointer": "/callbacks_released",
+          "equals": 216
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "MOO1.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Pinned NoCD40209ca7 bounded4181d0 modes1/2 with up to eight enabled owners and twenty stationary ordinary actors, sparse owner sets and disabled/re-enabled owner3. Full packed observation values and real5060a0 callback/list generations; adjacent record erasure and ordered cursor continuation across eight-work slices, age1024 retention and later expiry, independent owner-local monotonic keys and reacquisition. Actual413330 bank1 task clones survive cache invalidation and observation erasure; actual407c10 resolves current keys to live actors, clears stale/missing activity while preserving borrowed pointers, and retains constructor pointer tags;40a340 retires sources without owning snapshots. Native OwnerObservationSnapshots,OwnerKnowledge,OwnerKnowledgeCache and OwnerTaskSources compose with checked value-only resolveOwnerTaskSources. Original RB topology and source traversal cursor bytes excluded from native representation. Successful allocations,strict increasing ticks,authored visibility and relation inputs,explicit false4f4ba0 line-reachability service,empty mode2 task/notification collections. Arbitrary forests/callback classes,allocator/SEH failures,whole-brain teardown,World/installed/live replacement excluded. Eight episodes/896 updates/215540764 checks,1264 insertions,528 expiries,795 cursor continuations,472 reacquisitions,6474 root resolutions,17748 retained freed snapshot borrows and216 callback retirements. Same dataset across original/native/sanitizer,not additional samples.",
+      "record": "research/runtime/multiple-observation-owners-results-20261023/multiple-owners-trial-5.json",
+      "sha256": "1840a63febd78410b7a77c381ddc10342549d1b1dea14e75dc8673aa531af797",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 215540764
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/digest",
+          "equals": "1154226086461827485"
+        },
+        {
+          "pointer": "/slices",
+          "equals": 896
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 1264
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 528
+        },
+        {
+          "pointer": "/cursor_continuations",
+          "equals": 795
+        },
+        {
+          "pointer": "/resolutions",
+          "equals": 6474
+        },
+        {
+          "pointer": "/missing_leaves",
+          "equals": 54124
+        },
+        {
+          "pointer": "/stale_leaves",
+          "equals": 12616
+        },
+        {
+          "pointer": "/reacquisitions",
+          "equals": 472
+        },
+        {
+          "pointer": "/disabled_rows",
+          "equals": 3120
+        },
+        {
+          "pointer": "/age1024_rows",
+          "equals": 545
+        },
+        {
+          "pointer": "/freed_borrow_resolutions",
+          "equals": 17748
+        },
+        {
+          "pointer": "/callbacks_released",
+          "equals": 216
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "MOO1.attempts.static-20261023",
+      "kind": "static",
+      "scope": "All five immutable trials retained; first four failures preserved.",
+      "record": "research/runtime/multiple-observation-owners-results-20261023/attempt-catalog-1.json",
+      "sha256": "342a62ad2f9568e442d07b603e9026716e32466e94d186e7a17577eb5bc03158",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "MOO1.history.static-20261023",
+      "kind": "static",
+      "scope": "b45abf10..9b83b3d7 exact history:493 watched transitions receipted;44 immutable binary additions separately classified. No past gate or execution assertion.",
+      "record": "research/runtime/multiple-observation-owners-results-20261023/incoming-history-reviewed-9b83b3d7-sources.json",
+      "sha256": "75bc55d3636e55efa4f470ea3f476afdb9432dd6b5e64dc753007973824cde02",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
     }
   ],
   "classifications": [],
@@ -351224,6 +351616,22 @@
       "evidence": [
         "OSC1.headless-20261023"
       ]
+    },
+    {
+      "id": "multiple-observation-owners-20261023",
+      "scope": "Pinned NoCD40209ca7 bounded4181d0 modes1/2 with up to eight enabled owners and twenty stationary ordinary actors, sparse owner sets and disabled/re-enabled owner3. Full packed observation values and real5060a0 callback/list generations; adjacent record erasure and ordered cursor continuation across eight-work slices, age1024 retention and later expiry, independent owner-local monotonic keys and reacquisition. Actual413330 bank1 task clones survive cache invalidation and observation erasure; actual407c10 resolves current keys to live actors, clears stale/missing activity while preserving borrowed pointers, and retains constructor pointer tags;40a340 retires sources without owning snapshots. Native OwnerObservationSnapshots,OwnerKnowledge,OwnerKnowledgeCache and OwnerTaskSources compose with checked value-only resolveOwnerTaskSources. Original RB topology and source traversal cursor bytes excluded from native representation. Successful allocations,strict increasing ticks,authored visibility and relation inputs,explicit false4f4ba0 line-reachability service,empty mode2 task/notification collections. Arbitrary forests/callback classes,allocator/SEH failures,whole-brain teardown,World/installed/live replacement excluded.",
+      "level": "headless",
+      "behaviors": [
+        "AI.multiple-observation-owners"
+      ],
+      "tests": [
+        "tests/multiple-observation-owners-test.cpp",
+        "tools/test-multiple-observation-owners.py"
+      ],
+      "evidence": [
+        "MOO1.original-20261023",
+        "MOO1.headless-20261023"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -352316,7 +352724,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-3016e30b9b1ed2fb64fdf323bbeff6c02382a70062064f5ff70224d54724c3e7.json",
-    "sha256": "3016e30b9b1ed2fb64fdf323bbeff6c02382a70062064f5ff70224d54724c3e7"
+    "path": "research/runtime/coverage/source-index-ce853f8f7968c02f6706bf10267d2d712558f2557323eab6a48d1e9cfa656257.json",
+    "sha256": "ce853f8f7968c02f6706bf10267d2d712558f2557323eab6a48d1e9cfa656257"
   }
 }

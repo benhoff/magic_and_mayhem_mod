@@ -21407,3 +21407,22 @@ exact receipts,zero missing/mutated matches. This history review is separate
 from current execution and does not assert a historical gate pass. Immutable
 failed trial/UI reports and source bindings remain available. Current dashboard
 planning separates the new scoped task credit from remaining actor services.
+
+## Multiple observations and owners — MOO1 (2026-10-23)
+
+AI.multiple-observation-owners adds checked native owner-local task-source
+resolution and a composed original/native lifecycle covering up to eight owners
+and twenty actors. [Research and exact evidence](multiple-observation-owners-20261023.md)
+record896 updates,1264 insertions,528 erasures,795 cursor continuations,472
+reacquisitions and6474 task-root resolutions. Missing/stale keys clear activity
+while preserving borrowed35,including17748 resolutions after snapshot release;
+current keys rebind live actors before health/diplomacy admission. New-key
+reacquisition does not resurrect old-key tasks. All216 actual callback generations
+and owned storage retire once. Native maps and source cursor representation remain
+policies; original instructions and full packed values are checked independently.
+
+Mode2 task notifications,arbitrary merged forest/callback consumers,allocation/
+SEH failures,whole-brain teardown and World/installed/live replacement remain
+open. Historical OOS1/OSR1 scopes and hashes stay unchanged; their multi-owner gap
+has this separate bounded result. The Critical actor-services umbrella stays
+partial. SQLite retains successes,failed trials and exact incoming-history review.
