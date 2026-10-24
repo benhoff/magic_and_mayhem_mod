@@ -142,10 +142,12 @@ class CriticalNeeds(unittest.TestCase):
         result = critical_needs_view(definition, register, importance, ROOT)
         self.assertEqual(sum(result['counts'].values()), result['total'])
         self.assertEqual(len({e['behavior'] for e in result['entries']}), result['total'])
+        # The final rendering batch scoped two more implementations; their
+        # remaining validation/acceptance stays in scope decisions.
         # Source drift legitimately routes a row to review without losing its
         # authored primary need or the historical scope decision.
         self.assertEqual(Counter(e['reviewed_primary_need'] for e in result['entries']),
-                         dict(recovery=2, validation=2, acceptance=2)
+                         dict(recovery=2, validation=1, acceptance=1)
         )
         # Reviewed implementations throughbf170af0 retain authored
         # validation/acceptance requirements remain; scoped code only removes

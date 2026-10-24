@@ -144006,6 +144006,126 @@
         "tools/original_x86.py",
         "tools/owner_planner_comparison.py"
       ]
+    },
+    {
+      "id": "AI.owner-observation-task-credit",
+      "kind": "recovered",
+      "subsystem": "creature_ai",
+      "title": "New observation task credit through concrete source and valuation services",
+      "scope": "Pinned NoCD40209ca7 4181d0 modes1/2 one enabled owner0/one active observed actor,strict increasing ticks,non-reentrant checked byte storage/read-only profile provider. New owned observations trigger nonempty observer source traversal407920/4079f0 mode3,full drain and prior mode restoration,522770 terminal-parent task resolution,416d80 actual profile valuation and task2f modulo32 credit. Both source families0/1,ordinary/wizard caps,health as level,absent observer/root/eligible subtree/terminal task,wrong family,refresh/expiry silence,reacquisition and wrapping totals. Native composes OwnerKnowledge,OwnerObservationSnapshots,OwnerKnowledgeCache,OwnerTaskSources and contributionAccount. Independently authored acyclic source forests/preinstalled task backlinks,visibility,activation and global CFG inputs;alloc/free endpoints supplied. Native ancestry/depth/domain refusal and ordered snapshot index are policies. General task installation/scheduler,World visibility/activation,other owners/multi-record,reentry,SEH/allocation failure,live replacement excluded.",
+      "confidence": "high_within_scope",
+      "implementation": [
+        "reconstruction/creature-ai/owner_observation_tasks.hpp"
+      ],
+      "tests": [
+        "tests/observation-task-services-test.cpp",
+        "tools/test-observation-task-services.py",
+        "tools/inspect-observation-task-services.py"
+      ],
+      "documents": [
+        "research/runtime/observation-task-services-20261023.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "OSC1.original-20261023",
+        "OSC1.headless-20261023",
+        "OSC1.inspection.static-20261023",
+        "OSC1.history.static-20261023",
+        "OSC1.ui.static-20261023",
+        "OSC1.attempts.static-20261023"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4293072,
+          "scope": "Bounded new-sighting task credit composition; no whole-function claim for4181d0."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5384048,
+          "scope": "Bounded new-sighting task credit composition; no whole-function claim for4181d0."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225312,
+          "scope": "Bounded new-sighting task credit composition; no whole-function claim for4181d0."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225520,
+          "scope": "Bounded new-sighting task credit composition; no whole-function claim for4181d0."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4287872,
+          "scope": "Bounded new-sighting task credit composition; no whole-function claim for4181d0."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5266416,
+          "scope": "Bounded new-sighting task credit composition; no whole-function claim for4181d0."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5266512,
+          "scope": "Bounded new-sighting task credit composition; no whole-function claim for4181d0."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881568,
+          "scope": "Bounded new-sighting task credit composition; no whole-function claim for4181d0."
+        }
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/contribution_account.cpp",
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_knowledge_cache.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_observation_snapshots.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_sources.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/observation-snapshot-ownership-test.cpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/draft-coverage-claims.py",
+        "tools/ghidra/ExportFontProviders.java",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/owner_planner_comparison.py"
+      ]
     }
   ],
   "evidence": [
@@ -325119,6 +325239,230 @@
           "equals": 6
         }
       ]
+    },
+    {
+      "id": "OSC1.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Actual4181d0 mode1/2 with nonempty independently authored observer source forests and installed task backlinks. Real407920/4079f0 full mode3 traversal/restoration,522770 terminal parent task and416d80 with505bf0/505c50/59bee0 execute without service redirects. Both families0/1,ordinary/wizard kinds,health-as-level and capped quantity,missing observer/root/eligible actor/task,wrong family,refresh/expiry silence,reacquisition and modulo32 totals. Forests/visibility/activation/profiles are authored fixture inputs;alloc/free explicit. Negative activity is restored to3 before separate fixture retirement because baseline destruction skips negative children. No general scheduler,World,whole-brain,failure/live claim.",
+      "record": "research/runtime/observation-task-services-results-20261023/observation-task-trial-2.json",
+      "sha256": "866a9852efe6e9f245990757b11f718fb9f97543d08fee2444cb1dd2b0d6c655",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 151424
+        },
+        {
+          "pointer": "/cases",
+          "equals": 384
+        },
+        {
+          "pointer": "/slices",
+          "equals": 3456
+        },
+        {
+          "pointer": "/digest",
+          "equals": "4880561449990472991"
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 1152
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 1152
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 768
+        },
+        {
+          "pointer": "/task_credits",
+          "equals": 480
+        },
+        {
+          "pointer": "/no_credit_insertions",
+          "equals": 672
+        },
+        {
+          "pointer": "/wrapped_credits",
+          "equals": 25
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "OSC1.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Same384 cases and3456 slices,not additional samples. New headless composition combines existing knowledge matching,owned snapshots,cache invalidation,source traversal and profile valuation with concrete ancestry recipient lookup and modulo32 task credit. One owner0/one actor,increasing ticks,non-reentrant storage/read-only profiles;preinstalled tasks and forests authored. Source/observer/task pointers borrowed;normal forward source retirement after explicit fixture activity restoration. Native ordered index and bounds are policies. No original fallback/output-fed state;general task install/scheduler,World providers,multi-owner/record,failures/live remain open.",
+      "record": "research/runtime/observation-task-services-results-20261023/observation-task-trial-2.json",
+      "sha256": "866a9852efe6e9f245990757b11f718fb9f97543d08fee2444cb1dd2b0d6c655",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 151424
+        },
+        {
+          "pointer": "/cases",
+          "equals": 384
+        },
+        {
+          "pointer": "/slices",
+          "equals": 3456
+        },
+        {
+          "pointer": "/digest",
+          "equals": "4880561449990472991"
+        },
+        {
+          "pointer": "/insertions",
+          "equals": 1152
+        },
+        {
+          "pointer": "/refreshes",
+          "equals": 1152
+        },
+        {
+          "pointer": "/expiries",
+          "equals": 768
+        },
+        {
+          "pointer": "/task_credits",
+          "equals": 480
+        },
+        {
+          "pointer": "/no_credit_insertions",
+          "equals": 672
+        },
+        {
+          "pointer": "/wrapped_credits",
+          "equals": 25
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "OSC1.inspection.static-20261023",
+      "kind": "static",
+      "scope": "Pinned ten-entry instruction/decompilation export;418860..41896b and actual522770 parent/task fields,real contribution/profile providers. Health remains inEDX through quantity cap preparation. Existing function ranges retained;no whole4181d0/function-boundary discovery.",
+      "record": "research/runtime/observation-task-services-results-20261023/inspection-1.json",
+      "sha256": "f399c87842def58eec380f1166568a121548c50e2c89a2c0c66c41ce96ebacc9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OSC1.history.static-20261023",
+      "kind": "static",
+      "scope": "Exactac0b9e3b..9b83b3d7 gated transition review:516 checked paths across three commits,zero missing/mutated exact receipts. Accounting only,no past gate/new execution credit.",
+      "record": "research/runtime/observation-task-services-results-20261023/incoming-history-9b83b3d7.json",
+      "sha256": "5e3787fd4ac5ab036dd518b1ba24e4956961e7fda98a67428e52eefe4c21bdf5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OSC1.ui.static-20261023",
+      "kind": "static",
+      "scope": "Ten Critical-needs planning regressions after reconciling prior rendering implementation denominator;no engine credit.",
+      "record": "research/runtime/observation-task-services-results-20261023/ui-check-2.json",
+      "sha256": "5477fe3dcbf3de17fdfbfe2c5d85caf43a5a069e38e953dc9251d94b267e474a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OSC1.attempts.static-20261023",
+      "kind": "static",
+      "scope": "Preserved failed retirement fixture and stale UI expectation reports,successful second comparison and second UI check. Old hashes/reports unchanged;parent object import is provenance only.",
+      "record": "research/runtime/observation-task-services-results-20261023/attempt-catalog-1.json",
+      "sha256": "8a98df7ff49fb0fe0d4ab61b35eb4f82b31c15c5b1cca07567616b17f29d96b3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -350560,6 +350904,22 @@
       "evidence": [
         "OSR1.headless-20261023"
       ]
+    },
+    {
+      "id": "observation-task-services-20261023",
+      "scope": "Pinned NoCD40209ca7 4181d0 modes1/2 one enabled owner0/one active observed actor,strict increasing ticks,non-reentrant checked byte storage/read-only profile provider. New owned observations trigger nonempty observer source traversal407920/4079f0 mode3,full drain and prior mode restoration,522770 terminal-parent task resolution,416d80 actual profile valuation and task2f modulo32 credit. Both source families0/1,ordinary/wizard caps,health as level,absent observer/root/eligible subtree/terminal task,wrong family,refresh/expiry silence,reacquisition and wrapping totals. Native composes OwnerKnowledge,OwnerObservationSnapshots,OwnerKnowledgeCache,OwnerTaskSources and contributionAccount. Independently authored acyclic source forests/preinstalled task backlinks,visibility,activation and global CFG inputs;alloc/free endpoints supplied. Native ancestry/depth/domain refusal and ordered snapshot index are policies. General task installation/scheduler,World visibility/activation,other owners/multi-record,reentry,SEH/allocation failure,live replacement excluded.",
+      "level": "headless",
+      "behaviors": [
+        "AI.owner-observation-task-credit"
+      ],
+      "tests": [
+        "tests/observation-task-services-test.cpp",
+        "tools/test-observation-task-services.py",
+        "tools/inspect-observation-task-services.py"
+      ],
+      "evidence": [
+        "OSC1.headless-20261023"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -351395,8 +351755,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-85cc4e42497b57cdea35c6bf87bd88b4fd2edeaa1944e06e353abf371f7dc6a6.json",
-    "sha256": "85cc4e42497b57cdea35c6bf87bd88b4fd2edeaa1944e06e353abf371f7dc6a6"
+    "path": "research/runtime/coverage/source-index-c67db786878d053d9fb0acb2c538d4f679df905f9a2f4b926639fa3ee223b357.json",
+    "sha256": "c67db786878d053d9fb0acb2c538d4f679df905f9a2f4b926639fa3ee223b357"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

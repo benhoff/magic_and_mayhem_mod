@@ -21377,3 +21377,28 @@ The Critical actor umbrella stays partial. Incomingf2253bb8..ac0b9e3b review:
 ## Seventeenth rendering batch — five current contracts (2026-10-23)
 
 [Current five-contract closeout](rendering-seventeenth-five-20261023.md) records 83 Python controls plus13 combat-input regressions,20 asserted native controls,4096 verification and4096 normal returns/paints; original 19.90295FPS,Qt 19.90693FPS,warm median42.0ms/p9548ms/max69ms,cold247.225ms,RSS growth0bytes. Actual post-prefix peer deaths and128 normal recovery use fresh distinct sessions. Kernel/display/input isolation, actual PE32 protected backing and strict refusals, owned/strict normal and live Hard restart, plus public casting/combat/spell/portrait/movement/Mini/normal Quit complete. Ordinary public19FPS acceptance is False at 17.253776873910518FPS; failed portrait/window/aggregate timing remains pending and raw success remains false. Rendering implementation partials6→1. Scopes, old fingerprints/failures and independent original comparison/integration/replacement stages are preserved; full DirectDraw/whole-game/global ownership and60FPS remain separate. SQLite stores all new durable observations and exact source/collector provenance. Storage review finds no eligible cleanup candidates; retained source/pins/raw evidence are untouched.
+
+## New-sighting task/service composition — OSC1 (2026-10-23)
+
+[Research](observation-task-services-20261023.md) and
+[comparison](observation-task-services-results-20261023/observation-task-trial-2.json)
+join actual4181d0 new owned observations to nonempty source traversal
+407920/4079f0,terminal-parent task lookup522770 and actual416d80 valuation
+through505bf0/505c50/59bee0. Original32/native64/sanitizers agree384 cases/3456
+updates,including both families0/1,source threshold and absent recipient gates,
+health-as-level/ordinary1/wizard10 caps,refresh/expiry silence,reacquisition,
+full drain/mode restoration and modulo32 task counters. Native composes the
+existing knowledge,snapshot,cache,source and valuation APIs with concrete
+recipient lookup. All normal allocations retire after explicit fixture activity
+restoration for negative-leaf cases;negative forest destruction remains a
+separate baseline boundary,not repaired behavior. Forests and preinstalled task
+backlinks,visibility/activation/profiles are authored inputs. Native ordered
+index/bounds are policies. General installation/scheduler,other credit services,
+multi-owner/record,reentry,whole-brain,World providers,failures/SEH and live
+replacement remain pending. Critical actor umbrella remains partial.
+
+Incomingac0b9e3b..9b83b3d7:516 coverage-gated committed path transitions have
+exact receipts,zero missing/mutated matches. This history review is separate
+from current execution and does not assert a historical gate pass. Immutable
+failed trial/UI reports and source bindings remain available. Current dashboard
+planning separates the new scoped task credit from remaining actor services.
