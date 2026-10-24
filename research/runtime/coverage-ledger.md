@@ -21421,3 +21421,51 @@ SEH failures,whole-brain teardown and World/installed/live replacement remain
 open. Historical OOS1/OSR1 scopes and hashes stay unchanged; their multi-owner gap
 has this separate bounded result. The Critical actor-services umbrella stays
 partial. SQLite retains successes,failed trials and exact incoming-history review.
+
+
+## Borrowed observation callbacks and stale source consumers (2026-10-23)
+
+[BA1 implementation and comparison](borrowed-alias-consumers-20261023.md)
+extends the OSR1 critical path with13 concrete member-callback classes and raw
+407c10/407ed0 task-source refresh. Native, original32 and ASan/UBSan/LSan agree
+on645 checks,78 callback invocations,five source refreshes and complete source
+cursor digest17413001782988962481. An expired snapshot page is inaccessible
+through original missing-key refresh,mode3/mode0 traversal and reacquisition.
+Callbacks preserve adjusted receivers,returns,low-bit deletion,base-vtable order
+and self-deletion. Checked native storage refuses freed callback dispatch as
+host policy; original stale callback safety is not asserted. Lower51e890/member
+targets,stale8fd list cursors,other callback representations,whole-brain/World
+and live replacement remain independent. The actor-services umbrella stays partial.
+Incoming539 file transitions include44 exact retrospective binary evidence
+receipts;failed setup and the storage-interrupted64-variant session attempt are
+retained in SQLite. Historical results/source fingerprints remain unchanged.
+
+Fresh existing-scope compatibility closes with7,550,016 OSR1 checks at its
+unchanged digest and64 complete actor sessions per original/native/sanitized
+backend,1024 checkpoints and393,604,952 normalized bytes. This renews only the
+scoped snapshot/session evidence. Main-cwd baseline misroutes and a RAM private
+/dev setup failure remain uncredited;the source runner remains byte-identical
+to HEAD. All owned source and evidence bytes are retained on persistent sda2.
+
+
+### Borrowed-alias integration with multi-owner/task services (2026-10-23)
+
+Merged the thirteen member callback classes and cursor-faithful stale-source
+refresh with the independently implemented owner-local source value projection
+and observation task-credit composition. Both source interfaces retain their
+recorded scopes: the value projection excludes PE cursor bytes; the task-source
+refresh compares all source/cursor bytes. No implementation conflict or gameplay
+change was required. Exact receipt review of all 86 incoming committed
+source/research transitions from `9b83b3d7` through `8d3d2b51` found no missing
+intermediate receipts; see the SQLite-backed
+[merge history](borrowed-alias-consumers-results-20261023/merge-incoming-history-1.json).
+
+Current combined-tree original/native/sanitizer execution passes 645 alias
+checks, 151,424 task-service checks across 384 cases/3,456 slices, and
+215,540,764 multi-owner checks across eight episodes/896 updates. New
+`BA1.merge.*`, `OSC1.alias-merge.*` and `MOO1.alias-merge.*` evidence IDs retain
+these runs independently of parent results. Existing snapshot-refresh and
+session evidence retains matching source fingerprints. Historical stale reports
+remain preserved; whole-brain/World/live replacement boundaries are unchanged.
+Temporary compiler outputs and bounded binaries remain in the pinned integration
+worktree; durable reports and declarations reside in its verified SQLite store.

@@ -103,6 +103,11 @@ missing/mutated receipts; this is accounting, not a past gate or new execution.
 
 ## Remaining boundaries
 
+[BA1 borrowed-alias consumers](borrowed-alias-consumers-20261023.md) separately
+extends the concrete callback thunks/deletion classes and407c10 task-source
+refresh after snapshot expiry. Its new results do not rewrite OSR1's historical
+scope or establish arbitrary member targets or stale list-cursor safety.
+
 One stationary ordinary actor, one enabled owner, increasing ticks and authored
 visibility/activation/order values/histogram backing remain the domain. Task and
 notification lists in4181d0 are absent. Multi-record erase/cursor continuation,
