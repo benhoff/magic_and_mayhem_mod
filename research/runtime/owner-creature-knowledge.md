@@ -150,3 +150,16 @@ retains their capacity. [OKC1](knowledge-cache-ownership-20261023.md) separately
 compares that ownership with task clones. NS76's memory projection, historical
 reports and recorded source hashes are unchanged. Other mode2 task/notification
 consequences and raw observation-tree/snapshot allocation remain outside OKC1.
+
+## New-sighting task/service composition — OSC1 (2026-10-23)
+
+The [bounded new-sighting composition](observation-task-services-20261023.md)
+now joins new4181d0 observation insertion to nonempty observer source traversal,
+terminal-parent task resolution522770 and real416d80 valuation. Prior statements
+that sighting task credit is absent remain historical for their earlier scopes.
+The new one-owner/one-actor scope uses both families0/1,full mode3 drain and
+restoration,health as valuation level,ordinary1/wizard10 quantity caps and
+modulo32 task2f accumulation. Refresh/expiry do not credit;reacquisition does.
+Preinstalled task/source storage,visibility/activation and profiles are authored
+inputs. General task installation/scheduling,resource/interaction/cast credit,
+multiple owners/records,World providers and live acceptance remain open.

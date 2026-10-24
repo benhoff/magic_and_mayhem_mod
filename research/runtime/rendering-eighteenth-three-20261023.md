@@ -19,3 +19,9 @@ These three existing partial implementations become scoped within their unchange
 The earlier execution01 and its exact source hashes remain retained. Final execution02 also covers atomic refusal of a255-row footprint outside the grid in both viewport modes, after final test whitespace cleanup. Every original comparison is reexecuted at these final source versions.
 
 The dashboard high-priority plan previously rejected explicitly reviewed `scoped` completions while its lower/critical plans accepted them. The schema now retains completed high-priority tasks as well; two focused controls check current explicit review and historical unreviewed drift without promoting any register status. Broad coverage-tool validation remains independently pending.
+
+## Concurrent committed history integration
+
+Native commit `a95f1fe4` passes the normal staged gate. Concurrent creature AI commit `593bd0ba` is merged with all26 declared rendering execution inputs and all46 incoming execution inputs byte-identical. [The native commit review](rendering-eighteenth-three-results-20261023/native-commit-history.json) and [incoming review](rendering-eighteenth-three-results-20261023/ai-commit-history.json) find no missing exact parent/current receipts or rewritten prior reviews. Both histories, original evidence hashes and independently current scopes are retained; no new cross-subsystem execution or wider live claim follows from merging.
+
+New local cache aliases and verified SQLite snapshots live on the third drive; existing cold archive payloads are preserved. The observed external archive reserve shortfall is recorded in the retained storage observations rather than deleting pinned/current evidence. No new payload is written to that archive during this merge closeout.

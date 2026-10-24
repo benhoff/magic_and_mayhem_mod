@@ -21382,3 +21382,28 @@ The Critical actor umbrella stays partial. Incomingf2253bb8..ac0b9e3b review:
 ## 2026-10-23: three bounded rendering implementation renewals
 
 The [eighteenth batch](rendering-eighteenth-three-20261023.md) completes the existing offline `RE.sprite_queue`, `RE.sprite_visibility` and `AN.direction` implementation scopes using fresh native/sanitized and unchanged-original comparisons. Visibility adds transactional native malformed-input admission (`NP.sprite-visibility-atomic-admission`), independently separated from original valid-input behavior. Exact whole-record sorting, coverage-grid/owner flags and complete phase state pass; original input manifests and source pins remain stable. Comparison statuses stay recorded, integration/replacement stay unchanged. Whole-world production, original ownership/allocation and targeting, full DirectDraw retirement and public19/complete-session60FPS acceptance remain open. Prior evidence hashes and historical source reviews remain unchanged.
+
+## New-sighting task/service composition — OSC1 (2026-10-23)
+
+[Research](observation-task-services-20261023.md) and
+[comparison](observation-task-services-results-20261023/observation-task-trial-2.json)
+join actual4181d0 new owned observations to nonempty source traversal
+407920/4079f0,terminal-parent task lookup522770 and actual416d80 valuation
+through505bf0/505c50/59bee0. Original32/native64/sanitizers agree384 cases/3456
+updates,including both families0/1,source threshold and absent recipient gates,
+health-as-level/ordinary1/wizard10 caps,refresh/expiry silence,reacquisition,
+full drain/mode restoration and modulo32 task counters. Native composes the
+existing knowledge,snapshot,cache,source and valuation APIs with concrete
+recipient lookup. All normal allocations retire after explicit fixture activity
+restoration for negative-leaf cases;negative forest destruction remains a
+separate baseline boundary,not repaired behavior. Forests and preinstalled task
+backlinks,visibility/activation/profiles are authored inputs. Native ordered
+index/bounds are policies. General installation/scheduler,other credit services,
+multi-owner/record,reentry,whole-brain,World providers,failures/SEH and live
+replacement remain pending. Critical actor umbrella remains partial.
+
+Incomingac0b9e3b..9b83b3d7:516 coverage-gated committed path transitions have
+exact receipts,zero missing/mutated matches. This history review is separate
+from current execution and does not assert a historical gate pass. Immutable
+failed trial/UI reports and source bindings remain available. Current dashboard
+planning separates the new scoped task credit from remaining actor services.
