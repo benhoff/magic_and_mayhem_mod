@@ -144643,6 +144643,129 @@
         "Invalid pointers/tree corruption/allocation failure/SEH and whole-brain/World/live replacement remain independent.",
         "Actor-session dispatcher integration has its own regression;this source fixture does not execute a complete owner scheduler."
       ]
+    },
+    {
+      "id": "AI.owner-brain-teardown",
+      "kind": "recovered",
+      "subsystem": "creature_ai",
+      "title": "Whole-brain payload and member teardown",
+      "scope": "Pinned NoCD40209ca7 whole normal4c0920 brain destruction and415ac0 payload teardown over checked PE32 value-address storage. Two ordinary brains0/1 share task and observation sentinels;all eight owner rows,authored balanced0/1/3-node observation/scalar/task maps,base fallback tasks with owned source forests and feature vectors,two source-cache banks,overlapping primary1a/secondary11e05 sources,borrowed task aliases,two inline sources,125 actor assignment slots,and0/1/1024/1025-element nonowning deques. Compare exact release order,full final brain bytes,shared nil last-user release,other-brain preservation,source mode restoration and all owned storage released. Existing task/source/snapshot destruction composes natively;original allocator/free/buffer-free boundaries explicit. Final destructor borrows enclosing brain and actor pool. Reset4156b0 and416b80 actor re-registration are traced separately,not implemented or executed here. Native owner0/1 admission is policy. Original construction,RB insertion/erase iterator ABI,arbitrary trees/cycles/invalid ownership,other task-family derived state,allocation failure/SEH,full World/session cadence and installed/live replacement excluded.",
+      "confidence": "high_within_scope",
+      "implementation": [
+        "reconstruction/creature-ai/owner_brain_teardown.hpp"
+      ],
+      "tests": [
+        "tests/whole-brain-teardown-test.cpp",
+        "tools/test-whole-brain-teardown.py",
+        "tools/inspect-whole-brain-teardown.py"
+      ],
+      "documents": [
+        "research/runtime/whole-brain-teardown-20261023.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "WBT1.original-20261023",
+        "WBT1.headless-20261023",
+        "WBT1.inspection.static-20261023",
+        "WBT1.history.static-20261023",
+        "WBT1.attempts.static-20261023",
+        "WBT1.original-final2-20261023",
+        "WBT1.headless-final2-20261023",
+        "WBT1.attempts-final2.static-20261023",
+        "WBT1.merge.original-20261023",
+        "WBT1.merge.headless-20261023"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4283072,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4983072,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4983664,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4983760,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4983856,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4983952,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4984368,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5326864,
+          "scope": "Normal bounded final brain destruction and member ownership;reset and construction inspected separately without execution credit."
+        }
+      ],
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_knowledge_cache.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_observation_snapshots.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_sources.hpp",
+        "reconstruction/creature-ai/owner_task_storage.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/observation-snapshot-ownership-test.cpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/draft-coverage-claims.py",
+        "tools/ghidra/ExportFontProviders.java",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/owner_planner_comparison.py"
+      ],
+      "validation_domain": "16 episodes,two brains per episode,all8 owner rows,shared sentinels across brains,balanced empty/singleton/three-node trees,base fallback tasks,source aliases and forest topology,deque block boundary,normal success only. No reset,construction,World/live or exception evidence."
     }
   ],
   "evidence": [
@@ -327334,6 +327457,494 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "WBT1.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Pinned NoCD40209ca7 whole normal4c0920 brain destruction and415ac0 payload teardown over checked PE32 value-address storage. Two ordinary brains0/1 share task and observation sentinels;all eight owner rows,authored balanced0/1/3-node observation/scalar/task maps,base fallback tasks with owned source forests and feature vectors,two source-cache banks,overlapping primary1a/secondary11e05 sources,borrowed task aliases,two inline sources,125 actor assignment slots,and0/1/1024/1025-element nonowning deques. Compare exact release order,full final brain bytes,shared nil last-user release,other-brain preservation,source mode restoration and all owned storage released. Existing task/source/snapshot destruction composes natively;original allocator/free/buffer-free boundaries explicit. Final destructor borrows enclosing brain and actor pool. Reset4156b0 and416b80 actor re-registration are traced separately,not implemented or executed here. Native owner0/1 admission is policy. Original construction,RB insertion/erase iterator ABI,arbitrary trees/cycles/invalid ownership,other task-family derived state,allocation failure/SEH,full World/session cadence and installed/live replacement excluded.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-final-1.json",
+      "sha256": "4d701972c478d4c570fc063855c0b94d9d752d12af1489eb9c1b927e549599c9",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "WBT1.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Same16 episodes/32 brain destructions,not additional samples. Native checked value-address whole-brain teardown composes existing source/task/snapshot destruction without original fallback. Separate from native session ownership and live replacement.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-final-1.json",
+      "sha256": "4d701972c478d4c570fc063855c0b94d9d752d12af1489eb9c1b927e549599c9",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "WBT1.inspection.static-20261023",
+      "kind": "static",
+      "scope": "Existing inventory41-entry instruction/decompilation/caller-reference review.4156b0 resets and repopulates;415ac0 releases payloads;4c0920 destroys members. No function-boundary discovery or reset execution credit.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/inspection-4.json",
+      "sha256": "854da7c2efa37db0ce1bfd3c6e2783ec552f49c136a764f593153263cbc96ade",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WBT1.history.static-20261023",
+      "kind": "static",
+      "scope": "Committedb45abf10..9b83b3d7 range:537 exact file transitions;44 missing raw-bin storage receipts appended retrospectively. No unresolved gaps,no historical gate or execution assertion.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/incoming-history-reviewed-1.json",
+      "sha256": "5f896e9730d352ba3dc89829d3254d9627fcd28e11b2dd85a9d9f0778fbaf53a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WBT1.attempts.static-20261023",
+      "kind": "static",
+      "scope": "Preserved source-bound failure,successful trial2,final1 with exact inventory hash ranges and successive read-only inspections. No historical hashes refreshed.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/attempt-catalog-1.json",
+      "sha256": "c5d359f281fe861894bad77c35fe29d9452ee67788d3a05d01cef224d84089df",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WBT1.original-final2-20261023",
+      "kind": "isolated_original",
+      "scope": "Pinned NoCD40209ca7 whole normal4c0920 brain destruction and415ac0 payload teardown over checked PE32 value-address storage. Two ordinary brains0/1 share task and observation sentinels;all eight owner rows,authored balanced0/1/3-node observation/scalar/task maps,base fallback tasks with owned source forests and feature vectors,two source-cache banks,overlapping primary1a/secondary11e05 sources,borrowed task aliases,two inline sources,125 actor assignment slots,and0/1/1024/1025-element nonowning deques. Compare exact release order,full final brain bytes,shared nil last-user release,other-brain preservation,source mode restoration and all owned storage released. Existing task/source/snapshot destruction composes natively;original allocator/free/buffer-free boundaries explicit. Final destructor borrows enclosing brain and actor pool. Reset4156b0 and416b80 actor re-registration are traced separately,not implemented or executed here. Native owner0/1 admission is policy. Original construction,RB insertion/erase iterator ABI,arbitrary trees/cycles/invalid ownership,other task-family derived state,allocation failure/SEH,full World/session cadence and installed/live replacement excluded. Final2 independently authors normal black-root/red-child/black-nil tree colors;earlier final1 remains historical and stale after that fixture correction.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-final-2.json",
+      "sha256": "f7d67010f4379be2aec84fea67b7f2e80cbbd37d8fb5dcb85241ddcce96d8623",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "WBT1.headless-final2-20261023",
+      "kind": "native_integration",
+      "scope": "Same16 episodes/32 brain destructions,not additional samples. Native checked value-address whole-brain teardown composes existing source/task/snapshot destruction without original fallback. Separate from native session ownership and live replacement. Final2 independently authors normal black-root/red-child/black-nil tree colors;earlier final1 remains historical and stale after that fixture correction.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-final-2.json",
+      "sha256": "f7d67010f4379be2aec84fea67b7f2e80cbbd37d8fb5dcb85241ddcce96d8623",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "WBT1.attempts-final2.static-20261023",
+      "kind": "static",
+      "scope": "Preserve earlier failed compile/quota trial1,successful trial2/final1,normal-RB-color final2,successive inspections,and accounting/UI negative evidence. Only final2 binds current fixture sources;no prior source hash refreshed.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/attempt-catalog-2.json",
+      "sha256": "affc694f21a9f2cfbc7ba56d2d61d25a701eba80184daeb6b494ea091ce6395d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WBT1.merge.original-20261023",
+      "kind": "isolated_original",
+      "scope": "Pinned NoCD40209ca7 whole normal4c0920 brain destruction and415ac0 payload teardown over checked PE32 value-address storage. Two ordinary brains0/1 share task and observation sentinels;all eight owner rows,authored balanced0/1/3-node observation/scalar/task maps,base fallback tasks with owned source forests and feature vectors,two source-cache banks,overlapping primary1a/secondary11e05 sources,borrowed task aliases,two inline sources,125 actor assignment slots,and0/1/1024/1025-element nonowning deques. Compare exact release order,full final brain bytes,shared nil last-user release,other-brain preservation,source mode restoration and all owned storage released. Existing task/source/snapshot destruction composes natively;original allocator/free/buffer-free boundaries explicit. Final destructor borrows enclosing brain and actor pool. Reset4156b0 and416b80 actor re-registration are traced separately,not implemented or executed here. Native owner0/1 admission is policy. Original construction,RB insertion/erase iterator ABI,arbitrary trees/cycles/invalid ownership,other task-family derived state,allocation failure/SEH,full World/session cadence and installed/live replacement excluded. Final2 independently authors normal black-root/red-child/black-nil tree colors;earlier final1 remains historical and stale after that fixture correction. Fresh combined master4ccfd582/teardown527d5e1b execution retains this exact bounded scope; the parent records remain immutable.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-merge-2.json",
+      "sha256": "3dd049763764a84c3ed2ad6f1337559ab748118267618f6c27fef5783e67bd6d",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "WBT1.merge.headless-20261023",
+      "kind": "native_integration",
+      "scope": "Same16 episodes/32 brain destructions,not additional samples. Native checked value-address whole-brain teardown composes existing source/task/snapshot destruction without original fallback. Separate from native session ownership and live replacement. Final2 independently authors normal black-root/red-child/black-nil tree colors;earlier final1 remains historical and stale after that fixture correction. Fresh combined master4ccfd582/teardown527d5e1b execution retains this exact bounded scope; the parent records remain immutable.",
+      "record": "research/runtime/whole-brain-teardown-results-20261023/brain-teardown-merge-2.json",
+      "sha256": "3dd049763764a84c3ed2ad6f1337559ab748118267618f6c27fef5783e67bd6d",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 3572476
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/brains",
+          "equals": 32
+        },
+        {
+          "pointer": "/owner_rows",
+          "equals": 256
+        },
+        {
+          "pointer": "/releases",
+          "equals": 5606
+        },
+        {
+          "pointer": "/snapshot_buffers",
+          "equals": 84
+        },
+        {
+          "pointer": "/digest",
+          "equals": "10878094686036488357"
+        },
+        {
+          "pointer": "/original_output_used_as_native_input",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -353146,6 +353757,25 @@
         "BA1.merge.original-20261023",
         "BA1.merge.headless-20261023"
       ]
+    },
+    {
+      "id": "whole-brain-teardown-20261023",
+      "scope": "Two-brain final destruction with populated owner rows,source overlap,borrowed task aliases,shared sentinels and deque boundaries.",
+      "level": "headless",
+      "behaviors": [
+        "AI.owner-brain-teardown"
+      ],
+      "tests": [
+        "tests/whole-brain-teardown-test.cpp",
+        "tools/test-whole-brain-teardown.py",
+        "tools/inspect-whole-brain-teardown.py"
+      ],
+      "evidence": [
+        "WBT1.headless-20261023",
+        "WBT1.headless-final2-20261023",
+        "WBT1.merge.original-20261023",
+        "WBT1.merge.headless-20261023"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -354111,8 +354741,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-2c421765cc38aee01dfa53355e9ad5becb5274d9ab822011b8fa5b908d33fa1b.json",
-    "sha256": "2c421765cc38aee01dfa53355e9ad5becb5274d9ab822011b8fa5b908d33fa1b"
+    "path": "research/runtime/coverage/source-index-16c11e63cbe6cd49c2bb1fdc59059014a2e164129dfcdcb1065a6f4956d7f95f.json",
+    "sha256": "16c11e63cbe6cd49c2bb1fdc59059014a2e164129dfcdcb1065a6f4956d7f95f"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

@@ -21469,3 +21469,77 @@ session evidence retains matching source fingerprints. Historical stale reports
 remain preserved; whole-brain/World/live replacement boundaries are unchanged.
 Temporary compiler outputs and bounded binaries remain in the pinned integration
 worktree; durable reports and declarations reside in its verified SQLite store.
+
+
+## WBT1 — whole-brain normal teardown, 2026-10-23
+
+**Scope and confidence:** high within the independently authored ordinary brain0/1
+normal domain. [Whole-brain teardown](whole-brain-teardown-20261023.md) records
+actual415ac0 payload release and whole4c0920 final member destruction, separately
+from the traced4156b0 state reset and416b80 reset/re-registration wrapper.
+`OwnerBrainTeardown` composes existing source/base-task/snapshot destructors over
+checked PE32 value-address storage; it borrows the enclosing brain and actor pool.
+
+Fresh `WBT1.original-final2-20261023` and `WBT1.headless-final2-20261023` bind final2's exact
+sources and scope. Native64/original32/ASan+UBSan+LSan agree on3,572,476 checks,
+32 brain destructions/256 owner rows,5,606 allocation releases,84 snapshot-buffer
+releases and digest10878094686036488357. Both source banks,primary/secondary
+source overlap,pending task ownership/borrowed task aliases,inline sources,
+empty/singleton/three-node trees,shared nil last-user release and deque block
+boundaries participate. Complete final brain bytes,exact release order,other-brain
+preservation,125 actor assignment slots,source mode,canaries and zero live owned
+allocations are checked. Only alloc/free/buffer-free boundaries are supplied;
+original text remains RX/unchanged and manifests pass before/after each run.
+
+Payload release is forward owner0..7/bank0..1; final member destruction reverses
+owner rows and bank backing order. The secondary source vector alone deduplicates
+against primary pointer slots. Borrowed task-map aliases are not deleted twice.
+The original final deque bytes retain a freed map pointer/capacity; native
+reconstruction preserves them. Payload release is not idempotent and is not
+itself final member destruction. Earlier4156b0 destructor shorthand is corrected
+by explicit reset/final-destruction identities without rewriting historical proof.
+
+**Remaining:** reset/re-registration and original construction execution,portable
+RB insertion/rebalancing/iterator ABI,arbitrary ownership duplicates/cycles,
+other task-family derived state,callback/failure/SEH extensions,training/backends,
+full World/session cadence and installed/live replacement remain separate.
+This extends bounded headless teardown; the Critical actor-services umbrella
+remains partial and no gameplay balance changes are made.
+
+Durable declarations,attempts,inspection and incoming-history review use SQLite.
+Trial1's warning/system-tmp quota failure and trial2's successful earlier source
+hashes remain preserved; final1 pins exact central original function hash ranges.
+Theb45abf10..9b83b3d7 incoming review covers537 exact file transitions;missing
+raw-bin storage receipts are appended retrospectively,with the initial negative
+review preserved and no historical gate/new execution assertion. Startup storage
+inventory found no automatic cleanup candidates;no payload was removed. Retained
+execution binaries and compiler temporaries are ignored outputs in the owned
+whole-brain-teardown worktree.
+
+
+### Whole-brain teardown integration into master (2026-10-23)
+
+Combined `527d5e1b` with `4ccfd582` without implementation conflicts. Shared
+register, journal, ledger and Critical planning metadata preserve the independent
+observation-task, multi-owner, borrowed-alias and teardown contracts. The exact
+incoming-history review covers 186 source/research transitions from `9b83b3d7`
+through `4ccfd582` with no missing receipts; append-only journal transitions are
+checked separately by the merge gate. See the SQLite-backed
+[history review](whole-brain-teardown-results-20261023/merge-incoming-history-1.json).
+
+Fresh combined-source original32/native64/ASan/UBSan/LSan teardown execution
+passes 3,572,476 checks over 16 episodes, 32 brains and all 256 owner rows;
+5,606 releases and 84 snapshot buffers match exactly, with digest
+`10878094686036488357`. `WBT1.merge.*` records retain this result independently
+of the immutable parent runs. Original manifests pass before and after execution.
+The new-worktree missing-media preflight refusal remains preserved separately;
+linking the existing read-only media enabled the new result identity. No original
+files changed. All ten Critical metadata tests now pass against combined master.
+Reset/re-registration, other derived task-family teardown, native session/World
+integration and live replacement remain pending. Earlier source freshness and
+validation boundaries remain independent; this merge grants no broad acceptance.
+
+Generated comparison reports and declarations reside in the retained main SQLite
+store; bounded executables and diagnostics remain pinned in the integration
+worktree. Local review/evidence databases receive verified retained backups before
+the normal commit hook. No evidence publication or external transfer is required.
