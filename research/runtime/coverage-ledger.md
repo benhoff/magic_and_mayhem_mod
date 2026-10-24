@@ -21591,3 +21591,24 @@ completion exported two exact intermediate receipts,which are retained;it did
 not create a commit or pass the staged gate. A new completion reviews the combined
 tree against4b1aa12c. Incoming4ccfd582..4b1aa12c adds77 exactly reviewed
 gated transitions without missing or mutated receipts.
+### Alias target bodies and cursor consumers, 2026-10-23
+
+`AI.borrowed-alias-target-bodies` implements actual51e890 event dispatch,
+33 compact12-byte member callback classes and524130 order-cursor control.
+Cursor-only append/save/load projections preserve stale identity and the
+caller's retained serialization scalar. Final original32/native64/sanitized
+comparison passes20,593 checks with digest13058600155535184850. Explicit lower
+world/action/presentation and serialization services remain boundaries.
+Allocation and duplicate-ownership fault children are original Linux execution;
+checked native refusals/throw tests do not establish Windows SEH or rollback.
+[Research and immutable SQLite evidence](alias-targets-20261023.md).
+Other target bodies/encodings,complete serializer/append parents,World/installed
+sessions and live replacement remain pending; session dispatch compatibility is
+validated separately. Historical BA1 fingerprints remain unchanged.
+
+The2026-10-24 local master merge preserves independent WBT1/BTC1 changes.
+[Static combined-source verification](alias-targets-results-20261023/master-merge-source-bindings-2.json)
+confirms all43 target and31 session source bindings and scope contracts still
+match the retained successful execution. No new original run or live milestone
+is claimed. Incoming committed history has153 exact reviewed file transitions;
+the merged source census and coverage summary are recorded separately in SQLite.
