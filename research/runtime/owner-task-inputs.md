@@ -155,3 +155,17 @@ modulo32 task2f accumulation. Refresh/expiry do not credit;reacquisition does.
 Preinstalled task/source storage,visibility/activation and profiles are authored
 inputs. General task installation/scheduling,resource/interaction/cast credit,
 multiple owners/records,World providers and live acceptance remain open.
+
+## Broader concrete task credit services — BTC1 (2026-10-23)
+
+The [new composition](broader-task-services-20261023.md) replaces supplied
+416c30 task-ID lookup and416d80 valuation in a separate bounded provider/caller
+comparison. Both brain task indexes and522770 terminal source parents resolve
+actual owned task records. Activation, defined item healing/resource/flag paths,
+nonlethal damage, positive healing, periodic resource contribution and normal
+pending completion share those records and modulo32 reward2f/cost33 arithmetic.
+The old NS81 logical overflow refusal and historical supplied-endpoint proofs
+remain unchanged. UI/registration/item application/world services are explicit
+boundaries; this is not complete native lab or original World integration.
+General task installation/scheduling,source split/merge,training,death/scenario
+cleanup and exceptional/live acceptance remain open.
