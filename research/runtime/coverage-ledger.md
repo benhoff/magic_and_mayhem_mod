@@ -1,6 +1,24 @@
 # Engine modernization coverage ledger
 
 
+## Complete screen caller and original windowed route — 2026-10-24
+
+The complete5595d0..55981e local CFG and independent model agree in96000
+original/native authored-service cases,including screen push/selection/pop,
+fade/count boundaries,callback mutations and presentation gate ordering,with
+both i386/native64 sanitizer controls. The execution-backed590-byte exception
+preserves the old global inventory and its unresolved external flows.
+
+Original`-win` on a1024x768 16-bit Wine desktop selects Blt and admits both
+padded736x480/896x600 sources into the desktop primary. Enabled sessions reach
+ordinary World dispatch with both alternate slots still zero. Matching
+fullscreen controls retain the original invalid-rectangle failure. This provides
+a bounded original configuration for further observation;no crop,argument edit,
+pointer publication,default change or live native replacement is installed.
+Original alternate allocation,initial pixels,base/source relationship,writers
+and retirement remain unknown. See [the recovery](screen-presentation-recovery-20261024.md).
+
+
 ## Original enabled-setting rectangle failure attributed — 2026-10-24
 
 Read-only hardware call/return and independent error-reporter watches identify

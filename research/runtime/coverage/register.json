@@ -91440,7 +91440,8 @@
         "0x5597f8"
       ],
       "documents": [
-        "research/runtime/draw02-menu-return-copy.md"
+        "research/runtime/draw02-menu-return-copy.md",
+        "research/runtime/screen-presentation-recovery-20261024.md"
       ],
       "implementation": [],
       "tests": [
@@ -91465,7 +91466,8 @@
         "Static03confirms redraw call0x5597f8\u219258bf40 returning5597fd followed by4a4380; pop request branch at5596f1returnsbefore this path. Menu drawing requires+[8]nonzero/+[12]zero, with conditional foreground cursor call and temporary642c60zero. Indirect receiver slots and actual branch state remain unresolved.",
         "The restore helper has guarded cursor/background paths and a direct saved-buffer641fc8\u21926a49e0 rectangular-copy call. Normalframe46b9fcandmenuredraw5597f8both use source receiver6a49e0\u2192destination6a4fe0. These are static wrapper identities, not source/view/backing ownership.",
         "Common menu body5595d0..55981e remains missing from function inventory; only existing eight-byte entry guard is anchored and later branch addresses remain candidates. No full function-boundary recovery. Earlier static01/02source versions remain stale; oldcopyfailure remains failed.",
-        "Need fresh actual menu-redraw branch/request/worker/source witnesses for1600pixel case, current-source diagnostic controls, full route/lifetime and all47/21closure. No engine-stage promotion."
+        "Need fresh actual menu-redraw branch/request/worker/source witnesses for1600pixel case, current-source diagnostic controls, full route/lifetime and all47/21closure. No engine-stage promotion.",
+        "Separate RS.screen-tick-control-flow supplies the complete local caller with authored external service boundaries and an execution-backed range exception. This does not close the historical1600pixel failure,source/backing ownership,helper internals or full47/21route acceptance."
       ]
     },
     {
@@ -133647,7 +133649,8 @@
         "research/runtime/alternate-canvas-recovery-20261020.md",
         "research/runtime/rendering-foundations-20261024.md",
         "research/runtime/alternate-canvas-composition-20261024.md",
-        "research/runtime/alternate-error-diagnosis-20261024.md"
+        "research/runtime/alternate-error-diagnosis-20261024.md",
+        "research/runtime/screen-presentation-recovery-20261024.md"
       ],
       "evidence": [
         "ACR1.original-20261020",
@@ -133673,7 +133676,8 @@
         "Original alternate allocation, publication outside the admitted initializer, base/source relationship, initial pixels, upstream writers and release remain unknown. No allocator policy is introduced; preserve every unresolved indirect edge and unknown computed writer.",
         "Hardware writes observed in fixture code are authored setup, not game publications; no natural live alternate route has been established.",
         "Enabled-setting pre-World invalid-rectangle failure is attributed to full padded-source BltFast into an unpadded primary. It remains unmodified; no natural alternate publication/World route is admitted. Legacy Windows behavior and broader mode/configuration reachability remain unvalidated.",
-        "Observed screen copy call5597f8/return5597fd is an exact byte/stack witness outside the discovered-function inventory. It is documented without asserting a complete owning function or expanding the existing eight-byte5595d0 recovered range. Whole caller-function recovery remains pending."
+        "Observed screen copy call5597f8/return5597fd is an exact byte/stack witness outside the discovered-function inventory. It is documented without asserting a complete owning function or expanding the existing eight-byte5595d0 recovered range. Whole caller-function recovery remains pending.",
+        "Original -win configuration on the admitted16-bit Wine desktop reaches enabled-setting ordinary World dispatch without pointer authoring or rectangle edits. Both publication slots remain zero;alternate owner/base/source/writers remain unknown. Separate RS.windowed-padded-presentation-route owns this configuration observation."
       ]
     },
     {
@@ -146050,6 +146054,139 @@
       },
       "remaining_gaps": [
         "Admission covers explicitly borrowed stable spans; it neither acquires owner lifetime nor validates arbitrary callback mutation,threads or unknown writers."
+      ]
+    },
+    {
+      "id": "RS.screen-tick-control-flow",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Complete shared screen tick local control flow and presentation ordering",
+      "scope": "Whole unchanged5595d0..55981e local control flow in an isolated owned PE mapping against an independent model. Covers pending push/selection/pop priority,depth warning guards,authored finite message drains,nullable current/back screens,fade/count boundary arithmetic and authored special/draw/fade callback mutations,redraw suppression,cursor/presentation/restore gate ordering and final callbacks. External direct/IAT/vtable services are authored observation boundaries;no complete helper semantics,screen ownership,arbitrary reentrancy,invalid pointers/negative-depth stack indexing,live equivalence or original alternate allocation follows.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5608912,
+          "recovered_range": "screen-tick-complete-5595d0",
+          "scope": "Complete closed local5595d0..55981e caller with authored external service boundaries;whole local control flow only."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_tick.hpp"
+      ],
+      "tests": [
+        "tests/screen-tick-reference.cpp",
+        "tools/test-screen-tick.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json"
+      ],
+      "documents": [
+        "research/runtime/screen-presentation-recovery-20261024.md"
+      ],
+      "evidence": [
+        "STK1.original-final-20261024"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "External helper/vtable internals,all callback interleavings and screen lifetime remain separate. Whole-game application integration and live replacement are not supplied."
+      ]
+    },
+    {
+      "id": "RS.windowed-padded-presentation-route",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Original windowed/fullscreen padded presentation reachability",
+      "scope": "Read-only child hardware pointer and copy-call/return watches with explicit original -win argument and 16-bit private desktop. Four video/debug-setting cohorts per mode compare actual whole-source Blt/BltFast rectangles,primary/offscreen metadata,HRESULT,upstream5597fd caller and Quick Battle dispatch prefixes. Original config/arguments are observations,not a crop,allocator or pointer-authoring policy. Existing explicit menu adapter and bounded termination remain;no legacy physical-driver,whole-game pixels,normal Quit,all-writer or alternate allocation proof.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5145728,
+          "scope": "Command-line parser win token maps6a2920;bounded static branch context."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810832,
+          "scope": "Original windowed device setup and6f68d8 route state;helper internals outside live pixel equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816128,
+          "scope": "Whole-source copy wrapper;both actual COM calls observed with original arguments."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5231672,
+          "scope": "Actual World dispatcher prefix and alternate slots under original configuration."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810608,
+          "scope": "Original fullscreen initialization sets6f68d8 to1;static configuration contrast with window mode0."
+        }
+      ],
+      "implementation": [
+        "tools/test-screen-presentation-live.py"
+      ],
+      "tests": [
+        "runtime/diagnostics/alternate_canvas_debug.c",
+        "tests/alternate-canvas-debug-target.c"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/canvas_initializer.hpp",
+        "research/runtime/all-original-recovery-results-20261020/flow-review-final.json",
+        "research/runtime/alternate-canvas-results-20261020/provenance.json",
+        "runtime/diagnostics/win32_debug_min.h",
+        "runtime/menu/observer.c",
+        "runtime/shadow/win32_min.h",
+        "tests/alternate-canvas-initializer.cpp",
+        "tests/alternate-canvas-publication-watch.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/alternate_canvas_lifecycle.py",
+        "tools/build-menu-observer.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/decode-cfg.py",
+        "tools/directplay_dx6_launch.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/encode-cfg.py",
+        "tools/inventory-binary.py",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/review-alternate-canvas-inventory.py",
+        "tools/run-opengl-game.py",
+        "tools/test-original-alternate-canvas.py",
+        "tools/test-rendering-foundations.py"
+      ],
+      "documents": [
+        "research/runtime/screen-presentation-recovery-20261024.md"
+      ],
+      "evidence": [
+        "STK1.windowed-live-20261024",
+        "STK1.fullscreen-live-20261024"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "A reachable enabled-setting World prefix does not recover an alternate publisher/allocator,base/source relationship,pixels,writers or retirement. No production default or original instruction is changed."
       ]
     }
   ],
@@ -330708,6 +330845,145 @@
           "equals": 2289434774
         }
       ]
+    },
+    {
+      "id": "STK1.original-final-20261024",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/screen-presentation-results-20261024/control-final02.json",
+      "scope": "Whole unchanged5595d0..55981e local control flow in an isolated owned PE mapping against an independent model. Covers pending push/selection/pop priority,depth warning guards,authored finite message drains,nullable current/back screens,fade/count boundary arithmetic and authored special/draw/fade callback mutations,redraw suppression,cursor/presentation/restore gate ordering and final callbacks. External direct/IAT/vtable services are authored observation boundaries;no complete helper semantics,screen ownership,arbitrary reentrancy,invalid pointers/negative-depth stack indexing,live equivalence or original alternate allocation follows.",
+      "sha256": "a9e9f76fa66efcfcdb62673219f6d9aef8d6c703583ce0ed4e8f5f1642f39142",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/closed_local_cfg",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 96000
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 96000
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 96000
+        }
+      ],
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "STK1.windowed-live-20261024",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/screen-presentation-results-20261024/window02.json",
+      "scope": "Read-only hardware watchpoints on both alternate pointer slots and original dispatch plus the selected shutdown/error-reporter/copy call-return diagnostic for every created process thread; authored positive control and natural original Quick Battle sessions across video/configuration choices. Menu navigation is an explicit adapter. Bounded termination is not normal cleanup or universal reachability evidence.",
+      "sha256": "94675395196ce175693ab404a1b0ddb635dde18b60bc9c5502986859179aa280",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/windowed_argument",
+          "equals": true
+        },
+        {
+          "pointer": "/desktop_depth",
+          "equals": 16
+        },
+        {
+          "pointer": "/observed_enabled_world",
+          "equals": true
+        },
+        {
+          "pointer": "/observed_natural_publications",
+          "equals": false
+        },
+        {
+          "pointer": "/observed_alternate_dispatch",
+          "equals": false
+        },
+        {
+          "pointer": "/error_attribution_validated",
+          "equals": true
+        }
+      ],
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "STK1.fullscreen-live-20261024",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/screen-presentation-results-20261024/fullscreen01.json",
+      "scope": "Read-only hardware watchpoints on both alternate pointer slots and original dispatch plus the selected shutdown/error-reporter/copy call-return diagnostic for every created process thread; authored positive control and natural original Quick Battle sessions across video/configuration choices. Menu navigation is an explicit adapter. Bounded termination is not normal cleanup or universal reachability evidence.",
+      "sha256": "5adfbdaf2c33d567a250e277eb45bc1866d80f3acdfc3da428d4bec8d1f7e297",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/windowed_argument",
+          "equals": false
+        },
+        {
+          "pointer": "/desktop_depth",
+          "equals": 16
+        },
+        {
+          "pointer": "/observed_enabled_world",
+          "equals": false
+        },
+        {
+          "pointer": "/observed_natural_publications",
+          "equals": false
+        },
+        {
+          "pointer": "/observed_alternate_dispatch",
+          "equals": false
+        },
+        {
+          "pointer": "/error_attribution_validated",
+          "equals": true
+        }
+      ],
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -356683,6 +356959,23 @@
         "tools/test-alternate-canvas-live.py",
         "tests/alternate-canvas-debug-target.c"
       ]
+    },
+    {
+      "id": "rendering.original-windowed-padded-world",
+      "level": "live_observation",
+      "scope": "Original -win and matching fullscreen controls on a private1024x768 16-bit Wine desktop,both resolutions and alternate debug settings. Unmodified copy arguments and actual HRESULT distinguish successful windowed enabled-setting ordinary World dispatch from fullscreen pre-World refusal. Explicit menu adapter,bounded termination,zero observed alternate slots and no pixels/FPS/owner equivalence.",
+      "behaviors": [
+        "RS.windowed-padded-presentation-route"
+      ],
+      "evidence": [
+        "STK1.windowed-live-20261024",
+        "STK1.fullscreen-live-20261024"
+      ],
+      "tests": [
+        "tools/test-screen-presentation-live.py",
+        "runtime/diagnostics/alternate_canvas_debug.c",
+        "tests/alternate-canvas-debug-target.c"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -357868,6 +358161,16 @@
       "evidence": "BA2.original-20261023",
       "anchors_pointer": "/original_entry_anchors",
       "scope": "Exact compact12-byte member callback invoke body; direct receiver8,target4,one argument or low-bit deleting flag. No arbitrary encoding or lower target claim."
+    },
+    {
+      "id": "screen-tick-complete-5595d0",
+      "build": "nocd-40209ca7",
+      "start": 5608912,
+      "end": 5609502,
+      "document": "research/runtime/screen-presentation-recovery-20261024.md",
+      "evidence": "STK1.original-final-20261024",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Closed590-byte local CFG,all local branches/returns and96000 authored original/native callback-boundary cases. Existing global discovery remains unchanged;external indirect services and helper behavior/lifetime stay unresolved."
     }
   ],
   "register_imports": [
@@ -358235,7 +358538,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-17dccd60f3a15a05fd58b0d83c5f35bcc33fd6b85af3437d357f9e6754527861.json",
-    "sha256": "17dccd60f3a15a05fd58b0d83c5f35bcc33fd6b85af3437d357f9e6754527861"
+    "path": "research/runtime/coverage/source-index-73bffeac7f42a4e2a87c7e2e899a4c4f342365e6f686390f70b8be6b59ac53d2.json",
+    "sha256": "73bffeac7f42a4e2a87c7e2e899a4c4f342365e6f686390f70b8be6b59ac53d2"
   }
 }
