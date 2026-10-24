@@ -2,8 +2,10 @@
 #include <iostream>
 #include <stdexcept>
 #include <limits>
+#include <tuple>
 using namespace mnm::reconstruction;
 void check(bool b){if(!b)throw std::runtime_error("Camera test mismatch");}
+static auto fields(const TerrainCamera& c){return std::tie(c.view,c.span,c.diagonal,c.cutLevel,c.mode,c.column,c.row,c.f11,c.f15,c.f41,c.f45,c.f49,c.f4d,c.f51,c.f55,c.wrapColumnPriority,c.wrapRowPriority,c.specialLayer);}
 int main()try{
  TerrainCamera c;c.column=7;c.f45=19;c.mode=1;bindTerrainCamera(c,40,28,9);
  check(c.span==28 && c.diagonal==14 && c.cutLevel==9 && c.column==7 && c.f45==19 && c.mode==1);
@@ -22,6 +24,20 @@ int main()try{
  moveTerrainCameraCells(c,40,28,1,-1);check(c.column==-5 && c.f45==0 && c.row==-1 && c.f49==7);
  before=c;rejected=false;try{moveTerrainCameraCells(c,0,28,1,1);}catch(const std::invalid_argument&){rejected=true;}
  check(rejected && c.column==before.column && c.row==before.row && c.f45==before.f45);
+ // The direct helper ignores view and normalizes even a zero displacement.
+ c.view=99;c.column=-1;c.row=-2;c.f45=32;c.f49=-1;
+ scrollTerrainCameraAxes(c,40,28,0,0);
+ check(c.view==99 && c.column==0 && c.row==25 && c.f45==0 && c.f49==31);
+ c.column=1;c.row=1;c.f45=3;c.f49=7;before=c;rejected=false;
+ try{scrollTerrainCameraAxes(c,40,28,1,std::numeric_limits<int>::max());}catch(const std::overflow_error&){rejected=true;}
+ check(rejected && fields(c)==fields(before));
+ rejected=false;try{scrollTerrainCameraAxes(c,0,28,0,0);}catch(const std::invalid_argument&){rejected=true;}
+ check(rejected && fields(c)==fields(before));
+ for(const auto viewport: {TerrainViewport{0,0,0,1},TerrainViewport{0,2,1,1},
+                         TerrainViewport{std::numeric_limits<int>::min(),0,std::numeric_limits<int>::max(),1}}){
+  rejected=false;try{setTerrainCameraViewport(c,viewport);}catch(const std::exception&){rejected=true;}
+  check(rejected && fields(c)==fields(before));
+ }
  c=TerrainCamera{};setTerrainCameraCellPosition(c,40,28,9,-1,29,-1);
  check(c.column==std::uint32_t(0x7ffffff)%40 && c.row==1 && c.f41==8 && c.f4d==0);
  followTerrainCamera(c,40,28,9,TerrainCameraFocus{-1,-897,-1});

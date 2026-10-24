@@ -99,3 +99,8 @@ clear, complete writer inventory or retirement. Native borrowed composition
 remains separately original-compared; an owned alternate allocator would require
 new evidence or an explicitly separate native policy. No live alternate
 replacement or complete-frame/performance acceptance is claimed.
+
+The concurrent terrain merge `ff8b29be` is combined separately. All 60 incoming
+parent/current gated transitions match exact receipts, and all 87 ACO1 source
+bindings remain unchanged. The combined source/contract/dashboard check records
+reuse of existing executions, not a new original ownership validation.
