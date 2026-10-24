@@ -2007,14 +2007,14 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Palette option admission: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "92e0e5452434a104adaba17e37b086d91ae46195c33c6ee7c1ac960ec27d151d"
+      "contract_sha256": "fd67dce4e5724c5a6028acf616e89754d741a491b20893ce9084bc3626c36b5d"
     },
     {
       "behavior": "RE.palette_shading",
       "weight": 4,
       "work_type": "capability",
       "reason": "Mode-zero palette shading: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "1dc1b77e9a421fdbfa96dbd017d68874be85701096a81116a716a3004609dfcf"
+      "contract_sha256": "92c6e6d2a8a9ce0d05be0aee6d2e791eb0560f615f74fc205ce7774a527e02d4"
     },
     {
       "behavior": "RE.sprite_queue",
@@ -2116,7 +2116,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Selected map geometry and surface admission: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "b9c1781c152e085a307f45e36745dd752a5fb5048a9314a8e10f1f7f2906c39e"
+      "contract_sha256": "170ebcf1b3b01e45688b389475de31fce960650e383f887fa55e31471176f6aa"
     },
     {
       "behavior": "RE.terrain_region",
@@ -20585,43 +20585,43 @@
         "tasks": [
           {
             "behavior": "RE.terrain_map",
-            "mode": "Bounded comparisons passed; wider integration remains",
-            "next_action": "Bounded tranche validation PASS. Next broader work: Validate original caller/allocation/update lifetimes; ordinary object/reference projection remains a separate native policy.",
+            "mode": "Scoped offline implementation complete; broader ownership and live acceptance remain",
+            "next_action": "Review the separately registered broader production/ownership/lifecycle contracts before integration or live replacement.",
             "implementation_boundary": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare decoded fields and failure atomicity; keep special projected objects and full world initialization outside this ordinary-terrain contract.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
               "tests/terrain-map-test.cpp",
-              "tests/terrain-map-reference.cpp"
+              "tests/terrain-map-reference.cpp",
+              "tools/test-rendering-twentieth-three.py"
             ],
             "documents": [
-              "research/runtime/terrain-map-initialization.md"
+              "research/runtime/terrain-map-initialization.md",
+              "research/runtime/rendering-twentieth-three-20261024.md"
             ],
-            "contract_sha256": "b9c1781c152e085a307f45e36745dd752a5fb5048a9314a8e10f1f7f2906c39e",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Original allocation/failure paths and complete live map ownership remain outside the owned model.",
+            "contract_sha256": "170ebcf1b3b01e45688b389475de31fce960650e383f887fa55e31471176f6aa",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Original whole-world production, allocator/failure/update lifecycle, object/entity admission and complete scene/live replacement remain separate from selected owned ordinary geometry.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "prepareTerrainGeometry and deriveTerrainSurfaces implement the selected MAP admission/geometry model. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "2053 synthetic maps/945562 cells and three installed maps/76800 cells match original whole-cell output; native atomic/refusal/projection controls and installed sanitizer comparisons pass.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"images\": 96, \"maps\": 683, \"original\": {\"all_match\": true, \"installed_cells\": 7595200, \"installed_maps\": 683, \"synthetic_cases\": 2048, \"synthetic_cells\": 387962}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "2053 synthetic maps/945562 cells and three installed maps/76800 cells match original whole-cell output; native atomic/refusal/projection controls and installed sanitizer comparisons pass. Six native/sanitized controls and three Release CTests pass; no wider acceptance is asserted.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Original allocation/failure paths and complete live map ownership remain outside the owned model.",
+              "acceptance_summary": "Original whole-world production, allocator/failure/update lifecycle, object/entity admission and complete scene/live replacement remain separate from selected owned ordinary geometry.",
               "evidence": [
                 "ORIGINAL.terrain-map-initialization",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_map-20261019"
+                "HTERR1.RE.terrain_map-20261019",
+                "N20.rendering-native-20261024",
+                "N20.rendering-original-20261024"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate original caller/allocation/update lifetimes; ordinary object/reference projection remains a separate native policy."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Original allocation/failure paths and complete live map ownership remain outside the owned model."
+                  "action": "Original whole-world production, allocator/failure/update lifecycle, object/entity admission and complete scene/live replacement remain separate from selected owned ordinary geometry."
                 }
               ],
               "code_witnesses": [
@@ -20632,23 +20632,83 @@
                 }
               ],
               "source_sha256": {
+                "assets/map.hpp": "f08dd9f7092da782b7a3ae9c9e5cc40c32ed8de791aaf568d81403ec893d4e0a",
+                "assets/terrain_catalog.hpp": "a1b91474346fd9a780fe34282684e63f826707147e628099ae4bb24b6ff50478",
                 "reconstruction/rendering/terrain_map.cpp": "78c846e620a35aac4be2cc5661a1a1894f81c0b6fc086316ab46fb0f5cdf0a1b",
                 "reconstruction/rendering/terrain_map.hpp": "7ef79e510113b029da17eeb1eac60bcdbf5473550a8d23ae850972f67a479d6c",
-                "research/runtime/terrain-map-initialization.md": "c3453f3988040739d161c24d5fe6f0167c2b904445cbdff1e0f531f449d51892",
-                "tests/terrain-map-reference.cpp": "601b05500f744d35196efc2359537bf1af1b20d2989b563285700bbcce9c39af",
-                "tests/terrain-map-test.cpp": "4487e6be1f539735e134e1cd62e7801b40a65c96327fa6bf6e98840bd582717c",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "research/runtime/rendering-twentieth-three-20261024.md": "09a000732cd5f738e268a32d23dabbfefb31b643b2bbf833f967797437d84391",
+                "research/runtime/terrain-map-initialization.md": "2076463289a24c46beb39f356e302a7130b58ae70406c575b27de86be8e4149f",
+                "tests/terrain-map-reference.cpp": "816d1bc539a1dfd9572be827b31036efac0e375bbc7c6d7e56fffee7ab60cefb",
+                "tests/terrain-map-test.cpp": "20e6a6209bd672419e81069ed866572f0b7918f71246d26eb31af01e77d7347d",
+                "tools/decode-cfg.py": "acf3c809fa12e2227ab1b9aad20119491855b39f3becf558d90229861763e27e",
+                "tools/test-rendering-twentieth-three.py": "7318579b62d63b24831e00c245d2d44d87f955f461967a0bff15e701a57224bd",
+                "tools/test-terrain-map.py": "4af6971bc522d55e0d633543a5e12d83377a8795e0c353ddd385bc88a77c6194"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N20.rendering-native-20261024",
+                "N20.rendering-original-20261024"
               ]
             },
             "execution_result": {
               "outcome": "PASS",
-              "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
-              "remaining": "Validate original caller/allocation/update lifetimes; ordinary object/reference projection remains a separate native policy.",
-              "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+              "report": "research/runtime/rendering-twentieth-three-results-20261024/execution-2.json",
+              "remaining": "Original whole-world production, allocator/failure/update lifecycle, object/entity admission and complete scene/live replacement remain separate from selected owned ordinary geometry.",
+              "note": "2053 synthetic maps/945562 cells and three installed maps/76800 cells match original whole-cell output; native atomic/refusal/projection controls and installed sanitizer comparisons pass. No wider integration or replacement promotion."
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "prepareTerrainGeometry and deriveTerrainSurfaces implement the selected MAP admission/geometry model. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"images\": 96, \"maps\": 683, \"original\": {\"all_match\": true, \"installed_cells\": 7595200, \"installed_maps\": 683, \"synthetic_cases\": 2048, \"synthetic_cells\": 387962}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Original allocation/failure paths and complete live map ownership remain outside the owned model.",
+                "evidence": [
+                  "ORIGINAL.terrain-map-initialization",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_map-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate original caller/allocation/update lifetimes; ordinary object/reference projection remains a separate native policy."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Original allocation/failure paths and complete live map ownership remain outside the owned model."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_map.cpp",
+                    "line": 42,
+                    "text": "TerrainGeometry prepareTerrainGeometry(const assets::MapAsset& source,const assets::TerrainCatalog& t){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_map.cpp": "78c846e620a35aac4be2cc5661a1a1894f81c0b6fc086316ab46fb0f5cdf0a1b",
+                  "reconstruction/rendering/terrain_map.hpp": "7ef79e510113b029da17eeb1eac60bcdbf5473550a8d23ae850972f67a479d6c",
+                  "research/runtime/terrain-map-initialization.md": "c3453f3988040739d161c24d5fe6f0167c2b904445cbdff1e0f531f449d51892",
+                  "tests/terrain-map-reference.cpp": "601b05500f744d35196efc2359537bf1af1b20d2989b563285700bbcce9c39af",
+                  "tests/terrain-map-test.cpp": "4487e6be1f539735e134e1cd62e7801b40a65c96327fa6bf6e98840bd582717c",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ],
+            "execution_result_history": [
+              {
+                "outcome": "PASS",
+                "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
+                "remaining": "Validate original caller/allocation/update lifetimes; ordinary object/reference projection remains a separate native policy.",
+                "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_sections",
@@ -21625,110 +21685,176 @@
           },
           {
             "behavior": "RE.palette_preferences",
-            "mode": "Bounded comparisons passed; wider integration remains",
-            "next_action": "Bounded tranche validation PASS. Next broader work: Validate full original profile/locale/file-error chains beyond admitted callbacks and loader-argument observation.",
+            "mode": "Scoped offline implementation complete; broader ownership and live acceptance remain",
+            "next_action": "Review the separately registered broader production/ownership/lifecycle contracts before integration or live replacement.",
             "implementation_boundary": "Selected option fields and strict native parsing; special appended palette effects remain open. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare present/missing/invalid fields and failure behavior; special appended palette effects remain unrecovered.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
-              "tests/terrain-palette-preference-reference.cpp"
+              "tests/terrain-palette-preference-reference.cpp",
+              "tools/test-rendering-twentieth-three.py",
+              "tests/palette-lighting-test.cpp",
+              "tests/palette-lighting-reference.cpp"
             ],
             "documents": [
               "research/runtime/terrain-palette-preferences.md",
-              "research/formats/terrain-palette-preferences.md"
+              "research/formats/terrain-palette-preferences.md",
+              "research/runtime/rendering-twentieth-three-20261024.md"
             ],
-            "contract_sha256": "92e0e5452434a104adaba17e37b086d91ae46195c33c6ee7c1ac960ec27d151d",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Special appended palette-effect semantics remain unresolved and must not be silently treated as implemented.",
+            "contract_sha256": "fd67dce4e5724c5a6028acf616e89754d741a491b20893ce9084bc3626c36b5d",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Malformed original atoi/atof conversion is not equated to strict native parsing. File-loader/installed configuration integration, special appended effects, full scene/allocator ownership and live replacement remain separate.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "palette_lighting.cpp strictly decodes the selected terrain/palette option fields. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "3724 VIDEO admission/loader-dispatch cases across 14 prior unsigned values and 63 GLOBAL_OPTIONS cases match the original; strict native repeated-sign refusals pass with a retained pre-fix counterexample.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"admission_dispatch_fixtures\": 2112, \"frames\": 120, \"native_frames\": 240, \"refusals\": 10, \"successful_fallbacks\": 6}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "3724 VIDEO admission/loader-dispatch cases across 14 prior unsigned values and 63 GLOBAL_OPTIONS cases match the original; strict native repeated-sign refusals pass with a retained pre-fix counterexample. Six native/sanitized controls and three Release CTests pass; no wider acceptance is asserted.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Special appended palette-effect semantics remain unresolved and must not be silently treated as implemented.",
+              "acceptance_summary": "Malformed original atoi/atof conversion is not equated to strict native parsing. File-loader/installed configuration integration, special appended effects, full scene/allocator ownership and live replacement remain separate.",
               "evidence": [
                 "ORIGINAL.terrain-palette-preferences",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.palette_preferences-20261019"
+                "HTERR1.RE.palette_preferences-20261019",
+                "N20.rendering-native-20261024",
+                "N20.rendering-original-20261024"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate full original profile/locale/file-error chains beyond admitted callbacks and loader-argument observation."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Special appended palette-effect semantics remain unresolved and must not be silently treated as implemented."
+                  "action": "Malformed original atoi/atof conversion is not equated to strict native parsing. File-loader/installed configuration integration, special appended effects, full scene/allocator ownership and live replacement remain separate."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "assets/palette_lighting.cpp",
-                  "line": 19,
+                  "line": 22,
                   "text": "PersistenceResult<TerrainLightingFields> decodeTerrainLightingFields(const Config& config){"
                 }
               ],
               "source_sha256": {
-                "assets/palette_lighting.cpp": "de05923d86bd5d76fbca30942d2d5ac9dffa3cc943e27ce0cef22637d9c0b769",
+                "assets/config_loader.cpp": "706851875120533c7a49492eb34ff158314b4d17c8328749766d1a7ea9c1bb6a",
+                "assets/palette_lighting.cpp": "b0441bfd5228cfc4f1a83961e6a0f67eebc01a37bc9f3fe6f3390cd3a29ac7f2",
                 "assets/palette_lighting.hpp": "75bf4bf2fb0a9bcce1995572acf0a67a8033e985f345a605a33aad5ee0890b75",
-                "research/formats/terrain-palette-preferences.md": "18f5b450b2acf87cdfc6f3c31f96c876e51bc7e1179430b479ae79c0bae9b36e",
-                "research/runtime/terrain-palette-preferences.md": "b6062d3648ee245d51a2363ce02a55826fd0102d613eed86303b7f06ef78af07",
-                "tests/terrain-palette-preference-reference.cpp": "b799c0dd2918fd5ddb6948fd94ebb12c81d40349227a65d714ad6086de5e54d7",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "assets/persistence.hpp": "3013cefe3f0cfe931b8f7c3961c66765233f2826fc417d2f48da3574501249b1",
+                "assets/persistence_internal.hpp": "f704e35fdd852b18f370d71a62a9881dc6f41d2e99b8f0cf9aa4c1bc46d76c0f",
+                "reconstruction/rendering/palette_shading.cpp": "2ec39cd975b934d653a03112d2e015ec5415ae1791bb1b7d9934da60b382a4cb",
+                "reconstruction/rendering/palette_shading.hpp": "2a8d79554ab8166146321cf41ac28f67b5053ace1859ea2b1e225764880c66fc",
+                "research/formats/terrain-palette-preferences.md": "d99fa731890a0af2a4c56e0923e555af4e779c704422a30aba41e692f59c23a5",
+                "research/runtime/rendering-twentieth-three-20261024.md": "09a000732cd5f738e268a32d23dabbfefb31b643b2bbf833f967797437d84391",
+                "research/runtime/terrain-palette-preferences.md": "1d5dd8582dbfac6290d6caba2b889235a6d14f4872b384bd14d6465118efb6d6",
+                "tests/palette-lighting-reference.cpp": "ed6a0af3e9f90ddcc31a21846e1c470b5246158b3c687f295c72e706e8c5a654",
+                "tests/palette-lighting-test.cpp": "20891e6c2faf4b18a2af8891fe39fe8308b38d9281eda1e90754f4d006babb45",
+                "tests/terrain-palette-preference-reference.cpp": "9ea29b0fb08076c5f9c799638e8548e81a84565bc85223e8e804e3685a20a2cd",
+                "tools/test-rendering-twentieth-three.py": "7318579b62d63b24831e00c245d2d44d87f955f461967a0bff15e701a57224bd"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N20.rendering-native-20261024",
+                "N20.rendering-original-20261024"
               ]
             },
             "execution_result": {
               "outcome": "PASS",
-              "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
-              "remaining": "Validate full original profile/locale/file-error chains beyond admitted callbacks and loader-argument observation.",
-              "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+              "report": "research/runtime/rendering-twentieth-three-results-20261024/execution-2.json",
+              "remaining": "Malformed original atoi/atof conversion is not equated to strict native parsing. File-loader/installed configuration integration, special appended effects, full scene/allocator ownership and live replacement remain separate.",
+              "note": "3724 VIDEO admission/loader-dispatch cases across 14 prior unsigned values and 63 GLOBAL_OPTIONS cases match the original; strict native repeated-sign refusals pass with a retained pre-fix counterexample. No wider integration or replacement promotion."
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "palette_lighting.cpp strictly decodes the selected terrain/palette option fields. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"admission_dispatch_fixtures\": 2112, \"frames\": 120, \"native_frames\": 240, \"refusals\": 10, \"successful_fallbacks\": 6}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Special appended palette-effect semantics remain unresolved and must not be silently treated as implemented.",
+                "evidence": [
+                  "ORIGINAL.terrain-palette-preferences",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.palette_preferences-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate full original profile/locale/file-error chains beyond admitted callbacks and loader-argument observation."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Special appended palette-effect semantics remain unresolved and must not be silently treated as implemented."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "assets/palette_lighting.cpp",
+                    "line": 19,
+                    "text": "PersistenceResult<TerrainLightingFields> decodeTerrainLightingFields(const Config& config){"
+                  }
+                ],
+                "source_sha256": {
+                  "assets/palette_lighting.cpp": "de05923d86bd5d76fbca30942d2d5ac9dffa3cc943e27ce0cef22637d9c0b769",
+                  "assets/palette_lighting.hpp": "75bf4bf2fb0a9bcce1995572acf0a67a8033e985f345a605a33aad5ee0890b75",
+                  "research/formats/terrain-palette-preferences.md": "18f5b450b2acf87cdfc6f3c31f96c876e51bc7e1179430b479ae79c0bae9b36e",
+                  "research/runtime/terrain-palette-preferences.md": "b6062d3648ee245d51a2363ce02a55826fd0102d613eed86303b7f06ef78af07",
+                  "tests/terrain-palette-preference-reference.cpp": "b799c0dd2918fd5ddb6948fd94ebb12c81d40349227a65d714ad6086de5e54d7",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ],
+            "execution_result_history": [
+              {
+                "outcome": "PASS",
+                "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
+                "remaining": "Validate full original profile/locale/file-error chains beyond admitted callbacks and loader-argument observation.",
+                "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
+              }
+            ]
           },
           {
             "behavior": "RE.palette_shading",
-            "mode": "Bounded comparisons passed; wider integration remains",
-            "next_action": "Bounded tranche validation PASS. Next broader work: Recover required appended effect-chain builders separately; mode-zero tables and selected draw shades now match.",
+            "mode": "Scoped offline implementation complete; broader ownership and live acceptance remain",
+            "next_action": "Review the separately registered broader production/ownership/lifecycle contracts before integration or live replacement.",
             "implementation_boundary": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Candidate addresses absent from discovered functions remain mapping debt: 0x57e1b0.",
             "validation": "Compare every declared palette WORD and original numeric boundary; retain the unmapped candidate-address finding and exclude untested parameter domains.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
               "tests/palette-shading-test.cpp",
-              "tests/palette-shading-reference.cpp"
+              "tests/palette-shading-reference.cpp",
+              "tools/test-rendering-twentieth-three.py",
+              "tests/rendering-boundary-reference.cpp"
             ],
             "documents": [
-              "research/runtime/terrain-palette-shading.md"
+              "research/runtime/terrain-palette-shading.md",
+              "research/runtime/rendering-twentieth-three-20261024.md"
             ],
-            "contract_sha256": "1dc1b77e9a421fdbfa96dbd017d68874be85701096a81116a716a3004609dfcf",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Special palette modes and the unresolved candidate anchor at 0x57e1b0 remain original-recovery work.",
+            "contract_sha256": "92c6e6d2a8a9ce0d05be0aee6d2e791eb0560f615f74fc205ce7774a527e02d4",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Broader nondefault floating-point and special-effect/ordinal dispatch, original unsafe allocator/failure lifetimes, complete scene integration/live replacement and unresolved candidate 0x57e1b0 remain separate. The mode0..9 aggregate remains partial.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "buildShadedPalette implements the selected mode-zero palette arithmetic. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "510 RGB565/RGB555 palettes at all counts 2..256 match 16776192 original words; 252 odd-count allocation defects remain original-only. Native selector and guard tests pass in normal and sanitizer builds.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"frames\": 200, \"native_frames\": 400, \"palette_counts\": 8, \"refusals\": 6}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "510 RGB565/RGB555 palettes at all counts 2..256 match 16776192 original words; 252 odd-count allocation defects remain original-only. Native selector and guard tests pass in normal and sanitizer builds. Six native/sanitized controls and three Release CTests pass; no wider acceptance is asserted.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Special palette modes and the unresolved candidate anchor at 0x57e1b0 remain original-recovery work.",
+              "acceptance_summary": "Broader nondefault floating-point and special-effect/ordinal dispatch, original unsafe allocator/failure lifetimes, complete scene integration/live replacement and unresolved candidate 0x57e1b0 remain separate. The mode0..9 aggregate remains partial.",
               "evidence": [
                 "ORIGINAL.terrain-palette-shading",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.palette_shading-20261019"
+                "HTERR1.RE.palette_shading-20261019",
+                "N20.rendering-native-20261024",
+                "N20.rendering-original-20261024"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Recover required appended effect-chain builders separately; mode-zero tables and selected draw shades now match."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Special palette modes and the unresolved candidate anchor at 0x57e1b0 remain original-recovery work."
+                  "action": "Broader nondefault floating-point and special-effect/ordinal dispatch, original unsafe allocator/failure lifetimes, complete scene integration/live replacement and unresolved candidate 0x57e1b0 remain separate. The mode0..9 aggregate remains partial."
                 }
               ],
               "code_witnesses": [
@@ -21739,23 +21865,83 @@
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/palette_shading.cpp": "080dd815379d60096694f0e5d90379244a5b98dbfe292712627ff9562da378ad",
-                "reconstruction/rendering/palette_shading.hpp": "bc7e54a5bf7881feb73d6dcfe5364cde7eb31fe5bf4d197b60c98dffde258866",
-                "research/runtime/terrain-palette-shading.md": "5173b72e8ab7ca4189537597f366724a40d7924f3fc25521c93ea41239ed7c60",
+                "reconstruction/rendering/palette_shading.cpp": "2ec39cd975b934d653a03112d2e015ec5415ae1791bb1b7d9934da60b382a4cb",
+                "reconstruction/rendering/palette_shading.hpp": "2a8d79554ab8166146321cf41ac28f67b5053ace1859ea2b1e225764880c66fc",
+                "reconstruction/rendering/terrain_camera.cpp": "edb2e1126ab0a0d65157282233621a47ceb1a9e86dcb619dd109683c79279e75",
+                "reconstruction/rendering/terrain_camera.hpp": "1c1cf5a63b8db83468abde4a1f93be3beb44db8abb3022a802b5262889bda444",
+                "research/runtime/rendering-twentieth-three-20261024.md": "09a000732cd5f738e268a32d23dabbfefb31b643b2bbf833f967797437d84391",
+                "research/runtime/terrain-palette-shading.md": "3cdf75c91c85641fab68f94e0e014bf2326ce75c4052dd5eef3956eaa7caec2f",
                 "tests/palette-shading-reference.cpp": "640d6510b537114bf3bd3d1125e4b28304a03a10d4f8b0d9fba10f14d36e4286",
-                "tests/palette-shading-test.cpp": "5e1a43154d1714973adb84da54873b40430e757285ade24706d33fdf9c8a7ce8",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/palette-shading-test.cpp": "001f11df48e412aa3e1ac26c64826268b62d7b0aa993ec4846b1f88e52a1919e",
+                "tests/rendering-boundary-reference.cpp": "63515c04db235b9595022116fb7a5ab83213c858dede820278e2f5a27d1a4476",
+                "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+                "tools/test-rendering-twentieth-three.py": "7318579b62d63b24831e00c245d2d44d87f955f461967a0bff15e701a57224bd"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N20.rendering-native-20261024",
+                "N20.rendering-original-20261024"
               ]
             },
             "execution_result": {
               "outcome": "PASS",
-              "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
-              "remaining": "Recover required appended effect-chain builders separately; mode-zero tables and selected draw shades now match.",
-              "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+              "report": "research/runtime/rendering-twentieth-three-results-20261024/execution-2.json",
+              "remaining": "Broader nondefault floating-point and special-effect/ordinal dispatch, original unsafe allocator/failure lifetimes, complete scene integration/live replacement and unresolved candidate 0x57e1b0 remain separate. The mode0..9 aggregate remains partial.",
+              "note": "510 RGB565/RGB555 palettes at all counts 2..256 match 16776192 original words; 252 odd-count allocation defects remain original-only. Native selector and guard tests pass in normal and sanitizer builds. No wider integration or replacement promotion."
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "buildShadedPalette implements the selected mode-zero palette arithmetic. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"frames\": 200, \"native_frames\": 400, \"palette_counts\": 8, \"refusals\": 6}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Special palette modes and the unresolved candidate anchor at 0x57e1b0 remain original-recovery work.",
+                "evidence": [
+                  "ORIGINAL.terrain-palette-shading",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.palette_shading-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Recover required appended effect-chain builders separately; mode-zero tables and selected draw shades now match."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Special palette modes and the unresolved candidate anchor at 0x57e1b0 remain original-recovery work."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/palette_shading.cpp",
+                    "line": 30,
+                    "text": "ShadedPalette buildShadedPalette(const PaletteRgb& rgb,PaletteShadingConfig c,bool rgb555){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/palette_shading.cpp": "080dd815379d60096694f0e5d90379244a5b98dbfe292712627ff9562da378ad",
+                  "reconstruction/rendering/palette_shading.hpp": "bc7e54a5bf7881feb73d6dcfe5364cde7eb31fe5bf4d197b60c98dffde258866",
+                  "research/runtime/terrain-palette-shading.md": "5173b72e8ab7ca4189537597f366724a40d7924f3fc25521c93ea41239ed7c60",
+                  "tests/palette-shading-reference.cpp": "640d6510b537114bf3bd3d1125e4b28304a03a10d4f8b0d9fba10f14d36e4286",
+                  "tests/palette-shading-test.cpp": "5e1a43154d1714973adb84da54873b40430e757285ade24706d33fdf9c8a7ce8",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ],
+            "execution_result_history": [
+              {
+                "outcome": "PASS",
+                "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
+                "remaining": "Recover required appended effect-chain builders separately; mode-zero tables and selected draw shades now match.",
+                "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_lighting",

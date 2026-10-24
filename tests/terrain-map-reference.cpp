@@ -77,9 +77,18 @@ int main(int argc,char** argv)try{
   syntheticCells+=compare(m,t);
  }
 #endif
+#ifndef MNM_NATIVE_ONLY
+ // Fixed ownership table limits and degenerate toroidal map axes.
+ for(const auto shape:std::array<std::array<unsigned,3>,5>{{{{1,1,32}},{{128,1,2}},{{1,128,2}},{{128,128,2}},{{128,128,32}}}}){
+  mnm::assets::TerrainCatalog t;t.records.resize(16);for(auto& r:t.records)r[0xa8]=rng()%256;
+  mnm::assets::MapAsset m;m.width=shape[0];m.height=shape[1];m.layers=shape[2];m.cells.resize(m.width*m.height*m.layers);
+  for(auto& c:m.cells){c.definition=rng()%16;for(auto& ref:c.references)ref=(rng()%5)?0xffff:rng()%100;c.flags8=rng()%65536;c.flags10=rng()%65536;}
+  syntheticCells+=compare(m,t);
+ }
+#endif
  for(int i=2;i<argc;i+=4){auto t=catalog(read(argv[i]));auto m=decoded(read(argv[i+1]));const auto base=decoded(read(argv[i+2]));const auto expected=serialized(decoded(read(argv[i+3])));
   const auto geometry=mnm::reconstruction::prepareTerrainGeometry(m,t);if(serialized(geometry.map)!=expected)throw std::runtime_error("Prepared geometry differs from independent bytes");
   installedCells+=compare(base,t,&expected);
  }
- std::cout<<"{\"synthetic_cases\":"<<(syntheticCells?2048:0)<<",\"synthetic_cells\":"<<syntheticCells<<",\"installed_maps\":"<<(argc-2)/4<<",\"installed_cells\":"<<installedCells<<",\"all_match\":true}\n";
+ std::cout<<"{\"synthetic_cases\":"<<(syntheticCells?2053:0)<<",\"synthetic_cells\":"<<syntheticCells<<",\"installed_maps\":"<<(argc-2)/4<<",\"installed_cells\":"<<installedCells<<",\"all_match\":true}\n";
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

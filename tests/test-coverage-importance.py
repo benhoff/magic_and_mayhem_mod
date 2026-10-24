@@ -87,7 +87,7 @@ class ImportanceTest(unittest.TestCase):
         self.assertGreaterEqual(len(result['entries']), 345)
         self.assertEqual(result['unrated'], [
             'NP.alternate-canvas-dispatch-admission', 'NP.graphics-session-provider-retirement',
-            'NP.protected-native-store-service', 'NP.surface-alias-lease-lifecycle',
+            'NP.palette-option-strict-parsing', 'NP.protected-native-store-service', 'NP.surface-alias-lease-lifecycle',
             'RS.alternate-canvas-dispatch-composition', 'RS.screen-tick-control-flow',
             'RS.windowed-padded-presentation-route'])
         behaviors = {b['id']: b for b in register['behaviors']}
@@ -96,7 +96,7 @@ class ImportanceTest(unittest.TestCase):
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
         # Selected terrain closeouts retain comparison and acceptance independently.
-        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 3: 1, 4: 22, 5: 4})
+        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 3: 1, 4: 19, 5: 4})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -461,7 +461,8 @@ class TrancheTest(unittest.TestCase):
             if e['decision'] == 'scoped_implementation_complete'}
         completed.update({'NR.directdraw-public-native-menu', 'NR.directdraw-native-opengl-launch',
                           'NR.storage-session-corpus'})  # bounded implementations inbf170af0
-        completed.update({'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission',
+        completed.update({'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading',
+                          'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission',
                           'AN.direction', 'RE.sprite_queue', 'RE.sprite_visibility',
                           'NR.public-resident-world', 'NR.world-continuous-source',
                           'NR.world-continuous-normal-performance'})
@@ -550,13 +551,13 @@ class TrancheTest(unittest.TestCase):
         self.assertTrue(all(statuses[t['behavior']]['integration'] == 'none'
                             and statuses[t['behavior']]['replacement'] == 'none'
                             and statuses[t['behavior']]['implementation'] ==
-                            ('scoped' if t['behavior'] in {'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission'} else 'partial')
+                            ('scoped' if t['behavior'] in {'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission', 'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading'} else 'partial')
                             for t in tranche['tasks']))
         for task in tranche['tasks']:
-            if task['behavior'] in {'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission'}:
+            if task['behavior'] in {'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission', 'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading'}:
                 self.assertEqual(task['review_state'], 'current')
                 self.assertEqual(task['work_review']['validation_state'], 'recorded')
-                self.assertIn('N19.terrain-original-20261024', task['work_review']['validation_evidence'])
+                self.assertIn(('N20.rendering-original-20261024' if task['behavior'] in {'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading'} else 'N19.terrain-original-20261024'), task['work_review']['validation_evidence'])
                 self.assertTrue(task['work_review_history'])
         self.assertEqual(self.register, before)
 
@@ -632,14 +633,16 @@ class TrancheTest(unittest.TestCase):
             c = copy.deepcopy(self.catalog); r = copy.deepcopy(self.register)
             task = c['high_tranche_plan']['tranches'][0]['tasks'][0]
             bid = task['behavior']; b = next(b for b in r['behaviors'] if b['id'] == bid)
+            before_status = b['status']['implementation']
+            changed_status = 'partial' if before_status == 'scoped' else 'scoped'
             if case == 'scope': b['scope'] += ' changed scope'
-            if case == 'status': b['status']['implementation'] = 'scoped'
+            if case == 'status': b['status']['implementation'] = changed_status
             if case == 'weight': next(e for e in c['entries'] if e['behavior'] == bid)['weight'] = 3
             if case == 'source': task['work_review']['source_sha256'][next(iter(task['work_review']['source_sha256']))] = '0' * 64
             result = importance_view(c, r, self.tracks)['high_tranche_plan']['tranches'][0]['tasks'][0]
             with self.subTest(case=case):
                 self.assertEqual(result['review_state'], 'needs_review')
-                self.assertEqual(b['status']['implementation'], 'scoped' if case == 'status' else 'partial')
+                self.assertEqual(b['status']['implementation'], changed_status if case == 'status' else before_status)
 
     def test_absent_original_model_requires_a_real_research_witness(self):
         for case in ['witness', 'fake_code', 'missing_gap', 'unlinked_research']:
