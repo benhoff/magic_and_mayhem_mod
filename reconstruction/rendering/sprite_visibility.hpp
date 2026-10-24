@@ -30,9 +30,11 @@ public:
     // Owned seed for fixtures; validates exact recovered allocation size.
     void seed(std::vector<std::uint8_t> bytes);
 private:
+    friend void applySpriteVisibility(std::vector<SpriteVisibilityEntry>&,SpriteVisibilityGrid&,std::vector<VisibilityOwner>&);
     bool expanded_;std::vector<std::uint8_t> data_;
 };
 // Mutates draw kinds/owner flags. Original deliberately skips queue entry zero.
+// Native admission validates visited footprints before mutating any owned state.
 void applySpriteVisibility(std::vector<SpriteVisibilityEntry>& entries,SpriteVisibilityGrid& grid,
     std::vector<VisibilityOwner>& owners);
 }

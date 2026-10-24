@@ -82,7 +82,7 @@ int main(int argc,char** argv)try{
             const auto actual=reinterpret_cast<Test>(0x5013c0)(&q,f.data(),entry.x,entry.y,kind);
             require(actual==native.testAndCover(entry) && grid==native.data());++helpers;
         }
-        for(unsigned n=0;n<512;++n){
+        for(unsigned n=0;n<1536;++n){
             std::array<Bytes,3> f{frame(rng,4,n%3),frame(rng,4,n%3),frame(rng,4,n%3)};
             // All roles share the same mask origin so overlap probes all flags.
             for(auto& b:f){b[42]=b[43]=0;}
@@ -90,10 +90,11 @@ int main(int argc,char** argv)try{
             put(header,12,3);put(descriptor,0,reinterpret_cast<std::uintptr_t>(header.data()));
             put(descriptor,8,reinterpret_cast<std::uintptr_t>(offsets.data()));put(descriptor,12,reinterpret_cast<std::uintptr_t>(f[0].data()));
             for(unsigned role=0;role<3;++role)put(offsets,(role+1)*4,reinterpret_cast<std::uintptr_t>(f[role].data())-reinterpret_cast<std::uintptr_t>(f[0].data()));
-            put(definitions,0x84,1);put(definitions,0xd0,2);put(definitions,0xe0,3);
+            const unsigned first=n<512?2:1,second=n<1024?3:1;
+            put(definitions,0x84,1);put(definitions,0xd0,first);put(definitions,0xe0,second);
             global(0x68995d,reinterpret_cast<std::uintptr_t>(descriptor.data()));global(0x689961,0);global(0x65660c,reinterpret_cast<std::uintptr_t>(definitions.data()));
             const auto flags8=std::uint16_t(rng()),flags10=std::uint16_t(rng());std::memcpy(owner.data()+8,&flags8,2);std::memcpy(owner.data()+10,&flags10,2);
-            std::vector<VisibilityOwner> owners{{1,2,3,flags8,flags10}};
+            std::vector<VisibilityOwner> owners{{1,first,second,flags8,flags10}};
             std::vector<std::array<std::uint32_t,9>> records(n%17);std::vector<SpriteVisibilityEntry> entries;
             Bytes grid(SpriteVisibilityGrid::bytes,n%2?255:0);SpriteVisibilityGrid native(expanded);native.seed(grid);
             for(unsigned i=0;i<records.size();++i){const auto role=i%3;auto& r=records[i];r[1]=reinterpret_cast<std::uintptr_t>(f[role].data());r[2]=100+(n%4==0?i:0);r[3]=100;r[5]=i%4?reinterpret_cast<std::uintptr_t>(owner.data()):0;r[6]=std::uint32_t(kinds[n%11]);

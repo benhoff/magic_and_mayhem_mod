@@ -175,7 +175,8 @@ def tranche_view(plan, register, rated, root=ROOT, *, priority=5, size=11, count
             if bid in seen or bid not in rated:
                 raise ValueError('Duplicate, unknown or unrated tranche behavior: ' + bid)
             seen.add(bid); b = by_id[bid]; rating = rated[bid]
-            reviewed_statuses = {'partial', 'scoped'} if priority in {2, 5} else {'partial', 'none'}
+            # Retain explicitly reviewed completed tasks in high-priority plans too.
+            reviewed_statuses = {'partial', 'scoped'} if priority in {2, 5} else {'partial', 'none', 'scoped'}
             if (task.get('reviewed_implementation') not in reviewed_statuses or
                     not all(task.get(k, '').strip() for k in (
                         'mode', 'next_action', 'implementation_boundary', 'validation',

@@ -37,8 +37,24 @@
       "behavior": "AN.direction",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Forward phase-preserving sequence switch: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "b1a5453cbd47d779e4fbea9fbc45f92f4b2c5c4ac2c8aa66a74e69d00b82cb9a"
+      "reason": "Forward phase-preserving sequence switch: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists. N18 reviews the unchanged bounded algorithm and expanded source/test links with fresh offline execution; whole-world and live acceptance remain independent. N18 reviews the unchanged bounded algorithm and expanded source/test links with fresh offline execution; whole-world and live acceptance remain independent.",
+      "contract_sha256": "0811abdd67aafcbe151c8c07bb6f05f9ef061e36ecc24b7646031f64dca4a7c7",
+      "rating_review_history": [
+        {
+          "behavior": "AN.direction",
+          "weight": 4,
+          "work_type": "capability",
+          "reason": "Forward phase-preserving sequence switch: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
+          "contract_sha256": "b1a5453cbd47d779e4fbea9fbc45f92f4b2c5c4ac2c8aa66a74e69d00b82cb9a"
+        },
+        {
+          "behavior": "AN.direction",
+          "weight": 4,
+          "work_type": "capability",
+          "reason": "Forward phase-preserving sequence switch: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists. N18 reviews the unchanged bounded algorithm and expanded source/test links with fresh offline execution; whole-world and live acceptance remain independent.",
+          "contract_sha256": "0811abdd67aafcbe151c8c07bb6f05f9ef061e36ecc24b7646031f64dca4a7c7"
+        }
+      ]
     },
     {
       "behavior": "AN.forward",
@@ -2004,15 +2020,47 @@
       "behavior": "RE.sprite_queue",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Depth keys and exact unstable sorting: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "a3d67af4476fc13aea7f91f9276dd702e08163ab7194fca629f7d8a3e3704016"
+      "reason": "Depth keys and exact unstable sorting: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists. N18 reviews the unchanged bounded algorithm and expanded source/test links with fresh offline execution; whole-world and live acceptance remain independent. N18 reviews the unchanged bounded algorithm and expanded source/test links with fresh offline execution; whole-world and live acceptance remain independent.",
+      "contract_sha256": "e0dbe05caddc9c0b284348b8d787f185e8c27810e02e9cdaf7c4fa82322859b3",
+      "rating_review_history": [
+        {
+          "behavior": "RE.sprite_queue",
+          "weight": 4,
+          "work_type": "capability",
+          "reason": "Depth keys and exact unstable sorting: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
+          "contract_sha256": "a3d67af4476fc13aea7f91f9276dd702e08163ab7194fca629f7d8a3e3704016"
+        },
+        {
+          "behavior": "RE.sprite_queue",
+          "weight": 4,
+          "work_type": "capability",
+          "reason": "Depth keys and exact unstable sorting: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists. N18 reviews the unchanged bounded algorithm and expanded source/test links with fresh offline execution; whole-world and live acceptance remain independent.",
+          "contract_sha256": "e0dbe05caddc9c0b284348b8d787f185e8c27810e02e9cdaf7c4fa82322859b3"
+        }
+      ]
     },
     {
       "behavior": "RE.sprite_visibility",
       "weight": 4,
       "work_type": "capability",
-      "reason": "Coverage mask and reverse traversal: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "3e49a25a7c6b94119eff4a1217f0400e6c02fa84df315ad8e7161bd085276ed0"
+      "reason": "Coverage mask and reverse traversal: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists. N18 reviews the unchanged bounded algorithm and expanded source/test links with fresh offline execution; whole-world and live acceptance remain independent. N18 reviews the unchanged bounded algorithm and expanded source/test links with fresh offline execution; whole-world and live acceptance remain independent.",
+      "contract_sha256": "3022c378afcf74984a3a4097710755351fccfb2d2af3ee8b48164fd7676866b4",
+      "rating_review_history": [
+        {
+          "behavior": "RE.sprite_visibility",
+          "weight": 4,
+          "work_type": "capability",
+          "reason": "Coverage mask and reverse traversal: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
+          "contract_sha256": "3e49a25a7c6b94119eff4a1217f0400e6c02fa84df315ad8e7161bd085276ed0"
+        },
+        {
+          "behavior": "RE.sprite_visibility",
+          "weight": 4,
+          "work_type": "capability",
+          "reason": "Coverage mask and reverse traversal: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists. N18 reviews the unchanged bounded algorithm and expanded source/test links with fresh offline execution; whole-world and live acceptance remain independent.",
+          "contract_sha256": "3022c378afcf74984a3a4097710755351fccfb2d2af3ee8b48164fd7676866b4"
+        }
+      ]
     },
     {
       "behavior": "RE.terrain_camera",
@@ -3388,6 +3436,13 @@
       "work_type": "capability",
       "reason": "Remaining emitter families own visible particles, child manager transfer and colour planes. This scoped composition has original and headless proof; real resource loading, upstream world production and live acceptance remain separate.",
       "contract_sha256": "b8f7aa837425d388f28eee9817c4da89764caa06f36ed7c57b7caec728b96a2e"
+    },
+    {
+      "behavior": "NP.sprite-visibility-atomic-admission",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "Native malformed queue admission preserves owned visibility state before the pass; bounded assurance separate from original world ownership and live rendering.",
+      "contract_sha256": "0c20059f54fa647f63d7e27c75e4398af5716c9ac4640d72ca44384982ddd04d"
     }
   ],
   "tranche_plan": {
@@ -22837,8 +22892,8 @@
           },
           {
             "behavior": "AN.direction",
-            "mode": "Implemented within bounded scope; renew validation",
-            "next_action": "Phase-preserving switching is supplied. The located native facing provider has its own review; full original targeting/attachment/lifetime and live integration remain separate.",
+            "mode": "Implemented within bounded scope; current execution recorded",
+            "next_action": "Retain wider world/live/performance acceptance separately.",
             "implementation_boundary": "Selected forward phase-preserving switch; original world facing/target selection remains static research and is not implemented here.",
             "validation": "Compare record positions and subsequent ticks. Native world-facing arithmetic is already located under AN.world-facing; do not schedule it as an absent sequence-switch implementation.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
@@ -22851,56 +22906,67 @@
               "research/runtime/animation-direction-selection.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "b1a5453cbd47d779e4fbea9fbc45f92f4b2c5c4ac2c8aa66a74e69d00b82cb9a",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Phase-preserving switching is supplied. The located native facing provider has its own review; full original targeting/attachment/lifetime and live integration remain separate.",
+            "contract_sha256": "0811abdd67aafcbe151c8c07bb6f05f9ef061e36ecc24b7646031f64dca4a7c7",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
             "work_review": {
               "implementation": "implemented_within_scope",
               "current_state": "NoCdAnimationPlayer::switchSequence relocates record ordinals while preserving phase.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Full finite installed sweep passes2140 traces and70620 states across118 ANI assets plus explicit controls; the512-case controller comparison also passes.",
+              "validation_state": "recorded",
+              "validation_summary": "N18 current native/sanitized controls and unchanged-original comparison pass the complete declared bounded corpus; exact counts retained in the source-bound execution.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Phase-preserving switching is supplied. The located native facing provider has its own review; full original targeting/attachment/lifetime and live integration remain separate.",
+              "acceptance_summary": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
               "evidence": [
                 "ORIGINAL.animation-direction-selection",
                 "HIGH01.rendering-work-review-20261019",
                 "HIGH03.animation-controller-20261020",
-                "HIGH03.phase-installed-20261020"
+                "HIGH03.phase-installed-20261020",
+                "N18.three-rendering-native-20261023",
+                "N18.three-rendering-original-20261023",
+                "N18.three-rendering-native-final-20261023",
+                "N18.three-rendering-original-final-20261023"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
                   "kind": "scope_review",
-                  "action": "Phase-preserving switching is supplied. The located native facing provider has its own review; full original targeting/attachment/lifetime and live integration remain separate."
+                  "action": "Keep whole-world production, allocation/targeting and live/performance acceptance independent of this completed offline algorithm."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/animation/no_cd.cpp",
-                  "line": 22,
+                  "line": 24,
                   "text": "void NoCdAnimationPlayer::switchSequence(std::vector<assets::AnimationRecord> sequence){"
                 }
               ],
               "source_sha256": {
-                "reconstruction/animation/no_cd.cpp": "be3dd04d713192baf728f437ebb507c0dba17797a35bb0de643d8e838d1d8d4e",
-                "reconstruction/animation/no_cd.hpp": "312a0e1ea2dfd4fb1de57ba7e57aa27122aeaccf7ce35311d58ae3682a9edb12",
+                "reconstruction/animation/no_cd.cpp": "e979f2b001b1ba4c03f33596a38e900934ee4c30ebfc4d61d70f962f31a54909",
+                "reconstruction/animation/no_cd.hpp": "127fe1fea719f3881bda4334bdcd6034c942cd74dc4a5b647af8f96a991647c3",
                 "research/runtime/animation-direction-selection.md": "b51eaca69e6ebb10fcbf5abd6eef2ab46923c6c762a3460877b12e6f35519b44",
-                "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                "research/runtime/rendering-eighteenth-three-20261023.md": "a329a52823ff1ed5fd7f1d8c0111a9159180885fbb472e5ae58a92f4fcdac5fe",
+                "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
                 "tests/animation-binary-reference.cpp": "6c8fc0ff4f13d3caeeafa1183788740864f04b57682680fcda3f562b801705ae",
                 "tests/animation-controller-reference.cpp": "669dc70b5552bb321702910ac849bb04fea61dbaab9e6fe372a08472b2aab310",
-                "tests/animation-model-test.cpp": "95d4bb743930589493b7395f5b8fbd0ab5374709701e1bf686e7eb56ffe5244c",
+                "tests/animation-model-test.cpp": "824a2ed4910b9e864c329560f5ccb51d1ca7d3b5553e76708c1941aac7d31c8c",
                 "tools/test-animation-controller.py": "8858d606a173474918796e34535f5b0429603c865ab9bbc8c78b809c613d34e3",
-                "tools/test-animation-switch.py": "7a409cc42f2bb6b485d2e0410228bb57ed3153d12d1422d4819ec557fb7f7971",
-                "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
-                "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658"
+                "tools/test-animation-switch.py": "18720dbc10db8335d523f45d8163c566431fb97d28b87c9b68c49b3cdb0dadd7",
+                "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658",
+                "tools/test-rendering-eighteenth-three.py": "38b09ee4641e0a807fc6c637926b0f6d9ce9c2d80c126ba4290e9a4e680d4ccb"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "validation_evidence": [
+                "N18.three-rendering-native-final-20261023",
+                "N18.three-rendering-original-final-20261023"
+              ],
+              "review_reason": "Fresh exact bounded native/original execution and transactional visibility admission review. Preserve previous work review/source hashes unchanged in history."
             },
             "work_review_history": [
               {
@@ -22989,6 +23055,170 @@
                   "tests/animation-model-test.cpp": "95d4bb743930589493b7395f5b8fbd0ab5374709701e1bf686e7eb56ffe5244c",
                   "tools/test-animation-switch.py": "a9ae6888f3294e63eb1a9686094c58cd05488be907adaab615f1a1fd2fc536e0"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "NoCdAnimationPlayer::switchSequence relocates record ordinals while preserving phase.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Full finite installed sweep passes2140 traces and70620 states across118 ANI assets plus explicit controls; the512-case controller comparison also passes.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Phase-preserving switching is supplied. The located native facing provider has its own review; full original targeting/attachment/lifetime and live integration remain separate.",
+                "evidence": [
+                  "ORIGINAL.animation-direction-selection",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.animation-controller-20261020",
+                  "HIGH03.phase-installed-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Phase-preserving switching is supplied. The located native facing provider has its own review; full original targeting/attachment/lifetime and live integration remain separate."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/animation/no_cd.cpp",
+                    "line": 22,
+                    "text": "void NoCdAnimationPlayer::switchSequence(std::vector<assets::AnimationRecord> sequence){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/animation/no_cd.cpp": "be3dd04d713192baf728f437ebb507c0dba17797a35bb0de643d8e838d1d8d4e",
+                  "reconstruction/animation/no_cd.hpp": "312a0e1ea2dfd4fb1de57ba7e57aa27122aeaccf7ce35311d58ae3682a9edb12",
+                  "research/runtime/animation-direction-selection.md": "b51eaca69e6ebb10fcbf5abd6eef2ab46923c6c762a3460877b12e6f35519b44",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/animation-binary-reference.cpp": "6c8fc0ff4f13d3caeeafa1183788740864f04b57682680fcda3f562b801705ae",
+                  "tests/animation-controller-reference.cpp": "669dc70b5552bb321702910ac849bb04fea61dbaab9e6fe372a08472b2aab310",
+                  "tests/animation-model-test.cpp": "95d4bb743930589493b7395f5b8fbd0ab5374709701e1bf686e7eb56ffe5244c",
+                  "tools/test-animation-controller.py": "8858d606a173474918796e34535f5b0429603c865ab9bbc8c78b809c613d34e3",
+                  "tools/test-animation-switch.py": "7a409cc42f2bb6b485d2e0410228bb57ed3153d12d1422d4819ec557fb7f7971",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                  "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "NoCdAnimationPlayer::switchSequence relocates record ordinals while preserving phase.",
+                "implementation_gaps": [],
+                "validation_state": "recorded",
+                "validation_summary": "N18 current native/sanitized controls and unchanged-original comparison pass the complete declared bounded corpus; exact counts retained in the source-bound execution.",
+                "acceptance": "pending",
+                "acceptance_summary": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
+                "evidence": [
+                  "ORIGINAL.animation-direction-selection",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.animation-controller-20261020",
+                  "HIGH03.phase-installed-20261020",
+                  "N18.three-rendering-native-20261023",
+                  "N18.three-rendering-original-20261023"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Keep whole-world production, allocation/targeting and live/performance acceptance independent of this completed offline algorithm."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/animation/no_cd.cpp",
+                    "line": 24,
+                    "text": "void NoCdAnimationPlayer::switchSequence(std::vector<assets::AnimationRecord> sequence){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/animation/no_cd.cpp": "e979f2b001b1ba4c03f33596a38e900934ee4c30ebfc4d61d70f962f31a54909",
+                  "reconstruction/animation/no_cd.hpp": "127fe1fea719f3881bda4334bdcd6034c942cd74dc4a5b647af8f96a991647c3",
+                  "research/runtime/animation-direction-selection.md": "b51eaca69e6ebb10fcbf5abd6eef2ab46923c6c762a3460877b12e6f35519b44",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                  "research/runtime/rendering-eighteenth-three-20261023.md": "cac0262e070b5287f80ab201f497a6e6657d052d478fc4b1de33fb9f73f1327e",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
+                  "tests/animation-binary-reference.cpp": "6c8fc0ff4f13d3caeeafa1183788740864f04b57682680fcda3f562b801705ae",
+                  "tests/animation-controller-reference.cpp": "669dc70b5552bb321702910ac849bb04fea61dbaab9e6fe372a08472b2aab310",
+                  "tests/animation-model-test.cpp": "824a2ed4910b9e864c329560f5ccb51d1ca7d3b5553e76708c1941aac7d31c8c",
+                  "tools/test-animation-controller.py": "8858d606a173474918796e34535f5b0429603c865ab9bbc8c78b809c613d34e3",
+                  "tools/test-animation-switch.py": "18720dbc10db8335d523f45d8163c566431fb97d28b87c9b68c49b3cdb0dadd7",
+                  "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658",
+                  "tools/test-rendering-eighteenth-three.py": "38b09ee4641e0a807fc6c637926b0f6d9ce9c2d80c126ba4290e9a4e680d4ccb"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+                "validation_evidence": [
+                  "N18.three-rendering-native-20261023",
+                  "N18.three-rendering-original-20261023"
+                ],
+                "review_reason": "Fresh exact bounded native/original execution and transactional visibility admission review. Preserve previous work review/source hashes unchanged in history."
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "NoCdAnimationPlayer::switchSequence relocates record ordinals while preserving phase.",
+                "implementation_gaps": [],
+                "validation_state": "recorded",
+                "validation_summary": "N18 current native/sanitized controls and unchanged-original comparison pass the complete declared bounded corpus; exact counts retained in the source-bound execution.",
+                "acceptance": "pending",
+                "acceptance_summary": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
+                "evidence": [
+                  "ORIGINAL.animation-direction-selection",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.animation-controller-20261020",
+                  "HIGH03.phase-installed-20261020",
+                  "N18.three-rendering-native-20261023",
+                  "N18.three-rendering-original-20261023",
+                  "N18.three-rendering-native-final-20261023",
+                  "N18.three-rendering-original-final-20261023"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Keep whole-world production, allocation/targeting and live/performance acceptance independent of this completed offline algorithm."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/animation/no_cd.cpp",
+                    "line": 24,
+                    "text": "void NoCdAnimationPlayer::switchSequence(std::vector<assets::AnimationRecord> sequence){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/animation/no_cd.cpp": "e979f2b001b1ba4c03f33596a38e900934ee4c30ebfc4d61d70f962f31a54909",
+                  "reconstruction/animation/no_cd.hpp": "127fe1fea719f3881bda4334bdcd6034c942cd74dc4a5b647af8f96a991647c3",
+                  "research/runtime/animation-direction-selection.md": "b51eaca69e6ebb10fcbf5abd6eef2ab46923c6c762a3460877b12e6f35519b44",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                  "research/runtime/rendering-eighteenth-three-20261023.md": "5aec0263a08d68dd99759990070936fc1b227eba794e8e754b9a05024905114e",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
+                  "tests/animation-binary-reference.cpp": "6c8fc0ff4f13d3caeeafa1183788740864f04b57682680fcda3f562b801705ae",
+                  "tests/animation-controller-reference.cpp": "669dc70b5552bb321702910ac849bb04fea61dbaab9e6fe372a08472b2aab310",
+                  "tests/animation-model-test.cpp": "824a2ed4910b9e864c329560f5ccb51d1ca7d3b5553e76708c1941aac7d31c8c",
+                  "tools/test-animation-controller.py": "8858d606a173474918796e34535f5b0429603c865ab9bbc8c78b809c613d34e3",
+                  "tools/test-animation-switch.py": "18720dbc10db8335d523f45d8163c566431fb97d28b87c9b68c49b3cdb0dadd7",
+                  "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658",
+                  "tools/test-rendering-eighteenth-three.py": "38b09ee4641e0a807fc6c637926b0f6d9ce9c2d80c126ba4290e9a4e680d4ccb"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+                "validation_evidence": [
+                  "N18.three-rendering-native-final-20261023",
+                  "N18.three-rendering-original-final-20261023"
+                ],
+                "review_reason": "Fresh exact bounded native/original execution and transactional visibility admission review. Preserve previous work review/source hashes unchanged in history."
               }
             ],
             "planning_history": [
@@ -23426,8 +23656,8 @@
           },
           {
             "behavior": "RE.sprite_queue",
-            "mode": "Implemented within bounded scope; renew validation",
-            "next_action": "Full entity queue production and live submission are separate; renew the bounded key/permutation execution before a status correction.",
+            "mode": "Implemented within bounded scope; current execution recorded",
+            "next_action": "Retain wider world/live/performance acceptance separately.",
             "implementation_boundary": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare whole output permutations including ties; full entity queue production and live ownership remain separate.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
@@ -23439,27 +23669,31 @@
               "research/runtime/sprite-queue-order.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "a3d67af4476fc13aea7f91f9276dd702e08163ab7194fca629f7d8a3e3704016",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Full entity queue production and live submission are separate; renew the bounded key/permutation execution before a status correction.",
+            "contract_sha256": "e0dbe05caddc9c0b284348b8d787f185e8c27810e02e9cdaf7c4fa82322859b3",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
             "work_review": {
               "implementation": "implemented_within_scope",
               "current_state": "Depth-key arithmetic and the exact unstable queue sorter exist in sprite_queue.cpp.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Renewed exact original/native unstable sorter, tie/permutation and key-arithmetic comparison passes.",
+              "validation_state": "recorded",
+              "validation_summary": "N18 current native/sanitized controls and unchanged-original comparison pass the complete declared bounded corpus; exact counts retained in the source-bound execution.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Full entity queue production and live submission are separate; renew the bounded key/permutation execution before a status correction.",
+              "acceptance_summary": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
               "evidence": [
                 "ORIGINAL.sprite-queue-order",
                 "HIGH01.rendering-work-review-20261019",
-                "HIGH03.queue-20261020"
+                "HIGH03.queue-20261020",
+                "N18.three-rendering-native-20261023",
+                "N18.three-rendering-original-20261023",
+                "N18.three-rendering-native-final-20261023",
+                "N18.three-rendering-original-final-20261023"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
                   "kind": "scope_review",
-                  "action": "Full entity queue production and live submission are separate; renew the bounded key/permutation execution before a status correction."
+                  "action": "Keep whole-world production, allocation/targeting and live/performance acceptance independent of this completed offline algorithm."
                 }
               ],
               "code_witnesses": [
@@ -23472,17 +23706,24 @@
               "source_sha256": {
                 "reconstruction/rendering/sprite_queue.cpp": "be185bea5f6af36487ef379b90cd31878d864e01d663bf7e72830bd11dd08b28",
                 "reconstruction/rendering/sprite_queue.hpp": "0bdd6d6006d527b7f3f57c8b5c5035aa82f11cbf89145698e12b26b8e769d5ef",
-                "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                "research/runtime/rendering-eighteenth-three-20261023.md": "a329a52823ff1ed5fd7f1d8c0111a9159180885fbb472e5ae58a92f4fcdac5fe",
+                "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
                 "research/runtime/sprite-queue-order.md": "87ea81c54cf94c0fb0438235d783adb47cc38b9d400e2f4882231390df716f6b",
-                "tests/sprite-queue-reference.cpp": "31eaa06debae995380ea1381829e5b45adc4ea4f1bfb8ea3ebd892d59c5ebae4",
-                "tests/sprite-queue-test.cpp": "243bfae170a6490d65d453325cbb0d1f3cea32e88e83e80625dda50c22a0a47f",
+                "tests/sprite-queue-reference.cpp": "2e7fa5d554a7399a9b98c402b85ac514cab23d06542dfdaad3a5eb4cbbc4097e",
+                "tests/sprite-queue-test.cpp": "21c6f61bdd95b8350a9b9c78b5a47678be8038a5fa3fedd111759a971e1bcb37",
+                "tools/test-rendering-eighteenth-three.py": "38b09ee4641e0a807fc6c637926b0f6d9ce9c2d80c126ba4290e9a4e680d4ccb",
                 "tools/test-sprite-queue.py": "437fdc28ed54b865583a3d1a801002a5f9ca755f36e8e1137d1a510489e17b23"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
-              ]
+              ],
+              "validation_evidence": [
+                "N18.three-rendering-native-final-20261023",
+                "N18.three-rendering-original-final-20261023"
+              ],
+              "review_reason": "Fresh exact bounded native/original execution and transactional visibility admission review. Preserve previous work review/source hashes unchanged in history."
             },
             "work_review_history": [
               {
@@ -23529,6 +23770,152 @@
                 "incremental_review_notes": [
                   "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed."
                 ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Depth-key arithmetic and the exact unstable queue sorter exist in sprite_queue.cpp.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed exact original/native unstable sorter, tie/permutation and key-arithmetic comparison passes.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Full entity queue production and live submission are separate; renew the bounded key/permutation execution before a status correction.",
+                "evidence": [
+                  "ORIGINAL.sprite-queue-order",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.queue-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Full entity queue production and live submission are separate; renew the bounded key/permutation execution before a status correction."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/sprite_queue.cpp",
+                    "line": 18,
+                    "text": "void sortSpriteQueue(std::vector<SpriteQueueEntry>& a){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/sprite_queue.cpp": "be185bea5f6af36487ef379b90cd31878d864e01d663bf7e72830bd11dd08b28",
+                  "reconstruction/rendering/sprite_queue.hpp": "0bdd6d6006d527b7f3f57c8b5c5035aa82f11cbf89145698e12b26b8e769d5ef",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "research/runtime/sprite-queue-order.md": "87ea81c54cf94c0fb0438235d783adb47cc38b9d400e2f4882231390df716f6b",
+                  "tests/sprite-queue-reference.cpp": "31eaa06debae995380ea1381829e5b45adc4ea4f1bfb8ea3ebd892d59c5ebae4",
+                  "tests/sprite-queue-test.cpp": "243bfae170a6490d65d453325cbb0d1f3cea32e88e83e80625dda50c22a0a47f",
+                  "tools/test-sprite-queue.py": "437fdc28ed54b865583a3d1a801002a5f9ca755f36e8e1137d1a510489e17b23"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Depth-key arithmetic and the exact unstable queue sorter exist in sprite_queue.cpp.",
+                "implementation_gaps": [],
+                "validation_state": "recorded",
+                "validation_summary": "N18 current native/sanitized controls and unchanged-original comparison pass the complete declared bounded corpus; exact counts retained in the source-bound execution.",
+                "acceptance": "pending",
+                "acceptance_summary": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
+                "evidence": [
+                  "ORIGINAL.sprite-queue-order",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.queue-20261020",
+                  "N18.three-rendering-native-20261023",
+                  "N18.three-rendering-original-20261023"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Keep whole-world production, allocation/targeting and live/performance acceptance independent of this completed offline algorithm."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/sprite_queue.cpp",
+                    "line": 18,
+                    "text": "void sortSpriteQueue(std::vector<SpriteQueueEntry>& a){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/sprite_queue.cpp": "be185bea5f6af36487ef379b90cd31878d864e01d663bf7e72830bd11dd08b28",
+                  "reconstruction/rendering/sprite_queue.hpp": "0bdd6d6006d527b7f3f57c8b5c5035aa82f11cbf89145698e12b26b8e769d5ef",
+                  "research/runtime/rendering-eighteenth-three-20261023.md": "cac0262e070b5287f80ab201f497a6e6657d052d478fc4b1de33fb9f73f1327e",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
+                  "research/runtime/sprite-queue-order.md": "87ea81c54cf94c0fb0438235d783adb47cc38b9d400e2f4882231390df716f6b",
+                  "tests/sprite-queue-reference.cpp": "2e7fa5d554a7399a9b98c402b85ac514cab23d06542dfdaad3a5eb4cbbc4097e",
+                  "tests/sprite-queue-test.cpp": "7f577522abed84fb7bb68f8f1b8e2b2a79ed4805a333f00cd5f37230fa03d05d",
+                  "tools/test-rendering-eighteenth-three.py": "38b09ee4641e0a807fc6c637926b0f6d9ce9c2d80c126ba4290e9a4e680d4ccb",
+                  "tools/test-sprite-queue.py": "437fdc28ed54b865583a3d1a801002a5f9ca755f36e8e1137d1a510489e17b23"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "validation_evidence": [
+                  "N18.three-rendering-native-20261023",
+                  "N18.three-rendering-original-20261023"
+                ],
+                "review_reason": "Fresh exact bounded native/original execution and transactional visibility admission review. Preserve previous work review/source hashes unchanged in history."
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Depth-key arithmetic and the exact unstable queue sorter exist in sprite_queue.cpp.",
+                "implementation_gaps": [],
+                "validation_state": "recorded",
+                "validation_summary": "N18 current native/sanitized controls and unchanged-original comparison pass the complete declared bounded corpus; exact counts retained in the source-bound execution.",
+                "acceptance": "pending",
+                "acceptance_summary": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
+                "evidence": [
+                  "ORIGINAL.sprite-queue-order",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.queue-20261020",
+                  "N18.three-rendering-native-20261023",
+                  "N18.three-rendering-original-20261023",
+                  "N18.three-rendering-native-final-20261023",
+                  "N18.three-rendering-original-final-20261023"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Keep whole-world production, allocation/targeting and live/performance acceptance independent of this completed offline algorithm."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/sprite_queue.cpp",
+                    "line": 18,
+                    "text": "void sortSpriteQueue(std::vector<SpriteQueueEntry>& a){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/sprite_queue.cpp": "be185bea5f6af36487ef379b90cd31878d864e01d663bf7e72830bd11dd08b28",
+                  "reconstruction/rendering/sprite_queue.hpp": "0bdd6d6006d527b7f3f57c8b5c5035aa82f11cbf89145698e12b26b8e769d5ef",
+                  "research/runtime/rendering-eighteenth-three-20261023.md": "5aec0263a08d68dd99759990070936fc1b227eba794e8e754b9a05024905114e",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
+                  "research/runtime/sprite-queue-order.md": "87ea81c54cf94c0fb0438235d783adb47cc38b9d400e2f4882231390df716f6b",
+                  "tests/sprite-queue-reference.cpp": "2e7fa5d554a7399a9b98c402b85ac514cab23d06542dfdaad3a5eb4cbbc4097e",
+                  "tests/sprite-queue-test.cpp": "21c6f61bdd95b8350a9b9c78b5a47678be8038a5fa3fedd111759a971e1bcb37",
+                  "tools/test-rendering-eighteenth-three.py": "38b09ee4641e0a807fc6c637926b0f6d9ce9c2d80c126ba4290e9a4e680d4ccb",
+                  "tools/test-sprite-queue.py": "437fdc28ed54b865583a3d1a801002a5f9ca755f36e8e1137d1a510489e17b23"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "validation_evidence": [
+                  "N18.three-rendering-native-final-20261023",
+                  "N18.three-rendering-original-final-20261023"
+                ],
+                "review_reason": "Fresh exact bounded native/original execution and transactional visibility admission review. Preserve previous work review/source hashes unchanged in history."
               }
             ],
             "planning_history": [
@@ -23541,8 +23928,8 @@
           },
           {
             "behavior": "RE.sprite_visibility",
-            "mode": "Implemented within bounded scope; renew validation",
-            "next_action": "Full live occlusion producers and queue integration are outside the selected mask algorithm; renew its comparison.",
+            "mode": "Implemented within bounded scope; current execution recorded",
+            "next_action": "Retain wider world/live/performance acceptance separately.",
             "implementation_boundary": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare complete coverage bytes and return decisions; do not generalize to all original visibility or picking.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
@@ -23554,50 +23941,61 @@
               "research/runtime/sprite-visibility.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "3e49a25a7c6b94119eff4a1217f0400e6c02fa84df315ad8e7161bd085276ed0",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Full live occlusion producers and queue integration are outside the selected mask algorithm; renew its comparison.",
+            "contract_sha256": "3022c378afcf74984a3a4097710755351fccfb2d2af3ee8b48164fd7676866b4",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
             "work_review": {
               "implementation": "implemented_within_scope",
               "current_state": "Owned cover/test decoding and reverse visibility traversal exist in SpriteVisibilityGrid.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Renewed original/native visibility-grid, clipping, kind and shape comparison passes.",
+              "validation_state": "recorded",
+              "validation_summary": "N18 current native/sanitized controls and unchanged-original comparison pass the complete declared bounded corpus; exact counts retained in the source-bound execution.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Full live occlusion producers and queue integration are outside the selected mask algorithm; renew its comparison.",
+              "acceptance_summary": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
               "evidence": [
                 "ORIGINAL.sprite-visibility",
                 "HIGH01.rendering-work-review-20261019",
-                "HIGH03.visibility-20261020"
+                "HIGH03.visibility-20261020",
+                "N18.three-rendering-native-20261023",
+                "N18.three-rendering-original-20261023",
+                "N18.three-rendering-native-final-20261023",
+                "N18.three-rendering-original-final-20261023"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
                   "kind": "scope_review",
-                  "action": "Full live occlusion producers and queue integration are outside the selected mask algorithm; renew its comparison."
+                  "action": "Keep whole-world production, allocation/targeting and live/performance acceptance independent of this completed offline algorithm."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/rendering/sprite_visibility.cpp",
-                  "line": 25,
+                  "line": 43,
                   "text": "bool SpriteVisibilityGrid::testAndCover(const SpriteVisibilityEntry& entry){"
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/sprite_visibility.cpp": "08912357166dc8ab9a9858da6b9481dbf087d1748bbf3b492b18cf3d46d559eb",
-                "reconstruction/rendering/sprite_visibility.hpp": "ec3f1db9eefe5d565c2af8a144850c359573ed35de2232998469d08f08e659d7",
-                "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                "reconstruction/rendering/sprite_visibility.cpp": "dbaa25d9961f815ed1af6f882bc39d523286a152f35f39e41b447739d1ebc0ab",
+                "reconstruction/rendering/sprite_visibility.hpp": "2bc3828314b8463211b5b92b5b23086df97b663e2cc84a2ebf3ed76686c1afe8",
+                "research/runtime/rendering-eighteenth-three-20261023.md": "a329a52823ff1ed5fd7f1d8c0111a9159180885fbb472e5ae58a92f4fcdac5fe",
+                "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
                 "research/runtime/sprite-visibility.md": "9eff225c87c5d3f381acf1b979e7ae748186ba1b4bce4cc925da64cf69649434",
-                "tests/sprite-visibility-reference.cpp": "82a0bb3957fb0ddf141a9991ae6bc020bc6fac13738643727149b56e16e5a5a0",
-                "tests/sprite-visibility-test.cpp": "ab856fd4b4621056b7c582d069cb3a3e146e7583b0edbf1ec77d6364069a88e3",
+                "tests/sprite-visibility-reference.cpp": "0c60fb49157ab627bb3186e2d295a41fa169f51211564399dd7996907c7af7c1",
+                "tests/sprite-visibility-test.cpp": "7386a2cb776766802ca7c301bff191e9b29de48e0634cf94006966cc0c951479",
+                "tools/test-rendering-eighteenth-three.py": "38b09ee4641e0a807fc6c637926b0f6d9ce9c2d80c126ba4290e9a4e680d4ccb",
                 "tools/test-sprite-visibility.py": "fb1595dcbab69b29c8dc5dacc15dfd0e40619d67598a4949bdc5e72164e573ac"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
-              ]
+              ],
+              "validation_evidence": [
+                "N18.three-rendering-native-final-20261023",
+                "N18.three-rendering-original-final-20261023"
+              ],
+              "review_reason": "Fresh exact bounded native/original execution and transactional visibility admission review. Preserve previous work review/source hashes unchanged in history."
             },
             "work_review_history": [
               {
@@ -23644,6 +24042,152 @@
                 "incremental_review_notes": [
                   "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed."
                 ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Owned cover/test decoding and reverse visibility traversal exist in SpriteVisibilityGrid.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed original/native visibility-grid, clipping, kind and shape comparison passes.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Full live occlusion producers and queue integration are outside the selected mask algorithm; renew its comparison.",
+                "evidence": [
+                  "ORIGINAL.sprite-visibility",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.visibility-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Full live occlusion producers and queue integration are outside the selected mask algorithm; renew its comparison."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/sprite_visibility.cpp",
+                    "line": 25,
+                    "text": "bool SpriteVisibilityGrid::testAndCover(const SpriteVisibilityEntry& entry){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/sprite_visibility.cpp": "08912357166dc8ab9a9858da6b9481dbf087d1748bbf3b492b18cf3d46d559eb",
+                  "reconstruction/rendering/sprite_visibility.hpp": "ec3f1db9eefe5d565c2af8a144850c359573ed35de2232998469d08f08e659d7",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "research/runtime/sprite-visibility.md": "9eff225c87c5d3f381acf1b979e7ae748186ba1b4bce4cc925da64cf69649434",
+                  "tests/sprite-visibility-reference.cpp": "82a0bb3957fb0ddf141a9991ae6bc020bc6fac13738643727149b56e16e5a5a0",
+                  "tests/sprite-visibility-test.cpp": "ab856fd4b4621056b7c582d069cb3a3e146e7583b0edbf1ec77d6364069a88e3",
+                  "tools/test-sprite-visibility.py": "fb1595dcbab69b29c8dc5dacc15dfd0e40619d67598a4949bdc5e72164e573ac"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ]
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Owned cover/test decoding and reverse visibility traversal exist in SpriteVisibilityGrid.",
+                "implementation_gaps": [],
+                "validation_state": "recorded",
+                "validation_summary": "N18 current native/sanitized controls and unchanged-original comparison pass the complete declared bounded corpus; exact counts retained in the source-bound execution.",
+                "acceptance": "pending",
+                "acceptance_summary": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
+                "evidence": [
+                  "ORIGINAL.sprite-visibility",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.visibility-20261020",
+                  "N18.three-rendering-native-20261023",
+                  "N18.three-rendering-original-20261023"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Keep whole-world production, allocation/targeting and live/performance acceptance independent of this completed offline algorithm."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/sprite_visibility.cpp",
+                    "line": 43,
+                    "text": "bool SpriteVisibilityGrid::testAndCover(const SpriteVisibilityEntry& entry){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/sprite_visibility.cpp": "dbaa25d9961f815ed1af6f882bc39d523286a152f35f39e41b447739d1ebc0ab",
+                  "reconstruction/rendering/sprite_visibility.hpp": "2bc3828314b8463211b5b92b5b23086df97b663e2cc84a2ebf3ed76686c1afe8",
+                  "research/runtime/rendering-eighteenth-three-20261023.md": "cac0262e070b5287f80ab201f497a6e6657d052d478fc4b1de33fb9f73f1327e",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
+                  "research/runtime/sprite-visibility.md": "9eff225c87c5d3f381acf1b979e7ae748186ba1b4bce4cc925da64cf69649434",
+                  "tests/sprite-visibility-reference.cpp": "0c60fb49157ab627bb3186e2d295a41fa169f51211564399dd7996907c7af7c1",
+                  "tests/sprite-visibility-test.cpp": "94c254c6a5c54310d468e9b7e9f4e858c3187bef36292dac297140b29e9925c7",
+                  "tools/test-rendering-eighteenth-three.py": "38b09ee4641e0a807fc6c637926b0f6d9ce9c2d80c126ba4290e9a4e680d4ccb",
+                  "tools/test-sprite-visibility.py": "fb1595dcbab69b29c8dc5dacc15dfd0e40619d67598a4949bdc5e72164e573ac"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "validation_evidence": [
+                  "N18.three-rendering-native-20261023",
+                  "N18.three-rendering-original-20261023"
+                ],
+                "review_reason": "Fresh exact bounded native/original execution and transactional visibility admission review. Preserve previous work review/source hashes unchanged in history."
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Owned cover/test decoding and reverse visibility traversal exist in SpriteVisibilityGrid.",
+                "implementation_gaps": [],
+                "validation_state": "recorded",
+                "validation_summary": "N18 current native/sanitized controls and unchanged-original comparison pass the complete declared bounded corpus; exact counts retained in the source-bound execution.",
+                "acceptance": "pending",
+                "acceptance_summary": "Full original world production, ownership/targeting, live integration/replacement and sustained performance are independent; this closes only the existing bounded implementation.",
+                "evidence": [
+                  "ORIGINAL.sprite-visibility",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.visibility-20261020",
+                  "N18.three-rendering-native-20261023",
+                  "N18.three-rendering-original-20261023",
+                  "N18.three-rendering-native-final-20261023",
+                  "N18.three-rendering-original-final-20261023"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Keep whole-world production, allocation/targeting and live/performance acceptance independent of this completed offline algorithm."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/sprite_visibility.cpp",
+                    "line": 43,
+                    "text": "bool SpriteVisibilityGrid::testAndCover(const SpriteVisibilityEntry& entry){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/sprite_visibility.cpp": "dbaa25d9961f815ed1af6f882bc39d523286a152f35f39e41b447739d1ebc0ab",
+                  "reconstruction/rendering/sprite_visibility.hpp": "2bc3828314b8463211b5b92b5b23086df97b663e2cc84a2ebf3ed76686c1afe8",
+                  "research/runtime/rendering-eighteenth-three-20261023.md": "5aec0263a08d68dd99759990070936fc1b227eba794e8e754b9a05024905114e",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
+                  "research/runtime/sprite-visibility.md": "9eff225c87c5d3f381acf1b979e7ae748186ba1b4bce4cc925da64cf69649434",
+                  "tests/sprite-visibility-reference.cpp": "0c60fb49157ab627bb3186e2d295a41fa169f51211564399dd7996907c7af7c1",
+                  "tests/sprite-visibility-test.cpp": "7386a2cb776766802ca7c301bff191e9b29de48e0634cf94006966cc0c951479",
+                  "tools/test-rendering-eighteenth-three.py": "38b09ee4641e0a807fc6c637926b0f6d9ce9c2d80c126ba4290e9a4e680d4ccb",
+                  "tools/test-sprite-visibility.py": "fb1595dcbab69b29c8dc5dacc15dfd0e40619d67598a4949bdc5e72164e573ac"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "validation_evidence": [
+                  "N18.three-rendering-native-final-20261023",
+                  "N18.three-rendering-original-final-20261023"
+                ],
+                "review_reason": "Fresh exact bounded native/original execution and transactional visibility admission review. Preserve previous work review/source hashes unchanged in history."
               }
             ],
             "planning_history": [

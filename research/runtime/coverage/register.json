@@ -3575,7 +3575,8 @@
       ],
       "documents": [
         "research/runtime/sprite-queue-order.md",
-        "research/runtime/rendering-high-validation-ownership-20261020.md"
+        "research/runtime/rendering-high-validation-ownership-20261020.md",
+        "research/runtime/rendering-eighteenth-three-20261023.md"
       ],
       "implementation": [
         "reconstruction/rendering/sprite_queue.cpp",
@@ -3584,7 +3585,8 @@
       "tests": [
         "tests/sprite-queue-test.cpp",
         "tests/sprite-queue-reference.cpp",
-        "tools/test-sprite-queue.py"
+        "tools/test-sprite-queue.py",
+        "tools/test-rendering-eighteenth-three.py"
       ],
       "evidence": [
         "REVIEW.RE.sprite_queue",
@@ -3597,11 +3599,15 @@
         "HIGH01.rendering-work-review-20261019",
         "HIGH03.queue-20261020",
         "HIGH04.staged-source-support-review-20261020",
-        "REVIEW.shared-validation-boundaries-closeout-20261020"
+        "REVIEW.shared-validation-boundaries-closeout-20261020",
+        "N18.three-rendering-native-20261023",
+        "N18.three-rendering-original-20261023",
+        "N18.three-rendering-native-final-20261023",
+        "N18.three-rendering-original-final-20261023"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -3609,7 +3615,11 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-1-20261020",
         "entry": "RE.sprite_queue"
-      }
+      },
+      "remaining_gaps": [
+        "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints.",
+        "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints."
+      ]
     },
     {
       "id": "RE.sprite_visibility",
@@ -3632,7 +3642,8 @@
       ],
       "documents": [
         "research/runtime/sprite-visibility.md",
-        "research/runtime/rendering-high-validation-ownership-20261020.md"
+        "research/runtime/rendering-high-validation-ownership-20261020.md",
+        "research/runtime/rendering-eighteenth-three-20261023.md"
       ],
       "implementation": [
         "reconstruction/rendering/sprite_visibility.cpp",
@@ -3641,7 +3652,8 @@
       "tests": [
         "tests/sprite-visibility-test.cpp",
         "tests/sprite-visibility-reference.cpp",
-        "tools/test-sprite-visibility.py"
+        "tools/test-sprite-visibility.py",
+        "tools/test-rendering-eighteenth-three.py"
       ],
       "evidence": [
         "REVIEW.RE.sprite_visibility",
@@ -3654,11 +3666,15 @@
         "HIGH01.rendering-work-review-20261019",
         "HIGH03.visibility-20261020",
         "HIGH04.staged-source-support-review-20261020",
-        "REVIEW.shared-validation-boundaries-closeout-20261020"
+        "REVIEW.shared-validation-boundaries-closeout-20261020",
+        "N18.three-rendering-native-20261023",
+        "N18.three-rendering-original-20261023",
+        "N18.three-rendering-native-final-20261023",
+        "N18.three-rendering-original-final-20261023"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -3666,7 +3682,11 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-1-20261020",
         "entry": "RE.sprite_visibility"
-      }
+      },
+      "remaining_gaps": [
+        "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints.",
+        "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints."
+      ]
     },
     {
       "id": "RE.terrain_submission",
@@ -4715,7 +4735,8 @@
       "documents": [
         "research/runtime/animation-direction-selection.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-eighteenth-three-20261023.md"
       ],
       "implementation": [
         "reconstruction/animation/no_cd.cpp",
@@ -4727,7 +4748,8 @@
         "tools/test-animation-switch.py",
         "tools/test-animation-controller.py",
         "tests/animation-controller-reference.cpp",
-        "tools/test-next20-animation-controls.py"
+        "tools/test-next20-animation-controls.py",
+        "tools/test-rendering-eighteenth-three.py"
       ],
       "evidence": [
         "ORIGINAL.animation-direction-selection",
@@ -4743,11 +4765,15 @@
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "N20.animation.native-20261020",
         "N20.animation.original-20261020",
-        "N20.animation.controller.original-20261020"
+        "N20.animation.controller.original-20261020",
+        "N18.three-rendering-native-20261023",
+        "N18.three-rendering-original-20261023",
+        "N18.three-rendering-native-final-20261023",
+        "N18.three-rendering-original-final-20261023"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4755,7 +4781,11 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-3-20261020",
         "entry": "AN.direction"
-      }
+      },
+      "remaining_gaps": [
+        "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints.",
+        "N18 closes the existing bounded implementation with fresh source-bound offline execution. Full world producers, original allocation/lifetime, targeting/configuration provenance, live integration/replacement and sustained performance remain separate. Earlier static reconciliation records and original evidence retain their exact historical fingerprints."
+      ]
     },
     {
       "id": "AN.placement",
@@ -144005,6 +144035,40 @@
         "tools/original-manifest.sh",
         "tools/original_x86.py",
         "tools/owner_planner_comparison.py"
+      ]
+    },
+    {
+      "id": "NP.sprite-visibility-atomic-admission",
+      "subsystem": "rendering_reconstruction",
+      "kind": "native_policy",
+      "title": "Atomic admission of owned sprite visibility passes",
+      "scope": "Preflight visited queue entries and owner indices before mutating the owned visibility grid, draw kinds or owner flags. Original entry-zero skip, bypass kinds and well-formed traversal remain unchanged. Malformed native inputs refuse atomically; no original malformed-pointer equivalence, world producer ownership or live integration.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "reconstruction/rendering/sprite_visibility.cpp",
+        "reconstruction/rendering/sprite_visibility.hpp"
+      ],
+      "tests": [
+        "tests/sprite-visibility-test.cpp",
+        "tools/test-rendering-eighteenth-three.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-eighteenth-three-20261023.md"
+      ],
+      "evidence": [
+        "N18.three-rendering-native-20261023",
+        "N18.three-rendering-native-final-20261023"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Original malformed-pointer behavior is deliberately not imitated; full world ownership and live integration remain outside this native admission contract."
       ]
     }
   ],
@@ -325119,6 +325183,246 @@
           "equals": 6
         }
       ]
+    },
+    {
+      "id": "N18.three-rendering-native-20261023",
+      "kind": "native_integration",
+      "scope": "Six native/sanitized owned controls for selected depth keys/sorting, visibility traversal and phase switching, including maximum queue/permutation and atomic native refusals. No live/world/performance milestone.",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        }
+      ],
+      "record": "research/runtime/rendering-eighteenth-three-results-20261023/execution-01.json",
+      "sha256": "8d0d8fe93409df6550b3fbbcf6b4c424e8ec7e7bf6228b2ba83b442720ac2f3e",
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "N18.three-rendering-original-20261023",
+      "kind": "isolated_original",
+      "scope": "Pinned unchanged PE32 finite depth-key/full36-byte unstable-permutation and visibility whole-grid/kind/flag comparisons, installed forward phase-switch traces and controller states. Malformed-input atomicity is native policy, not original equivalence; no whole-world/lifecycle/targeting/live/performance credit.",
+      "claims_pointer": "/original_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/original_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/comparisons/queue/result/summary/keys",
+          "equals": 5632
+        },
+        {
+          "pointer": "/comparisons/queue/result/summary/sorts",
+          "equals": 1315
+        },
+        {
+          "pointer": "/comparisons/queue/result/summary/records",
+          "equals": 191355
+        },
+        {
+          "pointer": "/comparisons/visibility/result/summary/helpers",
+          "equals": 8192
+        },
+        {
+          "pointer": "/comparisons/visibility/result/summary/passes",
+          "equals": 3072
+        },
+        {
+          "pointer": "/comparisons/visibility/result/summary/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/comparisons/direction/result/summary/traces",
+          "equals": 2140
+        },
+        {
+          "pointer": "/comparisons/direction/result/summary/states",
+          "equals": 70620
+        },
+        {
+          "pointer": "/comparisons/direction/result/summary/installed_assets",
+          "equals": 118
+        },
+        {
+          "pointer": "/comparisons/direction/result/summary/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/comparisons/controller/cases",
+          "equals": 512
+        },
+        {
+          "pointer": "/comparisons/controller/original_target_text_unchanged",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/rendering-eighteenth-three-results-20261023/execution-01.json",
+      "sha256": "8d0d8fe93409df6550b3fbbcf6b4c424e8ec7e7bf6228b2ba83b442720ac2f3e",
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "N18.three-rendering-native-final-20261023",
+      "kind": "native_integration",
+      "scope": "Six native/sanitized owned controls for selected depth keys/sorting, visibility traversal and phase switching, including maximum queue/permutation and atomic native refusals. No live/world/performance milestone.",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        }
+      ],
+      "record": "research/runtime/rendering-eighteenth-three-results-20261023/execution-02.json",
+      "sha256": "703ba42c9420cdaed26969992805d220ef9287234e82707e49b23cfdc140726b",
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "N18.three-rendering-original-final-20261023",
+      "kind": "isolated_original",
+      "scope": "Pinned unchanged PE32 finite depth-key/full36-byte unstable-permutation and visibility whole-grid/kind/flag comparisons, installed forward phase-switch traces and controller states. Malformed-input atomicity is native policy, not original equivalence; no whole-world/lifecycle/targeting/live/performance credit.",
+      "claims_pointer": "/original_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/original_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/comparisons/queue/result/summary/keys",
+          "equals": 5632
+        },
+        {
+          "pointer": "/comparisons/queue/result/summary/sorts",
+          "equals": 1315
+        },
+        {
+          "pointer": "/comparisons/queue/result/summary/records",
+          "equals": 191355
+        },
+        {
+          "pointer": "/comparisons/visibility/result/summary/helpers",
+          "equals": 8192
+        },
+        {
+          "pointer": "/comparisons/visibility/result/summary/passes",
+          "equals": 3072
+        },
+        {
+          "pointer": "/comparisons/visibility/result/summary/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/comparisons/direction/result/summary/traces",
+          "equals": 2140
+        },
+        {
+          "pointer": "/comparisons/direction/result/summary/states",
+          "equals": 70620
+        },
+        {
+          "pointer": "/comparisons/direction/result/summary/installed_assets",
+          "equals": 118
+        },
+        {
+          "pointer": "/comparisons/direction/result/summary/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/comparisons/controller/cases",
+          "equals": 512
+        },
+        {
+          "pointer": "/comparisons/controller/original_target_text_unchanged",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/rendering-eighteenth-three-results-20261023/execution-02.json",
+      "sha256": "703ba42c9420cdaed26969992805d220ef9287234e82707e49b23cfdc140726b",
+      "sources_pointer": "/sources"
     }
   ],
   "classifications": [],
@@ -351395,8 +351699,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-85cc4e42497b57cdea35c6bf87bd88b4fd2edeaa1944e06e353abf371f7dc6a6.json",
-    "sha256": "85cc4e42497b57cdea35c6bf87bd88b4fd2edeaa1944e06e353abf371f7dc6a6"
+    "path": "research/runtime/coverage/source-index-5f53d7bb492679f9bc7da7f3846bf4147f4496cc55b98ffb5e847daab4a9276c.json",
+    "sha256": "5f53d7bb492679f9bc7da7f3846bf4147f4496cc55b98ffb5e847daab4a9276c"
   },
   "claim_bindings_required": true,
   "evidence_id_imports": [

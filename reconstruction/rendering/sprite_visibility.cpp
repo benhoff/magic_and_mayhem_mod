@@ -22,17 +22,27 @@ std::optional<SpriteVisibilityShape> decodeSpriteVisibility(const std::vector<st
 }
 void SpriteVisibilityGrid::clear(){std::fill(data_.begin(),data_.end(),0);}
 void SpriteVisibilityGrid::seed(std::vector<std::uint8_t> bytes){if(bytes.size()!=data_.size())throw std::invalid_argument("Visibility seed size");data_=std::move(bytes);}
-bool SpriteVisibilityGrid::testAndCover(const SpriteVisibilityEntry& entry){
-    if(entry.kind==8 || entry.kind==9 || !entry.shape || entry.kind==1)return false;
+namespace {
+struct VisibilityFootprint {std::size_t n,row,byte;unsigned shift;};
+// Owned admission only: the original assumes well-formed pointers/rows.
+std::optional<VisibilityFootprint> visibilityFootprint(const SpriteVisibilityEntry& entry,bool expanded){
+    if(entry.kind==8 || entry.kind==9 || !entry.shape || entry.kind==1)return {};
     const auto& shape=*entry.shape;const auto n=shape.testRows.size();
     if(n>255 || n!=shape.coverRows.size())throw std::invalid_argument("Visibility row extent");
     const auto x=bits(std::uint32_t(entry.x)-std::uint32_t(shape.originX));
     const auto y=bits(std::uint32_t(entry.y)-std::uint32_t(shape.originY));
-    const int width=expanded_?800:640,height=expanded_?632:512;
-    if(x< -32 || x>=width+32 || y< -32 || y>=height)return false;
+    const int width=expanded?800:640,height=expanded?632:512;
+    if(x< -32 || x>=width+32 || y< -32 || y>=height)return {};
     const auto column=(2*y+x)/8+24,row=(2*y-x+width+7)/8+24;
     const auto byte=column/8;const auto shift=unsigned(column%8)&31u;
-    if(row<0 || byte<0 || byte+4>int(stride) || std::size_t(row)+n>rows)throw std::out_of_range("Visibility footprint outside recovered grid");
+    if(row<0 || byte<0 || byte+4>int(SpriteVisibilityGrid::stride) || std::size_t(row)+n>SpriteVisibilityGrid::rows)
+        throw std::out_of_range("Visibility footprint outside recovered grid");
+    return VisibilityFootprint{n,std::size_t(row),std::size_t(byte),shift};
+}
+}
+bool SpriteVisibilityGrid::testAndCover(const SpriteVisibilityEntry& entry){
+    const auto footprint=visibilityFootprint(entry,expanded_);if(!footprint)return false;
+    const auto& shape=*entry.shape;const auto [n,row,byte,shift]=*footprint;
     bool hidden=true;
     for(std::size_t i=0;i<n;++i){const auto at=(std::size_t(row)+i)*stride+std::size_t(byte);const auto mask=reverse(shape.testRows[i]>>shift);
         if((word(data_,at)&mask)!=mask){hidden=false;break;}}
@@ -45,6 +55,9 @@ bool SpriteVisibilityGrid::testAndCover(const SpriteVisibilityEntry& entry){
 void applySpriteVisibility(std::vector<SpriteVisibilityEntry>& entries,SpriteVisibilityGrid& grid,std::vector<VisibilityOwner>& owners){
     if(entries.size()>65536)throw std::length_error("Visibility queue limit");
     for(const auto& entry:entries)if(entry.owner && *entry.owner>=owners.size())throw std::out_of_range("Visibility owner index");
+    // Validate every visited footprint before the first write to the grid,
+    // draw kinds or owner flags. Entry zero remains deliberately unvisited.
+    for(std::size_t i=1;i<entries.size();++i)visibilityFootprint(entries[i],grid.expanded_);
     for(std::size_t i=entries.size();i>1;){auto& entry=entries[--i];const bool hidden=grid.testAndCover(entry);
         if(hidden)entry.kind=-2;
         if(!entry.owner)continue;

@@ -37,14 +37,16 @@ int main(int argc,char** argv)try{
     using Add=std::uint32_t(__attribute__((thiscall)) *)(Queue*,std::uint32_t,std::int32_t,std::int32_t,std::int32_t,std::int32_t,std::int32_t,std::int32_t,std::int32_t,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t);
     using Sort=void(__attribute__((thiscall)) *)(Queue*);
     std::mt19937 rng(79186);std::uint64_t keys=0,sorts=0,records=0;
-    const std::int32_t heights[]={0,1,99,499,500,501,100000,0x7fffffff};
+    const std::int32_t heights[]={0,1,99,499,500,501,100000,26188824,26188825,50000000,0x7fffffff};
     for(auto h:heights)for(unsigned view=0;view<4;++view)for(unsigned n=0;n<128;++n){
         mnm::reconstruction::SpriteDepth p{std::int32_t(rng()),std::int32_t(rng()),h,std::int32_t(rng())};
         Record r{};Queue q{reinterpret_cast<std::uintptr_t>(&r),reinterpret_cast<std::uintptr_t>(&r),0,1,0,view};
         const auto result=reinterpret_cast<Add>(0x4ffd30)(&q,0,p.x,p.y,p.height,12,13,p.priority,0,0,0,0,0,0,0);
         require(result==0 && q.count==1 && r[0]==std::uint32_t(mnm::reconstruction::spriteDepthKey(p,view)));++keys;
     }
-    for(unsigned kind=0;kind<5;++kind)for(unsigned n=0;n<=256;++n){
+    std::vector<unsigned> lengths;for(unsigned n=0;n<=256;++n)lengths.push_back(n);
+    for(unsigned n:{257u,511u,512u,1023u,1024u,2048u})lengths.push_back(n);
+    for(unsigned kind=0;kind<5;++kind)for(unsigned n:lengths){
         std::vector<Record> original(n);std::vector<mnm::reconstruction::SpriteQueueEntry> native;
         for(unsigned i=0;i<n;++i){std::int32_t key=kind==0?0:kind==1?std::int32_t(i):kind==2?-std::int32_t(i):kind==3?std::int32_t(rng()%7)-3:std::int32_t(rng());
             for(unsigned j=0;j<9;++j)original[i][j]=i*19+j;

@@ -646,5 +646,33 @@ class TrancheTest(unittest.TestCase):
                 importance_view(c, self.register, self.tracks)
 
 
+
+class HighCompletedReviewTest(unittest.TestCase):
+    def test_completed_high_task_accepts_explicit_review_without_promoting_register(self):
+        self.check_review('scoped', 'current')
+
+    def test_unreviewed_completion_remains_visible_as_plan_drift(self):
+        self.check_review('partial', 'needs_review')
+
+    def check_review(self, reviewed, expected):
+        from coverage_importance import tranche_view
+        behavior = dict(id='one', kind='native_policy', scope='bounded', original=[],
+                        implementation=[], tests=['tests/control.cpp'], documents=['research/runtime/control.md'],
+                        status=dict(implementation='scoped'))
+        before = copy.deepcopy(behavior)
+        contract = behavior_contract(behavior, {})
+        task = dict(behavior='one', reviewed_implementation=reviewed, contract_sha256=contract,
+                    checks=behavior['tests'], documents=behavior['documents'])
+        for field in ('mode', 'next_action', 'implementation_boundary', 'validation', 'exit_condition', 'remaining_at_review'):
+            task[field] = 'Bounded fixture; wider acceptance remains separate.'
+        plan = dict(state='planned', completion_rule='Exact reviewed scoped execution',
+                    tranches=[dict(id='first', order=1, depends_on=[], title='one', goal='one', exit_gate='one', tasks=[task])])
+        rated = dict(one=dict(weight=4, implementation='scoped', review_state='current', contract_sha256=contract))
+        result = tranche_view(plan, dict(behaviors=[behavior]), rated, priority=4, size=1, count=1)
+        self.assertEqual(result['tranches'][0]['tasks'][0]['review_state'], expected)
+        self.assertEqual(result['unplanned_high'], [])
+        self.assertEqual(behavior, before)
+
+
 if __name__ == '__main__':
     unittest.main()

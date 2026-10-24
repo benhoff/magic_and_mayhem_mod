@@ -46,5 +46,21 @@ int main()try{
     rejected([&]{later.tick();});
     require(later.sprite()==5 && later.displayedRecord()->argument==5,"Tick published a negative sprite record");
     NoCdAnimationPlayer restart({{0,5,{}},{6,-1,{}}});restart.start();restart.tick();restart.tick();restart.start();require(restart.sprite()==5,"Restart lost selected sequence");
+    // Switching retains every control word and owns the replacement sequence.
+    const auto same=[](const AnimationState& a,const AnimationState& b){
+        return a.pc==b.pc && a.displayedRecord==b.displayedRecord && a.active==b.active &&
+            a.delay==b.delay && a.elapsed==b.elapsed && a.repeats==b.repeats && a.breakFlag==b.breakFlag;
+    };
+    NoCdAnimationPlayer phase(target);AnimationState phaseState{2,0,true,4,2,3,1};phase.restore(phaseState);
+    auto replacement=target;replacement[0].argument=117;phase.switchSequence(replacement);replacement[0].argument=999;
+    require(same(phase.state(),phaseState) && phase.sprite()==117,"Switch failed full phase/ownership preservation");
+    std::vector<std::vector<mnm::assets::AnimationRecord>> refusals{{},{{0,1,{}}},{{0,1,{}},{6,-1,{}}}};
+    auto wrong=target;wrong[0].opcode=1;refusals.push_back(wrong);
+    wrong=target;wrong[0].argument=-1;refusals.push_back(wrong);
+    refusals.push_back(std::vector<mnm::assets::AnimationRecord>(65537,{6,-1,{}}));
+    for(const auto& refused:refusals){
+        rejected([&]{phase.switchSequence(refused);});
+        require(same(phase.state(),phaseState) && phase.sprite()==117,"Refused switch changed phase/owned storage");
+    }
     std::cout<<"Forward tick boundaries, events, stop/restart and bounded control failures pass\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
