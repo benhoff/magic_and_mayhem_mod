@@ -50,6 +50,10 @@ void followTerrainCamera(TerrainCamera& c,std::uint32_t w,std::uint32_t h,std::u
  };
  setTerrainCameraPosition(c,w,h,l,wrap(focus->x,w),wrap(focus->y,h),std::uint32_t(focus->z));
 }
+void scrollTerrainCameraAxes(TerrainCamera& c,std::uint32_t w,std::uint32_t h,std::int32_t x,std::int32_t y){
+ dimensions(w,h);
+ auto next=c;axis(next.column,next.f45,w,x);axis(next.row,next.f49,h,y);c=next;
+}
 void scrollTerrainCamera(TerrainCamera& c,std::uint32_t w,std::uint32_t h,std::int32_t x,std::int32_t y){
  dimensions(w,h);if(c.view>3)throw std::invalid_argument("Camera orientation");
  if(!x && !y)return;
@@ -58,7 +62,7 @@ void scrollTerrainCamera(TerrainCamera& c,std::uint32_t w,std::uint32_t h,std::i
  case 1:a=std::int64_t(x)-y;b=std::int64_t(x)+y;break;
  case 2:a=-std::int64_t(x)-y;b=std::int64_t(x)-y;break;
  case 3:a=std::int64_t(y)-x;b=-std::int64_t(x)-y;break;}
- auto next=c;axis(next.column,next.f45,w,checked(a));axis(next.row,next.f49,h,checked(b));c=next;
+ scrollTerrainCameraAxes(c,w,h,checked(a),checked(b));
 }
 void clampTerrainCamera(TerrainCamera& c,std::uint32_t w,std::uint32_t h){
  dimensions(w,h);

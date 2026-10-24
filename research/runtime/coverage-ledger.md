@@ -21715,3 +21715,46 @@ confirms all43 target and31 session source bindings and scope contracts still
 match the retained successful execution. No new original run or live milestone
 is claimed. Incoming committed history has153 exact reviewed file transitions;
 the merged source census and coverage summary are recorded separately in SQLite.
+
+
+### Three terrain rendering closeouts — N19 (2026-10-24)
+
+[Research and SQLite execution](rendering-nineteenth-three-20261024.md) complete
+three existing selected offline implementation scopes: camera setters/scrolling,
+ordinary section copying and ordinary tile production. Direct map-axis scrolling
+now has a native API with atomic checked overflow. Tile output now retains the
+original signed shade WORD; the old native implementation fails the new control.
+Frozen-source section rotation passes324 overlap cases and108 late atomic
+refusals. Six native/sanitized controls pass; unchanged original comparisons
+cover270,336 camera states,410,500 synthetic plus307,200 installed section cells
+and15,716 producer cases/16,341 queue records. The installed section cohort is
+three Forest maps,not a fresh683-map/image run. All declared sources/inputs and
+original manifest bookends pass. Three ordinary CMake/CTest targets also pass.
+
+Only these three implementation dimensions become scoped. Original understanding,
+comparison,integration and replacement statuses remain independently retained.
+Original malformed height/table experiments remain failed evidence; existing
+native height admission is unchanged. Object rotation,original allocation/cell
+ownership,camera lifecycle/timing,full producers/picking,shade/palette chains,
+whole-scene/World/live/DirectDraw/FPS acceptance remain open. Broader evidence
+that fingerprints changed files remains historical; no old hashes are refreshed.
+The incoming five-renderer-commit review preserves exact parent/current versions
+and prior receipts. New reports/bookkeeping use SQLite; ignored execution output
+is pinned. The storage inventory has zero review candidates and no cleanup occurs.
+
+
+### Nineteenth terrain batch integration with screen recovery (2026-10-24)
+
+The local merge combines734d90c1 screen recovery with858ac3c7 terrain rendering.
+[Exact source bindings](rendering-nineteenth-merge-results-20261024/source-bindings-final.json)
+verify all26 terrain and9 screen-helper inputs,including the SQLite inventory
+payload. An earlier raw-reference hash diagnostic is retained and corrected;
+it is not source drift. [Incoming history](rendering-nineteenth-merge-results-20261024/history.json)
+checks55 exact parent/current transitions without missing or rewritten receipts.
+Two focused dashboard controls pass and retain both new screen contracts as
+unrated,independently of the three completed terrain implementation scopes.
+No original engine or broader integration/performance experiment is rerun or
+promoted. Shared wider evidence retains its historical scope/freshness.
+Existing uncommitted main documentation,scenario and review changes are backed
+up exactly in a retained verified SQLite preservation database and stay outside
+this merge commit. New machine results and bookkeeping remain in SQLite.
