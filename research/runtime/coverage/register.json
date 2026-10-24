@@ -145799,6 +145799,120 @@
         "Invalid owners/list or cursor pointers fault in the original and are refused by checked native memory; Windows SEH,arbitrary provider mutation,throwing original cleanup and rollback are unclaimed.",
         "Session dispatcher routes new entries and existing64-variant lifecycle compatibility passes; direct new target-body integration into a full session,World cadence/installed/live replacement remain independent."
       ]
+    },
+    {
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/graphics-leases-shutdown-20261024.md"
+      ],
+      "evidence": [
+        "GLS1.provider-lifetime-20261024"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "id": "NP.surface-alias-lease-lifecycle",
+      "title": "Cross-interface native surface Lock and DC lifetime composition",
+      "scope": "Bounded actual Wine/native RGB565 system-memory Surface1/2/3/4 query pairs,canonical IUnknown,Lock/GetDC through one alias and release through another,nested admission,creator release during lease,independent new allocation and both final alias-release orders. Compare caller HRESULTs and complete owned13x9 pixels; require zero native owner classes before process reclamation. No physical driver loss,unknown external aliases/writers,arbitrary thread scheduling or full game replacement. Separate focused640x480 primary double-buffer alias matrix covers front/back Lock/DC with physical backing exchange, eventual release, both complete planes and final zero owners. Guarded mode3 repeats the same matrix; its intentional GetDC-while-CPU-Lock refusal is recorded separately from plain compatibility.",
+      "original": [],
+      "implementation": [
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/surfaces.h",
+        "runtime/native-draw/dc.h"
+      ],
+      "tests": [
+        "tests/graphics-alias-lease-probe.c",
+        "tools/test-graphics-leases-shutdown.py",
+        "tests/graphics-alias-flip-probe.c"
+      ],
+      "validation_dependencies": [
+        "tools/build-native-draw.py",
+        "tools/test-graphics-leases-shutdown.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/native_draw_retirement.py",
+        "tools/original-manifest.sh",
+        "runtime/shadow/win32_min.h",
+        "tests/graphics-lifetime-common.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h"
+      ],
+      "remaining_gaps": [
+        "Bounded provider fixtures do not establish whole-game Quit/restart/error-path reachability,all external aliases/writers,physical legacy-driver loss/restore or performance acceptance. Native allocation refusals and guarded Lock/DC admission are policies,not original-driver equivalence."
+      ]
+    },
+    {
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/graphics-leases-shutdown-20261024.md"
+      ],
+      "evidence": [
+        "GLS1.provider-lifetime-20261024"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "id": "NP.graphics-session-provider-retirement",
+      "title": "Original graphics shutdown against actual Wine and native COM providers",
+      "scope": "Complete unchanged original58acf0/58b3e0 with actual provider-backed58ad90 wrappers,authored0/1/2/3-surface registries,page hints,window/fullscreen flag,clipper,external Surface3/4 credits and explicit caller-triggered cleanup after refused descriptor. Repeated in-process graphics generations compare normalized globals,six retired wrapper ownership fields,retained pixels and idempotent shutdown. Preserve original fullscreen clipper retention; caller-owned credits are explicitly retired before final native zero-owner receipt. No natural failed-startup reachability,whole-game Quit/restart,all original aliases,physical device loss,whole-game pixel or performance claim. Separate unchanged-native-DLL test-only checked import forwarding fails each device/surface/backbuffer/DC allocation stage in plain and guarded dual-view profiles,accounts real OS resources and zero native owners before a successful retry. Allocation faults are native policy controls,not original failure equivalence. Guarded mode3 repeats the same matrix; its intentional GetDC-while-CPU-Lock refusal is recorded separately from plain compatibility.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811440,
+          "scope": "Complete unchanged original function under actual Wine/native provider callbacks in an owned graphics-session fixture."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811600,
+          "scope": "Complete unchanged original function under actual Wine/native provider callbacks in an owned graphics-session fixture."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813216,
+          "scope": "Complete unchanged original function under actual Wine/native provider callbacks in an owned graphics-session fixture."
+        }
+      ],
+      "implementation": [
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/surfaces.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/retirement.h"
+      ],
+      "tests": [
+        "tests/graphics-session-shutdown-probe.c",
+        "tools/test-graphics-leases-shutdown.py",
+        "tests/graphics-allocation-failure-probe.c"
+      ],
+      "validation_dependencies": [
+        "tools/build-native-draw.py",
+        "tools/test-graphics-leases-shutdown.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/native_draw_retirement.py",
+        "tools/original-manifest.sh",
+        "runtime/shadow/win32_min.h",
+        "tests/graphics-lifetime-common.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "tests/original-pe32-image.h"
+      ],
+      "remaining_gaps": [
+        "Bounded provider fixtures do not establish whole-game Quit/restart/error-path reachability,all external aliases/writers,physical legacy-driver loss/restore or performance acceptance. Native allocation refusals and guarded Lock/DC admission are policies,not original-driver equivalence."
+      ]
     }
   ],
   "evidence": [
@@ -329845,6 +329959,57 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "GLS1.provider-lifetime-20261024",
+      "kind": "native_integration",
+      "scope": "Actual Wine11.16/plain-native/guarded-native PE32 provider matrices:128 cross-interface lease cases,64 full-plane held-Flip cases,192 complete original graphics shutdown sessions per endpoint;29 native allocation-failure/retry controls. Policies recorded separately;headless authored sessions,no complete-game/physical driver/live replacement proof.",
+      "record": "research/runtime/graphics-leases-shutdown-results-20261024/execution06.json",
+      "sha256": "2e82e95c90f9f957d18628c75fe9fe688b2a9acfbeeb075ee8c5089bbc8ac73c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/leases/cases",
+          "equals": 128
+        },
+        {
+          "pointer": "/flips/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/shutdown/cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/allocation_failures/native/cases",
+          "equals": 10
+        },
+        {
+          "pointer": "/allocation_failures/guarded/cases",
+          "equals": 19
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -355783,6 +355948,25 @@
       "evidence": [
         "BA2.headless-20261023"
       ]
+    },
+    {
+      "id": "GLS1.provider-lifetime-headless",
+      "scope": "Actual PE32 Wine/native aliases,held Flip,complete unchanged original shutdown under authored real-provider COM sessions,and native allocation-failure retries. Headless virtual-desktop scope only.",
+      "level": "headless",
+      "behaviors": [
+        "NP.surface-alias-lease-lifecycle",
+        "NP.graphics-session-provider-retirement"
+      ],
+      "tests": [
+        "tools/test-graphics-leases-shutdown.py",
+        "tests/graphics-alias-lease-probe.c",
+        "tests/graphics-alias-flip-probe.c",
+        "tests/graphics-session-shutdown-probe.c",
+        "tests/graphics-allocation-failure-probe.c"
+      ],
+      "evidence": [
+        "GLS1.provider-lifetime-20261024"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -357335,7 +357519,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-a6bbd3e9e80ff2d2510468c2acf30c3807e514ee662ebaa3d65181d68dac58bd.json",
-    "sha256": "a6bbd3e9e80ff2d2510468c2acf30c3807e514ee662ebaa3d65181d68dac58bd"
+    "path": "research/runtime/coverage/source-index-51a72b5463479058b5a12c882fe02fe0e4c488bf4ee251c965f68a73bca95158.json",
+    "sha256": "51a72b5463479058b5a12c882fe02fe0e4c488bf4ee251c965f68a73bca95158"
   }
 }

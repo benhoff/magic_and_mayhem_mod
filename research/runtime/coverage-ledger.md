@@ -1,5 +1,27 @@
 # Engine modernization coverage ledger
 
+
+## Rendering alias leases and provider-backed shutdown — 2026-10-24
+
+Chunks 5–6 add current bounded lifetime validation of the existing native facade:
+128 cross-interface offscreen Lock/DC cohorts,64 complete-plane held-Flip cohorts
+and192 sessions executing unchanged original58acf0/58b3e0 with actual Wine/native
+COM providers. The native guarded dual-view profile repeats each matrix with its
+64 intentional GetDC-during-Lock refusals separately accounted. Intermediate
+ownership distinguishes caller-held Surface3/4 credits and original fullscreen
+clipper retention from leaks; explicit final releases retire every native owner
+and storage byte before process exit. Another29 native fault controls cover
+partial device/front/back/dual-view/DC allocation and successful retries with
+tracked real-resource accounting. No production implementation change was needed.
+
+See [the chunk review](graphics-leases-shutdown-20261024.md) and
+[GLS1 execution](graphics-leases-shutdown-results-20261024/execution06.json).
+The new native-policy contracts are scoped/headless; original-comparison and
+replacement remain none. Authored session setup and caller-triggered failed-
+descriptor cleanup do not prove whole-game Quit/restart or natural failure-path
+reachability. Physical driver loss/restore,unknown aliases/writers,unadmitted
+interleavings,game pixel/FPS acceptance and alternate-canvas ownership stay open.
+
 ## Rendering helper recovery and alternate publication discovery — 2026-10-24
 
 Rendering chunks 1–3 add owned minimap selector/common-marker composition and
