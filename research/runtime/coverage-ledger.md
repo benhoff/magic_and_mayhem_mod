@@ -1,5 +1,16 @@
 # Engine modernization coverage ledger
 
+## Native alternate canvas owner merged with current rendering — 2026-10-25
+
+Ownership commit47d07b77 is combined with copy/history,cursor provider and
+review-pin master568c7304. Exact history reviews match242,41and28file transitions
+to receipts,with no gaps. Native02 sources and scope/scenario claims remain
+exact;its scoped/headless result is reused,not rerun or promoted to original/live
+equivalence. Both ledger histories,old evidence hashes and the native01 source
+are retained. The combined census/audit and exact merge reviews are separate
+bookkeeping. Main's pending contributor edits are preserved separately. See
+[integration scope and evidence](alternate-canvas-master-integration-20261025.md).
+
 ## Static review input compatibility — 2026-10-25
 
 The existing web UI rejected a historical static review whose later-linked
@@ -50,6 +61,24 @@ Natural clipped/self/keyed-GPU calls,five unconfirmed optional callers,
 arbitrary raw readers and complete original ownership remain open. No fixed
 FPS criterion or complete rendering-replacement claim is introduced.
 See [scope,positive evidence and retained failures](native-copy-output-closure-20261025.md).
+## Native alternate canvas generation ownership — 2026-10-25
+
+A separate native owner now allocates, zeroes, publishes, leases and retires
+bounded alternate RGB565 generations. Opaque handles reject stale/cross-owner
+use; exclusive leases prevent resize/reacquire and retain pixels through
+retirement or owner destruction. The compatibility adapter pins the frame through
+the recovered World/Lock/copy/overlay/Unlock composition and removes temporary
+alternate bindings before releasing it. Centered copy-back and zero initialization
+are intentional native choices, not recovered original pointer relationships.
+
+The Qt-free CMake/CTest target and release plus 32/64-bit ASan/UBSan runs pass
+24 full-plane frame controls, 61 refusals and maximum-extent/lifetime controls.
+`NP.alternate-canvas-owned-generation` is scoped/headless. Original alternate
+provenance remains partial, and original comparison, application installation
+and live replacement receive no promotion. Earlier initial test fingerprints
+remain historical; the [refreshed coverage snapshot](coverage/summary-alternate-owner-20261025.md)
+retains unrelated historical staleness. See [policy, lifetime and evidence](alternate-canvas-native-owner-20261025.md).
+
 ## Storage software-upload source attribution — 2026-10-25
 
 The separate public-SHM diagnostic confirms the fresh first-shrink discrepancy
