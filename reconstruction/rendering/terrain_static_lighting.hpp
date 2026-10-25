@@ -23,6 +23,7 @@ public:
  void step(TerrainLightField&,const std::vector<TerrainLightObject>&,
            unsigned scanCount,TerrainLightView,bool published,int changed=0,bool enabled=true);
  const TerrainStaticLightState& state() const{return state_;}
+ void restore(TerrainStaticLightState);
 private:
  TerrainStaticLightState state_;
 };

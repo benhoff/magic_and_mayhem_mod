@@ -147107,7 +147107,9 @@
       ],
       "evidence": [
         "TLS25.suppliers-original",
-        "TLS25.suppliers-native"
+        "TLS25.suppliers-native",
+        "TLCL25.supplier-regression-original",
+        "TLCL25.supplier-regression-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -147163,7 +147165,9 @@
       ],
       "evidence": [
         "TLS25.suppliers-original",
-        "TLS25.suppliers-native"
+        "TLS25.suppliers-native",
+        "TLCL25.supplier-regression-original",
+        "TLCL25.supplier-regression-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -147214,7 +147218,9 @@
       ],
       "evidence": [
         "TLS25.suppliers-original",
-        "TLS25.suppliers-native"
+        "TLS25.suppliers-native",
+        "TLCL25.supplier-regression-original",
+        "TLCL25.supplier-regression-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -147255,7 +147261,9 @@
       ],
       "evidence": [
         "TLR25.callers-original",
-        "TLR25.callers-native"
+        "TLR25.callers-native",
+        "TLCL25.refresh-regression-original",
+        "TLCL25.refresh-regression-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -147307,7 +147315,9 @@
       ],
       "evidence": [
         "TLR25.callers-original",
-        "TLR25.callers-native"
+        "TLR25.callers-native",
+        "TLCL25.refresh-regression-original",
+        "TLCL25.refresh-regression-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -147360,7 +147370,9 @@
       ],
       "evidence": [
         "TLR25.callers-original",
-        "TLR25.callers-native"
+        "TLR25.callers-native",
+        "TLCL25.refresh-regression-original",
+        "TLCL25.refresh-regression-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -147394,6 +147406,772 @@
         "reconstruction/rendering/terrain_static_lighting.hpp",
         "reconstruction/rendering/terrain_static_lighting.cpp"
       ]
+    },
+    {
+      "id": "TL.complete-creation-caller",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "title": "All valid creature creation owner modes",
+      "scope": "Whole local creation caller with existing source, first free owner, no free owner sentinel and named script owner resolution; external suppliers recorded; valid bounded map dimensions and records.",
+      "validation_domain": "Whole local creation caller with existing source, first free owner, no free owner sentinel and named script owner resolution; external suppliers recorded; valid bounded map dimensions and records.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4781712,
+          "scope": "Whole local creation caller with existing source, first free owner, no free owner sentinel and named script owner resolution; external suppliers recorded; valid bounded map dimensions and records."
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-closure.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_refresh.hpp"
+      ],
+      "tests": [
+        "tests/terrain-light-producers-reference.cpp",
+        "tools/test-terrain-light-producers.py"
+      ],
+      "evidence": [
+        "TLCL25.producers-original",
+        "TLCL25.producers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "External suppliers and malformed guest graphs remain separate contracts; scope and valid-input bounds above remain authoritative."
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/terrain_light_suppliers.hpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "TL.complete-position-events",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "title": "Complete position event dispatch and continuation",
+      "scope": "Whole local position event dispatcher, events5/8/9/14/default, +718 command continuation and attachment counters; explicit coordinate/placement/command/lifecycle suppliers and valid references.",
+      "validation_domain": "Whole local position event dispatcher, events5/8/9/14/default, +718 command continuation and attachment counters; explicit coordinate/placement/command/lifecycle suppliers and valid references.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5367952,
+          "scope": "Whole local position event dispatcher, events5/8/9/14/default, +718 command continuation and attachment counters; explicit coordinate/placement/command/lifecycle suppliers and valid references.",
+          "recovered_range": "terrain-position-event-51e890"
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-closure.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_refresh.hpp"
+      ],
+      "tests": [
+        "tests/terrain-light-producers-reference.cpp",
+        "tools/test-terrain-light-producers.py"
+      ],
+      "evidence": [
+        "TLCL25.producers-original",
+        "TLCL25.producers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "External suppliers and malformed guest graphs remain separate contracts; scope and valid-input bounds above remain authoritative."
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/terrain_light_suppliers.hpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "TL.map-load-light-resources",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "title": "Map loader light allocation failures and refresh publication",
+      "scope": "Whole map-loader normal-return local control under checked stream/allocation/map-linked/kernel suppliers; compare successful loading and every read/allocation failure before refresh publication.",
+      "validation_domain": "Whole map-loader normal-return local control under checked stream/allocation/map-linked/kernel suppliers; compare successful loading and every read/allocation failure before refresh publication.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5250560,
+          "scope": "Whole map-loader normal-return local control under checked stream/allocation/map-linked/kernel suppliers; compare successful loading and every read/allocation failure before refresh publication."
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-closure.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_map_load.hpp"
+      ],
+      "tests": [
+        "tests/terrain-light-map-load-reference.cpp",
+        "tools/test-terrain-light-map-load.py",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "TLCL25.loader-original",
+        "TLCL25.loader-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "External suppliers and malformed guest graphs remain separate contracts; scope and valid-input bounds above remain authoritative."
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp"
+      ]
+    },
+    {
+      "id": "TL.live-light-inputs",
+      "title": "Actual installed lighting inputs and native replay",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "scope": "Bounded read-only original game lighting observations using copied relation bytes, actual creature/effect records, view, kernels/configuration, buffers and complete cycle state; independent native replay compared to original post-state.",
+      "validation_domain": "Bounded read-only original game lighting observations using copied relation bytes, actual creature/effect records, view, kernels/configuration, buffers and complete cycle state; independent native replay compared to original post-state.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5187488,
+          "scope": "Bounded read-only original game lighting observations using copied relation bytes, actual creature/effect records, view, kernels/configuration, buffers and complete cycle state; independent native replay compared to original post-state."
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-closure.md"
+      ],
+      "implementation": [
+        "runtime/lighting/observer.c",
+        "protocols/include/mnm/terrain_light_v1.h",
+        "tools/terrain-light-replay.cpp",
+        "tools/build-terrain-light-observer.py",
+        "tools/capture-terrain-light-game.py",
+        "runtime/shadow/win32_min.h",
+        "tools/build-shadow-bridge.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/build-menu-observer.py",
+        "runtime/menu/realm.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/spell_campaign.h",
+        "runtime/menu/battle.h",
+        "runtime/menu/lobby.h",
+        "runtime/menu/drawing_semantic_state.h",
+        "runtime/menu/preferences.h",
+        "runtime/menu/grimoire_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/startup_admission.h",
+        "runtime/menu/results.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/spells.h",
+        "runtime/menu/grimoire.h",
+        "runtime/menu/multiplayer.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/character.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/grimoire_campaign.h",
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/drawing_hud_state.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/drawing_region_tracked_actor.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/storage.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/drawing_region_input.h",
+        "runtime/menu/sessions.h",
+        "runtime/menu/campaign_input_admission_observe.h",
+        "runtime/menu/drawing_actor_latches.h",
+        "protocols/include/mnm/menu_v21.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v22.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v20.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v19.h",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp"
+      ],
+      "tests": [
+        "tools/capture-terrain-light-game.py",
+        "tests/test-terrain-light-wire.py"
+      ],
+      "evidence": [
+        "TLCL25.live-observe",
+        "TLCL25.live-replace"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Finite isolated Quick Battle validation; standalone world scheduling, arbitrary maps/saves, long-duration play and default rollout are separate milestones."
+      ],
+      "validation_dependencies": [
+        "tools/run-private-terrain-display.py",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "TL.live-light-scheduler",
+      "title": "Observed real world lighting scheduling",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "scope": "Original-active full game startup into Quick Battle with real outer-updater call sites, clock values, changed consumption and installed source snapshots; observed finite original scheduling domain, not a whole game-loop replacement.",
+      "validation_domain": "Original-active full game startup into Quick Battle with real outer-updater call sites, clock values, changed consumption and installed source snapshots; observed finite original scheduling domain, not a whole game-loop replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5187488,
+          "scope": "Original-active full game startup into Quick Battle with real outer-updater call sites, clock values, changed consumption and installed source snapshots; observed finite original scheduling domain, not a whole game-loop replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-closure.md"
+      ],
+      "implementation": [
+        "runtime/lighting/observer.c",
+        "protocols/include/mnm/terrain_light_v1.h",
+        "tools/terrain-light-replay.cpp",
+        "tools/build-terrain-light-observer.py",
+        "tools/capture-terrain-light-game.py",
+        "runtime/shadow/win32_min.h",
+        "tools/build-shadow-bridge.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/build-menu-observer.py",
+        "runtime/menu/realm.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/spell_campaign.h",
+        "runtime/menu/battle.h",
+        "runtime/menu/lobby.h",
+        "runtime/menu/drawing_semantic_state.h",
+        "runtime/menu/preferences.h",
+        "runtime/menu/grimoire_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/startup_admission.h",
+        "runtime/menu/results.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/spells.h",
+        "runtime/menu/grimoire.h",
+        "runtime/menu/multiplayer.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/character.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/grimoire_campaign.h",
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/drawing_hud_state.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/drawing_region_tracked_actor.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/storage.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/drawing_region_input.h",
+        "runtime/menu/sessions.h",
+        "runtime/menu/campaign_input_admission_observe.h",
+        "runtime/menu/drawing_actor_latches.h",
+        "protocols/include/mnm/menu_v21.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v22.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v20.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v19.h",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp"
+      ],
+      "tests": [
+        "tools/capture-terrain-light-game.py",
+        "tests/test-terrain-light-wire.py"
+      ],
+      "evidence": [
+        "TLCL25.live-observe",
+        "TLCL25.live-replace"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Finite isolated Quick Battle validation; standalone world scheduling, arbitrary maps/saves, long-duration play and default rollout are separate milestones."
+      ],
+      "validation_dependencies": [
+        "tools/run-private-terrain-display.py",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "TL.live-light-replacement",
+      "title": "Bounded native replacement of live terrain lighting",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "scope": "Explicit isolated native replacement of admitted outer-updater calls only after current-source original-active byte comparison; pointer-free nonce/sequence/source-bound replies and original fallback on refusal/timeouts.",
+      "validation_domain": "Explicit isolated native replacement of admitted outer-updater calls only after current-source original-active byte comparison; pointer-free nonce/sequence/source-bound replies and original fallback on refusal/timeouts.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5187488,
+          "scope": "Explicit isolated native replacement of admitted outer-updater calls only after current-source original-active byte comparison; pointer-free nonce/sequence/source-bound replies and original fallback on refusal/timeouts."
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-closure.md"
+      ],
+      "implementation": [
+        "runtime/lighting/observer.c",
+        "protocols/include/mnm/terrain_light_v1.h",
+        "tools/terrain-light-replay.cpp",
+        "tools/build-terrain-light-observer.py",
+        "tools/capture-terrain-light-game.py",
+        "runtime/shadow/win32_min.h",
+        "tools/build-shadow-bridge.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/build-menu-observer.py",
+        "runtime/menu/realm.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/spell_campaign.h",
+        "runtime/menu/battle.h",
+        "runtime/menu/lobby.h",
+        "runtime/menu/drawing_semantic_state.h",
+        "runtime/menu/preferences.h",
+        "runtime/menu/grimoire_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/startup_admission.h",
+        "runtime/menu/results.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/spells.h",
+        "runtime/menu/grimoire.h",
+        "runtime/menu/multiplayer.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/character.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/grimoire_campaign.h",
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/drawing_hud_state.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/drawing_region_tracked_actor.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/storage.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/drawing_region_input.h",
+        "runtime/menu/sessions.h",
+        "runtime/menu/campaign_input_admission_observe.h",
+        "runtime/menu/drawing_actor_latches.h",
+        "protocols/include/mnm/menu_v21.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v22.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v20.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v19.h",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp"
+      ],
+      "tests": [
+        "tools/capture-terrain-light-game.py",
+        "tests/test-terrain-light-wire.py"
+      ],
+      "evidence": [
+        "TLCL25.live-replace"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "scoped_live"
+      },
+      "remaining_gaps": [
+        "Finite isolated Quick Battle validation; standalone world scheduling, arbitrary maps/saves, long-duration play and default rollout are separate milestones."
+      ],
+      "validation_dependencies": [
+        "tools/run-private-terrain-display.py",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "TL.initializer-allocation-faults",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "title": "Original initializer partial allocation fault states",
+      "scope": "Whole initializer with each of five allocation endpoints returning null; isolated original child SIGSEGV state versus bounded native guest-write exception state, ordered calls, buffers and partially stored handles; original CRT internals remain external.",
+      "validation_domain": "Whole initializer with each of five allocation endpoints returning null; isolated original child SIGSEGV state versus bounded native guest-write exception state, ordered calls, buffers and partially stored handles; original CRT internals remain external.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5164496,
+          "scope": "Whole initializer with each of five allocation endpoints returning null; isolated original child SIGSEGV state versus bounded native guest-write exception state, ordered calls, buffers and partially stored handles; original CRT internals remain external."
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-closure.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_suppliers.hpp"
+      ],
+      "tests": [
+        "tests/terrain-light-allocation-reference.cpp",
+        "tests/terrain-light-suppliers-reference.cpp",
+        "tools/test-terrain-light-allocation.py",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "TLCL25.allocation-original",
+        "TLCL25.allocation-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "External suppliers and malformed guest graphs remain separate contracts; scope and valid-input bounds above remain authoritative."
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp"
+      ]
+    },
+    {
+      "id": "TL.owned-light-resources",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "confidence": "high_within_scope",
+      "title": "Owned light buffer lifetime and atomic replay restore",
+      "scope": "Intentional native policy: vector-owned buffers and kernels, complete five-buffer and subcycle replay restoration, strong exception guarantee for construction, restore and step; original allocation faults are separately modeled.",
+      "original": [],
+      "documents": [
+        "research/runtime/terrain-light-owned-resources.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp"
+      ],
+      "tests": [
+        "tests/terrain-light-lifetime-test.cpp",
+        "tools/test-terrain-light-lifetime.py"
+      ],
+      "evidence": [
+        "TLCL25.owned-lifetime"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "No original allocator-equivalence claim; this is intentional native lifetime and atomic restoration policy."
+      ]
+    },
+    {
+      "id": "TL.script-relation-production",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "title": "Script relation production and reveal caller",
+      "scope": "Whole 0056a8d0 script action caller: owner/name selection, disable/enable relation18, share20, creature cleanup and ordered reveal services, character visibility admission and final script completion; explicitly recorded external services and valid guest-name domains.",
+      "validation_domain": "Whole 0056a8d0 script action caller: owner/name selection, disable/enable relation18, share20, creature cleanup and ordered reveal services, character visibility admission and final script completion; explicitly recorded external services and valid guest-name domains.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5679312,
+          "scope": "Whole 0056a8d0 script action caller: owner/name selection, disable/enable relation18, share20, creature cleanup and ordered reveal services, character visibility admission and final script completion; explicitly recorded external services and valid guest-name domains."
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-script-relations.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_script_relations.hpp"
+      ],
+      "tests": [
+        "tests/terrain-light-script-reference.cpp",
+        "tools/test-terrain-light-script.py",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "TLCL25.script-original",
+        "TLCL25.script-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "External suppliers and malformed guest graphs remain separate contracts; scope and valid-input bounds above remain authoritative."
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp"
+      ]
+    },
+    {
+      "id": "TL.reload-light-caller",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "title": "Successful reload lighting dispatch",
+      "scope": "Successful reload lighting continuation [004721f0,00472218): parent+100b0 set before unconditional creature/static lighting and changed clear, then ordered continuation services; no dependency on regular scheduler enable flag.",
+      "validation_domain": "Successful reload lighting continuation [004721f0,00472218): parent+100b0 set before unconditional creature/static lighting and changed clear, then ordered continuation services; no dependency on regular scheduler enable flag.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4657616,
+          "scope": "Successful reload lighting continuation [004721f0,00472218): parent+100b0 set before unconditional creature/static lighting and changed clear, then ordered continuation services; no dependency on regular scheduler enable flag."
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-closure.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_refresh.hpp"
+      ],
+      "tests": [
+        "tests/terrain-light-producers-reference.cpp",
+        "tools/test-terrain-light-producers.py"
+      ],
+      "evidence": [
+        "TLCL25.producers-original",
+        "TLCL25.producers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "External suppliers and malformed guest graphs remain separate contracts; scope and valid-input bounds above remain authoritative."
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/terrain_light_suppliers.hpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "TL.supplier-static-discovery",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "title": "Supplier caller and scheduler static discovery",
+      "scope": "Hash-pinned original supplier, script and scheduler disassembly retained with original manifest bookends; static discovery only, with no execution/comparison claim.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632512,
+          "scope": "Hash-pinned original supplier, script and scheduler disassembly retained with original manifest bookends; static discovery only, with no execution/comparison claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5250560,
+          "scope": "Hash-pinned original supplier, script and scheduler disassembly retained with original manifest bookends; static discovery only, with no execution/comparison claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5679312,
+          "scope": "Hash-pinned original supplier, script and scheduler disassembly retained with original manifest bookends; static discovery only, with no execution/comparison claim."
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-closure.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/inspect-terrain-light-producers.py"
+      ],
+      "evidence": [
+        "TLCL25.static-discovery"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -335118,6 +335896,480 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLCL25.producers-original",
+      "kind": "isolated_original",
+      "scope": "Whole local creation caller with existing source, first free owner, no free owner sentinel and named script owner resolution; external suppliers recorded; valid bounded map dimensions and records.; Whole local position event dispatcher, events5/8/9/14/default, +718 command continuation and attachment counters; explicit coordinate/placement/command/lifecycle suppliers and valid references.; Successful reload lighting continuation [004721f0,00472218): parent+100b0 set before unconditional creature/static lighting and changed clear, then ordered continuation services; no dependency on regular scheduler enable flag.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/producers02.json",
+      "sha256": "6dbf420d5996c493e2bc22a376e160eac0dcbdbc70e3c2b5718b1bb0f039960b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLCL25.producers-native",
+      "kind": "native_integration",
+      "scope": "Whole local creation caller with existing source, first free owner, no free owner sentinel and named script owner resolution; external suppliers recorded; valid bounded map dimensions and records.; Whole local position event dispatcher, events5/8/9/14/default, +718 command continuation and attachment counters; explicit coordinate/placement/command/lifecycle suppliers and valid references.; Successful reload lighting continuation [004721f0,00472218): parent+100b0 set before unconditional creature/static lighting and changed clear, then ordered continuation services; no dependency on regular scheduler enable flag.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/producers02.json",
+      "sha256": "6dbf420d5996c493e2bc22a376e160eac0dcbdbc70e3c2b5718b1bb0f039960b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TLCL25.loader-original",
+      "kind": "isolated_original",
+      "scope": "Whole map-loader normal-return local control under checked stream/allocation/map-linked/kernel suppliers; compare successful loading and every read/allocation failure before refresh publication.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/loader05.json",
+      "sha256": "b5edb2c38057d02c1a56a9fe38111cd7fe2124564cf675f2f049e1e85fece1e6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLCL25.loader-native",
+      "kind": "native_integration",
+      "scope": "Whole map-loader normal-return local control under checked stream/allocation/map-linked/kernel suppliers; compare successful loading and every read/allocation failure before refresh publication.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/loader05.json",
+      "sha256": "b5edb2c38057d02c1a56a9fe38111cd7fe2124564cf675f2f049e1e85fece1e6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TLCL25.allocation-original",
+      "kind": "isolated_original",
+      "scope": "Whole initializer with each of five allocation endpoints returning null; isolated original child SIGSEGV state versus bounded native guest-write exception state, ordered calls, buffers and partially stored handles; original CRT internals remain external.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/allocation04.json",
+      "sha256": "345ef66cc6e52f5fdec716f6deba8faa3ed913d417c21670e90ca4aa94d94923",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLCL25.allocation-native",
+      "kind": "native_integration",
+      "scope": "Whole initializer with each of five allocation endpoints returning null; isolated original child SIGSEGV state versus bounded native guest-write exception state, ordered calls, buffers and partially stored handles; original CRT internals remain external.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/allocation04.json",
+      "sha256": "345ef66cc6e52f5fdec716f6deba8faa3ed913d417c21670e90ca4aa94d94923",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TLCL25.script-original",
+      "kind": "isolated_original",
+      "scope": "Whole 0056a8d0 script action caller: owner/name selection, disable/enable relation18, share20, creature cleanup and ordered reveal services, character visibility admission and final script completion; explicitly recorded external services and valid guest-name domains.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/script05.json",
+      "sha256": "c83b141267f342a506340493b2f52c599253f55e7687aa4878f52e3c2da3826c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLCL25.script-native",
+      "kind": "native_integration",
+      "scope": "Whole 0056a8d0 script action caller: owner/name selection, disable/enable relation18, share20, creature cleanup and ordered reveal services, character visibility admission and final script completion; explicitly recorded external services and valid guest-name domains.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/script05.json",
+      "sha256": "c83b141267f342a506340493b2f52c599253f55e7687aa4878f52e3c2da3826c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TLCL25.supplier-regression-original",
+      "kind": "isolated_original",
+      "scope": "Bounded relation defaults/pair writes, supplied-kernel resource init/reuse/clear and explicit refresh request. Allocator/free and kernel endpoint recorders; no original heap failure, full kernel execution, script consequences, installed producer or live acceptance.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/suppliers-regression01.json",
+      "sha256": "b3b7a3cd07cc0b40db0fa3a41314beda978e1ecb9a613c182ea58fdf0a03bbd0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLCL25.supplier-regression-native",
+      "kind": "native_integration",
+      "scope": "Bounded relation defaults/pair writes, supplied-kernel resource init/reuse/clear and explicit refresh request. Allocator/free and kernel endpoint recorders; no original heap failure, full kernel execution, script consequences, installed producer or live acceptance.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/suppliers-regression01.json",
+      "sha256": "b3b7a3cd07cc0b40db0fa3a41314beda978e1ecb9a613c182ea58fdf0a03bbd0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TLCL25.refresh-regression-original",
+      "kind": "isolated_original",
+      "scope": "Whole admitted linked-creature creation and event9/default callers with recorded services; selected world-loop region and timer/lighting gates; authored producer-to-actual-cycle sequences. No full world loop, installed source production, other load continuations or live replacement.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/refresh-regression01.json",
+      "sha256": "14e9037adb42c03bb16b45736881281289f8c0645f9741b6b997e83dbe6e7bb5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLCL25.refresh-regression-native",
+      "kind": "native_integration",
+      "scope": "Whole admitted linked-creature creation and event9/default callers with recorded services; selected world-loop region and timer/lighting gates; authored producer-to-actual-cycle sequences. No full world loop, installed source production, other load continuations or live replacement.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/refresh-regression01.json",
+      "sha256": "14e9037adb42c03bb16b45736881281289f8c0645f9741b6b997e83dbe6e7bb5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TLCL25.owned-lifetime",
+      "kind": "native_integration",
+      "scope": "Intentional native policy: vector-owned buffers and kernels, complete five-buffer and subcycle replay restoration, strong exception guarantee for construction, restore and step; original allocation faults are separately modeled.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/lifetime01.json",
+      "sha256": "c1389dbd2972394cfe2d9f960cbbdd32e00fbb96c3c4e5504e2ccb04fdd289ac",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TLCL25.live-observe",
+      "kind": "live_equivalence",
+      "scope": "Bounded read-only original game lighting observations using copied relation bytes, actual creature/effect records, view, kernels/configuration, buffers and complete cycle state; independent native replay compared to original post-state.; Original-active full game startup into Quick Battle with real outer-updater call sites, clock values, changed consumption and installed source snapshots; observed finite original scheduling domain, not a whole game-loop replacement.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/observe11.json",
+      "sha256": "1067a71de428003bc421a5ffd0a876d5e22b2b467883fd0a48abab49ecf4b900",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/independent_original_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/sanitized_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/wire_refusals/success",
+          "equals": true
+        },
+        {
+          "pointer": "/wire_refusals/refused_inputs",
+          "equals": 36
+        },
+        {
+          "pointer": "/scene_continued_seconds",
+          "equals": 1
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success"
+    },
+    {
+      "id": "TLCL25.live-replace",
+      "kind": "live_replacement",
+      "scope": "Bounded read-only original game lighting observations using copied relation bytes, actual creature/effect records, view, kernels/configuration, buffers and complete cycle state; independent native replay compared to original post-state.; Original-active full game startup into Quick Battle with real outer-updater call sites, clock values, changed consumption and installed source snapshots; observed finite original scheduling domain, not a whole game-loop replacement.; Explicit isolated native replacement of admitted outer-updater calls only after current-source original-active byte comparison; pointer-free nonce/sequence/source-bound replies and original fallback on refusal/timeouts.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/replace03.json",
+      "sha256": "13bb3f83e5ab812c2010a1c94363d85b120155c03e2457122577f653302d267e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/independent_original_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/sanitized_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/wire_refusals/success",
+          "equals": true
+        },
+        {
+          "pointer": "/wire_refusals/refused_inputs",
+          "equals": 36
+        },
+        {
+          "pointer": "/scene_continued_seconds",
+          "equals": 1
+        },
+        {
+          "pointer": "/replacements",
+          "equals": 32
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success",
+      "bypass_pointer": "/live_replacement"
+    },
+    {
+      "id": "TLCL25.static-discovery",
+      "kind": "static",
+      "scope": "Hash-pinned original supplier, script and scheduler disassembly retained with original manifest bookends; static discovery only, with no execution/comparison claim.",
+      "record": "research/runtime/terrain-light-closure-results-20261025/discovery-review01.json",
+      "sha256": "e597f345263e2fa70fa520dd4e819fff589dfe2e75aee432bd386d9b37e1c095",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -344264,63 +345516,76 @@
         "recovered_range": "terrain-position-event-51e890",
         "scope": "Position handler byte indirection and four-target table at0051ec6c/0051ec5c."
       },
-      "document": "research/runtime/terrain-refresh-callers.md",
-      "complete": false,
-      "scope": "Event9 with +718=0 and default events only. Events5/14 share an unvalidated branch; event8 and +718 continuation remain unresolved.",
+      "document": "research/runtime/terrain-light-closure.md",
+      "complete": true,
+      "scope": "Complete selected 0051e890 event switch: events5/14,8,9 including +718, and defaults; ordered lower command/lifecycle services remain explicit contracts.",
       "entries": [
         {
           "value": 5,
-          "behaviors": []
+          "behaviors": [
+            "TL.complete-position-events"
+          ]
         },
         {
           "value": 6,
           "behaviors": [
-            "TL.refresh-position-caller"
+            "TL.refresh-position-caller",
+            "TL.complete-position-events"
           ]
         },
         {
           "value": 7,
           "behaviors": [
-            "TL.refresh-position-caller"
+            "TL.refresh-position-caller",
+            "TL.complete-position-events"
           ]
         },
         {
           "value": 8,
-          "behaviors": []
+          "behaviors": [
+            "TL.complete-position-events"
+          ]
         },
         {
           "value": 9,
           "behaviors": [
-            "TL.refresh-position-caller"
+            "TL.refresh-position-caller",
+            "TL.complete-position-events"
           ]
         },
         {
           "value": 10,
           "behaviors": [
-            "TL.refresh-position-caller"
+            "TL.refresh-position-caller",
+            "TL.complete-position-events"
           ]
         },
         {
           "value": 11,
           "behaviors": [
-            "TL.refresh-position-caller"
+            "TL.refresh-position-caller",
+            "TL.complete-position-events"
           ]
         },
         {
           "value": 12,
           "behaviors": [
-            "TL.refresh-position-caller"
+            "TL.refresh-position-caller",
+            "TL.complete-position-events"
           ]
         },
         {
           "value": 13,
           "behaviors": [
-            "TL.refresh-position-caller"
+            "TL.refresh-position-caller",
+            "TL.complete-position-events"
           ]
         },
         {
           "value": 14,
-          "behaviors": []
+          "behaviors": [
+            "TL.complete-position-events"
+          ]
         }
       ]
     }
@@ -361441,7 +362706,39 @@
       ],
       "evidence": [
         "TLR25.callers-original",
-        "TLR25.callers-native"
+        "TLR25.callers-native",
+        "TLCL25.refresh-regression-native"
+      ]
+    },
+    {
+      "id": "TLCL.live-observe-20261025",
+      "scope": "Isolated original Quick Battle lighting observe with current-source native byte replies and actual game progress; finite admitted calls.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.live-light-inputs",
+        "TL.live-light-scheduler"
+      ],
+      "tests": [
+        "tools/capture-terrain-light-game.py"
+      ],
+      "evidence": [
+        "TLCL25.live-observe"
+      ]
+    },
+    {
+      "id": "TLCL.live-replace-20261025",
+      "scope": "Isolated original Quick Battle lighting replace with current-source native byte replies and actual game progress; finite admitted calls.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.live-light-inputs",
+        "TL.live-light-scheduler",
+        "TL.live-light-replacement"
+      ],
+      "tests": [
+        "tools/capture-terrain-light-game.py"
+      ],
+      "evidence": [
+        "TLCL25.live-replace"
       ]
     }
   ],
@@ -362647,7 +363944,7 @@
       "document": "research/runtime/terrain-refresh-callers.md",
       "evidence": "TLR25.callers-original",
       "anchors_pointer": "/original_entry_anchors",
-      "scope": "Pinned position-event code and trailing dispatch data outside Ghidra function bodies. Whole admitted event9/+718=0 and default paths executed with named external services; events5/8/14 and +718 continuation remain unresolved. This range does not classify the whole function as complete."
+      "scope": "Pinned position-event code and trailing dispatch data outside Ghidra function bodies. Whole admitted event9/+718=0 and default paths executed with named external services; events5/8/14 and +718 continuation remain unresolved. This range does not classify the whole function as complete. This historical anchor remains narrow; the later complete caller comparison is TLCL25.producers-original / TL.complete-position-events."
     }
   ],
   "register_imports": [
@@ -363020,7 +364317,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-0ec52feeab1f39d8be1889bcde0d6e48c764d8b81cfea19c7243a813f7375039.json",
-    "sha256": "0ec52feeab1f39d8be1889bcde0d6e48c764d8b81cfea19c7243a813f7375039"
+    "path": "research/runtime/coverage/source-index-f13940e0261f387c2b28bfadebe4427be1196715b62a33dc286188d01f4d08d8.json",
+    "sha256": "f13940e0261f387c2b28bfadebe4427be1196715b62a33dc286188d01f4d08d8"
   }
 }

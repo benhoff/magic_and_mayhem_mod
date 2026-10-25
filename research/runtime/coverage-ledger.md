@@ -22269,3 +22269,78 @@ zero errors. All three new comparisons are current; the declared scheduler
 headless scenario is current independently. The
 [coverage summary](coverage/summary-terrain-refresh-callers-20261025.md) retains
 unrelated historical staleness and unresolved discovery ranges.
+
+## Terrain/light supplier closure and bounded live replacement — 2026-10-25
+
+The supplier contracts now include the remaining creation modes, position
+events5/8/9/14/defaults and the +718 command continuation. The successful reload
+continuation at004721f0..00472218 sets parent+100b0 and calls lighting even when
+the regular scheduler enable flag is zero. The
+[current producer comparison](terrain-light-closure-results-20261025/producers02.json)
+matches672 creation cases,2688 position cases,1152 local scheduler cases,
+64 reload continuations and384 composed scene ticks across original32,
+native64 and ASan/UBSan:28603200 identical bytes. Service bodies remain
+explicit independently owned endpoints.
+
+The [whole map loader](terrain-light-closure-results-20261025/loader05.json)
+matches512 cases, including250 successes and262 failures, existing linked-list
+retirement, read/codec failures, serialized size mismatch and each of the six
+cell/light allocation failures. Serialized light data goes into base+7dc.
+Successful loading alone requests refresh before kernel rebuilding and extent
+publication. The separate
+[initializer failure comparison](terrain-light-closure-results-20261025/allocation04.json)
+matches18 isolated child fault/partial-state cases. It recovered and corrected
+the original fill/copy order:base,work,target,prior,published.
+
+The [whole script caller](terrain-light-closure-results-20261025/script05.json)
+matches2048 original/native/sanitized cases and98893960 bytes. It includes owner
+changes, relation18 disable/enable, share20, ordered cleanup and conditional
+creature/character reveal. Character admission uses the selected character
+owner's directed relation row toward the current player. A sharing action with
+an absent partner reaches uninitialized original owner locals; retained negative
+diagnostics document that fault. Native execution refuses that malformed pair
+before mutation. See [contract and evidence boundary](terrain-light-script-relations.md).
+
+[Owned-resource tests](terrain-light-closure-results-20261025/lifetime01.json)
+exercise213 allocation failures across construction, restore and step,27 invalid
+restores and successful round trips in native and ASan/UBSan builds, with zero
+outstanding allocation delta. This strong exception guarantee is intentional
+native policy, separate from the observed original fault behavior. Existing
+[supplier](terrain-light-closure-results-20261025/suppliers-regression01.json)
+and [refresh](terrain-light-closure-results-20261025/refresh-regression01.json)
+regressions also pass against current source. A post-write SQLite read lock in
+the refresh wrapper was separately retained and its exact persisted successful
+execution report was subsequently hash-verified; it did not require repeating
+the completed engine experiment.
+
+The installed bridge copies actual relation tables,125 creature-capacity slots,
+2000 static-object slots, scan counts, view/configuration, five buffers and all
+eleven cycle/publication state words into a versioned pointer-free wire record.
+The [original-active run](terrain-light-closure-results-20261025/observe11.json)
+passes32 real world updates at caller0046b8fc. Live original output,
+independent unchanged PE32 replay, native64 replay and ASan/UBSan replay all
+agree. The source-matched
+[replacement run](terrain-light-closure-results-20261025/replace03.json)
+bypasses all32 admitted original updates, with every applied result also equal
+to independent original replay. Both runs refuse36 malformed wire inputs and
+retain a continuing battle-scene image after capture.
+
+Replacement remains opt-in and bounded to this recorded Quick Battle domain.
+The original whole-world orchestrator still owns scheduling and the clock;
+its earlier/later UI, persistence and simulation services are not claimed as a
+standalone native world-loop reconstruction. Arbitrary maps/saves, long-duration
+play and default rollout remain separate milestones. This closes the supplied
+relation/resource/refresh contracts and their bounded installed lighting path;
+it does not complete engine modernization or the outstanding gameplay features.
+Failed display, startup, ABI, malformed-action and timeout attempts, exact prior
+source versions and raw outputs remain retained. Historical evidence hashes and
+unrelated subsystem statuses are preserved.
+
+The [final audit](terrain-light-closure-results-20261025/audit03.json) has zero
+errors and no census drift. All declared new implementation/comparison stages,
+both live scenarios and bounded replacement have current complete-source
+support. The [reviewed summary](coverage/summary-terrain-light-closure-final-20261025.md)
+retains unrelated historical staleness. Exact comparison streams and negative
+diagnostics are [retained in SQLite](terrain-light-closure-results-20261025/retained-artifacts01.json);
+[source preservation](terrain-light-closure-results-20261025/source-retention-audit01.json)
+checks1286 recorded source references with zero unresolved versions.

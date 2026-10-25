@@ -19,6 +19,8 @@ public:
  void stampBatch(const std::vector<TerrainLightSource>&);
  // Explicit immediate publication; original smoothing/tick branches are separate.
  void publish();
+ // Restore an owned capture only after validating all five buffer extents.
+ void restoreBuffers(const std::array<std::vector<std::int8_t>,5>&);
  // 004f1c60 additive static-object stamp into prior, including axial aliases.
  void stampStatic(TerrainLightSource);
  std::int8_t at(unsigned column,unsigned row,unsigned mapLayer) const;

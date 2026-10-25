@@ -66,6 +66,7 @@ struct Memory {
  U convertColumn(U v){event(0x40e650,0,{v});return (v+2)%19;}
  U convertRow(U v){event(0x4132e0,0,{v});return (v+3)%21;}
  U resolvePosition(U p,std::array<U,3>& xyz){event(0x44d970,p,{xyz[0],xyz[1],xyz[2]});return 0x55;}
+ U submitCommand(std::array<U,3>,const std::array<std::uint8_t,22>&){throw std::runtime_error("Command continuation outside this older fixture");}
  void requestRefresh(){set32(0x5e41a8,1);}
  void subcycle(bool objects) {
   event(objects?0x4f2ad0:0x4f27d0,Map,{get32(0x5e41a8)});
