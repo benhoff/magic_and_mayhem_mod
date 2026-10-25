@@ -22222,3 +22222,37 @@ reviewed supplier closeout `d54a5e37`. Its exact transition review extends the
 retained history, while all twelve supplier proof inputs remain unchanged. A
 backed-up pending merge preserves concurrent main-checkout work through normal
 hook validation and the final fast-forward. No validation scope is promoted.
+## Cursor clients and deferred borrowed lifetime (2026-10-25)
+
+[Recovered control and lifetime preconditions](cursor-ownership-deferred-lifetime-20261025.md)
+complement the separately owned screen-services background invalidation/restore
+helpers. `CUR25.clients-queue-disposal` compares unchanged original foreground,
+timer, enqueue/drain and disposal callers against portable value-address models.
+Optimized and ASan/UBSan32 each pass10,368 client cases,1,280 queue cases,12 disposal
+cases and6 sparse/retry controls. Original manifest bookends and selected unchanged
+instruction checks pass. The first sanitizer harness failure remains immutable.
+
+The queue copies rectangles but borrows wrappers and resolves current interfaces
+at drain. Foreground can enqueue; timer remains immediate. Disposal leaves queue
+records pending while releasing sprite/background interfaces. These are confirmed
+serial lifetime preconditions, not proof of safe original concurrent shutdown.
+Offline understanding/implementation/comparison are recorded independently from
+integration/replacement, which remain none. Full allocator/alias/writer mapping,
+an owning native cursor service and live physical acceptance remain pending.
+The diagnostic gate keeps its ownership disclaimer; no locking policy is promoted.
+Generated results and review bookkeeping use SQLite; raw controls are retained in
+the isolated `codex/cursor-ownership-20261025` worktree on the Videos filesystem.
+
+## Cursor lifetime merge with screen services (2026-10-25)
+
+[The master integration](cursor-ownership-master-integration-20261025.md) combines
+cursor clients/borrowed deferred lifetime `0922ff4c` with background-helper master
+`618cc26c`. Source bodies and scope-bound execution fingerprints are unchanged;
+new accounting preserves both parent histories and reviews the combined census.
+No native ownership, concurrent shutdown or live replacement claim is promoted.
+Uncommitted master launcher/coverage work remains outside this merge.
+
+Cursor lifetime final integration preserves current master `35ae1c4f` and
+its independent alternate-canvas ownership/review metadata. See the [integration
+review](cursor-ownership-master-integration-20261025.md). Cursor sources/contracts
+remain exact; native ownership and live replacement remain pending.
