@@ -1,5 +1,17 @@
 # Engine modernization coverage ledger
 
+## Static review input compatibility — 2026-10-25
+
+The existing web UI rejected a historical static review whose later-linked
+documents were not pinned. The derived record adds those four documents as
+pending inputs while retaining every old source/contract hash,witness and
+classification. Its original record remains in review history. No UI source,
+engine status or historical execution result changes. The concurrent copy
+integration already pinned the two later task-review documents; its catalog is
+preserved. See [scope](rendering-review-input-pins-20261025.md).
+The combined UI snapshot passes; SC25 rendering records remain historical after
+the concurrent copy source changes. See [integration closeout](rendering-integration-closeout-20261025.md).
+
 ## Original screen cursor helpers and native providers — 2026-10-25
 
 CSR1 closes local4a4370invalidation and4a4380restore with55296 original32,

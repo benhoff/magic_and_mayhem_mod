@@ -3735,7 +3735,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_submission"
       },
       "remaining_gaps": [
@@ -3815,7 +3815,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_camera"
       },
       "remaining_gaps": [
@@ -3889,7 +3889,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_traversal"
       },
       "validation_dependencies": [
@@ -3956,7 +3956,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_map"
       },
       "validation_dependencies": [
@@ -4018,7 +4018,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_sections"
       },
       "remaining_gaps": [
@@ -4086,7 +4086,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_region"
       },
       "validation_dependencies": [
@@ -4202,7 +4202,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_selection"
       },
       "validation_dependencies": [
@@ -4295,7 +4295,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_constraints"
       },
       "validation_domain": "Owned descriptor-bank admission, expansion, connector lookup, multi-block carry/admission, candidate/location tables and bounded49-entry pruning. Shared native admission is nonmutating. Original allocation, malformed connector dereferences, full50-entry pruning and live generation remain separate.",
@@ -4358,7 +4358,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_solver"
       },
       "validation_domain": "Owned placement/removal, pruning carry and bounded one-attempt backtracking, plus transactional ordered multi-block edit publication. Atomic batch refusal is native policy; safe single-removal/solver states are compared with original. Original allocation, unsafe rollback and complete world/session integration remain separate.",
@@ -4421,7 +4421,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_specific"
       },
       "validation_domain": "Owned request admission and selected two-pass Specific placement/fallback on bounded descriptor/grid state, with ordered diagnostics and count suppression. Shared validation includes skipped ordinary request fields as native policy. Original configuration loading, unsafe connector/rollback and production/dialog service lifetime remain separate.",
@@ -4494,7 +4494,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_generation"
       },
       "validation_domain": "Owned post-CFG reset, Specific/solver composition and wrapping+500 seed progression, exposed as one inspectable attempt and composed into at most ten attempts. Mutated requests/source rows and final exhausted partial state are retained. Original CFG/allocation/file/dialog services and world creation/live routing remain separate.",
@@ -4566,7 +4566,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_catalog"
       },
       "validation_dependencies": [
@@ -4637,7 +4637,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_generated"
       },
       "validation_domain": "Owned recipe/header generation, successful assignment-to-plan translation and complete ordinary MAP assembly, used by the preview loader. Original comparison covers post-CFG generation state and plan provenance; ordinary object/reference projection and MAP assembly are native composition policies with native controls. Original full-world/pixel/allocator/file-error behavior and live acceptance remain separate.",
@@ -4706,7 +4706,7 @@
         "0x57e1b0"
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.palette_shading"
       },
       "validation_dependencies": [
@@ -4778,7 +4778,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_lighting"
       },
       "validation_domain": "Owned five-buffer light fields, selected distance kernels and controlled stamps, with full-batch source validation before mutation and explicit publication. Original preallocated initialization/kernels/size2..17 stamps/publication are compared. Size-one inherited storage, batch atomicity and strict malformed-input refusal are native policy; allocation/reload, source discovery/timing and complete live lighting remain separate.",
@@ -4842,7 +4842,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.terrain_creature_lighting"
       },
       "validation_domain": "Owned creature-light admission and controlled cycle/publication, with validated native replay restoration of phase0..7/cursor0..65536 while preserving unsigned remaining/quota. Original comparisons cover changing controlled creature/relation snapshots and spectator camera branches. Original production discovery, allocation and live scheduling remain separate; restore is a native interface policy.",
@@ -4916,7 +4916,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RE.palette_preferences"
       },
       "validation_dependencies": [
@@ -16279,7 +16279,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.palette-resources"
       },
       "remaining_gaps": [
@@ -16387,7 +16387,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.command-checkpoint-attachment"
       },
       "remaining_gaps": [
@@ -19761,7 +19761,7 @@
         "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.live-drawing-replacement"
       }
     },
@@ -21689,7 +21689,7 @@
       },
       "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code.",
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RS.world-startup-queues"
       },
       "remaining_gaps": [
@@ -22344,7 +22344,7 @@
         "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.world-history-channel"
       }
     },
@@ -22582,7 +22582,7 @@
         "NT14 supplies current bounded implementation execution with scripted original external APIs, unchanged original selected instructions and authored PE32/native controls. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.world-live-history"
       }
     },
@@ -23012,7 +23012,7 @@
       },
       "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code.",
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.canvas-producer-replay"
       },
       "scope_resolution": {
@@ -38921,7 +38921,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.world-gpu-resident-frame"
       },
       "remaining_gaps": [
@@ -39369,7 +39369,7 @@
         "20261019: confirmed PageLock/PageUnlock and startup Surface3/4 reference leaks are repaired and current headless comparisons pass. Pinned strict normal Quit (179 Worlds), public restart and NVIDIA standalone startup pass; their broad live source fingerprints retain unrelated main-tree terrain/build drift. Full required caller/writer/alias closure, physical context loss, whole-game original pixels and sustained performance remain unresolved."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.directdraw-retirement"
       }
     },
@@ -39721,7 +39721,7 @@
         "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.world-gpu-ack-delivery"
       }
     },
@@ -39780,7 +39780,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.directdraw-import-retirement"
       },
       "remaining_gaps": [
@@ -41567,7 +41567,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.minimap-continuous-read-window"
       }
     },
@@ -41652,7 +41652,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.native-draw-status-session-file"
       }
     },
@@ -42460,7 +42460,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RS.displacement-linear-stride"
       },
       "remaining_gaps": [
@@ -42622,7 +42622,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.minimap-write-candidates"
       },
       "remaining_gaps": [
@@ -46030,7 +46030,7 @@
         "Current PE32 copy/tracker/reentry/timeout selectors, zero generation/nonce and stopped-session refusal preserve original-once Lock/Unlock results, LastError and owned FIFO bytes. Arbitrary OS stalls/owner fairness, complete recovery/lifecycle combinations, original driver order and all-game continuity remain outside the bounded proof."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.resident-bind-admission"
       }
     },
@@ -46218,7 +46218,7 @@
         "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.callback-publication-isolation"
       }
     },
@@ -52825,7 +52825,7 @@
         "Two-credit FIFO, retained owned wire data, invalid imports,16malformed source/return/envelope cases, stop at both waiting phases and actual PE32 ACK80-byte corruption/identity controls pass. ACK proves owned handoff rather than GPU completion. Sustained60FPS/source-floor reliability, full public functional/Quit and physical loss/Restore routes, interpolation, complete original equivalence and other live failures retain their separate historical limitations."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.world-owned-snapshot-delivery"
       }
     },
@@ -52921,7 +52921,7 @@
         "Native baseline restoration, repeated destination-dependent drawing, split subqueues and replacement identity/extent are complete within scope. Full current public HUD/presentation acceptance, sustained60FPS, interpolation, original/driver parity and additional live failures/default-route regression remain separate."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.native-prepared-world-replay"
       }
     },
@@ -53016,7 +53016,7 @@
         "Released World/final identities now retire sealed data and failed allocations cannot expose incomplete seals. Scoped strict/sealed/inherited composition, exact budgets, coordinate ownership and resource controls pass. Full live original/driver equivalence, physical scanout/interpolation, sustained60FPS and retained real copy-order history timeouts remain separate acceptance gaps."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.native-prepared-command-frame"
       }
     },
@@ -53184,7 +53184,7 @@
         "Fresh NT17 exact sampling, protected byte/mask bookkeeping, PE32 copy, masked-delta and software/NVIDIA dense-upload controls cover only the changed native algorithms. Existing broader understanding, original-driver comparison, integration and replacement dimensions remain independent."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.masked-update-scratch-reuse"
       }
     },
@@ -53265,7 +53265,7 @@
         "Exact32/32handle and5M/11Mpixel partition, one-over refusal and normal cleanup pass. Six actual prepared-source cache schedules verify held lock/DC/primary/copy exclusions, aliases and FIFO/pixel eviction with142complete native frames. All-pinned refusal stops publication and joins worker/channel storage;31unobserved native lock baselines remain bounded at2976authored bytes for safe process teardown. Recovery/full-stop after uncertain original releases, arbitrary workload fairness and sustained performance remain outside this bounded proof."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.resident-prepared-shared-budget"
       }
     },
@@ -54093,7 +54093,7 @@
         "Current native/headless and stated corrected full public TITAN flow pass with4612balanced returns and19.5966Hzsource floor. NativeWorld48.9985FPS and visiblepaint57.3311FPS secondcycle fail60 target; original comparison/replacement, unobserved failures, hardware/driver/scanout/interpolation/movieWorld and wider shared-source freshness remain pending. Earlierfailedjourneys/capture histories retained."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.native-colour-rectangle-cache"
       }
     },
@@ -54347,7 +54347,7 @@
         "Native covered-sample admission and refusal atomicity are complete within scope. Wider original raster/caller equivalence, additional live failure/ownership routes, hardware/scanout/interpolation and sustained60FPS remain separate; historical failed journeys and performance results are retained."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.masked-displacement-admission"
       }
     },
@@ -59535,7 +59535,7 @@
         "Integration with master startup changes 40b6ac2a/9e074d4e: historical paired replay and full gameplay source closures are stale at apps/qt-shell/main.cpp, tools/menu-game-runner.py and tools/prepare-menu-observer.py. Their recorded hashes are preserved. Renderer/cache implementation sources are unchanged; fresh merged launcher/gameplay execution is pending. Historical live_observation status does not assert fresh current-code validation."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.native-palette-row-cache"
       }
     },
@@ -59856,7 +59856,7 @@
       },
       "confidence": "high_within_scope",
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NP.surface-final-word-read"
       }
     },
@@ -66259,7 +66259,7 @@
         "2026-10-19 Medium review: a deterministic high-water scratch regression exposed an incorrect native finite-edge sample bound. The shader now uses logical canvas height; fresh bounded controls and selected isolated original comparisons are recorded separately from full current public gameplay, prior intermittent pixel instability, live branch reachability and sustained 60 FPS. No historical evidence is rewritten or broad stage promoted."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.displacement-finite-edge"
       }
     },
@@ -66332,7 +66332,7 @@
         "tools/draft-coverage-claims.py"
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.readonly-description-continuity"
       }
     },
@@ -66412,7 +66412,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.native-status-outside-drawing"
       }
     },
@@ -66485,7 +66485,7 @@
         "replacement": "none"
       },
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "TOOL.native-campaign-artifact-check"
       },
       "remaining_gaps": [
@@ -66589,7 +66589,7 @@
         "Scoped native generation/extent/return/ownership controls and captured replay equality pass; reuse stays opt-in and prepared drawing remains the default stress path. Existing genuine copy-order GAP history, arbitrary OS-stall resilience, original driver/pixel/scanout equivalence, interpolation and sustained60FPS remain unresolved or excluded."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.native-retained-world-image"
       }
     },
@@ -68425,7 +68425,7 @@
         "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.producer-recorder-thread-policy"
       }
     },
@@ -68666,7 +68666,7 @@
         "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-source-point-native-prediction"
       }
     },
@@ -69021,7 +69021,7 @@
         "Ninth batch completes the existing bounded implementation scope using owned native fixtures and raw-wire/SQLite CLI controls. Current original-game comparison, all writer/alias/lifetime and presentation ownership, full journey semantics and live replacement remain independent; shared-source historical evidence is retained unchanged."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-physical-sample-timing"
       }
     },
@@ -70486,7 +70486,7 @@
         "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-held-source-egl-causality"
       }
     },
@@ -71511,7 +71511,7 @@
         "tools/coverage_evidence.py"
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-two-stage-source-chain"
       }
     },
@@ -72347,7 +72347,7 @@
         "Fresh owned helper controls cover the declared bounded implementation only. Original behavior comparison, full callback/module quiescence, immutable source/all backing aliases, actor allocation generations, physical causality and native/gameplay parity remain pending; historical evidence retains its original hashes. Forced mid-call recorder retirement remains an incomplete trace and cannot claim a completed callback."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-actor-latch-observation"
       }
     },
@@ -72407,7 +72407,7 @@
         "Eighth batch completes this declared bounded implementation with fresh prospective native/protocol/policy controls and SQLite report support. Historical acquisition/comparison boundaries above remain independent: original comparison, live integration/replacement, all backing aliases/writers, complete presentation and semantic equivalence are not promoted. See rendering-eighth-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-actor-latch-binding"
       }
     },
@@ -72640,7 +72640,7 @@
         "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-cursor-mutex-prefix-binding"
       }
     },
@@ -72939,7 +72939,7 @@
         "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-cursor-map-composition"
       }
     },
@@ -73097,7 +73097,7 @@
         "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-source-frame-binding"
       }
     },
@@ -73162,7 +73162,7 @@
         "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-source-update-intervals"
       }
     },
@@ -73258,7 +73258,7 @@
         "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-source-worker-egl-binding"
       }
     },
@@ -79491,7 +79491,7 @@
         "Exact high/low admission, low-plus-one, stop during wait, cancellation, expiry/wrap, reentry and bypass controls pass with83895920lossless authored bytes. Single/nested bursts beyond remaining32MiB and expired5000msbudgets remain deliberate terminal refusals. Arbitrary concurrent fairness, full recovery schedules and original driver timing/equivalence are unproven."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.resident-command-pressure"
       }
     },
@@ -83634,7 +83634,7 @@
         "SC25 confirms the public wrong-source-window boundary in a fresh rich-content original software-presentation interval and verifies unchanged historical packaging. The exact historical SHM bytes and private Wine/Mesa allocation function remain unavailable/unproved. Finite diagnostic success does not accept the failed original source/session collector or a native replay of that new run."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-storage-session-comparison"
       }
     },
@@ -86913,7 +86913,7 @@
         "The opt-in all-copy observer and versioned application COPY bindings change shared diagnostic/harness sources. Historical hashes and milestones remain unchanged; current-source validation stays pending outside the separately declared CPU/GPU copy-output policy scope."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NP.native-gpu-copy-plan"
       }
     },
@@ -90064,7 +90064,7 @@
         "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-cursor-source-gate"
       }
     },
@@ -90115,7 +90115,7 @@
         "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-cursor-mutex-lifetime"
       }
     },
@@ -90169,7 +90169,7 @@
         "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-cursor-gate-forwarding"
       }
     },
@@ -90223,7 +90223,7 @@
         "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-cursor-gate-leases"
       }
     },
@@ -90282,7 +90282,7 @@
         "Fourth-ten closeout covers implementation only. Historical findings above retain their dated source/fixture scope; game integration, original comparison, external ownership and live replacement receive no promotion from the owned helper fixtures."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-cursor-kernel-lease-state"
       }
     },
@@ -90390,7 +90390,7 @@
         "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-cursor-source-gate-module"
       }
     },
@@ -90709,7 +90709,7 @@
         "Eighth batch completes this declared bounded implementation with fresh prospective native/protocol/policy controls and SQLite report support. Historical acquisition/comparison boundaries above remain independent: original comparison, live integration/replacement, all backing aliases/writers, complete presentation and semantic equivalence are not promoted. See rendering-eighth-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-region-click-latch-observation"
       }
     },
@@ -90820,7 +90820,7 @@
         "Eighth batch completes this declared bounded implementation with fresh prospective native/protocol/policy controls and SQLite report support. Historical acquisition/comparison boundaries above remain independent: original comparison, live integration/replacement, all backing aliases/writers, complete presentation and semantic equivalence are not promoted. See rendering-eighth-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-selection-toggle-observation"
       }
     },
@@ -90873,7 +90873,7 @@
         "Eighth batch completes this declared bounded implementation with fresh prospective native/protocol/policy controls and SQLite report support. Historical acquisition/comparison boundaries above remain independent: original comparison, live integration/replacement, all backing aliases/writers, complete presentation and semantic equivalence are not promoted. See rendering-eighth-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-pause-key-observation"
       }
     },
@@ -90939,7 +90939,7 @@
         "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-egl-source-domain-accounting"
       }
     },
@@ -91063,7 +91063,7 @@
         "Ninth batch completes the existing bounded implementation scope using owned native fixtures and raw-wire/SQLite CLI controls. Current original-game comparison, all writer/alias/lifetime and presentation ownership, full journey semantics and live replacement remain independent; shared-source historical evidence is retained unchanged."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-copy-order-observation"
       }
     },
@@ -91214,7 +91214,7 @@
         "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-copy-api-worker-association"
       }
     },
@@ -91348,7 +91348,7 @@
         "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-copy-checkpoint-comparison"
       }
     },
@@ -91636,7 +91636,7 @@
         "Seventh batch completes this declared bounded offline implementation with fresh prospective owned-input controls and SQLite report support. Historical gaps above retain their acquisition/comparison meaning; original comparison, live integration/replacement, backing aliases/writers, full presentation and semantic equivalence remain independent and pending. See rendering-seventh-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-worker-prefix-analysis"
       }
     },
@@ -91720,7 +91720,7 @@
         "The selected unchanged RGB565/mode-zero direct-word leaf now has sixteen original/native/scalar cases and1060864 matching words. RGB555/nonzero-global format, indexed dispatch, full caller ABI/signed-overflow behavior, Windows/session ordering and broader presentation closure remain outside this proof; historical intermittent live pixel failures remain retained."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "RS.raster-clipped-word-grayscale"
       }
     },
@@ -91845,7 +91845,7 @@
         "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-copy-order-value-diagnostics"
       }
     },
@@ -92751,7 +92751,7 @@
         "NT13 supplies current execution for this bounded native/tool implementation. Fresh comparator mismatches and all historical negatives remain failures; no original equivalence, complete external/foreign backing ownership, all writers/routes, generic journey/performance/driver/scanout acceptance or live replacement is inferred. Shared-source changes may leave historical comparison/integration fingerprints stale; original statuses and source hashes remain unchanged."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-aux-readback-native-comparison"
       }
     },
@@ -92877,7 +92877,7 @@
         "Eighth batch completes this declared bounded implementation with fresh prospective native/protocol/policy controls and SQLite report support. Historical acquisition/comparison boundaries above remain independent: original comparison, live integration/replacement, all backing aliases/writers, complete presentation and semantic equivalence are not promoted. See rendering-eighth-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-copy-phase-transposition"
       }
     },
@@ -93001,7 +93001,7 @@
         "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-copy-phase-hash-comparison"
       }
     },
@@ -93058,7 +93058,7 @@
         "Eighth batch completes this declared bounded implementation with fresh prospective native/protocol/policy controls and SQLite report support. Historical acquisition/comparison boundaries above remain independent: original comparison, live integration/replacement, all backing aliases/writers, complete presentation and semantic equivalence are not promoted. See rendering-eighth-ten-closeouts-20261022.md."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.drawing-mutator-alias-exposure"
       }
     },
@@ -94463,7 +94463,7 @@
         "NT15 supplies current bounded palette/canvas/ownership/diagnostic execution, source-only retained initial-state reconstruction, scripted COM controls and actual supplied-runtime capability outcomes. Historical fingerprints/negatives and broader original allocation/alias/writer/thread/lifetime, installed continuity, driver and full-game/performance/replacement boundaries stay separate; no comparison/integration/replacement stage promotion."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NP.pixel-forwarding-guard"
       }
     },
@@ -94679,7 +94679,7 @@
         "NT16 completes only the existing bounded implementation using current declared source/contract execution. Independent original comparison/integration/replacement dimensions, unmodified storage negative, semantic menu/observer-causality, global47/21, original writer/backing aliases, driver/full-game and performance acceptance remain separate; every historical fingerprint and failure is preserved."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.recorded-hardware-session-parity"
       }
     },
@@ -94900,7 +94900,7 @@
         "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NR.recorded-physical-frame-admission"
       }
     },
@@ -123688,7 +123688,7 @@
         "NT17 completes this existing bounded implementation. Full original pixels/physical-driver equivalence, unclassified historical instrumented/capture failures, all original writers/aliases, whole-game reachability and60FPS remain independent; no earlier source fingerprint or negative result is rewritten."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NP.native-output-ownership"
       }
     },
@@ -124735,7 +124735,7 @@
         "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged."
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NP.native-only-launch-contract"
       }
     },
@@ -126313,7 +126313,7 @@
         "runtime/scene/kind8_sprite_admission.h"
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NP.native-cpu-instruction-resume"
       }
     },
@@ -127881,7 +127881,7 @@
         "runtime/scene/kind8_sprite_admission.h"
       ],
       "implementation_review": {
-        "review": "NATIVE-MERGE.source-review-2-20261020",
+        "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
         "entry": "NP.native-only-generation-restart"
       }
     },
@@ -362037,9 +362037,9 @@
       "sha256": "912e6863c5ad82ed925d0ac94c19a63d4bc4ea0f666dc3345966b85948e8e218"
     },
     {
-      "id": "NATIVE-MERGE.source-review-2-20261020",
-      "path": "research/runtime/coverage/native-master-merge-source-review-2-20261020.json",
-      "sha256": "a9e58838b3f86f1f1801dad4be00f57c2b7a47f2c789ca8a8c6fae7ce3546652"
+      "id": "SC25.pending-review-inputs-25802e38f9c87eaf",
+      "path": "research/runtime/coverage/rendering-review-input-pins-20261025-25802e38f9c87eaf.json",
+      "sha256": "42371237afe3a8f7eb1841ba50c6f835605ad69fa5ad178f997c99bd5a65df2f"
     },
     {
       "id": "NATIVE-MERGE.source-review-3-20261020",
@@ -362242,6 +362242,11 @@
       "id": "DSVC2.actor-service-source-review-20261021",
       "path": "research/runtime/coverage/actor-downstream-source-review-current-20261021.json",
       "sha256": "1c3fabda18f32347b74af71b73cea2cf3eb8d66e0e6a6cfeb416c6292bb11486"
+    },
+    {
+      "id": "NATIVE-MERGE.source-review-2-20261020",
+      "path": "research/runtime/coverage/native-master-merge-source-review-2-20261020.json",
+      "sha256": "a9e58838b3f86f1f1801dad4be00f57c2b7a47f2c789ca8a8c6fae7ce3546652"
     }
   ],
   "code_index": {
