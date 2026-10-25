@@ -155,3 +155,12 @@ the combined CMake tree;both pass714 assertions and187 whole-frame cases,with
 171/170 accepted concurrent publications respectively and the same drained counts.
 The original setup02 contract and its complete required source hashes remain
 unchanged. No original runtime work is duplicated or activated by this merge.
+
+Final reconciliation also includes actual master3a8f633f and its Save/Load capture
+recovery. All recorded source bytes,required-source sets,scope fingerprints and
+scenario bindings still match native09 and setup02;integration-bindings01 retains
+that source check without inventing another experiment. The extended actual
+committed-history review covers679 file transitions with exact receipts. The
+initial missing .txt artifact receipt remains visible in history01 and is
+corrected by an explicit retrospective pending receipt in history02/03;this is
+not a claim that a historical gate checked that artifact.

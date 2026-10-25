@@ -114,6 +114,8 @@ def main():
  report.update(batch_body_skips=13,batch_canvas_writebacks=1,batch_prescribed_ax_cleanup=True,batch_guard_refusals=negative,malformed_batch_reply_refusals=3,batch_original_canvas_unwritten_before_return=True,batch_hud_forwarded_after_return=True)
  report.update(generic_caller_refusals=generic_negative,generic_completed_eax_zero=True)
  report.update(oracle_budget_invalid_values_refused=7,oracle_budget_max_mib=3072,oracle_budget_default_mib=1024,oracle_budget_crosses_old_ceiling=True,oracle_budget_exact_ceiling_accepted=True,oracle_budget_over_ceiling_refusals=3,oracle_budget_counter_underflow_refused=True)
+ report['metadata_checkpoint_ignores_file_oracle_limit']=True
+ report['metadata_checkpoint_unreadable_pixels_untouched']=True
  report['oracle_environment_refused_before_hook_mutation']=budget_negative
  report['minimap_environment_refused_before_hook_mutation']=owned_negative
  report['minimap_fixture_refused_before_hook_mutation']=fixture_negative

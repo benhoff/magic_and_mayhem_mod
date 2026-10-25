@@ -22,7 +22,7 @@ struct WorldGpuJob {
     double nativeMs=0,producerMs=0;
     std::uint64_t readbacks=0,captures=0;
 };
-QString create(const QString& path,bool owned){auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true,owned,!owned && qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE").isEmpty());return path;}
+QString create(const QString& path,bool owned){auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true,owned,!owned && (qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE").isEmpty() || qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS")==1));return path;}
 CanvasProducer close(const std::array<std::uint8_t,192>& bytes,unsigned offset){
     CanvasProducer result{};for(unsigned i=0;i<24;++i){const auto* p=bytes.data()+offset+i*4;result.fields[i]=p[0]|unsigned(p[1])<<8|unsigned(p[2])<<16|unsigned(p[3])<<24;}
     if(result.fields[0]!=96 || result.fields[18] || result.fields[23])throw std::runtime_error("Resident World closing record");
@@ -35,7 +35,7 @@ ResidentWorldSession::ResidentWorldSession(NativeRenderTarget target,const QStri
     const auto capture=qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE");
     if(!capture.isEmpty()){
         if(!stageProfile_)throw std::runtime_error("Resident capture requires stage profiling");
-        capture_=std::make_unique<ResidentProfileCapture>(capture);
+        capture_=std::make_unique<ResidentProfileCapture>(capture,256ull*1024*1024,!independent_ && qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS")==1);
     }
     frameTrace_=qEnvironmentVariableIntValue("MNM_NATIVE_FRAME_TRACE")==1;
     retainCompletedImage_=qEnvironmentVariableIntValue("MNM_WORLD_IMAGE_REUSE")==1;
@@ -129,6 +129,7 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
                 world_->consumeSource(stream);
                 if(world_->completed()!=completed_ || world_->worldReadbacks() || renderer_->stats().rgbaReadbacks)
                     throw std::runtime_error("Source-only chunk changed World ownership/readback count");
+                if(capture_)capture_->enqueueSource(source.generation,source.source);
                 channel_.acknowledgeSource(source);
                 if(sourceIntervalGeneration_!=source.generation){sourceIntervalGeneration_=source.generation;sourceIntervalRecords_=0;}
                 sourceIntervalRecords_+=stream.operations.size();maxSourceIntervalRecords_=std::max(maxSourceIntervalRecords_,sourceIntervalRecords_);
@@ -354,7 +355,7 @@ QJsonObject ResidentWorldSession::report() const {
         {"gpu_queries_pending",double(renderer_?renderer_->pendingGpuTimings():0)},
         {"capture",capture},{"capture_path",capture["path"]},{"capture_bytes",capture["file_bytes"]},
         {"captured_worlds",capture["written_worlds"]},{"capture_truncated",capture["truncated"]},
-        {"capture_complete",bool(capture_ && normalQuitRetired_ && capture["complete"].toBool() && std::uint64_t(capture["written_worlds"].toDouble())==completed_)},
+        {"capture_complete",bool(capture_ && normalQuitRetired_ && capture["complete"].toBool() && std::uint64_t(capture["written_worlds"].toDouble())==completed_ && std::uint64_t(capture["written_source_chunks"].toDouble())==sourceChunks_)},
         {"scope","Opt-in bounded host timings and asynchronous renderer-context GPU timestamps. GPU timeline includes CPU submission gaps, excludes public UI import/paint/scanout. Existing original ticks are uint32 millisecond intervals; pacing and screen-copy fields describe the preceding interval. Non-pacing residual is unclassified original work, not simulation CPU time. Capture I/O and instrumentation affect live cadence."}};
     return result;
 }
