@@ -71972,7 +71972,8 @@
         "research/runtime/world-tick-loop.md",
         "research/runtime/draw02-end-to-end.md",
         "research/runtime/draw02-menu-return-copy.md",
-        "research/runtime/cursor-ownership-deferred-lifetime-20261025.md"
+        "research/runtime/cursor-ownership-deferred-lifetime-20261025.md",
+        "research/runtime/cursor-lifetime-completion-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/cursor_clients.hpp",
@@ -71998,9 +71999,10 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Full allocator/descriptor loading and all alias/writer ownership, arbitrary concurrency/fault unwinding, native owning integration and physical/live parity remain pending. Foreground/timer state and borrowed queue lifetime preconditions are separately executable. Gameplay picking/selection/tooltip receivers remain unassigned.",
+        "Real allocator/profile endpoint behavior and all indirect alias/writer ownership, arbitrary concurrency/fault unwinding, native owning integration and physical/live parity remain pending. Foreground/timer state and borrowed queue lifetime preconditions are separately executable. Gameplay picking/selection/tooltip receivers remain unassigned.",
         "4eaaf0callback absent from discovered-function inventory; exact8byteCALL/RETanchor is bounded only and does not assign a whole function or erase unassigned ranges. Initial refusal preserved.",
-        "Historical cursor-clients-static-02 reversed source/destination wrapper labels at4a4b01. Original58c360usesECX receiver as source and first argument as destination; corrected future inspection only. Historical report/hash remains unchanged and stale. No allocation/backing ownership or original execution inference."
+        "Historical cursor-clients-static-02 reversed source/destination wrapper labels at4a4b01. Original58c360usesECX receiver as source and first argument as destination; corrected future inspection only. Historical report/hash remains unchanged and stale. No allocation/backing ownership or original execution inference.",
+        "Private native painter/queue lifetime is now implemented and exercised separately under NP.cursor-owned-compositor; original descriptor loading is compared under DRAW.cursor-resource-setup. These do not close original indirect source aliases,arbitrary legacy concurrency or installed live semantic cursor takeover."
       ],
       "validation_dependencies": [
         "research/runtime/coverage/binary-nocd.json",
@@ -147270,7 +147272,8 @@
         }
       ],
       "documents": [
-        "research/runtime/cursor-ownership-deferred-lifetime-20261025.md"
+        "research/runtime/cursor-ownership-deferred-lifetime-20261025.md",
+        "research/runtime/cursor-lifetime-completion-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/cursor_clients.hpp",
@@ -147298,7 +147301,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Native owning queue/renderer integration, complete allocation alias/writer mapping, arbitrary concurrency/reentrancy and live replacement are not established."
+        "Native owning queue/renderer integration, complete allocation alias/writer mapping, arbitrary concurrency/reentrancy and live replacement are not established.",
+        "Private native painter/queue lifetime is now implemented and exercised separately under NP.cursor-owned-compositor; original descriptor loading is compared under DRAW.cursor-resource-setup. These do not close original indirect source aliases,arbitrary legacy concurrency or installed live semantic cursor takeover."
       ]
     },
     {
@@ -147316,7 +147320,8 @@
         }
       ],
       "documents": [
-        "research/runtime/cursor-ownership-deferred-lifetime-20261025.md"
+        "research/runtime/cursor-ownership-deferred-lifetime-20261025.md",
+        "research/runtime/cursor-lifetime-completion-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/cursor_clients.hpp",
@@ -147344,7 +147349,145 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Native owning queue/renderer integration, complete allocation alias/writer mapping, arbitrary concurrency/reentrancy and live replacement are not established."
+        "Native owning queue/renderer integration, complete allocation alias/writer mapping, arbitrary concurrency/reentrancy and live replacement are not established.",
+        "Private native painter/queue lifetime is now implemented and exercised separately under NP.cursor-owned-compositor; original descriptor loading is compared under DRAW.cursor-resource-setup. These do not close original indirect source aliases,arbitrary legacy concurrency or installed live semantic cursor takeover."
+      ]
+    },
+    {
+      "id": "NP.cursor-owned-compositor",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Owned native cursor painter and deferred generation lifetime",
+      "scope": "Private RGB565 native OpenGL atlas/canvas/save-under allocations; clipped keyed foreground/timer publications through metadata-only thread-safe endpoints; generation-bound deferred work, background refresh, cancellation, owner-thread teardown. Explicit native policies for FIFO within priority, bounded refusal and old-generation retention. No borrowed original wrappers admitted.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/cursor-lifetime-completion-20261025.md"
+      ],
+      "implementation": [
+        "renderer/cursor_compositor.hpp",
+        "renderer/cursor_compositor.cpp",
+        "renderer/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/cursor-compositor-test.cpp",
+        "tools/test-cursor-compositor.py"
+      ],
+      "validation_dependencies": [
+        "renderer/surface_backend.hpp",
+        "renderer/surface_backend.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "CUR26.native-attempt01",
+        "CUR26.native-attempt02",
+        "CUR26.native-attempt03",
+        "CUR26.native-attempt04",
+        "CUR26.native-attempt05",
+        "CUR26.native-attempt06",
+        "CUR26.native-attempt07",
+        "CUR26.owned-native08"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native08 passes optimized and ASan/UBSan714 assertions and187 complete frames per configuration; legacy source aliases, physical GPU/context-loss recovery and installed live semantic cursor takeover remain unproved."
+      ]
+    },
+    {
+      "id": "DRAW.cursor-resource-setup-static",
+      "kind": "recovered",
+      "subsystem": "drawing_inventory",
+      "title": "Cursor setup resource provenance and direct alias inventory",
+      "scope": "Static NoCD4a30b0 setup and4a2f90 reload links: saved-background and atlas wrapper construction, fixed cell geometry, atlas bitmap/key/sentinel setup, mutex assignment and disposal relationship. Static direct-operand census is a discovery aid, not complete indirect writer closure or executable descriptor parser equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4862128,
+          "scope": "Resource setup following INI descriptor loading; static instruction evidence only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4861840,
+          "scope": "Global cursor atlas bitmap reload; no independent live writer ownership established."
+        }
+      ],
+      "documents": [
+        "research/runtime/cursor-lifetime-completion-20261025.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/inspect-cursor-resources.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "CUR26.resource-provenance"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Full descriptor caller execution is separately recorded under DRAW.cursor-resource-setup. The static census does not establish indirect source-alias/writer closure,real construction failure reachability or installed semantic cursor takeover."
+      ]
+    },
+    {
+      "id": "DRAW.cursor-resource-setup",
+      "kind": "recovered",
+      "subsystem": "drawing_inventory",
+      "title": "Original cursor descriptor loading and resource setup caller",
+      "scope": "Bounded null-terminated current directory and profile strings with representable signed decimal conversions: unchanged full4a30b0 setup caller,INI path joining,repeated conversions,22 descriptors,missing-key preservation,at most12 frame tokens,trailing assignment text,resource create/fill/key/bitmap order,cell grid and unchecked mutex assignment. Scripted CRT/OS/allocator endpoints; does not recover allocator internals,real COM or indirect alias/writer ownership.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4862128,
+          "scope": "Complete1643-byte setup caller; external CRT/OS/allocator endpoints scripted."
+        }
+      ],
+      "documents": [
+        "research/runtime/cursor-lifetime-completion-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/cursor_setup.hpp"
+      ],
+      "tests": [
+        "tests/cursor-setup-reference.cpp",
+        "tools/test-cursor-setup.py"
+      ],
+      "validation_dependencies": [
+        "tests/surface-retry-reference.cpp",
+        "reconstruction/rendering/cursor_clients.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "CUR26.setup01",
+        "CUR26.setup02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "528 cases pass in optimized and ASan/UBSan32 with the complete original setup body unchanged. Scripted CRT/OS/resource endpoints do not prove real allocation/COM/profile failure reachability,invalid-memory behavior or complete indirect alias/writer closure."
       ]
     }
   ],
@@ -335071,6 +335214,223 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "CUR26.native-attempt01",
+      "kind": "static",
+      "scope": "Retained unsuccessful prospective native execution/build/display control. No successful current execution credit: optimized: /usr/bin/xvfb-run: line 180: 3132815 Aborted                    (core dumped) DISPLAY=:$SERVERNUM XAUTHORITY=$AUTHFILE \"$@\"\n",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/native01.json",
+      "sha256": "a4cecd144145cd7a3445a9351d275d8118cacb7f326ba9c7f46addae8a825552",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CUR26.native-attempt02",
+      "kind": "static",
+      "scope": "Retained unsuccessful prospective native execution/build/display control. No successful current execution credit: Private display exited",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/native02.json",
+      "sha256": "f97439080095322a30a420d21bba71c63049131e9867343f411bdee9fa216594",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CUR26.native-attempt03",
+      "kind": "static",
+      "scope": "Retained unsuccessful prospective native execution/build/display control. No successful current execution credit: Private display readiness timeout",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/native03.json",
+      "sha256": "f4629ce984602854fcce0508d145c71b6d2c1a1c93801832e6d1ec293deb905f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CUR26.native-attempt04",
+      "kind": "static",
+      "scope": "Retained unsuccessful prospective native execution/build/display control. No successful current execution credit: optimized: qt.qpa.xcb: could not connect to display 127.0.0.1:310\nqt.qpa.plugin: From 6.5.0, xcb-cursor0 or libxcb-cursor0 is needed to load the Qt xcb platform plugin.\nqt.qpa.plug",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/native04.json",
+      "sha256": "2b21b1873334451a205fabd4ee3674d6757a071a5669e2f293edc723422d0aa1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CUR26.native-attempt05",
+      "kind": "static",
+      "scope": "Retained unsuccessful prospective native execution/build/display control. No successful current execution credit: Incomplete cursor execution denominator: {'success': True, 'checks': 714, 'complete_pixel_cases': 187, 'producer_attempts': 2400, 'accepted': 149, 'drained': 149, 'teardown_races':",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/native05.json",
+      "sha256": "731a360b13c41d758bf60c1c749b201bd99f8e7ca6224eba9590f58654c7a63a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CUR26.native-attempt06",
+      "kind": "static",
+      "scope": "Retained unsuccessful prospective native execution/build/display control. No successful current execution credit: Undeclared compiled dependency /home/hoff/Videos/mnm-cursor-lifetime-completion-20261025/worktree/renderer/isolated_dispatch.inc",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/native06.json",
+      "sha256": "a88b0a51c1c977646f170fdecff1a60bb324977e32541e0392df3ddbf5815524",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CUR26.native-attempt07",
+      "kind": "static",
+      "scope": "Retained unsuccessful prospective native execution/build/display control. No successful current execution credit: sanitized-build: ~\n/usr/include/qt6/QtCore/qbytearray.h: In function \u2018mnm::render::SurfaceCommand mnm::render::{anonymous}::decodeRecord(const QByteArray&, mnm::render::detail::Com",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/native07.json",
+      "sha256": "9ac3884d1491ce228a887ced1b82f62156bae82813f69955a1d9fd79deba8e7b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CUR26.resource-provenance",
+      "kind": "static",
+      "scope": "Pinned original direct-operand census and complete resource setup/release instruction windows. No indirect closure or original execution claim.",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/resources02.json",
+      "sha256": "3c0da433d08024204f37e1426335be79338c8f6d098392cbedbe333ddc58117a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/manifest_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CUR26.owned-native08",
+      "kind": "native_integration",
+      "scope": "Native private RGB565 OpenGL canvas/atlas/save-under generations; independent whole-frame scalar oracle, metadata-only concurrent producers, cancellation and owner-thread GPU teardown. No original code execution or legacy alias admission.",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/native08.json",
+      "sha256": "acb3d6205054f7dc4fb7feb2a68a12da30b18ec9a8216f2dd14cdeb961ee6695",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/optimized/complete_pixel_cases",
+          "equals": 187
+        },
+        {
+          "pointer": "/sanitized/complete_pixel_cases",
+          "equals": 187
+        },
+        {
+          "pointer": "/private_display_retired",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CUR26.setup01",
+      "kind": "isolated_original",
+      "scope": "Bounded null-terminated current directory and profile strings with representable signed decimal conversions: unchanged full4a30b0 setup caller,INI path joining,repeated conversions,22 descriptors,missing-key preservation,at most12 frame tokens,trailing assignment text,resource create/fill/key/bitmap order,cell grid and unchecked mutex assignment. Scripted CRT/OS/allocator endpoints; does not recover allocator internals,real COM or indirect alias/writer ownership.",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/setup01.json",
+      "sha256": "3c22cf7d63ec64e185628cd1931e1f402b67fe325c7a2a5836e27d29da90edc9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/manifest_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/optimized/cases",
+          "equals": 528
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 528
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CUR26.setup02",
+      "kind": "isolated_original",
+      "scope": "Bounded null-terminated current directory and profile strings with representable signed decimal conversions: unchanged full4a30b0 setup caller,INI path joining,repeated conversions,22 descriptors,missing-key preservation,at most12 frame tokens,trailing assignment text,resource create/fill/key/bitmap order,cell grid and unchecked mutex assignment. Scripted CRT/OS/allocator endpoints; does not recover allocator internals,real COM or indirect alias/writer ownership.",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/setup02.json",
+      "sha256": "d156fe1fbcfe06b93a0b1da0c9ee78bdd90eaac9e886dc09ec6a0d4358c4f927",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/manifest_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/optimized/cases",
+          "equals": 528
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 528
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -361349,6 +361709,21 @@
         "TLS25.suppliers-original",
         "TLS25.suppliers-native"
       ]
+    },
+    {
+      "id": "CUR26.owned-pixels-and-teardown",
+      "scope": "Private RGB565 OpenGL generations with independently rebuilt full-frame pixels,clipped source-key holes,retired queued generations,full/cancelled queues,concurrent publishers and actual owner destruction. Authored native policy; no legacy source aliases or game execution.",
+      "level": "headless",
+      "behaviors": [
+        "NP.cursor-owned-compositor"
+      ],
+      "tests": [
+        "tests/cursor-compositor-test.cpp",
+        "tools/test-cursor-compositor.py"
+      ],
+      "evidence": [
+        "CUR26.owned-native08"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -362916,7 +363291,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-a8bf9b709e60a70eb2ba2562acfce08705a2f4f233aadd0e4cdd6a505aa5bc57.json",
-    "sha256": "a8bf9b709e60a70eb2ba2562acfce08705a2f4f233aadd0e4cdd6a505aa5bc57"
+    "path": "research/runtime/coverage/source-index-9161e81fc991186f49b7c166596b42e80c20144ca38773a9ce2ad88e5b16faa2.json",
+    "sha256": "9161e81fc991186f49b7c166596b42e80c20144ca38773a9ce2ad88e5b16faa2"
   }
 }

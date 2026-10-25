@@ -22256,3 +22256,24 @@ Cursor lifetime final integration preserves current master `35ae1c4f` and
 its independent alternate-canvas ownership/review metadata. See the [integration
 review](cursor-ownership-master-integration-20261025.md). Cursor sources/contracts
 remain exact; native ownership and live replacement remain pending.
+
+### Owned native cursor generations (2026-10-25)
+
+`NP.cursor-owned-compositor` adds private native OpenGL canvas/atlas/save-under
+allocations, generation-bound queued frames, foreground/timer publisher
+serialization, background refresh and owner-thread destruction. The independent
+whole-frame and concurrent teardown harness is tracked under
+`CUR26.owned-pixels-and-teardown`; this is native policy, not original queue
+equivalence or a live installed cursor hook. `DRAW.cursor-resource-setup-static`
+links setup4a30b0 and reload4a2f90 to the static wrapper construction/disposal
+provenance. See [cursor resource and native ownership](cursor-lifetime-completion-20261025.md).
+`DRAW.cursor-resource-setup` additionally compares the complete original setup
+caller against scripted CRT/OS/resource endpoints:528 optimized and528
+ASan/UBSan32 cases,including the12-token cap and unused thirteenth word.
+Indirect alias/writer closure, real construction failure reachability, device-loss
+recovery and installed live semantic cursor takeover remain open. The diagnostic
+source cursor gate still disclaims recovered source-alias ownership.
+
+[Cursor lifetime accounting snapshot](coverage/summary-cursor-lifetime-20261025.md)
+retains the updated native and original caller milestones; historical summaries
+and evidence remain immutable.
