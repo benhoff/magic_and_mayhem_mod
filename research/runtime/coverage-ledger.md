@@ -22066,3 +22066,25 @@ exact; inherited lifecycle records and all negative results retain their hashes
 and any current source drift. Merged Python controls and coverage accounting
 are separate from new original/live/scene/performance validation. See
 [integration scope and records](rendering-twentythird-master-integration-20261025.md).
+
+
+## Cursor clients and deferred borrowed lifetime (2026-10-25)
+
+[Recovered control and lifetime preconditions](cursor-ownership-deferred-lifetime-20261025.md)
+complement the separately owned screen-services background invalidation/restore
+helpers. `CUR25.clients-queue-disposal` compares unchanged original foreground,
+timer, enqueue/drain and disposal callers against portable value-address models.
+Optimized and ASan/UBSan32 each pass10,368 client cases,1,280 queue cases,12 disposal
+cases and6 sparse/retry controls. Original manifest bookends and selected unchanged
+instruction checks pass. The first sanitizer harness failure remains immutable.
+
+The queue copies rectangles but borrows wrappers and resolves current interfaces
+at drain. Foreground can enqueue; timer remains immediate. Disposal leaves queue
+records pending while releasing sprite/background interfaces. These are confirmed
+serial lifetime preconditions, not proof of safe original concurrent shutdown.
+Offline understanding/implementation/comparison are recorded independently from
+integration/replacement, which remain none. Full allocator/alias/writer mapping,
+an owning native cursor service and live physical acceptance remain pending.
+The diagnostic gate keeps its ownership disclaimer; no locking policy is promoted.
+Generated results and review bookkeeping use SQLite; raw controls are retained in
+the isolated `codex/cursor-ownership-20261025` worktree on the Videos filesystem.

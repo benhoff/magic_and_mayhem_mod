@@ -71951,50 +71951,62 @@
       "subsystem": "drawing_inventory",
       "kind": "recovered",
       "title": "Original foreground and timer cursor copy clients",
-      "scope": "Prospective exact NoCD4a45b0/4a4910instruction/client review: cursor coordinates, client/screen transforms, clipping/animation and restore/save/copy calls. Match retained foreign tag32return4a4b01only to exact direct58c360call, without assigning backing overlap/ownership. These cursor painters are not established gameplay picking/button dispatch.",
-      "confidence": "provisional",
+      "scope": "Recovered serial valid-memory foreground4a45b0 and timer4a4910 control/state with scripted OS/COM endpoints: hotspot/transforms, clipping, save/restore/keyed copy ordering, frame/countdown updates, deferred foreground versus immediate timer, raw wait gates and callback-visible mutations. Original copy wrappers are shared external services; arbitrary concurrency, invalid descriptors/pointers, allocator/alias ownership, real pixels and live replacement remain separate.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4867504,
-          "scope": "Exact inventory-bounded foreground cursor copy client; full semantics pending."
+          "scope": "Recovered serial valid-memory foreground4a45b0 and timer4a4910 control/state with scripted OS/COM endpoints: hotspot/transforms, clipping, save/restore/keyed copy ordering, frame/countdown updates, deferred foreground versus immediate timer, raw wait gates and callback-visible mutations. Original copy wrappers are shared external services; arbitrary concurrency, invalid descriptors/pointers, allocator/alias ownership, real pixels and live replacement remain separate."
         },
         {
           "build": "nocd-40209ca7",
           "address": 4868368,
-          "scope": "Exact inventory-bounded timer cursor copy client; ownership and full lifecycle pending."
+          "scope": "Recovered serial valid-memory foreground4a45b0 and timer4a4910 control/state with scripted OS/COM endpoints: hotspot/transforms, clipping, save/restore/keyed copy ordering, frame/countdown updates, deferred foreground versus immediate timer, raw wait gates and callback-visible mutations. Original copy wrappers are shared external services; arbitrary concurrency, invalid descriptors/pointers, allocator/alias ownership, real pixels and live replacement remain separate."
         }
       ],
       "documents": [
         "research/runtime/world-tick-loop.md",
         "research/runtime/draw02-end-to-end.md",
-        "research/runtime/draw02-menu-return-copy.md"
+        "research/runtime/draw02-menu-return-copy.md",
+        "research/runtime/cursor-ownership-deferred-lifetime-20261025.md"
       ],
-      "implementation": [],
+      "implementation": [
+        "reconstruction/rendering/cursor_clients.hpp",
+        "reconstruction/rendering/deferred_surface_copy.hpp"
+      ],
       "tests": [
-        "tools/inspect-drawing-cursor-clients.py"
+        "tools/inspect-drawing-cursor-clients.py",
+        "tests/cursor-ownership-reference.cpp",
+        "tools/test-cursor-ownership.py"
       ],
       "evidence": [
         "DRAW02.draw02-cursor-clients-static-negative-01-20261012",
         "DRAW02.draw02-cursor-clients-static-02-20261012",
-        "DRAW02.draw02-cursor-clients-direction-static-01-20261013"
+        "DRAW02.draw02-cursor-clients-direction-static-01-20261013",
+        "CUR25.unaligned-harness-failure",
+        "CUR25.clients-queue-disposal"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Cursor descriptor/hotspot/resource lifetime and complete caller state unverified. Retained foreign-copy failure may match exact cursor caller but allocation/alias overlap, source protection, full concurrency and source-owned/native/physical parity remain independent. Actual game input/selection/tooltip receiver unassigned.",
+        "Full allocator/descriptor loading and all alias/writer ownership, arbitrary concurrency/fault unwinding, native owning integration and physical/live parity remain pending. Foreground/timer state and borrowed queue lifetime preconditions are separately executable. Gameplay picking/selection/tooltip receivers remain unassigned.",
         "4eaaf0callback absent from discovered-function inventory; exact8byteCALL/RETanchor is bounded only and does not assign a whole function or erase unassigned ranges. Initial refusal preserved.",
         "Historical cursor-clients-static-02 reversed source/destination wrapper labels at4a4b01. Original58c360usesECX receiver as source and first argument as destination; corrected future inspection only. Historical report/hash remains unchanged and stale. No allocation/backing ownership or original execution inference."
       ],
       "validation_dependencies": [
         "research/runtime/coverage/binary-nocd.json",
         "research/runtime/draw02-whole120-epochs-pending-diagnosis-01.json",
-        "tools/inspect-drawing-canvas-storage.py"
+        "tools/inspect-drawing-canvas-storage.py",
+        "tests/surface-retry-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
       ]
     },
     {
@@ -146890,6 +146902,103 @@
       "remaining_gaps": [
         "Owned forwarding/refusal controls and complete individual original upload points now diagnose the fresh bounded software-presentation discrepancy. Exact historical238-frame upload bytes are unavailable; its unique120-row attribution remains an inference. Private Wine/Mesa allocation cause, timing neutrality, universal resize/format handling and global SHM ownership remain unproved.",
         "The new original source-recorder sessions refuse quiescent closure after a separately closed EGL physical interval. Finite individually complete SHM points may explain that interval; source/session/process-cohort/normal-Quit/native acceptance remain refused. The exact pending source frame and private driver allocation cause remain unclassified."
+      ]
+    },
+    {
+      "id": "DRAW.deferred-surface-copy-lifetime",
+      "kind": "recovered",
+      "subsystem": "drawing_inventory",
+      "title": "Original deferred copy queue and borrowed wrapper lifetime",
+      "scope": "Serial valid-memory128x44-byte queue enqueue/drain: copied rectangles, borrowed wrapper addresses, first free slot, full preservation, null-rectangle stale words, priorities0..2, status admission, busy retention, dispatch/retirement, holes/retry and wrapper/interface rebinding. Original copy wrappers are shared external dependencies. No AddRef/snapshot/ownership inferred; corruption bound is native refusal; arbitrary reentrancy/concurrency, invalid wrappers, real pixels and live owning replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821872,
+          "scope": "Enqueue copied rectangle metadata with borrowed source/destination wrappers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5822048,
+          "scope": "Priority drain resolves current wrappers and retires supported dispatches."
+        }
+      ],
+      "documents": [
+        "research/runtime/cursor-ownership-deferred-lifetime-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/cursor_clients.hpp",
+        "reconstruction/rendering/deferred_surface_copy.hpp"
+      ],
+      "tests": [
+        "tests/cursor-ownership-reference.cpp",
+        "tools/test-cursor-ownership.py"
+      ],
+      "validation_dependencies": [
+        "tests/surface-retry-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "CUR25.unaligned-harness-failure",
+        "CUR25.clients-queue-disposal"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native owning queue/renderer integration, complete allocation alias/writer mapping, arbitrary concurrency/reentrancy and live replacement are not established."
+      ]
+    },
+    {
+      "id": "DRAW.cursor-resource-disposal",
+      "kind": "recovered",
+      "subsystem": "drawing_inventory",
+      "title": "Original cursor disposal caller with pending deferred work",
+      "scope": "Serial4a37d0 CloseHandle and sprite/saved-background disposal ordering with scripted imports and unchanged original58b3e0 as an external dependency. Pending queue records/count survive while cursor wrapper interfaces clear. No automatic drain/cancel/retention; allocator/setup, release internals, dead-destination drain, real OS lifetime and concurrent/native/live safety remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4863952,
+          "scope": "Complete46-byte caller: optional close/clear then sprite and saved-background disposal."
+        }
+      ],
+      "documents": [
+        "research/runtime/cursor-ownership-deferred-lifetime-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/cursor_clients.hpp",
+        "reconstruction/rendering/deferred_surface_copy.hpp"
+      ],
+      "tests": [
+        "tests/cursor-ownership-reference.cpp",
+        "tools/test-cursor-ownership.py"
+      ],
+      "validation_dependencies": [
+        "tests/surface-retry-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "CUR25.unaligned-harness-failure",
+        "CUR25.clients-queue-disposal"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native owning queue/renderer integration, complete allocation alias/writer mapping, arbitrary concurrency/reentrancy and live replacement are not established."
       ]
     }
   ],
@@ -333748,6 +333857,73 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "CUR25.clients-queue-disposal",
+      "kind": "isolated_original",
+      "scope": "Serial valid-memory cursor client, deferred queue and disposal caller control/state comparison. Scripted OS/COM endpoints; unchanged original copy/destructor bodies are shared external dependencies. No physical pixels, real OS concurrency, allocation alias ownership or installed native cursor replacement.",
+      "record": "research/runtime/cursor-ownership-results-20261025/execution02.json",
+      "sha256": "01cd6edccda41f41604e078008019beb6def9c54a6ecfca3833224c7ca9a6e30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/optimized/client_cases",
+          "equals": 10368
+        },
+        {
+          "pointer": "/optimized/queue_cases",
+          "equals": 1280
+        },
+        {
+          "pointer": "/optimized/dispose_cases",
+          "equals": 12
+        },
+        {
+          "pointer": "/optimized/retry_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/optimized/original_instructions_unchanged",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CUR25.unaligned-harness-failure",
+      "kind": "static",
+      "scope": "Negative prospective execution: optimized comparison passed but sanitizer rejected a host reference to the unaligned resolution DWORD. Retained source version is historical; no successful current comparison credit.",
+      "record": "research/runtime/cursor-ownership-results-20261025/execution01.json",
+      "sha256": "4dbcf5255c380a8aff51084e7613eb86c6170d422c267548e3642ebf4723d0fc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -342881,6 +343057,43 @@
         {
           "value": "virtual+2c",
           "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "deferred-surface-copy-kinds",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5822048,
+        "scope": "Local compare/subtract kind dispatch in the deferred priority drain."
+      },
+      "document": "research/runtime/cursor-ownership-deferred-lifetime-20261025.md",
+      "complete": true,
+      "scope": "Complete local0/1/2/unsupported dispatch; copy wrapper internals and actual resource lifetimes remain separate.",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "DRAW.deferred-surface-copy-lifetime"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "DRAW.deferred-surface-copy-lifetime"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "DRAW.deferred-surface-copy-lifetime"
+          ]
+        },
+        {
+          "value": "unsupported-retain",
+          "behaviors": [
+            "DRAW.deferred-surface-copy-lifetime"
+          ]
         }
       ]
     }
@@ -361477,7 +361690,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-d869f4651c7a0bcc0b25f949e7840ea54fba80af3c5eaa8c55f2d54d90a918f5.json",
-    "sha256": "d869f4651c7a0bcc0b25f949e7840ea54fba80af3c5eaa8c55f2d54d90a918f5"
+    "path": "research/runtime/coverage/source-index-6ed19ed9cfbdda25737558fa0c654e9bd9399e718829947af429a0f109144fb0.json",
+    "sha256": "6ed19ed9cfbdda25737558fa0c654e9bd9399e718829947af429a0f109144fb0"
   }
 }
