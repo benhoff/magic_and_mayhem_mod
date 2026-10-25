@@ -21848,3 +21848,20 @@ The main checkout's three pending tracked files and two untracked reports have
 a separate exact SQLite snapshot and verified backup outside the commit.
 Original ownership, whole-scene integration/live replacement and FPS remain
 open; no original artifact experiment is rerun for this metadata integration.
+
+## Twenty-first bounded animation implementation batch (2026-10-24)
+
+From merged local master `c4510223`, `AN.forward`, `AN.placement` and
+`AN.attachment` move implementation from partial to scoped for their existing
+owned offline contracts. Understanding stays partial, comparison recorded and
+integration/replacement none. Existing core implementations needed no behavioral
+change; new boundary controls and fresh original comparisons close this scope.
+
+[Research and retained results](rendering-twentyfirst-three-20261024.md) record
+2134 forward states, 90912 placement helper results, 4608 original body cases
+and 2080 mode-one child states. Five Release and five ASan/UBSan CTests pass.
+Native safety/refusal/ownership policies remain distinct from recovered safe
+original behavior. Reverse/full-effect/cadence/resource/entity lifetime, original
+file loading and complete scene/live/FPS acceptance remain separate. Historical
+evidence is preserved. Source census, exact receipts and verified SQLite backups
+accompany local completion. No original input or game balance is changed.

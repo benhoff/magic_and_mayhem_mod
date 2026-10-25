@@ -31,7 +31,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Mode-one attachment binding: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "7ccdf04563a602edaf7f0a69e50fb0c521db296b5aeec234fb2543ed80c81ab8"
+      "contract_sha256": "de44a3d1500be9c62ba3dac368ba67d7b2e394c37c546078a1dad0494b8053ff"
     },
     {
       "behavior": "AN.direction",
@@ -61,14 +61,14 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Forward animation controller: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "83ab857aa1b88f5566d44fe874f69d41741c510e6ec4a88e7044f4fd62edd01f"
+      "contract_sha256": "40bdff4150717617efa148a2c8d04153e36cec2c844fc67f48594a11dd4cec37"
     },
     {
       "behavior": "AN.placement",
       "weight": 4,
       "work_type": "capability",
       "reason": "Body and attachment placement: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "1bedb2933a517cd9e263f876c666b5164413baa2a27932770283c74e24729fe4"
+      "contract_sha256": "55958b3c8365dcaa11fb0eab3224c359c855897d66353fd69fdab4eb03015043"
     },
     {
       "behavior": "AN.reverse-controller",
@@ -23089,68 +23089,92 @@
           },
           {
             "behavior": "AN.forward",
-            "mode": "Implemented within bounded scope; renew validation",
-            "next_action": "The reverse controller now has its own scoped contract; broader runtime effects/lifetime remain separate. Renew forward execution before status promotion.",
+            "mode": "Scoped offline implementation complete; broader runtime acceptance remains",
+            "next_action": "Reverse modes, full effects/event consumers, wall-clock/global cadence, complete entity lifetime and live integration/replacement remain separate. Native safety exceptions do not recover original unsafe failure behavior.",
             "implementation_boundary": "Selected controller/placement modes; reverse modes, all runtime effects and entity lifetime remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare retained controller state and frame/event outputs; reverse control and complete runtime effects/lifetime are separately scoped.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
               "tests/animation-model-test.cpp",
-              "tests/animation-binary-reference.cpp"
+              "tests/animation-binary-reference.cpp",
+              "tools/test-animation-controller.py",
+              "tools/test-animation-contract.py",
+              "tests/animation-controller-reference.cpp",
+              "tools/test-next20-animation-controls.py",
+              "tests/animation-owned-boundaries-test.cpp",
+              "tools/test-rendering-twentyfirst-three.py"
             ],
             "documents": [
               "research/runtime/animation-forward-contract.md",
-              "research/runtime/rendering-high-validation-ownership-20261020.md"
+              "research/runtime/rendering-high-validation-ownership-20261020.md",
+              "research/runtime/next20-implementation-progress-20261020.md",
+              "research/runtime/rendering-twentyfirst-three-20261024.md"
             ],
-            "contract_sha256": "83ab857aa1b88f5566d44fe874f69d41741c510e6ec4a88e7044f4fd62edd01f",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. The reverse controller now has its own scoped contract; broader runtime effects/lifetime remain separate. Renew forward execution before status promotion.",
+            "contract_sha256": "40bdff4150717617efa148a2c8d04153e36cec2c844fc67f48594a11dd4cec37",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Reverse modes, full effects/event consumers, wall-clock/global cadence, complete entity lifetime and live integration/replacement remain separate. Native safety exceptions do not recover original unsafe failure behavior.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "NoCdAnimationPlayer implements forward dispatch, tick and retained controller state.",
+              "current_state": "22 bounded original/native forward and phase-preserving switch cases match 2134 complete controller states. Native full-width delay continuation and atomic invalid-restore refusals pass.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "512 original/native/sanitized controller cases across five original functions renew forward/reverse, rewind, timing and event controls.",
+              "validation_state": "recorded",
+              "validation_summary": "22 bounded original/native forward and phase-preserving switch cases match 2134 complete controller states. Native full-width delay continuation and atomic invalid-restore refusals pass. Five Release and five ASan/UBSan CTests pass.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. The reverse controller now has its own scoped contract; broader runtime effects/lifetime remain separate. Renew forward execution before status promotion.",
+              "acceptance_summary": "Reverse modes, full effects/event consumers, wall-clock/global cadence, complete entity lifetime and live integration/replacement remain separate. Native safety exceptions do not recover original unsafe failure behavior.",
               "evidence": [
                 "ORIGINAL.animation-forward-contract",
                 "HIGH01.rendering-work-review-20261019",
-                "HIGH03.animation-controller-20261020"
+                "HIGH03.animation-controller-20261020",
+                "N21.animation-native-20261024",
+                "N21.animation-original-20261024"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
                   "kind": "scope_review",
-                  "action": "The reverse controller now has its own scoped contract; broader runtime effects/lifetime remain separate. Renew forward execution before status promotion."
+                  "action": "Reverse modes, full effects/event consumers, wall-clock/global cadence, complete entity lifetime and live integration/replacement remain separate. Native safety exceptions do not recover original unsafe failure behavior."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/animation/no_cd.cpp",
-                  "line": 53,
+                  "line": 57,
                   "text": "std::int32_t NoCdAnimationPlayer::tick(){"
                 }
               ],
               "source_sha256": {
-                "reconstruction/animation/no_cd.cpp": "be3dd04d713192baf728f437ebb507c0dba17797a35bb0de643d8e838d1d8d4e",
-                "reconstruction/animation/no_cd.hpp": "312a0e1ea2dfd4fb1de57ba7e57aa27122aeaccf7ce35311d58ae3682a9edb12",
-                "research/runtime/animation-forward-contract.md": "1c256938c411f04cf9de4ca9aa1d27a35570a79861bb50978a8dbaba98978ca1",
-                "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+                "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+                "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+                "reconstruction/animation/CMakeLists.txt": "83ddbaee724b56204589db7356221de75b0fe3d10eea560b815b1db29e744ba5",
+                "reconstruction/animation/no_cd.cpp": "e979f2b001b1ba4c03f33596a38e900934ee4c30ebfc4d61d70f962f31a54909",
+                "reconstruction/animation/no_cd.hpp": "127fe1fea719f3881bda4334bdcd6034c942cd74dc4a5b647af8f96a991647c3",
+                "research/runtime/animation-forward-contract.md": "1b310e76b50a308b39163bf8cd4ae8a9e738ba0e5ca67553ca0dd1fba410ff3b",
+                "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
+                "research/runtime/rendering-twentyfirst-three-20261024.md": "bc7a21af7284c03514e95f3370c6b50d825e9c2d962bc8f7a3ad612693b3720b",
                 "tests/animation-binary-reference.cpp": "6c8fc0ff4f13d3caeeafa1183788740864f04b57682680fcda3f562b801705ae",
                 "tests/animation-controller-reference.cpp": "669dc70b5552bb321702910ac849bb04fea61dbaab9e6fe372a08472b2aab310",
-                "tests/animation-model-test.cpp": "95d4bb743930589493b7395f5b8fbd0ab5374709701e1bf686e7eb56ffe5244c",
-                "tools/test-animation-contract.py": "dd421a4adefcc7e1fbe419d5557128913e598ffe0b098875070c73c0929d9c9b",
+                "tests/animation-model-test.cpp": "824a2ed4910b9e864c329560f5ccb51d1ca7d3b5553e76708c1941aac7d31c8c",
+                "tests/animation-owned-boundaries-test.cpp": "b2056a9967c1f148f76f54da3209b4b19250dbd32c800a7092ff6aad5e0955e5",
+                "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+                "tools/coverage_evidence.py": "b8a3a9d12ab4a38af8d837fd88b50889a2064fbaffbc2ec558fe82c9c4dd5871",
+                "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+                "tools/test-animation-contract.py": "6d46719f9ac76d5979175c896e2dcef812db5e0f7c5df6bb569edbbf04c6a7ff",
                 "tools/test-animation-controller.py": "8858d606a173474918796e34535f5b0429603c865ab9bbc8c78b809c613d34e3",
-                "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
-                "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658"
+                "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658",
+                "tools/test-rendering-twentyfirst-three.py": "b0395e5b21efe2525919dde984572e79924c27409be3b66ee1cd959bf3327845"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "validation_evidence": [
+                "N21.animation-native-20261024",
+                "N21.animation-original-20261024"
+              ]
             },
             "work_review_history": [
               {
@@ -23239,6 +23263,53 @@
                   "tests/animation-binary-reference.cpp": "6c8fc0ff4f13d3caeeafa1183788740864f04b57682680fcda3f562b801705ae",
                   "tests/animation-model-test.cpp": "95d4bb743930589493b7395f5b8fbd0ab5374709701e1bf686e7eb56ffe5244c"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "NoCdAnimationPlayer implements forward dispatch, tick and retained controller state.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "512 original/native/sanitized controller cases across five original functions renew forward/reverse, rewind, timing and event controls.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. The reverse controller now has its own scoped contract; broader runtime effects/lifetime remain separate. Renew forward execution before status promotion.",
+                "evidence": [
+                  "ORIGINAL.animation-forward-contract",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.animation-controller-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "The reverse controller now has its own scoped contract; broader runtime effects/lifetime remain separate. Renew forward execution before status promotion."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/animation/no_cd.cpp",
+                    "line": 53,
+                    "text": "std::int32_t NoCdAnimationPlayer::tick(){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/animation/no_cd.cpp": "be3dd04d713192baf728f437ebb507c0dba17797a35bb0de643d8e838d1d8d4e",
+                  "reconstruction/animation/no_cd.hpp": "312a0e1ea2dfd4fb1de57ba7e57aa27122aeaccf7ce35311d58ae3682a9edb12",
+                  "research/runtime/animation-forward-contract.md": "1c256938c411f04cf9de4ca9aa1d27a35570a79861bb50978a8dbaba98978ca1",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/animation-binary-reference.cpp": "6c8fc0ff4f13d3caeeafa1183788740864f04b57682680fcda3f562b801705ae",
+                  "tests/animation-controller-reference.cpp": "669dc70b5552bb321702910ac849bb04fea61dbaab9e6fe372a08472b2aab310",
+                  "tests/animation-model-test.cpp": "95d4bb743930589493b7395f5b8fbd0ab5374709701e1bf686e7eb56ffe5244c",
+                  "tools/test-animation-contract.py": "dd421a4adefcc7e1fbe419d5557128913e598ffe0b098875070c73c0929d9c9b",
+                  "tools/test-animation-controller.py": "8858d606a173474918796e34535f5b0429603c865ab9bbc8c78b809c613d34e3",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                  "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
               }
             ],
             "planning_history": [
@@ -23247,7 +23318,13 @@
                 "next_action": "Renew forward dispatch, delay/tick, stop/rewind and event comparisons.",
                 "remaining_at_review": "The reverse controller now has its own scoped contract; broader runtime effects/lifetime remain separate. Renew forward execution before status promotion."
               }
-            ]
+            ],
+            "execution_result": {
+              "outcome": "PASS",
+              "report": "research/runtime/rendering-twentyfirst-three-results-20261024/execution-2.json",
+              "remaining": "Reverse modes, full effects/event consumers, wall-clock/global cadence, complete entity lifetime and live integration/replacement remain separate. Native safety exceptions do not recover original unsafe failure behavior.",
+              "note": "22 bounded original/native forward and phase-preserving switch cases match 2134 complete controller states. Native full-width delay continuation and atomic invalid-restore refusals pass. Broader acceptance remains pending."
+            }
           },
           {
             "behavior": "AN.direction",
@@ -23885,40 +23962,50 @@
           },
           {
             "behavior": "AN.placement",
-            "mode": "Implemented within bounded scope; renew validation",
-            "next_action": "Complete entity producer composition, reverse/runtime states and lifetime remain separate.",
+            "mode": "Scoped offline implementation complete; broader runtime acceptance remains",
+            "next_action": "World coordinates/callers, SPR storage identity/resource lifetime, full scene production and live integration/replacement remain separate. Native source resolution and malformed/null fallback refusal are intentional policies.",
             "implementation_boundary": "Selected controller/placement modes; reverse modes, all runtime effects and entity lifetime remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare selected views, attachment points and wrapped arithmetic; complete entity composition and lifetime remain outside this bounded model.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
               "tests/animation-placement-test.cpp",
-              "tests/animation-placement-reference.cpp"
+              "tests/animation-placement-reference.cpp",
+              "tools/test-animation-placement.py",
+              "tools/test-next20-animation-controls.py",
+              "tests/animation-body-placement-test.cpp",
+              "tests/animation-body-placement-reference.cpp",
+              "tests/animation-owned-boundaries-test.cpp",
+              "tools/test-rendering-twentyfirst-three.py"
             ],
             "documents": [
               "research/runtime/animation-placement-attachments.md",
-              "research/runtime/rendering-high-validation-ownership-20261020.md"
+              "research/runtime/rendering-high-validation-ownership-20261020.md",
+              "research/runtime/next20-implementation-progress-20261020.md",
+              "research/runtime/rendering-twentyfirst-three-20261024.md"
             ],
-            "contract_sha256": "1bedb2933a517cd9e263f876c666b5164413baa2a27932770283c74e24729fe4",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Complete entity producer composition, reverse/runtime states and lifetime remain separate.",
+            "contract_sha256": "55958b3c8365dcaa11fb0eab3224c359c855897d66353fd69fdab4eb03015043",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "World coordinates/callers, SPR storage identity/resource lifetime, full scene production and live integration/replacement remain separate. Native source resolution and malformed/null fallback refusal are intentional policies.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "spriteOffset and attachmentOffset implement selected camera-relative body/attachment placement.",
+              "current_state": "2400 synthetic boundary and 88512 installed Effects2 helper results match the four original placement helpers. All 4608 original body cases match, including 2304 fallback starts and 2304 retained displays. Native failed body candidates preserve dormant phase and owned records.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Renewed original/native placement comparison and native placement controls pass within the documented camera/body/attachment scope.",
+              "validation_state": "recorded",
+              "validation_summary": "2400 synthetic boundary and 88512 installed Effects2 helper results match the four original placement helpers. All 4608 original body cases match, including 2304 fallback starts and 2304 retained displays. Native failed body candidates preserve dormant phase and owned records. Five Release and five ASan/UBSan CTests pass.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Complete entity producer composition, reverse/runtime states and lifetime remain separate.",
+              "acceptance_summary": "World coordinates/callers, SPR storage identity/resource lifetime, full scene production and live integration/replacement remain separate. Native source resolution and malformed/null fallback refusal are intentional policies.",
               "evidence": [
                 "ORIGINAL.animation-placement-attachments",
                 "HIGH01.rendering-work-review-20261019",
-                "HIGH03.placement-20261020"
+                "HIGH03.placement-20261020",
+                "N21.animation-native-20261024",
+                "N21.animation-original-20261024"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
                   "kind": "scope_review",
-                  "action": "Complete entity producer composition, reverse/runtime states and lifetime remain separate."
+                  "action": "World coordinates/callers, SPR storage identity/resource lifetime, full scene production and live integration/replacement remain separate. Native source resolution and malformed/null fallback refusal are intentional policies."
                 }
               ],
               "code_witnesses": [
@@ -23929,26 +24016,42 @@
                 }
               ],
               "source_sha256": {
-                "reconstruction/animation/placement.cpp": "1726861a7123aa6c593b05a4a47a59f5b61ebae086ea3a53be287a97f7f14ea7",
-                "reconstruction/animation/placement.hpp": "f0c92b58017bb6b33aefacaa2b77f99e222f24fe662bf410fac46b1728f5bb6c",
-                "research/runtime/animation-placement-attachments.md": "bf9ed237361934291f89726114e85b7bf0d4819a6673c9de548ca2c6766a4421",
-                "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
-                "tests/animation-placement-reference.cpp": "f572c326c1817ec66b0ebfa380b764c87423a4e8670986abe3d9fd276c0ff33d",
-                "tests/animation-placement-test.cpp": "69f4159982a048cd0a558793261caa2488287aea5c4cbad134fe2a8e91b4b721",
-                "tools/test-animation-placement.py": "ecce021dfac9c1e23921cec35fe8bd178ceb4f9cbe6f1359f89893f17f2838d7",
+                "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+                "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+                "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+                "reconstruction/animation/CMakeLists.txt": "83ddbaee724b56204589db7356221de75b0fe3d10eea560b815b1db29e744ba5",
                 "reconstruction/animation/body_placement.cpp": "3743b4363a26d6712ee624b8c969cf94757199537c5833ef3d9b2ce87399872a",
                 "reconstruction/animation/body_placement.hpp": "0a52f5a7f1736debf289137dcf4cb5ec0fcc78c53f3b55525a212de4c5ea0529",
+                "reconstruction/animation/no_cd.cpp": "e979f2b001b1ba4c03f33596a38e900934ee4c30ebfc4d61d70f962f31a54909",
+                "reconstruction/animation/no_cd.hpp": "127fe1fea719f3881bda4334bdcd6034c942cd74dc4a5b647af8f96a991647c3",
+                "reconstruction/animation/placement.cpp": "1726861a7123aa6c593b05a4a47a59f5b61ebae086ea3a53be287a97f7f14ea7",
+                "reconstruction/animation/placement.hpp": "f0c92b58017bb6b33aefacaa2b77f99e222f24fe662bf410fac46b1728f5bb6c",
+                "research/runtime/animation-placement-attachments.md": "8d6dcd76ff2bddb3125b950fd7f85664a23f16c0db9ee3500dc73d6327785ca4",
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
+                "research/runtime/rendering-twentyfirst-three-20261024.md": "bc7a21af7284c03514e95f3370c6b50d825e9c2d962bc8f7a3ad612693b3720b",
                 "tests/animation-body-placement-reference.cpp": "c93dac830e209a68baea99a56ee60f468da7b412d52f0c4db1ced71ddc575ca7",
                 "tests/animation-body-placement-test.cpp": "dbed9512db467cd6313ec77ab8d231c06eb3ea32d19f56768f879f3350bacb99",
-                "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658"
+                "tests/animation-owned-boundaries-test.cpp": "b2056a9967c1f148f76f54da3209b4b19250dbd32c800a7092ff6aad5e0955e5",
+                "tests/animation-placement-reference.cpp": "f572c326c1817ec66b0ebfa380b764c87423a4e8670986abe3d9fd276c0ff33d",
+                "tests/animation-placement-test.cpp": "69f4159982a048cd0a558793261caa2488287aea5c4cbad134fe2a8e91b4b721",
+                "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+                "tools/coverage_evidence.py": "b8a3a9d12ab4a38af8d837fd88b50889a2064fbaffbc2ec558fe82c9c4dd5871",
+                "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+                "tools/test-animation-placement.py": "cfc81f8f1889dfed8b272eaa670b7490ef82a7f50686a1b1765abe6a3b3eac35",
+                "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658",
+                "tools/test-rendering-twentyfirst-three.py": "b0395e5b21efe2525919dde984572e79924c27409be3b66ee1cd959bf3327845"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "validation_evidence": [
+                "N21.animation-native-20261024",
+                "N21.animation-original-20261024"
+              ]
             },
             "work_review_history": [
               {
@@ -24033,6 +24136,55 @@
                   "tests/animation-placement-reference.cpp": "f572c326c1817ec66b0ebfa380b764c87423a4e8670986abe3d9fd276c0ff33d",
                   "tests/animation-placement-test.cpp": "69f4159982a048cd0a558793261caa2488287aea5c4cbad134fe2a8e91b4b721"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "spriteOffset and attachmentOffset implement selected camera-relative body/attachment placement.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed original/native placement comparison and native placement controls pass within the documented camera/body/attachment scope.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Complete entity producer composition, reverse/runtime states and lifetime remain separate.",
+                "evidence": [
+                  "ORIGINAL.animation-placement-attachments",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.placement-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Complete entity producer composition, reverse/runtime states and lifetime remain separate."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/animation/placement.cpp",
+                    "line": 14,
+                    "text": "AnimationOffset attachmentOffset(const assets::AnimationRecord& r,AttachmentPoint point,std::uint32_t tileSizeXY,std::uint32_t view){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/animation/placement.cpp": "1726861a7123aa6c593b05a4a47a59f5b61ebae086ea3a53be287a97f7f14ea7",
+                  "reconstruction/animation/placement.hpp": "f0c92b58017bb6b33aefacaa2b77f99e222f24fe662bf410fac46b1728f5bb6c",
+                  "research/runtime/animation-placement-attachments.md": "bf9ed237361934291f89726114e85b7bf0d4819a6673c9de548ca2c6766a4421",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/animation-placement-reference.cpp": "f572c326c1817ec66b0ebfa380b764c87423a4e8670986abe3d9fd276c0ff33d",
+                  "tests/animation-placement-test.cpp": "69f4159982a048cd0a558793261caa2488287aea5c4cbad134fe2a8e91b4b721",
+                  "tools/test-animation-placement.py": "ecce021dfac9c1e23921cec35fe8bd178ceb4f9cbe6f1359f89893f17f2838d7",
+                  "reconstruction/animation/body_placement.cpp": "3743b4363a26d6712ee624b8c969cf94757199537c5833ef3d9b2ce87399872a",
+                  "reconstruction/animation/body_placement.hpp": "0a52f5a7f1736debf289137dcf4cb5ec0fcc78c53f3b55525a212de4c5ea0529",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                  "tests/animation-body-placement-reference.cpp": "c93dac830e209a68baea99a56ee60f468da7b412d52f0c4db1ced71ddc575ca7",
+                  "tests/animation-body-placement-test.cpp": "dbed9512db467cd6313ec77ab8d231c06eb3ea32d19f56768f879f3350bacb99",
+                  "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
               }
             ],
             "planning_history": [
@@ -24041,70 +24193,100 @@
                 "next_action": "Renew camera-relative body and attachment offset comparisons.",
                 "remaining_at_review": "Complete entity producer composition, reverse/runtime states and lifetime remain separate."
               }
-            ]
+            ],
+            "execution_result": {
+              "outcome": "PASS",
+              "report": "research/runtime/rendering-twentyfirst-three-results-20261024/execution-2.json",
+              "remaining": "World coordinates/callers, SPR storage identity/resource lifetime, full scene production and live integration/replacement remain separate. Native source resolution and malformed/null fallback refusal are intentional policies.",
+              "note": "2400 synthetic boundary and 88512 installed Effects2 helper results match the four original placement helpers. All 4608 original body cases match, including 2304 fallback starts and 2304 retained displays. Native failed body candidates preserve dormant phase and owned records. Broader acceptance remains pending."
+            }
           },
           {
             "behavior": "AN.attachment",
-            "mode": "Implemented within bounded scope; renew validation",
-            "next_action": "Other modes and original object lifetime/admission remain outside this bounded implementation.",
+            "mode": "Scoped offline implementation complete; broader runtime acceptance remains",
+            "next_action": "Other numeric modes, automatic stopped-child restart, global cadence, original file-loader/configuration I/O, complete effect/entity lifetime and live integration/replacement remain separate.",
             "implementation_boundary": "Selected controller/placement modes; reverse modes, all runtime effects and entity lifetime remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare health/mode/facing boundaries and overflow refusal; other modes and original object lifetime remain separate.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
               "tests/animation-attachment-test.cpp",
-              "tests/animation-attachment-reference.cpp"
+              "tests/animation-attachment-reference.cpp",
+              "tools/test-animation-attachment.py",
+              "tools/test-next20-animation-controls.py",
+              "tests/animation-owned-boundaries-test.cpp",
+              "tools/test-rendering-twentyfirst-three.py"
             ],
             "documents": [
               "research/runtime/animation-mode-one-attachment.md",
-              "research/runtime/rendering-high-validation-ownership-20261020.md"
+              "research/runtime/rendering-high-validation-ownership-20261020.md",
+              "research/runtime/next20-implementation-progress-20261020.md",
+              "research/runtime/rendering-twentyfirst-three-20261024.md"
             ],
-            "contract_sha256": "7ccdf04563a602edaf7f0a69e50fb0c521db296b5aeec234fb2543ed80c81ab8",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. Other modes and original object lifetime/admission remain outside this bounded implementation.",
+            "contract_sha256": "de44a3d1500be9c62ba3dac368ba67d7b2e394c37c546078a1dad0494b8053ff",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Other numeric modes, automatic stopped-child restart, global cadence, original file-loader/configuration I/O, complete effect/entity lifetime and live integration/replacement remain separate.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "modeOneSelection, modeOneVisible and modeOneTicks implement the selected mode-one attachment policy.",
+              "current_state": "32 original configured mode-one cases match 2080 child states, same-mode no-op, removal and reentry. Native all-eight-facing DWORD endpoint rebinding, source ownership, health extremes and failed-candidate preservation pass.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Renewed original/native mode-one attachment comparison and native selection/visibility/tick controls pass.",
+              "validation_state": "recorded",
+              "validation_summary": "32 original configured mode-one cases match 2080 child states, same-mode no-op, removal and reentry. Native all-eight-facing DWORD endpoint rebinding, source ownership, health extremes and failed-candidate preservation pass. Five Release and five ASan/UBSan CTests pass.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Other modes and original object lifetime/admission remain outside this bounded implementation.",
+              "acceptance_summary": "Other numeric modes, automatic stopped-child restart, global cadence, original file-loader/configuration I/O, complete effect/entity lifetime and live integration/replacement remain separate.",
               "evidence": [
                 "ORIGINAL.animation-mode-one-attachment",
                 "HIGH01.rendering-work-review-20261019",
-                "HIGH03.attachment-20261020"
+                "HIGH03.attachment-20261020",
+                "N21.animation-native-20261024",
+                "N21.animation-original-20261024"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
                   "kind": "scope_review",
-                  "action": "Other modes and original object lifetime/admission remain outside this bounded implementation."
+                  "action": "Other numeric modes, automatic stopped-child restart, global cadence, original file-loader/configuration I/O, complete effect/entity lifetime and live integration/replacement remain separate."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/animation/attachment.cpp",
-                  "line": 5,
+                  "line": 6,
                   "text": "ModeOneSelection modeOneSelection(std::uint32_t base,std::uint32_t assetIndex,std::uint32_t facing){"
                 }
               ],
               "source_sha256": {
-                "reconstruction/animation/attachment.cpp": "ba7553a6fb17554a2a93bab299eb60a65098f96df9b6a4db303e48e443c36ed7",
-                "reconstruction/animation/attachment.hpp": "c731bc66c9f1192fd105749251554fdf105d36321d9bf205e5645256f858aac8",
-                "research/runtime/animation-mode-one-attachment.md": "50dd77be6ee5b0c19ce6971640cf653636fb2c2151770a3f5bb71ed8c705ddfb",
-                "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
-                "tests/animation-attachment-reference.cpp": "6bada35b8ad7f1a95497d3323c8cc6be43ca1684c687e4c04a92b7aa7b71d68e",
-                "tests/animation-attachment-test.cpp": "78e8dc7d81bd954ac9f997810bae6eaa25901019236c0fa006e571814e8b0314",
-                "tools/test-animation-attachment.py": "875309c7d7faf4fd33e7b0ea2d1daa9bdbd047993cc5ebb65b5362ada39ffa9b",
+                "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+                "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+                "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+                "reconstruction/animation/CMakeLists.txt": "83ddbaee724b56204589db7356221de75b0fe3d10eea560b815b1db29e744ba5",
+                "reconstruction/animation/attachment.cpp": "db1f88c88855767b48eb8a0e565467f62c65e06396457d6e4abaca4b1829c421",
+                "reconstruction/animation/attachment.hpp": "fb05954f664306029669f9167bc11a6316f97bd808e5afae069c695a0269cf4b",
+                "reconstruction/animation/no_cd.cpp": "e979f2b001b1ba4c03f33596a38e900934ee4c30ebfc4d61d70f962f31a54909",
+                "reconstruction/animation/no_cd.hpp": "127fe1fea719f3881bda4334bdcd6034c942cd74dc4a5b647af8f96a991647c3",
+                "research/runtime/animation-mode-one-attachment.md": "9aca16a0df1e05911c90d1847136391012188ec6d0508e1d2c31388eaf1170c9",
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
-                "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658"
+                "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
+                "research/runtime/rendering-twentyfirst-three-20261024.md": "bc7a21af7284c03514e95f3370c6b50d825e9c2d962bc8f7a3ad612693b3720b",
+                "tests/animation-attachment-reference.cpp": "83e321e4d893214594753b2a5179bd904e26576ac813f8f3eb9705760f2b6a09",
+                "tests/animation-attachment-test.cpp": "40ae7895b59b364e65f8258203852479c966a51de916aeabc078303752242452",
+                "tests/animation-owned-boundaries-test.cpp": "b2056a9967c1f148f76f54da3209b4b19250dbd32c800a7092ff6aad5e0955e5",
+                "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+                "tools/coverage_evidence.py": "b8a3a9d12ab4a38af8d837fd88b50889a2064fbaffbc2ec558fe82c9c4dd5871",
+                "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+                "tools/test-animation-attachment.py": "f0c77f38eeb24f7063c67f43fea14e77fb1a1cfc086115f120b466ecad65bbd6",
+                "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658",
+                "tools/test-rendering-twentyfirst-three.py": "b0395e5b21efe2525919dde984572e79924c27409be3b66ee1cd959bf3327845"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
                 "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "validation_evidence": [
+                "N21.animation-native-20261024",
+                "N21.animation-original-20261024"
+              ]
             },
             "work_review_history": [
               {
@@ -24189,6 +24371,51 @@
                   "tests/animation-attachment-reference.cpp": "6bada35b8ad7f1a95497d3323c8cc6be43ca1684c687e4c04a92b7aa7b71d68e",
                   "tests/animation-attachment-test.cpp": "78e8dc7d81bd954ac9f997810bae6eaa25901019236c0fa006e571814e8b0314"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "modeOneSelection, modeOneVisible and modeOneTicks implement the selected mode-one attachment policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Renewed original/native mode-one attachment comparison and native selection/visibility/tick controls pass.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Other modes and original object lifetime/admission remain outside this bounded implementation.",
+                "evidence": [
+                  "ORIGINAL.animation-mode-one-attachment",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.attachment-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Other modes and original object lifetime/admission remain outside this bounded implementation."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/animation/attachment.cpp",
+                    "line": 5,
+                    "text": "ModeOneSelection modeOneSelection(std::uint32_t base,std::uint32_t assetIndex,std::uint32_t facing){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/animation/attachment.cpp": "ba7553a6fb17554a2a93bab299eb60a65098f96df9b6a4db303e48e443c36ed7",
+                  "reconstruction/animation/attachment.hpp": "c731bc66c9f1192fd105749251554fdf105d36321d9bf205e5645256f858aac8",
+                  "research/runtime/animation-mode-one-attachment.md": "50dd77be6ee5b0c19ce6971640cf653636fb2c2151770a3f5bb71ed8c705ddfb",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/animation-attachment-reference.cpp": "6bada35b8ad7f1a95497d3323c8cc6be43ca1684c687e4c04a92b7aa7b71d68e",
+                  "tests/animation-attachment-test.cpp": "78e8dc7d81bd954ac9f997810bae6eaa25901019236c0fa006e571814e8b0314",
+                  "tools/test-animation-attachment.py": "875309c7d7faf4fd33e7b0ea2d1daa9bdbd047993cc5ebb65b5362ada39ffa9b",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                  "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
               }
             ],
             "planning_history": [
@@ -24197,7 +24424,13 @@
                 "next_action": "Renew mode-one sequence selection, visibility and tick admission.",
                 "remaining_at_review": "Other modes and original object lifetime/admission remain outside this bounded implementation."
               }
-            ]
+            ],
+            "execution_result": {
+              "outcome": "PASS",
+              "report": "research/runtime/rendering-twentyfirst-three-results-20261024/execution-2.json",
+              "remaining": "Other numeric modes, automatic stopped-child restart, global cadence, original file-loader/configuration I/O, complete effect/entity lifetime and live integration/replacement remain separate.",
+              "note": "32 original configured mode-one cases match 2080 child states, same-mode no-op, removal and reentry. Native all-eight-facing DWORD endpoint rebinding, source ownership, health extremes and failed-candidate preservation pass. Broader acceptance remains pending."
+            }
           },
           {
             "behavior": "AN.world-facing",

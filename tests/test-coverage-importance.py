@@ -96,7 +96,7 @@ class ImportanceTest(unittest.TestCase):
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
         # Selected terrain closeouts retain comparison and acceptance independently.
-        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 3: 1, 4: 19, 5: 4})
+        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 3: 1, 4: 16, 5: 4})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -461,7 +461,8 @@ class TrancheTest(unittest.TestCase):
             if e['decision'] == 'scoped_implementation_complete'}
         completed.update({'NR.directdraw-public-native-menu', 'NR.directdraw-native-opengl-launch',
                           'NR.storage-session-corpus'})  # bounded implementations inbf170af0
-        completed.update({'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading',
+        completed.update({'AN.forward', 'AN.placement', 'AN.attachment',
+                          'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading',
                           'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission',
                           'AN.direction', 'RE.sprite_queue', 'RE.sprite_visibility',
                           'NR.public-resident-world', 'NR.world-continuous-source',

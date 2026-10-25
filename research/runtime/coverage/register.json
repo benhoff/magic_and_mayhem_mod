@@ -4744,7 +4744,8 @@
       "documents": [
         "research/runtime/animation-forward-contract.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-twentyfirst-three-20261024.md"
       ],
       "implementation": [
         "reconstruction/animation/no_cd.cpp",
@@ -4756,7 +4757,9 @@
         "tools/test-animation-controller.py",
         "tools/test-animation-contract.py",
         "tests/animation-controller-reference.cpp",
-        "tools/test-next20-animation-controls.py"
+        "tools/test-next20-animation-controls.py",
+        "tests/animation-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentyfirst-three.py"
       ],
       "evidence": [
         "REVIEW.AN.forward",
@@ -4772,11 +4775,13 @@
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "N20.animation.native-20261020",
         "N20.animation.original-20261020",
-        "N20.animation.controller.original-20261020"
+        "N20.animation.controller.original-20261020",
+        "N21.animation-native-20261024",
+        "N21.animation-original-20261024"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4784,7 +4789,20 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-3-20261020",
         "entry": "AN.forward"
-      }
+      },
+      "validation_dependencies": [
+        "assets/animation.hpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "validation_domain": "Bounded offline forward start/tick/event/delay/repeat/break/phase-preserving switch; recovered body/attachment offsets and owned body fallback; selected mode-one attachment binding/removal/reentry. Native malformed-input and ownership controls are separate from safe original comparisons. Reverse modes, complete runtime cadence/effects/scene, file loading, entity/resource lifetimes and live replacement remain excluded.",
+      "remaining_gaps": [
+        "Reverse modes, full effects/event consumers, wall-clock/global cadence, complete entity lifetime and live integration/replacement remain separate. Native safety exceptions do not recover original unsafe failure behavior."
+      ]
     },
     {
       "id": "AN.direction",
@@ -4891,7 +4909,8 @@
       "documents": [
         "research/runtime/animation-placement-attachments.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-twentyfirst-three-20261024.md"
       ],
       "implementation": [
         "reconstruction/animation/placement.cpp",
@@ -4905,7 +4924,9 @@
         "tools/test-animation-placement.py",
         "tools/test-next20-animation-controls.py",
         "tests/animation-body-placement-test.cpp",
-        "tests/animation-body-placement-reference.cpp"
+        "tests/animation-body-placement-reference.cpp",
+        "tests/animation-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentyfirst-three.py"
       ],
       "evidence": [
         "REVIEW.AN.placement",
@@ -4920,11 +4941,13 @@
         "HIGH04.staged-source-support-review-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "N20.animation.native-20261020",
-        "N20.animation.original-20261020"
+        "N20.animation.original-20261020",
+        "N21.animation-native-20261024",
+        "N21.animation-original-20261024"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4934,12 +4957,19 @@
         "entry": "AN.placement"
       },
       "validation_dependencies": [
-        "reconstruction/animation/no_cd.cpp",
-        "reconstruction/animation/no_cd.hpp",
-        "reconstruction/animation/CMakeLists.txt",
         "assets/animation.hpp",
         "assets/asset_file.hpp",
-        "assets/path_resolver.hpp"
+        "assets/path_resolver.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "validation_domain": "Bounded offline forward start/tick/event/delay/repeat/break/phase-preserving switch; recovered body/attachment offsets and owned body fallback; selected mode-one attachment binding/removal/reentry. Native malformed-input and ownership controls are separate from safe original comparisons. Reverse modes, complete runtime cadence/effects/scene, file loading, entity/resource lifetimes and live replacement remain excluded.",
+      "remaining_gaps": [
+        "World coordinates/callers, SPR storage identity/resource lifetime, full scene production and live integration/replacement remain separate. Native source resolution and malformed/null fallback refusal are intentional policies."
       ]
     },
     {
@@ -4964,7 +4994,8 @@
       "documents": [
         "research/runtime/animation-mode-one-attachment.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-twentyfirst-three-20261024.md"
       ],
       "implementation": [
         "reconstruction/animation/attachment.cpp",
@@ -4974,7 +5005,9 @@
         "tests/animation-attachment-test.cpp",
         "tests/animation-attachment-reference.cpp",
         "tools/test-animation-attachment.py",
-        "tools/test-next20-animation-controls.py"
+        "tools/test-next20-animation-controls.py",
+        "tests/animation-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentyfirst-three.py"
       ],
       "evidence": [
         "REVIEW.AN.attachment",
@@ -4989,11 +5022,13 @@
         "HIGH04.staged-source-support-review-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
         "N20.animation.native-20261020",
-        "N20.animation.original-20261020"
+        "N20.animation.original-20261020",
+        "N21.animation-native-20261024",
+        "N21.animation-original-20261024"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -5003,12 +5038,19 @@
         "entry": "AN.attachment"
       },
       "validation_dependencies": [
-        "reconstruction/animation/no_cd.cpp",
-        "reconstruction/animation/no_cd.hpp",
-        "reconstruction/animation/CMakeLists.txt",
         "assets/animation.hpp",
         "assets/asset_file.hpp",
-        "assets/path_resolver.hpp"
+        "assets/path_resolver.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "validation_domain": "Bounded offline forward start/tick/event/delay/repeat/break/phase-preserving switch; recovered body/attachment offsets and owned body fallback; selected mode-one attachment binding/removal/reentry. Native malformed-input and ownership controls are separate from safe original comparisons. Reverse modes, complete runtime cadence/effects/scene, file loading, entity/resource lifetimes and live replacement remain excluded.",
+      "remaining_gaps": [
+        "Other numeric modes, automatic stopped-child restart, global cadence, original file-loader/configuration I/O, complete effect/entity lifetime and live integration/replacement remain separate."
       ]
     },
     {
@@ -331508,6 +331550,106 @@
         }
       ],
       "sources_pointer": "/sources"
+    },
+    {
+      "id": "N21.animation-native-20261024",
+      "kind": "native_integration",
+      "scope": "Selected owned offline forward controller, record/body placement and mode-one attachment lifecycle. Safe bounded synthetic and installed ANI original comparisons; native DWORD/restore/refusal/ownership guards remain native policy. No reverse-mode, file-loader, whole-scene, global cadence, entity lifetime, live integration/replacement or FPS claim.",
+      "record": "research/runtime/rendering-twentyfirst-three-results-20261024/execution-2.json",
+      "sha256": "6a5380ca74ebd710c578086b16d93e588998b07586c0dac855d376056ebbdb71",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N21.animation-original-20261024",
+      "kind": "isolated_original",
+      "scope": "Selected owned offline forward controller, record/body placement and mode-one attachment lifecycle. Safe bounded synthetic and installed ANI original comparisons; native DWORD/restore/refusal/ownership guards remain native policy. No reverse-mode, file-loader, whole-scene, global cadence, entity lifetime, live integration/replacement or FPS claim.",
+      "record": "research/runtime/rendering-twentyfirst-three-results-20261024/execution-2.json",
+      "sha256": "6a5380ca74ebd710c578086b16d93e588998b07586c0dac855d376056ebbdb71",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/original_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/comparisons/forward/cases",
+          "equals": 22
+        },
+        {
+          "pointer": "/comparisons/forward/states",
+          "equals": 2134
+        },
+        {
+          "pointer": "/comparisons/placement/helper_matches",
+          "equals": 2400
+        },
+        {
+          "pointer": "/comparisons/placement-installed/helper_matches",
+          "equals": 88512
+        },
+        {
+          "pointer": "/comparisons/body/cases",
+          "equals": 4608
+        },
+        {
+          "pointer": "/comparisons/attachment/cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/comparisons/attachment/states",
+          "equals": 2080
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -359062,7 +359204,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-1a0d24aaba89a5dded2526e0d7f265174112efe443676a2246dc7666687acf47.json",
-    "sha256": "1a0d24aaba89a5dded2526e0d7f265174112efe443676a2246dc7666687acf47"
+    "path": "research/runtime/coverage/source-index-41ec3c72f5c40ef3f4cbbe9b5557e525dd04ea862d65a4b5fd38da56ae1be15d.json",
+    "sha256": "41ec3c72f5c40ef3f4cbbe9b5557e525dd04ea862d65a4b5fd38da56ae1be15d"
   }
 }
