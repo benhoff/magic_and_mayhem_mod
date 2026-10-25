@@ -22113,3 +22113,59 @@ fails with resident producer cancellation after92Worlds,before a save-file
 digest. Its stable-source failure is retained;current storage/recreate acceptance
 and subsequent original checkpoint comparison remain pending. Historical storage
 passes and hashes remain unchanged. FPS stays diagnostic.
+
+
+## Terrain/light supplier contracts — 2026-10-25
+
+[Supplier recovery](terrain-light-suppliers.md) and
+[SQLite execution](terrain-light-suppliers-execution-20261025.json) establish
+`TL.relation-production`, `TL.resource-lifetime`, and `TL.refresh-request`.
+Relation18 is alliance/nonhostility; share20 supplies shared sight. Original
+owner defaults and symmetric non-self pair writes preserve raw bytes; stored
+consumer tables remain directed. Neither setter requests a light refresh.
+
+Original32, native64 and ASan/UBSan agree on640 pair cases,40960 directed
+admission checks,256 resource checkpoints and8200648 object/buffer/service bytes.
+The resource comparison covers32 allocate/reuse/teardown/reinitialize journeys,
+including retained capacity after dimension changes and null-sentinel behavior.
+Allocator/free and kernel-service endpoints are explicit recorders; the original
+supplier bodies execute unchanged. Existing creature-cycle regression also
+matches2304 ticks,19544520 buffer bytes and11520 cycle-state values across all
+three variants. Both manifest checks verify2927 original files.
+
+This is isolated component comparison. Kernel/map-load refresh stores and
+request callers are documented static links; their whole caller execution,
+original allocation failures, installed entity/static-type discovery, script
+reveal/notification consequences, full-world scheduling and live replacement
+remain separate. Native field RAII and replay policy remain distinct. Historical
+consumer evidence retains its hashes; the comment/header change can make its
+older fingerprints stale without revoking past scoped observations.
+
+The first attempt refused the mutable working executable before mapping because
+its SHA-256 differed; the failure is retained in
+[negative evidence](terrain-light-suppliers-20261025.json). The successful run uses
+the immutable hash-pinned no-CD original. Temporary logs/helpers/output streams
+are bounded under this owned worktree's ignored working/tests/light-suppliers-2;
+durable report/disassembly/source fingerprints live in SQLite.
+
+The [pinned static caller report](terrain-light-suppliers-static-20261025.json)
+retains kernel/map-load refresh stores, both explicit request callers and the
+relation/sharing script windows. It grants no new caller execution claim.
+The [coverage audit](terrain-light-supplier-audit-20261025.json) has zero errors;
+all three new supplier behaviors have current implementation/comparison proof.
+The [refreshed summary](coverage/summary-terrain-light-suppliers-20261025.md)
+retains unrelated historical staleness and discovery gaps.
+
+
+## Terrain light supplier master integration — 2026-10-25
+
+[Integration review](terrain-light-suppliers-master-integration-20261025.md)
+combines supplier commit `babb7633` with current rendering/cursor master.
+Exact bindings for both supplier records match all twelve inputs; fresh native64
+and ASan/UBSan supplier and creature-cycle controls match retained original
+outputs. Stable-ID reconciliation preserves all parent records and receipts.
+The first integration review is retained separately after master advanced to
+`618cc26c`; its verified committed transitions are inherited into the extended
+history review without reasserting a past gate pass or new engine execution.
+Installed/world/live and original heap-failure boundaries remain separate.
+Concurrent main-checkout edits stay outside the merge commit.

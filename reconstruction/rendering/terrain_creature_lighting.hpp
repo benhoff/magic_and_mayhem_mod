@@ -2,8 +2,10 @@
 #include "terrain_lighting.hpp"
 #include <cstddef>
 namespace mnm::reconstruction {
-// Owned inputs to 004f27d0. Neutral names retain the binary's nonzero tests;
-// the meaning of the two relation bytes has not been established here.
+// Owned inputs to 004f27d0. first is owner relation18 (alliance/nonhostility),
+// second is share20 (shared sight); both retain raw nonzero admission tests.
+// Production/defaults and resource ownership: terrain_light_suppliers.hpp.
+// Observed tables remain directed even though the recovered setters mirror pairs.
 struct TerrainLightCreature {
  bool active=false,lightEnabled=false;
  int owner=0;
