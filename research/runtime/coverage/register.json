@@ -146453,6 +146453,52 @@
       "remaining_gaps": [
         "Static local understanding only; native implementation,original/native execution,actual screen/cursor ownership,all writers and full session acceptance remain open."
       ]
+    },
+    {
+      "id": "NP.native-player-launch",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Player entrypoint defaults to strict native rendering with a reusable owned prefix",
+      "scope": "Intentional native player-launch policy: run-x86 defaults to the storage-guarded native entrypoint, with an explicit original-renderer opt-in; a dedicated persistent prefix is hash-checked or initialized using the existing DirectPlay installer, protected by a nonblocking player lease and stopped-server check, and delegated to the existing strict native-only owner. In-memory orchestration and actual Bash-routing controls only. Actual Wine/prefix/bootstrap/build/native-owner operation, all-game original pixel equivalence, hardware performance and complete live replacement are separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/native-player-launch.md",
+        "README.md"
+      ],
+      "implementation": [
+        "run-native.sh",
+        "run-x86.sh",
+        "tools/run-native-game.py"
+      ],
+      "tests": [
+        "tests/test-native-player-launcher.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_only_contract.py",
+        "tools/run-native-owned.py",
+        "tools/directplay_dx6_launch.py",
+        "tools/native_prefix_template.py",
+        "tools/working-retention.py",
+        "tools/run-qt-shell.sh",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "NPL.player-controls-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Storage preflight on 2026-10-25 reports 89.92 GiB free below the mandatory 90 GiB main-drive reserve. No new actual prefix/bootstrap, Qt build, owner/game session or native pixel validation is executed by this batch; restore storage headroom before live acceptance.",
+        "Fresh default prefix initialization still requires the existing hash-pinned Wine DirectPlay builtin version; launcher controls mock filesystem/installer operations and prove orchestration only.",
+        "The existing native-only profile enforces capability refusal and no original presentation fallback; complete original-renderer equivalence, all-game reachability and hardware cadence remain outside this player-launch policy."
+      ]
     }
   ],
   "evidence": [
@@ -331795,6 +331841,41 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NPL.player-controls-20261025",
+      "kind": "native_integration",
+      "scope": "In-memory launch orchestration and actual Bash entrypoint routing. Filesystem initialization, Wine and native-owner execution are mocked. No original artifacts, actual prefix installation, live-game validation or replacement claim.",
+      "record": "research/runtime/native-player-launch-controls-20261025.json",
+      "sha256": "6c6e9623c0e719048bc471b0a31af6702ff708c59cea278444a68186a464528e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 15
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/actual_prefix_initialized",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -359431,7 +359512,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6bd210b31038e951bfabc8f55a66711fa393bdf465db273baccf2d06d04b6609.json",
-    "sha256": "6bd210b31038e951bfabc8f55a66711fa393bdf465db273baccf2d06d04b6609"
+    "path": "research/runtime/coverage/source-index-86e0b22fba12afb3f54b2227d99a7af9e228a74ff93c0693da5dd52ae7f7879a.json",
+    "sha256": "86e0b22fba12afb3f54b2227d99a7af9e228a74ff93c0693da5dd52ae7f7879a"
   }
 }

@@ -21914,3 +21914,27 @@ P1 local integration (2026-10-25) retains the newer master `6a6f9614` animation
 contracts and receipts alongside this inventory. All 116 P1 static source
 bindings still match. The combined source census and exact accounting are
 reviewed afresh; this reconciliation adds no execution or replacement claim.
+
+
+## Native renderer player default — 2026-10-25
+
+The [player launcher](../../docs/native-player-launch.md) routes ordinary
+`run-x86.sh` launches through `run-native.sh` into the existing strict native-only
+owner. Original-renderer launch requires `--original-renderer`; the internal
+original backend and configurable Qt diagnostic launcher remain available.
+The wrapper reserves 4 GiB through the existing storage guard, initializes or
+checks a separate persistent owned prefix, leases it against concurrent player
+launches and never kills a busy server for reuse. Initialization delegates
+binary checks/install to the existing supplied DirectPlay helper and verifies
+original manifests before/after. Failed initialization remains inspectable.
+
+`NP.native-player-launch` and `NPL.player-controls-20261025` record 15 passing
+in-memory orchestration/actual Bash-routing controls, with stable source
+fingerprints. Installer, filesystem and owner operations are mocked. The first
+15-control attempt's Bash harness argument error is documented separately; it
+was corrected without executing Wine. The report is an immutable SQLite-backed
+reference. The main-drive preflight refuses at 89.92 GiB free, below the required
+90 GiB reserve, so actual prefix initialization, Qt build and live session
+acceptance remain pending. Native-only selection does not establish full-game
+pixel equivalence, complete original-pixel replacement or hardware performance.
+Original simulation still runs in Wine. Existing evidence is not refreshed.
