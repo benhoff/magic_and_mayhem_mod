@@ -24,6 +24,7 @@ def main():
     parser.add_argument('--source-game',type=Path,required=True)
     parser.add_argument('--stress-seconds',type=int,choices=[0,*range(10,121)],default=0)
     parser.add_argument('--file-trace',action='store_true',help='Diagnostic Wine file-API trace; changes timing and supplies no performance acceptance')
+    parser.add_argument('--no-native-music',action='store_true',help='Exercise rendering without requiring a prepared CD music catalog')
     parser.add_argument('--claims',type=Path,required=True)
     parser.add_argument('--report',type=Path,required=True)
     args=parser.parse_args()
@@ -36,7 +37,8 @@ def main():
     root=Path(tempfile.mkdtemp(prefix='campaign-',dir=parent));(root/'.retain').write_text('Native output ownership actual-game observation, preserve attempts.\n')
     report=dict(schema=1,success=False,claims=declaration['claims'],sources=sources,
         original_game_executed=False,complete_replacement=False,ordinary_campaign_accepted=False,
-        artifacts=str(root.relative_to(ROOT)),stress_seconds=args.stress_seconds,file_trace=args.file_trace,scope=__doc__)
+        artifacts=str(root.relative_to(ROOT)),stress_seconds=args.stress_seconds,file_trace=args.file_trace,
+        native_music_disabled=args.no_native_music,scope=__doc__)
     env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE'))}
     env.update(XDG_CONFIG_HOME=str(root/'config'),PYTHONDONTWRITEBYTECODE='1',TMPDIR=str(root),LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='4',
         QT_QPA_PLATFORM='xcb',QT_XCB_GL_INTEGRATION='xcb_glx',WINEDEBUG='-all,+file' if args.file_trace else '-all',
@@ -56,7 +58,8 @@ def main():
         env.update(DISPLAY=receipt['display'],XAUTHORITY=receipt['authority'])
         report['prefix_template']=clone(args.prefix_template,root/'wineprefix',env)
         command=[str(ROOT/'tools/run-native-owned.py'),'--prefix',str(root/'wineprefix'),'--output',str(root/'owner'),*(['--native-only'] if args.native_only else []),'--',
-                 '--skip-movies','--live-menu-test',str(root/'flow.json')]
+                 '--skip-movies',*(['--no-native-music'] if args.no_native_music else []),
+                 '--live-menu-test',str(root/'flow.json')]
         campaign_spec=importlib.util.spec_from_file_location('owned_campaign_contract',ROOT/'tools/test-native-campaign.py')
         campaign=importlib.util.module_from_spec(campaign_spec);campaign_spec.loader.exec_module(campaign)
         with (root/'shell.log').open('x') as out:

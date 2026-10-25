@@ -1,10 +1,23 @@
 import copy
+import contextlib
+import hashlib
+import importlib.util
+import io
+import json
 from pathlib import Path
+import shutil
 import sys
+import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from critical_rendering_acceptance import PROFILES, assess
+from coverage_evidence import evidence_digest, identity, read_json, write_report
+
+ROOT = Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location('acceptance_cli', ROOT/'tools/check-critical-rendering-acceptance.py')
+cli = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(cli)
 
 
 def fixture():
@@ -114,6 +127,56 @@ class Acceptance(unittest.TestCase):
             if change == 'duplicate':rows[0]['ordinal'] = 2
             if change == 'reorder':rows[0], rows[1] = rows[1], rows[0]
             with self.subTest(change=change), self.assertRaises(ValueError):assess(changed)
+
+    def cli_inputs(self):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        root = Path(directory.name)
+        (root/'.evidence-store.json').write_text('{"schema":1,"archives":[]}\n')
+        for name in ['tools/critical_rendering_acceptance.py', 'tools/check-critical-rendering-acceptance.py',
+                     'tools/native_render_driver.py', 'tools/coverage_evidence.py',
+                     'tools/rendering_session_contracts.py', 'tests/test-critical-rendering-acceptance.py']:
+            target = root/name; target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT/name, target)
+        source = root/'native.cpp'; source.write_text('fixed execution source\n')
+        digest = hashlib.sha256(source.read_bytes()).hexdigest()
+        component = dict(behavior='component', contract_sha256='a'*64)
+        policy = dict(behavior='policy', contract_sha256='b'*64)
+        bundles = {}
+        for backend, profiles in self.reports.items():
+            bundle = dict(sources_stable=True, profiles={})
+            for name, value in profiles.items():
+                record = dict(value, sources={'native.cpp':digest}, claims=[component])
+                child = root/'research/runtime'/f'{backend}-{name}.json'
+                write_report(root, child, json.dumps(record).encode())
+                bundle['profiles'][name] = dict(record=child.relative_to(root).as_posix(),
+                                                sha256=evidence_digest(child, root=root))
+            path = root/'research/runtime'/f'{backend}.json'
+            write_report(root, path, json.dumps(bundle).encode()); bundles[backend] = path
+        claims = root/'working/claims.json'; claims.parent.mkdir(exist_ok=True)
+        claims.write_text(json.dumps(dict(sources={'native.cpp':digest}, claims=[policy])))
+        output = root/'research/runtime/result.json'
+        argv = ['--policy', 'critical-rendering-correct-output-v1', '--software-report', str(bundles['software']),
+                '--hardware-report', str(bundles['hardware']), '--claims', str(claims), '--report', str(output)]
+        return root, source, policy, output, argv
+
+    def test_sqlite_cohorts_bind_only_the_prospective_acceptance_policy(self):
+        root, _, policy, output, argv = self.cli_inputs()
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(cli.main(argv, root=root), 0)
+        self.assertIsNotNone(identity(output.read_bytes()))
+        result = read_json(output, root=root)
+        self.assertEqual(result['claims'], [policy])
+        self.assertTrue(result['inputs_stable'])
+        self.assertFalse(result['whole_renderer_accepted'])
+        self.assertEqual(result['legacy_diagnostics']['software']['mismatches'], 252)
+
+    def test_changed_prospective_source_cannot_gain_acceptance(self):
+        root, source, _, output, argv = self.cli_inputs()
+        source.write_text('different source after declaration\n')
+        with self.assertRaisesRegex(ValueError, 'Prospective acceptance source changed'):
+            cli.main(argv, root=root)
+        self.assertFalse(output.exists())
 
 
 if __name__ == '__main__':unittest.main()

@@ -1,5 +1,33 @@
 # Engine modernization coverage ledger
 
+## Native rendering assurance renewal — 2026-10-25
+
+Current bounded surface, format/pitch, ownership/recovery and clipping comparisons
+pass, alongside 7,490 original panel cases, 320 fade caller-state executions and
+256 original word-sprite comparisons. A new reviewed crosswalk links fresh
+subset proofs while preserving historical bypass, unknown producer and ownership
+boundaries. The web UI is unchanged.
+
+A strict native-only 20-second/Mini/20-second/Quit journey passes 615 balanced
+Worlds, 9,823 native optional calls, zero forwarding and zero surviving owners.
+Actual producer failure/public Hard restart passes two fresh sessions and normal
+Quit; the cancelled generation receives no completion credit. Only appropriate
+native-policy integration stages gain live-observation credit. The approximately
+12 FPS software journey is functional evidence, not performance acceptance.
+
+All 323 Quick Battle and 222 explicit corrected-storage frames match native GPU
+and displayed outputs on both llvmpipe and NVIDIA. Both 238-frame unmodified
+storage cohorts retain the same ordinal 170/126+126-pixel discrepancy. The existing
+user-selected correct-output policy passes with that diagnostic retained; it does
+not establish unmodified-reference parity, full renderer replacement, all-game
+ownership/routes, physical context-loss or sustained performance.
+
+See [the findings, failed attempts, SQLite records and reproduction](rendering-assurance-20261025.md).
+Original manifests pass before/after consuming experiments. A rendering-test
+music opt-out and exact isolated installation admission close staging blockers;
+production rendering algorithms and historical evidence hashes are unchanged.
+
+
 ## Alternate ownership through complete sessions and retail review — 2026-10-24
 
 ACO1 validates eight normal original windowed processes and sixteen repeated

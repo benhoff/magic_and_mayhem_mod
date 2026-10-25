@@ -1,5 +1,22 @@
 # Rendering coverage against the binary inventory
 
+Reviewed 2026-10-25 for current scoped support, with the earlier reviews below
+retained as historical findings. The active
+[crosswalk](rendering-coverage-scope-assurance-20261025.json) and
+[assurance results](rendering-assurance-20261025.md) renew selected component,
+recorded-session and native-only journey proofs without changing the web UI.
+The [current reconciliation](rendering-assurance-results-20261025/coverage-reconciliation.json)
+passes the coverage audit with no errors. It reports current independent subset
+validation in 12/12 surface categories and 7/9 drawing families; current
+implementation-stage proof covers 12/12 and 5/9 respectively. The counts differ
+because original comparison and native implementation stages are independent.
+Neither denominator has a current live-bypass proof in this crosswalk. Historical
+bypass achievements remain below, with their exact source versions preserved.
+These are categories with some support, not categories completed or a measure of
+the proportion of the engine ported.
+
+### Historical review — 2026-10-10
+
 Reviewed 2026-10-10 for the pinned No-CD build. The
 [crosswalk](rendering-coverage-scope.json) reconciles the
 [drawing inventory](render-drawing-inventory.md), the
@@ -48,7 +65,7 @@ recovery. Effect motion/lighting/animation foundations do not establish the
 complete effect-to-queue-to-pixel producer route. Native Qt UI and media plumbing
 do not establish complete original UI or enabled-movie replacement.
 
-The reviewed historical crosswalk currently gives:
+The 2026-10-10 historical crosswalk gave:
 
 | Denominator | Some scoped code | Independent subset validation | Original-executable subset comparison | Some scoped live bypass |
 | --- | ---: | ---: | ---: | ---: |

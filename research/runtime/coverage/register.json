@@ -17840,7 +17840,8 @@
         "research/runtime/native-surface-clipping.md",
         "research/runtime/native-surface-operation-matrix.json",
         "research/runtime/original-surface-overlap.md",
-        "research/runtime/native-surface-backend.md"
+        "research/runtime/native-surface-backend.md",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "implementation": [
         "renderer/surface_copy.hpp",
@@ -17864,7 +17865,8 @@
         "ORIGINAL.surface-backend.owned.replay-base-20261006",
         "NR.surface-backend.owned.final-20261006",
         "ORIGINAL.surface-backend.owned.replay-final-20261006",
-        "NR.surface-backend.owned.regressions-20261006"
+        "NR.surface-backend.owned.regressions-20261006",
+        "RA25.surfaces.native"
       ],
       "status": {
         "understanding": "scoped",
@@ -17872,7 +17874,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "tools/test-rendering-assurance.py"
+      ]
     },
     {
       "id": "NR.application-shutdown",
@@ -18906,7 +18911,8 @@
         "research/runtime/native-surface-operation-matrix.json",
         "research/runtime/native-surface-ownership-recovery.md",
         "research/runtime/native-surface-formats-pitch.md",
-        "research/runtime/native-campaign-rendering.md"
+        "research/runtime/native-campaign-rendering.md",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "implementation": [
         "renderer/surface_backend.hpp",
@@ -18948,7 +18954,8 @@
         "NR.surface-backend.formats-pitch.ownership-20261006",
         "NR.native-campaign.directcopy-backend-20261009",
         "NR.native-campaign.directcopy-formats-20261009",
-        "NR.native-campaign.directcopy-ownership-20261009"
+        "NR.native-campaign.directcopy-ownership-20261009",
+        "RA25.surfaces.native"
       ],
       "status": {
         "understanding": "scoped",
@@ -18958,7 +18965,8 @@
         "replacement": "none"
       },
       "validation_dependencies": [
-        "protocols/include/mnm/world_raster_batch_v3.h"
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "tools/test-rendering-assurance.py"
       ]
     },
     {
@@ -19096,7 +19104,8 @@
         "research/runtime/native-surface-ownership-recovery.md",
         "research/runtime/native-surface-operation-matrix.json",
         "research/runtime/native-surface-backend.md",
-        "research/runtime/native-surface-formats-pitch.md"
+        "research/runtime/native-surface-formats-pitch.md",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "implementation": [
         "renderer/surface_backend.hpp",
@@ -19125,7 +19134,8 @@
         "NR.surface-backend.formats-pitch.replay-20261006",
         "NR.surface-backend.formats-pitch.regressions-20261006",
         "NR.surface-backend.formats-pitch.operations-20261006",
-        "NR.surface-backend.formats-pitch.ownership-20261006"
+        "NR.surface-backend.formats-pitch.ownership-20261006",
+        "RA25.surfaces.native"
       ],
       "status": {
         "understanding": "scoped",
@@ -19135,7 +19145,8 @@
         "replacement": "none"
       },
       "validation_dependencies": [
-        "protocols/include/mnm/world_raster_batch_v3.h"
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "tools/test-rendering-assurance.py"
       ]
     },
     {
@@ -19149,7 +19160,8 @@
       "documents": [
         "research/runtime/native-surface-formats-pitch.md",
         "research/runtime/native-surface-operation-matrix.json",
-        "research/runtime/native-surface-backend.md"
+        "research/runtime/native-surface-backend.md",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "implementation": [
         "renderer/pixel_rows.hpp",
@@ -19173,7 +19185,8 @@
         "DRIVER.surface-formats.offline-20261006",
         "NR.surface-backend.formats-pitch.regressions-20261006",
         "NR.surface-backend.formats-pitch.operations-20261006",
-        "NR.surface-backend.formats-pitch.ownership-20261006"
+        "NR.surface-backend.formats-pitch.ownership-20261006",
+        "RA25.surfaces.native"
       ],
       "status": {
         "understanding": "scoped",
@@ -19183,7 +19196,8 @@
         "replacement": "none"
       },
       "validation_dependencies": [
-        "protocols/include/mnm/world_raster_batch_v3.h"
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "tools/test-rendering-assurance.py"
       ]
     },
     {
@@ -19542,7 +19556,8 @@
         "research/runtime/native-word-sprite-mvp.md",
         "research/formats/word-sprite-samples-v1.md",
         "docs/live-drawing-replacement.md",
-        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "implementation": [
         "renderer/sprites/word_raster.h",
@@ -19556,7 +19571,9 @@
       ],
       "evidence": [
         "RS.word-raster.original-20261007",
-        "NR.word-admission.host-20261007"
+        "NR.word-admission.host-20261007",
+        "RA25.word.original",
+        "RA25.word.native"
       ],
       "status": {
         "understanding": "scoped",
@@ -19564,7 +19581,10 @@
         "comparison": "recorded",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "tools/test-rendering-assurance.py"
+      ]
     },
     {
       "id": "RS.word-route",
@@ -29777,12 +29797,13 @@
       "original": [],
       "documents": [
         "research/runtime/rendering-coverage.md",
-        "research/runtime/rendering-coverage-scope.json",
+        "research/runtime/rendering-coverage-scope-assurance-20261025.json",
         "research/runtime/render-drawing-inventory.md",
         "research/runtime/native-surface-operation-matrix.json",
         "docs/live-drawing-replacement.md",
         "research/runtime/rendering-required-dependencies-20261024.md",
-        "docs/native-rendering-dependencies.json"
+        "docs/native-rendering-dependencies.json",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "implementation": [
         "tools/rendering_coverage.py",
@@ -29794,7 +29815,7 @@
       ],
       "validation_dependencies": [
         "research/runtime/native-surface-operation-matrix.json",
-        "research/runtime/rendering-coverage-scope.json",
+        "research/runtime/rendering-coverage-scope-assurance-20261025.json",
         "tools/coverage_audit.py",
         "tools/coverage_claims.py"
       ],
@@ -32937,7 +32958,8 @@
         }
       ],
       "documents": [
-        "research/runtime/fade-loop-takeover.md"
+        "research/runtime/fade-loop-takeover.md",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/fade_kernel.c",
@@ -32955,10 +32977,12 @@
       ],
       "validation_dependencies": [
         "tests/sprite-binary-reference.cpp",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "tools/test-rendering-assurance.py"
       ],
       "evidence": [
-        "RS.fade-loop-state.original-20261010"
+        "RS.fade-loop-state.original-20261010",
+        "RA25.fade.original"
       ],
       "status": {
         "understanding": "scoped",
@@ -33597,7 +33621,8 @@
         }
       ],
       "documents": [
-        "research/runtime/panel-domain.md"
+        "research/runtime/panel-domain.md",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "implementation": [
         "renderer/canvas_sequence.cpp",
@@ -33618,11 +33643,14 @@
         "renderer/minimap/overlays.cpp",
         "renderer/minimap/overlays.hpp",
         "tests/sprite-binary-reference.cpp",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "tools/test-rendering-assurance.py"
       ],
       "evidence": [
         "RS.panel-pixel-domain.original-20261010",
-        "NR.panel-domain.native-20261010"
+        "NR.panel-domain.native-20261010",
+        "RA25.panels.original",
+        "RA25.panels.native"
       ],
       "status": {
         "understanding": "scoped",
@@ -81478,7 +81506,8 @@
       "documents": [
         "research/runtime/recorded-native-session-comparison.md",
         "research/formats/recorded-drawing-composition-v1.md",
-        "research/runtime/drawing-copy-driver-order.md"
+        "research/runtime/drawing-copy-driver-order.md",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "implementation": [
         "tools/drawing_recorded_session.py",
@@ -81508,7 +81537,8 @@
         "tools/drawing_scene_corpus.py",
         "tools/drawing_session.py",
         "tools/inspect-canvas-producers.py",
-        "tools/rendering_coverage.py"
+        "tools/rendering_coverage.py",
+        "tools/test-rendering-session-assurance.py"
       ],
       "evidence": [
         "DRAW02.recorded-session.retention-20261016",
@@ -81520,7 +81550,9 @@
         "EGLDST.quick.regression-20261016",
         "DRAW02.storage-corrected.quick-20261016",
         "GPUCOPYPLAN.quick-20261016",
-        "COPYLIVE.portable-quick-20261017"
+        "COPYLIVE.portable-quick-20261017",
+        "RA25.software.quick_battle",
+        "RA25.hardware.quick_battle"
       ],
       "status": {
         "understanding": "scoped",
@@ -83242,7 +83274,8 @@
         "research/formats/recorded-drawing-composition-v1.md",
         "research/runtime/drawing-copy-driver-order.md",
         "research/runtime/critical-top20-rendering-fixes-20261019.md",
-        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "implementation": [
         "tools/compare-drawing-quick-battle.py",
@@ -83298,7 +83331,8 @@
         "tools/drawing_x11_delivery.py",
         "tools/inspect-canvas-producers.py",
         "tools/test-native-drawing-session-runner.py",
-        "protocols/include/mnm/world_effect_raster_v1.h"
+        "protocols/include/mnm/world_effect_raster_v1.h",
+        "tools/test-rendering-session-assurance.py"
       ],
       "evidence": [
         "DRAW02.storage-action.native-20261016",
@@ -83328,7 +83362,11 @@
         "CRIT20.storage-physical-negative-20261019",
         "CRIT11.correct-output-commit-20261020",
         "CRIT12.correct-output-commit-closure-20261020",
-        "NT16.native-controls-20261022"
+        "NT16.native-controls-20261022",
+        "RA25.software.corrected_storage",
+        "RA25.hardware.corrected_storage",
+        "RA25.software.legacy-storage-negative",
+        "RA25.hardware.legacy-storage-negative"
       ],
       "status": {
         "understanding": "partial",
@@ -83426,7 +83464,8 @@
         "research/runtime/rendering-high-validation-ownership-20261020.md",
         "research/runtime/third20-implementation-progress-20261020.md",
         "research/runtime/coverage/native-implementation-completion-20261020.json",
-        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md"
+        "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "implementation": [
         "tools/drawing_recorded_session.py",
@@ -83471,7 +83510,8 @@
         "tools/drawing_scene_corpus.py",
         "tools/drawing_session.py",
         "tools/inspect-canvas-producers.py",
-        "tools/rendering_coverage.py"
+        "tools/rendering_coverage.py",
+        "tools/test-rendering-session-assurance.py"
       ],
       "evidence": [
         "DRAW02.storage-session.retention-20261016",
@@ -83498,7 +83538,11 @@
         "HIGH04.staged-source-support-review-20261020",
         "COMPLETE.offline-20261020",
         "OWNERSHIP.offline-20261020",
-        "NT16.native-controls-20261022"
+        "NT16.native-controls-20261022",
+        "RA25.software.corrected_storage",
+        "RA25.hardware.corrected_storage",
+        "RA25.software.legacy-storage-negative",
+        "RA25.hardware.legacy-storage-negative"
       ],
       "status": {
         "understanding": "partial",
@@ -124405,13 +124449,14 @@
         "CRIT20.session-retry-current-20261019",
         "NT17.five-rendering-contracts-20261023",
         "NT17.strict-movement-stress-limit-20261023",
-        "P1.required-rendering-dependencies-static-20261024"
+        "P1.required-rendering-dependencies-static-20261024",
+        "RA25.native-only.campaign"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
@@ -126838,13 +126883,14 @@
         "CRIT20.review-20261019",
         "CRIT20.session-current-20261019",
         "CRIT20.functional-snapshot-20261019",
-        "CRIT20.session-retry-current-20261019"
+        "CRIT20.session-retry-current-20261019",
+        "RA25.native-only.restart"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
@@ -131226,13 +131272,14 @@
       "evidence": [
         "DDR.shutdown-controls-20261019",
         "DDR.native-only-20261019",
-        "DDR.restart-20261019"
+        "DDR.restart-20261019",
+        "RA25.native-only.campaign"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
@@ -131524,7 +131571,8 @@
         "tests/test-critical-rendering-acceptance.py"
       ],
       "documents": [
-        "research/runtime/critical-rendering-correct-output-policy-20261019.json"
+        "research/runtime/critical-rendering-correct-output-policy-20261019.json",
+        "research/runtime/rendering-assurance-20261025.md"
       ],
       "validation_dependencies": [
         "tests/fixtures/drawing-recorded-session/session.json",
@@ -131532,12 +131580,15 @@
         "tests/fixtures/drawing-storage-session/session.json",
         "tests/test-drawing-recorded-hardware.py",
         "tools/drawing_recorded_session.py",
-        "tools/native_render_driver.py"
+        "tools/native_render_driver.py",
+        "tools/coverage_evidence.py",
+        "tools/rendering_session_contracts.py"
       ],
       "evidence": [
         "CRIT01.correct-output-20261019",
         "CRIT11.correct-output-commit-20261020",
-        "CRIT12.correct-output-commit-closure-20261020"
+        "CRIT12.correct-output-commit-closure-20261020",
+        "RA25.correct-output.acceptance"
       ],
       "status": {
         "understanding": "scoped",
@@ -331795,6 +331846,527 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "RA25.surfaces.native",
+      "kind": "native_integration",
+      "scope": "Bounded current-source rendering component comparisons; retained standalone driver fixtures remain separate from unchanged original executable comparisons. No new game journey, live bypass, hardware or whole-renderer acceptance. Selected phase: surfaces.",
+      "record": "research/runtime/rendering-assurance-results-20261025/surfaces-03.json",
+      "sha256": "c9bf8c05ab5d1502e5ed42358f0fe40bf6851bb6bc839d91eefbfa981022b76e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/results/backend/draws",
+          "equals": 5114
+        },
+        {
+          "pointer": "/results/formats/driver_draws",
+          "equals": 1400
+        },
+        {
+          "pointer": "/results/formats/signed_row_draws",
+          "equals": 2800
+        },
+        {
+          "pointer": "/results/ownership/retry_traces",
+          "equals": 4480
+        },
+        {
+          "pointer": "/results/clipping/matched",
+          "equals": 408
+        }
+      ]
+    },
+    {
+      "id": "RA25.panels.original",
+      "kind": "isolated_original",
+      "scope": "Bounded current-source rendering component comparisons; retained standalone driver fixtures remain separate from unchanged original executable comparisons. No new game journey, live bypass, hardware or whole-renderer acceptance. Selected phase: panels.",
+      "record": "research/runtime/rendering-assurance-results-20261025/panels-02.json",
+      "sha256": "63e4d4c353c4873b88c3383b51256dab5028b770d620efba4c3c7c401e0c76a3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/results/panels/case_count",
+          "equals": 7490
+        },
+        {
+          "pointer": "/results/panels/compared_words",
+          "equals": 2160320
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RA25.panels.native",
+      "kind": "native_integration",
+      "scope": "Bounded current-source rendering component comparisons; retained standalone driver fixtures remain separate from unchanged original executable comparisons. No new game journey, live bypass, hardware or whole-renderer acceptance. Selected phase: panels.",
+      "record": "research/runtime/rendering-assurance-results-20261025/panels-02.json",
+      "sha256": "63e4d4c353c4873b88c3383b51256dab5028b770d620efba4c3c7c401e0c76a3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/results/panels/case_count",
+          "equals": 7490
+        },
+        {
+          "pointer": "/results/panels/compared_words",
+          "equals": 2160320
+        }
+      ]
+    },
+    {
+      "id": "RA25.fade.original",
+      "kind": "isolated_original",
+      "scope": "Bounded current-source rendering component comparisons; retained standalone driver fixtures remain separate from unchanged original executable comparisons. No new game journey, live bypass, hardware or whole-renderer acceptance. Selected phase: fade.",
+      "record": "research/runtime/rendering-assurance-results-20261025/fade-02.json",
+      "sha256": "6878ba8621cfaee798eb25cf5b357ad8741a731d6fa8d4276686e48bc621e56e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/results/fade/execution_count",
+          "equals": 320
+        },
+        {
+          "pointer": "/results/fade/failures",
+          "equals": []
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RA25.word.original",
+      "kind": "isolated_original",
+      "scope": "Bounded current-source rendering component comparisons; retained standalone driver fixtures remain separate from unchanged original executable comparisons. No new game journey, live bypass, hardware or whole-renderer acceptance. Selected phase: word.",
+      "record": "research/runtime/rendering-assurance-results-20261025/word-02.json",
+      "sha256": "2fe2e9d7af2d1724d3df0eb7650df099deac29b8e0b3595c96b1c86427a1737d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/results/word/synthetic_original_matches",
+          "equals": 256
+        },
+        {
+          "pointer": "/results/word/native_refusals",
+          "equals": 647
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RA25.word.native",
+      "kind": "native_integration",
+      "scope": "Bounded current-source rendering component comparisons; retained standalone driver fixtures remain separate from unchanged original executable comparisons. No new game journey, live bypass, hardware or whole-renderer acceptance. Selected phase: word.",
+      "record": "research/runtime/rendering-assurance-results-20261025/word-02.json",
+      "sha256": "2fe2e9d7af2d1724d3df0eb7650df099deac29b8e0b3595c96b1c86427a1737d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/results/word/synthetic_original_matches",
+          "equals": 256
+        },
+        {
+          "pointer": "/results/word/native_refusals",
+          "equals": 647
+        }
+      ]
+    },
+    {
+      "id": "RA25.native-only.campaign",
+      "kind": "live_observation",
+      "scope": "Current NoCD strict native-only20s/Mini20s/Quit journey:615 balanced Worlds,9823 native producer calls,19 exercised optional routes,zero forwards,zero owners,original exit0. Movies/music omitted; software functional execution,not original pixels,all routes,performance or full replacement.",
+      "record": "research/runtime/rendering-assurance-results-20261025/native-only-campaign-04.json",
+      "sha256": "004258becd2a1f92538b2c96544f9e2f39ead8f09b91b60ed1cdc9c6ee75aeeb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/routes/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/graphics_retirement/resources_released",
+          "equals": true
+        },
+        {
+          "pointer": "/original_process/original_exit_code",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "RA25.software.quick_battle",
+      "kind": "native_integration",
+      "scope": "Complete recorded Main/setup/loading/Quick Battle/Results/returned-Main EGL interval. All323observed full800x600frames, duplicates included. Native GPU rectangle/fill/history composition and post-swap X11 output; RGB tolerance1, alpha excluded. Original global presentation-route completeness, full action semantics, fourteen journeys/twenty-one operations and hardware scanout remain unproved. Complete selected software replay only; unmodified storage remains a separate failed profile.",
+      "record": "research/runtime/rendering-assurance-results-20261025/software-sessions-02-quick_battle.json",
+      "sha256": "dd7688f6d04091628d0fa490ba4a144533c3357c920e28069f5993d18eeda621",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/new_original_execution",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RA25.software.corrected_storage",
+      "kind": "native_integration",
+      "scope": "Complete observed original Apprentice storage/rebuild/resume EGL interval with exact callback epoch brackets and saved-byte checks; native source/GPU/X11 replay at actual extents. Qt menu policy, global routes, generic fourteen-journey/twenty-one-operation acceptance and hardware remain separate. Explicit presentation policy profile and all source/default-framebuffer/XCB witnesses retained; corrected software uploads are a driver-policy reference, not unmodified-driver equivalence. Complete selected software replay only; unmodified storage remains a separate failed profile.",
+      "record": "research/runtime/rendering-assurance-results-20261025/software-sessions-02-corrected_storage.json",
+      "sha256": "bc11782d3a25ef8a99754b892f6b2e3f4ff860c9dbcc4e0ea569e648a558597d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/new_original_execution",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RA25.native-only.restart",
+      "kind": "live_observation",
+      "scope": "Actual current-source native-only producer failure,terminal cleanup,public Hard restart,fresh channel/PID/generation,then normal Quit with zero forwarding and zero native owners. No physical context-loss,in-place recovery,original pixel or performance claim.",
+      "record": "research/runtime/rendering-assurance-results-20261025/native-only-restart-01.json",
+      "sha256": "ce06ccde7be3a362f4d3987bd7e24c981df7f307dd766ff38b3cc983ed54ea69",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_journey/live_sessions",
+          "equals": 2
+        },
+        {
+          "pointer": "/engine_journey/fresh_channel_identity",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_journey/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/routes/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/graphics_retirement/resources_released",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RA25.hardware.quick_battle",
+      "kind": "native_integration",
+      "scope": "Complete recorded Main/setup/loading/Quick Battle/Results/returned-Main EGL interval. All323observed full800x600frames, duplicates included. Native GPU rectangle/fill/history composition and post-swap X11 output; RGB tolerance1, alpha excluded. Original global presentation-route completeness, full action semantics, fourteen journeys/twenty-one operations and hardware scanout remain unproved. Fresh complete NVIDIA recorded cohort only; no physical scanout,original-driver or sustained performance claim.",
+      "record": "research/runtime/rendering-assurance-results-20261025/hardware-sessions-01-quick_battle.json",
+      "sha256": "9d0e8ceff7117741314cf854c631c6f964b72e016b80a6383fccc41f42c7ccd7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/hardware_admission/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RA25.hardware.corrected_storage",
+      "kind": "native_integration",
+      "scope": "Complete observed original Apprentice storage/rebuild/resume EGL interval with exact callback epoch brackets and saved-byte checks; native source/GPU/X11 replay at actual extents. Qt menu policy, global routes, generic fourteen-journey/twenty-one-operation acceptance and hardware remain separate. Explicit presentation policy profile and all source/default-framebuffer/XCB witnesses retained; corrected software uploads are a driver-policy reference, not unmodified-driver equivalence. Fresh complete NVIDIA recorded cohort only; no physical scanout,original-driver or sustained performance claim.",
+      "record": "research/runtime/rendering-assurance-results-20261025/hardware-sessions-01-corrected_storage.json",
+      "sha256": "6f91d36dcaaec52d684693dec5f1fe6ea3c26fb45abe485cbd4da09cf192dc31",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/hardware_admission/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RA25.software.legacy-storage-negative",
+      "kind": "static",
+      "scope": "Fresh full238-frame unmodified storage comparison retains ordinal170 with126GPU+126physical pixel mismatches. Negative evidence only; neither original-parity nor integration acceptance credit.",
+      "record": "research/runtime/rendering-assurance-results-20261025/software-sessions-02-legacy_storage.json",
+      "sha256": "d4a10e3897199b899e4655216cdd42c0c976e95bd199e715aef3a40e03c9660b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 252
+        },
+        {
+          "pointer": "/frames",
+          "equals": 238
+        }
+      ]
+    },
+    {
+      "id": "RA25.hardware.legacy-storage-negative",
+      "kind": "static",
+      "scope": "Fresh full238-frame unmodified storage comparison retains ordinal170 with126GPU+126physical pixel mismatches. Negative evidence only; neither original-parity nor integration acceptance credit.",
+      "record": "research/runtime/rendering-assurance-results-20261025/hardware-sessions-01-legacy_storage.json",
+      "sha256": "82ccb58e8727b69f63d6be9dc1ac27d17dff0d7cef0a7fc4e493a342e474c560",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 252
+        },
+        {
+          "pointer": "/frames",
+          "equals": 238
+        }
+      ]
+    },
+    {
+      "id": "RA25.correct-output.acceptance",
+      "kind": "native_integration",
+      "scope": "Fresh prospective acceptance of all222 corrected-storage and323 Quick Battle frames on both current software and NVIDIA backends; unchanged238-frame legacy negative remains explicit. Existing user-selected correct-output policy only; no whole-renderer,ownership,performance or live replacement credit.",
+      "record": "research/runtime/rendering-assurance-results-20261025/correct-output-acceptance.json",
+      "sha256": "74ee8f7eabeccbd3eb4b96912391f27aa4ff47635a33f1c3bc39e88367b45bfe",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/whole_renderer_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/accepted_profiles/software/corrected_storage/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/accepted_profiles/hardware/corrected_storage/mismatches",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -342912,7 +343484,8 @@
         "NR.surface-copy.clipping"
       ],
       "evidence": [
-        "NR.surface-copy.clipping.backend-20261006"
+        "NR.surface-copy.clipping.backend-20261006",
+        "RA25.surfaces.native"
       ],
       "tests": [
         "tests/render-surface-copy-fixtures.cpp",
@@ -343722,7 +344295,8 @@
         "DRIVER.surface-borrowed-draw.cpu-20261006",
         "NR.surface-backend.ownership-recovery.operations-20261006",
         "ORIGINAL.surface-backend.ownership-recovery.operations-20261006",
-        "NR.surface-backend.ownership-recovery.regressions-20261006"
+        "NR.surface-backend.ownership-recovery.regressions-20261006",
+        "RA25.surfaces.native"
       ],
       "tests": [
         "tests/render-surface-backend-test.cpp",
@@ -343755,7 +344329,8 @@
         "DRIVER.surface-ownership.offline-20261006",
         "NR.surface-backend.ownership-recovery.operations-20261006",
         "ORIGINAL.surface-backend.ownership-recovery.operations-20261006",
-        "ORIGINAL.surface-retry.ownership-replay-20261006"
+        "ORIGINAL.surface-retry.ownership-replay-20261006",
+        "RA25.surfaces.native"
       ],
       "tests": [
         "tests/render-surface-ownership-test.cpp",
@@ -343880,7 +344455,8 @@
         "NR.surface-backend.formats-pitch.operations-20261006",
         "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
         "NR.surface-backend.formats-pitch.ownership-20261006",
-        "ORIGINAL.surface-retry.formats-pitch-replay-20261006"
+        "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
+        "RA25.surfaces.native"
       ],
       "tests": [
         "tests/render-surface-formats-test.cpp",
@@ -344077,7 +344653,9 @@
       ],
       "evidence": [
         "RS.word-raster.original-20261007",
-        "NR.word-admission.host-20261007"
+        "NR.word-admission.host-20261007",
+        "RA25.word.original",
+        "RA25.word.native"
       ],
       "tests": [
         "tools/test-word-sprites.py",
@@ -346063,7 +346641,9 @@
       ],
       "evidence": [
         "RS.panel-pixel-domain.original-20261010",
-        "NR.panel-domain.native-20261010"
+        "NR.panel-domain.native-20261010",
+        "RA25.panels.original",
+        "RA25.panels.native"
       ]
     },
     {
@@ -353196,7 +353776,9 @@
         "EGLDST.quick.regression-20261016",
         "DRAW02.storage-corrected.quick-20261016",
         "GPUCOPYPLAN.quick-20261016",
-        "COPYLIVE.portable-quick-20261017"
+        "COPYLIVE.portable-quick-20261017",
+        "RA25.software.quick_battle",
+        "RA25.hardware.quick_battle"
       ]
     },
     {
@@ -353423,7 +354005,9 @@
         "EGLDST.native.rebind-negative-20261016",
         "EGLDST.storage.regression-20261016",
         "T3I.storage-baseline-20261019",
-        "T3I.storage-corrected-20261019"
+        "T3I.storage-corrected-20261019",
+        "RA25.software.corrected_storage",
+        "RA25.hardware.corrected_storage"
       ]
     },
     {
@@ -353761,7 +354345,9 @@
         "DRAW02.storage-corrected.portable-20261016",
         "DRAW02.storage-corrected.controls-20261016",
         "GPUCOPYPLAN.storage-20261016",
-        "COPYLIVE.portable-storage-20261017"
+        "COPYLIVE.portable-storage-20261017",
+        "RA25.software.corrected_storage",
+        "RA25.hardware.corrected_storage"
       ]
     },
     {
@@ -355690,7 +356276,8 @@
       ],
       "evidence": [
         "NATIVE.native-only-launch.campaign-20261018",
-        "NATIVE.native-only-launch.final-campaign-20261018"
+        "NATIVE.native-only-launch.final-campaign-20261018",
+        "RA25.native-only.campaign"
       ],
       "tests": [
         "tools/test-native-owned-campaign.py"
@@ -355755,7 +356342,8 @@
       ],
       "evidence": [
         "NATIVE.native-functional-closure.initial-restart-20261018",
-        "NATIVE.native-functional-closure.restart-20261018"
+        "NATIVE.native-functional-closure.restart-20261018",
+        "RA25.native-only.restart"
       ],
       "tests": [
         "tools/test-native-owned-campaign.py",
@@ -355969,7 +356557,8 @@
       ],
       "evidence": [
         "DDR.native-only-20261019",
-        "DDR.restart-20261019"
+        "DDR.restart-20261019",
+        "RA25.native-only.campaign"
       ]
     },
     {
@@ -356079,7 +356668,8 @@
       "evidence": [
         "CRIT01.correct-output-20261019",
         "CRIT11.correct-output-commit-20261020",
-        "CRIT12.correct-output-commit-closure-20261020"
+        "CRIT12.correct-output-commit-closure-20261020",
+        "RA25.correct-output.acceptance"
       ]
     },
     {
@@ -359431,7 +360021,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6bd210b31038e951bfabc8f55a66711fa393bdf465db273baccf2d06d04b6609.json",
-    "sha256": "6bd210b31038e951bfabc8f55a66711fa393bdf465db273baccf2d06d04b6609"
+    "path": "research/runtime/coverage/source-index-b75424b02b961bb01c2ee9da84a81c71276add7c9decba817337c7e622704786.json",
+    "sha256": "b75424b02b961bb01c2ee9da84a81c71276add7c9decba817337c7e622704786"
   }
 }
