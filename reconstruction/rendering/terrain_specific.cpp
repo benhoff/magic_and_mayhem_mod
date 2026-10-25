@@ -39,12 +39,16 @@ void locations(RegionSpecificResult& result,unsigned index,int rotation) {
     }
 }
 }
-RegionSpecificResult placeRegionSpecifics(RegionPlacementState input,
-    std::vector<RegionSpecificRequest> requests,std::uint32_t seed) {
+void validateRegionSpecificRequests(const RegionPlacementState& input,
+    const std::vector<RegionSpecificRequest>& requests) {
     validateRegionPlacementState(input);
     if(requests.size()!=input.bank.blocks.size()) throw std::invalid_argument("Region Specific request extent");
     for(const auto& q:requests) if(q.rotation< -1 || q.rotation>3 || q.column< -1 || q.row< -1 ||
         q.column>=int(input.grid.columns) || q.row>=int(input.grid.rows)) throw std::invalid_argument("Region Specific request fields");
+}
+RegionSpecificResult placeRegionSpecifics(RegionPlacementState input,
+    std::vector<RegionSpecificRequest> requests,std::uint32_t seed) {
+    validateRegionSpecificRequests(input,requests);
     RegionSpecificResult result;result.state=std::move(input);result.requests=std::move(requests);auto& s=result.state;
     const auto notice=[&](unsigned i,RegionSpecificNotice n){result.diagnostics.push_back({i,n});};
     for(unsigned pass=0;pass<2;++pass) for(unsigned i=0;i<s.bank.blocks.size();++i) {

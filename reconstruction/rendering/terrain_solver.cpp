@@ -12,9 +12,7 @@ void validate(const RegionPlacementState& s) {
         s.grid.cells.size()!=std::size_t(s.grid.columns)*s.grid.rows ||
         s.assignments.size()!=s.grid.cells.size() || s.storedSourceRows.size()!=s.grid.cells.size() || s.candidates.size()!=s.grid.cells.size() ||
         s.bank.internalThreshold<=0 || s.bank.blocks.size()>50) throw std::invalid_argument("Region placement state extent");
-    for (const auto& b:s.bank.blocks) if (!b.columns || b.columns>2 || !b.rows || b.rows>2 ||
-        b.sourceX>=b.columns || b.sourceY>=b.rows || !b.layers || b.layers>32 || b.selection.section>99 ||
-        b.selection.placed<0 || b.selection.maximum<0 || b.selection.maximum>999) throw std::invalid_argument("Region placement descriptor");
+    validateRegionDescriptorBank(s.bank);
     for (unsigned i=0;i<s.assignments.size();++i) {
         if (s.grid.cells[i].occupied!=bool(s.assignments[i])) throw std::invalid_argument("Region assignment occupancy");
         if (s.assignments[i]) {
@@ -91,6 +89,11 @@ void placeRegionSection(RegionPlacementState& state,unsigned descriptor,unsigned
 }
 void removeRegionBlock(RegionPlacementState& state,unsigned x,unsigned y) {
     validate(state);remove(state,x,y);
+}
+void removeRegionBlocks(RegionPlacementState& state,const std::vector<std::array<unsigned,2>>& positions) {
+    validate(state);auto changed=state;
+    for(const auto& p:positions)remove(changed,p[0],p[1]);
+    state=std::move(changed);
 }
 RegionSolveResult solveRegionPlacement(RegionPlacementState input,std::uint32_t seed) {
     validate(input);RegionSolveResult result;result.state=std::move(input);auto& s=result.state;

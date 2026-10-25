@@ -21,4 +21,9 @@ struct TerrainVisit {
 std::vector<TerrainVisit> traverseTerrain(std::uint32_t width,std::uint32_t height,
     std::uint32_t layers,const TerrainCamera&,TerrainViewport,
     const std::function<std::array<std::uint16_t,2>(std::uint32_t,std::uint32_t,std::uint32_t)>& flags);
+// Snapshot overload for native consumers. Flags are physical-cell, layer/row/column
+// ordered owned values; no callback, original pointer or deferred reference escapes.
+std::vector<TerrainVisit> traverseOwnedTerrain(std::uint32_t width,std::uint32_t height,
+    std::uint32_t layers,const TerrainCamera&,TerrainViewport,
+    const std::vector<std::array<std::uint16_t,2>>& flags);
 }

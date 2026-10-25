@@ -1,3 +1,4 @@
+#include "native_facing.hpp"
 #include "native_owner_visibility.hpp"
 #include "native_owner_planner.hpp"
 #include "native_owner_task_inputs.hpp"
@@ -76,11 +77,11 @@ class NativeContext {
   void facing(model::AutonomousCreature &a,model::Cell target){
     auto d=c_.world.dimensions;target=normalized(target);
     const int x=r::wrapped_difference(target.x,a.ai.position.x,d.x),y=r::wrapped_difference(target.y,a.ai.position.y,d.y);
-    if(!x&&!y)return;
-    const auto sign=[](int n){return n<0?-1:n>0?1:0;};int dx=sign(x),dy=sign(y);
-    if(dx&&dy){const auto ax=std::abs(x),ay=std::abs(y);if(2*std::max(ax,ay)>3*std::min(ax,ay)){if(ax>ay)dy=0;else dx=0;}}
-    constexpr unsigned table[]={7,0,1,6,0,2,5,4,3};auto &m=c_.actions.motion.at(a.ai.slot);m.direction=table[dx+3*dy+4];
-    auto &e=c_.execution.at(a.ai.slot);e.animationFacing=(m.direction-2*p_->cameraTurn-(e.block722?4:0))&7;
+    if(!x && !y)return;
+    auto &e=c_.execution.at(a.ai.slot);
+    const auto facing=nativeFacingFromDelta(x,y,p_->cameraTurn,e.block722!=0);
+    if(!facing)return;
+    c_.actions.motion.at(a.ai.slot).direction=facing->direction;e.animationFacing=facing->animation;
   }
   void fineFacing(model::AutonomousCreature &a,model::Cell point){
     if(!c_.native.ownerVisibility){facing(a,{int(unsigned(point.x)>>5),int(unsigned(point.y)>>5),a.ai.position.z});return;}

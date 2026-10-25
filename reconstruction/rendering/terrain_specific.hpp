@@ -20,6 +20,9 @@ struct RegionSpecificResult {
     std::vector<RegionLocation> locations;
     std::vector<RegionSpecificDiagnostic> diagnostics;
 };
+// Native admission can run before starting a generation or moving owned state.
+void validateRegionSpecificRequests(const RegionPlacementState&,
+    const std::vector<RegionSpecificRequest>&);
 // Recovered two-pass Specific placement. Owns all input/output; notices replace
 // blocking configuration dialogs. Does not run the solver or advance the seed.
 RegionSpecificResult placeRegionSpecifics(RegionPlacementState,

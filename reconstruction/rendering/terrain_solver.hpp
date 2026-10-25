@@ -20,6 +20,10 @@ RegionPlacementState makeRegionPlacementState(unsigned columns,unsigned rows,Reg
 // refusals. Caller performs admission first. Changes commit only on success.
 void placeRegionSection(RegionPlacementState&,unsigned descriptor,unsigned rotation,unsigned column,unsigned row);
 void removeRegionBlock(RegionPlacementState&,unsigned column,unsigned row);
+// Native transactional editing boundary: any invalid/duplicate removal leaves
+// the caller untouched. Ordered individual removal retains recovered semantics.
+void removeRegionBlocks(RegionPlacementState&,
+    const std::vector<std::array<unsigned,2>>& positions);
 struct RegionSolveResult {
     RegionPlacementState state;
     bool complete=false;

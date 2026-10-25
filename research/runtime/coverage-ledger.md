@@ -21944,3 +21944,44 @@ coverage metadata and appended ledger text required reconciliation; generated
 source indexing is refreshed from the combined tracked sources. No engine input
 or behavior changes, broader status promotions, runtime experiment or publication
 is included. Concurrent uncommitted launcher/bookkeeping edits are excluded.
+
+
+## Ten bounded native rendering services (2026-10-25)
+
+N23 adds owned physical-flag traversal, shared descriptor/request admission,
+transactional block removal, inspectable generation attempts, complete owned
+ordinary MAP composition, atomic source-batch admission, validated creature-light
+snapshot restoration, production delta-facing and an owned initializer request
+adapter over the existing recovered backend. The preview uses the generation
+and light-batch services. All ten implementations are scoped; understanding
+remains independent, comparison is recorded for eight recovered domains,
+and integration/replacement remain none. World-facing and intentional generated
+MAP composition retain comparison none; the latter has an original supplier oracle.
+
+[Scope and policies](rendering-twentythird-ten-20261025.md) distinguish recovered
+behavior from native batch/replay/assembly/overflow policies. The final
+[execution](rendering-twentythird-ten-results-20261025/execution-3.json) passes
+Release and ASan/UBSan controls, all nine original domains and corresponding
+native corpora, the actual production orient callback and the preview build.
+Original traversal compares18428 cases/3089824 records; constraints39344
+admissions/8192 prunes; solver3755 cases/3136 placements/7056 removals;
+Specific10786 comparisons with140 separate native refusals; generation5701
+loops/19883 attempts with17 separate refusals; generated2204 comparisons/1194
+plans/15849 blocks with four unavailable-input refusals; creature lighting2304
+ticks/19544520 buffer bytes/11520 state values; controlled lighting26 fixtures;
+initializer288 cases/576 complete descriptors. The generation failures, missing
+Medieval Test inputs and unsafe original domains remain explicit. Both original
+manifest bookends pass. Native tests exercise full signed facing deltas without
+claiming original overflow or whole-targeting equivalence.
+
+The prior successful execution and exact unique source variants are retained;
+failed RAM/configuration/input-hashing attempts remain SQLite evidence. Historical
+source hashes and acceptance failures are preserved. Shared CMake/provider edits
+can leave older unrelated evidence stale; no broader original world, physical
+provider, whole-scene, live replacement or FPS result is renewed by this batch.
+The [history review](rendering-twentythird-ten-results-20261025/incoming-history.json),
+[UI controls](rendering-twentythird-ten-results-20261025/ui-controls-final.json) and
+[coverage audit](rendering-twentythird-ten-results-20261025/coverage-audit-final.json)
+record integration/accounting checks. SQLite reports, exact reviews, source
+variants and verified backups are durable; ignored CMake/compile trees are
+reusable temporary execution output. The normal90GiB guard remains in force.

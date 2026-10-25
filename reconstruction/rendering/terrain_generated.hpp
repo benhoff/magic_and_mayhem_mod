@@ -12,4 +12,13 @@ struct GeneratedTerrainRegionPlan {
 };
 GeneratedTerrainRegionPlan generateTerrainRegionPlan(const assets::RegionRecipe&,
     const std::vector<const assets::MapAsset*>&,std::uint32_t seed);
+struct GeneratedTerrainRegion {
+    GeneratedTerrainRegionPlan generated;
+    std::optional<FixedRegionAssembly> assembly;
+};
+// Complete owned MAP payload composition; no map is invented after ten failures.
+// The original post-CFG generator is recovered; ordinary MAP projection is native
+// policy. Geometry initialization/presentation follow this service separately.
+GeneratedTerrainRegion generateTerrainRegion(const assets::RegionRecipe&,
+    const std::vector<const assets::MapAsset*>&,const assets::TerrainCatalog&,std::uint32_t seed);
 }

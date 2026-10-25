@@ -2,6 +2,10 @@
 #include <algorithm>
 #include <stdexcept>
 namespace mnm::reconstruction {
+void TerrainCreatureLightCycle::restore(TerrainCreatureLightState state){
+ if(state.phase>7 || state.cursor>65536)throw std::invalid_argument("Creature light cycle snapshot bounds");
+ state_=state;
+}
 bool admitsTerrainCreatureLight(const TerrainLightCreature& c,int player,const TerrainLightRelations& r){
  if(player< -1 || player>7)throw std::invalid_argument("Creature light player must be -1..7");
  if(player==-1)return false;

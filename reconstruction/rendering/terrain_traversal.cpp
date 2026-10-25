@@ -114,4 +114,14 @@ std::vector<TerrainVisit> traverseTerrain(std::uint32_t width,std::uint32_t heig
     }
     return result;
 }
+std::vector<TerrainVisit> traverseOwnedTerrain(std::uint32_t width,std::uint32_t height,
+ std::uint32_t layers,const TerrainCamera& camera,TerrainViewport viewport,
+ const std::vector<std::array<std::uint16_t,2>>& flags){
+ if(!width || width>128 || !height || height>128 || !layers || layers>32 ||
+    flags.size()!=std::size_t(width)*height*layers)
+  throw std::invalid_argument("Owned terrain flag extent");
+ return traverseTerrain(width,height,layers,camera,viewport,[&](auto x,auto y,auto z){
+  return flags.at((std::size_t(z)*height+y)*width+x);
+ });
+}
 }

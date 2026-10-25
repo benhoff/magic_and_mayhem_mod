@@ -37,8 +37,16 @@ TerrainLightField::TerrainLightField(unsigned width,unsigned height,unsigned lay
   }
  }
 }
+void TerrainLightField::validateSource(TerrainLightSource s) const{
+ if(s.column>=width_ || s.row>=height_ || s.layer>=mapLayers_ || s.size<1 || s.size>17 || width_<s.size || height_<s.size)
+  throw std::invalid_argument("Unsupported terrain light source bounds/size");
+}
+void TerrainLightField::stampBatch(const std::vector<TerrainLightSource>& sources){
+ for(const auto& source:sources)validateSource(source);
+ for(const auto& source:sources)stamp(source);
+}
 void TerrainLightField::stamp(TerrainLightSource s){
- if(s.column>=width_ || s.row>=height_ || s.layer>=mapLayers_ || s.size<1 || s.size>17 || width_<s.size || height_<s.size)throw std::invalid_argument("Unsupported terrain light source bounds/size");
+ validateSource(s);
  const auto wrap=[](int v,unsigned limit){if(v<0)v+=int(limit);else if(v>=int(limit))v-=int(limit);return unsigned(v);};
  const auto n=s.size;
  for(unsigned dz=0;dz<n;++dz)for(unsigned dy=0;dy<n;++dy)for(unsigned dx=0;dx<n;++dx){
@@ -54,7 +62,7 @@ void TerrainLightField::stamp(TerrainLightSource s){
  }
 }
 void TerrainLightField::stampStatic(TerrainLightSource s){
- if(s.column>=width_ || s.row>=height_ || s.layer>=mapLayers_ || s.size<1 || s.size>17 || width_<s.size || height_<s.size)throw std::invalid_argument("Unsupported static terrain light source bounds/size");
+ validateSource(s);
  const auto wrap=[](int v,unsigned limit){if(v<0)v+=int(limit);else if(v>=int(limit))v-=int(limit);return unsigned(v);};
  const auto n=s.size;
  for(unsigned dz=0;dz<n;++dz)for(unsigned dy=0;dy<n;++dy)for(unsigned dx=0;dx<n;++dx){

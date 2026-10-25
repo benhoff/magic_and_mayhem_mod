@@ -22,8 +22,8 @@ LoadedFixedRegion loadFixedTerrainRegion(const assets::AssetStore& store,const a
 LoadedGeneratedRegion loadGeneratedTerrainRegion(const assets::AssetStore& store,const assets::RegionRecipe& recipe,const assets::TerrainCatalog& t,std::uint32_t seed){
  LoadedGeneratedRegion result;auto maps=loadSources(store,recipe,result.paths,true);
  std::vector<const assets::MapAsset*> sources;for(const auto& m:maps)sources.push_back(&m);
- result.generated=reconstruction::generateTerrainRegionPlan(recipe,sources,seed);
- if(result.generated.plan)result.assembly=reconstruction::assembleFixedTerrainRegion(*result.generated.plan,sources,t);
+ auto owned=reconstruction::generateTerrainRegion(recipe,sources,t,seed);
+ result.generated=std::move(owned.generated);result.assembly=std::move(owned.assembly);
  return result;
 }
 }

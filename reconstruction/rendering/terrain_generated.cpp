@@ -39,4 +39,10 @@ GeneratedTerrainRegionPlan generateTerrainRegionPlan(const assets::RegionRecipe&
     if(result.generation.complete)result.plan=planGeneratedTerrainRegion(result.catalog,result.generation);
     return result;
 }
+GeneratedTerrainRegion generateTerrainRegion(const assets::RegionRecipe& recipe,
+ const std::vector<const assets::MapAsset*>& sources,const assets::TerrainCatalog& terrain,std::uint32_t seed) {
+ GeneratedTerrainRegion result;result.generated=generateTerrainRegionPlan(recipe,sources,seed);
+ if(result.generated.plan)result.assembly=assembleFixedTerrainRegion(*result.generated.plan,sources,terrain);
+ return result;
+}
 }

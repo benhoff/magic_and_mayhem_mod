@@ -18,6 +18,7 @@ RegionAdmissionCarry carry(const RegionDescriptorBank& bank,unsigned index,unsig
     return {d.section,index,rotation,rotateRegionEdges(d.edges,rotation)};
 }
 }
+void validateRegionDescriptorBank(const RegionDescriptorBank& bank) { validate(bank); }
 std::vector<RegionBlockDescriptor> expandRegionDescriptors(const assets::MapAsset& map,
     unsigned section,bool specific,std::int32_t maximum,RegionConnectorState& connectors) {
     const auto w=map.metadata[0],h=map.metadata[1];
