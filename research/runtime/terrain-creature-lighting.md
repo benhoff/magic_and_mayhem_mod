@@ -42,9 +42,12 @@ Current player is **00644520**. An eligible creature with the same owner is
 admitted directly. A different owner requires *both* bytes at
 `00643a80 + owner*0x154 + 0x18 + player` and
 `00643a80 + owner*0x154 + 0x20 + player` to be nonzero. The tables are directed
-from owner to current player; symmetry is not required. Their tests are
-confirmed, but labels such as alliance or shared vision are hypotheses and
-are deliberately absent from the API. Every admitted creature uses stamp
+from owner to current player; symmetry is not required. The later
+[supplier recovery](terrain-light-suppliers.md) identifies relation18 as
+alliance/nonhostility and share20 as shared sight, and compares constructor
+defaults and symmetric non-self pair setters. Raw stored tables still remain
+directed; the historical consumer fixture below supplied them explicitly.
+Every admitted creature uses stamp
 index **33**, selecting the previously recovered **size-17** kernel.
 
 ## Cycle and publication
