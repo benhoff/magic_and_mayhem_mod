@@ -22125,3 +22125,39 @@ fails with resident producer cancellation after92Worlds,before a save-file
 digest. Its stable-source failure is retained;current storage/recreate acceptance
 and subsequent original checkpoint comparison remain pending. Historical storage
 passes and hashes remain unchanged. FPS stays diagnostic.
+
+
+## Storage source-session closure — 2026-10-25
+
+`SSC25` completes the bounded original storage/rebuild/normal-Quit source milestone
+on owned sources based on568c7304, without changing the web UI. Baseline07 closes
+36030 producer records/16 balanced Worlds and actual original MainQuit/process
+exit0. All218 native GL-source/nominal-destination comparisons agree; first-shrink
+physical ordinal158 retains301992 mismatching pixels. Explicit corrected-upload08
+closes34376 records/15 Worlds and actual exit0; all205 source/default/native/physical
+comparisons pass with zero mismatches (physical RGB tolerance1, alpha excluded).
+Baseline failure and corrected policy acceptance remain separate. Both are software
+OpenGL observed-EGL intervals, not whole-renderer or live-replacement acceptance.
+
+Earlier failed raw streams contain375/251/251 failure18/tag52 colour-rectangle
+recorder refusals, plus partial terminal records. The gate correctly refused those
+streams; their exact rejecting shape subcondition remains unknown and uncorrected.
+No pending-frame deadlock was established. Fresh source closure does not renew or
+accept the earlier failed sources. Three optional-installer, missing-manifest and
+sound-startup failures remain retained, as does attempt06's successful source/Quit
+closure followed by a global accepted-sequence decoder refusal.
+
+Storage cadence now records a separately observed epoch only after an adjacent
+complete zero-valued pacer call followed by accepted sequence1. It preserves
+nesting, counter, queue, QPC and thread checks, breaks continuity across epochs,
+and does not infer Load causality. Strict continuous/source-binding analysis still
+refuses duplicate/reversed sequences. Six C refusal boundaries and20 Python tests
+pass. Private null audio, scoped optional Wineboot installer suppression, complete
+4834-file fixture admission and2927-file original-manifest bookends make the new
+acquisitions reproducible. No gameplay rules changed.
+
+See [scope, exact results and raw retention](storage-session-closure-20261025.md).
+Current `TOOL.storage-session-closure` implementation/live-observation support is
+scoped; original comparison and live replacement stay none. Historical hashes and
+shared-source staleness are preserved. Concurrent main integration/source changes
+remain separate from this owned batch's validation. The normal90GiB guard applies.
