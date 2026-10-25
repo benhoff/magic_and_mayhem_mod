@@ -736,6 +736,16 @@ class GateTests(unittest.TestCase):
             with cli.staged_tree(self.root):
                 pass
 
+    def test_staged_tree_reads_exact_blobs_without_evidence_smudge_process(self):
+        self.init_git()
+        attributes = self.root/'.git/info/attributes'
+        attributes.write_text('research/** filter=mm-evidence\n')
+        for option, value in (('process', 'false'), ('smudge', 'false'), ('required', 'true')):
+            cli.git(self.root, 'config', 'filter.mm-evidence.'+option, value)
+        expected = (self.root/REGISTER).read_bytes()
+        with cli.staged_tree(self.root) as tree:
+            self.assertEqual((tree/REGISTER).read_bytes(), expected)
+
     def test_staged_gate_cannot_use_unstaged_census_fix(self):
         self.json(REVIEWS, {'schema': 1, 'reviews': []})
         self.init_git()

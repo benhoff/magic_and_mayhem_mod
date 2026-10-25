@@ -12,7 +12,9 @@ import os
 from pathlib import Path
 import sqlite3
 import subprocess
+import sys
 import tempfile
+import time
 
 from coverage_gate import (REGISTER, check, changes, digest, draft, review_errors,
                            snapshot, source_index)
@@ -391,21 +393,40 @@ def promotion_reviews(before, after, audit_report, delta, prefix, reason):
 
 
 def finish(workspace, base, reason, validation_reason, message, index_reason=None,
-           record_promotions=False):
+           record_promotions=False, timings=False):
     from evidence_local import local_evidence
+    durations = {} if timings else None
+    started = time.perf_counter()
     with local_evidence(workspace.root):
-        return _finish(workspace, base, reason, validation_reason, message,
-                       index_reason, record_promotions)
+        if durations is not None:
+            durations['evidence_preflight'] = time.perf_counter() - started
+            print(f'Finish timing: evidence_preflight: {durations["evidence_preflight"]:.3f}s',
+                  file=sys.stderr, flush=True)
+        result = _finish(workspace, base, reason, validation_reason, message,
+                         index_reason, record_promotions, durations)
+    if durations is not None:
+        result['timings_seconds'] = durations
+    return result
 
 
 def _finish(workspace, base, reason, validation_reason, message, index_reason=None,
-            record_promotions=False):
+            record_promotions=False, durations=None):
     """One owned batch: fresh review, local backups, staging and normal commit.
 
     Nothing is published. The normal pre-commit hook rechecks the actual index;
     a failed check/commit leaves source, accepted receipts and backups intact.
     """
     from evidence_local import backup_sqlite, local_evidence
+
+    def measure(name, operation):
+        started = time.perf_counter()
+        try:
+            return operation()
+        finally:
+            if durations is not None:
+                durations[name] = time.perf_counter() - started
+                print(f'Finish timing: {name}: {durations[name]:.3f}s',
+                      file=sys.stderr, flush=True)
     if not all(value.strip() for value in (reason, validation_reason, message)):
         raise ValueError('Concrete review/validation reasons and commit message are required')
     with workspace.locked():
@@ -413,8 +434,9 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
         if index_reason is not None:
             if not index_reason.strip():
                 raise ValueError('Index review reason cannot be empty')
-            refresh_index(workspace.root)
-        before, after, audit_report, journal, history, commit, head = capture(workspace.root, base)
+            measure('source_index', lambda: refresh_index(workspace.root))
+        before, after, audit_report, journal, history, commit, head = measure(
+            'snapshots', lambda: capture(workspace.root, base))
         if commit != head:
             raise ValueError('Finish must review against the current HEAD')
         delta = changes(before, after)
@@ -436,7 +458,7 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
             if errors:
                 raise ValueError('; '.join(errors))
         candidate = dict(journal, reviews=journal['reviews'] + local + additions)
-        result = check(before, after, candidate, audit_report, history)
+        result = measure('review_check', lambda: check(before, after, candidate, audit_report, history))
         if result['errors']:
             raise ValueError('; '.join(result['errors']))
         workspace.db.execute('INSERT OR REPLACE INTO drafts VALUES (?,?)',
@@ -444,21 +466,23 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
         for item in additions:
             workspace.insert(item)
     with workspace.locked():
-        exported = workspace.export()
+        exported = measure('review_export', workspace.export)
     directory = (workspace.path.parent/'backups').resolve()
     if not directory.is_relative_to(workspace.root/'working'):
         raise ValueError('SQLite backups must remain in this worktree working/ directory')
-    backups = [backup_sqlite(workspace.path, directory)]
+    backups = [measure('review_backup', lambda: backup_sqlite(workspace.path, directory))]
     pending = workspace.root/'working/coverage/evidence-pending.sqlite3'
     if pending.is_file():
-        backups.append(backup_sqlite(pending, directory))
+        backups.append(measure('evidence_backup', lambda: backup_sqlite(pending, directory)))
     git = ['git', '-C', str(workspace.root)]
     if subprocess.check_output(git + ['rev-parse', 'HEAD'], text=True).strip() != head:
         raise ValueError('HEAD changed during completion; review the new base')
-    subprocess.run(git + ['add', '--all', '--', '.'], check=True)
+    measure('git_add', lambda: subprocess.run(git + ['add', '--all', '--', '.'], check=True))
     # Hooks remain mandatory and execute against this worktree's staged tree.
-    with local_evidence(workspace.root):
-        subprocess.run(git + ['commit', '-m', message], check=True)
+    def commit_with_hook():
+        with local_evidence(workspace.root):
+            subprocess.run(git + ['commit', '-m', message], check=True)
+    measure('git_commit_with_hook', commit_with_hook)
     committed = subprocess.check_output(git + ['rev-parse', 'HEAD'], text=True).strip()
     return {'commit': committed, 'receipts': exported, 'backups': backups,
             'publication': 'local only; evidence publication is optional'}

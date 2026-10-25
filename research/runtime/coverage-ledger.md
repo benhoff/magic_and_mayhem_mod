@@ -22154,3 +22154,17 @@ fails with resident producer cancellation after92Worlds,before a save-file
 digest. Its stable-source failure is retained;current storage/recreate acceptance
 and subsequent original checkpoint comparison remain pending. Historical storage
 passes and hashes remain unchanged. FPS stays diagnostic.
+
+2026-10-25 commit workflow tooling: persistent evidence filtering retains the
+existing cleaner and required Git failures while avoiding Python startup per
+research file. The staged gate bypasses only identity evidence smudge during
+temporary materialization. A 256-pointer three-run comparison measured median
+staging of28.183s versus0.157s with identical Git trees; a separate same-index,
+same-storage comparison measured93.804s versus2.633s for18004exact blobs.
+Results are SQLite references at `commit-filter-benchmark-20261025.json` and
+`commit-staged-benchmark-20261025.json`; the coverage README describes repetition
+and installation. Finish timing now separates preflight, snapshots, review,
+backups, staging and commit-with-hook. This is submission-tooling evidence;
+original comparison, implementation, integration and live replacement milestones
+are unchanged. Whole-finish timing and independent future merge latency remain
+separate from the bounded filter/materialization measurements.
