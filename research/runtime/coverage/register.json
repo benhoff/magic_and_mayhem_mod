@@ -78812,7 +78812,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-render-save-load.md",
-        "research/runtime/resident-command-pressure.md"
+        "research/runtime/resident-command-pressure.md",
+        "research/runtime/native-save-capture-recovery-20261025.md"
       ],
       "implementation": [
         "apps/qt-shell/campaign_storage_test.cpp",
@@ -78820,12 +78821,16 @@
         "tools/campaign_storage.py",
         "runtime/render/bridge.c",
         "runtime/menu/mini.h",
-        "tools/build-render-bridge.py"
+        "tools/build-render-bridge.py",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp"
       ],
       "tests": [
         "tools/test-native-campaign.py",
         "tools/menu-storage-input.py",
-        "tests/test-native-render-storage.py"
+        "tests/test-native-render-storage.py",
+        "tests/menu-storage-bridge-test.cpp",
+        "tools/test-save-capture.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -78869,7 +78874,11 @@
         "HOST.native-startup-resources.v3-storage-control-20261016",
         "HOST.native-startup-resources.v3-natural-storage-20261016",
         "NATIVE.completion.native-storage-20261017",
-        "COPYOUTPUT.live-storage02-20261025"
+        "COPYOUTPUT.live-storage02-20261025",
+        "SAVECHUNK.controls07-20261025",
+        "SAVECHUNK.live04-20261025",
+        "SAVECHUNK.controls08-20261025",
+        "SAVECHUNK.live05-20261025"
       ],
       "status": {
         "understanding": "partial",
@@ -78882,7 +78891,7 @@
         "Current NVIDIA native-storage06 completes both intros, Save/Load/resume, two original display rebuilds, Main Load/resume and normal Quit; one moving Hermes title and retained checkpoint driver identities are exercised. Same-session functional success is not full restored simulation equivalence, fresh-process restart, all lifecycle/failure paths,47/21journey/operation closure or sustained60FPS. Earlier failed attempts remain immutable.",
         "Fresh strict no-forward native storage run-p71wc_l6 reaches original Save(screen13) then remains unready and times out at stage4. Sources stay stable;6612nativeframes/6581paints/40089optional calls/zero forwards/no recovery. Child is stopped and2927-file after-manifest passes. Earlier successful storage06 is retained; current deterministic Save-readiness/reliable complete storage acceptance is unresolved. Root cause not assigned to resource reservations, which this native launch does not enable.",
         "COPYOUTPUT.live-storage02-20261025 freshly completes the diagnostics-disabled llvmpipe Initiate Save/Load/rebuild/MainLoad journey with568balanced Worlds and40 explicit CPU restorations. Earlier Save-readiness failures remain historical negatives; one bounded pass does not establish universal reliability. Independent restored World raster comparison is separately recorded; full restored simulation and cross-process restore remain open.",
-        "CSR1 current-source save/load attempt failed at the Save-menu transition with resident World producer cancellation,after92balanced Worlds and before a save-file digest. live-storage-failure01.json retains stable-source negative evidence. Current merged storage/recreate acceptance and subsequent independent original checkpoints remain pending;historical passing records are unchanged."
+        "Historical CSR1 Save producer cancellation remains immutable negative evidence. SAVECHUNK.live05-20261025 now completes the captured current-source Save/Load/recreate/MainLoad/normalQuit journey;SAVECHUNK.original03-20261025 compares all four selected World rasters with zero differences. This closes that specific diagnostic lifetime and host handoff blocker;full restored simulation,all lifecycle/failure paths,other difficulties and universal readiness remain separate."
       ]
     },
     {
@@ -78929,7 +78938,9 @@
         "NR.native-storage.world-replay-20261015",
         "NP.native-storage.v3-cpu-reader-controls-20261016",
         "COPYLIVE.cpu-readers-20261017",
-        "COPYOUTPUT.storage-original01-20261025"
+        "COPYOUTPUT.storage-original01-20261025",
+        "SAVECHUNK.replay02-20261025",
+        "SAVECHUNK.replay03-20261025"
       ],
       "status": {
         "understanding": "partial",
@@ -78948,7 +78959,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/native-render-save-load.md"
+        "research/runtime/native-render-save-load.md",
+        "research/runtime/native-save-capture-recovery-20261025.md"
       ],
       "implementation": [
         "tests/resident-storage-replay.cpp",
@@ -78965,7 +78977,9 @@
         "tests/native-world-rolling/CMakeLists.txt",
         "tests/resource-fixtures.hpp",
         "tests/sprite-binary-reference.cpp",
-        "tests/world-raster-reference.hpp"
+        "tests/world-raster-reference.hpp",
+        "tools/resident_capture.py",
+        "tests/clipped-word-grayscale-cases.hpp"
       ],
       "evidence": [
         "NR.native-storage.world-original-20261015",
@@ -78977,7 +78991,11 @@
         "NP.native-storage.v3-cpu-reader-controls-20261016",
         "COPYLIVE.world-original-20261017",
         "COPYLIVE.cpu-readers-20261017",
-        "COPYOUTPUT.storage-original01-20261025"
+        "COPYOUTPUT.storage-original01-20261025",
+        "SAVECHUNK.original02-20261025",
+        "SAVECHUNK.replay02-20261025",
+        "SAVECHUNK.original03-20261025",
+        "SAVECHUNK.replay03-20261025"
       ],
       "status": {
         "understanding": "partial",
@@ -78987,7 +79005,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "CSR1 current-source save/load attempt failed at the Save-menu transition with resident World producer cancellation,after92balanced Worlds and before a save-file digest. live-storage-failure01.json retains stable-source negative evidence. Current merged storage/recreate acceptance and subsequent independent original checkpoints remain pending;historical passing records are unchanged."
+        "Historical CSR1 Save producer cancellation remains immutable negative evidence. SAVECHUNK.live05-20261025 now completes the captured current-source Save/Load/recreate/MainLoad/normalQuit journey;SAVECHUNK.original03-20261025 compares all four selected World rasters with zero differences. This closes that specific diagnostic lifetime and host handoff blocker;full restored simulation,all lifecycle/failure paths,other difficulties and universal readiness remain separate."
       ]
     },
     {
@@ -79292,7 +79310,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-source-prefix-draining.md",
-        "research/formats/world-continuous-v6.md"
+        "research/formats/world-continuous-v6.md",
+        "research/runtime/native-save-capture-recovery-20261025.md"
       ],
       "implementation": [
         "runtime/scene/canvas_producers.c",
@@ -79332,7 +79351,9 @@
         "HOST.mini-dispatch.delayed-live-20261015",
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
-        "HOST.native-startup-resources.v3-natural-storage-20261016"
+        "HOST.native-startup-resources.v3-natural-storage-20261016",
+        "SAVECHUNK.live04-20261025",
+        "SAVECHUNK.live05-20261025"
       ],
       "status": {
         "understanding": "partial",
@@ -79342,7 +79363,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Finite diagnostic capture and independent/asynchronous V5 retain their previous bounds. Single World queues and deferred overlap retain their existing caps. Later maps, unbounded resource churn, hardware, consistent performance and complete original-pixel/simulation equivalence remain separate."
+        "Finite diagnostic capture and independent/asynchronous V5 retain their previous bounds. Single World queues and deferred overlap retain their existing caps. Later maps, unbounded resource churn, hardware, consistent performance and complete original-pixel/simulation equivalence remain separate.",
+        "SAVECHUNK.live05 freshly validates the optional V3capture path through120.008s MainLoad pause and376832source records,with no World credit for prefixes. General screen/vtable selection and resource/service ownership remain separate recovery work."
       ],
       "validation_dependencies": [
         "reconstruction/rendering/generic_producer_caller.h",
@@ -147081,6 +147103,58 @@
       "remaining_gaps": [
         "Original alternate allocation/publication/base-source relationship/initial pixels/writer inventory/retirement and natural nonzero route remain unresolved; centered copy and zero clear are native choices.",
         "Headless owner/dispatcher integration does not install an alternate route in the native game or validate complete frames/performance, borrowed pointer escape, arbitrary callback mutation or concurrent threads."
+      ]
+    },
+    {
+      "id": "NP.resident-source-chunk-capture",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded resident capture preserves source-only history",
+      "scope": "Opt-in synchronous resident V6 capture preserves ordered source-only chunks and World requests in bounded compressed V3 diagnostic storage.8192total records,16GiBraw/stored and256MiBworker queue remain finite. Prefixes retain their next-World generation and independent chunk ordinal;they neither reset native resources nor grant World completion. Capture errors remain explicit and never resume a dropped stream. Legacy V1/V2 and owned/asynchronous V5 remain separate;source-aware storage replay applies all captured prefixes before selected World draws. No original simulation,whole-session pixels,hardware performance or unlimited capture claim.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "runtime/scene/canvas_producers.c",
+        "tests/resident-storage-replay.cpp",
+        "tools/resident_capture.py"
+      ],
+      "tests": [
+        "tests/resident-profile-capture-test.cpp",
+        "tests/resident-profile-capture-test.py",
+        "tests/canvas-producers-test.c",
+        "tools/test-native-campaign.py",
+        "tools/test-native-storage-comparison.py",
+        "tools/test-save-capture.py",
+        "tools/test-canvas-producers.py"
+      ],
+      "documents": [
+        "research/runtime/native-save-capture-recovery-20261025.md",
+        "research/formats/resident-profile-corpus.md"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "tools/build-scene-observer.py",
+        "tools/profile_native_resident_helpers.py"
+      ],
+      "evidence": [
+        "SAVECHUNK.controls07-20261025",
+        "SAVECHUNK.live04-20261025",
+        "SAVECHUNK.controls08-20261025",
+        "SAVECHUNK.live05-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "The bounded diagnostic/host policy is implemented and freshly validated. The recorded live profile is Apprentice Celtic1 on llvmpipe with skipped movies and legacy audio. Other difficulties,hardware,whole-session original pixels,complete restored simulation and independent/asynchronous capture remain separate scope;finite storage refusal remains explicit."
       ]
     }
   ],
@@ -334682,6 +334756,282 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "SAVECHUNK.controls07-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/save-capture-recovery-results-20261025/component07.json",
+      "sha256": "28ba87039dab7320eb1f0850cab7052b26258de054f756b7b4658645b8345bd8",
+      "scope": "Actual Qt V2/V3 writer and strict Python reader,8192-record refusal,real PE32 producer metadata checkpoints past9999 without reading unreadable pixels,source-prefix/resource continuity and14 native Mini\u2192storage ownership schedules plus existing transaction/admission controls. Complete compiler dependencies declared;no full original screen semantics.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SAVECHUNK.live04-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/save-capture-recovery-results-20261025/live04.json",
+      "sha256": "50297e77665580ee070a1dc7765bb33f93e5b57c1d266d48aab65a0c8d51f516",
+      "scope": "Current-source llvmpipe Apprentice Celtic1 native Save/Load,800\u2192640\u2192800 display rebuilds,120.276s MainLoad dwell,reload/resume and normalQuit.581balanced Worlds,19 captured source chunks,311296records in one interval,complete V3archive andzero ordinary World readbacks/forwards/history refusal. No FPS,full save-state,hardware,all-difficulty or whole presented-session equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/source_prefix_stress_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/world_canvas_transition_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/stage_profile/capture/complete",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/stage_profile/capture/truncated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SAVECHUNK.original02-20261025",
+      "kind": "isolated_original",
+      "record": "research/runtime/save-capture-recovery-results-20261025/comparison02.json",
+      "sha256": "dc0b09e4e220f614fe8e85be44a50245992e225793a058791fc6beb0e1d82bc7",
+      "scope": "Four selected native World draws before Save,after Save,after Load and after display-rebuild/MainLoad match unchanged original raster code:1920000RGB565words,zero mismatches. All captured source-only prefixes preserve native resources/history. Original starts from diagnostic native entry canvas;two authored original baselines also agree at these checkpoints. Native receives no original oracle;full presented-session and simulation equivalence remain separate.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_presented_session_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_binary_sha256"
+    },
+    {
+      "id": "SAVECHUNK.replay02-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/save-capture-recovery-results-20261025/comparison02.json",
+      "sha256": "dc0b09e4e220f614fe8e85be44a50245992e225793a058791fc6beb0e1d82bc7",
+      "scope": "Bounded source-aware V3capture native replay retains history across19prefixes and581captured Worlds;four selected checkpoints andnine GPU-reader families pass with zero surviving surfaces. Independent original raster comparison is separately registered. No presented full-session or complete save-state acceptance.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_presented_session_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SAVECHUNK.controls08-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/save-capture-recovery-results-20261025/component08.json",
+      "sha256": "607e306d75c04cf895b22df167b48d01f8ed4835227782844ba3ef18f64dc16b",
+      "scope": "Actual Qt V2/V3 writer and strict Python reader,8192-record refusal,real PE32 producer metadata checkpoints past9999 without reading unreadable pixels,source-prefix/resource continuity and14 native Mini\u2192storage ownership schedules plus existing transaction/admission controls. Complete compiler dependencies declared;no full original screen semantics. Refusing a second launch preserves the pending storage handoff.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SAVECHUNK.live05-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/save-capture-recovery-results-20261025/live05.json",
+      "sha256": "e38c38d8bd9954edf4005c14b757e613e7d4ee1b6dab2758ed2e0e71202ff0ef",
+      "scope": "Current-source llvmpipe Apprentice Celtic1 native Save/Load,800\u2192640\u2192800 display rebuilds,120.008s MainLoad dwell,reload/resume and normalQuit.544balanced Worlds,23 captured source chunks,376832records in one interval,complete V3archive andzero ordinary World readbacks/forwards/history refusal. No FPS,full save-state,hardware,all-difficulty or whole presented-session equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/source_prefix_stress_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/world_canvas_transition_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/stage_profile/capture/complete",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/stage_profile/capture/truncated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SAVECHUNK.original03-20261025",
+      "kind": "isolated_original",
+      "record": "research/runtime/save-capture-recovery-results-20261025/comparison03.json",
+      "sha256": "d4f22d31f9722d8eda08fa6cf91df045c2443e16dd9015ed40173206f8727685",
+      "scope": "Four selected native World draws before Save,after Save,after Load and after display-rebuild/MainLoad match unchanged original raster code:1920000RGB565words,zero mismatches. All captured source-only prefixes preserve native resources/history. Original starts from diagnostic native entry canvas;two authored original baselines also agree at these checkpoints. Native receives no original oracle;full presented-session and simulation equivalence remain separate.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_presented_session_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_binary_sha256"
+    },
+    {
+      "id": "SAVECHUNK.replay03-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/save-capture-recovery-results-20261025/comparison03.json",
+      "sha256": "d4f22d31f9722d8eda08fa6cf91df045c2443e16dd9015ed40173206f8727685",
+      "scope": "Bounded source-aware V3capture native replay retains history across23prefixes and544captured Worlds;four selected checkpoints andnine GPU-reader families pass with zero surviving surfaces. Independent original raster comparison is separately registered. No presented full-session or complete save-state acceptance.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_presented_session_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -355671,7 +356021,9 @@
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
         "HOST.native-startup-resources.v3-natural-storage-20261016",
-        "COPYOUTPUT.live-storage02-20261025"
+        "COPYOUTPUT.live-storage02-20261025",
+        "SAVECHUNK.live04-20261025",
+        "SAVECHUNK.live05-20261025"
       ]
     },
     {
@@ -355694,7 +356046,9 @@
         "NR.native-storage.world-replay-20261015",
         "NP.native-storage.v3-cpu-reader-controls-20261016",
         "COPYLIVE.cpu-readers-20261017",
-        "COPYOUTPUT.storage-original01-20261025"
+        "COPYOUTPUT.storage-original01-20261025",
+        "SAVECHUNK.replay02-20261025",
+        "SAVECHUNK.replay03-20261025"
       ]
     },
     {
@@ -355719,7 +356073,11 @@
         "NP.native-storage.v3-cpu-reader-controls-20261016",
         "COPYLIVE.world-original-20261017",
         "COPYLIVE.cpu-readers-20261017",
-        "COPYOUTPUT.storage-original01-20261025"
+        "COPYOUTPUT.storage-original01-20261025",
+        "SAVECHUNK.original02-20261025",
+        "SAVECHUNK.replay02-20261025",
+        "SAVECHUNK.original03-20261025",
+        "SAVECHUNK.replay03-20261025"
       ]
     },
     {
@@ -355796,7 +356154,9 @@
         "HOST.mini-dispatch.delayed-live-20261015",
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
-        "HOST.native-startup-resources.v3-natural-storage-20261016"
+        "HOST.native-startup-resources.v3-natural-storage-20261016",
+        "SAVECHUNK.live04-20261025",
+        "SAVECHUNK.live05-20261025"
       ],
       "level": "live_observation"
     },
@@ -355832,7 +356192,9 @@
         "HOST.mini-dispatch.ordinary-live-20261015",
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
-        "HOST.native-startup-resources.v3-natural-storage-20261016"
+        "HOST.native-startup-resources.v3-natural-storage-20261016",
+        "SAVECHUNK.live04-20261025",
+        "SAVECHUNK.live05-20261025"
       ],
       "level": "live_observation",
       "tests": [
@@ -360903,6 +361265,56 @@
       "evidence": [
         "ACO2.native-owner-20261025"
       ]
+    },
+    {
+      "id": "SAVECHUNK.capture-controls",
+      "scope": "Bounded compressed V3writer/reader ordering,source history,queue refusal and legacy compatibility;actual producer metadata checkpoint cap regression.",
+      "level": "headless",
+      "behaviors": [
+        "NP.resident-source-chunk-capture"
+      ],
+      "tests": [
+        "tests/resident-profile-capture-test.cpp",
+        "tests/resident-profile-capture-test.py",
+        "tests/canvas-producers-test.c",
+        "tools/test-save-capture.py"
+      ],
+      "evidence": [
+        "SAVECHUNK.controls07-20261025",
+        "SAVECHUNK.controls08-20261025"
+      ]
+    },
+    {
+      "id": "SAVECHUNK.save-load",
+      "scope": "Native Save/Load/recreation with bounded V3source capture and original checkpoint comparison;separate requested difficulties and prolonged MainLoad pause.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.resident-source-chunk-capture"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/test-native-storage-comparison.py"
+      ],
+      "evidence": [
+        "SAVECHUNK.live04-20261025",
+        "SAVECHUNK.live05-20261025"
+      ]
+    },
+    {
+      "id": "SAVECHUNK.menu-opening",
+      "level": "headless",
+      "scope": "Actual native MenuBridge/LiveMenuSession storage takeover under coalesced or delayed ACK/readiness,unchanged-generation readiness,wrong generation/destination/ACK/thread and media deferral;no original callback equivalence. A refused second launch preserves the pending handoff.",
+      "behaviors": [
+        "HOST.native-render-save-load"
+      ],
+      "tests": [
+        "tests/menu-storage-bridge-test.cpp",
+        "tools/test-save-capture.py"
+      ],
+      "evidence": [
+        "SAVECHUNK.controls07-20261025",
+        "SAVECHUNK.controls08-20261025"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -362470,7 +362882,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-aac58ae1cac3851792b1458cc778db08b54baae5f397c613c4a5e4ae1c77b630.json",
-    "sha256": "aac58ae1cac3851792b1458cc778db08b54baae5f397c613c4a5e4ae1c77b630"
+    "path": "research/runtime/coverage/source-index-5ff3be25d65f3738986f6cd85ee9c6b770082ba1b2897d90fa71dc64fcf579b1.json",
+    "sha256": "5ff3be25d65f3738986f6cd85ee9c6b770082ba1b2897d90fa71dc64fcf579b1"
   }
 }

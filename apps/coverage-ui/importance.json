@@ -3457,6 +3457,13 @@
       "work_type": "acceptance",
       "reason": "Bounded actual-provider connection and complete destination/lifetime assurance for retained original cursor restore services. This does not rate missing whole-screen implementation or claim global ownership recovery.",
       "contract_sha256": "da666210c9cd5ef975749b75dbe33b61a7b913631bb70357323c84f99101a6f3"
+    },
+    {
+      "behavior": "NP.resident-source-chunk-capture",
+      "weight": 3,
+      "work_type": "diagnostic",
+      "reason": "Bounded diagnostic capture must preserve live source history through Save/Load without changing World completion or original rendering. It enables reliable checkpoint validation;complete native rendering acceptance remains separately rated.",
+      "contract_sha256": "a19c1f5e8d1f68a63ed30374207213d9c9eee077a9ae1edc882bf6b7515e6a92"
     }
   ],
   "tranche_plan": {

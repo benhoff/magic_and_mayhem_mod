@@ -9,6 +9,7 @@ import tempfile
 import zlib
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from profile_native_resident_helpers import normalize_capture, completed_prefix_worlds
+from resident_capture import records
 
 def main():
     worker=Path(sys.argv[1]);normalized=worker/'python-v1.bin';result=normalize_capture(worker/'worker.bin',normalized)
@@ -18,6 +19,26 @@ def main():
     for _ in range(2):
         _,source,request=struct.unpack_from('<QII',expected,end);end+=16+source+request
     assert prefix['worlds']==2 and prefix['captured_worlds']==4 and (worker/'python-prefix.bin').read_bytes()==expected[:end]
+    history=list(records(worker/'sources.bin'))
+    assert [(g,c) for g,c,s,q in history]==[(1,1),(1,2),(1,0),(2,3),(2,0)]
+    assert all(len(s)==4096 and len(q)==(0 if c else 64) for g,c,s,q in history)
+    try:normalize_capture(worker/'sources.bin',worker/'flat-source.bin')
+    except ValueError:pass
+    else:raise AssertionError('Source history silently flattened')
+    raw=(worker/'sources.bin').read_bytes()
+    offsets=[];at=8
+    while at<len(raw):
+        offsets.append(at);at+=32+struct.unpack_from('<I',raw,at+24)[0]
+    bad3=[]
+    for at,offset,value,fmt in [(offsets[0],28,1,'I'),(offsets[0],0,2,'Q'),(offsets[1],8,1,'Q'),(offsets[2],8,3,'Q'),(offsets[0],20,64,'I'),(offsets[0],24,2**32-1,'I')]:
+        data=bytearray(raw);struct.pack_into('<'+fmt,data,at+offset,value);bad3.append(bytes(data))
+    bad3.extend([raw[:-1],raw+b'x',raw[:offsets[-1]+1]])
+    for index,data in enumerate(bad3):
+        path=worker/('bad-v3-'+str(index));path.write_bytes(data)
+        try:list(records(path))
+        except ValueError:pass
+        else:raise AssertionError('Invalid V3 archive accepted '+str(index))
+    assert sum(1 for _ in records(worker/'source-cap.bin'))==8192
     payload=b'x'*80;packed=struct.pack('>I',80)+zlib.compress(payload,1)
     def v2(data=packed,generation=1,source=16,request=64):return b'MNMPROF2'+struct.pack('<QIII',generation,source,request,len(data))+data
     cases=[b'BADMAGIC',b'MNMPROF2'+b'x',v2(generation=2),v2(source=16777217),v2(request=63),

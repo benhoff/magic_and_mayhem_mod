@@ -22154,3 +22154,30 @@ fails with resident producer cancellation after92Worlds,before a save-file
 digest. Its stable-source failure is retained;current storage/recreate acceptance
 and subsequent original checkpoint comparison remain pending. Historical storage
 passes and hashes remain unchanged. FPS stays diagnostic.
+
+## Captured Save/Load recovery — 2026-10-25
+
+The specific CSR1 Save producer cancellation and the subsequently exposed native
+Mini→Load ownership race are fixed. Metadata checkpoints no longer consume the
+file-oracle budget, and explicit V3 capture preserves V6 source-only progress.
+The host restores storage ownership when ACK/readiness arrive together or when
+readiness follows without another generation change, retaining exact identity
+checks and once-only requests.
+
+[Fresh component controls](save-capture-recovery-results-20261025/component08.json)
+pass archive bounds/negative cases, actual PE32 checkpoint policy, source history
+and 14 storage-opening schedules. The
+[live Apprentice journey](save-capture-recovery-results-20261025/live05.json)
+completes Save/Load, both display rebuilds, 120.008 seconds at Main Load, reload
+and normal Quit: 544 balanced Worlds, 23 captured source chunks and 376,832
+records in one source-only interval. Capture retires completely; ordinary World
+readbacks, forwards and history refusals remain zero. FPS stays diagnostic.
+
+The [four-checkpoint original comparison](save-capture-recovery-results-20261025/comparison03.json)
+checks 1,920,000 RGB565 words with zero differences. Original pixels never enter
+native rendering. This closes the bounded current captured-storage blocker;
+complete restored simulation, independent whole presented-session equivalence,
+other difficulties/hardware and original screen-service ownership remain
+separate. Historical failures, including the functionally complete but too-short
+60-second stress attempt, retain their original hashes. See
+[causes, scope and retained attempts](native-save-capture-recovery-20261025.md).

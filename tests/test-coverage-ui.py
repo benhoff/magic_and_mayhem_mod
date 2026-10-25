@@ -256,7 +256,8 @@ class TracksTest(unittest.TestCase):
         goals={m['id']:m for m in result['milestones']}
         self.assertEqual(goals['extended-2d']['state'],'demonstrated')
         self.assertEqual(goals['isolated-recovery']['state'],'demonstrated')
-        self.assertEqual(goals['native-only-launch']['state'],'in_progress')
+        # Bounded native launch has shipped; whole-renderer acceptance stays separate.
+        self.assertEqual(goals['native-only-launch']['state'],'demonstrated')
         self.assertEqual(goals['owned-copy-readers']['state'],'in_progress')
         self.assertEqual(goals['generation-restart']['state'],'in_progress')
         self.assertEqual(goals['complete-replacement']['state'],'not_started')
