@@ -22587,3 +22587,73 @@ closure,physical device/context loss and installed live cursor takeover remain
 open;the native private-owner headless scope is complete. The byte-identical
 exploratory listing is retained through a supported SQLite .bin reference.
 Historical evidence/source hashes are preserved.
+
+
+### Screen service recovery — 2026-10-25
+
+`RS.screen-selection-service`, `RS.cursor-selection-service` and
+`RS.screen-control-dispatch` separate the three direct services formerly authored
+by the shared-tick fixture. Complete local bodies at5571e0..557368,
+4a39a0..4a3c17 and4a5070..4a5842 are modeled independently, with actual cursor
+resource/mutex semantics and control ring/capture/World orchestration. Stack
+search exhaustion returns at index zero; the control capture latch persists for
+one invocation across button-release events. `RS.screen-service-tick-transitions`
+composes inactive shared-tick transitions with original selection/invalidation.
+`RS.screen-minimal-transition-callbacks` supplies exact selected real callback
+bytes and state effects for candidate table5c6564.
+
+Original platform imports, control callbacks and World unit/selection helpers
+remain controlled boundaries. The selected minimal screen callbacks contain no
+allocation or retirement, but their owning constructors/destructors, actual
+dynamic class identity, other screen classes, arbitrary callback mutation and
+whole-session lifetime are still unverified. No gameplay balance, application
+integration or live replacement is promoted. See
+[screen service recovery](screen-services-recovery-20261025.md). Historical
+shared-tick evidence remains unchanged and keeps its authored-service scope.
+
+## Original screen services and concrete class lifetime — 2026-10-25
+
+The recovery from local4eca3eb7 is adopted onto master5ea14a4a in an owned
+worktree,preserving its exact original findings,receipts and all failed attempts.
+Fresh SSR1.current-master compares complete5571e0 selection,4a39a0 cursor
+selection and4a5070 input dispatch:192/9984/18432 cases plus110 shared-tick
+transition schedules agree in optimized32,sanitized32 and sanitized64 builds.
+These direct callers are recovered local services;their external gameplay/OS
+and dynamic class providers remain separate.
+
+RS.screen-class-ownership-static names22 concrete shared-tick tables,47 direct
+vtable-store witnesses and132 transition/draw/final target slots.
+RS.screen-class11-lifetime recovers unchanged construction,vector retirement,
+callback publication/invocation/deletion and six no-op tick callbacks. All4608
+cases agree in the three configurations,including allocation failure,disposal
+flag bits,repeated lifecycle calls and callback mutations. Callback deletion
+resets its table and frees on the low flag bit;the surface alias remains untouched by this
+caller. The constructor's missing initial inventory byte has an explicit
+execution-backed range exception;historical inventory bytes are preserved.
+
+See [concrete lifetime recovery](screen-class-lifetime-recovery-20261025.md).
+No installed native takeover or full-session/physical allocator claim is added.
+Other concrete class resource orchestration,dynamic registration,indirect aliases,
+real failure reachability and asynchronous retirement remain recovery work.
+
+The final [audit](screen-services-results-20261025/audit-current03.json) and
+[ordinary dashboard reader](screen-services-results-20261025/ui-current01.json)
+pass with1,421 behaviors and no census drift. All six touched implemented
+contracts have current original-comparison support;static table recovery has
+no implementation/comparison promotion. The [focused summary](coverage/summary-screen-original-recovery-final-20261025.md)
+retains unrelated historical staleness and incomplete dispatch frontiers.
+
+## Original screen recovery: combined master integration — 2026-10-25
+
+Recovery b6a69d45 is combined with completed master integration d306d926,
+including cursor evidence storage and commit-tooling improvements. Historical
+evidence and exact receipts are preserved by stable ID. Fresh SSR1.master
+compares192 selection,9984 cursor,18432 control and110 tick-transition cases;
+SSR2.master compares4608 class11 lifetime cases,each in optimized32,sanitized32
+and sanitized64 configurations with identical checksums and verified original
+manifests. The22-table47-store132-target census remains static.
+
+The [integration review](screen-recovery-master-integration-20261025.md) retains
+actual source bindings and committed-history review. No broad screen ownership,
+real failure/heap,indirect alias,full-session or installed takeover claim is added.
+Pending main-checkout launcher work is preserved separately.
