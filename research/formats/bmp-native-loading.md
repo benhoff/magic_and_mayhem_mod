@@ -1,8 +1,10 @@
 # Native BMP loading
 
-Reviewed 2026-10-04. This is a native offline decoder and inspector for the
-installed BMP subset. No original executable, renderer upload or live image
-replacement was exercised.
+Original installed-subset review: 2026-10-04. The historical results below
+retain their original scope. The 2026-10-25 extension adds ten native input
+domains and resource-manager/GPU controls; see
+[the exact component scopes](../runtime/rendering-twentyfifth-ten-20261025.md).
+No original loader or live replacement equivalence is claimed.
 
 ## Installed evidence
 
@@ -54,18 +56,22 @@ No alpha or color-key transparency is inferred.
 
 These policies describe the native implementation, not recovered original errors:
 
-- Require `BM`, zero reserved file fields and a 40-byte information header.
-  Other DIB header sizes return unsupportedEncoding.
-- Require one plane, 24-bit BI_RGB. Indexed, bitfield, compressed and alpha
-  formats return explicit unsupported errors.
+- Require `BM`, zero reserved file fields, one plane and either a 12-byte core
+  or 40-byte information header. Other DIB header sizes remain unsupported.
+- Information headers accept 1/4/8-bit indexed BI_RGB, 16-bit RGB555, 24-bit BGR,
+  32-bit BGRX, 16/32-bit BI_BITFIELDS and bottom-up RLE4/RLE8. Core headers accept
+  indexed 1/4/8 or direct 24-bit rows. All return RGB without alpha semantics.
+  See the component scope document for palette, mask scaling and RLE policies.
 - Require positive width and nonzero height; reject INT32_MIN height.
-  Both orientations are accepted, with magnitude/sign conversion checked.
+  Both uncompressed information-header orientations are accepted, with checked
+  sign conversion. Core dimensions are unsigned WORDs; RLE is bottom-up only.
 - Validate pixel offset against the complete header and any declared optional
   optimization color table (`54 + colorsUsed * 4`). Such entries are skipped;
   they do not replace direct RGB pixels. Resolution/count metadata is retained.
 - Require declared file size no greater than actual input and large enough
   for all pixel rows. Nonzero image-size fields must equal the padded row
-  extent. Gap bytes and trailing bytes inside or after the declared file
+  extent for uncompressed data. RLE requires a nonzero encoded image extent and
+  an EOB command within it. Gap bytes and trailing bytes inside or after the declared file
   extent are allowed; they are bounded by input limits and not decoded.
 - Defaults: 64 MiB input, 8192x8192 maximum dimensions, 16,777,216 pixels
   and 48 MiB decoded RGB. Compute strides/extents in 64 bits; reject strides
@@ -113,6 +119,6 @@ encoded as JSON with sorted keys and compact separators, have SHA-256
 `63bc5aae6c80e277315535f1fc4b3ad6816642c11c4867c95a108f8e4b58dc1e` (GCC 16.2.1, C++17, Qt 6.8 Core).
 
 Remaining milestones: original caller contracts, game-specific transparency
-and placement, renderer/UI consumption and live visual comparison. Existing
-Qt menu image loading remains a separate path. See the
+and placement, renderer/UI consumption and live visual comparison. The current Qt menu and resource-manager paths consume this decoder; their
+full installed/live acceptance remains separate from bounded component controls. See the
 [coverage ledger](../runtime/coverage-ledger.md).

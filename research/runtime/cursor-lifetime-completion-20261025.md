@@ -144,3 +144,14 @@ within the tested owner-thread graphics model. Complete indirect source-alias/wr
 recovery and installed live semantic cursor takeover remain separate outstanding
 work. Existing simple background helpers from screen-services are reused as
 research context and are not duplicated or replaced by this native policy.
+
+## Master integration
+
+The cursor implementation commit60070a69 is reconciled with actual master6919cb93,
+including the thirty native rendering components. Stable-ID metadata resolution
+preserves both parents,all original evidence/source hashes and every exact prior
+review. native09 reruns the optimized and ASan/UBSan compositor checks against
+the combined CMake tree;both pass714 assertions and187 whole-frame cases,with
+171/170 accepted concurrent publications respectively and the same drained counts.
+The original setup02 contract and its complete required source hashes remain
+unchanged. No original runtime work is duplicated or activated by this merge.

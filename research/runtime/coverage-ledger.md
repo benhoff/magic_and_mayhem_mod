@@ -22256,6 +22256,223 @@ Cursor lifetime final integration preserves current master `35ae1c4f` and
 its independent alternate-canvas ownership/review metadata. See the [integration
 review](cursor-ownership-master-integration-20261025.md). Cursor sources/contracts
 remain exact; native ownership and live replacement remain pending.
+## Ten bounded surface component implementations — 2026-10-25
+
+N24 adds callable services for five recovered copy-wrapper paths, partial/full
+fills, immutable cursor bitmap reloads, shared-palette indexed recovery and
+logical vertical-bar GPU surfaces. These are ten scoped child implementations
+within five existing partial parents. Aggregate statuses remain partial; no
+whole renderer or original ownership closure is inferred. See
+[scope and task mapping](rendering-twentyfourth-ten-20261025.md).
+
+The [final execution](rendering-twentyfourth-ten-results-20261025/execution-5.json)
+passes429Release-active checks and22refusals in each Release and ASan/UBSan mode,
+including40copy cases,5fill/loss/budget cases,7reload/recovery cases and96owned
+bar surfaces. All966copy geometry/flags/mutation cases match the unchanged
+original five entries. The separate original logical bar supplier matches3444
+cases/8512504words; native bar allocation, indexed recovery and resource binding
+retain comparison none. Original ABI/pointer identity, real driver faults,
+complete original resource lifetimes, scene/hardware/live/FPS remain separate.
+
+The first dependency check refused unnormalized compiler paths; its exact source
+variants and negative report remain. Qt startup failures and their compressed
+core/diagnostics are retained independently. A private authenticated TCP Xvfb
+in a user namespace with its own disk-backed temporary directory allows the
+controls to run without the host tmpfs lock/socket quota. All final sources and
+inputs remain stable; both original-manifest bookends pass. The retained
+[incoming history review](rendering-twentyfourth-ten-results-20261025/incoming-history.json)
+checks68exact transitions in the preceding master merge. Historical hashes and
+acceptance failures remain unchanged. SQLite reports, review records and verified
+local backups are durable; bounded CMake build trees remain temporary reusable
+execution outputs on the Videos drive. Concurrent main launcher edits are excluded.
+
+The initial UI control refused the new child entries because their subsystem
+metadata was outside the curated rendering track. Correcting only these new
+classifications to existing rendering categories leaves all engine contract and
+execution-source bindings unchanged. The failed control and exact initial
+classifications remain separate SQLite evidence.
+
+A subsequent UI run passes37controls and exposes the previous fixed total for
+scoped High components. Its replacement names the nine new High services
+explicitly; the Medium bar service remains separate. This updates catalog
+accounting without changing engine scope or execution fingerprints.
+
+### Native bitmap rendering inputs — 2026-10-25 (N25)
+
+Ten scoped native component implementations extend partial `AS.bmp`: indexed
+1/4/8-bit, RGB55516, BGRX32, masked16/32, RLE4/8, and the core header. These expand
+an existing native image service; the historical installed inventory already
+uses supported 24-bit images. No original-loader comparison or aggregate/full-game
+milestone is promoted. See
+[exact domains and native policies](rendering-twentyfifth-ten-20261025.md).
+
+Fresh prospective proof `N25.bmp-native-20261025` is retained in
+`rendering-twentyfifth-ten-results-20261025/execution-2.json` through SQLite.
+Release and ASan/UBSan each pass 175 independent BMP/RGB fixtures, 50,792 CPU checks,
+25,539 explicit/truncation refusals and 44,800 deterministic hostile mutations.
+Each also passes 175 real resource-manager/RGB565/GPU round trips, resident draws
+without new upload/readback, retirement/reload and balanced owned surfaces.
+The older BMP, resource-manager and preparation controls pass, as do the three
+CTest fixture/CPU/GPU entries in both configurations. The first passing execution
+is preserved separately; a test-runner source-hash check and explicit RLE4 negative
+cases motivated the second execution. No original artifacts were consumed.
+External Qt/driver leak scanning is disabled; owned resource balances are checked.
+Hardware, performance, original error/placement/transparency and whole-scene/live
+acceptance remain separate.
+
+The incoming history review covers all 36 non-journal file transitions in
+`d6618d09..5fa079ec` with exact payload-aware receipts and no missing transitions;
+it grants no retrospective execution/gate claim. The new worktree is based on
+that completed batch and excludes unrelated main-checkout edits. Builds, bounded
+fixtures, logs and execution binaries are under the owned other-drive
+`working/tests/execution-{1,2}` paths. They are retained/pinned raw controls and
+reusable execution outputs, not an original installation or source snapshot.
+Research references and locally verified SQLite databases/backups are durable
+bookkeeping/evidence. The normal 90 GiB main reserve and 100 GiB cold-archive reserve
+remain in force. The current retention pass found no eligible cleanup payloads;
+no storage removal or reserve exception was used.
+
+The final audit has no errors, no source-census drift and no changed focused
+registers. All ten new implementation claims are current; `REVIEW.AS.bmp` is now
+historical/stale for the changed decoder/test bytes and is preserved unchanged.
+The 38 coverage UI controls pass. Exact unique test/producer source versions
+from the first execution are retained in SQLite beside both execution reports.
+Local completion uses the normal coverage hook and verified pinned SQLite
+backups; no evidence publication or remote transfer is part of this batch.
+
+### Owned native text services — 2026-10-25 (N26)
+
+Ten native policy components extend partial actor/font and SFT work: immutable
+font acquisition, session contour probes/updates, byte placement, terminated
+string placement, rectangle layout, height-limited layout, nonmutating
+measurement, clipped CPU output, clipped GPU output and bounded glyph caching.
+Existing recovered byte/line algorithms, compatibility font consumers and Qt
+menu outline fonts remain separate suppliers/consumers. See
+[the exact domains and limits](rendering-twentysixth-ten-20261025.md).
+The new native delivery uses embedded colors or explicit indexed palette values;
+it does not replace original tinted/x87 coverage blending. Neither the actor nor
+SFT parent milestone is promoted.
+
+Prospective proof `N26.text-native-20261025` is retained in SQLite at
+`rendering-twentysixth-ten-results-20261025/execution-1.json`. Release and
+ASan/UBSan each pass 413 checks, 122 refusals and 36 independent CPU/GPU pixel
+cases, including extreme signed origins, clipping, sparse and opaque-zero masks,
+palette variants, pen rollback, resident reuse without upload/readback, LRU,
+budget refusals, cache clear and lifetime balances. The existing SFT loader and
+CTest launch control pass in both configurations. External Qt/driver leak
+scanning is disabled; owned surface counts are checked explicitly. No original
+artifact or game process is consumed. Installed full-scene, physical hardware,
+performance, original file/error/coverage behavior and live replacement remain
+independent.
+
+The incoming history report checks all 22 non-journal file transitions in
+`5fa079ec..c0ac30b3` against exact payload receipts, with no missing transitions.
+It grants no retrospective execution/gate pass. This worktree is based on that
+completed batch and excludes main's pending work. Other-drive
+`working/tests/execution-1` holds retained build binaries and bounded execution
+logs; deterministic synthetic SFT inputs are defined in the hash-bound test
+source. Research reports, review databases and verified pinned SQLite backups
+are durable evidence/bookkeeping. The current retention inventory has no eligible
+cleanup payloads. Main-drive 90 GiB and cold-archive 100 GiB reserves remain in
+force; no reserve exception or storage removal was used.
+
+The final audit has no errors, no changed focused registers and no source-census
+drift; its prior unlinked-source backlog remains unchanged. All ten new scoped
+implementation claims have current execution support. The 38 coverage UI
+controls pass. Local completion uses exact SQLite reviews, verified pinned
+backups and the normal staged coverage hook, without publication or remote
+transfer.
+
+### Integrate rendering batches 24–26 — 2026-10-25
+
+Actual master `568c7304` and completed `5fa079ec`/`c0ac30b3`/`f3ca7de1`
+combine all 30 scoped surface, BMP and owned-text implementations while retaining
+master's assurance, copy and storage findings. Shared implementation files merge
+without conflicts; stable-ID/path reconciliation preserves both register and
+append-only journal histories. See [the exact combined scope](rendering-batches-24-26-merge-20261025.md).
+
+Fresh SQLite reports in `rendering-batches-24-26-merge-results-20261025/` bind
+current sources to `MERGE2426.surface-native-20261025`,
+`MERGE2426.bmp-native-20261025`, `MERGE2426.text-native-20261025` and the five
+narrow argument-comparison claims in `MERGE2426.copy-original-20261025`.
+Release/ASan+UBSan each pass 429 surface checks, 175 BMP CPU/GPU fixtures with
+50,792 checks, and 36 text CPU/GPU cases with 413 checks. The 966 unchanged-original
+copy cases and independent bar supplier pass with immutable-manifest bookends.
+Nine combined Python suites pass 128 tests. These results do not promote broad
+original allocation/error/coverage, hardware, performance, full-scene or live
+replacement acceptance. Historical results and source hashes remain unchanged.
+
+The history audit retains its initial missing README receipt, then records an
+explicit retrospective document receipt and accounts for all 511 transitions in
+eleven commits. This does not assert a past gate pass or new engine execution.
+The existing master evidence snapshot is fully hash/integrity checked against
+its retained catalog, including 139 base-only payloads. Normal completion retains
+verified local review/pending backups, uses the required staged hook and makes a
+real two-parent merge before main's fast-forward. Pending main edits are saved
+and restored through SQLite and remain outside the committed merge claim.
+
+Builds, raw bounded native/original fixtures and logs reside under the owned
+other-drive `working/tests/batch-{24,25,26}-1` paths, with retain pins. Durable
+reports, review databases and backup catalogs remain pinned. The new retention
+inventory reports no eligible cleanup payloads; this merge removes no payloads
+and uses the normal main-drive 90 GiB and cold-archive 100 GiB reserves. Archive
+provenance is not engine validation. No remote publication or transfer is needed.
+
+The final candidate also retains cursor-provider recovery from concurrent master
+`618cc26c`. None of the three native execution source maps changed; all 30
+implementation claims and five copy comparisons remain source-current. New
+master history, source census, audit and planning controls are checked separately.
+
+The imported `CSR1.helpers`, `CSR1.providers`, `CSR1.helpers02`,
+`CSR1.providers02`, `CSR1.copy-live01`, `CSR1.helpers06` and
+`CSR1.providers06` evidence records (20261025) retain their exact historical
+source hashes and statuses. Their broad BMP/build-source fingerprints are stale
+after integration; validation on the combined source remains pending for those
+cursor claims. The fresh scoped batch proofs above do not renew them.
+
+The final candidate also retains rendering-review closeout from concurrent master. None of the three native execution source maps changed; all30
+implementation claims and five copy comparisons remain source-current. New
+master history, source census, audit and planning controls are checked separately.
+
+The final base also retains master `568c7304` and its `ece850f9` static-review
+pins. Two exact intermediate payloads are recovered with their original hashes
+for the extended history check. Fresh native source fingerprints are unchanged;
+this metadata integration does not renew historical cursor or rendering claims.
+
+The final integration also retains subsequent master `0785dd96` including its
+alternate-canvas owner and terrain-light suppliers. Commit `ab8a02ea` preserves the first normally gated
+merge of all 30 components. Upstream changes intersect none of the three native
+execution source maps, so their exact current-source claims remain valid. The
+coverage planning fixture now lists the new independent owner as unrated; this
+grants no implementation, comparison or acceptance credit. Fresh final planning,
+history, census and audit results are retained separately. Historical cursor
+limitations and all original scope boundaries above remain unchanged.
+
+The final first parent is `0785dd96`, retaining the alternate-canvas owner,
+terrain-light suppliers and cursor lifetime recovery. Main now holds the owned
+`ab8a02ea` merge while the final exact tree is reviewed in the isolated worktree.
+Six tracked pending edits and eleven untracked files are retained in SQLite
+with verified backups; three overlapping metadata edits are restored after the
+final fast-forward. Later unstaged edits are captured separately before it.
+
+Final review accounts for 842 transitions across 21 commits without receipt
+gaps. The 4,420-source census has no drift; all 30 scoped implementations and
+five narrow original-argument comparisons have current execution bindings.
+The imported `CUR25.unaligned-harness-failure` remains historical against its
+changed fixture; it is retained negative evidence, not a renewed validation.
+
+The final UI control exposed two older terrain work reviews missing the newly
+linked supplier document. Their exact prior reviews and fingerprints remain
+retained; only the new document pin is added as pending source review. The
+planning fixture now expects needs-review for those two static assessments
+while preserving recorded N23 execution and all acceptance/status boundaries.
+See `pending-terrain-work-review-inputs.json`; no immutable central review or
+engine evidence fingerprint is refreshed. The failed control attempt is retained.
+
+Final control closeout passes all 128 cases: 38 affected planning controls are
+rerun after the pending-input repair; 90 independent controls retain their
+passing results with unchanged source inputs. All 15 central static-review
+readers pass. The final audit has no errors or source-census drift.
 
 ### Owned native cursor generations (2026-10-25)
 
