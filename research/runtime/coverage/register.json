@@ -3371,7 +3371,8 @@
       ],
       "documents": [
         "research/formats/sft-native-loading.md",
-        "assets/README.md"
+        "assets/README.md",
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
       ],
       "implementation": [
         "assets/sft.cpp",
@@ -3390,7 +3391,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N26 adds ten separately scoped native owned-text resource/session/CPU/GPU/cache services. Existing compatibility FontText, byte/line kernels, raw provider and Qt outline paths remain separate consumers/suppliers. Original platform/errors/tinted-coverage, installed scene/planner cadence, hardware and live acceptance remain independent; this parent receives no new status credit."
+      ]
     },
     {
       "id": "AS.nod",
@@ -139396,7 +139400,8 @@
         "research/runtime/actor-particle-provider-20261022.md",
         "research/runtime/actor-emission-provider-20261022.md",
         "research/runtime/emitter-families-provider-20261022.md",
-        "research/runtime/owner-task-storage-20261023.md"
+        "research/runtime/owner-task-storage-20261023.md",
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -139534,7 +139539,10 @@
       "implementation_review": {
         "review": "DSVC2.actor-service-source-review-final-20261021",
         "entry": "RS.actor-downstream-services"
-      }
+      },
+      "remaining_gaps": [
+        "N26 adds ten separately scoped native owned-text resource/session/CPU/GPU/cache services. Existing compatibility FontText, byte/line kernels, raw provider and Qt outline paths remain separate consumers/suppliers. Original platform/errors/tinted-coverage, installed scene/planner cadence, hardware and live acceptance remain independent; this parent receives no new status credit."
+      ]
     },
     {
       "id": "RS.actor-downstream-value-services",
@@ -148255,6 +148263,566 @@
       },
       "remaining_gaps": [
         "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.text.font-resource",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text font-resource",
+      "scope": "Strict owned-v3 SFT acquisition and complete bounded metric/glyph admission; immutable shared font/plan lifetime independent of the file and caller source. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.byte-advance",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text byte-advance",
+      "scope": "Stateful native text-session contour advance with optional commit and nonmutating probe using the existing recovered byte supplier. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.byte-placement",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text byte-placement",
+      "scope": "Single-byte native glyph plan with suppressed bytes and atomic session cursor publication through the existing recovered supplier. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.string-placement",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text string-placement",
+      "scope": "Bounded terminated byte-run planning with suppression and complete cursor rollback on a late invalid byte. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.rectangle-layout",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text rectangle-layout",
+      "scope": "Application-bound recovered rectangle layout with owned line/glyph result and transactional session state. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.height-layout",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text height-layout",
+      "scope": "Application-bound recovered height-limited layout with owned consumed-source result and transactional session state. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.measurement",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text measurement",
+      "scope": "Explicit nonmutating application text measurement, returning the existing supplier state without modifying the session pen. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.cpu-pixels",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text cpu-pixels",
+      "scope": "Native atomic RGB565 glyph raster with separate mask, signed origins, viewport clipping and embedded or supplied indexed colors. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.gpu-pixels",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text gpu-pixels",
+      "scope": "Owned native text plans through actual RGB565 GPU glyph upload and clipped sprite composites; complete logical preflight but no physical GL transaction. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.gpu-cache",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text gpu-cache",
+      "scope": "Native bounded glyph-and-palette-value LRU cache, resident reuse without new upload/readback, eviction and explicit owned retirement. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
       ]
     }
   ],
@@ -334272,6 +334840,57 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "N26.text-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten owned native text resource/application/raster/cache components under partial actor/SFT parents. Native policy only: existing byte/layout suppliers, independent fixture pixels and software OpenGL delivery. No new original, tinted coverage, RGB555, installed/hardware/performance/full-scene/live claim.",
+      "record": "research/runtime/rendering-twentysixth-ten-results-20261025/execution-1.json",
+      "sha256": "6e15dbd514224023da25e9084dc9e74a21454dae2fb9894eeb05129251beb548",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -361939,7 +362558,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ff05d16c1c57650f2a32a333b96bdca01be3ba76127eb4f6eb803f3d4b17f1c0.json",
-    "sha256": "ff05d16c1c57650f2a32a333b96bdca01be3ba76127eb4f6eb803f3d4b17f1c0"
+    "path": "research/runtime/coverage/source-index-eaac84850686cbe5720d78040bb14b33c8076e414fde731642c153cbe3751cfa.json",
+    "sha256": "eaac84850686cbe5720d78040bb14b33c8076e414fde731642c153cbe3751cfa"
   }
 }

@@ -22106,3 +22106,46 @@ The 38 coverage UI controls pass. Exact unique test/producer source versions
 from the first execution are retained in SQLite beside both execution reports.
 Local completion uses the normal coverage hook and verified pinned SQLite
 backups; no evidence publication or remote transfer is part of this batch.
+
+### Owned native text services — 2026-10-25 (N26)
+
+Ten native policy components extend partial actor/font and SFT work: immutable
+font acquisition, session contour probes/updates, byte placement, terminated
+string placement, rectangle layout, height-limited layout, nonmutating
+measurement, clipped CPU output, clipped GPU output and bounded glyph caching.
+Existing recovered byte/line algorithms, compatibility font consumers and Qt
+menu outline fonts remain separate suppliers/consumers. See
+[the exact domains and limits](rendering-twentysixth-ten-20261025.md).
+The new native delivery uses embedded colors or explicit indexed palette values;
+it does not replace original tinted/x87 coverage blending. Neither the actor nor
+SFT parent milestone is promoted.
+
+Prospective proof `N26.text-native-20261025` is retained in SQLite at
+`rendering-twentysixth-ten-results-20261025/execution-1.json`. Release and
+ASan/UBSan each pass 413 checks, 122 refusals and 36 independent CPU/GPU pixel
+cases, including extreme signed origins, clipping, sparse and opaque-zero masks,
+palette variants, pen rollback, resident reuse without upload/readback, LRU,
+budget refusals, cache clear and lifetime balances. The existing SFT loader and
+CTest launch control pass in both configurations. External Qt/driver leak
+scanning is disabled; owned surface counts are checked explicitly. No original
+artifact or game process is consumed. Installed full-scene, physical hardware,
+performance, original file/error/coverage behavior and live replacement remain
+independent.
+
+The incoming history report checks all 22 non-journal file transitions in
+`5fa079ec..c0ac30b3` against exact payload receipts, with no missing transitions.
+It grants no retrospective execution/gate pass. This worktree is based on that
+completed batch and excludes main's pending work. Other-drive
+`working/tests/execution-1` holds retained build binaries and bounded execution
+logs; deterministic synthetic SFT inputs are defined in the hash-bound test
+source. Research reports, review databases and verified pinned SQLite backups
+are durable evidence/bookkeeping. The current retention inventory has no eligible
+cleanup payloads. Main-drive 90 GiB and cold-archive 100 GiB reserves remain in
+force; no reserve exception or storage removal was used.
+
+The final audit has no errors, no changed focused registers and no source-census
+drift; its prior unlinked-source backlog remains unchanged. All ten new scoped
+implementation claims have current execution support. The 38 coverage UI
+controls pass. Local completion uses exact SQLite reviews, verified pinned
+backups and the normal staged coverage hook, without publication or remote
+transfer.

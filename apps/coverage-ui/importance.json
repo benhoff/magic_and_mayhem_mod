@@ -3583,6 +3583,76 @@
       "work_type": "capability",
       "reason": "A bounded native visual input format already routed through the resource manager and renderer. Installed BMP inventory currently uses direct24, so this expands native input support without resolving an identified original-game blocker. Importance is independent of implementation effort or validation.",
       "contract_sha256": "b13f82ab481a22ecec426b37ef1fa314748823906f1077385e53352f6daedace"
+    },
+    {
+      "behavior": "NP.text.font-resource",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "a33383e014408c17e577177ae67941ac883bcccc6ebdc2c72d4830fc567df52f"
+    },
+    {
+      "behavior": "NP.text.byte-advance",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "b7f7ae651302e76e5c532a3010ec474be6d98b50fa21656dd8e4894a198ea78d"
+    },
+    {
+      "behavior": "NP.text.byte-placement",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "ab0ff4008b7d217ab447390d7e650f2625f88002a6e40fbdcf220aea1e08524e"
+    },
+    {
+      "behavior": "NP.text.string-placement",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "3beb2392e87348d387be926cfab006ab344532f9b78c15a005feb90e88d36ebe"
+    },
+    {
+      "behavior": "NP.text.rectangle-layout",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "07990635739e17c016c0d1b47d72f082058bd3a6b465ebd272c457496ad78333"
+    },
+    {
+      "behavior": "NP.text.height-layout",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "0e9a468244157f77057a5df618539ab58fa8b688842cefc0a5b5f57f29bde16e"
+    },
+    {
+      "behavior": "NP.text.measurement",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "c7b0e47057437b245b26e953971c8bde51038433e25063fdb6eaa5571dd26d12"
+    },
+    {
+      "behavior": "NP.text.cpu-pixels",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "2b5edff0c6adaab03ce49a76ac9a13482267cc56100051b008b59cda6efddb5e"
+    },
+    {
+      "behavior": "NP.text.gpu-pixels",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "d7bf9f79990acf000cbfc8a1f18d76240f3c161cb9d302206581d34a2be6057b"
+    },
+    {
+      "behavior": "NP.text.gpu-cache",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "3a348226ff1bd8a1005b0de87ca9e6c0ffcc4e8b63d9db31f33fcdf573935e78"
     }
   ],
   "tranche_plan": {
