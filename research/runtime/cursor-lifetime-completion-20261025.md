@@ -75,7 +75,7 @@ the original delimiter. Separate assertions require the12-frame cap and preserva
 of the unused thirteenth frame word. Resource-call scripts leave selected creations
 unbound,and mutex creation returns either zero or an identity; caller ordering,
 unchecked continuation and return1 still match. Both immutable-input manifest
-bookends pass. setup01 predates the explicit cap assertions;setup02 is current.
+bookends pass. setup01 predates the explicit cap assertions;setup02 is the earlier source-bound result and setup03 is current after tooling integration.
 
 Real CRT/profile parsing,physical allocations,COM failure reachability and invalid
 memory remain separate from this valid-memory scripted-endpoint comparison.
@@ -168,3 +168,15 @@ committed-history review covers679 file transitions with exact receipts. The
 initial missing .txt artifact receipt remains visible in history01 and is
 corrected by an explicit retrospective pending receipt in history02/03;this is
 not a claim that a historical gate checked that artifact.
+
+The final merge includes master d98befe5 and its evidence-filter improvements.
+The writer is an explicit test dependency,so native10 and setup03 reexecute
+rather than refreshing native09/setup02 source hashes. Native10 passes714
+assertions and187 whole frames in each configuration;157 optimized and216
+sanitized accepted publications exactly equal their drained counts. Setup03
+passes528 complete original-caller cases per configuration with both original
+manifest checks. Historical results and their original fingerprints remain.
+The extended committed-history review covers813 transitions over14 commits
+with no missing exact receipts. The exploratory listing is now a verified
+SQLite reference with byte-identical payload;that storage correction does not
+claim historical compliance or any new engine behavior.

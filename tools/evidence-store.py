@@ -38,6 +38,7 @@ def main():
     p.add_argument('path')
     p.add_argument('--output', type=Path)
     sub.add_parser('install-filter')
+    sub.add_parser('filter-process', help='Persistent Git clean/smudge protocol (no report expansion)')
     sub.add_parser('verify-push')
     p = sub.add_parser('publish')
     p.add_argument('--database', type=Path)
@@ -47,9 +48,13 @@ def main():
     p.add_argument('path')
     args = parser.parse_args()
     root = args.root.resolve()
-    if args.action == 'clean':
+    if args.action in {'clean', 'filter-process'}:
         root = Path(subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], text=True).strip())
-        clean(root, args.path, sys.stdin.buffer, sys.stdout.buffer)
+        if args.action == 'filter-process':
+            from evidence_filter import serve
+            serve(root, sys.stdin.buffer, sys.stdout.buffer)
+        else:
+            clean(root, args.path, sys.stdin.buffer, sys.stdout.buffer)
         return
     if args.action == 'verify-push':
         print(json.dumps({'verified_pointers': verify_push(root, sys.stdin.read())}))

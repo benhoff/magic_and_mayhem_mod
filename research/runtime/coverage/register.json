@@ -147452,7 +147452,8 @@
         "CUR26.native-attempt06",
         "CUR26.native-attempt07",
         "CUR26.owned-native08",
-        "CUR26.owned-native09"
+        "CUR26.owned-native09",
+        "CUR26.owned-native10"
       ],
       "status": {
         "understanding": "scoped",
@@ -147462,7 +147463,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Native09 reexecutes714 optimized and714 ASan/UBSan assertions with187 complete frames per configuration after master6919cb93 integration. Legacy source aliases,physical GPU/context-loss recovery and installed live semantic cursor takeover remain unproved. Native08 remains historical with its exact original source fingerprints."
+        "Native10 reexecutes714 optimized and714 ASan/UBSan assertions with187 complete frames each after master d98befe5 tooling integration;157/216 accepted publications respectively equal drained counts. Legacy source aliases,physical GPU/context-loss recovery and installed live semantic cursor takeover remain unproved. Native08/09 retain their historical exact fingerprints."
       ]
     },
     {
@@ -147542,7 +147543,8 @@
       ],
       "evidence": [
         "CUR26.setup01",
-        "CUR26.setup02"
+        "CUR26.setup02",
+        "CUR26.setup03"
       ],
       "status": {
         "understanding": "scoped",
@@ -147552,7 +147554,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "528 cases pass in optimized and ASan/UBSan32 with the complete original setup body unchanged. Scripted CRT/OS/resource endpoints do not prove real allocation/COM/profile failure reachability,invalid-memory behavior or complete indirect alias/writer closure."
+        "Setup03 reruns528 cases in optimized and ASan/UBSan32 after master d98befe5 tooling integration,with the complete original setup body unchanged. Scripted endpoints do not prove real allocation/COM/profile failure reachability,invalid-memory behavior or complete indirect alias/writer closure. Setup01/02 retain historical fingerprints."
       ]
     },
     {
@@ -338587,6 +338589,70 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CUR26.owned-native10",
+      "kind": "native_integration",
+      "scope": "Native private RGB565 OpenGL canvas/atlas/save-under generations; independent whole-frame scalar oracle,metadata-only concurrent producers,cancellation and owner-thread GPU teardown. Reexecuted after actual master d98befe5 evidence-writer integration. No original code execution or legacy alias admission.",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/native10.json",
+      "sha256": "55929a474db9f69f075ec6ef2fcee9c9f6d1db42469113ebcb2579a0851a8048",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/optimized/complete_pixel_cases",
+          "equals": 187
+        },
+        {
+          "pointer": "/sanitized/complete_pixel_cases",
+          "equals": 187
+        },
+        {
+          "pointer": "/private_display_retired",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CUR26.setup03",
+      "kind": "isolated_original",
+      "scope": "Bounded null-terminated current directory and profile strings with representable signed decimal conversions: unchanged full4a30b0 setup caller,INI path joining,repeated conversions,22 descriptors,missing-key preservation,at most12 frame tokens,trailing assignment text,resource create/fill/key/bitmap order,cell grid and unchecked mutex assignment. Scripted CRT/OS/allocator endpoints; does not recover allocator internals,real COM or indirect alias/writer ownership.",
+      "record": "research/runtime/cursor-lifetime-completion-results-20261025/setup03.json",
+      "sha256": "334bdb526724c55c0dd85574cf5ce3a4152d648559842898149696d87d0e2c55",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/manifest_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/optimized/cases",
+          "equals": 528
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 528
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -364903,7 +364969,8 @@
       ],
       "evidence": [
         "CUR26.owned-native08",
-        "CUR26.owned-native09"
+        "CUR26.owned-native09",
+        "CUR26.owned-native10"
       ]
     },
     {
@@ -366528,7 +366595,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6fb84dfa26ea8a114bcbc080f011058605d1c8a69fb0217b84ebab76b7b1f307.json",
-    "sha256": "6fb84dfa26ea8a114bcbc080f011058605d1c8a69fb0217b84ebab76b7b1f307"
+    "path": "research/runtime/coverage/source-index-73beff46c4280935c8cce0e5f6e7a3c7aa89721dc7f78bdf13d19898a74907c8.json",
+    "sha256": "73beff46c4280935c8cce0e5f6e7a3c7aa89721dc7f78bdf13d19898a74907c8"
   }
 }
