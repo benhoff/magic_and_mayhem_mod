@@ -1,3 +1,21 @@
+## Official1.100 alternate-owner recovery boundary — 2026-10-25
+
+The supplied official update is reproducibly unpacked by its unchanged x86
+extractor,stopping before program launch. Its original synchronous RTPatch API
+then reconstructs unmodified1.100 in a fresh hash-verified retail copy. All4,834
+baseline files and original manifests pass before/after;the private prefix
+retires. The updated executable is SHA405001ab and retained in SQLite.
+
+All stored sections match NoCD except16bytes at four drive/media branches.
+Complete display-rebuild,initializer,graphics-shutdown,canvas-retirement and
+both copy bodies are byte-identical,as are the five/two pointer-read literals.
+The reviewed NoCD edits did not remove those original ownership-related bodies.
+This is static artifact recovery;no game was launched or native policy promoted.
+Original allocator,publication,initial pixels,base/source relationship,writers
+and retirement ownership remain partial. Unknown computed/bulk/external writers
+prevent a global dormant/unimplemented claim. See [exact findings,refusals and
+reproduction](alternate-original-update-recovery-20261025.md).
+
 ## Native resident alternate canvas integration and original CFG search — 2026-10-25
 
 The opt-in native resident World route now owns a separate zero-padding GPU
