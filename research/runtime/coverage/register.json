@@ -3828,7 +3828,7 @@
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "All four terrain traversal rotations",
-      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Selected four-orientation traversal on owned grids, with physical-cell flag snapshots, logical carry/wrap annotations and bounded arithmetic/coordinate refusal. Original comparison covers safe traversal/ordinary queue and flag effects; full world/light/entity production and live ownership remain separate.",
       "confidence": "provisional",
       "original": [
         {
@@ -3853,7 +3853,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-traversal-rotations.md"
+        "research/runtime/terrain-traversal-rotations.md",
+        "research/runtime/rendering-twentythird-ten-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_traversal.cpp",
@@ -3862,7 +3863,9 @@
       "tests": [
         "tests/terrain-traversal-test.cpp",
         "tests/terrain-traversal-reference.cpp",
-        "tools/test-terrain-traversal.py"
+        "tools/test-terrain-traversal.py",
+        "tests/rendering-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentythird-ten.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_traversal",
@@ -3874,11 +3877,13 @@
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_traversal-20261019",
         "HIGH04.RE.terrain_traversal-20261020",
-        "RE.terrain-traversal-closeout-20261020"
+        "RE.terrain-traversal-closeout-20261020",
+        "N23.terrain-native-20261025",
+        "N23.terrain-original-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -3893,7 +3898,13 @@
         "reconstruction/rendering/sprite_queue.cpp",
         "reconstruction/rendering/sprite_queue.hpp",
         "tools/draft-coverage-claims.py",
-        "tools/coverage_claims.py"
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/CMakeLists.txt"
+      ],
+      "validation_domain": "Selected four-orientation traversal on owned grids, with physical-cell flag snapshots, logical carry/wrap annotations and bounded arithmetic/coordinate refusal. Original comparison covers safe traversal/ordinary queue and flag effects; full world/light/entity production and live ownership remain separate.",
+      "remaining_gaps": [
+        "Original world/light/entity production, full camera/input lifecycle, allocation and live ownership remain separate from physical-flag snapshot traversal."
       ]
     },
     {
@@ -4214,7 +4225,7 @@
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Region connector constraints",
-      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Owned descriptor-bank admission, expansion, connector lookup, multi-block carry/admission, candidate/location tables and bounded49-entry pruning. Shared native admission is nonmutating. Original allocation, malformed connector dereferences, full50-entry pruning and live generation remain separate.",
       "confidence": "provisional",
       "original": [
         {
@@ -4249,7 +4260,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-region-constraints.md"
+        "research/runtime/terrain-region-constraints.md",
+        "research/runtime/rendering-twentythird-ten-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_constraints.cpp",
@@ -4257,7 +4269,9 @@
       ],
       "tests": [
         "tests/terrain-constraints-test.cpp",
-        "tests/terrain-constraints-reference.cpp"
+        "tests/terrain-constraints-reference.cpp",
+        "tests/rendering-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentythird-ten.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_constraints",
@@ -4269,11 +4283,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_constraints-20261019",
-        "HIGH04.RE.terrain_constraints-20261020"
+        "HIGH04.RE.terrain_constraints-20261020",
+        "N23.terrain-native-20261025",
+        "N23.terrain-original-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4281,14 +4297,23 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_constraints"
-      }
+      },
+      "validation_domain": "Owned descriptor-bank admission, expansion, connector lookup, multi-block carry/admission, candidate/location tables and bounded49-entry pruning. Shared native admission is nonmutating. Original allocation, malformed connector dereferences, full50-entry pruning and live generation remain separate.",
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/CMakeLists.txt"
+      ],
+      "remaining_gaps": [
+        "Original production bank/grid allocation and ownership, malformed connector dereferences, and full50-record pruning remain outside the49-entry safe pruning contract."
+      ]
     },
     {
       "id": "RE.terrain_solver",
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Placement and bounded solver",
-      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Owned placement/removal, pruning carry and bounded one-attempt backtracking, plus transactional ordered multi-block edit publication. Atomic batch refusal is native policy; safe single-removal/solver states are compared with original. Original allocation, unsafe rollback and complete world/session integration remain separate.",
       "confidence": "provisional",
       "original": [
         {
@@ -4298,7 +4323,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-region-solver.md"
+        "research/runtime/terrain-region-solver.md",
+        "research/runtime/rendering-twentythird-ten-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_solver.cpp",
@@ -4306,7 +4332,9 @@
       ],
       "tests": [
         "tests/terrain-solver-test.cpp",
-        "tests/terrain-solver-reference.cpp"
+        "tests/terrain-solver-reference.cpp",
+        "tests/rendering-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentythird-ten.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_solver",
@@ -4318,11 +4346,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_solver-20261019",
-        "HIGH04.RE.terrain_solver-20261020"
+        "HIGH04.RE.terrain_solver-20261020",
+        "N23.terrain-native-20261025",
+        "N23.terrain-original-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4330,14 +4360,23 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_solver"
-      }
+      },
+      "validation_domain": "Owned placement/removal, pruning carry and bounded one-attempt backtracking, plus transactional ordered multi-block edit publication. Atomic batch refusal is native policy; safe single-removal/solver states are compared with original. Original allocation, unsafe rollback and complete world/session integration remain separate.",
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/CMakeLists.txt"
+      ],
+      "remaining_gaps": [
+        "Original malformed/unsafe rollback, allocator state construction and complete world/session orchestration remain separate. Atomic multi-removal publication is native policy."
+      ]
     },
     {
       "id": "RE.terrain_specific",
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Specific-placement phase",
-      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Owned request admission and selected two-pass Specific placement/fallback on bounded descriptor/grid state, with ordered diagnostics and count suppression. Shared validation includes skipped ordinary request fields as native policy. Original configuration loading, unsafe connector/rollback and production/dialog service lifetime remain separate.",
       "confidence": "provisional",
       "original": [
         {
@@ -4347,7 +4386,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-region-specific.md"
+        "research/runtime/terrain-region-specific.md",
+        "research/runtime/rendering-twentythird-ten-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_specific.cpp",
@@ -4355,7 +4395,9 @@
       ],
       "tests": [
         "tests/terrain-specific-test.cpp",
-        "tests/terrain-specific-reference.cpp"
+        "tests/terrain-specific-reference.cpp",
+        "tests/rendering-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentythird-ten.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_specific",
@@ -4367,11 +4409,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_specific-20261019",
-        "HIGH04.RE.terrain_specific-20261020"
+        "HIGH04.RE.terrain_specific-20261020",
+        "N23.terrain-native-20261025",
+        "N23.terrain-original-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4379,14 +4423,23 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_specific"
-      }
+      },
+      "validation_domain": "Owned request admission and selected two-pass Specific placement/fallback on bounded descriptor/grid state, with ordered diagnostics and count suppression. Shared validation includes skipped ordinary request fields as native policy. Original configuration loading, unsafe connector/rollback and production/dialog service lifetime remain separate.",
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/CMakeLists.txt"
+      ],
+      "remaining_gaps": [
+        "Original CFG/file/dialog services, warning UI/provider lifetime and unsafe missing-connector/rollback paths remain separate. Strict admission of malformed requests is native policy."
+      ]
     },
     {
       "id": "RE.terrain_generation",
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Reset and attempt generation",
-      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Owned post-CFG reset, Specific/solver composition and wrapping+500 seed progression, exposed as one inspectable attempt and composed into at most ten attempts. Mutated requests/source rows and final exhausted partial state are retained. Original CFG/allocation/file/dialog services and world creation/live routing remain separate.",
       "confidence": "provisional",
       "original": [
         {
@@ -4406,7 +4459,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-region-generation.md"
+        "research/runtime/terrain-region-generation.md",
+        "research/runtime/rendering-twentythird-ten-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_generation.cpp",
@@ -4414,7 +4468,9 @@
       ],
       "tests": [
         "tests/terrain-generation-test.cpp",
-        "tests/terrain-generation-reference.cpp"
+        "tests/terrain-generation-reference.cpp",
+        "tests/rendering-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentythird-ten.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_generation",
@@ -4426,11 +4482,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_generation-20261019",
-        "HIGH04.RE.terrain_generation-20261020"
+        "HIGH04.RE.terrain_generation-20261020",
+        "N23.terrain-native-20261025",
+        "N23.terrain-original-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4438,7 +4496,16 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_generation"
-      }
+      },
+      "validation_domain": "Owned post-CFG reset, Specific/solver composition and wrapping+500 seed progression, exposed as one inspectable attempt and composed into at most ten attempts. Mutated requests/source rows and final exhausted partial state are retained. Original CFG/allocation/file/dialog services and world creation/live routing remain separate.",
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/CMakeLists.txt"
+      ],
+      "remaining_gaps": [
+        "Original CFG/catalog entry, file/dialog/allocator failures and whole-world creation/scheduling remain separate from the post-CFG ten-attempt loop."
+      ]
     },
     {
       "id": "RE.terrain_catalog",
@@ -4533,11 +4600,12 @@
       "subsystem": "rendering_reconstruction",
       "kind": "native_policy",
       "title": "Generated plan composition",
-      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Owned recipe/header generation, successful assignment-to-plan translation and complete ordinary MAP assembly, used by the preview loader. Original comparison covers post-CFG generation state and plan provenance; ordinary object/reference projection and MAP assembly are native composition policies with native controls. Original full-world/pixel/allocator/file-error behavior and live acceptance remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/terrain-generated-plans.md"
+        "research/runtime/terrain-generated-plans.md",
+        "research/runtime/rendering-twentythird-ten-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_generated.cpp",
@@ -4545,7 +4613,9 @@
       ],
       "tests": [
         "tests/terrain-generated-test.cpp",
-        "tests/terrain-generated-reference.cpp"
+        "tests/terrain-generated-reference.cpp",
+        "tests/rendering-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentythird-ten.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_generated",
@@ -4556,11 +4626,12 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_generated-20261019",
-        "HIGH04.RE.terrain_generated-20261020"
+        "HIGH04.RE.terrain_generated-20261020",
+        "N23.terrain-native-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -4568,7 +4639,19 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_generated"
-      }
+      },
+      "validation_domain": "Owned recipe/header generation, successful assignment-to-plan translation and complete ordinary MAP assembly, used by the preview loader. Original comparison covers post-CFG generation state and plan provenance; ordinary object/reference projection and MAP assembly are native composition policies with native controls. Original full-world/pixel/allocator/file-error behavior and live acceptance remain separate.",
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/CMakeLists.txt",
+        "apps/terrain-preview/region_loader.cpp",
+        "apps/terrain-preview/region_loader.hpp"
+      ],
+      "remaining_gaps": [
+        "Missing Medieval REGION0 Test MAPs remain unavailable. Original CFG/file-error/allocator continuation, geometry/world/entity/water/picking production and complete scene/live acceptance remain separate. Ordinary MAP assembly/projection is native composition policy.",
+        "Native composition retains comparison none. Original oracle checks its recovered generation/plan suppliers, not original whole-MAP/scene equivalence."
+      ]
     },
     {
       "id": "RE.palette_shading",
@@ -4640,7 +4723,7 @@
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Owned light fields and selected stamps",
-      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Owned five-buffer light fields, selected distance kernels and controlled stamps, with full-batch source validation before mutation and explicit publication. Original preallocated initialization/kernels/size2..17 stamps/publication are compared. Size-one inherited storage, batch atomicity and strict malformed-input refusal are native policy; allocation/reload, source discovery/timing and complete live lighting remain separate.",
       "confidence": "provisional",
       "original": [
         {
@@ -4660,7 +4743,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-light-fields.md"
+        "research/runtime/terrain-light-fields.md",
+        "research/runtime/rendering-twentythird-ten-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_lighting.cpp",
@@ -4668,7 +4752,9 @@
       ],
       "tests": [
         "tests/terrain-lighting-test.cpp",
-        "tests/terrain-lighting-reference.cpp"
+        "tests/terrain-lighting-reference.cpp",
+        "tests/rendering-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentythird-ten.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_lighting",
@@ -4680,11 +4766,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_lighting-20261019",
-        "HIGH04.RE.terrain_lighting-20261020"
+        "HIGH04.RE.terrain_lighting-20261020",
+        "N23.terrain-native-20261025",
+        "N23.terrain-original-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4692,14 +4780,24 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_lighting"
-      }
+      },
+      "validation_domain": "Owned five-buffer light fields, selected distance kernels and controlled stamps, with full-batch source validation before mutation and explicit publication. Original preallocated initialization/kernels/size2..17 stamps/publication are compared. Size-one inherited storage, batch atomicity and strict malformed-input refusal are native policy; allocation/reload, source discovery/timing and complete live lighting remain separate.",
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/CMakeLists.txt",
+        "apps/terrain-preview/main.cpp"
+      ],
+      "remaining_gaps": [
+        "Original allocation/reload failures, production source discovery/movement, full tick/smoothing/underwater/camera-bias ownership and live lighting remain separate. Size-one inherited storage and source-batch atomicity retain explicit native policies."
+      ]
     },
     {
       "id": "RE.terrain_creature_lighting",
       "subsystem": "rendering_reconstruction",
       "kind": "recovered",
       "title": "Creature light admission and refresh",
-      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Owned creature-light admission and controlled cycle/publication, with validated native replay restoration of phase0..7/cursor0..65536 while preserving unsigned remaining/quota. Original comparisons cover changing controlled creature/relation snapshots and spectator camera branches. Original production discovery, allocation and live scheduling remain separate; restore is a native interface policy.",
       "confidence": "provisional",
       "original": [
         {
@@ -4709,7 +4807,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-creature-lighting.md"
+        "research/runtime/terrain-creature-lighting.md",
+        "research/runtime/rendering-twentythird-ten-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_creature_lighting.cpp",
@@ -4717,7 +4816,9 @@
       ],
       "tests": [
         "tests/terrain-creature-lighting-test.cpp",
-        "tests/terrain-creature-lighting-reference.cpp"
+        "tests/terrain-creature-lighting-reference.cpp",
+        "tests/rendering-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentythird-ten.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_creature_lighting",
@@ -4729,11 +4830,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_creature_lighting-20261019",
-        "HIGH04.RE.terrain_creature_lighting-20261020"
+        "HIGH04.RE.terrain_creature_lighting-20261020",
+        "N23.terrain-native-20261025",
+        "N23.terrain-original-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4741,7 +4844,16 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_creature_lighting"
-      }
+      },
+      "validation_domain": "Owned creature-light admission and controlled cycle/publication, with validated native replay restoration of phase0..7/cursor0..65536 while preserving unsigned remaining/quota. Original comparisons cover changing controlled creature/relation snapshots and spectator camera branches. Original production discovery, allocation and live scheduling remain separate; restore is a native interface policy.",
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/CMakeLists.txt"
+      ],
+      "remaining_gaps": [
+        "Original production entity lifetime, unsafe active owner sentinel lookups, allocator/scheduler and live replacement remain separate. Snapshot restoration is native policy and must be paired with the matching owned field."
+      ]
     },
     {
       "id": "RE.palette_preferences",
@@ -10317,7 +10429,7 @@
       "subsystem": "animation",
       "kind": "recovered",
       "title": "Original targeting and animation facing arithmetic",
-      "scope": "Original targeting and animation facing remain broader than the preview switch. The native command-session provider already implements wrapped canonical cell-coordinate target direction, zero-displacement preservation, the 3:2 cardinal threshold, and cameraTurn/block722 animation-facing arithmetic through its production orient callback. This accounts for existing bounded code only. Complete original targeting/visual attachment/lifetime/configured-action-base provenance, camera/global/flag lifecycle, original comparison and live replacement remain pending.",
+      "scope": "Native cell-coordinate target-facing arithmetic through the production orient callback: existing coordinate wrapping, zero-displacement preservation, strict3:2 cardinal threshold and cameraTurn/block722 animation facing. Portable delta evaluation avoids signed magnitude/product overflow. Native synthetic/provider controls do not establish original whole-targeting execution, configured action-base/attachment/camera-global/flag lifetime or live replacement.",
       "confidence": "provisional",
       "original": [
         {
@@ -10339,16 +10451,20 @@
       "documents": [
         "research/runtime/animation-direction-selection.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
-        "research/runtime/next20-implementation-progress-20261020.md"
+        "research/runtime/next20-implementation-progress-20261020.md",
+        "research/runtime/rendering-twentythird-ten-20261025.md"
       ],
       "implementation": [
         "apps/command-session/native_providers.cpp",
-        "apps/command-session/native_providers.hpp"
+        "apps/command-session/native_providers.hpp",
+        "apps/command-session/native_facing.hpp"
       ],
       "tests": [
         "tests/native-world-facing-test.cpp",
         "tools/test-native-facing-reconciliation.py",
-        "tools/test-next20-animation-controls.py"
+        "tools/test-next20-animation-controls.py",
+        "tests/rendering-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentythird-ten.py"
       ],
       "evidence": [
         "RREC02.rendering-contract-reconciliation-20261019",
@@ -10362,11 +10478,12 @@
         "HIGH03.facing-20261020",
         "HIGH04.staged-source-support-review-20261020",
         "REVIEW.shared-validation-boundaries-closeout-20261020",
-        "N20.animation.native-20261020"
+        "N20.animation.native-20261020",
+        "N23.facing-native-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -10374,7 +10491,16 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-3-20261020",
         "entry": "AN.world-facing"
-      }
+      },
+      "validation_domain": "Native cell-coordinate target-facing arithmetic through the production orient callback: existing coordinate wrapping, zero-displacement preservation, strict3:2 cardinal threshold and cameraTurn/block722 animation facing. Portable delta evaluation avoids signed magnitude/product overflow. Native synthetic/provider controls do not establish original whole-targeting execution, configured action-base/attachment/camera-global/flag lifetime or live replacement.",
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "reconstruction/rendering/CMakeLists.txt"
+      ],
+      "remaining_gaps": [
+        "Original complete targeting/action-base/visual attachment and camera/global/flag lifetime, original whole-targeting execution and live replacement remain unvalidated. Native full-range delta arithmetic does not assert original overflow equivalence."
+      ]
     },
     {
       "id": "PR.main-entry",
@@ -133719,7 +133845,7 @@
       "kind": "recovered",
       "subsystem": "rendering_reconstruction",
       "title": "Original graphics initializer: offscreen requests and alternate-state retention",
-      "scope": "Full unchanged4e40d0 with owned mode/create boundaries and unchanged58bc10/58d540 against owned successful COM callbacks.288 combinations of both video/mode settings,zero/nonzero configuration flag,three initial horizontal/two vertical paddings,zero/nonzero alternate enable/source; compare complete108byte primary/offscreen descriptors,zero color-fill request and call order. Configuration6e1f78 overwrites padding96/0; no enable/source publication or alternate storage writes in this declared boundary. Physical allocation/clear pixels, real providers, failures, whole startup and actual alternate reachability excluded.",
+      "scope": "Owned successful graphics-initializer mode/padding, complete108-byte primary/offscreen descriptor, zero clear-effects and ordered boundary request plan. Full unchanged4e40d0 and unchanged clear/format wrappers are compared against controlled successful boundaries. Native overflow refusal is policy. Real surface allocation/clear pixels, provider failures, actual alternate backing publication and live installation remain excluded.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -133738,12 +133864,19 @@
         }
       ],
       "implementation": [
-        "tools/test-original-alternate-canvas.py"
+        "tools/test-original-alternate-canvas.py",
+        "reconstruction/rendering/graphics_initializer.cpp",
+        "reconstruction/rendering/graphics_initializer.hpp"
       ],
       "tests": [
         "tests/alternate-canvas-initializer.cpp",
         "tests/alternate-canvas-publication-watch.cpp",
-        "tools/test-rendering-foundations.py"
+        "tools/test-rendering-foundations.py",
+        "tests/rendering-owned-boundaries-test.cpp",
+        "tools/test-rendering-twentythird-ten.py",
+        "tests/alternate-canvas-initializer.cpp",
+        "tests/graphics-initializer-plan-test.cpp",
+        "tools/test-graphics-initializer-plan.py"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/canvas_initializer.hpp",
@@ -133752,27 +133885,34 @@
         "tools/coverage_claims.py",
         "tools/coverage_evidence.py",
         "tools/original_x86.py",
-        "tools/test-rendering-foundations.py"
+        "tools/test-rendering-foundations.py",
+        "reconstruction/rendering/CMakeLists.txt"
       ],
       "documents": [
         "research/runtime/alternate-canvas-recovery-20261020.md",
-        "research/runtime/rendering-foundations-20261024.md"
+        "research/runtime/rendering-foundations-20261024.md",
+        "research/runtime/rendering-twentythird-ten-20261025.md"
       ],
       "evidence": [
         "ACR1.original-20261020",
-        "RF1.original-20261024"
+        "RF1.original-20261024",
+        "N23.terrain-native-20261025",
+        "N23.terrain-original-20261025",
+        "N23.initializer-native-final-20261025",
+        "N23.initializer-original-final-20261025"
       ],
       "confidence": "high_within_scope",
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Hardware watches cover transient writes to6e1f68/6c through288 bounded initializer cases; authored fixture writes exercise both watches. Actual alternate allocation/publication/lifetime and real COM failure/driver paths remain unresolved."
-      ]
+        "The request plan fixes16-bit depth and declares checked extent refusal. Other depth/global mask publication contracts retain their separate existing REC10 supplier. Actual COM/provider failure, surface allocation/clear pixels, alternate backing provenance and live installation remain unresolved."
+      ],
+      "validation_domain": "Owned successful graphics-initializer mode/padding, complete108-byte primary/offscreen descriptor, zero clear-effects and ordered boundary request plan. Full unchanged4e40d0 and unchanged clear/format wrappers are compared against controlled successful boundaries. Native overflow refusal is policy. Real surface allocation/clear pixels, provider failures, actual alternate backing publication and live installation remain excluded."
     },
     {
       "id": "RS.alternate-canvas-x87-copy",
@@ -332255,6 +332395,229 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "N23.terrain-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten bounded native ownership/consumption services. Original references compare safe selected terrain helpers and successful graphics initializer requests. Facing and atomic batch/replay/MAP composition are separately identified native policies; no original whole-scene/targeting/allocator/COM-failure/live/FPS acceptance.",
+      "record": "research/runtime/rendering-twentythird-ten-results-20261025/execution-3.json",
+      "sha256": "0e22a3fa412753b9151a16216d9adbf535a6ef82207b4fcd06fdfc5146178169",
+      "sources_pointer": "/bindings/terrain/sources",
+      "claims_pointer": "/bindings/terrain/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N23.facing-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten bounded native ownership/consumption services. Original references compare safe selected terrain helpers and successful graphics initializer requests. Facing and atomic batch/replay/MAP composition are separately identified native policies; no original whole-scene/targeting/allocator/COM-failure/live/FPS acceptance.",
+      "record": "research/runtime/rendering-twentythird-ten-results-20261025/execution-3.json",
+      "sha256": "0e22a3fa412753b9151a16216d9adbf535a6ef82207b4fcd06fdfc5146178169",
+      "sources_pointer": "/bindings/facing/sources",
+      "claims_pointer": "/bindings/facing/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N23.terrain-original-20261025",
+      "kind": "isolated_original",
+      "scope": "Selected unchanged original terrain and successful initializer fixture comparisons. The generated-plan supplier oracle remains recorded, but native generated MAP composition retains comparison none and is not linked to this original-equivalence evidence. Final initializer contract proof is superseded by N23.initializer-original-final-20261025; historical report claims and hashes are preserved.",
+      "record": "research/runtime/rendering-twentythird-ten-results-20261025/execution-3.json",
+      "sha256": "0e22a3fa412753b9151a16216d9adbf535a6ef82207b4fcd06fdfc5146178169",
+      "sources_pointer": "/bindings/original/sources",
+      "claims_pointer": "/bindings/original/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "N23.initializer-native-final-20261025",
+      "kind": "native_integration",
+      "scope": "Successful16-bit owned initializer request plan over the existing recovered backend. Complete descriptors, mode/padding/clear effects and ordering compare with unchanged original initializer/clear/format wrappers at owned successful boundaries. Native extent overflow refusal is policy. No real surface allocation/clear pixels, masks/provider failure, alternate publisher or live acceptance.",
+      "record": "research/runtime/rendering-twentythird-ten-results-20261025/initializer-final.json",
+      "sha256": "3e1e3dba1cc74eb2948aaee3e667d2d6ae87dc8c200526c74f478abd47096773",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 288
+        },
+        {
+          "pointer": "/original/complete_descriptors_compared",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/real_surface_pixels",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N23.initializer-original-final-20261025",
+      "kind": "isolated_original",
+      "scope": "Successful16-bit owned initializer request plan over the existing recovered backend. Complete descriptors, mode/padding/clear effects and ordering compare with unchanged original initializer/clear/format wrappers at owned successful boundaries. Native extent overflow refusal is policy. No real surface allocation/clear pixels, masks/provider failure, alternate publisher or live acceptance.",
+      "record": "research/runtime/rendering-twentythird-ten-results-20261025/initializer-final.json",
+      "sha256": "3e1e3dba1cc74eb2948aaee3e667d2d6ae87dc8c200526c74f478abd47096773",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 288
+        },
+        {
+          "pointer": "/original/complete_descriptors_compared",
+          "equals": 576
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/real_surface_pixels",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -359922,7 +360285,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6ad2ba181f3504888125cf8180d9898ca6a528cccc0550ec88830e55c61fc6ab.json",
-    "sha256": "6ad2ba181f3504888125cf8180d9898ca6a528cccc0550ec88830e55c61fc6ab"
+    "path": "research/runtime/coverage/source-index-f7d00a54e9334820a1fad989236657140e1e37ace2c8b42f0076287bb8c920c7.json",
+    "sha256": "f7d00a54e9334820a1fad989236657140e1e37ace2c8b42f0076287bb8c920c7"
   }
 }

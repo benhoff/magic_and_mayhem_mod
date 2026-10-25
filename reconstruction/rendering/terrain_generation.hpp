@@ -17,6 +17,10 @@ struct RegionGenerationResult {
 };
 // Reset one described attempt, retaining stored source rows and descriptor data.
 RegionPlacementState resetRegionGenerationAttempt(RegionPlacementState);
+// One inspectable owned attempt: reset, Specific phase, solver and wrapping +500.
+// Native stepping boundary; repeated failed steps retain mutated requests/rows.
+RegionGenerationResult stepRegionGeneration(RegionPlacementState,
+    std::vector<RegionSpecificRequest>,std::uint32_t seed);
 // Selected caller loop after CFG/catalog loading. At most ten attempts; requests
 // survive resets and the seed advances by 500 even after a successful attempt.
 // Owns the final state, including partial placements after exhausted attempts.

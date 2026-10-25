@@ -34,6 +34,9 @@ public:
            unsigned scanLimit,int player,const TerrainLightRelations&,
            TerrainCreatureLightControls={});
  const TerrainCreatureLightState& state() const{return state_;}
+ // Restore an owned replay snapshot. Unsigned remaining/quota wrap is retained;
+ // phase and cursor must stay in the native cycle/storage domain.
+ void restore(TerrainCreatureLightState);
 private:
  TerrainCreatureLightState state_;
 };

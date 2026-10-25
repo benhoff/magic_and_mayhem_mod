@@ -82,7 +82,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Original targeting and animation facing arithmetic: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "a0ef85ea7bdb28344faba69fd21eba7fd54b158499965987220715b905ff992d"
+      "contract_sha256": "b69e35ea3728c94cf11b3aaf8982722cb8b2173589ef270010cb860ab0ce675a"
     },
     {
       "behavior": "NP.native-clipped-image-copy",
@@ -2081,35 +2081,35 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Region connector constraints: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "aa4e5a1ad733ea49614ef03818cd7c358351c180246ffe45f8a0945c7595f23b"
+      "contract_sha256": "a20a25673f63964f931d9eed2358a95147dbc5322ec4160721493bcad9e7c552"
     },
     {
       "behavior": "RE.terrain_creature_lighting",
       "weight": 4,
       "work_type": "capability",
       "reason": "Creature light admission and refresh: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "2e0ea626d8d574908be5a6d654bad5553a2c971b2b42131319895e6582028c3f"
+      "contract_sha256": "17b1003632aea854c567f7c06a88fc4c44d5593fc124a490c799598bf456da7a"
     },
     {
       "behavior": "RE.terrain_generated",
       "weight": 4,
       "work_type": "capability",
       "reason": "Generated plan composition: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "e69dbdbdad4a3af25c4502527f2dacb00f9430970ec17f949c5c1d6e5ce3715b"
+      "contract_sha256": "514a66a350c49a1aff7f45556cae6c772ec3cdc48287457e68937e56b66c5259"
     },
     {
       "behavior": "RE.terrain_generation",
       "weight": 4,
       "work_type": "capability",
       "reason": "Reset and attempt generation: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "30ba59a33768257334aad8cc735ae06a4cc52addcdf910cdce7ca042a906c436"
+      "contract_sha256": "0d46a5349010f4dc5d476c98d939fa224cc4b83e260411afb6f05877c7fc9ae7"
     },
     {
       "behavior": "RE.terrain_lighting",
       "weight": 4,
       "work_type": "capability",
       "reason": "Owned light fields and selected stamps: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "0262bcdd0abd40344fae55aac0a5734390d4ef3ef12d4d031219fd0c8f30c323"
+      "contract_sha256": "0e634e23a398413928977d0fe81a4533d42c5ffd750150e01416d84567218b3e"
     },
     {
       "behavior": "RE.terrain_map",
@@ -2144,14 +2144,14 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Placement and bounded solver: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "44091b9cfcd58d939c9d3d94ef7987a3f49e8f7dd27c15badc63dfdb1481e130"
+      "contract_sha256": "9e5e026a6486e224bf617e62288405587221c3461ad22c71a9b7c76413574470"
     },
     {
       "behavior": "RE.terrain_specific",
       "weight": 4,
       "work_type": "capability",
       "reason": "Specific-placement phase: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "a4de99487b92769ffba605f65377ac0290f30be866b2a97128b44080a57efcb1"
+      "contract_sha256": "d1277cac81e4da1a489448849de31ea14ca9794f3a67342d0a1add56832eced6"
     },
     {
       "behavior": "RE.terrain_submission",
@@ -2165,7 +2165,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "All four terrain traversal rotations: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "9dbe81be647ac8147a1896325abfcf84c757ba33b3f8d0afdf2503a08fa2af31"
+      "contract_sha256": "251a9957d4395e5cf9d1ff0927ecb252ea0eb8d069cf7786325831366847bac1"
     },
     {
       "behavior": "RS.canvas-bind-clip",
@@ -2906,8 +2906,8 @@
       "behavior": "RS.alternate-canvas-initializer",
       "weight": 3,
       "work_type": "original_recovery",
-      "reason": "Focused original initializer call/descriptor comparison. It is a bounded assurance supplier alongside the independent REC10 initializer model; its runner-only implementation remains partial and does not establish actual alternate allocation or publication.",
-      "contract_sha256": "c3e78f0c8d8b837ebade5ddd3cbb62dfd6672c0b2ae5eed2b7d131861d25ec3c"
+      "reason": "Bounded original initializer assurance with an owned request-plan adapter over the existing recovered backend. Successful descriptor/call-order comparison is separate from actual alternate storage and physical provider acceptance.",
+      "contract_sha256": "a4e683859594c1015974d0391954c96deb160f1929dad0b228c883d0c8fdbc47"
     },
     {
       "behavior": "RS.alternate-canvas-x87-copy",
@@ -21332,50 +21332,58 @@
             "documents": [
               "research/runtime/terrain-region-constraints.md"
             ],
-            "contract_sha256": "aa4e5a1ad733ea49614ef03818cd7c358351c180246ffe45f8a0945c7595f23b",
-            "reviewed_implementation": "partial",
+            "contract_sha256": "a20a25673f63964f931d9eed2358a95147dbc5322ec4160721493bcad9e7c552",
+            "reviewed_implementation": "scoped",
             "remaining_at_review": "Renew bounded connector comparisons; runtime allocator/object identity is excluded.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "terrain_constraints.cpp implements rotated edge/connector admission and carry checks. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "Bounded native ownership/consumption boundary implemented and freshly validated by N23. Owned descriptor-bank admission, expansion, connector lookup, multi-block carry/admission, candidate/location tables and bounded49-entry pruning. Shared native admission is nonmutating. Original allocation, malformed connector dereferences, full50-entry pruning and live generation remain separate.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 683, \"original\": {\"accepted\": 18150, \"admissions\": 39344, \"all_match\": true, \"candidate_tables\": 7200, \"choices\": 7200, \"connector_searches\": 2048, \"installed_descriptors\": 1736, \"installed_maps\": 683, \"location_tables\": 500, \"prunes\": 8192}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "Release and ASan/UBSan native boundary controls pass. Safe selected original comparisons and native sanitizer corpora pass; atomic batch/replay/MAP policies are identified separately. No whole-scene or live acceptance.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Renew bounded connector comparisons; runtime allocator/object identity is excluded.",
+              "acceptance_summary": "Original production bank/grid allocation and ownership, malformed connector dereferences, and full50-record pruning remain outside the49-entry safe pruning contract.",
               "evidence": [
                 "ORIGINAL.terrain-region-constraints",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_constraints-20261019"
+                "HTERR1.RE.terrain_constraints-20261019",
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate production descriptor/grid ownership and continuations beyond the selected safe domain."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Renew bounded connector comparisons; runtime allocator/object identity is excluded."
+                  "action": "Original production bank/grid allocation and ownership, malformed connector dereferences, and full50-record pruning remain outside the49-entry safe pruning contract."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/rendering/terrain_constraints.cpp",
-                  "line": 6,
-                  "text": "void validate(const RegionDescriptorBank& bank) {"
+                  "line": 21,
+                  "text": "void validateRegionDescriptorBank(const RegionDescriptorBank& bank) { validate(bank); }"
+                },
+                {
+                  "path": "reconstruction/rendering/terrain_constraints.hpp",
+                  "line": 19,
+                  "text": "void validateRegionDescriptorBank(const RegionDescriptorBank&);"
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/terrain_constraints.cpp": "7473519b34bf90b9238270ade4726218a89baba74df7268ac0c0c7b962176ff1",
-                "reconstruction/rendering/terrain_constraints.hpp": "41b656d9a0a060edb2417e501d2b334658dddd80432799b625be8969af68a636",
+                "reconstruction/rendering/terrain_constraints.cpp": "0ed3f1d2f51870d7a696f48e7713e6ea24aa75c82f5045cc2c64a02e3024ceda",
+                "reconstruction/rendering/terrain_constraints.hpp": "bde989b9b600f5c89ee517ac1424475b08b07bba179d20b9699d6035e4144faa",
                 "research/runtime/terrain-region-constraints.md": "cab6be0f5a54ce4d03d20314c52c294c2885c09258447c5ffecc33800e542af1",
                 "tests/terrain-constraints-reference.cpp": "c59e914663b48abe6f2bcaed5e420bf578741b3faf213d526c60cf2c4d3ea0a2",
                 "tests/terrain-constraints-test.cpp": "09d11139d8775173970964c454fb12319ff1d2134548acb28242ef7e5f16654d",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "research/runtime/native-scene-accounting-closeout-20261020.md": "1e4b418c05c5e1e75e73f2c39a575130314c010650744f297e6453315ad28f89",
+                "tests/rendering-owned-boundaries-test.cpp": "a2b10a4b68f7b769432a4352520e5da7aa486db1d7411c646332cb0bc6465cb7",
+                "research/runtime/rendering-twentythird-ten-20261025.md": "4adca5e50d250c83c6cb6fc5c7e761c6a7c04c9b807c50f43c852018089c99bf",
+                "tools/test-rendering-twentythird-ten.py": "c033e5f0716a2a0f04bca00eca5092db3138dbe8126d7671a24a29ab7fb3a384"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ]
             },
             "execution_result": {
@@ -21383,7 +21391,52 @@
               "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
               "remaining": "Validate production descriptor/grid ownership and continuations beyond the selected safe domain.",
               "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "terrain_constraints.cpp implements rotated edge/connector admission and carry checks. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 683, \"original\": {\"accepted\": 18150, \"admissions\": 39344, \"all_match\": true, \"candidate_tables\": 7200, \"choices\": 7200, \"connector_searches\": 2048, \"installed_descriptors\": 1736, \"installed_maps\": 683, \"location_tables\": 500, \"prunes\": 8192}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Renew bounded connector comparisons; runtime allocator/object identity is excluded.",
+                "evidence": [
+                  "ORIGINAL.terrain-region-constraints",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_constraints-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate production descriptor/grid ownership and continuations beyond the selected safe domain."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Renew bounded connector comparisons; runtime allocator/object identity is excluded."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_constraints.cpp",
+                    "line": 6,
+                    "text": "void validate(const RegionDescriptorBank& bank) {"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_constraints.cpp": "7473519b34bf90b9238270ade4726218a89baba74df7268ac0c0c7b962176ff1",
+                  "reconstruction/rendering/terrain_constraints.hpp": "41b656d9a0a060edb2417e501d2b334658dddd80432799b625be8969af68a636",
+                  "research/runtime/terrain-region-constraints.md": "cab6be0f5a54ce4d03d20314c52c294c2885c09258447c5ffecc33800e542af1",
+                  "tests/terrain-constraints-reference.cpp": "c59e914663b48abe6f2bcaed5e420bf578741b3faf213d526c60cf2c4d3ea0a2",
+                  "tests/terrain-constraints-test.cpp": "09d11139d8775173970964c454fb12319ff1d2134548acb28242ef7e5f16654d",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_solver",
@@ -21399,50 +21452,58 @@
             "documents": [
               "research/runtime/terrain-region-solver.md"
             ],
-            "contract_sha256": "44091b9cfcd58d939c9d3d94ef7987a3f49e8f7dd27c15badc63dfdb1481e130",
-            "reviewed_implementation": "partial",
+            "contract_sha256": "9e5e026a6486e224bf617e62288405587221c3461ad22c71a9b7c76413574470",
+            "reviewed_implementation": "scoped",
             "remaining_at_review": "Review solver input/failure limits and renew comparisons before expanding beyond the bounded owned grid.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "terrain_solver.cpp implements placement, removal and bounded search state transitions. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "Bounded native ownership/consumption boundary implemented and freshly validated by N23. Owned placement/removal, pruning carry and bounded one-attempt backtracking, plus transactional ordered multi-block edit publication. Atomic batch refusal is native policy; safe single-removal/solver states are compared with original. Original allocation, unsafe rollback and complete world/session integration remain separate.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 683, \"original\": {\"all_match\": true, \"backtracked_cases\": 1940, \"installed_maps\": 683, \"multi_backtracked_cases\": 231, \"native_refusals\": 0, \"placements\": 3136, \"pruning_carries\": 2048, \"removals\": 7056, \"solves\": 3755, \"successes\": 2067}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "Release and ASan/UBSan native boundary controls pass. Safe selected original comparisons and native sanitizer corpora pass; atomic batch/replay/MAP policies are identified separately. No whole-scene or live acceptance.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Review solver input/failure limits and renew comparisons before expanding beyond the bounded owned grid.",
+              "acceptance_summary": "Original malformed/unsafe rollback, allocator state construction and complete world/session orchestration remain separate. Atomic multi-removal publication is native policy.",
               "evidence": [
                 "ORIGINAL.terrain-region-solver",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_solver-20261019"
+                "HTERR1.RE.terrain_solver-20261019",
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate original state construction and exceptional malformed routes before widening solver integration."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Review solver input/failure limits and renew comparisons before expanding beyond the bounded owned grid."
+                  "action": "Original malformed/unsafe rollback, allocator state construction and complete world/session orchestration remain separate. Atomic multi-removal publication is native policy."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/rendering/terrain_solver.cpp",
-                  "line": 47,
-                  "text": "void place(RegionPlacementState& s,unsigned descriptor,unsigned rotation,unsigned x,unsigned y) {"
+                  "line": 93,
+                  "text": "void removeRegionBlocks(RegionPlacementState& state,const std::vector<std::array<unsigned,2>>& positions) {"
+                },
+                {
+                  "path": "reconstruction/rendering/terrain_solver.hpp",
+                  "line": 25,
+                  "text": "void removeRegionBlocks(RegionPlacementState&,"
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/terrain_solver.cpp": "635b8131aa6fb263fbd7933c4752a66604fe483c0bec69f38fb9cb0eb8ff2683",
-                "reconstruction/rendering/terrain_solver.hpp": "eb8e1e6ab22581e93d06d9c3f259e163b2ea9566058363adc44de5ec779a7b05",
+                "reconstruction/rendering/terrain_solver.cpp": "42917731076c35a359671c394d0e5161d72e8222a711092b7ad8a4dcade72215",
+                "reconstruction/rendering/terrain_solver.hpp": "543b3a55a79e352d9bb0e33b7ddfb2b0b09d7b68e15300e4969cbad094d6a27f",
                 "research/runtime/terrain-region-solver.md": "3180e40004f3e3960de00f03f85d2b4087c3b901b8495e6f2e5bb9457c6e61a7",
                 "tests/terrain-solver-reference.cpp": "3b06a88dff0b454372a1d1356f8edd9b1a9b02106da3a160f09a8f24fc96133a",
                 "tests/terrain-solver-test.cpp": "aa729dffd94deed2a1718bfef5a129334909432585adf47c6e9b7fa613e710e3",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "research/runtime/native-scene-accounting-closeout-20261020.md": "1e4b418c05c5e1e75e73f2c39a575130314c010650744f297e6453315ad28f89",
+                "tests/rendering-owned-boundaries-test.cpp": "a2b10a4b68f7b769432a4352520e5da7aa486db1d7411c646332cb0bc6465cb7",
+                "research/runtime/rendering-twentythird-ten-20261025.md": "4adca5e50d250c83c6cb6fc5c7e761c6a7c04c9b807c50f43c852018089c99bf",
+                "tools/test-rendering-twentythird-ten.py": "c033e5f0716a2a0f04bca00eca5092db3138dbe8126d7671a24a29ab7fb3a384"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ]
             },
             "execution_result": {
@@ -21450,7 +21511,52 @@
               "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
               "remaining": "Validate original state construction and exceptional malformed routes before widening solver integration.",
               "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "terrain_solver.cpp implements placement, removal and bounded search state transitions. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 683, \"original\": {\"all_match\": true, \"backtracked_cases\": 1940, \"installed_maps\": 683, \"multi_backtracked_cases\": 231, \"native_refusals\": 0, \"placements\": 3136, \"pruning_carries\": 2048, \"removals\": 7056, \"solves\": 3755, \"successes\": 2067}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Review solver input/failure limits and renew comparisons before expanding beyond the bounded owned grid.",
+                "evidence": [
+                  "ORIGINAL.terrain-region-solver",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_solver-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate original state construction and exceptional malformed routes before widening solver integration."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Review solver input/failure limits and renew comparisons before expanding beyond the bounded owned grid."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_solver.cpp",
+                    "line": 47,
+                    "text": "void place(RegionPlacementState& s,unsigned descriptor,unsigned rotation,unsigned x,unsigned y) {"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_solver.cpp": "635b8131aa6fb263fbd7933c4752a66604fe483c0bec69f38fb9cb0eb8ff2683",
+                  "reconstruction/rendering/terrain_solver.hpp": "eb8e1e6ab22581e93d06d9c3f259e163b2ea9566058363adc44de5ec779a7b05",
+                  "research/runtime/terrain-region-solver.md": "3180e40004f3e3960de00f03f85d2b4087c3b901b8495e6f2e5bb9457c6e61a7",
+                  "tests/terrain-solver-reference.cpp": "3b06a88dff0b454372a1d1356f8edd9b1a9b02106da3a160f09a8f24fc96133a",
+                  "tests/terrain-solver-test.cpp": "aa729dffd94deed2a1718bfef5a129334909432585adf47c6e9b7fa613e710e3",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_specific",
@@ -21466,50 +21572,58 @@
             "documents": [
               "research/runtime/terrain-region-specific.md"
             ],
-            "contract_sha256": "a4de99487b92769ffba605f65377ac0290f30be866b2a97128b44080a57efcb1",
-            "reviewed_implementation": "partial",
+            "contract_sha256": "d1277cac81e4da1a489448849de31ea14ca9794f3a67342d0a1add56832eced6",
+            "reviewed_implementation": "scoped",
             "remaining_at_review": "Retain configured-location/rotation bounds and independently test the remaining producer composition.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "terrain_specific.cpp implements the specific-placement admission and rotation phase. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "Bounded native ownership/consumption boundary implemented and freshly validated by N23. Owned request admission and selected two-pass Specific placement/fallback on bounded descriptor/grid state, with ordered diagnostics and count suppression. Shared validation includes skipped ordinary request fields as native policy. Original configuration loading, unsafe connector/rollback and production/dialog service lifetime remain separate.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 683, \"original\": {\"all_match\": true, \"cases\": 10786, \"installed_maps\": 683, \"multi_block_cases\": 2430, \"native_refusals\": 140, \"notices\": [1280, 1337, 1472, 1636], \"placed_blocks\": 24438, \"refusal_reasons\": {\"Region internal connector has no descriptor\": 140}, \"suppressed_descriptors\": 1636}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "Release and ASan/UBSan native boundary controls pass. Safe selected original comparisons and native sanitizer corpora pass; atomic batch/replay/MAP policies are identified separately. No whole-scene or live acceptance.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Retain configured-location/rotation bounds and independently test the remaining producer composition.",
+              "acceptance_summary": "Original CFG/file/dialog services, warning UI/provider lifetime and unsafe missing-connector/rollback paths remain separate. Strict admission of malformed requests is native policy.",
               "evidence": [
                 "ORIGINAL.terrain-region-specific",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_specific-20261019"
+                "HTERR1.RE.terrain_specific-20261019",
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Recover warning/partial-failure continuation and descriptor ownership beyond the selected two-pass driver."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Retain configured-location/rotation bounds and independently test the remaining producer composition."
+                  "action": "Original CFG/file/dialog services, warning UI/provider lifetime and unsafe missing-connector/rollback paths remain separate. Strict admission of malformed requests is native policy."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/rendering/terrain_specific.cpp",
-                  "line": 9,
-                  "text": "bool admit(RegionPlacementState& s,unsigned index,unsigned x,unsigned y,unsigned rotation) {"
+                  "line": 42,
+                  "text": "void validateRegionSpecificRequests(const RegionPlacementState& input,"
+                },
+                {
+                  "path": "reconstruction/rendering/terrain_specific.hpp",
+                  "line": 24,
+                  "text": "void validateRegionSpecificRequests(const RegionPlacementState&,"
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/terrain_specific.cpp": "c3c841f388f469efc9dabffbb9eb85a2468480c8548d7e091efa37ed600bec63",
-                "reconstruction/rendering/terrain_specific.hpp": "8f97ca16d0a6ce18bd031ca3a83e7fe0dd2716982e54ae848570702fe9c0f445",
+                "reconstruction/rendering/terrain_specific.cpp": "e20642326da262fc8cda713b1bd70765ebd0d76d624cb83a076b1e61182502ed",
+                "reconstruction/rendering/terrain_specific.hpp": "6a023e3a0d0cc7b62f01348785fa6b819fc4afa99e59d18d02de711902322281",
                 "research/runtime/terrain-region-specific.md": "88b3af7ad036fb63dc0d12071960755dc2dc2d47d9d471b259362ffab565879b",
                 "tests/terrain-specific-reference.cpp": "dd4830041305b5e1ded5bea2316696104083cf787255a0788a58f52a7dfa4700",
-                "tests/terrain-specific-test.cpp": "47ca3f6adaa1a533fe7fc9221c7e94451c3c4719986bde0e0fcdd70f70eb2a82",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/terrain-specific-test.cpp": "e89ac3ae7c021b15c12e856fbbf409f0a6067288bc6146e10c2ac338a802e933",
+                "research/runtime/native-scene-accounting-closeout-20261020.md": "1e4b418c05c5e1e75e73f2c39a575130314c010650744f297e6453315ad28f89",
+                "tests/rendering-owned-boundaries-test.cpp": "a2b10a4b68f7b769432a4352520e5da7aa486db1d7411c646332cb0bc6465cb7",
+                "research/runtime/rendering-twentythird-ten-20261025.md": "4adca5e50d250c83c6cb6fc5c7e761c6a7c04c9b807c50f43c852018089c99bf",
+                "tools/test-rendering-twentythird-ten.py": "c033e5f0716a2a0f04bca00eca5092db3138dbe8126d7671a24a29ab7fb3a384"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ]
             },
             "execution_result": {
@@ -21517,7 +21631,52 @@
               "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
               "remaining": "Recover warning/partial-failure continuation and descriptor ownership beyond the selected two-pass driver.",
               "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "terrain_specific.cpp implements the specific-placement admission and rotation phase. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 683, \"original\": {\"all_match\": true, \"cases\": 10786, \"installed_maps\": 683, \"multi_block_cases\": 2430, \"native_refusals\": 140, \"notices\": [1280, 1337, 1472, 1636], \"placed_blocks\": 24438, \"refusal_reasons\": {\"Region internal connector has no descriptor\": 140}, \"suppressed_descriptors\": 1636}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Retain configured-location/rotation bounds and independently test the remaining producer composition.",
+                "evidence": [
+                  "ORIGINAL.terrain-region-specific",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_specific-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Recover warning/partial-failure continuation and descriptor ownership beyond the selected two-pass driver."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Retain configured-location/rotation bounds and independently test the remaining producer composition."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_specific.cpp",
+                    "line": 9,
+                    "text": "bool admit(RegionPlacementState& s,unsigned index,unsigned x,unsigned y,unsigned rotation) {"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_specific.cpp": "c3c841f388f469efc9dabffbb9eb85a2468480c8548d7e091efa37ed600bec63",
+                  "reconstruction/rendering/terrain_specific.hpp": "8f97ca16d0a6ce18bd031ca3a83e7fe0dd2716982e54ae848570702fe9c0f445",
+                  "research/runtime/terrain-region-specific.md": "88b3af7ad036fb63dc0d12071960755dc2dc2d47d9d471b259362ffab565879b",
+                  "tests/terrain-specific-reference.cpp": "dd4830041305b5e1ded5bea2316696104083cf787255a0788a58f52a7dfa4700",
+                  "tests/terrain-specific-test.cpp": "47ca3f6adaa1a533fe7fc9221c7e94451c3c4719986bde0e0fcdd70f70eb2a82",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_generation",
@@ -21533,50 +21692,58 @@
             "documents": [
               "research/runtime/terrain-region-generation.md"
             ],
-            "contract_sha256": "30ba59a33768257334aad8cc735ae06a4cc52addcdf910cdce7ca042a906c436",
-            "reviewed_implementation": "partial",
+            "contract_sha256": "0d46a5349010f4dc5d476c98d939fa224cc4b83e260411afb6f05877c7fc9ae7",
+            "reviewed_implementation": "scoped",
             "remaining_at_review": "Full original world scheduling/creation is not implied by this attempt driver.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "terrain_generation.cpp implements attempt reset and generation composition. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "Bounded native ownership/consumption boundary implemented and freshly validated by N23. Owned post-CFG reset, Specific/solver composition and wrapping+500 seed progression, exposed as one inspectable attempt and composed into at most ten attempts. Mutated requests/source rows and final exhausted partial state are retained. Original CFG/allocation/file/dialog services and world creation/live routing remain separate.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 683, \"original\": {\"all_match\": true, \"attempts\": 19883, \"cases\": 5701, \"exhausted_cases\": 1552, \"installed_maps\": 683, \"multi_block_cases\": 782, \"native_refusals\": 17, \"notices\": [128, 128, 64, 128], \"refusal_reasons\": {\"Region fixed rollback before grid\": 17}, \"reset_cases\": 5718, \"retry_cases\": 1636, \"retry_successes\": 84, \"seed_wrap_cases\": 241, \"successful_cases\": 4149}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "Release and ASan/UBSan native boundary controls pass. Safe selected original comparisons and native sanitizer corpora pass; atomic batch/replay/MAP policies are identified separately. No whole-scene or live acceptance.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Full original world scheduling/creation is not implied by this attempt driver.",
+              "acceptance_summary": "Original CFG/catalog entry, file/dialog/allocator failures and whole-world creation/scheduling remain separate from the post-CFG ten-attempt loop.",
               "evidence": [
                 "ORIGINAL.terrain-region-generation",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_generation-20261019"
+                "HTERR1.RE.terrain_generation-20261019",
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate original CFG-to-attempt entry, file/dialog errors and warning continuation; retain ten-attempt failure outcomes."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Full original world scheduling/creation is not implied by this attempt driver."
+                  "action": "Original CFG/catalog entry, file/dialog/allocator failures and whole-world creation/scheduling remain separate from the post-CFG ten-attempt loop."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/rendering/terrain_generation.cpp",
                   "line": 11,
-                  "text": "RegionGenerationResult generateRegionPlacement(RegionPlacementState state,"
+                  "text": "RegionGenerationResult stepRegionGeneration(RegionPlacementState state,"
+                },
+                {
+                  "path": "reconstruction/rendering/terrain_generation.hpp",
+                  "line": 22,
+                  "text": "RegionGenerationResult stepRegionGeneration(RegionPlacementState,"
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/terrain_generation.cpp": "d8b69472523d31e58bff7313a7cd70b56b77f789b3481fc06d9221d6d4d5fbd9",
-                "reconstruction/rendering/terrain_generation.hpp": "a7efef8bbbce9c078ab748f4b4d4dc3c624b9b3148c6fbcb5ed6fc41da6013c4",
+                "reconstruction/rendering/terrain_generation.cpp": "eebdbf6fa53e39a92f1a0946f372bb6efe0a38ea97100aa3d9677ef78f9f30be",
+                "reconstruction/rendering/terrain_generation.hpp": "65deef875a296e49cdc84f84b60477e8ea3c46cc9b1873bade41f3ab59088172",
                 "research/runtime/terrain-region-generation.md": "212081a29ec8bf11a3eba824b16365160a3559677075cccd0cfbf2dda2eba3cf",
                 "tests/terrain-generation-reference.cpp": "f855de590c7b61037ebf45a5a3bbb4fa4afe721f0a77042c158ac6c7e08ec1f8",
-                "tests/terrain-generation-test.cpp": "11fff6d6a3a2c5575457ae6e1f7e9ce737792b492202a79304ad0391b7c70cd4",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/terrain-generation-test.cpp": "c74546081e7f5af32bee4e0c5f6b7e87aafbd446beeb6b57a6608e32dc86fd8a",
+                "research/runtime/native-scene-accounting-closeout-20261020.md": "1e4b418c05c5e1e75e73f2c39a575130314c010650744f297e6453315ad28f89",
+                "tests/rendering-owned-boundaries-test.cpp": "a2b10a4b68f7b769432a4352520e5da7aa486db1d7411c646332cb0bc6465cb7",
+                "research/runtime/rendering-twentythird-ten-20261025.md": "4adca5e50d250c83c6cb6fc5c7e761c6a7c04c9b807c50f43c852018089c99bf",
+                "tools/test-rendering-twentythird-ten.py": "c033e5f0716a2a0f04bca00eca5092db3138dbe8126d7671a24a29ab7fb3a384"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ]
             },
             "execution_result": {
@@ -21584,7 +21751,52 @@
               "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
               "remaining": "Validate original CFG-to-attempt entry, file/dialog errors and warning continuation; retain ten-attempt failure outcomes.",
               "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "terrain_generation.cpp implements attempt reset and generation composition. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 683, \"original\": {\"all_match\": true, \"attempts\": 19883, \"cases\": 5701, \"exhausted_cases\": 1552, \"installed_maps\": 683, \"multi_block_cases\": 782, \"native_refusals\": 17, \"notices\": [128, 128, 64, 128], \"refusal_reasons\": {\"Region fixed rollback before grid\": 17}, \"reset_cases\": 5718, \"retry_cases\": 1636, \"retry_successes\": 84, \"seed_wrap_cases\": 241, \"successful_cases\": 4149}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Full original world scheduling/creation is not implied by this attempt driver.",
+                "evidence": [
+                  "ORIGINAL.terrain-region-generation",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_generation-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate original CFG-to-attempt entry, file/dialog errors and warning continuation; retain ten-attempt failure outcomes."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Full original world scheduling/creation is not implied by this attempt driver."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_generation.cpp",
+                    "line": 11,
+                    "text": "RegionGenerationResult generateRegionPlacement(RegionPlacementState state,"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_generation.cpp": "d8b69472523d31e58bff7313a7cd70b56b77f789b3481fc06d9221d6d4d5fbd9",
+                  "reconstruction/rendering/terrain_generation.hpp": "a7efef8bbbce9c078ab748f4b4d4dc3c624b9b3148c6fbcb5ed6fc41da6013c4",
+                  "research/runtime/terrain-region-generation.md": "212081a29ec8bf11a3eba824b16365160a3559677075cccd0cfbf2dda2eba3cf",
+                  "tests/terrain-generation-reference.cpp": "f855de590c7b61037ebf45a5a3bbb4fa4afe721f0a77042c158ac6c7e08ec1f8",
+                  "tests/terrain-generation-test.cpp": "11fff6d6a3a2c5575457ae6e1f7e9ce737792b492202a79304ad0391b7c70cd4",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_generated",
@@ -21600,49 +21812,55 @@
             "documents": [
               "research/runtime/terrain-generated-plans.md"
             ],
-            "contract_sha256": "e69dbdbdad4a3af25c4502527f2dacb00f9430970ec17f949c5c1d6e5ce3715b",
-            "reviewed_implementation": "partial",
+            "contract_sha256": "514a66a350c49a1aff7f45556cae6c772ec3cdc48287457e68937e56b66c5259",
+            "reviewed_implementation": "scoped",
             "remaining_at_review": "This is intentional composition policy; original scene creation/presentation and broad generated-map acceptance remain separate.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "planGeneratedTerrainRegion composes selected generated plans using owned source maps. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "Bounded native ownership/consumption boundary implemented and freshly validated by N23. Owned recipe/header generation, successful assignment-to-plan translation and complete ordinary MAP assembly, used by the preview loader. Original comparison covers post-CFG generation state and plan provenance; ordinary object/reference projection and MAP assembly are native composition policies with native controls. Original full-world/pixel/allocator/file-error behavior and live acceptance remain separate.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 564, \"original\": {\"all_match\": true, \"cases\": 2204, \"failed_generations\": 1010, \"installed_cases\": 156, \"installed_plans\": 155, \"installed_recipes\": 40, \"native_refusals\": 4, \"plan_blocks\": 15849, \"plans\": 1194, \"refusal_reasons\": {\"Region catalog MAP header\": 4}}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "Fresh Release/ASan/UBSan native MAP composition controls pass. The original generation/plan supplier oracle is retained separately; this native policy keeps comparison none and claims no original whole-MAP/scene equivalence.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. This is intentional composition policy; original scene creation/presentation and broad generated-map acceptance remain separate.",
+              "acceptance_summary": "Missing Medieval REGION0 Test MAPs remain unavailable. Original CFG/file-error/allocator continuation, geometry/world/entity/water/picking production and complete scene/live acceptance remain separate. Ordinary MAP assembly/projection is native composition policy.",
               "evidence": [
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_generated-20261019"
+                "HTERR1.RE.terrain_generated-20261019",
+                "N23.terrain-native-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate owned full-MAP scene composition/lifetime before broader original scene claims; plan translation is intentional native composition."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "This is intentional composition policy; original scene creation/presentation and broad generated-map acceptance remain separate."
+                  "action": "Missing Medieval REGION0 Test MAPs remain unavailable. Original CFG/file-error/allocator continuation, geometry/world/entity/water/picking production and complete scene/live acceptance remain separate. Ordinary MAP assembly/projection is native composition policy."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/rendering/terrain_generated.cpp",
-                  "line": 4,
-                  "text": "FixedRegionPlan planGeneratedTerrainRegion(const TerrainRegionCatalog& catalog,const RegionGenerationResult& generation) {"
+                  "line": 42,
+                  "text": "GeneratedTerrainRegion generateTerrainRegion(const assets::RegionRecipe& recipe,"
+                },
+                {
+                  "path": "reconstruction/rendering/terrain_generated.hpp",
+                  "line": 22,
+                  "text": "GeneratedTerrainRegion generateTerrainRegion(const assets::RegionRecipe&,"
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/terrain_generated.cpp": "7b4ccd594ab7da6bb244d16b561c597adb6d1fe4afb8e85af058178176d73761",
-                "reconstruction/rendering/terrain_generated.hpp": "a98b98fb54b55eea84f560f7979d4f642a7667f937b85019e3a6531b53af922a",
+                "reconstruction/rendering/terrain_generated.cpp": "bac9f95169f876a92ecab0cad5917105fabbb25a3e09c83be4aad40fc94877d9",
+                "reconstruction/rendering/terrain_generated.hpp": "11934b5ee06a8e926ee212455f06bbbaa885414e303c84eea90853a58f458d8c",
                 "research/runtime/terrain-generated-plans.md": "180bb9471c611507710cc7a0b371ebfa5b025b251ce808022df03ee9e91be7fe",
                 "tests/terrain-generated-reference.cpp": "cbe47b220f9cfe98a1ee95dd349796780ed0282846a32bfae7b7e9bc30b120f5",
-                "tests/terrain-generated-test.cpp": "8814ad12f6112dcb7fa7385c882d8968b4c1c69b9303ed41c1083a459151be51",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/terrain-generated-test.cpp": "01671e9eace59bd613582dbbbb158cfff77d3d7d742cf61b7e3ff3c2c66933db",
+                "research/runtime/native-scene-accounting-closeout-20261020.md": "1e4b418c05c5e1e75e73f2c39a575130314c010650744f297e6453315ad28f89",
+                "tests/rendering-owned-boundaries-test.cpp": "a2b10a4b68f7b769432a4352520e5da7aa486db1d7411c646332cb0bc6465cb7",
+                "research/runtime/rendering-twentythird-ten-20261025.md": "4adca5e50d250c83c6cb6fc5c7e761c6a7c04c9b807c50f43c852018089c99bf",
+                "tools/test-rendering-twentythird-ten.py": "c033e5f0716a2a0f04bca00eca5092db3138dbe8126d7671a24a29ab7fb3a384"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N23.terrain-native-20261025"
               ]
             },
             "execution_result": {
@@ -21650,7 +21868,51 @@
               "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
               "remaining": "Validate owned full-MAP scene composition/lifetime before broader original scene claims; plan translation is intentional native composition.",
               "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "planGeneratedTerrainRegion composes selected generated plans using owned source maps. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 564, \"original\": {\"all_match\": true, \"cases\": 2204, \"failed_generations\": 1010, \"installed_cases\": 156, \"installed_plans\": 155, \"installed_recipes\": 40, \"native_refusals\": 4, \"plan_blocks\": 15849, \"plans\": 1194, \"refusal_reasons\": {\"Region catalog MAP header\": 4}}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. This is intentional composition policy; original scene creation/presentation and broad generated-map acceptance remain separate.",
+                "evidence": [
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_generated-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate owned full-MAP scene composition/lifetime before broader original scene claims; plan translation is intentional native composition."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "This is intentional composition policy; original scene creation/presentation and broad generated-map acceptance remain separate."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_generated.cpp",
+                    "line": 4,
+                    "text": "FixedRegionPlan planGeneratedTerrainRegion(const TerrainRegionCatalog& catalog,const RegionGenerationResult& generation) {"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_generated.cpp": "7b4ccd594ab7da6bb244d16b561c597adb6d1fe4afb8e85af058178176d73761",
+                  "reconstruction/rendering/terrain_generated.hpp": "a98b98fb54b55eea84f560f7979d4f642a7667f937b85019e3a6531b53af922a",
+                  "research/runtime/terrain-generated-plans.md": "180bb9471c611507710cc7a0b371ebfa5b025b251ce808022df03ee9e91be7fe",
+                  "tests/terrain-generated-reference.cpp": "cbe47b220f9cfe98a1ee95dd349796780ed0282846a32bfae7b7e9bc30b120f5",
+                  "tests/terrain-generated-test.cpp": "8814ad12f6112dcb7fa7385c882d8968b4c1c69b9303ed41c1083a459151be51",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_camera",
@@ -21789,54 +22051,61 @@
             "documents": [
               "research/runtime/terrain-traversal-rotations.md"
             ],
-            "contract_sha256": "9dbe81be647ac8147a1896325abfcf84c757ba33b3f8d0afdf2503a08fa2af31",
-            "reviewed_implementation": "partial",
+            "contract_sha256": "251a9957d4395e5cf9d1ff0927ecb252ea0eb8d069cf7786325831366847bac1",
+            "reviewed_implementation": "scoped",
             "remaining_at_review": "Preserve physical-cell carry/wrap and rectangular-grid boundaries; full scene producer equivalence is a separate contract.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "terrain_traversal.cpp contains the four distinct recovered traversal loops. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "Bounded native ownership/consumption boundary implemented and freshly validated by N23. Selected four-orientation traversal on owned grids, with physical-cell flag snapshots, logical carry/wrap annotations and bounded arithmetic/coordinate refusal. Original comparison covers safe traversal/ordinary queue and flag effects; full world/light/entity production and live ownership remain separate.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"cases\": 96, \"images\": 192, \"traversal\": {\"all_match\": true, \"cases\": 18428, \"generated_cases\": 18432, \"margin_visits\": 309472, \"orientations\": [{\"cases\": 4096, \"native_domain_rejections\": 0, \"physical_alias_visits\": 0, \"view\": 0}, {\"cases\": 5119, \"native_domain_rejections\": 1, \"physical_alias_visits\": 202, \"view\": 1}, {\"cases\": 4095, \"native_domain_rejections\": 1, \"physical_alias_visits\": 1219, \"view\": 2}, {\"cases\": 5118, \"native_domain_rejections\": 2, \"physical_alias_visits\": 22, \"view\": 3}], \"records\": 3089824, \"wrapped_visits\": 946449}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "Release and ASan/UBSan native boundary controls pass. Safe selected original comparisons and native sanitizer corpora pass; atomic batch/replay/MAP policies are identified separately. No whole-scene or live acceptance.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Preserve physical-cell carry/wrap and rectangular-grid boundaries; full scene producer equivalence is a separate contract.",
+              "acceptance_summary": "Original world/light/entity production, full camera/input lifecycle, allocation and live ownership remain separate from physical-flag snapshot traversal.",
               "evidence": [
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_traversal-20261019"
+                "HTERR1.RE.terrain_traversal-20261019",
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate full ordinary-world/light/entity producer state and live ownership while retaining carried-cell and safe-domain refusals."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Preserve physical-cell carry/wrap and rectangular-grid boundaries; full scene producer equivalence is a separate contract."
+                  "action": "Original world/light/entity production, full camera/input lifecycle, allocation and live ownership remain separate from physical-flag snapshot traversal."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/rendering/terrain_traversal.cpp",
-                  "line": 14,
-                  "text": "std::vector<TerrainVisit> traverseTerrain(std::uint32_t width,std::uint32_t height,"
+                  "line": 117,
+                  "text": "std::vector<TerrainVisit> traverseOwnedTerrain(std::uint32_t width,std::uint32_t height,"
+                },
+                {
+                  "path": "reconstruction/rendering/terrain_traversal.hpp",
+                  "line": 26,
+                  "text": "std::vector<TerrainVisit> traverseOwnedTerrain(std::uint32_t width,std::uint32_t height,"
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/terrain_traversal.cpp": "d9b2e5f5ff1d9bcfe2ababa0900007f3596cac87c74504a8dbe3d71de1f03c78",
-                "reconstruction/rendering/terrain_traversal.hpp": "dc49e73cb705b5d205d2d109bdf629f4891595e901139a2e416e50647feca9c9",
+                "reconstruction/rendering/terrain_traversal.cpp": "6ed6613e4f36d31ade8fd68a41882b1379b411ed885f9c3fd4b9a60d418dd93a",
+                "reconstruction/rendering/terrain_traversal.hpp": "9c206eb49b3e3800adb5b95444b903421078a41c2532ccaf9b8916bd22257e3a",
                 "research/runtime/terrain-traversal-rotations.md": "3eb39e8d38d3f1df8e14f9c0376d7c4090eaff508a774e25a29f146ec84906bb",
                 "tests/terrain-traversal-reference.cpp": "bfc8c86fe7e5750383c2bc1a9cdb32c5cd05300c002382d3a269c76de782d08b",
-                "tests/terrain-traversal-test.cpp": "005863cc757885bcdc1061495312a2def8bae90f8f13952551c1e16efb3a6bb4",
+                "tests/terrain-traversal-test.cpp": "51d875409e914011048aab71bd10600f2c11bf334ced7f1127f6301f9ef88ab1",
                 "tools/test-terrain-traversal.py": "ad9f42390cd6574cc156bdd701130c2b51c2024671ef2c47bd9efdd70c317bbf",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "research/runtime/native-scene-accounting-closeout-20261020.md": "1e4b418c05c5e1e75e73f2c39a575130314c010650744f297e6453315ad28f89",
+                "tests/rendering-owned-boundaries-test.cpp": "a2b10a4b68f7b769432a4352520e5da7aa486db1d7411c646332cb0bc6465cb7",
+                "research/runtime/rendering-twentythird-ten-20261025.md": "4adca5e50d250c83c6cb6fc5c7e761c6a7c04c9b807c50f43c852018089c99bf",
+                "tools/test-rendering-twentythird-ten.py": "c033e5f0716a2a0f04bca00eca5092db3138dbe8126d7671a24a29ab7fb3a384"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md",
-                "tools/test-terrain-traversal.py"
-              ],
+              "pending_source_review": [],
               "incremental_review_notes": [
                 "Low20 dashboard compatibility: retain the already linked traversal runner as an explicit pending source-review input. No High execution or scope promotion."
+              ],
+              "validation_evidence": [
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ]
             },
             "execution_result": {
@@ -21844,7 +22113,56 @@
               "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
               "remaining": "Validate full ordinary-world/light/entity producer state and live ownership while retaining carried-cell and safe-domain refusals.",
               "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "terrain_traversal.cpp contains the four distinct recovered traversal loops. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"cases\": 96, \"images\": 192, \"traversal\": {\"all_match\": true, \"cases\": 18428, \"generated_cases\": 18432, \"margin_visits\": 309472, \"orientations\": [{\"cases\": 4096, \"native_domain_rejections\": 0, \"physical_alias_visits\": 0, \"view\": 0}, {\"cases\": 5119, \"native_domain_rejections\": 1, \"physical_alias_visits\": 202, \"view\": 1}, {\"cases\": 4095, \"native_domain_rejections\": 1, \"physical_alias_visits\": 1219, \"view\": 2}, {\"cases\": 5118, \"native_domain_rejections\": 2, \"physical_alias_visits\": 22, \"view\": 3}], \"records\": 3089824, \"wrapped_visits\": 946449}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Preserve physical-cell carry/wrap and rectangular-grid boundaries; full scene producer equivalence is a separate contract.",
+                "evidence": [
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_traversal-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate full ordinary-world/light/entity producer state and live ownership while retaining carried-cell and safe-domain refusals."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Preserve physical-cell carry/wrap and rectangular-grid boundaries; full scene producer equivalence is a separate contract."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_traversal.cpp",
+                    "line": 14,
+                    "text": "std::vector<TerrainVisit> traverseTerrain(std::uint32_t width,std::uint32_t height,"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_traversal.cpp": "d9b2e5f5ff1d9bcfe2ababa0900007f3596cac87c74504a8dbe3d71de1f03c78",
+                  "reconstruction/rendering/terrain_traversal.hpp": "dc49e73cb705b5d205d2d109bdf629f4891595e901139a2e416e50647feca9c9",
+                  "research/runtime/terrain-traversal-rotations.md": "3eb39e8d38d3f1df8e14f9c0376d7c4090eaff508a774e25a29f146ec84906bb",
+                  "tests/terrain-traversal-reference.cpp": "bfc8c86fe7e5750383c2bc1a9cdb32c5cd05300c002382d3a269c76de782d08b",
+                  "tests/terrain-traversal-test.cpp": "005863cc757885bcdc1061495312a2def8bae90f8f13952551c1e16efb3a6bb4",
+                  "tools/test-terrain-traversal.py": "ad9f42390cd6574cc156bdd701130c2b51c2024671ef2c47bd9efdd70c317bbf",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md",
+                  "tools/test-terrain-traversal.py"
+                ],
+                "incremental_review_notes": [
+                  "Low20 dashboard compatibility: retain the already linked traversal runner as an explicit pending source-review input. No High execution or scope promotion."
+                ]
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_submission",
@@ -22243,50 +22561,58 @@
             "documents": [
               "research/runtime/terrain-light-fields.md"
             ],
-            "contract_sha256": "0262bcdd0abd40344fae55aac0a5734390d4ef3ef12d4d031219fd0c8f30c323",
-            "reviewed_implementation": "partial",
+            "contract_sha256": "0e634e23a398413928977d0fe81a4533d42c5ffd750150e01416d84567218b3e",
+            "reviewed_implementation": "scoped",
             "remaining_at_review": "Other live producers, update cadence and complete engine lighting composition remain outside the selected service.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "TerrainLightField implements owned light buffers and selected static/dynamic stamps. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "Bounded native ownership/consumption boundary implemented and freshly validated by N23. Owned five-buffer light fields, selected distance kernels and controlled stamps, with full-batch source validation before mutation and explicit publication. Original preallocated initialization/kernels/size2..17 stamps/publication are compared. Size-one inherited storage, batch atomicity and strict malformed-input refusal are native policy; allocation/reload, source discovery/timing and complete live lighting remain separate.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"field_fixtures\": 564, \"final_buffer_byte_comparisons\": 3594685, \"frames\": 36, \"kernel_byte_comparisons\": 13202112, \"native_frames\": 72, \"original_source_stamps\": 1695, \"refusals\": 18}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "Release and ASan/UBSan native boundary controls pass. Safe selected original comparisons and native sanitizer corpora pass; atomic batch/replay/MAP policies are identified separately. No whole-scene or live acceptance.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Other live producers, update cadence and complete engine lighting composition remain outside the selected service.",
+              "acceptance_summary": "Original allocation/reload failures, production source discovery/movement, full tick/smoothing/underwater/camera-bias ownership and live lighting remain separate. Size-one inherited storage and source-batch atomicity retain explicit native policies.",
               "evidence": [
                 "ORIGINAL.terrain-light-fields",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_lighting-20261019"
+                "HTERR1.RE.terrain_lighting-20261019",
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate entity/source discovery, ticks/interpolation/occlusion and publication lifetime beyond preallocated controlled stamps."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Other live producers, update cadence and complete engine lighting composition remain outside the selected service."
+                  "action": "Original allocation/reload failures, production source discovery/movement, full tick/smoothing/underwater/camera-bias ownership and live lighting remain separate. Size-one inherited storage and source-batch atomicity retain explicit native policies."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/rendering/terrain_lighting.cpp",
-                  "line": 37,
-                  "text": "void TerrainLightField::stamp(TerrainLightSource s){"
+                  "line": 44,
+                  "text": "void TerrainLightField::stampBatch(const std::vector<TerrainLightSource>& sources){"
+                },
+                {
+                  "path": "reconstruction/rendering/terrain_lighting.hpp",
+                  "line": 19,
+                  "text": " void stampBatch(const std::vector<TerrainLightSource>&);"
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/terrain_lighting.cpp": "71362a12b9c39430f935172eee6b86bdd69e569baeb802f2b5bcef86941128d6",
-                "reconstruction/rendering/terrain_lighting.hpp": "0d6dbe9a670c7c9fe9d21c5daa23cdb704db9a75ebb2f1f7112c9727c2e88762",
+                "reconstruction/rendering/terrain_lighting.cpp": "f952dc63c46cdd4b52ebcb0aae1e8d2e66a0c768878ed03e83b0118babe08df1",
+                "reconstruction/rendering/terrain_lighting.hpp": "6dfc9c4353aa093c83bb9332179ba25e87c3831d16a1cb75d92249f6442decdf",
                 "research/runtime/terrain-light-fields.md": "f956e1e122eed24004a5a806b179cff2fd03800b894b5b965bc900e299fbc5aa",
                 "tests/terrain-lighting-reference.cpp": "1cf9b482973fcf72137fda5a64e82f2d5c5a68c2b841f933a93dab4ab9815e43",
-                "tests/terrain-lighting-test.cpp": "dd9b1a5cba756c7afba29810e87c239e3e7c88e391c11808de688aebb1a8f62b",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/terrain-lighting-test.cpp": "44280982bbbdfcfeda53cedeeb2993404b6b9f66a61b138efe97db5b4c645fd0",
+                "research/runtime/native-scene-accounting-closeout-20261020.md": "1e4b418c05c5e1e75e73f2c39a575130314c010650744f297e6453315ad28f89",
+                "tests/rendering-owned-boundaries-test.cpp": "a2b10a4b68f7b769432a4352520e5da7aa486db1d7411c646332cb0bc6465cb7",
+                "research/runtime/rendering-twentythird-ten-20261025.md": "4adca5e50d250c83c6cb6fc5c7e761c6a7c04c9b807c50f43c852018089c99bf",
+                "tools/test-rendering-twentythird-ten.py": "c033e5f0716a2a0f04bca00eca5092db3138dbe8126d7671a24a29ab7fb3a384"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ]
             },
             "execution_result": {
@@ -22294,7 +22620,52 @@
               "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
               "remaining": "Validate entity/source discovery, ticks/interpolation/occlusion and publication lifetime beyond preallocated controlled stamps.",
               "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "TerrainLightField implements owned light buffers and selected static/dynamic stamps. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"field_fixtures\": 564, \"final_buffer_byte_comparisons\": 3594685, \"frames\": 36, \"kernel_byte_comparisons\": 13202112, \"native_frames\": 72, \"original_source_stamps\": 1695, \"refusals\": 18}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Other live producers, update cadence and complete engine lighting composition remain outside the selected service.",
+                "evidence": [
+                  "ORIGINAL.terrain-light-fields",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_lighting-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate entity/source discovery, ticks/interpolation/occlusion and publication lifetime beyond preallocated controlled stamps."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Other live producers, update cadence and complete engine lighting composition remain outside the selected service."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_lighting.cpp",
+                    "line": 37,
+                    "text": "void TerrainLightField::stamp(TerrainLightSource s){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_lighting.cpp": "71362a12b9c39430f935172eee6b86bdd69e569baeb802f2b5bcef86941128d6",
+                  "reconstruction/rendering/terrain_lighting.hpp": "0d6dbe9a670c7c9fe9d21c5daa23cdb704db9a75ebb2f1f7112c9727c2e88762",
+                  "research/runtime/terrain-light-fields.md": "f956e1e122eed24004a5a806b179cff2fd03800b894b5b965bc900e299fbc5aa",
+                  "tests/terrain-lighting-reference.cpp": "1cf9b482973fcf72137fda5a64e82f2d5c5a68c2b841f933a93dab4ab9815e43",
+                  "tests/terrain-lighting-test.cpp": "dd9b1a5cba756c7afba29810e87c239e3e7c88e391c11808de688aebb1a8f62b",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_creature_lighting",
@@ -22310,50 +22681,58 @@
             "documents": [
               "research/runtime/terrain-creature-lighting.md"
             ],
-            "contract_sha256": "2e0ea626d8d574908be5a6d654bad5553a2c971b2b42131319895e6582028c3f",
-            "reviewed_implementation": "partial",
+            "contract_sha256": "17b1003632aea854c567f7c06a88fc4c44d5593fc124a490c799598bf456da7a",
+            "reviewed_implementation": "scoped",
             "remaining_at_review": "Remaining relation/lifetime/refresh production requires broader integration; current code is not absent.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "admitsTerrainCreatureLight and the creature refresh service implement the selected light admission. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "Bounded native ownership/consumption boundary implemented and freshly validated by N23. Owned creature-light admission and controlled cycle/publication, with validated native replay restoration of phase0..7/cursor0..65536 while preserving unsigned remaining/quota. Original comparisons cover changing controlled creature/relation snapshots and spectator camera branches. Original production discovery, allocation and live scheduling remain separate; restore is a native interface policy.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"compared_builds\": 3, \"output_sha256\": \"deaa406cbc34e840c121af18072323829acba09a8145534b7ea43f2238bc47fe\"}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "Release and ASan/UBSan native boundary controls pass. Safe selected original comparisons and native sanitizer corpora pass; atomic batch/replay/MAP policies are identified separately. No whole-scene or live acceptance.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Remaining relation/lifetime/refresh production requires broader integration; current code is not absent.",
+              "acceptance_summary": "Original production entity lifetime, unsafe active owner sentinel lookups, allocator/scheduler and live replacement remain separate. Snapshot restoration is native policy and must be paired with the matching owned field.",
               "evidence": [
                 "ORIGINAL.terrain-creature-lighting",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_creature_lighting-20261019"
+                "HTERR1.RE.terrain_creature_lighting-20261019",
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate entity capture/lifetime and spectator/sentinel-owner paths beyond the admitted 0..7 owned cycle."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Remaining relation/lifetime/refresh production requires broader integration; current code is not absent."
+                  "action": "Original production entity lifetime, unsafe active owner sentinel lookups, allocator/scheduler and live replacement remain separate. Snapshot restoration is native policy and must be paired with the matching owned field."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "reconstruction/rendering/terrain_creature_lighting.cpp",
                   "line": 5,
-                  "text": "bool admitsTerrainCreatureLight(const TerrainLightCreature& c,int player,const TerrainLightRelations& r){"
+                  "text": "void TerrainCreatureLightCycle::restore(TerrainCreatureLightState state){"
+                },
+                {
+                  "path": "reconstruction/rendering/terrain_creature_lighting.hpp",
+                  "line": 39,
+                  "text": " void restore(TerrainCreatureLightState);"
                 }
               ],
               "source_sha256": {
-                "reconstruction/rendering/terrain_creature_lighting.cpp": "230416703569b15643bf13481af726beaf3c3db0308a694fe6ba268b9a09e354",
-                "reconstruction/rendering/terrain_creature_lighting.hpp": "d7202a69c681ab0a8f2b161b746542e08c75f48e03f5c3e5877e2651817b1d75",
+                "reconstruction/rendering/terrain_creature_lighting.cpp": "d1ee12f185bd9342d5305902596d6d33e2ab5c62e76a392fc3b405337d75cc3b",
+                "reconstruction/rendering/terrain_creature_lighting.hpp": "8c8260eb396c86c1d3efb70913ca7dbb066ac800f8e602bffbc4b212978e71da",
                 "research/runtime/terrain-creature-lighting.md": "2db4690b855078d6f66c929cd70d639c5970b6b67abebd81d81859e123e972f3",
-                "tests/terrain-creature-lighting-reference.cpp": "52bf95a609c2c55073a58126aef7298e36ac2446cfa05e2c23e11add2a1a3e1e",
-                "tests/terrain-creature-lighting-test.cpp": "e42455818ade2b38b1358498bfe58b7acd0d643c5624454d9de31620df72a893",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/terrain-creature-lighting-reference.cpp": "4d88805517fc06100e4c5f834a26087f916e948429f45f825b741a336eb5c682",
+                "tests/terrain-creature-lighting-test.cpp": "edc2f500e434a2ff0572fb4b69b5a1d71ab573923b563da00d9759043fa51ca4",
+                "research/runtime/native-scene-accounting-closeout-20261020.md": "1e4b418c05c5e1e75e73f2c39a575130314c010650744f297e6453315ad28f89",
+                "tests/rendering-owned-boundaries-test.cpp": "a2b10a4b68f7b769432a4352520e5da7aa486db1d7411c646332cb0bc6465cb7",
+                "research/runtime/rendering-twentythird-ten-20261025.md": "4adca5e50d250c83c6cb6fc5c7e761c6a7c04c9b807c50f43c852018089c99bf",
+                "tools/test-rendering-twentythird-ten.py": "c033e5f0716a2a0f04bca00eca5092db3138dbe8126d7671a24a29ab7fb3a384"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N23.terrain-native-20261025",
+                "N23.terrain-original-20261025"
               ]
             },
             "execution_result": {
@@ -22361,7 +22740,52 @@
               "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
               "remaining": "Validate entity capture/lifetime and spectator/sentinel-owner paths beyond the admitted 0..7 owned cycle.",
               "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "admitsTerrainCreatureLight and the creature refresh service implement the selected light admission. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"compared_builds\": 3, \"output_sha256\": \"deaa406cbc34e840c121af18072323829acba09a8145534b7ea43f2238bc47fe\"}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Remaining relation/lifetime/refresh production requires broader integration; current code is not absent.",
+                "evidence": [
+                  "ORIGINAL.terrain-creature-lighting",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_creature_lighting-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate entity capture/lifetime and spectator/sentinel-owner paths beyond the admitted 0..7 owned cycle."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Remaining relation/lifetime/refresh production requires broader integration; current code is not absent."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_creature_lighting.cpp",
+                    "line": 5,
+                    "text": "bool admitsTerrainCreatureLight(const TerrainLightCreature& c,int player,const TerrainLightRelations& r){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_creature_lighting.cpp": "230416703569b15643bf13481af726beaf3c3db0308a694fe6ba268b9a09e354",
+                  "reconstruction/rendering/terrain_creature_lighting.hpp": "d7202a69c681ab0a8f2b161b746542e08c75f48e03f5c3e5877e2651817b1d75",
+                  "research/runtime/terrain-creature-lighting.md": "2db4690b855078d6f66c929cd70d639c5970b6b67abebd81d81859e123e972f3",
+                  "tests/terrain-creature-lighting-reference.cpp": "52bf95a609c2c55073a58126aef7298e36ac2446cfa05e2c23e11add2a1a3e1e",
+                  "tests/terrain-creature-lighting-test.cpp": "e42455818ade2b38b1358498bfe58b7acd0d643c5624454d9de31620df72a893",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ]
           }
         ],
         "work_review_required": true,
@@ -24733,51 +25157,64 @@
               "research/runtime/animation-direction-selection.md",
               "research/runtime/rendering-high-validation-ownership-20261020.md"
             ],
-            "contract_sha256": "a0ef85ea7bdb28344faba69fd21eba7fd54b158499965987220715b905ff992d",
-            "reviewed_implementation": "partial",
+            "contract_sha256": "b69e35ea3728c94cf11b3aaf8982722cb8b2173589ef270010cb860ab0ce675a",
+            "reviewed_implementation": "scoped",
             "remaining_at_review": "Current full-domain acceptance is not renewed by this source review. The register now links that existing code and records partial implementation. Synthetic controls do not establish complete original targeting/attachment/action-base/lifetime equivalence or live replacement.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "NativeContext::facing already implements wrapped cell-coordinate direction and camera/block722 animation facing through the provider orient callback; the old empty links were stale.",
+              "current_state": "Bounded native ownership/consumption boundary implemented and freshly validated by N23. Native cell-coordinate target-facing arithmetic through the production orient callback: existing coordinate wrapping, zero-displacement preservation, strict3:2 cardinal threshold and cameraTurn/block722 animation facing. Portable delta evaluation avoids signed magnitude/product overflow. Native synthetic/provider controls do not establish original whole-targeting execution, configured action-base/attachment/camera-global/flag lifetime or live replacement.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "168 synthetic production-facing provider cases pass; no original facing recovery is asserted.",
+              "validation_state": "recorded",
+              "validation_summary": "Release and ASan/UBSan native boundary controls pass. Actual native orient provider passes synthetic cell/wrap/camera controls; original targeting execution is not claimed.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. The register now links that existing code and records partial implementation. Synthetic controls do not establish complete original targeting/attachment/action-base/lifetime equivalence or live replacement.",
+              "acceptance_summary": "Original complete targeting/action-base/visual attachment and camera/global/flag lifetime, original whole-targeting execution and live replacement remain unvalidated. Native full-range delta arithmetic does not assert original overflow equivalence.",
               "evidence": [
                 "RREC01.native-world-facing-20261019",
                 "HIGH01.rendering-work-review-20261019",
-                "HIGH03.facing-20261020"
+                "HIGH03.facing-20261020",
+                "N23.facing-native-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
                   "kind": "scope_review",
-                  "action": "The register now links that existing code and records partial implementation. Synthetic controls do not establish complete original targeting/attachment/action-base/lifetime equivalence or live replacement."
+                  "action": "Original complete targeting/action-base/visual attachment and camera/global/flag lifetime, original whole-targeting execution and live replacement remain unvalidated. Native full-range delta arithmetic does not assert original overflow equivalence."
                 }
               ],
               "code_witnesses": [
                 {
                   "path": "apps/command-session/native_providers.cpp",
-                  "line": 76,
-                  "text": "  void facing(model::AutonomousCreature &a,model::Cell target){"
+                  "line": 82,
+                  "text": "    const auto facing=nativeFacingFromDelta(x,y,p_->cameraTurn,e.block722!=0);"
+                },
+                {
+                  "path": "apps/command-session/native_facing.hpp",
+                  "line": 9,
+                  "text": "inline std::optional<NativeFacing> nativeFacingFromDelta(std::int32_t x,std::int32_t y,"
                 }
               ],
               "source_sha256": {
-                "apps/command-session/native_providers.cpp": "dba83a75417ec180f95f70220afff43cd77609cbe07a40847bf4c70687e52b12",
+                "apps/command-session/native_providers.cpp": "c3804633f5d10fee916b4241229a6076dea74082c3c6392849af33cb41e2297d",
                 "apps/command-session/native_providers.hpp": "863bbbaace462a23f3ade82e6df6b15a3530997b1f51a49ce24a5951cea51932",
                 "research/runtime/animation-direction-selection.md": "b51eaca69e6ebb10fcbf5abd6eef2ab46923c6c762a3460877b12e6f35519b44",
-                "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                "research/runtime/rendering-high-validation-ownership-20261020.md": "70feac7501a3a8567bcf911c8722aff71120700e3c7763e481af5917f3f92c73",
                 "tests/native-world-facing-test.cpp": "2431dd3c193989de76c44e0266606537ce448764886772ab50ab6209ea0a2296",
                 "tools/test-native-facing-reconciliation.py": "6ccfbb888d60086cb29ef4a36321ab197cf67bd8a26fef3daac413fdaf924f46",
                 "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
-                "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658"
+                "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658",
+                "tests/rendering-owned-boundaries-test.cpp": "a2b10a4b68f7b769432a4352520e5da7aa486db1d7411c646332cb0bc6465cb7",
+                "research/runtime/rendering-twentythird-ten-20261025.md": "4adca5e50d250c83c6cb6fc5c7e761c6a7c04c9b807c50f43c852018089c99bf",
+                "tools/test-rendering-twentythird-ten.py": "c033e5f0716a2a0f04bca00eca5092db3138dbe8126d7671a24a29ab7fb3a384",
+                "apps/command-session/native_facing.hpp": "bb2aff6076113275f21651b6cdde679119801a3a3cbe11a98d10586b69bda562"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
               ],
               "pending_source_review": [],
-              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
+              "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent.",
+              "validation_evidence": [
+                "N23.facing-native-20261025"
+              ]
             },
             "work_review_history": [
               {
@@ -24817,6 +25254,49 @@
                   "tests/native-world-facing-test.cpp": "2431dd3c193989de76c44e0266606537ce448764886772ab50ab6209ea0a2296",
                   "tools/test-native-facing-reconciliation.py": "6ccfbb888d60086cb29ef4a36321ab197cf67bd8a26fef3daac413fdaf924f46"
                 }
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "NativeContext::facing already implements wrapped cell-coordinate direction and camera/block722 animation facing through the provider orient callback; the old empty links were stale.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "168 synthetic production-facing provider cases pass; no original facing recovery is asserted.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. The register now links that existing code and records partial implementation. Synthetic controls do not establish complete original targeting/attachment/action-base/lifetime equivalence or live replacement.",
+                "evidence": [
+                  "RREC01.native-world-facing-20261019",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.facing-20261020"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "The register now links that existing code and records partial implementation. Synthetic controls do not establish complete original targeting/attachment/action-base/lifetime equivalence or live replacement."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "apps/command-session/native_providers.cpp",
+                    "line": 76,
+                    "text": "  void facing(model::AutonomousCreature &a,model::Cell target){"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/command-session/native_providers.cpp": "dba83a75417ec180f95f70220afff43cd77609cbe07a40847bf4c70687e52b12",
+                  "apps/command-session/native_providers.hpp": "863bbbaace462a23f3ade82e6df6b15a3530997b1f51a49ce24a5951cea51932",
+                  "research/runtime/animation-direction-selection.md": "b51eaca69e6ebb10fcbf5abd6eef2ab46923c6c762a3460877b12e6f35519b44",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/native-world-facing-test.cpp": "2431dd3c193989de76c44e0266606537ce448764886772ab50ab6209ea0a2296",
+                  "tools/test-native-facing-reconciliation.py": "6ccfbb888d60086cb29ef4a36321ab197cf67bd8a26fef3daac413fdaf924f46",
+                  "research/runtime/next20-implementation-progress-20261020.md": "4acf4e99df928a1e240554c2cd7bcaa71c18935e1d1b89ba574a430e0fd13bb8",
+                  "tools/test-next20-animation-controls.py": "e5b44cd2a3afdf4265022e43e5cd5c2e62eeaf74e1d32aa09f27946738237658"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "Next-twenty source links reviewed as bounded code/test/research additions; prior hashes, assessment and execution/acceptance limitations are retained. New execution records are independent."
               }
             ],
             "planning_history": [

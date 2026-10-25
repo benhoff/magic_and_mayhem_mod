@@ -3,6 +3,7 @@
 #define main unused_sprite_reference
 #include "sprite-binary-reference.cpp"
 #undef main
+#include "../reconstruction/rendering/graphics_initializer.hpp"
 #include <array>
 #include <algorithm>
 using U = std::uint32_t;
@@ -84,6 +85,25 @@ int MNM_ALTERNATE_INITIALIZER_ENTRY(int argc, char** argv) try {
         offscreen[1]=7; offscreen[2]=(v?600u:480u)+actualY;
         offscreen[3]=(v?800u:640u)+actualX; offscreen[26]=0x840;
         require(descriptors == std::vector<std::array<U,27>>{primary,offscreen}, "Complete descriptors");
+        const auto native=mnm::reconstruction::planGraphicsInitialization({v!=0,mode!=0,config,xp,yp});
+        require(descriptors==std::vector<std::array<U,27>>{native.primary,native.offscreen},"Native initializer requests");
+        require(native.paddingX==actualX && native.paddingY==actualY && native.depth==16 &&
+          native.width==(v?800u:640u) && native.height==(v?600u:480u),"Native mode/padding");
+        using Step=mnm::reconstruction::GraphicsInitializerStep;
+        std::vector<U> nativeEvents;
+        for(const auto step:native.steps){
+          switch(step){
+          case Step::setupMode:nativeEvents.push_back(1);break;
+          case Step::setupWindow:nativeEvents.push_back(2);break;
+          case Step::createPrimary:nativeEvents.push_back(0x6a4fe0);break;
+          case Step::createOffscreen:nativeEvents.push_back(0x6a49e0);break;
+          case Step::clearOffscreen:nativeEvents.push_back(3);break;
+          case Step::queryPixelFormat:nativeEvents.push_back(4);break;
+          }
+        }
+        require(events==nativeEvents && native.clearFlags==0x1000400 &&
+          native.clearEffects[0]==100 && native.pixelFormatBytes==32,"Native boundary ordering/clear");
+        require(std::all_of(native.clearEffects.begin()+1,native.clearEffects.end(),[](U x){return x==0;}),"Native clear FX tail");
         require(get(0x6e1f70)==actualX && get(0x6e1f74)==actualY && get(0x6e1f78)==config, "Padding state");
         require(get(0x6e1f68)==enable && get(0x6e1f6c)==source, "Initializer changed alternate publication");
         require(std::all_of(alternate.begin(),alternate.end(),[](U x){return x==0xa57b1359;}), "Alternate storage unexpectedly written");

@@ -15,6 +15,8 @@ struct RegionDescriptorBank {
     std::int32_t internalThreshold=1000;
     std::vector<RegionBlockDescriptor> blocks;
 };
+// Shared nonmutating admission for native descriptor consumers.
+void validateRegionDescriptorBank(const RegionDescriptorBank&);
 std::optional<unsigned> findRegionConnector(const RegionDescriptorBank&,
     std::int32_t label, std::int32_t placed, unsigned current);
 struct RegionAdmissionCarry {

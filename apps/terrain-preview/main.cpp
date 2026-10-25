@@ -199,7 +199,9 @@ int main(int argc,char** argv)try{
    const auto& bytes=field.buffers()[0];mapInfo.insert("terrain_light_field",QJsonObject{{"ambient",config.ambient},{"ramp",config.ramp},{"bytes",qint64(bytes.size())},{"sha256",hash(bytes)},{"publication","recovered creature then static cycle"},{"fixture",p.value("light-fixture")},{"fixture_sha256",QString::fromLatin1(QCryptographicHash::hash(data,QCryptographicHash::Sha256).toHex())},{"selected_tick",int(selected)},{"fixture_ticks",int(snapshots.size())},{"trace",trace}});
   }else{
   mnm::reconstruction::TerrainLightField field(lightShape[0],lightShape[1],lightShape[2],config);
-  for(const auto& request:p.values("light-source")){const auto values=request.split(',');if(values.size()!=4)throw std::runtime_error("Light source requires column,row,layer,size");std::array<unsigned,4> source{};for(unsigned i=0;i<4;++i){source[i]=values[int(i)].toUInt(&ok);if(!ok)throw std::runtime_error("Invalid light source integer");}field.stamp({source[0],source[1],source[2],source[3]});}
+  std::vector<mnm::reconstruction::TerrainLightSource> lightSources;
+  for(const auto& request:p.values("light-source")){const auto values=request.split(',');if(values.size()!=4)throw std::runtime_error("Light source requires column,row,layer,size");std::array<unsigned,4> source{};for(unsigned i=0;i<4;++i){source[i]=values[int(i)].toUInt(&ok);if(!ok)throw std::runtime_error("Invalid light source integer");}lightSources.push_back({source[0],source[1],source[2],source[3]});}
+  field.stampBatch(lightSources);
   field.publish();for(auto& tile:tiles)tile.state.light=field.at(unsigned(tile.state.column),unsigned(tile.state.row),unsigned(tile.state.level));
   const auto& bytes=field.buffers()[0];mapInfo.insert("terrain_light_field",QJsonObject{{"ambient",config.ambient},{"ramp",config.ramp},{"bytes",qint64(bytes.size())},{"sha256",QString::fromLatin1(QCryptographicHash::hash(QByteArray(reinterpret_cast<const char*>(bytes.data()),bytes.size()),QCryptographicHash::Sha256).toHex())},{"sources",QJsonArray::fromStringList(p.values("light-source"))},{"publication","immediate controlled fixture"}});
   }
