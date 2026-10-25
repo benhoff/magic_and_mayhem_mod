@@ -147228,7 +147228,7 @@
       "scope": "Whole explicit changed=1 request helper with raw prior flag values. Kernel/map-load writes and outer clear are documented static caller links, without claiming full caller/scheduler execution.",
       "validation_domain": "Whole explicit changed=1 request helper with raw prior flag values. Kernel/map-load writes and outer clear are documented static caller links, without claiming full caller/scheduler execution.",
       "remaining_gaps": [
-        "Producer-triggering gameplay/UI paths, kernel/map-load callers, indirect refresh writes and whole-world scheduling remain unvalidated."
+        "Bounded linked-creature creation, position event9/default callers and one local scheduler region are separately recovered by TL.refresh-creation-caller, TL.refresh-position-caller and TL.refresh-scheduler-gates. Other gameplay/UI producers, kernel/map-load caller chains, indirect refresh writes and the whole world loop remain unvalidated."
       ],
       "original": [
         {
@@ -147236,6 +147236,163 @@
           "address": 5189072,
           "scope": "Whole explicit changed=1 request helper with raw prior flag values. Kernel/map-load writes and outer clear are documented static caller links, without claiming full caller/scheduler execution."
         }
+      ]
+    },
+    {
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/terrain-refresh-callers.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_refresh.hpp"
+      ],
+      "tests": [
+        "tests/terrain-refresh-callers-reference.cpp",
+        "tools/test-terrain-refresh-callers.py",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "TLR25.callers-original",
+        "TLR25.callers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "TL.refresh-creation-caller",
+      "title": "Creature creation refresh request caller",
+      "scope": "Whole creation caller for valid existing linked-creature mode with recorded collision/owner/allocation/initialization/binding services; refresh only after successful creation owned by current player.",
+      "validation_domain": "Whole creation caller for valid existing linked-creature mode with recorded collision/owner/allocation/initialization/binding services; refresh only after successful creation owned by current player.",
+      "remaining_gaps": [
+        "New-owner/script creation, invalid handles, service internals and live creature production remain open."
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4781712,
+          "scope": "Whole creation caller for valid existing linked-creature mode with recorded collision/owner/allocation/initialization/binding services; refresh only after successful creation owned by current player."
+        }
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/terrain_light_suppliers.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp"
+      ]
+    },
+    {
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/terrain-refresh-callers.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_refresh.hpp"
+      ],
+      "tests": [
+        "tests/terrain-refresh-callers-reference.cpp",
+        "tools/test-terrain-refresh-callers.py",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "TLR25.callers-original",
+        "TLR25.callers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "TL.refresh-position-caller",
+      "title": "Creature position event refresh request caller",
+      "scope": "Whole position event handler for event9 with +718=0 and default events, recorded coordinate/placement/lifecycle services, failure/deactivation exits and refresh ordering.",
+      "validation_domain": "Whole position event handler for event9 with +718=0 and default events, recorded coordinate/placement/lifecycle services, failure/deactivation exits and refresh ordering.",
+      "remaining_gaps": [
+        "Events5/8/14, +718 continuation, service internals and live event production remain open."
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5367952,
+          "scope": "Whole position event handler for event9 with +718=0 and default events, recorded coordinate/placement/lifecycle services, failure/deactivation exits and refresh ordering.",
+          "recovered_range": "terrain-position-event-51e890"
+        }
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/terrain_light_suppliers.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp"
+      ]
+    },
+    {
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/terrain-refresh-callers.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_refresh.hpp"
+      ],
+      "tests": [
+        "tests/terrain-refresh-callers-reference.cpp",
+        "tools/test-terrain-refresh-callers.py",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "TLR25.callers-original",
+        "TLR25.callers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "id": "TL.refresh-scheduler-gates",
+      "title": "World loop lighting dispatch gates and deferred refresh",
+      "scope": "Selected region0046b836..0046b91a with timer exit0046bca3, EBX=0/ESI=parent: local suppression, timer/lighting gates, deadline update and creature/static/changed-clear composition; authored source input sequence.",
+      "validation_domain": "Selected region0046b836..0046b91a with timer exit0046bca3, EBX=0/ESI=parent: local suppression, timer/lighting gates, deadline update and creature/static/changed-clear composition; authored source input sequence.",
+      "remaining_gaps": [
+        "Whole world loop/clock ownership, earlier gates, installed inputs, other direct load continuation, indirect refresh writes and live replacement remain open."
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632512,
+          "scope": "Selected region0046b836..0046b91a with timer exit0046bca3, EBX=0/ESI=parent: local suppression, timer/lighting gates, deadline update and creature/static/changed-clear composition; authored source input sequence."
+        }
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/terrain_light_suppliers.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp"
       ]
     }
   ],
@@ -334895,6 +335052,72 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLR25.callers-original",
+      "kind": "isolated_original",
+      "scope": "Whole admitted linked-creature creation and event9/default callers with recorded services; selected world-loop region and timer/lighting gates; authored producer-to-actual-cycle sequences. No full world loop, installed source production, other load continuations or live replacement.",
+      "record": "research/runtime/terrain-refresh-callers-results-20261025/execution02.json",
+      "sha256": "025ab8bee92d0fb124711bd952bc21cf943c0c91e87cc5da0a8bd0f08189c0c5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLR25.callers-native",
+      "kind": "native_integration",
+      "scope": "Whole admitted linked-creature creation and event9/default callers with recorded services; selected world-loop region and timer/lighting gates; authored producer-to-actual-cycle sequences. No full world loop, installed source production, other load continuations or live replacement.",
+      "record": "research/runtime/terrain-refresh-callers-results-20261025/execution02.json",
+      "sha256": "025ab8bee92d0fb124711bd952bc21cf943c0c91e87cc5da0a8bd0f08189c0c5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -344029,6 +344252,74 @@
         },
         {
           "value": "virtual+2c",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "terrain-position-events-51e890",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5367952,
+        "recovered_range": "terrain-position-event-51e890",
+        "scope": "Position handler byte indirection and four-target table at0051ec6c/0051ec5c."
+      },
+      "document": "research/runtime/terrain-refresh-callers.md",
+      "complete": false,
+      "scope": "Event9 with +718=0 and default events only. Events5/14 share an unvalidated branch; event8 and +718 continuation remain unresolved.",
+      "entries": [
+        {
+          "value": 5,
+          "behaviors": []
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "TL.refresh-position-caller"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "TL.refresh-position-caller"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": []
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "TL.refresh-position-caller"
+          ]
+        },
+        {
+          "value": 10,
+          "behaviors": [
+            "TL.refresh-position-caller"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "TL.refresh-position-caller"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "TL.refresh-position-caller"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "TL.refresh-position-caller"
+          ]
+        },
+        {
+          "value": 14,
           "behaviors": []
         }
       ]
@@ -361136,6 +361427,22 @@
         "TLS25.suppliers-original",
         "TLS25.suppliers-native"
       ]
+    },
+    {
+      "id": "TLR25.refresh-callers-cycles-headless",
+      "scope": "Authored creation/position requests followed by skipped and admitted local scheduler dispatch, actual creature/static publication and shared changed clearing on guarded fields; no installed world or live execution.",
+      "level": "headless",
+      "behaviors": [
+        "TL.refresh-scheduler-gates"
+      ],
+      "tests": [
+        "tests/terrain-refresh-callers-reference.cpp",
+        "tools/test-terrain-refresh-callers.py"
+      ],
+      "evidence": [
+        "TLR25.callers-original",
+        "TLR25.callers-native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -362331,6 +362638,16 @@
       "evidence": "STK1.original-final-20261024",
       "anchors_pointer": "/original_entry_anchors",
       "scope": "Closed590-byte local CFG,all local branches/returns and96000 authored original/native callback-boundary cases. Existing global discovery remains unchanged;external indirect services and helper behavior/lifetime stay unresolved."
+    },
+    {
+      "id": "terrain-position-event-51e890",
+      "build": "nocd-40209ca7",
+      "start": 5367952,
+      "end": 5368950,
+      "document": "research/runtime/terrain-refresh-callers.md",
+      "evidence": "TLR25.callers-original",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Pinned position-event code and trailing dispatch data outside Ghidra function bodies. Whole admitted event9/+718=0 and default paths executed with named external services; events5/8/14 and +718 continuation remain unresolved. This range does not classify the whole function as complete."
     }
   ],
   "register_imports": [
@@ -362703,7 +363020,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-a6d425976b7d74d36a22734da347f6580c82627d792582b31780ff340ec13f65.json",
-    "sha256": "a6d425976b7d74d36a22734da347f6580c82627d792582b31780ff340ec13f65"
+    "path": "research/runtime/coverage/source-index-0ec52feeab1f39d8be1889bcde0d6e48c764d8b81cfea19c7243a813f7375039.json",
+    "sha256": "0ec52feeab1f39d8be1889bcde0d6e48c764d8b81cfea19c7243a813f7375039"
   }
 }

@@ -22222,3 +22222,50 @@ reviewed supplier closeout `d54a5e37`. Its exact transition review extends the
 retained history, while all twelve supplier proof inputs remain unchanged. A
 backed-up pending merge preserves concurrent main-checkout work through normal
 hook validation and the final fast-forward. No validation scope is promoted.
+
+
+## Terrain light refresh callers and scheduler gates — 2026-10-25
+
+[Caller recovery](terrain-refresh-callers.md) establishes three separate bounded
+contracts: `TL.refresh-creation-caller`, `TL.refresh-position-caller`, and
+`TL.refresh-scheduler-gates`. Whole creation `0048f690` executes for a valid
+linked-creature source; whole position handler `0051e890` executes for event9
+with `+718=0` and defaults. Collision, owner, allocation, coordinate, placement
+and lifecycle endpoints are explicit recorders. The scheduler comparison
+executes only `0046b836..0046b91a` inside `0046afc0`, with checked exits outside
+that range; it does not claim the entire world loop.
+
+[Fresh SQLite execution](terrain-refresh-callers-results-20261025/execution02.json)
+compares original32, native64 and ASan/UBSan:384 creation cases,640 position
+cases,1152 scheduler cases and384 scene ticks/checkpoints. All7897216 output
+bytes match, including ordered service calls, five guarded buffers and eleven
+cycle/publication state values per scene tick. Both original manifest bookends
+pass. Executable bodies stay RX and their pinned original bytes are verified.
+Exact common output streams are [retained in SQLite](terrain-refresh-callers-results-20261025/retained-artifacts01.json).
+
+Skipped dispatch retains refresh requests. Admitted `004f27a0` runs creature
+then static consumers before clearing the shared flag. Headless authored scenes
+combine real request callers with unmodified original initialization, kernel,
+updater and stamp bodies; native scenes use `TerrainLightingCycle`. This grants
+only the registered headless scenario, without installed input or live claims.
+
+[Static discovery](terrain-refresh-callers-results-20261025/discovery02.json)
+and an explicit recovered-range exception preserve the event handler missing
+from the Ghidra function census. Its event dispatch stays incomplete:events5/8/14,
+`+718` continuation and external service internals remain open. Other creation
+modes, full map/load caller chains (including the other updater site004721fc),
+earlier/later world-loop gates, clock ownership, indirect writes, heap failures,
+installed source production and live replacement also remain separate.
+
+The first successful narrower matrix and its exact source version are retained;
+execution02 additionally tests default-event lower/upper/unsigned boundaries.
+The [committed-history review](terrain-refresh-callers-results-20261025/committed-history01.json)
+checks39 exact transitions in the preceding supplier integration against their
+receipts with no gaps. It remains distinct from this batch's source review and
+execution claims. Historical evidence and source hashes are unchanged.
+
+The [coverage audit](terrain-refresh-callers-results-20261025/audit01.json) has
+zero errors. All three new comparisons are current; the declared scheduler
+headless scenario is current independently. The
+[coverage summary](coverage/summary-terrain-refresh-callers-20261025.md) retains
+unrelated historical staleness and unresolved discovery ranges.
