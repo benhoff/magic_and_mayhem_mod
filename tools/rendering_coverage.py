@@ -9,7 +9,7 @@ from coverage_audit import audit, pointer, sha
 ROOT = Path(__file__).resolve().parents[1]
 REGISTER = 'research/runtime/coverage/register.json'
 MATRIX = 'research/runtime/native-surface-operation-matrix.json'
-SCOPE = 'research/runtime/rendering-coverage-scope.json'
+SCOPE = 'research/runtime/rendering-coverage-scope-assurance-20261025.json'
 ORIGINAL = {'isolated_original', 'live_equivalence', 'live_replacement'}
 
 
