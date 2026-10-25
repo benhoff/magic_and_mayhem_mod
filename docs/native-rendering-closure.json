@@ -114,14 +114,16 @@
         "NP.native-gpu-copy-live-validation",
         "NP.active-lock-reader-restoration",
         "NP.protected-cpu-lease-storage",
-        "NP.native-cpu-instruction-resume"
+        "NP.native-cpu-instruction-resume",
+        "NP.native-copy-output-closure"
       ],
-      "established": "Ordered restoration, protected leases and copy planning exist; selected live opaque copies have independent output checks.",
+      "established": "Ordered restoration,protected leases and copy planning exist. The bounded caller-bound all-COPY policy additionally proves CPU-keyed and GPU output at its exact retained sources; merged broad provenance freshness remains independently pending.",
       "remaining": "All required readers and natural clipped/self/keyed GPU callers are not covered.",
       "recovery_exit": "Classify required reads/writes and compare ordering, side effects and alias behavior. Readable memory alone is not coherent history.",
       "documents": [
         "research/runtime/native-history-readers.md",
-        "research/runtime/native-gpu-copy-live-validation.md"
+        "research/runtime/native-gpu-copy-live-validation.md",
+        "research/runtime/native-copy-output-closure-20261025.md"
       ],
       "code_witnesses": [
         {
@@ -447,14 +449,16 @@
         "RS.windowed-padded-presentation-route",
         "RS.canvas-startup-initializer",
         "RS.screen-cursor-background-invalidation",
-        "RS.screen-cursor-background-restore"
+        "RS.screen-cursor-background-restore",
+        "NP.screen-cursor-native-copy-providers"
       ],
-      "established": "Local screen tick and borrowed dispatch composition are compared; original windowed padded ordinary rendering observed. P1 additionally recovers complete local static background invalidation/restore semantics; no execution comparison for those helpers.",
-      "remaining": "External helper/vtable semantics, callback interleavings, screen lifetime and installation of these models.",
+      "established": "Local screen tick and borrowed dispatch composition are compared;original windowed padded ordinary rendering observed. Cursor background invalidation/restore now have55296-case complete local original/model comparison and78-case real Wine/native/guarded provider connections with independent full destinations and retirement.",
+      "remaining": "Actual remaining helper/vtable semantics,callback/concurrency interleavings and screen/cursor owner lifetimes. Installing portable screen/helper models is separate upstream modernization while original screen control remains the admitted supplier.",
       "recovery_exit": "Recover required external screen services and ownership; caller order does not establish callee semantics.",
       "documents": [
         "research/runtime/screen-presentation-recovery-20261024.md",
-        "research/runtime/alternate-canvas-composition-20261024.md"
+        "research/runtime/alternate-canvas-composition-20261024.md",
+        "research/runtime/screen-cursor-provider-recovery-20261025.md"
       ],
       "code_witnesses": [
         {
@@ -479,6 +483,22 @@
         },
         {
           "path": "tests/alternate-canvas-dispatch-reference.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "reconstruction/rendering/screen_cursor.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/screen-cursor-reference.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tests/screen-cursor-provider-probe.c",
+          "role": "tests"
+        },
+        {
+          "path": "tools/test-screen-cursor-services.py",
           "role": "tests"
         }
       ]

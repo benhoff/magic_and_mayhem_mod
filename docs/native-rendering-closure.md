@@ -7,8 +7,8 @@ Neither decision substitutes for the other.
 
 This plan reviews local master `c4510223`, including the completed bounded
 terrain/palette scopes and original alternate-ownership diagnostics. The
-[editable closure map](native-rendering-closure.json) links 104 registered
-behaviors in 15 contract groups (the baseline 101 plus two P1 static helpers and the functional acceptance policy) to the existing 14 journeys and 21 operation
+[editable closure map](native-rendering-closure.json) links 106 registered
+behaviors in 15 contract groups (the baseline101 plus two P1 helpers,functional acceptance,caller-bound copy output and cursor-provider connection policies) to the existing 14 journeys and 21 operation
 requirements. These are dependency links, not new execution or completion credit.
 The [coverage register](../research/runtime/coverage/register.json) retains its
 independent understanding, implementation, comparison, integration and replacement
@@ -64,7 +64,7 @@ semantics. Native policies remain separate from recovered baseline behavior.
 | C06 Lighting and palettes | All ten bounded palette builders, chains, selection/delivery, previews and selected light contracts | Runtime configuration, complete refresh/input production, failure and scene ownership boundaries. |
 | C07 Sprites and visibility | Sorting, visibility, occlusion and selected sprite/effect comparisons | Complete producer/owner mutations at required scene call sites. |
 | C08 HUD minimap text | Pixel kernels, text/finalizer composition and compared minimap selector | Whole-caller state production, border/marker composition and installation of the new selector. |
-| C09 Screens | Complete local tick and borrowed dispatch comparisons | External helper/vtable semantics, screen lifetime, callback interactions and model installation. |
+| C09 Screens | Complete local tick,borrowed dispatch and cursor-background helper comparisons;real native cursor-copy provider connection | Remaining helper/vtable semantics,screen lifetime and callback interactions. Portable helper installation is separate while original screen control remains a supplier. |
 | C10 Alternate ownership | Initializer/copy/displacement contracts and normal original session observations | Allocator, publisher, initial pixels, base/source relationship, writers, release and requiredness; native displacement initializer is not installed. |
 | C11 Input | Forwarding and selected physical interactions | Required state transitions, cursor/hotspot/picking combinations and strict Escape/Mini readiness. |
 | C12 Movies | Native playback and bounded enabled startup | Required skip/end/error/return ownership and profile combinations. |
@@ -211,3 +211,14 @@ B05 has fresh strict10/30second functional execution; broader journeys and the h
 19FPS failures remain unchanged, with measurement overhead unresolved.
 
 The [functional execution report](../research/runtime/rendering-functional-lifecycle-20261025.md) records the passing strict and public NVIDIA lifecycle scopes, the separate failed Fireball-damage case and the remaining validation boundaries.
+
+## Cursor screen-service connection (2026-10-25)
+
+[CSR1 recovery](../research/runtime/screen-cursor-provider-recovery-20261025.md)
+closes complete local4a4370/4a4380 semantics with55296-case original/model
+comparison. Its78-case actual Wine/native/guarded provider matrix checks direct
+and deferred copy destinations,full queue preservation and complete native
+retirement. This narrows C09/B03 without closing the other external screen
+services or owner lifetimes. No portable screen/helper hook is installed;the
+existing original-to-native pixel-provider connection is the tested boundary.
+The14journeys,21operations and all other blockers remain unchanged.

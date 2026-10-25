@@ -159,3 +159,15 @@ review, source variants and restore-verified local SQLite backup are retained
 under `working/coverage/rendering-p1-20261024/`. The repository's default90GiB
 policy is unchanged. No cleanup, remote publication or runtime behavior change
 is part of this acquisition.
+
+## Superseding cursor helper execution (2026-10-25)
+
+The static-only statements above describe the original P1 result.
+[CSR1](screen-cursor-provider-recovery-20261025.md) adds portable borrowed-state
+implementations and complete unchanged original-body comparison for4a4370 and
+4a4380,including post-callback state rereads. A separate actual-provider matrix
+connects original immediate/deferred copy and queue drainage to native surfaces
+with complete independent destination checks and zero surviving owners.
+The rest of F2 remains open:actual virtual targets,screen selection/control/
+special services and full cursor/resource lifetime are not inferred from this
+local proof. No reconstructed helper is installed in the public profile.

@@ -1,5 +1,22 @@
 # Engine modernization coverage ledger
 
+## Original screen cursor helpers and native providers — 2026-10-25
+
+CSR1 closes local4a4370invalidation and4a4380restore with55296 original32,
+sanitized32 and independent native64 cases. Complete selected state and ordered
+callback boundaries agree,including ignored wait results,wrapped extents,
+post-wait mutation and post-copy mutex rereads. Both implementations are scoped
+and original comparison recorded;neither model is installed or live-replaced.
+
+A separate real-provider connection executes unchanged original helper,copy,
+enqueue,drain and shutdown bodies in78cases each against Wine,native and guarded
+native surfaces. All18252 before/after destination words per backend match an
+independent Python policy;full128-record queues stay unchanged until drain and
+all native owners retire. Six corrupted/truncated trace controls refuse. This
+is headless provider integration,not all screen/vtable/owner or physical-driver
+recovery. The14journeys and21operations remain required. See
+[scope and evidence](screen-cursor-provider-recovery-20261025.md).
+
 ## Caller-bound copy pixels and restored World checkpoints — 2026-10-25
 
 Opt-in all-COPY diagnostics close the prior CPU-keyed output-selection gap.
@@ -22087,3 +22104,12 @@ exact; inherited lifecycle records and all negative results retain their hashes
 and any current source drift. Merged Python controls and coverage accounting
 are separate from new original/live/scene/performance validation. See
 [integration scope and records](rendering-twentythird-master-integration-20261025.md).
+
+CSR1 current-source refresh retains execution01 and adds execution02 with2801
+source fingerprints. All55296 helper cases and78cases per real provider pass
+again. The live copy acceptance independently verifies4630COPY destinations
+through187balanced Worlds and normal Quit. The separate Save-menu attempt
+fails with resident producer cancellation after92Worlds,before a save-file
+digest. Its stable-source failure is retained;current storage/recreate acceptance
+and subsequent original checkpoint comparison remain pending. Historical storage
+passes and hashes remain unchanged. FPS stays diagnostic.

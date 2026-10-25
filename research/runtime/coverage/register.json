@@ -78881,7 +78881,8 @@
       "remaining_gaps": [
         "Current NVIDIA native-storage06 completes both intros, Save/Load/resume, two original display rebuilds, Main Load/resume and normal Quit; one moving Hermes title and retained checkpoint driver identities are exercised. Same-session functional success is not full restored simulation equivalence, fresh-process restart, all lifecycle/failure paths,47/21journey/operation closure or sustained60FPS. Earlier failed attempts remain immutable.",
         "Fresh strict no-forward native storage run-p71wc_l6 reaches original Save(screen13) then remains unready and times out at stage4. Sources stay stable;6612nativeframes/6581paints/40089optional calls/zero forwards/no recovery. Child is stopped and2927-file after-manifest passes. Earlier successful storage06 is retained; current deterministic Save-readiness/reliable complete storage acceptance is unresolved. Root cause not assigned to resource reservations, which this native launch does not enable.",
-        "COPYOUTPUT.live-storage02-20261025 freshly completes the diagnostics-disabled llvmpipe Initiate Save/Load/rebuild/MainLoad journey with568balanced Worlds and40 explicit CPU restorations. Earlier Save-readiness failures remain historical negatives; one bounded pass does not establish universal reliability. Independent restored World raster comparison is separately recorded; full restored simulation and cross-process restore remain open."
+        "COPYOUTPUT.live-storage02-20261025 freshly completes the diagnostics-disabled llvmpipe Initiate Save/Load/rebuild/MainLoad journey with568balanced Worlds and40 explicit CPU restorations. Earlier Save-readiness failures remain historical negatives; one bounded pass does not establish universal reliability. Independent restored World raster comparison is separately recorded; full restored simulation and cross-process restore remain open.",
+        "CSR1 current-source save/load attempt failed at the Save-menu transition with resident World producer cancellation,after92balanced Worlds and before a save-file digest. live-storage-failure01.json retains stable-source negative evidence. Current merged storage/recreate acceptance and subsequent independent original checkpoints remain pending;historical passing records are unchanged."
       ]
     },
     {
@@ -78984,7 +78985,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "CSR1 current-source save/load attempt failed at the Save-menu transition with resident World producer cancellation,after92balanced Worlds and before a save-file digest. live-storage-failure01.json retains stable-source negative evidence. Current merged storage/recreate acceptance and subsequent independent original checkpoints remain pending;historical passing records are unchanged."
+      ]
     },
     {
       "id": "CP.gameplay-mini-tutorial-gate",
@@ -146715,35 +146719,48 @@
       "kind": "recovered",
       "subsystem": "rendering_reconstruction",
       "title": "Original saved cursor background invalidation",
-      "scope": "Complete11-byte4a4370..4a437b static local semantics:clear DWORD642c54 and return;no local allocation,free,mutex or callee. Static bytes/CFG only;caller lifetime,other writers,native implementation and execution comparison remain separate.",
+      "scope": "Complete11-byte NoCD4a4370..4a437b local invalidation:clear the whole saved-valid DWORD only. Portable borrowed-state model and unchanged original-body comparison; no allocation,mutex or release semantics are invented. Required screen/cursor resource ownership,other writers,arbitrary callbacks and live replacement remain outside this local contract.",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4866928,
-          "scope": "Complete11-byte4a4370..4a437b static local semantics:clear DWORD642c54 and return;no local allocation,free,mutex or callee. Static bytes/CFG only;caller lifetime,other writers,native implementation and execution comparison remain separate."
+          "scope": "Complete11-byte NoCD4a4370..4a437b local invalidation:clear the whole saved-valid DWORD only. Portable borrowed-state model and unchanged original-body comparison; no allocation,mutex or release semantics are invented. Required screen/cursor resource ownership,other writers,arbitrary callbacks and live replacement remain outside this local contract."
         }
       ],
       "documents": [
         "research/runtime/rendering-required-dependencies-20261024.md",
-        "docs/native-rendering-dependencies.json"
+        "docs/native-rendering-dependencies.json",
+        "research/runtime/screen-cursor-provider-recovery-20261025.md"
       ],
-      "implementation": [],
+      "implementation": [
+        "reconstruction/rendering/screen_cursor.hpp"
+      ],
       "tests": [
-        "tools/reconcile-rendering-dependencies.py"
+        "tests/screen-cursor-reference.cpp",
+        "tools/test-screen-cursor-services.py"
       ],
       "evidence": [
-        "P1.required-rendering-dependencies-static-20261024"
+        "P1.required-rendering-dependencies-static-20261024",
+        "CSR1.helpers-20261025",
+        "CSR1.helpers02-20261025",
+        "CSR1.helpers06-20261025"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "none",
-        "comparison": "none",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "confidence": "high_within_scope",
       "remaining_gaps": [
-        "Static local understanding only; native implementation,original/native execution,actual screen/cursor ownership,all writers and full session acceptance remain open."
+        "Current55296-case local helper original/model comparison passes with ordered authored endpoints and controlled callback mutation. CPU register return is not assigned a semantic value. Platform mutex abandonment/failure ownership,copy reload/fault paths,arbitrary callback/concurrency lifetime,all screen targets and installed native replacement remain independent. Actual bounded original-to-native copy/queue providers have a separately recorded headless connection."
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/original_x86.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
       ]
     },
     {
@@ -146751,35 +146768,48 @@
       "kind": "recovered",
       "subsystem": "rendering_reconstruction",
       "title": "Original saved cursor background restore control",
-      "scope": "Complete302-byte4a4380..4a44ae static local CFG and guarded saved-background restore. Early gates,ignored INFINITE Wait result,nonzero wrapped rectangle dimensions,clamped offsets,direct58c4a0/deferred58d5b0 copy selection and mutex release. External copy/queue/mutex semantics,all aliases/writers and arbitrary callback/fault lifetime remain separate. No native implementation or original execution comparison.",
+      "scope": "Complete302-byte NoCD4a4380..4a44ae local restore control:enabled/class/interface/nonnegative-coordinate early gates;ignored INFINITE wait result;post-wait state rereads;wrapped nonzero rectangle dimensions;clamped saved offsets;direct58c4a0 or copied deferred58d5b0 arguments;post-callback mutex reread and release without clearing saved-valid. Portable borrowed-state model compared to unchanged original body with authored platform/copy boundaries,including controlled callback mutations. Actual queue/copy providers have a separately declared bounded connection. No arbitrary concurrency,invalid pointer execution,all original writers/owners,whole screen lifetime or live installation claim.",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4866944,
-          "scope": "Complete302-byte4a4380..4a44ae static local CFG and guarded saved-background restore. Early gates,ignored INFINITE Wait result,nonzero wrapped rectangle dimensions,clamped offsets,direct58c4a0/deferred58d5b0 copy selection and mutex release. External copy/queue/mutex semantics,all aliases/writers and arbitrary callback/fault lifetime remain separate. No native implementation or original execution comparison."
+          "scope": "Complete302-byte NoCD4a4380..4a44ae local restore control:enabled/class/interface/nonnegative-coordinate early gates;ignored INFINITE wait result;post-wait state rereads;wrapped nonzero rectangle dimensions;clamped saved offsets;direct58c4a0 or copied deferred58d5b0 arguments;post-callback mutex reread and release without clearing saved-valid. Portable borrowed-state model compared to unchanged original body with authored platform/copy boundaries,including controlled callback mutations. Actual queue/copy providers have a separately declared bounded connection. No arbitrary concurrency,invalid pointer execution,all original writers/owners,whole screen lifetime or live installation claim."
         }
       ],
       "documents": [
         "research/runtime/rendering-required-dependencies-20261024.md",
-        "docs/native-rendering-dependencies.json"
+        "docs/native-rendering-dependencies.json",
+        "research/runtime/screen-cursor-provider-recovery-20261025.md"
       ],
-      "implementation": [],
+      "implementation": [
+        "reconstruction/rendering/screen_cursor.hpp"
+      ],
       "tests": [
-        "tools/reconcile-rendering-dependencies.py"
+        "tests/screen-cursor-reference.cpp",
+        "tools/test-screen-cursor-services.py"
       ],
       "evidence": [
-        "P1.required-rendering-dependencies-static-20261024"
+        "P1.required-rendering-dependencies-static-20261024",
+        "CSR1.helpers-20261025",
+        "CSR1.helpers02-20261025",
+        "CSR1.helpers06-20261025"
       ],
       "status": {
         "understanding": "scoped",
-        "implementation": "none",
-        "comparison": "none",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "confidence": "high_within_scope",
       "remaining_gaps": [
-        "Static local understanding only; native implementation,original/native execution,actual screen/cursor ownership,all writers and full session acceptance remain open."
+        "Current55296-case local helper original/model comparison passes with ordered authored endpoints and controlled callback mutation. CPU register return is not assigned a semantic value. Platform mutex abandonment/failure ownership,copy reload/fault paths,arbitrary callback/concurrency lifetime,all screen targets and installed native replacement remain independent. Actual bounded original-to-native copy/queue providers have a separately recorded headless connection."
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/original_x86.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
       ]
     },
     {
@@ -146882,7 +146912,8 @@
         "COPYOUTPUT.native-gl04-20261025",
         "COPYOUTPUT.gpu-plan04-20261025",
         "COPYOUTPUT.live-copy02-20261025",
-        "COPYOUTPUT.attempt-catalog-20261025"
+        "COPYOUTPUT.attempt-catalog-20261025",
+        "CSR1.copy-live01-20261025"
       ],
       "status": {
         "understanding": "scoped",
@@ -146958,6 +146989,50 @@
       "remaining_gaps": [
         "Owned forwarding/refusal controls and complete individual original upload points now diagnose the fresh bounded software-presentation discrepancy. Exact historical238-frame upload bytes are unavailable; its unique120-row attribution remains an inference. Private Wine/Mesa allocation cause, timing neutrality, universal resize/format handling and global SHM ownership remain unproved.",
         "The new original source-recorder sessions refuse quiescent closure after a separately closed EGL physical interval. Finite individually complete SHM points may explain that interval; source/session/process-cohort/normal-Quit/native acceptance remain refused. The exact pending source frame and private driver allocation cause remain unclassified."
+      ]
+    },
+    {
+      "id": "NP.screen-cursor-native-copy-providers",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Original screen cursor restore through native surface providers",
+      "scope": "Bounded original4a4370/4a4380 caller connections through unchanged direct58c4a0 and deferred58d5b0\u219258d660 with actual Wine DirectDraw,native facade and guarded mode3 providers. Owned13x9RGB565 surfaces cover all early gates,zero extents,clamped offsets,invalidated/absent saved history,immediate/deferred output and saturated128-record queue. Complete before/after destinations are independently checked;original helpers/queue/copy/shutdown bytes remain unchanged and all native owners retire. This is a real-provider headless connection of retained original suppliers,not a new public hook,arbitrary GPU history/concurrency,screen owner discovery,physical driver equivalence or complete native renderer.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/screen-cursor-provider-recovery-20261025.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/surfaces.h"
+      ],
+      "tests": [
+        "tools/test-screen-cursor-services.py",
+        "tests/screen-cursor-provider-probe.c"
+      ],
+      "validation_dependencies": [
+        "tests/graphics-lifetime-common.h",
+        "tests/original-pe32-image.h",
+        "runtime/shadow/win32_min.h",
+        "runtime/native-draw/history.h",
+        "tools/build-native-draw.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/native_draw_retirement.py"
+      ],
+      "evidence": [
+        "CSR1.providers-20261025",
+        "CSR1.providers02-20261025",
+        "CSR1.providers06-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "All78 bounded provider cases pass for Wine,native and guarded native,including full queue preservation,independent complete destinations and owner retirement. This does not install the reconstructed helper or recover all natural screen/vtable owners,writers,arbitrary stale/GPU backing,platform failure reachability,concurrency or live replacement."
       ]
     }
   ],
@@ -334042,6 +334117,367 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "CSR1.helpers-20261025",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-cursor-provider-results-20261025/execution01.json",
+      "sha256": "333cbd98cfc80cfbc7355b14580585e016e4ec75017a9dfd31b8399d91c2fddd",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/helper_claims",
+      "scope": "Complete unchanged local cursor invalidation/restore against portable model in55296 original32,sanitized32 and native64 cases;ordered callback arguments and visible state agree. Wait/copy/queue endpoints are authored here;no actual mutex failure/lifetime,CPU-register return or screen integration claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 55296
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 17596736114410902472
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 17596736114410902472
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 17596736114410902472
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CSR1.providers-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/screen-cursor-provider-results-20261025/execution01.json",
+      "sha256": "333cbd98cfc80cfbc7355b14580585e016e4ec75017a9dfd31b8399d91c2fddd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/provider_claims",
+      "scope": "78 owned PE32 cases per actual Wine/native/guarded provider;direct and original deferred queue/drain callers independently match all18252 before/after destination words per backend. Queue saturation preserves all128records;native owner counts retire to zero. No original game entrypoint,native helper installation,arbitrary GPU backing or physical driver parity.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/native/cases",
+          "equals": 78
+        },
+        {
+          "pointer": "/providers/guarded/cases",
+          "equals": 78
+        },
+        {
+          "pointer": "/providers/native/queue_full_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/native/retirement/resources_released",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/guarded/retirement/resources_released",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/native/retirement/ddraw_module_loaded",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CSR1.helpers02-20261025",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-cursor-provider-results-20261025/execution02.json",
+      "sha256": "34583e26a085e82aba2d9a0782115e6579aa1fbdb7c3276546e41b03e24de11f",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/helper_claims",
+      "scope": "Complete unchanged local cursor invalidation/restore against portable model in55296 original32,sanitized32 and native64 cases;ordered callback arguments and visible state agree. Wait/copy/queue endpoints are authored here;no actual mutex failure/lifetime,CPU-register return or screen integration claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 55296
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 17596736114410902472
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 17596736114410902472
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 17596736114410902472
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CSR1.providers02-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/screen-cursor-provider-results-20261025/execution02.json",
+      "sha256": "34583e26a085e82aba2d9a0782115e6579aa1fbdb7c3276546e41b03e24de11f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/provider_claims",
+      "scope": "78 owned PE32 cases per actual Wine/native/guarded provider;direct and original deferred queue/drain callers independently match all18252 before/after destination words per backend. Queue saturation preserves all128records;native owner counts retire to zero. No original game entrypoint,native helper installation,arbitrary GPU backing or physical driver parity.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/native/cases",
+          "equals": 78
+        },
+        {
+          "pointer": "/providers/guarded/cases",
+          "equals": 78
+        },
+        {
+          "pointer": "/providers/native/queue_full_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/native/retirement/resources_released",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/guarded/retirement/resources_released",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/native/retirement/ddraw_module_loaded",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CSR1.copy-live01-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/screen-cursor-provider-results-20261025/live-copy01.json",
+      "sha256": "1396348c08571d5edafcf4ae60d284246690e4c3806b2e6ce3d6f357b5d4fe42",
+      "scope": "Current reconciled sources:closed native Mini/Cancel,QuitNo/resume and normalQuit. All4630 emitted COPY destinations independently match;1931CPU-keyed calls,78GPU calls,187balanced Worlds. FPS diagnostic;no original-driver,whole-session or all-provider claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/copy_output_closure/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/copy_output_closure/native_copies_compared",
+          "equals": 4630
+        },
+        {
+          "pointer": "/copy_output_closure/cpu_keyed_calls",
+          "equals": 1931
+        },
+        {
+          "pointer": "/copy_output_closure/gpu_copy_calls",
+          "equals": 78
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CSR1.helpers06-20261025",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-cursor-provider-results-20261025/execution06.json",
+      "sha256": "516884cbd6979388ce3e61e45ba47b1c30729e643185db8f96a808cf5d8fad2a",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/helper_claims",
+      "scope": "Complete unchanged local cursor invalidation/restore against portable model in55296 original32,sanitized32 and native64 cases;ordered callback arguments and visible state agree. Wait/copy/queue endpoints are authored here;no actual mutex failure/lifetime,CPU-register return or screen integration claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 55296
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 17596736114410902472
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 17596736114410902472
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 17596736114410902472
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/refusal_controls",
+          "equals": [
+            "destination",
+            "identity",
+            "wait-result",
+            "queue-count",
+            "post-drain",
+            "truncation",
+            "duplicated-row",
+            "reordered-rows"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CSR1.providers06-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/screen-cursor-provider-results-20261025/execution06.json",
+      "sha256": "516884cbd6979388ce3e61e45ba47b1c30729e643185db8f96a808cf5d8fad2a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/provider_claims",
+      "scope": "78 owned PE32 cases per actual Wine/native/guarded provider;direct and original deferred queue/drain callers independently match all18252 before/after destination words per backend. Queue saturation preserves all128records;native owner counts retire to zero. No original game entrypoint,native helper installation,arbitrary GPU backing or physical driver parity.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/native/cases",
+          "equals": 78
+        },
+        {
+          "pointer": "/providers/guarded/cases",
+          "equals": 78
+        },
+        {
+          "pointer": "/providers/native/queue_full_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/native/retirement/resources_released",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/guarded/retirement/resources_released",
+          "equals": true
+        },
+        {
+          "pointer": "/providers/native/retirement/ddraw_module_loaded",
+          "equals": false
+        },
+        {
+          "pointer": "/refusal_controls",
+          "equals": [
+            "destination",
+            "identity",
+            "wait-result",
+            "queue-count",
+            "post-drain",
+            "truncation",
+            "duplicated-row",
+            "reordered-rows"
+          ]
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -343111,13 +343547,15 @@
         {
           "value": "direct4a4370",
           "behaviors": [
-            "RS.screen-cursor-background-invalidation"
+            "RS.screen-cursor-background-invalidation",
+            "NP.screen-cursor-native-copy-providers"
           ]
         },
         {
           "value": "direct4a4380",
           "behaviors": [
-            "RS.screen-cursor-background-restore"
+            "RS.screen-cursor-background-restore",
+            "NP.screen-cursor-native-copy-providers"
           ]
         },
         {
@@ -360188,7 +360626,8 @@
         "tests/test-native-copy-output.py"
       ],
       "evidence": [
-        "COPYOUTPUT.live-copy02-20261025"
+        "COPYOUTPUT.live-copy02-20261025",
+        "CSR1.copy-live01-20261025"
       ]
     },
     {
@@ -360226,6 +360665,23 @@
         "SC25.plain-finite",
         "SC25.baseline-finite",
         "SC25.corrected-finite"
+      ]
+    },
+    {
+      "id": "CSR1.native-cursor-providers",
+      "scope": "Actual owned PE32 caller/surface provider matrix with independent whole destinations,original deferred queue drainage/full-queue preservation,guarded profile and zero surviving native owners. No original game entrypoint or physical display equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "NP.screen-cursor-native-copy-providers"
+      ],
+      "tests": [
+        "tools/test-screen-cursor-services.py",
+        "tests/screen-cursor-provider-probe.c"
+      ],
+      "evidence": [
+        "CSR1.providers-20261025",
+        "CSR1.providers02-20261025",
+        "CSR1.providers06-20261025"
       ]
     }
   ],
@@ -361789,7 +362245,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ce406e7c2ed8631d11fcee4c5a31c10b42f799a9c2abe956a4823b9b86dcf0e5.json",
-    "sha256": "ce406e7c2ed8631d11fcee4c5a31c10b42f799a9c2abe956a4823b9b86dcf0e5"
+    "path": "research/runtime/coverage/source-index-7b4d377d1ae0b4a4cf26106ffcc2dd1b0b8f1ae42c9673ab785c6a8db90f6585.json",
+    "sha256": "7b4d377d1ae0b4a4cf26106ffcc2dd1b0b8f1ae42c9673ab785c6a8db90f6585"
   }
 }

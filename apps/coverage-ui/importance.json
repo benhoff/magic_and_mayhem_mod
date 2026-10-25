@@ -3450,6 +3450,13 @@
       "work_type": "capability",
       "reason": "Native malformed queue admission preserves owned visibility state before the pass; bounded assurance separate from original world ownership and live rendering.",
       "contract_sha256": "0c20059f54fa647f63d7e27c75e4398af5716c9ac4640d72ca44384982ddd04d"
+    },
+    {
+      "behavior": "NP.screen-cursor-native-copy-providers",
+      "weight": 3,
+      "work_type": "acceptance",
+      "reason": "Bounded actual-provider connection and complete destination/lifetime assurance for retained original cursor restore services. This does not rate missing whole-screen implementation or claim global ownership recovery.",
+      "contract_sha256": "da666210c9cd5ef975749b75dbe33b61a7b913631bb70357323c84f99101a6f3"
     }
   ],
   "tranche_plan": {
