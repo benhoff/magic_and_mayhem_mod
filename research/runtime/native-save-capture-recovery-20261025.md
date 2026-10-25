@@ -125,6 +125,14 @@ and [comparison02](save-capture-recovery-results-20261025/comparison02.json) rem
 unchanged. Final records above rerun the exact source after the launch-reset
 guard review; their historical hashes are not refreshed.
 
+The later [screen-service recovery](screen-services-recovery-20261025.md) closes
+the local5571e0 selection and4a39a0 cursor-selector knowledge gaps listed above,
+and recovers the4a5070 input dispatcher. [Concrete class lifetime recovery](screen-class-lifetime-recovery-20261025.md)
+resolves the named tick slots for22 static tables and compares class11's
+construction,vector retirement and callback invocation/deletion. Whole dynamic
+screen selection,other class lifetimes and indirect alias closure remain open;
+the Save/Load evidence itself is unchanged.
+
 The [incoming-history review](save-capture-recovery-results-20261025/incoming-history02.json)
 checks all 29 first-parent file transitions across `618cc26c..a50d0375` against
 exact retained receipts, with no gaps. It adds no execution claim. The current

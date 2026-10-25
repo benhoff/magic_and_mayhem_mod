@@ -149682,6 +149682,564 @@
       "remaining_gaps": [
         "The bounded diagnostic/host policy is implemented and freshly validated. The recorded live profile is Apprentice Celtic1 on llvmpipe with skipped movies and legacy audio. Other difficulties,hardware,whole-session original pixels,complete restored simulation and independent/asynchronous capture remain separate scope;finite storage refusal remains explicit."
       ]
+    },
+    {
+      "id": "RS.screen-selection-service",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Shared screen selection service",
+      "scope": "Whole5571e0..557368 selection local CFG: signed depth guard, token snapshot, synchronous current/stack exits, existing-target resume and literal negative-index fallback push with message drains. Original4a4370 runs unchanged. Controlled callback mutations and selected real5c6564 minimal-screen endpoints are compared; other virtual target internals and all owning constructors/destructors remain separate.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5599712,
+          "scope": "Whole5571e0..557368 selection local CFG: signed depth guard, token snapshot, synchronous current/stack exits, existing-target resume and literal negative-index fallback push with message drains. Original4a4370 runs unchanged. Controlled callback mutations and selected real5c6564 minimal-screen endpoints are compared; other virtual target internals and all owning constructors/destructors remain separate."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_services.hpp"
+      ],
+      "tests": [
+        "tests/screen-services-reference.cpp",
+        "tools/test-screen-services.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/screen_tick.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json"
+      ],
+      "documents": [
+        "research/runtime/screen-services-recovery-20261025.md"
+      ],
+      "evidence": [
+        "SSR1.original-20261025",
+        "SSR1.current-master-20261025"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual dynamically selected class/control callback internals, owning parents, allocation/retirement and arbitrary reentrancy remain unverified. No live replacement or whole-session acceptance."
+      ]
+    },
+    {
+      "id": "RS.cursor-selection-service",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Cursor class and resource selection service",
+      "scope": "Whole4a39a0..4a3c17 cursor selection including complete20-entry local switch, all23 admitted classes, signed invalid/equal guards, system resource mapping and custom cursor mutex/timeout/frame arithmetic/release reload. OS imports are authored; IDIV faults, real mutex concurrency, cursor assets and resource ownership remain separate.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4864416,
+          "scope": "Whole4a39a0..4a3c17 cursor selection including complete20-entry local switch, all23 admitted classes, signed invalid/equal guards, system resource mapping and custom cursor mutex/timeout/frame arithmetic/release reload. OS imports are authored; IDIV faults, real mutex concurrency, cursor assets and resource ownership remain separate."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_services.hpp"
+      ],
+      "tests": [
+        "tests/screen-services-reference.cpp",
+        "tools/test-screen-services.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/screen_tick.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json"
+      ],
+      "documents": [
+        "research/runtime/screen-services-recovery-20261025.md"
+      ],
+      "evidence": [
+        "SSR1.original-20261025",
+        "SSR1.current-master-20261025"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual dynamically selected class/control callback internals, owning parents, allocation/retirement and arbitrary reentrancy remain unverified. No live replacement or whole-session acceptance."
+      ]
+    },
+    {
+      "id": "RS.screen-control-dispatch",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Screen input ring and control dispatch service",
+      "scope": "Whole4a5070..4a5842 local dispatcher with owned32-entry ring, signed reverse control hit tests, capture/hover/leave/action flags and inline World drag rectangle/unit selection orchestration. Whole original body and real cursor selector run unchanged; control virtual targets, unit iterators/commands and OS imports are controlled boundaries. Valid owned registries/rings, synchronous authored callback mutations and bounded helper sequences only; arbitrary reentrancy, dynamic target ownership and live session equivalence remain separate.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4870256,
+          "scope": "Whole4a5070..4a5842 local dispatcher with owned32-entry ring, signed reverse control hit tests, capture/hover/leave/action flags and inline World drag rectangle/unit selection orchestration. Whole original body and real cursor selector run unchanged; control virtual targets, unit iterators/commands and OS imports are controlled boundaries. Valid owned registries/rings, synchronous authored callback mutations and bounded helper sequences only; arbitrary reentrancy, dynamic target ownership and live session equivalence remain separate."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_services.hpp"
+      ],
+      "tests": [
+        "tests/screen-services-reference.cpp",
+        "tools/test-screen-services.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/screen_tick.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json"
+      ],
+      "documents": [
+        "research/runtime/screen-services-recovery-20261025.md"
+      ],
+      "evidence": [
+        "SSR1.original-20261025",
+        "SSR1.current-master-20261025"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual dynamically selected class/control callback internals, owning parents, allocation/retirement and arbitrary reentrancy remain unverified. No live replacement or whole-session acceptance."
+      ]
+    },
+    {
+      "id": "RS.screen-service-tick-transitions",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Shared screen tick with recovered transition services",
+      "scope": "Inactive5595d0 transition compositions with unchanged5571e0 selection and4a4370 invalidation, finite platform message drains and selected real5c6564 minimal callbacks. Push/selection/pop priority, depth guards and inactive return are compared with original whole bodies. Draw/fade/presentation, other dynamic screen classes and owning lifecycle remain separate.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5608912,
+          "recovered_range": "screen-tick-complete-5595d0",
+          "scope": "Inactive transition paths composed with real selection/invalidation and selected real minimal callbacks only."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_services.hpp"
+      ],
+      "tests": [
+        "tests/screen-services-reference.cpp",
+        "tools/test-screen-services.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/screen_tick.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json"
+      ],
+      "documents": [
+        "research/runtime/screen-services-recovery-20261025.md"
+      ],
+      "evidence": [
+        "SSR1.original-20261025",
+        "SSR1.current-master-20261025"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual dynamically selected class/control callback internals, owning parents, allocation/retirement and arbitrary reentrancy remain unverified. No live replacement or whole-session acceptance."
+      ]
+    },
+    {
+      "id": "RS.screen-minimal-transition-callbacks",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Minimal screen transition callback storage effects",
+      "scope": "Four actual candidate5c6564 transition endpoints:4b9b90 clears owner byte12,4b9ba0/4b9bb0/4b9bc0 return. Original unchanged callbacks execute within selection and inactive shared-tick compositions against owned borrowed fixture storage. No allocation/free in these bodies; constructors, dynamic identity, other vtable slots and whole-session lifetime remain unrecovered.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4955024,
+          "recovered_range": "minimal-screen-transition-4b9b90",
+          "scope": "Complete selected minimal transition callback; no ownership credit or retirement."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4955040,
+          "recovered_range": "minimal-screen-transition-4b9ba0",
+          "scope": "Complete selected minimal transition callback; no ownership credit or retirement."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4955056,
+          "recovered_range": "minimal-screen-transition-4b9bb0",
+          "scope": "Complete selected minimal transition callback; no ownership credit or retirement."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4955072,
+          "recovered_range": "minimal-screen-transition-4b9bc0",
+          "scope": "Complete selected minimal transition callback; no ownership credit or retirement."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_services.hpp"
+      ],
+      "tests": [
+        "tests/screen-services-reference.cpp",
+        "tools/test-screen-services.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/screen_tick.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json"
+      ],
+      "documents": [
+        "research/runtime/screen-services-recovery-20261025.md"
+      ],
+      "evidence": [
+        "SSR1.original-20261025",
+        "SSR1.current-master-20261025"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual dynamically selected class/control callback internals, owning parents, allocation/retirement and arbitrary reentrancy remain unverified. No live replacement or whole-session acceptance."
+      ]
+    },
+    {
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/screen-class-lifetime-recovery-20261025.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/test-screen-lifetime.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json"
+      ],
+      "evidence": [
+        "SSR2.tables-20261025"
+      ],
+      "remaining_gaps": [
+        "Complete dynamic class registration,constructor/destructor semantics,indirect stores,caller reachability and resource lifetime remain separate."
+      ],
+      "id": "RS.screen-class-ownership-static",
+      "title": "Concrete shared screen vtable and direct owner-store witnesses",
+      "scope": "Pinned static census of22 shared-tick screen tables,first12 slot values and direct immediate table-store witnesses,with existing inventoried containing-function links. Six actual transition/draw/final targets per table are explicit. Not a complete dynamic class universe,indirect-store census or recovered semantics/owning lifetime for every target.",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053564,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053620,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6054176,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6054884,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6054940,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6054996,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055052,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055108,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055164,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055220,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055268,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055324,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055380,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055436,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055492,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055548,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055604,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055660,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055928,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056092,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056256,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056312,
+          "relation": "data",
+          "scope": "Concrete12-slot table with shared5595d0 tick at+10;static direct-store witnesses only."
+        }
+      ]
+    },
+    {
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/screen-class-lifetime-recovery-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_lifetime.hpp"
+      ],
+      "tests": [
+        "tests/screen-lifetime-reference.cpp",
+        "tools/test-screen-lifetime.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "SSR2.lifetime-original-20261025"
+      ],
+      "remaining_gaps": [
+        "Actual allocation/free internals,fault reachability,asynchronous surface+28 alias use,enclosing destruction orchestration and live integration remain unproved."
+      ],
+      "id": "RS.screen-class11-lifetime",
+      "title": "Class11 screen storage and callback lifetime",
+      "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate.",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883504,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883584,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883680,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883712,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024592,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024624,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883600,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate.",
+          "recovered_range": "screen-class11-callback-4a8490"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883616,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate.",
+          "recovered_range": "screen-class11-callback-4a84a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883632,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate.",
+          "recovered_range": "screen-class11-callback-4a84b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883648,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate.",
+          "recovered_range": "screen-class11-callback-4a84c0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883776,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate.",
+          "recovered_range": "screen-class11-callback-4a8540"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4676672,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate.",
+          "recovered_range": "screen-class11-callback-475c40"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883792,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate.",
+          "recovered_range": "screen-class11-callback-4a8550"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966288,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate.",
+          "recovered_range": "screen-class11-callback-4bc790"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4966784,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4967424,
+          "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate."
+        }
+      ]
     }
   ],
   "evidence": [
@@ -338587,6 +339145,283 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "SSR1.original-20261025",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/screen-services-results-20261025/attempt08.json",
+      "scope": "Whole unchanged selection,cursor and control bodies,selected real minimal callbacks and inactive tick transition composition. OS/control/World helper internals and actual owning lifecycle remain outside scope.",
+      "sha256": "3d33099bd0360bca922ace5ab51e231b5b3be2c87c5420f92f650eda07702647",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/selection_cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/original/cursor_cases",
+          "equals": 9984
+        },
+        {
+          "pointer": "/original/control_cases",
+          "equals": 18432
+        },
+        {
+          "pointer": "/original/tick_cases",
+          "equals": 110
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 8756337448432092186
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/selection_cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/sanitized/cursor_cases",
+          "equals": 9984
+        },
+        {
+          "pointer": "/sanitized/control_cases",
+          "equals": 18432
+        },
+        {
+          "pointer": "/sanitized/tick_cases",
+          "equals": 110
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 8756337448432092186
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/selection_cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/native64/cursor_cases",
+          "equals": 9984
+        },
+        {
+          "pointer": "/native64/control_cases",
+          "equals": 18432
+        },
+        {
+          "pointer": "/native64/tick_cases",
+          "equals": 110
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 8756337448432092186
+        }
+      ]
+    },
+    {
+      "id": "SSR2.tables-20261025",
+      "kind": "static",
+      "record": "research/runtime/screen-services-results-20261025/lifetime05.json",
+      "sha256": "7afc4fcc8cc11c00c2c7911ee5a50231ce33f2fda78c044713d9862a886d6a66",
+      "scope": "Pinned static census of22 shared-tick screen tables,first12 slot values and direct immediate table-store witnesses,with existing inventoried containing-function links. Six actual transition/draw/final targets per table are explicit. Not a complete dynamic class universe,indirect-store census or recovered semantics/owning lifetime for every target.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SSR2.lifetime-original-20261025",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-services-results-20261025/lifetime05.json",
+      "sha256": "7afc4fcc8cc11c00c2c7911ee5a50231ce33f2fda78c044713d9862a886d6a66",
+      "scope": "Complete class11 constructor4a8430,destructor4a8480,callback prepare4a8500/release4a84e0 and unchanged vector initializer4cab50/retirement4cab70 with authored allocator/free endpoints and both authored disposal controls and actual unchanged4bc790 invocation,4bc980 deleting destructor and4bcc00 base destructor. Full owned bytes and endpoint snapshots,allocation failure,repeated calls,callback mutations and six no-op tick endpoints compared. Real allocation/free internals,other classes,asynchronous aliases,faults and installed takeover remain separate.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 4608
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 5887692355921591528
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 4608
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 5887692355921591528
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 4608
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 5887692355921591528
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "SSR1.current-master-20261025",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/screen-services-results-20261025/current01.json",
+      "scope": "Whole unchanged selection,cursor and control bodies,selected real minimal callbacks and inactive tick transition composition. OS/control/World helper internals and actual owning lifecycle remain outside scope.",
+      "sha256": "3d33099bd0360bca922ace5ab51e231b5b3be2c87c5420f92f650eda07702647",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/selection_cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/original/cursor_cases",
+          "equals": 9984
+        },
+        {
+          "pointer": "/original/control_cases",
+          "equals": 18432
+        },
+        {
+          "pointer": "/original/tick_cases",
+          "equals": 110
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 8756337448432092186
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/selection_cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/sanitized/cursor_cases",
+          "equals": 9984
+        },
+        {
+          "pointer": "/sanitized/control_cases",
+          "equals": 18432
+        },
+        {
+          "pointer": "/sanitized/tick_cases",
+          "equals": 110
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 8756337448432092186
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/selection_cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/native64/cursor_cases",
+          "equals": 9984
+        },
+        {
+          "pointer": "/native64/control_cases",
+          "equals": 18432
+        },
+        {
+          "pointer": "/native64/tick_cases",
+          "equals": 110
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 8756337448432092186
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -347651,7 +348486,7 @@
       },
       "document": "research/runtime/rendering-required-dependencies-20261024.md",
       "complete": false,
-      "scope": "Named direct helper suppliers and six virtual-slot offsets only. Actual screen-class targets,callback lifetime,selection and special-service semantics remain incomplete.",
+      "scope": "Named direct suppliers plus scoped complete selection,cursor and control local bodies. Actual dynamic screen/control class internals,all owning lifetimes and draw/final virtual endpoints remain incomplete. The concrete22-table census and class11 six-slot no-op contracts do not close all dynamic classes or their lifetime.",
       "entries": [
         {
           "value": "direct4a4370",
@@ -347675,17 +348510,22 @@
         },
         {
           "value": "direct5571e0",
-          "behaviors": []
+          "behaviors": [
+            "RS.screen-selection-service"
+          ]
         },
         {
           "value": "direct4a5070",
           "behaviors": [
-            "DRAW.actor-control-latch-fields"
+            "DRAW.actor-control-latch-fields",
+            "RS.screen-control-dispatch"
           ]
         },
         {
           "value": "direct4a39a0",
-          "behaviors": []
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
         },
         {
           "value": "direct58ed80",
@@ -347701,27 +348541,45 @@
         },
         {
           "value": "virtual+00",
-          "behaviors": []
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
         },
         {
           "value": "virtual+04",
-          "behaviors": []
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
         },
         {
           "value": "virtual+08",
-          "behaviors": []
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
         },
         {
           "value": "virtual+0c",
-          "behaviors": []
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
         },
         {
           "value": "virtual+28",
-          "behaviors": []
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
         },
         {
           "value": "virtual+2c",
-          "behaviors": []
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
         }
       ]
     },
@@ -347758,6 +348616,990 @@
           "value": "unsupported-retain",
           "behaviors": [
             "DRAW.deferred-surface-copy-lifetime"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cursor-selection-resource-switch-4a3c18",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4865048,
+        "relation": "data",
+        "scope": "Twenty DWORD jump-table entries selected after unsigned kind<=19 guard."
+      },
+      "document": "research/runtime/screen-services-recovery-20261025.md",
+      "complete": true,
+      "scope": "Complete local switch only;OS cursor resource/lifetime remains separate.",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 10,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 14,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 15,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 17,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 18,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        },
+        {
+          "value": 19,
+          "behaviors": [
+            "RS.cursor-selection-service"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "minimal-screen-transition-vtable-5c6564",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6055268,
+        "relation": "data",
+        "scope": "Selected actual first four minimal-screen transition callback targets;other slots retain their separate boundaries."
+      },
+      "document": "research/runtime/screen-services-recovery-20261025.md",
+      "complete": false,
+      "scope": "Only slots0,4,8,12 recovered. Shared tick,draw,input/final endpoints and owning constructors/destructors remain separate.",
+      "entries": [
+        {
+          "value": 4955024,
+          "behaviors": [
+            "RS.screen-minimal-transition-callbacks"
+          ]
+        },
+        {
+          "value": 4955040,
+          "behaviors": [
+            "RS.screen-minimal-transition-callbacks"
+          ]
+        },
+        {
+          "value": 4955056,
+          "behaviors": [
+            "RS.screen-minimal-transition-callbacks"
+          ]
+        },
+        {
+          "value": 4955072,
+          "behaviors": [
+            "RS.screen-minimal-transition-callbacks"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "screen-shared-tick-concrete-targets",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6054996,
+        "relation": "data",
+        "scope": "22 concrete table witnesses;six shared-tick callback offsets each."
+      },
+      "document": "research/runtime/screen-class-lifetime-recovery-20261025.md",
+      "complete": false,
+      "scope": "132 concrete targets retained;complete dynamic registration and other class bodies remain unresolved.",
+      "entries": [
+        {
+          "value": "table5c5ebc+00=0x4747c0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c5ebc+04=0x4748a0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c5ebc+08=0x475c70",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c5ebc+0c=0x475c80",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c5ebc+28=0x474940",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c5ebc+2c=0x475c40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c5ef4+00=0x474e70",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c5ef4+04=0x474ea0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c5ef4+08=0x474ee0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c5ef4+0c=0x474eb0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c5ef4+28=0x4757f0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c5ef4+2c=0x4757c0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6120+00=0x486150",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6120+04=0x486190",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6120+08=0x4861c0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6120+0c=0x4861b0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6120+28=0x486630",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6120+2c=0x475c40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c63e4+00=0x4a6b70",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c63e4+04=0x4a6e20",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c63e4+08=0x4a6f60",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c63e4+0c=0x4a6e40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c63e4+28=0x4a7570",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c63e4+2c=0x475c40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c641c+00=0x4a7a80",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c641c+04=0x4a7b80",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c641c+08=0x4a7c90",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c641c+0c=0x4a7bc0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c641c+28=0x4a8240",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c641c+2c=0x475c40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6454+00=0x4a8490",
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
+        },
+        {
+          "value": "table5c6454+04=0x4a84a0",
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
+        },
+        {
+          "value": "table5c6454+08=0x4a84c0",
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
+        },
+        {
+          "value": "table5c6454+0c=0x4a84b0",
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
+        },
+        {
+          "value": "table5c6454+28=0x4a8540",
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
+        },
+        {
+          "value": "table5c6454+2c=0x475c40",
+          "behaviors": [
+            "RS.screen-class-ownership-static",
+            "RS.screen-class11-lifetime"
+          ]
+        },
+        {
+          "value": "table5c648c+00=0x4a8af0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c648c+04=0x4a8b60",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c648c+08=0x4a8be0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c648c+0c=0x4a8bd0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c648c+28=0x4a9670",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c648c+2c=0x475c40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64c4+00=0x4a9cb0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64c4+04=0x4a9cf0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64c4+08=0x4a9d20",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64c4+0c=0x4a9d10",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64c4+28=0x4aa550",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64c4+2c=0x4aa5d0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64fc+00=0x4aace0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64fc+04=0x4aad20",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64fc+08=0x4aad50",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64fc+0c=0x4aad40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64fc+28=0x4ab5c0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c64fc+2c=0x4abce0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6534+00=0x4ac1d0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6534+04=0x4ac210",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6534+08=0x4ac3c0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6534+0c=0x4ac220",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6534+28=0x4ace80",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6534+2c=0x475c40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6564+00=0x4b9b90",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6564+04=0x4b9ba0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6564+08=0x4b9bb0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6564+0c=0x4b9bc0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6564+28=0x59b823",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6564+2c=0x475c40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c659c+00=0x4aedd0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c659c+04=0x4aee40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c659c+08=0x4aeea0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c659c+0c=0x4aee60",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c659c+28=0x4af790",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c659c+2c=0x4afb00",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c65d4+00=0x4afc90",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c65d4+04=0x4afd00",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c65d4+08=0x4afd60",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c65d4+0c=0x4afd30",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c65d4+28=0x4b0600",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c65d4+2c=0x4afd90",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c660c+00=0x4b0c50",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c660c+04=0x4b0db0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c660c+08=0x4b0e20",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c660c+0c=0x4b0dd0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c660c+28=0x4b16b0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c660c+2c=0x4b1c70",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6644+00=0x4b1eb0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6644+04=0x4b1ed0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6644+08=0x4b1f30",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6644+0c=0x4b1f20",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6644+28=0x4b23a0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6644+2c=0x475c40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c667c+00=0x4b2960",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c667c+04=0x4b2990",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c667c+08=0x4b29d0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c667c+0c=0x4b29b0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c667c+28=0x4b3390",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c667c+2c=0x4b3880",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66b4+00=0x4b3ae0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66b4+04=0x4b3b10",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66b4+08=0x4b3b40",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66b4+0c=0x4b3b30",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66b4+28=0x4b4f60",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66b4+2c=0x4b53e0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66ec+00=0x4b6df0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66ec+04=0x4b6e60",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66ec+08=0x4b6f90",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66ec+0c=0x4b6e90",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66ec+28=0x4b7aa0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c66ec+2c=0x4b7b80",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c67f8+00=0x4b6df0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c67f8+04=0x4b6e60",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c67f8+08=0x4b6f90",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c67f8+0c=0x4b6e90",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c67f8+28=0x4b8930",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c67f8+2c=0x4b7b80",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c689c+00=0x4ba2d0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c689c+04=0x4b9460",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c689c+08=0x4b6f90",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c689c+0c=0x4b9270",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c689c+28=0x4b9bd0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c689c+2c=0x4b7b80",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6940+00=0x4bb420",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6940+04=0x4bb470",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6940+08=0x4bb4a0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6940+0c=0x4bb490",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6940+28=0x4bbb60",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6940+2c=0x4bbeb0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6978+00=0x4bc080",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6978+04=0x4bc0c0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6978+08=0x4bc0f0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6978+0c=0x4bc0e0",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6978+28=0x4bc590",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": "table5c6978+2c=0x4bc720",
+          "behaviors": [
+            "RS.screen-class-ownership-static"
           ]
         }
       ]
@@ -366156,6 +367998,136 @@
       "evidence": "STK1.original-final-20261024",
       "anchors_pointer": "/original_entry_anchors",
       "scope": "Closed590-byte local CFG,all local branches/returns and96000 authored original/native callback-boundary cases. Existing global discovery remains unchanged;external indirect services and helper behavior/lifetime stay unresolved."
+    },
+    {
+      "id": "minimal-screen-transition-4b9b90",
+      "build": "nocd-40209ca7",
+      "start": 4955024,
+      "end": 4955029,
+      "document": "research/runtime/screen-services-recovery-20261025.md",
+      "evidence": "SSR1.original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact complete callback bytes,unchanged original execution with borrowed fixture storage; surrounding unassigned bytes and other class lifetimes retained."
+    },
+    {
+      "id": "minimal-screen-transition-4b9ba0",
+      "build": "nocd-40209ca7",
+      "start": 4955040,
+      "end": 4955041,
+      "document": "research/runtime/screen-services-recovery-20261025.md",
+      "evidence": "SSR1.original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact complete callback bytes,unchanged original execution with borrowed fixture storage; surrounding unassigned bytes and other class lifetimes retained."
+    },
+    {
+      "id": "minimal-screen-transition-4b9bb0",
+      "build": "nocd-40209ca7",
+      "start": 4955056,
+      "end": 4955057,
+      "document": "research/runtime/screen-services-recovery-20261025.md",
+      "evidence": "SSR1.original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact complete callback bytes,unchanged original execution with borrowed fixture storage; surrounding unassigned bytes and other class lifetimes retained."
+    },
+    {
+      "id": "minimal-screen-transition-4b9bc0",
+      "build": "nocd-40209ca7",
+      "start": 4955072,
+      "end": 4955073,
+      "document": "research/runtime/screen-services-recovery-20261025.md",
+      "evidence": "SSR1.original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Exact complete callback bytes,unchanged original execution with borrowed fixture storage; surrounding unassigned bytes and other class lifetimes retained."
+    },
+    {
+      "id": "screen-class11-constructor-entry-4a8430",
+      "build": "nocd-40209ca7",
+      "start": 4883504,
+      "end": 4883505,
+      "document": "research/runtime/screen-class-lifetime-recovery-20261025.md",
+      "evidence": "SSR2.lifetime-original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Initial push ebx omitted by historical inventory entry4a8431;covered by complete unchanged4a8430..4a847e execution. Remaining function bytes stay assigned to historical function."
+    },
+    {
+      "id": "screen-class11-callback-4a8490",
+      "build": "nocd-40209ca7",
+      "start": 4883600,
+      "end": 4883601,
+      "document": "research/runtime/screen-class-lifetime-recovery-20261025.md",
+      "evidence": "SSR2.lifetime-original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Complete unchanged endpoint bytes and execution;unassigned surrounding alignment/data preserved."
+    },
+    {
+      "id": "screen-class11-callback-4a84a0",
+      "build": "nocd-40209ca7",
+      "start": 4883616,
+      "end": 4883617,
+      "document": "research/runtime/screen-class-lifetime-recovery-20261025.md",
+      "evidence": "SSR2.lifetime-original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Complete unchanged endpoint bytes and execution;unassigned surrounding alignment/data preserved."
+    },
+    {
+      "id": "screen-class11-callback-4a84b0",
+      "build": "nocd-40209ca7",
+      "start": 4883632,
+      "end": 4883633,
+      "document": "research/runtime/screen-class-lifetime-recovery-20261025.md",
+      "evidence": "SSR2.lifetime-original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Complete unchanged endpoint bytes and execution;unassigned surrounding alignment/data preserved."
+    },
+    {
+      "id": "screen-class11-callback-4a84c0",
+      "build": "nocd-40209ca7",
+      "start": 4883648,
+      "end": 4883649,
+      "document": "research/runtime/screen-class-lifetime-recovery-20261025.md",
+      "evidence": "SSR2.lifetime-original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Complete unchanged endpoint bytes and execution;unassigned surrounding alignment/data preserved."
+    },
+    {
+      "id": "screen-class11-callback-4a8540",
+      "build": "nocd-40209ca7",
+      "start": 4883776,
+      "end": 4883777,
+      "document": "research/runtime/screen-class-lifetime-recovery-20261025.md",
+      "evidence": "SSR2.lifetime-original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Complete unchanged endpoint bytes and execution;unassigned surrounding alignment/data preserved."
+    },
+    {
+      "id": "screen-class11-callback-475c40",
+      "build": "nocd-40209ca7",
+      "start": 4676672,
+      "end": 4676673,
+      "document": "research/runtime/screen-class-lifetime-recovery-20261025.md",
+      "evidence": "SSR2.lifetime-original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Complete unchanged endpoint bytes and execution;unassigned surrounding alignment/data preserved."
+    },
+    {
+      "id": "screen-class11-callback-4a8550",
+      "build": "nocd-40209ca7",
+      "start": 4883792,
+      "end": 4883797,
+      "document": "research/runtime/screen-class-lifetime-recovery-20261025.md",
+      "evidence": "SSR2.lifetime-original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Complete unchanged endpoint bytes and execution;unassigned surrounding alignment/data preserved."
+    },
+    {
+      "id": "screen-class11-callback-4bc790",
+      "build": "nocd-40209ca7",
+      "start": 4966288,
+      "end": 4966304,
+      "document": "research/runtime/screen-class-lifetime-recovery-20261025.md",
+      "evidence": "SSR2.lifetime-original-20261025",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Whole unchanged callback invocation thunk;stored receiver/function forwarding and result compared. Surrounding unassigned bytes retained."
     }
   ],
   "register_imports": [
@@ -366528,7 +368500,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6fb84dfa26ea8a114bcbc080f011058605d1c8a69fb0217b84ebab76b7b1f307.json",
-    "sha256": "6fb84dfa26ea8a114bcbc080f011058605d1c8a69fb0217b84ebab76b7b1f307"
+    "path": "research/runtime/coverage/source-index-4914004d55c278d5db6f546223849ba86b640aedee039d91978aaca2fdf1b1bd.json",
+    "sha256": "4914004d55c278d5db6f546223849ba86b640aedee039d91978aaca2fdf1b1bd"
   }
 }
