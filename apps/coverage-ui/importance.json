@@ -3674,6 +3674,76 @@
       "work_type": "diagnostic",
       "reason": "Bounded diagnostic capture must preserve live source history through Save/Load without changing World completion or original rendering. It enables reliable checkpoint validation;complete native rendering acceptance remains separately rated.",
       "contract_sha256": "a19c1f5e8d1f68a63ed30374207213d9c9eee077a9ae1edc882bf6b7515e6a92"
+    },
+    {
+      "behavior": "NP.sprite-session.companion-resource",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded named native sprite consumption and delivery. Parent asset/original contracts remain partial; importance is independent of effort and validation.",
+      "contract_sha256": "75be09d621b71ec7d813b06370ca4d909fc7254618b276e3629c081c21a02b48"
+    },
+    {
+      "behavior": "NP.sprite-session.exact-name-index",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded named native sprite consumption and delivery. Parent asset/original contracts remain partial; importance is independent of effort and validation.",
+      "contract_sha256": "a8ffe2773e81e791fc16e939167275448f543fff3c90573c77c8fb93d06c676e"
+    },
+    {
+      "behavior": "NP.sprite-session.clip-range",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded named native sprite consumption and delivery. Parent asset/original contracts remain partial; importance is independent of effort and validation.",
+      "contract_sha256": "29c3ee3a840361fb4b702203ef0ed0a42241b140a17d0342b61554da8ad44be1"
+    },
+    {
+      "behavior": "NP.sprite-session.loop-playback",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded named native sprite consumption and delivery. Parent asset/original contracts remain partial; importance is independent of effort and validation.",
+      "contract_sha256": "92ab0d86daae8b233ecc3f0ab4091b94200f6839ab60684b93741e387fd1779e"
+    },
+    {
+      "behavior": "NP.sprite-session.one-shot-playback",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded named native sprite consumption and delivery. Parent asset/original contracts remain partial; importance is independent of effort and validation.",
+      "contract_sha256": "3bab89f0156252609b91613121f50aa2a296b216a3bcfd320eb6490118cc31f3"
+    },
+    {
+      "behavior": "NP.sprite-session.checkpoints",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded named native sprite consumption and delivery. Parent asset/original contracts remain partial; importance is independent of effort and validation.",
+      "contract_sha256": "eae24464d8347589f79e6a1b64212bae77daad087e08ab7c6a70019cd1dbd740"
+    },
+    {
+      "behavior": "NP.sprite-session.atomic-reload",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded named native sprite consumption and delivery. Parent asset/original contracts remain partial; importance is independent of effort and validation.",
+      "contract_sha256": "b2080ff1bdb5a161373f762127a13c4c046662ca1bfa125614d91484341c6ae6"
+    },
+    {
+      "behavior": "NP.sprite-session.draw-plan",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded named native sprite consumption and delivery. Parent asset/original contracts remain partial; importance is independent of effort and validation.",
+      "contract_sha256": "fb2d07ba4ad611cdc4ec982a4e5526c8a76baa69edeffb5d44c12c0d841944ad"
+    },
+    {
+      "behavior": "NP.sprite-session.cpu-pixels",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded named native sprite consumption and delivery. Parent asset/original contracts remain partial; importance is independent of effort and validation.",
+      "contract_sha256": "04481ec64a310543f26fa15cafd72a39d5836611308c31f0c83f41448cb6f8ee"
+    },
+    {
+      "behavior": "NP.sprite-session.gpu-pixels",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded named native sprite consumption and delivery. Parent asset/original contracts remain partial; importance is independent of effort and validation.",
+      "contract_sha256": "0a6e6546c21c1c977adbbe8e96423abdb00cb3e902e02010dc594e5e04079584"
     }
   ],
   "tranche_plan": {

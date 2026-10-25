@@ -87,6 +87,7 @@ class ImportanceTest(unittest.TestCase):
         self.assertGreaterEqual(len(result['entries']), 345)
         self.assertEqual(result['unrated'], [
             'NP.alternate-canvas-dispatch-admission', 'NP.alternate-canvas-owned-generation',
+            'NP.cursor-owned-compositor',
             'NP.graphics-session-provider-retirement',
             'NP.palette-option-strict-parsing', 'NP.protected-native-store-service', 'NP.surface-alias-lease-lifecycle',
             'RS.alternate-canvas-dispatch-composition', 'RS.screen-cursor-background-invalidation',

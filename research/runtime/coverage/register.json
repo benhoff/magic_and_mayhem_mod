@@ -3317,7 +3317,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N27 adds a separate widget-independent strict companion/name/clip/playback/checkpoint/reload/plan and CPU/GPU consumer. The permissive raw parser, original TAG use, world construction and live acceptance remain separate; parent status is unchanged."
+      ]
     },
     {
       "id": "AS.fp",
@@ -149681,6 +149684,586 @@
       },
       "remaining_gaps": [
         "The bounded diagnostic/host policy is implemented and freshly validated. The recorded live profile is Apprentice Celtic1 on llvmpipe with skipped movies and legacy audio. Other difficulties,hardware,whole-session original pixels,complete restored simulation and independent/asynchronous capture remain separate scope;finite storage refusal remains explicit."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.companion-resource",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native SPR/TAG companion resources",
+      "scope": "Owned native SPR/TAG companion resources. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.exact-name-index",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Exact eight-byte sprite name index",
+      "scope": "Exact eight-byte sprite name index. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.clip-range",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Named sprite occurrence clip ranges",
+      "scope": "Named sprite occurrence clip ranges. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.loop-playback",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Overflow-safe looping sprite playback",
+      "scope": "Overflow-safe looping sprite playback. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.one-shot-playback",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Saturating one-shot sprite playback",
+      "scope": "Saturating one-shot sprite playback. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.checkpoints",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Validated owned sprite playback checkpoints",
+      "scope": "Validated owned sprite playback checkpoints. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.atomic-reload",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic named sprite resource reload",
+      "scope": "Atomic named sprite resource reload. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.draw-plan",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned named sprite draw plans",
+      "scope": "Owned named sprite draw plans. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.cpu-pixels",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic CPU sprite batch pixels",
+      "scope": "Atomic CPU sprite batch pixels. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.gpu-pixels",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Preflighted native GPU sprite batch delivery",
+      "scope": "Preflighted native GPU sprite batch delivery. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
       ]
     }
   ],
@@ -338587,6 +339170,105 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "N27.sprite-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten named native sprite companion/resource, selection, playback, checkpoint, reload, plan and CPU/GPU delivery policies. Synthetic files and independent expected pixels; no original lookup/timing, ANI behavior, hardware/performance/full-scene or live claim.",
+      "record": "research/runtime/rendering-twentyseventh-ten-results-20261025/execution-2.json",
+      "sha256": "66df04ff48b26333d011ad3db64d57afdce1fbd29723b114ec270a7c2736bb14",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/tag_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/sprite_regressions_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/cpu_gpu_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/native/release/timing_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native/release/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/release/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/tag_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/sprite_regressions_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/cpu_gpu_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/native/sanitized/timing_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native/sanitized/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/sanitized/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -366528,7 +367210,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6fb84dfa26ea8a114bcbc080f011058605d1c8a69fb0217b84ebab76b7b1f307.json",
-    "sha256": "6fb84dfa26ea8a114bcbc080f011058605d1c8a69fb0217b84ebab76b7b1f307"
+    "path": "research/runtime/coverage/source-index-3aefe27b40e01dde99ed05a89cb0b32a5204fec3691946d9337f2ea5bccd4110.json",
+    "sha256": "3aefe27b40e01dde99ed05a89cb0b32a5204fec3691946d9337f2ea5bccd4110"
   }
 }

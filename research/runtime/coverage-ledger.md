@@ -22134,7 +22134,7 @@ The [history review](rendering-twentythird-ten-results-20261025/incoming-history
 [coverage audit](rendering-twentythird-ten-results-20261025/coverage-audit-final.json)
 record integration/accounting checks. SQLite reports, exact reviews, source
 variants and verified backups are durable; ignored CMake/compile trees are
-reusable temporary execution output. The normal90GiB guard remains in force.
+reusable temporary execution output. The normal 90 GiB guard remains in force.
 
 
 ## Ten-service rendering master integration — 2026-10-25
@@ -22555,3 +22555,30 @@ setup02 remain current under exact source,contract and scenario checks;the
 extended679-transition history review has no missing exact receipts. Pending
 player-launcher edits are retained separately in verified SQLite/autostash
 preservation and are outside this cursor commit's engine claims.
+
+## Named native sprite services, 2026-10-25
+
+The N27 batch adds ten bounded native companion/name/clip/playback/checkpoint/
+reload/plan and CPU/GPU delivery services, documented in
+[the native sprite packet](rendering-twentyseventh-ten-20261025.md).
+TAG parsing and original use remain partial. Synthetic Release and sanitizer
+execution is recorded separately; no original lookup/timing, hardware, whole-scene
+or live replacement status is promoted. No gameplay behavior is changed.
+
+The source-bound result [N27.sprite-native-20261025](rendering-twentyseventh-ten-results-20261025/execution-2.json)
+passes 9,605 checks and 180 expected refusals per Release and ASan/UBSan mode,
+including 54 independent CPU/GPU pixel cases and six playback models. TAG/SPR
+loader and sprite renderer regressions plus the native-session CTest pass in
+both modes. The earlier setup, strict-warning and provenance refusals retain
+their original SQLite records and source variants. Existing evidence hashes and
+parent statuses are preserved. All 16 configured SQLite archive payload sets
+were verified locally without network transfer.
+
+The [refreshed coverage summary](coverage/summary-rendering-twentyseventh-ten-20261025.md)
+records zero audit errors and ten current implementation bindings. The 161-source
+unlinked backlog and historical fingerprints remain explicit. All 38 planning
+controls and 15 static review readers pass after the existing master cursor
+compositor was added to the expected unrated list; its planning status is
+preserved. The first accounting failure, SQLite lock refusal and historical
+summary overwrite refusal remain separate operational records. Storage inventory
+found no eligible cleanup candidates; the normal 90 GiB reserve is unchanged.
