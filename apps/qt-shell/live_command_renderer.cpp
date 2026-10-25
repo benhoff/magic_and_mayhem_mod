@@ -37,7 +37,12 @@ bool LiveCommandRenderer::poll(quint32 budget){
             renderer_=std::make_unique<mnm::render::GlBlitter>(target_.context(),target_.offscreen);
             std::shared_ptr<mnm::render::CommandCopyDiagnostics> copyDiagnostics;
             const auto diagnosticPath=qEnvironmentVariable("MNM_NATIVE_COPY_DIAGNOSTICS");
-            if(!diagnosticPath.isEmpty())copyDiagnostics=std::make_shared<mnm::render::CommandCopyDiagnostics>(diagnosticPath);
+            if(!diagnosticPath.isEmpty()){
+                const auto scope=qEnvironmentVariable("MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE");
+                if(!scope.isEmpty() && scope!="world" && scope!="all")throw std::runtime_error("Unknown copy diagnostic scope");
+                copyDiagnostics=std::make_shared<mnm::render::CommandCopyDiagnostics>(diagnosticPath,
+                    scope=="all"?mnm::render::CommandCopyDiagnostics::Selection::AllCopies:mnm::render::CommandCopyDiagnostics::Selection::WorldAncestry);
+            }
             consumer_=std::make_unique<mnm::render::CommandConsumer>(*renderer_,[this](auto frame){
                 if(presentationSuspended_){deferredPresentation_=std::move(frame);return;}
                 // setGpuFrame queues an update. Qt coalesces historical frames

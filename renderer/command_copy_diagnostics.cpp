@@ -30,34 +30,35 @@ QString hash(const QByteArray& b){return QString::fromLatin1(QCryptographicHash:
 struct CommandCopyDiagnostics::Impl {
     QDir directory;QFile records;
     std::set<unsigned> ancestry;
+    Selection selection;std::array<unsigned,4> retainedClasses{};
     std::set<std::array<std::uint32_t,13>> retained;
     Image source,before;
     unsigned pending=0,seen=0,checked=0,ended=0,truncated=0,saved=0;
     std::uint64_t pixels=0,readbacks=0,readbackBytes=0;
     double readbackMs=0,referenceMs=0,encodingHashMs=0,writeMs=0;
     QString error;
-    explicit Impl(const QString& path):directory(path),records(directory.filePath("copies.jsonl")){
+    explicit Impl(const QString& path,Selection choose):directory(path),records(directory.filePath("copies.jsonl")),selection(choose){
         require(!path.isEmpty() && QDir().mkpath(path),"Cannot create copy diagnostics directory");
         require(records.open(QIODevice::WriteOnly|QIODevice::NewOnly),"Refusing copy diagnostic overwrite");
     }
     void report(){
         records.flush();QSaveFile file(directory.filePath("report.json"));
         require(file.open(QIODevice::WriteOnly),"Cannot open copy diagnostic report");
-        const QJsonObject out{{"schema",1},{"success",bool(ended && checked && !pending && !truncated && error.isEmpty())},
+        const QJsonObject out{{"schema",1},{"selection",selection==Selection::AllCopies?"all-copies":"world-ancestry"},{"success",bool(ended && checked && !pending && !truncated && error.isEmpty())},
           {"ended",bool(ended)},{"truncated",bool(truncated)},{"error",error},{"copies_seen",qint64(seen)},{"copies_checked",qint64(checked)},
           {"retained_pixel_cases",qint64(saved)},{"pixels_compared",qint64(pixels)},{"diagnostic_native_readbacks",qint64(readbacks)},
           {"diagnostic_readback_bytes",qint64(readbackBytes)},{"original_pixels_used_as_native_inputs",false},
           {"cpu_readback_ms",readbackMs},{"cpu_reference_compare_ms",referenceMs},
           {"cpu_encoding_hash_ms",encodingHashMs},{"cpu_witness_write_ms",writeMs},{"timing_scope","Host elapsed on the GL owner, including driver waits; no GPU busy-time or scanout claim"},
-          {"scope","Every admitted COPY with resident World ancestry until8192copies/32GiB diagnostic readbacks. Independent CPU copy transform and complete destination comparison; no original World or presented-session equivalence."}};
+          {"scope","Selected native COPY commands until8192copies/32GiB diagnostic readbacks. Selection is explicit; independent CPU transform and complete destination comparison. No original World or presented-session equivalence."}};
         require(file.write(QJsonDocument(out).toJson())>0 && file.commit(),"Cannot commit copy diagnostic report");
     }
 };
-CommandCopyDiagnostics::CommandCopyDiagnostics(const QString& path):impl_(std::make_unique<Impl>(path)){}
+CommandCopyDiagnostics::CommandCopyDiagnostics(const QString& path,Selection selection):impl_(std::make_unique<Impl>(path,selection)){}
 CommandCopyDiagnostics::~CommandCopyDiagnostics(){try{impl_->report();}catch(const std::exception&) {}}
 bool CommandCopyDiagnostics::before(const SurfaceCommand& c,GlBlitter& renderer,SurfaceId source,SurfaceId target){
     auto& p=*impl_;++p.seen;
-    if(!p.ancestry.count(c.words[0]))return false;
+    if(p.selection==Selection::WorldAncestry && !p.ancestry.count(c.words[0]))return false;
     require(!p.pending,"Overlapping copy diagnostics");
     const auto s=renderer.dimensions(source),d=renderer.dimensions(target);
     const auto cost=(std::uint64_t(s.width())*s.height()+2ull*std::uint64_t(d.width())*d.height())*4;
@@ -91,10 +92,14 @@ void CommandCopyDiagnostics::after(const SurfaceCommand& c,GlBlitter& renderer,S
     const auto expectedHash=mismatches?hash(e):actualHash;
     p.encodingHashMs+=timing.nsecsElapsed()/1000000.;timing.restart();
     QJsonArray words;for(auto word:c.words)words.append(qint64(word));
-    QJsonObject row{{"sequence",int(c.sequence)},{"words",words},{"source_width",p.source.width},{"source_height",p.source.height},
+    QJsonObject row{{"sequence",int(c.sequence)},{"source_world_ancestry",bool(p.ancestry.count(c.words[0]))},{"words",words},{"source_width",p.source.width},{"source_height",p.source.height},
       {"target_width",actual.width},{"target_height",actual.height},{"pixels",qint64(actual.pixels.size())},
       {"mismatches",qint64(mismatches)},{"source_sha256",sourceHash},{"before_sha256",beforeHash},{"actual_sha256",actualHash},{"expected_sha256",expectedHash}};
-    const bool retain=mismatches || (p.retained.size()<16 && p.retained.insert(c.words).second);
+    const unsigned bucket=(p.ancestry.count(c.words[0])?2u:0u)+(c.words[8]?1u:0u);
+    const bool retain=mismatches || (p.selection==Selection::AllCopies?
+        (p.retainedClasses[bucket]<4 && p.retained.insert(c.words).second):
+        (p.retained.size()<16 && p.retained.insert(c.words).second));
+    if(retain && !mismatches)++p.retainedClasses[bucket];
     if(retain){
         const auto base=QString("copy-%1").arg(c.sequence,8,16,QChar('0'));QJsonObject files;
         for(const auto& item:std::array<std::pair<const char*,QByteArray>,4>{{{"source",s},{"before",b},{"actual",a},{"expected",e}}}){

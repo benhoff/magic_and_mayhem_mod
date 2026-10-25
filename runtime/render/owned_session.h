@@ -452,6 +452,7 @@ static i32 game_gpu_blit(struct GameBlit* p){
         }
         session_done();lock_diagnostic("resident_gpu_copy",p->target,0,(u32)p->source,plan->count,(u32)result,plan->self,0);
     }
+    if(game_copy_routes_v2){p->routes[40]=first_copy;p->routes[41]=last_copy;p->routes[42]=a->id;p->routes[43]=b?b->id:0;}
     game_gpu_census_record(p,src,dst,plan,admission,result,a->id,b?b->id:0,scratch_id,first_copy,last_copy);
     HeapFree(GetProcessHeap(),0,plan);game_blit_free(p);p->gpu=2;game_tracker_release();SetLastError(error);return result;
 }
@@ -722,7 +723,9 @@ static void game_session_blit_end(struct GameBlit* p,u32 primary){
     }
     struct SessionSurface *a=session_find(p->source),*b=session_find(p->target);if(!a || !b){game_session_gap(4);return;}
     u32 fields[10];copy(fields,p->fields,40);fields[0]=a->id;fields[1]=b->id;
-    if(!session_record(3,fields,40,0,0) || !session_check(b,&p->dst) || (primary && !session_present(b)))return;session_done();
+    if(!session_record(3,fields,40,0,0))return;
+    if(game_copy_routes_v2){p->routes[40]=session_sequence;p->routes[41]=session_sequence;p->routes[42]=a->id;p->routes[43]=b->id;}
+    if(!session_check(b,&p->dst) || (primary && !session_present(b)))return;session_done();
 }
 static void game_session_flip_begin(struct GameSurface* front,struct GameSurface* back){
     if(!game_session_enabled)return;
