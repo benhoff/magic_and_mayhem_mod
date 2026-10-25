@@ -3163,7 +3163,8 @@
       "original": [],
       "documents": [
         "research/formats/bmp-native-loading.md",
-        "assets/README.md"
+        "assets/README.md",
+        "research/runtime/rendering-twentyfifth-ten-20261025.md"
       ],
       "implementation": [
         "assets/bmp.cpp",
@@ -3181,7 +3182,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Ten additional decoder domains have separate NP.bmp component implementations and native fixture/GPU execution. Installed inventory already fits the historical24-bit path. Original loader errors, placement/transparency contracts, OS file/heap behavior, full installed/UI/scene/hardware and live acceptance remain independent. Historical evidence fingerprints are retained; this source change grants no current original equivalence."
+      ]
     },
     {
       "id": "AS.jpeg",
@@ -147681,6 +147685,576 @@
       },
       "remaining_gaps": [
         "Owned RGB565/RGB555 image and GPU surface construction from bounded width/height2..128 and fill0..height-2, composing the existing recovered logical bar pixel supplier. Reject invalid parameters before allocation and return a caller-owned surface reference. Original pixel supplier comparison is separate from native allocation/reuse/resize lifetime; no whole-frame, original constructor or live replacement claim."
+      ]
+    },
+    {
+      "id": "NP.bmp.indexed1",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP indexed1 rendering input",
+      "scope": "Uncompressed information-header 1-bit BMP rows with high-bit-first palette lookup. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.indexed4",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP indexed4 rendering input",
+      "scope": "Uncompressed information-header 4-bit BMP rows with high-nibble-first palette lookup. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.indexed8",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP indexed8 rendering input",
+      "scope": "Uncompressed information-header 8-bit BMP rows with byte palette lookup. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.rgb555",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP rgb555 rendering input",
+      "scope": "Uncompressed information-header 16-bit RGB555 pixels; unused high bit is ignored. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.bgrx32",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP bgrx32 rendering input",
+      "scope": "Uncompressed information-header 32-bit BGRX pixels; high byte has no alpha meaning. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.masks16",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP masks16 rendering input",
+      "scope": "Information-header 16-bit BI_BITFIELDS with three external nonzero contiguous disjoint depth-bounded RGB masks and floor scaling. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.masks32",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP masks32 rendering input",
+      "scope": "Information-header 32-bit BI_BITFIELDS with three external nonzero contiguous disjoint RGB masks and floor scaling. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.rle4",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP rle4 rendering input",
+      "scope": "Information-header bottom-up BI_RLE4: alternating encoded runs, packed literals and word alignment, EOL/EOB/delta, bounded stream and coordinates. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.rle8",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP rle8 rendering input",
+      "scope": "Information-header bottom-up BI_RLE8: encoded runs, byte literals and word alignment, EOL/EOB/delta, bounded stream and coordinates. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.core",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP core rendering input",
+      "scope": "12-byte BITMAPCOREHEADER with unsigned dimensions, RGBTRIPLE indexed1/4/8 palettes or direct24 pixels and bottom-up padded rows. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
       ]
     }
   ],
@@ -333639,6 +334213,65 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "N25.bmp-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten native BMP decoder domains under partial AS.bmp. CPU fixture byte/RGB comparisons, bounded hostile-input controls and real resource-manager/RGB565/upload/draw/retirement composition on software OpenGL. Native policy only; no original loader comparison, installed asset domain expansion requirement, whole-scene/hardware/performance or live acceptance. Explicit defaults and mask rounding are native choices.",
+      "record": "research/runtime/rendering-twentyfifth-ten-results-20261025/execution-2.json",
+      "sha256": "dc4b1992cd3ddc4aaa367ac873dbca9a8725e6dce779180837a959eed2dbd3d5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/cpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/gpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/cpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/gpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -361306,7 +361939,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-4d9935595abaaba302670c13eb658e384064929cd1655c773d16c551c6002c02.json",
-    "sha256": "4d9935595abaaba302670c13eb658e384064929cd1655c773d16c551c6002c02"
+    "path": "research/runtime/coverage/source-index-ff05d16c1c57650f2a32a333b96bdca01be3ba76127eb4f6eb803f3d4b17f1c0.json",
+    "sha256": "ff05d16c1c57650f2a32a333b96bdca01be3ba76127eb4f6eb803f3d4b17f1c0"
   }
 }

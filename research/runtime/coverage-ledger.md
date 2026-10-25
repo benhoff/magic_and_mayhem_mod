@@ -22063,3 +22063,46 @@ A subsequent UI run passes37controls and exposes the previous fixed total for
 scoped High components. Its replacement names the nine new High services
 explicitly; the Medium bar service remains separate. This updates catalog
 accounting without changing engine scope or execution fingerprints.
+
+### Native bitmap rendering inputs — 2026-10-25 (N25)
+
+Ten scoped native component implementations extend partial `AS.bmp`: indexed
+1/4/8-bit, RGB55516, BGRX32, masked16/32, RLE4/8, and the core header. These expand
+an existing native image service; the historical installed inventory already
+uses supported 24-bit images. No original-loader comparison or aggregate/full-game
+milestone is promoted. See
+[exact domains and native policies](rendering-twentyfifth-ten-20261025.md).
+
+Fresh prospective proof `N25.bmp-native-20261025` is retained in
+`rendering-twentyfifth-ten-results-20261025/execution-2.json` through SQLite.
+Release and ASan/UBSan each pass 175 independent BMP/RGB fixtures, 50,792 CPU checks,
+25,539 explicit/truncation refusals and 44,800 deterministic hostile mutations.
+Each also passes 175 real resource-manager/RGB565/GPU round trips, resident draws
+without new upload/readback, retirement/reload and balanced owned surfaces.
+The older BMP, resource-manager and preparation controls pass, as do the three
+CTest fixture/CPU/GPU entries in both configurations. The first passing execution
+is preserved separately; a test-runner source-hash check and explicit RLE4 negative
+cases motivated the second execution. No original artifacts were consumed.
+External Qt/driver leak scanning is disabled; owned resource balances are checked.
+Hardware, performance, original error/placement/transparency and whole-scene/live
+acceptance remain separate.
+
+The incoming history review covers all 36 non-journal file transitions in
+`d6618d09..5fa079ec` with exact payload-aware receipts and no missing transitions;
+it grants no retrospective execution/gate claim. The new worktree is based on
+that completed batch and excludes unrelated main-checkout edits. Builds, bounded
+fixtures, logs and execution binaries are under the owned other-drive
+`working/tests/execution-{1,2}` paths. They are retained/pinned raw controls and
+reusable execution outputs, not an original installation or source snapshot.
+Research references and locally verified SQLite databases/backups are durable
+bookkeeping/evidence. The normal 90 GiB main reserve and 100 GiB cold-archive reserve
+remain in force. The current retention pass found no eligible cleanup payloads;
+no storage removal or reserve exception was used.
+
+The final audit has no errors, no source-census drift and no changed focused
+registers. All ten new implementation claims are current; `REVIEW.AS.bmp` is now
+historical/stale for the changed decoder/test bytes and is preserved unchanged.
+The 38 coverage UI controls pass. Exact unique test/producer source versions
+from the first execution are retained in SQLite beside both execution reports.
+Local completion uses the normal coverage hook and verified pinned SQLite
+backups; no evidence publication or remote transfer is part of this batch.
