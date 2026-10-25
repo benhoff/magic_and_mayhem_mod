@@ -39,8 +39,10 @@ public:
   }
   U count=m.get32(p+0x7e0);
   const auto fill=m.get8(0x5e18f0);
-  for(U offset:{0x7ccu,0x7d0u,0x7d4u,0x7d8u,0x7dcu})
-   for(U i=0;i<count;++i)m.set8(m.get32(p+offset)+i,fill);
+  for(U i=0;i<count;++i)m.set8(m.get32(p+0x7dc)+i,fill);
+  // Original chained copies expose this order when an allocation is null.
+  for(U offset:{0x7d8u,0x7d4u,0x7d0u,0x7ccu})
+   for(U i=0;i<count;++i)m.set8(m.get32(p+offset)+i,m.get8(m.get32(p+offset+4)+i));
   m.rebuildKernels(p);
   m.set32(p+0x6426,1);m.set32(p+0x642a,1);m.set32(p+0x642e,0);
  }
