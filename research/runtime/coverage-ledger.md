@@ -1,5 +1,13 @@
 # Engine modernization coverage ledger
 
+## Static rendering review input pins — 2026-10-25
+
+The UI reader now accepts explicit pending pins for documents linked after an
+older static review. Derived immutable records preserve every old fingerprint,
+witness and implementation level; prior active records remain in review history.
+Affected reviews stay historical, and no engine validation or status is promoted.
+The UI source is unchanged. See [the scope](rendering-review-input-pins-20261025.md).
+
 ## Storage software-upload source attribution — 2026-10-25
 
 The separate public-SHM diagnostic confirms the fresh first-shrink discrepancy
@@ -22066,3 +22074,8 @@ exact; inherited lifecycle records and all negative results retain their hashes
 and any current source drift. Merged Python controls and coverage accounting
 are separate from new original/live/scene/performance validation. See
 [integration scope and records](rendering-twentythird-master-integration-20261025.md).
+
+Two task-review entries also pin the newly linked assurance/causality documents
+as pending, retaining exact prior reviews and all implementation/acceptance
+labels. The UI code is unchanged. See
+[task-review input pins](rendering-work-review-input-pins-20261025.md).
