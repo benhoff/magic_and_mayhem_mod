@@ -1,0 +1,272 @@
+{
+  "groups": [
+    {
+      "contract": "C01",
+      "role": "native_replacement_required",
+      "decision": "Original wrappers may remain; device/surface pixels, aliases, Lock/DC and final native resource retirement require owned native providers.",
+      "source_witnesses": [
+        "runtime/native-draw/factory.c",
+        "runtime/render/owned_session.h"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C02",
+      "role": "native_service_required",
+      "decision": "Resident CPU history and GPU-copy authority must use ordered owned services. Arbitrary original pointers remain outside admission.",
+      "source_witnesses": [
+        "runtime/native-draw/history.h",
+        "runtime/canvas-writers/history.h"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C03",
+      "role": "mixed",
+      "decision": "Original queue preparation and required mutations may remain; admitted World raster output is produced natively and bound by generation/nonce.",
+      "source_witnesses": [
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_continuous.c"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C04",
+      "role": "retained_original_preparation_allowed",
+      "decision": "Map geometry, camera and traversal suppliers may remain original in the declared pixel-ownership target; porting their implementations is a separate upstream modernization milestone.",
+      "source_witnesses": [
+        "runtime/scene/canvas_producers.c",
+        "tools/prepare-menu-observer.py"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C05",
+      "role": "retained_original_preparation_allowed",
+      "decision": "The full native cell producer is opt-in capture staging, not a member of the strict launch's ten-DLL receipt set. Original picking/queue side effects must remain.",
+      "source_witnesses": [
+        "tools/prepare-scene-observer.py",
+        "tools/native_only_contract.py"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C06",
+      "role": "mixed",
+      "decision": "Original lighting/table/configuration production can supply owned values; native pixel operations must consume current table/palette state. Bounded builder and preview implementations already exist.",
+      "source_witnesses": [
+        "runtime/scene/canvas_producers.c",
+        "reconstruction/rendering/palette_effects.cpp"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C07",
+      "role": "retained_original_preparation_allowed",
+      "decision": "Original sorting/visibility/animation preparation may supply ordered owned draw records; their mutations/lifetimes remain required dependencies.",
+      "source_witnesses": [
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/world_raster_batch.c"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C08",
+      "role": "mixed",
+      "decision": "Native minimap/font pixel kernels are required; the original minimap selector and state production currently remain. Installing the standalone selector is not needed solely to own these pixels.",
+      "source_witnesses": [
+        "runtime/canvas-writers/minimap_bridge.c",
+        "reconstruction/rendering/minimap_camera_dispatch.hpp"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C09",
+      "role": "retained_original_coordinator_allowed",
+      "decision": "The original screen tick and vtables coordinate the running session; the standalone tick model is not installed. Required helper and callback ownership knowledge remains open.",
+      "source_witnesses": [
+        "reconstruction/rendering/screen_tick.hpp",
+        "tests/screen-tick-reference.cpp"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C10",
+      "role": "conditional_unresolved",
+      "decision": "An unknown canvas is rejected through existing tracked-surface/current-Lock admission. No global alternate-slot exclusion, alias relationship, writer or allocation closure follows.",
+      "source_witnesses": [
+        "runtime/scene/world_raster_batch.c",
+        "runtime/render/owned_session.h"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C11",
+      "role": "mixed",
+      "decision": "Qt input/wire and current callback admission are native; original simulation/input consumers are allowed suppliers. The strict movement/Mini failure remains P3.",
+      "source_witnesses": [
+        "apps/qt-shell/input_forwarder.cpp",
+        "runtime/menu/storage.h"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C12",
+      "role": "native_media_or_explicit_disabled_policy",
+      "decision": "Strict launch admits native or disabled movies. The enabled-movies journey still requires native playback and return/skip semantics; disabled movies cannot close it.",
+      "source_witnesses": [
+        "tools/native_only_contract.py",
+        "apps/qt-shell/media_broker.cpp"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C13",
+      "role": "mixed",
+      "decision": "Original serializers and save/control callbacks remain suppliers. Native history synchronization before storage and resource rebind after it are required.",
+      "source_witnesses": [
+        "runtime/menu/storage.h",
+        "runtime/render/bridge.c"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C14",
+      "role": "mixed",
+      "decision": "Original 58acf0/58b3e0 orchestration may remain, with native COM/lease retirement and profile-specific restart/recovery. Legacy physical-driver equivalence is a separate boundary.",
+      "source_witnesses": [
+        "runtime/native-draw/surfaces.h",
+        "apps/qt-shell/main.cpp"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    },
+    {
+      "contract": "C15",
+      "role": "native_admission_and_acceptance_required",
+      "decision": "Strict launch receipts/no-forward accounting do not grant original parity or full journey/performance acceptance.",
+      "source_witnesses": [
+        "tools/native_only_contract.py",
+        "tools/native_output_owner.py"
+      ],
+      "claim": "Static source classification; no new execution or status promotion."
+    }
+  ],
+  "screen_services": [
+    {
+      "entry": "0x4a4370",
+      "state": "complete_static_local_semantics",
+      "semantics": "Exactly MOV DWORD [0x642c54],0; RET. Invalidates the saved-background-valid flag; does not allocate/free pixels or acquire a mutex.",
+      "dependency": "none within the 11-byte body",
+      "evidence": "research/runtime/draw02-menu-return-copy-static-03.json",
+      "remaining": "No new original/native execution. Interactions with other writers and caller lifetime remain separate."
+    },
+    {
+      "entry": "0x4a4380",
+      "state": "static_control_flow_available",
+      "semantics": "Early returns for disabled cursor, class22, null ordinary surface interface or any negative saved rectangle coordinate. After INFINITE Wait with ignored result, a nonzero saved-background flag and nonzero wrapped width/height select deferred58d5b0 or direct58c4a0 from641fc8 to6a49e0, with negative saved offsets clamped to zero; ReleaseMutex follows. The helper does not itself clear the saved-background flag.",
+      "dependency": "Saved rectangle/coordinates, wrapper backing and deferred queue lifetime.",
+      "evidence": "research/runtime/draw02-menu-return-copy-static-03.json",
+      "remaining": "Zero sizes are rejected; negative differences and overflow are not positively validated by this local body. Real mutex abandonment/failure, all writers/aliases, callee faults and complete callback lifetime remain separate."
+    },
+    {
+      "entry": "0x4a45b0",
+      "state": "retained_cursor_client_analysis",
+      "semantics": "Foreground cursor save/draw uses current cursor positions, client transforms, 10ms Wait, saved background and direct/deferred copies.",
+      "dependency": "Original coordinate/clip/animation suppliers, 642c58 mutex, 58d5b0/58c4a0/58c8a0.",
+      "evidence": "research/runtime/draw02-cursor-clients-direction-static-01.json",
+      "remaining": "Complete source atomicity/concurrency, aliases, current frame parity and failure paths."
+    },
+    {
+      "entry": "0x5571e0",
+      "state": "required_screen_selection_frontier",
+      "semantics": "14 retained call sites: three 4a4370 clears, platform imports and unresolved virtual callbacks.",
+      "dependency": "Actual screen class vtables and screen ownership across selection.",
+      "remaining": "Selected target/callback lifetime contracts are not recovered by the local screen-tick fixture."
+    },
+    {
+      "entry": "0x4a5070",
+      "state": "required_input_dispatch_frontier",
+      "semantics": "25 retained call sites including unresolved virtual actions and named original actor/control services.",
+      "dependency": "Actual action target, current screen/control ownership and original input state.",
+      "remaining": "Caller ordering/static code is not complete selection semantics or lifetime."
+    },
+    {
+      "entry": "0x4a39a0",
+      "state": "required_special_service_frontier",
+      "semantics": "30 retained call sites, including platform imports and unresolved indirect service calls.",
+      "dependency": "Actual service object identity, ABI and lifetime.",
+      "remaining": "The screen-tick fixture authors this service; its semantics are not supplied by that comparison."
+    },
+    {
+      "entry": "0x58ed80",
+      "state": "existing_scoped_fade_contract",
+      "semantics": "Selected packed-word fade loop and retained wrapper have their own comparisons.",
+      "dependency": "Current full owned Lock/history and wrapper failure behavior.",
+      "remaining": "Do not inherit all driver/failure/session coverage from kernel comparison."
+    },
+    {
+      "entry": "0x58bf40",
+      "state": "existing_copy_wrapper_and_driver_boundary",
+      "semantics": "Whole-source copy, windowed Blt/fullscreen BltFast selection and actual rectangles/results observed.",
+      "dependency": "Surface identity, dimensions/clipper and provider loss/retry semantics.",
+      "remaining": "Enabled-padding fullscreen invalid rectangle and full source/alias/driver acceptance remain open."
+    }
+  ],
+  "guard_findings": [
+    {
+      "path": "runtime/scene/canvas_producers.c",
+      "symbol": "bound / canvas_producers_protect",
+      "finding": "Canvas 658174 must equal a tracked Surface pixel base. Missing bound Surface makes batch_start refuse and terminates with fail(46,batch_reject)."
+    },
+    {
+      "path": "runtime/scene/world_raster_batch.c",
+      "symbol": "batch_start / batch_identity",
+      "finding": "Checks admitted extent, RGB565, actual native guard loan, full allocation protection and stable canvas identity."
+    },
+    {
+      "path": "runtime/native-draw/history.h",
+      "symbol": "NativeDrawCpuGuardWorldV2",
+      "finding": "Guard mode3 matches owned physical backing, requires exactly one same-thread Lock with no DC/storage DC, and enforces a single guard interval."
+    },
+    {
+      "path": "runtime/render/owned_session.h",
+      "symbol": "RenderResidentWorldV1",
+      "finding": "Requires unique current-thread/current-epoch full Lock, exact pixels/dimensions/pitch/masks and generation/nonce before publication."
+    }
+  ],
+  "required_frontiers": [
+    {
+      "id": "F1",
+      "blocker": "B02",
+      "subject": "Alternate base/source ownership",
+      "decision": "Retain allocator/publisher/clear/base-source/writers/release unknown. Ordinary tracked-canvas admission permits progress on its admitted path; it is not proof of global alternate exclusion."
+    },
+    {
+      "id": "F2",
+      "blocker": "B03",
+      "subject": "Actual screen/vtable lifetime",
+      "decision": "Identify concrete push/pop/select/draw/finalize targets and their object/resource owners. The 21-call local fixture authors these endpoints."
+    },
+    {
+      "id": "F3",
+      "blocker": "B09",
+      "subject": "Five natural callers",
+      "decision": "Keep PCX WORD, brighten, row-copy, raster15 and camera3 as provisional unused_candidate; no denominator change or forced dispatch."
+    },
+    {
+      "id": "F4",
+      "blocker": "B01",
+      "subject": "Declared lower providers and unresolved computed calls",
+      "decision": "Classify actual required services versus permitted original suppliers. A central address link or containing-function call is not semantic closure."
+    },
+    {
+      "id": "F5",
+      "blocker": "B11",
+      "subject": "Provider compatibility",
+      "decision": "Bound native/Wine profile claims to their tested provider domains. Do not require an unavailable Win98/ME host merely to produce this graph; legacy/physical equivalence remains unvalidated."
+    }
+  ],
+  "schema": 1,
+  "kind": "authored_rendering_dependency_decisions",
+  "reviewed_commit": "c451022381223fceebec694ec055f215fda488b2"
+}

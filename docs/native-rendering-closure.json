@@ -1,0 +1,1975 @@
+{
+  "schema": 1,
+  "kind": "authored_rendering_closure_plan",
+  "reviewed_commit": "c451022381223fceebec694ec055f215fda488b2",
+  "original_build": "nocd-40209ca7",
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "scope": {
+    "target": "Original simulation/preparation retained while native rendering owns declared visible pixels and required history. Original recovery and native acceptance have separate exits.",
+    "journey_catalog": "tests/fixtures/drawing-journeys/suite.json",
+    "journey_catalog_sha256": "3091153e8757c4bc66731ea634e0e5a424397853d4567f1f097054e853c36045",
+    "profiles": [
+      {
+        "id": "public-resident",
+        "entry": "tools/test-native-campaign.py",
+        "boundary": "Existing public resident route and unchanged ordinary acceptance gates."
+      },
+      {
+        "id": "strict-native-only",
+        "entry": "tools/run-native-owned.py --native-only",
+        "boundary": "Strict admission/no-forward/terminal policy; short launch is not sustained campaign acceptance."
+      },
+      {
+        "id": "isolated-recovery",
+        "entry": "tools/run-native-owned.py --device-recovery",
+        "boundary": "Opt-in process-isolated continuation; separate from ordinary shared-texture presentation."
+      }
+    ],
+    "rules": [
+      "14 journeys and 21 operation requirements unchanged; thresholds not relaxed.",
+      "Credit is specific to actual profile/backend/source fingerprint/reference boundary.",
+      "Native Qt menu layout and safety/recovery policies require semantic/policy checks, not original pixel identity.",
+      "Alternate requiredness, fullscreen padding and physical compatibility remain explicit conditional blockers.",
+      "Required unknowns block closure until recovered or a narrowly scoped exclusion is justified and recorded."
+    ],
+    "exclusions": [
+      "Native gameplay/simulation replacement, task services and balance changes.",
+      "Retail executable and multiplayer support require separate evidence.",
+      "Universal malformed/undefined-memory equivalence: observed original behavior and native safety policies remain distinct."
+    ]
+  },
+  "classifications": {
+    "unrecovered": "Original semantics/ownership unknown.",
+    "unimplemented": "Required understood behavior lacks implementation; completed children must not be relabeled absent.",
+    "not_integrated": "Required running caller path not connected/proved.",
+    "not_validated": "Required execution/reference/current acceptance missing.",
+    "known_failing": "Retained required check fails; cause may be game, renderer, input or test driver.",
+    "decision_required": "Evidence-based scope/requiredness decision needed; does not erase an unknown."
+  },
+  "contracts": [
+    {
+      "id": "C01",
+      "title": "Surfaces and physical storage",
+      "behaviors": [
+        "NR.surfaces",
+        "NR.surface-backend.owned",
+        "NR.surface-backend.ownership-recovery",
+        "NR.surface-access",
+        "RS.canvas-create-lock",
+        "RS.canvas-retained-interface-writers",
+        "RS.canvas-cpu-backing-generations",
+        "NP.surface-alias-lease-lifecycle"
+      ],
+      "established": "Owned facade, Lock/DC, formats and alias/held-flip fixtures exist.",
+      "remaining": "Required caller/alias/writer inventory and driver behavior beyond bounded providers.",
+      "recovery_exit": "Account for admitted producers, borrowers, failure ordering and final release; document native admission differences.",
+      "documents": [
+        "research/runtime/native-resource-state.md",
+        "research/runtime/graphics-leases-shutdown-20261024.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "renderer/blit.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "renderer/capture.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/render-blit-test.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tests/render-surfaces-test.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tests/test-render-commands.py",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C02",
+      "title": "CPU and GPU history",
+      "behaviors": [
+        "NP.native-history-reader-routing",
+        "NP.native-producer-cpu-reader",
+        "NP.native-gpu-copy-plan",
+        "NP.native-gpu-copy-live-validation",
+        "NP.active-lock-reader-restoration",
+        "NP.protected-cpu-lease-storage",
+        "NP.native-cpu-instruction-resume"
+      ],
+      "established": "Ordered restoration, protected leases and copy planning exist; selected live opaque copies have independent output checks.",
+      "remaining": "All required readers and natural clipped/self/keyed GPU callers are not covered.",
+      "recovery_exit": "Classify required reads/writes and compare ordering, side effects and alias behavior. Readable memory alone is not coherent history.",
+      "documents": [
+        "research/runtime/native-history-readers.md",
+        "research/runtime/native-gpu-copy-live-validation.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "runtime/native-draw/history.h",
+          "role": "implementation"
+        },
+        {
+          "path": "runtime/canvas-writers/history.h",
+          "role": "implementation"
+        },
+        {
+          "path": "runtime/canvas-writers/raster_bridge.c",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/test-native-campaign.py",
+          "role": "tests"
+        },
+        {
+          "path": "tools/test-native-completion.py",
+          "role": "tests"
+        },
+        {
+          "path": "tests/native-gpu-copy-probe.c",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C03",
+      "title": "World queue raster and transport",
+      "behaviors": [
+        "RS.world-dispatch-routing",
+        "RS.world-queue-state",
+        "RS.world-consumer-envelope",
+        "RS.world-mutable-consumer",
+        "RS.world-queue-sort",
+        "RS.world-queue-owner-storage",
+        "RS.world-special-helpers",
+        "NR.world-continuous-source",
+        "NR.public-resident-world"
+      ],
+      "established": "Queue/raster implementations, continuous delivery, isolated comparisons and bounded live sessions exist.",
+      "remaining": "Required producers, mutable ownership interleavings and complete installed scene composition.",
+      "recovery_exit": "Close required dispatch entries, producer/consumer side effects and generation lifetimes; retain unknown indirect flows.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/runtime/native-rendering-integration-gaps-20261015.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "reconstruction/rendering/world_dispatch.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "reconstruction/rendering/world_queue.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "reconstruction/rendering/world_consumer.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/world-dispatch-test.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tools/test-world-dispatch.py",
+          "role": "tests"
+        },
+        {
+          "path": "tests/drawing-dispatch-reference.cpp",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C04",
+      "title": "Terrain geometry and camera",
+      "behaviors": [
+        "RE.terrain_map",
+        "RE.terrain_camera",
+        "RE.terrain_sections",
+        "RE.terrain_submission",
+        "RE.terrain_traversal",
+        "RE.terrain_generated",
+        "RE.camera-viewport-lifecycle",
+        "RE.camera-view-rotation",
+        "RE.terrain-camera-follow-position",
+        "RE.terrain-linked-section-copy",
+        "RE.terrain-linked-lifecycle"
+      ],
+      "established": "Selected map/camera/section/submission implementations are scoped; traversal, generated previews and linked camera components exist.",
+      "remaining": "Original whole-world construction/update/resource lifetimes and installing particular recovered replacements remain separate.",
+      "recovery_exit": "Resolve required original construction, update, teardown and camera timing suppliers; separate owned safety policies.",
+      "documents": [
+        "research/runtime/rendering-nineteenth-three-20261024.md",
+        "research/runtime/rendering-twentieth-three-20261024.md",
+        "research/runtime/terrain-traversal-rotations.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "reconstruction/rendering/terrain_map.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "reconstruction/rendering/terrain_map.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "reconstruction/rendering/terrain_camera.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/terrain-map-test.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tests/terrain-map-reference.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tools/test-rendering-twentieth-three.py",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C05",
+      "title": "Scene producers and picking",
+      "behaviors": [
+        "RS.world-cell-terrain-production",
+        "RS.world-cell-effect-production",
+        "RS.world-cell-artifact-production",
+        "RS.world-cell-creature-production",
+        "RS.world-cell-queue-publication",
+        "RS.particle-world-publication",
+        "NP.native-world-cell-producer-adapter",
+        "NR.runtime-scene-composition"
+      ],
+      "established": "Concrete terrain/water/picking, creature/effect/artifact and particle contracts/adapters exist in registered domains.",
+      "remaining": "Runtime suppliers, entity/resource churn, callbacks and complete installed/live composition.",
+      "recovery_exit": "Trace selected original World through assets, entities, picking and publication; name every remaining provider and ownership boundary.",
+      "documents": [
+        "research/runtime/remaining-rendering-implementations-20261020.md",
+        "research/runtime/native-shared-scene-renderer.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "reconstruction/rendering/world_cell_producer.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "reconstruction/rendering/particle_publication.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "runtime/world-cell-producer/adapter.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/world-cell-composition.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tests/world-cell-services.S",
+          "role": "tests"
+        },
+        {
+          "path": "tests/world-cell-services.inc",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C06",
+      "title": "Lighting and palettes",
+      "behaviors": [
+        "RE.palette_shading",
+        "RE.palette_preferences",
+        "RE.palette-effect-modes",
+        "RE.palette-effect-chains",
+        "RE.terrain_lighting",
+        "RE.terrain_creature_lighting",
+        "RE.terrain-spectator-camera-light",
+        "RE.terrain-single-cell-light",
+        "NR.scene-palette-effects",
+        "NR.terrain-palette-effects-preview",
+        "RS.actor-palette-builder-providers"
+      ],
+      "established": "All ten bounded builders, chains, selection/delivery and scene/terrain previews exist; selected lighting contracts are compared.",
+      "remaining": "Runtime config/input production, allocation failures, complete refresh integration and unusual arithmetic domains.",
+      "recovery_exit": "Trace required configuration, table ownership, ordinal selection and light refresh callers; compare required branches and name native safety differences.",
+      "documents": [
+        "research/runtime/remaining-rendering-implementations-20261020.md",
+        "research/runtime/rendering-twentieth-three-20261024.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "reconstruction/rendering/palette_shading.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "reconstruction/rendering/palette_shading.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "assets/palette_lighting.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/palette-shading-test.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tests/palette-shading-reference.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tools/test-rendering-twentieth-three.py",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C07",
+      "title": "Sprite ordering and visibility",
+      "behaviors": [
+        "RE.sprite_queue",
+        "RE.sprite_visibility",
+        "RS.world-occlusion-mask",
+        "RS.world-occlusion-actor-writers",
+        "RS.world-kind8-methods",
+        "RS.world-kind9-line"
+      ],
+      "established": "Bounded sorting, visibility, occlusion and sprite/effect contracts are implemented and compared.",
+      "remaining": "Full producer/owner mutation and installed animation/effect combinations.",
+      "recovery_exit": "Close required original ordering, visibility mutations and owner/provider lifetimes at actual scene call sites.",
+      "documents": [
+        "research/runtime/rendering-eighteenth-three-20261023.md",
+        "research/runtime/native-shared-scene-renderer.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "reconstruction/rendering/sprite_queue.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "reconstruction/rendering/sprite_queue.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "reconstruction/rendering/sprite_visibility.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/sprite-queue-test.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tests/sprite-queue-reference.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tools/test-sprite-queue.py",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C08",
+      "title": "HUD minimap and text",
+      "behaviors": [
+        "RS.minimap-terrain-raster",
+        "RS.minimap-cell-marker",
+        "RS.minimap-creature-markers",
+        "RS.minimap-camera-corners",
+        "RS.minimap-camera-dispatch",
+        "RS.font-glyph-raster",
+        "RS.font-line-layout",
+        "RS.world-finalizer-composition"
+      ],
+      "established": "Pixel/text/finalizer kernels exist; exact minimap selector has 8232 isolated comparisons.",
+      "remaining": "New selector is not installed into a whole-minimap caller; state production, composed markers/borders and broad font/tooltip transitions.",
+      "recovery_exit": "Close required callers, state production, buffer lifetime and callback order independently of pixel-kernel comparisons.",
+      "documents": [
+        "research/runtime/rendering-foundations-20261024.md",
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "renderer/minimap/minimap.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "renderer/minimap/minimap.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "renderer/minimap/overlays.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/minimap-native.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tests/minimap-original.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tests/minimap-fixture.hpp",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C09",
+      "title": "Screens and presentation",
+      "behaviors": [
+        "RS.screen-tick-control-flow",
+        "RS.alternate-canvas-dispatch-composition",
+        "RS.windowed-padded-presentation-route",
+        "RS.canvas-startup-initializer",
+        "RS.screen-cursor-background-invalidation",
+        "RS.screen-cursor-background-restore"
+      ],
+      "established": "Local screen tick and borrowed dispatch composition are compared; original windowed padded ordinary rendering observed. P1 additionally recovers complete local static background invalidation/restore semantics; no execution comparison for those helpers.",
+      "remaining": "External helper/vtable semantics, callback interleavings, screen lifetime and installation of these models.",
+      "recovery_exit": "Recover required external screen services and ownership; caller order does not establish callee semantics.",
+      "documents": [
+        "research/runtime/screen-presentation-recovery-20261024.md",
+        "research/runtime/alternate-canvas-composition-20261024.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "reconstruction/rendering/screen_tick.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "reconstruction/rendering/alternate_canvas_dispatch.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/test-screen-presentation-live.py",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/screen-tick-reference.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tools/test-screen-tick.py",
+          "role": "tests"
+        },
+        {
+          "path": "tests/alternate-canvas-dispatch-reference.cpp",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C10",
+      "title": "Alternate ownership and displacement",
+      "behaviors": [
+        "RS.alternate-canvas-provenance",
+        "RS.alternate-canvas-initializer",
+        "RS.alternate-canvas-copy",
+        "RS.alternate-canvas-x87-copy",
+        "RS.raster-displacement-table-initializer"
+      ],
+      "established": "Initializer/copy/displacement contracts exist; eight original processes/sixteen battles observed zero alternate publications.",
+      "remaining": "Allocator, publication, initial pixels, base/source relationship, writers and retirement unknown. Native displacement initializer not installed.",
+      "recovery_exit": "Recover a required natural ownership chain or justify a narrow profile exclusion with caller/dependency analysis; preserve global reachability unknown.",
+      "documents": [
+        "research/runtime/alternate-ownership-sessions-20261024.md",
+        "research/runtime/rendering-foundations-20261024.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "tools/test-original-alternate-canvas.py",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/review-alternate-canvas-inventory.py",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/alternate_canvas_lifecycle.py",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/alternate-canvas-publication-watch.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tools/test-rendering-foundations.py",
+          "role": "tests"
+        },
+        {
+          "path": "tools/test-alternate-canvas-live.py",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C11",
+      "title": "Input cursor and interaction",
+      "behaviors": [
+        "HOST.input",
+        "INPUT.camera-minimap-orientation-update",
+        "NR.drawing-documented-input-actions",
+        "HOST.native-campaign-session",
+        "HOST.campaign-input-admission-composition"
+      ],
+      "established": "Forwarding and bounded physical camera, selection and combat observations exist.",
+      "remaining": "Broad hotspot/picking combinations and strict movement-to-Mini readiness are unaccepted.",
+      "recovery_exit": "Recover required input-to-render state transitions and callbacks; distinguish test-driver policy from original semantics.",
+      "documents": [
+        "research/runtime/native-campaign-combat-input-20261020.md",
+        "research/runtime/rendering-seventeenth-five-20261023.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "apps/qt-shell/input_forwarder.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "apps/qt-shell/input_forwarder.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "apps/qt-shell/input_state.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/qt-input-test.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tools/capture-drawing-interactive.py",
+          "role": "tests"
+        },
+        {
+          "path": "tests/fixtures/drawing-journeys/region-selection-pause-schedule.json",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C12",
+      "title": "Movies",
+      "behaviors": [
+        "NR.movie-frame-production",
+        "NR.movie-enabled-startup",
+        "HOST.native-movie-hidden-video"
+      ],
+      "established": "Native movies and bounded enabled-intro/startup journeys exist.",
+      "remaining": "Broader skip/end/error and return-to-menu/World combinations in each profile.",
+      "recovery_exit": "Account for original movie control/return ordering and input/presentation ownership; decoding policy stays separate.",
+      "documents": [
+        "research/runtime/native-v3-live-startup-storage.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "apps/qt-shell/native_playback.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "apps/qt-shell/native_playback.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "runtime/render/media_bridge.h",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/test-native-movie-frames.py",
+          "role": "tests"
+        },
+        {
+          "path": "tests/native-movie-frame-test.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tests/native-movie-frames/CMakeLists.txt",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C13",
+      "title": "Storage and map transitions",
+      "behaviors": [
+        "HOST.native-render-save-load",
+        "HOST.native-campaign-save-load",
+        "NR.native-storage-world-comparison",
+        "NR.storage-session-corpus",
+        "NP.storage-menu-ownership"
+      ],
+      "established": "Save/Load, changed-canvas rebuild and fresh World resume have bounded live/recorded evidence.",
+      "remaining": "Later-map progression and broad resource/configuration churn; reloading a save is not next-map progression.",
+      "recovery_exit": "Trace rendering state retirement/rebind; original serialization and gameplay remain explicit suppliers.",
+      "documents": [
+        "research/runtime/native-render-save-load.md",
+        "research/runtime/native-world-canvas-transition.md",
+        "research/runtime/native-v3-live-startup-storage.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "apps/qt-shell/campaign_storage_test.cpp",
+          "role": "implementation"
+        },
+        {
+          "path": "apps/qt-shell/campaign_smoke_test.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/campaign_storage.py",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/test-native-campaign.py",
+          "role": "tests"
+        },
+        {
+          "path": "tools/menu-storage-input.py",
+          "role": "tests"
+        },
+        {
+          "path": "tests/test-native-render-storage.py",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C14",
+      "title": "Shutdown and recovery",
+      "behaviors": [
+        "RS.drawing-session-release",
+        "NP.graphics-session-provider-retirement",
+        "NP.native-only-generation-restart",
+        "NP.native-device-checkpoints",
+        "NP.native-isolated-render-recovery"
+      ],
+      "established": "Original provider shutdown fixtures, actual-game terminal fault/Hard restart and synthetic isolated/quiescent recovery exist.",
+      "remaining": "Natural allocation-failure reachability, external credits, live isolated continuation and physical resets.",
+      "recovery_exit": "Close original teardown/failure ordering and ownership; native restart and transparent recovery are distinct policies.",
+      "documents": [
+        "research/runtime/graphics-leases-shutdown-20261024.md",
+        "research/runtime/native-live-restart.md",
+        "research/runtime/native-isolated-render-recovery.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "reconstruction/rendering/drawing_session_release.hpp",
+          "role": "implementation"
+        },
+        {
+          "path": "runtime/native-draw/factory.c",
+          "role": "implementation"
+        },
+        {
+          "path": "runtime/native-draw/surfaces.h",
+          "role": "implementation"
+        },
+        {
+          "path": "tests/drawing-session-release-reference.cpp",
+          "role": "tests"
+        },
+        {
+          "path": "tools/test-original-world-ownership.py",
+          "role": "tests"
+        },
+        {
+          "path": "tests/graphics-session-shutdown-probe.c",
+          "role": "tests"
+        }
+      ]
+    },
+    {
+      "id": "C15",
+      "title": "Admission performance and acceptance",
+      "behaviors": [
+        "NR.live-drawing-replacement",
+        "TOOL.drawing-journeys",
+        "NR.world-continuous-normal-performance",
+        "NP.native-only-launch-contract",
+        "NP.native-output-ownership",
+        "NP.correct-output-recorded-acceptance"
+      ],
+      "established": "Strict admission, 4096-return controls and selected software/NVIDIA recorded output comparisons exist.",
+      "remaining": "Complete action-bound journeys, required routes and sustained public performance; NT17 public result misses 19 FPS.",
+      "recovery_exit": "Separate recovered dependencies from native admission policies; no complete claim follows from component, no-forward or short-launch success.",
+      "documents": [
+        "docs/live-drawing-replacement.md",
+        "research/runtime/rendering-seventeenth-five-20261023.md"
+      ],
+      "code_witnesses": [
+        {
+          "path": "tools/drawing_journeys.py",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/check-drawing-journeys.py",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/drawing_session.py",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/review-native-rendering-gaps.py",
+          "role": "tests"
+        },
+        {
+          "path": "tests/test-drawing-journeys.py",
+          "role": "tests"
+        },
+        {
+          "path": "tests/test-drawing-session.py",
+          "role": "tests"
+        }
+      ]
+    }
+  ],
+  "journeys": [
+    {
+      "id": "enabled-movies",
+      "requirements": [
+        "both-intros",
+        "movie-skip",
+        "return-to-menu"
+      ],
+      "contracts": [
+        "C01",
+        "C02",
+        "C09",
+        "C11",
+        "C12",
+        "C14",
+        "C15"
+      ],
+      "established": "Native intros and natural V3 startup observed.",
+      "acceptance_exit": "Bind skip/end/return and complete output for both intros in each claimed profile.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B04",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "main-setup-menus",
+      "requirements": [
+        "main-menu",
+        "setup-change",
+        "cancel-return"
+      ],
+      "contracts": [
+        "C01",
+        "C02",
+        "C08",
+        "C09",
+        "C11",
+        "C14",
+        "C15"
+      ],
+      "established": "Native menus and original callback handoffs observed.",
+      "acceptance_exit": "Check settings/cancel outcomes, input ownership and presentation; Qt menu layout is native policy.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B03",
+        "B04",
+        "B07",
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "campaign-entry",
+      "requirements": [
+        "campaign-selection",
+        "loading",
+        "first-composed-world"
+      ],
+      "contracts": [
+        "C01",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C11",
+        "C13",
+        "C15"
+      ],
+      "established": "First-campaign entry and combat journeys exist.",
+      "acceptance_exit": "Cover required loading branches, independent first complete output and caller side effects.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B04",
+        "B07",
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "quick-battle-entry",
+      "requirements": [
+        "setup-confirm",
+        "loading",
+        "first-composed-world"
+      ],
+      "contracts": [
+        "C01",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C11",
+        "C15"
+      ],
+      "established": "Recorded Quick Battle outputs and original normal journeys exist.",
+      "acceptance_exit": "Bind setup/loading/first-World parity to claimed live profile; original-only sessions do not establish native acceptance.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B04",
+        "B07",
+        "B09",
+        "B10",
+        "B11",
+        "B12",
+        "B13"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "active-world",
+      "requirements": [
+        "sustained-world",
+        "animation",
+        "visibility"
+      ],
+      "contracts": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C15"
+      ],
+      "established": "Bounded native live Worlds and 4096-return/paint controls exist.",
+      "acceptance_exit": "Check sustained complete output, side effects, resources and performance together.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B02",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B09",
+        "B10",
+        "B11",
+        "B12",
+        "B13"
+      ],
+      "conditional_contracts": [
+        "C10"
+      ]
+    },
+    {
+      "id": "camera-motion",
+      "requirements": [
+        "pan",
+        "four-orientations",
+        "viewport-boundaries"
+      ],
+      "contracts": [
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C11",
+        "C15"
+      ],
+      "established": "Four-view algorithms/previews and physical camera journeys exist.",
+      "acceptance_exit": "Combine pan, rotations, boundaries, minimap and picking with continuous output checks.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B02",
+        "B04",
+        "B07",
+        "B09",
+        "B10",
+        "B13"
+      ],
+      "conditional_contracts": [
+        "C10"
+      ]
+    },
+    {
+      "id": "creatures-effects",
+      "requirements": [
+        "creature-animation",
+        "attachment",
+        "combat",
+        "lighting",
+        "effect-blending"
+      ],
+      "contracts": [
+        "C01",
+        "C02",
+        "C03",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C15"
+      ],
+      "established": "Summon/melee, spell/portrait and producer/raster comparisons exist.",
+      "acceptance_exit": "Combine required attachments, lighting, visibility and blending with semantic and frame checks.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B04",
+        "B06",
+        "B07",
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "hud-minimap-tooltips",
+      "requirements": [
+        "hud-update",
+        "minimap-update",
+        "markers",
+        "tooltip-open-close"
+      ],
+      "contracts": [
+        "C01",
+        "C02",
+        "C05",
+        "C07",
+        "C08",
+        "C09",
+        "C11",
+        "C15"
+      ],
+      "established": "HUD count observations, kernels and selected overlays exist.",
+      "acceptance_exit": "Bind state, markers, borders/camera and tooltip open/close to complete presented outputs.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B04",
+        "B06",
+        "B07",
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "cursor-interaction",
+      "requirements": [
+        "cursor-motion",
+        "hotspot",
+        "picking",
+        "selection"
+      ],
+      "contracts": [
+        "C01",
+        "C02",
+        "C05",
+        "C08",
+        "C09",
+        "C11",
+        "C15"
+      ],
+      "established": "Physical selection and documented original inputs observed.",
+      "acceptance_exit": "Check hotspot, picking and selection across scene/menu/storage transitions with independent effects.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B04",
+        "B07",
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "pause-preferences",
+      "requirements": [
+        "pause",
+        "preferences-change",
+        "cancel",
+        "resume"
+      ],
+      "contracts": [
+        "C01",
+        "C02",
+        "C06",
+        "C08",
+        "C09",
+        "C11",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "established": "Selected Preferences round trips and Mini resume observed.",
+      "acceptance_exit": "Resolve strict movement/Mini failure and cover pause/cancel/apply/display branches.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B03",
+        "B04",
+        "B05",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "save-load",
+      "requirements": [
+        "save",
+        "load",
+        "restored-world"
+      ],
+      "contracts": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C08",
+        "C09",
+        "C11",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "established": "Save/Load, changed-canvas rebuild and storage comparison corpus exist.",
+      "acceptance_exit": "Check current profile actions, fresh resource identities and post-load output; retain corrected/unmodified reference distinctions.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B02",
+        "B04",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "conditional_contracts": [
+        "C10"
+      ]
+    },
+    {
+      "id": "map-transitions",
+      "requirements": [
+        "leave-map",
+        "loading",
+        "next-map"
+      ],
+      "contracts": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C11",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "established": "Changed-canvas reload exists.",
+      "acceptance_exit": "Observe actual later-map progression, loading and resource retirement; save reload cannot close it.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B02",
+        "B04",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "conditional_contracts": [
+        "C10"
+      ]
+    },
+    {
+      "id": "battle-results",
+      "requirements": [
+        "victory",
+        "defeat",
+        "return-to-menu"
+      ],
+      "contracts": [
+        "C01",
+        "C02",
+        "C08",
+        "C09",
+        "C11",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "established": "Recorded Quick Battle Results and repeated original return journeys exist.",
+      "acceptance_exit": "Bind both victory and defeat, return actions and resource teardown to current native acceptance.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B03",
+        "B04",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "shutdown",
+      "requirements": [
+        "world-exit",
+        "menu-exit",
+        "cleanup"
+      ],
+      "contracts": [
+        "C01",
+        "C02",
+        "C03",
+        "C09",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "established": "Normal Quit, shutdown fixtures and public Hard restart exist.",
+      "acceptance_exit": "Check normal/failed/restarted sessions with independent process/channel/native-owner retirement.",
+      "acceptance": "not_validated_comprehensively",
+      "blockers": [
+        "B01",
+        "B03",
+        "B04",
+        "B05",
+        "B07",
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "conditional_contracts": []
+    }
+  ],
+  "operations": [
+    {
+      "id": "copy-opaque",
+      "contracts": [
+        "C01",
+        "C02"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "copy-keyed",
+      "contracts": [
+        "C01",
+        "C02"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "copy-clipped",
+      "contracts": [
+        "C01",
+        "C02"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "copy-stretched",
+      "contracts": [
+        "C01",
+        "C02"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "copy-alias-overlap",
+      "contracts": [
+        "C01",
+        "C02"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "fill-full",
+      "contracts": [
+        "C01"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "fill-clipped",
+      "contracts": [
+        "C01"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "partial-write",
+      "contracts": [
+        "C01",
+        "C02"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "cpu-write-readback",
+      "contracts": [
+        "C01",
+        "C02"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "text-font-dc-lifetime",
+      "contracts": [
+        "C01",
+        "C08",
+        "C14"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "image-cropping",
+      "contracts": [
+        "C01",
+        "C02"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "sprite-indexed",
+      "contracts": [
+        "C03",
+        "C05",
+        "C07"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "sprite-direct",
+      "contracts": [
+        "C03",
+        "C05",
+        "C07"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "sprite-auxiliary",
+      "contracts": [
+        "C03",
+        "C05",
+        "C07"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "palette-remap",
+      "contracts": [
+        "C01",
+        "C06",
+        "C08"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "palette-cycling",
+      "contracts": [
+        "C06"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "destination-dependency",
+      "contracts": [
+        "C01",
+        "C02",
+        "C03"
+      ],
+      "conditional_contracts": [
+        "C10"
+      ]
+    },
+    {
+      "id": "flags-and-return-values",
+      "contracts": [
+        "C01",
+        "C03",
+        "C07",
+        "C09"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "surface-loss-restore",
+      "contracts": [
+        "C01",
+        "C14"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "transition-recovery",
+      "contracts": [
+        "C09",
+        "C13",
+        "C14"
+      ],
+      "conditional_contracts": []
+    },
+    {
+      "id": "failure-cleanup",
+      "contracts": [
+        "C01",
+        "C09",
+        "C14",
+        "C15"
+      ],
+      "conditional_contracts": []
+    }
+  ],
+  "blockers": [
+    {
+      "id": "B01",
+      "title": "Required route and dependency census",
+      "classification": [
+        "unrecovered",
+        "decision_required"
+      ],
+      "priority": "critical",
+      "contracts": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "journeys": [
+        "enabled-movies",
+        "main-setup-menus",
+        "campaign-entry",
+        "quick-battle-entry",
+        "active-world",
+        "camera-motion",
+        "creatures-effects",
+        "hud-minimap-tooltips",
+        "cursor-interaction",
+        "pause-preferences",
+        "save-load",
+        "map-transitions",
+        "battle-results",
+        "shutdown"
+      ],
+      "exit": "Trace required entry points/dispatch/providers for all journeys. Each encountered unknown links to a blocker or reviewed scope change. Name actual profile callers or allowed original suppliers; positive tests do not close unknown frontiers.",
+      "condition": "required",
+      "documents": [
+        "docs/live-drawing-replacement.md"
+      ],
+      "state": "open",
+      "p1_review": "research/runtime/rendering-required-dependencies-20261024.md"
+    },
+    {
+      "id": "B02",
+      "title": "Original alternate ownership",
+      "classification": [
+        "unrecovered",
+        "decision_required"
+      ],
+      "priority": "critical",
+      "contracts": [
+        "C10"
+      ],
+      "journeys": [
+        "active-world",
+        "camera-motion",
+        "save-load",
+        "map-transitions"
+      ],
+      "exit": "Recover required natural allocation/publication/base/source/initial pixels/writers/release, or justify a precise caller/configuration exclusion. Keep global reachability unknown; a new native allocator is not original recovery.",
+      "condition": "Requiredness unresolved; cannot silently exclude.",
+      "documents": [
+        "research/runtime/alternate-ownership-sessions-20261024.md"
+      ],
+      "state": "open",
+      "p1_review": "research/runtime/rendering-required-dependencies-20261024.md"
+    },
+    {
+      "id": "B03",
+      "title": "External screen services and lifetime",
+      "classification": [
+        "unrecovered"
+      ],
+      "priority": "high",
+      "contracts": [
+        "C09",
+        "C14"
+      ],
+      "journeys": [
+        "main-setup-menus",
+        "pause-preferences",
+        "battle-results",
+        "shutdown"
+      ],
+      "exit": "Resolve required direct/vtable services, callback mutation and screen ownership below the compared local tick; compare new contracts independently.",
+      "condition": "required",
+      "documents": [
+        "research/runtime/screen-presentation-recovery-20261024.md"
+      ],
+      "state": "open",
+      "p1_review": "research/runtime/rendering-required-dependencies-20261024.md"
+    },
+    {
+      "id": "B04",
+      "title": "Recovered scene and helper integration",
+      "classification": [
+        "not_integrated"
+      ],
+      "priority": "high",
+      "contracts": [
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10"
+      ],
+      "journeys": [
+        "enabled-movies",
+        "main-setup-menus",
+        "campaign-entry",
+        "quick-battle-entry",
+        "active-world",
+        "camera-motion",
+        "creatures-effects",
+        "hud-minimap-tooltips",
+        "cursor-interaction",
+        "pause-preferences",
+        "save-load",
+        "map-transitions",
+        "battle-results",
+        "shutdown"
+      ],
+      "exit": "Install required recovered providers, or name allowed original suppliers. Prove caller state/order, ownership and independent output; no unrelated simulation replacement.",
+      "condition": "required",
+      "documents": [
+        "research/runtime/rendering-foundations-20261024.md"
+      ],
+      "state": "open"
+    },
+    {
+      "id": "B05",
+      "title": "Strict movement Escape and Mini readiness",
+      "classification": [
+        "known_failing"
+      ],
+      "priority": "high",
+      "contracts": [
+        "C09",
+        "C11",
+        "C15"
+      ],
+      "journeys": [
+        "active-world",
+        "pause-preferences",
+        "shutdown"
+      ],
+      "exit": "Reproduce NT17 stress failures, diagnose game/input/driver cause and pass the same movement/Escape/Mini/resume/normal-Quit assertions. A shorter pass cannot close this.",
+      "condition": "required",
+      "documents": [
+        "research/runtime/rendering-seventeenth-five-20261023.md"
+      ],
+      "state": "open"
+    },
+    {
+      "id": "B06",
+      "title": "Public performance threshold miss",
+      "classification": [
+        "known_failing"
+      ],
+      "priority": "high",
+      "contracts": [
+        "C02",
+        "C03",
+        "C05",
+        "C08",
+        "C11",
+        "C15"
+      ],
+      "journeys": [
+        "active-world",
+        "creatures-effects",
+        "hud-minimap-tooltips"
+      ],
+      "exit": "Diagnose retained 17.253776873910518 FPS result; pass existing 19 FPS public gate and phase/stall checks on declared backend. Separately validate sustained presentation goals; do not equate engine cadence, generation, paint and scanout.",
+      "condition": "required",
+      "documents": [
+        "research/runtime/rendering-seventeenth-five-20261023.md"
+      ],
+      "state": "open"
+    },
+    {
+      "id": "B07",
+      "title": "Complete action bound acceptance",
+      "classification": [
+        "not_validated"
+      ],
+      "priority": "high",
+      "contracts": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "journeys": [
+        "enabled-movies",
+        "main-setup-menus",
+        "campaign-entry",
+        "quick-battle-entry",
+        "active-world",
+        "camera-motion",
+        "creatures-effects",
+        "hud-minimap-tooltips",
+        "cursor-interaction",
+        "pause-preferences",
+        "save-load",
+        "map-transitions",
+        "battle-results",
+        "shutdown"
+      ],
+      "exit": "Populate unchanged 14 journey and 21 operation/failure requirements with admitted independent references/native checks. Bind actions, contiguous frames, semantics and lifetime per claimed profile.",
+      "condition": "required",
+      "documents": [
+        "tools/drawing_journeys.py"
+      ],
+      "state": "open"
+    },
+    {
+      "id": "B08",
+      "title": "Later maps results and transition combinations",
+      "classification": [
+        "not_validated"
+      ],
+      "priority": "high",
+      "contracts": [
+        "C01",
+        "C04",
+        "C05",
+        "C06",
+        "C08",
+        "C09",
+        "C11",
+        "C12",
+        "C13",
+        "C14"
+      ],
+      "journeys": [
+        "enabled-movies",
+        "pause-preferences",
+        "save-load",
+        "map-transitions",
+        "battle-results"
+      ],
+      "exit": "Close movie returns, Preferences variants, actual next-map progression and both results with fresh resources and semantic/output checks. Preserve bounded Save/Load and display-rebuild successes.",
+      "condition": "required",
+      "documents": [
+        "research/runtime/native-rendering-integration-gaps-20261015.md"
+      ],
+      "state": "open"
+    },
+    {
+      "id": "B09",
+      "title": "Natural callers and history branches",
+      "classification": [
+        "unrecovered",
+        "not_validated"
+      ],
+      "priority": "high",
+      "contracts": [
+        "C01",
+        "C02",
+        "C03",
+        "C08",
+        "C10"
+      ],
+      "journeys": [
+        "enabled-movies",
+        "main-setup-menus",
+        "campaign-entry",
+        "quick-battle-entry",
+        "active-world",
+        "camera-motion",
+        "creatures-effects",
+        "hud-minimap-tooltips",
+        "cursor-interaction",
+        "pause-preferences",
+        "save-load",
+        "map-transitions",
+        "battle-results",
+        "shutdown"
+      ],
+      "exit": "Classify five unresolved optional natural callers and remaining CPU/GPU read/copy branches. Positive natural caller/output proof or reviewed narrow exclusion for required paths; zero counters and authored CPU selection do not establish absence/reachability.",
+      "condition": "required",
+      "documents": [
+        "research/runtime/native-pixel-cpu-callers.md"
+      ],
+      "state": "open",
+      "p1_review": "research/runtime/rendering-required-dependencies-20261024.md"
+    },
+    {
+      "id": "B10",
+      "title": "Actual gameplay fault matrix",
+      "classification": [
+        "not_validated"
+      ],
+      "priority": "high",
+      "contracts": [
+        "C01",
+        "C02",
+        "C09",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "journeys": [
+        "enabled-movies",
+        "main-setup-menus",
+        "campaign-entry",
+        "quick-battle-entry",
+        "active-world",
+        "camera-motion",
+        "creatures-effects",
+        "hud-minimap-tooltips",
+        "cursor-interaction",
+        "pause-preferences",
+        "save-load",
+        "map-transitions",
+        "battle-results",
+        "shutdown"
+      ],
+      "exit": "Exercise actual gameplay/storage faults: ordinary strict mode must clean up/restart; opt-in isolated mode must continue committed state without duplicate application work. Check bounded retries/resources/current output.",
+      "condition": "required",
+      "documents": [
+        "research/runtime/native-isolated-render-recovery.md"
+      ],
+      "state": "open"
+    },
+    {
+      "id": "B11",
+      "title": "Legacy driver and hardware compatibility boundary",
+      "classification": [
+        "unrecovered",
+        "not_validated",
+        "decision_required"
+      ],
+      "priority": "high",
+      "contracts": [
+        "C01",
+        "C02",
+        "C14"
+      ],
+      "journeys": [
+        "enabled-movies",
+        "main-setup-menus",
+        "campaign-entry",
+        "quick-battle-entry",
+        "active-world",
+        "creatures-effects",
+        "hud-minimap-tooltips",
+        "cursor-interaction",
+        "pause-preferences",
+        "save-load",
+        "map-transitions",
+        "battle-results",
+        "shutdown"
+      ],
+      "exit": "Record unavailable Win98/ME host and physical loss/reset unknowns. Native profile acceptance may name a bounded Wine/native provider boundary; legacy-driver/physical-reset equivalence stays blocked without actual evidence.",
+      "condition": "Physical compatibility claims; no legacy Windows host available.",
+      "documents": [
+        "research/runtime/graphics-leases-shutdown-20261024.md"
+      ],
+      "state": "open",
+      "p1_review": "research/runtime/rendering-required-dependencies-20261024.md"
+    },
+    {
+      "id": "B12",
+      "title": "Fullscreen padded source rectangle",
+      "classification": [
+        "known_failing"
+      ],
+      "priority": "high",
+      "contracts": [
+        "C01",
+        "C09",
+        "C10"
+      ],
+      "journeys": [
+        "quick-battle-entry",
+        "active-world"
+      ],
+      "exit": "For a profile claiming this configuration, correct padded-source/unpadded-primary presentation and validate output plus original/native policy distinction. Windowed success does not close the defect.",
+      "condition": "Blocks enabled-padding fullscreen support.",
+      "documents": [
+        "research/runtime/screen-presentation-recovery-20261024.md"
+      ],
+      "state": "open"
+    },
+    {
+      "id": "B13",
+      "title": "Current source and reference provenance",
+      "classification": [
+        "not_validated"
+      ],
+      "priority": "high",
+      "contracts": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "journeys": [
+        "enabled-movies",
+        "main-setup-menus",
+        "campaign-entry",
+        "quick-battle-entry",
+        "active-world",
+        "camera-motion",
+        "creatures-effects",
+        "hud-minimap-tooltips",
+        "cursor-interaction",
+        "pause-preferences",
+        "save-load",
+        "map-transitions",
+        "battle-results",
+        "shutdown"
+      ],
+      "exit": "Check transitive execution sources and original/reference inputs before acceptance; rerun affected scenarios after drift. Keep corrected-output policy separate from unmodified Wine diagnostics; preserve all historical hashes.",
+      "condition": "required",
+      "documents": [
+        "research/runtime/coverage/README.md"
+      ],
+      "state": "open"
+    }
+  ],
+  "work_packages": [
+    {
+      "id": "P1",
+      "title": "Close required original dependencies",
+      "track": "recovery",
+      "blockers": [
+        "B01",
+        "B02",
+        "B03",
+        "B09",
+        "B11"
+      ],
+      "depends_on": [],
+      "exit": "Required caller/provider graph and contract receipts with exact unresolved boundaries or justified exclusions.",
+      "inventory_state": "recorded",
+      "original_recovery_closure": "open",
+      "result": "research/runtime/rendering-required-dependencies-20261024.md",
+      "frontiers": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5"
+      ]
+    },
+    {
+      "id": "P2",
+      "title": "Connect required scene providers",
+      "track": "implementation_and_integration",
+      "blockers": [
+        "B04",
+        "B12"
+      ],
+      "depends_on": [
+        "P1 for affected caller/ownership decisions only"
+      ],
+      "exit": "Connected declared rendering path, named original suppliers, required side effects and owned lifetimes."
+    },
+    {
+      "id": "P3",
+      "title": "Resolve reproduced readiness and performance failures",
+      "track": "defect_resolution",
+      "blockers": [
+        "B05",
+        "B06"
+      ],
+      "depends_on": [],
+      "exit": "Same strict stress and public performance scenarios pass unchanged assertions and thresholds with diagnosed causes."
+    },
+    {
+      "id": "P4",
+      "title": "Complete normal journey and output acceptance",
+      "track": "top_down_validation",
+      "blockers": [
+        "B07",
+        "B08",
+        "B13"
+      ],
+      "depends_on": [
+        "P2 for required integration",
+        "P3 for failing scenarios"
+      ],
+      "exit": "All 14 journeys and 21 operation requirements have appropriate independent current profile-specific evidence."
+    },
+    {
+      "id": "P5",
+      "title": "Complete fault and lifecycle acceptance",
+      "track": "top_down_validation",
+      "blockers": [
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "depends_on": [
+        "P2 for required integration"
+      ],
+      "exit": "Declared restart/isolated-continuation matrices pass. Physical limitations remain explicit without software-fixture equivalence credit."
+    },
+    {
+      "id": "P6",
+      "title": "Issue separate recovery and acceptance decisions",
+      "track": "closeout",
+      "blockers": [],
+      "depends_on": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "exit": "Separate original-contract and native end-to-end decisions with exact scope/exclusions; no complete claim with unresolved required blockers."
+    }
+  ],
+  "completion": {
+    "original_recovery": [
+      "Required entry/dispatch/provider inventory with build/address/confidence.",
+      "Mutation, ordering, ownership and failure contracts recovered; native policies distinct.",
+      "No unresolved required original supplier; exclusions exact and justified."
+    ],
+    "component_equivalence": [
+      "Fresh admitted original/native comparisons and required side effects.",
+      "Authored callbacks do not count as recovered callee semantics."
+    ],
+    "native_acceptance": [
+      "All journey/operation requirements have appropriate independent current profile-specific checks.",
+      "Known readiness/performance failures closed at unchanged gates.",
+      "Required integration, lifecycle, faults and resource bounds accepted.",
+      "No unsupported original pixel fallback within a complete-native claim."
+    ],
+    "progress": "Track recovery, implementation, comparison, integration and acceptance separately; no weighted completion percentage or silent scope reduction."
+  },
+  "p1_dependencies": "docs/native-rendering-dependencies.json"
+}

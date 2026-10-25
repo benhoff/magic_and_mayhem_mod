@@ -21865,3 +21865,52 @@ original behavior. Reverse/full-effect/cadence/resource/entity lifetime, origina
 file loading and complete scene/live/FPS acceptance remain separate. Historical
 evidence is preserved. Source census, exact receipts and verified SQLite backups
 accompany local completion. No original input or game balance is changed.
+
+## Native rendering recovery and acceptance closure map (2026-10-24)
+
+The [closure plan](../../docs/native-rendering-closure.md) and its authored
+[machine-readable map](../../docs/native-rendering-closure.json) reconcile local
+master c4510223 into 15 contract groups (101 registered behaviors), all existing
+14 journeys and 21 operation/failure requirements, 13 classified blockers and
+six outcome-based work packages. Original recovery, component equivalence and
+native integration/end-to-end acceptance have separate exits. Profile/backend
+credit, conditional alternate/fullscreen/physical-driver boundaries, retained
+readiness/performance failures and source freshness stay explicit. Completed
+bounded terrain/palette/helpers are not relabeled absent.
+
+This is source/research reconciliation and planning; no engine experiment,
+original comparison, integration, replacement or performance status is promoted.
+Only the two umbrella planning contracts gain documentation links. Historical
+source/evidence hashes, existing acceptance requirements and unrelated pending
+work remain unchanged. The exact accounting and map-link checks are recorded
+under rendering-closure-map-results-20261024 in SQLite.
+
+## P1 required original rendering dependencies (2026-10-24)
+
+The [P1 inventory](rendering-required-dependencies-20261024.md) connects all15
+closure groups to the retained-original/native service boundary and original
+caller/provider candidates. Fresh static checks cover127 original anchors,
+111 selected function hashes,874 call sites and21 focused screen calls; five
+anchors are data. Required original ownership,actual screen/virtual lifetime,
+five natural callers,lower providers and physical compatibility remain explicit
+F1..F5 frontiers. Unknown flows and all14journey/21operation requirements remain.
+
+Two new contracts recover complete local static background invalidation4a4370
+and restore4a4380 semantics. Understanding is scoped;implementation,comparison,
+integration and replacement remain none. Original preparation may remain under
+the existing native-pixel target;uninstalled offline models are not automatically
+required live replacements. Existing tracked-surface/current-Lock guards are
+reviewed,not changed,and do not prove alternate ownership or unreachability.
+P1 delivers its inventory/receipts,not complete original recovery or end-to-end
+acceptance. All prior engine milestones and evidence fingerprints are retained.
+
+User-approved temporary89.9GiB floor and64MiB new-output cap apply only to this
+P1 acquisition. Original-manifest bookends pass2927inputs. No installation,large
+build,game/driver execution,cleanup or publication is included. Exact static
+evidence/accounting and verified local backups remain pinned under
+working/coverage/rendering-p1-20261024.
+
+P1 local integration (2026-10-25) retains the newer master `6a6f9614` animation
+contracts and receipts alongside this inventory. All 116 P1 static source
+bindings still match. The combined source census and exact accounting are
+reviewed afresh; this reconciliation adds no execution or replacement claim.

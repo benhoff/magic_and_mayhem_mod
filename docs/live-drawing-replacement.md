@@ -1,5 +1,10 @@
 # Complete live drawing replacement
 
+The [recovery and acceptance closure map](native-rendering-closure.md) reconciles
+local master `c4510223` into separate bottom-up contracts, top-down journeys and
+a finite blocker list. It preserves this plan's existing journey/operation scope
+and the independent coverage dimensions.
+
 Reviewed 2026-10-16 against `45af2ed6` (renderer sources unchanged since `7c40c187`). Native rendering is implemented for
 substantial supported paths. **A complete-renderer launch/release contract is
 still unavailable.** The original engine continues simulation and preparation;

@@ -19471,7 +19471,11 @@
       "original": [],
       "documents": [
         "docs/live-drawing-replacement.md",
-        "research/runtime/native-rendering-integration-gaps-20261015.md"
+        "research/runtime/native-rendering-integration-gaps-20261015.md",
+        "docs/native-rendering-closure.md",
+        "docs/native-rendering-closure.json",
+        "research/runtime/rendering-required-dependencies-20261024.md",
+        "docs/native-rendering-dependencies.json"
       ],
       "implementation": [],
       "tests": [
@@ -19490,7 +19494,8 @@
         "WWORD.original-20261020",
         "WWORD.frozen-original-20261020",
         "K8EMPTY.word-original-20261020",
-        "K8EMPTY.frozen-original-20261020"
+        "K8EMPTY.frozen-original-20261020",
+        "P1.required-rendering-dependencies-static-20261024"
       ],
       "status": {
         "understanding": "partial",
@@ -19506,7 +19511,8 @@
         "RENDER-INT-04: Initiate Save/Load, display rebuild, changed World canvas and normal Quit pass. Later-map progression, broader results/movie/Preferences/cursor/picking composition and independent output/input acceptance remain incomplete.",
         "RENDER-INT-05: Actual-game controlled command-producer failure, terminal cleanup and public Hard restart now pass both GUI-resident and dedicated-worker owners after a confirmed post-cleanup null-access repair. Physical context/owner loss, arbitrary freezes, audio/media restart and concurrent lifecycle outcomes remain unproved; transparent in-place recovery is not promised.",
         "RENDER-INT-06: Shipped suite now has one complete323frame recorded_session adapter; zero generic action-bound session adapters for its14journey/21operation requirements. Complete independent action-bound presented-frame parity and sustained full-session hardware60FPS acceptance remain open; historical mismatch is not established as a current reproduced defect.",
-        "RENDER-INT-07 repaired: Owned emitter/private queue/mapped V3/stream decoder pass actual traffic beyond4GiB. Finite sequence/capacity/deadline policies remain; fresh original-game V3 Save/Load not yet validated. Enabled-intro history refusal and a no-start attempt are retained unclassified live limitations, not proved transport regressions."
+        "RENDER-INT-07 repaired: Owned emitter/private queue/mapped V3/stream decoder pass actual traffic beyond4GiB. Finite sequence/capacity/deadline policies remain; fresh original-game V3 Save/Load not yet validated. Enabled-intro history refusal and a no-start attempt are retained unclassified live limitations, not proved transport regressions.",
+        "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -29774,11 +29780,14 @@
         "research/runtime/rendering-coverage-scope.json",
         "research/runtime/render-drawing-inventory.md",
         "research/runtime/native-surface-operation-matrix.json",
-        "docs/live-drawing-replacement.md"
+        "docs/live-drawing-replacement.md",
+        "research/runtime/rendering-required-dependencies-20261024.md",
+        "docs/native-rendering-dependencies.json"
       ],
       "implementation": [
         "tools/rendering_coverage.py",
-        "tools/report-rendering-coverage.py"
+        "tools/report-rendering-coverage.py",
+        "tools/reconcile-rendering-dependencies.py"
       ],
       "tests": [
         "tests/test-rendering-coverage.py"
@@ -29795,7 +29804,8 @@
         "TOOL.rendering-coverage.world32-guards-20261010",
         "TOOL.rendering-coverage.clipping-guards-20261010",
         "TOOL.rendering-coverage.clipping-final-guards-20261010",
-        "TOOL.rendering-coverage.glyph-live-guards-20261010"
+        "TOOL.rendering-coverage.glyph-live-guards-20261010",
+        "P1.required-rendering-dependencies-static-20261024"
       ],
       "status": {
         "understanding": "scoped",
@@ -35081,7 +35091,9 @@
       "documents": [
         "research/runtime/draw02-full-session.md",
         "research/formats/drawing-journey-suite.md",
-        "research/runtime/draw02-end-to-end.md"
+        "research/runtime/draw02-end-to-end.md",
+        "docs/native-rendering-closure.md",
+        "docs/native-rendering-closure.json"
       ],
       "implementation": [
         "tools/drawing_journeys.py",
@@ -41874,7 +41886,9 @@
         "research/runtime/rendering-high-validation-ownership-20261020.md",
         "research/runtime/third20-implementation-progress-20261020.md",
         "research/runtime/coverage/native-implementation-completion-20261020.json",
-        "research/runtime/rendering-seventeenth-five-20261023.md"
+        "research/runtime/rendering-seventeenth-five-20261023.md",
+        "research/runtime/rendering-required-dependencies-20261024.md",
+        "docs/native-rendering-dependencies.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -41984,7 +41998,8 @@
         "COMPLETE.native-20261020",
         "OWNERSHIP.native-20261020",
         "NT17.five-rendering-contracts-20261023",
-        "NT17.public-legacy-audio-timing-limit-20261023"
+        "NT17.public-legacy-audio-timing-limit-20261023",
+        "P1.required-rendering-dependencies-static-20261024"
       ],
       "status": {
         "understanding": "scoped",
@@ -42002,7 +42017,8 @@
         "NT17 completes this existing bounded implementation. Full original pixels/physical-driver equivalence, unclassified historical instrumented/capture failures, all original writers/aliases, whole-game reachability and60FPS remain independent; no earlier source fingerprint or negative result is rewritten.",
         "Current ordinary public portrait/aggregate/window19FPS acceptance: False; observed engine FPS 17.253777. Only bounded implementation is closed. Preserve the complete raw ordinary result and every failed portrait/window/gameplay attempt; wider public performance and current live acceptance remain pending when the ordinary harness fails.",
         "Fresh implementation probe01 completes the full journey and clean normal Quit but fails unchanged portrait19FPS at18.9317106153FPS over7.395seconds. Probe02 fails the same-engaged-enemy lethal combat deadline after one recorded summon hit; neither earns implementation or performance acceptance, and no cause is assigned. Their immutable parent/child reports and raw traces remain in the negative catalog. A later bounded positive does not establish universal scheduling/input reliability.",
-        "NT17 forced legacy-audio public campaign completes casting/combat/movement/normal Quit but fails the unchanged19FPS portrait gate near14FPS. Preserve its negative and original fingerprints independently of any production-default native-audio success; no legacy-profile guarantee or causal audio explanation follows."
+        "NT17 forced legacy-audio public campaign completes casting/combat/movement/normal Quit but fails the unchanged19FPS portrait gate near14FPS. Preserve its negative and original fingerprints independently of any production-default native-audio success; no legacy-profile guarantee or causal audio explanation follows.",
+        "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -72174,7 +72190,9 @@
       ],
       "documents": [
         "research/runtime/draw02-end-to-end.md",
-        "research/runtime/cursor-mutex-clients.md"
+        "research/runtime/cursor-mutex-clients.md",
+        "research/runtime/rendering-required-dependencies-20261024.md",
+        "docs/native-rendering-dependencies.json"
       ],
       "implementation": [],
       "tests": [
@@ -72197,7 +72215,8 @@
         "DRAW02.draw02-cursor-source-interval-analysis-01-20261012",
         "DRAW02.draw02-cursor-mutex-whole120-original-01-20261012",
         "DRAW02.draw02-cursor-refusal-analysis-negative-01-20261012",
-        "DRAW02.draw02-cursor-refusal-mutex-analysis-02-20261012"
+        "DRAW02.draw02-cursor-refusal-mutex-analysis-02-20261012",
+        "P1.required-rendering-dependencies-static-20261024"
       ],
       "status": {
         "understanding": "partial",
@@ -119143,7 +119162,9 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/native-pixel-route-27-followup.md"
+        "research/runtime/native-pixel-route-27-followup.md",
+        "research/runtime/rendering-required-dependencies-20261024.md",
+        "docs/native-rendering-dependencies.json"
       ],
       "implementation": [
         "tools/pixel_route_followup.py",
@@ -120642,7 +120663,8 @@
         "NP.pixel-route-27.rollup-20261018",
         "NP.rgb-empty-caller.default-alternate-20261018",
         "NP.rgb-empty-caller.default-physical-20261018",
-        "NP.finite-renewal.game-20261018"
+        "NP.finite-renewal.game-20261018",
+        "P1.required-rendering-dependencies-static-20261024"
       ],
       "status": {
         "understanding": "partial",
@@ -120653,7 +120675,8 @@
       },
       "remaining_gaps": [
         "Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md.",
-        "Native rendering commit excludes the independent skirmish campaign-window build from validation dependencies: neither PE32 producer hooks nor the Qt shell compile it. Prior broad whole-checkout evidence and source maps remain immutable, and no current validation/status promotion is asserted."
+        "Native rendering commit excludes the independent skirmish campaign-window build from validation dependencies: neither PE32 producer hooks nor the Qt shell compile it. Prior broad whole-checkout evidence and source maps remain immutable, and no current validation/status promotion is asserted.",
+        "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -123631,7 +123654,9 @@
         "research/runtime/native-only-launch.md",
         "research/runtime/directdraw-retirement-20261019.md",
         "research/runtime/critical-top20-rendering-fixes-20261019.md",
-        "research/runtime/rendering-seventeenth-five-20261023.md"
+        "research/runtime/rendering-seventeenth-five-20261023.md",
+        "research/runtime/rendering-required-dependencies-20261024.md",
+        "docs/native-rendering-dependencies.json"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -124379,7 +124404,8 @@
         "CRIT20.session-current-20261019",
         "CRIT20.session-retry-current-20261019",
         "NT17.five-rendering-contracts-20261023",
-        "NT17.strict-movement-stress-limit-20261023"
+        "NT17.strict-movement-stress-limit-20261023",
+        "P1.required-rendering-dependencies-static-20261024"
       ],
       "status": {
         "understanding": "scoped",
@@ -124394,7 +124420,8 @@
         "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Native row-copy, format/stretch and raw-reader implementations are present in the incoming code. Their own baseline comparison/caller/lifetime contracts are not promoted by this launch-policy result; original-reference alias/presentation closure remains separate.",
         "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md.",
         "NT17 completes this existing bounded implementation. Full original pixels/physical-driver equivalence, unclassified historical instrumented/capture failures, all original writers/aliases, whole-game reachability and60FPS remain independent; no earlier source fingerprint or negative result is rewritten.",
-        "NT17 additional10-second strict movement stress fails Mini readiness twice after real World delivery, with no recorded graphics refusal. A short default launch-policy journey passes; the reproduced stress/input-readiness cause remains unclassified and unaccepted. The existing policy excludes ordinary campaign acceptance; public hardware campaign stress is validated separately."
+        "NT17 additional10-second strict movement stress fails Mini readiness twice after real World delivery, with no recorded graphics refusal. A short default launch-policy journey passes; the reproduced stress/input-readiness cause remains unclassified and unaccepted. The existing policy excludes ordinary campaign acceptance; public hardware campaign stress is validated separately.",
+        "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -133765,7 +133792,9 @@
         "research/runtime/alternate-canvas-composition-20261024.md",
         "research/runtime/alternate-error-diagnosis-20261024.md",
         "research/runtime/screen-presentation-recovery-20261024.md",
-        "research/runtime/alternate-ownership-sessions-20261024.md"
+        "research/runtime/alternate-ownership-sessions-20261024.md",
+        "research/runtime/rendering-required-dependencies-20261024.md",
+        "docs/native-rendering-dependencies.json"
       ],
       "evidence": [
         "ACR1.original-20261020",
@@ -133779,7 +133808,8 @@
         "ACD1.copy-bound02-20261024",
         "ACD1.reporter-bound02-20261024",
         "ACO1.sessions-20261024",
-        "ACO1.build-literals-20261024"
+        "ACO1.build-literals-20261024",
+        "P1.required-rendering-dependencies-static-20261024"
       ],
       "confidence": "high_within_scope",
       "status": {
@@ -133796,7 +133826,8 @@
         "RS.screen-tick-control-flow now owns complete local5595d0..55981e recovery/comparison. External service/callback internals and whole-session alternate ownership remain separate.",
         "Original -win configuration on the admitted16-bit Wine desktop reaches enabled-setting ordinary World dispatch without pointer authoring or rectangle edits. Both publication slots remain zero;alternate owner/base/source/writers remain unknown. Separate RS.windowed-padded-presentation-route owns this configuration observation.",
         "Absolute-pointer literal review of the retained retail image is supplemental static evidence only. Computed/bulk/external writes and global reachability remain unresolved; no allocator or retirement policy may be inferred from either image lacking literal publishers.",
-        "ACO1 validates eight complete normal original windowed processes and sixteen repeated battles across both video/debug settings,with all-created-thread write watches and fresh restarts. Both slots remain zero throughout these observed journeys. Campaign,load/save,multiplayer,other mode changes and computed/bulk/external writers remain outside that domain;zero stores do not close ownership or global reachability."
+        "ACO1 validates eight complete normal original windowed processes and sixteen repeated battles across both video/debug settings,with all-created-thread write watches and fresh restarts. Both slots remain zero throughout these observed journeys. Campaign,load/save,multiplayer,other mode changes and computed/bulk/external writers remain outside that domain;zero stores do not close ownership or global reachability.",
+        "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted."
       ]
     },
     {
@@ -146205,10 +146236,13 @@
         "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json"
       ],
       "documents": [
-        "research/runtime/screen-presentation-recovery-20261024.md"
+        "research/runtime/screen-presentation-recovery-20261024.md",
+        "research/runtime/rendering-required-dependencies-20261024.md",
+        "docs/native-rendering-dependencies.json"
       ],
       "evidence": [
-        "STK1.original-final-20261024"
+        "STK1.original-final-20261024",
+        "P1.required-rendering-dependencies-static-20261024"
       ],
       "confidence": "high_within_scope",
       "status": {
@@ -146219,7 +146253,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "External helper/vtable internals,all callback interleavings and screen lifetime remain separate. Whole-game application integration and live replacement are not supplied."
+        "External helper/vtable internals,all callback interleavings and screen lifetime remain separate. Whole-game application integration and live replacement are not supplied.",
+        "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted."
       ]
     },
     {
@@ -146345,6 +146380,78 @@
       },
       "remaining_gaps": [
         "Strict parser policy only; no original malformed-string, file I/O, allocation failure or complete rendering integration/replacement claim."
+      ]
+    },
+    {
+      "id": "RS.screen-cursor-background-invalidation",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Original saved cursor background invalidation",
+      "scope": "Complete11-byte4a4370..4a437b static local semantics:clear DWORD642c54 and return;no local allocation,free,mutex or callee. Static bytes/CFG only;caller lifetime,other writers,native implementation and execution comparison remain separate.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4866928,
+          "scope": "Complete11-byte4a4370..4a437b static local semantics:clear DWORD642c54 and return;no local allocation,free,mutex or callee. Static bytes/CFG only;caller lifetime,other writers,native implementation and execution comparison remain separate."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-required-dependencies-20261024.md",
+        "docs/native-rendering-dependencies.json"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/reconcile-rendering-dependencies.py"
+      ],
+      "evidence": [
+        "P1.required-rendering-dependencies-static-20261024"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "remaining_gaps": [
+        "Static local understanding only; native implementation,original/native execution,actual screen/cursor ownership,all writers and full session acceptance remain open."
+      ]
+    },
+    {
+      "id": "RS.screen-cursor-background-restore",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Original saved cursor background restore control",
+      "scope": "Complete302-byte4a4380..4a44ae static local CFG and guarded saved-background restore. Early gates,ignored INFINITE Wait result,nonzero wrapped rectangle dimensions,clamped offsets,direct58c4a0/deferred58d5b0 copy selection and mutex release. External copy/queue/mutex semantics,all aliases/writers and arbitrary callback/fault lifetime remain separate. No native implementation or original execution comparison.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4866944,
+          "scope": "Complete302-byte4a4380..4a44ae static local CFG and guarded saved-background restore. Early gates,ignored INFINITE Wait result,nonzero wrapped rectangle dimensions,clamped offsets,direct58c4a0/deferred58d5b0 copy selection and mutex release. External copy/queue/mutex semantics,all aliases/writers and arbitrary callback/fault lifetime remain separate. No native implementation or original execution comparison."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-required-dependencies-20261024.md",
+        "docs/native-rendering-dependencies.json"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/reconcile-rendering-dependencies.py"
+      ],
+      "evidence": [
+        "P1.required-rendering-dependencies-static-20261024"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "remaining_gaps": [
+        "Static local understanding only; native implementation,original/native execution,actual screen/cursor ownership,all writers and full session acceptance remain open."
       ]
     }
   ],
@@ -331650,6 +331757,44 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "P1.required-rendering-dependencies-static-20261024",
+      "kind": "static",
+      "record": "research/runtime/rendering-p1-results-20261024/static-final02.json",
+      "sha256": "3c6beb06dd0ca891599034ea2375166ca1da9842ecfb97b9af2a7b89eca29099",
+      "scope": "Source-role/required dependency reconciliation,127 original anchors,111 function hashes,874 candidate call sites and closed11/302-byte local helper CFGs. No original execution,native equivalence,whole-game ownership,global reachability,integration or performance credit.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_code_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/recovered_local_helpers/invalidation/closed_local_cfg",
+          "equals": true
+        },
+        {
+          "pointer": "/recovered_local_helpers/restore/closed_local_cfg",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -340701,6 +340846,88 @@
           "behaviors": [
             "AI.borrowed-alias-target-bodies"
           ]
+        }
+      ]
+    },
+    {
+      "id": "screen-tick-external-service-frontier",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5608912,
+        "recovered_range": "screen-tick-complete-5595d0",
+        "scope": "External service call frontier of the already recovered local screen tick,not a single concrete class vtable."
+      },
+      "document": "research/runtime/rendering-required-dependencies-20261024.md",
+      "complete": false,
+      "scope": "Named direct helper suppliers and six virtual-slot offsets only. Actual screen-class targets,callback lifetime,selection and special-service semantics remain incomplete.",
+      "entries": [
+        {
+          "value": "direct4a4370",
+          "behaviors": [
+            "RS.screen-cursor-background-invalidation"
+          ]
+        },
+        {
+          "value": "direct4a4380",
+          "behaviors": [
+            "RS.screen-cursor-background-restore"
+          ]
+        },
+        {
+          "value": "direct4a45b0",
+          "behaviors": [
+            "DRAW.software-cursor-copy-clients"
+          ]
+        },
+        {
+          "value": "direct5571e0",
+          "behaviors": []
+        },
+        {
+          "value": "direct4a5070",
+          "behaviors": [
+            "DRAW.actor-control-latch-fields"
+          ]
+        },
+        {
+          "value": "direct4a39a0",
+          "behaviors": []
+        },
+        {
+          "value": "direct58ed80",
+          "behaviors": [
+            "RS.fade-loop-state"
+          ]
+        },
+        {
+          "value": "direct58bf40",
+          "behaviors": [
+            "RS.windowed-padded-presentation-route"
+          ]
+        },
+        {
+          "value": "virtual+00",
+          "behaviors": []
+        },
+        {
+          "value": "virtual+04",
+          "behaviors": []
+        },
+        {
+          "value": "virtual+08",
+          "behaviors": []
+        },
+        {
+          "value": "virtual+0c",
+          "behaviors": []
+        },
+        {
+          "value": "virtual+28",
+          "behaviors": []
+        },
+        {
+          "value": "virtual+2c",
+          "behaviors": []
         }
       ]
     }
@@ -359204,7 +359431,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-41ec3c72f5c40ef3f4cbbe9b5557e525dd04ea862d65a4b5fd38da56ae1be15d.json",
-    "sha256": "41ec3c72f5c40ef3f4cbbe9b5557e525dd04ea862d65a4b5fd38da56ae1be15d"
+    "path": "research/runtime/coverage/source-index-6bd210b31038e951bfabc8f55a66711fa393bdf465db273baccf2d06d04b6609.json",
+    "sha256": "6bd210b31038e951bfabc8f55a66711fa393bdf465db273baccf2d06d04b6609"
   }
 }
