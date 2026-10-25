@@ -1,3 +1,28 @@
+## Original campaign alternate-pointer observations — 2026-10-25
+
+Two debug-disabled original campaign processes complete Save,Mini Load,three
+Quit/defeat/Main returns,two display rebuilds and Main Loads at both resolutions,
+then normal Quit:2,838 World dispatcher entries,zero slot writes/publications.
+All reported created threads remain watched;the authored main/worker control
+catches all eight transient writes. Enabled640/800 campaign entry instead
+shows the original invalid-rectangle modal before World. Its exact failing
+API/operands and enabled continuation remain pending. The established enabled
+Quick Battle prefix does not cover this branch.
+
+Sixteen navigation/diagnostic controls and15 retained-image title checks pass.
+Owned fixture fixes service the unchanged host lease,recognize Mini without
+waiting on paused World,use child-owned Win32 geometry and exact Hermes title
+selection,and reapply no-CD-music settings before each fresh process.
+Failed/guard-interrupted runs and lost declarations remain separate negatives.
+SQLite source/raw retention and exact coverage reviews preserve historical
+hashes;shared instrumentation changes do not renew old API/pixel evidence.
+
+Original alternate allocation,publication,initial pixels,base/source relation,
+all writers and retirement remain unresolved. RS.alternate-canvas-provenance
+keeps partial/partial/none/none/none stages. The separately validated native
+resident owner remains intentional native policy. See [method,results and
+remaining boundaries](alternate-writer-journeys-20261025.md).
+
 ## Official1.100 alternate-owner recovery boundary — 2026-10-25
 
 The supplied official update is reproducibly unpacked by its unchanged x86

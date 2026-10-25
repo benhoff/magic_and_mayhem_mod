@@ -17,11 +17,13 @@ import shutil
 import socket
 import struct
 import subprocess
+import threading
 import time
 from coverage_claims import behavior_contract,required_sources
 from coverage_evidence import evidence_digest,read_json,write_report
 from drawing_fixture_prefix import prepare
 from original_x86 import PE32
+from alternate_canvas_journeys import campaign_rebuild, LeasePulse, Physical
 ROOT=Path(__file__).resolve().parents[1]
 BUILD='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 ID='RS.alternate-canvas-provenance'
@@ -31,13 +33,16 @@ def load(name,path):
 def win(path):return 'Z:'+str(path.resolve()).replace('/','\\')
 def digest(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def decode(path):
- raw=path.read_bytes();h=struct.unpack('<64I',raw[:256]);version=h[2];tail=256 if version==2 else 0;rows=list(struct.iter_unpack('<16I',raw[256:len(raw)-tail]));
- if h[:2]!=(0x414d4e4d,0x31305743) or version not in (1,2) or h[3]!=256 or len(rows)!=h[16]:raise ValueError('Incomplete debugger record')
- return dict(complete=bool(h[4]),error=h[5],pid=h[6],main_thread=h[7],image_base=h[8],threads_armed=h[9],threads_retired=h[10],write_events=h[11],dispatch_calls=h[12],shutdown_calls=h[13],slot_writes=list(h[14:16]),rows=rows,code_checks=h[17],bounded_termination=bool(h[18]),loader_breakpoints=h[19],first_chance_exceptions=h[20],child_exit=h[21],debug_events=h[22],observed_video=h[23],offscreen_height=h[24],offscreen_pitch_bytes=h[25],idle_context=list(h[28:32]),idle_samples=h[32],error_dialog=bool(h[34]),error_message=raw[-256:].split(b'\0')[0].decode('cp1252') if version==2 else '',error_config=list(h[36:39]),sha256=digest(path))
+ raw=path.read_bytes();h=struct.unpack('<64I',raw[:256]);version=h[2];tail=256 if version>=2 else 0;rows=list(struct.iter_unpack('<16I',raw[256:len(raw)-tail]));
+ if h[:2]!=(0x414d4e4d,0x31305743) or version not in (1,2,3) or h[3]!=256 or len(rows)!=h[16]:raise ValueError('Incomplete debugger record')
+ return dict(client=dict(window=h[39],x=struct.unpack('<i',struct.pack('<I',h[40]))[0],y=struct.unpack('<i',struct.pack('<I',h[41]))[0],width=h[42],height=h[43],samples=h[44],foreground=h[49],foreground_pid=h[50],outer=[struct.unpack('<i',struct.pack('<I',v))[0] for v in h[45:49]]) if version>=3 else None,complete=bool(h[4]),error=h[5],pid=h[6],main_thread=h[7],image_base=h[8],threads_armed=h[9],threads_retired=h[10],write_events=h[11],dispatch_calls=h[12],shutdown_calls=h[13],slot_writes=list(h[14:16]),rows=rows,code_checks=h[17],bounded_termination=bool(h[18]),loader_breakpoints=h[19],first_chance_exceptions=h[20],child_exit=h[21],debug_events=h[22],observed_video=h[23],offscreen_height=h[24],offscreen_pitch_bytes=h[25],idle_context=list(h[28:32]),idle_samples=h[32],error_dialog=bool(h[34]),error_message=raw[-256:].split(b'\0')[0].decode('cp1252') if version>=2 else '',error_config=list(h[36:39]),sha256=digest(path))
 def main():
  resource.setrlimit(resource.RLIMIT_CORE,(0,0));p=argparse.ArgumentParser(description=__doc__)
  p.add_argument('--output',type=Path,required=True);p.add_argument('--report',required=True);p.add_argument('--source-game',type=Path,required=True)
  p.add_argument('--prefix-owner-root',type=Path,required=True);p.add_argument('--wine-prefix',type=Path,required=True)
+ p.add_argument('--journey',choices=('battles','campaign-rebuild'),default='battles')
+ p.add_argument('--debug-choice',choices=('both','disabled','enabled'),default='both')
+ p.add_argument('--initial-video',choices=('both','low','high'),default='both')
  p.add_argument('--windowed',action='store_true',default=True);p.add_argument('--desktop-depth',type=int,choices=(16,24),default=16);p.add_argument('--trace-errors',action='store_true');p.add_argument('--trace-blt',action='store_true');p.add_argument('--enabled-first',action='store_true');p.add_argument('--frames',type=int,default=240,choices=range(40,1001));p.add_argument('--restarts',type=int,default=2,choices=(1,2,3));a=p.parse_args();out=a.output.resolve()
  if a.trace_blt or a.trace_errors:p.error('Ownership sessions retain the shutdown execution watch')
  if out.exists() or not out.is_relative_to(ROOT/'working/tests'):p.error('Require new owned output')
@@ -56,6 +61,14 @@ def main():
  report=dict(schema=1,success=False,sources=sources,claims=[dict(behavior=ID,contract_sha256=behavior_contract(b,{v['id']:v for v in j['builds']}))],original_sha256=BUILD,commands=[],cohorts=[],live_replacement=False,all_writers_recovered=False,original_allocation_recovered=False,
   scope='Repeated original windowed Quick Battles, Escape/results Continue, results Quit/return, Main Quit and fresh-process restart. Read-only hardware watchpoints on both alternate pointer slots and original dispatch plus the selected shutdown/error-reporter/copy call-return diagnostic for every created process thread; authored positive control and natural original Quick Battle sessions across video/configuration choices. Menu navigation is an explicit adapter; Escape uses physical input on the private X display. Cleanup termination is a failed journey, not normal Quit or universal reachability evidence.')
  report['windowed_argument']=a.windowed;report['desktop_depth']=a.desktop_depth
+ report['journey']=a.journey
+ report['debug_choice']=a.debug_choice;report['initial_video']=a.initial_video
+ if a.journey=='campaign-rebuild':report['scope']='Original windowed fresh Apprentice campaign,Save/resume,Mini Load/resume,three original Quit-confirmation/defeat/Main returns,two original display rebuilds and saved-map Main Loads at both resolutions,then Main Quit. All-created-thread pointer write watches remain armed across the complete process. V13 semantic menu adapters and private physical Escape/recognized Hermes/observed Quit confirmation inputs are explicit;no native renderer or allocator is installed. Zero writes do not prove global dormancy.'
+ if a.journey=='campaign-rebuild':
+  report['physical_tools']={}
+  for name,option in [('import','-version'),('tesseract','--version')]:
+   path=Path(shutil.which(name));result=subprocess.run([str(path),option],capture_output=True,text=True,check=True,timeout=5)
+   report['physical_tools'][name]=dict(path=str(path.resolve()),sha256=digest(path),version=result.stdout.splitlines()[0])
  report['diagnostic_mode']='copy_call_return' if a.trace_blt else 'error_reporter' if a.trace_errors else 'shutdown'
  env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE'))};env.update(WINEDEBUG='-all',LIBGL_ALWAYS_SOFTWARE='1',GALLIUM_DRIVER='llvmpipe',LP_NUM_THREADS='4',__EGL_VENDOR_LIBRARY_FILENAMES='/usr/share/glvnd/egl_vendor.d/50_mesa.json',__GLX_VENDOR_LIBRARY_NAME='mesa')
  env.pop('MESA_LOADER_DRIVER_OVERRIDE',None);env.pop('WAYLAND_DISPLAY',None)
@@ -94,7 +107,7 @@ def main():
   imports={'CreateFileA':28,'WriteFile':20,'CloseHandle':4,'SetFilePointer':16,'FlushFileBuffers':4,'ExitProcess':4,'GetEnvironmentVariableA':12,'GetCommandLineA':0,'CreateProcessA':40,'WaitForDebugEvent':8,'ContinueDebugEvent':12,'GetThreadContext':8,'SetThreadContext':8,'ReadProcessMemory':20,'GetFileAttributesA':4,'GetLastError':0,'TerminateProcess':8,'VirtualProtect':16,'CreateThread':24,'WaitForSingleObject':8,'SuspendThread':4,'ResumeThread':4}
   definition=out/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(n+'@'+str(v)+'\n' for n,v in imports.items()));run('imports',['llvm-dlltool','-m','i386','--kill-at','-d',definition,'-l',out/'kernel32.lib'])
   flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I'+str(out)]
-  user=out/'user32.def';user.write_text('LIBRARY USER32.dll\nEXPORTS\nFindWindowA@8\nGetWindowThreadProcessId@8\nGetWindow@8\nGetWindowTextA@12\n');run('user-imports',['llvm-dlltool','-m','i386','--kill-at','-d',user,'-l',out/'user32.lib'])
+  user=out/'user32.def';user.write_text('LIBRARY USER32.dll\nEXPORTS\nFindWindowA@8\nGetWindowThreadProcessId@8\nGetWindow@8\nGetWindowTextA@12\nGetClientRect@8\nClientToScreen@8\nGetWindowRect@8\nGetForegroundWindow@0\n');run('user-imports',['llvm-dlltool','-m','i386','--kill-at','-d',user,'-l',out/'user32.lib'])
   pin=out/'alternate_canvas_pinned.h'
   def build(label,source,extra=()):
    run(label+'-build',[*flags,'-MMD','-MF',out/(label+'.d'),'-c',ROOT/source,'-o',out/(label+'.obj')])
@@ -118,8 +131,9 @@ def main():
   # executable,even if this working installation has an earlier adapter.
   report['installation_executable']=dict(sha256=installation_executable,used_as_executable_input=False)
   run('installation-copy',['cp','-a','--reflink=auto',source,game])
-  for name in ['Chaos.exe','MnmMenu.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg','CFG/chaos.cfg','CFG/Encrypted/chaos.cfg']:
+  for name in ['Chaos.exe','MnmMenu.dll','Save','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg','CFG/chaos.cfg','CFG/Encrypted/chaos.cfg']:
    if not (game/name).resolve().is_relative_to(game.resolve()):raise ValueError('Escaping staged write target '+name)
+  if a.journey=='campaign-rebuild':(game/'Save').mkdir(exist_ok=True)
   shutil.copyfile(menu,game/'MnmMenu.dll')
   patch=load('alternate_import','tools/prepare-shadow-experiment.py').add_import;staged=patch(raw,'MnmMenu.dll','MenuAnchor',b'.altmenu')
   for section in image.sections:
@@ -131,9 +145,13 @@ def main():
   config_original={path:path.read_bytes() for path in [game/'CFG/chaos.cfg',game/'CFG/Encrypted/chaos.cfg'] if path.is_file()}
   report['staging']=dict(source_sha256=BUILD,staged_sha256=digest(game/'Chaos.exe'),menu_dll_sha256=digest(menu),original_sections_unchanged=True,debugger_sha256=digest(out/'debugger.exe'),prefix=str(prefix),display=env['DISPLAY'])
   cohorts=[(False,True),(False,False),(True,True),(True,False)] if a.enabled_first else [(False,False),(False,True),(True,False),(True,True)]
+  cohorts=[(v,e) for v,e in cohorts if (a.debug_choice=='both' or e==(a.debug_choice=='enabled')) and (a.initial_video=='both' or v==(a.initial_video=='high'))]
   cohorts=[(v,e,restart) for v,e in cohorts for restart in range(a.restarts)]
   for video,enabled,restart in cohorts:
    case=out/('video'+str(int(video))+'-malloc'+str(int(enabled))+'-restart'+str(restart));case.mkdir();print(case.name,flush=True)
+   # Original preferences persistence can re-enable CD music on normal Quit.
+   # Reapply the admitted fixture settings before each fresh process.
+   settings.disable_cd_music(game);settings.skip_movies(game)
    settings.patch_staged_preferences(game,'VIDEO',{'IsHighRes':'TRUE' if video else 'FALSE'})
    cfg=[]
    for path,data in config_original.items():
@@ -143,14 +161,17 @@ def main():
     encoded=encoder.encode(updated,decoder)[0] if packed else updated
     if packed and decoder.decode(encoded)[1]!=updated:raise ValueError('CFG round trip')
     path.write_bytes(encoded);cfg.append(dict(path=path.relative_to(game).as_posix(),sha256=digest(path)))
-   channel_path=case/'channel.bin';raw_channel=bytearray(73728);raw_channel[:16]=b'MNMMCMD5'+struct.pack('<II',5,73728);struct.pack_into('<3I',raw_channel,16,2,1,1);channel_path.write_bytes(raw_channel)
+   version,size,magic=(13,131072,b'MNMMCM13') if a.journey=='campaign-rebuild' else (5,73728,b'MNMMCMD5')
+   channel_path=case/'channel.bin';raw_channel=bytearray(size);raw_channel[:16]=magic+struct.pack('<II',version,size);struct.pack_into('<3I',raw_channel,16,2,1,1);channel_path.write_bytes(raw_channel)
    channel_file=channel_path.open('r+b');channel=mmap.mmap(channel_file.fileno(),0);heartbeat=1;sequence=2;request=0;trace=[]
    child_env=env|dict(MNM_MENU_CHANNEL=win(channel_path),MNM_MENU_OBSERVE=win(case/'menus.bin'),MNM_ALTERNATE_CWD=win(game),WINEDLLOVERRIDES='ddraw=b;dplay,dplayx,dpwsockx=n')
    if a.trace_errors or a.trace_blt:child_env['MNM_ALTERNATE_ERROR_TRACE']='2' if a.trace_blt else '1'
    log=(case/'game.log').open('x');process=subprocess.Popen(['wine','explorer','/desktop=alternate-watch,1024x768',str(out/'debugger.exe'),str(game/'Chaos.exe'),*(['-win'] if a.windowed else [])],cwd=case,env=child_env,stdout=log,stderr=subprocess.STDOUT)
+   host_lock=threading.Lock()
    def beat():
     nonlocal heartbeat,sequence
-    heartbeat+=1;sequence+=2;struct.pack_into('<I',channel,16,sequence-1);struct.pack_into('<I',channel,24,heartbeat);struct.pack_into('<I',channel,16,sequence)
+    with host_lock:
+     heartbeat+=1;sequence+=2;struct.pack_into('<I',channel,16,sequence-1);struct.pack_into('<I',channel,24,heartbeat);struct.pack_into('<I',channel,16,sequence)
    def state():
     seq=struct.unpack_from('<I',channel,128)[0];row=struct.unpack_from('<7I',channel,132);payload=bytes(channel[160:16924]);return (row,payload) if not seq&1 and seq==struct.unpack_from('<I',channel,128)[0] else None
    def focus():
@@ -196,15 +217,23 @@ def main():
      if time.monotonic()>focused+1:focus();focused=time.monotonic()
      time.sleep(.02)
     raise ValueError('Menu timeout: '+str(state()[0] if state() else None))
-   def send(screen,action,argument=0,rules=None):
+   def send(screen,action,argument=0,rules=None,preferences=None,name=None):
     nonlocal request,sequence,heartbeat
     for attempt in range(8):
-     snapshot=wait(screen);request+=1;heartbeat+=1;sequence+=2
-     struct.pack_into('<I',channel,16,sequence-1)
-     struct.pack_into('<6I',channel,20,1,heartbeat,request,action,snapshot[0][0],argument)
-     if rules is not None:struct.pack_into('<17I',channel,44,*rules)
-     struct.pack_into('<I',channel,16,sequence);reply=wait(ack=request)
-     trace.append(dict(screen=screen,action=action,argument=argument,ack=request,status=reply[0][4],attempt=attempt))
+     snapshot=wait(screen)
+     with host_lock:
+      request+=1;heartbeat+=1;sequence+=2
+      struct.pack_into('<I',channel,16,sequence-1)
+      struct.pack_into('<6I',channel,20,1,heartbeat,request,action,snapshot[0][0],argument)
+      if rules is not None:struct.pack_into('<17I',channel,44,*rules)
+      if preferences is not None:struct.pack_into('<7I',channel,44756,*(v&0xffffffff for v in preferences))
+      if name is not None:
+       encoded=name.encode('ascii')
+       if not encoded or len(encoded)>=128:raise ValueError('Save name bounds')
+       channel[106496:106624]=encoded+bytes(128-len(encoded))
+      struct.pack_into('<I',channel,16,sequence)
+     reply=wait(ack=request)
+     trace.append(dict(screen=screen,action=action,argument=argument,ack=request,status=reply[0][4],attempt=attempt,preferences=preferences,name=name))
      if reply[0][4]==1:return
      # A stale-generation refusal invokes no callback. A fresh request ID is
      # required; an acknowledged action is never retried.
@@ -238,34 +267,48 @@ def main():
      trace.append(dict(physical=kind))
     finally:
      xt.XTestFakeKeyEvent(display,key,0,0);x.XFlush(display);x.XCloseDisplay(display)
+   pulse=LeasePulse(beat);pulse.start()
    try:
     battles=[]
-    send(3,1)
-    for battle in range(2):
-     send(22,4);s=wait(14);rules=list(struct.unpack_from('<13I',s[1],8))+[struct.unpack_from('<I',s[1],60+i*48+12)[0] for i in range(4)];rules[2]=0
-     send(14,6,rules=rules);send(25,9,2);before=progress().get('dispatch_calls',0);send(14,7,rules=rules)
-     wait_dispatch(before+a.frames)
-     physical('escape');wait(26);send(26,16)
-     resumed=progress().get('dispatch_calls',0);wait_dispatch(resumed+12)
-     physical('escape');wait(26);send(26,17);wait(22)
-     battles.append(dict(index=battle,world_before=before,world_after=progress().get('dispatch_calls',0),results_continue_resumed=True,results_quit_returned=True))
-    send(22,2);wait(3);send(3,3)
+    journey=None
+    if a.journey=='campaign-rebuild':
+     journey={};report.setdefault('campaign_attempts',[]).append(journey)
+     journey=campaign_rebuild(channel=channel,send=send,wait=wait,progress=progress,wait_dispatch=wait_dispatch,physical=physical,beat=beat,focus=focus,env=env,case=case,game=game,video=video,enabled=enabled,frames=a.frames,record=journey)
+    else:
+     send(3,1)
+     for battle in range(2):
+      send(22,4);s=wait(14);rules=list(struct.unpack_from('<13I',s[1],8))+[struct.unpack_from('<I',s[1],60+i*48+12)[0] for i in range(4)];rules[2]=0
+      send(14,6,rules=rules);send(25,9,2);before=progress().get('dispatch_calls',0);send(14,7,rules=rules)
+      wait_dispatch(before+a.frames)
+      physical('escape');wait(26);send(26,16)
+      resumed=progress().get('dispatch_calls',0);wait_dispatch(resumed+12)
+      physical('escape');wait(26);send(26,17);wait(22)
+      battles.append(dict(index=battle,world_before=before,world_after=progress().get('dispatch_calls',0),results_continue_resumed=True,results_quit_returned=True))
+     send(22,2);wait(3)
+    send(3,3)
     deadline=time.monotonic()+30
     while process.poll() is None and time.monotonic()<deadline:beat();time.sleep(.02)
     if process.poll() is None:raise ValueError('Main Quit did not exit normally')
     if process.returncode:raise ValueError('Debugger refused original observation')
     proof=decode(case/'alternate-watch.bin')
-    if not proof['complete'] or proof['bounded_termination'] or proof['child_exit'] or not proof['shutdown_calls'] or proof['dispatch_calls']<2*a.frames or proof['image_base']!=0x400000:raise ValueError('Incomplete normal original session')
+    if not proof['complete'] or proof['bounded_termination'] or proof['child_exit'] or not proof['shutdown_calls'] or proof['dispatch_calls']<(5 if journey else 2)*a.frames or proof['image_base']!=0x400000:raise ValueError('Incomplete normal original session')
     dispatch=[r for r in proof['rows'] if r[1]==3]
     if not dispatch or any(bool(r[9])!=enabled for r in dispatch) or bool(proof['observed_video'])!=video:raise ValueError('Original video/DEBUG choices were not observed')
-    report['cohorts'].append(dict(video=video,use_malloced_backbuffer=enabled,restart=restart,configuration=cfg,menu_actions=trace,battles=battles,proof=proof,outcome='normal_quit',normal_exit=True))
-   except OriginalConfigurationRefused:raise ValueError('Original configuration refused the ownership journey')
+    report['cohorts'].append(dict(video=video,use_malloced_backbuffer=enabled,restart=restart,configuration=cfg,menu_actions=trace,battles=battles,campaign=journey,proof=proof,outcome='normal_quit',normal_exit=True))
+   except (OriginalConfigurationRefused,OSError,ValueError,subprocess.SubprocessError,AssertionError) as failure:
+    report['failed_cohort']=dict(case=case.name,video=video,use_malloced_backbuffer=enabled,menu_actions=trace,error=str(failure),proof=progress())
+    if a.journey=='campaign-rebuild':
+     try:report['failed_cohort']['capture']=Physical(env,case,beat,focus,progress).diagnostic('failed-session')
+     except (OSError,ValueError,subprocess.SubprocessError) as capture_error:report['failed_cohort']['capture_error']=str(capture_error)
+    if isinstance(failure,OriginalConfigurationRefused):raise ValueError('Original configuration refused the ownership journey') from failure
+    raise
    finally:
     if process.poll() is None:
      (case/'alternate-stop.flag').touch()
      try:process.wait(timeout=10)
      except subprocess.TimeoutExpired:process.terminate();process.wait(timeout=10)
-    process=None;log.close();channel.close();channel_file.close()
+    if report.get('failed_cohort',{}).get('case')==case.name:report['failed_cohort']['final_proof']=progress()
+    pulse.close();process=None;log.close();channel.close();channel_file.close()
    if a.trace_blt or a.trace_errors and enabled:
     path=case/('alternate-blt.bin' if a.trace_blt else 'alternate-error.bin');words=struct.unpack('<768I',path.read_bytes())
     if words[:3]!=(0x45524e4d,2,3072) or words[15]!=1:raise ValueError('Error trace format')
@@ -288,6 +331,7 @@ def main():
   if digest(source/'Chaos.exe')!=installation_executable:raise ValueError('Source installation changed')
   if any(digest(source/path)!=v['sha256'] for path,v in report['source_installation_inputs'].items()):raise ValueError('Source installation input changed')
   if any(digest(Path('/usr/lib/wine/i386-windows')/name)!=h for name,h in provider.items()):raise ValueError('Provider changed')
+  if any(digest(Path(v['path']))!=v['sha256'] for v in report.get('physical_tools',{}).values()):raise ValueError('Private physical-input tool changed')
   report.update(normal_quit_sessions=len(report['cohorts']),observed_enabled_world=any(c['use_malloced_backbuffer'] and c['outcome']=='normal_quit' for c in report['cohorts']),error_attribution_validated=bool(a.trace_blt or a.trace_errors) and all(c.get('error_trace',{}).get('validated',False) for c in report['cohorts'] if a.trace_blt or c['use_malloced_backbuffer']),success=True,original_game_executed=True,observed_pointer_writes=any(c['proof']['write_events'] for c in report['cohorts']),observed_natural_publications=any(r[1]==2 and (r[5] or r[6]) for c in report['cohorts'] for r in c['proof']['rows']),observed_alternate_dispatch=any(r[5]!=0 for c in report['cohorts'] for r in c['proof']['rows'] if r[1]==3))
  except (OSError,ValueError,subprocess.SubprocessError,AssertionError) as error:report['error']=str(error)
  finally:

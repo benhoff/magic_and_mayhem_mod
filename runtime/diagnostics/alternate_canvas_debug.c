@@ -11,6 +11,10 @@ API void* WIN FindWindowA(const char*,const char*);
 API u32 WIN GetWindowThreadProcessId(void*,u32*);
 API void* WIN GetWindow(void*,u32);
 API int WIN GetWindowTextA(void*,char*,int);
+API int WIN GetClientRect(void*,i32*);
+API int WIN ClientToScreen(void*,i32*);
+API int WIN GetWindowRect(void*,i32*);
+API void* WIN GetForegroundWindow(void);
 static HANDLE process,output;
 static u32 trace_errors,trace_written,pending_tid;
 static u32 trace_record[768];
@@ -37,9 +41,22 @@ static void write_trace(void){
 }
 
 static struct {u32 id;HANDLE handle;} threads[256];
-static u32 header[64]={0x414d4e4d,0x31305743,2,256},rows[256][16],row_count;
+static u32 header[64]={0x414d4e4d,0x31305743,3,256},rows[256][16],row_count;
 static u32 last_values[5],have_values;
 static char error_text[256];
+/* V3 header39..50: owned HWND,client x/y/width/height,samples,outer RECT,
+ * foreground HWND and its owning PID.
+ * This only queries USER32. Handles are observations,not shared host pointers. */
+static void observe_client(void){
+ void* window=FindWindowA(0,"Magic & Mayhem");u32 pid=0;i32 rect[4],point[2]={0,0},outer[4];
+ if(!window||!GetWindowThreadProcessId(window,&pid)||pid!=header[6]||
+    !GetClientRect(window,rect)||!ClientToScreen(window,point)||!GetWindowRect(window,outer))return;
+ header[39]=(u32)window;header[40]=(u32)point[0];header[41]=(u32)point[1];
+ header[42]=(u32)(rect[2]-rect[0]);header[43]=(u32)(rect[3]-rect[1]);++header[44];
+ for(u32 i=0;i<4;++i)header[45+i]=(u32)outer[i];
+ void* foreground=GetForegroundWindow();header[49]=(u32)foreground;
+ GetWindowThreadProcessId(foreground,header+50);
+}
 static void save(void){
  u32 done;if(SetFilePointer(output,0,0,0)!=0||!WriteFile(output,header,256,&done,0)||done!=256||
   !WriteFile(output,rows,row_count*64,&done,0)||done!=row_count*64||!WriteFile(output,error_text,256,&done,0)||done!=256||!FlushFileBuffers(output))ExitProcess(91);
@@ -47,6 +64,7 @@ static void save(void){
 static void fail(u32 code){header[5]=code;save();ExitProcess(code);}
 static void read_child(u32 address,void* data,u32 size){u32 done;if(!ReadProcessMemory(process,(void*)address,data,size,&done)||done!=size)fail(92);}
 static void emit(u32 event,u32 tid,CONTEXT* c,u32 hit){
+ observe_client();
  u32 values[5];read_child(0x6e1f68,values,20);
  u32 changed=!have_values;for(u32 i=0;i<5;++i)changed|=values[i]!=last_values[i];
  if(event==3&&!changed&&header[12]>8&&!values[0]&&!values[1])return;
@@ -97,7 +115,7 @@ void mainCRTStartup(void){
   if(!stopping&&GetFileAttributesA("alternate-stop.flag")!=0xffffffffu){emit(5,0,0,0);stopping=1;header[18]=1;if(!TerminateProcess(process,238))fail(84);}
   if(!WaitForDebugEvent(&e,100)){
    if(GetLastError()!=121)fail(83);
-   observe_error();
+   observe_error();observe_client();
    if(!stopping){HANDLE t=find_thread(child.dwThreadId);u32 previous=SuspendThread(t);if(previous==0xffffffffu)fail(104);
     CONTEXT c=get_context(t);header[28]=c.Eip;header[29]=c.Esp;
     u32 done=0;ReadProcessMemory(process,(void*)c.Esp,header+30,8,&done);
