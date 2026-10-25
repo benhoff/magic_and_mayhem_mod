@@ -7,7 +7,8 @@ struct SurfaceCommand;
 // rendering operation, World provider, CPU reply or facade history transfer.
 class CommandCopyDiagnostics final {
 public:
-    explicit CommandCopyDiagnostics(const QString& directory);
+    enum class Selection { WorldAncestry, AllCopies };
+    explicit CommandCopyDiagnostics(const QString& directory,Selection selection=Selection::WorldAncestry);
     ~CommandCopyDiagnostics();
     bool before(const SurfaceCommand&,GlBlitter&,SurfaceId source,SurfaceId target);
     void after(const SurfaceCommand&,GlBlitter&,SurfaceId target);

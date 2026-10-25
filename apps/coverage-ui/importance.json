@@ -92,6 +92,13 @@
       "contract_sha256": "14cfaee7b2ba2e56d3bdaa4ee9e10849edd5f2bc41f52982656bc756a3112fea"
     },
     {
+      "behavior": "NP.native-copy-output-closure",
+      "weight": 3,
+      "work_type": "acceptance",
+      "reason": "Bounded actual caller-bound CPU-keyed and GPU copy destination assurance. Independent native/CPU/Python checks detect pixel and binding regressions within the declared session. This is assurance value,not missing renderer capability or whole-session/original-driver completion.",
+      "contract_sha256": "26df84cd9be203c12edddb32e4d4a42bfc72a6710fe5210fee133d3af244b1ac"
+    },
+    {
       "behavior": "NP.native-copy-route-census",
       "weight": 3,
       "work_type": "acceptance",

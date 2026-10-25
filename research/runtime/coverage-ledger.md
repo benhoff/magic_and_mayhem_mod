@@ -1,5 +1,27 @@
 # Engine modernization coverage ledger
 
+## Caller-bound copy pixels and restored World checkpoints — 2026-10-25
+
+Opt-in all-COPY diagnostics close the prior CPU-keyed output-selection gap.
+Current source-bound gameplay checks3664commands,including1260CPU-keyed and
+721GPU calls,against independent complete native destination expectations.
+Version2 route metadata binds actual callers,original geometry/key and command
+resources.49typed-Lock CPU restorations,65balanced Worlds,Mini/Cancel,
+QuitNo/resume and normalQuit pass.55Python methods,ASan/UBSan census bounds,
+actualGL missing-draw refusals and23owned GPU-plan cases pass.
+
+A separate diagnostics-disabled Save/Load/rebuild/MainLoad journey passes568
+balanced Worlds and40explicit CPU restorations. All four World checkpoints
+match original raster code:1920000RGB565words,zero mismatches;two additional
+authored entry histories also agree for these draw lists. This is scoped World
+proof,not complete presented-session,restored simulation or original-driver
+parity. The longer all-copy storage attempt exhausts the unchanged32GiB
+readback budget and later loses its producer at Save;its negative is preserved.
+Natural clipped/self/keyed-GPU calls,five unconfirmed optional callers,
+arbitrary raw readers and complete original ownership remain open. No fixed
+FPS criterion or complete rendering-replacement claim is introduced.
+See [scope,positive evidence and retained failures](native-copy-output-closure-20261025.md).
+
 ## Functional rendering lifecycle with diagnostic FPS — 2026-10-25
 
 Fixed instrumented FPS is diagnostic under the user's revised acceptance policy;

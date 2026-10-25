@@ -57,7 +57,34 @@ int main(int argc,char** argv){
    require(badRow["actual_sha256"]!=badRow["expected_sha256"],"Mismatch reused actual digest as expected");
    renderer.destroy(dest);
   }
+  {
+   // No World command: these keyed CPU-backed COPYs were excluded by the
+   // historical ancestry selector. Full-plane comparison must now run.
+   const auto path=dir.filePath("all-copies");
+   auto all=std::make_shared<CommandCopyDiagnostics>(path,CommandCopyDiagnostics::Selection::AllCopies);
+   CommandConsumerOptions allOptions;allOptions.copyDiagnostics=all;
+   CommandConsumer copies(renderer,[](auto){},allOptions);
+   Image small{4,3,{1,2,3,4,5,6,7,8,9,10,11,12}};
+   Image untouched{4,3,{101,102,103,104,105,106,107,108,109,110,111,112}};
+   copies.submit(create(1,1,small));copies.submit(create(2,2,untouched));
+   copies.submit(command(3,3,{1,2,0,0,3,2,1,1,1,2}));
+   copies.submit(command(3,4,{2,1,1,1,4,3,0,0,0,0}));
+   copies.submit(command(6,5,{2}));copies.submit(command(7,6,{1}));copies.submit(command(7,7,{2}));
+   copies.submit(command(8,8,{}));copies.finish();
+   QFile summary(path+"/report.json");require(summary.open(QIODevice::ReadOnly),"Missing all-copy summary");
+   const auto result=QJsonDocument::fromJson(summary.readAll()).object();
+   require(result["success"].toBool() && result["selection"]=="all-copies" && result["copies_seen"].toInt()==2 && result["copies_checked"].toInt()==2 && result["diagnostic_native_readbacks"].toInt()==6 && result["pixels_compared"].toInt()==24,"CPU-keyed all-copy output not independently checked");
+   QFile evidence(path+"/copies.jsonl");require(evidence.open(QIODevice::ReadOnly),"Missing CPU-keyed records");
+   const auto rows=evidence.readAll().trimmed().split('\n');require(rows.size()==2,"Incomplete all-copy rows");
+   for(const auto& row:rows)require(!QJsonDocument::fromJson(row).object()["source_world_ancestry"].toBool(),"CPU source invented World ancestry");
+   CommandCopyDiagnostics badCpu(dir.filePath("wrong-cpu"),CommandCopyDiagnostics::Selection::AllCopies);
+   const auto src=renderer.create(small,{16,{0xf800,0x7e0,31}}),dst=renderer.create(untouched,{16,{0xf800,0x7e0,31}});
+   const auto keyed=command(3,1,{1,2,0,0,3,2,1,1,1,2});
+   require(badCpu.before(keyed,renderer,src,dst),"CPU-keyed diagnostic was skipped");
+   bool mismatch=false;try{badCpu.after(keyed,renderer,dst);}catch(const std::runtime_error&){mismatch=true;}
+   require(mismatch,"Missing CPU-keyed draw passed independent output proof");renderer.destroy(src);renderer.destroy(dst);
+  }
   renderer.destroy(world);require(renderer.stats().surfaces==0,"Diagnostic resource leak");
-  std::puts("{\"success\":true,\"copies_checked\":2,\"non_world_readbacks\":0,\"diagnostic_readbacks\":6,\"overwrites_refused\":true}");return 0;
+  std::puts("{\"success\":true,\"copies_checked\":2,\"non_world_readbacks\":0,\"diagnostic_readbacks\":6,\"overwrites_refused\":true,\"cpu_keyed_all_copy_checks\":2}");return 0;
  }catch(const std::exception& e){std::fprintf(stderr,"%s\n",e.what());return 1;}
 }

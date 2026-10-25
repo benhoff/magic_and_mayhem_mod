@@ -466,6 +466,7 @@ def main():
     parser.add_argument('--profile-resident',action='store_true',help='Opt-in bounded CPU/GPU stage and original pacing diagnostics; cadence is instrumented')
     parser.add_argument('--capture-resident',action='store_true',help='Retain at most8192 ordered source-only World blocks/16GiB for offline resident replay')
     parser.add_argument('--gpu-copy-diagnostics',action='store_true',help='Bounded native-host copy input/output readbacks and independent CPU destination checks; resident World only')
+    parser.add_argument('--copy-diagnostic-scope',choices=['world','all'],default='world',help='all also requires caller-bound CPU-keyed output proof; diagnostics only')
     parser.add_argument('--cpu-census-only',action='store_true',help='Explicit mode2/3 reader observation profile; requires the matching exclusive claims, normal Quit and no-forwarding. Records ordinary64-World/FPS gates separately')
     parser.add_argument('--cpu-guard',type=int,choices=(1,2,3),help='Native CPU guard override:1 idle,2 legacy single-step census,3 protected dual-view stores; resident app default is3')
     parser.add_argument('--native-draw',action='store_true',help='Require owned graphics services with real DirectDraw disabled')
@@ -576,6 +577,7 @@ def main():
         parser.error('Silent-start proof requires all native audio/media/music paths and normal Quit')
     if not 30 <= args.timeout <= 600:
         parser.error('--timeout must be between 30 and 600')
+    if args.copy_diagnostic_scope!='world' and not args.gpu_copy_diagnostics:parser.error('All-copy scope requires --gpu-copy-diagnostics')
     if args.gpu_copy_diagnostics and not args.resident_world:parser.error('Copy diagnostics require resident World')
     if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
     if args.stress_seconds and not args.crowded_case and not 10 <= args.stress_seconds <= 120:parser.error('--stress-seconds must be 0 or 10..120')
@@ -590,7 +592,7 @@ def main():
     print('Campaign test evidence: ' + str(out), flush=True)
     report = {'schema': 1, 'success': False, 'status': 'running', 'stage': 'build',
               'command_wire_version':args.command_wire_version,
-              'gpu_copy_diagnostics_required':args.gpu_copy_diagnostics,
+              'gpu_copy_diagnostics_required':args.gpu_copy_diagnostics,'copy_diagnostic_scope':args.copy_diagnostic_scope,
               'intro_completion_required':args.require_intro_completion,
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
@@ -633,6 +635,7 @@ def main():
         if args.resident_world and args.pixel_camera_scenarios and not args.require_casting_combat:declaration_command.extend(['--behavior','HOST.campaign-cadence-attribution','--scenario','HOST.campaign-cadence-attribution.campaign'])
         if args.gpu_copy_diagnostics:declaration_command.extend(['--behavior','NP.native-gpu-copy-live-validation','--scenario','NP.native-gpu-copy-live-validation.campaign'])
         if args.gpu_copy_diagnostics:declaration_command.extend(['--behavior','NP.native-copy-route-census','--scenario','NP.native-copy-route-census.campaign'])
+        if args.copy_diagnostic_scope=='all':declaration_command.extend(['--behavior','NP.native-copy-output-closure','--scenario','NP.native-copy-output-closure.campaign'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
         if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
         if args.display_while_pending:declaration_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.public'])
@@ -709,6 +712,8 @@ def main():
     if args.cpu_guard:env['MNM_NATIVE_CPU_GUARD']=str(args.cpu_guard)
     if args.gpu_copy_diagnostics:
         env['MNM_NATIVE_COPY_DIAGNOSTICS']=str(out/'copy-diagnostics')
+        env['MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE']=args.copy_diagnostic_scope
+        if args.copy_diagnostic_scope=='all':report['sources']['tools/native_copy_output.py']=sha(ROOT/'tools/native_copy_output.py')
         report['sources']['tools/native_gpu_copy_diagnostics.py']=sha(ROOT/'tools/native_gpu_copy_diagnostics.py')
         report['sources']['tools/native_copy_routes.py']=sha(ROOT/'tools/native_copy_routes.py')
     env['MNM_RENDER_COMMAND_WIRE_VERSION']=str(args.command_wire_version)
@@ -960,6 +965,9 @@ def main():
                 report['gpu_copy_validation']=validate_gpu_copies(roots[0],out/'copy-diagnostics')
                 from native_copy_routes import validate as validate_copy_routes
                 report['copy_routes']=validate_copy_routes(roots[0])
+                if args.copy_diagnostic_scope=='all':
+                    from native_copy_output import validate as validate_copy_output
+                    report['copy_output_closure']=validate_copy_output(roots[0],out/'copy-diagnostics')
             if not (args.save_load or args.healing_case or args.crowded_case):validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
             if args.stress_seconds and not (args.healing_case or args.crowded_case):
                 for cycle in range(args.menu_cycles+1):
