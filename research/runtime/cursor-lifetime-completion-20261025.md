@@ -14,8 +14,12 @@ setup, reload/constructor and wrapper creation/release instruction windows plus
 and misses derived/indirect addresses. It is a discovery aid, not a proof of all
 writers. Earlier exploratory `direct-map01.json` used a broader substring match
 and has 387 candidates; its four additional candidates are not new alias proof.
-`setup-instructions01.txt` preserves the exploratory full instruction listing
-through the SQLite reader; its suffix does not imply expanded on-disk evidence.
+The exploratory full listing was initially written as physical
+`setup-instructions01.txt`:the writer does not manage that suffix. The final
+storage correction retains its exact bytes and original hash in SQLite behind
+`setup-instructions01.bin`;use `coverage_evidence.read_text` for that reference.
+The old Git version and both explicit path transitions remain accounted for.
+This storage correction grants no new engine validation or historical compliance.
 
 The setup entry is **4a30b0**, ending at4a371b. The adjacent4a3720 routine initializes
 a mouse sample ring; it is not cursor surface allocation. Setup builds an INI
