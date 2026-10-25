@@ -4040,7 +4040,8 @@
         }
       ],
       "documents": [
-        "research/runtime/terrain-authored-regions.md"
+        "research/runtime/terrain-authored-regions.md",
+        "research/runtime/rendering-twentysecond-three-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_region.cpp",
@@ -4048,7 +4049,9 @@
       ],
       "tests": [
         "tests/terrain-region-test.cpp",
-        "tests/terrain-region-reference.cpp"
+        "tests/terrain-region-reference.cpp",
+        "tools/test-rendering-twentysecond-three.py",
+        "tests/terrain-region-assembly-reference.cpp"
       ],
       "evidence": [
         "REVIEW.RE.terrain_region",
@@ -4060,11 +4063,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_region-20261019",
-        "HIGH04.RE.terrain_region-20261020"
+        "HIGH04.RE.terrain_region-20261020",
+        "N22.terrain-native-20261025",
+        "N22.terrain-original-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4072,7 +4077,25 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_region"
-      }
+      },
+      "validation_dependencies": [
+        "reconstruction/rendering/CMakeLists.txt",
+        "reconstruction/rendering/terrain_sections.cpp",
+        "reconstruction/rendering/terrain_sections.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/decode-cfg.py",
+        "tools/original-manifest.sh",
+        "tools/terrain_validation_inputs.py",
+        "tools/terrain_validation_pixels.py",
+        "tools/test-terrain-region.py",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp"
+      ],
+      "validation_domain": "Owned fixed recipes without random/wildcard entries; anchor-relative toroidal block planning and ordinary mixed-height cell assembly/projection. Original safe descriptor/admission/placement controls and native independent whole-cell assembly checks; no file/dialog/allocation recovery, full world/scene production, GPU presentation, live integration or replacement.",
+      "remaining_gaps": [
+        "Original CFG/file/dialog/allocation recovery, complete world/object generation and scene/GPU presentation, caller/resource lifetime and live integration/replacement remain separate. Whole-cell assembly is checked against independent Python, not a complete original world producer."
+      ]
     },
     {
       "id": "RE.terrain_selection",
@@ -4085,31 +4108,57 @@
         {
           "build": "nocd-40209ca7",
           "address": 5562736,
-          "scope": "Selected entry/helper only; whole function and its callers are not implied."
+          "scope": "Selected 250-word seed initialization and cyclic index state; no global RNG ownership."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5562880,
-          "scope": "Selected entry/helper only; whole function and its callers are not implied."
+          "scope": "Selected next-word XOR/store and cyclic-index advance; no global RNG ownership."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5434864,
-          "scope": "Selected entry/helper only; whole function and its callers are not implied."
+          "scope": "Selected single-block header descriptor fields and special-edge classification; native owned descriptor policy remains separate."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5439648,
-          "scope": "Selected entry/helper only; whole function and its callers are not implied."
+          "scope": "Selected single-block occupancy/count/rotated-neighbor admission and one-axis/west sentinel behavior; multi-block traversal is excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5439248,
-          "scope": "Selected entry/helper only; whole function and its callers are not implied."
+          "scope": "Selected compact candidate entry-index/rotation choice and unchanged receiver seed; file/caller lifetime excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5428448,
+          "scope": "Selected candidate table clear before scanning; no broader region lifecycle."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5437328,
+          "scope": "Selected compact ordinary/special single-block candidate tables in descriptor order; no multi-block constraint walk."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5443824,
+          "scope": "Selected compact single-block location tables in row/column order with requested/wildcard rotation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5445392,
+          "scope": "Selected compact location entry-index/rotation choice and private SEH setup; no Win32 calls or original failure-path equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5442656,
+          "scope": "Selected valid-relative-rotation choice at the controlled anchor; no original global cadence."
         }
       ],
       "documents": [
-        "research/runtime/terrain-region-selection.md"
+        "research/runtime/terrain-region-selection.md",
+        "research/runtime/rendering-twentysecond-three-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_selection.cpp",
@@ -4117,7 +4166,8 @@
       ],
       "tests": [
         "tests/terrain-selection-test.cpp",
-        "tests/terrain-selection-reference.cpp"
+        "tests/terrain-selection-reference.cpp",
+        "tools/test-rendering-twentysecond-three.py"
       ],
       "evidence": [
         "REVIEW.RE.terrain_selection",
@@ -4129,11 +4179,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_selection-20261019",
-        "HIGH04.RE.terrain_selection-20261020"
+        "HIGH04.RE.terrain_selection-20261020",
+        "N22.terrain-native-20261025",
+        "N22.terrain-original-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4141,7 +4193,21 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_selection"
-      }
+      },
+      "validation_dependencies": [
+        "reconstruction/rendering/CMakeLists.txt",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/decode-cfg.py",
+        "tools/original-manifest.sh",
+        "tools/terrain_validation_inputs.py",
+        "tools/terrain_validation_pixels.py",
+        "tools/test-terrain-region.py"
+      ],
+      "validation_domain": "Owned 250-word seeded RNG, single-block descriptors/admission, compact candidate/location tables and per-choice reseeding. Complete controlled original state/table/choice comparisons with independent installed headers; native invalid-input refusals separate. Multi-block traversal/pruning, full generation/lifetime, file I/O, scene integration and live replacement excluded.",
+      "remaining_gaps": [
+        "Multi-block connector traversal/pruning/backtracking and generation retries, original production descriptor/grid ownership, whole-world/scene construction and live integration/replacement remain separate. Native malformed-input refusals do not reconstruct unsafe original failures."
+      ]
     },
     {
       "id": "RE.terrain_constraints",
@@ -4385,18 +4451,31 @@
         {
           "build": "nocd-40209ca7",
           "address": 5428528,
-          "scope": "Selected entry/helper only; whole function and its callers are not implied."
+          "scope": "Caller context for the selected threshold instruction window only; no complete original CFG/file/dialog/configuration initialization claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5432266,
+          "scope": "Only unchanged 131-byte signed threshold scan 0x52e3ca..0x52e44d, copied into a private executable buffer with an appended return adapter. Original mapped instructions are not patched."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5434864,
+          "scope": "Selected ordered MAP-header descriptor expansion, requests, maximum source layers and four evolving connector counters; original file loading/allocator lifetime excluded."
         }
       ],
       "documents": [
-        "research/runtime/terrain-region-catalog.md"
+        "research/runtime/terrain-region-catalog.md",
+        "research/runtime/rendering-twentysecond-three-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_catalog.cpp",
         "reconstruction/rendering/terrain_catalog.hpp"
       ],
       "tests": [
-        "tests/terrain-catalog-build-test.cpp"
+        "tests/terrain-catalog-build-test.cpp",
+        "tools/test-rendering-twentysecond-three.py",
+        "tests/terrain-catalog-reference.cpp"
       ],
       "evidence": [
         "REVIEW.RE.terrain_catalog",
@@ -4408,11 +4487,13 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH01.rendering-work-review-20261019",
         "HTERR1.RE.terrain_catalog-20261019",
-        "HIGH04.RE.terrain_catalog-20261020"
+        "HIGH04.RE.terrain_catalog-20261020",
+        "N22.terrain-native-20261025",
+        "N22.terrain-original-20261025"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
@@ -4420,7 +4501,32 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
         "entry": "RE.terrain_catalog"
-      }
+      },
+      "validation_dependencies": [
+        "assets/persistence_internal.hpp",
+        "assets/region_recipe.cpp",
+        "assets/region_recipe.hpp",
+        "reconstruction/rendering/CMakeLists.txt",
+        "reconstruction/rendering/terrain_constraints.cpp",
+        "reconstruction/rendering/terrain_constraints.hpp",
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp",
+        "reconstruction/rendering/terrain_solver.cpp",
+        "reconstruction/rendering/terrain_solver.hpp",
+        "reconstruction/rendering/terrain_specific.cpp",
+        "reconstruction/rendering/terrain_specific.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/decode-cfg.py",
+        "tools/original-manifest.sh",
+        "tools/terrain_validation_inputs.py",
+        "tools/terrain_validation_pixels.py",
+        "tools/test-terrain-region.py"
+      ],
+      "validation_domain": "Owned ordered Specific then Random headers, repeated IDs, expanded descriptors/provenance/requests, recovered signed threshold scan and connector counters. Safe original copied instruction window/descriptor helper comparisons and native capacity/overflow/refusal policy; no original CFG/file/dialog handling, full-world generation, scene integration or live replacement.",
+      "remaining_gaps": [
+        "Original whole CFG loading, missing/invalid-file dialogs and continuation, allocator/descriptor lifetime, complete world/scene generation and live integration/replacement remain separate. Medieval REGION0 lacks eleven Test MAP inputs; no substitute assets or original missing-file recovery are claimed."
+      ]
     },
     {
       "id": "RE.terrain_generated",
@@ -331795,6 +331901,122 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "N22.terrain-native-20261025",
+      "kind": "native_integration",
+      "scope": "Owned offline fixed-region planning/ordinary cell assembly, ordered descriptor catalog construction and seeded single-block selection. Original comparisons use safe placement, descriptor, RNG/table/choice helpers and the unchanged copied threshold instruction window. Whole-cell assembly has independent native Python controls. Native malformed/capacity/overflow refusal is separate policy. No original CFG/file/dialog/allocation recovery, whole-world/scene production, GPU presentation, live integration/replacement or FPS credit.",
+      "record": "research/runtime/rendering-twentysecond-three-results-20261025/execution-2.json",
+      "sha256": "04118128583ec353b0e5de1e2a43f08165858d79294cfa4403339d5904e73708",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/comparisons/assembly-release/cells",
+          "equals": 288512
+        },
+        {
+          "pointer": "/comparisons/assembly-sanitized/cells",
+          "equals": 288512
+        }
+      ]
+    },
+    {
+      "id": "N22.terrain-original-20261025",
+      "kind": "isolated_original",
+      "scope": "Owned offline fixed-region planning/ordinary cell assembly, ordered descriptor catalog construction and seeded single-block selection. Original comparisons use safe placement, descriptor, RNG/table/choice helpers and the unchanged copied threshold instruction window. Whole-cell assembly has independent native Python controls. Native malformed/capacity/overflow refusal is separate policy. No original CFG/file/dialog/allocation recovery, whole-world/scene production, GPU presentation, live integration/replacement or FPS credit.",
+      "record": "research/runtime/rendering-twentysecond-three-results-20261025/execution-2.json",
+      "sha256": "04118128583ec353b0e5de1e2a43f08165858d79294cfa4403339d5904e73708",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/original_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_all_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/comparisons/region/cases",
+          "equals": 3136
+        },
+        {
+          "pointer": "/comparisons/region/blocks",
+          "equals": 46656
+        },
+        {
+          "pointer": "/comparisons/region/installed_blocks",
+          "equals": 32
+        },
+        {
+          "pointer": "/comparisons/catalog/cases",
+          "equals": 2087
+        },
+        {
+          "pointer": "/comparisons/catalog/descriptors",
+          "equals": 26888
+        },
+        {
+          "pointer": "/comparisons/catalog/installed_catalogs_matched",
+          "equals": 39
+        },
+        {
+          "pointer": "/comparisons/selection/rng_words",
+          "equals": 262144
+        },
+        {
+          "pointer": "/comparisons/selection/admission_checks",
+          "equals": 207840
+        },
+        {
+          "pointer": "/comparisons/selection/choices",
+          "equals": 78584
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -359431,7 +359653,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6bd210b31038e951bfabc8f55a66711fa393bdf465db273baccf2d06d04b6609.json",
-    "sha256": "6bd210b31038e951bfabc8f55a66711fa393bdf465db273baccf2d06d04b6609"
+    "path": "research/runtime/coverage/source-index-da65c85b36983c6ba607639ff72f2942c8bd209ae1be274e1d39e94d8de19477.json",
+    "sha256": "da65c85b36983c6ba607639ff72f2942c8bd209ae1be274e1d39e94d8de19477"
   }
 }

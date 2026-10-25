@@ -38,5 +38,23 @@ int main()try{
     rejects([&]{chooseRegionCandidate(0,{{50,1}});});rejects([&]{chooseRegionCandidate(0,{{0,0}});});
     rejects([&]{chooseRegionLocation(0,{{5,0,1}});});rejects([&]{chooseRegionRotation(0,16);});
     g.cells.pop_back();rejects([&]{singleRegionLocations(g,d,-1);});
+    // The full compact capacities return entry indices, independent of descriptor IDs.
+    std::vector<RegionCandidate> candidates;std::vector<RegionLocation> anchors;
+    for(unsigned i=0;i<50;++i)candidates.push_back({49-i,std::uint8_t(1u<<(i%4))});
+    for(unsigned y=0;y<5;++y)for(unsigned x=0;x<5;++x)anchors.push_back({x,y,15});
+    for(unsigned seed:{0u,1u,0x7fffffffu,0x80000000u,0xffffffffu}){
+        const auto chosen=chooseRegionCandidate(seed,candidates);require(chosen && chosen->index<50 && chosen->rotation==chosen->index%4);
+        const auto place=chooseRegionLocation(seed,anchors);require(place && place->index<25 && place->rotation<4);
+        for(unsigned mask=1;mask<16;++mask){const auto rotation=chooseRegionRotation(seed,std::uint8_t(mask));require(rotation && (mask&(1u<<*rotation)));}
+        auto invalid=candidates;invalid.back().descriptor=50;rejects([&]{chooseRegionCandidate(seed,invalid);});
+        invalid=candidates;invalid.back().rotations=0;rejects([&]{chooseRegionCandidate(seed,invalid);});
+        auto extra=candidates;extra.push_back({0,1});rejects([&]{chooseRegionCandidate(seed,extra);});
+        auto locations=anchors;locations.push_back({0,0,1});rejects([&]{chooseRegionLocation(seed,locations);});
+        const auto again=chooseRegionCandidate(seed,candidates);require(again->index==chosen->index && again->rotation==chosen->rotation);
+    }
+    require(candidates.back().descriptor==0 && anchors.back().column==4 && anchors.back().row==4);
+    map.metadata[0]=1;map.metadata[2]=0x80000000u;map.metadata[4]=0x7fffffffu;
+    auto extremes=describeSingleRegionSection(map,0,false,999);
+    require(extremes.edges[0]==(-2147483647-1) && extremes.edges[1]==2147483647 && extremes.special);
     std::cout<<"Owned region selection, sentinels, ordering, reseeding and refusal pass\n";
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

@@ -88,7 +88,8 @@ class ImportanceTest(unittest.TestCase):
         self.assertEqual(result['unrated'], [
             'NP.alternate-canvas-dispatch-admission', 'NP.graphics-session-provider-retirement',
             'NP.palette-option-strict-parsing', 'NP.protected-native-store-service', 'NP.surface-alias-lease-lifecycle',
-            'RS.alternate-canvas-dispatch-composition', 'RS.screen-tick-control-flow',
+            'RS.alternate-canvas-dispatch-composition', 'RS.screen-cursor-background-invalidation',
+            'RS.screen-cursor-background-restore', 'RS.screen-tick-control-flow',
             'RS.windowed-padded-presentation-route'])
         behaviors = {b['id']: b for b in register['behaviors']}
         builds = {b['id']: b for b in register['builds']}
@@ -96,7 +97,7 @@ class ImportanceTest(unittest.TestCase):
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
         # Selected terrain closeouts retain comparison and acceptance independently.
-        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 3: 1, 4: 16, 5: 4})
+        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 3: 1, 4: 13, 5: 4})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'partial')
@@ -461,7 +462,8 @@ class TrancheTest(unittest.TestCase):
             if e['decision'] == 'scoped_implementation_complete'}
         completed.update({'NR.directdraw-public-native-menu', 'NR.directdraw-native-opengl-launch',
                           'NR.storage-session-corpus'})  # bounded implementations inbf170af0
-        completed.update({'AN.forward', 'AN.placement', 'AN.attachment',
+        completed.update({'RE.terrain_region', 'RE.terrain_catalog', 'RE.terrain_selection',
+                          'AN.forward', 'AN.placement', 'AN.attachment',
                           'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading',
                           'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission',
                           'AN.direction', 'RE.sprite_queue', 'RE.sprite_visibility',
@@ -552,13 +554,13 @@ class TrancheTest(unittest.TestCase):
         self.assertTrue(all(statuses[t['behavior']]['integration'] == 'none'
                             and statuses[t['behavior']]['replacement'] == 'none'
                             and statuses[t['behavior']]['implementation'] ==
-                            ('scoped' if t['behavior'] in {'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission', 'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading'} else 'partial')
+                            ('scoped' if t['behavior'] in {'RE.terrain_region', 'RE.terrain_catalog', 'RE.terrain_selection', 'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission', 'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading'} else 'partial')
                             for t in tranche['tasks']))
         for task in tranche['tasks']:
-            if task['behavior'] in {'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission', 'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading'}:
+            if task['behavior'] in {'RE.terrain_region', 'RE.terrain_catalog', 'RE.terrain_selection', 'RE.terrain_camera', 'RE.terrain_sections', 'RE.terrain_submission', 'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading'}:
                 self.assertEqual(task['review_state'], 'current')
                 self.assertEqual(task['work_review']['validation_state'], 'recorded')
-                self.assertIn(('N20.rendering-original-20261024' if task['behavior'] in {'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading'} else 'N19.terrain-original-20261024'), task['work_review']['validation_evidence'])
+                self.assertIn(('N22.terrain-original-20261025' if task['behavior'] in {'RE.terrain_region', 'RE.terrain_catalog', 'RE.terrain_selection'} else ('N20.rendering-original-20261024' if task['behavior'] in {'RE.terrain_map', 'RE.palette_preferences', 'RE.palette_shading'} else 'N19.terrain-original-20261024')), task['work_review']['validation_evidence'])
                 self.assertTrue(task['work_review_history'])
         self.assertEqual(self.register, before)
 

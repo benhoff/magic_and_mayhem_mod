@@ -2074,7 +2074,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Configured region descriptor catalog: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "10590ee40c127cd65c8e4ae2523fb473d3cfa7a9a512ac3f20a5461d276fa5d1"
+      "contract_sha256": "0f6fb610dd722191e286353d5a36f186a329224469f6497455bc6ee15db5ed7d"
     },
     {
       "behavior": "RE.terrain_constraints",
@@ -2123,7 +2123,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Authored fixed-region assembly: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "db2744b68ffa2d650d5d40c5dc1b84fffbf1d5afec9e61f25af6aa0a4c2ba7b3"
+      "contract_sha256": "ddd93eb8bb759abd38004ad348338fa9b3876de5bc2fe771a7fb80696b0b8694"
     },
     {
       "behavior": "RE.terrain_sections",
@@ -2137,7 +2137,7 @@
       "weight": 4,
       "work_type": "capability",
       "reason": "Seeded section and location selection: Correct pixels, terrain, animation or text are directly visible to the player. Remaining domains matter for scene fidelity, even where a bounded implementation already exists.",
-      "contract_sha256": "551637c19c9cb174b8066aa8bd38e4af0cf7f5632e3351c3708d66931d16cd98"
+      "contract_sha256": "0913eb6239add6f75bc8bc643c17530891ce512cdfbca9425b11b56b67656000"
     },
     {
       "behavior": "RE.terrain_solver",
@@ -18784,7 +18784,9 @@
                 "tests/rendering-seventeenth-five/CMakeLists.txt": "b834065525f85a5ac28716b21a15b06163ab0abedaf4af3812c441d83a7e371c",
                 "tests/test-rendering-seventeenth-controls.py": "0e603ccc797bb9b25b06441cb324720d51f3f2d9fb3faf77fc309ce4ea8f15a6",
                 "tools/rendering_seventeenth_controls.py": "82a4be5d1c2c9a4f37cf77160baded19b13ca583f5c22090365a8518540821fc",
-                "tools/test-rendering-seventeenth-five.py": "3345542437d7bc51a658f8ea92daf63975a30d0b4526991449242a0a8a760f08"
+                "tools/test-rendering-seventeenth-five.py": "3345542437d7bc51a658f8ea92daf63975a30d0b4526991449242a0a8a760f08",
+                "docs/native-rendering-dependencies.json": "be8ab6c527a8efc06b8d2ede19616f4d0d309354894dff5b4f2e4714f9a46503",
+                "research/runtime/rendering-required-dependencies-20261024.md": "7eecdc4d1761b7a3443efa63e34aa637922b549569cc14f49167402914e7e734"
               },
               "incremental_review": "Campaign runner now monitors all five existing refusal/fault families and explicitly labels optional file tracing. Production engine guards and budgets are unchanged; separate native-only/restart validation is not renewed.",
               "pending_source_review": [],
@@ -18990,6 +18992,80 @@
                   "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted."
                 ],
                 "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed."
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Unified launch/staging admission, ten source/binary receipts, protected backing, six no-forward families, native/disabled movies, sticky terminal outcomes and normal shutdown admission are implemented. complete_replacement=false is intentional. NT17 supplies current bounded implementation evidence; ordinary public19FPS performance remains independently pending when the raw harness fails.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Historical actual PE32, Qt and Python admission controls and bounded native-only campaigns exist. Combined-source movie/storage/restart journey validation remains pending. 83 Python controls plus13 combat-input regressions,20 asserted native controls,4096 verification and4096 normal returns/paints; original 19.90295FPS,Qt 19.90693FPS,warm median42.0ms/p9548ms/max69ms,cold247.225ms,RSS growth0bytes; ordinary public19FPS acceptance=False at 17.253776873910518FPS; peer-death/fresh recovery and actual owned/strict/restart/public journeys retain their separate observations.",
+                "acceptance": "pending",
+                "acceptance_summary": "Pending combined-source supported-journey acceptance; complete renderer replacement and all-game parity remain excluded.",
+                "evidence": [
+                  "NATIVE.native-only-launch.commit-controls-20261018",
+                  "NATIVE.native-only-launch.final-campaign-20261018",
+                  "NT17.five-rendering-contracts-20261023"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Run current startup conflict, missing/stale receipt, terminal capability, sticky error and normal-shutdown controls."
+                  },
+                  {
+                    "kind": "validation",
+                    "action": "After the upstream pilot gate is repaired, bind launch, native/disabled media, storage/display transition and normal Quit outcomes to the same declared source snapshot."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/native_only_contract.py",
+                    "line": 84,
+                    "text": "def admit(root, repository, metadata, environment):"
+                  },
+                  {
+                    "path": "apps/qt-shell/native_only_session.hpp",
+                    "line": 29,
+                    "text": "    bool finish(bool normalQuit,int launcherExit,bool rendererFinished,bool fallback){"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/qt-shell/live_menu_session.cpp": "016a83f99f769fdae2db7e1a5b2a2dba179eeb2ff3eb9a5ec7feb16418f78a00",
+                  "apps/qt-shell/live_menu_session.hpp": "108ef6d8e42edeb0608bb3562f0c06618b5dfbbf8933cd8b8c8e710ef8f04fea",
+                  "apps/qt-shell/main.cpp": "9a21444c2a9936a857ae0563a83cd1f64a6ee81d0032602489166cb4d4491b08",
+                  "apps/qt-shell/native_only_session.hpp": "d71adef2d78ef8d082e119476a29a9eea7aa8aba5e5a66ee10c834c99d4a20a7",
+                  "research/runtime/native-only-commit-controls-20261018.json": "b2c3ddf3eae0cdb9af0051997357c9066bf7620e3d602611e748437bbd1f79af",
+                  "research/runtime/native-only-launch-final-campaign-20261018.json": "f9b8b05ce07c008d1df73231763c7ba311d0fad6e357ee870ed75bc454791080",
+                  "research/runtime/native-only-launch.md": "cbeddf3a867b85e752aef2be22a98ec1a97279a390ea80b69483fed5634cf03b",
+                  "runtime/native-draw/cpu_guard.h": "04114b8ebc10ce481310ddcb68a63402188b6ab7fab8daf94638ae1c341015fc",
+                  "runtime/native-draw/native_only.h": "0d9ac77684823dc29a6aade82d4e264f045b466a71a6324e4cec6d0a7b8a71f8",
+                  "runtime/native-draw/surfaces.h": "f2087f3730912f1d9fe2504300b0905868be4cdfbb59e5d31482cd5695abed64",
+                  "runtime/scene/glyph_live.c": "787dde08768df8e77b246ebacdc0c96d33c286042d467875fef29763cc2031b0",
+                  "runtime/scene/glyph_native_only.h": "682f376c6c91a98878c817158edcfff557bd597373faed598a09900d8c4783ab",
+                  "tests/native-only-facade-probe.c": "aea783b7f3a1f753ff7094a3ce99be6bb5f9cf20ed69b6cfc69ba5155d04fb3a",
+                  "tests/native-only-session-test.cpp": "0ced3120a78553ebbbc7a1882c735226a474b3a338f1c86dcd242a43b04b8038",
+                  "tests/test-native-only-contract.py": "a302f512c77e007ec3bebca7b3fe249ab8ca31c9f130fce4f3f6d281c91762b5",
+                  "tools/native_only_contract.py": "8d398d26685b9a09a4292cdb29ce71db6127e827e5e9d83ecac43a0ac82c0cb2",
+                  "tools/owned-menu-game-runner.py": "087ef421179447a2d03271022c74faee8ffc9852ce03b800f2f822471fff7d25",
+                  "tools/prepare-menu-observer.py": "dad11ce8c37ec8d25d9b488bdf210693a323fd94372360e351dd7358f805dc7c",
+                  "tools/run-native-owned.py": "a253290a8db44367a4d36e683693262c17a53bec596e539ff6caff97847948ff",
+                  "tools/test-native-only.py": "57bd56cc9eb704f0b429a9ec8e5265ab31cbd0e1cf9c4035a95110f4869528e2",
+                  "tools/test-native-owned-campaign.py": "ec90621fdf53d77dc5ad1e43ddf155023e4ae0a56c10dd5e6f70198e481527da",
+                  "research/runtime/directdraw-retirement-20261019.md": "362e2a87b5ffcb1ef1b1a512b56f1e8ea4a9cee1689df6600fd3d8fe87abfe21",
+                  "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e",
+                  "research/runtime/rendering-seventeenth-five-20261023.md": "38c4b886acc80857594755c12b03772c103a1f82baafb53b6a7107141f65b4e2",
+                  "tests/rendering-seventeenth-five/CMakeLists.txt": "b834065525f85a5ac28716b21a15b06163ab0abedaf4af3812c441d83a7e371c",
+                  "tests/test-rendering-seventeenth-controls.py": "0e603ccc797bb9b25b06441cb324720d51f3f2d9fb3faf77fc309ce4ea8f15a6",
+                  "tools/rendering_seventeenth_controls.py": "82a4be5d1c2c9a4f37cf77160baded19b13ca583f5c22090365a8518540821fc",
+                  "tools/test-rendering-seventeenth-five.py": "3345542437d7bc51a658f8ea92daf63975a30d0b4526991449242a0a8a760f08"
+                },
+                "incremental_review": "Campaign runner now monitors all five existing refusal/fault families and explicitly labels optional file tracing. Production engine guards and budgets are unchanged; separate native-only/restart validation is not renewed.",
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted."
+                ],
+                "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed.",
+                "review_reason": "Append current reviewed test/document links and fresh NT17 evidence; preserve historical source fingerprints and every prior work review."
               }
             ]
           },
@@ -20835,43 +20911,44 @@
           },
           {
             "behavior": "RE.terrain_region",
-            "mode": "Bounded comparisons passed; wider integration remains",
-            "next_action": "Bounded tranche validation PASS. Next broader work: Use delivered generation suppliers for later scene integration; original CFG/file/dialog recovery remains unvalidated.",
+            "mode": "Scoped offline implementation complete; broader production and live acceptance remain",
+            "next_action": "Original CFG/file/dialog/allocation recovery, complete world/object generation and scene/GPU presentation, caller/resource lifetime and live integration/replacement remain separate. Whole-cell assembly is checked against independent Python, not a complete original world producer.",
             "implementation_boundary": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare dimensions, block placement and initialized fields; fixed plans do not prove runtime generation or live world parity.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
               "tests/terrain-region-test.cpp",
-              "tests/terrain-region-reference.cpp"
+              "tests/terrain-region-reference.cpp",
+              "tools/test-rendering-twentysecond-three.py",
+              "tests/terrain-region-assembly-reference.cpp"
             ],
             "documents": [
-              "research/runtime/terrain-authored-regions.md"
+              "research/runtime/terrain-authored-regions.md",
+              "research/runtime/rendering-twentysecond-three-20261025.md"
             ],
-            "contract_sha256": "db2744b68ffa2d650d5d40c5dc1b84fffbf1d5afec9e61f25af6aa0a4c2ba7b3",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Full live world creation remains separate from the fixed owned assembly contract.",
+            "contract_sha256": "ddd93eb8bb759abd38004ad348338fa9b3876de5bc2fe771a7fb80696b0b8694",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Original CFG/file/dialog/allocation recovery, complete world/object generation and scene/GPU presentation, caller/resource lifetime and live integration/replacement remain separate. Whole-cell assembly is checked against independent Python, not a complete original world producer.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "Fixed-region planning and assembly exist as planFixedTerrainRegion/assembleFixedTerrainRegion. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "3136 original placement cases/46656 blocks plus two installed authored regions/32 blocks match. Independent native whole-cell assembly matches 18 fixtures/288512 cells in Release and ASan/UBSan, including both installed regions.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"images\": 32, \"original\": {\"all_match\": true, \"blocks\": 46656, \"cases\": 3136, \"installed_blocks\": 32, \"installed_regions\": 2}, \"recipes\": {\"Celtic\": [{\"columns\": 3, \"id\": 0, \"name\": \"Test flat map\", \"path\": \"Realms\\\\Celtic\\\\Plains\", \"prefix\": \"CPsec\", \"random\": [[99, 99]], \"rows\": 3, \"specific\": [[99, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Celtic\\\\Plains\"}, {\"columns\": 4, \"id\": 1, \"name\": \"The Forest of Pain.\", \"path\": \"Realms\\\\Celtic\\\\Forest\", \"prefix\": \"CFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [14, 2]], \"rows\": 4, \"specific\": [[50, 0, 0, 3], [51, 0, 0, 2], [52, 0, 1, 2], [53, 0, 1, 1], [54, 0, 2, 1], [55, 0, 0, 1], [56, 0, 0, 0], [57, 0, 1, 0], [58, 0, 1, 3]], \"sprite_path\": \"Realms\\\\Celtic\\\\Forest\"}, {\"columns\": 4, \"id\": 2, \"name\": \"The Plains of Greenhenge.\", \"path\": \"Realms\\\\Celtic\\\\Plains\", \"prefix\": \"CPsec\", \"random\": [[10, 1], [11, 1], [12, 1], [13, 1], [14, 1], [15, 1], [20, 1], [21, 1], [22, 1], [23, 1], [24, 1], [25, 1], [27, 1], [28, 1], [29, 1]], \"rows\": 4, \"specific\": [[0, 3, 0, 3], [3, 0, 2, 0], [1, 3, 0, 1]], \"sprite_path\": \"Realms\\\\Celtic\\\\Plains\"}, {\"columns\": 4, \"id\": 3, \"name\": \"The Village of Joseph of Arimethia.\", \"path\": \"Realms\\\\Celtic\\\\Village\", \"prefix\": \"CVsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [15, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 4, \"specific\": [[3, 0, 0, 0], [4, 0, 2, 0], [2, 0, 3, 2], [6, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Celtic\\\\Village\"}, {\"columns\": 4, \"id\": 4, \"name\": \"Fiddlers Green.\", \"path\": \"Realms\\\\Celtic\\\\Village\", \"prefix\": \"CVsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [15, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 4, \"specific\": [[5, 0, 1, 2], [0, 0, 1, 0], [1, 2, 0, 1]], \"sprite_path\": \"Realms\\\\Celtic\\\\Village\"}, {\"columns\": 4, \"id\": 5, \"name\": \"Apple Tree Orchard.\", \"path\": \"Realms\\\\Celtic\\\\Forest\", \"prefix\": \"CFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 4, \"specific\": [[1, 0, 0, 0], [2, 0, 2, 1], [40, 0, 2, 0]], \"sprite_path\": \"Realms\\\\Celtic\\\\Forest\"}, {\"columns\": 4, \"id\": 6, \"name\": \"The Misty Marshes.\", \"path\": \"Realms\\\\Celtic\\\\Swamp\", \"prefix\": \"CSsec\", \"random\": [], \"rows\": 4, \"specific\": [[1, 0, 2, 2], [2, 0, 2, 0], [3, 0, 0, 0], [4, 0, 0, 2]], \"sprite_path\": \"Realms\\\\Celtic\\\\Swamp\"}, {\"columns\": 4, \"id\": 7, \"name\": \"The Forest of Woodman's Hall.\", \"path\": \"Realms\\\\Celtic\\\\Forest\", \"prefix\": \"CFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 4, \"specific\": [[3, -1, -1, -1], [4, -1, -1, -1], [5, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Celtic\\\\Forest\"}, {\"columns\": 5, \"id\": 8, \"name\": \"Joyous Garde.\", \"path\": \"Realms\\\\Celtic\\\\Plains\", \"prefix\": \"CPsec\", \"random\": [[64, 1], [65, 1], [66, 1], [67, 1], [10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [15, 2]], \"rows\": 5, \"specific\": [[50, 2, 0, 0], [51, 3, 3, 0], [52, 1, 0, 3], [53, 0, 3, 3], [59, 3, 3, 2], [60, 3, 3, 1], [57, 2, 2, 0], [59, 2, 1, 0], [58, 1, 0, 1], [61, 1, 0, 2], [61, 0, 1, 3], [58, 0, 2, 3], [70, 2, 4, 0], [11, -1, 4, 2], [12, -1, 1, 4], [13, -1, 2, 4], [68, 2, 2, 1], [62, 0, 1, 2]], \"sprite_path\": \"Realms\\\\Celtic\\\\Plains\"}, {\"columns\": 4, \"id\": 9, \"name\": \"Tutorial Island.\", \"path\": \"Realms\\\\Celtic\\\\Tutorial\", \"prefix\": \"CTsec\", \"random\": [], \"rows\": 4, \"specific\": [[0, 0, 0, 2], [1, 0, 0, 0], [2, 0, 2, 0], [3, 0, 2, 2]], \"sprite_path\": \"Realms\\\\Celtic\\\\Tutorial\"}], \"Greek\": [{\"columns\": 5, \"id\": 0, \"name\": \"Test Flat Map.\", \"path\": \"Realms\\\\Greek\\\\Village\", \"prefix\": \"GVsec\", \"random\": [[99, 99]], \"rows\": 5, \"specific\": [[97, -1, -1, -1], [98, -1, -1, -1], [99, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Village\"}, {\"columns\": 4, \"id\": 1, \"name\": \"The Base of Olympus.\", \"path\": \"Realms\\\\Greek\\\\Mountains\", \"prefix\": \"GMsec\", \"random\": [[10, 2], [11, 2], [13, 2], [14, 2], [15, 2], [16, 2], [17, 2], [18, 2], [19, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2]], \"rows\": 4, \"specific\": [[0, 0, 0, 0], [6, -1, -1, -1], [7, -1, -1, -1], [12, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Mountains\"}, {\"columns\": 5, \"id\": 2, \"name\": \"Thessaly.\", \"path\": \"Realms\\\\Greek\\\\Plains\", \"prefix\": \"GPsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 5, \"specific\": [[0, 0, 0, 1], [1, 0, 2, 1], [7, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Plains\"}, {\"columns\": 5, \"id\": 3, \"name\": \"The Elysian Fields.\", \"path\": \"Realms\\\\Greek\\\\Forest\", \"prefix\": \"GFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 1], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 1], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 5, \"specific\": [[1, -1, -1, -1], [2, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Forest\"}, {\"columns\": 4, \"id\": 4, \"name\": \"Delphi.\", \"path\": \"Realms\\\\Greek\\\\Delphi\", \"prefix\": \"GVsec\", \"random\": [[10, 1], [11, 1], [12, 1], [14, 1], [15, 1], [16, 1], [17, 1], [18, 1], [41, 1], [42, 1], [43, 1], [44, 1], [45, 1], [46, 1], [47, 1], [48, 1], [49, 1]], \"rows\": 4, \"specific\": [[3, 0, 0, 0], [6, -1, 2, 1], [9, -1, 1, 2], [19, -1, -1, -1], [60, -1, -1, -1], [61, -1, -1, -1], [13, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Village\"}, {\"columns\": 4, \"id\": 5, \"name\": \"Parnassus.\", \"path\": \"Realms\\\\Greek\\\\Mountains\", \"prefix\": \"GMsec\", \"random\": [[10, 1], [11, 1], [13, 1], [15, 1], [16, 1], [17, 1], [18, 1], [19, 1], [20, 1], [21, 1], [22, 1], [23, 1], [24, 1], [25, 1], [26, 1]], \"rows\": 4, \"specific\": [[2, -1, -1, -1], [3, -1, -1, -1], [14, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Mountains\"}, {\"columns\": 5, \"id\": 6, \"name\": \"Styx.\", \"path\": \"Realms\\\\Greek\\\\Styx\", \"prefix\": \"GPsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[4, 1, 2, 0], [51, 1, 0, 1], [5, 0, -1, -1], [50, 1, 3, 0], [56, 2, 4, 0], [57, 0, 4, 1]], \"sprite_path\": \"Realms\\\\Greek\\\\Plains\"}, {\"columns\": 5, \"id\": 7, \"name\": \"Thebes.\", \"path\": \"Realms\\\\Greek\\\\Village\", \"prefix\": \"GVsec\", \"random\": [[10, 1], [11, 1], [12, 1], [14, 1], [15, 1], [16, 1], [17, 1], [18, 1], [19, 1], [25, 1], [26, 1], [27, 1], [28, 1], [29, 1], [51, 2], [52, 2], [54, 2], [55, 2], [57, 2], [58, 2], [59, 2]], \"rows\": 5, \"specific\": [[21, 2, 0, 0], [22, 0, 3, 3], [24, 1, 0, 3], [23, 3, 3, 0], [33, 1, 2, 3], [27, 3, 1, 0], [26, 2, 0, 2], [25, 0, 3, 1]], \"sprite_path\": \"Realms\\\\Greek\\\\Village\"}, {\"columns\": 5, \"id\": 8, \"name\": \"Colchis.\", \"path\": \"Realms\\\\Greek\\\\Plains\", \"prefix\": \"GPsec\", \"random\": [[10, 1], [11, 1], [12, 1], [13, 1], [14, 1], [20, 1], [21, 1], [22, 1], [23, 1], [24, 1], [25, 1], [26, 1], [27, 1], [28, 1], [29, 1], [30, 1], [31, 1], [32, 1], [33, 1], [34, 1], [35, 1], [36, 1], [37, 1], [38, 1], [39, 1], [40, 1], [41, 1], [42, 1], [43, 1], [44, 1]], \"rows\": 5, \"specific\": [[2, 0, 0, 1], [3, 0, 2, 1], [6, -1, -1, -1], [8, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Plains\"}, {\"columns\": 5, \"id\": 9, \"name\": \"Mount Erymanthos.\", \"path\": \"Realms\\\\Greek\\\\Mountains\", \"prefix\": \"GMsec\", \"random\": [[10, 2], [11, 2], [13, 2], [15, 2], [16, 2], [17, 2], [18, 2], [19, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2]], \"rows\": 5, \"specific\": [[1, 0, 1, 0], [8, -1, 3, 3]], \"sprite_path\": \"Realms\\\\Greek\\\\Mountains\"}, {\"columns\": 4, \"id\": 10, \"name\": \"Attica.\", \"path\": \"Realms\\\\Greek\\\\Village\", \"prefix\": \"GVsec\", \"random\": [[10, 2], [12, 2], [14, 2], [15, 2], [16, 2], [17, 2], [18, 2]], \"rows\": 4, \"specific\": [[62, -1, -1, -1], [11, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Village\"}, {\"columns\": 5, \"id\": 11, \"name\": \"Sparta.\", \"path\": \"Realms\\\\Greek\\\\Forest\", \"prefix\": \"GFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[0, -1, -1, -1], [3, -1, -1, -1], [6, 0, -1, -1], [7, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Forest\"}, {\"columns\": 5, \"id\": 12, \"name\": \"Knossos.\", \"path\": \"Realms\\\\Greek\\\\Labyrinth\", \"prefix\": \"GLsec\", \"random\": [[10, 1], [11, 1], [12, 1], [13, 1], [15, 1], [20, 1], [21, 1], [23, 1], [24, 1], [25, 1], [26, 1], [27, 1], [28, 1], [29, 1], [30, 1], [31, 1], [32, 1], [33, 1], [34, 1]], \"rows\": 5, \"specific\": [[0, 0, 1, 0], [14, -1, -1, -1], [16, -1, -1, -1], [19, -1, -1, -1], [18, -1, -1, -1], [22, -1, -1, -1], [17, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Labyrinth\"}], \"Medieval\": [{\"columns\": 5, \"id\": 0, \"name\": \"Test map\", \"path\": \"Realms\\\\Medieval\\\\Test\", \"prefix\": \"MVsec\", \"random\": [[20, 3], [21, 3], [22, 3], [23, 3], [24, 3], [25, 3], [26, 3], [27, 3], [28, 3], [29, 3]], \"rows\": 5, \"specific\": [[0, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Test\"}, {\"columns\": 5, \"id\": 1, \"name\": \"Carbonek.\", \"path\": \"Realms\\\\Medieval\\\\Carbonek\", \"prefix\": \"M1sec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[0, 0, 2, 0], [1, 0, 2, 2]], \"sprite_path\": \"Realms\\\\Medieval\\\\Plains1\"}, {\"columns\": 5, \"id\": 2, \"name\": \"The Forest of Arden.\", \"path\": \"Realms\\\\Medieval\\\\Forest\", \"prefix\": \"MFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 5, \"specific\": [[9, 0, 2, 2], [0, 0, 1, 2], [1, 0, 2, 1], [4, 0, 3, 3], [8, 0, 0, 0]], \"sprite_path\": \"Realms\\\\Medieval\\\\Forest\"}, {\"columns\": 5, \"id\": 3, \"name\": \"The Valley of Owain.\", \"path\": \"Realms\\\\Medieval\\\\Plains2\", \"prefix\": \"M2sec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 5, \"specific\": [[0, 0, 2, 1], [3, 0, 0, 2]], \"sprite_path\": \"Realms\\\\Medieval\\\\Plains2\"}, {\"columns\": 5, \"id\": 4, \"name\": \"Altaripa.\", \"path\": \"Realms\\\\Medieval\\\\Swamp\", \"prefix\": \"MSsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[0, -1, -1, -1], [14, -1, -1, -1], [4, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Swamp\"}, {\"columns\": 5, \"id\": 5, \"name\": \"St Micheal's Mount.\", \"path\": \"Realms\\\\Medieval\\\\Mountains\", \"prefix\": \"MMsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [15, 2], [16, 2], [17, 2], [18, 2], [19, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2]], \"rows\": 5, \"specific\": [[4, -1, -1, -1], [5, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Mountains\"}, {\"columns\": 5, \"id\": 6, \"name\": \"Broceliande.\", \"path\": \"Realms\\\\Medieval\\\\Forest\", \"prefix\": \"MFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 5, \"specific\": [[57, 0, 0, 0], [2, 0, 0, 1], [5, -1, -1, -1], [6, -1, -1, -1], [56, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Forest\"}, {\"columns\": 5, \"id\": 7, \"name\": \"The Enchanted Garden.\", \"path\": \"Realms\\\\Medieval\\\\Plains1\", \"prefix\": \"M1sec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[2, 0, 2, 2], [51, 0, 3, 1], [54, 0, 2, 1], [50, 0, 1, 1], [55, 0, 1, 2], [53, 0, 1, 3]], \"sprite_path\": \"Realms\\\\Medieval\\\\Plains1\"}, {\"columns\": 5, \"id\": 8, \"name\": \"Salisbury Plain.\", \"path\": \"Realms\\\\Medieval\\\\Plains2\", \"prefix\": \"M2sec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[6, 0, 2, 2], [5, -1, -1, -1], [1, -1, -1, -1], [7, -1, 1, 0], [8, -1, 4, 3], [55, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Plains2\"}, {\"columns\": 5, \"id\": 9, \"name\": \"Camelot.\", \"path\": \"Realms\\\\Medieval\\\\Camelot\", \"prefix\": \"MCsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [15, 2], [17, 2], [20, 2], [21, 2], [24, 2], [25, 2], [26, 2]], \"rows\": 5, \"specific\": [[0, -1, -1, -1], [1, -1, -1, -1], [19, -1, -1, -1], [14, -1, -1, -1], [22, -1, -1, -1], [16, -1, -1, -1], [23, -1, -1, -1], [18, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Camelot\"}, {\"columns\": 5, \"id\": 10, \"name\": \"Sepulchre of Pendragon.\", \"path\": \"Realms\\\\Medieval\\\\Pendragon\", \"prefix\": \"M2sec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [50, 1], [51, 1], [52, 1], [53, 1], [54, 1]], \"rows\": 5, \"specific\": [[2, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Plains2\"}, {\"columns\": 5, \"id\": 11, \"name\": \"Bedegraine.\", \"path\": \"Realms\\\\Medieval\\\\Forest\", \"prefix\": \"MFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[3, -1, -1, -1], [7, -1, -1, -1], [58, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Forest\"}, {\"columns\": 5, \"id\": 12, \"name\": \"The Gaste Forest.\", \"path\": \"Realms\\\\Medieval\\\\Swamp\", \"prefix\": \"MSsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[8, -1, -1, -1], [50, -1, -1, -1], [51, -1, -1, -1], [53, -1, -1, -1], [54, -1, -1, -1], [55, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Swamp\"}, {\"columns\": 5, \"id\": 13, \"name\": \"The Tangled Wood.\", \"path\": \"Realms\\\\Medieval\\\\Forest\", \"prefix\": \"MFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[53, 0, 2, 2], [50, 0, 2, 1], [50, 1, 3, 2], [50, 3, 1, 2], [51, 2, 2, 3], [54, 1, 3, 1], [52, 2, 3, 3], [52, 3, 1, 3], [52, 0, 1, 1], [59, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Forest\"}, {\"columns\": 5, \"id\": 14, \"name\": \"Carleon.\", \"path\": \"Realms\\\\Medieval\\\\Village\", \"prefix\": \"MVsec\", \"random\": [[10, 2], [12, 2], [13, 2], [16, 2], [17, 2], [18, 2], [19, 1], [22, 1], [23, 1], [24, 1], [25, 1], [26, 1], [27, 1], [28, 1], [29, 1]], \"rows\": 5, \"specific\": [[0, 0, 0, 0], [14, 1, 2, 0], [15, 1, 3, 0], [20, 0, 4, 0], [21, 2, 4, 1], [11, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Village\"}, {\"columns\": 5, \"id\": 15, \"name\": \"Anglesey.\", \"path\": \"Realms\\\\Medieval\\\\Mountains\", \"prefix\": \"MMsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [15, 2], [16, 2], [17, 2], [18, 2], [19, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2]], \"rows\": 5, \"specific\": [[0, -1, 2, 2], [1, -1, 0, 0], [3, -1, -1, -1], [60, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Mountains\"}, {\"columns\": 5, \"id\": 16, \"name\": \"Dinas Emrys.\", \"path\": \"Realms\\\\Medieval\\\\Dinas\", \"prefix\": \"MMsec\", \"random\": [], \"rows\": 5, \"specific\": [[8, 1, 4, 3], [7, 1, 1, 0], [6, 0, 3, 0], [9, 1, 1, 3], [30, 1, 3, 2], [30, 1, 4, 2], [31, 0, 2, 0], [31, 0, 2, 1], [32, 0, 2, 3], [32, 0, 2, 4], [33, 1, 0, 2], [33, 1, 1, 2], [50, -1, 2, 2]], \"sprite_path\": \"Realms\\\\Medieval\\\\Mountains\"}]}, \"rejections\": 12}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "3136 original placement cases/46656 blocks plus two installed authored regions/32 blocks match. Independent native whole-cell assembly matches 18 fixtures/288512 cells in Release and ASan/UBSan, including both installed regions. Six Release/ASan/UBSan units and three complete native sanitizer corpora pass.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Full live world creation remains separate from the fixed owned assembly contract.",
+              "acceptance_summary": "Original CFG/file/dialog/allocation recovery, complete world/object generation and scene/GPU presentation, caller/resource lifetime and live integration/replacement remain separate. Whole-cell assembly is checked against independent Python, not a complete original world producer.",
               "evidence": [
                 "ORIGINAL.terrain-authored-regions",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_region-20261019"
+                "HTERR1.RE.terrain_region-20261019",
+                "N22.terrain-native-20261025",
+                "N22.terrain-original-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Use delivered generation suppliers for later scene integration; original CFG/file/dialog recovery remains unvalidated."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Full live world creation remains separate from the fixed owned assembly contract."
+                  "action": "Original CFG/file/dialog/allocation recovery, complete world/object generation and scene/GPU presentation, caller/resource lifetime and live integration/replacement remain separate. Whole-cell assembly is checked against independent Python, not a complete original world producer."
                 }
               ],
               "code_witnesses": [
@@ -20882,62 +20959,132 @@
                 }
               ],
               "source_sha256": {
+                "assets/terrain_catalog.cpp": "46f520fbada169bc3044b121e0a8838825214cff91730fa0046e5231d53f3b26",
+                "assets/terrain_catalog.hpp": "a1b91474346fd9a780fe34282684e63f826707147e628099ae4bb24b6ff50478",
+                "reconstruction/rendering/CMakeLists.txt": "d7b6a47a59fd1334cb65dd3dec36e10e2f5dc326ac814aa9f339cd2cefcef08a",
                 "reconstruction/rendering/terrain_region.cpp": "852c656687d4ea3e4f647f52226ae2a54f6b3c956901f773c69089689fa33737",
                 "reconstruction/rendering/terrain_region.hpp": "709fc933c0d4757173c511b68953d5568bf876a8b7bebf23652a4d206a42ce00",
+                "reconstruction/rendering/terrain_sections.cpp": "b11b46b249314b8b02d731f7eb7947b8587f12117504db383ba83f7df60e0f6b",
+                "reconstruction/rendering/terrain_sections.hpp": "233d047f4fcb1e61af7b6994a07fc8aba8e1d9d5643a6845e1cab8620bcabbf6",
+                "research/runtime/rendering-twentysecond-three-20261025.md": "c71372b256098f651c1e19415290de948030c66ee57f352393941d89ab136b2b",
                 "research/runtime/terrain-authored-regions.md": "fb0985c7769826547302ae21acc82b26855857e264d756077a671c0f9ac5c6e8",
+                "tests/terrain-region-assembly-reference.cpp": "6a7a30341fc848e200cdc90b587d9baa4f34b29bad543a5adb754428a03b855a",
                 "tests/terrain-region-reference.cpp": "7be4d190c32546be6205baf0078070317f581c15ac34d9cc956043fc7b897bec",
-                "tests/terrain-region-test.cpp": "2c1938c45d7261258bf32b1e69b9f2a243add6a40e8128ddad7d91055ac3c057",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/terrain-region-test.cpp": "eca19e7c0b9f24a5a81625a02dd69fb0e85793dbb4954ea0109a6351e6e1cfae",
+                "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+                "tools/coverage_evidence.py": "b8a3a9d12ab4a38af8d837fd88b50889a2064fbaffbc2ec558fe82c9c4dd5871",
+                "tools/decode-cfg.py": "acf3c809fa12e2227ab1b9aad20119491855b39f3becf558d90229861763e27e",
+                "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+                "tools/terrain_validation_inputs.py": "426802a1609d0631966ab4e1a6e9b8b50008253fee4f83fd6aafc056f6b2403b",
+                "tools/terrain_validation_pixels.py": "4f8c66bce1e626ec41c62a20f94cce6e59022948c71e9c776617760c05ee3991",
+                "tools/test-rendering-twentysecond-three.py": "5d64d1b551d5a8f62d5f19cbac085fef7c0adb4264387370b4b98627f0b05086",
+                "tools/test-terrain-region.py": "e85004bf0c984344e012cd45407275fe12bf9803e89c4232412207a273a06088"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N22.terrain-native-20261025",
+                "N22.terrain-original-20261025"
               ]
             },
             "execution_result": {
               "outcome": "PASS",
-              "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
-              "remaining": "Use delivered generation suppliers for later scene integration; original CFG/file/dialog recovery remains unvalidated.",
-              "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+              "report": "research/runtime/rendering-twentysecond-three-results-20261025/execution-2.json",
+              "remaining": "Original CFG/file/dialog/allocation recovery, complete world/object generation and scene/GPU presentation, caller/resource lifetime and live integration/replacement remain separate. Whole-cell assembly is checked against independent Python, not a complete original world producer.",
+              "note": "3136 original placement cases/46656 blocks plus two installed authored regions/32 blocks match. Independent native whole-cell assembly matches 18 fixtures/288512 cells in Release and ASan/UBSan, including both installed regions. Broader production/acceptance remains pending."
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Fixed-region planning and assembly exist as planFixedTerrainRegion/assembleFixedTerrainRegion. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"images\": 32, \"original\": {\"all_match\": true, \"blocks\": 46656, \"cases\": 3136, \"installed_blocks\": 32, \"installed_regions\": 2}, \"recipes\": {\"Celtic\": [{\"columns\": 3, \"id\": 0, \"name\": \"Test flat map\", \"path\": \"Realms\\\\Celtic\\\\Plains\", \"prefix\": \"CPsec\", \"random\": [[99, 99]], \"rows\": 3, \"specific\": [[99, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Celtic\\\\Plains\"}, {\"columns\": 4, \"id\": 1, \"name\": \"The Forest of Pain.\", \"path\": \"Realms\\\\Celtic\\\\Forest\", \"prefix\": \"CFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [14, 2]], \"rows\": 4, \"specific\": [[50, 0, 0, 3], [51, 0, 0, 2], [52, 0, 1, 2], [53, 0, 1, 1], [54, 0, 2, 1], [55, 0, 0, 1], [56, 0, 0, 0], [57, 0, 1, 0], [58, 0, 1, 3]], \"sprite_path\": \"Realms\\\\Celtic\\\\Forest\"}, {\"columns\": 4, \"id\": 2, \"name\": \"The Plains of Greenhenge.\", \"path\": \"Realms\\\\Celtic\\\\Plains\", \"prefix\": \"CPsec\", \"random\": [[10, 1], [11, 1], [12, 1], [13, 1], [14, 1], [15, 1], [20, 1], [21, 1], [22, 1], [23, 1], [24, 1], [25, 1], [27, 1], [28, 1], [29, 1]], \"rows\": 4, \"specific\": [[0, 3, 0, 3], [3, 0, 2, 0], [1, 3, 0, 1]], \"sprite_path\": \"Realms\\\\Celtic\\\\Plains\"}, {\"columns\": 4, \"id\": 3, \"name\": \"The Village of Joseph of Arimethia.\", \"path\": \"Realms\\\\Celtic\\\\Village\", \"prefix\": \"CVsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [15, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 4, \"specific\": [[3, 0, 0, 0], [4, 0, 2, 0], [2, 0, 3, 2], [6, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Celtic\\\\Village\"}, {\"columns\": 4, \"id\": 4, \"name\": \"Fiddlers Green.\", \"path\": \"Realms\\\\Celtic\\\\Village\", \"prefix\": \"CVsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [15, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 4, \"specific\": [[5, 0, 1, 2], [0, 0, 1, 0], [1, 2, 0, 1]], \"sprite_path\": \"Realms\\\\Celtic\\\\Village\"}, {\"columns\": 4, \"id\": 5, \"name\": \"Apple Tree Orchard.\", \"path\": \"Realms\\\\Celtic\\\\Forest\", \"prefix\": \"CFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 4, \"specific\": [[1, 0, 0, 0], [2, 0, 2, 1], [40, 0, 2, 0]], \"sprite_path\": \"Realms\\\\Celtic\\\\Forest\"}, {\"columns\": 4, \"id\": 6, \"name\": \"The Misty Marshes.\", \"path\": \"Realms\\\\Celtic\\\\Swamp\", \"prefix\": \"CSsec\", \"random\": [], \"rows\": 4, \"specific\": [[1, 0, 2, 2], [2, 0, 2, 0], [3, 0, 0, 0], [4, 0, 0, 2]], \"sprite_path\": \"Realms\\\\Celtic\\\\Swamp\"}, {\"columns\": 4, \"id\": 7, \"name\": \"The Forest of Woodman's Hall.\", \"path\": \"Realms\\\\Celtic\\\\Forest\", \"prefix\": \"CFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 4, \"specific\": [[3, -1, -1, -1], [4, -1, -1, -1], [5, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Celtic\\\\Forest\"}, {\"columns\": 5, \"id\": 8, \"name\": \"Joyous Garde.\", \"path\": \"Realms\\\\Celtic\\\\Plains\", \"prefix\": \"CPsec\", \"random\": [[64, 1], [65, 1], [66, 1], [67, 1], [10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [15, 2]], \"rows\": 5, \"specific\": [[50, 2, 0, 0], [51, 3, 3, 0], [52, 1, 0, 3], [53, 0, 3, 3], [59, 3, 3, 2], [60, 3, 3, 1], [57, 2, 2, 0], [59, 2, 1, 0], [58, 1, 0, 1], [61, 1, 0, 2], [61, 0, 1, 3], [58, 0, 2, 3], [70, 2, 4, 0], [11, -1, 4, 2], [12, -1, 1, 4], [13, -1, 2, 4], [68, 2, 2, 1], [62, 0, 1, 2]], \"sprite_path\": \"Realms\\\\Celtic\\\\Plains\"}, {\"columns\": 4, \"id\": 9, \"name\": \"Tutorial Island.\", \"path\": \"Realms\\\\Celtic\\\\Tutorial\", \"prefix\": \"CTsec\", \"random\": [], \"rows\": 4, \"specific\": [[0, 0, 0, 2], [1, 0, 0, 0], [2, 0, 2, 0], [3, 0, 2, 2]], \"sprite_path\": \"Realms\\\\Celtic\\\\Tutorial\"}], \"Greek\": [{\"columns\": 5, \"id\": 0, \"name\": \"Test Flat Map.\", \"path\": \"Realms\\\\Greek\\\\Village\", \"prefix\": \"GVsec\", \"random\": [[99, 99]], \"rows\": 5, \"specific\": [[97, -1, -1, -1], [98, -1, -1, -1], [99, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Village\"}, {\"columns\": 4, \"id\": 1, \"name\": \"The Base of Olympus.\", \"path\": \"Realms\\\\Greek\\\\Mountains\", \"prefix\": \"GMsec\", \"random\": [[10, 2], [11, 2], [13, 2], [14, 2], [15, 2], [16, 2], [17, 2], [18, 2], [19, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2]], \"rows\": 4, \"specific\": [[0, 0, 0, 0], [6, -1, -1, -1], [7, -1, -1, -1], [12, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Mountains\"}, {\"columns\": 5, \"id\": 2, \"name\": \"Thessaly.\", \"path\": \"Realms\\\\Greek\\\\Plains\", \"prefix\": \"GPsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 5, \"specific\": [[0, 0, 0, 1], [1, 0, 2, 1], [7, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Plains\"}, {\"columns\": 5, \"id\": 3, \"name\": \"The Elysian Fields.\", \"path\": \"Realms\\\\Greek\\\\Forest\", \"prefix\": \"GFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 1], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 1], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 5, \"specific\": [[1, -1, -1, -1], [2, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Forest\"}, {\"columns\": 4, \"id\": 4, \"name\": \"Delphi.\", \"path\": \"Realms\\\\Greek\\\\Delphi\", \"prefix\": \"GVsec\", \"random\": [[10, 1], [11, 1], [12, 1], [14, 1], [15, 1], [16, 1], [17, 1], [18, 1], [41, 1], [42, 1], [43, 1], [44, 1], [45, 1], [46, 1], [47, 1], [48, 1], [49, 1]], \"rows\": 4, \"specific\": [[3, 0, 0, 0], [6, -1, 2, 1], [9, -1, 1, 2], [19, -1, -1, -1], [60, -1, -1, -1], [61, -1, -1, -1], [13, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Village\"}, {\"columns\": 4, \"id\": 5, \"name\": \"Parnassus.\", \"path\": \"Realms\\\\Greek\\\\Mountains\", \"prefix\": \"GMsec\", \"random\": [[10, 1], [11, 1], [13, 1], [15, 1], [16, 1], [17, 1], [18, 1], [19, 1], [20, 1], [21, 1], [22, 1], [23, 1], [24, 1], [25, 1], [26, 1]], \"rows\": 4, \"specific\": [[2, -1, -1, -1], [3, -1, -1, -1], [14, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Mountains\"}, {\"columns\": 5, \"id\": 6, \"name\": \"Styx.\", \"path\": \"Realms\\\\Greek\\\\Styx\", \"prefix\": \"GPsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[4, 1, 2, 0], [51, 1, 0, 1], [5, 0, -1, -1], [50, 1, 3, 0], [56, 2, 4, 0], [57, 0, 4, 1]], \"sprite_path\": \"Realms\\\\Greek\\\\Plains\"}, {\"columns\": 5, \"id\": 7, \"name\": \"Thebes.\", \"path\": \"Realms\\\\Greek\\\\Village\", \"prefix\": \"GVsec\", \"random\": [[10, 1], [11, 1], [12, 1], [14, 1], [15, 1], [16, 1], [17, 1], [18, 1], [19, 1], [25, 1], [26, 1], [27, 1], [28, 1], [29, 1], [51, 2], [52, 2], [54, 2], [55, 2], [57, 2], [58, 2], [59, 2]], \"rows\": 5, \"specific\": [[21, 2, 0, 0], [22, 0, 3, 3], [24, 1, 0, 3], [23, 3, 3, 0], [33, 1, 2, 3], [27, 3, 1, 0], [26, 2, 0, 2], [25, 0, 3, 1]], \"sprite_path\": \"Realms\\\\Greek\\\\Village\"}, {\"columns\": 5, \"id\": 8, \"name\": \"Colchis.\", \"path\": \"Realms\\\\Greek\\\\Plains\", \"prefix\": \"GPsec\", \"random\": [[10, 1], [11, 1], [12, 1], [13, 1], [14, 1], [20, 1], [21, 1], [22, 1], [23, 1], [24, 1], [25, 1], [26, 1], [27, 1], [28, 1], [29, 1], [30, 1], [31, 1], [32, 1], [33, 1], [34, 1], [35, 1], [36, 1], [37, 1], [38, 1], [39, 1], [40, 1], [41, 1], [42, 1], [43, 1], [44, 1]], \"rows\": 5, \"specific\": [[2, 0, 0, 1], [3, 0, 2, 1], [6, -1, -1, -1], [8, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Plains\"}, {\"columns\": 5, \"id\": 9, \"name\": \"Mount Erymanthos.\", \"path\": \"Realms\\\\Greek\\\\Mountains\", \"prefix\": \"GMsec\", \"random\": [[10, 2], [11, 2], [13, 2], [15, 2], [16, 2], [17, 2], [18, 2], [19, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2]], \"rows\": 5, \"specific\": [[1, 0, 1, 0], [8, -1, 3, 3]], \"sprite_path\": \"Realms\\\\Greek\\\\Mountains\"}, {\"columns\": 4, \"id\": 10, \"name\": \"Attica.\", \"path\": \"Realms\\\\Greek\\\\Village\", \"prefix\": \"GVsec\", \"random\": [[10, 2], [12, 2], [14, 2], [15, 2], [16, 2], [17, 2], [18, 2]], \"rows\": 4, \"specific\": [[62, -1, -1, -1], [11, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Village\"}, {\"columns\": 5, \"id\": 11, \"name\": \"Sparta.\", \"path\": \"Realms\\\\Greek\\\\Forest\", \"prefix\": \"GFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[0, -1, -1, -1], [3, -1, -1, -1], [6, 0, -1, -1], [7, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Forest\"}, {\"columns\": 5, \"id\": 12, \"name\": \"Knossos.\", \"path\": \"Realms\\\\Greek\\\\Labyrinth\", \"prefix\": \"GLsec\", \"random\": [[10, 1], [11, 1], [12, 1], [13, 1], [15, 1], [20, 1], [21, 1], [23, 1], [24, 1], [25, 1], [26, 1], [27, 1], [28, 1], [29, 1], [30, 1], [31, 1], [32, 1], [33, 1], [34, 1]], \"rows\": 5, \"specific\": [[0, 0, 1, 0], [14, -1, -1, -1], [16, -1, -1, -1], [19, -1, -1, -1], [18, -1, -1, -1], [22, -1, -1, -1], [17, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Greek\\\\Labyrinth\"}], \"Medieval\": [{\"columns\": 5, \"id\": 0, \"name\": \"Test map\", \"path\": \"Realms\\\\Medieval\\\\Test\", \"prefix\": \"MVsec\", \"random\": [[20, 3], [21, 3], [22, 3], [23, 3], [24, 3], [25, 3], [26, 3], [27, 3], [28, 3], [29, 3]], \"rows\": 5, \"specific\": [[0, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Test\"}, {\"columns\": 5, \"id\": 1, \"name\": \"Carbonek.\", \"path\": \"Realms\\\\Medieval\\\\Carbonek\", \"prefix\": \"M1sec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[0, 0, 2, 0], [1, 0, 2, 2]], \"sprite_path\": \"Realms\\\\Medieval\\\\Plains1\"}, {\"columns\": 5, \"id\": 2, \"name\": \"The Forest of Arden.\", \"path\": \"Realms\\\\Medieval\\\\Forest\", \"prefix\": \"MFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 5, \"specific\": [[9, 0, 2, 2], [0, 0, 1, 2], [1, 0, 2, 1], [4, 0, 3, 3], [8, 0, 0, 0]], \"sprite_path\": \"Realms\\\\Medieval\\\\Forest\"}, {\"columns\": 5, \"id\": 3, \"name\": \"The Valley of Owain.\", \"path\": \"Realms\\\\Medieval\\\\Plains2\", \"prefix\": \"M2sec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 5, \"specific\": [[0, 0, 2, 1], [3, 0, 0, 2]], \"sprite_path\": \"Realms\\\\Medieval\\\\Plains2\"}, {\"columns\": 5, \"id\": 4, \"name\": \"Altaripa.\", \"path\": \"Realms\\\\Medieval\\\\Swamp\", \"prefix\": \"MSsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[0, -1, -1, -1], [14, -1, -1, -1], [4, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Swamp\"}, {\"columns\": 5, \"id\": 5, \"name\": \"St Micheal's Mount.\", \"path\": \"Realms\\\\Medieval\\\\Mountains\", \"prefix\": \"MMsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [15, 2], [16, 2], [17, 2], [18, 2], [19, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2]], \"rows\": 5, \"specific\": [[4, -1, -1, -1], [5, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Mountains\"}, {\"columns\": 5, \"id\": 6, \"name\": \"Broceliande.\", \"path\": \"Realms\\\\Medieval\\\\Forest\", \"prefix\": \"MFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [30, 2], [31, 2], [32, 2], [33, 2], [34, 2], [35, 2], [36, 2], [37, 2], [38, 2], [39, 2], [40, 2], [41, 2], [42, 2], [43, 2], [44, 2]], \"rows\": 5, \"specific\": [[57, 0, 0, 0], [2, 0, 0, 1], [5, -1, -1, -1], [6, -1, -1, -1], [56, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Forest\"}, {\"columns\": 5, \"id\": 7, \"name\": \"The Enchanted Garden.\", \"path\": \"Realms\\\\Medieval\\\\Plains1\", \"prefix\": \"M1sec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[2, 0, 2, 2], [51, 0, 3, 1], [54, 0, 2, 1], [50, 0, 1, 1], [55, 0, 1, 2], [53, 0, 1, 3]], \"sprite_path\": \"Realms\\\\Medieval\\\\Plains1\"}, {\"columns\": 5, \"id\": 8, \"name\": \"Salisbury Plain.\", \"path\": \"Realms\\\\Medieval\\\\Plains2\", \"prefix\": \"M2sec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[6, 0, 2, 2], [5, -1, -1, -1], [1, -1, -1, -1], [7, -1, 1, 0], [8, -1, 4, 3], [55, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Plains2\"}, {\"columns\": 5, \"id\": 9, \"name\": \"Camelot.\", \"path\": \"Realms\\\\Medieval\\\\Camelot\", \"prefix\": \"MCsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [15, 2], [17, 2], [20, 2], [21, 2], [24, 2], [25, 2], [26, 2]], \"rows\": 5, \"specific\": [[0, -1, -1, -1], [1, -1, -1, -1], [19, -1, -1, -1], [14, -1, -1, -1], [22, -1, -1, -1], [16, -1, -1, -1], [23, -1, -1, -1], [18, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Camelot\"}, {\"columns\": 5, \"id\": 10, \"name\": \"Sepulchre of Pendragon.\", \"path\": \"Realms\\\\Medieval\\\\Pendragon\", \"prefix\": \"M2sec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2], [50, 1], [51, 1], [52, 1], [53, 1], [54, 1]], \"rows\": 5, \"specific\": [[2, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Plains2\"}, {\"columns\": 5, \"id\": 11, \"name\": \"Bedegraine.\", \"path\": \"Realms\\\\Medieval\\\\Forest\", \"prefix\": \"MFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[3, -1, -1, -1], [7, -1, -1, -1], [58, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Forest\"}, {\"columns\": 5, \"id\": 12, \"name\": \"The Gaste Forest.\", \"path\": \"Realms\\\\Medieval\\\\Swamp\", \"prefix\": \"MSsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[8, -1, -1, -1], [50, -1, -1, -1], [51, -1, -1, -1], [53, -1, -1, -1], [54, -1, -1, -1], [55, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Swamp\"}, {\"columns\": 5, \"id\": 13, \"name\": \"The Tangled Wood.\", \"path\": \"Realms\\\\Medieval\\\\Forest\", \"prefix\": \"MFsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2], [27, 2], [28, 2], [29, 2]], \"rows\": 5, \"specific\": [[53, 0, 2, 2], [50, 0, 2, 1], [50, 1, 3, 2], [50, 3, 1, 2], [51, 2, 2, 3], [54, 1, 3, 1], [52, 2, 3, 3], [52, 3, 1, 3], [52, 0, 1, 1], [59, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Forest\"}, {\"columns\": 5, \"id\": 14, \"name\": \"Carleon.\", \"path\": \"Realms\\\\Medieval\\\\Village\", \"prefix\": \"MVsec\", \"random\": [[10, 2], [12, 2], [13, 2], [16, 2], [17, 2], [18, 2], [19, 1], [22, 1], [23, 1], [24, 1], [25, 1], [26, 1], [27, 1], [28, 1], [29, 1]], \"rows\": 5, \"specific\": [[0, 0, 0, 0], [14, 1, 2, 0], [15, 1, 3, 0], [20, 0, 4, 0], [21, 2, 4, 1], [11, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Village\"}, {\"columns\": 5, \"id\": 15, \"name\": \"Anglesey.\", \"path\": \"Realms\\\\Medieval\\\\Mountains\", \"prefix\": \"MMsec\", \"random\": [[10, 2], [11, 2], [12, 2], [13, 2], [14, 2], [15, 2], [16, 2], [17, 2], [18, 2], [19, 2], [20, 2], [21, 2], [22, 2], [23, 2], [24, 2], [25, 2], [26, 2]], \"rows\": 5, \"specific\": [[0, -1, 2, 2], [1, -1, 0, 0], [3, -1, -1, -1], [60, -1, -1, -1]], \"sprite_path\": \"Realms\\\\Medieval\\\\Mountains\"}, {\"columns\": 5, \"id\": 16, \"name\": \"Dinas Emrys.\", \"path\": \"Realms\\\\Medieval\\\\Dinas\", \"prefix\": \"MMsec\", \"random\": [], \"rows\": 5, \"specific\": [[8, 1, 4, 3], [7, 1, 1, 0], [6, 0, 3, 0], [9, 1, 1, 3], [30, 1, 3, 2], [30, 1, 4, 2], [31, 0, 2, 0], [31, 0, 2, 1], [32, 0, 2, 3], [32, 0, 2, 4], [33, 1, 0, 2], [33, 1, 1, 2], [50, -1, 2, 2]], \"sprite_path\": \"Realms\\\\Medieval\\\\Mountains\"}]}, \"rejections\": 12}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Full live world creation remains separate from the fixed owned assembly contract.",
+                "evidence": [
+                  "ORIGINAL.terrain-authored-regions",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_region-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Use delivered generation suppliers for later scene integration; original CFG/file/dialog recovery remains unvalidated."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Full live world creation remains separate from the fixed owned assembly contract."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_region.cpp",
+                    "line": 29,
+                    "text": "FixedRegionAssembly assembleFixedTerrainRegion(const FixedRegionPlan& p,const std::vector<const assets::MapAsset*>& sources,const assets::TerrainCatalog& t){"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_region.cpp": "852c656687d4ea3e4f647f52226ae2a54f6b3c956901f773c69089689fa33737",
+                  "reconstruction/rendering/terrain_region.hpp": "709fc933c0d4757173c511b68953d5568bf876a8b7bebf23652a4d206a42ce00",
+                  "research/runtime/terrain-authored-regions.md": "fb0985c7769826547302ae21acc82b26855857e264d756077a671c0f9ac5c6e8",
+                  "tests/terrain-region-reference.cpp": "7be4d190c32546be6205baf0078070317f581c15ac34d9cc956043fc7b897bec",
+                  "tests/terrain-region-test.cpp": "2c1938c45d7261258bf32b1e69b9f2a243add6a40e8128ddad7d91055ac3c057",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ],
+            "execution_result_history": [
+              {
+                "outcome": "PASS",
+                "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
+                "remaining": "Use delivered generation suppliers for later scene integration; original CFG/file/dialog recovery remains unvalidated.",
+                "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_catalog",
-            "mode": "Bounded comparisons passed; wider integration remains",
-            "next_action": "Bounded tranche validation PASS. Next broader work: Resolve missing recipe-input provenance and original file/error orchestration without inventing section assets.",
+            "mode": "Scoped offline implementation complete; broader production and live acceptance remain",
+            "next_action": "Original whole CFG loading, missing/invalid-file dialogs and continuation, allocator/descriptor lifetime, complete world/scene generation and live integration/replacement remain separate. Medieval REGION0 lacks eleven Test MAP inputs; no substitute assets or original missing-file recovery are claimed.",
             "implementation_boundary": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Check missing sources, block limits and dimensions; catalog construction is separate from selection and retry behavior.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
-              "tests/terrain-catalog-build-test.cpp"
+              "tests/terrain-catalog-build-test.cpp",
+              "tools/test-rendering-twentysecond-three.py",
+              "tests/terrain-catalog-reference.cpp"
             ],
             "documents": [
-              "research/runtime/terrain-region-catalog.md"
+              "research/runtime/terrain-region-catalog.md",
+              "research/runtime/rendering-twentysecond-three-20261025.md"
             ],
-            "contract_sha256": "10590ee40c127cd65c8e4ae2523fb473d3cfa7a9a512ac3f20a5461d276fa5d1",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Configuration/data coverage and original catalog initialization remain separate from native descriptor construction.",
+            "contract_sha256": "0f6fb610dd722191e286353d5a36f186a329224469f6497455bc6ee15db5ed7d",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Original whole CFG loading, missing/invalid-file dialogs and continuation, allocator/descriptor lifetime, complete world/scene generation and live integration/replacement remain separate. Medieval REGION0 lacks eleven Test MAP inputs; no substitute assets or original missing-file recovery are claimed.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "terrain_catalog.cpp builds the configured descriptor catalog. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "2087 original catalogs/26888 descriptors match, including 39 available installed catalogs and 291 threshold quirks. All 40 native recipe decodes match independent input parsing. Release-active ownership/capacity/refusal controls pass; the missing Medieval Test catalog remains unavailable.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 564, \"original\": {\"all_match\": true, \"cases\": 2087, \"decoded_recipes\": 40, \"descriptors\": 26888, \"installed_catalogs_matched\": 39, \"installed_recipes\": 40, \"native_refusals\": 1, \"refusal_reasons\": {\"Region catalog MAP header\": 1}, \"threshold_quirk_cases\": 291}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "2087 original catalogs/26888 descriptors match, including 39 available installed catalogs and 291 threshold quirks. All 40 native recipe decodes match independent input parsing. Release-active ownership/capacity/refusal controls pass; the missing Medieval Test catalog remains unavailable. Six Release/ASan/UBSan units and three complete native sanitizer corpora pass.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Configuration/data coverage and original catalog initialization remain separate from native descriptor construction.",
+              "acceptance_summary": "Original whole CFG loading, missing/invalid-file dialogs and continuation, allocator/descriptor lifetime, complete world/scene generation and live integration/replacement remain separate. Medieval REGION0 lacks eleven Test MAP inputs; no substitute assets or original missing-file recovery are claimed.",
               "evidence": [
                 "ORIGINAL.terrain-region-catalog",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_catalog-20261019"
+                "HTERR1.RE.terrain_catalog-20261019",
+                "N22.terrain-native-20261025",
+                "N22.terrain-original-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Resolve missing recipe-input provenance and original file/error orchestration without inventing section assets."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Configuration/data coverage and original catalog initialization remain separate from native descriptor construction."
+                  "action": "Original whole CFG loading, missing/invalid-file dialogs and continuation, allocator/descriptor lifetime, complete world/scene generation and live integration/replacement remain separate. Medieval REGION0 lacks eleven Test MAP inputs; no substitute assets or original missing-file recovery are claimed."
                 }
               ],
               "code_witnesses": [
@@ -20948,62 +21095,137 @@
                 }
               ],
               "source_sha256": {
+                "assets/persistence_internal.hpp": "f704e35fdd852b18f370d71a62a9881dc6f41d2e99b8f0cf9aa4c1bc46d76c0f",
+                "assets/region_recipe.cpp": "97fbc0f22f1fe59f8ade1d3c9d6f5f233061eb7120662d89b34aa9845798692e",
+                "assets/region_recipe.hpp": "bceb3d7345bee18ef9c353a284b89cd8e91864fb4001d02c04635a9c3fb2037b",
+                "reconstruction/rendering/CMakeLists.txt": "d7b6a47a59fd1334cb65dd3dec36e10e2f5dc326ac814aa9f339cd2cefcef08a",
                 "reconstruction/rendering/terrain_catalog.cpp": "c0c0d9dfdeaca1558af0126dc31789c645d2f6f829b6522647e459bca9bebea6",
                 "reconstruction/rendering/terrain_catalog.hpp": "670c9bfed61ffa477ee1435ed4e3a8b4b6e1f05551b3f17e5a03353e11bf1eda",
+                "reconstruction/rendering/terrain_constraints.cpp": "7473519b34bf90b9238270ade4726218a89baba74df7268ac0c0c7b962176ff1",
+                "reconstruction/rendering/terrain_constraints.hpp": "41b656d9a0a060edb2417e501d2b334658dddd80432799b625be8969af68a636",
+                "reconstruction/rendering/terrain_selection.cpp": "8d88d6f096a746856b5139b62325908247486c2d230b5967c93219f625e25446",
+                "reconstruction/rendering/terrain_selection.hpp": "3c95e1cd02f1f098efabaf9ee23c9d16f0eb123bb43c2ce7ba0a75595b02bf80",
+                "reconstruction/rendering/terrain_solver.cpp": "635b8131aa6fb263fbd7933c4752a66604fe483c0bec69f38fb9cb0eb8ff2683",
+                "reconstruction/rendering/terrain_solver.hpp": "eb8e1e6ab22581e93d06d9c3f259e163b2ea9566058363adc44de5ec779a7b05",
+                "reconstruction/rendering/terrain_specific.cpp": "c3c841f388f469efc9dabffbb9eb85a2468480c8548d7e091efa37ed600bec63",
+                "reconstruction/rendering/terrain_specific.hpp": "8f97ca16d0a6ce18bd031ca3a83e7fe0dd2716982e54ae848570702fe9c0f445",
+                "research/runtime/rendering-twentysecond-three-20261025.md": "c71372b256098f651c1e19415290de948030c66ee57f352393941d89ab136b2b",
                 "research/runtime/terrain-region-catalog.md": "1aae25df74e0871df73e2d579868ac017546bd48a5d2183e71e2bbcc8a266c64",
-                "tests/terrain-catalog-build-test.cpp": "8d6e8e8cbc35b1cfa898f552e294536eb6c3de2f20e4ae9d86687c3d4ffa7d84",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/terrain-catalog-build-test.cpp": "93e7c8eb2f3bd6800e83e0784fda348953deae479cc655cb6ede489e75e18645",
+                "tests/terrain-catalog-reference.cpp": "a2e86e804d60901b7b129263217b02aa8816832b2983471800f268c140571b48",
+                "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+                "tools/coverage_evidence.py": "b8a3a9d12ab4a38af8d837fd88b50889a2064fbaffbc2ec558fe82c9c4dd5871",
+                "tools/decode-cfg.py": "acf3c809fa12e2227ab1b9aad20119491855b39f3becf558d90229861763e27e",
+                "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+                "tools/terrain_validation_inputs.py": "426802a1609d0631966ab4e1a6e9b8b50008253fee4f83fd6aafc056f6b2403b",
+                "tools/terrain_validation_pixels.py": "4f8c66bce1e626ec41c62a20f94cce6e59022948c71e9c776617760c05ee3991",
+                "tools/test-rendering-twentysecond-three.py": "5d64d1b551d5a8f62d5f19cbac085fef7c0adb4264387370b4b98627f0b05086",
+                "tools/test-terrain-region.py": "e85004bf0c984344e012cd45407275fe12bf9803e89c4232412207a273a06088"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N22.terrain-native-20261025",
+                "N22.terrain-original-20261025"
               ]
             },
             "execution_result": {
               "outcome": "PASS",
-              "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
-              "remaining": "Resolve missing recipe-input provenance and original file/error orchestration without inventing section assets.",
-              "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+              "report": "research/runtime/rendering-twentysecond-three-results-20261025/execution-2.json",
+              "remaining": "Original whole CFG loading, missing/invalid-file dialogs and continuation, allocator/descriptor lifetime, complete world/scene generation and live integration/replacement remain separate. Medieval REGION0 lacks eleven Test MAP inputs; no substitute assets or original missing-file recovery are claimed.",
+              "note": "2087 original catalogs/26888 descriptors match, including 39 available installed catalogs and 291 threshold quirks. All 40 native recipe decodes match independent input parsing. Release-active ownership/capacity/refusal controls pass; the missing Medieval Test catalog remains unavailable. Broader production/acceptance remains pending."
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "terrain_catalog.cpp builds the configured descriptor catalog. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 564, \"original\": {\"all_match\": true, \"cases\": 2087, \"decoded_recipes\": 40, \"descriptors\": 26888, \"installed_catalogs_matched\": 39, \"installed_recipes\": 40, \"native_refusals\": 1, \"refusal_reasons\": {\"Region catalog MAP header\": 1}, \"threshold_quirk_cases\": 291}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Configuration/data coverage and original catalog initialization remain separate from native descriptor construction.",
+                "evidence": [
+                  "ORIGINAL.terrain-region-catalog",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_catalog-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Resolve missing recipe-input provenance and original file/error orchestration without inventing section assets."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Configuration/data coverage and original catalog initialization remain separate from native descriptor construction."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_catalog.cpp",
+                    "line": 11,
+                    "text": "TerrainRegionCatalog buildTerrainRegionCatalog(const assets::RegionRecipe& recipe,"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_catalog.cpp": "c0c0d9dfdeaca1558af0126dc31789c645d2f6f829b6522647e459bca9bebea6",
+                  "reconstruction/rendering/terrain_catalog.hpp": "670c9bfed61ffa477ee1435ed4e3a8b4b6e1f05551b3f17e5a03353e11bf1eda",
+                  "research/runtime/terrain-region-catalog.md": "1aae25df74e0871df73e2d579868ac017546bd48a5d2183e71e2bbcc8a266c64",
+                  "tests/terrain-catalog-build-test.cpp": "8d6e8e8cbc35b1cfa898f552e294536eb6c3de2f20e4ae9d86687c3d4ffa7d84",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ],
+            "execution_result_history": [
+              {
+                "outcome": "PASS",
+                "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
+                "remaining": "Resolve missing recipe-input provenance and original file/error orchestration without inventing section assets.",
+                "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_selection",
-            "mode": "Bounded comparisons passed; wider integration remains",
-            "next_action": "Bounded tranche validation PASS. Next broader work: Validate live caller-supplied descriptor lifetime and production state; bounded RNG/table order now has fresh proof.",
+            "mode": "Scoped offline implementation complete; broader production and live acceptance remain",
+            "next_action": "Multi-block connector traversal/pruning/backtracking and generation retries, original production descriptor/grid ownership, whole-world/scene construction and live integration/replacement remain separate. Native malformed-input refusals do not reconstruct unsafe original failures.",
             "implementation_boundary": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
             "validation": "Compare boundary weights, candidate ordering and seed progression without changing selection probabilities.",
             "exit_condition": "Close the exact declared validation matrix with fresh pins and retained refusals, or record a precise unresolved result and required next action. Diagnostic or native-policy success never promotes broader original behavior; no status changes follow from this plan.",
             "checks": [
               "tests/terrain-selection-test.cpp",
-              "tests/terrain-selection-reference.cpp"
+              "tests/terrain-selection-reference.cpp",
+              "tools/test-rendering-twentysecond-three.py"
             ],
             "documents": [
-              "research/runtime/terrain-region-selection.md"
+              "research/runtime/terrain-region-selection.md",
+              "research/runtime/rendering-twentysecond-three-20261025.md"
             ],
-            "contract_sha256": "551637c19c9cb174b8066aa8bd38e4af0cf7f5632e3351c3708d66931d16cd98",
-            "reviewed_implementation": "partial",
-            "remaining_at_review": "Keep native owned data/seed scope and original comparison separate from all-game map construction.",
+            "contract_sha256": "0913eb6239add6f75bc8bc643c17530891ce512cdfbca9425b11b56b67656000",
+            "reviewed_implementation": "scoped",
+            "remaining_at_review": "Multi-block connector traversal/pruning/backtracking and generation retries, original production descriptor/grid ownership, whole-world/scene construction and live integration/replacement remain separate. Native malformed-input refusals do not reconstruct unsafe original failures.",
             "work_review": {
               "implementation": "implemented_within_scope",
-              "current_state": "TerrainRegionRandom and candidate/location selection implement the seeded selection model. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+              "current_state": "256 original seeds/262144 full-state draws, 207840 admissions, 4096 candidate tables, 10240 location tables and 78584 original choices match. 1232 installed single-block descriptor cases match. Native endpoint-seed/capacity/mask/refusal controls pass.",
               "implementation_gaps": [],
-              "validation_state": "historical",
-              "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 616, \"original\": {\"admission_checks\": 207840, \"all_match\": true, \"candidate_tables\": 4096, \"choices\": 78584, \"installed_descriptors\": 1232, \"location_tables\": 10240, \"native_rotation_mask_checks\": 831360, \"rng_seeds\": 256, \"rng_words\": 262144}}. This records the selected execution only; broader original/live acceptance remains pending.",
+              "validation_state": "recorded",
+              "validation_summary": "256 original seeds/262144 full-state draws, 207840 admissions, 4096 candidate tables, 10240 location tables and 78584 original choices match. 1232 installed single-block descriptor cases match. Native endpoint-seed/capacity/mask/refusal controls pass. Six Release/ASan/UBSan units and three complete native sanitizer corpora pass.",
               "acceptance": "pending",
-              "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Keep native owned data/seed scope and original comparison separate from all-game map construction.",
+              "acceptance_summary": "Multi-block connector traversal/pruning/backtracking and generation retries, original production descriptor/grid ownership, whole-world/scene construction and live integration/replacement remain separate. Native malformed-input refusals do not reconstruct unsafe original failures.",
               "evidence": [
                 "ORIGINAL.terrain-region-selection",
                 "HIGH01.rendering-work-review-20261019",
-                "HTERR1.RE.terrain_selection-20261019"
+                "HTERR1.RE.terrain_selection-20261019",
+                "N22.terrain-native-20261025",
+                "N22.terrain-original-20261025"
               ],
               "failure_evidence": [],
               "next_steps": [
                 {
-                  "kind": "validation",
-                  "action": "Validate live caller-supplied descriptor lifetime and production state; bounded RNG/table order now has fresh proof."
-                },
-                {
                   "kind": "scope_review",
-                  "action": "Keep native owned data/seed scope and original comparison separate from all-game map construction."
+                  "action": "Multi-block connector traversal/pruning/backtracking and generation retries, original production descriptor/grid ownership, whole-world/scene construction and live integration/replacement remain separate. Native malformed-input refusals do not reconstruct unsafe original failures."
                 }
               ],
               "code_witnesses": [
@@ -21014,23 +21236,87 @@
                 }
               ],
               "source_sha256": {
+                "reconstruction/rendering/CMakeLists.txt": "d7b6a47a59fd1334cb65dd3dec36e10e2f5dc326ac814aa9f339cd2cefcef08a",
                 "reconstruction/rendering/terrain_selection.cpp": "8d88d6f096a746856b5139b62325908247486c2d230b5967c93219f625e25446",
                 "reconstruction/rendering/terrain_selection.hpp": "3c95e1cd02f1f098efabaf9ee23c9d16f0eb123bb43c2ce7ba0a75595b02bf80",
+                "research/runtime/rendering-twentysecond-three-20261025.md": "c71372b256098f651c1e19415290de948030c66ee57f352393941d89ab136b2b",
                 "research/runtime/terrain-region-selection.md": "f7d46b028ad38b0e084ddab5f22e2e1a3e061a4165b40b595a48c3143af42ce1",
                 "tests/terrain-selection-reference.cpp": "b5ef106cd26b04c7c97ce49f719a6bd68c305703a98dde7d5286582e0e86ab7e",
-                "tests/terrain-selection-test.cpp": "1ba8bb548916e6d809753af5654cbe7f0dc55f5abb135243c15e51a596b176c8",
-                "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                "tests/terrain-selection-test.cpp": "e70fa9a4b672c92c2c4eb80060ab57ddf07303004b2836d57bc0b1c8f78abb51",
+                "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+                "tools/coverage_evidence.py": "b8a3a9d12ab4a38af8d837fd88b50889a2064fbaffbc2ec558fe82c9c4dd5871",
+                "tools/decode-cfg.py": "acf3c809fa12e2227ab1b9aad20119491855b39f3becf558d90229861763e27e",
+                "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+                "tools/terrain_validation_inputs.py": "426802a1609d0631966ab4e1a6e9b8b50008253fee4f83fd6aafc056f6b2403b",
+                "tools/terrain_validation_pixels.py": "4f8c66bce1e626ec41c62a20f94cce6e59022948c71e9c776617760c05ee3991",
+                "tools/test-rendering-twentysecond-three.py": "5d64d1b551d5a8f62d5f19cbac085fef7c0adb4264387370b4b98627f0b05086",
+                "tools/test-terrain-region.py": "e85004bf0c984344e012cd45407275fe12bf9803e89c4232412207a273a06088"
               },
-              "pending_source_review": [
-                "research/runtime/native-scene-accounting-closeout-20261020.md"
+              "pending_source_review": [],
+              "validation_evidence": [
+                "N22.terrain-native-20261025",
+                "N22.terrain-original-20261025"
               ]
             },
             "execution_result": {
               "outcome": "PASS",
-              "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
-              "remaining": "Validate live caller-supplied descriptor lifetime and production state; bounded RNG/table order now has fresh proof.",
-              "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
-            }
+              "report": "research/runtime/rendering-twentysecond-three-results-20261025/execution-2.json",
+              "remaining": "Multi-block connector traversal/pruning/backtracking and generation retries, original production descriptor/grid ownership, whole-world/scene construction and live integration/replacement remain separate. Native malformed-input refusals do not reconstruct unsafe original failures.",
+              "note": "256 original seeds/262144 full-state draws, 207840 admissions, 4096 candidate tables, 10240 location tables and 78584 original choices match. 1232 installed single-block descriptor cases match. Native endpoint-seed/capacity/mask/refusal controls pass. Broader production/acceptance remains pending."
+            },
+            "work_review_history": [
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "TerrainRegionRandom and candidate/location selection implement the seeded selection model. The selected frozen/current-source comparison matrix now passes; native presentation checks use the documented bit-replication policy.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Recorded current-source bounded PASS in HTERR1 (2026-10-19): {\"maps\": 616, \"original\": {\"admission_checks\": 207840, \"all_match\": true, \"candidate_tables\": 4096, \"choices\": 78584, \"installed_descriptors\": 1232, \"location_tables\": 10240, \"native_rotation_mask_checks\": 831360, \"rng_seeds\": 256, \"rng_words\": 262144}}. This records the selected execution only; broader original/live acceptance remains pending.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Keep native owned data/seed scope and original comparison separate from all-game map construction.",
+                "evidence": [
+                  "ORIGINAL.terrain-region-selection",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HTERR1.RE.terrain_selection-20261019"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Validate live caller-supplied descriptor lifetime and production state; bounded RNG/table order now has fresh proof."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Keep native owned data/seed scope and original comparison separate from all-game map construction."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "reconstruction/rendering/terrain_selection.cpp",
+                    "line": 125,
+                    "text": "std::optional<RegionChoice> chooseRegionCandidate(std::uint32_t seed, const std::vector<RegionCandidate>& table) {"
+                  }
+                ],
+                "source_sha256": {
+                  "reconstruction/rendering/terrain_selection.cpp": "8d88d6f096a746856b5139b62325908247486c2d230b5967c93219f625e25446",
+                  "reconstruction/rendering/terrain_selection.hpp": "3c95e1cd02f1f098efabaf9ee23c9d16f0eb123bb43c2ce7ba0a75595b02bf80",
+                  "research/runtime/terrain-region-selection.md": "f7d46b028ad38b0e084ddab5f22e2e1a3e061a4165b40b595a48c3143af42ce1",
+                  "tests/terrain-selection-reference.cpp": "b5ef106cd26b04c7c97ce49f719a6bd68c305703a98dde7d5286582e0e86ab7e",
+                  "tests/terrain-selection-test.cpp": "1ba8bb548916e6d809753af5654cbe7f0dc55f5abb135243c15e51a596b176c8",
+                  "research/runtime/native-scene-accounting-closeout-20261020.md": "28c682d69c2b1232000f742fcd4190ca865f324d09fe64e666f42f4fc78c4691"
+                },
+                "pending_source_review": [
+                  "research/runtime/native-scene-accounting-closeout-20261020.md"
+                ]
+              }
+            ],
+            "execution_result_history": [
+              {
+                "outcome": "PASS",
+                "report": "research/runtime/coverage/high-terrain-execution-20261019.json",
+                "remaining": "Validate live caller-supplied descriptor lifetime and production state; bounded RNG/table order now has fresh proof.",
+                "note": "Selected original/native matrix passed with stable sources, unchanged build inputs and retained refusals. Separate software RGBA/native policies are explicit; no full-world, hardware or live replacement promotion."
+              }
+            ]
           },
           {
             "behavior": "RE.terrain_constraints",
@@ -31851,7 +32137,9 @@
                 "tests/rendering-seventeenth-five/CMakeLists.txt": "b834065525f85a5ac28716b21a15b06163ab0abedaf4af3812c441d83a7e371c",
                 "tests/test-rendering-seventeenth-controls.py": "0e603ccc797bb9b25b06441cb324720d51f3f2d9fb3faf77fc309ce4ea8f15a6",
                 "tools/rendering_seventeenth_controls.py": "82a4be5d1c2c9a4f37cf77160baded19b13ca583f5c22090365a8518540821fc",
-                "tools/test-rendering-seventeenth-five.py": "3345542437d7bc51a658f8ea92daf63975a30d0b4526991449242a0a8a760f08"
+                "tools/test-rendering-seventeenth-five.py": "3345542437d7bc51a658f8ea92daf63975a30d0b4526991449242a0a8a760f08",
+                "docs/native-rendering-dependencies.json": "be8ab6c527a8efc06b8d2ede19616f4d0d309354894dff5b4f2e4714f9a46503",
+                "research/runtime/rendering-required-dependencies-20261024.md": "7eecdc4d1761b7a3443efa63e34aa637922b549569cc14f49167402914e7e734"
               },
               "pending_source_review": [],
               "incremental_review_notes": [
@@ -32724,6 +33012,236 @@
                   }
                 ],
                 "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "World/commands-HUD/requested CPU replies/bindings-retirement have registered suppliers plus explicit aggregate session glue, with exact witnesses in the HIGH03 crosswalk. NT17 supplies current bounded implementation evidence; ordinary public19FPS performance remains independently pending when the raw harness fails.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Four-domain supplier/glue crosswalk resolves missing-code ambiguity; scoped PE32/native/GPU/replay and current live flow/1598balanced retirements pass. Whole-session19FPS acceptance and original combat/private handoff renewal remain separate open gates. A quiet native audio/media-default cohort failed its initial living-Zombie summon prerequisite before final throughput validation; it supplies no default-profile FPS conclusion. 83 Python controls plus13 combat-input regressions,20 asserted native controls,4096 verification and4096 normal returns/paints; original 19.90295FPS,Qt 19.90693FPS,warm median42.0ms/p9548ms/max69ms,cold247.225ms,RSS growth0bytes; ordinary public19FPS acceptance=False at 17.253776873910518FPS; peer-death/fresh recovery and actual owned/strict/restart/public journeys retain their separate observations.",
+                "acceptance": "acceptance_failure",
+                "acceptance_summary": "The unchanged full-session throughput/combat or worst-frame gate failed; implementation remains located. Preserve exact negative records and diagnose the declared cohort before acceptance.",
+                "evidence": [
+                  "NR.public-resident-world.import-fixture-20261011",
+                  "NR.public-resident-world.owned-fixtures-20261011",
+                  "NR.public-resident-world.campaign-stall-20261011",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.public-rendering-fps-negative-20261020",
+                  "HIGH03.public-combat-negative-20261020",
+                  "HIGH03.resident-supplier-crosswalk-20261020",
+                  "HIGH03.resident-supplier-crosswalk-current-20261020",
+                  "HIGH03.public-flow-observation-20261020",
+                  "HIGH03.public-current-fps-negative-20261020",
+                  "HIGH03.public-default-cadence-20261020",
+                  "HIGH03.public-native-defaults-cast-negative-20261020",
+                  "NT17.five-rendering-contracts-20261023"
+                ],
+                "failure_evidence": [
+                  "HIGH03.public-rendering-fps-negative-20261020",
+                  "HIGH03.public-combat-negative-20261020",
+                  "HIGH03.public-current-fps-negative-20261020",
+                  "HIGH03.public-native-defaults-cast-negative-20261020"
+                ],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Stabilize the initial summon/casting/navigation precondition on the intended native-default profile, then repeat the unchanged19FPS public journey without overlapping heavy validation. Preserve legacy-profile throughput failures and exact captured input/source states separately."
+                  },
+                  {
+                    "kind": "scope_review",
+                    "action": "Retain arbitrary original writer/physical alias, COM and full live replacement boundaries outside this supplier/glue source mapping."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "renderer/blit.cpp",
+                    "line": 22,
+                    "text": "void validate(const Blit& c){"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/qt-shell/campaign_smoke_test.cpp": "9e3f9b3088e084293dac68ee8e098213f0b7a1157b23fed7ff8d4092a01c3587",
+                  "apps/qt-shell/cpu_reply_file.hpp": "301b654804b0477e4a0ff93c2c127d5213ff3ee2b11a51120c612e70090f6c53",
+                  "apps/qt-shell/live_command_renderer.cpp": "53365ad1a660cf69930c02b45b2f54655b1c4dcbcb0290477334503d8409ff8e",
+                  "apps/qt-shell/live_command_renderer.hpp": "6cd344d4812952f95d6238cf8c2137e0f501468dc466b89a678b0b8c6c720e5a",
+                  "apps/qt-shell/live_command_session.cpp": "38cd97f8999d22521d677aa4183c807248ebbdab3164af94ef28033aff5ff71b",
+                  "apps/qt-shell/live_command_session.hpp": "050b59b7db1aa9ee6ee241dca5a633a62df5a5483bb1b85d9669c86fe12dbd26",
+                  "apps/qt-shell/live_menu_session.cpp": "016a83f99f769fdae2db7e1a5b2a2dba179eeb2ff3eb9a5ec7feb16418f78a00",
+                  "apps/qt-shell/main.cpp": "9a21444c2a9936a857ae0563a83cd1f64a6ee81d0032602489166cb4d4491b08",
+                  "apps/qt-shell/resident_world_session.cpp": "1768d0c6a90c123668180ad9147bffc4bfc718850ae039f4f400bba655f7d6f0",
+                  "apps/qt-shell/resident_world_session.hpp": "584681b0f6af973788bac647fef6fe7dfb64db3cf6673e2ce7dd4862095163fe",
+                  "compat/legacy/canvas_producers.cpp": "78fa96df9e164d486ec05f6f3b7c33096192ffd6c9df8199b00acad5da0ebf97",
+                  "compat/legacy/canvas_world.cpp": "3f0542abe6cb66e370169de10e8eadb7ce450d5743188f64422cadadee510049",
+                  "compat/legacy/world_raster_batch.cpp": "d33c0c8b7a8f5bcd2cc9b7c6086e6928adbd3e7653414fdbabc7626ab5ad58e7",
+                  "compat/legacy/world_rolling_packet.cpp": "a24477993dee85aaafea3f6cc4e465d9da9f9dfe3232894ea1d68f91ca9cdd77",
+                  "protocols/include/mnm/canvas_producers_v3.h": "253e0e4f99273660312650b7d9bcb57c0e53a97483b75f8af6451a05e7a20632",
+                  "protocols/include/mnm/render_stream_v4.h": "203d1f98637c5ebbf4b8f6a840850964899a185c66fae73b9dc1c4598e771a03",
+                  "renderer/blit.cpp": "9cc4a156e7b4d43c55aa4357f0ffd39b3f98804b4993d3523607c2c4e1c2632c",
+                  "renderer/blit.hpp": "3d657b922652328eab32631e8d884e531b45e5ee2ff2664b12383fc3523306bf",
+                  "renderer/canvas_sequence.cpp": "6cd633c3e7e09c126234f2f17cd1efb69fc570c8249b8406789a1f63563438e0",
+                  "renderer/canvas_sequence.hpp": "d29ef07ace020366ab172e2f57e44ba4981d62e200d5a5c5b1443ab1ef0aea06",
+                  "renderer/command_consumer.cpp": "921f6cde6e3661e3cb27e788e3798e885ff4772c1a1935bf513ef19b81816dcf",
+                  "renderer/command_state.hpp": "b6fe10d3c6d1ffa17f05a4c37828a1a6d926d1b275f1e070ba0895678d45e515",
+                  "renderer/commands.cpp": "f7c6caef1334893dac1b3a4f2997fe742a63713bf36deb2295cf23ee7c756769",
+                  "renderer/commands.hpp": "aab8b05f193a9e7da476ad7434185e53c7f2579345ffd5edbb9101a18d1b4fc4",
+                  "research/runtime/coverage/high-resident-supplier-crosswalk-20261020.json": "afd83fcb13b062280203edd254c6bd60d0a4e52b6d9032d6682e59a5227648b2",
+                  "research/runtime/coverage/high-resident-supplier-crosswalk-current-20261020.json": "6d5e10f35e7c0546260f574b36174a7a3c893f4114d04275a8d4f91bd58e82df",
+                  "research/runtime/engine-cadence-titan-campaign-20261011.json": "a8b16fb1d2feb5ee5469186a78b7af424e24de172d043eaccf7e4ae7dbe38f8c",
+                  "research/runtime/public-resident-batch-background-copy-failure-20261011.json": "91e08c24e8a375da19548d28527ff6de6b80bea5718e505a9b7349c364cf21ad",
+                  "research/runtime/public-resident-batch-fixtures-20261011.json": "c8d9602f99982d243f4243929b492d54589c9de9c7957ba8a87d8a018e0c9a26",
+                  "research/runtime/public-resident-campaign-complete-20261011.json": "58a60ed6151184374a01dbed57aa8e70334b22ca9871b1d3fee4029598e2da85",
+                  "research/runtime/public-resident-casting-retreat-input-20261011.json": "30345c11314d6481a8dbe964e83548d1a1ef7a192d23100377fc5a1ed2f6ce3f",
+                  "research/runtime/public-resident-casting-retreat-negative-20261011.json": "054401b839a6ef744e4a81ed0bf041c3c40bd9b304169d9f9a4879a5a5aa56cd",
+                  "research/runtime/public-resident-combat-placement-negative-20261011.json": "8cd0a5736700d64888dd1d16ac131c470ee60655a028c6378188457801f5299f",
+                  "research/runtime/public-resident-complete-window-negative-20261011.json": "ca97ffff5b8ef6d035e2c5b1a847c33f270ce5ac615fd289f7dad9310b2eac28",
+                  "research/runtime/public-resident-cpu-profile-20261011.json": "c2419c03f3166aa5a153b82b8cc4b87af76e51d562bb90066b7d261fa496ab39",
+                  "research/runtime/public-resident-cursor-queue-fixtures-20261011.json": "e284222ab0d0e91a47597408c50aff55da7ff26aa74d16696c5f9984e18e6eb6",
+                  "research/runtime/public-resident-cursor-queue-live-failure-20261011.json": "d15f5ba3dd98a852921bf29af89b473a8c48c7d161b85c87010034328e251ad3",
+                  "research/runtime/public-resident-linear-full-fixtures-20261011.json": "205cf378750cd1338918ba12c3fbf6447b3e4fad1299d72cfb52738b6ddb9037",
+                  "research/runtime/public-resident-linear-pass-shadow-write-failure-20261011.json": "4428a334a6d7799f8797278de4f477bab4d1a342a7ff65823da7ec53f2c84752",
+                  "research/runtime/public-resident-linked-provenance-fixtures-20261011.json": "dbffa76f9f01cbdc71e0ce7800c771a52a69a6fcba3be690387cf883328ec22a",
+                  "research/runtime/public-resident-master-combat-deadline-negative-20261011.json": "e63ed11aca4f3ea8930749adc3c42670193e72c386661c72d7ff77755b0b4a23",
+                  "research/runtime/public-resident-master-combat-diversion-negative-20261011.json": "8d48079e0d7207b92b09fe9f2976956044f21f0ed8f009650cde5598009a9cca",
+                  "research/runtime/public-resident-master-final-campaign-20261011.json": "0c5fcb1d82336ce42f33fee17a88dc8f8637cd93cbbfb4abdd7b0b59ca9cca93",
+                  "research/runtime/public-resident-master-final-fixtures-20261011.json": "1e598b7f073dabd02d951bf7072dc59ff267ed7904c2e78f1fb5f581bddeb444",
+                  "research/runtime/public-resident-master-integration-fixtures-20261011.json": "5911bedb738f8907dfe94d8ad3363611892533ca8fb7394fa9e75416173735df",
+                  "research/runtime/public-resident-master-window-negative-20261011.json": "bb7d37c9d35b948f5b5710fe31ecaab814cf4f81d4e318aefc192c10ae37b93d",
+                  "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json": "4bbdce487aff316962fb4c9db9aa6b5977d7416143673e3184ccd175abc94381",
+                  "research/runtime/public-resident-profile-gap-negative-20261011.json": "c5fa4f90803cbe71aaaf1e5e7c5861da2f07a0fa49b94f373292c513e7a3195d",
+                  "research/runtime/public-resident-profile-quit-negative-20261011.json": "9115415e4994924cde3a011bd89be15900d62c6091715b114ea9ccff94299882",
+                  "research/runtime/public-resident-region-epoch-fixtures-20261011.json": "d2f2109eb739464364373267a0b7d5fc34d2f14cc950234fbcfe1c19f1fe6a9d",
+                  "research/runtime/public-resident-region-epoch-tutorial-failure-20261011.json": "298835ec9e4f3c5a660dd97c634af262f262df2d90e85c014668f0ddfaabb89a",
+                  "research/runtime/public-resident-render-provenance-negative-20261011.json": "84c1718a8c97d5e52c1078a77e0fb01d20440f5c46202ccb9dc3498c22ca0f8b",
+                  "research/runtime/public-resident-retreat-edge-input-20261011.json": "b8e788537d64d8b29b0aa44e398273c8349ace119d7f4a3feadc9b1d1e081123",
+                  "research/runtime/public-resident-retreat-edge-negative-20261011.json": "2c7e74d6e934b0b2cbc0f7f26bad5c52d9678417b5bab40e96b7ca2cb410b8c0",
+                  "research/runtime/public-resident-shadow-envelope-dialogue-negative-20261011.json": "238dc0d3f2f91a48ce032cdcc41f687f791aa0fecf04c53dddf51e1a2d80310d",
+                  "research/runtime/public-resident-shadow-envelope-fixtures-20261011.json": "6ea6fec08a5d93fb6e432ef5d98cce7d56e421e0715b05ab82769164d74da5fc",
+                  "research/runtime/public-resident-shadow-fixtures-20261011.json": "b2407aef4423f9e24080fdc3e148333747c5f5511735dff38268236d38908348",
+                  "research/runtime/public-resident-shadow-pass-displacement-failure-20261011.json": "6b027e6b91e48f03b1aad1312e5af387cb777bfdd4cf166783f385b2f9150ac3",
+                  "research/runtime/public-resident-surface-refusal-20261011.json": "9383b8a7793000447874594a4c71ec34d23ddce04b806fbe5dfe281198b25053",
+                  "research/runtime/public-resident-world.md": "6df583f6fe86bad6fc42f270427a8fd245001812e0bfe7817191e1ccc00bb5da",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "research/runtime/resident-drawing-history-gap.md": "dd4e54645fc7bc72cf372e03cdb34aa51cae4a181c1d877ba8d9c828317e6d4f",
+                  "research/runtime/scene-production-full-campaign-20261011.json": "5bebd37919f87bebc5d7905cfda93aa429f021160e46c3541f7ae00ee391194c",
+                  "research/runtime/scene-production-prepared-campaign-20261012.json": "d33c3044dab74e671839a058beb320e3f12b78bc1b593fc9414786622f0e47ec",
+                  "research/runtime/scene-production-slice-campaign-20261011.json": "5a9b185d1fdc3a6a9bda87418c8721b4e07a28fad0fdd245119c74555e8c39a3",
+                  "runtime/render/lock_lifecycle.h": "b8ea7a58bdacac385bb9eb03b138f70668627d71370d0b2d80e68a02c6ea35b3",
+                  "runtime/render/owned_session.h": "21f94c6770a2c141765b1d7df62f414894fc137bfd399b4c6f7354a83737c982",
+                  "runtime/scene/canvas_producers.S": "d565108a43b56c46cccb5c0e55c9d001b7514e5bb16391312482b5fb6668fa4c",
+                  "runtime/scene/canvas_producers.c": "7c320b307325418c66f598dee710e192f54e5c67ba926816c79b46c5b8a81fa3",
+                  "runtime/scene/world_continuous.c": "b21564f83b7cba127318f343384efb127aee217a272350c14599abba10440b76",
+                  "runtime/scene/world_deferred.h": "86fddb9c4400e4500c6d1e3d0b70f948db2ee49995f1d10b127fc15b7ab2d1e4",
+                  "runtime/scene/world_producer_bypass.c": "0fa8a6914e726ca8ff0f55708f6ae5da0a525b494f597bdfe0cf063d5c53dad7",
+                  "runtime/scene/world_raster_batch.c": "451118a97af53719bec458c5b4b7e9fb940aabac9feda0fd0b2edfd50ecb77a0",
+                  "runtime/scene/world_raster_callers.h": "7b1dc71f105a199ceb448b6473d36ff5f62f3286459ec77181cac3c0ced466be",
+                  "tests/menu-resident-quit-test.cpp": "c3459f56bbc6e5f050bc8f2fc422c87af62d4079602118a47aab3c64199c50fa",
+                  "tests/minimap-candidates-test.cpp": "7b0c9145d9a8468e3e8b40e0f02aec2fed77af492e67e29a35aaa9d01108c5a1",
+                  "tests/minimap-producer-test.cpp": "abc136cb5d79448844ac3057047b8428878c865abc6c4c6e3f8ff39909d6accd",
+                  "tests/native-shell-provenance-test.py": "ded15c2e7cbfeda50e3dda456322aa6f2428269f7dd497da83c73b11bc5dc02d",
+                  "tests/render-resident-world-test.cpp": "ad8ea5c52e4815a4601de8f029df33f1a9757a5475a4b889f193efa827ed636f",
+                  "tests/resident-leaf-abi.S": "15f7ce952fb39bce88e45fada155b750b4fc2ee72ee7d2d54c0fa290cbdab7f1",
+                  "tests/resident-leaf-abi.c": "3d5d5a47b77ece7871533f7d10043849944947c41b85169d7f340c138b71cbe9",
+                  "tests/resident-public-block-replay.cpp": "a91f49af8bfbac1269c6552baff292be842de971fa487d41d664408ff15d2ea2",
+                  "tests/scene-renderer-test.cpp": "a4441be3137cf5324a21a55317cce7e69d8787502cf8f591bdc930ac6e377e7e",
+                  "tests/test-rendering-high-closure.py": "7e6ba6befe2a65f9ff7357eaa619e159053e5d9bfb6038dbbc7745d145fa9657",
+                  "tests/world-deferred-test.cpp": "a668ac31155df0a59f9b5a3ba42eae753af09a80b636c3b0f9d97781c1ef67b3",
+                  "tests/world-raster-batch-test.cpp": "23d4920ae33526b30c640e161d9a7a56684a62c866731e36ef35b8fa2b9dc5a3",
+                  "tools/check-rendering-high-closure.py": "dca1c3d8c4377c6631eeb727df5af81b1648cd3965407e22323d7d029f764bad",
+                  "tools/inspect-canvas-producers.py": "58ccca26889da4fbf067eb0e95b4afddcd7ca0919a54263bcf4ebb3b90f2e231",
+                  "tools/test-native-campaign.py": "7b73601422d0db7cccbc0a37179166bb815369e9338ceaf6968d0c908e7e21ad",
+                  "tools/test-public-resident-fixtures.py": "3998effedfe514403ad5016f15959c1b0a2ba91a8976e234c74c202ff0014b21",
+                  "tools/test-resident-leaf-abi.py": "9c08904e83b51f295de8c317a2fea0f59f7312d9b686c73ac8083aebefee1dd0",
+                  "compat/legacy/world_continuous.cpp": "d96651764ec9697a322c052b8e5adc364c1fb103da9a57f7e3c744ba32762276",
+                  "tests/native-cpu-materialization-test.cpp": "8e125e14aa800c70d70278e2e3a78e719dbd1ffe399bf6fc6f95de659882583f",
+                  "tests/native-cpu-reply-publication-test.cpp": "ffbcd3bcaa73d7ea857c7410f7892ce474e01d24c40d9f318e62e571e400d31a",
+                  "tests/render-command-consumer-test.cpp": "2f076ff4f5b4b5beb5357f11e91ec2acfcf26c8f8b964aac4827a3f127fad6d0",
+                  "tests/resident-bind-admission.c": "2fa0eb54f9deed960ce2786e7dfabe43dadd3d7c2ac2a8ca1c5c2d9943b77201",
+                  "tests/resident-canvas-transition-test.cpp": "64ca53f5be48308d23f7c9c4f7bf2b0a8823e7578361f18fc910d2aa2c759c9a",
+                  "tests/world-continuous-normal-test.cpp": "a08602ecdbaa4d1ffa737c8668f6fd7adb7c2e01e5a7ff1ddf8b43609bfad668",
+                  "tests/world-gpu-resident-test.cpp": "60b07d8772c2e908162b268936f140c86a5df85134a3118308d9b1c8a9756031",
+                  "research/runtime/third20-implementation-progress-20261020.md": "024a20f4bf33aa011b70c64d3db8bd9cdb70b63adc48f1175c7a4fa2400083d1",
+                  "tools/test-third20-native.py": "5c6bc3aed0ba59a7f5e52be071d260740ac868598e9d83b89cd5b9782a366b0f",
+                  "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8",
+                  "research/runtime/rendering-seventeenth-five-20261023.md": "38c4b886acc80857594755c12b03772c103a1f82baafb53b6a7107141f65b4e2",
+                  "tests/rendering-seventeenth-five/CMakeLists.txt": "b834065525f85a5ac28716b21a15b06163ab0abedaf4af3812c441d83a7e371c",
+                  "tests/test-rendering-seventeenth-controls.py": "0e603ccc797bb9b25b06441cb324720d51f3f2d9fb3faf77fc309ce4ea8f15a6",
+                  "tools/rendering_seventeenth_controls.py": "82a4be5d1c2c9a4f37cf77160baded19b13ca583f5c22090365a8518540821fc",
+                  "tools/test-rendering-seventeenth-five.py": "3345542437d7bc51a658f8ea92daf63975a30d0b4526991449242a0a8a760f08"
+                },
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "Critical UI closeout: newly added concurrent links are pinned only to identify their unreviewed bytes. They remain pending_source_review; no implementation assessment, validation or old fingerprint is renewed.",
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "scope_resolution_record": "research/runtime/coverage/high-resident-supplier-crosswalk-current-20261020.json",
+                "scope_domains": [
+                  {
+                    "name": "world",
+                    "disposition": "supplied",
+                    "finding": "Versioned owned source/queue transport and native retained GPU history, joined by ResidentWorldSession polling and exact original return verification.",
+                    "validation": "All original producers, arbitrary source/physical aliases and full original pixel equivalence remain outside these bounded contracts.",
+                    "suppliers": [
+                      "NR.world-continuous-source",
+                      "NR.world-gpu-resident-frame",
+                      "NR.world-producer-handoff"
+                    ],
+                    "paths": [
+                      "apps/qt-shell/resident_world_session.cpp",
+                      "compat/legacy/world_continuous.cpp",
+                      "renderer/command_consumer.cpp"
+                    ]
+                  },
+                  {
+                    "name": "commands_hud",
+                    "disposition": "supplied",
+                    "finding": "Ordered V4 native World import followed by masked owned CPU HUD updates and ordered native copies/presentation. Unknown history remains a terminal refusal.",
+                    "validation": "Encountered admitted reader families do not prove every HUD/picking route, all writer ownership or scene equivalence.",
+                    "suppliers": [
+                      "NR.surfaces",
+                      "NR.continuous-mutations",
+                      "NP.native-history-reader-routing",
+                      "NP.explicit-native-cpu-materialization"
+                    ],
+                    "paths": [
+                      "apps/qt-shell/live_command_renderer.cpp",
+                      "renderer/command_consumer.cpp"
+                    ]
+                  },
+                  {
+                    "name": "cpu_reply",
+                    "disposition": "supplied",
+                    "finding": "Explicit V5 CPU_READ uses counted native readback and exact session/ticket/surface/extent/history validation, followed by complete atomic volatile-file publication.",
+                    "validation": "This explicit requested CPU snapshot is separate from zero-pixel World acknowledgements and does not authorize arbitrary stale CPU reads.",
+                    "suppliers": [
+                      "NP.explicit-native-cpu-materialization",
+                      "NP.cpu-history-admission"
+                    ],
+                    "paths": [
+                      "apps/qt-shell/cpu_reply_file.hpp",
+                      "apps/qt-shell/live_command_renderer.cpp",
+                      "renderer/command_consumer.cpp",
+                      "runtime/render/owned_session.h"
+                    ]
+                  },
+                  {
+                    "name": "bindings_retirement",
+                    "disposition": "supplied",
+                    "finding": "Bounded copy/tracker admission, generation/nonce-bound GPU leases, complete-queue canvas changes and acknowledged normal Quit retirement. Aggregate glue owns the retained frame values and cancels/joins its workers.",
+                    "validation": "Cross-object physical aliases, arbitrary COM reference semantics, unsampled threads/routes and full live-session acceptance remain separate.",
+                    "suppliers": [
+                      "NR.continuous-resource-lifetime",
+                      "NR.resident-bind-admission",
+                      "NR.resident-normal-shutdown",
+                      "NR.resident-world-canvas-transition"
+                    ],
+                    "paths": [
+                      "apps/qt-shell/resident_world_session.cpp",
+                      "runtime/render/owned_session.h"
+                    ]
+                  }
+                ],
+                "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged.",
+                "review_reason": "Append current reviewed test/document links and fresh NT17 evidence; preserve historical source fingerprints and every prior work review."
               }
             ],
             "planning_history": [
