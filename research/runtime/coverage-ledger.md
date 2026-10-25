@@ -22021,3 +22021,45 @@ exact; inherited lifecycle records and all negative results retain their hashes
 and any current source drift. Merged Python controls and coverage accounting
 are separate from new original/live/scene/performance validation. See
 [integration scope and records](rendering-twentythird-master-integration-20261025.md).
+
+
+## Ten bounded surface component implementations — 2026-10-25
+
+N24 adds callable services for five recovered copy-wrapper paths, partial/full
+fills, immutable cursor bitmap reloads, shared-palette indexed recovery and
+logical vertical-bar GPU surfaces. These are ten scoped child implementations
+within five existing partial parents. Aggregate statuses remain partial; no
+whole renderer or original ownership closure is inferred. See
+[scope and task mapping](rendering-twentyfourth-ten-20261025.md).
+
+The [final execution](rendering-twentyfourth-ten-results-20261025/execution-5.json)
+passes429Release-active checks and22refusals in each Release and ASan/UBSan mode,
+including40copy cases,5fill/loss/budget cases,7reload/recovery cases and96owned
+bar surfaces. All966copy geometry/flags/mutation cases match the unchanged
+original five entries. The separate original logical bar supplier matches3444
+cases/8512504words; native bar allocation, indexed recovery and resource binding
+retain comparison none. Original ABI/pointer identity, real driver faults,
+complete original resource lifetimes, scene/hardware/live/FPS remain separate.
+
+The first dependency check refused unnormalized compiler paths; its exact source
+variants and negative report remain. Qt startup failures and their compressed
+core/diagnostics are retained independently. A private authenticated TCP Xvfb
+in a user namespace with its own disk-backed temporary directory allows the
+controls to run without the host tmpfs lock/socket quota. All final sources and
+inputs remain stable; both original-manifest bookends pass. The retained
+[incoming history review](rendering-twentyfourth-ten-results-20261025/incoming-history.json)
+checks68exact transitions in the preceding master merge. Historical hashes and
+acceptance failures remain unchanged. SQLite reports, review records and verified
+local backups are durable; bounded CMake build trees remain temporary reusable
+execution outputs on the Videos drive. Concurrent main launcher edits are excluded.
+
+The initial UI control refused the new child entries because their subsystem
+metadata was outside the curated rendering track. Correcting only these new
+classifications to existing rendering categories leaves all engine contract and
+execution-source bindings unchanged. The failed control and exact initial
+classifications remain separate SQLite evidence.
+
+A subsequent UI run passes37controls and exposes the previous fixed total for
+scoped High components. Its replacement names the nine new High services
+explicitly; the Medium bar service remains separate. This updates catalog
+accounting without changing engine scope or execution fingerprints.

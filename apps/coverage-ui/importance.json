@@ -3443,6 +3443,76 @@
       "work_type": "capability",
       "reason": "Native malformed queue admission preserves owned visibility state before the pass; bounded assurance separate from original world ownership and live rendering.",
       "contract_sha256": "0c20059f54fa647f63d7e27c75e4398af5716c9ac4640d72ca44384982ddd04d"
+    },
+    {
+      "behavior": "RE.surface-wrapper.opaque-guarded",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Opaque guarded surface copy: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "4deab1c0b778c4c2ce77e50d237be9dcc57f021cf2fadc656117f5d98354bda9"
+    },
+    {
+      "behavior": "RE.surface-wrapper.opaque-recovering",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Opaque surface copy geometry: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "1a41f44c00fe2b13c26672cde6ee203b28ba610b50460a098377f56c5d7c24ad"
+    },
+    {
+      "behavior": "RE.surface-wrapper.keyed-recovering",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Keyed surface copy geometry: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "b7bd918ba78fef00494fb1181740990e266a6b49f5ffd96c7cf5cfc605af6d55"
+    },
+    {
+      "behavior": "RE.surface-wrapper.keyed-rectangle",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Keyed rectangle copy geometry: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "ad231c7752bd7201900254e578ce17a357438e90c613802664af3b4eca449f82"
+    },
+    {
+      "behavior": "RE.surface-wrapper.keyed-explicit",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Explicit keyed source/destination rectangles: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "e376c34bcfe677945c01ce33cf5105984b034a1549a0e186dd97df287213ea64"
+    },
+    {
+      "behavior": "RE.surface-wrapper.partial-fill",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Owned partial-fill wrapper service: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "d944cabb0fb38f550525fdf142068288230c3678fab74bd3a5fe65fb8b15bd28"
+    },
+    {
+      "behavior": "RE.surface-wrapper.full-fill",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Owned full-fill wrapper service: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "128f41d736aa481d0a52721a65d7bb9ef6ca9356e62b86d45f31084531fc08f0"
+    },
+    {
+      "behavior": "NP.surface-bitmap.owned-cursor",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Owned fixed-path cursor bitmap binding: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "5dea2dabf0b953397d3e8c1db9012346709590dd3595214da7ec83af76a07c06"
+    },
+    {
+      "behavior": "NP.surface-bitmap.indexed-recovery",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Shared-palette indexed bitmap recovery: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "625586b6949b3c1c74fde89b54802f8b5f4373af84484693518c9453ccd53a00"
+    },
+    {
+      "behavior": "NP.vertical-bar.owned-surface",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "Owned logical vertical-bar surfaces: A bounded visual source feature with independent parameter/pixel and ownership controls. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "56142ddc56df191da13522f818778ee486945f2368433b63df093c6ac0e0aa30"
     }
   ],
   "tranche_plan": {

@@ -16676,7 +16676,14 @@
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N24 supplies the separately registered child RE.surface-wrapper.opaque-guarded within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation.",
+        "N24 supplies the separately registered child RE.surface-wrapper.opaque-recovering within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation.",
+        "N24 supplies the separately registered child RE.surface-wrapper.keyed-recovering within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation.",
+        "N24 supplies the separately registered child RE.surface-wrapper.keyed-rectangle within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation.",
+        "N24 supplies the separately registered child RE.surface-wrapper.keyed-explicit within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation."
+      ]
     },
     {
       "id": "NR.surface-driver-fixtures",
@@ -18435,7 +18442,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N24 supplies the separately registered child NP.surface-bitmap.indexed-recovery within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation."
+      ]
     },
     {
       "id": "RE.surface-reload.cursor-sentinel",
@@ -18557,7 +18567,10 @@
         "comparison": "recorded",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N24 supplies the separately registered child NP.surface-bitmap.owned-cursor within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation."
+      ]
     },
     {
       "id": "NR.surface-reload.bitmap-dc",
@@ -18897,6 +18910,10 @@
       },
       "validation_dependencies": [
         "protocols/include/mnm/world_raster_batch_v3.h"
+      ],
+      "remaining_gaps": [
+        "N24 supplies the separately registered child RE.surface-wrapper.partial-fill within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation.",
+        "N24 supplies the separately registered child RE.surface-wrapper.full-fill within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation."
       ]
     },
     {
@@ -68723,7 +68740,8 @@
       },
       "remaining_gaps": [
         "Original02reaches five generated4x75bars with zero recorder failures; isolated reference04matches3444cases/8512504words and the combined source cohort matches49920000CPU pixels. Full allocation/reuse lifetime, arbitrary source-buffer mutation, current/max arithmetic, original bad inputs and all display/journey behavior remain unproved. Default mode retains53hooks; new56-site ABI and cache guards are scoped fixtures.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "N24 supplies the separately registered child NP.vertical-bar.owned-surface within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation."
       ]
     },
     {
@@ -146756,6 +146774,913 @@
       },
       "remaining_gaps": [
         "Strict final-source10/30second and public NVIDIA lifecycle cases pass. The broader public combat/spell/portrait case fails: a player Fireball cast was observed but no qualifying enemy damage; aiming versus game behavior remains unclassified. This separate failed case does not invalidate the accepted narrower lifecycle or supply combat acceptance. Historical NT17 ingress cause remains unclassified;69pre-existing source differences precede this work. Full14journey acceptance, wizard-movement outcomes, complete original ownership, all optional routes and physical compatibility remain open."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.opaque-guarded",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Opaque guarded surface copy",
+      "scope": "Successful guarded opaque copy argument planning and owned one-call execution: null-interface bypass, supplied Blt/BltFast and WAIT policy, signed32 wrapping and destination-only primary-window translation. Source and caller destination rectangles remain unchanged. No original error/driver/ABI/global lifetime or whole-function claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817184,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "N24.copy-original-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Successful guarded opaque copy argument planning and owned one-call execution: null-interface bypass, supplied Blt/BltFast and WAIT policy, signed32 wrapping and destination-only primary-window translation. Source and caller destination rectangles remain unchanged. No original error/driver/ABI/global lifetime or whole-function claim."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.opaque-recovering",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Opaque surface copy geometry",
+      "scope": "Successful opaque recovery-wrapper copy geometry and owned one-call execution, including null-interface bypass, supplied Blt/BltFast/WAIT policy, wrapped destination arithmetic and window translation. This child covers the successful argument path only; its error/retry/reload body and original COM/window lifetimes are separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "N24.copy-original-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Successful opaque recovery-wrapper copy geometry and owned one-call execution, including null-interface bypass, supplied Blt/BltFast/WAIT policy, wrapped destination arithmetic and window translation. This child covers the successful argument path only; its error/retry/reload body and original COM/window lifetimes are separate."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.keyed-recovering",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Keyed surface copy geometry",
+      "scope": "Successful source-keyed recovery-wrapper argument planning and owned one-call execution. Preserve source rectangle, supplied API/WAIT policy,32-bit wrapped destination and destination-only primary-window translation. Missing native handles are refused. Original error/retry/reload and malformed pointers, driver output and live ownership are separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818528,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "N24.copy-original-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Successful source-keyed recovery-wrapper argument planning and owned one-call execution. Preserve source rectangle, supplied API/WAIT policy,32-bit wrapped destination and destination-only primary-window translation. Missing native handles are refused. Original error/retry/reload and malformed pointers, driver output and live ownership are separate."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.keyed-rectangle",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Keyed rectangle copy geometry",
+      "scope": "Successful keyed rectangle wrapper argument planning and owned one-call execution with supplied Blt/BltFast/WAIT policy,32-bit wrapping and destination-only primary-window translation. Caller rectangles remain unchanged; native handle refusal and existing backend clipping policy are distinct from recovered forwarding. Original failure and live behavior remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819024,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "N24.copy-original-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Successful keyed rectangle wrapper argument planning and owned one-call execution with supplied Blt/BltFast/WAIT policy,32-bit wrapping and destination-only primary-window translation. Caller rectangles remain unchanged; native handle refusal and existing backend clipping policy are distinct from recovered forwarding. Original failure and live behavior remain separate."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.keyed-explicit",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Explicit keyed source/destination rectangles",
+      "scope": "Successful explicit source/destination rectangle planning and owned one-call execution: unconditional Blt KEYSRC plus WAIT, unchanged source and in-place destination-only primary-window translation with32-bit wrap. No wrapper cropping or dimension normalization. Native backend may refuse stretching after mutation. Driver/COM/failure/global lifetimes and live replacement are separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819328,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "N24.copy-original-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Successful explicit source/destination rectangle planning and owned one-call execution: unconditional Blt KEYSRC plus WAIT, unchanged source and in-place destination-only primary-window translation with32-bit wrap. No wrapper cropping or dimension normalization. Native backend may refuse stretching after mutation. Driver/COM/failure/global lifetimes and live replacement are separate."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.partial-fill",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Owned partial-fill wrapper service",
+      "scope": "Owned optional-rectangle fill service composing existing recovered low-WORD color and partial-fill scheduling with owned backend admission. Successful fill draws once; a lost draw restores/reloads without an automatic second fill. Explicit key/callback/global-cursor bindings and bounded budget are supplied. Physical driver faults, original runtime resource acquisition and full session replacement are excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814976,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned optional-rectangle fill service composing existing recovered low-WORD color and partial-fill scheduling with owned backend admission. Successful fill draws once; a lost draw restores/reloads without an automatic second fill. Explicit key/callback/global-cursor bindings and bounded budget are supplied. Physical driver faults, original runtime resource acquisition and full session replacement are excluded."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.full-fill",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Owned full-fill wrapper service",
+      "scope": "Owned whole-surface fill service composing existing recovered low-WORD color and full-fill scheduling with owned backend admission. Report initial result, restore/reload on loss and perform the bounded second fill in original order. Native draw budget exhaustion is an explicit incomplete result. Original driver failures/resource acquisition and live replacement remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned whole-surface fill service composing existing recovered low-WORD color and full-fill scheduling with owned backend admission. Report initial result, restore/reload on loss and perform the bounded second fill in original order. Native draw budget exhaustion is an explicit incomplete result. Original driver failures/resource acquisition and live replacement remain separate."
+      ]
+    },
+    {
+      "id": "NP.surface-bitmap.owned-cursor",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned fixed-path cursor bitmap binding",
+      "scope": "Immutable prevalidated bounded1/4/8/24-bit sequential BMP resource binding from the supplied fixed cursor-path reader, with independent callback lifetime and owned DC acquisition/release. Missing input is optional; malformed/unsupported input is refused before a surface mutation. Retain the recovered sequential parser policy. No OS resolver/GDI/COM error or live original recovery equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Immutable prevalidated bounded1/4/8/24-bit sequential BMP resource binding from the supplied fixed cursor-path reader, with independent callback lifetime and owned DC acquisition/release. Missing input is optional; malformed/unsupported input is refused before a surface mutation. Retain the recovered sequential parser policy. No OS resolver/GDI/COM error or live original recovery equivalence."
+      ]
+    },
+    {
+      "id": "NP.surface-bitmap.indexed-recovery",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Shared-palette indexed bitmap recovery",
+      "scope": "Explicit owned indexed bitmap Restore/reload service requiring the expected shared palette identity before mutation. Retain palette identity and entries, including updates during loss; reload through an owned DC and define only the written bitmap region. This is native recovery composition, not original unknown restored bytes, allocation, driver or live recovery equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Explicit owned indexed bitmap Restore/reload service requiring the expected shared palette identity before mutation. Retain palette identity and entries, including updates during loss; reload through an owned DC and define only the written bitmap region. This is native recovery composition, not original unknown restored bytes, allocation, driver or live recovery equivalence."
+      ]
+    },
+    {
+      "id": "NP.vertical-bar.owned-surface",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned logical vertical-bar surfaces",
+      "scope": "Owned RGB565/RGB555 image and GPU surface construction from bounded width/height2..128 and fill0..height-2, composing the existing recovered logical bar pixel supplier. Reject invalid parameters before allocation and return a caller-owned surface reference. Original pixel supplier comparison is separate from native allocation/reuse/resize lifetime; no whole-frame, original constructor or live replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned RGB565/RGB555 image and GPU surface construction from bounded width/height2..128 and fill0..height-2, composing the existing recovered logical bar pixel supplier. Reject invalid parameters before allocation and return a caller-owned surface reference. Original pixel supplier comparison is separate from native allocation/reuse/resize lifetime; no whole-frame, original constructor or live replacement claim."
       ]
     }
   ],
@@ -332618,6 +333543,102 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "N24.surface-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten bounded component implementations under five partial surface parents. Native Release and ASan/UBSan controls plus fresh unchanged original copy-argument geometry and bar-supplier comparisons. No real driver, ABI pointer identity, original copy failure/retry, whole-session, hardware, performance or live replacement claim. Fill, resource/recovery and bar allocation composition do not receive original comparison credit.",
+      "record": "research/runtime/rendering-twentyfourth-ten-results-20261025/execution-5.json",
+      "sha256": "0756d17173f465f5622f801ad3f5ccd0a33cfde48eb4f1de60b73034f622298d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/copy/exact_geometry_flags_mutation",
+          "equals": true
+        },
+        {
+          "pointer": "/original/bar_supplier/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N24.copy-original-20261025",
+      "kind": "isolated_original",
+      "scope": "Fresh unchanged original five successful copy-wrapper argument paths versus portable native planning.966 controlled cases: geometry,32-bit wrap, flags, window routing and caller rectangle mutation only. Original ABI/pointer identity fields are excluded. No original driver output, copy failure/retry/reload, fill/recovery/bar allocation or live credit.",
+      "record": "research/runtime/rendering-twentyfourth-ten-results-20261025/execution-5.json",
+      "sha256": "0756d17173f465f5622f801ad3f5ccd0a33cfde48eb4f1de60b73034f622298d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/original_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/copy/exact_geometry_flags_mutation",
+          "equals": true
+        },
+        {
+          "pointer": "/original/bar_supplier/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -360285,7 +361306,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-f7d00a54e9334820a1fad989236657140e1e37ace2c8b42f0076287bb8c920c7.json",
-    "sha256": "f7d00a54e9334820a1fad989236657140e1e37ace2c8b42f0076287bb8c920c7"
+    "path": "research/runtime/coverage/source-index-4d9935595abaaba302670c13eb658e384064929cd1655c773d16c551c6002c02.json",
+    "sha256": "4d9935595abaaba302670c13eb658e384064929cd1655c773d16c551c6002c02"
   }
 }
