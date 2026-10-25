@@ -23,8 +23,9 @@ struct BmpError {
     std::optional<Error> input;
 };
 using BmpResult=std::variant<BmpImage,BmpError>;
-// BM files with a 40-byte BITMAPINFOHEADER, 24-bit BI_RGB, one plane.
-// Both signed-height orientations are supported; other modes are explicit errors.
+// BM with 12-byte core or 40-byte information headers. Owned RGB output.
+// Indexed 1/4/8, RGB555/BGR/BGRX, 16/32-bit RGB masks, bottom-up RLE4/8.
+// No alpha interpretation; unsupported DIB headers/compressions are errors.
 BmpResult decodeBmp(const std::vector<std::uint8_t>&,const BmpLimits& limits={});
 BmpResult loadBmp(AssetFile&,const BmpLimits& limits={});
 }
