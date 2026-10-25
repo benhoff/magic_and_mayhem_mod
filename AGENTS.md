@@ -1,5 +1,15 @@
 # Magic & Mayhem Reverse Engineering
 
+## Machine-specific instructions
+
+Before starting work, read `AGENTS.local.md` beside this file if it exists and
+apply it in addition to these shared instructions. For a linked Git worktree
+without its own supplement, read `AGENTS.local.md` from the main checkout if
+present; locate that checkout using `git worktree list --porcelain`.
+The supplement contains local storage limits, paths and build preferences.
+Keep it untracked and do not copy it to other machines. If absent, continue
+with these shared instructions.
+
 ## Goal
 
 Build a documented, reproducible reverse-engineering and modding toolkit for
@@ -53,58 +63,10 @@ changes.
 
 ## Working storage budget
 
-- Retain at least 90 GiB of filesystem free space on the main checkout's drive
-  (explicitly approved by the user on 2026-10-19 for tranche 2 completion and
-  tranche 3 issue work).
-  There is no fixed size cap on `working/`, including nested worktree output.
-- Before a storage-producing experiment or large build, use the main checkout's
-  `tools/working-retention.py run --reserve-gib <estimated-output> -- <command>`.
-  If the preflight refuses, review storage or obtain an explicit budget change
-  before proceeding. The guard monitors free space every two seconds and stops
-  its launched process group below the 90 GiB reserve. Reservations are estimates;
-  this is not a filesystem quota and cannot constrain other writers.
-- Use `tools/working-retention.py inventory --output <new-report-path>` to prepare
-  cleanup. Preserve registered worktrees, referenced evidence and `.retain` pins.
-  A review candidate is not permission to delete; inspect dependencies, preserve
-  unique sources and raw evidence, and verify any archive before cleanup.
-- Keep installations and Wine prefixes isolated. Prefer bounded capture counts
-  and completed-run retention over accumulating full disposable copies. Record
-  storage reports under `working/retention/`; do not refresh historical evidence
-  hashes or remove originals to meet the budget.
-- Check free space at the start of a work session, at least daily during active
-  work, and after each build/experiment batch. Review storage when main-drive
-  free space is below 150 GiB, or a completed batch has produced at least 10 GiB.
-  Aim to restore 180 GiB free through eligible cleanup; 90 GiB remains the hard
-  reserve, not the normal operating target. Do not rescan the whole tree before
-  every command: retain one inventory per maintenance pass and refresh affected
-  activity, dependencies and file identities immediately before removal.
-- Periodic maintenance is authorized by the user on 2026-10-20. Within this
-  standing authorization, archive and remove only reviewed, ignored payloads in
-  completed/inactive runs, including ignored output inside registered worktrees.
-  Preserve the source checkouts, unique sources, reports, configuration, saves,
-  current fixture/tool inputs, all `.retain` pins, active/recent runs and the
-  newest two runs per group. Keep files modified within 24 hours and directories
-  active within the past hour. Check host-visible processes and Wine prefixes;
-  old timestamps and a manifest alone do not establish inactivity.
-- Before maintenance removes a local payload, retain an exact file-level plan,
-  verify its complete cold copy and both durable catalog receipts, and recheck
-  the source identity, pins, current consumers and activity. Record reclaimed
-  allocated bytes separately from filesystem free-space changes; verify a real
-  restore and preserve failed attempts. Historical source drift is not permission
-  to discard original captures or negative evidence. If no safe candidates remain,
-  report the shortfall rather than weakening these exclusions.
-- At batch closeout, identify durable evidence and temporary execution outputs.
-  Prefer bounded captures and reusable, marked, idle, exclusively locked fixture
-  prefixes over fresh full installations for every attempt. Avoid full source
-  snapshots when an exact Git revision plus preserved unique changes supplies the
-  same reproducibility; never remove existing source snapshots without review.
-- The verified cold archive is `/var/local/magic-and-mayhem-archive` on the second
-  NVMe; keep at least 100 GiB free there. Automatic archiving inside experiment
-  launch remains disabled; the reviewed periodic maintenance above is separate.
-  Use `working-retention.py restore <working-path>` before
-  reading archived inputs. Include ignored worktree output only after inspecting
-  its activity; preserve tracked sources, pins and active/recent runs. An archive
-  is storage provenance, not fresh engine comparison or replacement evidence.
+Apply any machine-specific storage budget and staging preferences from
+`AGENTS.local.md`. Keep generated output bounded, preserve referenced evidence,
+unique inputs, `.retain` pins and active consumers, and review dependencies
+before cleanup. Follow the SQLite evidence preservation rules below.
 
 ## Reverse-engineering coverage upkeep
 
