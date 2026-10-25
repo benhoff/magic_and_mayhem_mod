@@ -1,6 +1,7 @@
 #pragma once
 #include "canvas_producers.hpp"
 #include "world_resources.hpp"
+#include "../../renderer/gpu_alternate_canvas.hpp"
 #include <memory>
 namespace mnm::legacy {
 WorldDraw producerWorldDraw(const CanvasProducer &);
@@ -45,12 +46,16 @@ public:
   std::uint64_t residentContextChanges() const { return residentContextChanges_; }
   const Profile &profile() const { return profile_; }
   render::ColourRectangleCacheStats colourCacheStats() const { return scene_?scene_->colourCacheStats():render::ColourRectangleCacheStats{}; }
+  struct AlternateStats { bool enabled=false; std::uint64_t publications=0,frames=0,copies=0,replays=0; };
+  AlternateStats alternateStats() const { return alternateStats_; }
 private:
   render::GlBlitter &renderer_;
   assets::AssetStore store_;
   assets::ResourceManager resources_;
   WorldResources bindings_;
+  std::unique_ptr<render::GpuAlternateCanvas> alternate_;
   std::unique_ptr<render::SceneRenderer> scene_;
+  AlternateStats alternateStats_;
   WorldFrame pending_;
   void beginFrame(const CanvasProducer&,const render::Image&);
   render::Image completeFrame(const render::Image*, bool exportPixels = true);

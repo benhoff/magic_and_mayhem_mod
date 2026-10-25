@@ -1,3 +1,27 @@
+## Native resident alternate canvas integration and original CFG search — 2026-10-25
+
+The opt-in native resident World route now owns a separate zero-padding GPU
+canvas under the existing native publication/frame lease. It seeds only native
+history, copies completed World back before UI, preserves prepared/retained
+replay and ordinary output leases across replacement, and retires on the render
+owner. Both640/800 modes,full-plane independent pixels,split checkpoints,invalid
+history and abandoned-frame cleanup pass:18source frames,48replays,29,721,600
+checks and zero remaining surfaces. Final live Apprentice observation passes
+255balanced source/import/return Worlds,556extra replays,811copy-backs,zero
+World/native/RGBA readbacks and normal Quit. `NP.alternate-canvas-resident-session`
+is scoped/live-observation; it does not publish either original pointer slot.
+
+Original recovery reviews542,955byte-checked instructions with direct-CFG
+constant propagation and11unit controls. Only the three established padding/flag
+writes overlap the reviewed globals;no pointer publisher is identified. All
+53,977computed stores,2,945unbounded bulk sites and2,948indirect edges remain
+open;27bounded bulk ranges do not overlap the pointer pair. Original allocator,
+natural publication,clear,base/source relationship,writers and retirement stay
+partial. Padded live semantics,async/device-recovery live runs,complete original
+frames and performance remain pending. Initiate Summon Zombie tutorial attempts
+retain the existing Mini/Hermes refusal;the game/tutorial is unchanged.
+See [integration,final evidence and retained failures](alternate-canvas-live-integration-20261025.md).
+
 # Engine modernization coverage ledger
 
 ## Native alternate canvas owner merged with current rendering — 2026-10-25

@@ -502,6 +502,7 @@ def main():
     parser.add_argument('--hitch-capture',action='store_true',help='Bounded warm active paint-hitch windows with queue/UI/lease state; requires frame trace')
     parser.add_argument('--frame-trace',action='store_true',help='Bounded public worker/source/GUI timeline; owned independent World only')
     parser.add_argument('--reuse-world-image',action='store_true',help='Experimental reuse of completed native GPU World between source updates')
+    parser.add_argument('--alternate-canvas',action='store_true',help='Opt-in native owned zero-padding GPU World target and ordered copy-back')
     parser.add_argument('--async-world',action='store_true',help='Experimental separate native GPU World producer and immutable bounded handoff')
     parser.add_argument('--hardware',action='store_true',help='Use a private no-monitor TITAN/NVIDIA display; refuse software fallback')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
@@ -579,6 +580,7 @@ def main():
         parser.error('--timeout must be between 30 and 600')
     if args.copy_diagnostic_scope!='world' and not args.gpu_copy_diagnostics:parser.error('All-copy scope requires --gpu-copy-diagnostics')
     if args.gpu_copy_diagnostics and not args.resident_world:parser.error('Copy diagnostics require resident World')
+    if args.alternate_canvas and not args.resident_world:parser.error('Alternate canvas requires resident World')
     if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
     if args.stress_seconds and not args.crowded_case and not 10 <= args.stress_seconds <= 120:parser.error('--stress-seconds must be 0 or 10..120')
     if not 1 <= args.min_fps <= 120:parser.error('--min-fps must be 1..120')
@@ -638,6 +640,7 @@ def main():
         if args.copy_diagnostic_scope=='all':declaration_command.extend(['--behavior','NP.native-copy-output-closure','--scenario','NP.native-copy-output-closure.campaign'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
         if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
+        if args.alternate_canvas:declaration_command.extend(['--behavior','NP.alternate-canvas-resident-session','--scenario','ACO3.resident-live'])
         if args.display_while_pending:declaration_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.public'])
         if args.frame_trace and not (args.no_route_screenshots or args.synchronous_route_capture):declaration_command.extend(['--behavior','HOST.native-route-capture','--scenario','HOST.native-route-capture.public','--behavior','HOST.native-capture-request-intake','--scenario','HOST.native-capture-request-intake.public'])
         if args.hitch_capture:declaration_command.extend(['--behavior','HOST.native-hitch-capture','--scenario','HOST.native-hitch-capture.public'])
@@ -743,6 +746,8 @@ def main():
     if args.frame_trace:env['MNM_NATIVE_FRAME_TRACE']='1'
     # Make the comparison independent of an inherited experiment setting.
     env['MNM_WORLD_IMAGE_REUSE']='1' if args.reuse_world_image else '0'
+    env['MNM_NATIVE_ALTERNATE_CANVAS']='1' if args.alternate_canvas else '0'
+    report['alternate_canvas_required']=args.alternate_canvas
     env['MNM_ASYNC_WORLD_GPU']='1' if args.async_world else '0'
     if args.worker_status_cadence:env['MNM_WORKER_STATUS_CADENCE']='1'
     if args.worker_status_every_turn:env['MNM_WORKER_STATUS_EVERY_TURN']='1'
@@ -1015,6 +1020,13 @@ def main():
                     report['native_cpu_materialization']=dict(count=h[5],**kinds,counts_sha256=sha(counts),last_surface=h[7],command_session=h[4],width=h[8],height=h[9],last_bytes=h[10],generation=h[11]|h[12]<<32,nonce=h[13]|h[14]<<32,sha256=sha(reply),scope='Explicit ordered CPU-reader snapshots, classified separately from ordinary World returns and original pixels')
                 if args.other_pixel_producers and args.normal_quit and not reply.exists():raise ValueError('Combined normal Quit did not exercise native CPU materialization')
                 resident=json.loads((roots[0]/'resident-world-report.json').read_text())
+                if args.alternate_canvas:
+                    alternate=resident.get('native_alternate_canvas',{})
+                    if (alternate.get('enabled') is not True or alternate.get('padding')!=0 or
+                        int(alternate.get('publications',0))<1 or
+                        int(alternate.get('frames',-1))!=int(resident['completed']) or
+                        int(alternate.get('copy_backs',0))<int(resident['completed'])):
+                        raise ValueError('Native alternate generation/frame/copy-back proof failed')
                 # Retain independent functional results even when source throughput
                 # fails. The identical rate gate is enforced before acceptance below.
                 report['ordinary_resident_gates']=validate_resident_cpu_census(resident,rate_floor,args.cpu_census_only,defer_rate_failure=True)
