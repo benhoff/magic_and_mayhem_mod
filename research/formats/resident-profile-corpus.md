@@ -69,3 +69,39 @@ complete V2 storage. Both complete decoded storage and stored input retain their
 16GiB limits. The selected generation count must be64..8192 for benchmarking.
 The source-file final size can exceed a failed in-game report's worker snapshot;
 only the post-cleanup corpus hash/size admits that diagnostic input.
+
+## Source-history version 3
+
+Explicit synchronous Save/Load capture requests V6 delivery and emits
+`MNMPROF3`. Ordinary profiling retains V2; owned/asynchronous delivery remains
+V5. Each V3 record has this 32-byte little-endian header:
+
+| Offset | Type | Field |
+| ---: | --- | --- |
+| 0 | u64 | Next World generation |
+| 8 | u64 | Source-chunk ordinal; zero denotes a World |
+| 16 | u32 | Source length |
+| 20 | u32 | Request length |
+| 24 | u32 | Compressed length |
+| 28 | u32 | Reserved, must be zero |
+
+Compression and exact inflation checks match V2. Nonzero chunk ordinals increase
+independently from one and require an empty request. Prefixes and their following
+World share the next World generation. Prefix application preserves the same
+resource/history instance and grants no World completion.
+
+The archive retains 8,192 total records (Worlds plus prefixes), 16 GiB raw/stored
+and a 256 MiB pending raw-byte limit. Saturation marks capture incomplete and
+never resumes a dropped stream. Retirement checks both accepted/written counters
+and source-chunk counts against the actual channel. Source-aware storage replay
+validates the whole archive, then applies every prefix before its selected World
+draws. Flat V1 benchmark normalization explicitly refuses V3 history; it cannot
+silently discard resource changes.
+
+Metadata checkpoints never write oracle pixels and do not consume the finite
+9,999-file/byte oracle budget. Finite pixel-oracle capture retains those checks,
+while every producer stream retains its existing record/byte envelopes.
+
+Fresh writer/reader controls and a complete captured Save/Load journey are
+recorded in the [Save capture recovery](../runtime/native-save-capture-recovery-20261025.md).
+Historical experiments and their original status/fingerprints above are retained.

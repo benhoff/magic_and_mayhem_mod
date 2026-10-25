@@ -25,19 +25,27 @@ int main(int argc,char** argv)try{
  require((requested.size()==3||requested.size()==4)&&selected.size()==unsigned(requested.size())&&*selected.begin()>1,"Three or four distinct World checkpoints required");
  auto opened=assets::AssetStore::create(argv[2]);if(auto* e=std::get_if<assets::Error>(&opened))throw std::runtime_error(e->detail);
  const auto store=std::get<assets::AssetStore>(std::move(opened));QDir out(argv[4]);require(out.mkpath("."),"Output directory");
- QFile input(argv[1]);require(input.open(QIODevice::ReadOnly)&&input.read(8)=="MNMPROF2","Compressed resident capture");
+ QFile input(argv[1]);require(input.open(QIODevice::ReadOnly),"Resident capture input");const auto magic=input.read(8);const bool sources=magic=="MNMPROF3";require(sources||magic=="MNMPROF2","Compressed resident capture");
+ quint64 chunks=0,blocks=0;
  render::GlBlitter renderer;quint64 generation=0;QJsonArray checkpoints;
  {
  render::GpuCanvasMirror mirror(renderer);
  legacy::CanvasProducerReplay producer([store](const auto& name){auto opened=store.open(name);if(auto* e=std::get_if<assets::Error>(&opened))throw std::runtime_error(e->detail);auto f=std::get<std::unique_ptr<assets::AssetFile>>(std::move(opened));auto bytes=assets::readWhole(*f,16*1024*1024);if(auto* e=std::get_if<assets::Error>(&bytes))throw std::runtime_error(e->detail);return std::get<std::vector<std::uint8_t>>(std::move(bytes));},&mirror);
  legacy::CanvasWorld world(renderer,store);
  while(generation<*selected.rbegin()){
-  const auto h=input.read(20);require(h.size()==20,"Truncated source header");
-  const auto g=qFromLittleEndian<quint64>(h.constData());const auto s=qFromLittleEndian<quint32>(h.constData()+8),r=qFromLittleEndian<quint32>(h.constData()+12),n=qFromLittleEndian<quint32>(h.constData()+16);
-  require(g==++generation&&g<=8192&&s>=16&&s<=16777216&&r>=64&&r<=197184&&n>4&&n<=s+r+(s+r)/1000+128,"Source bounds/order");
+  const auto h=input.read(sources?32:20);require(h.size()==(sources?32:20),"Truncated source header");
+  const auto g=qFromLittleEndian<quint64>(h.constData());const auto chunk=sources?qFromLittleEndian<quint64>(h.constData()+8):0;const unsigned offset=sources?16:8;const auto s=qFromLittleEndian<quint32>(h.constData()+offset),r=qFromLittleEndian<quint32>(h.constData()+offset+4),n=qFromLittleEndian<quint32>(h.constData()+offset+8);
+  require(!sources||!qFromLittleEndian<quint32>(h.constData()+28),"Reserved capture header");
+  require(g==generation+1&&g<=8192&&++blocks<=8192&&s>=16&&s<=16777216&&(chunk?r==0:r>=64&&r<=197184)&&n>4&&n<=s+r+(s+r)/1000+128,"Source bounds/order");
   const auto packed=input.read(n);require(packed.size()==n&&qFromBigEndian<quint32>(packed.constData())==s+r,"Compressed extent");const auto data=qUncompress(packed);require(data.size()==s+r,"Source inflation");
   auto bytes=[&](unsigned at,unsigned size){return std::vector<std::uint8_t>(data.begin()+at,data.begin()+at+size);};
-  const auto stream=legacy::decodeCanvasProducers(bytes(0,s),false);auto handoff=legacy::prepareRollingHandoff(stream,0,bytes(s,r),1,0,legacy::WorldBatchSourcePolicy::ownedV5,false);
+  const auto stream=legacy::decodeCanvasProducers(bytes(0,s),false);
+  if(chunk){
+   require(chunk==++chunks&&!world.active()&&stream.version==3&&!stream.operations.empty(),"Source capture ordering");
+   for(const auto& c:stream.operations)require(c.fields[2]!=11&&c.fields[2]!=12&&c.fields[2]!=13&&c.fields[2]!=27,"World/failure in captured source prefix");
+   renderer.batch([&]{for(const auto& c:stream.operations)producer.apply(c);producer.publishWrites();});continue;
+  }
+  ++generation;auto handoff=legacy::prepareRollingHandoff(stream,0,bytes(s,r),1,0,legacy::WorldBatchSourcePolicy::ownedV5,false);
   const bool capture=selected.count(g);QByteArray draws("MNMSCHK1",8);put(draws,800);put(draws,600);put(draws,0);unsigned count=0,raster=0;QString base=QString("world-%1").arg(g);render::SurfaceId surface=0;
   for(const auto& c:handoff.stream.operations){const auto& f=c.fields;
    if(!world.active()||(f[2]!=9&&f[2]!=14&&f[2]!=26))producer.apply(c);
@@ -54,5 +62,5 @@ int main(int argc,char** argv)try{
  }
  }
  require(!renderer.stats().surfaces&&checkpoints.size()==int(selected.size()),"Checkpoint/retirement proof");
- save(out.filePath("replay.json"),QJsonDocument(QJsonObject{{"success",true},{"worlds",QString::number(generation)},{"checkpoints",checkpoints},{"remaining_surfaces",0},{"original_oracles_read",false},{"scope","Source-only resident World replay and diagnostic entry/final canvases; no presented whole-session equivalence"}}).toJson());return 0;
+ save(out.filePath("replay.json"),QJsonDocument(QJsonObject{{"success",true},{"worlds",QString::number(generation)},{"source_chunks",QString::number(chunks)},{"checkpoints",checkpoints},{"remaining_surfaces",0},{"original_oracles_read",false},{"scope","Source-only resident World replay and diagnostic entry/final canvases; no presented whole-session equivalence"}}).toJson());return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

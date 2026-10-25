@@ -41,6 +41,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py', 'tools/campaign_input_admission.py', 'tools/campaign_input_observation.py', 'runtime/menu/campaign_input_admission_observe.h', 'tools/campaign_render_oracle.py', 'tools/pixel_route_requirements.py', 'tools/campaign_pixel_routes.py']
 SOURCES += ['tools/campaign_storage.py', 'tools/menu-storage-input.py', 'tools/menu_save_store.py', 'apps/qt-shell/campaign_storage_test.cpp', 'tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 SOURCES += ['tools/directplay_dx6_launch.py','tools/native_prefix_template.py','tools/native_render_driver.py']
+SOURCES += ['renderer/isolated_dispatch.inc']
 SOURCES += ['tools/campaign_camera_dialogue.py', 'tools/campaign-camera-menu-input.py', 'tools/campaign_cadence.py']
 
 
@@ -517,7 +518,7 @@ def main():
         args.default_media=True
     if args.require_command_pressure and not (args.resident_world and args.save_load and args.recreate_world):parser.error('--require-command-pressure requires --resident-world --save-load --recreate-world')
     if args.mini_capture_delay_ms and not args.save_load:parser.error('--mini-capture-delay-ms requires --save-load')
-    if args.loading_menu_seconds and (not args.recreate_world or args.independent_world or args.capture_resident or not 1<=args.loading_menu_seconds<=120):parser.error('Loading menu dwell requires synchronous uncaptured --recreate-world and 1..120 seconds')
+    if args.loading_menu_seconds and (not args.recreate_world or args.independent_world or not 1<=args.loading_menu_seconds<=120):parser.error('Loading menu dwell requires synchronous --recreate-world and 1..120 seconds')
     if args.recreate_world:args.save_load=True
     if args.recreate_world and (args.independent_world or args.async_world):parser.error('Canvas recreation uses the synchronous public resident route')
     if args.save_load:
@@ -619,6 +620,7 @@ def main():
         declaration_command.extend(['--behavior','HOST.menu-startup-admission'])
         declaration_command.extend(['--behavior','HOST.native-startup-resources','--scenario','HOST.native-startup-resources.live'])
         if args.require_command_pressure:declaration_command.extend(['--behavior','NR.resident-command-pressure','--scenario','NR.resident-command-pressure.initiate-reload'])
+        if args.save_load and args.capture_resident:declaration_command.extend(['--behavior','NP.resident-source-chunk-capture','--scenario','SAVECHUNK.save-load'])
         if args.save_load:declaration_command.extend(['--behavior','HOST.storage-dialogue-title-readiness','--scenario','HOST.storage-dialogue-title-readiness.storage'])
         if args.save_load:declaration_command.extend(['--behavior','HOST.native-render-save-load','--scenario','HOST.native-render-save-load.campaign','--behavior','HOST.mini-dispatch-admission','--scenario','HOST.mini-dispatch-admission.storage'])
         if args.recreate_world:declaration_command.extend(['--behavior','NR.resident-world-canvas-transition','--scenario','NR.resident-world-canvas-transition.reload'])
@@ -766,6 +768,7 @@ def main():
     if args.profile_resident:env.update(MNM_RESIDENT_STAGE_PROFILE='1',MNM_RENDER_PACER_OBSERVE='1')
     if args.profile_cpu_stores:env['MNM_NATIVE_CPU_STORE_PROFILE']='Z:'+str(out/'cpu-stores.bin').replace('/',chr(92))
     if args.capture_resident:env['MNM_RESIDENT_PROFILE_CAPTURE']=str(out/'resident-source.bin')
+    if args.capture_resident and args.save_load:env['MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS']='1'
     if args.legacy_directdraw:env['MNM_NATIVE_DRAW']='0'
     elif explicit_native_draw:env['MNM_NATIVE_DRAW']='1'
     shell = server = monitor = None

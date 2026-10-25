@@ -80,6 +80,7 @@ private:
     void poll();
     void submitResults();
     bool sameResults(const MenuBridge::State& state) const;
+    bool restoreMiniStorage(const MenuBridge::State& state);
     QString repo_,root_,channel_;
     EnginePreferencesStore preferencesStore_;
     bool preferencesToSave_=false;
@@ -99,6 +100,7 @@ private:
     bool mediaActive_=false;
     qint64 mediaStartedAt_=0;
     quint32 sequence_=0,target_=0,action_=0;
+    quint32 storageOpeningGeneration_=0;
     // One user intent; wire IDs remain strictly increasing and once-only.
     quint32 resultsAction_=0,resultsThread_=0,resultsDepth_=0;
     qint64 resultsRequestedAt_=0;

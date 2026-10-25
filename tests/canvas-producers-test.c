@@ -26,6 +26,14 @@ static void oracle_budget_fixture(void){
  oracle_bytes=oracle_byte_limit+1;checkpoint(s,5);if(oracle!=count+2||failures!=errors+3)ExitProcess(122);
  oracle_bytes=saved_bytes+64;oracle_byte_limit=saved_limit;s->dirty=saved_dirty;s->sampled=saved_sampled;
 }
+static void metadata_checkpoint_fixture(void){
+ struct Surface* s=surfaces;struct Surface saved=*s;
+ HANDLE saved_file=file;file=0;u32 saved_session=session_producers,saved_oracle=oracle,saved_bytes=oracle_bytes,saved_failures=failures;
+ s->id=2;s->width=s->height=s->stride=4;s->pixels=1;s->dirty=s->sampled+1;
+ session_producers=1;oracle=9999;oracle_bytes=oracle_byte_limit+1;
+ checkpoint(s,5);if(failures!=saved_failures||oracle!=10000||s->sampled!=s->dirty||oracle_bytes!=oracle_byte_limit+1)ExitProcess(126);
+ *s=saved;file=saved_file;session_producers=saved_session;oracle=saved_oracle;oracle_bytes=saved_bytes;
+}
 static void bypass_fixture(void){
  generic_bypass_fixture=1;
  struct Surface* s=surfaces;s->object=0x700100;s->id=99;s->width=s->height=s->stride=4;s->pixels=0x700000;
@@ -250,6 +258,7 @@ void start(void){
  bypass_fixture();
  raster_fixture();
  oracle_budget_fixture();
+ metadata_checkpoint_fixture();
  batch_fixture();
  journal_fixture();
  uniform_colour_source_fixture();
