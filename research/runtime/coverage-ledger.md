@@ -1,5 +1,20 @@
 # Engine modernization coverage ledger
 
+## Functional rendering lifecycle with diagnostic FPS — 2026-10-25
+
+Fixed instrumented FPS is diagnostic under the user's revised acceptance policy;
+historical19FPS results remain unchanged and measurement overhead is unquantified.
+Current strict native-only10/30second cases validate352/696balanced Worlds,
+physical camera/HUD input, all three original Mini callbacks, Cancel/resume,
+Quit No/resume, Quit Yes/report/Main, original normal exit and complete graphics
+owner retirement. The separate public NVIDIA lifecycle passes741balanced Worlds.
+The public combat/spell/portrait case still fails required Fireball enemy damage;
+it remains open and receives no combat acceptance credit. No wizard-movement
+outcome, whole-game pixel, complete original ownership, physical-driver or full
+14journey closure is asserted. Historical NT17 cause remains unclassified.
+See [scope, controls and retained results](rendering-functional-lifecycle-20261025.md).
+
+
 ## Alternate ownership through complete sessions and retail review — 2026-10-24
 
 ACO1 validates eight normal original windowed processes and sixteen repeated

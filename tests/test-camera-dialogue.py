@@ -136,6 +136,17 @@ class CameraMiniReadiness(unittest.TestCase):
             module.open_mini(lambda:False,lambda:escapes.append(1),lambda:None,lambda *a,**k:None,sleep,lambda:ticks[0])
         self.assertEqual(len(escapes),1)
 
+    def test_original_callback_arriving_during_readiness_needs_no_retry(self):
+        module=self.helper();ticks=[0.];escapes=[];calls=[0];available=[False];witness=[1]*16
+        def ready():
+            calls[0]+=1
+            if calls[0]==2:available[0]=True
+            return False
+        result=module.open_mini(ready,lambda:escapes.append(1),
+            lambda:witness if available[0] else None,lambda *a,**k:None,
+            lambda seconds:ticks.__setitem__(0,ticks[0]+seconds),lambda:ticks[0])
+        self.assertEqual(result,witness);self.assertEqual(len(escapes),1)
+
     def test_transition_witness_is_bound_to_original_journal(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);fixture=self.fixture(root)

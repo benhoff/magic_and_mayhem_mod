@@ -18,16 +18,22 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--functional-lifecycle',action='store_true',help='Require both stress phases, original Mini/No/Yes callbacks,64balanced Worlds and complete resource retirement; FPS is diagnostic')
     parser.add_argument('--native-only',action='store_true',help='Exercise the strict native-only startup/failure/outcome contract')
     parser.add_argument('--restart',action='store_true',help='Inject a live producer failure, use public Hard restart, then quit a fresh generation')
     parser.add_argument('--prefix-template',type=Path,required=True)
     parser.add_argument('--source-game',type=Path,required=True)
     parser.add_argument('--stress-seconds',type=int,choices=[0,*range(10,121)],default=0)
+    parser.add_argument('--qt-build-type',choices=['Release','RelWithDebInfo'],default='RelWithDebInfo',help='Explicit native shell configuration retained in the run record')
     parser.add_argument('--file-trace',action='store_true',help='Diagnostic Wine file-API trace; changes timing and supplies no performance acceptance')
     parser.add_argument('--claims',type=Path,required=True)
     parser.add_argument('--report',type=Path,required=True)
     args=parser.parse_args()
     if args.restart and (not args.native_only or args.stress_seconds):parser.error('Restart requires native-only and a separate stress run')
+    if args.functional_lifecycle:
+        from campaign_functional_acceptance import load_policy
+        load_policy()
+    if args.functional_lifecycle and (not args.native_only or args.restart or args.stress_seconds<10):parser.error('Functional lifecycle requires native-only,10..120seconds stress and no injected restart')
     if args.report.exists():parser.error('Refusing evidence overwrite')
     declaration=json.loads(args.claims.read_text());sources=declaration['sources']
     def stable():return all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in sources.items())
@@ -36,14 +42,14 @@ def main():
     root=Path(tempfile.mkdtemp(prefix='campaign-',dir=parent));(root/'.retain').write_text('Native output ownership actual-game observation, preserve attempts.\n')
     report=dict(schema=1,success=False,claims=declaration['claims'],sources=sources,
         original_game_executed=False,complete_replacement=False,ordinary_campaign_accepted=False,
-        artifacts=str(root.relative_to(ROOT)),stress_seconds=args.stress_seconds,file_trace=args.file_trace,scope=__doc__)
+        artifacts=str(root.relative_to(ROOT)),stress_seconds=args.stress_seconds,file_trace=args.file_trace,qt_build_type=args.qt_build_type,fps_policy='diagnostic',functional_lifecycle_requested=args.functional_lifecycle,scope=__doc__)
     env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE'))}
     env.update(XDG_CONFIG_HOME=str(root/'config'),PYTHONDONTWRITEBYTECODE='1',TMPDIR=str(root),LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='4',
         QT_QPA_PLATFORM='xcb',QT_XCB_GL_INTEGRATION='xcb_glx',WINEDEBUG='-all,+file' if args.file_trace else '-all',
         MNM_CAMPAIGN_SMOKE_TEST='1',MNM_CAMPAIGN_DIFFICULTY='1',MNM_CAMPAIGN_NORMAL_QUIT='1',
         MNM_NO_ROUTE_SCREENSHOTS='1',MNM_CAMPAIGN_STRESS_SECONDS=str(args.stress_seconds),MNM_CAMPAIGN_MENU_CYCLES='1',
         MNM_CAMPAIGN_TIMEOUT_MS='270000',MNM_GLYPH_BACKEND='takeover',MNM_CACHE_ADAPTERS='1',
-        MNM_MENU_GAME_SOURCE=str(args.source_game.resolve()))
+        MNM_MENU_GAME_SOURCE=str(args.source_game.resolve()),MNM_QT_BUILD_TYPE=args.qt_build_type)
     if args.restart:
         env.pop('MNM_CAMPAIGN_SMOKE_TEST');env['MNM_RESIDENT_RESTART_TEST']='1'
     server=child=None;verified=False
@@ -131,6 +137,18 @@ def main():
             if owner_result.get('success') is not True or not owner_result.get('native_only_sessions'):
                 raise RuntimeError('Native-only launch did not accept its session outcomes')
             report['native_only_outcomes']=owner_result['native_only_sessions']
+        if args.functional_lifecycle:
+            campaign.validate_flow(flow,cycles=1,stress_seconds=args.stress_seconds,min_fps=None,normal_quit=True)
+            from campaign_camera_dialogue import validate_camera_mini
+            report['mini_readiness']=[validate_camera_mini(json.loads((root/f'mini-input-{i}.json').read_text()),root,True,session/'events.bin',4 if i==0 else 3) for i in range(3)]
+            report['physical_stress']=[]
+            for i in range(2):
+                path=root/f'input-{i}.json';inputs=json.loads(path.read_text());actions=inputs.get('actions',[])
+                if inputs.get('success') is not True or inputs.get('seconds',0)<args.stress_seconds or len(actions)<20:raise ValueError('Incomplete physical stress')
+                report['physical_stress'].append(dict(verified=True,seconds=inputs['seconds'],actions=len(actions),sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
+            compiled=campaign.linked_compiler_sources(ROOT/'working/build/qt-shell',ROOT)
+            if any(path not in sources for path in compiled):raise ValueError('Undeclared actual shell compiler input')
+            report['native_compiler_inputs_checked']=len(compiled)
         report['success']=True
     except Exception as error:report['error']=str(error)
     finally:
@@ -145,6 +163,11 @@ def main():
             report['original_verified_after']=result.returncode==0
             if result.returncode:report['success']=False
         report['sources_stable']=stable();report['success']=report['success'] and report['sources_stable']
+        if args.functional_lifecycle and report['success']:
+            try:
+                from campaign_functional_acceptance import validate_strict_functional
+                report['functional_acceptance']=validate_strict_functional(report)
+            except (KeyError,TypeError,ValueError) as error:report.update(success=False,error=str(error))
         write_report(ROOT,args.report,(json.dumps(report,indent=2)+'\n').encode())
     print(json.dumps({key:report.get(key) for key in ('success','sources_stable','error','session')}))
     return 0 if report['success'] else 1

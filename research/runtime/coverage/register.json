@@ -42018,7 +42018,8 @@
         "Current ordinary public portrait/aggregate/window19FPS acceptance: False; observed engine FPS 17.253777. Only bounded implementation is closed. Preserve the complete raw ordinary result and every failed portrait/window/gameplay attempt; wider public performance and current live acceptance remain pending when the ordinary harness fails.",
         "Fresh implementation probe01 completes the full journey and clean normal Quit but fails unchanged portrait19FPS at18.9317106153FPS over7.395seconds. Probe02 fails the same-engaged-enemy lethal combat deadline after one recorded summon hit; neither earns implementation or performance acceptance, and no cause is assigned. Their immutable parent/child reports and raw traces remain in the negative catalog. A later bounded positive does not establish universal scheduling/input reliability.",
         "NT17 forced legacy-audio public campaign completes casting/combat/movement/normal Quit but fails the unchanged19FPS portrait gate near14FPS. Preserve its negative and original fingerprints independently of any production-default native-audio success; no legacy-profile guarantee or causal audio explanation follows.",
-        "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted."
+        "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted.",
+        "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -93626,7 +93627,8 @@
         ]
       },
       "remaining_gaps": [
-        "Historical5FPS software failures are retained; current-source matched GUI diagnostic off/on and dedicated-worker acceptance are separate fresh results when recorded. Multiple introductory Hermes interruptions can exhaust the unchanged8turn budget, as retained by the cadence investigation. Unknown dialogues, hardware performance, original pixels and complete session remain outside this contract."
+        "Historical5FPS software failures are retained; current-source matched GUI diagnostic off/on and dedicated-worker acceptance are separate fresh results when recorded. Multiple introductory Hermes interruptions can exhaust the unchanged8turn budget, as retained by the cadence investigation. Unknown dialogues, hardware performance, original pixels and complete session remain outside this contract.",
+        "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged."
       ],
       "validation_dependencies": [
         "tools/campaign_input_admission.py",
@@ -124421,7 +124423,8 @@
         "Historical finding/limitation retained; current NT17 execution supersedes source-freshness pending only within its unchanged scope: Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md.",
         "NT17 completes this existing bounded implementation. Full original pixels/physical-driver equivalence, unclassified historical instrumented/capture failures, all original writers/aliases, whole-game reachability and60FPS remain independent; no earlier source fingerprint or negative result is rewritten.",
         "NT17 additional10-second strict movement stress fails Mini readiness twice after real World delivery, with no recorded graphics refusal. A short default launch-policy journey passes; the reproduced stress/input-readiness cause remains unclassified and unaccepted. The existing policy excludes ordinary campaign acceptance; public hardware campaign stress is validated separately.",
-        "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted."
+        "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted.",
+        "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-2-20261020",
@@ -146452,6 +146455,61 @@
       "confidence": "high_within_scope",
       "remaining_gaps": [
         "Static local understanding only; native implementation,original/native execution,actual screen/cursor ownership,all writers and full session acceptance remain open."
+      ]
+    },
+    {
+      "id": "NP.functional-rendering-acceptance",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Functional native rendering acceptance with diagnostic FPS",
+      "scope": "Current strict Apprentice campaign with two10..120second physical camera/HUD stress phases around Mini Cancel/resume, Quit No/resume and Quit Yes/report/Main/normal exit. At least64balanced owned Worlds, independently bound original callbacks and three Mini readiness records, actual native compiler source closure, zero pixel forwarding/ordinary readbacks and complete graphics/process retirement are required. Public resident diagnostic-FPS mode keeps its existing semantic, portrait/pixel and resource checks; specialized benchmark profiles remain separate. Fixed FPS is diagnostic, historical benchmark acceptance is not claimed. No full14journey completion, wizard-movement outcome, whole-game pixel equivalence, complete original ownership, physical-driver or live replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-functional-lifecycle-20261025.md",
+        "docs/native-rendering-closure.md"
+      ],
+      "implementation": [
+        "tools/campaign_functional_acceptance.py",
+        "tools/test-native-owned-campaign.py",
+        "tools/test-native-campaign.py"
+      ],
+      "tests": [
+        "tests/test-native-functional-lifecycle.py",
+        "tests/test-camera-dialogue.py",
+        "tests/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "tests/fixtures/native-functional-lifecycle.json",
+        "tools/campaign-camera-menu-input.py",
+        "tools/campaign_camera_dialogue.py",
+        "tools/campaign-gameplay-input.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/input_state.cpp",
+        "tools/run-native-owned.py",
+        "tools/native_only_contract.py",
+        "tools/native_output_owner.py",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/render/input_polling.h"
+      ],
+      "evidence": [
+        "RFL.controls01-20261025",
+        "RFL.strict02-20261025",
+        "RFL.strict03-20261025",
+        "RFL.public-lifecycle01-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Strict final-source10/30second and public NVIDIA lifecycle cases pass. The broader public combat/spell/portrait case fails: a player Fireball cast was observed but no qualifying enemy damage; aiming versus game behavior remains unclassified. This separate failed case does not invalidate the accepted narrower lifecycle or supply combat acceptance. Historical NT17 ingress cause remains unclassified;69pre-existing source differences precede this work. Full14journey acceptance, wizard-movement outcomes, complete original ownership, all optional routes and physical compatibility remain open."
       ]
     }
   ],
@@ -331795,6 +331853,186 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "RFL.controls01-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-functional-results-20261025/controls01.json",
+      "sha256": "cd68b2ead322a3c896e9fead60c96d78793941bc62f84da18da5ba170986fc9d",
+      "scope": "Functional refusal controls only; no engine execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RFL.strict02-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-functional-results-20261025/strict02.json",
+      "sha256": "dea9cfece6cf169efc89e086f3e421bd5020ff35350f353bc34cf9b9d49e71d0",
+      "scope": "One Apprentice campaign with two active physical camera/HUD stress phases, Mini Cancel, Quit No/resume and Quit Yes/report/Main/exit. No fixed FPS, full pixel equivalence, all14journeys, physical driver or complete original recovery claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/functional_acceptance/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/fps_policy",
+          "equals": "diagnostic"
+        },
+        {
+          "pointer": "/ordinary_campaign_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RFL.strict03-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-functional-results-20261025/strict03.json",
+      "sha256": "328ca1c408b4ac7c6149d7df76fa5301becac50f46e05d1bbfd176c43882b84b",
+      "scope": "One Apprentice campaign with two active physical camera/HUD stress phases, Mini Cancel, Quit No/resume and Quit Yes/report/Main/exit. No fixed FPS, full pixel equivalence, all14journeys, physical driver or complete original recovery claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/functional_acceptance/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/fps_policy",
+          "equals": "diagnostic"
+        },
+        {
+          "pointer": "/ordinary_campaign_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RFL.history-and-setup-20261025",
+      "kind": "static",
+      "record": "research/runtime/rendering-functional-results-20261025/history01.json",
+      "sha256": "c50e6f032440b10e356c32a623a5613c1ccba07b9022e4449d06a43eb722d39a",
+      "scope": "Classification of retained setup failures, passing pre-helper baseline and failed tuple/list validator; source variants and actual historical fingerprints preserved. No new engine execution or stage credit.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/nt17_historical_cause_unclassified",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_execution",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RFL.public-lifecycle01-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-functional-results-20261025/public-lifecycle01.json",
+      "sha256": "7a1ff3379787123a30d69d009c8cb723a63b507fa3298d2e48a9bbf8d44be28a",
+      "scope": "NVIDIA/zink public Apprentice lifecycle with two10second physical camera/HUD stress phases, Mini Cancel, Quit No/resume, Quit Yes/report/Main and741balanced Worlds. No combat/spell-case/portrait-stress assertion requested; not full public combat acceptance or strict host-device isolation.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/functional_campaign_accepted",
+          "equals": true
+        },
+        {
+          "pointer": "/ordinary_campaign_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/fps_policy",
+          "equals": "diagnostic"
+        }
+      ]
+    },
+    {
+      "id": "RFL.public-combat-failure-20261025",
+      "kind": "static",
+      "record": "research/runtime/rendering-functional-results-20261025/public-combat-classification01.json",
+      "sha256": "449e1c6d3946a09e37826f0f937b6488d51d56f17656591f87c481f67d99223e",
+      "scope": "Retained separate public full-combat failure; static classification only, no positive gameplay stage credit.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/combat_repaired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -357869,6 +358107,37 @@
         "runtime/diagnostics/alternate_canvas_debug.c",
         "tests/alternate-canvas-debug-target.c"
       ]
+    },
+    {
+      "id": "NP.functional-rendering-acceptance.strict",
+      "scope": "Strict source-bound Apprentice10..120second physical camera/HUD stress, Mini Cancel/resume, Quit No/resume, Quit Yes/report/Main/exit,64balanced Worlds and graphics retirement; FPS diagnostic.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.functional-rendering-acceptance"
+      ],
+      "tests": [
+        "tools/test-native-owned-campaign.py",
+        "tests/test-native-functional-lifecycle.py"
+      ],
+      "evidence": [
+        "RFL.strict02-20261025",
+        "RFL.strict03-20261025"
+      ]
+    },
+    {
+      "id": "NP.functional-rendering-acceptance.public",
+      "scope": "Public resident functional campaign with diagnostic FPS and unchanged requested action, original outcome, portrait pixel and resource checks; no historical benchmark acceptance.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.functional-rendering-acceptance"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/test-native-functional-lifecycle.py"
+      ],
+      "evidence": [
+        "RFL.public-lifecycle01-20261025"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -359431,7 +359700,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6bd210b31038e951bfabc8f55a66711fa393bdf465db273baccf2d06d04b6609.json",
-    "sha256": "6bd210b31038e951bfabc8f55a66711fa393bdf465db273baccf2d06d04b6609"
+    "path": "research/runtime/coverage/source-index-7ddab450bd06260c678de68558ad47f8393d6b14607545547540023720937d6d.json",
+    "sha256": "7ddab450bd06260c678de68558ad47f8393d6b14607545547540023720937d6d"
   }
 }

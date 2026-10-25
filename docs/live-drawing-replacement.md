@@ -100,7 +100,8 @@ also does not establish a rendering regression.
    exact current compiler/input provenance. Keep instrumentation/capture load
    separate from ordinary presentation performance.
 4. Enable the complete-native launch contract only when its declared required
-   routes, history, comparison, lifecycle and performance gates pass.
+   routes, history, comparison and lifecycle checks pass. Fixed FPS is diagnostic
+   under the2026-10-25 user decision; historical benchmark criteria remain unchanged.
 
 ## Release and evidence rules
 

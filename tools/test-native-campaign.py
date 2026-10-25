@@ -91,7 +91,8 @@ def validate_portrait_stress(inputs, flow, capture_root, seconds, min_fps=20):
     native=sum(r['native_frames'] for r in samples)/duration
     paints=sum(r['painted_frames'] for r in samples)/duration
     worst=min(min(r['native_fps'],r['paint_fps']) for r in samples)
-    if min(native,paints)<min_fps or worst<min_fps/2 or any(r['seconds']>2 for r in samples):raise ValueError('Portrait rendering too slow')
+    if min(native,paints)<=0:raise ValueError('Missing portrait presentation progress')
+    if min_fps is not None and (min(native,paints)<min_fps or worst<min_fps/2 or any(r['seconds']>2 for r in samples)):raise ValueError('Portrait rendering too slow')
     capture=next(c for c in inputs['captures'] if c['name'].endswith('-portrait-stress'))
     if not re.fullmatch(r'combat-\d{2}-[a-z-]+',capture['name']):raise ValueError('Unsafe portrait capture name')
     if capture['metadata']['fallback'] or not all(capture['metadata'][r+'_saved'] for r in ('native','original')):raise ValueError('Missing independent portrait capture')
@@ -290,7 +291,8 @@ def validate_flow(flow, cycles=1, stress_seconds=0, min_fps=20, normal_quit=Fals
             if seconds < stress_seconds-2:raise ValueError('Incomplete gameplay performance sample')
             native_fps = sum(r['native_frames'] for r in samples)/seconds
             paint_fps = sum(r['painted_frames'] for r in samples)/seconds
-            if min(native_fps, paint_fps) < min_fps or any(min(r['native_fps'], r['paint_fps']) < min_fps/2 or r['seconds'] > 2 for r in samples):
+            if min(native_fps,paint_fps)<=0:raise ValueError('Missing advancing native presentations')
+            if min_fps is not None and (min(native_fps, paint_fps) < min_fps or any(min(r['native_fps'], r['paint_fps']) < min_fps/2 or r['seconds'] > 2 for r in samples)):
                 raise ValueError(f'Gameplay too slow in cycle {cycle}: native {native_fps:.1f}, paints {paint_fps:.1f} FPS; minimum {min_fps}')
 
 
@@ -406,14 +408,15 @@ def start_native_hardware(out,env):
 def validate_resident_cpu_census(resident, minimum_fps, census_only=False, *, defer_rate_failure=False):
     counts=[int(resident[k]) for k in ('completed','imports','verified_returns')]
     gates=dict(minimum_worlds=64, worlds_passed=min(counts)>=64,
-               minimum_fps=minimum_fps, fps_passed=resident['engine_fps']>=minimum_fps)
+               minimum_fps=minimum_fps, fps_passed=None if minimum_fps is None else resident['engine_fps']>=minimum_fps,
+               fps_policy='diagnostic' if minimum_fps is None else 'required',observed_engine_fps=resident['engine_fps'])
     if resident['error'] or min(counts)<1 or any(resident[k] for k in ('world_readbacks','native_readbacks','rgba_readbacks')):
         raise ValueError('Resident World completion/import/no-readback proof failed: '+repr(resident))
     if census_only and (not resident.get('normal_quit_retired') or resident['pending'] or len(set(counts))!=1):
         raise ValueError('CPU census requires balanced normal World retirement')
     if not census_only and not gates['worlds_passed']:
         raise ValueError('Resident World completion/import/no-readback proof failed: '+repr(resident))
-    if not census_only and not gates['fps_passed'] and not defer_rate_failure:
+    if minimum_fps is not None and not census_only and not gates['fps_passed'] and not defer_rate_failure:
         raise ValueError('Resident World engine FPS below target: '+str(resident['engine_fps']))
     return gates
 
@@ -435,6 +438,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--stress-seconds', type=int, default=0, help='Exercise physical gameplay input per phase (0 or 10..120)')
     parser.add_argument('--menu-cycles', type=int, choices=range(1,6), default=1, help='Number of native Escape/Mini/Cancel returns')
+    parser.add_argument('--fps-policy',choices=['required','diagnostic'],default='required',help='Use diagnostic for functional resident completion; required preserves historical benchmark criteria')
     parser.add_argument('--min-fps', type=float, default=20, help='Minimum average native publications and visible Qt paints during stress')
     parser.add_argument('--difficulty', type=int, choices=range(4), default=0, help='Choose the normal Region Entry difficulty via its native radio (0 Initiate; 1 Apprentice for camera/combat stress)')
     parser.add_argument('--observe-input-admission',action='store_true',help='Retain bounded read-only spell-bar/hit and Qt snapshot samples; diagnostic prefix only')
@@ -576,6 +580,9 @@ def main():
     if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
     if args.stress_seconds and not args.crowded_case and not 10 <= args.stress_seconds <= 120:parser.error('--stress-seconds must be 0 or 10..120')
     if not 1 <= args.min_fps <= 120:parser.error('--min-fps must be 1..120')
+    if args.fps_policy=='diagnostic' and (not args.resident_world or args.healing_case or args.crowded_case or args.pixel_camera_scenarios or args.cpu_census_only):
+        parser.error('Diagnostic FPS policy is scoped to the ordinary resident campaign; specialized benchmark/census cases retain their own contracts')
+    rate_floor=args.min_fps if args.fps_policy=='required' else None
     parent = ROOT / 'working/tests/native-campaign'
     parent.mkdir(parents=True, exist_ok=True)
     import tempfile
@@ -602,11 +609,11 @@ def main():
               'portrait_stress_seconds':args.portrait_stress_seconds,
               'route_screenshots_requested':not args.no_route_screenshots,
               'crowded_required':args.crowded_case,'healing_required':args.healing_case,'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
-              'difficulty': args.difficulty, 'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
+              'difficulty': args.difficulty, 'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': rate_floor, 'fps_policy':args.fps_policy,'diagnostic_reference_fps':args.min_fps,'functional_campaign_accepted':False,
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
     if args.native_draw and not args.claims:
         args.claims=out/'prospective-claims.json'
-        declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
+        declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NP.functional-rendering-acceptance' if args.fps_policy=='diagnostic' else 'NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NP.functional-rendering-acceptance.public' if args.fps_policy=='diagnostic' else 'NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         declaration_command.extend(['--behavior','HOST.menu-startup-admission'])
         declaration_command.extend(['--behavior','HOST.native-startup-resources','--scenario','HOST.native-startup-resources.live'])
         if args.require_command_pressure:declaration_command.extend(['--behavior','NR.resident-command-pressure','--scenario','NR.resident-command-pressure.initiate-reload'])
@@ -1002,7 +1009,7 @@ def main():
                 resident=json.loads((roots[0]/'resident-world-report.json').read_text())
                 # Retain independent functional results even when source throughput
                 # fails. The identical rate gate is enforced before acceptance below.
-                report['ordinary_resident_gates']=validate_resident_cpu_census(resident,args.min_fps,args.cpu_census_only,defer_rate_failure=True)
+                report['ordinary_resident_gates']=validate_resident_cpu_census(resident,rate_floor,args.cpu_census_only,defer_rate_failure=True)
                 if args.normal_quit and (not resident.get('normal_quit_retired') or resident['pending'] or len({int(resident[k]) for k in ('completed','imports','verified_returns')})!=1):raise ValueError('Resident World normal Quit was not acknowledged and balanced')
                 if args.save_load:
                     snapshots=int(resident.get('explicit_producer_cpu_readbacks',0))
@@ -1187,14 +1194,15 @@ def main():
                 if args.spell_cases:
                     report['spell_cases']=validate_spell_cases(read_spell_rows(roots[0]/'spell-events.bin',complete=True),read_rows(roots[0]/'gameplay-events.bin',complete=True),json.loads((out/'input-0.json').read_text()))
             if args.portrait_stress_seconds:
-                report['portrait']=validate_portrait_stress(json.loads((out/'input-0.json').read_text()),flow,out,args.portrait_stress_seconds,args.min_fps)
+                report['portrait']=validate_portrait_stress(json.loads((out/'input-0.json').read_text()),flow,out,args.portrait_stress_seconds,rate_floor)
             if args.save_load:validate_storage_flow(flow)
-            if not (args.save_load or args.healing_case or args.crowded_case):validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps,args.normal_quit)
+            if not (args.save_load or args.healing_case or args.crowded_case):validate_flow(flow,args.menu_cycles,args.stress_seconds,rate_floor,args.normal_quit)
             if any(sha(ROOT / p) != h for p,h in report['sources'].items()):raise RuntimeError('Source changed during execution')
             if args.resident_world:
-                validate_resident_cpu_census(resident,args.min_fps,args.cpu_census_only)
+                validate_resident_cpu_census(resident,rate_floor,args.cpu_census_only)
             report.update(success=True, status='passed', stage='cpu-census-complete' if args.cpu_census_only else 'campaign-complete', flow_completed=True, game_entry_verified=True)
-            report['ordinary_campaign_accepted']=not args.cpu_census_only
+            report['functional_campaign_accepted']=not args.cpu_census_only
+            report['ordinary_campaign_accepted']=not args.cpu_census_only and args.fps_policy=='required'
             exit_code = 0
     except (KeyboardInterrupt, OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
         report['error'] = str(error) or 'Campaign test interrupted'
