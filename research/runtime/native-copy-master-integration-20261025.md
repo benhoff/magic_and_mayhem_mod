@@ -18,3 +18,16 @@ documentation,coverage and untracked work in the main checkout is preserved
 through a verified SQLite snapshot and reviewed overlays before master advances.
 The pending contributor census remains pending and must be reconciled with the
 combined working tree by its owner. This merge does not absorb those edits.
+
+During completion,master advanced to`b48a88c3` with rendering assurance and a
+separate software SHM upload diagnostic. The actual merge`ba3ebdf4` is retained;
+a second reviewed merge reconciles that new master parent. Both ledger sections
+and immutable source/evidence histories are preserved. Only the explicit SHM
+diagnostic requests its correction;ordinary native source policies are retained.
+The exact incoming range and refreshed controls/audit are recorded separately.
+
+The incoming-history review also found six archive-only transitions without exact
+receipts. Their payloads were streamed from existing local SQLite stores and
+verified by SHA-256; an append-only retrospective pending receipt closes the
+bookkeeping omissions. The initial gap report remains immutable. This establishes
+archive provenance, without claiming a historical gate pass or new game execution.

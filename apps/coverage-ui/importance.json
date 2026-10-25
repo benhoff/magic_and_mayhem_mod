@@ -19658,7 +19658,7 @@
               "current_state": "End-to-end recorded rendering is implemented. The user-selected correct-output target passes all 222 corrected-storage and 323 Quick Battle frames on both llvmpipe and NVIDIA. All retained 238 legacy Wine frames are still checked; ordinal 170 retains the expected 126 GPU + 126 physical pixel difference. Sixteenth batch supplies current bounded acquisition, replay, owned-launch and resident-delivery implementation controls.",
               "implementation_gaps": [],
               "validation_state": "pending",
-              "validation_summary": "Four complete output profiles PASS with zero mismatches; corrected source/default witnesses, paint ordinals and physical marker receipts also match. The raw frozen execution and its compiler-source selection review are retained without replacing any old hashes. Fresh NT16 records 98 Python controls, 95 recorded commands and 4960 stable prospective inputs with exact corrected-positive/unmodified-negative software/NVIDIA cohorts, real original source acquisition and normal Quit, source-only GPU history and bounded live acknowledgement/death/fresh recovery. Broader acceptance and historical source fingerprints stay separate.",
+              "validation_summary": "Four complete output profiles PASS with zero mismatches; corrected source/default witnesses, paint ordinals and physical marker receipts also match. The raw frozen execution and its compiler-source selection review are retained without replacing any old hashes. Fresh NT16 records 98 Python controls, 95 recorded commands and 4960 stable prospective inputs with exact corrected-positive/unmodified-negative software/NVIDIA cohorts, real original source acquisition and normal Quit, source-only GPU history and bounded live acknowledgement/death/fresh recovery. Broader acceptance and historical source fingerprints stay separate. Incoming assurance and SHM source-diagnostic documents were reviewed as bounded finite-output diagnosis; independent original source-session closure still fails. Only their newly linked document fingerprints are added. Older code fingerprints,remaining ownership limitations and acceptance state are retained without refresh.",
               "acceptance": "pending",
               "acceptance_summary": "Selected correct-output profiles PASS. The old Wine resize artifact is a nonblocking diagnostic by explicit user decision. Whole-renderer, 14-journey/47-requirement/21-operation, physical-loss and sustained-performance acceptance remain pending.",
               "evidence": [
@@ -19725,7 +19725,9 @@
                 "tests/rendering-sixteenth-ten/CMakeLists.txt": "a927090489d067b63cb53ff93dd63f6c6b85a78d5caf0fdcd4a373e15e4ef887",
                 "tests/test-rendering-session-contracts.py": "cec6d91679bc602a062a6ad9e2cfbfe938f44d6e5f4f874feb0e26dbf347fb7a",
                 "tools/rendering_session_contracts.py": "65e1c34cdfd6a774f282899dfd15ac1c6c6a3d75b2e7191c03ef565a43507982",
-                "tools/test-rendering-sixteenth-ten.py": "f97c2eb4d8ad4f22965d9de0d3b16b033278719f621975200ef96d23a6e5b5bf"
+                "tools/test-rendering-sixteenth-ten.py": "f97c2eb4d8ad4f22965d9de0d3b16b033278719f621975200ef96d23a6e5b5bf",
+                "research/runtime/rendering-assurance-20261025.md": "278ff213184f61f3d87714456219661dfe893aca9a941355c6f31634552e6c34",
+                "research/runtime/storage-upload-causality-20261025.md": "4618a0a83cf7ce51936b9ffc19ebcf5f6631f48e82429fa59fc5662dcac6e2bf"
               },
               "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed.",
               "assessment_history": [
@@ -20075,6 +20077,156 @@
                 ],
                 "acceptance_profile_record": "research/runtime/critical-rendering-commit-results-20261020/acceptance-closure.json",
                 "acceptance_profile_evidence": "CRIT12.correct-output-commit-closure-20261020"
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "End-to-end recorded rendering is implemented. The user-selected correct-output target passes all 222 corrected-storage and 323 Quick Battle frames on both llvmpipe and NVIDIA. All retained 238 legacy Wine frames are still checked; ordinal 170 retains the expected 126 GPU + 126 physical pixel difference. Sixteenth batch supplies current bounded acquisition, replay, owned-launch and resident-delivery implementation controls.",
+                "implementation_gaps": [],
+                "validation_state": "pending",
+                "validation_summary": "Four complete output profiles PASS with zero mismatches; corrected source/default witnesses, paint ordinals and physical marker receipts also match. The raw frozen execution and its compiler-source selection review are retained without replacing any old hashes. Fresh NT16 records 98 Python controls, 95 recorded commands and 4960 stable prospective inputs with exact corrected-positive/unmodified-negative software/NVIDIA cohorts, real original source acquisition and normal Quit, source-only GPU history and bounded live acknowledgement/death/fresh recovery. Broader acceptance and historical source fingerprints stay separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Selected correct-output profiles PASS. The old Wine resize artifact is a nonblocking diagnostic by explicit user decision. Whole-renderer, 14-journey/47-requirement/21-operation, physical-loss and sustained-performance acceptance remain pending.",
+                "evidence": [
+                  "T3I.storage-baseline-20261019",
+                  "T3I.storage-corrected-20261019",
+                  "T3I.quick-battle-20261019",
+                  "T3I.storage-diagnosis-20261019",
+                  "CRIT01.correct-output-20261019",
+                  "CRIT11.correct-output-commit-20261020",
+                  "CRIT12.correct-output-commit-closure-20261020",
+                  "NT16.native-controls-20261022"
+                ],
+                "failure_evidence": [
+                  "T3I.storage-baseline-20261019"
+                ],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Keep all four complete profiles and both legacy diagnostics in regression runs; refuse altered ordinals, backend identity, source/default witnesses, thresholds or native oracle inputs."
+                  },
+                  {
+                    "kind": "validation",
+                    "action": "Complete the separately declared full journey, ownership/recovery and sustained-performance matrices before promoting whole-renderer acceptance."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/compare-drawing-quick-battle.py",
+                    "line": 128,
+                    "text": "def compare_plane(native,original,width=800,height=600):"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/drawing-session/main.cpp": "86f825b4e5358247dc0966b0fb8f94aa00ac81860a064dd195bebfef7883a224",
+                  "apps/drawing-session/recorded_composition.hpp": "0dc69f1c948bc4f8da1e2e81c069baa803e73180258d8b892d80d467f04e3f50",
+                  "compat/legacy/canvas_producers.hpp": "65b951709656b238da54a0bb4f70f1015faac26ffeaf91e3b9312a329c7f98de",
+                  "compat/legacy/drawing_scene.cpp": "9fd250767df15cd5ffbc55a25316ae2c23ad28cfad5c7d61e37fb3dbc624b2f7",
+                  "compat/legacy/drawing_scene.hpp": "1ef55f789a383b444650ef2118bf5ecba12cc23ed7920154f7ee122747705cf7",
+                  "compat/legacy/drawing_session_main.cpp": "fe148a14e8b7a72402c5462d1afae12c5068ebb2f11f181a33239adc59c60bfd",
+                  "renderer/canvas_sequence.cpp": "6cd633c3e7e09c126234f2f17cd1efb69fc570c8249b8406789a1f63563438e0",
+                  "renderer/canvas_sequence.hpp": "d29ef07ace020366ab172e2f57e44ba4981d62e200d5a5c5b1443ab1ef0aea06",
+                  "research/formats/recorded-drawing-composition-v1.md": "9b1ed4ed380f433b6277fab07a570ff54c7eb622f72d4560c099132acd40eada",
+                  "research/runtime/action-bound-storage-session.md": "9348d668b3914a766b1d9e188d011ab8cfc13bf2dc21b67b5305a3f916d4cf6c",
+                  "research/runtime/drawing-copy-driver-order.md": "c05b92365b745300f759ec76b6347250d50eb4bf174e4ee86d7c8946106edee9",
+                  "research/runtime/rendering-tranche3-issues-review-20261019.md": "7c8dd409012351649b632d0dcd815ad6f379dca527f1a12dd3e5de6d628866fb",
+                  "research/runtime/rendering-tranche3-results-20261019/quick-battle.json": "f3546b98d7f3444640779e5354b83f228fd25adc659ed550628f17e4ac394427",
+                  "research/runtime/rendering-tranche3-results-20261019/storage-baseline.json": "422e95b150a9a1529251fa4eae58907fece546124f129176e430c104b310c0e9",
+                  "research/runtime/rendering-tranche3-results-20261019/storage-corrected.json": "440d847e22e00bbd3e88252896b3eb99712cc4a501cbf4736c6e6375dc002f6c",
+                  "research/runtime/rendering-tranche3-results-20261019/storage-diagnosis.json": "6f625549228d93c48eb57ef5fcb3e42585872e7108a6ff75664d7525c1f24024",
+                  "tests/canvas-sequence-test.cpp": "9c0900dcc6ffd6cd6c00cf6bb4aa724dac8d548dcfa94066e890427cbd069790",
+                  "tests/drawing-scene-test.cpp": "29ae8dbfef876f02aee5c5c2e05acedcf67dbd98116518191ef05c2b65492c24",
+                  "tests/test-drawing-egl-destination.py": "67b67caf6e19294e186c8970a371f1e09e096cf4111d587ef89a71f9a2f2de7d",
+                  "tests/test-drawing-egl-gpu-reference.py": "feb7cfff253923365a99b207d449a596f1f627afba1fb219ea00493a7cc17dfc",
+                  "tests/test-drawing-quick-battle.py": "506f289b0b6e807618846a206191a59f52660382d521b149334c5e4ff8f01844",
+                  "tests/test-drawing-storage-session.py": "2a3d25c9a53bfc54d9c80df7bf582fb954471081cce957e017176a865447cfda",
+                  "tools/compare-drawing-quick-battle.py": "f20e2cbfb2e8b222260d0c3d3b2acdd8a2e5f79d0e09b450e7ecc3e5e678b4b0",
+                  "tools/recorded_drawing_plan.py": "1238fd81552b0a8009bce6c2fc7122634a07045d24cd5bb289fd1c45bb91b480",
+                  "tools/test-recorded-drawing-composition.py": "6ba72965f84e7794839cc02557fb8e4cffd6f4f09f0fb6fa5f818e8cf9a53471",
+                  "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e",
+                  "research/runtime/critical-rendering-correct-output-20261019.json": "14b8770bb8a3a7db02c137860fc8005e13534f139510a8ca93df392d11b1066f",
+                  "research/runtime/critical-rendering-commit-results-20261020/acceptance.json": "4b832a5ea7f0985f866474cfc4e47e2833994a86e6720b5ee2547169aef1b5a8",
+                  "research/runtime/critical-rendering-commit-results-20261020/acceptance-closure.json": "86d7aa3dec780b56a1990b30fddf8803300b7f121548b5e90d88185e0cdb1605",
+                  "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md": "adae25c903556d8e8f6bfb54e3f37e2e1dd8cd43d627514382ad55d2eab1ef31",
+                  "tests/rendering-sixteenth-ten/CMakeLists.txt": "a927090489d067b63cb53ff93dd63f6c6b85a78d5caf0fdcd4a373e15e4ef887",
+                  "tests/test-rendering-session-contracts.py": "cec6d91679bc602a062a6ad9e2cfbfe938f44d6e5f4f874feb0e26dbf347fb7a",
+                  "tools/rendering_session_contracts.py": "65e1c34cdfd6a774f282899dfd15ac1c6c6a3d75b2e7191c03ef565a43507982",
+                  "tools/test-rendering-sixteenth-ten.py": "f97c2eb4d8ad4f22965d9de0d3b16b033278719f621975200ef96d23a6e5b5bf"
+                },
+                "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed.",
+                "assessment_history": [
+                  {
+                    "implementation": "implemented_within_scope",
+                    "current_state": "Fresh complete software replay reproduces the unchanged238-frame storage negative only at ordinal170:126GPU+126physical pixels. The separate222-frame corrected-driver profile and323-frame Quick Battle regression match. Diagnosis confirms a blank original baseline frame makes37 tested translations nonunique; no missing native producer or unique internal driver cause is established.",
+                    "implementation_gaps": [],
+                    "validation_state": "historical",
+                    "validation_summary": "Every baseline/corrected/Quick Battle frame and physical marker receipt is retained at tolerance1. Corrected source/default/physical witnesses and actual owned EGL/XCB controls pass. Broad replay fingerprints remain historical after the later uncompiled services-runner edit; no old execution hash is refreshed.",
+                    "acceptance": "acceptance_failure",
+                    "acceptance_summary": "FAIL for full parity with the unchanged238-frame reference. Diagnosis is complete within its stated evidence boundary; corrected-profile or expected-negative harness success does not clear the252-pixel baseline.",
+                    "evidence": [
+                      "T3I.storage-baseline-20261019",
+                      "T3I.storage-corrected-20261019",
+                      "T3I.quick-battle-20261019",
+                      "T3I.storage-diagnosis-20261019"
+                    ],
+                    "failure_evidence": [
+                      "T3I.storage-baseline-20261019"
+                    ],
+                    "next_steps": [
+                      {
+                        "kind": "scope_review",
+                        "action": "Keep the immutable unmodified Wine reference negative separate from the explicit corrected-driver profile and native renderer correctness."
+                      },
+                      {
+                        "kind": "diagnosis",
+                        "action": "A specific Wine/Mesa internal cause or universally applicable geometry rule requires additional independently identified evidence; the blank baseline frame cannot choose a unique120-pixel offset."
+                      },
+                      {
+                        "kind": "validation",
+                        "action": "Preserve every frame, ordinal, source/destination witness and tolerance in later profiles. Hardware parity and whole-retirement acceptance remain separate."
+                      }
+                    ],
+                    "code_witnesses": [
+                      {
+                        "path": "tools/compare-drawing-quick-battle.py",
+                        "line": 128,
+                        "text": "def compare_plane(native,original,width=800,height=600):"
+                      }
+                    ],
+                    "source_sha256": {
+                      "apps/drawing-session/main.cpp": "86f825b4e5358247dc0966b0fb8f94aa00ac81860a064dd195bebfef7883a224",
+                      "apps/drawing-session/recorded_composition.hpp": "0dc69f1c948bc4f8da1e2e81c069baa803e73180258d8b892d80d467f04e3f50",
+                      "compat/legacy/canvas_producers.hpp": "65b951709656b238da54a0bb4f70f1015faac26ffeaf91e3b9312a329c7f98de",
+                      "compat/legacy/drawing_scene.cpp": "9fd250767df15cd5ffbc55a25316ae2c23ad28cfad5c7d61e37fb3dbc624b2f7",
+                      "compat/legacy/drawing_scene.hpp": "1ef55f789a383b444650ef2118bf5ecba12cc23ed7920154f7ee122747705cf7",
+                      "compat/legacy/drawing_session_main.cpp": "fe148a14e8b7a72402c5462d1afae12c5068ebb2f11f181a33239adc59c60bfd",
+                      "renderer/canvas_sequence.cpp": "6cd633c3e7e09c126234f2f17cd1efb69fc570c8249b8406789a1f63563438e0",
+                      "renderer/canvas_sequence.hpp": "d29ef07ace020366ab172e2f57e44ba4981d62e200d5a5c5b1443ab1ef0aea06",
+                      "research/formats/recorded-drawing-composition-v1.md": "9b1ed4ed380f433b6277fab07a570ff54c7eb622f72d4560c099132acd40eada",
+                      "research/runtime/action-bound-storage-session.md": "9348d668b3914a766b1d9e188d011ab8cfc13bf2dc21b67b5305a3f916d4cf6c",
+                      "research/runtime/drawing-copy-driver-order.md": "c05b92365b745300f759ec76b6347250d50eb4bf174e4ee86d7c8946106edee9",
+                      "research/runtime/rendering-tranche3-issues-review-20261019.md": "7c8dd409012351649b632d0dcd815ad6f379dca527f1a12dd3e5de6d628866fb",
+                      "research/runtime/rendering-tranche3-results-20261019/quick-battle.json": "f3546b98d7f3444640779e5354b83f228fd25adc659ed550628f17e4ac394427",
+                      "research/runtime/rendering-tranche3-results-20261019/storage-baseline.json": "422e95b150a9a1529251fa4eae58907fece546124f129176e430c104b310c0e9",
+                      "research/runtime/rendering-tranche3-results-20261019/storage-corrected.json": "440d847e22e00bbd3e88252896b3eb99712cc4a501cbf4736c6e6375dc002f6c",
+                      "research/runtime/rendering-tranche3-results-20261019/storage-diagnosis.json": "6f625549228d93c48eb57ef5fcb3e42585872e7108a6ff75664d7525c1f24024",
+                      "tests/canvas-sequence-test.cpp": "9c0900dcc6ffd6cd6c00cf6bb4aa724dac8d548dcfa94066e890427cbd069790",
+                      "tests/drawing-scene-test.cpp": "29ae8dbfef876f02aee5c5c2e05acedcf67dbd98116518191ef05c2b65492c24",
+                      "tests/test-drawing-egl-destination.py": "67b67caf6e19294e186c8970a371f1e09e096cf4111d587ef89a71f9a2f2de7d",
+                      "tests/test-drawing-egl-gpu-reference.py": "feb7cfff253923365a99b207d449a596f1f627afba1fb219ea00493a7cc17dfc",
+                      "tests/test-drawing-quick-battle.py": "506f289b0b6e807618846a206191a59f52660382d521b149334c5e4ff8f01844",
+                      "tests/test-drawing-storage-session.py": "2a3d25c9a53bfc54d9c80df7bf582fb954471081cce957e017176a865447cfda",
+                      "tools/compare-drawing-quick-battle.py": "f20e2cbfb2e8b222260d0c3d3b2acdd8a2e5f79d0e09b450e7ecc3e5e678b4b0",
+                      "tools/recorded_drawing_plan.py": "1238fd81552b0a8009bce6c2fc7122634a07045d24cd5bb289fd1c45bb91b480",
+                      "tools/test-recorded-drawing-composition.py": "6ba72965f84e7794839cc02557fb8e4cffd6f4f09f0fb6fa5f818e8cf9a53471",
+                      "research/runtime/critical-top20-rendering-fixes-20261019.md": "e32e0a96b68627020d80b75200b5167857f573bc0b268b2e1c994fb26e0df374"
+                    },
+                    "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed.",
+                    "assessment_history": []
+                  }
+                ],
+                "acceptance_profile_record": "research/runtime/critical-rendering-commit-results-20261020/acceptance-closure.json",
+                "acceptance_profile_evidence": "CRIT12.correct-output-commit-closure-20261020",
+                "review_reason": "Append current reviewed source/test/document links and fresh NT16 evidence while preserving prior reviews and every historical source fingerprint."
               }
             ],
             "execution_result": {
@@ -31108,7 +31260,7 @@
               "current_state": "The recorded-session adapter retains a portable bounded storage/rebuild interval. Sixteenth batch supplies current bounded acquisition, replay, owned-launch and resident-delivery implementation controls.",
               "implementation_gaps": [],
               "validation_state": "historical",
-              "validation_summary": "222 corrected-reference storage/rebuild frames,207590400 pixels and zero mismatches through current native GPU/X11 replay. Legacy238-frame/252-pixel mismatch is retained separately. Fresh NT16 records 98 Python controls, 95 recorded commands and 4960 stable prospective inputs with exact corrected-positive/unmodified-negative software/NVIDIA cohorts, real original source acquisition and normal Quit, source-only GPU history and bounded live acknowledgement/death/fresh recovery. Broader acceptance and historical source fingerprints stay separate.",
+              "validation_summary": "222 corrected-reference storage/rebuild frames,207590400 pixels and zero mismatches through current native GPU/X11 replay. Legacy238-frame/252-pixel mismatch is retained separately. Fresh NT16 records 98 Python controls, 95 recorded commands and 4960 stable prospective inputs with exact corrected-positive/unmodified-negative software/NVIDIA cohorts, real original source acquisition and normal Quit, source-only GPU history and bounded live acknowledgement/death/fresh recovery. Broader acceptance and historical source fingerprints stay separate. Newly linked assurance/SHM diagnosis documents are source-bound here;their finite output result does not close source-session quiescence or whole-renderer acceptance. All older source fingerprints and independent acceptance states are retained.",
               "acceptance": "pending",
               "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Broader action-bound reference/native parity and all required journeys remain independent acceptance targets.",
               "evidence": [
@@ -31162,7 +31314,9 @@
                 "tests/rendering-sixteenth-ten/CMakeLists.txt": "a927090489d067b63cb53ff93dd63f6c6b85a78d5caf0fdcd4a373e15e4ef887",
                 "tests/test-rendering-session-contracts.py": "cec6d91679bc602a062a6ad9e2cfbfe938f44d6e5f4f874feb0e26dbf347fb7a",
                 "tools/rendering_session_contracts.py": "65e1c34cdfd6a774f282899dfd15ac1c6c6a3d75b2e7191c03ef565a43507982",
-                "tools/test-rendering-sixteenth-ten.py": "f97c2eb4d8ad4f22965d9de0d3b16b033278719f621975200ef96d23a6e5b5bf"
+                "tools/test-rendering-sixteenth-ten.py": "f97c2eb4d8ad4f22965d9de0d3b16b033278719f621975200ef96d23a6e5b5bf",
+                "research/runtime/rendering-assurance-20261025.md": "278ff213184f61f3d87714456219661dfe893aca9a941355c6f31634552e6c34",
+                "research/runtime/storage-upload-causality-20261025.md": "4618a0a83cf7ce51936b9ffc19ebcf5f6631f48e82429fa59fc5662dcac6e2bf"
               },
               "incremental_review_notes": [
                 "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
@@ -31404,6 +31558,74 @@
                 ],
                 "pending_source_review": [],
                 "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged."
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "The recorded-session adapter retains a portable bounded storage/rebuild interval. Sixteenth batch supplies current bounded acquisition, replay, owned-launch and resident-delivery implementation controls.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "222 corrected-reference storage/rebuild frames,207590400 pixels and zero mismatches through current native GPU/X11 replay. Legacy238-frame/252-pixel mismatch is retained separately. Fresh NT16 records 98 Python controls, 95 recorded commands and 4960 stable prospective inputs with exact corrected-positive/unmodified-negative software/NVIDIA cohorts, real original source acquisition and normal Quit, source-only GPU history and bounded live acknowledgement/death/fresh recovery. Broader acceptance and historical source fingerprints stay separate.",
+                "acceptance": "pending",
+                "acceptance_summary": "Current full-domain acceptance is not renewed by this source review. Broader action-bound reference/native parity and all required journeys remain independent acceptance targets.",
+                "evidence": [
+                  "DRAW02.storage-session.portable-20261016",
+                  "DRAW02.storage-session.journey-20261016",
+                  "DRAW02.cursor.storage-portable-20261016",
+                  "HIGH01.rendering-work-review-20261019",
+                  "HIGH03.storage-corrected-20261020",
+                  "NT16.native-controls-20261022"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "scope_review",
+                    "action": "Broader action-bound reference/native parity and all required journeys remain independent acceptance targets."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/drawing_recorded_session.py",
+                    "line": 16,
+                    "text": "def retention_id(catalog):"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/drawing-session/main.cpp": "86f825b4e5358247dc0966b0fb8f94aa00ac81860a064dd195bebfef7883a224",
+                  "apps/drawing-session/recorded_composition.hpp": "0dc69f1c948bc4f8da1e2e81c069baa803e73180258d8b892d80d467f04e3f50",
+                  "research/formats/recorded-drawing-composition-v1.md": "9b1ed4ed380f433b6277fab07a570ff54c7eb622f72d4560c099132acd40eada",
+                  "research/runtime/action-bound-storage-session.md": "9348d668b3914a766b1d9e188d011ab8cfc13bf2dc21b67b5305a3f916d4cf6c",
+                  "research/runtime/drawing-copy-driver-order.md": "c05b92365b745300f759ec76b6347250d50eb4bf174e4ee86d7c8946106edee9",
+                  "research/runtime/rendering-high-validation-ownership-20261020.md": "47c2b47cbed3b16d36a8f8e36691c7c42758a9440aa3db837a7c40d1f969dee4",
+                  "tests/fixtures/drawing-journeys/storage-corrected-suite.json": "96bbc6035dba68e4416d1fe11bb33e9684575f92be09ca7a890ff66ed18503f3",
+                  "tests/fixtures/drawing-journeys/storage-suite.json": "9f615c32aa100b685e18bd2a0ecd91e120c5d0786033ff001a2e1d08d816ca86",
+                  "tests/fixtures/drawing-journeys/suite.json": "3091153e8757c4bc66731ea634e0e5a424397853d4567f1f097054e853c36045",
+                  "tests/fixtures/drawing-storage-corrected-session/session.json": "55ea6c4623a2916bdc4a42c3681f75b68aedce85792686ab2b29a234ea6195fc",
+                  "tests/fixtures/drawing-storage-session/session.json": "8fb6fadc81b6c225f325bb6810a22ed81141d128c472971eb1b5615465877ce3",
+                  "tests/test-drawing-copy-order.py": "fe7d37d173ee73173ffa532d2177f439e960b46675ee9d8939cb6bbabe9acf94",
+                  "tests/test-drawing-journeys.py": "316a23d3d4e669339ca39fd502be34d76e25862ed7b86ed85f1e8c12408f3ca3",
+                  "tests/test-drawing-storage-retention.py": "ceb43a3b14fd72c4ac3961a0181ce3ddffc15c1ed7eaeda35004f65534588be6",
+                  "tools/check-drawing-journeys.py": "05cc6ecf1d815df70e96cfa13641308538352d4ece527506430cd9067c271fb4",
+                  "tools/check-recorded-drawing-session.py": "ac66d0653fbcf2027c49d562d6ea1e9c95dfc8699dd10e5363370b6ed1cc854a",
+                  "tools/drawing_copy_order.py": "176f55a39d4d80d8792b4b067c2216cf06a21f4e33939b7de364d3ab40c13644",
+                  "tools/drawing_recorded_session.py": "43948bbe036089960c1fd0f4828b17708e1366e0ddce0633f8b9e0a4c0e284de",
+                  "tools/recorded_drawing_plan.py": "1238fd81552b0a8009bce6c2fc7122634a07045d24cd5bb289fd1c45bb91b480",
+                  "tools/retain-recorded-drawing-session.py": "89c8b9720caa013e1e25d88da69095fac857258fed12c826c5f7fe3f46e2eafe",
+                  "tools/test-recorded-drawing-composition.py": "6ba72965f84e7794839cc02557fb8e4cffd6f4f09f0fb6fa5f818e8cf9a53471",
+                  "research/runtime/third20-implementation-progress-20261020.md": "82d9bbd48bdce67a14d7af1e94fd01d5a1f4b68c2985d1fe57541296394c1316",
+                  "tools/test-third20-offline.py": "e0070fb3400c0d9a1adb649c356fe22a9b96ee7cad2fd74be291fdf0490c50ba",
+                  "research/runtime/coverage/native-implementation-completion-20261020.json": "2a6ebd41e0b8d9595dafd5228eac58d08de677c2e4ce0f53150f2b3e3e68bfe8",
+                  "research/runtime/rendering-sixteenth-ten-closeouts-20261022.md": "adae25c903556d8e8f6bfb54e3f37e2e1dd8cd43d627514382ad55d2eab1ef31",
+                  "tests/rendering-sixteenth-ten/CMakeLists.txt": "a927090489d067b63cb53ff93dd63f6c6b85a78d5caf0fdcd4a373e15e4ef887",
+                  "tests/test-rendering-session-contracts.py": "cec6d91679bc602a062a6ad9e2cfbfe938f44d6e5f4f874feb0e26dbf347fb7a",
+                  "tools/rendering_session_contracts.py": "65e1c34cdfd6a774f282899dfd15ac1c6c6a3d75b2e7191c03ef565a43507982",
+                  "tools/test-rendering-sixteenth-ten.py": "f97c2eb4d8ad4f22965d9de0d3b16b033278719f621975200ef96d23a6e5b5bf"
+                },
+                "incremental_review_notes": [
+                  "20261020 Renewed bounded HIGH03 execution and static supplier mapping; no status promotion, historical fingerprint rewrite, broad original ownership or ordinary-session acceptance."
+                ],
+                "pending_source_review": [],
+                "additive_source_review": "Completion checklist and independent milestone classification reviewed; historical source/evidence fingerprints unchanged.",
+                "review_reason": "Append current reviewed source/test/document links and fresh NT16 evidence while preserving prior reviews and every historical source fingerprint."
               }
             ],
             "planning_history": [

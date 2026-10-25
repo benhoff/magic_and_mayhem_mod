@@ -21,6 +21,24 @@ Natural clipped/self/keyed-GPU calls,five unconfirmed optional callers,
 arbitrary raw readers and complete original ownership remain open. No fixed
 FPS criterion or complete rendering-replacement claim is introduced.
 See [scope,positive evidence and retained failures](native-copy-output-closure-20261025.md).
+## Storage software-upload source attribution — 2026-10-25
+
+The separate public-SHM diagnostic confirms the fresh first-shrink discrepancy
+at the software-upload boundary: all original source/default words agree, while
+the submitted row-zero window of an old-size832×640image explains all301,992wrong
+physical pixels. The geometry-derived row120window matches the correct640×480
+framebuffer exactly. A separate explicit-correction run matches all244closed
+presentations. Every historical238-frame physical plane still matches its
+acquisition hash; its exact historical SHM bytes were not captured, so the unique
+120-row explanation for that old sparse frame remains an inference.
+
+All three new original attempts still fail independent source-session quiescent
+closure and require bounded termination. Successful finite presentation diagnosis
+grants no normal-Quit, complete source/session/native replay or replacement
+acceptance. Private driver allocation internals, global writer ownership and
+whole-renderer acceptance remain open. The reviewed assurance work is combined
+with the newer functional/rendering-services tree without changing the web UI.
+See [measured cause, failed attempts and scope](storage-upload-causality-20261025.md).
 
 ## Functional rendering lifecycle with diagnostic FPS — 2026-10-25
 
@@ -35,6 +53,32 @@ it remains open and receives no combat acceptance credit. No wizard-movement
 outcome, whole-game pixel, complete original ownership, physical-driver or full
 14journey closure is asserted. Historical NT17 cause remains unclassified.
 See [scope, controls and retained results](rendering-functional-lifecycle-20261025.md).
+## Native rendering assurance renewal — 2026-10-25
+
+Current bounded surface, format/pitch, ownership/recovery and clipping comparisons
+pass, alongside 7,490 original panel cases, 320 fade caller-state executions and
+256 original word-sprite comparisons. A new reviewed crosswalk links fresh
+subset proofs while preserving historical bypass, unknown producer and ownership
+boundaries. The web UI is unchanged.
+
+A strict native-only 20-second/Mini/20-second/Quit journey passes 615 balanced
+Worlds, 9,823 native optional calls, zero forwarding and zero surviving owners.
+Actual producer failure/public Hard restart passes two fresh sessions and normal
+Quit; the cancelled generation receives no completion credit. Only appropriate
+native-policy integration stages gain live-observation credit. The approximately
+12 FPS software journey is functional evidence, not performance acceptance.
+
+All 323 Quick Battle and 222 explicit corrected-storage frames match native GPU
+and displayed outputs on both llvmpipe and NVIDIA. Both 238-frame unmodified
+storage cohorts retain the same ordinal 170/126+126-pixel discrepancy. The existing
+user-selected correct-output policy passes with that diagnostic retained; it does
+not establish unmodified-reference parity, full renderer replacement, all-game
+ownership/routes, physical context-loss or sustained performance.
+
+See [the findings, failed attempts, SQLite records and reproduction](rendering-assurance-20261025.md).
+Original manifests pass before/after consuming experiments. A rendering-test
+music opt-out and exact isolated installation admission close staging blockers;
+production rendering algorithms and historical evidence hashes are unchanged.
 
 
 ## Alternate ownership through complete sessions and retail review — 2026-10-24
