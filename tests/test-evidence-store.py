@@ -494,6 +494,59 @@ class EvidenceTests(unittest.TestCase):
         self.assertEqual(p.read_bytes(), b'current version')
         self.assertEqual(self.git('status', '--porcelain', '--untracked-files=no'), b'')
 
+    def test_persistent_filter_handles_multiple_clean_and_smudge_requests(self):
+        self.git('init', '-q')
+        install_filter(self.root, ROOT/'tools/evidence-store.py')
+        self.assertIn(b'filter-process', self.git('config', 'filter.mm-evidence.process'))
+        (self.root/'.gitattributes').write_text('research/runtime/** filter=mm-evidence\n')
+        directory = self.root/'research/runtime'; directory.mkdir(parents=True)
+        contents = {'first.json': b'{"success":false}',
+                    'with space.json': b'\x00\xff' * (CHUNK + 13),
+                    'ordinary.md': b'prose\n', 'empty.bin': b''}
+        for name, data in contents.items():
+            (directory/name).write_bytes(data)
+        self.git('add', '.gitattributes', 'research')
+        expected = {}
+        for name, data in contents.items():
+            indexed = self.git('show', ':research/runtime/'+name)
+            expected[name] = indexed
+            if artifact('research/runtime/'+name):
+                self.assertIsNotNone(identity(indexed))
+                # Cleaning must persist raw bytes before Git receives a pointer.
+                with patch.dict(os.environ, {'MM_EVIDENCE_DB': str(self.root/'working/coverage/evidence-pending.sqlite3')}):
+                    self.assertEqual(decode_bytes(self.root, indexed), data)
+            else:
+                self.assertEqual(indexed, data)
+        # Real Git requests several identity smudges from the same server.
+        output = self.root/'checkout'
+        self.git('checkout-index', '--all', '--prefix='+str(output)+'/')
+        for name, data in expected.items():
+            self.assertEqual((output/'research/runtime'/name).read_bytes(), data)
+        # A second command rereads actual inputs; pointers stay idempotent.
+        for name, data in expected.items():
+            (directory/name).write_bytes(data)
+        self.git('add', '--renormalize', 'research')
+        for name, data in expected.items():
+            self.assertEqual(self.git('show', ':research/runtime/'+name), data)
+
+    def test_persistent_filter_failure_does_not_stage_malformed_pointer(self):
+        self.git('init', '-q')
+        install_filter(self.root, ROOT/'tools/evidence-store.py')
+        (self.root/'.gitattributes').write_text('research/runtime/** filter=mm-evidence\n')
+        report = self.root/'research/runtime/bad.json'; report.parent.mkdir(parents=True)
+        report.write_bytes(b'magic-and-mayhem-evidence-v1 malformed\n')
+        with self.assertRaises(subprocess.CalledProcessError):
+            self.git('add', 'research')
+        self.assertEqual(self.git('ls-files', 'research'), b'')
+
+    def test_filter_protocol_rejects_invalid_or_truncated_packets(self):
+        from evidence_filter import read_packet, serve
+        for packet in (b'0001', b'fff1', b'zzzz', b'00', b'0009abc'):
+            with self.subTest(packet=packet), self.assertRaises(ValueError):
+                read_packet(io.BytesIO(packet))
+        with self.assertRaises(ValueError):
+            serve(self.root, io.BytesIO(b'0009wrong0000'), io.BytesIO())
+
 
 if __name__ == '__main__':
     unittest.main()

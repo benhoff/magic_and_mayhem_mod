@@ -22555,3 +22555,26 @@ setup02 remain current under exact source,contract and scenario checks;the
 extended679-transition history review has no missing exact receipts. Pending
 player-launcher edits are retained separately in verified SQLite/autostash
 preservation and are outside this cursor commit's engine claims.
+
+2026-10-25 commit workflow tooling: persistent evidence filtering retains the
+existing cleaner and required Git failures while avoiding Python startup per
+research file. The staged gate bypasses only identity evidence smudge during
+temporary materialization. A 256-pointer three-run comparison measured median
+staging of28.183s versus0.157s with identical Git trees; a separate same-index,
+same-storage comparison measured93.804s versus2.633s for18004exact blobs.
+Results are SQLite references at `commit-filter-benchmark-20261025.json` and
+`commit-staged-benchmark-20261025.json`; the coverage README describes repetition
+and installation. Finish timing now separates preflight, snapshots, review,
+backups, staging and commit-with-hook. This is submission-tooling evidence;
+original comparison, implementation, integration and live replacement milestones
+are unchanged. Whole-finish timing and independent future merge latency remain
+separate from the bounded filter/materialization measurements.
+
+Commit-performance master integration (2026-10-25): retain current master engine
+records and both append-only review histories while integrating the persistent
+filter, exact staged identity bypass and optional finish timing. The172isolated
+workflow checks pass in the combined tree. History inspection and its closure
+retain exact retrospective support/artifact receipts without asserting a past
+gate pass or new engine validation. Original comparison, integration and live
+replacement statuses remain independently historical or pending. See the SQLite
+`commit-performance-master-integration-20261025.json` result and history reports.
