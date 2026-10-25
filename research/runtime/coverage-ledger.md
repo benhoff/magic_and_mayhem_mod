@@ -22582,3 +22582,38 @@ compositor was added to the expected unrated list; its planning status is
 preserved. The first accounting failure, SQLite lock refusal and historical
 summary overwrite refusal remain separate operational records. Storage inventory
 found no eligible cleanup candidates; the normal 90 GiB reserve is unchanged.
+
+## Native sprite transformations, 2026-10-25
+
+N28 adds ten separately scoped owned native frame operations: crop, trim, two
+mirrors, three rotations, nearest resize, silhouette and four-neighbor outline.
+See [the native transformation packet](rendering-twentyeighth-ten-20261025.md).
+Existing raw asset and session/batch services are suppliers. No original filter,
+pivot, encoded/tinted outline, widget/world or live replacement claim is added.
+The menu/assets parent remains partial; original evidence fingerprints are kept.
+
+The prospective [N28.transforms-native-20261025 result](rendering-twentyeighth-ten-results-20261025/execution-1.json)
+passes 978 checks and 58 expected refusals per Release and ASan/UBSan mode, with
+30 forward geometry cases and 150 independently expected CPU/GPU deliveries.
+The existing native sprite-session regression and both CTest entries pass in
+both modes. No original artifacts are read. Required logs/binaries are retained
+under the owned batch output; reports, census and reviews use SQLite. The pinned
+previous evidence pool and its verified backup set are reused as read-only
+baseline inputs, with a separate owned completion pool and new pending records.
+All 16 configured archive payload sets were verified locally. RAM quota refusals
+from the previous batch justify bounded disk builds; the 90 GiB guard is unchanged.
+
+The [refreshed N28 audit summary](coverage/summary-rendering-twentyeighth-ten-20261025.md)
+has zero errors, no source-census drift and ten new current implementation
+bindings; all ten N27 session bindings also remain current. The 161-source
+unlinked backlog and historical fingerprints are unchanged. All 38 planning
+controls and 15 static review readers pass. The previous commit's 27 reviewed
+file transitions have exact receipts. The existing retention inventory found no
+eligible cleanup candidates. The normal storage reserve remains 90 GiB.
+
+The initial owned completion copy on the second drive is retained unchanged as
+a verified full baseline. As main-drive headroom recovered and second-drive
+headroom narrowed, an exact SHA-256-verified copy became the writable main-drive
+completion pool. No payload, pin, source checkout or backup was removed, and
+this storage choice grants no engine validation. New evidence, review records
+and their required backups remain in the owned worktree.

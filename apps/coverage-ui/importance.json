@@ -3744,6 +3744,76 @@
       "work_type": "capability",
       "reason": "Bounded named native sprite consumption and delivery. Parent asset/original contracts remain partial; importance is independent of effort and validation.",
       "contract_sha256": "0a6e6546c21c1c977adbbe8e96423abdb00cb3e902e02010dc594e5e04079584"
+    },
+    {
+      "behavior": "NP.sprite-transform.crop",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded owned native sprite preparation and delivery; original drawing and aggregate renderer completion remain separate. Importance is independent of effort and validation.",
+      "contract_sha256": "73053af40e3a6ff3b01edf8546bd372dbddeb7b74a85ec28a95f4c20d195e337"
+    },
+    {
+      "behavior": "NP.sprite-transform.trim",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded owned native sprite preparation and delivery; original drawing and aggregate renderer completion remain separate. Importance is independent of effort and validation.",
+      "contract_sha256": "a2867ab2bc3cccbfa5e07f904e3de823ff885b40a09585b0a87b3bbfee29d837"
+    },
+    {
+      "behavior": "NP.sprite-transform.mirror-x",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded owned native sprite preparation and delivery; original drawing and aggregate renderer completion remain separate. Importance is independent of effort and validation.",
+      "contract_sha256": "e07581746316a667684aec40b4c0e95d42bd27bcf066fb77303cddfff3e9a30a"
+    },
+    {
+      "behavior": "NP.sprite-transform.mirror-y",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded owned native sprite preparation and delivery; original drawing and aggregate renderer completion remain separate. Importance is independent of effort and validation.",
+      "contract_sha256": "4d98f3c17e648ec50bc43008049f22e828ade6943442e9ae7765d9fb7d4cd503"
+    },
+    {
+      "behavior": "NP.sprite-transform.rotate-cw",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded owned native sprite preparation and delivery; original drawing and aggregate renderer completion remain separate. Importance is independent of effort and validation.",
+      "contract_sha256": "0d28fc7008ac2949dac511d7f62de949c7f4ad5a6743a53bb0dda0be7f9a634e"
+    },
+    {
+      "behavior": "NP.sprite-transform.rotate-half",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded owned native sprite preparation and delivery; original drawing and aggregate renderer completion remain separate. Importance is independent of effort and validation.",
+      "contract_sha256": "7f77e60abfa41e6fd26fc4e4ffb34dc8471621bcddfa5b2ae29670fd934764ba"
+    },
+    {
+      "behavior": "NP.sprite-transform.rotate-ccw",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded owned native sprite preparation and delivery; original drawing and aggregate renderer completion remain separate. Importance is independent of effort and validation.",
+      "contract_sha256": "9318048bc3f14ec87c1b9dca79a3d0a3b36d5e3418735e5de1fdbbff21f69db7"
+    },
+    {
+      "behavior": "NP.sprite-transform.nearest-resize",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded owned native sprite preparation and delivery; original drawing and aggregate renderer completion remain separate. Importance is independent of effort and validation.",
+      "contract_sha256": "3d8a14d260a3332edef9a916a273e787469a22345f3a875267d55b7850764e4f"
+    },
+    {
+      "behavior": "NP.sprite-transform.silhouette",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded owned native sprite preparation and delivery; original drawing and aggregate renderer completion remain separate. Importance is independent of effort and validation.",
+      "contract_sha256": "05d4c4621f275ed85f46ebd5de3daaee213ede319f42a160273da561a5eb6b56"
+    },
+    {
+      "behavior": "NP.sprite-transform.outer-outline",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded owned native sprite preparation and delivery; original drawing and aggregate renderer completion remain separate. Importance is independent of effort and validation.",
+      "contract_sha256": "900913435ac7f833f5abd52164abfe6ee694f2e83997f8525212fa697d29425d"
     }
   ],
   "tranche_plan": {
