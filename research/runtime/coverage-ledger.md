@@ -22066,3 +22066,45 @@ exact; inherited lifecycle records and all negative results retain their hashes
 and any current source drift. Merged Python controls and coverage accounting
 are separate from new original/live/scene/performance validation. See
 [integration scope and records](rendering-twentythird-master-integration-20261025.md).
+
+
+## Terrain/light supplier contracts — 2026-10-25
+
+[Supplier recovery](terrain-light-suppliers.md) and
+[SQLite execution](terrain-light-suppliers-execution-20261025.json) establish
+`TL.relation-production`, `TL.resource-lifetime`, and `TL.refresh-request`.
+Relation18 is alliance/nonhostility; share20 supplies shared sight. Original
+owner defaults and symmetric non-self pair writes preserve raw bytes; stored
+consumer tables remain directed. Neither setter requests a light refresh.
+
+Original32, native64 and ASan/UBSan agree on640 pair cases,40960 directed
+admission checks,256 resource checkpoints and8200648 object/buffer/service bytes.
+The resource comparison covers32 allocate/reuse/teardown/reinitialize journeys,
+including retained capacity after dimension changes and null-sentinel behavior.
+Allocator/free and kernel-service endpoints are explicit recorders; the original
+supplier bodies execute unchanged. Existing creature-cycle regression also
+matches2304 ticks,19544520 buffer bytes and11520 cycle-state values across all
+three variants. Both manifest checks verify2927 original files.
+
+This is isolated component comparison. Kernel/map-load refresh stores and
+request callers are documented static links; their whole caller execution,
+original allocation failures, installed entity/static-type discovery, script
+reveal/notification consequences, full-world scheduling and live replacement
+remain separate. Native field RAII and replay policy remain distinct. Historical
+consumer evidence retains its hashes; the comment/header change can make its
+older fingerprints stale without revoking past scoped observations.
+
+The first attempt refused the mutable working executable before mapping because
+its SHA-256 differed; the failure is retained in
+[negative evidence](terrain-light-suppliers-20261025.json). The successful run uses
+the immutable hash-pinned no-CD original. Temporary logs/helpers/output streams
+are bounded under this owned worktree's ignored working/tests/light-suppliers-2;
+durable report/disassembly/source fingerprints live in SQLite.
+
+The [pinned static caller report](terrain-light-suppliers-static-20261025.json)
+retains kernel/map-load refresh stores, both explicit request callers and the
+relation/sharing script windows. It grants no new caller execution claim.
+The [coverage audit](terrain-light-supplier-audit-20261025.json) has zero errors;
+all three new supplier behaviors have current implementation/comparison proof.
+The [refreshed summary](coverage/summary-terrain-light-suppliers-20261025.md)
+retains unrelated historical staleness and discovery gaps.

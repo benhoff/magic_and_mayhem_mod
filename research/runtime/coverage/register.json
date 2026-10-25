@@ -4744,7 +4744,8 @@
       ],
       "documents": [
         "research/runtime/terrain-light-fields.md",
-        "research/runtime/rendering-twentythird-ten-20261025.md"
+        "research/runtime/rendering-twentythird-ten-20261025.md",
+        "research/runtime/terrain-light-suppliers.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_lighting.cpp",
@@ -4789,7 +4790,7 @@
         "apps/terrain-preview/main.cpp"
       ],
       "remaining_gaps": [
-        "Original allocation/reload failures, production source discovery/movement, full tick/smoothing/underwater/camera-bias ownership and live lighting remain separate. Size-one inherited storage and source-batch atomicity retain explicit native policies."
+        "Successful initializer reuse/teardown caller contracts are separately recovered by TL.resource-lifetime; original allocation failures, installed source discovery/movement, full tick/smoothing/underwater/camera-bias ownership and live lighting remain separate. Size-one inherited storage and source-batch atomicity retain explicit native policies."
       ]
     },
     {
@@ -4808,7 +4809,8 @@
       ],
       "documents": [
         "research/runtime/terrain-creature-lighting.md",
-        "research/runtime/rendering-twentythird-ten-20261025.md"
+        "research/runtime/rendering-twentythird-ten-20261025.md",
+        "research/runtime/terrain-light-suppliers.md"
       ],
       "implementation": [
         "reconstruction/rendering/terrain_creature_lighting.cpp",
@@ -4852,7 +4854,7 @@
         "reconstruction/rendering/CMakeLists.txt"
       ],
       "remaining_gaps": [
-        "Original production entity lifetime, unsafe active owner sentinel lookups, allocator/scheduler and live replacement remain separate. Snapshot restoration is native policy and must be paired with the matching owned field."
+        "Relation byte defaults and pair setters are separately recovered by TL.relation-production, explicit refresh requests by TL.refresh-request, and successful light-buffer ownership by TL.resource-lifetime. Original entity production lifetime, unsafe active owner sentinel lookups, heap failures, whole scheduler and live replacement remain separate. Snapshot restoration is native policy and must be paired with the matching owned field."
       ]
     },
     {
@@ -146890,6 +146892,159 @@
       "remaining_gaps": [
         "Owned forwarding/refusal controls and complete individual original upload points now diagnose the fresh bounded software-presentation discrepancy. Exact historical238-frame upload bytes are unavailable; its unique120-row attribution remains an inference. Private Wine/Mesa allocation cause, timing neutrality, universal resize/format handling and global SHM ownership remain unproved.",
         "The new original source-recorder sessions refuse quiescent closure after a separately closed EGL physical interval. Finite individually complete SHM points may explain that interval; source/session/process-cohort/normal-Quit/native acceptance remain refused. The exact pending source frame and private driver allocation cause remain unclassified."
+      ]
+    },
+    {
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/terrain-light-suppliers.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_suppliers.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp"
+      ],
+      "tests": [
+        "tests/terrain-light-suppliers-reference.cpp",
+        "tests/terrain-creature-lighting-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-terrain-light-suppliers.py"
+      ],
+      "evidence": [
+        "TLS25.suppliers-original",
+        "TLS25.suppliers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "TL.relation-production",
+      "title": "Terrain light alliance and sharing byte production",
+      "scope": "Owner constructor relation18=1/share20=0 and whole symmetric pair setters for owners0..7, raw bytes, self no-op, no refresh side effect; directed consumer admission remains intact.",
+      "validation_domain": "Owner constructor relation18=1/share20=0 and whole symmetric pair setters for owners0..7, raw bytes, self no-op, no refresh side effect; directed consumer admission remains intact.",
+      "remaining_gaps": [
+        "Full installed alliance initialization/configuration, script lookup/reveal/notification consequences, sentinel owners and live relation production remain separate."
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4609088,
+          "scope": "Owner constructor relation18=1/share20=0 and whole symmetric pair setters for owners0..7, raw bytes, self no-op, no refresh side effect; directed consumer admission remains intact."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4609280,
+          "scope": "Owner constructor relation18=1/share20=0 and whole symmetric pair setters for owners0..7, raw bytes, self no-op, no refresh side effect; directed consumer admission remains intact."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4609504,
+          "scope": "Owner constructor relation18=1/share20=0 and whole symmetric pair setters for owners0..7, raw bytes, self no-op, no refresh side effect; directed consumer admission remains intact."
+        }
+      ]
+    },
+    {
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/terrain-light-suppliers.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_suppliers.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp"
+      ],
+      "tests": [
+        "tests/terrain-light-suppliers-reference.cpp",
+        "tests/terrain-creature-lighting-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-terrain-light-suppliers.py"
+      ],
+      "evidence": [
+        "TLS25.suppliers-original",
+        "TLS25.suppliers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "TL.resource-lifetime",
+      "title": "Terrain light five-buffer resource lifetime",
+      "scope": "Whole initializer and map clear with recorded allocation/free/kernel service endpoints; five-buffer allocation, raw fill byte, nonzero published-handle reuse, retained size, auxiliary free, ordered teardown and null-sentinel branches on bounded successful storage.",
+      "validation_domain": "Whole initializer and map clear with recorded allocation/free/kernel service endpoints; five-buffer allocation, raw fill byte, nonzero published-handle reuse, retained size, auxiliary free, ordered teardown and null-sentinel branches on bounded successful storage.",
+      "remaining_gaps": [
+        "Original heap internals, allocation failure/partial allocation, kernel body execution, full map loading, installed entity/static-type production and live replacement remain separate."
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5164496,
+          "scope": "Whole initializer and map clear with recorded allocation/free/kernel service endpoints; five-buffer allocation, raw fill byte, nonzero published-handle reuse, retained size, auxiliary free, ordered teardown and null-sentinel branches on bounded successful storage."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5164000,
+          "scope": "Whole initializer and map clear with recorded allocation/free/kernel service endpoints; five-buffer allocation, raw fill byte, nonzero published-handle reuse, retained size, auxiliary free, ordered teardown and null-sentinel branches on bounded successful storage."
+        }
+      ]
+    },
+    {
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/terrain-light-suppliers.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_light_suppliers.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp"
+      ],
+      "tests": [
+        "tests/terrain-light-suppliers-reference.cpp",
+        "tests/terrain-creature-lighting-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-terrain-light-suppliers.py"
+      ],
+      "evidence": [
+        "TLS25.suppliers-original",
+        "TLS25.suppliers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "TL.refresh-request",
+      "title": "Terrain light refresh request producer",
+      "scope": "Whole explicit changed=1 request helper with raw prior flag values. Kernel/map-load writes and outer clear are documented static caller links, without claiming full caller/scheduler execution.",
+      "validation_domain": "Whole explicit changed=1 request helper with raw prior flag values. Kernel/map-load writes and outer clear are documented static caller links, without claiming full caller/scheduler execution.",
+      "remaining_gaps": [
+        "Producer-triggering gameplay/UI paths, kernel/map-load callers, indirect refresh writes and whole-world scheduling remain unvalidated."
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5189072,
+          "scope": "Whole explicit changed=1 request helper with raw prior flag values. Kernel/map-load writes and outer clear are documented static caller links, without claiming full caller/scheduler execution."
+        }
       ]
     }
   ],
@@ -333748,6 +333903,64 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "TLS25.suppliers-original",
+      "kind": "isolated_original",
+      "scope": "Bounded supplier bodies against owned memory and recorded allocator/free/kernel endpoints; original32/native64/sanitized byte and call-order comparison, plus creature-cycle regression. No heap failures, script/caller integration or live replacement.",
+      "record": "research/runtime/terrain-light-suppliers-execution-20261025.json",
+      "sha256": "380e86c6b8a728c9988efd34982e3af5fcd113ccb6e92c3e74685940ab94f6b7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLS25.suppliers-native",
+      "kind": "native_integration",
+      "scope": "Owned supplier memory-service execution in native64 and ASan/UBSan, compared to the original32 fixture. This component scenario does not promote whole-scene or live integration.",
+      "record": "research/runtime/terrain-light-suppliers-execution-20261025.json",
+      "sha256": "380e86c6b8a728c9988efd34982e3af5fcd113ccb6e92c3e74685940ab94f6b7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -359915,6 +360128,26 @@
         "SC25.baseline-finite",
         "SC25.corrected-finite"
       ]
+    },
+    {
+      "id": "TL.supplier-resource-journeys",
+      "level": "headless",
+      "scope": "640 directed-start raw-byte pair cases and 32 bounded allocate/reuse/clear/reinitialize journeys with recorded kernel service; no allocation failures or full scene.",
+      "behaviors": [
+        "TL.relation-production",
+        "TL.resource-lifetime",
+        "TL.refresh-request"
+      ],
+      "tests": [
+        "tests/terrain-light-suppliers-reference.cpp",
+        "tests/terrain-creature-lighting-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-terrain-light-suppliers.py"
+      ],
+      "evidence": [
+        "TLS25.suppliers-original",
+        "TLS25.suppliers-native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -361477,7 +361710,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-d869f4651c7a0bcc0b25f949e7840ea54fba80af3c5eaa8c55f2d54d90a918f5.json",
-    "sha256": "d869f4651c7a0bcc0b25f949e7840ea54fba80af3c5eaa8c55f2d54d90a918f5"
+    "path": "research/runtime/coverage/source-index-fc585c4f3ca60cb687977165a9a20ea4ad6ba2e6148ba73955f9b5df01221ad9.json",
+    "sha256": "fc585c4f3ca60cb687977165a9a20ea4ad6ba2e6148ba73955f9b5df01221ad9"
   }
 }
