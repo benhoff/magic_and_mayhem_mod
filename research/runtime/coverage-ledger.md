@@ -1,5 +1,20 @@
 # Engine modernization coverage ledger
 
+## Functional rendering lifecycle with diagnostic FPS — 2026-10-25
+
+Fixed instrumented FPS is diagnostic under the user's revised acceptance policy;
+historical19FPS results remain unchanged and measurement overhead is unquantified.
+Current strict native-only10/30second cases validate352/696balanced Worlds,
+physical camera/HUD input, all three original Mini callbacks, Cancel/resume,
+Quit No/resume, Quit Yes/report/Main, original normal exit and complete graphics
+owner retirement. The separate public NVIDIA lifecycle passes741balanced Worlds.
+The public combat/spell/portrait case still fails required Fireball enemy damage;
+it remains open and receives no combat acceptance credit. No wizard-movement
+outcome, whole-game pixel, complete original ownership, physical-driver or full
+14journey closure is asserted. Historical NT17 cause remains unclassified.
+See [scope, controls and retained results](rendering-functional-lifecycle-20261025.md).
+
+
 ## Alternate ownership through complete sessions and retail review — 2026-10-24
 
 ACO1 validates eight normal original windowed processes and sixteen repeated
@@ -21944,3 +21959,14 @@ coverage metadata and appended ledger text required reconciliation; generated
 source indexing is refreshed from the combined tracked sources. No engine input
 or behavior changes, broader status promotions, runtime experiment or publication
 is included. Concurrent uncommitted launcher/bookkeeping edits are excluded.
+
+## Functional rendering master integration — 2026-10-25
+
+The master integration preserves bounded terrain milestones and functional
+lifecycle commit994555da, including its passing strict10/30second and public
+NVIDIA lifecycle records, diagnostic FPS policy and separate failed public
+Fireball damage case. Combined-tree Python controls and coverage accounting are
+separate from original-game execution. Historical hashes stay unchanged; merged
+source drift retains pending current validation. This closes no additional
+original recovery or broad journey acceptance. See
+[integration scope and records](rendering-functional-master-integration-20261025.md).

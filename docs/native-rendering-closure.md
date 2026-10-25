@@ -7,8 +7,8 @@ Neither decision substitutes for the other.
 
 This plan reviews local master `c4510223`, including the completed bounded
 terrain/palette scopes and original alternate-ownership diagnostics. The
-[editable closure map](native-rendering-closure.json) links 103 registered
-behaviors in 15 contract groups (the baseline 101 plus two P1 static helpers) to the existing 14 journeys and 21 operation
+[editable closure map](native-rendering-closure.json) links 104 registered
+behaviors in 15 contract groups (the baseline 101 plus two P1 static helpers and the functional acceptance policy) to the existing 14 journeys and 21 operation
 requirements. These are dependency links, not new execution or completion credit.
 The [coverage register](../research/runtime/coverage/register.json) retains its
 independent understanding, implementation, comparison, integration and replacement
@@ -27,15 +27,17 @@ Keep three execution profiles distinct:
 
 | Profile | Existing entry | Acceptance boundary |
 | --- | --- | --- |
-| Public resident | `tools/test-native-campaign.py` | Existing public gameplay, input, output and performance checks. |
+| Public resident | `tools/test-native-campaign.py --fps-policy diagnostic` | Existing public gameplay, input and output checks; FPS is diagnostic. |
 | Strict native only | `tools/run-native-owned.py --native-only` | No-forward capability admission, explicit unsupported-path refusal and independently verified completion. A short launch pass does not establish sustained campaign acceptance. |
 | Isolated recovery | `tools/run-native-owned.py --device-recovery` | Opt-in renderer-process recovery with retained committed state; separate from ordinary shared-texture presentation. |
 
 A result belongs to its actual profile, backend, exact source/input versions and
 reference boundary. The existing journey and operation requirements in
 [`drawing_journeys.py`](../tools/drawing_journeys.py) and its
-[suite](../tests/fixtures/drawing-journeys/suite.json) remain unchanged. Existing
-performance thresholds are not relaxed. Native Qt menu layout, safer memory
+[suite](../tests/fixtures/drawing-journeys/suite.json) remain unchanged. Fixed FPS is diagnostic under the user decision of2026-10-25. Functional
+actions, complete output, forward progress, response deadlines and resource
+bounds remain required. Historical benchmark results and their original criteria
+remain unchanged; measurement overhead has not been quantified. Native Qt menu layout, safer memory
 admission and graphics recovery are intentional policies with semantic checks;
 they are not claims of original pixel/driver identity.
 
@@ -68,7 +70,7 @@ semantics. Native policies remain separate from recovered baseline behavior.
 | C12 Movies | Native playback and bounded enabled startup | Required skip/end/error/return ownership and profile combinations. |
 | C13 Storage transitions | Save/Load, display rebuild and fresh resumed Worlds | Later-map progression and wider rendering resource retirement/rebind. |
 | C14 Shutdown and recovery | Original provider shutdown, actual-game Hard restart, synthetic graphics recovery | Natural failure reachability, external credits, live isolated continuation and physical-reset boundaries. |
-| C15 Admission and acceptance | Strict admission, transport controls and recorded software/NVIDIA comparisons | Whole journey coverage, required routes, current-source acceptance and sustained performance. |
+| C15 Admission and acceptance | Strict admission, transport controls and recorded software/NVIDIA comparisons | Whole journey coverage, required routes and current-source functional acceptance; performance is diagnostic. |
 
 The machine map supplies exact behavior IDs, source/test witnesses and research
 links for each group. It is a required-dependency starting map, not an assertion
@@ -91,7 +93,7 @@ their own boundaries. Intentional native UI policies use semantic acceptance.
 | Main and setup menus | C01 C02 C08 C09 C11 C14 C15 | Settings/cancel semantics, focus and presentation ownership. |
 | Campaign entry | C01 C03 C04 C05 C06 C07 C08 C09 C11 C13 C15 | Required admission/loading branches and independent first complete output. |
 | Quick Battle entry | C01 C03 C04 C05 C06 C07 C08 C09 C11 C15 | Setup/loading/first-World actions bound to the claimed native profile. |
-| Active World | C01 C02 C03 C04 C05 C06 C07 C08 C09 C15 | Sustained complete output, side effects, resource limits and performance together. |
+| Active World | C01 C02 C03 C04 C05 C06 C07 C08 C09 C15 | Sustained complete output, side effects, forward progress and resource limits together; FPS is diagnostic. |
 | Camera motion | C03 C04 C05 C06 C07 C08 C11 C15 | Pan, all four orientations, limits, minimap and picking together. |
 | Creatures and effects | C01 C02 C03 C05 C06 C07 C08 C15 | Required attachments, lighting, visibility and blending with semantic/frame checks. |
 | HUD minimap tooltips | C01 C02 C05 C07 C08 C09 C11 C15 | State-bound markers, outlines and tooltip open/close in presented output. |
@@ -126,8 +128,8 @@ unimplemented label is applied to the completed bounded components.
 | B02 Alternate ownership | Unrecovered and requiredness unresolved | Recover the required natural ownership chain or justify an exact bounded exclusion; global reachability remains unknown. |
 | B03 External screen services | Unrecovered | Recover required helper/vtable behavior and screen/callback lifetime beneath the local tick. |
 | B04 Required scene/helper connections | Not integrated | Connect required providers and prove caller effects, ownership and output; name allowed original suppliers. |
-| B05 Strict movement Escape/Mini | Known failing | Diagnose and pass the same stress/resume/Quit assertions that failed twice. |
-| B06 Public performance | Known failing | Meet the unchanged 19 FPS public gate and existing phase/stall checks, then establish separate sustained presentation acceptance. |
+| B05 Strict camera/HUD input Escape/Mini | Current strict 10/30 second cases validated; historical cause unclassified | Retain passing callback/resume/Quit and ownership evidence at the same and extended durations. Historical cause remains a separate investigation. |
+| B06 Public FPS diagnostics | Diagnostic; historical benchmark failed | Retain the measured result and instrumentation limits. No fixed FPS threshold blocks functional completion. |
 | B07 Action-bound acceptance | Not validated | Appropriate evidence for all existing 14 journeys and 21 operations. |
 | B08 Transition combinations | Not validated | Movie returns, Preferences variants, actual later maps and both results with fresh resources/output. |
 | B09 Natural caller/history coverage | Unrecovered and not validated | Required natural caller/output proof or justified exact exclusions for unresolved routes and reader/copy branches. |
@@ -138,9 +140,11 @@ unimplemented label is applied to the completed bounded components.
 
 The [NT17 execution](../research/runtime/rendering-seventeenth-five-20261023.md)
 retains B05's two readiness failures and B06's public outcome of
-17.253776873910518 FPS against the unchanged 19 FPS gate. These are retained
+17.253776873910518 FPS against its historical19FPS gate. These are retained
 failures, not newly rerun diagnoses or proof that the renderer caused them.
-Its successful 4096-return controls do not close those different scenarios.
+Current strict10/30second B05 cases now pass; the historical ingress cause remains unclassified. B06 is retained as an instrumented diagnostic
+under the2026-10-25 user decision; it is not relabeled a passed benchmark.
+Its successful4096-return controls do not close those different scenarios.
 
 The [ownership sessions](../research/runtime/alternate-ownership-sessions-20261024.md)
 cover eight original windowed processes and sixteen battles with no alternate
@@ -154,14 +158,14 @@ do not close physical-reset or live-game continuation acceptance.
 | --- | --- | --- |
 | P1 Required original dependencies | Bottom up; can start now | Required caller/provider graph, recovered contract receipts and exact remaining unknowns or justified exclusions. B01 B02 B03 B09 B11. |
 | P2 Required provider connections | Implementation/integration; depends on P1 only for affected caller/ownership decisions | Connected declared rendering path with allowed original suppliers, side effects and owned lifetime. B04 B12. |
-| P3 Reproduced failures | Defect resolution; can start independently | Diagnosed Mini/readiness and performance causes; the same scenarios pass unchanged assertions. B05 B06. |
+| P3 Functional readiness | Defect resolution; can start independently | The same movement/Escape/Mini/Cancel/resume/normal-Quit scenario passes its functional assertions, ownership checks and response deadlines. B05; B06 is diagnostic. |
 | P4 Normal journey acceptance | Top down; required P2 connections and P3 fixes | All existing journeys/operations have appropriate current profile-specific reference, semantic/output and resource evidence. B07 B08 B13. |
 | P5 Fault/lifecycle acceptance | Top down; required P2 connections | Declared restart/continuation matrix passes; physical limitations remain explicit. B10 B11 B13. |
 | P6 Separate closure decisions | Depends on P1 through P5 within the claimed scope | Separate original-recovery and native-acceptance decisions; no unresolved required blocker. |
 
 P1 now records the required dependency inventory and its explicit recovery
-frontiers. P2 can connect required providers within those boundaries; P3 can
-address the failures already observed. Remaining original recovery follows the
+frontiers. P2 can connect required providers within those boundaries; P3 addresses the functional readiness failure. FPS measurements remain
+diagnostic. Remaining original recovery follows the
 concrete P1 frontiers rather than treating every offline helper as a required
 live replacement.
 
@@ -174,7 +178,9 @@ policy deliberately differs; the difference must be explicit.
 
 Native acceptance is complete only when the unchanged journeys and operation
 requirements, known failures, required integration, lifecycle/fault checks and
-performance gates pass in the claimed profiles. Unsupported original pixel
+functional response and resource checks pass in the claimed profiles. FPS is
+diagnostic and does not establish normal-play performance; optional benchmarks
+retain their original thresholds. Unsupported original pixel
 fallback cannot occur inside a complete-native claim. A successful implementation
 or source review grants neither original equivalence nor end-to-end acceptance.
 
@@ -191,4 +197,17 @@ distinguishes retained original preparation from required native pixel/history
 services and records the existing tracked-surface/current-Lock admission. Two
 local screen helpers gain static understanding only. P1's inventory exit is
 recorded; original recovery remains open in F1 through F5. The 14 journeys,
-21 operation requirements, profile boundaries and acceptance gates are unchanged.
+21 operation requirements and profile boundaries remain unchanged. The functional FPS policy is revised below; historical benchmark criteria remain recorded.
+
+## Functional completion policy (2026-10-25)
+
+The user removed fixed instrumented FPS as a completion criterion. The immediate
+deliverable is the strict native movement → Escape/Mini → Cancel → resumed
+World → Quit No → resumed World → Quit Yes/report/Main/normal exit sequence.
+Required callbacks, no-forward ownership, balanced World retirement, visible
+output and bounded responsiveness remain mandatory. This is not completion of
+all14journeys, P2 provider integration or original recovery. B06 is diagnostic;
+B05 has fresh strict10/30second functional execution; broader journeys and the historical ingress cause remain separate. Historical
+19FPS failures remain unchanged, with measurement overhead unresolved.
+
+The [functional execution report](../research/runtime/rendering-functional-lifecycle-20261025.md) records the passing strict and public NVIDIA lifecycle scopes, the separate failed Fireball-damage case and the remaining validation boundaries.

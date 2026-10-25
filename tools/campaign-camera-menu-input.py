@@ -35,7 +35,12 @@ def open_mini(ready,escape,observed,record,sleep=time.sleep,clock=time.monotonic
         # Never send a second Escape without a witnessed blocking modal.
         witness=observed()
         if witness:return witness
-        if not ready():raise ValueError('No original Mini callback and no recognized blocking Hermes')
+        dismissed=ready()
+        # Readiness captures can outlast the callback. Admit that original
+        # witness before deciding whether another physical Escape is allowed.
+        witness=observed()
+        if witness:return witness
+        if not dismissed:raise ValueError('No original Mini callback and no recognized blocking Hermes')
     raise ValueError('Bounded camera Mini transition exhausted')
 
 

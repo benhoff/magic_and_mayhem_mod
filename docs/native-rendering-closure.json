@@ -11,8 +11,8 @@
     "profiles": [
       {
         "id": "public-resident",
-        "entry": "tools/test-native-campaign.py",
-        "boundary": "Existing public resident route and unchanged ordinary acceptance gates."
+        "entry": "tools/test-native-campaign.py --fps-policy diagnostic",
+        "boundary": "Public resident functional acceptance with FPS diagnostics; historical throughput benchmarks retain their original criteria and results."
       },
       {
         "id": "strict-native-only",
@@ -26,7 +26,7 @@
       }
     ],
     "rules": [
-      "14 journeys and 21 operation requirements unchanged; thresholds not relaxed.",
+      "All14journeys and21operation requirements remain. User-authorized2026-10-25 scope change makes FPS diagnostic; functional actions, output, progress, deadlines and resource checks remain required.",
       "Credit is specific to actual profile/backend/source fingerprint/reference boundary.",
       "Native Qt menu layout and safety/recovery policies require semantic/policy checks, not original pixel identity.",
       "Alternate requiredness, fullscreen padding and physical compatibility remain explicit conditional blockers.",
@@ -36,7 +36,15 @@
       "Native gameplay/simulation replacement, task services and balance changes.",
       "Retail executable and multiplayer support require separate evidence.",
       "Universal malformed/undefined-memory equivalence: observed original behavior and native safety policies remain distinct."
-    ]
+    ],
+    "performance_policy": {
+      "fps": "diagnostic",
+      "minimum_fps_required": false,
+      "historical_minimum_fps": 19,
+      "response_deadlines_required": true,
+      "resource_and_progress_checks_required": true,
+      "reason": "User decision2026-10-25: fixed instrumented FPS is not a native rendering completion requirement; measurement overhead remains unquantified."
+    }
   },
   "classifications": {
     "unrecovered": "Original semantics/ownership unknown.",
@@ -44,7 +52,9 @@
     "not_integrated": "Required running caller path not connected/proved.",
     "not_validated": "Required execution/reference/current acceptance missing.",
     "known_failing": "Retained required check fails; cause may be game, renderer, input or test driver.",
-    "decision_required": "Evidence-based scope/requiredness decision needed; does not erase an unknown."
+    "decision_required": "Evidence-based scope/requiredness decision needed; does not erase an unknown.",
+    "diagnostic": "Recorded measurement retained independently of functional completion; neither passed nor required to pass.",
+    "validated_current_scope": "Fresh named profile/source/case execution passes; historical unclassified causes and broader claims remain separate."
   },
   "contracts": [
     {
@@ -701,10 +711,11 @@
         "NR.world-continuous-normal-performance",
         "NP.native-only-launch-contract",
         "NP.native-output-ownership",
-        "NP.correct-output-recorded-acceptance"
+        "NP.correct-output-recorded-acceptance",
+        "NP.functional-rendering-acceptance"
       ],
       "established": "Strict admission, 4096-return controls and selected software/NVIDIA recorded output comparisons exist.",
-      "remaining": "Complete action-bound journeys, required routes and sustained public performance; NT17 public result misses 19 FPS.",
+      "remaining": "Complete action-bound journeys, required routes and functional lifecycle acceptance. Record instrumented FPS separately; no fixed FPS threshold blocks closure.",
       "recovery_exit": "Separate recovered dependencies from native admission policies; no complete claim follows from component, no-forward or short-launch success.",
       "documents": [
         "docs/live-drawing-replacement.md",
@@ -889,7 +900,7 @@
         "C15"
       ],
       "established": "Bounded native live Worlds and 4096-return/paint controls exist.",
-      "acceptance_exit": "Check sustained complete output, side effects, resources and performance together.",
+      "acceptance_exit": "Check sustained complete output, side effects, advancing original updates, response deadlines and resource bounds together. FPS is diagnostic.",
       "acceptance": "not_validated_comprehensively",
       "blockers": [
         "B01",
@@ -1546,7 +1557,7 @@
       "id": "B05",
       "title": "Strict movement Escape and Mini readiness",
       "classification": [
-        "known_failing"
+        "validated_current_scope"
       ],
       "priority": "high",
       "contracts": [
@@ -1559,20 +1570,23 @@
         "pause-preferences",
         "shutdown"
       ],
-      "exit": "Reproduce NT17 stress failures, diagnose game/input/driver cause and pass the same movement/Escape/Mini/resume/normal-Quit assertions. A shorter pass cannot close this.",
+      "exit": "Pass the same10second and extended30second active physical camera/HUD stress, original Escape/Mini callback, Cancel/resume, Quit No/resume and Quit Yes/report/Main/normal-exit assertions with balanced resources. Classify the historical cause independently; do not infer it from a current pass.",
       "condition": "required",
       "documents": [
         "research/runtime/rendering-seventeenth-five-20261023.md"
       ],
-      "state": "open"
+      "state": "validated_current_scope",
+      "result": "research/runtime/rendering-functional-lifecycle-20261025.md",
+      "limitations": "Strict final-source10/30second Apprentice cases pass. Historical NT17 cause remains unclassified; no universal reliability or complete rendering claim.",
+      "historical_exit": "Reproduce NT17 stress failures, diagnose game/input/driver cause and pass the same movement/Escape/Mini/resume/normal-Quit assertions. A shorter pass cannot close this."
     },
     {
       "id": "B06",
-      "title": "Public performance threshold miss",
+      "title": "Public FPS diagnostics",
       "classification": [
-        "known_failing"
+        "diagnostic"
       ],
-      "priority": "high",
+      "priority": "low",
       "contracts": [
         "C02",
         "C03",
@@ -1586,12 +1600,12 @@
         "creatures-effects",
         "hud-minimap-tooltips"
       ],
-      "exit": "Diagnose retained 17.253776873910518 FPS result; pass existing 19 FPS public gate and phase/stall checks on declared backend. Separately validate sustained presentation goals; do not equate engine cadence, generation, paint and scanout.",
-      "condition": "required",
+      "exit": "Retain the instrumented17.253776873910518FPS result and historical19FPS failure unchanged. Measurement overhead is unresolved; neither a normal-play performance assertion nor a fixed FPS completion gate follows.",
+      "condition": "Not a functional closure blocker under the user decision2026-10-25.",
       "documents": [
         "research/runtime/rendering-seventeenth-five-20261023.md"
       ],
-      "state": "open"
+      "state": "diagnostic"
     },
     {
       "id": "B07",
@@ -1900,14 +1914,19 @@
     },
     {
       "id": "P3",
-      "title": "Resolve reproduced readiness and performance failures",
+      "title": "Resolve reproduced functional readiness failure",
       "track": "defect_resolution",
       "blockers": [
-        "B05",
-        "B06"
+        "B05"
       ],
       "depends_on": [],
-      "exit": "Same strict stress and public performance scenarios pass unchanged assertions and thresholds with diagnosed causes."
+      "exit": "The same strict movement/Escape/Mini/Cancel/resume/normal-Quit sequence passes unchanged functional assertions, ownership and deadlines. FPS remains diagnostic.",
+      "diagnostics": [
+        "B06"
+      ],
+      "functional_state": "validated_current_scope",
+      "result": "research/runtime/rendering-functional-lifecycle-20261025.md",
+      "historical_cause": "unclassified"
     },
     {
       "id": "P4",
@@ -1965,7 +1984,7 @@
     ],
     "native_acceptance": [
       "All journey/operation requirements have appropriate independent current profile-specific checks.",
-      "Known readiness/performance failures closed at unchanged gates.",
+      "Known functional readiness failures closed; instrumented FPS remains diagnostic without changing historical benchmark results.",
       "Required integration, lifecycle, faults and resource bounds accepted.",
       "No unsupported original pixel fallback within a complete-native claim."
     ],
