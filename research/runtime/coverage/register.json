@@ -146891,6 +146891,48 @@
         "Owned forwarding/refusal controls and complete individual original upload points now diagnose the fresh bounded software-presentation discrepancy. Exact historical238-frame upload bytes are unavailable; its unique120-row attribution remains an inference. Private Wine/Mesa allocation cause, timing neutrality, universal resize/format handling and global SHM ownership remain unproved.",
         "The new original source-recorder sessions refuse quiescent closure after a separately closed EGL physical interval. Finite individually complete SHM points may explain that interval; source/session/process-cohort/normal-Quit/native acceptance remain refused. The exact pending source frame and private driver allocation cause remain unclassified."
       ]
+    },
+    {
+      "id": "NP.alternate-canvas-owned-generation",
+      "kind": "native_policy",
+      "subsystem": "rendering_reconstruction",
+      "title": "Native alternate canvas generation ownership and centered copy-back",
+      "scope": "Intentional single-threaded native policy: bounded zero-cleared RGB565 generation publication, opaque owner-specific weak handles, exclusive movable frame leases, stale and cross-owner refusal, atomic invalid/leased publication refusal, explicit retirement with deferred destruction through last lease, and retained World pixels across ordinary Lock failure. Native layout chooses centered visible source within a padded World plane; visible ordinary stride/height are required. A synchronous compatibility adapter supplies these owned spans to the unchanged recovered borrowed dispatcher and removes temporary alternate binding on return/unwinding. Authored complete-plane pixel, ordered callback, resize/reacquire/retire/destruction and invalid-admission controls only. No recovered original allocator, pointer relationship, all-writer closure, natural alternate reachability, application installation, cross-thread use, escaped borrowed pointers, arbitrary callback storage mutation or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "renderer/alternate_canvas.hpp",
+        "compat/legacy/alternate_canvas_dispatch.hpp"
+      ],
+      "tests": [
+        "tests/alternate-canvas-owner-test.cpp",
+        "tools/test-alternate-canvas-owner.py"
+      ],
+      "validation_dependencies": [
+        "renderer/alternate-canvas/CMakeLists.txt",
+        "reconstruction/rendering/alternate_canvas_dispatch.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "documents": [
+        "research/runtime/alternate-canvas-native-owner-20261025.md",
+        "research/runtime/coverage/summary-alternate-owner-20261025.md"
+      ],
+      "evidence": [
+        "ACO2.native-owner-initial-20261025",
+        "ACO2.native-owner-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Original alternate allocation/publication/base-source relationship/initial pixels/writer inventory/retirement and natural nonzero route remain unresolved; centered copy and zero clear are native choices.",
+        "Headless owner/dispatcher integration does not install an alternate route in the native game or validate complete frames/performance, borrowed pointer escape, arbitrary callback mutation or concurrent threads."
+      ]
     }
   ],
   "evidence": [
@@ -333748,6 +333790,84 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "ACO2.native-owner-initial-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/alternate-canvas-owner-results-20261025/native01.json",
+      "sha256": "4b19017bf5f2b6aefe410a4ea6ec1b28c8a2a887f998e0be885539b62e8b6a58",
+      "scope": "Native Qt-free release/CTest and 32/64-bit ASan/UBSan owner/borrowed-dispatch fixture only. Original owner and live application installation remain unresolved. Historical initial tests before complete alternate-plane and maximum-extent additions.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/release/frames",
+          "equals": 24
+        },
+        {
+          "pointer": "/native32/refusals",
+          "equals": 61
+        },
+        {
+          "pointer": "/native64/checks",
+          "equals": 9446777
+        },
+        {
+          "pointer": "/original_allocation_recovered",
+          "equals": false
+        },
+        {
+          "pointer": "/application_installed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ACO2.native-owner-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/alternate-canvas-owner-results-20261025/native02.json",
+      "sha256": "d6b86111ab3f4bf9407fae2d0c721df7e0e9732fce1560774bf7ffc9dd183680",
+      "scope": "Native Qt-free release/CTest and 32/64-bit ASan/UBSan owner/borrowed-dispatch fixture only. Original owner and live application installation remain unresolved.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/release/frames",
+          "equals": 24
+        },
+        {
+          "pointer": "/native32/refusals",
+          "equals": 61
+        },
+        {
+          "pointer": "/native64/checks",
+          "equals": 19813799
+        },
+        {
+          "pointer": "/original_allocation_recovered",
+          "equals": false
+        },
+        {
+          "pointer": "/application_installed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -359915,6 +360035,22 @@
         "SC25.baseline-finite",
         "SC25.corrected-finite"
       ]
+    },
+    {
+      "id": "ACO2.owned-dispatch-headless",
+      "title": "Native owned alternate dispatch and lifetime controls",
+      "scope": "Both video resolutions, padding 0/4/96 and 0/3, successful/failed ordinary Lock, two ordered overlays, full visible independent pixel oracle, retained alternate World pixels, exclusive leases, stale/cross-owner handles, recreate, retire during dispatch, owner destruction and native admission refusal. No original game execution or application installation.",
+      "level": "headless",
+      "behaviors": [
+        "NP.alternate-canvas-owned-generation"
+      ],
+      "tests": [
+        "tests/alternate-canvas-owner-test.cpp",
+        "tools/test-alternate-canvas-owner.py"
+      ],
+      "evidence": [
+        "ACO2.native-owner-20261025"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -361477,7 +361613,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-d869f4651c7a0bcc0b25f949e7840ea54fba80af3c5eaa8c55f2d54d90a918f5.json",
-    "sha256": "d869f4651c7a0bcc0b25f949e7840ea54fba80af3c5eaa8c55f2d54d90a918f5"
+    "path": "research/runtime/coverage/source-index-3c522bcd73ceb552f27e1d4b295f5e24816588075081909e1588933ea27c5131.json",
+    "sha256": "3c522bcd73ceb552f27e1d4b295f5e24816588075081909e1588933ea27c5131"
   }
 }

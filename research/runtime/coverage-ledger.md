@@ -1,5 +1,23 @@
 # Engine modernization coverage ledger
 
+## Native alternate canvas generation ownership — 2026-10-25
+
+A separate native owner now allocates, zeroes, publishes, leases and retires
+bounded alternate RGB565 generations. Opaque handles reject stale/cross-owner
+use; exclusive leases prevent resize/reacquire and retain pixels through
+retirement or owner destruction. The compatibility adapter pins the frame through
+the recovered World/Lock/copy/overlay/Unlock composition and removes temporary
+alternate bindings before releasing it. Centered copy-back and zero initialization
+are intentional native choices, not recovered original pointer relationships.
+
+The Qt-free CMake/CTest target and release plus 32/64-bit ASan/UBSan runs pass
+24 full-plane frame controls, 61 refusals and maximum-extent/lifetime controls.
+`NP.alternate-canvas-owned-generation` is scoped/headless. Original alternate
+provenance remains partial, and original comparison, application installation
+and live replacement receive no promotion. Earlier initial test fingerprints
+remain historical; the [refreshed coverage snapshot](coverage/summary-alternate-owner-20261025.md)
+retains unrelated historical staleness. See [policy, lifetime and evidence](alternate-canvas-native-owner-20261025.md).
+
 ## Storage software-upload source attribution — 2026-10-25
 
 The separate public-SHM diagnostic confirms the fresh first-shrink discrepancy
