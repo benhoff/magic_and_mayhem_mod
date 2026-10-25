@@ -19,5 +19,18 @@ int main()try{
  bad=r;bad.specific[1].column=0;rejects([&]{reconstruction::planFixedTerrainRegion(bad,{&a,&b});});
  bad=r;bad.columns=5;rejects([&]{reconstruction::planFixedTerrainRegion(bad,{&a,&b});});
  a.metadata[0]=3;rejects([&]{reconstruction::planFixedTerrainRegion(r,{&a,&b});});
+ // A malformed final block/source cannot change any caller-owned source or plan.
+ auto malformed=p;malformed.blocks.back().column=malformed.columns;
+ rejects([&]{reconstruction::assembleFixedTerrainRegion(malformed,{&a,&b},t);});
+ malformed=p;malformed.blocks.back()=malformed.blocks.front();
+ rejects([&]{reconstruction::assembleFixedTerrainRegion(malformed,{&a,&b},t);});
+ malformed=p;malformed.blocks.back().rotation=4;
+ rejects([&]{reconstruction::assembleFixedTerrainRegion(malformed,{&a,&b},t);});
+ require(p.blocks.back().rotation==1 && a.cells[0].flags10==8 && b.cells[0].references[0]==2);
+ // Source storage can disappear after assembly without changing the owned output.
+ const auto saved=result.map.cells[0];a.cells.clear();b.cells.clear();
+ require(result.map.cells[0].definition==saved.definition && result.map.cells[0].flags10==saved.flags10);
+ auto invalidPlan=p;invalidPlan.layers=0;
+ rejects([&]{reconstruction::assembleFixedTerrainRegion(invalidPlan,{},t);});
  std::cout<<"Fixed placement, anchor wrapping, mixed height, projection and rejection pass\n";
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

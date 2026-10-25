@@ -21865,3 +21865,23 @@ original behavior. Reverse/full-effect/cadence/resource/entity lifetime, origina
 file loading and complete scene/live/FPS acceptance remain separate. Historical
 evidence is preserved. Source census, exact receipts and verified SQLite backups
 accompany local completion. No original input or game balance is changed.
+
+## Twenty-second bounded region foundation batch (2026-10-25)
+
+From merged local master `6a6f9614`, `RE.terrain_region`,
+`RE.terrain_catalog` and `RE.terrain_selection` move implementation from partial
+to scoped for the existing owned offline contracts. Understanding remains partial,
+comparison recorded and integration/replacement none. Catalog checks now remain
+active under NDEBUG; new capacity/refusal/ownership, mixed-height assembly and
+endpoint-seed/table controls pass. The core models needed no behavior change.
+
+[Research and retained results](rendering-twentysecond-three-20261025.md) document
+3136 original placements/46656 blocks plus 32 installed blocks, 2087 catalogs/26888
+descriptors, 262144 full-state RNG draws, 207840 admissions and 78584 choices.
+Six Release/ASan/UBSan units and three full sanitizer corpora pass. Independent
+whole-cell assembly matches 18 fixtures/288512 cells in both builds. Exact helper
+links and prospective renewed claims are recorded; historical proofs are kept.
+Eleven missing Medieval Test MAPs remain unavailable; no original file/dialog
+recovery, allocator/descriptor lifetime, whole-world/scene/GPU production or
+live/FPS credit is added. SQLite reports, census, exact reviews and verified
+backups accompany completion. Original inputs and game balance stay unchanged.
