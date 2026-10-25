@@ -22181,3 +22181,117 @@ other difficulties/hardware and original screen-service ownership remain
 separate. Historical failures, including the functionally complete but too-short
 60-second stress attempt, retain their original hashes. See
 [causes, scope and retained attempts](native-save-capture-recovery-20261025.md).
+
+## Terrain/light supplier contracts — 2026-10-25
+
+[Supplier recovery](terrain-light-suppliers.md) and
+[SQLite execution](terrain-light-suppliers-execution-20261025.json) establish
+`TL.relation-production`, `TL.resource-lifetime`, and `TL.refresh-request`.
+Relation18 is alliance/nonhostility; share20 supplies shared sight. Original
+owner defaults and symmetric non-self pair writes preserve raw bytes; stored
+consumer tables remain directed. Neither setter requests a light refresh.
+
+Original32, native64 and ASan/UBSan agree on640 pair cases,40960 directed
+admission checks,256 resource checkpoints and8200648 object/buffer/service bytes.
+The resource comparison covers32 allocate/reuse/teardown/reinitialize journeys,
+including retained capacity after dimension changes and null-sentinel behavior.
+Allocator/free and kernel-service endpoints are explicit recorders; the original
+supplier bodies execute unchanged. Existing creature-cycle regression also
+matches2304 ticks,19544520 buffer bytes and11520 cycle-state values across all
+three variants. Both manifest checks verify2927 original files.
+
+This is isolated component comparison. Kernel/map-load refresh stores and
+request callers are documented static links; their whole caller execution,
+original allocation failures, installed entity/static-type discovery, script
+reveal/notification consequences, full-world scheduling and live replacement
+remain separate. Native field RAII and replay policy remain distinct. Historical
+consumer evidence retains its hashes; the comment/header change can make its
+older fingerprints stale without revoking past scoped observations.
+
+The first attempt refused the mutable working executable before mapping because
+its SHA-256 differed; the failure is retained in
+[negative evidence](terrain-light-suppliers-20261025.json). The successful run uses
+the immutable hash-pinned no-CD original. Temporary logs/helpers/output streams
+are bounded under this owned worktree's ignored working/tests/light-suppliers-2;
+durable report/disassembly/source fingerprints live in SQLite.
+
+The [pinned static caller report](terrain-light-suppliers-static-20261025.json)
+retains kernel/map-load refresh stores, both explicit request callers and the
+relation/sharing script windows. It grants no new caller execution claim.
+The [coverage audit](terrain-light-supplier-audit-20261025.json) has zero errors;
+all three new supplier behaviors have current implementation/comparison proof.
+The [refreshed summary](coverage/summary-terrain-light-suppliers-20261025.md)
+retains unrelated historical staleness and discovery gaps.
+
+
+## Terrain light supplier master integration — 2026-10-25
+
+[Integration review](terrain-light-suppliers-master-integration-20261025.md)
+combines supplier commit `babb7633` with current rendering/cursor master.
+Exact bindings for both supplier records match all twelve inputs; fresh native64
+and ASan/UBSan supplier and creature-cycle controls match retained original
+outputs. Stable-ID reconciliation preserves all parent records and receipts.
+The first integration review is retained separately after master advanced to
+`618cc26c`; its verified committed transitions are inherited into the extended
+history review without reasserting a past gate pass or new engine execution.
+Installed/world/live and original heap-failure boundaries remain separate.
+Concurrent main-checkout edits stay outside the merge commit.
+
+Final supplier integration also retains rendering review-input closeout
+`568c7304` and the normally gated supplier merge `8240b054` as actual parents.
+The extended review preserves prior verified transitions and checks only new
+committed versions; source/claim bindings and bounded validation domains remain
+unchanged. Concurrent main-checkout work is preserved outside this commit.
+
+The final reserved integration combines alternate-canvas master `a50d0375` with
+reviewed supplier closeout `d54a5e37`. Its exact transition review extends the
+retained history, while all twelve supplier proof inputs remain unchanged. A
+backed-up pending merge preserves concurrent main-checkout work through normal
+hook validation and the final fast-forward. No validation scope is promoted.
+## Cursor clients and deferred borrowed lifetime (2026-10-25)
+
+[Recovered control and lifetime preconditions](cursor-ownership-deferred-lifetime-20261025.md)
+complement the separately owned screen-services background invalidation/restore
+helpers. `CUR25.clients-queue-disposal` compares unchanged original foreground,
+timer, enqueue/drain and disposal callers against portable value-address models.
+Optimized and ASan/UBSan32 each pass10,368 client cases,1,280 queue cases,12 disposal
+cases and6 sparse/retry controls. Original manifest bookends and selected unchanged
+instruction checks pass. The first sanitizer harness failure remains immutable.
+
+The queue copies rectangles but borrows wrappers and resolves current interfaces
+at drain. Foreground can enqueue; timer remains immediate. Disposal leaves queue
+records pending while releasing sprite/background interfaces. These are confirmed
+serial lifetime preconditions, not proof of safe original concurrent shutdown.
+Offline understanding/implementation/comparison are recorded independently from
+integration/replacement, which remain none. Full allocator/alias/writer mapping,
+an owning native cursor service and live physical acceptance remain pending.
+The diagnostic gate keeps its ownership disclaimer; no locking policy is promoted.
+Generated results and review bookkeeping use SQLite; raw controls are retained in
+the isolated `codex/cursor-ownership-20261025` worktree on the Videos filesystem.
+
+## Cursor lifetime merge with screen services (2026-10-25)
+
+[The master integration](cursor-ownership-master-integration-20261025.md) combines
+cursor clients/borrowed deferred lifetime `0922ff4c` with background-helper master
+`618cc26c`. Source bodies and scope-bound execution fingerprints are unchanged;
+new accounting preserves both parent histories and reviews the combined census.
+No native ownership, concurrent shutdown or live replacement claim is promoted.
+Uncommitted master launcher/coverage work remains outside this merge.
+
+Cursor lifetime final integration preserves current master `35ae1c4f` and
+its independent alternate-canvas ownership/review metadata. See the [integration
+review](cursor-ownership-master-integration-20261025.md). Cursor sources/contracts
+remain exact; native ownership and live replacement remain pending.
+
+## Captured Save/Load: current-master integration — 2026-10-25
+
+The specific capture/ownership blocker is fixed in `e4315bf2` and combined with
+actual master `0785dd96`, including cursor and terrain recovery. Fresh controls09,
+live06 and comparison04 retain predeclared exact combined-source claims: all 14
+storage handoff schedules pass; the Save/Load/recreate/two-minute pause/Quit
+journey completes with 549 balanced Worlds,26 source chunks and425984 records
+in one pause interval; all four selected original/native checkpoints agree on
+1920000 RGB565 words with zero differences. FPS stays diagnostic. Broader
+original screen-service ownership, complete restored simulation and independent
+presented-session equivalence remain separate. See the
+[integration review](native-save-capture-master-integration-20261025.md).
