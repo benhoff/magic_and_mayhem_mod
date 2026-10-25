@@ -521,7 +521,16 @@ class TrancheTest(unittest.TestCase):
             'RS.world-cell-terrain-production',
         })
         self.assertTrue(merged_high.issubset(scoped_high))
-        self.assertEqual(len(scoped_high), 72 + len(completed) + len(recovered_suppliers) + len(merged_high))
+        surface_components = {
+            'RE.surface-wrapper.opaque-guarded', 'RE.surface-wrapper.opaque-recovering',
+            'RE.surface-wrapper.keyed-recovering', 'RE.surface-wrapper.keyed-rectangle',
+            'RE.surface-wrapper.keyed-explicit', 'RE.surface-wrapper.partial-fill',
+            'RE.surface-wrapper.full-fill', 'NP.surface-bitmap.owned-cursor',
+            'NP.surface-bitmap.indexed-recovery',
+        }
+        self.assertTrue(surface_components.issubset(scoped_high))
+        self.assertEqual(len(scoped_high), 72 + len(completed) + len(recovered_suppliers)
+                         + len(merged_high) + len(surface_components))
         for task in tasks:
             execution = task.get('execution_result')
             if execution:

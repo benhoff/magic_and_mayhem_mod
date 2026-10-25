@@ -286,7 +286,8 @@ See [format, validation and remaining integration](../research/formats/pcx-nativ
 ## BMP RGB images
 
 `mnm-bmp-loader` provides `decodeBmp`/`loadBmp` in `bmp.hpp`: owned top-down
-RGB pixels from 24-bit BI_RGB files with a 40-byte BITMAPINFOHEADER.
+RGB pixels from core/information headers, indexed and direct uncompressed
+rows, 16/32-bit RGB masks, and bottom-up RLE4/RLE8.
 Both source orientations and padded rows are handled with bounded decoding.
 `mnm-bmp-inspect ROOT PATH.bmp` reports metadata and a complete RGB hash.
 See [format, validation and remaining integration](../research/formats/bmp-native-loading.md).
@@ -390,3 +391,10 @@ missile/effect pools and optional state. The persistence inspector adds `world`,
 `sav-world` and `vas-world` types; existing envelope inspection remains available.
 This structural reader does not restore resources, pointers or simulation state.
 See [grammar, validation and limits](../research/formats/save-world-native-loading.md).
+
+
+The 2026-10-25 [native BMP extension](../research/runtime/rendering-twentyfifth-ten-20261025.md)
+adds ten scoped input domains to the existing decoder: indexed1/4/8, RGB555,
+BGRX32, 16/32-bit masks, RLE4/8 and the core header. ResourceManager and the
+renderer consume the same owned RGB result; no additional loader path is needed.
+These native policies expand support beyond the observed installed24-bit set.

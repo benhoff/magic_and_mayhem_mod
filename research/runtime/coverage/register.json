@@ -3163,7 +3163,8 @@
       "original": [],
       "documents": [
         "research/formats/bmp-native-loading.md",
-        "assets/README.md"
+        "assets/README.md",
+        "research/runtime/rendering-twentyfifth-ten-20261025.md"
       ],
       "implementation": [
         "assets/bmp.cpp",
@@ -3181,7 +3182,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Ten additional decoder domains have separate NP.bmp component implementations and native fixture/GPU execution. Installed inventory already fits the historical24-bit path. Original loader errors, placement/transparency contracts, OS file/heap behavior, full installed/UI/scene/hardware and live acceptance remain independent. Historical evidence fingerprints are retained; this source change grants no current original equivalence."
+      ]
     },
     {
       "id": "AS.jpeg",
@@ -3367,7 +3371,8 @@
       ],
       "documents": [
         "research/formats/sft-native-loading.md",
-        "assets/README.md"
+        "assets/README.md",
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
       ],
       "implementation": [
         "assets/sft.cpp",
@@ -3386,7 +3391,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N26 adds ten separately scoped native owned-text resource/session/CPU/GPU/cache services. Existing compatibility FontText, byte/line kernels, raw provider and Qt outline paths remain separate consumers/suppliers. Original platform/errors/tinted-coverage, installed scene/planner cadence, hardware and live acceptance remain independent; this parent receives no new status credit."
+      ]
     },
     {
       "id": "AS.nod",
@@ -16676,7 +16684,14 @@
         "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N24 supplies the separately registered child RE.surface-wrapper.opaque-guarded within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation.",
+        "N24 supplies the separately registered child RE.surface-wrapper.opaque-recovering within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation.",
+        "N24 supplies the separately registered child RE.surface-wrapper.keyed-recovering within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation.",
+        "N24 supplies the separately registered child RE.surface-wrapper.keyed-rectangle within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation.",
+        "N24 supplies the separately registered child RE.surface-wrapper.keyed-explicit within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation."
+      ]
     },
     {
       "id": "NR.surface-driver-fixtures",
@@ -18440,7 +18455,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N24 supplies the separately registered child NP.surface-bitmap.indexed-recovery within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation."
+      ]
     },
     {
       "id": "RE.surface-reload.cursor-sentinel",
@@ -18562,7 +18580,10 @@
         "comparison": "recorded",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N24 supplies the separately registered child NP.surface-bitmap.owned-cursor within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation."
+      ]
     },
     {
       "id": "NR.surface-reload.bitmap-dc",
@@ -18902,6 +18923,10 @@
       },
       "validation_dependencies": [
         "protocols/include/mnm/world_raster_batch_v3.h"
+      ],
+      "remaining_gaps": [
+        "N24 supplies the separately registered child RE.surface-wrapper.partial-fill within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation.",
+        "N24 supplies the separately registered child RE.surface-wrapper.full-fill within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation."
       ]
     },
     {
@@ -68752,7 +68777,8 @@
       },
       "remaining_gaps": [
         "Original02reaches five generated4x75bars with zero recorder failures; isolated reference04matches3444cases/8512504words and the combined source cohort matches49920000CPU pixels. Full allocation/reuse lifetime, arbitrary source-buffer mutation, current/max arithmetic, original bad inputs and all display/journey behavior remain unproved. Default mode retains53hooks; new56-site ABI and cache guards are scoped fixtures.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "N24 supplies the separately registered child NP.vertical-bar.owned-surface within its declared component scope. The aggregate remains partial and does not inherit new whole-function, driver, session or live validation."
       ]
     },
     {
@@ -139457,7 +139483,8 @@
         "research/runtime/actor-particle-provider-20261022.md",
         "research/runtime/actor-emission-provider-20261022.md",
         "research/runtime/emitter-families-provider-20261022.md",
-        "research/runtime/owner-task-storage-20261023.md"
+        "research/runtime/owner-task-storage-20261023.md",
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -139595,7 +139622,10 @@
       "implementation_review": {
         "review": "DSVC2.actor-service-source-review-final-20261021",
         "entry": "RS.actor-downstream-services"
-      }
+      },
+      "remaining_gaps": [
+        "N26 adds ten separately scoped native owned-text resource/session/CPU/GPU/cache services. Existing compatibility FontText, byte/line kernels, raw provider and Qt outline paths remain separate consumers/suppliers. Original platform/errors/tinted-coverage, installed scene/planner cadence, hardware and live acceptance remain independent; this parent receives no new status credit."
+      ]
     },
     {
       "id": "RS.actor-downstream-value-services",
@@ -147033,6 +147063,2078 @@
       },
       "remaining_gaps": [
         "All78 bounded provider cases pass for Wine,native and guarded native,including full queue preservation,independent complete destinations and owner retirement. This does not install the reconstructed helper or recover all natural screen/vtable owners,writers,arbitrary stale/GPU backing,platform failure reachability,concurrency or live replacement."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.opaque-guarded",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Opaque guarded surface copy",
+      "scope": "Successful guarded opaque copy argument planning and owned one-call execution: null-interface bypass, supplied Blt/BltFast and WAIT policy, signed32 wrapping and destination-only primary-window translation. Source and caller destination rectangles remain unchanged. No original error/driver/ABI/global lifetime or whole-function claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817184,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "N24.copy-original-20261025",
+        "MERGE2426.surface-native-20261025",
+        "MERGE2426.copy-original-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Successful guarded opaque copy argument planning and owned one-call execution: null-interface bypass, supplied Blt/BltFast and WAIT policy, signed32 wrapping and destination-only primary-window translation. Source and caller destination rectangles remain unchanged. No original error/driver/ABI/global lifetime or whole-function claim."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.opaque-recovering",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Opaque surface copy geometry",
+      "scope": "Successful opaque recovery-wrapper copy geometry and owned one-call execution, including null-interface bypass, supplied Blt/BltFast/WAIT policy, wrapped destination arithmetic and window translation. This child covers the successful argument path only; its error/retry/reload body and original COM/window lifetimes are separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "N24.copy-original-20261025",
+        "MERGE2426.surface-native-20261025",
+        "MERGE2426.copy-original-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Successful opaque recovery-wrapper copy geometry and owned one-call execution, including null-interface bypass, supplied Blt/BltFast/WAIT policy, wrapped destination arithmetic and window translation. This child covers the successful argument path only; its error/retry/reload body and original COM/window lifetimes are separate."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.keyed-recovering",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Keyed surface copy geometry",
+      "scope": "Successful source-keyed recovery-wrapper argument planning and owned one-call execution. Preserve source rectangle, supplied API/WAIT policy,32-bit wrapped destination and destination-only primary-window translation. Missing native handles are refused. Original error/retry/reload and malformed pointers, driver output and live ownership are separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818528,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "N24.copy-original-20261025",
+        "MERGE2426.surface-native-20261025",
+        "MERGE2426.copy-original-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Successful source-keyed recovery-wrapper argument planning and owned one-call execution. Preserve source rectangle, supplied API/WAIT policy,32-bit wrapped destination and destination-only primary-window translation. Missing native handles are refused. Original error/retry/reload and malformed pointers, driver output and live ownership are separate."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.keyed-rectangle",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Keyed rectangle copy geometry",
+      "scope": "Successful keyed rectangle wrapper argument planning and owned one-call execution with supplied Blt/BltFast/WAIT policy,32-bit wrapping and destination-only primary-window translation. Caller rectangles remain unchanged; native handle refusal and existing backend clipping policy are distinct from recovered forwarding. Original failure and live behavior remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819024,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "N24.copy-original-20261025",
+        "MERGE2426.surface-native-20261025",
+        "MERGE2426.copy-original-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Successful keyed rectangle wrapper argument planning and owned one-call execution with supplied Blt/BltFast/WAIT policy,32-bit wrapping and destination-only primary-window translation. Caller rectangles remain unchanged; native handle refusal and existing backend clipping policy are distinct from recovered forwarding. Original failure and live behavior remain separate."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.keyed-explicit",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Explicit keyed source/destination rectangles",
+      "scope": "Successful explicit source/destination rectangle planning and owned one-call execution: unconditional Blt KEYSRC plus WAIT, unchanged source and in-place destination-only primary-window translation with32-bit wrap. No wrapper cropping or dimension normalization. Native backend may refuse stretching after mutation. Driver/COM/failure/global lifetimes and live replacement are separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819328,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "N24.copy-original-20261025",
+        "MERGE2426.surface-native-20261025",
+        "MERGE2426.copy-original-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Successful explicit source/destination rectangle planning and owned one-call execution: unconditional Blt KEYSRC plus WAIT, unchanged source and in-place destination-only primary-window translation with32-bit wrap. No wrapper cropping or dimension normalization. Native backend may refuse stretching after mutation. Driver/COM/failure/global lifetimes and live replacement are separate."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.partial-fill",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Owned partial-fill wrapper service",
+      "scope": "Owned optional-rectangle fill service composing existing recovered low-WORD color and partial-fill scheduling with owned backend admission. Successful fill draws once; a lost draw restores/reloads without an automatic second fill. Explicit key/callback/global-cursor bindings and bounded budget are supplied. Physical driver faults, original runtime resource acquisition and full session replacement are excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814976,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "MERGE2426.surface-native-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned optional-rectangle fill service composing existing recovered low-WORD color and partial-fill scheduling with owned backend admission. Successful fill draws once; a lost draw restores/reloads without an automatic second fill. Explicit key/callback/global-cursor bindings and bounded budget are supplied. Physical driver faults, original runtime resource acquisition and full session replacement are excluded."
+      ]
+    },
+    {
+      "id": "RE.surface-wrapper.full-fill",
+      "subsystem": "rendering_reconstruction",
+      "kind": "recovered",
+      "title": "Owned full-fill wrapper service",
+      "scope": "Owned whole-surface fill service composing existing recovered low-WORD color and full-fill scheduling with owned backend admission. Report initial result, restore/reload on loss and perform the bounded second fill in original order. Native draw budget exhaustion is an explicit incomplete result. Original driver failures/resource acquisition and live replacement remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Selected component path only; successful argument geometry for copies and bounded recovered fill composition. Original driver/window/COM lifetime and whole-function semantics are not inferred."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "MERGE2426.surface-native-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned whole-surface fill service composing existing recovered low-WORD color and full-fill scheduling with owned backend admission. Report initial result, restore/reload on loss and perform the bounded second fill in original order. Native draw budget exhaustion is an explicit incomplete result. Original driver failures/resource acquisition and live replacement remain separate."
+      ]
+    },
+    {
+      "id": "NP.surface-bitmap.owned-cursor",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned fixed-path cursor bitmap binding",
+      "scope": "Immutable prevalidated bounded1/4/8/24-bit sequential BMP resource binding from the supplied fixed cursor-path reader, with independent callback lifetime and owned DC acquisition/release. Missing input is optional; malformed/unsupported input is refused before a surface mutation. Retain the recovered sequential parser policy. No OS resolver/GDI/COM error or live original recovery equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "MERGE2426.surface-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Immutable prevalidated bounded1/4/8/24-bit sequential BMP resource binding from the supplied fixed cursor-path reader, with independent callback lifetime and owned DC acquisition/release. Missing input is optional; malformed/unsupported input is refused before a surface mutation. Retain the recovered sequential parser policy. No OS resolver/GDI/COM error or live original recovery equivalence."
+      ]
+    },
+    {
+      "id": "NP.surface-bitmap.indexed-recovery",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Shared-palette indexed bitmap recovery",
+      "scope": "Explicit owned indexed bitmap Restore/reload service requiring the expected shared palette identity before mutation. Retain palette identity and entries, including updates during loss; reload through an owned DC and define only the written bitmap region. This is native recovery composition, not original unknown restored bytes, allocation, driver or live recovery equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "MERGE2426.surface-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Explicit owned indexed bitmap Restore/reload service requiring the expected shared palette identity before mutation. Retain palette identity and entries, including updates during loss; reload through an owned DC and define only the written bitmap region. This is native recovery composition, not original unknown restored bytes, allocation, driver or live recovery equivalence."
+      ]
+    },
+    {
+      "id": "NP.vertical-bar.owned-surface",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned logical vertical-bar surfaces",
+      "scope": "Owned RGB565/RGB555 image and GPU surface construction from bounded width/height2..128 and fill0..height-2, composing the existing recovered logical bar pixel supplier. Reject invalid parameters before allocation and return a caller-owned surface reference. Original pixel supplier comparison is separate from native allocation/reuse/resize lifetime; no whole-frame, original constructor or live replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfourth-ten-20261025.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/surface_wrappers.hpp",
+        "reconstruction/rendering/surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/owned_surface_wrappers.cpp"
+      ],
+      "tests": [
+        "tests/surface-wrapper-plan-test.cpp",
+        "tests/owned-surface-wrappers-test.cpp",
+        "tools/test-rendering-twentyfourth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "reconstruction/rendering/surface_retry.hpp",
+        "reconstruction/rendering/vertical_bar.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/replay_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/surface-rectangle-reference.cpp",
+        "tests/vertical-bar-reference-test.c",
+        "tools/compare-surface-rectangles.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "N24.surface-native-20261025",
+        "MERGE2426.surface-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned RGB565/RGB555 image and GPU surface construction from bounded width/height2..128 and fill0..height-2, composing the existing recovered logical bar pixel supplier. Reject invalid parameters before allocation and return a caller-owned surface reference. Original pixel supplier comparison is separate from native allocation/reuse/resize lifetime; no whole-frame, original constructor or live replacement claim."
+      ]
+    },
+    {
+      "id": "NP.bmp.indexed1",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP indexed1 rendering input",
+      "scope": "Uncompressed information-header 1-bit BMP rows with high-bit-first palette lookup. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025",
+        "MERGE2426.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.indexed4",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP indexed4 rendering input",
+      "scope": "Uncompressed information-header 4-bit BMP rows with high-nibble-first palette lookup. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025",
+        "MERGE2426.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.indexed8",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP indexed8 rendering input",
+      "scope": "Uncompressed information-header 8-bit BMP rows with byte palette lookup. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025",
+        "MERGE2426.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.rgb555",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP rgb555 rendering input",
+      "scope": "Uncompressed information-header 16-bit RGB555 pixels; unused high bit is ignored. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025",
+        "MERGE2426.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.bgrx32",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP bgrx32 rendering input",
+      "scope": "Uncompressed information-header 32-bit BGRX pixels; high byte has no alpha meaning. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025",
+        "MERGE2426.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.masks16",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP masks16 rendering input",
+      "scope": "Information-header 16-bit BI_BITFIELDS with three external nonzero contiguous disjoint depth-bounded RGB masks and floor scaling. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025",
+        "MERGE2426.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.masks32",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP masks32 rendering input",
+      "scope": "Information-header 32-bit BI_BITFIELDS with three external nonzero contiguous disjoint RGB masks and floor scaling. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025",
+        "MERGE2426.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.rle4",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP rle4 rendering input",
+      "scope": "Information-header bottom-up BI_RLE4: alternating encoded runs, packed literals and word alignment, EOL/EOB/delta, bounded stream and coordinates. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025",
+        "MERGE2426.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.rle8",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP rle8 rendering input",
+      "scope": "Information-header bottom-up BI_RLE8: encoded runs, byte literals and word alignment, EOL/EOB/delta, bounded stream and coordinates. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025",
+        "MERGE2426.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.bmp.core",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native BMP core rendering input",
+      "scope": "12-byte BITMAPCOREHEADER with unsigned dimensions, RGBTRIPLE indexed1/4/8 palettes or direct24 pixels and bottom-up padded rows. Owned top-down RGB, strict input/output/extent limits, complete failure atomicity and existing resource-manager/RGB565/GPU composition. Indexed skipped RLE cells use palette zero. No recovered original loader, Windows API error, alpha, color-managed, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyfifth-ten-20261025.md",
+        "research/formats/bmp-native-loading.md"
+      ],
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp",
+        "tests/bmp-encoding-test.cpp",
+        "tests/bmp-rendering-test.cpp",
+        "tools/test-rendering-twentyfifth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N25.bmp-native-20261025",
+        "MERGE2426.bmp-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped decoder and synthetic native rendering composition only. Original caller/error/placement semantics, installed domain need, physical hardware and full-game/live acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.text.font-resource",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text font-resource",
+      "scope": "Strict owned-v3 SFT acquisition and complete bounded metric/glyph admission; immutable shared font/plan lifetime independent of the file and caller source. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025",
+        "MERGE2426.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.byte-advance",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text byte-advance",
+      "scope": "Stateful native text-session contour advance with optional commit and nonmutating probe using the existing recovered byte supplier. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025",
+        "MERGE2426.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.byte-placement",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text byte-placement",
+      "scope": "Single-byte native glyph plan with suppressed bytes and atomic session cursor publication through the existing recovered supplier. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025",
+        "MERGE2426.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.string-placement",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text string-placement",
+      "scope": "Bounded terminated byte-run planning with suppression and complete cursor rollback on a late invalid byte. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025",
+        "MERGE2426.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.rectangle-layout",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text rectangle-layout",
+      "scope": "Application-bound recovered rectangle layout with owned line/glyph result and transactional session state. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025",
+        "MERGE2426.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.height-layout",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text height-layout",
+      "scope": "Application-bound recovered height-limited layout with owned consumed-source result and transactional session state. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025",
+        "MERGE2426.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.measurement",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text measurement",
+      "scope": "Explicit nonmutating application text measurement, returning the existing supplier state without modifying the session pen. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025",
+        "MERGE2426.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.cpu-pixels",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text cpu-pixels",
+      "scope": "Native atomic RGB565 glyph raster with separate mask, signed origins, viewport clipping and embedded or supplied indexed colors. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025",
+        "MERGE2426.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.gpu-pixels",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text gpu-pixels",
+      "scope": "Owned native text plans through actual RGB565 GPU glyph upload and clipped sprite composites; complete logical preflight but no physical GL transaction. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025",
+        "MERGE2426.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
+      ]
+    },
+    {
+      "id": "NP.text.gpu-cache",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native text gpu-cache",
+      "scope": "Native bounded glyph-and-palette-value LRU cache, resident reuse without new upload/readback, eviction and explicit owned retirement. Within strict complete SFT/native RGB565 domains and documented budgets. Existing recovered kernels are reused, not newly recovered. No original loader/error/coverage-blend/ABI, Unicode, RGB555, whole-scene, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentysixth-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/text-session/text_session.hpp",
+        "apps/text-session/text_session.cpp",
+        "renderer/fonts/font_pixels.hpp",
+        "renderer/fonts/font_pixels.cpp"
+      ],
+      "tests": [
+        "tests/text-session-test.cpp",
+        "tools/test-rendering-twentysixth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/text-session/CMakeLists.txt",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "tests/sft-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N26.text-native-20261025",
+        "MERGE2426.text-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native resource/application/delivery composition only. Existing compatibility consumers and original provider algorithms retain separate historical proof. Tinted coverage, installed acceptance, physical GL failure recovery, full scene and live replacement remain independent."
       ]
     }
   ],
@@ -334478,6 +336580,386 @@
           ]
         }
       ]
+    },
+    {
+      "id": "N24.surface-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten bounded component implementations under five partial surface parents. Native Release and ASan/UBSan controls plus fresh unchanged original copy-argument geometry and bar-supplier comparisons. No real driver, ABI pointer identity, original copy failure/retry, whole-session, hardware, performance or live replacement claim. Fill, resource/recovery and bar allocation composition do not receive original comparison credit.",
+      "record": "research/runtime/rendering-twentyfourth-ten-results-20261025/execution-5.json",
+      "sha256": "0756d17173f465f5622f801ad3f5ccd0a33cfde48eb4f1de60b73034f622298d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/copy/exact_geometry_flags_mutation",
+          "equals": true
+        },
+        {
+          "pointer": "/original/bar_supplier/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N24.copy-original-20261025",
+      "kind": "isolated_original",
+      "scope": "Fresh unchanged original five successful copy-wrapper argument paths versus portable native planning.966 controlled cases: geometry,32-bit wrap, flags, window routing and caller rectangle mutation only. Original ABI/pointer identity fields are excluded. No original driver output, copy failure/retry/reload, fill/recovery/bar allocation or live credit.",
+      "record": "research/runtime/rendering-twentyfourth-ten-results-20261025/execution-5.json",
+      "sha256": "0756d17173f465f5622f801ad3f5ccd0a33cfde48eb4f1de60b73034f622298d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/original_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/copy/exact_geometry_flags_mutation",
+          "equals": true
+        },
+        {
+          "pointer": "/original/bar_supplier/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "N25.bmp-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten native BMP decoder domains under partial AS.bmp. CPU fixture byte/RGB comparisons, bounded hostile-input controls and real resource-manager/RGB565/upload/draw/retirement composition on software OpenGL. Native policy only; no original loader comparison, installed asset domain expansion requirement, whole-scene/hardware/performance or live acceptance. Explicit defaults and mask rounding are native choices.",
+      "record": "research/runtime/rendering-twentyfifth-ten-results-20261025/execution-2.json",
+      "sha256": "dc4b1992cd3ddc4aaa367ac873dbca9a8725e6dce779180837a959eed2dbd3d5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/cpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/gpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/cpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/gpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N26.text-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten owned native text resource/application/raster/cache components under partial actor/SFT parents. Native policy only: existing byte/layout suppliers, independent fixture pixels and software OpenGL delivery. No new original, tinted coverage, RGB555, installed/hardware/performance/full-scene/live claim.",
+      "record": "research/runtime/rendering-twentysixth-ten-results-20261025/execution-1.json",
+      "sha256": "6e15dbd514224023da25e9084dc9e74a21454dae2fb9894eeb05129251beb548",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "MERGE2426.surface-native-20261025",
+      "kind": "native_integration",
+      "scope": "Fresh combined-master execution. Ten bounded component implementations under five partial surface parents. Native Release and ASan/UBSan controls plus fresh unchanged original copy-argument geometry and bar-supplier comparisons. No real driver, ABI pointer identity, original copy failure/retry, whole-session, hardware, performance or live replacement claim. Fill, resource/recovery and bar allocation composition do not receive original comparison credit.",
+      "record": "research/runtime/rendering-batches-24-26-merge-results-20261025/batch-24-1.json",
+      "sha256": "dab72e37a53cac71f8328a2e9e59b513ef7d166e6dbda0bafc0d0658a3cadf0d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/copy/exact_geometry_flags_mutation",
+          "equals": true
+        },
+        {
+          "pointer": "/original/bar_supplier/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "MERGE2426.copy-original-20261025",
+      "kind": "isolated_original",
+      "scope": "Fresh combined-tree five successful copy-wrapper argument comparisons against unchanged original966cases: geometry/flags/wrap/caller mutation only; ABI/pointer identity, original driver pixels, copy failures and live replacement excluded. Bar supplier comparison is independent and grants no original bar allocation credit.",
+      "record": "research/runtime/rendering-batches-24-26-merge-results-20261025/batch-24-1.json",
+      "sha256": "dab72e37a53cac71f8328a2e9e59b513ef7d166e6dbda0bafc0d0658a3cadf0d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/original_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/copy/exact_geometry_flags_mutation",
+          "equals": true
+        },
+        {
+          "pointer": "/original/bar_supplier/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "MERGE2426.bmp-native-20261025",
+      "kind": "native_integration",
+      "scope": "Fresh combined-master execution. Ten native BMP decoder domains under partial AS.bmp. CPU fixture byte/RGB comparisons, bounded hostile-input controls and real resource-manager/RGB565/upload/draw/retirement composition on software OpenGL. Native policy only; no original loader comparison, installed asset domain expansion requirement, whole-scene/hardware/performance or live acceptance. Explicit defaults and mask rounding are native choices.",
+      "record": "research/runtime/rendering-batches-24-26-merge-results-20261025/batch-25-1.json",
+      "sha256": "c724ea394fb5a69408f87a7f92b0abab8e6c5100d0bc902740379a1bb71d5ff0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/cpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/gpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/cpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/gpu/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "MERGE2426.text-native-20261025",
+      "kind": "native_integration",
+      "scope": "Fresh combined-master execution. Ten owned native text resource/application/raster/cache components under partial actor/SFT parents. Native policy only: existing byte/layout suppliers, independent fixture pixels and software OpenGL delivery. No new original, tinted coverage, RGB555, installed/hardware/performance/full-scene/live claim.",
+      "record": "research/runtime/rendering-batches-24-26-merge-results-20261025/batch-26-1.json",
+      "sha256": "883f04ab5e3fec4920761a19314e4595b897d8ee6821edff8e22e8db63a0ebd1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -362250,7 +364732,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-7b4d377d1ae0b4a4cf26106ffcc2dd1b0b8f1ae42c9673ab785c6a8db90f6585.json",
-    "sha256": "7b4d377d1ae0b4a4cf26106ffcc2dd1b0b8f1ae42c9673ab785c6a8db90f6585"
+    "path": "research/runtime/coverage/source-index-3662f308c71024b756c869a7bf9783f916cb78743c2324ffe66d409b697938e3.json",
+    "sha256": "3662f308c71024b756c869a7bf9783f916cb78743c2324ffe66d409b697938e3"
   }
 }

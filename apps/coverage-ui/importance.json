@@ -3457,6 +3457,216 @@
       "work_type": "acceptance",
       "reason": "Bounded actual-provider connection and complete destination/lifetime assurance for retained original cursor restore services. This does not rate missing whole-screen implementation or claim global ownership recovery.",
       "contract_sha256": "da666210c9cd5ef975749b75dbe33b61a7b913631bb70357323c84f99101a6f3"
+    },
+    {
+      "behavior": "RE.surface-wrapper.opaque-guarded",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Opaque guarded surface copy: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "4deab1c0b778c4c2ce77e50d237be9dcc57f021cf2fadc656117f5d98354bda9"
+    },
+    {
+      "behavior": "RE.surface-wrapper.opaque-recovering",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Opaque surface copy geometry: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "1a41f44c00fe2b13c26672cde6ee203b28ba610b50460a098377f56c5d7c24ad"
+    },
+    {
+      "behavior": "RE.surface-wrapper.keyed-recovering",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Keyed surface copy geometry: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "b7bd918ba78fef00494fb1181740990e266a6b49f5ffd96c7cf5cfc605af6d55"
+    },
+    {
+      "behavior": "RE.surface-wrapper.keyed-rectangle",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Keyed rectangle copy geometry: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "ad231c7752bd7201900254e578ce17a357438e90c613802664af3b4eca449f82"
+    },
+    {
+      "behavior": "RE.surface-wrapper.keyed-explicit",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Explicit keyed source/destination rectangles: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "e376c34bcfe677945c01ce33cf5105984b034a1549a0e186dd97df287213ea64"
+    },
+    {
+      "behavior": "RE.surface-wrapper.partial-fill",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Owned partial-fill wrapper service: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "d944cabb0fb38f550525fdf142068288230c3678fab74bd3a5fe65fb8b15bd28"
+    },
+    {
+      "behavior": "RE.surface-wrapper.full-fill",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Owned full-fill wrapper service: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "128f41d736aa481d0a52721a65d7bb9ef6ca9356e62b86d45f31084531fc08f0"
+    },
+    {
+      "behavior": "NP.surface-bitmap.owned-cursor",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Owned fixed-path cursor bitmap binding: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "5dea2dabf0b953397d3e8c1db9012346709590dd3595214da7ec83af76a07c06"
+    },
+    {
+      "behavior": "NP.surface-bitmap.indexed-recovery",
+      "weight": 4,
+      "work_type": "capability",
+      "reason": "Shared-palette indexed bitmap recovery: A bounded native entry or resource-ownership service supporting core surface drawing and recovery. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "625586b6949b3c1c74fde89b54802f8b5f4373af84484693518c9453ccd53a00"
+    },
+    {
+      "behavior": "NP.vertical-bar.owned-surface",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "Owned logical vertical-bar surfaces: A bounded visual source feature with independent parameter/pixel and ownership controls. N24 implements this component within its declared scope; the overlapping aggregate stays partial. The weight is planning importance, not effort, runtime frequency or whole-renderer acceptance.",
+      "contract_sha256": "56142ddc56df191da13522f818778ee486945f2368433b63df093c6ac0e0aa30"
+    },
+    {
+      "behavior": "NP.bmp.indexed1",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native visual input format already routed through the resource manager and renderer. Installed BMP inventory currently uses direct24, so this expands native input support without resolving an identified original-game blocker. Importance is independent of implementation effort or validation.",
+      "contract_sha256": "c53c2972be7a101ea5e6d742478afe9abe5ffdbcc4a533ac995939258925e8d9"
+    },
+    {
+      "behavior": "NP.bmp.indexed4",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native visual input format already routed through the resource manager and renderer. Installed BMP inventory currently uses direct24, so this expands native input support without resolving an identified original-game blocker. Importance is independent of implementation effort or validation.",
+      "contract_sha256": "f112b8650ff6fd2451aa10d8e53d2deb959d58769a44326de8242046c5d67d3a"
+    },
+    {
+      "behavior": "NP.bmp.indexed8",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native visual input format already routed through the resource manager and renderer. Installed BMP inventory currently uses direct24, so this expands native input support without resolving an identified original-game blocker. Importance is independent of implementation effort or validation.",
+      "contract_sha256": "3cf6d9bad7988dc342da9c2fd22a89c5e6f72c8996ea5834eb3b65bb2a31e935"
+    },
+    {
+      "behavior": "NP.bmp.rgb555",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native visual input format already routed through the resource manager and renderer. Installed BMP inventory currently uses direct24, so this expands native input support without resolving an identified original-game blocker. Importance is independent of implementation effort or validation.",
+      "contract_sha256": "89566dbbbbea87ef01750f6b267fca4d78c7ae9aa8a7a4f5e569beecf436b2b2"
+    },
+    {
+      "behavior": "NP.bmp.bgrx32",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native visual input format already routed through the resource manager and renderer. Installed BMP inventory currently uses direct24, so this expands native input support without resolving an identified original-game blocker. Importance is independent of implementation effort or validation.",
+      "contract_sha256": "e566147d25c2d660cdb32cbc182a111c95e1d1bc6cc5251f8e2b04ece582f03b"
+    },
+    {
+      "behavior": "NP.bmp.masks16",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native visual input format already routed through the resource manager and renderer. Installed BMP inventory currently uses direct24, so this expands native input support without resolving an identified original-game blocker. Importance is independent of implementation effort or validation.",
+      "contract_sha256": "51f33f0491b92693edb63258e0b4eabccb47363ed142278e9ea52a51f604c95f"
+    },
+    {
+      "behavior": "NP.bmp.masks32",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native visual input format already routed through the resource manager and renderer. Installed BMP inventory currently uses direct24, so this expands native input support without resolving an identified original-game blocker. Importance is independent of implementation effort or validation.",
+      "contract_sha256": "8158989d3578a92686195633e8024460d581ae1359b6c6d7da39030ba2e6c405"
+    },
+    {
+      "behavior": "NP.bmp.rle4",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native visual input format already routed through the resource manager and renderer. Installed BMP inventory currently uses direct24, so this expands native input support without resolving an identified original-game blocker. Importance is independent of implementation effort or validation.",
+      "contract_sha256": "249ae114498ae34ae7ddd4078fbf98b0a8959bcaa7008421e3c93ab4f55e7253"
+    },
+    {
+      "behavior": "NP.bmp.rle8",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native visual input format already routed through the resource manager and renderer. Installed BMP inventory currently uses direct24, so this expands native input support without resolving an identified original-game blocker. Importance is independent of implementation effort or validation.",
+      "contract_sha256": "c094dc7214dde92392278f076a4a24bc3151060cbd1fe80853c8e378c2d4b076"
+    },
+    {
+      "behavior": "NP.bmp.core",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native visual input format already routed through the resource manager and renderer. Installed BMP inventory currently uses direct24, so this expands native input support without resolving an identified original-game blocker. Importance is independent of implementation effort or validation.",
+      "contract_sha256": "b13f82ab481a22ecec426b37ef1fa314748823906f1077385e53352f6daedace"
+    },
+    {
+      "behavior": "NP.text.font-resource",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "a33383e014408c17e577177ae67941ac883bcccc6ebdc2c72d4830fc567df52f"
+    },
+    {
+      "behavior": "NP.text.byte-advance",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "b7f7ae651302e76e5c532a3010ec474be6d98b50fa21656dd8e4894a198ea78d"
+    },
+    {
+      "behavior": "NP.text.byte-placement",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "ab0ff4008b7d217ab447390d7e650f2625f88002a6e40fbdcf220aea1e08524e"
+    },
+    {
+      "behavior": "NP.text.string-placement",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "3beb2392e87348d387be926cfab006ab344532f9b78c15a005feb90e88d36ebe"
+    },
+    {
+      "behavior": "NP.text.rectangle-layout",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "07990635739e17c016c0d1b47d72f082058bd3a6b465ebd272c457496ad78333"
+    },
+    {
+      "behavior": "NP.text.height-layout",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "0e9a468244157f77057a5df618539ab58fa8b688842cefc0a5b5f57f29bde16e"
+    },
+    {
+      "behavior": "NP.text.measurement",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "c7b0e47057437b245b26e953971c8bde51038433e25063fdb6eaa5571dd26d12"
+    },
+    {
+      "behavior": "NP.text.cpu-pixels",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "2b5edff0c6adaab03ce49a76ac9a13482267cc56100051b008b59cda6efddb5e"
+    },
+    {
+      "behavior": "NP.text.gpu-pixels",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "d7bf9f79990acf000cbfc8a1f18d76240f3c161cb9d302206581d34a2be6057b"
+    },
+    {
+      "behavior": "NP.text.gpu-cache",
+      "weight": 3,
+      "work_type": "capability",
+      "reason": "A bounded native text ownership, layout or delivery service. Complements existing compatibility suppliers without granting original or aggregate renderer completion. Importance is independent of effort and execution status.",
+      "contract_sha256": "3a348226ff1bd8a1005b0de87ca9e6c0ffcc4e8b63d9db31f33fcdf573935e78"
     }
   ],
   "tranche_plan": {
