@@ -91,11 +91,13 @@ class ImportanceTest(unittest.TestCase):
             'NP.graphics-session-provider-retirement',
             'NP.palette-option-strict-parsing', 'NP.protected-native-store-service', 'NP.surface-alias-lease-lifecycle',
             'RS.alternate-canvas-dispatch-composition', 'RS.cursor-selection-service',
+            'RS.main-screen-acquisition', 'RS.report-screen-acquisition',
             'RS.screen-class-ownership-static', 'RS.screen-class11-lifetime', 'RS.screen-control-dispatch',
             'RS.screen-cursor-background-invalidation',
             'RS.screen-cursor-background-restore', 'RS.screen-minimal-transition-callbacks',
-            'RS.screen-selection-service', 'RS.screen-service-tick-transitions', 'RS.screen-tick-control-flow',
-            'RS.windowed-padded-presentation-route'])
+            'RS.screen-resource-release-callers', 'RS.screen-selection-service',
+            'RS.screen-service-tick-transitions', 'RS.screen-tick-control-flow',
+            'RS.windowed-padded-presentation-route', 'RS.world-screen-acquisition', 'RS.world-screen-retirement'])
         behaviors = {b['id']: b for b in register['behaviors']}
         builds = {b['id']: b for b in register['builds']}
         for entry in result['entries']:

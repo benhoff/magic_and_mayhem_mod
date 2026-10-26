@@ -3814,6 +3814,76 @@
       "work_type": "capability",
       "reason": "Bounded owned native sprite preparation and delivery; original drawing and aggregate renderer completion remain separate. Importance is independent of effort and validation.",
       "contract_sha256": "900913435ac7f833f5abd52164abfe6ee694f2e83997f8525212fa697d29425d"
+    },
+    {
+      "behavior": "NP.sprite-timeline.explicit-clip",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded native variable-timed sprite capability; synthetic CPU/GPU validation remains separate from original ANI and live integration.",
+      "contract_sha256": "370efa08673ad1ece8446b6bcf70725b19cf81c1c76f2b3e7782d7826ac78a60"
+    },
+    {
+      "behavior": "NP.sprite-timeline.variable-loop",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded native variable-timed sprite capability; synthetic CPU/GPU validation remains separate from original ANI and live integration.",
+      "contract_sha256": "59a5fd9da912b255d304f8ee08d3ad721c0f760e9464dff98a40b0d69a2bfb5f"
+    },
+    {
+      "behavior": "NP.sprite-timeline.variable-once",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded native variable-timed sprite capability; synthetic CPU/GPU validation remains separate from original ANI and live integration.",
+      "contract_sha256": "de782605be9ee4137223a9969667ad5428bf7a3cdab28548c6b8e036e9e5a3dd"
+    },
+    {
+      "behavior": "NP.sprite-timeline.ping-pong",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded native variable-timed sprite capability; synthetic CPU/GPU validation remains separate from original ANI and live integration.",
+      "contract_sha256": "0573079a18c639ed05b661463d91de4759c3bf2eaaf15033cd5e1ac4a8efa4e9"
+    },
+    {
+      "behavior": "NP.sprite-timeline.reverse",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded native variable-timed sprite capability; synthetic CPU/GPU validation remains separate from original ANI and live integration.",
+      "contract_sha256": "c4fd1fa5cfbad56443acdbdf355cd15229bd1e22e0374eeeaec9f8ce9e726af1"
+    },
+    {
+      "behavior": "NP.sprite-timeline.pause",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded native variable-timed sprite capability; synthetic CPU/GPU validation remains separate from original ANI and live integration.",
+      "contract_sha256": "348c26111ae968e7fcacc80a6b3188350d58f6529d7557c38b070dd08d3d2cf2"
+    },
+    {
+      "behavior": "NP.sprite-timeline.seek",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded native variable-timed sprite capability; synthetic CPU/GPU validation remains separate from original ANI and live integration.",
+      "contract_sha256": "c0759143c9e4a09e744aa08133ab21be688aa6f19c5cd7c3516532f300a578f1"
+    },
+    {
+      "behavior": "NP.sprite-timeline.rational-rate",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded native variable-timed sprite capability; synthetic CPU/GPU validation remains separate from original ANI and live integration.",
+      "contract_sha256": "fb1abfe02e9a3d3cf5eb207a4409631903596c2eccf9f22f07e6b26df9528bfb"
+    },
+    {
+      "behavior": "NP.sprite-timeline.bounded-events",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded native variable-timed sprite capability; synthetic CPU/GPU validation remains separate from original ANI and live integration.",
+      "contract_sha256": "b295a88a0e9d3df6a9a0233e26b22adc6c821126537b55f10c152d08ec3693c4"
+    },
+    {
+      "behavior": "NP.sprite-timeline.checkpoint-reload",
+      "weight": 2,
+      "work_type": "capability",
+      "reason": "Bounded native variable-timed sprite capability; synthetic CPU/GPU validation remains separate from original ANI and live integration.",
+      "contract_sha256": "ad90b5fe83e367d19b0a701ff3209762c8eed0eff5d204860d3f3ca9b17b3ed2"
     }
   ],
   "tranche_plan": {
